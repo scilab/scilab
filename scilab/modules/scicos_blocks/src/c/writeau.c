@@ -25,6 +25,7 @@
 #include "sciprint.h"
 #include "charEncoding.h"
 #include "mput.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
@@ -104,7 +105,7 @@ double *inptr[],*outptr[],*t;
   else if (*flag==4) {
 	  wcfopen(fd,"/dev/audio","wb");
     if (!fd ) {
-      sciprint("Could not open /dev/audio!\n");
+      sciprint(_("Could not open /dev/audio!\n"));
       *flag = -3;
       return;
     }

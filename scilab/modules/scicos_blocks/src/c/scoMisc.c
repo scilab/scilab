@@ -34,6 +34,7 @@
 #include "sciprint.h"
 #include "HandleManagement.h"
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {
@@ -44,13 +45,13 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
   switch(code_error)
     {
     case 0:
-      sciprint("SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown reason !\n Maybe you have destroyed the windows or any parent of curves\n");
+      sciprint(_("SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown reason !\n Maybe you have destroyed the windows or any parent of curves\n"));
       break;
     case 1:
-      sciprint("SCOPE ERROR : Error during malloc - Check Memory\n");
+      sciprint(_("SCOPE ERROR : Error during malloc - Check Memory\n"));
       break;
     default:
-      sciprint("SCOPE ERROR : Unknown code error ! Please report it to developpers :)\n");
+      sciprint(_("SCOPE ERROR : Unknown code error !\n"));
       break;
     }
 
@@ -58,7 +59,6 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
   win_id = scoGetWindowID(pScopeMemory);
   if (pScopeWindow != NULL )
     {
-      //C2F(deletewin)(&win_id); Old graphics ?
 	  sciDeleteWindow(win_id );
     }
 

@@ -23,6 +23,7 @@
 #include <memory.h>
 #include "scicos_block4.h"
 #include "sciprint.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void convert(scicos_block *block,int flag)
 {
@@ -761,7 +762,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++)
 		   {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		           {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(long)(u[i]);}
@@ -776,7 +777,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		           {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(short)(u[i]);}
@@ -791,7 +792,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		           {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(char)(u[i]);}
@@ -806,7 +807,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
 		           {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned long)(u[i]);}
@@ -821,7 +822,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -836,7 +837,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -851,7 +852,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		            {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(short)(u[i]);}
@@ -866,7 +867,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		            {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(char)(u[i]);}
@@ -880,7 +881,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
 			    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned long)(u[i]);}
@@ -895,7 +896,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -910,7 +911,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>=k) | (u[i]<0))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -925,7 +926,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if ((u[i]>k/2-1) | (u[i]<-(k/2)))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		        else {y[i]=(char)(u[i]);}
@@ -939,7 +940,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]<0)  
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 			 else y[i]=(unsigned long)u[i];}
@@ -952,7 +953,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
 			    {if (flag==1) 
-                                {sciprint("overflow error");
+                                {sciprint(_("overflow error"));
 			         set_block_error(-4);
 			         return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -967,7 +968,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (((u[i]>=k) | (u[i]<0))& (flag==1))
 		       	    {if (flag==1) 
-                                 {sciprint("overflow error");
+                                 {sciprint(_("overflow error"));
 			          set_block_error(-4);
 			          return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -981,7 +982,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 			{if (u[i]<0)
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 			 else y[i]=(unsigned long)u[i];}
@@ -994,7 +995,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]<0)
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -1008,7 +1009,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]<0)
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -1023,7 +1024,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		   	{if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(long)(u[i]);}
@@ -1038,7 +1039,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(short)(u[i]);}
@@ -1053,7 +1054,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(char)(u[i]);}
@@ -1068,7 +1069,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned short)(u[i]);}
@@ -1083,7 +1084,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -1098,7 +1099,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(short)(u[i]);}
@@ -1113,7 +1114,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(char)(u[i]);}
@@ -1128,7 +1129,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(unsigned char)(u[i]);}
@@ -1143,7 +1144,7 @@ void convert(scicos_block *block,int flag)
 		   for (i=0;i<m*n;i++) 
 		        {if (u[i]>(k/2-1))
 		       	    {if (flag==1)
-                               {sciprint("overflow error");
+                               {sciprint(_("overflow error"));
 			        set_block_error(-4);
 			        return;}}
 		   	else {y[i]=(char)(u[i]);}

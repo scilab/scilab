@@ -31,6 +31,7 @@
 #include "mclose.h"
 #include "cluni0.h"
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(namstr)();
 /*--------------------------------------------------------------------------*/ 
@@ -627,7 +628,7 @@ void tows_c(scicos_block *block,int flag)
 			C2F(cluni0)(env, filename, &out_n,1,lout);
 			C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
 			if (ierr != 0) {
-				Coserror("Error when opening file '%s'.\n",str);
+				Coserror(_("Error when opening file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1121,7 +1122,7 @@ void tows_c(scicos_block *block,int flag)
 			ptr_i = (int*) ptr->work;
 			C2F(mputnc)(&fd, &ptr_i[0], (j=nsiz,&j), fmti, &ierr); /* write sci id */
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1130,7 +1131,7 @@ void tows_c(scicos_block *block,int flag)
 			}
 			C2F(mputnc)(&fd, &ptr_i[6], (j=1,&j), fmti, &ierr);    /* write sci type */
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1149,7 +1150,7 @@ void tows_c(scicos_block *block,int flag)
 				}
 			}
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1227,7 +1228,7 @@ void tows_c(scicos_block *block,int flag)
 			 break;
 				}
 				if (ierr != 0) {
-					Coserror("Write error in file '%s'.\n",str);
+					Coserror(_("Write error in file '%s'.\n"),str);
 					scicos_free(ptr->workt);
 					scicos_free(ptr);
 					*(block->work) = NULL;
@@ -1240,7 +1241,7 @@ void tows_c(scicos_block *block,int flag)
 			ptr_i = (int*) ptr->workt;
 			C2F(mputnc)(&fd, &ptr_i[0], (j=nsiz,&j), fmti, &ierr);
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1249,7 +1250,7 @@ void tows_c(scicos_block *block,int flag)
 			}
 			C2F(mputnc)(&fd, &ptr_i[6], (j=1,&j), fmti, &ierr);
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1258,7 +1259,7 @@ void tows_c(scicos_block *block,int flag)
 			}
 			C2F(mputnc)(&fd, &ptr_i[7], (j=3,&j), fmti, &ierr);
 			if (ierr != 0) {
-				Coserror("Write error in file '%s'.\n",str);
+				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
 				*(block->work) = NULL;
@@ -1268,7 +1269,7 @@ void tows_c(scicos_block *block,int flag)
 			if ((ptr->cnt!=0)||(ptr->loop!=0)) {
 				C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7],&j), fmtd, &ierr);
 				if (ierr != 0) {
-					Coserror("Write error in file '%s'.\n",str);
+					Coserror(_("Write error in file '%s'.\n"),str);
 					scicos_free(ptr->workt);
 					scicos_free(ptr);
 					*(block->work) = NULL;
@@ -1297,14 +1298,14 @@ void tows_c(scicos_block *block,int flag)
 		/* check data dimension */
 		if (ismat) {
 			if ((nz!=ptr_i[39]) || (nu!=ptr_i[37]) || (nu2!=ptr_i[38])) {
-				Coserror("Size of buffer or input size have changed!\n");
+				Coserror(_("Size of buffer or input size have changed!\n"));
 				/*set_block_error(-1);*/
 				return;
 			}
 		}
 		else {
 			if ((nz!=ptr_i[7]) || (nu!=ptr_i[8])) {
-				Coserror("Size of buffer or input size have changed!\n");
+				Coserror(_("Size of buffer or input size have changed!\n"));
 				/*set_block_error(-1);*/
 				return;
 			}

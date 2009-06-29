@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "sciprint.h"
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void summation_ui32e(scicos_block *block,int flag)
 {
@@ -49,7 +50,7 @@ void summation_ui32e(scicos_block *block,int flag)
 	v=v+(double)u[j];
       }
       if ((v>=l)|(v<0)) 
-	 {sciprint("overflow error");
+	 {sciprint(_("overflow error"));
 	  set_block_error(-4);
 	  return;}
       else y[0]=(unsigned long)v; 
@@ -66,7 +67,7 @@ void summation_ui32e(scicos_block *block,int flag)
 	     v=v-(double)u[j];}
       }
       if ((v>=l)|(v<0)) 
-	 {sciprint("overflow error");
+	 {sciprint(_("overflow error"));
 	  set_block_error(-4);
 	  return;}
       else y[j]=(unsigned long)v;

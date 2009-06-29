@@ -45,6 +45,7 @@
 #include "ObjectSelection.h"
 #include "HandleManagement.h" /* sciGetHandle */
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dcopy)();
 /*--------------------------------------------------------------------------*/ 
@@ -147,7 +148,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
               pSUBWIN_FEATURE(pTemp2)->SRect[1] = xmax[i];
               break;
             default:
-              sciprint("SCOPE ERROR : Error in dimension number\n");
+              sciprint(_("SCOPE ERROR : Error in dimension number\n"));
               break;
             }
 	  forceRedraw(pTemp2);
@@ -174,7 +175,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
     }
   else
     {
-      sciprint("This Scope (block number : %d) has same number than another. It has been desactivated !\n",block_number);
+      sciprint(_("This Scope (block number : %d) has same number than another. It has been desactivated !\n"),block_number);
     }
 }
 /*--------------------------------------------------------------------------*/ 
@@ -264,7 +265,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
                 break;
               }
             default:
-              sciprint("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n");
+              sciprint(_("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n"));
               break;
             }
           /* Dont forget to reinit it */
@@ -387,7 +388,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                 break;
 
                 default:
-                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                      sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                 break;
              }
 
@@ -424,7 +425,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                 break;
 
                 default:
-                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                      sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                 break;
              }
 
@@ -443,7 +444,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                       NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
                   break;
                   default:
-                      sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                      sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                   break;
                 }
 
@@ -502,7 +503,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                     NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
                 break;
                 default:
-                    sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                    sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                 break;
                }
          if (force_update[i] == 1) //** scope need a redraw 
@@ -518,7 +519,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
               NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
               break;
             default:
-              sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+              sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
               break;
           }
 
@@ -550,7 +551,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                 pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
                 break;
               default:
-                sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                 break;
             }
             /*End of Block for Memory*/
@@ -581,7 +582,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                                    /* Do Nothing */
                                break;
                                default:
-                                   sciprint("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n");
+                                   sciprint(_("SCOPE ERROR : Error in scoDrawScopeAmplitudeTimeStyle()\n"));
                                break;
                              }
                      }

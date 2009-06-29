@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "sciprint.h"
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void matmul_ui32e(scicos_block *block,int flag)
 {
@@ -52,7 +53,7 @@ void matmul_ui32e(scicos_block *block,int flag)
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
 		    if ((D>(k-1)) |(D<0))
-		        {sciprint("overflow error");
+		        {sciprint(_("overflow error"));
 			 set_block_error(-4);
 			 return;}
 		    else {y[jl]=(unsigned long)(D);}

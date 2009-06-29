@@ -36,6 +36,7 @@
 #include "sciprint.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 /** This function use scicos_malloc on the whole structure and set up 0 for whole properties*/
 void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin)
@@ -276,7 +277,7 @@ void scoReallocLongDraw(scoGraphicalObject pLongDraw, int NbrPtsLong, int shortd
 	}
       break;
     default:
-      sciprint("SCOPE ERROR : Error in scoReallocLongDraw()");
+      sciprint(_("SCOPE ERROR : Error in scoReallocLongDraw()"));
       break;
     }
 }

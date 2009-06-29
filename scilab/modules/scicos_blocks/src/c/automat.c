@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 /* A swithcing mechansim for building hybrid automata */
 /* Masoud Najafi, 2007, INRIA */
@@ -131,7 +132,7 @@ void automat(scicos_block *block,int flag)
     }
     if (test==0){
       for (k=0;k<insz[Mi-1]-2*NX;k++) if(jroot[k]==-1) break;
-      /*      sciprint("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction",Mi,k+1); */
+      /*      sciprint(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
     }
     ui=GetRealInPortPtrs(block,Mf);
     for (i=0;i<NX;i++)

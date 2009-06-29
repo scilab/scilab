@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "sciprint.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void matmul2_e(scicos_block *block,int flag)
 {
@@ -43,7 +44,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else y1[i]=(long)v;}
@@ -57,7 +58,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else  y1[i]=(short)v;}
@@ -71,7 +72,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else y1[i]=(char)v;}
@@ -85,7 +86,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else y1[i]=(unsigned long)v;}
@@ -99,7 +100,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else y1[i]=(unsigned short)v;}
@@ -113,7 +114,7 @@ void matmul2_e(scicos_block *block,int flag)
            for (i=0;i<mu*nu;i++)
 	     {v=(double)u1[i]*(double)u2[i];
 	       if ((v<rpar[0])|(v>rpar[1])) 
-		 {sciprint("overflow error");
+		 {sciprint(_("overflow error"));
 		   set_block_error(-4);
 		   return;}
 	       else y1[i]=(unsigned char)v;}

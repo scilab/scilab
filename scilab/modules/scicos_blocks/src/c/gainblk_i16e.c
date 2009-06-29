@@ -22,6 +22,7 @@
 #include <math.h>
 #include "sciprint.h"
 #include "scicos_block4.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void gainblk_i16e(scicos_block *block,int flag)
 {
@@ -44,7 +45,7 @@ void gainblk_i16e(scicos_block *block,int flag)
     for (i=0;i<ny*mu;++i){
      D=(double)(opar[0])*(double)(u[i]);
      if ((D>=k)|( D<-k))
-	{sciprint("overflow error");
+	{sciprint(_("overflow error"));
 	 set_block_error(-4);
 	 return;}
     else y[i]=(short)D;
@@ -61,7 +62,7 @@ void gainblk_i16e(scicos_block *block,int flag)
 		    C=(double)(opar[ji])*(double)(u[il]);
 		    D=D + C;}
 		    if ((D>=k)|( D<-k))
-			{sciprint("overflow error");
+			{sciprint(_("overflow error"));
 			 set_block_error(-4);
 			 return;}
 		    else y[jl]=(short)D;
