@@ -28,7 +28,7 @@ extern double acosh(double x);
 /*--------------------------------------------------------------------------*/ 
 void acosh_blk(scicos_block *block,int flag)
 {
-  int j;
+  int j = 0;
   if(flag==1){
     for (j=0;j<block->insz[0];j++) {
       block->outptr[0][j]=acosh(block->inptr[0][j]);

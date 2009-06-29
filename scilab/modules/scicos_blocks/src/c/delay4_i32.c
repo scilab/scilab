@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void delay4_i32(scicos_block *block,int flag)
 {
@@ -28,9 +29,9 @@ void delay4_i32(scicos_block *block,int flag)
      Scicos block simulator
      Ouputs nx*dt delayed input */
 
-  long *y,*u,*oz;
-  int nz,mz;
-  int i;
+  long *y = NULL,*u = NULL,*oz = NULL;
+  int nz = 0,mz = 0;
+  
   
   u=Getint32InPortPtrs(block,1);
   y=Getint32OutPortPtrs(block,1);
@@ -42,6 +43,7 @@ void delay4_i32(scicos_block *block,int flag)
     y[0]=oz[0];
   }else if (flag == 2){
     /*  shift buffer */
+	int i = 0; 
     for (i=0; i<=(mz*nz)-2; i++){
       oz[i]=oz[i+1];
     }

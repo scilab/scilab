@@ -37,7 +37,7 @@ static int xerbla(char *srname, int *info);
 int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
 	  int *nc, int *l, int *m, int *n)
 {
-  int a_dim1, a_offset, b_dim1, b_offset, c_dim1, c_offset;
+  int a_dim1 = 0, a_offset = 0, b_dim1 = 0, b_offset = 0, c_dim1 = 0, c_offset = 0;
     
 /*     PURPOSE */
 /*        computes the matrix product C = A * B */
@@ -83,11 +83,11 @@ static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alp
   /* System generated locals */
   int i__1, i__2, i__3;
   /* Local variables */
-  static int info;
-  static long int nota, notb;
-  static double temp;
-  static int i, j, l, ncola;
-  static int nrowa, nrowb;  
+  static int info = 0;
+  static long int nota = 0, notb = 0;
+  static double temp = 0.;
+  static int i = 0, j = 0, l = 0, ncola = 0;
+  static int nrowa = 0, nrowb = 0;  
 
   
   /*     .. Scalar Arguments .. */
@@ -432,10 +432,10 @@ static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alp
 static long int lsame(char *ca, char *cb)
 {
   /* System generated locals */
-  long int ret_val;
+  long int ret_val = 0;
 
   /* Local variables */
-  static int inta, intb, zcode;
+  static int inta = 0, intb = 0, zcode = 0;
   
 
   /*  -- LAPACK auxiliary routine (version 2.0) -- */

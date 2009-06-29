@@ -39,7 +39,7 @@ void cosblk (flag, nevprt, t, xd, x, nx, z, nz, tvec,
              double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
 
-  int i ;
+  int i  = 0;
   for ( i=0; i < *nu ; i++)     y[i]= cos(u[i]);
 }
 /*--------------------------------------------------------------------------*/ 

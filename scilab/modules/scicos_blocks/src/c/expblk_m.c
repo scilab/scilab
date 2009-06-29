@@ -21,13 +21,14 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void expblk_m(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  double *rpar;
-  int nu,mu,i;
+  double *u = NULL;
+  double *y = NULL;
+  double *rpar = NULL;
+  int nu = 0,mu = 0,i = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);

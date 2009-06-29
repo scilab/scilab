@@ -20,15 +20,16 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void extdiagz(scicos_block *block,int flag)
 {
-  double *ur;
-  double *ui;
-  double *yr;
-  double *yi;
+  double *ur = NULL;
+  double *ui = NULL;
+  double *yr = NULL;
+  double *yi = NULL;
 
-  int mu,nu,i,ii;
+  int mu = 0,nu = 0,i = 0,ii = 0;
 
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);

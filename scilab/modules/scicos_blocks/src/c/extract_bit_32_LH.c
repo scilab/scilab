@@ -24,8 +24,8 @@
 /*--------------------------------------------------------------------------*/ 
 void extract_bit_32_LH(scicos_block *block,int flag)
 {
-   int i,maxim;
-   long *y,*u,ref,n;
+   int i = 0,maxim = 0;
+   long *y = NULL,*u = NULL,ref = 0,n = 0;
    y=Getint32OutPortPtrs(block,1);
    u=Getint32InPortPtrs(block,1);
    maxim=32;

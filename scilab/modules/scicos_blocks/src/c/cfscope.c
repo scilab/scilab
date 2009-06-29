@@ -35,6 +35,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getouttb)();
 /*--------------------------------------------------------------------------*/ 
@@ -44,24 +45,24 @@ extern int C2F(getouttb)();
 void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
 
-  double *rpar;
-  int *ipar, nipar;   
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;   
 
-  double period;
-  int i;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int buffer_size;
+  double period = 0.;
+  int i = 0;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int buffer_size = 0;
   int win_pos[2];
   int win_dim[2];
-  int win;
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
-  double dt;
-  int nbr_of_curves;
-  int color_flag;
-  int * colors;
-  char *label;
+  int win = 0;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
+  double dt = 0.;
+  int nbr_of_curves = 0;
+  int color_flag = 0;
+  int * colors = NULL;
+  char *label = NULL;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -123,15 +124,15 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 */
 void cfscope(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * sortie;
-  int  *  index_of_view;
-  double t;
-  int nbr_of_curves;
-  int *ipar;
-  int i,j;
-  int NbrPtsShort;
+  double * sortie = NULL;
+  int  *  index_of_view = NULL;
+  double t  = 0.;
+  int nbr_of_curves = 0;
+  int *ipar = NULL;
+  int i = 0,j = 0;
+  int NbrPtsShort = 0;
 
   switch(flag)
     {

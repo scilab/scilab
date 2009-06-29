@@ -21,12 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void bit_set_8(scicos_block *block,int flag)
 {
-  int n,m,i;
-  char *opar;
-  char *u,*y;
+  int n = 0,m = 0,i = 0;
+  char *opar = NULL;
+  char *u = NULL,*y = NULL;
   opar=Getint8OparPtrs(block,1);
   u=Getint8InPortPtrs(block,1);
   y=Getint8OutPortPtrs(block,1);

@@ -36,32 +36,33 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
 void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i; //As usual
-  int * ipar; //Integer Parameters
-  int * colors; //Colors
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
+  int * colors = NULL; //Colors
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int inherited_events;
-  int nipar;
+  int inherited_events = 0;
+  int nipar = 0;
   int dimension = 2;
-  double * rpar; //Reals parameters
-  double dt; //Time++
-  double * period; //Refresh Period of the scope is a vector here
-  double * ymin,* ymax; //Ymin and Ymax are vectors here
-  double * xmin, *xmax;
-  int nbr_period;
-  int * number_of_curves_by_subwin;
-  int number_of_subwin;
-  int nbr_total_curves;
-  char *label;
+  double * rpar = NULL; //Reals parameters
+  double dt = 0.; //Time++
+  double * period = NULL; //Refresh Period of the scope is a vector here
+  double * ymin = NULL,* ymax = NULL; //Ymin and Ymax are vectors here
+  double * xmin = NULL, *xmax = NULL;
+  int nbr_period = 0;
+  int * number_of_curves_by_subwin = NULL;
+  int number_of_subwin = 0;
+  int nbr_total_curves = 0;
+  char *label = NULL;
 
 
   rpar = GetRparPtrs(block);
@@ -159,14 +160,14 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 void cmscope(scicos_block * block, int flag)
 {
   /* Declarations */
-  ScopeMemory * pScopeMemory;
-  int NbrPtsShort;
-  double * u1;
-  double t; //get_scicos_time()
+  ScopeMemory * pScopeMemory = NULL;
+  int NbrPtsShort = 0;
+  double * u1 = NULL;
+  double t = 0.; //get_scicos_time()
   scoGraphicalObject pShortDraw;
-  int i,j;
+  int i = 0,j = 0;
 
-  double d_current_real_time ; 
+  double d_current_real_time = 0. ; 
 
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below

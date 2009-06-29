@@ -39,7 +39,7 @@ void absblk( flag, nevprt, t, xd, x, nx, z, nz, tvec,
              int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
              double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;
 {
-  int i;
+  int i = 0;
   for (i = 0 ; i <  *nu ; ++i ) y[i] = Abs(u[i]);
 } 
 /*--------------------------------------------------------------------------*/ 

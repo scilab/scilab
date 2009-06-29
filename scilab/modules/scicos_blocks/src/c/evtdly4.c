@@ -28,8 +28,8 @@
  */
 void evtdly4(scicos_block *block,int flag)
 {
-  double t;
-  long long int *i;
+  double t = 0.;
+  long long int *i = NULL;
 
   switch(flag)
   {

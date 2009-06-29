@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int s;
@@ -34,9 +35,9 @@ void dollar4_m(scicos_block *block,int flag)
   Ouputs delayed input */
 
 
-  int m,n;
-  double *y,*u,*oz;
-  dol_struct *ptr;
+  int m = 0,n = 0;
+  double *y = NULL,*u = NULL,*oz = NULL;
+  dol_struct *ptr = NULL;
   m=GetInPortRows(block,1);
   n=GetInPortCols(block,1);
   u=GetRealInPortPtrs(block,1);

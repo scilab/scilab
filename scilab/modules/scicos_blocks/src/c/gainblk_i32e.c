@@ -23,15 +23,16 @@
 #include "scicos_block4.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void gainblk_i32e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)){
-  int i,j,l,ji,jl,il;
-  long *u,*y;
-  int mu,ny,my,mo,no;
-  long *opar;
-  double k,D,C;
+  int i = 0,j = 0,l = 0,ji = 0,jl = 0,il = 0;
+  long *u = NULL,*y = NULL;
+  int mu = 0,ny = 0,my = 0,mo = 0,no = 0;
+  long *opar = NULL;
+  double k = 0.,D = 0.,C = 0.;
 
   mo=GetOparSize(block,1,1);
   no=GetOparSize(block,1,2);

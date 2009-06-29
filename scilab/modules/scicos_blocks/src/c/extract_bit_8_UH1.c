@@ -21,11 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void extract_bit_8_UH1(scicos_block *block,int flag)
 {
-   int i,maxim;
-   char *y,*u,ref,n;
+   int i = 0, maxim = 0;
+   char *y = 0,*u = 0,ref = 0,n = 0;
+
    y=Getint8OutPortPtrs(block,1);
    u=Getint8InPortPtrs(block,1);
    maxim=8;

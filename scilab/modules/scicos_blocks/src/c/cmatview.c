@@ -38,25 +38,26 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
 void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i; //As usual
-  int * ipar; //Integer Parameters
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
   int dimension = 2;
-  double * rpar; //Reals parameters
-  double  ymin, ymax; //Ymin and Ymax are vectors here
-  double  xmin, xmax;
-  int number_of_curves_by_subwin;
-  int number_of_subwin;
-  double * mat;
-  int size_mat;
-  char *label;
+  double * rpar = NULL; //Reals parameters
+  double  ymin = 0., ymax = 0.; //Ymin and Ymax are vectors here
+  double  xmin = 0., xmax = 0.;
+  int number_of_curves_by_subwin = 0;
+  int number_of_subwin = 0;
+  double * mat = NULL;
+  int size_mat = 0;
+  char *label = NULL;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -107,13 +108,13 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
 void cmatview(scicos_block * block, int flag)
 {
   /* Declarations */
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * u1;
-  double alpha,beta;
-  int i,j;
-  double * rpar;
-  int dim_i, dim_j;
+  double * u1 = NULL;
+  double alpha = 0.,beta = 0.;
+  int i = 0, j = 0;
+  double * rpar = NULL;
+  int dim_i = 0, dim_j = 0;
   /* Initializations and Allocations*/
   //Allocations are done here because there are dependent of some values presents below
  

@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/ 
 void  absolute_value(scicos_block *block,int flag)
 {
-  int i,j;
+  int i = 0,j = 0;
   if (flag==1){
     if( block->ng>0){
       for(i=0;i<block->insz[0];++i){

@@ -37,26 +37,27 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
 void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i;
-  double *rpar;
-  int *ipar, nipar;
-  double period;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int buffer_size;
+  int i = 0;
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;
+  double period = 0.;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int buffer_size = 0;
   int win_pos[2];
   int win_dim[2];
-  int win;
-  int number_of_subwin;
+  int win = 0;
+  int number_of_subwin = 0;
   int number_of_curves_by_subwin[1];
-  int * colors;
-  char *label;
+  int * colors = NULL;
+  char *label = NULL;
 
   /*Retrieving Parameters*/
   rpar = GetRparPtrs(block);
@@ -122,14 +123,14 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
 */
 void cscope(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
-  int i;
-  double t;
-  int NbrPtsShort;
-  double * u1;
+  ScopeMemory * pScopeMemory = NULL;
+  int i = 0;
+  double t = 0.;
+  int NbrPtsShort = 0;
+  double * u1 = NULL;
   scoGraphicalObject pShortDraw;
 
-  double d_current_real_time ; 
+  double d_current_real_time = 0.; 
 
   switch(flag) 
     {

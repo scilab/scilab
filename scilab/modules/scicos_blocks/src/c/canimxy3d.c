@@ -36,35 +36,36 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
 void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
-  int i; //As usual
-  int * ipar; //Integer Parameters
-  int color_number; //Flag on Color
-  int * color;
-  int * line_size;
-  int nbr_curves;
-  int animed;
-  int win; //Windows ID : To give a name to the window
-  int buffer_size; //Buffer Size
+  int i = 0; //As usual
+  int * ipar = NULL; //Integer Parameters
+  int color_number = 0; //Flag on Color
+  int * color = NULL;
+  int * line_size = NULL;
+  int nbr_curves = 0;
+  int animed = 0;
+  int win = 0; //Windows ID : To give a name to the window
+  int buffer_size = 0; //Buffer Size
   int win_pos[2]; //Position of the Window
   int win_dim[2]; //Dimension of the Window
-  int nipar;
-  double * rpar; //Reals parameters
-  double xmin, xmax, ymin, ymax, zmin, zmax,alpha,theta; //Ymin and Ymax are vectors here
+  int nipar = 0;
+  double * rpar = NULL; //Reals parameters
+  double xmin = 0., xmax = 0., ymin = 0., ymax = 0., zmin = 0., zmax = 0.,alpha = 0.,theta = 0.; //Ymin and Ymax are vectors here
   scoGraphicalObject Pinceau; //Pointer to each polyline of each axes
   scoGraphicalObject Gomme; //Pointer to each polyline of each axes
   scoGraphicalObject Trait; //Pointer to each trache of each axes
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
   int dimension = 3;
-  int gomme_color;
+  int gomme_color = 0;
   int size=0;
-  char *label;
+  char *label = NULL;
 
   ipar = GetIparPtrs(block);
   nipar = GetNipar(block);
@@ -207,9 +208,9 @@ void canimxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
 void canimxy3d(scicos_block * block, int flag)
 {
   /* Declarations*/
-  double *u1,*u2,*u3;
-  int i;
-  ScopeMemory * pScopeMemory;
+  double *u1 = NULL,*u2 = NULL,*u3 = NULL;
+  int i = 0;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pLongDraw;
   /* State Machine Control */
   switch(flag)

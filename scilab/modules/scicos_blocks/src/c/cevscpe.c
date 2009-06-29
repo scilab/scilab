@@ -37,6 +37,7 @@
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
 #include "SetJavaProperty.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -45,21 +46,21 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 {
   /* Declarations */
 
-  int nipar; //Number of elements in ipar vector
+  int nipar = 0; //Number of elements in ipar vector
   int i; //As usual
-  int * ipar;
-  double * rpar; //Integer Parameter
-  int nbr_colors; //Number of colors and lines IS ALSO number of channels
-  int win; //To give a name to the window
-  int color_flag; //0/1 color flag -- NOT USED
-  int  * colors; //Begin at ipar[2] and has a measure of 8 max
+  int * ipar = NULL;
+  double * rpar = NULL; //Integer Parameter
+  int nbr_colors = 0; //Number of colors and lines IS ALSO number of channels
+  int win = 0; //To give a name to the window
+  int color_flag = 0; //0/1 color flag -- NOT USED
+  int  * colors = NULL; //Begin at ipar[2] and has a measure of 8 max
   int dimension = 2;
-  double period; //Refresh Period of the scope is a vector here
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
-  double xmin, xmax, ymin, ymax;
+  double period = 0.; //Refresh Period of the scope is a vector here
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
+  double xmin = 0., xmax = 0., ymin = 0., ymax = 0;
   int win_pos[2], win_dim[2];
-  char *label;
+  char *label = NULL;
 
   /* Initialization */
   ipar =  GetIparPtrs(block);
@@ -118,12 +119,12 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 void cevscpe(scicos_block * block, int flag)
 {
 
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   int nbseg = 0;
   int tab[20];
   scoGraphicalObject pShortDraw, pLongDraw;
-  int i;
-  double t;
+  int i = 0;
+  double t = 0;
 
   switch(flag)
     {

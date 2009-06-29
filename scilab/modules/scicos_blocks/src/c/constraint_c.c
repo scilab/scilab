@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /*     February 2008 */
 /* Scicos block simulator */
@@ -28,8 +29,8 @@
 /*--------------------------------------------------------------------------*/ 
 void constraint_c(scicos_block *block,int flag)
 {
-  double *y,*y2,*u;
-  int i;
+  double *y = NULL,*y2 = NULL,*u = NULL;
+  int i = 0;
   int* property=GetXpropPtrs(block);
 
     switch(flag)

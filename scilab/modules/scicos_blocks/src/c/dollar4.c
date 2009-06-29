@@ -28,7 +28,7 @@ void dollar4(scicos_block *block,int flag)
   Scicos block simulator
   Ouputs delayed input */
   
-  int i;
+  int i = 0;
   for(i=0;i< block->insz[0];i++){
     if (flag ==1 || flag ==6 || flag ==4)
       block->outptr[0][i]=block->z[i];

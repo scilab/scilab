@@ -20,16 +20,17 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
-/*     Februery 2008 */
+/*     February 2008 */
 /* Scicos block simulator */
 /*--------------------------------------------------------------------------*/ 
 #define NX      block->nx
 /*--------------------------------------------------------------------------*/ 
 void diffblk_c(scicos_block *block,int flag)
 {
-  double *y,*u;
-  int i;
+  double *y = NULL,*u = NULL;
+  int i = 0;
   int* property=GetXpropPtrs(block);
     switch(flag)
       {

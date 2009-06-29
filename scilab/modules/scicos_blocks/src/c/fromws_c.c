@@ -81,33 +81,33 @@ typedef struct {
 /*--------------------------------------------------------------------------*/ 
 void fromws_c(scicos_block *block,int flag)
 {
-  double t,y1,y2,t1,t2,r;
-  double *spline, *A_d, *A_sd, *qdy;
+  double t = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.,r = 0.;
+  double *spline = NULL, *A_d = NULL, *A_sd = NULL, *qdy = NULL;
   /* double  a,b,c,*y;*/
-  double d1,d2,h, dh, ddh, dddh;
+  double d1 = 0.,d2 = 0.,h = 0., dh = 0., ddh = 0., dddh = 0.;
   /* counter and indexes variables */
-  int i,inow;
-  int j,jfirst;
-  int cnt1, cnt2, EVindex, PerEVcnt;
+  int i = 0,inow = 0;
+  int j = 0,jfirst = 0;
+  int cnt1 = 0, cnt2 = 0, EVindex = 0, PerEVcnt = 0;
 
   /* variables to handle files of TMPDIR/Workspace */
-  int fd;
-  char *status;
+  int fd = 0;
+  char *status = NULL;
   int swap = 1;
-  double res;
-  int out_n;
-  long int lout;
+  double res = 0.;
+  int out_n = 0;
+  long int lout = 0;
   char filename[FILENAME_MAX];
   char str[100];
-  int ierr;
+  int ierr = 0;
 
   /* variables for type and dims of data coming from scilab */
-  int Ytype, YsubType, mY, nY;
-  int nPoints;
+  int Ytype = 0, YsubType = 0, mY = 0, nY = 0;
+  int nPoints = 0;
   int Ydim[10];
 
   /* variables for type and dims of data of the output port block */
-  int ytype, my, ny;
+  int ytype = 0, my = 0, ny = 0;
 
   /* generic pointer */
   SCSREAL_COP *y_d = NULL,*y_cd = NULL,*ptr_d = NULL, *ptr_T = NULL, *ptr_D = NULL;
@@ -119,7 +119,7 @@ void fromws_c(scicos_block *block,int flag)
   SCSUINT32_COP *y_ul = NULL,*ptr_ul = NULL;
 
   /* the struct ptr of that block */
-  fromwork_struct *ptr;
+  fromwork_struct *ptr = NULL;
 
   /* for path of TMPDIR/workspace */
   char env[256];

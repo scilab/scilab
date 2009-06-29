@@ -58,8 +58,8 @@ double atanh(double x)
 void evaluate_expr(scicos_block *block,int flag)
 {
   static double stack [1000];
-  static int count,bottom,nzcr,i,phase; 
-  int j;  
+  static int count = 0,bottom = 0,nzcr = 0,i = 0,phase = 0; 
+  int j = 0;  
   if (flag==1||flag==6||flag==9){
     phase=get_phase_simulation();
     bottom=-1;
