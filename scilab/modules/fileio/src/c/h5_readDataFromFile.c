@@ -147,27 +147,27 @@ int getDatasetPrecision(int _iDatasetId, int* _piPrec)
 	char* pstScilabClass	= readAttribute(_iDatasetId, g_SCILAB_CLASS_PREC);
 	if(pstScilabClass == NULL)
 	{
-		return 0;
+		return 1;
 	}
 	else if(strcmp(pstScilabClass, "8") == 0)
 	{
-		iRet	= SCI_INT8;
+		*_piPrec	= SCI_INT8;
 	}
 	else if(strcmp(pstScilabClass, "16") == 0)
 	{
-		iRet = SCI_INT16;
+		*_piPrec = SCI_INT16;
 	}
 	else if(strcmp(pstScilabClass, "32") == 0)
 	{
-		iRet = SCI_INT32;
+		*_piPrec = SCI_INT32;
 	}
 	else if(strcmp(pstScilabClass, "64") == 0)
 	{
-		iRet = SCI_INT64;
+		*_piPrec = SCI_INT64;
 	}
 	else
 	{
-		iRet = 0;
+		iRet = 1;
 	}
 	
 	free(pstScilabClass);
@@ -551,22 +551,122 @@ int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _i
 
 int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
 {
-	return 0;
+	herr_t status			= 0;
+	char* pcLocalData = NULL;
+	int i							= 0;
+	int j							= 0;
+	char* pstMajor		= NULL;
+	char* pstMinor		= NULL;
+
+	pcLocalData = (char*)malloc(sizeof(char) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pcLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_pcData[i + _iRows * j] = pcLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	free(pcLocalData);
+
+	return status;
 }
 
 int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
 {
-	return 0;
+	herr_t status				= 0;
+	short* psLocalData	= NULL;
+	int i								= 0;
+	int j								= 0;
+	char* pstMajor			= NULL;
+	char* pstMinor			= NULL;
+
+	psLocalData = (short*)malloc(sizeof(short) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		psLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_psData[i + _iRows * j] = psLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	free(psLocalData);
+
+	return status;
 }
 
 int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 {
-	return 0;
+	herr_t status				= 0;
+	int* piLocalData		= NULL;
+	int i								= 0;
+	int j								= 0;
+	char* pstMajor			= NULL;
+	char* pstMinor			= NULL;
+
+	piLocalData = (int*)malloc(sizeof(int) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		piLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_piData[i + _iRows * j] = piLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	free(piLocalData);
+
+	return status;
 }
 
 int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData)
 {
-	return 0;
+	herr_t status							= 0;
+	long long* pllLocalData		= NULL;
+	int i											= 0;
+	int j											= 0;
+	char* pstMajor						= NULL;
+	char* pstMinor						= NULL;
+
+	pllLocalData = (long long*)malloc(sizeof(long long) * _iRows * _iCols);
+	/*
+	* Read the data.
+	*/
+	status = H5Dread(_iDatasetId, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pllLocalData);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)
+		{
+			_pllData[i + _iRows * j] = pllLocalData[i * _iCols + j];
+		}
+	}
+	status = H5Dclose(_iDatasetId);
+
+	free(pllLocalData);
+
+	return status;
 }
 
 int getScilabTypeFromDataSet(int _iDatasetId)

@@ -319,6 +319,11 @@ bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 	}
 
 	iRet								= getDatasetPrecision(_iDatasetId, &iPrec);
+	if(iRet)
+	{
+		return false;
+	}
+
 	switch(iPrec)
 	{
 	case SCI_INT8 : 
