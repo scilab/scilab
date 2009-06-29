@@ -23,6 +23,7 @@
 #include "extractblklist.h"
 #include "MlistGetFieldNumber.h"
 #include "cvstr.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 extern int *listentry(int *header, int i);
 /*--------------------------------------------------------------------------*/

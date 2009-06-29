@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "machine.h" /* C2F */
-#include "MALLOC.H"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
