@@ -29,7 +29,6 @@
 #include "scicos_block4.h"
 #include "sciblk2.h"
 #include "scicos.h"
-#include "intcscicos.h"
 #include "Scierror.h"
 #include "cvstr.h"
 #include "sciblk4.h"

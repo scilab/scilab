@@ -22,7 +22,6 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
 #include "il_state.h"
 #include "il_sim.h"

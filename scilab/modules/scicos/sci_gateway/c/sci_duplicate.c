@@ -24,7 +24,6 @@
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"

@@ -21,7 +21,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
 #include "sciprint.h"
 #include "localization.h"
