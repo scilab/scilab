@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 
 function r=checkbode(h,leg)
   fig=gcf();

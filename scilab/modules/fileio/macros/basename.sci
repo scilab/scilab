@@ -15,8 +15,7 @@ function [files]= basename(files,flag,flagexpand)
 
   [lhs,rhs]=argn(0);
   
-  if (files == []) then
-    files = [];
+  if (files == []) | (files == '') then
     return
   end
   
