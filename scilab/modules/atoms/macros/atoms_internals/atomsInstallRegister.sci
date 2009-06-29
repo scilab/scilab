@@ -20,7 +20,7 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 3 | rhs > 4 then
+	if rhs <> 4 then
 		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsInstallRegister",3,4));
 	end
 	
@@ -37,6 +37,10 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	
 	if type(status) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallRegister",3));
+	end
+	
+	if type(allusers) <> 4 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallRegister",4));
 	end
 	
 	// status is a letter
@@ -56,30 +60,6 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	if or( size(name) <> size(status) ) then
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsInstallRegister",1,3));
 	end
-	
-	// Apply changes for all users or just for me ?
-	// =========================================================================
-	
-	if rhs < 4 then
-		// By default, The toolbox is installed for all users (if we have write access of course !)
-		if atomsAUWriteAccess() then
-			allusers = %T; 
-		else
-			allusers = %F;
-		end
-	
-	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallRegister",4));
-		end
-		
-		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstallRegister",2,pathconvert(SCI+"/.atoms")));
-		end
-	end
-	
 	
 	// load installed packages (a struct)
 	// =========================================================================

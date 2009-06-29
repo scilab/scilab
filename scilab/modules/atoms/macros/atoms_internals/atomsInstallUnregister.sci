@@ -19,8 +19,8 @@ function atomsInstallUnregister(name,version,allusers)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsInstallUnregister",2,3));
+	if rhs <> 3 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsInstallUnregister",3));
 	end
 	
 	// Check input parameters type
@@ -34,6 +34,10 @@ function atomsInstallUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstallUnregister",2));
 	end
 	
+	if type(allusers) <> 4 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallUnregister",3));
+	end
+	
 	// name and version must have the same size
 	// =========================================================================
 	
@@ -41,41 +45,17 @@ function atomsInstallUnregister(name,version,allusers)
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsInstallUnregister",1,2));
 	end
 	
-	// Apply changes for all users or just for me ?
-	// =========================================================================
-	
-	if rhs == 2 then
-		// By default, add the repository for all users (if we have write access
-		// of course !)
-		if atomsAUWriteAccess() then
-			allusers = %T; 
-		else
-			allusers = %F;
-		end
-	
-	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallUnregister",2));
-		end
-		
-		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstallUnregister",2,pathconvert(SCI+"/.atoms")));
-		end
-	end
-	
 	// Process installed
 	// =========================================================================
 	installed_before = atomsLoadInstalledStruct(allusers);
 	installed_after  = atomsRmfields(installed_before,name+" - "+version);
-	atomsSaveInstalled(installed_after);
+	atomsSaveInstalled(installed_after,allusers);
 	
 	// Process installed dependencies
 	// =========================================================================
 	installed_deps_before = atomsLoadInstalleddeps(allusers);
 	installed_deps_after  = atomsRmfields(installed_deps_before,name+" - "+version);
-	atomsSaveInstalleddeps(installed_deps_after);
+	atomsSaveInstalleddeps(installed_deps_after,allusers);
 	
 endfunction
 

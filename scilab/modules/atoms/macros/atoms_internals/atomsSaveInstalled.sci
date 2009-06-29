@@ -17,7 +17,7 @@ function  atomsSaveInstalled(installed_struct,allusers)
 	// =========================================================================
 	
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsSaveInstalled",2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsSaveInstalled",2));
 	end
 	
 	// Check type of input argument type
