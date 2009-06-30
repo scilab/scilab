@@ -164,6 +164,10 @@ Bug fixes:
  * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
    	   			  	lead to a crash 
 
+ * bug 4615 fixed - xs2jpg(0, '/tmp/myplop.jpeg'); was creating a file 
+		    called /tmp/myplop.jpeg.jpg (Thanks to Guilherme 
+		    Kunigami for the fix)
+
  * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
 		    to Paul Griffiths for the patch!
 
