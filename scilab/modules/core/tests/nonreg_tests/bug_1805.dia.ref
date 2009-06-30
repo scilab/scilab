@@ -11,10 +11,9 @@
 //
 // <-- Short Description -->
 //    avaragout oddities
-// <!-- ENGLISH IMPOSED -->
+// <-- ENGLISH IMPOSED -->
+funcprot(0);
 function varargout=test(),varargout="";a=1,endfunction
 if execstr('test()','errcatch')<>140 then bugmes();quit;end
 function varargout=test();a=1,endfunction
-Attention: redéfinition de la fonction: test                    . Utilisez funcprot(0) pour éviter ce message
-
 if execstr('test()','errcatch')<>21 then bugmes();quit;end

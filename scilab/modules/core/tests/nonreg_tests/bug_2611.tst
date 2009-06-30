@@ -13,7 +13,9 @@
 // <-- Short Description -->
 // for loop variable not removed when an error arises within a for called in try context
 
-// <!-- ENGLISH IMPOSED -->
+// <-- ENGLISH IMPOSED -->
+
+funcprot(0);
 
 function r=test()
   r=%f

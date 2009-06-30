@@ -13,7 +13,9 @@
 // <-- Short Description -->
 // primitive commands does not work as expected when overloaded by a macro
 
-// <!-- ENGLISH IMPOSED -->
+// <-- ENGLISH IMPOSED -->
+
+funcprot(0);
 
 function ok=clear(varargin),ok=%t,endfunction
 clear xxyyzz

@@ -13,7 +13,9 @@
 // <-- Short Description -->
 //    avaragout oddities
 
-// <!-- ENGLISH IMPOSED -->
+// <-- ENGLISH IMPOSED -->
+
+funcprot(0);
 
 function varargout=test(),varargout="";a=1,endfunction
 if execstr('test()','errcatch')<>140 then pause,end
