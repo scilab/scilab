@@ -106,6 +106,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 				fm.clearExtensions();
 			}
 			super.addChoosableFileFilter(fm);
+		}
 
         //Preview panel 
 		JPanel panelPreview = new JPanel();
