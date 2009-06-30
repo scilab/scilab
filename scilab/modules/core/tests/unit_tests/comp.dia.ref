@@ -4,9 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <!-- ENGLISH IMPOSED -->
 // comp
 deff("[a]=foo()","a=1","n")
 comp(foo);
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 if foo()<>1 then bugmes();quit;end

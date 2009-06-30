@@ -5,7 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- ENGLISH IMPOSED -->
+
 //tests on functions pointer usage
+
 f=exp
 if type(f)<>130 then pause,end
 if f(1)<>exp(1) then pause,end

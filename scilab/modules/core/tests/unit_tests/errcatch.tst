@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- ENGLISH IMPOSED -->
+
 clear;
 
 errcatch(4,'continue','nomessage')
