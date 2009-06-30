@@ -53,6 +53,7 @@ public class ExportBitmap extends ExportToFile {
 
 		/** Select the screen-shot format */		
 		switch (getFiletype()) {
+/*
 		case ExportRenderer.BMP_EXPORT:  file = new File(getFilename() + ".bmp");
 		break;
 		case ExportRenderer.GIF_EXPORT:  file = new File(getFilename() + ".gif");
@@ -61,6 +62,15 @@ public class ExportBitmap extends ExportToFile {
 		break;
 		case ExportRenderer.PNG_EXPORT:  file = new File(getFilename() + ".png");
 		break;					  
+*/
+
+		case ExportRenderer.BMP_EXPORT:  
+		case ExportRenderer.GIF_EXPORT:  
+		case ExportRenderer.JPG_EXPORT:  
+		case ExportRenderer.PNG_EXPORT:  
+			file = new File(getFilename() + "." + ExportRenderer.getFileExtension());
+			break;		
+
 		default: return ExportRenderer.INVALID_FILE;
 		}
 
