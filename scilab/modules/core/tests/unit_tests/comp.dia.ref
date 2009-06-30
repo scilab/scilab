@@ -6,8 +6,7 @@
 // =============================================================================
 // <!-- ENGLISH IMPOSED -->
 // comp
+funcprot(0);
 deff("[a]=foo()","a=1","n")
 comp(foo);
-Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
-
 if foo()<>1 then bugmes();quit;end

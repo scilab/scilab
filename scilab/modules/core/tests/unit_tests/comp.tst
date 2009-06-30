@@ -9,6 +9,8 @@
 
 // comp
 
+funcprot(0);
+
 deff("[a]=foo()","a=1","n")
 comp(foo);
 if foo()<>1 then pause,end

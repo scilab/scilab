@@ -7,6 +7,8 @@
 
 // <!-- ENGLISH IMPOSED -->
 
+funcprot(0);
+
 clear //sdfdgd
 clear//sdfdgd
 a=1;

@@ -4,8 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <!-- ENGLISH IMPOSED -->
+// <-- ENGLISH IMPOSED -->
 //tests on functions pointer usage
+funcprot(0);
 f=exp
  f  =
  
@@ -29,15 +30,9 @@ if l.fun(1)<> exp(1) then bugmes();quit;end
 function y=foo(fun,x),y=fun(x),endfunction
 if foo(exp,1)<>exp(1) then bugmes();quit;end
 function y=foo(fun,x,y),y=fun(x,y),endfunction
-Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
-
 if foo(atan,1,0)<>atan(1,0) then bugmes();quit;end
 function y=foo(fun),y=[],for x=1:3,y=[y,fun(x)],end,endfunction
-Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
-
 if foo(exp)<>exp(1:3) then bugmes();quit;end
 l=tlist(['foo','funs'],list(exp,sin,cos));
 function y=foo(l),y=[],for k=1:3,y=[y,l.funs(k)(1)],end,endfunction
-Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
-
 if or(foo(l)<>[exp(1),sin(1),cos(1)]) then bugmes();quit;end
