@@ -30,6 +30,7 @@ function CodeGeneration_()
 // Last update : 14/12/08 
 //
 // Input editor function of Scicos code generator
+//** 30/06/2009 S. Steer: Localization
 
     k = [] ; //** index of the CodeGen source superbloc candidate
 
@@ -91,11 +92,11 @@ function CodeGeneration_()
 
               // The interface function must be defined on the first level
               Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-                               'ppprot=funcprot();funcprot(0);'+...
-                               'ierr=execstr(''exec('''''+gui_path+''''');'',''errcatch'');'+...
-                                'funcprot(ppprot);clear ppprot;'+...
-                               'if ierr<> 0 then message(''Cannot load the '''''+gui_path+''''' file'');end; '+...
-                                '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
+                               'ppprot=funcprot();funcprot(0);';
+                               'ierr=execstr(''exec('''''+gui_path+''''');'',''errcatch'');';
+                                'funcprot(ppprot);clear ppprot;';
+                               'if ierr<> 0 then message(''Cannot load the '''''+gui_path+''''' file'');end';
+                                '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1;'
                                'Cmenu='"Replot'"']
             else
               if ok<>-1 then
@@ -108,7 +109,7 @@ function CodeGeneration_()
 
       else
         //** the clicked/selected block is NOT a superblock
-        message("Generation Code only work for a Superblock ! ")
+        messagebox(_("Code Generation only works for a Superblock !\n"),"modal","error")
       end
 
    //@@
@@ -943,8 +944,7 @@ function XX=gen_allblk()
   XX.graphics.exprs(2)=toto
 
   //@@ run 'set' job of the CBLOCK4
-  prot=funcprot()
-  funcprot(0)
+  prot=funcprot();funcprot(0)
   getvalue=setvalue;
   deff('message(txt)','x_message(''In block ''+XX.gui+'': ''+txt);global %scicos_prob;%scicos_prob=%t')
   deff('[ok,tt,cancel] =  CC4(funam,tt,i,o)','ok=%t,cancel=%f')
@@ -971,8 +971,8 @@ function [ok,c_atomic_code]=gen_atomic_ccode42();
   //c_atomic_code=Code
 endfunction
 
-//Generates Code for dynamically linked Fortran and C Blocks
 function [CCode,FCode]=gen_blocks()
+//Generates Code for dynamically linked Fortran and C Blocks
   CCode=[]
   FCode=[]
 
@@ -1081,96 +1081,60 @@ endfunction
 //
 //Copyright INRIA
 function ok=gen_ccode42()
+//** 30/06/2009 S. Steer : 
+//  -  WriteCodeToFile definition and use for a clearer code + localization
+//  -  use of copyfile instead of mputl(..,mgetl())  
+
 
   //** Generate code for scicos block
-  Code=make_computational42()
-
-  ierr=execstr('mputl(Code,rpat+''/''+rdnom+''.c'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+  ok=WriteCodeToFile(make_computational42(),rpat+'/'+rdnom+'.c')
+  if ~ok then return,end
 
   //** Generate files for dynamically linked scicos blocks
   [CCode,FCode]=gen_blocks()
   if FCode<>[] then
-    ierr=execstr('mputl(FCode,rpat+''/''+rdnom+''f.f'')','errcatch')
-    if ierr<>0 then
-      message(lasterror())
-      ok=%f
-      return
-    end
+    ok=WriteCodeToFile(FCode,rpat+'/'+rdnom+'f.f')
+    if ~ok then return,end
   end
   if CCode<>[] then
-    ierr=execstr('mputl(CCode,rpat+''/''+rdnom+''_Cblocks.c'')','errcatch')
-    if ierr<>0 then
-      message(lasterror())
-      ok=%f
-      return
-    end
+    ok=WriteCodeToFile(CCode,rpat+'/'+rdnom+'_Cblocks.c')
+    if ~ok then return,end
   end
 
   //** Generate _void_io.c
-  Code=make_void_io()
-
-  ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_void_io.c'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+  ok=WriteCodeToFile(make_void_io(),rpat+'/'+rdnom+'_void_io.c')
+  if ~ok then return,end
 
   //** Generate _standalone.c
-  Code=make_standalone42()
+  ok=WriteCodeToFile(make_standalone42(),rpat+'/'+rdnom+'_standalone.c')
+  if ~ok then return,end
 
-  ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_standalone.c'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+  //## Generate intrdnom.c
+  ok=WriteCodeToFile(make_sci_interf(),rpat+'/int'+rdnom+'.c')
+  if ~ok then return,end
 
-  //## Generate intrdnom_sci.c
-  Code=make_sci_interf()
 
-  ierr=execstr('mputl(Code,rpat+''/int''+rdnom+''_sci.c'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+  //copy scicos_block4.h and machine.h include files in destination directory
+  // scicos_block4.h  
+  from = scicos_include_paths('scicos_blocks')+'/scicos_block4.h'
+  to   = rpat+'/scicos_block4.h';
+  [ierr,mess] = copyfile(from,to)
+  if ierr==0 then  messagebox(mess,'modal','error'); ok=%f;return;end
 
-  //** copy source code of machine.h/scicos_block4.h
-  //   in target path
-  txt=mgetl(SCI+'/routines/machine.h');
-  ierr=execstr('mputl(txt,rpat+''/machine.h'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
+  // machine.h
+  from = scicos_include_paths('core')+'/machine.h'
+  to   = rpat+'/machine.h';
+  [ierr,mess] = copyfile(from,to)
+  if ierr==0 then  messagebox(mess,'modal','error'); ok=%f;return;end
 
-  txt=mgetl(SCI+'/routines/scicos/scicos_block4.h');
-  ierr=execstr('mputl(txt,rpat+''/scicos_block4.h'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-    return
-  end
 
   //## Generate _act_sens_events.c
   [Code,reponse]=make_act_sens_events()
-
   if reponse==1 |  reponse==[] then
-    ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_act_sens_events.c'')', ...
-                 'errcatch')
-    if ierr<>0 then
-      message(lasterror())
-      ok=%f
-      return
-    end
+    ok=WriteCodeToFile(Code,rpat+'/'+rdnom+'_act_sens_events.c')
+    if ~ok then return,end
   end
+  
 endfunction
 
 //creates the Scicos GUI function associated with the new block
@@ -1283,11 +1247,7 @@ function ok=gen_gui42();
         ' end'
         'endfunction'];
   //Create file
-  ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_c.sci'')','errcatch')
-  if ierr<>0 then
-    message(lasterror())
-    ok=%f
-  end
+  ok=WriteCodeToFile(Code,rpat+'/'+rdnom+'_c.sci')
 endfunction
 
 function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_superblock42(all_scs_m,numk,atomicflag)
@@ -1369,17 +1329,17 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
       if scs_m.objs(i).gui=='CLKOUT_f' | scs_m.objs(i).gui=='CLKOUTV_f' then
         ok=%f
         %cpr=list()
-        message('Superblock should not have any activation output port.')
+        messagebox(_('Superblock should not have any activation output port.'),'modal','error')
         return
       elseif scs_m.objs(i).gui=='INIMPL_f' then
         ok=%f
         %cpr=list()
-        message('Superblock should not have any input implicit port.')
+        messagebox(_('Superblock should not have any input implicit port.'),'modal','error')
         return
       elseif scs_m.objs(i).gui=='OUTIMPL_f' then
         ok=%f
         %cpr=list()
-        message('Superblock should not have any output implicit port.')
+        messagebox(_('Superblock should not have any output implicit port.'),'modal','error')
         return
       elseif scs_m.objs(i).gui=='IN_f' then
         //replace input ports by sensor blocks
@@ -1416,25 +1376,25 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   IN=-sort(-IN);
   if or(IN<>[1:size(IN,'*')]) then
     ok=%f;%cpr=list()
-    message('Input ports are not numbered properly.')
+    messagebox(_('Input ports are not numbered properly.'),'modal','error')
     return
   end
   OUT=-sort(-OUT);
   if or(OUT<>[1:size(OUT,'*')]) then
     ok=%f;%cpr=list()
-    message('Output ports are not numbered properly.')
+    messagebox(_('Output ports are not numbered properly.'),'modal','error')
     return
   end
   clkIN=-sort(-clkIN);
   if or(clkIN<>[1:size(clkIN,'*')]) then
     ok=%f;%cpr=list()
-    message('Event input ports are not numbered properly.')
+    messagebox(_('Event input ports are not numbered properly.'),'modal','error')
     return
   end
   clkOUT=-sort(-clkOUT);
   if or(clkOUT<>[1:size(clkOUT,'*')]) then
     ok=%f;%cpr=list()
-    message('Event output ports are not numbered properly.')
+    messagebox(_('Event output ports are not numbered properly.'),'modal','error')
     return
   end
 
@@ -1445,14 +1405,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   end
   flgcdgen=szclkIN
 
-  //## overload some functions used
-  //## in modelica block compilation
-  //## disable it for codegeneration
-  //   %mprt=funcprot()
-  //   funcprot(0)
-  //   deff('[ok] =  buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cflags)','ok=%t')
-  //   funcprot(%mprt)
-
+ 
   //## first pass of compilation
   if ~ALL then
     [bllst,connectmat,clkconnect,cor,corinv,ok,scs_m,flgcdgen,freof]=c_pass1(scs_m,flgcdgen);
@@ -1474,7 +1427,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   [bllst,ok]=adjust_id_scopes(list_of_scopes,bllst)
   if ~ok then
     %cpr=list()
-    message('Problem adjusting scope id number.')
+    messagebox(_('Problem adjusting scope id number.'),'modal','error')
     return
   end
 
@@ -1712,9 +1665,8 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   for i=1:lstsize(bllst)
     ind = find(bllst(i).sim(1)==sim_to_be_removed(:,1))
     if ind<>[] then
-      mess=[sim_to_be_removed(ind,2)+' block is not allowed.' ;
-            'It will be not called.';];
-      okk=message(mess,['Ok';'Go Back'])
+      mess=mprintf("%s  block is not allowed.\nIt will be not called.',sim_to_be_removed(ind,2))
+      okk=message(mess,[_('Ok');_('Go Back')])
       if okk==1 then
         bllst(i).sim(1)='bidon'
         if type(bllst(i).sim(1))==13 then
@@ -1756,7 +1708,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
 
   if cpr==list() then
     ok=%f,
-    message("Problem compiling; perhaps an algebraic loop.");
+    messagebox(_("Compilation problem\n perhaps an algebraic loop."),'modal','error')
     return,
   end
 
@@ -1885,7 +1837,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   msg=[]
   for i=1:length(funs)-1
     if funtyp(i)==3 | funtyp(i)==5 then
-      msg=[msg;'Scilab block''s not allowed']
+      msg=[msg;_('Scilab block''s not allowed')]
 //RN   elseif ztyp(i)<>0 then
     //elseif (zcptr(i+1)-zcptr(i))<>0 then
 //
@@ -1928,7 +1880,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
     label1=[hname;getcwd()+'/'+hname;libs];
   end
 
-  while %t do
+  while %t do //loop while the user answer are not ok
     ok=%t  // to avoid infinite loop
 
     if atomicflag then
@@ -1940,141 +1892,107 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
        rdnom,..
        rpat,..
        libs,..
-       label1]=getvalue('Set code generator parameters :',..
-                        ['New block''s name :';
-                         'Created files Path :';
-                         'Other object files to link with (if any)'],..
+       label1]=getvalue(_('Set code generator parameters :'),..
+                        [_('New block''s name :');
+                         _('Created files Path :');
+                         _('Other object files to link with (if any)')],..
                          list('str',1,'str',1,'str',1),label1);
-      if okk==%f then
-        ok=-1
-        return
-      end
+      if okk==%f then ok=-1; return; end
+      
       rpat=stripblanks(rpat);
 
       //** 1/07/06 Alan trying to solve multiple libraries
       if strindex(libs,'''')<>[] | strindex(libs,'""')<>[] then
         ierr=execstr('libs=evstr(libs)','errcatch')
         if ierr<>0  then
-          message(['Can''t solve other files to link'])
+          messagebox(_('Can''t solve other files to link'),'modal','error')
           ok=-1;
           return
         end
       end
-    end
+    end  //if atomicflag then
 
     if stripblanks(rdnom)==emptystr() then
       ok=%f;
-      x_message('sorry C file name not defined');
+      messagebox(_('sorry C file name is not defined'),'modal','error');
       if atomicflag then return, end
     end
 
     if ok then
-      //** Put a warning here in order to inform the user
-      //** that the name of the superblock will change
-      //** because the space, the char "-", or  the char "."
-      //** (could generate GCC problems) in name isn't allowed.
-      //** (the C functions contains the name of the superblock).
-      if grep(rdnom," ")<>[] | grep(rdnom,"-")<>[]  | grep(rdnom,".")<>[] then
-        mess=[' Superblock name cannot contains space, ""."" and ';
-              '""-"" characters. The superblock will be renamed :';
-              ''''+strsubst(strsubst(strsubst(rdnom,' ','_'),'-','_'),'.','_')+''''];
-        okk=message(mess,['Ok';'Go Back'])
+      //@@replace special character which may cause problem to the compiler
+      if strindex(rdnom,[' ','-','.'])<>[] then
+	new = strsubst(strsubst(strsubst(rdnom,' ','_'),'-','_'),'.','_');
+        mess=msprintf(_(' Superblock name cannot contains space, ""."" and \n'+..
+			'""-"" characters. \n'+..
+			'The superblock will be renamed : %s'),new);
+        okk=messagebox(mess,_('Scicos message'),'question',[_('Ok');_('Go Back')],'modal')
         if okk==1 then
-          rdnom = strsubst(rdnom,' ','_');
-          rdnom = strsubst(rdnom,'-','_');
-          rdnom = strsubst(rdnom,'.','_');
+          rdnom = new
           label1=[rdnom;label1(2);label1(3)];
         else
            ok=%f;
            if atomicflag then return, end
         end
-      end
-
+      end 
+    end
+    
+    if ok then
       //@@ 13/12/08,
       //@@ Check if rdnom already exists in the linked routine table
       if c_link(rdnom) & ~atomicflag then
-        mess=[' Warning. An entry point with name '''+rdnom+'''';
-              'is already linked. The new generated block may have'
-              'another name or the old entry point must be unlinked.'];
-        okk=message(mess,['Change block name';'Force unlink'])
-        if okk==1 then
+        mess=msprintf(_('Warning. An entry point with name ""%s"" is already linked.\n'+..
+			'The new generated block may have another name or the \n'+..
+			'old entry point will be unlinked\n'),rdnom);
+        okk=messagebox(mess,_('Scicos message'),'question',[_('Change block name');_('Force unlink')],'modal')
+        if okk==1 then //"Change block name" selected
           ok=%f
         end
       end
-
-      //@@ alan,14/11/2008
-      //@@ libtool doesn't work with directory with white space
-      if ok then
-        if ~MSDOS then
-          if grep(rpat," ")<>[] then
-            mess=[' Superblock path cannot contains space characters';
-                  'The path will be renamed :';
-                  ''''+strsubst(rpat,' ','_')+''''];
-            okk=message(mess,['Ok';'Go Back'])
-            if okk==1 then
-              rpat = strsubst(rpat,' ','_');
-              label1=[label1(1);rpat;label1(3)];
-              //rpat=strsubst(rpat,'-','_');
-            else
-              ok=%f;
-              if atomicflag then return, end
-            end
-          end
-        end
-
-        if ok then
-          dirinfo=fileinfo(rpat)
-          if dirinfo==[] then
-            [pathrp,fnamerp,extensionrp]=fileparts(rpat)
-            if ~MSDOS then
-              fnamerp=strsubst(fnamerp," ",""" """)
-            end
-            ok=mkdir(pathrp,fnamerp+extensionrp)
-            if ~ok then
-              x_message('Directory '+rpat+' cannot be created');
-              if atomicflag then return, end
-            end
-          elseif filetype(dirinfo(2))<>'Directory' then
-            ok=%f;
-            x_message(rpat+' is not a directory');
-            if atomicflag then return, end
-          else
-            //@@ 13/12/08,
-            //@@ add a test for %scicos_libs
-            if MSDOS then
-              target_lib = rpat+'\lib'+rdnom+'.dll'
-            else
-              target_lib =  rpat+'/lib'+rdnom+'.so'
-            end
-            ind = find(libs==target_lib)
-            if ind<>[] then
-              mess=[' Warning. You want to link an external library';
-                    'which is the same than the target library.'
-                    'That library can be here removed from the'
-                    'list of external libraries (only for expert user).'];
-              okk=message(mess,['Change block name';'Ok'])
-              if okk==2 then
-                new_libs=[]
-                for i=1:size(libs,'*')
-                  if find(i==ind)==[] then
-                    new_libs=[new_libs,libs(i)]
-                  end
-                end
-                libs=new_libs
-              else
-                ok=%f;
-                if atomicflag then return, end
-              end
-            end
-          end
-        end
+    end
+    
+    if ok then
+      //@@ create destination directory
+      [status,mess]=mkdir(rpat)
+      
+      if and(status<>[1 2]) then
+	messagebox(mess,'error','modal');
+	ok=%f
+	if atomicflag then return, end
       end
     end
-
-    if ok then
-      break
+    
+    if ok then    
+      //@@ 13/12/08,
+      //@@ add a test for %scicos_libs
+      if MSDOS then
+	target_lib = rpat+'\lib'+rdnom+'.dll'
+      else
+	target_lib =  rpat+'/lib'+rdnom+'.so'
+      end
+      ind = find(libs==target_lib)
+      if ind<>[] then
+	mess=msprintf(_(' Warning. You want to link an external library\n'+..
+			'which is the same than the target library.\n'+..
+			'That library can be here removed from the\n'+..
+			'list of external libraries (only for expert user).'))
+	okk=message(mess,_('Scicos Message'),'question',[_('Change block name');_('Ok')],'modal')
+	if okk==2 then
+	  new_libs=[]
+	  for i=1:size(libs,'*')
+	    if find(i==ind)==[] then
+	      new_libs=[new_libs,libs(i)]
+	    end
+	  end
+	  libs=new_libs
+	else
+	  ok=%f;
+	  if atomicflag then return, end
+	end
+      end
     end
-  end
+    if ok then break;end
+  end //end of while loop
+
 
   //###################################################
   //generate blocs simulation function prototypes
@@ -2213,12 +2131,20 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
 
     //** def files to build
     files=[rdnom rdnom+'_Cblocks']
-
+ 
     //** def files to build for standalone
     filestan=[rdnom+'_standalone' rdnom+'_act_sens_events' rdnom+'_Cblocks']
 
     //## def files to build for interfacing of the standalone
-    filesint=[rdnom+'_void_io' rdnom+'_Cblocks' 'int'+rdnom+'_sci' rdnom+'_standalone']
+    filesint=[rdnom+'_void_io' rdnom+'_Cblocks' 'int'+rdnom rdnom+'_standalone']
+
+    //  In case of fortran blocks  (see =gen_ccode42)
+    [fif,ierr]=fileinfo(rpat+'/'+rdnom+'f.f')
+    if ierr==0&fif<>[] then 
+      files=[files,rdnom+'f'],
+      filestan=[filestan,rdnom+'f'],
+      filesint=[filesint,rdnom+'f'],
+    end
 
     if ok then
       ok=buildnewblock(rdnom,files,filestan,filesint,libs,rpat,'','')
@@ -2424,8 +2350,9 @@ function [Code,reponse]=make_act_sens_events()
 
   created=fileinfo(rpat+'/'+rdnom+'_act_sens_events.c')
   if created~=[] then
-    reponse=x_message(['File: ""'+rdnom+'_act_sens_events.c"" already exists,';
-                       'do you want to replace it ?'],['Yes','No']);
+    mess=msprintf(_('File: ""%s"" already exists,\n'+..
+		    'do you want to replace it ?'),rdnom+'_act_sens_events.c')
+    reponse=messagebox(mess,_('Scicos message'),'question',['Yes','No'],'modal');
   end
 endfunction
 
@@ -4423,7 +4350,7 @@ function Code=make_sci_interf()
 
  //## interfacing function
  Code=[Code;
-       'int int'+part(rdnom,1:l_rdnom)+'_sci(fname,fname_len)'
+       'int int'+part(rdnom,1:l_rdnom)+'(fname,fname_len)'
        '   char *fname;'
        '   unsigned long fname_len;'
        '{']
@@ -5046,20 +4973,20 @@ function Code=make_sci_interf()
        '']
 
  //## Gateway
- Code=[Code;
-       'static GenericTable Tab[]='
-       '{'
-       ' {(Myinterfun)sci_gateway,int'+part(rdnom,1:l_rdnom)+'_sci,'
-       ' """+rdnom+"""}'
-       '};'
-       ''
-       'int C2F(int'+part(rdnom,1:l_rdnom)+'_sci)()'
-       '{'
-       ' Rhs = Max(0, Rhs);'
-       ' (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);'
-       ' return 0;'
-       '}'
-       '']
+ // Code=[Code;
+//        'static GenericTable Tab[]='
+//        '{'
+//        ' {(Myinterfun)sci_gateway,int'+part(rdnom,1:l_rdnom)+'_sci,'
+//        ' """+rdnom+"""}'
+//        '};'
+//        ''
+//        'int C2F(int'+part(rdnom,1:l_rdnom)+'_sci)()'
+//        '{'
+//        ' Rhs = Max(0, Rhs);'
+//        ' (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);'
+//        ' return 0;'
+//        '}'
+//        '']
 
 endfunction
 
@@ -9913,4 +9840,14 @@ function [txt]=write_code_zzdoit(ev,flag)
 
 endfunction
 
-
+function ok=WriteCodeToFile(Code,path)
+//  utility function for writing file
+  ierr=execstr('mputl(Code,path)','errcatch')
+  if ierr<>0 then
+    messagebox([mprintf(_('Error when writing the %s file.\n'),path);
+		lasterror()],'modal','error')
+    ok=%f
+  else
+    ok=%t
+  end
+endfunction

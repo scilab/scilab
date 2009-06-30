@@ -56,10 +56,8 @@ function %zoom = restore(gh_curwin)
 
   if ~super_block then
     delmenu(curwin,'Stop')
-    //** Bruno/Simone
-    //** the Devil is hidden in the follwing line
-    //** "haltscicos" is just a Scilab dummy function that does
-    //** almost nothing ;)
+    //haltscicos is a Scilab function which set a C flag to make the
+    //simulation stop.
     addmenu(curwin,'Stop',list(2,'haltscicos'));
     //**
     unsetmenu(curwin,'Stop')
