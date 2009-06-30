@@ -68,6 +68,10 @@ BLOCKS_H = [
 '*/';
 '#ifndef __SCICOS_BLOCKS_H__';
 '#define __SCICOS_BLOCKS_H__';
+'';
+'#include ""machine.h""';
+'#include ""scicos.h""';
+'';
 '/******* Please do not edit *************/';
 ''];
 
