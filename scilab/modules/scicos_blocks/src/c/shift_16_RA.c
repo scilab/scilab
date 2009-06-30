@@ -24,14 +24,14 @@
 /*--------------------------------------------------------------------------*/ 
 void shift_16_RA(scicos_block *block,int flag)
 {
-  short *u,*y; 
-  int *ipar;
-  int mu,nu,i;
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  u=Getint16InPortPtrs(block,1);
-  y=Getint16OutPortPtrs(block,1);
-  ipar=GetIparPtrs(block);
-  for (i=0;i<mu*nu;i++) y[i]=u[i]>>-ipar[0];
+	int i = 0;
+
+	int mu = GetInPortRows(block,1);
+	int nu = GetInPortCols(block,1);
+	short *u = Getint16InPortPtrs(block,1);
+	short *y = Getint16OutPortPtrs(block,1);
+	int *ipar = GetIparPtrs(block);
+
+	for (i=0;i<mu*nu;i++) y[i]=u[i]>>-ipar[0];
 }
 /*--------------------------------------------------------------------------*/ 

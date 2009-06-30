@@ -21,15 +21,16 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void gainblk_i8n(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)){
-  int i,j,l,ji,jl,il;
-  char *u,*y;
-  int mu,ny,my,mo,no;
-  char *opar;
-  double k,D,C,t;
+  int i = 0,j = 0,l = 0,ji = 0,jl = 0,il = 0;
+  char *u = NULL,*y = NULL;
+  int mu = 0,ny = 0,my = 0,mo = 0,no = 0;
+  char *opar = NULL;
+  double k = 0.,D = 0.,C = 0.,t = 0.;
 
   mo=GetOparSize(block,1,1);
   no=GetOparSize(block,1,2);

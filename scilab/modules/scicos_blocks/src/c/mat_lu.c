@@ -28,22 +28,23 @@ extern int C2F(dgetrf)();
 extern int C2F(dlaswp)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          double *dwork;
-	  double *IL;
-	  double *IU;
+{         
+	int *ipiv;
+    double *dwork;
+	double *IL;
+	double *IU;
 } mat_lu_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_lu(scicos_block *block,int flag)
 {
- double *u;
- double *y1;
- double *y2;
- int mu;
- int nu;
- int info;
- int i,j,l,ij,ik;
- mat_lu_struct *ptr;
+ double *u = NULL;
+ double *y1 = NULL;
+ double *y2 = NULL;
+ int mu = 0;
+ int nu = 0;
+ int info = 0;
+ int i = 0,j = 0,l = 0,ij = 0,ik = 0;
+ mat_lu_struct *ptr = NULL;
  
  mu =GetInPortRows(block,1);
  nu =GetInPortCols(block,1);

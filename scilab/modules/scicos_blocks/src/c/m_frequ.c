@@ -24,13 +24,13 @@
 /*--------------------------------------------------------------------------*/ 
 void m_frequ(scicos_block *block,int flag)
 {
-  double *mat;
-  double *Dt;
-  double *off;
-  long *icount;
-  double t;
-  long long *counter;
-  int m;
+  double *mat = NULL;
+  double *Dt = NULL;
+  double *off = NULL;
+  long *icount = NULL;
+  double t = 0.0;
+  long long *counter = NULL;
+  int m = 0;
   mat=GetRealOparPtrs(block,1);
   Dt=GetRealOparPtrs(block,2);
   off=GetRealOparPtrs(block,3);

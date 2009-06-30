@@ -28,18 +28,19 @@ extern int C2F(dgetrf)();
 extern int C2F(dgetri)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          double *dwork;
+{         
+	int *ipiv;
+	double *dwork;
 } mat_inv_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_inv(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu;
- int info;
- int i;
- mat_inv_struct *ptr;
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0;
+ int info = 0;
+ int i = 0;
+ mat_inv_struct *ptr = NULL;
  
  nu =GetInPortRows(block,1);
  u=GetRealInPortPtrs(block,1);

@@ -23,14 +23,14 @@
 /*--------------------------------------------------------------------------*/ 
 int scicos_evalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
 {
-	double tmxa, p, c2, c3, dx;
+	double tmxa = 0., p = 0., c2 = 0., c3 = 0., dx = 0.;
 
 	tmxa = *t - *xa;
 	dx = 1. / (*xb - *xa);
 	p = (*yb - *ya) * dx;
 	c2 = (p - *da) * dx;
 	c3 = (*db - p + (*da - p)) * (dx * dx);
-	
+
 	*h = c2 + c3 * (*t - *xb);
 	*dh = *h + c3 * tmxa;
 	*ddh = (*dh + c3 * tmxa) * 2.;

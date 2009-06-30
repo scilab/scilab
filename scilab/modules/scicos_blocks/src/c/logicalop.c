@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/ 
 void logicalop(scicos_block *block,int flag)
 {
-  int i,j,k,l;
+  int i = 0,j = 0,k = 0,l = 0;
   i=block->ipar[0];
   switch (i)
     {

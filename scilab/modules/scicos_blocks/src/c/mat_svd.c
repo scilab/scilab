@@ -30,21 +30,23 @@ extern int C2F(dlacpy)();
 extern int C2F(dmmul)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         double *l0;
-	  double *LA;
-          double *LSV;
-          double *LVT;
-          double *dwork;
+{         
+	double *l0;
+	double *LA;
+	double *LSV;
+	double *LVT;
+	double *dwork;
 } mat_sdv_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_svd(scicos_block *block,int flag)
 {
- double *u;
- double *y1,*y2,*y3;
- int nu,mu;
- int info;
- int i,j,ij,ji,ii,lwork;
- mat_sdv_struct *ptr;
+ double *u = NULL;
+ double *y1 = NULL,*y2 = NULL,*y3 = NULL;
+ int nu = 0, mu = 0;
+ int info = 0;
+ int i = 0,j = 0,ij = 0,ji = 0,ii = 0,lwork = 0;
+ mat_sdv_struct *ptr = NULL;
+
  mu=GetInPortRows(block,1);
  nu=GetInPortCols(block,1);
  u=GetRealInPortPtrs(block,1);

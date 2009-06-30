@@ -22,6 +22,7 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "scicos_indexfinder.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 #define InterpExtrapBlin  1
 #define InterpEndValue    2
@@ -34,8 +35,8 @@ double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, do
 /*--------------------------------------------------------------------------*/ 
 void lookup2d(scicos_block *block,int flag)
 {
-  double *y, *u1, *u2;
-  double *X, *Y, *Z;
+  double *y = NULL, *u1 = NULL, *u2 = NULL;
+  double *X = NULL, *Y = NULL, *Z = NULL;
 
   int Nx= block->ipar[0];
   int Ny= block->ipar[1];

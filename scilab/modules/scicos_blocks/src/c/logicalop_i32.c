@@ -21,12 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void logicalop_i32(scicos_block *block,int flag)
 {
-  int i,m,n,nin,k,j,l;
-  int *ipar;
-  long *y,*u;
+  int i = 0,m = 0,n = 0,nin = 0,k = 0,j = 0,l = 0;
+  int *ipar = NULL;
+  long *y = NULL,*u = NULL;
   m=GetInPortRows(block,1);
   n=GetInPortCols(block,1);
   y=Getint32OutPortPtrs(block,1);
