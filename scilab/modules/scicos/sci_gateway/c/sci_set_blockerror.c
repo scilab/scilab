@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_set_blockerror)(char *fname,unsigned long fname_len)
+int sci_set_blockerror(char *fname,unsigned long fname_len)
 {
 	int one = 1, l1 = 0;
 	int isrun = C2F(cosim).isrun;

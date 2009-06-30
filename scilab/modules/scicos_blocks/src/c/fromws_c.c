@@ -33,6 +33,7 @@
 #include "cluni0.h"
 #include "scicos_block4.h"
 #include "scicos_evalhermite.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 #define Fnlength  block->ipar[0]
 #define FName     block->ipar[1]
@@ -80,33 +81,33 @@ typedef struct {
 /*--------------------------------------------------------------------------*/ 
 void fromws_c(scicos_block *block,int flag)
 {
-  double t,y1,y2,t1,t2,r;
-  double *spline, *A_d, *A_sd, *qdy;
+  double t = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.,r = 0.;
+  double *spline = NULL, *A_d = NULL, *A_sd = NULL, *qdy = NULL;
   /* double  a,b,c,*y;*/
-  double d1,d2,h, dh, ddh, dddh;
+  double d1 = 0.,d2 = 0.,h = 0., dh = 0., ddh = 0., dddh = 0.;
   /* counter and indexes variables */
-  int i,inow;
-  int j,jfirst;
-  int cnt1, cnt2, EVindex, PerEVcnt;
+  int i = 0,inow = 0;
+  int j = 0,jfirst = 0;
+  int cnt1 = 0, cnt2 = 0, EVindex = 0, PerEVcnt = 0;
 
   /* variables to handle files of TMPDIR/Workspace */
-  int fd;
-  char *status;
+  int fd = 0;
+  char *status = NULL;
   int swap = 1;
-  double res;
-  int out_n;
-  long int lout;
+  double res = 0.;
+  int out_n = 0;
+  long int lout = 0;
   char filename[FILENAME_MAX];
   char str[100];
-  int ierr;
+  int ierr = 0;
 
   /* variables for type and dims of data coming from scilab */
-  int Ytype, YsubType, mY, nY;
-  int nPoints;
+  int Ytype = 0, YsubType = 0, mY = 0, nY = 0;
+  int nPoints = 0;
   int Ydim[10];
 
   /* variables for type and dims of data of the output port block */
-  int ytype, my, ny;
+  int ytype = 0, my = 0, ny = 0;
 
   /* generic pointer */
   SCSREAL_COP *y_d = NULL,*y_cd = NULL,*ptr_d = NULL, *ptr_T = NULL, *ptr_D = NULL;
@@ -118,7 +119,7 @@ void fromws_c(scicos_block *block,int flag)
   SCSUINT32_COP *y_ul = NULL,*ptr_ul = NULL;
 
   /* the struct ptr of that block */
-  fromwork_struct *ptr;
+  fromwork_struct *ptr = NULL;
 
   /* for path of TMPDIR/workspace */
   char env[256];
@@ -161,7 +162,7 @@ void fromws_c(scicos_block *block,int flag)
      sciprint("The '%s' variable does not exist.\n",str);
      set_block_error(-3);
 	 */
-	 Coserror("The '%s' variable does not exist.\n",str);
+	 Coserror(_("The '%s' variable does not exist.\n"),str);
      return;
    }
 
@@ -170,15 +171,15 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mgetnc) (&fd, &Ydim[6], (j=1,&j), fmti, &ierr);     /* read sci type */
    if (Ydim[6]==17) {
      if (!Ishm(&fd,&Ytype,&nPoints,&mY,&nY,&YsubType)) {
-		 Coserror("Invalid variable type.\n");
-       /*sciprint("Invalid variable type.\n");
+		 Coserror(_("Invalid variable type.\n"));
+       /*sciprint(_("Invalid variable type.\n"));
        set_block_error(-3); */
        C2F(mclose)(&fd,&res);
        return;
      }
      if (!((Ytype==1) || (Ytype==8))) {
-	   Coserror("Invalid variable type.\n");
-       /*sciprint("Invalid variable type.\n");
+	   Coserror(_("Invalid variable type.\n"));
+       /*sciprint(_("Invalid variable type.\n"));
        set_block_error(-3);*/
        C2F(mclose)(&fd,&res);
        return;
@@ -193,8 +194,8 @@ void fromws_c(scicos_block *block,int flag)
      YsubType = Ydim[9]; /* subtype          */
    }
    else {
-    Coserror("Invalid variable type.\n");
-    /*sciprint("Invalid variable type.\n");
+    Coserror(_("Invalid variable type.\n"));
+    /*sciprint(_("Invalid variable type.\n"));
     set_block_error(-3);*/
     C2F(mclose)(&fd,&res);
     return;
@@ -202,8 +203,7 @@ void fromws_c(scicos_block *block,int flag)
 
    /* check dimension for output port and variable */
    if ((mY!=my)||(nY!=ny)) {
-	   Coserror("Data dimensions are inconsistent:\n\r Variable size=[%d,%d] \n\r"
-		   "Block output size=[%d,%d].\n",mY,nY,my,ny);
+	   Coserror(_("Data dimensions are inconsistent:\n Variable size=[%d,%d] \nBlock output size=[%d,%d].\n"),mY,nY,my,ny);
 	   /*set_block_error(-3);*/
 	   C2F(mclose)(&fd,&res);
      return;
@@ -214,7 +214,7 @@ void fromws_c(scicos_block *block,int flag)
      switch (YsubType)
      {
      case 0: if (ytype!=10) {
-		 Coserror("Output should be of Real type.\n");
+		 Coserror(_("Output should be of Real type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -222,7 +222,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 1: if (ytype!=11) {
-		 Coserror("Output should be of complex type.\n");
+		 Coserror(_("Output should be of complex type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -234,7 +234,7 @@ void fromws_c(scicos_block *block,int flag)
      switch (YsubType)
      {
      case 1: if (ytype!=81) {
-               sciprint("Output should be of int8 type.\n");
+               sciprint(_("Output should be of int8 type.\n"));
                set_block_error(-3);
                C2F(mclose)(&fd,&res);
                return;
@@ -242,7 +242,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 2: if (ytype!=82) {
-		 Coserror("Output should be of int16 type.\n");
+		 Coserror(_("Output should be of int16 type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -250,7 +250,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 4: if (ytype!=84) {
-		 Coserror("Output should be of int32 type.\n");
+		 Coserror(_("Output should be of int32 type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -258,7 +258,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 11:if (ytype!=811) {
-		 Coserror("Output should be of uint8 type.\n");
+		 Coserror(_("Output should be of uint8 type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -266,7 +266,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 12:if (ytype!=812) {
-		 Coserror("Output should be of uint16 type.\n");
+		 Coserror(_("Output should be of uint16 type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -274,7 +274,7 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 14:if (ytype!=814) {
-		 Coserror("Output should be of uint32 type.\n");
+		 Coserror(_("Output should be of uint32 type.\n"));
 		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
@@ -405,7 +405,7 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mgetnc) (&fd, &Ydim[7], (j=3,&j), fmti, &ierr);  /* read sci header */
 
    if (nPoints!=Ydim[7]) {
-	   Coserror("The Time vector type is not ""double"".\n"); 
+	   Coserror(_("The Time vector type is not ""double"".\n")); 
 	   /*set_block_error(-3);*/
      *(block->work)=NULL;
      scicos_free(ptr->work);
@@ -415,7 +415,7 @@ void fromws_c(scicos_block *block,int flag)
    }
 
    if ((Ydim[6]!=1) | (Ydim[9]!=0)) {
-     sciprint("The Time vector type is not ""double"".\n"); 
+     sciprint(_("The Time vector type is not ""double"".\n")); 
      set_block_error(-3);
      *(block->work)=NULL;
      scicos_free(ptr->work);
@@ -442,7 +442,7 @@ void fromws_c(scicos_block *block,int flag)
    /* check for an increasing time data */
    for(j = 0; j < nPoints-1; j++) {
      if(ptr_T[j] > ptr_T[j+1]) {
-		 Coserror("The time vector should be an increasing vector.\n");
+		 Coserror(_("The time vector should be an increasing vector.\n"));
 		 /*set_block_error(-3);*/
        *(block->work)=NULL;
        scicos_free(ptr->workt);
@@ -477,7 +477,7 @@ void fromws_c(scicos_block *block,int flag)
 
      if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL) {
 
-		 Coserror("Allocation problem in spline.\n");
+		 Coserror(_("Allocation problem in spline.\n"));
 		 /*set_block_error(-16);*/
        *(block->work)=NULL;
        scicos_free(ptr->D);
@@ -1234,7 +1234,7 @@ static int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
      (ptr_i[28]!=3)  || \
      (ptr_i[29]!=4))
   {
-   Coserror("Invalid variable type : error in hypermat scilab coding.\n");
+   Coserror(_("Invalid variable type : error in hypermat scilab coding.\n"));
    return 0;
   }
 
@@ -1246,7 +1246,7 @@ static int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
  if ((ptr_i[34]!=ptr_i[30]*ptr_i[31]*ptr_i[32]) || \
      (ptr_i[35]!=1))
   {
-   Coserror("Invalid variable type : error in hypermat scilab coding.\n");
+   Coserror(_("Invalid variable type : error in hypermat scilab coding.\n"));
    return 0;
   }
 

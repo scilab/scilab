@@ -20,40 +20,42 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /* A swithcing mechansim for building hybrid automata */
 /* Masoud Najafi, 2007, INRIA */
 
 void automat(scicos_block *block,int flag)
 {
-  double * y0, *y1, *ui;
-  double* g=block->g;
-  double* x=block->x;
-  double* xd=block->xd;
-  double* res=block->res; 
-  void**   work=block->work;
-  double* rpar=block->rpar;
-  double* evout=block->evout;
+  double *y0 = NULL, *y1 = NULL, *ui = NULL;
+  double* g = block->g;
+  double* x = block->x;
+  double* xd = block->xd;
+  double* res = block->res; 
+  void**   work = block->work;
+  double* rpar = block->rpar;
+  double* evout = block->evout;
 
-  int* ipar=block->ipar;
-  int* jroot=block->jroot;
-  int  nevprt=block->nevprt;
-  int* insz=block->insz;
-  int ng=block->ng;
+  int* ipar = block->ipar;
+  int* jroot = block->jroot;
+  int  nevprt = block->nevprt;
+  int* insz = block->insz;
+  int ng = block->ng;
 
-  int* Mode;
-  int  NMode, NX, Minitial,i,j,k,Mi,Mf,indice;
-  int* property=GetXpropPtrs(block);
-  int* iparXp;
-  int* iparCx;
-  double* rparX0;
-  int test;
-  NMode=ipar[0];
-  Minitial=ipar[1];
-  NX=ipar[2];
-  iparXp=ipar+3;
-  iparCx=iparXp+NX*NMode;
-  rparX0=rpar;
+  int* Mode = NULL;
+  int  NMode = 0, NX = 0, Minitial = 0,i = 0,j = 0,k = 0,Mi = 0,Mf = 0,indice = 0;
+  int* property = GetXpropPtrs(block);
+  int* iparXp = NULL;
+  int* iparCx = NULL;
+  double* rparX0 = NULL;
+  int test = 0;
+  NMode = ipar[0];
+  Minitial = ipar[1];
+  NX = ipar[2];
+  iparXp = ipar+3;
+  iparCx = iparXp+NX*NMode;
+  rparX0 = rpar;
 
 
   if (flag ==4){/*----------------------------------------------------------*/
@@ -131,7 +133,7 @@ void automat(scicos_block *block,int flag)
     }
     if (test==0){
       for (k=0;k<insz[Mi-1]-2*NX;k++) if(jroot[k]==-1) break;
-      /*      sciprint("\n\r Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction",Mi,k+1); */
+      /*      sciprint(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
     }
     ui=GetRealInPortPtrs(block,Mf);
     for (i=0;i<NX;i++)

@@ -22,6 +22,7 @@
 #include <math.h>
 #include "scicos_block.h"
 #include "sciprint.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void edgetrig(scicos_block *block,int flag)
 {
@@ -47,7 +48,7 @@ void edgetrig(scicos_block *block,int flag)
   }else if (flag==4) {
     if (block->ng>0){
       set_block_error(-1);
-      sciprint("Trigger block must have discrete time input.");
+      sciprint(_("Trigger block must have discrete time input."));
       return;
     }
   }

@@ -20,6 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void delay4_i16(scicos_block *block,int flag)
 {
@@ -28,9 +29,9 @@ void delay4_i16(scicos_block *block,int flag)
      Scicos block simulator
      Ouputs nx*dt delayed input */
 
-  short *y,*u,*oz;
-  int nz,mz;
-  int i;
+  short *y = NULL,*u = NULL,*oz = NULL;
+  int nz = 0,mz = 0;
+  int i = 0;
   
   u=Getint16InPortPtrs(block,1);
   y=Getint16OutPortPtrs(block,1);

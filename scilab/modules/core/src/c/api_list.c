@@ -23,9 +23,11 @@
 #include "api_internal_string.h"
 #include "api_internal_boolean.h"
 #include "api_internal_poly.h"
+#include "api_internal_int.h"
 #include "api_list.h"
 #include "api_string.h"
 #include "api_boolean.h"
+#include "api_int.h"
 
 
 //internal functions
@@ -1135,43 +1137,182 @@ int readCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piPare
 //TODO !!!!!
 }
 
+static int fillCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
+{
+	int iRet					= 0;
+	int iNbItem				= 0;
+	int* piOffset			= NULL;
+	int* piChildAddr	= NULL;
+
+	//Does item can be added in the list
+	getListItemNumber(_piParent, &iNbItem);
+	if(iNbItem < _iItemPos)
+	{
+		return 1;
+	}
+
+
+	iRet = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillCommonMatrixOfInteger(piChildAddr, _iPrecision, _iRows, _iCols, _pvData);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piOffset						= _piParent + 2;
+
+	//integer : size in double
+	//1st case, 5 * 1 int8  -> (10,5) (1,1) (1,2,3,4,5,x,x,x)											-> 3 : 2 + 5/8 + !!(5%8) -> 2 + 0 + 1 -> 3
+	//2nd case, 5 * 1 int16 -> (10,5) (1,2)			(1,2,3,4)				(5,x,x,x)					-> 4 : 2 + 5/4 + !!(5%4) -> 2 + 1 + 1 -> 4
+	//3th case, 5 * 1 int32 -> (10,5) (1,3)				(1,2)						(3,4)			(5,x)	-> 5 : 2 + 5/2 + !!(5%2) -> 2 + 2 + 1 -> 5
+
+	//with 5*5 int matrix
+	//1st case, 5 * 5 int8  -> (10,5) (5,1) (1:25) -> 3 : 2 + 25/8 + !!(25%8) -> 2 + 3  + 1 -> 6
+	//2nd case, 5 * 1 int16 -> (10,5) (5,2)	(1:25) -> 4 : 2 + 25/4 + !!(25%4) -> 2 + 6  + 1 -> 9
+	//3th case, 5 * 5 int32 -> (10,5) (5,3) (1:25) -> 5 : 2 + 25/2 + !!(25%2) -> 2 + 12 + 1 -> 15
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2 + _iRows * _iCols / (sizeof(double) / _iPrecision) + !!(_iRows * _iCols) % (sizeof(double) / _iPrecision);
+
+	return 0;
+}
+
+static int allocCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void** _pvData)
+{
+	int iRet					= 0;
+	int iNewPos				= Top - Rhs + _iVar;
+	int* piEnd				= NULL;
+
+	iRet = fillCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piEnd = (int*)*_pvData + _iRows * _iCols / (sizeof(int) / _iPrecision) + !!(_iRows * _iCols) % (sizeof(int) / _iPrecision);
+	closeList(iNewPos, piEnd);
+
+	if(_iItemPos == _piParent[1])
+	{
+		updateListOffset(_iVar, _piParent, _iItemPos, piEnd);
+	}
+	return 0;
+}
+
 int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 {
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, &_pcData);
 }
 
 int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 {
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, &_psData);
 }
 
 int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 {
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, &_piData);
+}
+
+static int createCommomMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecison, int _iRows, int _iCols, void* _pvData)
+{
+	void *pvData = NULL;
+
+	int iRet = 0;
+
+	iRet = allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, _iPrecison, _iRows, _iCols, &pvData);
+	if(iRet)
+	{
+		return 1;
+	}
+	if(pvData != NULL)
+	{
+		memcpy(pvData, _pvData, _iRows * _iCols * _iPrecison);
+	}
+	return 0;
 }
 
 int createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 {
+	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
 int createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 {
+	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
 int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 {
+	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
+int createCommonMatrixOfIntegerInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+{
+	int iVarID[nsiz];
+  int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	int iRet					= 0;
+	int *piAddr				= NULL;
+	int* piEnd				= NULL;
+	int* piChildAddr	= NULL;
+
+  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  Top = Top + Nbvars + 1;
+
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = createCommomMatrixOfIntegerInList(Top, _piParent, _iItemPos, _iPrecision, _iRows, _iCols, _pvData);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	//integer : size in int32
+	//1st case, 5 * 1 int8  -> 10 5 1 1 (1,2,3,4) (5,x,x,x)						-> 6 : 4 + 5/4 + !!(5%4) -> 4 + 1 + 1 -> 6
+	//2nd case, 5 * 1 int16 -> 10 5 1 2   (1,2)     (3,4)   (5,x)			-> 7 : 4 + 5/2 + !!(5%2) -> 4 + 2 + 1 -> 7
+	//3th case, 5 * 1 int32 -> 10 5 1 4     1         2       3   4 5	-> 9 : 4 + 5/1 + !!(5%1) -> 4 + 5 + 0 -> 9
+	piEnd = piChildAddr + 4 + _iRows * _iCols / (sizeof(int) / _iPrecision) + !!(_iRows * _iCols) % ((sizeof(int) / _iPrecision));
+	closeList(Top, piEnd);
+
+	if(_iItemPos == _piParent[1])
+	{
+		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		createNamedVariable(iVarID);
+	}
+
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
+
+	return 0;
+}
 
 int createMatrixOfInteger8InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 {
-
+	return createCommonMatrixOfIntegerInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
 }
 
 int createMatrixOfInteger16InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 {
-
+	return createCommonMatrixOfIntegerInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
 }
 
 int createMatrixOfInteger32InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 {
+	return createCommonMatrixOfIntegerInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
 

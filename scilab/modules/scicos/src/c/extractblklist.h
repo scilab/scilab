@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - Allan CORNET
+*  Copyright (C) DIGITEO - Allan CORNET
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,22 +18,26 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/
 
-/*--------------------------------------------------------------------------*/
-/* INRIA 2008 */
-/* Allan CORNET */
-/*--------------------------------------------------------------------------*/
-#include "gw_scicos.h"
-#include "stack-c.h"
-/*--------------------------------------------------------------------------*/
-extern int C2F(intree2)(char *fname,unsigned long fname_len); /* fortran subroutine */
-/*--------------------------------------------------------------------------*/
-int C2F(sci_sci_tree2)(char *fname,unsigned long fname_len)
-{
-	CheckLhs(2,2);
-	CheckRhs(4,4);
-	C2F(intree2)(fname,fname_len);
-	C2F(putlhsvar)();
-	return 0;
-}
+#ifndef __EXTRACTBLKLIST_H__
+#define __EXTRACTBLKLIST_H__
+
+#include "scicos_block4.h"
+
+/* extractblklist : create a scicos_block C structure from
+* a scicos_block scilab structure.
+*
+* Input : il : the ptr of the scicos_block scilab structure
+*              in the stack
+*
+* Output : Block : C scicos_block structure
+*          ierr  : an error number (ifany)
+*
+* initial rev 13/11/07, Alan Layec
+*/
+
+int extractblklist(int *il, scicos_block *Block, int *ierr);
+
+#endif /* __EXTRACTBLKLIST_H__ */
 /*--------------------------------------------------------------------------*/

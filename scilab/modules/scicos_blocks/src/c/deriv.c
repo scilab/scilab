@@ -25,9 +25,9 @@
 /*--------------------------------------------------------------------------*/ 
 void deriv(scicos_block *block,int flag)
 { 
-  double* rw;
-  double t,dt;
-  int i;
+  double* rw = NULL;
+  double t = 0.,dt = 0.;
+  int i = 0;
   if (flag == 4){/* the workspace is used to store previous values */
     if ((*block->work=
 	 scicos_malloc(sizeof(double)*2*(1+block->insz[0])))== NULL ) {

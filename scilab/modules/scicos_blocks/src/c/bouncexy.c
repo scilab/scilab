@@ -36,6 +36,7 @@
 #include "scicos_block4.h"
 #include "ObjectStructure.h"
 #include "DrawingBridge.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -44,18 +45,18 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
 {
   scoGraphicalObject pAxes;
   scoGraphicalObject pTemp;
-  double * z;
-  double *rpar;
-  int *ipar, nipar;  
-  int i,j;
-  int dimension;
-  double ymin, ymax, xmin, xmax;
-  int win;
-  int number_of_subwin;
-  int number_of_curves_by_subwin;
-  int * colors;
-  int imode;
-  double * size_balls;
+  double * z = NULL;
+  double *rpar = NULL;
+  int *ipar = NULL, nipar = 0;  
+  int i = 0,j = 0;
+  int dimension = 0;
+  double ymin = 0., ymax = 0., xmin = 0., xmax = 0.;
+  int win = 0;
+  int number_of_subwin = 0;
+  int number_of_curves_by_subwin = 0;
+  int * colors = NULL;
+  int imode = 0;
+  double * size_balls = NULL;
   double radius_max;
 
   /*Retrieving Parameters*/
@@ -131,13 +132,13 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
 */
 void bouncexy(scicos_block * block,int flag)
 {
-  ScopeMemory * pScopeMemory;
+  ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;
-  double * z;
-  double t;
-  int i;
-  double * u1, *u2;
-  double * size_balls;
+  double * z = NULL;
+  double t = 0.;
+  int i = 0;
+  double * u1 = NULL, *u2 = NULL;
+  double * size_balls = NULL;
   switch(flag) 
     {
     case Initialization:

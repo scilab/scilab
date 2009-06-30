@@ -26,6 +26,7 @@
 #include "charEncoding.h"
 #include "cvstr.h"
 #include "mget.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 static int worldsize(char type[4]);
 /*--------------------------------------------------------------------------*/ 
@@ -90,7 +91,7 @@ double *inptr[],*outptr[],*t;
 	ierr=0;
 	mget2(fd,ipar[8],buffer,m,type,&ierr);
 	if (ierr>0) {
-	  sciprint("Read error!\n");
+	  sciprint(_("Read error!\n"));
 	  fclose(fd);
 	  z[3] = 0.0;
 	  *flag = -1;
@@ -130,7 +131,7 @@ double *inptr[],*outptr[],*t;
     str[ipar[1]] = '\0';
 	wcfopen(fd,str,"rb");
     if (!fd ) {
-      sciprint("Could not open the file!\n");
+      sciprint(_("Could not open the file!\n"));
       *flag = -1;
       return;
     }
@@ -144,7 +145,7 @@ double *inptr[],*outptr[],*t;
       irep = fseek(fd,offset,0) ;
       if ( irep != 0 ) 
 	{
-	  sciprint("Read error\n");
+	  sciprint(_("Read error\n"));
 	  *flag = -1;
 	  fclose(fd);
 	  z[3] = 0.0;
@@ -158,7 +159,7 @@ double *inptr[],*outptr[],*t;
 	  if (type[i]!=' ') { type[i+1]='\0';break;}
     mget2(fd,ipar[8],buffer,m,type,&ierr);
     if (ierr>0) {
-      sciprint("Read error!\n");
+      sciprint(_("Read error!\n"));
       *flag = -1;
       fclose(fd);
       z[3] = 0.0;

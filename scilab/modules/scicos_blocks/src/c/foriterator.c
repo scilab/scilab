@@ -21,13 +21,15 @@
 /*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void foriterator(scicos_block *block,int flag)
 { 
-  void *y,*u,*z;
-  int *ipar;
-  int so;
-  int nin;
+  void *y = NULL,*u = NULL,*z = NULL;
+  int *ipar = NULL;
+  int so = 0;
+  int nin = 0;
+
   z=GetOzPtrs(block,1);
   so=GetSizeOfOut(block,1);
   if (flag==1) {

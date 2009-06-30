@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "sciblk2.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(scierr)();
 extern void C2F(itosci)();
@@ -38,15 +39,15 @@ void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *n
 	       int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout)
 
 {
-    int k;
-    double *y;
-    double *u;
+    int k = 0;
+    double *y = NULL;
+    double *u = NULL;
     /*int nev,ic;*/
-    int one=1,skip;
-    int nu,ny;
-    int nu2,ny2;
-    int mlhs=5,mrhs=8;
-    int ltop;
+    int one=1,skip = 0;
+    int nu = 0,ny = 0;
+    int nu2 = 0,ny2 = 0;
+    int mlhs = 5,mrhs = 8;
+    int ltop = 0;
 
 
     C2F(itosci)(flag,&one,&one);

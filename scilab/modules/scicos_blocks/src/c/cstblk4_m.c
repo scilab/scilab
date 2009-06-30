@@ -22,6 +22,7 @@
 #include <memory.h>
 #include<stdio.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void cstblk4_m(scicos_block *block,int flag)
 { 
@@ -30,9 +31,9 @@ void cstblk4_m(scicos_block *block,int flag)
   Scicos block simulator
   output a vector of constants out(i)=opar(i)
   opar(1:nopar) : given constants */
-  int nopar,mo,no,so;
-  void *y;
-  void *opar;
+  int nopar = 0,mo = 0,no = 0,so = 0;
+  void *y = NULL;
+  void *opar = NULL;
   nopar = GetNopar(block);
   y=GetOutPortPtrs(block,1);
   opar=GetOparPtrs(block,1);

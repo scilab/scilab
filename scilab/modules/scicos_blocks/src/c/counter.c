@@ -21,11 +21,12 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void counter(scicos_block *block,int flag)
 {
-  double *y,*z;
-  int *ipar;
+  double *y = NULL,*z = NULL;
+  int *ipar = NULL;
   y=GetRealOutPortPtrs(block,1);
   z=GetDstate(block);
   ipar=GetIparPtrs(block);

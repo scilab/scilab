@@ -21,12 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void bit_clear_32(scicos_block *block,int flag)
 {
-  int n,m,i;
-  long *opar;
-  long *u,*y;
+  int n = 0,m = 0,i = 0;
+  long *opar = NULL;
+  long *u = NULL,*y = NULL;
   opar=Getint32OparPtrs(block,1);
   u=Getint32InPortPtrs(block,1);
   y=Getint32OutPortPtrs(block,1);

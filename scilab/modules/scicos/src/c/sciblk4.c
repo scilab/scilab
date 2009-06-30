@@ -27,6 +27,8 @@
 #include "sciblk4.h"
 #include "import.h"
 #include "createblklist.h"
+#include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
@@ -39,32 +41,32 @@ static int sci2var(void *x,void *y,int typ_var);
 void sciblk4(scicos_block *Blocks, int flag)
 {
   /*counter and address variable declaration*/
-  int i,j,k,topsave;
+  int i = 0,j = 0,k = 0,topsave = 0;
   int ierr = 0;
-  int kfun;
+  int kfun = 0;
 
-  int *header,ne1;
-  double *le111;
+  int *header = NULL,ne1 = 0;
+  double *le111 = NULL;
 
-  int *il_xd, *il_res, *il_out, *il_outptr;
-  int *il_xprop;
+  int *il_xd = NULL, *il_res = NULL, *il_out = NULL, *il_outptr = NULL;
+  int *il_xprop = NULL;
 
-  int *il_z, *il_oz, *il_ozptr, *il_x;
-  int *il_mode, *il_evout, *il_g;
-  double *l_mode;
-  double *l_xprop;
+  int *il_z = NULL, *il_oz = NULL, *il_ozptr = NULL, *il_x = NULL;
+  int *il_mode = NULL, *il_evout = NULL, *il_g = NULL;
+  double *l_mode = NULL;
+  double *l_xprop = NULL;
 
   /* variable for output typed port */
-  int nout;
+  int nout = 0;
 
-  int nv,mv;
-  int *ptr, *funtyp;
+  int nv = 0,mv = 0;
+  int *ptr = NULL, *funtyp = NULL;
 
   /* set number of left and right hand side parameters */
-  int mlhs=1,mrhs=2;
+  int mlhs = 1,mrhs = 2;
 
   /* Save Top counter */
-  topsave=Top;
+  topsave = Top;
 
   /* Retrieve block number */
   kfun = get_block_number();
@@ -505,13 +507,13 @@ void sciblk4(scicos_block *Blocks, int flag)
    {
     switch (ierr)
     {
-     case 1  : Scierror(888,"var2sci : error %d. Stack is full.\n",ierr);
+     case 1  : Scierror(888,_("%s: error %d. Stack is full.\n"),"var2sci",ierr);
                break;
 
-     case 2  : Scierror(888,"var2sci : error %d. No more space on the stack for new data.\n",ierr);
+     case 2  : Scierror(888,_("%s: error %d. No more space on the stack for new data.\n"),"var2sci",ierr);
                break;
 
-     default : Scierror(888,"var2sci : error %d. Undefined error.\n",ierr);
+     default : Scierror(888,_("%s: error %d. Undefined error.\n"),"var2sci",ierr);
                break;
     }
    }
@@ -519,19 +521,19 @@ void sciblk4(scicos_block *Blocks, int flag)
    {
     switch (ierr)
     {
-     case 1001  : Scierror(888,"sci2var : error %d. Only int or double object are accepted.\n",ierr);
+     case 1001  : Scierror(888,_("%s: error %d. Only int or double object are accepted.\n"),"sci2var",ierr);
                   break;
 
-     case 1002  : Scierror(888,"sci2var : error %d. Bad double object sub_type.\n",ierr);
+     case 1002  : Scierror(888,_("%s: error %d. Bad double object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1003  : Scierror(888,"sci2var : error %d. Bad int object sub_type.\n",ierr);
+     case 1003  : Scierror(888,_("%s: error %d. Bad int object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1004  : Scierror(888,"sci2var : error %d. A type of a scilab object has changed.\n",ierr);
+     case 1004  : Scierror(888,_("%s: error %d. A type of a scilab object has changed.\n"),"sci2var",ierr);
                   break;
 
-     default    : Scierror(888,"sci2var : error %d. Undefined error.\n",ierr);
+     default    : Scierror(888,_("%s: error %d. Undefined error.\n"),"sci2var",ierr);
                   break;
     }
    }

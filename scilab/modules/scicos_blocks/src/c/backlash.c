@@ -25,7 +25,7 @@
 /*--------------------------------------------------------------------------*/ 
 void backlash(scicos_block *block,int flag)
 { 
-  double* rw,t;
+  double* rw = NULL,t  = 0.;
   if (flag == 4){/* the workspace is used to store previous values */
     if ((*block->work=	 scicos_malloc(sizeof(double)* 4))== NULL ) {
       set_block_error(-16);

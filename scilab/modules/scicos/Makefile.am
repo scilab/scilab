@@ -38,8 +38,9 @@ src/c/il_state.c \
 src/c/il_sim.c \
 src/c/createblklist.c \
 src/c/var2sci.c \
-src/c/copyvarfromlistentry.c
-
+src/c/copyvarfromlistentry.c \
+src/c/MlistGetFieldNumber.c \
+src/c/extractblklist.c
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \
@@ -55,9 +56,7 @@ src/fortran/ftree4.f \
 src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
-sci_gateway/c/intcutilcos.c \
-sci_gateway/c/gw_scicos.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
 sci_gateway/c/sci_ctree2.c \
 sci_gateway/c/sci_ctree3.c \
@@ -72,9 +71,9 @@ sci_gateway/c/sci_getscicosvars.c \
 sci_gateway/c/sci_permutobj.c \
 sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
-sci_gateway/c/sci_sci_tree2.c \
-sci_gateway/c/sci_sci_tree3.c \
-sci_gateway/c/sci_sci_tree4.c \
+sci_gateway/c/sci_ftree2.c \
+sci_gateway/c/sci_ftree3.c \
+sci_gateway/c/sci_ftree4.c \
 sci_gateway/c/sci_scicos_debug.c \
 sci_gateway/c/sci_scicos_debug_count.c \
 sci_gateway/c/sci_scicos_time.c \
@@ -85,7 +84,11 @@ sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c \
 sci_gateway/c/sci_haltscicos.c \
-sci_gateway/c/sci_coserror.c
+sci_gateway/c/sci_coserror.c \
+sci_gateway/c/sci_callblk.c \
+sci_gateway/c/sci_data2sig.c \
+sci_gateway/c/sci_model2blk.c \
+sci_gateway/c/sci_sig2data.c
 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
@@ -158,8 +161,7 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 #### scicos : include files ####
 libsciscicos_la_includedir=$(pkgincludedir)/scicos
-libsciscicos_la_include_HEADERS = includes/intcscicos.h \
-includes/scicos.h \
+libsciscicos_la_include_HEADERS = includes/scicos.h \
 includes/gw_scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \

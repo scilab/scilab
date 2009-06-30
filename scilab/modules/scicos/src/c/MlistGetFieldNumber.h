@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+*  Copyright (C) DIGITEO - Allan CORNET
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,16 @@
 *
 * See the file ./license.txt
 */
-#ifndef __INTCSCICOS_H__
-#define __INTCSCICOS_H__
+/*--------------------------------------------------------------------------*/
+#ifndef __MLISTGETFIELDNUMBER_H__
+#define __MLISTGETFIELDNUMBER_H__
 
-#include "scicos_block4.h"
+/**
+* Get number of Field from the name of MList
+* 
+*/
+int MlistGetFieldNumber(int *ptr, const char *string);
 
-/* functions to split (gateways) */
+#endif /* __MLISTGETFIELDNUMBER_H__ */
+/*--------------------------------------------------------------------------*/
 
-int intxproperty(char *fname,unsigned long fname_len);
-int intsetxproperty(char *fname, unsigned long fname_len);
-
-
-
-
-#endif /* __INTCSCICOS_H__ */

@@ -37,11 +37,10 @@
 /*--------------------------------------------------------------------------*/ 
 void curve_c(scicos_block *block,int flag)
 {
-  double t,a,b,c,y1,y2,t1,t2;
-  int *ind,i,inow;
-  double *y;
-  double  d1,d2,h, dh, ddh, dddh;
-
+  double t = 0.,a = 0.,b = 0.,c = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.;
+  int *ind = NULL, i = 0,inow = 0;
+  double *y = NULL;
+  double  d1 = 0.,d2 = 0.,h = 0., dh = 0., ddh = 0., dddh = 0.;
   
   switch(flag)
   {

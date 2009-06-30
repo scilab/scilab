@@ -77,6 +77,8 @@
 #include "setPrecisionFPU.h"
 #endif
 
+#include "localization.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
   void *ida_mem;
@@ -141,56 +143,51 @@ static int c__1 = 1;
 
 int TCritWarning = 0;
 
-static double *t0, *tf;
-static double *x,*tevts,*xd,*g;
-static  double Atol, rtol, ttol, deltat,hmax;
-static int *ierr;
-static int *pointi;
-static int *xptr,*modptr, *evtspt;
-static int  *funtyp, *inpptr, *outptr, *inplnk, *outlnk;
-static int *clkptr, *ordptr, *ordclk, *cord, *iord, *oord,  *zord,  *critev,  *zcptr;
-static int nblk, nordptr, nlnk, nx, ng, ncord, noord, nzord;
-static int niord,nordclk,niord,nmod;
-static int nelem;
-static int *mod;
-static int *neq;
-static int *xprop; /* xproperty */
-static int debug_block;
-static int *iwa;
+static double *t0 = NULL, *tf = NULL;
+static double *x = NULL,*tevts = NULL,*xd = NULL,*g = NULL;
+static  double Atol = 0., rtol = 0., ttol = 0., deltat = 0.,hmax = 0.;
+static int *ierr = NULL;
+static int *pointi = NULL;
+static int *xptr = NULL,*modptr = NULL, *evtspt = NULL;
+static int *funtyp = NULL, *inpptr = NULL, *outptr = NULL, *inplnk = NULL, *outlnk = NULL;
+static int *clkptr = NULL, *ordptr = NULL, *ordclk = NULL, *cord = NULL, *iord = NULL, *oord = NULL,  *zord = NULL,  *critev = NULL,  *zcptr = NULL;
+static int nblk = 0, nordptr = 0, nlnk = 0, nx = 0, ng = 0, ncord = 0, noord = 0, nzord = 0;
+static int nordclk = 0,niord = 0,nmod = 0;
+static int nelem = 0;
+static int *mod = NULL;
+static int *neq = NULL;
+static int *xprop = NULL; /* xproperty */
+static int debug_block = 0;
+static int *iwa = NULL;
 static int hot;
 
 /* declaration of ptr for typed port */
-static void **outtbptr; /*pointer array of object of outtb*/
-static int *outtbsz;    /*size of object of outtb*/
-static int *outtbtyp;   /*type of object of outtb*/
+static void **outtbptr = NULL; /*pointer array of object of outtb*/
+static int *outtbsz = NULL;    /*size of object of outtb*/
+static int *outtbtyp = NULL;   /*type of object of outtb*/
 
-/* declaration of ptr for typed port */
-static void **outtbptr;     /*pointer array of object of outtb*/
-static int *outtbsz;    /*size of object of outtb*/
-static int *outtbtyp;   /*type of object of outtb*/
+SCSREAL_COP *outtbdptr = NULL;     /*to store double of outtb*/
+SCSINT8_COP *outtbcptr = NULL;     /*to store int8 of outtb*/
+SCSINT16_COP *outtbsptr = NULL;    /*to store int16 of outtb*/
+SCSINT32_COP *outtblptr = NULL;    /*to store int32 of outtb*/
+SCSUINT8_COP *outtbucptr = NULL;   /*to store unsigned int8 of outtb */
+SCSUINT16_COP *outtbusptr = NULL;  /*to store unsigned int16 of outtb */
+SCSUINT32_COP *outtbulptr = NULL;  /*to store unsigned int32 of outtb */
 
-SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
-SCSINT8_COP *outtbcptr;     /*to store int8 of outtb*/
-SCSINT16_COP *outtbsptr;    /*to store int16 of outtb*/
-SCSINT32_COP *outtblptr;    /*to store int32 of outtb*/
-SCSUINT8_COP *outtbucptr;   /*to store unsigned int8 of outtb */
-SCSUINT16_COP *outtbusptr;  /*to store unsigned int16 of outtb */
-SCSUINT32_COP *outtbulptr;  /*to store unsigned int32 of outtb */
+static outtb_el *outtb_elem = NULL;
 
-static outtb_el *outtb_elem;
-
-static scicos_block *Blocks;
+static scicos_block *Blocks = NULL;
 
 /* pass to external variable for code generation */
 /* reserved variable name */
-int *block_error;
-double scicos_time;
-int phase;
-int Jacobian_Flag;
-double CI, CJ;
-double SQuround;
+int *block_error = NULL;
+double scicos_time = 0.;
+int phase = 0;
+int Jacobian_Flag = 0;
+double CI = 0., CJ = 0.;
+double SQuround = 0.;
 /* Jacobian*/
-static int AJacobian_block;
+static int AJacobian_block = 0;
 
 
 /* Variable declaration moved to scicos.c because it was in the scicos-def.h therefore
@@ -237,27 +234,27 @@ static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb
 static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
-		    extern int C2F(dcopy)(int *,double *,int *,double *,int *);
-					 /*--------------------------------------------------------------------------*/
-					 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
-							 void **work,int *zptr,int *modptr_in,
-							 void **oz,int *ozsz,int *oztyp,int *ozptr,
-							 int *iz,int *izptr,double *t0_in,
-							 double *tf_in,double *tevts_in,int *evtspt_in,
-							 int *nevts,int *pointi_in,void **outtbptr_in,
-							 int *outtbsz_in,int *outtbtyp_in,
-							 outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
-							 int *funptr,int *funtyp_in,int *inpptr_in,
-							 int *outptr_in, int *inplnk_in,int *outlnk_in,
-							 double *rpar,int *rpptr,int *ipar,int *ipptr,
-							 void **opar,int *oparsz,int *opartyp,int *opptr,
-							 int *clkptr_in,int *ordptr_in,int *nordptr1,
-							 int *ordclk_in,int *cord_in,int *ncord1,
-							 int *iord_in,int *niord1,int *oord_in,
-							 int *noord1,int *zord_in,int *nzord1,
-							 int *critev_in,int *nblk1,int *ztyp,
-							 int *zcptr_in,int *subscr,int *nsubs,
-							 double *simpar,int *flag__,int *ierr_out)
+extern int C2F(dcopy)(int *,double *,int *,double *,int *);
+/*--------------------------------------------------------------------------*/
+int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+			 void **work,int *zptr,int *modptr_in,
+			 void **oz,int *ozsz,int *oztyp,int *ozptr,
+			 int *iz,int *izptr,double *t0_in,
+			 double *tf_in,double *tevts_in,int *evtspt_in,
+			 int *nevts,int *pointi_in,void **outtbptr_in,
+			 int *outtbsz_in,int *outtbtyp_in,
+			 outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+			 int *funptr,int *funtyp_in,int *inpptr_in,
+			 int *outptr_in, int *inplnk_in,int *outlnk_in,
+			 double *rpar,int *rpptr,int *ipar,int *ipptr,
+			 void **opar,int *oparsz,int *opartyp,int *opptr,
+			 int *clkptr_in,int *ordptr_in,int *nordptr1,
+			 int *ordclk_in,int *cord_in,int *ncord1,
+			 int *iord_in,int *niord1,int *oord_in,
+			 int *noord1,int *zord_in,int *nzord1,
+			 int *critev_in,int *nblk1,int *ztyp,
+			 int *zcptr_in,int *subscr,int *nsubs,
+			 double *simpar,int *flag__,int *ierr_out)
 {
   int i1,kf,lprt,in,out,job=1;
 
@@ -267,10 +264,10 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
   extern int C2F(makescicosimport)();
   extern int C2F(clearscicosimport)();
 
-  static int mxtb, ierr0, kfun0, i, j, k, jj;
-  static int ni, no;
-  static int nz, noz, nopar;
-  double *W;
+  static int mxtb = 0, ierr0 = 0, kfun0 = 0, i = 0, j = 0, k = 0, jj = 0;
+  static int ni = 0, no = 0;
+  static int nz = 0, noz = 0, nopar = 0;
+  double *W = NULL;
 
   // Set FPU Flag to Extended for scicos simulation
   // in order to override Java setting it to Double.
@@ -280,7 +277,7 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 
   /*     Copyright INRIA */
   /* iz,izptr are used to pass block labels */
-  TCritWarning=0;
+  TCritWarning = 0;
 
   t0=t0_in;
   tf=tf_in;
@@ -446,12 +443,12 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 	Blocks[kf].funpt=F2C(sciblk);
 	break;
       case 1:
-	sciprint("type 1 function not allowed for scilab blocks\n");
+	sciprint(_("type 1 function not allowed for scilab blocks\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
       case 2:
-	sciprint("type 2 function not allowed for scilab blocks\n");
+	sciprint(_("type 2 function not allowed for scilab blocks\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -474,7 +471,7 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 	Blocks[kf].type=10004;
 	break;
       default :
-	sciprint("Undefined Function type\n");
+	sciprint(_("Undefined Function type\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -491,7 +488,7 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
       i -= (ntabsim+1);
       GetDynFunc(i,&Blocks[kf].funpt);
       if ( Blocks[kf].funpt == (voidf) 0) {
-	sciprint("Function not found\n");
+	sciprint(_("Function not found\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -798,22 +795,22 @@ extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 /* check_flag */
 static int check_flag(void *flagvalue, char *funcname, int opt)
 {
-  int *errflag;
+  int *errflag = NULL;
 
   /* Check if SUNDIALS function returned NULL pointer - no memory allocated */
   if (opt == 0 && flagvalue == NULL) {
-    sciprint("\nSUNDIALS_ERROR: %s() failed - returned NULL pointer\n\n", funcname);
+    sciprint(_("\nSUNDIALS_ERROR: %s() failed - returned NULL pointer\n\n"), funcname);
     return(1); }
   /* Check if flag < 0 */
   else if (opt == 1) {
     errflag = (int *) flagvalue;
     if (*errflag < 0) {
-      sciprint("\nSUNDIALS_ERROR: %s() failed with flag = %d\n\n",
+      sciprint(_("\nSUNDIALS_ERROR: %s() failed with flag = %d\n\n"),
 	       funcname, *errflag);
       return(1); }}
   /* Check if function returned NULL pointer - no memory allocated */
   else if (opt == 2 && flagvalue == NULL) {
-    sciprint("\nMEMORY_ERROR: %s() failed - returned NULL pointer\n\n",funcname);
+    sciprint(_("\nMEMORY_ERROR: %s() failed - returned NULL pointer\n\n"),funcname);
     return(1); }
 
   return(0);
@@ -822,28 +819,28 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 /*--------------------------------------------------------------------------*/
 static void cosini(double *told)
 {
-  static int flag__;
-  static int i;
+  static int flag__ = 0;
+  static int i = 0;
 
-  static int kfune;
-  static int jj;
+  static int kfune = 0;
+  static int jj = 0;
 
-  SCSREAL_COP *outtbd=NULL;    /*to save double of outtb*/
-  SCSINT8_COP *outtbc=NULL;    /*to save int8 of outtb*/
-  SCSINT16_COP *outtbs=NULL;   /*to save int16 of outtb*/
-  SCSINT32_COP *outtbl=NULL;   /*to save int32 of outtb*/
-  SCSUINT8_COP *outtbuc=NULL;  /*to save unsigned int8 of outtb*/
-  SCSUINT16_COP *outtbus=NULL; /*to save unsigned int16 of outtb*/
+  SCSREAL_COP *outtbd = NULL;    /*to save double of outtb*/
+  SCSINT8_COP *outtbc = NULL;    /*to save int8 of outtb*/
+  SCSINT16_COP *outtbs = NULL;   /*to save int16 of outtb*/
+  SCSINT32_COP *outtbl = NULL;   /*to save int32 of outtb*/
+  SCSUINT8_COP *outtbuc = NULL;  /*to save unsigned int8 of outtb*/
+  SCSUINT16_COP *outtbus = NULL; /*to save unsigned int16 of outtb*/
   SCSUINT32_COP *outtbul=NULL; /*to save unsigned int32 of outtb*/
-  int szouttbd=0;  /*size of arrays*/
-  int szouttbc=0,  szouttbs=0,  szouttbl=0;
-  int szouttbuc=0, szouttbus=0, szouttbul=0;
-  int curouttbd=0; /*current position in arrays*/
-  int curouttbc=0,  curouttbs=0,  curouttbl=0;
-  int curouttbuc=0, curouttbus=0, curouttbul=0;
+  int szouttbd = 0;  /*size of arrays*/
+  int szouttbc = 0,  szouttbs = 0,  szouttbl = 0;
+  int szouttbuc = 0, szouttbus = 0, szouttbul = 0;
+  int curouttbd = 0; /*current position in arrays*/
+  int curouttbc = 0,  curouttbs = 0,  curouttbl = 0;
+  int curouttbuc = 0, curouttbus = 0, curouttbul = 0;
 
-  int ii,kk; /*local counters*/
-  int sszz;  /*local size of element of outtb*/
+  int ii = 0, kk = 0; /*local counters*/
+  int sszz = 0;  /*local size of element of outtb*/
 
   /*Allocation of arrays for outtb*/
   for (ii=0;ii<nlnk;ii++)
@@ -888,7 +885,7 @@ static void cosini(double *told)
     }
 
   /* Jacobian*/
-  AJacobian_block=0;
+  AJacobian_block = 0;
 
   /* Function Body */
   *ierr = 0;
@@ -968,9 +965,9 @@ static void cosini(double *told)
     }
 
     /*comparison between outtb and arrays*/
-    curouttbd=0;  curouttbc=0;  curouttbs=0; curouttbl=0;
-    curouttbuc=0; curouttbus=0; curouttbul=0;
-    for (jj=0; jj<nlnk; jj++)
+    curouttbd = 0;  curouttbc = 0;  curouttbs = 0; curouttbl = 0;
+    curouttbuc = 0; curouttbus = 0; curouttbul = 0;
+    for (jj = 0; jj<nlnk; jj++)
       {
 	switch (outtbtyp[jj]) /*for each type of ports*/
 	  {
@@ -1055,9 +1052,9 @@ static void cosini(double *told)
 
   L30:
     /*Save data of outtb in arrays*/
-    curouttbd=0;
-    curouttbc=0;  curouttbs=0;  curouttbl=0;
-    curouttbuc=0; curouttbus=0; curouttbul=0;
+    curouttbd = 0;
+    curouttbc = 0;  curouttbs = 0;  curouttbl = 0;
+    curouttbuc = 0; curouttbus = 0; curouttbul = 0;
     for (ii=0;ii<nlnk;ii++) /*for each link*/
       {
 	switch (outtbtyp[ii])  /*switch to type of outtb object*/
@@ -1123,30 +1120,30 @@ static void cosini(double *told)
 static void cossim(double *told)
 {
   /* System generated locals */
-  int i3;
+  int i3 = 0;
 
   //** used for the [stop] button
   static char CommandToUnstack[1024];
-  static int CommandLength;
-  static int SeqSync;
+  static int CommandLength = 0;
+  static int SeqSync = 0;
   static int zero = 0;
   static int one = 1;
 
   /* Local variables */
-  static int flag__;
-  static int ierr1;
-  static int j, k;
-  static double t;
-  static int jj;
-  static double rhotmp, tstop;
-  static int inxsci;
-  static int kpo, kev;
-  int Discrete_Jump;
-  int *jroot,*zcros;
-  realtype reltol, abstol;
+  static int flag__ = 0;
+  static int ierr1 = 0;
+  static int j = 0, k = 0;
+  static double t = 0.;
+  static int jj = 0;
+  static double rhotmp = 0., tstop = 0.;
+  static int inxsci = 0;
+  static int kpo = 0, kev = 0;
+  int Discrete_Jump = 0;
+  int *jroot = NULL, *zcros = NULL;
+  realtype reltol = 0., abstol = 0.;
   N_Vector y=NULL;
   void *cvode_mem = NULL;
-  int flag, flagr;
+  int flag = 0, flagr = 0;
   int cnt=0;
 
   jroot=NULL;
@@ -1373,7 +1370,7 @@ static void cossim(double *told)
 	}
 
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-	  sciprint("****SUNDIALS.Cvode from: %f to %f hot= %d  \n", *told,t,hot);
+	  sciprint(_("****SUNDIALS.Cvode from: %f to %f hot= %d  \n"), *told,t,hot);
 	}
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -1411,12 +1408,12 @@ static void cossim(double *told)
 
 	if (flag>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("****SUNDIALS.Cvode reached: %f\n",*told);
+	    sciprint(_("****SUNDIALS.Cvode reached: %f\n"),*told);
 	  hot = 1;
 	  cnt = 0;
 	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
+	    sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n"),*told);	  
 	  hot = 0;
 	  cnt++;
 	  if (cnt>5) {
@@ -1446,7 +1443,7 @@ static void cossim(double *told)
 	  /*     .        at a least one root has been found */
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    {
-	      sciprint("root found at t=: %f\n",*told);
+	      sciprint(_("root found at t=: %f\n"),*told);
 	    }
 	  /*     .        update outputs affecting ztyp blocks ONLY FOR OLD BLOCKS */
 	  zdoit(told, x, xd, g);
@@ -1546,19 +1543,19 @@ static void cossim(double *told)
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	{
-	  sciprint("Event: %d activated at t=%f\n",*pointi,*told);
+	  sciprint(_("Event: %d activated at t=%f\n"),*pointi,*told);
 	  for(kev=0;kev<nblk;kev++){
 	    if (Blocks[kev].nmode>0){
-	      sciprint("mode of block %d=%d, ",kev,Blocks[kev].mode[0]);
+	      sciprint(_("mode of block %d=%d, "),kev,Blocks[kev].mode[0]);
 	    }
 	  }
-	  sciprint("**mod**\n");
+	  sciprint(_("**mod**\n"));
 	}
 
       ddoit(told);
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	{
-	  sciprint("End of activation\n");
+	  sciprint(_("End of activation\n"));
 	}
       if (*ierr != 0) {
 	freeall;
@@ -1580,45 +1577,45 @@ static void cossimdaskr(double *told)
   int i3;
   //** used for the [stop] button
   static char CommandToUnstack[1024];
-  static int CommandLength;
-  static int SeqSync;
+  static int CommandLength = 0;
+  static int SeqSync = 0;
   static int zero = 0;
   static int one = 1;
 
   /* Local variables */
-  static int flag__;
-  static int ierr1;
-  static int j, k;
-  static double t;
-  static int kk,jj, jt;
-  static int  ntimer;
-  static double rhotmp,tstop;
-  static int inxsci;
-  static int kpo, kev;
+  static int flag__ = 0;
+  static int ierr1 = 0;
+  static int j = 0, k = 0;
+  static double t = 0.;
+  static int kk = 0,jj = 0, jt = 0;
+  static int  ntimer = 0;
+  static double rhotmp = 0.,tstop = 0.;
+  static int inxsci = 0;
+  static int kpo = 0, kev = 0;
 
-  int *jroot=NULL,*zcros=NULL;
-  int maxord;
-  int *Mode_save;
+  int *jroot = NULL,*zcros = NULL;
+  int maxord = 0;
+  int *Mode_save = NULL;
   int Mode_change=0;
 
-  int flag, flagr = 0; 
-  N_Vector   yy=NULL, yp=NULL;
-  realtype reltol, abstol; 
-  int Discrete_Jump;
-  N_Vector IDx=NULL;
+  int flag = 0, flagr = 0; 
+  N_Vector   yy = NULL, yp = NULL;
+  realtype reltol = 0., abstol = 0.; 
+  int Discrete_Jump = 0;
+  N_Vector IDx = NULL;
   realtype *scicos_xproperty=NULL;
-  N_Vector bidon=NULL, tempv1=NULL, tempv2=NULL, tempv3=NULL;
-  DenseMat TJacque=NULL;
-  realtype *Jacque_col;
+  N_Vector bidon = NULL, tempv1 = NULL, tempv2 = NULL, tempv3 = NULL;
+  DenseMat TJacque = NULL;
+  realtype *Jacque_col = NULL;
 
-  void *ida_mem=NULL;
-  UserData data=NULL;
+  void *ida_mem = NULL;
+  UserData data = NULL;
   IDAMem copy_IDA_mem = NULL;
-  int maxnj,maxnit;
+  int maxnj = 0,maxnit = 0;
   /*-------------------- Analytical Jacobian memory allocation ----------*/
-  int  Jn, Jnx, Jno, Jni, Jactaille;
-  double uround;
-  int cnt=0, N_iters;
+  int  Jn = 0, Jnx = 0, Jno = 0, Jni = 0, Jactaille = 0;
+  double uround = 0.;
+  int cnt = 0, N_iters = 0;
   maxord = 5;
 
   /* Set extension of Sundials for scicos */
@@ -2022,9 +2019,9 @@ static void cossimdaskr(double *told)
 		}
 	      }
 	    }	    
-	    if (CI>=ZERO){  scicos_xproperty[jj]=CI;}else{fprintf(stderr,"\n\rWarinng! Xproperties are not match for i=%d!",jj);}
+	    if (CI>=ZERO){  scicos_xproperty[jj]=CI;}else{fprintf(stderr,"\nWarinng! Xproperties are not match for i=%d!",jj);}
 	  }
-	  /* printf("\n\r"); for(jj=0;jj<*neq;jj++) { printf("x%d=%g ",jj,scicos_xproperty[jj]); }*/
+	  /* printf("\n"); for(jj=0;jj<*neq;jj++) { printf("x%d=%g ",jj,scicos_xproperty[jj]); }*/
 	  flag=IDASetId(ida_mem,IDx);
 	  if (check_flag(&flag, "IDASetId", 1)) {
 	    *ierr=200+(-flag); 
@@ -2084,10 +2081,10 @@ static void cossimdaskr(double *told)
 	    if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	      {
 		if (flagr>=0) {
-		  sciprint("**** SUNDIALS.IDA succesfully initialized *****\n" );
+		  sciprint(_("**** SUNDIALS.IDA succesfully initialized *****\n") );
 		}
 		else{
-		  sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****\n" );
+		  sciprint(_("**** SUNDIALS.IDA failed to initialize ->try again *****\n") );
 		}
 	      }
 	    /*-------------------------------------*/
@@ -2150,7 +2147,7 @@ static void cossimdaskr(double *told)
 
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	  {
-	    sciprint("****daskr from: %f to %f hot= %d  \n", *told,t,hot);
+	    sciprint(_("****daskr from: %f to %f hot= %d  \n"), *told,t,hot);
 	  }
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -2177,12 +2174,12 @@ static void cossimdaskr(double *told)
 	}
 	if (flagr>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("****SUNDIALS.Ida reached: %f\n",*told);
+	    sciprint(_("****SUNDIALS.Ida reached: %f\n"),*told);
 	  hot = 1;
 	  cnt = 0;
 	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);
+	    sciprint(_("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\n"),*told);
 	  hot = 0;
 	  cnt++;
 	  if (cnt>5) {
@@ -2218,7 +2215,7 @@ static void cossimdaskr(double *told)
 
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    {
-	      sciprint("root found at t=: %f\n",*told);
+	      sciprint(_("root found at t=: %f\n"),*told);
 	    }
 	  /*     .        update outputs affecting ztyp blocks  ONLY FOR OLD BLOCKS*/
 	  zdoit(told, x, xd, g);
@@ -2348,12 +2345,12 @@ static void cossimdaskr(double *told)
     } else {
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-	sciprint("Event: %d activated at t=%f\n",*pointi,*told);
+	sciprint(_("Event: %d activated at t=%f\n"),*pointi,*told);
       }
 
       ddoit(told);
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-	sciprint("End of activation");
+	sciprint(_("End of activation"));
       }
       if (*ierr != 0) {
 	freeallx;
@@ -2369,9 +2366,9 @@ static void cossimdaskr(double *told)
 static void cosend(double *told)
 {
   /* Local variables */
-  static int flag__;
+  static int flag__ = 0;
 
-  static int kfune;
+  static int kfune = 0;
 
   /* Function Body */
   *ierr = 0;
@@ -2406,8 +2403,8 @@ void callf(double *t, scicos_block *block, int *flag)
   double intabl[TB_SIZE];
   double outabl[TB_SIZE];
 
-  int ii,in,out,ki,ko,no,ni,k,j;
-  int szi,flagi;
+  int ii = 0,in = 0,out = 0,ki = 0,ko = 0,no = 0,ni = 0,k = 0,j = 0;
+  int szi = 0,flagi = 0;
   double *ptr_d=NULL;
 
   /* function pointers type def */
@@ -2442,12 +2439,12 @@ void callf(double *t, scicos_block *block, int *flag)
   /* display information for debugging mode */
   if (cosd > 1) {
     if (cosd != 3) {
-      sciprint("block %d is called ",C2F(curblk).kfun);
-      sciprint("with flag %d ",*flag);
-      sciprint("at time %f \n",*t);
+      sciprint(_("block %d is called "),C2F(curblk).kfun);
+      sciprint(_("with flag %d "),*flag);
+      sciprint(_("at time %f \n"),*t);
     }
     if(debug_block>-1) {
-      if (cosd != 3) sciprint("Entering the block \n");
+      if (cosd != 3) sciprint(_("Entering the block \n"));
       call_debug_scicos(block,flag,flagi,debug_block);
       if (*flag<0) return;  /* error in debug block */
     }
@@ -2771,7 +2768,7 @@ void callf(double *t, scicos_block *block, int *flag)
     /***********/
   default :
     {
-      sciprint("Undefined Function type\n");
+      sciprint(_("Undefined Function type\n"));
       *flag=-1000;
       return; /* exit */
     }
@@ -2797,7 +2794,7 @@ void callf(double *t, scicos_block *block, int *flag)
   if (cosd > 1) {
     if(debug_block>-1) {
       if (*flag<0) return;  /* error in block */
-      if (cosd != 3) sciprint("Leaving block %d \n",C2F(curblk).kfun);
+      if (cosd != 3) sciprint(_("Leaving block %d \n"),C2F(curblk).kfun);
       call_debug_scicos(block,flag,flagi,debug_block);
       /*call_debug_scicos(flag,kf,flagi,debug_block);*/
     }
@@ -2808,7 +2805,7 @@ void callf(double *t, scicos_block *block, int *flag)
 static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
 {
   voidf loc ;
-  int solver=C2F(cmsolver).solver,k;
+  int solver=C2F(cmsolver).solver, k = 0;
   ScicosF4 loc4;
   double *ptr_d=NULL;
 
@@ -2842,14 +2839,14 @@ static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb
     }
   }
 
-  if (*flag<0) sciprint("Error in the Debug block \n");
+  if (*flag<0) sciprint(_("Error in the Debug block \n"));
 } /* call_debug_scicos */
 /*--------------------------------------------------------------------------*/
 /* simblk */
 static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 {
-  double tx, *x, *xd;
-  int i, nantest;
+  double tx = 0., *x = NULL, *xd = NULL;
+  int i = 0, nantest = 0;
 
   tx= (double) t;
   x=  (double *) NV_DATA_S(yy);
@@ -2865,7 +2862,7 @@ static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
     nantest=0;
     for (i=0;i<*neq;i++) { /* NaN checking */
       if ((xd[i]-xd[i]!=0)) {
-	sciprint("\n\rWarning: The computing function #%d returns a NaN/Inf",i);
+	sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"),i);
 	nantest=1;
 	break;
       }
@@ -2880,8 +2877,8 @@ static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 /* grblk */
 static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 {
-  double tx, *x;
-  int jj, nantest;
+  double tx = 0., *x = NULL;
+  int jj = 0, nantest = 0;
 
   tx= (double) t;
   x=  (double *) NV_DATA_S(yy);
@@ -2895,7 +2892,7 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
     nantest=0;
     for (jj=0;jj<ng;jj++)
       if (gout[jj]-gout[jj]!=0){
-	sciprint("\n\rWarning: The zero_crossing function #%d returns a NaN/Inf",jj);
+	sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"),jj);
 	nantest=1;break;} /* NaN checking */
     if (nantest==1) return 350;/* recoverable error; */
   }
@@ -2907,15 +2904,15 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 /* simblkdaskr */
 static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata)
 {
-  double tx;
-  double *xc, *xcdot, *residual;
-  realtype alpha;
+  double tx = 0.;
+  double *xc = NULL, *xcdot = NULL, *residual = NULL;
+  realtype alpha = 0.;
 
   UserData data;
 
-  realtype hh;
-  int qlast;
-  int jj,flag, nantest;
+  realtype hh = 0.;
+  int qlast = 0;
+  int jj = 0,flag = 0, nantest = 0;
 
   data = (UserData) rdata; 
 
@@ -2954,7 +2951,7 @@ static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval,
     nantest=0;
     for (jj=0;jj<*neq;jj++)
       if (residual[jj]-residual[jj]!=0){/* NaN checking */
-	//sciprint("\n\rWarning: The residual function #%d returns a NaN",jj);
+	//sciprint(_("\nWarning: The residual function #%d returns a NaN"),jj);
 	nantest=1;
 	break;
       } 
@@ -2967,8 +2964,8 @@ static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval,
 /* grblkdaskr */
 static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data)
 {
-  double tx;
-  int jj, nantest;
+  double tx = 0.;
+  int jj = 0, nantest = 0;
 
   tx=(double) t;
 
@@ -2979,7 +2976,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
     nantest=0; /* NaN checking */
     for (jj=0;jj<ng;jj++) {
       if (gout[jj]-gout[jj]!=0) {
-	sciprint("\n\rWarning: The zero-crossing function #%d returns a NaN",jj);
+	sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"),jj);
 	nantest=1;
 	break;
       }
@@ -2995,7 +2992,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
 /* Subroutine addevs */
 static void addevs(double t, int *evtnb, int *ierr1)
 {
-  static int i, j;
+  static int i = 0, j = 0;
 
   /* Function Body */
   *ierr1 = 0;
@@ -3013,9 +3010,9 @@ static void addevs(double t, int *evtnb, int *ierr1)
 	}
 	evtspt[i]=evtspt[*evtnb]; /* remove old evtnb from chain */
 	if (TCritWarning==0){
-	  sciprint("\n\r Warning:an event is reprogrammed at t=%g by removing another",t );
-	  sciprint("\n\r         (already programmed) event. There may be an error in");
-	  sciprint("\n\r         your model. Please check your model\n\r");
+	  sciprint(_("\n Warning:an event is reprogrammed at t=%g by removing another"),t );
+	  sciprint(_("\n         (already programmed) event. There may be an error in"));
+	  sciprint(_("\n         your model. Please check your model\n"));
 	  TCritWarning=1;
 	}
 	do_cold_restart(); /* the erased event could be a critical
@@ -3084,13 +3081,13 @@ static void idoit(double *told)
 { /* initialisation (propagation of constant blocks outputs) */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag;
-  int i,j;
-  int ierr1;
+  int i2 = 0;
+  int flag = 0;
+  int i = 0,j = 0;
+  int ierr1 = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3139,13 +3136,13 @@ static void doit(double *told)
 { /* propagation of blocks outputs on discrete activations */
   /*     Copyright INRIA */
 
-  int i,i2;
-  int flag, nord;
-  int ierr1;
-  int ii, kever;
+  int i = 0,i2 = 0;
+  int flag = 0, nord = 0;
+  int ierr1 = 0;
+  int ii = 0, kever = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3205,13 +3202,13 @@ static void cdoit(double *told)
 { /* propagation of continuous blocks outputs */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag;
-  int ierr1;
-  int i,j;
+  int i2 = 0;
+  int flag = 0;
+  int ierr1 = 0;
+  int i = 0,j = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3263,13 +3260,13 @@ static void ddoit(double *told)
 { /* update states & event out on discrete activations */
   /*     Copyright INRIA */
 
-  int i2,j;
-  int flag, kiwa;
-  int i,i3,ierr1;
-  int ii, keve;
+  int i2 = 0,j = 0;
+  int flag = 0, kiwa = 0;
+  int i = 0,i3 = 0,ierr1 = 0;
+  int ii = 0, keve = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3367,14 +3364,14 @@ static void edoit(double *told, int *kiwa)
 { /* update blocks output on discrete activations */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag;
-  int ierr1, i;
-  int kever, ii;
+  int i2 = 0;
+  int flag = 0;
+  int ierr1 = 0, i = 0;
+  int kever = 0, ii = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
-  int nord;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
+  int nord = 0;
 
   scs_imp = getscicosimportptr();
 
@@ -3440,13 +3437,13 @@ static void odoit(double *told, double *xt, double *xtd, double *residual)
 { /* update blocks derivative of continuous time block */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag, keve, kiwa;
-  int ierr1, i;
-  int ii, jj;
+  int i2 = 0;
+  int flag = 0, keve = 0, kiwa = 0;
+  int ierr1 = 0, i = 0;
+  int ii = 0, jj = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3557,13 +3554,13 @@ static void reinitdoit(double *told)
 { /* update blocks xproperties of continuous time block */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag, keve, kiwa;
-  int ierr1, i;
-  int ii, jj;
+  int i2 = 0;
+  int flag = 0, keve = 0, kiwa = 0;
+  int ierr1 = 0, i = 0;
+  int ii = 0, jj = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3658,13 +3655,13 @@ static void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 { /* update blocks output of continuous time block on discrete activations */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag, nord;
-  int ierr1, i;
-  int ii, kever;
+  int i2 = 0;
+  int flag = 0, nord = 0;
+  int ierr1 = 0, i = 0;
+  int ii = 0, kever = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3728,13 +3725,13 @@ static void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 static void zdoit(double *told, double *xt, double *xtd, double *g)
 { /* update blocks zcross of continuous time block  */
   /*     Copyright INRIA */
-  int i2;
-  int flag, keve, kiwa;
-  int ierr1, i,j;
-  int ii, jj;
+  int i2 = 0;
+  int flag = 0, keve = 0, kiwa = 0;
+  int ierr1 = 0, i = 0,j = 0;
+  int ii = 0, jj = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3872,13 +3869,13 @@ void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 { /* update blocks jacobian of continuous time block  */
   /*     Copyright INRIA */
 
-  int i2;
-  int flag, keve, kiwa;
-  int ierr1, i;
-  int ii, jj;
+  int i2 = 0;
+  int flag = 0, keve = 0, kiwa = 0;
+  int ierr1 = 0, i = 0;
+  int ii = 0, jj = 0;
 
-  ScicosImport *scs_imp;
-  int *kf;
+  ScicosImport *scs_imp = NULL;
+  int *kf = NULL;
 
   scs_imp = getscicosimportptr();
 
@@ -3993,23 +3990,23 @@ void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 { /* synchro blocks computation  */
   /*     Copyright INRIA */
-  SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
-  SCSINT8_COP *outtbcptr;     /*to store int8 of outtb*/
-  SCSINT16_COP *outtbsptr;    /*to store int16 of outtb*/
-  SCSINT32_COP *outtblptr;    /*to store int32 of outtb*/
-  SCSUINT8_COP *outtbucptr;   /*to store unsigned int8 of outtb */
-  SCSUINT16_COP *outtbusptr;  /*to store unsigned int16 of outtb */
-  SCSUINT32_COP *outtbulptr;  /*to store unsigned int32 of outtb */
+  SCSREAL_COP *outtbdptr = NULL;     /*to store double of outtb*/
+  SCSINT8_COP *outtbcptr = NULL;     /*to store int8 of outtb*/
+  SCSINT16_COP *outtbsptr = NULL;    /*to store int16 of outtb*/
+  SCSINT32_COP *outtblptr = NULL;    /*to store int32 of outtb*/
+  SCSUINT8_COP *outtbucptr = NULL;   /*to store unsigned int8 of outtb */
+  SCSUINT16_COP *outtbusptr = NULL;  /*to store unsigned int16 of outtb */
+  SCSUINT32_COP *outtbulptr = NULL;  /*to store unsigned int32 of outtb */
 
-  int cond;
+  int cond = 0;
   int i=0; /* return 0 by default */
 
   /* variable for param */
-  int *outtbtyp;
-  void **outtbptr;
-  int *funtyp;
-  int *inplnk;
-  int *inpptr;
+  int *outtbtyp = 0;
+  void **outtbptr = NULL;
+  int *funtyp = 0;
+  int *inplnk = 0;
+  int *inpptr = 0;
 
   /* get param ptr */
   outtbtyp = scs_imp->outtbtyp;
@@ -4116,25 +4113,25 @@ static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 static int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 { /* synchro blocks with zcross computation  */
   /*     Copyright INRIA */
-  SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
-  SCSINT8_COP *outtbcptr;     /*to store int8 of outtb*/
-  SCSINT16_COP *outtbsptr;    /*to store int16 of outtb*/
-  SCSINT32_COP *outtblptr;    /*to store int32 of outtb*/
-  SCSUINT8_COP *outtbucptr;   /*to store unsigned int8 of outtb */
-  SCSUINT16_COP *outtbusptr;  /*to store unsigned int16 of outtb */
-  SCSUINT32_COP *outtbulptr;  /*to store unsigned int32 of outtb */
+  SCSREAL_COP *outtbdptr = NULL;     /*to store double of outtb*/
+  SCSINT8_COP *outtbcptr = NULL;     /*to store int8 of outtb*/
+  SCSINT16_COP *outtbsptr = NULL;    /*to store int16 of outtb*/
+  SCSINT32_COP *outtblptr = NULL;    /*to store int32 of outtb*/
+  SCSUINT8_COP *outtbucptr = NULL;   /*to store unsigned int8 of outtb */
+  SCSUINT16_COP *outtbusptr = NULL;  /*to store unsigned int16 of outtb */
+  SCSUINT32_COP *outtbulptr = NULL;  /*to store unsigned int32 of outtb */
 
-  int cond;
+  int cond = 0;
   int i=0; /* return 0 by default */
   int jj=0;
 
   /* variable for param */
-  int *outtbtyp;
-  void **outtbptr;
-  int *funtyp;
-  int *inplnk;
-  int *inpptr;
-  int *zcptr;
+  int *outtbtyp = NULL;
+  void **outtbptr = NULL;
+  int *funtyp = NULL;
+  int *inplnk = NULL;
+  int *inpptr = NULL;
+  int *zcptr = NULL;
 
   /* get param ptr */
   outtbtyp = scs_imp->outtbtyp;
@@ -4272,7 +4269,7 @@ static int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 /* FREE_blocks */
 static void FREE_blocks()
 {
-  int kf;
+  int kf = 0;
   for (kf = 0; kf < nblk; ++kf) {
     if (Blocks[kf].insz!=NULL) {
       FREE(Blocks[kf].insz);
@@ -4329,8 +4326,8 @@ static void FREE_blocks()
 /* Subroutine funnum */
 int C2F(funnum)(char * fname)
 {
-  int i=0,ln;
-  int loc=-1;
+  int i = 0,ln = 0;
+  int loc = -1;
   while ( tabsim[i].name != (char *) NULL) {
     if ( strcmp(fname,tabsim[i].name) == 0 ) return(i+1);
     i++;
@@ -4340,12 +4337,12 @@ int C2F(funnum)(char * fname)
   if (loc >= 0) return(ntabsim+(int)loc+1);
   return(0);
 }/* funnum */
-
+/*--------------------------------------------------------------------------*/
 static int scicos_setmode(double *W,double *x,double *told,int *jroot,double ttol)
 /* work space W needs to be ng+*neq*2 */
 {
-  int k,j,jj,diff,ii;
-  double ttmp;
+  int k = 0,j = 0,jj = 0,diff = 0,ii = 0;
+  double ttmp = 0.;
 
   ttmp=*told+ttol;
   zdoit(told, x, x, W);  /*fix the mode*/
@@ -4400,8 +4397,7 @@ int get_phase_simulation()
 /*--------------------------------------------------------------------------*/
 void do_cold_restart()
 {
-  hot=0;
-  return;
+  hot = 0;
 }
 /*--------------------------------------------------------------------------*/
 /* get_scicos_time : return the current
@@ -4425,8 +4421,7 @@ int get_block_number()
  */
 void set_block_error(int err)
 {
-  *block_error=err;
-  return;
+  *block_error = err;
 }
 /*--------------------------------------------------------------------------*/
 /* Coserror : copy an error message
@@ -4453,7 +4448,8 @@ void Coserror(char *fmt,...)
   retval= vsprintf(coserr.buf,fmt, ap);
 #endif
 
-  if (retval == -1) {
+  if (retval == -1) 
+  {
     coserr.buf[0]='\0';
   }
 
@@ -4474,7 +4470,6 @@ int get_block_error()
 void end_scicos_sim()
 {
   C2F(coshlt).halt =2;
-  return;
 }
 /*--------------------------------------------------------------------------*/
 /* get_pointer_xproperty */
@@ -4496,14 +4491,12 @@ void set_pointer_xproperty(int* pointer)
   for (i=0;i<Blocks[C2F(curblk).kfun-1].nx;i++){
     Blocks[C2F(curblk).kfun-1].xprop[i] = pointer[i];
   }
-  return;
 }
 /*--------------------------------------------------------------------------*/
 /* Jacobian */
 void Set_Jacobian_flag(int flag)
 {
-  Jacobian_Flag=flag;
-  return;
+  Jacobian_Flag = flag;
 }
 /*--------------------------------------------------------------------------*/
 double Get_Jacobian_ci(void)
@@ -4525,24 +4518,24 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 		     N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
 		     N_Vector tempv1, N_Vector tempv2, N_Vector tempv3)
 {
-  double  ttx;
-  double *xc, *xcdot, *residual;
+  double  ttx = 0;
+  double *xc = NULL, *xcdot = NULL, *residual = NULL;
   /*  char chr;*/
-  int i,j,n, nx,ni,no,nb,m,flag;
-  double *RX, *Fx, *Fu, *Gx, *Gu, *ERR1,*ERR2;
-  double *Hx, *Hu,*Kx,*Ku,*HuGx,*FuKx,*FuKuGx,*HuGuKx;
-  double ysave;
-  int job;
+  int i = 0,j = 0,n = 0, nx = 0,ni = 0,no = 0,nb = 0,m = 0,flag = 0;
+  double *RX = NULL, *Fx = NULL, *Fu = NULL, *Gx = NULL, *Gu = NULL, *ERR1 = NULL,*ERR2 = NULL;
+  double *Hx = NULL, *Hu = NULL,*Kx = NULL,*Ku = NULL,*HuGx = NULL,*FuKx = NULL,*FuKuGx = NULL,*HuGuKx = NULL;
+  double ysave = 0;
+  int job = 0;
   double **y = NULL;
   double **u = NULL;
   /*  taill1= 3*n+(n+ni)*(n+no)+nx(2*nx+ni+2*m+no)+m*(2*m+no+ni)+2*ni*no*/
-  double inc, inc_inv, xi, xpi, srur;
-  realtype *Jacque_col;
+  double inc = 0., inc_inv = 0., xi = 0., xpi = 0., srur = 0.;
+  realtype *Jacque_col = NULL;
 
   UserData data;
-  realtype hh;
+  realtype hh = 0.;
   N_Vector ewt;
-  double *ewt_data;
+  double *ewt_data = NULL;
 
   *ierr= 0;
 
@@ -4676,7 +4669,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
   /*----------------------------------------------*/
   job=1;/* read jacobian through flag=10; */
   Jdoit(&ttx, xc, xcdot, &Fx[-m], &job);/* Filling up the FX:Fu:Gx:Gu*/
-  if (*block_error!=0) sciprint("\n\r error in Jacobian");
+  if (*block_error!=0) sciprint(_("\n error in Jacobian"));
   /*-------------------------------------------------*/
 
   Multp(Fu,Ku,RX,nx,ni,ni,no);Multp(RX,Gx,FuKuGx,nx,no,no,nx);
@@ -4716,7 +4709,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
     }
   }
 
-  /*  chr='Z';   printf("\n\r t=%g",ttx); DISP(Z,n,n,chr);*/
+  /*  chr='Z';   printf("\n t=%g",ttx); DISP(Z,n,n,chr);*/
   C2F(ierode).iero = *ierr;
   return 0;
 
@@ -4724,8 +4717,8 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 /*----------------------------------------------------*/
 static void Multp(double *A,double *B,double *R,int ra,int rb,int ca,int cb)
 {
-  int i,j,k;
-  /*if (ca!=rb) sciprint("\n\r Error in matrix multiplication");*/
+  int i = 0,j = 0,k = 0;
+  /*if (ca!=rb) sciprint(_("\n Error in matrix multiplication"));*/
   for (i = 0; i<ra; i++)
     for (j = 0; j<cb; j++){
       R[i+ra*j]=0.0;
@@ -4738,8 +4731,8 @@ static void Multp(double *A,double *B,double *R,int ra,int rb,int ca,int cb)
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars)
 {
   ezxml_t model, elements;
-  int result,i;  
-  double vr;
+  int result = 0,i = 0;  
+  double vr = 0.;
 
   if (nvar==0) return 0;
   result=0;
@@ -4751,7 +4744,7 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
   model = ezxml_parse_file(xmlfile);
 
   if (model==NULL) {
-    sciprint("Error: cannot find '%s'  \n\r",xmlfile);       
+    sciprint(_("Error: cannot find '%s'  \n"),xmlfile);       
     return -1;/* file does not existe*/
   }      
 
@@ -4768,12 +4761,12 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
 static int read_id(ezxml_t *elements,char *id,double *value)
 {
   char V1[100],V2[100];
-  int ok,i,ln; 
+  int ok = 0,i = 0,ln = 0; 
 
   if (strcmp(id,"")==0) return 0;
   ok=search_in_child(elements, id, V1);  
   if (ok==0 ){
-    /*sciprint("Cannot find: %s=%s  \n",id,V1);      */
+    /*sciprint(_("Cannot find: %s=%s  \n"),id,V1);      */
     return 0;
   }else{
     if (Convert_number(V1,value)!=0) {
@@ -4784,7 +4777,7 @@ static int read_id(ezxml_t *elements,char *id,double *value)
 	return ok;
       }else return 0;
     }else{
-      /*      printf("\n\r ---->>>%s= %g",V1,*value);*/
+      /*      printf("\n ---->>>%s= %g",V1,*value);*/
       return 1;
     }
   }
@@ -4792,9 +4785,9 @@ static int read_id(ezxml_t *elements,char *id,double *value)
 /*--------------------------------------------------------------------------*/
 int Convert_number (char *s, double *out)
 {
-  char *endp;
-  double d;
-  long int l;
+  char *endp = NULL;
+  double d = 0.;
+  long int l = 0;
   d = strtod(s, &endp);
   if (s != endp && *endp == '\0'){
     /*    printf("  It's a float with value %g ", d); */
@@ -4815,10 +4808,10 @@ int Convert_number (char *s, double *out)
 /*--------------------------------------------------------------------------*/
 int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
   ezxml_t model, elements;
-  int result,i, err=0;
-  FILE *fd;
-  char *s;
-  char **xv;
+  int result = 0,i = 0, err = 0;
+  FILE *fd = NULL;
+  char *s = NULL;
+  char **xv = NULL;
 
   if (nvar==0) return 0;
   result=0;
@@ -4835,7 +4828,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 
   model = ezxml_parse_file(xmlfile);
   if (model==NULL) {
-    sciprint("Error: cannot find '%s'  \n\r",xmlfile);       
+    sciprint(_("Error: cannot find '%s'  \n"),xmlfile);       
     return -1;/* file does not existe*/
   }      
 
@@ -4845,17 +4838,18 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
     if (strcmp(ids[i],"")==0) continue;
     result=write_in_child(&elements, ids[i],xv[i]);  
     if (result==0 ){
-      /* sciprint("cannot find %s in '%s' \n",ids[i],xmlfile);      */
-      /* err= -1;*/ /* Varaible does not existe*/
+      /* sciprint(_("cannot find %s in '%s' \n"),ids[i],xmlfile);      */
+      /* err= -1;*/ /* Varaible does not exist*/
     }
   }
 
   s = ezxml_toxml(model);
   ezxml_free(model);
 
-  fd = fopen(xmlfile, "wb");
+
+  wcfopen(fd,(char*)xmlfile,"wb");
   if (fd < 0) {
-    sciprint("Error: cannot write to  '%s'  \n\r",xmlfile);       
+    sciprint(_("Error: cannot write to  '%s'  \n"),xmlfile);       
     return -3;/* cannot write to file*/
   }
 
@@ -4867,7 +4861,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 /*--------------------------------------------------------------------------*/
 int C2F(fx)(double *x,double *residual) /* used for homotopy*/
 {
-  double  *xdot, t;
+  double  *xdot = NULL, t = 0;
   xdot=x+*neq;
   t=0;
   *ierr= 0;
@@ -4876,10 +4870,10 @@ int C2F(fx)(double *x,double *residual) /* used for homotopy*/
   C2F(ierode).iero = *ierr;
   return (*ierr);
 } 
-/*----------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int rho_(double *a,double *L,double *x,double *rho,double *rpar,int *ipar)  /* used for homotopy*/
 {
-  int i,N;
+  int i = 0,N = 0;
   N=*neq;
 
   fx_(x,rho);
@@ -4890,10 +4884,10 @@ int rho_(double *a,double *L,double *x,double *rho,double *rpar,int *ipar)  /* u
 /*--------------------------------------------------------------------------*/
 int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double *rpar,int *ipar)  /* used for homotopy*/
 {/* MATRIX [d_RHO/d_LAMBDA, d_RHO/d_X_col] */
-  int j,N;
-  double *work;
-  int job;
-  double inc, inc_inv, xi, srur;
+  int j = 0,N = 0;
+  double *work = NULL;
+  int job = 0;
+  double inc = 0., inc_inv = 0., xi = 0., srur = 0.;
   N=*neq;
   if (*col==1) {
     for(j=0;j<N;j++)
@@ -4925,11 +4919,11 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 /*--------------------------------------------------------------------------*/
 int C2F(hfjac)(double *x, double *jac, int *col)
 {
-  int N, j;
-  double *work;
-  double  *xdot;
-  int job;
-  double inc, inc_inv, xi, srur;
+  int N = 0, j = 0;
+  double *work = NULL;
+  double  *xdot = NULL;
+  int job = 0;
+  double inc = 0., inc_inv = 0., xi = 0., srur = 0.;
 
   N =*neq;
   if ((work = (double *) MALLOC(N * sizeof(double)))==NULL){
@@ -4963,9 +4957,9 @@ int C2F(hfjac)(double *x, double *jac, int *col)
 /*--------------------------------------------------------------------------*/
 int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 {
-  double t,*xc, *xcdot, *residual;
+  double t = 0.,*xc = NULL , *xcdot = NULL, *residual = NULL;
   UserData data;
-  int jj, nantest,N;
+  int jj = 0, nantest = 0,N = 0;
   N=*neq;
 
   t=0;
@@ -4983,7 +4977,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
     nantest=0; /* NaN checking */
     for (jj=0;jj<N;jj++) {
       if (residual[jj]-residual[jj]!=0) {
-	sciprint("\n\rWarning: The initialization system #%d returns a NaN/Inf",jj);
+	sciprint(_("\nWarning: The initialization system #%d returns a NaN/Inf"),jj);
 	nantest=1;
 	break;
       }
@@ -5001,24 +4995,24 @@ static int CallKinsol(double *told)
 {
   //** used for the [stop] button
   static char CommandToUnstack[1024];
-  static int CommandLength;
-  static int SeqSync;
+  static int CommandLength = 0;
+  static int SeqSync = 0;
   static int zero = 0;
   static int one = 1;
 
   N_Vector y=NULL, yscale=NULL, fscale=NULL;
-  double *fsdata, *ysdata;
-  int N, strategy, i, j, k, status;  
+  double *fsdata = NULL, *ysdata = NULL;
+  int N = 0, strategy = 0, i = 0, j = 0, k = 0, status = 0;  
   /* int mxiter, msbset, msbsetsub, etachoice, mxnbcf; */
   /* double eta, egamma, ealpha, mxnewtstep, relfunc, fnormtol, scsteptol; */
   /* booleantype noInitSetup, noMinEps; */
   void *kin_mem=NULL;
-  realtype reltol, abstol;
-  int *Mode_save;
-  int Mode_change;
-  static int PH;
-  int N_iters;
-  double ratio;
+  realtype reltol = 0., abstol = 0.;
+  int *Mode_save = NULL;
+  int Mode_change = 0;
+  static int PH = 0;
+  int N_iters = 0;
+  double ratio = 0.;
 
   N=*neq;
   if (N<=0) return 0; 
@@ -5078,8 +5072,8 @@ static int CallKinsol(double *told)
 
       for (j=0;j<N;j++)
 	if (fsdata[j]-fsdata[j]!=0){
-	  sciprint("\n\rWarning: The residual function #%d returns a NaN/Inf",j);
-	  sciprint("\n\r The residual function returns NAN/Inf. \n\r Please verify your model:\n\r some functions might be called with illegal inputs.");
+	  sciprint(_("\nWarning: The residual function #%d returns a NaN/Inf"),j);
+	  sciprint(_("\n The residual function returns NAN/Inf. \n Please verify your model:\n some functions might be called with illegal inputs."));
 	  freekinsol;*ierr=400-status;C2F(ierode).iero=*ierr; return -1;
 	}
       ratio=0.3;

@@ -22,11 +22,12 @@
 #include <stdio.h>
 #include <memory.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void assignment(scicos_block *block,int flag)
 {
-  int my,ny,so;
-  double *out0;
+  int my = 0,ny = 0,so = 0;
+  double *out0 = NULL;
   my=GetOutPortRows(block,1);
   ny=GetOutPortCols(block,1);
   out0=GetRealOparPtrs(block,6);

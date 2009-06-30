@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_diffobjs)(char *fname,unsigned long fname_len)
+int sci_diffobjs(char *fname,unsigned long fname_len)
 {
 	int one = 1, l3 = 0,k = 0;
 	int size1 = 0;

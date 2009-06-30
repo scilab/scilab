@@ -23,9 +23,9 @@
 /*--------------------------------------------------------------------------*/ 
 void cumsum_c(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  int nu,mu,i,j,ij;
+  double *u = NULL;
+  double *y = NULL;
+  int nu = 0,mu = 0, i = 0,j = 0, ij = 0;
   mu=GetInPortRows(block,1);
   nu=GetInPortCols(block,1);
 

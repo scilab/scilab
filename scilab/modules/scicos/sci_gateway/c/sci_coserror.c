@@ -24,6 +24,7 @@
 #include "Scierror.h"
 #include "scicos_block.h"
 #include "cvstr.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 /* Coserror : break the simulation and return a message
 *            in the scicos editor
@@ -54,7 +55,7 @@ int sci_coserror(char *fname, unsigned long fname_len)
 
 	if (!isrun) 
 	{
-		Scierror(999,"%s: scicosim is not running.\n",fname);
+		Scierror(999,_("%s: scicosim is not running.\n"),fname);
 	}
 	else 
 	{
@@ -62,7 +63,7 @@ int sci_coserror(char *fname, unsigned long fname_len)
 		/* check for a string */
 		if(il_str[0] != 10) 
 		{
-			Scierror(55,"%s : First argument must be a string.\n",fname);
+			Scierror(55,_("%s : First argument must be a string.\n"),fname);
 			C2F(iop).err = 1;
 			return 0;
 		}

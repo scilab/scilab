@@ -22,7 +22,6 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "gw_scicos.h"
-#include "intcscicos.h"
 #include "stack-c.h"
 #include "il_state.h"
 #include "il_sim.h"
@@ -162,7 +161,7 @@ extern int C2F(namstr)();
 /* variable defined in scicos.c */
 extern CURBLK_struct C2F(curblk);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scicosim)(char *fname,unsigned long fname_len)
+int sci_scicosim(char *fname,unsigned long fname_len)
 {
 	/************************************
 	* variables and constants d?inition

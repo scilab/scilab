@@ -23,11 +23,12 @@
 /* INRIA 2008 */
 /* Allan CORNET */
 /*--------------------------------------------------------------------------*/
+#include "machine.h" /* C2F */
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intgetlabel)(char *fname,unsigned long fname_len); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getblocklabel)(char *fname,unsigned long fname_len)
+int sci_getblocklabel(char *fname,unsigned long fname_len)
 {
 	return C2F(intgetlabel)(fname,fname_len);
 }

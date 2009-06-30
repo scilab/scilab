@@ -23,6 +23,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "scicos_block.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void variable_delay(scicos_block *block,int flag)
 {/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */
@@ -56,8 +57,8 @@ void variable_delay(scicos_block *block,int flag)
     del=min(max(0,block->inptr[1][0]),block->rpar[0]);
     td=t-del;
     if(td<pw[*iw]){
-      sciprint("delayed time=%f but last stored time=%f\n", td, pw[*iw]);
-      sciprint("Consider increasing the length of buffer in variable delay block\n");
+      sciprint(_("delayed time=%f but last stored time=%f\n"), td, pw[*iw]);
+      sciprint(_("Consider increasing the length of buffer in variable delay block\n"));
     }
     if (t>pw[(block->ipar[0]+*iw-1)%block->ipar[0]]){
       for(j=1;j< block->insz[0]+1;j++){

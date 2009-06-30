@@ -28,11 +28,11 @@ int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
 	   int *nc, int *l, int *m, int *n)
 {
   /* System generated locals */
-  int i__1, i__2;
+  int i__1 = 0, i__2 = 0;
   
   /* Local variables */
 
-  static int i__, j, ib, ic;
+  static int i__ = 0, j = 0, ib = 0, ic = 0;
   
   /* !but */
   /*     ce sous programme effectue le produit matriciel: */
@@ -79,13 +79,13 @@ int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
 double ddot(int *n, double *dx, int *incx, double *dy, int *incy)
 {
   /* System generated locals */
-  int i__1;
-  double ret_val;
+  int i__1 = 0;
+  double ret_val = 0.;
   
   /* Local variables */
-  static int i__, m;
-  static double dtemp;
-  static int ix, iy, mp1;
+  static int i__ = 0, m = 0;
+  static double dtemp = 0.;
+  static int ix = 0, iy = 0, mp1 = 0;
   
   
   /*     forms the dot product of two vectors. */

@@ -26,6 +26,7 @@
 #include "charEncoding.h"
 #include "cvstr.h"
 #include "mput.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/ 
 void writec(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
@@ -84,7 +85,7 @@ double *inptr[],*outptr[],*t;
     str[ipar[1]] = '\0';
 	wcfopen(fd,str,"wb");
     if (!fd ) {
-      sciprint("Could not open the file!\n");
+      sciprint(_("Could not open the file!\n"));
       *flag = -3;
       return;
     }

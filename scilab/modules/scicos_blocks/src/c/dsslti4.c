@@ -36,7 +36,7 @@ void dsslti4(scicos_block *block,int flag)
   rpar(nx*nx+1:nx*nx+nx*nu)=B
   rpar(nx*nx+nx*nu+1:nx*nx+nx*nu+nx*ny)=C */
   
-  int un=1,lb,lc,ld;
+  int un=1,lb = 0,lc = 0,ld = 0;
   int nz=block->nz;
   double* z=block->z;
   double* rpar=block->rpar;
@@ -44,7 +44,7 @@ void dsslti4(scicos_block *block,int flag)
   double* u=block->inptr[0];
   int* outsz=block->outsz;
   int* insz=block->insz;
-  double *w;
+  double *w = NULL;
   
   lb=nz*nz;
   

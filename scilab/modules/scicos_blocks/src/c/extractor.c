@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/ 
 void extractor(scicos_block *block,int flag)
 {
-  int i,j;
+  int i = 0,j = 0;
   if(flag==1){
     for(i=0;i<block->nipar;++i){
       j=block->ipar[i]-1;
