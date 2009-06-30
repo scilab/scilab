@@ -13,6 +13,8 @@
 // <-- Short Description -->
 // primitive commands does not work as expected when overloaded by a macro
 
+// <!-- ENGLISH IMPOSED -->
+
 function ok=clear(varargin),ok=%t,endfunction
 clear xxyyzz
 if ~ans then pause,end

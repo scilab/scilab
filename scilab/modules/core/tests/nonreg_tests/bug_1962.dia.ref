@@ -11,8 +11,9 @@
 //
 // <-- Short Description -->
 // primitive commands does not work as expected when overloaded by a macro
+// <!-- ENGLISH IMPOSED -->
 function ok=clear(varargin),ok=%t,endfunction
-Warning : redefining function: clear                   . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: clear                   . Utilisez funcprot(0) pour éviter ce message
 
 clear xxyyzz
  ans  =
