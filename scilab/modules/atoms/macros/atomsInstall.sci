@@ -171,35 +171,13 @@ function result = atomsInstall(packages,allusers)
 		
 		// Define the path of the downloaded file
 		// =====================================================================
-		
 		fileout = pathconvert(atoms_directory+this_package_details(OSNAME+"Name"),%F);
 		filein  = this_package_details(OSNAME+"Url");
+		filemd5 = this_package_details(OSNAME+"Md5");
 		
-		// Get the package
+		// Launch the download
 		// =====================================================================
-		
-		if MSDOS then
-			download_cmd =  getshortpathname(pathconvert(SCI+"/tools/curl/curl.exe",%F)) +" -s """+ filein + """ -o """ + fileout + """";
-		else
-			download_cmd = "wget "+ filein + " -O " + fileout;
-		end
-		
-		[rep,stat,err] = unix_g(download_cmd)
-		
-		if stat ~= 0 then
-			disp(download_cmd);
-			disp(err);
-		end
-		
-		// Check the md5sum
-		// =====================================================================
-		
-		filemd5 = getmd5(fileout);
-		
-		if filemd5 <> this_package_details(OSNAME+"Md5") then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The downloaded binary file (%s) doesn''t check the MD5SUM.\n"),"atomsInstall",fileout));
-		end
+		atomsDownload(filein,fileout,filemd5);
 		
 		// unarchive it
 		// =====================================================================

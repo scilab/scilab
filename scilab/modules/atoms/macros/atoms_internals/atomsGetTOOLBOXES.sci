@@ -86,28 +86,26 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(mirrors,"*")
 			
+			// Building url & file_out
+			// ----------------------------------------
 			url            = mirrors(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
 			file_out       = pathconvert(TMPDIR+"/atoms/"+sprintf("TOOLBOXES_%d",nb_TOOLBOXES),%f);
 			
+			// Remove the existing file
+			// ----------------------------------------
 			if( fileinfo(file_out) <> [] ) then
 				mdelete(file_out);
 			end
 			
-			if MSDOS then
-				download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -o " + file_out;
-			else
-				download_cmd = "wget "+url + " -O " + file_out;
-			end
+			// Launch the download
+			// ----------------------------------------
+			atomsDownload(url,file_out);
 			
-			[rep,stat,err] = unix_g(download_cmd)
-			if stat == 0 then
-				// Download successfull
-				nb_TOOLBOXES = nb_TOOLBOXES + 1;
-				TOOLBOXES    = [ TOOLBOXES ; file_out ];
-			else
-				disp(download_cmd);
-				disp(err);
-			end
+			// No error : download successful
+			// ----------------------------------------
+			nb_TOOLBOXES = nb_TOOLBOXES + 1;
+			TOOLBOXES    = [ TOOLBOXES ; file_out ];
+			
 		end
 		
 		if nb_TOOLBOXES == 0 then
