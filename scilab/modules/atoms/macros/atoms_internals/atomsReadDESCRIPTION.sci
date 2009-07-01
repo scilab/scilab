@@ -9,11 +9,14 @@
 
 // Internal function
 
-// Return the full description of the TOOLBOXES present in the differents repositories
+// Return the full description of 
+//  - TOOLBOXES file present in the differents repositories
+//  - DESCRIPTION file present in one package
 
 function description_out = atomsReadDESCRIPTION(file_in,description_in)
 	
-	description_out = struct();
+	// Check input parameters
+	// =========================================================================
 	
 	rhs  = argn(2);
 	
@@ -21,30 +24,44 @@ function description_out = atomsReadDESCRIPTION(file_in,description_in)
 		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsReadDESCRIPTION",1,2));
 	end
 	
-	if regexp( file_in,"/TOOLBOXES/") == [] then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain TOOLBOXES expected.\n"),"atomsReadDESCRIPTION",1));
+	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsReadDESCRIPTION",1));
 	end
 	
 	if rhs==2 & type(description_in)<>17 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: mlist expected.\n"),"atomsReadDESCRIPTION",2));
 	end
 	
+	// Init the output argument
+	// =========================================================================
+	
+	description_out = struct();
+	
 	if rhs==2 then
 		description_out = description_in;
 	end
 	
-	TOOLBOXES        = mgetl(file_in);
+	// Start Read the file
+	// =========================================================================	
 	
+	lines_in         = mgetl(file_in);
 	current_toolbox  = struct();
 	current_field    = "";
 	
-	for i=1:size(TOOLBOXES,"*")
+	for i=1:(size(lines_in,"*")+1)
+		
+		// File totally read : register the latest toolbox
+		if i == (size(lines_in,"*")+1) then
+			this_toolbox(current_toolbox("Version")) = current_toolbox;
+			description_out(current_toolbox("Toolbox")) = this_toolbox;
+			break;
+		end
 		
 		// First case : new field
-		if regexp(TOOLBOXES(i),"/^[a-zA-Z0-9]*:\s/","o") == 1 then
+		if regexp(lines_in(i),"/^[a-zA-Z0-9]*:\s/","o") == 1 then
 			
 			// Start new version of toolbox
-			if regexp(TOOLBOXES(i),"/^Toolbox:\s/","o") == 1 then
+			if regexp(lines_in(i),"/^Toolbox:\s/","o") == 1 then
 				
 				if and(isfield(current_toolbox,["Toolbox";"Version"])) then
 					
@@ -65,38 +82,32 @@ function description_out = atomsReadDESCRIPTION(file_in,description_in)
 			end
 			
 			// process field
-			current_field_length           = regexp(TOOLBOXES(i),"/:\s/","o")
-			current_field                  = part(TOOLBOXES(i),1:current_field_length-1);
-			current_value                  = part(TOOLBOXES(i),current_field_length+2:length(TOOLBOXES(i)));
+			current_field_length           = regexp(lines_in(i),"/:\s/","o")
+			current_field                  = part(lines_in(i),1:current_field_length-1);
+			current_value                  = part(lines_in(i),current_field_length+2:length(lines_in(i)));
 			current_toolbox(current_field) = current_value;
 			continue;
 		end
 		
 		// Second case : Current field continuation
-		if regexp(TOOLBOXES(i),"/^\s/","o") == 1 then
-			current_value = part(TOOLBOXES(i),2:length(TOOLBOXES(i)));
+		if regexp(lines_in(i),"/^\s/","o") == 1 then
+			current_value = part(lines_in(i),2:length(lines_in(i)));
 			current_toolbox(current_field) = [ current_toolbox(current_field) ; current_value ];
 			continue;
 		end
 		
-		// Last line of the file : register the latest toolbox
-		if i == size(TOOLBOXES,"*") then
-			this_toolbox(current_toolbox("Version")) = current_toolbox;
-			description_out(current_toolbox("Toolbox")) = this_toolbox;
-		end
-		
 		// Third case : Blank line
-		if length(TOOLBOXES(i)) == 0 then
+		if length(lines_in(i)) == 0 then
 			continue;
 		end
 		
 		// Fourth case : Delimiter
-		if regexp(TOOLBOXES(i),"/^\/\//","o") == 1 then
+		if regexp(lines_in(i),"/^\/\//","o") == 1 then
 			continue;
 		end
-				
+		
 		// Else Error
-		error(msprintf(gettext("%s: The TOOLBOXES file ("+file_in+") is not well formated at line %d\n"),"atomsReadDESCRIPTION",i));
+		error(msprintf(gettext("%s: The file ("+file_in+") is not well formated at line %d\n"),"atomsReadDESCRIPTION",i));
 		
 	end
 	
