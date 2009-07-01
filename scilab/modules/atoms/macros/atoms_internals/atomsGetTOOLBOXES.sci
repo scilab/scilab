@@ -115,7 +115,7 @@ function packages = atomsGetTOOLBOXES(update)
 		end
 		
 		for i=1:size(TOOLBOXES,"*")
-			packages = atomsReadTOOLBOXES( TOOLBOXES(i) , packages );
+			packages = atomsReadDESCRIPTION( TOOLBOXES(i) , packages );
 			mdelete(TOOLBOXES(i));
 		end
 		

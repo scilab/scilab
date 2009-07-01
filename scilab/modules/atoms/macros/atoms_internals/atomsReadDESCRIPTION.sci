@@ -11,22 +11,22 @@
 
 // Return the full description of the TOOLBOXES present in the differents repositories
 
-function description_out = atomsReadTOOLBOXES(file_in,description_in)
+function description_out = atomsReadDESCRIPTION(file_in,description_in)
 	
 	description_out = struct();
 	
 	rhs  = argn(2);
 	
 	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsReadTOOLBOXES",1,2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsReadDESCRIPTION",1,2));
 	end
 	
 	if regexp( file_in,"/TOOLBOXES/") == [] then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain TOOLBOXES expected.\n"),"atomsReadTOOLBOXES",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain TOOLBOXES expected.\n"),"atomsReadDESCRIPTION",1));
 	end
 	
 	if rhs==2 & type(description_in)<>17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: mlist expected.\n"),"atomsReadTOOLBOXES",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: mlist expected.\n"),"atomsReadDESCRIPTION",2));
 	end
 	
 	if rhs==2 then
@@ -96,7 +96,7 @@ function description_out = atomsReadTOOLBOXES(file_in,description_in)
 		end
 				
 		// Else Error
-		error(msprintf(gettext("%s: The TOOLBOXES file ("+file_in+") is not well formated at line %d\n"),"atomsReadTOOLBOXES",i));
+		error(msprintf(gettext("%s: The TOOLBOXES file ("+file_in+") is not well formated at line %d\n"),"atomsReadDESCRIPTION",i));
 		
 	end
 	
