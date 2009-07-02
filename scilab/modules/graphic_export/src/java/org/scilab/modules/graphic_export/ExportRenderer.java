@@ -179,7 +179,7 @@ public abstract class ExportRenderer implements GLEventListener {
 
 			String[] extensionsAllowed = {"bmp","gif","jpg","jpeg","png","ppm","eps","pdf","svg","ps"};
 
-			int[] fileTypeAllowed = {ExportRenderer.BMP_EXPORT, ExportRenderer.GIF_EXPORT, ExportRenderer.JPG_EXPORT, ExportRenderer.PNG_EXPORT, ExportRenderer.PPM_EXPORT, ExportRenderer.EPS_EXPORT, ExportRenderer.PDF_EXPORT, ExportRenderer.SVG_EXPORT, ExportRenderer.PS_EXPORT};
+			Integer[] fileTypeAllowed = {ExportRenderer.BMP_EXPORT, ExportRenderer.GIF_EXPORT, ExportRenderer.JPG_EXPORT, ExportRenderer.PNG_EXPORT, ExportRenderer.PPM_EXPORT, ExportRenderer.EPS_EXPORT, ExportRenderer.PDF_EXPORT, ExportRenderer.SVG_EXPORT, ExportRenderer.PS_EXPORT};
 
 			suffix = suffix.toLowerCase();
 
