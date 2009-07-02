@@ -93,8 +93,13 @@ function atomsDESCRIPTIONwrite(description_in,file_out)
 	
 	// Put the string matrix in the wanted file
 	// =========================================================================
-	if ~ mputl(str_mat,file_out) then
+	
+	if isempty(str_mat) then
+		mdelete(file_out);
+	
+	elseif ~ mputl(str_mat,file_out) then
 		error(msprintf(gettext("%s: The file ''%s'' cannot be written.\n"),"atomsDESCRIPTIONwrite",file_out));
+		
 	end
 	
 endfunction

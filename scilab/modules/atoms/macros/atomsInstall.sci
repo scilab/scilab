@@ -347,7 +347,6 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		result = [ result ; atomsGetInstalledDetails(this_package_name,this_package_version) ];
 		
-		
 		// "archive" installation : Save the description
 		// =====================================================================
 		
@@ -355,17 +354,13 @@ function result = atomsInstall(packages,allusers)
 			
 			DESCRIPTION_file = atoms_directory+"DESCRIPTION_archives";
 			
-			if isempty( atoms_directory+"DESCRIPTION_archives" ) then
-				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
-			else
+			if isempty(fileinfo(atoms_directory+"DESCRIPTION_archives")) then
 				DESCRIPTION = struct();
+			else
+				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
 			end
 			
-			this_package_tmp_1(this_package_version) = this_package_details;
-			this_package_tmp_2(this_package_name)    = this_package_tmp_1;
-			
-			DESCRIPTION = atomsDESCRIPTIONcat(DESCRIPTION,this_package_tmp_2);
-			
+			DESCRIPTION = atomsDESCRIPTIONadd(DESCRIPTION,this_package_name,this_package_version,this_package_details);
 			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 			
 		end

@@ -181,6 +181,7 @@ function result = atomsRemove(packages,allusers)
 		
 		this_package_name      = remove_package_list(i,3);
 		this_package_version   = remove_package_list(i,4);
+		this_package_details   = atomsToolboxDetails(this_package_name,this_package_version);
 		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
 		this_package_directory = this_package_insdet(4);
 		
@@ -214,7 +215,7 @@ function result = atomsRemove(packages,allusers)
 		end
 		
 		// Check if the parent directory (directory name == toolbox name ) is empty 
-		// If yes, detete it
+		// If yes, delete it
 		// =====================================================================
 		this_package_root_dir = part(this_package_directory,1:length(pathconvert(this_package_directory)) - length(this_package_version) - 1 );
 		
@@ -239,6 +240,25 @@ function result = atomsRemove(packages,allusers)
 		// Remove this toolbox from the list of autoloaded packages
 		// =====================================================================
 		atomsDelAutoload(this_package_name,this_package_version);
+		
+		// "Archive" installation
+		// =====================================================================
+		
+		if (isfield(this_package_details,"fromRepository")) & (this_package_details("fromRepository") == "0") then
+			
+			if this_package_insdet(3) == "allusers" then
+				DESCRIPTION_file = pathconvert(SCI+"/.atoms/DESCRIPTION_archives",%F);
+			else
+				DESCRIPTION_file = pathconvert(SCIHOME+"/atoms/DESCRIPTION_archives",%F);
+			end
+			
+			if ~ isempty(fileinfo(DESCRIPTION_file)) then
+				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
+				DESCRIPTION = atomsDESCRIPTIONrm(DESCRIPTION,this_package_name,this_package_version);
+				atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
+			end
+			
+		end
 		
 		// Fill the result matrix
 		// =====================================================================
