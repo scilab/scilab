@@ -37,6 +37,15 @@ GetRhsVarMatrixComplex
 vFreeDoubleComplexFromPointer
 iIsComplex
 GetVarDimension
+getComplexZMatrixOfDouble
+allocMatrixOfDouble
+allocComplexMatrixOfDouble
+isVarComplex
+getMatrixOfDouble
+getVarDimension
+getVarType
+getVarAddressFromPosition
+getMatrixOfString
 ;
 ;core_f
 ;
