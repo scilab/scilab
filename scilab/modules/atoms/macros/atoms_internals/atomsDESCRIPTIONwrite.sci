@@ -9,7 +9,7 @@
 
 // Internal function
 
-function atomsWriteDESCRIPTION(description_in,file_out)
+function atomsDESCRIPTIONwrite(description_in,file_out)
 	
 	// Check input parameters number
 	// =========================================================================
@@ -17,25 +17,25 @@ function atomsWriteDESCRIPTION(description_in,file_out)
 	rhs  = argn(2);
 	
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsWriteDESCRIPTION",2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONwrite",2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(description_in) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsWriteDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONwrite",1));
 	end
 	
 	if type(file_out) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsWriteDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONwrite",1));
 	end
 	
 	// Check input parameters size
 	// =========================================================================
 	
 	if size(file_out,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsWriteDESCRIPTION",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONwrite",2));
 	end
 	
 	// Build the string matrix
@@ -51,7 +51,7 @@ function atomsWriteDESCRIPTION(description_in,file_out)
 		package_versions_struct = description_in(package_names(i));
 		
 		if type(package_versions_struct) <> 17 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsWriteDESCRIPTION",1));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsDESCRIPTIONwrite",1));
 		end
 		
 		package_versions      = getfield(1,package_versions_struct);
@@ -94,7 +94,7 @@ function atomsWriteDESCRIPTION(description_in,file_out)
 	// Put the string matrix in the wanted file
 	// =========================================================================
 	if ~ mputl(str_mat,file_out) then
-		error(msprintf(gettext("%s: The file ''%s'' cannot be written.\n"),"atomsWriteDESCRIPTION",file_out));
+		error(msprintf(gettext("%s: The file ''%s'' cannot be written.\n"),"atomsDESCRIPTIONwrite",file_out));
 	end
 	
 endfunction

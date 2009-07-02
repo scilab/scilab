@@ -26,7 +26,7 @@
 //        Version: "1.0"
 //    ...
 
-function tree_out = atomsDESCRIPTIONAddField( tree_in , package_name , package_version , field , value )
+function tree_out = atomsDESCRIPTIONaddField( tree_in , package_name , package_version , field , value )
 	
 	// Check input parameters number
 	// =========================================================================
@@ -34,45 +34,45 @@ function tree_out = atomsDESCRIPTIONAddField( tree_in , package_name , package_v
 	rhs  = argn(2);
 	
 	if rhs <> 5 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONAddField",5));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONaddField",5));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(tree_in) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONAddField",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONaddField",1));
 	end
 	
 	if type(package_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",2));
 	end
 	
 	if type(package_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",3));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",3));
 	end
 	
 	if type(field) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",4));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",4));
 	end
 	
 	// Check input parameters size
 	// =========================================================================
 	
 	if size(package_name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",2));
 	end
 	
 	if size(package_version,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",3));
 	end
 	
 	if size(field,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",4));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",4));
 	end
 	
 	if size(value,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONAddField",5));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONaddField",5));
 	end
 	
 	// And now ... action
@@ -110,7 +110,7 @@ function tree_out = atomsDESCRIPTIONAddField( tree_in , package_name , package_v
 	elseif  package_version == "*" then
 		
 		if ~ isfield(tree_out,package_name) then
-			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONAddField",package_name));
+			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_name));
 		end
 		
 		package_versions_struct = tree_out(package_name);
@@ -132,13 +132,13 @@ function tree_out = atomsDESCRIPTIONAddField( tree_in , package_name , package_v
 	else
 		
 		if ~ isfield(tree_out,package_name) then
-			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONAddField",package_name));
+			error(msprintf(gettext("%s: The package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_name));
 		end
 		
 		package_versions_struct = tree_out(package_name);
 		
 		if ~ isfield(package_versions_struct,package_version) then
-			error(msprintf(gettext("%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONAddField",package_version,package_name));
+			error(msprintf(gettext("%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"),"atomsDESCRIPTIONaddField",package_version,package_name));
 		end
 		
 		this_package_struct                      = package_versions_struct(package_version);

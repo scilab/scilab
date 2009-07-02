@@ -13,7 +13,7 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
-function description_out = atomsReadDESCRIPTION(file_in)
+function description_out = atomsDESCRIPTIONread(file_in)
 	
 	// Check input parameters
 	// =========================================================================
@@ -21,11 +21,11 @@ function description_out = atomsReadDESCRIPTION(file_in)
 	rhs  = argn(2);
 	
 	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsReadDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONread",1));
 	end
 	
 	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsReadDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsDESCRIPTIONread",1));
 	end
 	
 	// Init the output argument
@@ -99,7 +99,7 @@ function description_out = atomsReadDESCRIPTION(file_in)
 		end
 		
 		// Else Error
-		error(msprintf(gettext("%s: The file ("+file_in+") is not well formated at line %d\n"),"atomsReadDESCRIPTION",i));
+		error(msprintf(gettext("%s: The file ("+file_in+") is not well formated at line %d\n"),"atomsDESCRIPTIONread",i));
 		
 	end
 	

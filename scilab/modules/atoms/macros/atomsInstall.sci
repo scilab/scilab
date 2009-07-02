@@ -151,7 +151,7 @@ function result = atomsInstall(packages,allusers)
 				error(msprintf(gettext("%s: DESCRIPTION file cannot be found in the package ''%s''\n"),"atomsInstall",this_package));
 			end
 			
-			this_package_description = atomsReadDESCRIPTION(tmp_dir + "DESCRIPTION");
+			this_package_description = atomsDESCRIPTIONread(tmp_dir + "DESCRIPTION");
 			
 			// Get package name and version
 			// -----------------------------------------------------------------
@@ -165,21 +165,21 @@ function result = atomsInstall(packages,allusers)
 			// Save the extracted directory
 			// -----------------------------------------------------------------
 			
-			this_package_description = atomsDESCRIPTIONAddField( .. 
+			this_package_description = atomsDESCRIPTIONaddField( .. 
 				this_package_description, ..
 				this_package_name,        ..
 				this_package_version,     ..
 				"extractedDirectory",     ..
 				tmp_dir);
 			
-			this_package_description = atomsDESCRIPTIONAddField( .. 
+			this_package_description = atomsDESCRIPTIONaddField( .. 
 				this_package_description, ..
 				this_package_name,        ..
 				this_package_version,     ..
 				"archiveFile",            ..
 				this_package);
 				
-			this_package_description = atomsDESCRIPTIONAddField( .. 
+			this_package_description = atomsDESCRIPTIONaddField( .. 
 				this_package_description, ..
 				this_package_name,        ..
 				this_package_version,     ..
@@ -190,13 +190,13 @@ function result = atomsInstall(packages,allusers)
 			// -----------------------------------------------------------------
 			
 			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
-				packages_description = atomsReadDESCRIPTION(atoms_tmp_directory+"DESCRIPTION_archives");
+				packages_description = atomsDESCRIPTIONread(atoms_tmp_directory+"DESCRIPTION_archives");
 				packages_description = atomsCatDESCRIPTION(packages_description,this_package_description);
 			else
 				packages_description = this_package_description;
 			end
 			
-			atomsWriteDESCRIPTION(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
+			atomsDESCRIPTIONwrite(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
 			
 			// change the packages var
 			// -----------------------------------------------------------------
@@ -356,7 +356,7 @@ function result = atomsInstall(packages,allusers)
 			DESCRIPTION_file = atoms_directory+"DESCRIPTION_archives";
 			
 			if isempty( atoms_directory+"DESCRIPTION_archives" ) then
-				DESCRIPTION = atomsReadDESCRIPTION(DESCRIPTION_file);
+				DESCRIPTION = atomsDESCRIPTIONread(DESCRIPTION_file);
 			else
 				DESCRIPTION = struct();
 			end
@@ -366,7 +366,7 @@ function result = atomsInstall(packages,allusers)
 			
 			DESCRIPTION = atomsCatDESCRIPTION(DESCRIPTION,this_package_tmp_2);
 			
-			atomsWriteDESCRIPTION(DESCRIPTION,DESCRIPTION_file);
+			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 			
 		end
 		

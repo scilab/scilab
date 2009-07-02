@@ -103,12 +103,12 @@ function packages = atomsGetTOOLBOXES(update)
 			
 			// Read the download description file
 			// ----------------------------------------
-			this_description = atomsReadDESCRIPTION(file_out);
+			this_description = atomsDESCRIPTIONread(file_out);
 			
 			// Add information about the repository
 			// ----------------------------------------
-			this_description =  atomsDESCRIPTIONAddField(this_description,"*","*","repository",repositories(i));
-			this_description =  atomsDESCRIPTIONAddField(this_description,"*","*","fromRepository","1");
+			this_description =  atomsDESCRIPTIONaddField(this_description,"*","*","repository",repositories(i));
+			this_description =  atomsDESCRIPTIONaddField(this_description,"*","*","fromRepository","1");
 			
 			// concatenate the description with the 
 			// global struct
@@ -131,7 +131,7 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(description_files,"*")
 			if ~ isempty(fileinfo(description_files(i))) then
-				description = atomsReadDESCRIPTION(description_files(i));
+				description = atomsDESCRIPTIONread(description_files(i));
 				packages    = atomsCatDESCRIPTION( packages , description );
 			end
 		end
