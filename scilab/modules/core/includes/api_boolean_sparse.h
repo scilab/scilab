@@ -58,7 +58,6 @@ int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
 /**
  * Create named boolean sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _iNbItem Number of item
@@ -67,12 +66,11 @@ int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Read named boolean sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
  * @param[out] _piNbItem return number of item
@@ -81,6 +79,6 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 #endif /* __BOOLEAN_SPARSE_API__ */

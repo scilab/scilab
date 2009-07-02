@@ -16,7 +16,7 @@
 int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
 int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData);
 int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
-int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData);
-int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
+int createCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _piData);
+int readCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
 
 #endif /* __INTERNAL_INT_API__ */

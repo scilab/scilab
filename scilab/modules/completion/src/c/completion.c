@@ -1,14 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007 - INRIA - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #include <string.h>
 #include <stdlib.h>
 #include "completion.h"
@@ -35,30 +35,30 @@ char **completion(char *somechars, int *sizeArrayReturned)
 
 	char **dictionary = NULL;
 	int sizedictionary = 0;
-	
+
 	int sizecompletionfunctions = 0;
 	char **completionfunctions = completionOnFunctions(somechars, &sizecompletionfunctions);
-	
+
 	int sizecompletioncommandwords = 0;
 	char **completioncommandwords = completionOnCommandWords(somechars, &sizecompletioncommandwords);
-	
+
 	int sizecompletionmacros = 0;
 	char **completionmacros =  completionOnMacros(somechars, &sizecompletionmacros);
-	
+
 	int sizecompletionvariables = 0;
 	char **completionvariables = completionOnVariables(somechars, &sizecompletionvariables);
 
 	int sizecompletionhandlegraphicsproperties = 0;
 	char **completionhandlegraphicsproperties = completionOnHandleGraphicsProperties(somechars, &sizecompletionhandlegraphicsproperties);
-	
+
 	int sizecompletionfiles = 0;
 	char **completionfiles = completionOnFiles(somechars, &sizecompletionfiles);
-	
+
 	*sizeArrayReturned = 0;
-	
+
 	sizedictionary = sizecompletionfunctions + sizecompletioncommandwords + sizecompletionmacros
-					+ sizecompletionvariables + sizecompletionhandlegraphicsproperties + sizecompletionfiles;
-	
+		+ sizecompletionvariables + sizecompletionhandlegraphicsproperties + sizecompletionfiles;
+
 
 	if ( (completionfiles) && (sizedictionary == sizecompletionfiles) )
 	{
@@ -181,7 +181,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 
 	char **dictionaryVariables = NULL;
 	int sizedictionaryVariables = 0;
-	
+
 
 	dictionaryVariables = completionOnVariables(somechars,&sizedictionaryVariables);
 
@@ -192,7 +192,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 
 		dictionaryMacros = getmacrosdictionary(&sizedictionaryMacros);
 		dictionaryMacros = SortDictionary(dictionaryMacros,sizedictionaryMacros);	
-	
+
 		/* Search if we have more than one definition */
 		for ( i = 0; i < sizedictionaryVariables; i++)
 		{
@@ -320,29 +320,35 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
 
 	sizedictionary = sizeHandleGraphicsGetPropertiesDictionary + sizeHandleGraphicsSetPropertiesDictionary;
 
-	dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
-
-	if (dictionary)
+	if (sizedictionary > 0)
 	{
-		int i = 0;
+		dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
 
-		appendDictionary(&dictionary,&i,&HandleGraphicsGetPropertiesDictionary,&sizeHandleGraphicsGetPropertiesDictionary);
-		appendDictionary(&dictionary,&i,&HandleGraphicsSetPropertiesDictionary,&sizeHandleGraphicsSetPropertiesDictionary);
-		sizedictionary = i;
-	}
+		if (dictionary)
+		{
+			int i = 0;
 
-	if (dictionary)
-	{
-		dictionary = SortDictionary(dictionary,sizedictionary);	
-		dictionary = RemoveDuplicateDictionary(dictionary,&sizedictionary);	
-		ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
-		freePointerDictionary(dictionary,sizedictionary);
+			appendDictionary(&dictionary,&i,&HandleGraphicsGetPropertiesDictionary,&sizeHandleGraphicsGetPropertiesDictionary);
+			appendDictionary(&dictionary,&i,&HandleGraphicsSetPropertiesDictionary,&sizeHandleGraphicsSetPropertiesDictionary);
+			sizedictionary = i;
+		}
+
+		if (dictionary)
+		{
+			dictionary = SortDictionary(dictionary,sizedictionary);	
+			dictionary = RemoveDuplicateDictionary(dictionary,&sizedictionary);	
+			ListWords = completionOnDictionary(dictionary,sizedictionary,somechars,sizeArrayReturned);
+			freePointerDictionary(dictionary,sizedictionary);
+		}
+		else
+		{
+			*sizeArrayReturned = 0;
+		}
 	}
 	else
 	{
 		*sizeArrayReturned = 0;
 	}
-
 	return ListWords;
 }
 /*--------------------------------------------------------------------------*/

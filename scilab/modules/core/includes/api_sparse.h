@@ -104,7 +104,6 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
 /**
  * Create named sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _iNbItem Number of item
@@ -114,12 +113,11 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedSparseMatrix(char* _pstName, int _iNameLen, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create named sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _iNbItem Number of item
@@ -130,12 +128,11 @@ int createNamedSparseMatrix(char* _pstName, int _iNameLen, int _iRows, int _iCol
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Read named sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
  * @param[out] _piNbItem return number of item
@@ -145,12 +142,11 @@ int createNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Read named sparse variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
  * @param[out] _piNbItem return number of item
@@ -161,6 +157,6 @@ int readNamedSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piC
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 #endif /* __SAPRSE_API__ */

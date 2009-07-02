@@ -241,29 +241,29 @@ int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int 
 	return 0;
 }
 
-int createNamedMatrixOfInteger8(char* _pstName, int _iNameLen, int _iRows, int _iCols, char* _piData8)
+int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _piData8)
 {
-	return createCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT8, _iRows, _iCols, _piData8);
+	return createCommonNamedMatrixOfInteger(_pstName, SCI_INT8, _iRows, _iCols, _piData8);
 }
 
-int createNamedMatrixOfInteger16(char* _pstName, int _iNameLen, int _iRows, int _iCols, short* _piData16)
+int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _piData16)
 {
-	return createCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT16, _iRows, _iCols, _piData16);
+	return createCommonNamedMatrixOfInteger(_pstName, SCI_INT16, _iRows, _iCols, _piData16);
 }
 
-int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int _iCols, int* _piData32)
+int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32)
 {
-	return createCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT32, _iRows, _iCols, _piData32);
+	return createCommonNamedMatrixOfInteger(_pstName, SCI_INT32, _iRows, _iCols, _piData32);
 }
 
 #ifdef __SCILAB_INT64__
-int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int _iCols, long long* _piData64)
+int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _piData64)
 {
 	return -1;
 }
 #endif
 
-int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
+int createCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int _iRows, int _iCols, void* _piData)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -278,7 +278,7 @@ int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecis
 	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
 	int iTotalSize	= iDouble + iMod;
 
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -301,12 +301,12 @@ int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecis
 	return 0;
 }
 
-int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrecision)
+int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision)
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;
 
-	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	iRet = getVarAddressFromName(_pstName, &piAddr);
 	if(iRet)
 	{
 		return 1;
@@ -322,36 +322,36 @@ int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrec
 	return 0;
 }
 
-int readNamedMatrixOfInteger8(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, char* _piData8)
+int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _piData8)
 {
-	return readCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT8, _piRows, _piCols, _piData8);
+	return readCommonNamedMatrixOfInteger(_pstName, SCI_INT8, _piRows, _piCols, _piData8);
 }
 
-int readNamedMatrixOfInteger16(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, short* _piData16)
+int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _piData16)
 {
-	return readCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT16, _piRows, _piCols, _piData16);
+	return readCommonNamedMatrixOfInteger(_pstName, SCI_INT16, _piRows, _piCols, _piData16);
 }
 
-int readNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piData32)
+int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32)
 {
-	return readCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT32, _piRows, _piCols, _piData32);
+	return readCommonNamedMatrixOfInteger(_pstName, SCI_INT32, _piRows, _piCols, _piData32);
 }
 
 #ifdef __SCILAB_INT64__
-int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, long long* _piData64)
+int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _piData64)
 {
 	return 1;
 }
 #endif
 
-int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
+int readCommonNamedMatrixOfInteger(char* _pstName, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;
 	int iSize					= 0;
 	void* piData			= NULL;
 
-	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	iRet = getVarAddressFromName(_pstName, &piAddr);
 	if(iRet)
 	{
 		return 1;

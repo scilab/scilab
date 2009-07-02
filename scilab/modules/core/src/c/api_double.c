@@ -169,17 +169,17 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 	return 0;
 }
 
-int createNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal)
+int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, _iNameLen, 0, _iRows, _iCols, _pdblReal, NULL);
+	return createCommunNamedMatrixOfDouble(_pstName, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, _iNameLen, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return createCommunNamedMatrixOfDouble(_pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
 
-int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+int createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -190,7 +190,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -218,23 +218,23 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	return 0;
 }
 
-int readNamedMatrixOfDouble(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, double* _pdblReal)
+int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal)
 {
-	return readCommonNamedMatrixOfDouble(_pstName, _iNameLen, 0, _piRows, _piCols, _pdblReal, NULL);
+	return readCommonNamedMatrixOfDouble(_pstName, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-int readNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
-	return readCommonNamedMatrixOfDouble(_pstName, _iNameLen, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return readCommonNamedMatrixOfDouble(_pstName, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-int readCommonNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
+int readCommonNamedMatrixOfDouble(char* _pstName, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg)
 {
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	getVarAddressFromName(_pstName, &piAddr);
 	
 	getCommonMatrixOfDouble(piAddr, _iComplex, _piRows, _piCols, &pdblReal, &pdblImg);
 
