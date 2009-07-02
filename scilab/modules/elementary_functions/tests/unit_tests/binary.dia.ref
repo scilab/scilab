@@ -9,7 +9,7 @@
 // TEST 1
 // -----------------------------------------------------------------------------
 file_1 = TMPDIR+'/test_binary_1.bin';
-mopen(file_1,'wb');
+fid = mopen(file_1,'wb');
 mput(1996,'l');
 mput(1996,'i');
 mput(1996,'s');
@@ -43,8 +43,8 @@ mput(98  ,'ucb');
 mput(1996,'db');
 mput(1996,'fb');
 mputstr('Scilab');
-mclose();
-mopen(file_1,'rb');
+mclose(fid);
+fid = mopen(file_1,'rb');
 if 1996<>mget(1,'l')  then bugmes();quit;end
 if 1996<>mget(1,'i')  then bugmes();quit;end
 if 1996<>mget(1,'s')  then bugmes();quit;end
@@ -78,7 +78,7 @@ if   98<>mget(1,'ucb') then bugmes();quit;end
 if 1996<>mget(1,'db')  then bugmes();quit;end
 if 1996<>mget(1,'fb')  then bugmes();quit;end
 if 'Scilab'<>mgetstr(6) then bugmes();quit;end
-mclose();
+mclose(fid);
 // -----------------------------------------------------------------------------
 // TEST 2
 // An example with two files
@@ -131,20 +131,20 @@ if a<>0 then bugmes();quit;end
 // Examples with arrays
 // -----------------------------------------------------------------------------
 file_5 = TMPDIR+'/test_binary_5.bin';
-mopen(file_5,'wb');
+fid = mopen(file_5,'wb');
 mput(1:100,'l');
-mclose();
-mopen(file_5,'rb');
+mclose(fid);
+fid = mopen(file_5,'rb');
 X=mget(200,'l');
-mclose();
+mclose(fid);
 if size(X,'*')<> 100        then bugmes();quit;end
 if norm(X-(1:100))> 10*%eps then bugmes();quit;end
 file_6 = TMPDIR+'/test_binary_6.bin';
-mopen(file_6,'wb');
+fid = mopen(file_6,'wb');
 mput(1:100,'c');
-mclose();
-mopen(file_6,'rb');
+mclose(fid);
+fid = mopen(file_6,'rb');
 X=mget(200,'c');
-mclose();
+mclose(fid);
 if size(X,'*')<> 100        then bugmes();quit;end
 if norm(X-(1:100))> 10*%eps then bugmes();quit;end
