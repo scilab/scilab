@@ -147,7 +147,7 @@ int readNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, in
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 
-	getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	getVarAddressFromName(_pstName, &piAddr);
 	getBooleanSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos);
 
 	if(_piNbItemRow == NULL)

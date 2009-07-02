@@ -227,7 +227,7 @@ int createCommonNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iCompl
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
 
-	C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+	C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);

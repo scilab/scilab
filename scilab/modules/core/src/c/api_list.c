@@ -135,7 +135,7 @@ static int createCommonNamedList(char* _pstName, int _iListType, int _iNbItem, i
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -479,7 +479,7 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _i
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -612,7 +612,7 @@ int createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos, i
 	int iRet = 0;
 	int iSaveTop = Top;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	iRet = createCommonListInList(Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress, 1);
@@ -789,7 +789,7 @@ int createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPo
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
 	Top = Top + Nbvars + 1;
 
 	iRet = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
@@ -961,7 +961,7 @@ int createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemP
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -1137,7 +1137,7 @@ int createCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iIt
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -1344,7 +1344,7 @@ int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _
 	int* piEnd				= NULL;
 	int* piChildAddr	= NULL;
 
-  C2F(str2name)(_pstName, iVarID, strlen(_pstName));
+  C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
