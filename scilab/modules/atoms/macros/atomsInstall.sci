@@ -101,16 +101,115 @@ function result = atomsInstall(packages,allusers)
 		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
 	end
 	
-	if ~ isdir( archives_directory ) then
-		status = mkdir( archives_directory );
-		if status <> 1 then
-			chdir(initialpath);
-			error(msprintf( ..
-				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-				"atomsInstall", ..
-				archives_directory));
-		end
+	if ~ isdir( archives_directory ) & (mkdir( archives_directory ) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			"atomsInstall", ..
+			archives_directory));
 	end
+	
+	// Create needed directories
+	// =========================================================================
+	
+	if allusers then
+		atoms_directory = pathconvert(SCI+"/.atoms");
+	else
+		atoms_directory = pathconvert(SCIHOME+"/atoms");
+	end
+	
+	atoms_tmp_directory = pathconvert(TMPDIR+"/atoms");
+	
+	if ~ isdir( atoms_directory ) & (mkdir( atoms_directory ) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			atoms_directory));
+	end
+	
+	if ~ isdir(atoms_tmp_directory) & (mkdir(atoms_tmp_directory) <> 1) then
+		error(msprintf( ..
+			gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+			atoms_tmp_directory));
+	end
+	
+	// "Archive" installation
+	// =========================================================================
+	
+	for i=1:size(packages,"*")
+		
+		this_package = packages(i);
+		
+		if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
+			
+			if fileinfo( this_package ) then
+				error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible\n"),"atomsInstall",this_package));
+			end
+			
+			tmp_dir = atomsExtract(this_package,atoms_tmp_directory);
+			tmp_dir = pathconvert(atoms_tmp_directory+tmp_dir);
+			
+			if fileinfo( tmp_dir + "DESCRIPTION" ) then
+				error(msprintf(gettext("%s: DESCRIPTION file cannot be found in the package ''%s''\n"),"atomsInstall",this_package));
+			end
+			
+			this_package_description = atomsReadDESCRIPTION(tmp_dir + "DESCRIPTION");
+			
+			// Get package name and version
+			// -----------------------------------------------------------------
+			
+			this_package_name    = getfield(1,this_package_description);
+			this_package_name    = this_package_name(3);
+			
+			this_package_version = getfield(1,this_package_description(this_package_name));
+			this_package_version = this_package_version(3);
+			
+			// Save the extracted directory
+			// -----------------------------------------------------------------
+			
+			this_package_description = atomsDESCRIPTIONAddField( .. 
+				this_package_description, ..
+				this_package_name,        ..
+				this_package_version,     ..
+				"extractedDirectory",     ..
+				tmp_dir);
+			
+			this_package_description = atomsDESCRIPTIONAddField( .. 
+				this_package_description, ..
+				this_package_name,        ..
+				this_package_version,     ..
+				"archiveFile",            ..
+				this_package);
+				
+			this_package_description = atomsDESCRIPTIONAddField( .. 
+				this_package_description, ..
+				this_package_name,        ..
+				this_package_version,     ..
+				"fromRepository",         ..
+				"0");
+			
+			// Save the DESCRIPTION_archives
+			// -----------------------------------------------------------------
+			
+			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
+				packages_description = atomsReadDESCRIPTION(atoms_tmp_directory+"DESCRIPTION_archives");
+				packages_description = atomsCatDESCRIPTION(packages_description,this_package_description);
+			else
+				packages_description = this_package_description;
+			end
+			
+			atomsWriteDESCRIPTION(packages_description,atoms_tmp_directory+"DESCRIPTION_archives");
+			
+			// change the packages var
+			// -----------------------------------------------------------------
+			packages(i) = this_package_name+" "+this_package_version;
+			
+			
+		end
+		
+	end
+	
+	// Force update the system informations
+	// =========================================================================
+	atomsGetTOOLBOXES(%T)
 	
 	// Get the install list
 	// =========================================================================
@@ -151,84 +250,40 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
 		if allusers then
-			atoms_directory = pathconvert(SCI+"/contrib/"+this_package_name);
+			this_package_directory = pathconvert(SCI+"/contrib/"+this_package_name);
 		else
-			atoms_directory = pathconvert(SCIHOME+"/atoms/"+this_package_name);
+			this_package_directory = pathconvert(SCIHOME+"/atoms/"+this_package_name);
 		end
 		
 		// Create the parent directory of this toolbox if it's not already exist
 		// =====================================================================
 		
-		if ~ isdir( atoms_directory ) then
-			status = mkdir( atoms_directory );
-			if status <> 1 then
-				chdir(initialpath);
-				error(msprintf( ..
-					gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
-					atoms_directory));
-			end
-		end
-		
-		// Define the path of the downloaded file
-		// =====================================================================
-		fileout = pathconvert(atoms_directory+this_package_details(OSNAME+"Name"),%F);
-		filein  = this_package_details(OSNAME+"Url");
-		filemd5 = this_package_details(OSNAME+"Md5");
-		
-		// Launch the download
-		// =====================================================================
-		atomsDownload(filein,fileout,filemd5);
-		
-		// unarchive it
-		// =====================================================================
-		
-		chdir( atoms_directory );
-		
-		// get the list of directories before unarchive
-		dir_list_before = atomsListDir();
-		
-		if ( LINUX | MACOSX ) & regexp(fileout,"/\.tar\.gz$/","o") <> [] then
-			
-			extract_cmd = "tar xzf "+ fileout + " -C """+ atoms_directory + """";
-			
-		elseif regexp(fileout,"/\.zip$/","o") <> [] then
-			
-			if MSDOS then
-				extract_cmd = getshortpathname(pathconvert(SCI+"/tools/zip/unzip.exe",%F));
-			else
-				extract_cmd = "unzip";
-			end
-			
-			extract_cmd = extract_cmd + " -q """ + fileout + """ -d """ + pathconvert(atoms_directory,%F) +"""";
-			
-		else
+		if ~isdir(this_package_directory) & (mkdir(this_package_directory)<>1) then
 			chdir(initialpath);
-			error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
-		
+			error(msprintf( ..
+				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+				this_package_directory));
 		end
 		
-		[rep,stat,err] = unix_g(extract_cmd);
 		
-		if stat ~= 0 then
-			disp(extract_cmd);
-			disp(err);
-			chdir(initialpath);
-			error(msprintf(gettext("%s: internal error, the extraction of the archive ""%s"" has failed.\n"),"atomsInstall",fileout));
-		end
-		
-		// get the list of directories after unarchive
-		dir_list_after = atomsListDir();
-		
-		// Get the name of the created directory
+		// "Repository" installation ; Download and Extract
 		// =====================================================================
 		
-		unarchive_dir = "";
-		
-		for j=1:size(dir_list_after,"*")
-			if find(dir_list_after(j) == dir_list_before) == [] then
-				unarchive_dir = dir_list_after(j);
-				break;
-			end
+		if this_package_details("fromRepository") == "1" then
+			
+			// Define the path of the downloaded file
+			// =================================================================
+			fileout = pathconvert(this_package_directory+this_package_details(OSNAME+"Name"),%F);
+			filein  = this_package_details(OSNAME+"Url");
+			filemd5 = this_package_details(OSNAME+"Md5");
+			
+			// Launch the download
+			// =================================================================
+			atomsDownload(filein,fileout,filemd5);
+			
+			// unarchive it
+			// =================================================================
+			this_package_details("extractedDirectory") = this_package_directory+atomsExtract(fileout,this_package_directory);
 		end
 		
 		// Rename the created directory
@@ -240,14 +295,14 @@ function result = atomsInstall(packages,allusers)
 			rename_cmd = "mv";
 		end
 		
-		rename_cmd = rename_cmd+" """+unarchive_dir+""" """+this_package_version+"""";
+		rename_cmd = rename_cmd+" """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
 		
 		[rep,stat]=unix_g(rename_cmd)
 		
 		if stat <> 0 then
 			disp(rename_cmd);
 			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(atoms_directory+this_package_version)));
+			error(msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(this_package_directory+this_package_version)));
 		end
 		
 		// Register the successfully installed package
@@ -273,19 +328,47 @@ function result = atomsInstall(packages,allusers)
 		// Move the archive file (.tar.gz or .zip file) to the archive directory
 		// =====================================================================
 		
-		stat = copyfile( fileout , archives_directory );
-		
-		if stat <> 1 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",fileout,archives_directory));
+		if this_package_details("fromRepository")=="1" then
+			this_package_archive = fileout;
+		else
+			this_package_archive = this_package_details("archiveFile");
 		end
 		
-		mdelete( fileout );
+		if copyfile( this_package_archive , archives_directory ) <> 1 then
+			chdir(initialpath);
+			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",this_package_archive,archives_directory));
+		end
+		
+		if this_package_details("fromRepository")=="1" then
+			mdelete( fileout );
+		end
 		
 		// Fill the result matrix
 		// =====================================================================
-		
 		result = [ result ; atomsGetInstalledDetails(this_package_name,this_package_version) ];
+		
+		
+		// "archive" installation : Save the description
+		// =====================================================================
+		
+		if this_package_details("fromRepository")=="0" then
+			
+			DESCRIPTION_file = atoms_directory+"DESCRIPTION_archives";
+			
+			if isempty( atoms_directory+"DESCRIPTION_archives" ) then
+				DESCRIPTION = atomsReadDESCRIPTION(DESCRIPTION_file);
+			else
+				DESCRIPTION = struct();
+			end
+			
+			this_package_tmp_1(this_package_version) = this_package_details;
+			this_package_tmp_2(this_package_name)    = this_package_tmp_1;
+			
+			DESCRIPTION = atomsCatDESCRIPTION(DESCRIPTION,this_package_tmp_2);
+			
+			atomsWriteDESCRIPTION(DESCRIPTION,DESCRIPTION_file);
+			
+		end
 		
 		// Sucess message if needed
 		// =====================================================================
@@ -294,6 +377,13 @@ function result = atomsInstall(packages,allusers)
 			mprintf(" success\n");
 		end
 		
+	end
+	
+	// The TMPDIR DESCRIPTION_archives is no more needed
+	// =========================================================================
+	
+	if ~ isempty(fileinfo(pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives",%F))) then
+		mdelete(pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives",%F));
 	end
 	
 	// Update the dependencies of packages that use another version of packages
@@ -323,25 +413,5 @@ function result = atomsInstall(packages,allusers)
 	// Go to the initial location
 	// =========================================================================
 	chdir(initialpath);
-	
-endfunction
-
-
-// =============================================================================
-// Just get the list of the directories present in the current directory
-// =============================================================================
-
-function result = atomsListDir()
-	
-	result = [];
-	
-	items  = listfiles();
-	
-	// Loop on items
-	for i=1:size(items,"*")
-		if isdir(items(i)) then
-			result = [ result ; items(i) ];
-		end
-	end
 	
 endfunction

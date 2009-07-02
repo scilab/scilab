@@ -107,7 +107,8 @@ function packages = atomsGetTOOLBOXES(update)
 			
 			// Add information about the repository
 			// ----------------------------------------
-			this_description = atomsAddRepositoryInfo(this_description,repositories(i));
+			this_description =  atomsDESCRIPTIONAddField(this_description,"*","*","repository",repositories(i));
+			this_description =  atomsDESCRIPTIONAddField(this_description,"*","*","fromRepository","1");
 			
 			// concatenate the description with the 
 			// global struct
@@ -120,72 +121,34 @@ function packages = atomsGetTOOLBOXES(update)
 			
 		end
 		
-		// Get DESCRIPTIONs from binary files
+		// Get DESCRIPTIONs for "archive" installation
 		// =====================================================================
 		
-		DESCRIPTION_files = listfiles( ..
-			[ pathconvert(SCI+"/.atoms") + "DESCRIPTION_*.bin" ; .. 
-			  pathconvert(SCIHOME+"/atoms") + "DESCRIPTION_*.bin" ] );
-			
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
+		description_files = [ ..
+			pathconvert(SCI+"/.atoms/DESCRIPTION_archives"   ,%F) ; ..
+			pathconvert(SCIHOME+"/atoms/DESCRIPTION_archives",%F) ; ..
+			pathconvert(TMPDIR+"/atoms/DESCRIPTION_archives" ,%F) ;  ];
+		
+		for i=1:size(description_files,"*")
+			if ~ isempty(fileinfo(description_files(i))) then
+				description = atomsReadDESCRIPTION(description_files(i));
+				packages    = atomsCatDESCRIPTION( packages , description );
+			end
+		end
+		
 		// Save the "packages" variable in a file
-		// ---------------------------------------------------------------------
+		// =====================================================================
 		if ~isdir(pathconvert(SCIHOME+"/.atoms")) then
 			mkdir(pathconvert(SCIHOME+"/.atoms"));
 		end
 		
 		save(packages_path,packages)
-		
+	
 	// Just load from file
 	// =========================================================================
 	
 	else
 		load(packages_path,"packages");
-	end
-	
-endfunction
-
-// =============================================================================
-// Name       : atomsAddRepositoryInfo
-// Author     : Pierre MARECHAL <pierre.marechal@scilab.org>
-// Copyright  : (C) 2009 - DIGITEO
-//
-// => Add the field "repository" in each version of each package
-//
-// =============================================================================
-
-function tree_out = atomsAddRepositoryInfo( tree_in , repository )
-	
-	tree_out = tree_in;
-	
-	package_names      = getfield(1,tree_in);
-	package_names(1:2) = [];
-	
-	for i=1:size(package_names,"*")
-		
-		package_versions_struct = tree_out(package_names(i));
-		package_versions        = getfield(1,package_versions_struct);
-		package_versions(1:2)   = [];
-		
-		for j=1:size(package_versions,"*")
-			this_version_struct                          = package_versions_struct(package_versions(j));
-			this_version_struct("repository")            = repository;
-			package_versions_struct(package_versions(j)) = this_version_struct;
-		end
-		
-		tree_out(package_names(i)) = package_versions_struct;
 	end
 	
 endfunction

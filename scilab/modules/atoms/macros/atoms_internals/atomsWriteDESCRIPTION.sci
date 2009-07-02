@@ -71,6 +71,10 @@ function atomsWriteDESCRIPTION(description_in,file_out)
 				this_field = this_package_fields(k);
 				this_value = this_package(this_package_fields(k));
 				
+				if type(this_value)<>10 then
+					continue;
+				end
+				
 				str_mat = [ str_mat ; sprintf("%s: %s",this_field,this_value(1)) ];
 				
 				if size(this_value,"*") == 1 then
