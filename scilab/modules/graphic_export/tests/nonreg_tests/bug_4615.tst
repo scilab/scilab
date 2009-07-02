@@ -16,6 +16,9 @@
 // xs2jpg does not consider .jpeg as a valid extension for .jpg
 
 plot3d()
-filename=TMPDIR+'mybug_4615.jpeg';
-xs2jpg(0,filename );           
+filename  = pathconvert(TMPDIR+"/mybug_4615.jpeg",%F);
+my_handle = gcf();
+my_win_id = my_handle.figure_id;
+xs2jpg(my_win_id,filename);
 if fileinfo(filename) == [] then pause, end
+mdelete(filename);
