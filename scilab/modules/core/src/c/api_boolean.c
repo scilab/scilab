@@ -86,7 +86,7 @@ int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
 	return 0;
 }
 
-int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _iCols, int* _piBool)
+int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -95,7 +95,7 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _i
 	int* piBool				= NULL;
 	int *piAddr				= NULL;
 
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -118,13 +118,13 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _i
 	return 0;
 }
 
-int readNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piBool)
+int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool)
 {
 	int* piAddr	= NULL;
 	int* piBool	= NULL;
 	int iRet		= 0;
 
-	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	iRet = getVarAddressFromName(_pstName, &piAddr);
 	if(iRet)
 	{
 		return 1;

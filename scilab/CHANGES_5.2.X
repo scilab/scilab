@@ -96,6 +96,11 @@ Online Help :
 
  - Sub-Chapters are now allowed (See SEP #24)
  - xmltochm exports help to chm format (Windows)
+ 
+ call_scilab module :
+ ====================
+ - a example to call scilab from C#
+   see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
 
 
 char encoding bugs :
@@ -270,6 +275,8 @@ Bug fixes:
 * bug 4605 fixed - basename('') returns a error.
 
 * bug 4606 fixed - example of 'link' in help does not work
+
+* bug 4608 fixed - get_function_path returns a non-consistent path.
 
 * bug 4611 fixed - what function doesn't returns a complete list of functions.
 

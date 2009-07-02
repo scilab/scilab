@@ -77,19 +77,17 @@ int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCo
 /**
  * Create polynomial named variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piNbCoef array of polynomials coefficients
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+int createNamedMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Create complex polynomial named variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piNbCoef array of polynomials coefficients
@@ -97,24 +95,22 @@ int createNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, in
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+int createNamedComplexMatrixOfPoly(char* _pstName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Get double named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piNbCoef return polynomials coefficients
  * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+int readNamedMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get double named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piNbCoef return polynomials coefficients
@@ -122,6 +118,6 @@ int readNamedMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, int* _piC
  * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+int readNamedComplexMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 #endif /* __POLY_API__ */
