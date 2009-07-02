@@ -10,8 +10,8 @@
  *
  */
 
-#include "common_api.h"
-#include "double_api.h"
+#include "api_common.h"
+#include "api_double.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -40,7 +40,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 
   if( Rhs >= 1)
     {
-      getVarAddressFromNumber(1, &pArg1);
+      getVarAddressFromPosition(1, &pArg1);
       if (getVarType(pArg1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -62,17 +62,16 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 	{
 	  double* pdblReturnReal;
 	  double* pdblReturnImg;
-	  int* unused;
 	  /* We have to get the Rhs var even if we do not use it...
 	     otherwise Scilab stack turned upside-down... */
 	  getMatrixOfDouble(pArg1, &iRows, &iCols, &pdblReal);
 	  if(isVarComplex(pArg1))
 	    {
-	      allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg, &unused);
+	      allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
 	    }
 	  else
 	    {
-	      allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &unused);
+	      allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
 	    }
 	  LhsVar(1) = Rhs + 1;
 	  return 0;
@@ -94,22 +93,20 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 
       if(isVarComplex(pArg1))
 	{
-	  int *unused;
 	  doublecomplex *poData = NULL;
 	  getComplexZMatrixOfDouble(pArg1, &iRows, &iCols, &poData);
 	  
 	  iCholProductResult = iComplexCholProduct(poData, iRows);
 	  
-	  allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg, &unused);
+	  allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
 	  
 	  vGetPointerFromDoubleComplex(poData, iRows * iCols, pdblReturnReal, pdblReturnImg);
 	  vFreeDoubleComplexFromPointer(poData);
 	}
       else
 	{
-	  int* unused;
 	  getMatrixOfDouble(pArg1, &iRows, &iCols, &pdblReal);
-	  allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &unused);
+	  allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
 	  memcpy(pdblReturnReal, pdblReal, iRows * iCols * sizeof(double));
 	  iCholProductResult = iRealCholProduct(pdblReturnReal, iRows);
 	}
