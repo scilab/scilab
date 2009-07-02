@@ -98,48 +98,44 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 /**
  * Get double variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal);
+int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pdblReal pointer on real data
  * @param[in] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfDouble(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, double* _pdblReal);
+int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal);
 
 /**
  * Get double named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _pdblReal return real data
  * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 
 #endif /* __DOUBLE_API__ */

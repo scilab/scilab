@@ -32,6 +32,8 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData32);
 int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _piData64);
 
+int writeSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+int writeSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);

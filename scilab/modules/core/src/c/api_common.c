@@ -81,13 +81,13 @@ int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 
 	return 0;
 }
-int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
+int getVarAddressFromName(char* _pstName, int** _piAddress)
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
 
 	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
+	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
 	//define scope of search
   Fin = -1;

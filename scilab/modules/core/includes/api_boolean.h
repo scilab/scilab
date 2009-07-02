@@ -55,7 +55,7 @@ int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _iCols, int* _piBool);
+int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read boolean named variable
@@ -66,6 +66,6 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _i
  * @param[out] _piBool return data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piBool);
+int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
 #endif /* __BOOLEAN_API__ */

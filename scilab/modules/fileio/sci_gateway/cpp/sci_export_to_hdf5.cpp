@@ -34,7 +34,7 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int _iH5File, int *_piVar, char* _pstName);
 bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
-bool export_sparse(int *_piVar, char* _pstName);
+bool export_sparse(int _iH5File, int *_piVar, char* _pstName);
 bool export_boolean_sparse(int *_piVar, char* _pstName);
 bool export_matlab_sparse(int *_piVar, char* _pstName);
 bool export_ints(int _iH5File, int *_piVar, char* _pstName);
@@ -73,7 +73,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - 1));
 	for(int i = 0 ; i < Rhs - 1 ; i++)
 	{
-		iRet = getVarAddressFromName(pstNameList[i + 1], (int)strlen(pstNameList[i + 1]), &piAddrList[i]);
+		iRet = getVarAddressFromName(pstNameList[i + 1], &piAddrList[i]);
 		if(iRet)
 		{
 			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
@@ -139,7 +139,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 		}
 	case sci_sparse :
 		{
-			bReturn = export_sparse(_piVar, _pstName);
+			bReturn = export_sparse(_iH5File, _piVar, _pstName);
 			break;
 		}
 	case sci_boolean_sparse :
@@ -355,9 +355,47 @@ bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_sparse(int *_piVar, char* _pstName)
+bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int iNbItem					= 0;
+	int* piNbCoef				= NULL;
+	int* piNbItemRow		= NULL;
+	int* piColPos				= NULL;
+	double* pdblReal		= NULL;
+	double* pdblImg		= NULL;
+
+	if(isVarComplex(_piVar))
+	{
+		iRet = getComplexSparseMatrix(_piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return false;
+		}
+
+		iRet = writeSparseComplexMatrix(_iH5File, _pstName, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+	}
+	else
+	{
+		iRet = getSparseMatrix(_piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		if(iRet)
+		{
+			return false;
+		}
+
+		iRet = writeSparseMatrix(_iH5File, _pstName, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+	}
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "sparse (%d x %d)", iRows, iCols);
+	print_type(pstMsg);
 	return true;
 }
 
