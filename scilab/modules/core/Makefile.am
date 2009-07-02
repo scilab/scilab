@@ -81,15 +81,19 @@ src/c/getos.c \
 src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
-src/c/common_api.c \
-src/c/double_api.c \
-src/c/int_api.c \
-src/c/poly_api.c \
-src/c/sparse_api.c \
-src/c/boolean_sparse_api.c \
-src/c/string_api.c \
-src/c/recursionFunction.c
-
+src/c/recursionFunction.c \
+src/c/api_common.c \
+src/c/api_double.c \
+src/c/api_int.c \
+src/c/api_poly.c \
+src/c/api_sparse.c \
+src/c/api_boolean_sparse.c \
+src/c/api_boolean.c \
+src/c/api_string.c \
+src/c/api_list.c \
+src/c/typename.c \
+src/c/inittypenames.c \
+src/c/funcprot.c
 
 
 if USE_DYNAMIC_STACK
@@ -97,8 +101,7 @@ CORE_C_SOURCES += src/c/scimem64.c
 endif
 
 
-CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
-src/fortran/clunit.f \
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/isany.f \
@@ -195,7 +198,7 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f 
+src/fortran/isinstring.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -263,7 +266,6 @@ sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
@@ -273,18 +275,15 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
-sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
@@ -426,15 +425,16 @@ includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
 includes/transposeMatrix.h \
-includes/boolean_api.h \
-includes/double_api.h \
-includes/sparse_api.h \
-includes/boolean_sparse_api.h \
-includes/int_api.h \
-includes/string_api.h \
-includes/common_api.h \
-includes/poly_api.h \
-includes/variable_api.h \
+includes/api_boolean.h \
+includes/api_double.h \
+includes/api_sparse.h \
+includes/api_boolean_sparse.h \
+includes/api_int.h \
+includes/api_string.h \
+includes/api_common.h \
+includes/api_poly.h \
+includes/api_variable.h \
+includes/api_list.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

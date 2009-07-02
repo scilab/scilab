@@ -38,6 +38,7 @@
 #include "localization.h"
 #include "get_ticks_utils.h"
 #include "HandleManagement.h"
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)
@@ -287,9 +288,8 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
 	    sciSetCurrentObj (Leg); 
 	  }
 
-      
-	for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
-	FREE(Str);
+    freeArrayOfString(Str, nleg);  
+
 	FREE(tabofhandles);
 	/* }*/
     }

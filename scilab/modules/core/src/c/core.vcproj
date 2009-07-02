@@ -335,15 +335,43 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\api_boolean.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_boolean_sparse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_common.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_double.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_int.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_list.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_poly.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_sparse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\api_string.c"
+				>
+			</File>
+			<File
 				RelativePath=".\banier.c"
-				>
-			</File>
-			<File
-				RelativePath=".\boolean_api.c"
-				>
-			</File>
-			<File
-				RelativePath=".\boolean_sparse_api.c"
 				>
 			</File>
 			<File
@@ -367,10 +395,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\common_api.c"
-				>
-			</File>
-			<File
 				RelativePath=".\comparehandles.c"
 				>
 			</File>
@@ -384,10 +408,6 @@
 			</File>
 			<File
 				RelativePath=".\csignal.c"
-				>
-			</File>
-			<File
-				RelativePath=".\double_api.c"
 				>
 			</File>
 			<File
@@ -408,6 +428,10 @@
 			</File>
 			<File
 				RelativePath=".\freeArrayOfString.c"
+				>
+			</File>
+			<File
+				RelativePath=".\funcprot.c"
 				>
 			</File>
 			<File
@@ -515,7 +539,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\int_api.c"
+				RelativePath=".\inittypenames.c"
 				>
 			</File>
 			<File
@@ -568,10 +592,6 @@
 			</File>
 			<File
 				RelativePath=".\parse.c"
-				>
-			</File>
-			<File
-				RelativePath=".\poly_api.c"
 				>
 			</File>
 			<File
@@ -672,6 +692,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_funptr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\mexlib\src\c\sci_gateway.c"
 				>
 			</File>
 			<File
@@ -867,10 +891,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sparse_api.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stack1.c"
 				>
 			</File>
@@ -888,10 +908,6 @@
 			</File>
 			<File
 				RelativePath=".\str2sci.c"
-				>
-			</File>
-			<File
-				RelativePath=".\string_api.c"
 				>
 			</File>
 			<File
@@ -923,6 +939,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\typename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\version.c"
 				>
 			</File>
@@ -944,19 +964,75 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\api_boolean.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_boolean_sparse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_common.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_double.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_int.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_boolean.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_common.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_double.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_int.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_poly.h"
+				>
+			</File>
+			<File
+				RelativePath=".\api_internal_string.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_list.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_poly.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_sparse.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_string.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\api_variable.h"
+				>
+			</File>
+			<File
 				RelativePath=".\banier.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\BOOL.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\boolean_api.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\boolean_sparse_api.h"
 				>
 			</File>
 			<File
@@ -984,10 +1060,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\common_api.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\core_math.h"
 				>
 			</File>
@@ -997,10 +1069,6 @@
 			</File>
 			<File
 				RelativePath=".\csignal.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\double_api.h"
 				>
 			</File>
 			<File
@@ -1029,6 +1097,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\freeArrayOfString.h"
+				>
+			</File>
+			<File
+				RelativePath=".\funcprot.h"
 				>
 			</File>
 			<File
@@ -1120,7 +1192,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\int_api.h"
+				RelativePath=".\inittypenames.h"
 				>
 			</File>
 			<File
@@ -1188,10 +1260,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\poly_api.h"
-				>
-			</File>
-			<File
 				RelativePath=".\predef.h"
 				>
 			</File>
@@ -1225,6 +1293,10 @@
 			</File>
 			<File
 				RelativePath=".\run.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\mexlib\includes\sci_gateway.h"
 				>
 			</File>
 			<File
@@ -1264,10 +1336,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\sparse_api.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\stack-c.h"
 				>
 			</File>
@@ -1297,10 +1365,6 @@
 			</File>
 			<File
 				RelativePath=".\str2sci.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\string_api.h"
 				>
 			</File>
 			<File
@@ -1336,11 +1400,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\userf2.h"
+				RelativePath=".\typename.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\variable_api.h"
+				RelativePath=".\userf2.h"
 				>
 			</File>
 			<File

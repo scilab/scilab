@@ -29,7 +29,7 @@ RENDERER_IMPEXP void destroyRendererString(char * string);
 /**
  * Call gateway and retrieve all exceptions.
  */
-RENDERER_IMPEXP void callFunctionFromGatewayWithExceptions(gw_generic_table * tab);
+RENDERER_IMPEXP void callFunctionFromGatewayWithExceptions(gw_generic_table * tab, int sizetab);
 
 #ifdef __cplusplus
 }

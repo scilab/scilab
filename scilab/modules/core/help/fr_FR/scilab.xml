@@ -138,28 +138,6 @@
       </varlistentry>
 
       <varlistentry>
-        <term>scilab -link &lt;objects&gt;</term>
-
-        <listitem>
-          <para>est utilisé pour générer un <literal>scilex</literal> local
-          (exécutable de Scilab) lié avec les fichiers additionnels donnés
-          dans <literal>&lt;objects&gt;</literal>. Cette commande produit
-          aussi un script <literal>scilab</literal>, qui lance l'exécution du
-          nouveau <literal>scilex</literal>.</para>
-
-          <para>Par exemple :</para>
-
-          <programlisting>
-	  scilab -link  C/interf.o C/evol.o C/bib.a
-	  </programlisting>
-
-          <para>crée un nouveau <literal>scilex</literal> dans le quel le
-          fichier <literal>interf.o</literal> par défaut sera remplacé par
-          <literal>C/interf.o</literal>.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>-mem N</term>
 
         <listitem>

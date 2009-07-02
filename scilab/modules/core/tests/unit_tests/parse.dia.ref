@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <!-- ENGLISH IMPOSED -->
 //syntax with no explicit lhs
 1
  ans  =
@@ -136,13 +137,13 @@ if (1==1) then 'ok',end
  ans  =
  
  ok   
-for k=1:2,disp(k),end
+for k=1:2,disp(k),end 
  
     1.  
  
     2.  
-function foo(k),disp(k),endfunction;
-for k=1:2,foo(k),end
+function foo(k),disp(k),endfunction; 
+for k=1:2,foo(k),end 
  
     1.  
  
@@ -259,8 +260,8 @@ l=list(1,2,3);l(3)=null()
     2.  
 function []=foo()
   [noeuds,triang]=resume(1,2)
-endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+endfunction 
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo();disp([noeuds,triang])
  
@@ -268,8 +269,8 @@ foo();disp([noeuds,triang])
 function [a]=foo(x)
   a=33
   [noeuds,triang]=resume(45,sin(2))
-endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+endfunction 
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo(%t)
  ans  =
@@ -278,8 +279,8 @@ foo(%t)
 function [a]=foo(x)
   a=33
 if x,  return,end
-endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+endfunction 
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo(%t)
  ans  =
@@ -289,21 +290,21 @@ foo();disp([noeuds,triang])
  
     45.    0.9092974  
 deff('t1=foo()','t1(2)= 1','n');foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  ans  =
  
     0.  
     1.  
 deff('t1=foo()','t1(2)= 1');foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  ans  =
  
     0.  
     1.  
 deff('t1=foo()','t1=list();t1(1)= 44;','n');foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  ans  =
  
@@ -312,7 +313,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
  
     44.  
 deff('t1=foo()','t1=list();t1(1)= 44;');foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  ans  =
  
@@ -321,7 +322,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
  
     44.  
 deff('[a,b,x]=foo()','[a(1),b(1,2),x]=(3,4,5);','n');[a,b,x]=foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  x  =
  
@@ -333,7 +334,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
  
     3.  
 deff('[a,b,x]=foo()','[a(1),b(1,2),x]=(3,4,5);');[a,b,x]=foo()
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
  x  =
  
@@ -345,7 +346,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
  
     3.  
 function [a,b,x]=foo(),u=5;[a(1),b(1,2),x]=(3,4,u),a(2)=44,endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 [a,b,x]=foo()
  x  =
@@ -359,7 +360,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
     3.   
     44.  
 function [a,b,x]=foo(),[a,b,x]=(3,4,5),endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 [a,b,x]=foo()
  x  =
@@ -372,7 +373,7 @@ Warning : redefining function: foo                     . Use funcprot(0) to avoi
  
     3.  
 function x=foo(),INDX=list(2,3); x(INDX(:))=11; endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo()
  ans  =
@@ -381,7 +382,7 @@ foo()
     0.    0.    11.  
 I1=list(2,3);I2=list(1,2);
 function foo(),[x(I1(:)),y(I2(:))]=(11,12);disp(x,y), endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo()
  
@@ -390,7 +391,7 @@ foo()
     0.    0.    0.   
     0.    0.    11.  
 function l=foo(),l=list(1,2,3);l(3)=null();endfunction
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
+Attention: redéfinition de la fonction: foo                     . Utilisez funcprot(0) pour éviter ce message
 
 foo()
  ans  =

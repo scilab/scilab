@@ -12,6 +12,11 @@
 #include <string.h>
 #include "dynamiclibrary_windows.h"
 /*---------------------------------------------------------------------------*/
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibHandle LoadDynLibraryW(wchar_t *libname)
+{
+	return (DynLibHandle) LoadLibraryW(libname);
+}
+/*---------------------------------------------------------------------------*/
 IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibHandle LoadDynLibrary(char *libname)
 {
 	return (DynLibHandle) LoadLibrary(libname);
@@ -40,7 +45,11 @@ IMPORT_EXPORT_DYNAMICLIBRARY_DLL char * GetLastDynLibError(void)
 	DWORD dw = GetLastError(); 
 	DWORD source = 0;
 
-	if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
+	if (dw == 0)
+	{
+		strcpy(buffer, "Unknown Error");
+	}
+	else if (FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM |
 			FORMAT_MESSAGE_IGNORE_INSERTS, &source, dw, 0,
 			buffer, 512, NULL) == 0) 
 	{

@@ -35,8 +35,6 @@ sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
-
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
@@ -66,7 +64,7 @@ pkglib_LTLIBRARIES = libsciio.la
 
 libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)

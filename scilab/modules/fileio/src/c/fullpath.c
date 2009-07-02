@@ -20,9 +20,13 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
+#ifdef __APPLE__
+#define _wfullpath(a,r,l)  realpath(r,a)  
+#endif
+/*--------------------------------------------------------------------------*/
 char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes)
 {
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__APPLE__)
 	char *returnedFullPath = NULL;	
 
 	wchar_t *wPath = to_wide_string((char*)_Path);

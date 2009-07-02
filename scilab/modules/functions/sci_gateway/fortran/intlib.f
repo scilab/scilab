@@ -6,8 +6,10 @@ c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-      subroutine intlib
+      subroutine intlib(lendirlib, libdir)
       INCLUDE 'stack.h'
+      CHARACTER*(*)  libdir
+      integer lendirlib
       integer percen,mode(2),id(nlgh)
       integer iadr,sadr
 c
@@ -18,36 +20,23 @@ c
       sadr(l)=(l/2)+1
 c     
 
-      if(rhs.ne.1) then
-         call error(42)
-         return
-      endif
-      if(lhs.ne.1) then
-         call error(41)
-         return
-      endif
-
 c     path  du repertoire
       il=iadr(lstk(top))
-      if(istk(il).ne.10) then
-         err=1
-         call error(55)
-         return
-      endif
-      n=istk(il+5)-1
-      call icopy(n,istk(il+6),1,istk(il+2),1)
-      istk(il+1)=n
+      n=lendirlib
+      call cvstr(lendirlib,istk(il+2),libdir,0)
+
+      istk(il+1)=lendirlib
       istk(il)=14
-      il0=il+2+n
+      il0=il+2+lendirlib
       ilc=il0+1
       iln=ilc+nclas+1
 c     
 c     ouverture du fichier names
       call cvstr(n,istk(il+2),buf,1)
-      buf=buf(1:n)//'names'
+      buf=libdir(1:n)//'names'
       mode(1)=-1
       lunit=0
-      len = n+5
+      len = n + 5
       call getshortpathname(buf(1:len),len)
       call clunit(lunit,buf(1:len),mode)
       if(err.gt.0) then

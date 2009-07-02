@@ -12,17 +12,25 @@ import java.io.*;
 
   class LoopEvent extends Thread
   {
+  	boolean continueLoop = true;
   	public void run()
   	{
   		System.out.println("Press 'q' and 'return' to quit.");
-  		Scilab.Exec("plot2d();quit");
+  		Scilab.Exec("plot2d();");
   		do 
   		{
   			Scilab.Events();
   		}
-  		while ( Scilab.HaveAGraph() != false );
-  		Scilab.Events();
+  		while ( (Scilab.HaveAGraph() != false) && (continueLoop == true) );
+  		Scilab.Finish();
   		System.out.println("Graphics window closed");
+  		this.stop();
+
+  	}
+  	
+    public void close()
+    {
+    	continueLoop = false;
   	}
   }
 
@@ -32,31 +40,23 @@ class  ExampleEvents2
   public static void main(String[] args)  throws Exception
 
   {
-    	char c;
-	    Thread thread = new LoopEvent();
-    	thread.start();
-
-  	  	
-  	
-  		while (System.in.read()!='q')
-  		{
-  			try
-   			{
-  		 		Thread.sleep( 1 );
-  			}
-  			catch ( InterruptedException e )
-   			{
-   			}
-
-  		}
-  		System.out.println("'q' pressed.");
-  		Scilab.Events();
-  		if (Scilab.HaveAGraph()) {
-  		Scilab.Exec("xdel(winsid());quit");
-  	}
-  	  thread.stop();
-  		Scilab.Finish();
-  		
+      char c;
+      LoopEvent thread = new LoopEvent();
+      thread.start();
+      
+      while (System.in.read()!='q')
+      {
+        try
+        {
+          Thread.sleep( 1 );
+        }
+        catch ( InterruptedException e )
+        {
+        }
+      }
+      System.out.println("'q' pressed.");
+      thread.close();
+      
   }
 
 }

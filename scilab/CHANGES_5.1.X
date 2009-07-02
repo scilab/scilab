@@ -1,6 +1,14 @@
 
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
+
+
+Improvements:
+=============
+
+* Catalan localization added to Scipad (Thanks Oriol Gonzalez)
+
+
 Compilation:
 ============
 
@@ -13,8 +21,8 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
-* Series of patches applied (see bug #4506) by Dan McMahill which fixes some
-  minor compile time problems under NetBSD:
+* Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill which fixes 
+  some minor compile time problems under NetBSD:
   		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
 		- added autoconf check for term.h header
@@ -26,6 +34,21 @@ Compilation:
 		- avoid pulling in an OSF1 specific header on NetBSD/alpha
 		- added missing newline at the end of a file
 		- added missing XML LIBS and CFLAGS
+		- adds LTLIBINTL to the list of common objects needed for linking the top level binary.
+		- adds checks for term.h and termcap.h headers.  
+		- adds check for -lpthread
+		- reworks the checks for curses a little bit to search for 
+		  curses.h and -lcurses first followed by ncurses.h and 
+		  -lncurses.   
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
+		- add __DragonFly__ to a few conditional lines.
+		- remove the static declaration of BC to match what was found
+		  in a header file.
+		- adds missing enable_keypad_mode()
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
+		- Large amounts of cleanup of the PVM configure code
 
 * automake version changed (1.10.1 => 1.10.2)
 
@@ -67,7 +90,11 @@ Bug fixes:
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
 
+ * bug 3422 fixed - the keyword for history search was not updatable
+
  * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
+
+ * bug 3612 fixed - history manager doesn't work at startup
 
  * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
 			disabling many Scilab features
@@ -107,11 +134,43 @@ Bug fixes:
 
  * bug 4466 fixed - .' operator defined for strings and booleans
  
- * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
-                    and not a filename (linux)
+ * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing
+   	   			  	directory as input argument and not a filename (linux)
 
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
+
+ * bug 4508 fixed - Can't create a file when saving/exporting a figure under
+   	   		MacOSX.
+
+ * bug 4514 fixed - valgrind.supp wasn't installed
+
+ * bug 4542 fixed - A unexpected interpretor warning 
+
+ * bug 4546 fixed - Error message added for linpro function (moved to an external function).
+ 
+ * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
+
+ * bug 4580 fixed - rpem documentation made more accurate
+ 
+ * bug 4592 fixed - The ged entity picker produces an error if a menu has been added to the graphic window
+
+ * bug 4596 fixed - g_margin fails to return the gain margins in some cases.
+
+ * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval (+ some other problems fixed in mtlb_eval).
+
+ * bug 4612 fixed - The graphic export used to consider .jpeg as an invalid
+   	   			  	extension.
+
+ * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
+   	   			  	lead to a crash 
+
+ * bug 4615 fixed - xs2jpg(0, '/tmp/myplop.jpeg'); was creating a file 
+		    called /tmp/myplop.jpeg.jpg (Thanks to Guilherme 
+		    Kunigami for the fix)
+
+ * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks
+                    to Paul Griffiths for the patch!
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================

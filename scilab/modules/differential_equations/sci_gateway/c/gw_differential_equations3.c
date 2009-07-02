@@ -18,14 +18,15 @@
 #include "gw_differential_equations3.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define DIFFERENTIAL_EQUATIONS3_TAB_SIZE 1
+static gw_generic_table Tab[DIFFERENTIAL_EQUATIONS3_TAB_SIZE]=
 {
 	{C2F(sci_odc),"odedc"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations3(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,DIFFERENTIAL_EQUATIONS3_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

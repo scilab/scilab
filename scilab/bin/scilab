@@ -400,6 +400,23 @@ fi
 						;;
 				esac
 				;;
+			"ia64")
+				proc="ia64"
+				;;
+		    "ppc"|"powerpc"|"ppc64")
+				proc="ppc"
+				;;
+			"alpha")  
+				proc="alpha"
+				;;
+			"s390"|"s390x")
+				proc="s390"
+				;;
+			*)
+				echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
+				echo "Fallback on the model <${MODEL}> found by uname -m"
+				proc=$MODEL
+				;;
 			*win32* | *WIN32* | *CYGWIN_NT*)
 				proc="win32"
 				JAVA_SHLIB="jvm.dll"

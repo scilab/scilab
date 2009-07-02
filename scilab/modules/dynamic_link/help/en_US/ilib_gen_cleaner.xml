@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ilib_gen_cleaner">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-03 11:54:48 +0200 (Sun, 03 Sep 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ilib_gen_cleaner</refname>
+    <refpurpose> utility for ilib_build: generates a cleaner file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>ilib_gen_cleaner(makename,[loadername],[files])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+    	
+      <varlistentry>
+        <term>makename</term>
+        <listitem>
+          <para>character string. The pathname of the Makefile file without extension (default value <literal>Makelib</literal>).</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>loadername</term>
+        <listitem>
+          <para>character string. The pathname of the loader file (default value is <literal>loader.sce</literal>).</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>files</term>
+        <listitem>
+          <para>matrix of character string. files to delete.</para>
+        </listitem>
+      </varlistentry>
+      
+      
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utility function used by <literal>ilib_build and ilib_for_link</literal>
+    This function generates a cleaner file.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="ilib_gen_loader">ilib_gen_loader</link>
+      </member>
+      <member>
+        <link linkend="ilib_build">ilib_build</link>
+      </member>
+      <member>
+        <link linkend="ilib_for_link">ilib_for_link</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

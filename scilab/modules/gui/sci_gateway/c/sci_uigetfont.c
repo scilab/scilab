@@ -16,6 +16,7 @@
 #include "Scierror.h"
 #include "CallFontChooser.h"
 #include "getPropertyAssignedValue.h"
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_uigetfont(char *fname,unsigned long fname_len)
@@ -25,6 +26,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   int nbRow = 0, nbCol = 0;
 
   char **fontNameAdr = NULL;
+  int fontNameSize = 0;
   int fontSizeAdr = 0;
   int boldAdr = 0;
   int italicAdr = 0;
@@ -43,8 +45,10 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
     if (VarType(1) == sci_strings) 
       {
         GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, &fontNameAdr);
-        if (nbRow*nbCol != 1)
+        fontNameSize = nbRow*nbCol;
+        if (fontNameSize != 1)
           {
+            freeArrayOfString(fontNameAdr, fontNameSize);
             Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
             return FALSE;
           }
@@ -64,12 +68,14 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &nbRow, &nbCol, &fontSizeAdr);
           if (nbRow*nbCol!=1)
             {
+              freeArrayOfString(fontNameAdr, fontNameSize);
               Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
               return FALSE;
             }
         }
       else
         {
+          freeArrayOfString(fontNameAdr, fontNameSize);
           Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), fname, 2);
           return FALSE;
         }
@@ -83,6 +89,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_BOOLEAN_DATATYPE,&nbRow,&nbCol,&boldAdr);
           if (nbRow*nbCol != 1)
             {
+              freeArrayOfString(fontNameAdr, fontNameSize);
               Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
               return FALSE;
             }
@@ -90,6 +97,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
         }
       else
         {
+          freeArrayOfString(fontNameAdr, fontNameSize);
           Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 3);
           return FALSE;
         }
@@ -103,6 +111,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
           GetRhsVar(4,MATRIX_OF_BOOLEAN_DATATYPE,&nbRow,&nbCol,&italicAdr);
           if (nbRow*nbCol != 1)
             {
+              freeArrayOfString(fontNameAdr, fontNameSize);
               Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);
               return FALSE;
             }
@@ -110,6 +119,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
         }
       else
         {
+          freeArrayOfString(fontNameAdr, fontNameSize);
           Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), fname, 4);
           return FALSE;
         }
@@ -217,6 +227,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   LhsVar(4) = Rhs+4;
   
   C2F(putlhsvar)();
+  freeArrayOfString(fontNameAdr, fontNameSize);
   return TRUE;
 }
 /*--------------------------------------------------------------------------*/

@@ -35,6 +35,7 @@
 #include "WindowList.h" /* getFigureFromIndex */
 #include "Widget.h" /* requestWidgetFocus */
 #include "SetUicontrolPosition.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define NBPROPERTIES 26
 #define MAXPROPERTYNAMELENGTH 20
@@ -363,6 +364,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                         {
                           GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
                           setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                          freeArrayOfString(stkAdrForStrings, nbRow*nbCol);
                         }
                       else
                         {

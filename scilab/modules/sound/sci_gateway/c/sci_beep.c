@@ -11,11 +11,15 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <string.h>
 #include "gw_sound.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static int BeepON=1;
 /*--------------------------------------------------------------------------*/
@@ -26,7 +30,7 @@ void BeepLinuxWindows(void);
 int sci_Beep(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
-	char *output=NULL ;
+	char *output = NULL ;
 
 	Rhs=Max(0,Rhs);
 	CheckRhs(0,1);
@@ -57,11 +61,11 @@ int sci_Beep(char *fname,unsigned long fname_len)
 		if (BeepON) BeepLinuxWindows();
 	}
 
-	output=(char*)MALLOC(6*sizeof(char));
+
 	n1=1;
 
-	if (BeepON) strcpy(output,"on");
-	else strcpy(output,"off");
+	if (BeepON) output = strdup("on");
+	else output = strdup("off");
 
 	CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
 	FREE(output);
