@@ -26,7 +26,7 @@
 //        Version: "1.0"
 //    ...
 
-function tree_out = atomsDESCRIPTIONrmField( tree_in , package_name , package_version )
+function tree_out = atomsDESCRIPTIONrm( tree_in , package_name , package_version )
 	
 	// Check input parameters number
 	// =========================================================================
@@ -34,33 +34,33 @@ function tree_out = atomsDESCRIPTIONrmField( tree_in , package_name , package_ve
 	rhs  = argn(2);
 	
 	if rhs <> 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONrmField",3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONrm",3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(tree_in) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONrmField",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsDESCRIPTIONrm",1));
 	end
 	
 	if type(package_name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrmField",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
 	end
 	
 	if type(package_version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrmField",3));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
 	end
 	
 	// Check input parameters size
 	// =========================================================================
 	
 	if size(package_name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrmField",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",2));
 	end
 	
 	if size(package_version,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrmField",3));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONrm",3));
 	end
 	
 	// And now ... action

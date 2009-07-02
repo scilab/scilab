@@ -191,7 +191,7 @@ function result = atomsInstall(packages,allusers)
 			
 			if fileinfo( atoms_tmp_directory + "DESCRIPTION_archives" )<>[] then
 				packages_description = atomsDESCRIPTIONread(atoms_tmp_directory+"DESCRIPTION_archives");
-				packages_description = atomsCatDESCRIPTION(packages_description,this_package_description);
+				packages_description = atomsDESCRIPTIONcat(packages_description,this_package_description);
 			else
 				packages_description = this_package_description;
 			end
@@ -364,7 +364,7 @@ function result = atomsInstall(packages,allusers)
 			this_package_tmp_1(this_package_version) = this_package_details;
 			this_package_tmp_2(this_package_name)    = this_package_tmp_1;
 			
-			DESCRIPTION = atomsCatDESCRIPTION(DESCRIPTION,this_package_tmp_2);
+			DESCRIPTION = atomsDESCRIPTIONcat(DESCRIPTION,this_package_tmp_2);
 			
 			atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 			

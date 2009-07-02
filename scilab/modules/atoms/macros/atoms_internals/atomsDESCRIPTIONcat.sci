@@ -9,7 +9,7 @@
 
 // internal function
 
-function tree_out = atomsCatDESCRIPTION( tree_in_1 , tree_in_2 )
+function tree_out = atomsDESCRIPTIONcat( tree_in_1 , tree_in_2 )
 	
 	rhs = argn(2);
 	
@@ -17,18 +17,18 @@ function tree_out = atomsCatDESCRIPTION( tree_in_1 , tree_in_2 )
 	// =========================================================================
 	
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsCatDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsDESCRIPTIONcat",1));
 	end
 	
 	// Check input arguments type
 	// =========================================================================
 	
 	if type(tree_in_1) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsCatDESCRIPTION",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONcat",1));
 	end
 	
 	if type(tree_in_2) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsCatDESCRIPTION",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDESCRIPTIONcat",2));
 	end
 	
 	// tree_in_1 is the master tree :
@@ -50,7 +50,7 @@ function tree_out = atomsCatDESCRIPTION( tree_in_1 , tree_in_2 )
 			package_versions_struct = tree_in_2(package_names(i));
 			
 			if type(package_versions_struct) <> 17 then
-				error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsCatDESCRIPTION",1));
+				error(msprintf(gettext("%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"),"atomsDESCRIPTIONcat",1));
 			end
 			
 			package_versions      = getfield(1,package_versions_struct);

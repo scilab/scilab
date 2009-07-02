@@ -113,7 +113,7 @@ function packages = atomsGetTOOLBOXES(update)
 			// concatenate the description with the 
 			// global struct
 			// ----------------------------------------
-			packages = atomsCatDESCRIPTION( packages , this_description );
+			packages = atomsDESCRIPTIONcat( packages , this_description );
 			
 			// file_out is no more needed
 			// ----------------------------------------
@@ -132,7 +132,7 @@ function packages = atomsGetTOOLBOXES(update)
 		for i=1:size(description_files,"*")
 			if ~ isempty(fileinfo(description_files(i))) then
 				description = atomsDESCRIPTIONread(description_files(i));
-				packages    = atomsCatDESCRIPTION( packages , description );
+				packages    = atomsDESCRIPTIONcat( packages , description );
 			end
 		end
 		
