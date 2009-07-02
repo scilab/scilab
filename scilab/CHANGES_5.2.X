@@ -96,6 +96,11 @@ Online Help :
 
  - Sub-Chapters are now allowed (See SEP #24)
  - xmltochm exports help to chm format (Windows)
+ 
+ call_scilab module :
+ ====================
+ - a example to call scilab from C#
+   see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
 
 
 char encoding bugs :

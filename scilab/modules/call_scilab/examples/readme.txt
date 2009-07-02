@@ -1,4 +1,4 @@
-Examples about the Scilab <=> C/C++/Fortran languages
+Examples about the Scilab <=> C/C++/C#/Fortran languages
 
 call_scilab/c :
 How to call scilab from C
@@ -9,6 +9,8 @@ How to call scilab from C++
 call_scilab/fortran :
 How to call scilab from fortran
 
+call_scilab/C# :
+How to call scilab from #
 
-INRIA 2007
+DIGITEO - 2008 
 A.C
