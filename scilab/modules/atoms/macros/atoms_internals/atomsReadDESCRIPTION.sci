@@ -13,33 +13,25 @@
 //  - TOOLBOXES file present in the differents repositories
 //  - DESCRIPTION file present in one package
 
-function description_out = atomsReadDESCRIPTION(file_in,description_in)
+function description_out = atomsReadDESCRIPTION(file_in)
 	
 	// Check input parameters
 	// =========================================================================
 	
 	rhs  = argn(2);
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsReadDESCRIPTION",1,2));
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsReadDESCRIPTION",1));
 	end
 	
 	if regexp( file_in,"/(TOOLBOXES|DESCRIPTION)/") == [] then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"),"atomsReadDESCRIPTION",1));
 	end
 	
-	if rhs==2 & type(description_in)<>17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: mlist expected.\n"),"atomsReadDESCRIPTION",2));
-	end
-	
 	// Init the output argument
 	// =========================================================================
 	
 	description_out = struct();
-	
-	if rhs==2 then
-		description_out = description_in;
-	end
 	
 	// Start Read the file
 	// =========================================================================	

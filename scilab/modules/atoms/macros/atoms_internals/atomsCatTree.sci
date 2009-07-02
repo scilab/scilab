@@ -23,18 +23,18 @@ function tree_out = atomsCatTree( tree_in_1 , tree_in_2 )
 	// =========================================================================
 	
 	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsMergeTree",1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsCatTree",1));
 	end
 	
 	// Check input arguments type
 	// =========================================================================
 	
 	if type(tree_in_1) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsMergeTree",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsCatTree",1));
 	end
 	
 	if type(tree_in_2) <> 17 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsMergeTree",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsCatTree",2));
 	end
 	
 	// tree_in_1 is the master tree :

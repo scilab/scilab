@@ -67,29 +67,29 @@ function packages = atomsGetTOOLBOXES(update)
 	packages_path      = pathconvert(SCIHOME+"/.atoms/packages",%F);
 	packages_path_info = fileinfo(packages_path);
 	
-	// If necessary, loop on available mirrors and download TOOLBOXES files
+	// If necessary, rebuild the struct
 	// =========================================================================
 	
 	if (packages_path_info == []) ..
 		| (getdate("s") - packages_path_info(7) > 3600) ..
 		| (rhs == 1 & update) then
 		
-		nb_TOOLBOXES = 0;
-		TOOLBOXES    = []; // Liste des paths des fichiers TOOLBOXES
+		// loop on available repositories
+		// =====================================================================
 		
-		mirrors = atomsRepositories();
-		mirrors = mirrors(:,1);
+		repositories = atomsRepositories();
+		repositories = repositories(:,1);
 		
 		if ~isdir(pathconvert(TMPDIR+"/atoms")) then
 			mkdir(pathconvert(TMPDIR+"/atoms"));
 		end
 		
-		for i=1:size(mirrors,"*")
+		for i=1:size(repositories,"*")
 			
 			// Building url & file_out
 			// ----------------------------------------
-			url            = mirrors(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
-			file_out       = pathconvert(TMPDIR+"/atoms/"+sprintf("TOOLBOXES_%d",nb_TOOLBOXES),%f);
+			url            = repositories(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
+			file_out       = pathconvert(TMPDIR+"/atoms/TOOLBOXES",%f);
 			
 			// Remove the existing file
 			// ----------------------------------------
@@ -101,35 +101,91 @@ function packages = atomsGetTOOLBOXES(update)
 			// ----------------------------------------
 			atomsDownload(url,file_out);
 			
-			// No error : download successful
+			// Read the download description file
 			// ----------------------------------------
-			nb_TOOLBOXES = nb_TOOLBOXES + 1;
-			TOOLBOXES    = [ TOOLBOXES ; file_out ];
+			this_description = atomsReadDESCRIPTION(file_out);
+			
+			// Add information about the repository
+			// ----------------------------------------
+			this_description = atomsAddRepositoryInfo(this_description,repositories(i));
+			
+			// concatenate the description with the 
+			// global struct
+			// ----------------------------------------
+			packages = atomsCatDESCRIPTION( packages , this_description );
+			
+			// file_out is no more needed
+			// ----------------------------------------
+			mdelete(file_out);
 			
 		end
 		
-		if nb_TOOLBOXES == 0 then
-			error(msprintf(gettext("%s: Internal Error : No TOOLBOXES file has successfully been downloaded.\n"),"atomsGetTOOLBOXES"));
-		end
+		// Get DESCRIPTIONs from binary files
+		// =====================================================================
 		
-		for i=1:size(TOOLBOXES,"*")
-			packages = atomsReadDESCRIPTION( TOOLBOXES(i) , packages );
-			mdelete(TOOLBOXES(i));
-		end
-		
+		DESCRIPTION_files = listfiles( ..
+			[ pathconvert(SCI+"/.atoms") + "DESCRIPTION_*.bin" ; .. 
+			  pathconvert(SCIHOME+"/atoms") + "DESCRIPTION_*.bin" ] );
+			
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
 		// Save the "packages" variable in a file
-		
+		// ---------------------------------------------------------------------
 		if ~isdir(pathconvert(SCIHOME+"/.atoms")) then
 			mkdir(pathconvert(SCIHOME+"/.atoms"));
 		end
 		
 		save(packages_path,packages)
 		
+	// Just load from file
+	// =========================================================================
+	
 	else
-		
-		// Just load from file
 		load(packages_path,"packages");
+	end
+	
+endfunction
+
+// =============================================================================
+// Name       : atomsAddRepositoryInfo
+// Author     : Pierre MARECHAL <pierre.marechal@scilab.org>
+// Copyright  : (C) 2009 - DIGITEO
+//
+// => Add the field "repository" in each version of each package
+//
+// =============================================================================
+
+function tree_out = atomsAddRepositoryInfo( tree_in , repository )
+	
+	tree_out = tree_in;
+	
+	package_names      = getfield(1,tree_in);
+	package_names(1:2) = [];
+	
+	for i=1:size(package_names,"*")
 		
+		package_versions_struct = tree_out(package_names(i));
+		package_versions        = getfield(1,package_versions_struct);
+		package_versions(1:2)   = [];
+		
+		for j=1:size(package_versions,"*")
+			this_version_struct                          = package_versions_struct(package_versions(j));
+			this_version_struct("repository")            = repository;
+			package_versions_struct(package_versions(j)) = this_version_struct;
+		end
+		
+		tree_out(package_names(i)) = package_versions_struct;
 	end
 	
 endfunction
