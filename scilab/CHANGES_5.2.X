@@ -272,3 +272,6 @@ Bug fixes:
 * bug 4606 fixed - example of 'link' in help does not work
 
 * bug 4611 fixed - what function doesn't returns a complete list of functions.
+
+* bug 4626 fixed - when using the CLI version, completion make Scilab crash
+
