@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- ENGLISH IMPOSED -->
+
 a=0;b=1;c=2;
 t=0:0.1:1;
 sl=syslin('c',a,b,c);

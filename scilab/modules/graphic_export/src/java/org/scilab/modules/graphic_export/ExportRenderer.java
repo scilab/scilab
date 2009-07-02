@@ -52,6 +52,9 @@ public abstract class ExportRenderer implements GLEventListener {
 	private static String fileName;
 	private static int fileType;
 	private static int fileOrientation;
+
+    	/** File extension */
+        private static String fileExtension;
 	
 	/** give the type of the error */
 	private static int errorNumber;
@@ -66,6 +69,7 @@ public abstract class ExportRenderer implements GLEventListener {
 		this.fileName = fileName;
 		this.fileType = fileType;	
 		this.fileOrientation = fileOrientation;
+		this.fileExtension = "";
 		removeExtension();
 	}	
 
@@ -146,6 +150,22 @@ public abstract class ExportRenderer implements GLEventListener {
 	}
 
 	/**
+	 * getter 
+	 * @return the fileExtension
+	 */
+	public static String getFileExtension() {
+		return fileExtension;
+	}
+
+	/**
+	 * setter 
+	 * @param fileExtension the fileExtension to set
+	 */
+	public void setFileExtension(String fileExtension) {
+		this.fileExtension = fileExtension;
+	}
+
+	/**
 	 * Function allowing to format the extension of the screen-shot file  
 	 */
 	public void removeExtension() {		
@@ -156,23 +176,35 @@ public abstract class ExportRenderer implements GLEventListener {
 			suffix = suffix.toLowerCase();
 			if (suffix.equalsIgnoreCase("bmp") && this.fileType == ExportRenderer.BMP_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "bmp";
 			} else if (suffix.equalsIgnoreCase("gif") && this.fileType == ExportRenderer.GIF_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "gif";
 			} else if (suffix.equalsIgnoreCase("jpg") && this.fileType == ExportRenderer.JPG_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "jpg";
+			} else if (suffix.equalsIgnoreCase("jpeg") && this.fileType == ExportRenderer.JPG_EXPORT) {
+				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "jpeg";
 			} else if (suffix.equalsIgnoreCase("png") && this.fileType == ExportRenderer.PNG_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "png";
 			} else if (suffix.equalsIgnoreCase("ppm") && this.fileType == ExportRenderer.PPM_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "ppm";
 			} else if (suffix.equalsIgnoreCase("eps") && this.fileType == ExportRenderer.EPS_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "eps";
 			} else if (suffix.equalsIgnoreCase("pdf") && this.fileType == ExportRenderer.PDF_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "pdf";
 			} else if (suffix.equalsIgnoreCase("svg") && this.fileType == ExportRenderer.SVG_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
+				this.fileExtension = "svg";
 			} else if (suffix.equalsIgnoreCase("ps") && this.fileType == ExportRenderer.PS_EXPORT) {
 				this.fileName = this.fileName.substring(0, pos);
-			}		
+				this.fileExtension = "ps";
+			}	
 		}
 	}
 

@@ -1841,7 +1841,7 @@ Optional Packages:
   --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
-  --with-hdf5             Compile with the HDF5 library
+  --without-hdf5          Disable the interface to the HDF5 library
   --without-pvm           Disable the interface to the PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library directory

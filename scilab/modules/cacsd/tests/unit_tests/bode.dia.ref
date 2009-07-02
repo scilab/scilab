@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 function r=checkbode(h,leg)
   fig=gcf();
   r=%t
@@ -23,7 +24,7 @@ function r=checkbode(h,leg)
     [frq,rf]=repfreq(h(k,1),pm.data(:,1));[phi,d]=phasemag(rf);
     if norm(d(:)-pm.data(:,2))> 1d-15 then r=%f;return,end
   end
-  if argn(2)==2 then
+  if argn(2)==2 then 
     if size(ap.children,'*')<2 then r=%f;return,end
     if ap.children(1).type<>'Legend' then r=%f;return,end
     if size(ap.children(1).links,'*')<>n then r=%f;return,end

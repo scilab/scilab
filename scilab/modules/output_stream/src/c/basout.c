@@ -110,16 +110,18 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 		{
 			// it write a INPUT command line in diary
 		}
-
-		if (*lunit == C2F(iop).wio)
-		{
+		else
+		  {
+		    if (*lunit == C2F(iop).wio)
+		      {
 			string[nbcharacters] = '\0';
 			diary(string,TRUE);
-		}
-		else
-		{
+		      }
+		    else
+		      {
 			C2F(basouttofile)(lunit, string,nbcharacters);
-		}
+		      }
+		  }
 	}
 	return 0;
 } 

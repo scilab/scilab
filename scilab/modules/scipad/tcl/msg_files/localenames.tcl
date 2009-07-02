@@ -30,6 +30,7 @@
 # (see http://wiki.tcl.tk/656)
 # If I would have used UTF-8, extended characters would be read correctly
 # only if the LANG environment supported UTF8.
+::msgcat::mcset $lang "ca_es locale" "Catalan (ca_es)"
 ::msgcat::mcset $lang "da_dk locale" "Dansk (da_dk)"
 ::msgcat::mcset $lang "de_de locale" "Deutsch (de_de)"
 ::msgcat::mcset $lang "fr_fr locale" "Fran\u00E7ais (fr_fr)"
