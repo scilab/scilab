@@ -18,24 +18,14 @@
 #include "Scierror.h"
 #include "localization.h"
 
-/*--------------------------------------------------------------------------*/
+/****************************************************************/
 extern int C2F(scicorr)(char *id,unsigned long fname_len );
-/*--------------------------------------------------------------------------*/
-int sci_corr0(char *fname,unsigned long fname_len)
-{
-	C2F(scicorr)(fname,fname_len);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 /****************************************************************/
-
-/****************************************************************/
-/****************************************************************/
-
-int corr_usual(void);
-int corr_updates(char *fname);
+int corr_default(char *fname, unsigned long fname_len);
+int corr_updates(char *fname, unsigned long fname_len);
 int corr_fft(char *fname, unsigned long fname_len);
 
+/* dispatch to specialized gateways according to mode (default, 'updt', 'fft') */
 int sci_corr(char *fname, unsigned long fname_len)
 {
   int rows, cols, procedure_index;
@@ -54,42 +44,54 @@ int sci_corr(char *fname, unsigned long fname_len)
       break;
     case 'u': /** updates case **/
       CheckRhs(3,5);
-      corr_updates(fname);
+      corr_updates(fname, fname_len);
       break;
     default:
       Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 1, "'fft', 'update'");
       return 1;
     }
   }
-  else { /** usual case **/
+  else { /** default case **/
     CheckRhs(2,3);
-    corr_usual();
+    corr_default(fname, fname_len);
   }
 
   return 0;
 }
 
-/* assert: RhsVar must have been checked to hold 2 to 3 elements */
-int corr_usual(void) {
-
-  extern void C2F(tscccf)(double *x, double *y, int*length,
+int corr_default(char *fname, unsigned long fname_len) {
+  extern void C2F(tscccf)(double *x, double *y, int *length,
 			  double *cxy, double *xymean, int *lag, int *error);
 
-  int length, lags_number, error, rows, cols;
+  int length, lags_number, error, rows1, cols1, rows2, cols2, rows3, cols3;
   double *x, *y, *crossvariance, *mean, *argument;
 
-  /* TODO: check inputs */
-  GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
-  x = argument;
-  length = rows * cols;
-  GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
-  if (Rhs == 2) {
+  GetVarDimension(1, &rows1, &cols1);
+  length = rows1 * cols1;
+  if ((GetType(1) != sci_matrix) ||
+      (rows1 != 1 && cols1 != 1)) {
+    Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
+    return 1;
+  }
+  GetRhsVarMatrixDouble(1, &rows1, &cols1, &x);
+
+  /* interpret 2nd argument according to number of arguments */
+  GetRhsVarMatrixDouble(2, &rows2, &cols2, &argument);
+  if (Rhs == 2) { 
+    if (rows2 != 1 || cols2 != 1) {
+      Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
+      return 1;
+    }
     y = x;
     lags_number = (int)argument[0];
   }
   else {
+    if (rows1 != rows2 || cols1 != cols2) {
+      Scierror(999, _("%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"), fname, 1, 2);
+      return 1;
+    }
     y = argument;
-    GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
+    GetRhsVarMatrixDouble(3, &rows3, &cols3, &argument);
     lags_number = (int)argument[0];
   }
 
@@ -105,9 +107,7 @@ int corr_usual(void) {
   return error;
 }
 
-/* assert: RhsVar must have been checked to hold 4 to 5 elements */
 int corr_fft(char *fname, unsigned long fname_len) {
-
   extern void C2F(cmpse2)(int *m, int *n, int *mode,
 			  void (*bgetx)(double *, int *, int *),
 			  void (*bgety)(double *, int *, int *),
@@ -120,8 +120,6 @@ int corr_fft(char *fname, unsigned long fname_len) {
   extern void C2F(setdgetx)(char *name, int *rep);
   extern void C2F(setdgety)(char *name, int *rep);
 
-
-  // enum {self = 3, cross = 4} correlation_mode = self;
   enum {self = 2, cross = 3} correlation_mode = self;
   int length, lags_number, error, rows, cols, n, mm, lag, res;
   double *xa, *xr, *xi, *zr, *zi, *crossvariance, *mean, *argument;
@@ -182,7 +180,7 @@ int corr_fft(char *fname, unsigned long fname_len) {
 }
 
 /* assert: RhsVar must have been checked to hold 4 to 5 elements */
-int corr_updates(char *fname) {
+int corr_updates(char *fname, unsigned long fname_len) {
 
   extern void C2F(cmpse3)(int *m, int *n, int *mode, double *x, double *y,
 			  double *xr, double *xi,
@@ -229,16 +227,13 @@ int corr_updates(char *fname) {
   
   /* w ****************/
   w_position = (correlation_mode == self) ? 3 : 4;
-  printf("w position: %d, corr mode: %s\n", w_position, (correlation_mode == self) ? "self" : "cross");
   /* dimension ought to be a power of 2 (could be checked here) */
   /* GetVarDimension(w_position, &rows, &cols); */
   if (iIsComplex(w_position)) {
-    printf("complex\n");
     GetRhsVarMatrixComplex(w_position, &rows, &cols, &z_real, &z_imaginary);
     mfft = rows * cols;
   }
   else {
-    printf("real\n");
     GetRhsVarMatrixDouble(w_position, &rows, &cols, &z_real);
     mfft = rows * cols;
     z_imaginary = (double *)MALLOC(mfft * sizeof(double));

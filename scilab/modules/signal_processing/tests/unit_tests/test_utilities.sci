@@ -46,14 +46,15 @@ endfunction
 // unfortunately, max can't be overloaded on lists
 // (since list max is already hardwrired)
 
-// check whether objects a and b differ from less than epsilon
+// check whether objects a and b differ from less than 2*epsilon
+// (error on a and b: eps => error on a-b: 2eps)
 // (works on any list-matrix combination)
 // epsilon defaults to %eps if not provided by calling sequence
 function r=match(a,b,epsilon)
 if ~isdef('epsilon') then
   epsilon = %eps;
 end
-r = (list_max(abs(a-b)) < epsilon);
+r = (list_max(abs(a-b)) <= 2*epsilon);
 endfunction
 
 // because of test mechanism restrictions...

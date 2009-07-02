@@ -14,23 +14,24 @@
 #include <string.h>
 #include "gw_signal.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/
+
+/****************************************************************/
 static gw_generic_table Tab[]=
 {
-	{sci_ffir,   "ffir"},
-	{sci_fft,    "fft"},
-	{sci_fiir,   "fiir"},
-	{sci_corr,   "corr"},
-	{sci_rpem,   "rpem"},
-	{sci_amell,  "amell"},
-	{sci_delip,  "delip"},
-	{sci_remez,  "remez"},
-	{sci_syredi, "syredi"}
+  {NULL,       ""}, // placeholder
+  {sci_fft,    "fft"},
+  {NULL,       ""}, // placeholder
+  {sci_corr,   "corr"},
+  {sci_rpem,   "rpem"},
+  {sci_amell,  "amell"},
+  {sci_delip,  "delip"},
+  {sci_remez,  "remez"},
+  {sci_syredi, "syredi"}
 };
-/*--------------------------------------------------------------------------*/
+/****************************************************************/
 int gw_signal_processing(void)
 {  
-	callFunctionFromGateway(Tab);
-	return 0;
+  callFunctionFromGateway(Tab);
+  return 0;
 }
-/*--------------------------------------------------------------------------*/
+/****************************************************************/
