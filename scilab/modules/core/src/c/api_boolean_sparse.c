@@ -103,7 +103,7 @@ int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
 	return 0;
 }
 
-int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -115,7 +115,7 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 
-  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -141,7 +141,7 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
 	return 0;
 }
 
-int readNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
+int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	int* piAddr				= NULL;
 	int* piNbItemRow	= 0;
