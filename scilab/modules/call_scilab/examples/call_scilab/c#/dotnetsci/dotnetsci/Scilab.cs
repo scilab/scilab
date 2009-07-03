@@ -105,8 +105,7 @@ namespace DotNetScilab
             int iCols = 0;
             int[] iDim = new int[2];
 
-            double[] matrixDouble = new double[0];
-            readNamedMatrixOfDouble(matrixName, &iRows, &iCols, matrixDouble);
+            readNamedMatrixOfDouble(matrixName, &iRows, &iCols, null);
 
             iDim[0] = iRows;
             iDim[1] = iCols;
