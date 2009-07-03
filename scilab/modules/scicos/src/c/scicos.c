@@ -274,7 +274,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 #if defined(linux) && defined(__i386__)
   setFPUToExtended();
 #endif
-
+  sciprint("entering scicos %d\n",*flag__);
   /*     Copyright INRIA */
   /* iz,izptr are used to pass block labels */
   TCritWarning = 0;
@@ -425,6 +425,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
   debug_block=-1; /* no debug block for start */
   C2F(cosdebugcounter).counter=0;
 
+  /** Create Block's array **/
   if((Blocks=MALLOC(sizeof(scicos_block)*nblk))== NULL ) {
     *ierr =5;
     if(nx>0) FREE(xprop);
@@ -433,7 +434,10 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     return 0;
   }
 
-  for (kf = 0; kf < nblk; ++kf) {
+  /** Setting blocks properties for each entry in Block's array **/
+
+  /* 1 : type and pointer on simulation function */
+  for (kf = 0; kf < nblk; ++kf) { /*for each block */
     C2F(curblk).kfun = kf+1;
     i=funptr[kf];
     Blocks[kf].type=funtyp[kf+1];
@@ -498,22 +502,25 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 				sciblk4 is called */
     }
 
+    /* 2 : Dimension properties */
     Blocks[kf].ztyp=ztyp[kf+1];
-    Blocks[kf].nx=xptr[kf+2]-xptr[kf+1];
-    Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];
-    Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];
-    Blocks[kf].noz=ozptr[kf+2]-ozptr[kf+1];
-    Blocks[kf].nrpar=rpptr[kf+2]-rpptr[kf+1];
-    Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];
-    Blocks[kf].nopar=opptr[kf+2]-opptr[kf+1];
+    Blocks[kf].nx=xptr[kf+2]-xptr[kf+1]; /* continuuous state dimension*/
+    Blocks[kf].ng=zcptr[kf+2]-zcptr[kf+1];/* number of zero crossing surface*/
+    Blocks[kf].nz=zptr[kf+2]-zptr[kf+1];/* number of double discrete state*/
+    Blocks[kf].noz=ozptr[kf+2]-ozptr[kf+1];/* number of other discrete state*/
+    Blocks[kf].nrpar=rpptr[kf+2]-rpptr[kf+1];/* size of double precision parameter vector*/
+    Blocks[kf].nipar=ipptr[kf+2]-ipptr[kf+1];/* size of integer precision parameter vector*/
+    Blocks[kf].nopar=opptr[kf+2]-opptr[kf+1];/* number of other parameters (matrix, data structure,..)*/
     Blocks[kf].nin=inpptr[kf+2]-inpptr[kf+1]; /* number of input ports */
     Blocks[kf].nout=outptr[kf+2]-outptr[kf+1];/* number of output ports */
 
+     /* 3 : input port properties */
     /* in insz, we store :
      *  - insz[0..nin-1] : first dimension of input ports
      *  - insz[nin..2*nin-1] : second dimension of input ports
      *  - insz[2*nin..3*nin-1] : type of data of input ports
      */
+    /* allocate size and pointer arrays (number of input ports)*/
     Blocks[kf].insz=NULL;
     Blocks[kf].inptr=NULL;
     if (Blocks[kf].nin!=0) {
@@ -530,17 +537,18 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     }
     for(in=0;in<Blocks[kf].nin;in++) {
       lprt=inplnk[inpptr[kf+1]+in];
-      Blocks[kf].inptr[in]=outtbptr[lprt-1];
-      Blocks[kf].insz[in]=outtbsz[lprt-1];
-      Blocks[kf].insz[Blocks[kf].nin+in]=outtbsz[(lprt-1)+nlnk];
-      Blocks[kf].insz[2*Blocks[kf].nin+in]=outtbtyp[lprt-1];
+      Blocks[kf].inptr[in]=outtbptr[lprt-1];/* pointer on the data*/
+      Blocks[kf].insz[in]=outtbsz[lprt-1];/* row dimension of the input port*/
+      Blocks[kf].insz[Blocks[kf].nin+in]=outtbsz[(lprt-1)+nlnk];/* column dimension of the input port*/
+      Blocks[kf].insz[2*Blocks[kf].nin+in]=outtbtyp[lprt-1];/*type of data of the input port*/
     }
-
+    /* 4 : output port properties */
     /* in outsz, we store :
      *  - outsz[0..nout-1] : first dimension of output ports
      *  - outsz[nout..2*nout-1] : second dimension of output ports
      *  - outsz[2*nout..3*nout-1] : type of data of output ports
      */
+    /* allocate size and pointer arrays (number of output ports)*/
     Blocks[kf].outsz=NULL;
     Blocks[kf].outptr=NULL;
     if (Blocks[kf].nout!=0) {
@@ -555,15 +563,16 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 	return 0;
       }
     }
-    for(out=0;out<Blocks[kf].nout;out++) {
+    /* set the values */
+    for(out=0;out<Blocks[kf].nout;out++) { /*for each output port */
       lprt=outlnk[outptr[kf+1]+out];
-      Blocks[kf].outptr[out]=outtbptr[lprt-1];
-      Blocks[kf].outsz[out]=outtbsz[lprt-1];
-      Blocks[kf].outsz[Blocks[kf].nout+out]=outtbsz[(lprt-1)+nlnk];
-      Blocks[kf].outsz[2*Blocks[kf].nout+out]=outtbtyp[lprt-1];
+      Blocks[kf].outptr[out]=outtbptr[lprt-1]; /*pointer on data */
+      Blocks[kf].outsz[out]=outtbsz[lprt-1]; /*row dimension of output port*/
+      Blocks[kf].outsz[Blocks[kf].nout+out]=outtbsz[(lprt-1)+nlnk]; /*column dimension of output ports*/
+      Blocks[kf].outsz[2*Blocks[kf].nout+out]=outtbtyp[lprt-1];/*type of data of output port */
     }
 
-    /* evtout */
+    /* 5 : event output port properties */
     Blocks[kf].evout=NULL;
     Blocks[kf].nevout=clkptr[kf+2] - clkptr[kf+1];
     if (Blocks[kf].nevout!=0) {
@@ -574,10 +583,10 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       }
     }
 
-    /* z */
+    /* 6 : pointer on the begining of the double discrete state array ( z) */
     Blocks[kf].z=&(z__[zptr[kf+1]-1]);
 
-    /* oz */
+    /* 7 : type, size and pointer on the other discrete states  data structures (oz) */
     Blocks[kf].ozsz=NULL;
     if (Blocks[kf].noz==0) {
       Blocks[kf].ozptr=NULL;
@@ -597,13 +606,13 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       Blocks[kf].oztyp=&(oztyp[ozptr[kf+1]-1]);
     }
 
-    /* rpar */
+    /* 8 : pointer on the begining of the double parameter array ( rpar ) */
     Blocks[kf].rpar=&(rpar[rpptr[kf+1]-1]);
 
-    /* ipar */
+    /* 9 : pointer on the begining of the integer parameter array ( ipar ) */
     Blocks[kf].ipar=&(ipar[ipptr[kf+1]-1]);
 
-    /* opar */
+    /* 10 : type, size and pointer on the other parameters  data structures (opar) */
     Blocks[kf].oparsz=NULL;
     if (Blocks[kf].nopar==0) {
       Blocks[kf].oparptr=NULL;
@@ -623,7 +632,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       Blocks[kf].opartyp=&(opartyp[opptr[kf+1]-1]);
     }
 
-    /* res */
+     /* 10 : pointer on the beginning of the residual array (res) */
     Blocks[kf].res=NULL;
     if (Blocks[kf].nx!=0) {
       if ((Blocks[kf].res=MALLOC(Blocks[kf].nx*sizeof(double)))==NULL){
@@ -633,7 +642,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       }
     }
 
-    /* label */
+    /* 11 : block label (label) */
     i1=izptr[kf+2]-izptr[kf+1];
     if ((Blocks[kf].label=MALLOC(sizeof(char)*(i1+1)))==NULL){
       FREE_blocks();
@@ -643,7 +652,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     Blocks[kf].label[i1]='\0';
     C2F(cvstr)(&i1,&(iz[izptr[kf+1]-1]),Blocks[kf].label,&job,i1);
 
-    /* jroot */
+    /* 12 : block array of crossed surfaces (jroot) */
     Blocks[kf].jroot=NULL;
     if (Blocks[kf].ng!=0) {
       if ((Blocks[kf].jroot=CALLOC(Blocks[kf].ng,sizeof(int)))==NULL){
@@ -653,27 +662,28 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       }
     }
 
-    /* work */
+    /* 13 : block work array  (work) */
     Blocks[kf].work=(void **)(((double *)work)+kf);
 
-    /* mode */
+    /* 14 : block modes  array  (mode) */
     Blocks[kf].nmode=modptr[kf+2]-modptr[kf+1];
     if (Blocks[kf].nmode!=0) {
       Blocks[kf].mode=&(mod[modptr[kf+1]-1]);
     }
 
-    /* xprop */
+    /* 15 : block xprop  array  (xprop) */  
     Blocks[kf].xprop=NULL;
     if (Blocks[kf].nx!=0) {
       Blocks[kf].xprop=&(xprop[xptr[kf+1]-1]);
     }
 
-    /* g */
+    /* 16 : pointer on the zero crossing surface computation function of the block (g) */
     Blocks[kf].g=NULL;
     if (Blocks[kf].ng!=0) {
       Blocks[kf].g=&(g[zcptr[kf+1]-1]);
     }
   }
+  /** all block properties are stored in the Blocks array **/
 
   /* iwa */
   iwa=NULL;
@@ -716,8 +726,8 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       *ierr=ierr0;
       C2F(curblk).kfun = kfun0;
     }
-  } else if (*flag__ == 2) { /*run*/
 
+  } else if (*flag__ == 2) { /*run*/
 
     /*     integration */
     if (C2F(cmsolver).solver == 0) {      /*  CVODE: Method: BDF,   Nonlinear solver= NEWTON     */
@@ -784,7 +794,6 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
   }
 
 
-
   FREE(iwa);
   FREE_blocks();
 
@@ -841,7 +850,6 @@ static void cosini(double *told)
 
   int ii = 0, kk = 0; /*local counters*/
   int sszz = 0;  /*local size of element of outtb*/
-
   /*Allocation of arrays for outtb*/
   for (ii=0;ii<nlnk;ii++)
     {
@@ -933,6 +941,7 @@ static void cosini(double *told)
       }
     }
   }
+
   /*     point-fix iterations */
   flag__ = 6;
   for (i = 1; i <= nblk + 1; ++i) { /*for each block*/
@@ -949,7 +958,7 @@ static void cosini(double *told)
 	}
       }
     }
-
+ 
     flag__ = 6;
     for (jj = 1; jj <= ncord; ++jj) { /*for each continous block*/
       C2F(curblk).kfun = cord[jj];
@@ -1145,7 +1154,6 @@ static void cossim(double *told)
   void *cvode_mem = NULL;
   int flag = 0, flagr = 0;
   int cnt=0;
-
   jroot=NULL;
   if (ng!=0) {
     if((jroot=MALLOC(sizeof(int)*ng))== NULL ){
@@ -1276,7 +1284,6 @@ static void cossim(double *told)
   /*--discrete zero crossings----dzero--------------------*/
 
   /*     main loop on time */
-
   while(*told < *tf) {
     while (ismenu()) //** if the user has done something, do the actions
       {
@@ -2462,6 +2469,7 @@ void callf(double *t, scicos_block *block, int *flag)
   }
 
   /* switch loop */
+  //sciprint("callf type=%d flag=%d\n",block->type,flagi);
   switch (block->type) {
     /*******************/
     /* function type 0 */
@@ -2773,7 +2781,7 @@ void callf(double *t, scicos_block *block, int *flag)
       return; /* exit */
     }
   }
-
+  // sciprint("callf end  flag=%d\n",*flag);
   /* Implicit Solver & explicit block & flag==0 */
   /* adjust continuous state vector after call */
   if(solver==100 && block->type<10000 && *flag==0) {
