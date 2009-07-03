@@ -12,7 +12,7 @@
 package org.scilab.modules.gui.bridge.filechooser;
 
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -79,18 +79,18 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * @param figureId exported figure number
 	 */
 	public void exportCustomFileChooser(int figureId) {		
-		Vector<FileMask> v = new Vector<FileMask> (12);  /* The order does matter */
-		v.addElement(new FileMask(bmp,bmpDesc));
-		v.addElement(new FileMask(gif,gifDesc));
-		v.addElement(new FileMask(jpg,jpgDesc));
-		v.addElement(new FileMask(png,pngDesc));
-		v.addElement(new FileMask(ppm,ppmDesc));
-		v.addElement(new FileMask(emf,emfDesc));
-		v.addElement(new FileMask(eps,epsDesc));
-		v.addElement(new FileMask(fig,figDesc));
-		v.addElement(new FileMask(pdf,pdfDesc));
-		v.addElement(new FileMask(svg,svgDesc));
-		v.addElement(new FileMask(allFiles,allFilesDesc)); // should always be at the last position
+		ArrayList<FileMask> v = new ArrayList<FileMask> (12);  /* The order does matter */
+		v.add(new FileMask(bmp,bmpDesc));
+		v.add(new FileMask(gif,gifDesc));
+		v.add(new FileMask(jpg,jpgDesc));
+		v.add(new FileMask(png,pngDesc));
+		v.add(new FileMask(ppm,ppmDesc));
+		v.add(new FileMask(emf,emfDesc));
+		v.add(new FileMask(eps,epsDesc));
+		v.add(new FileMask(fig,figDesc));
+		v.add(new FileMask(pdf,pdfDesc));
+		v.add(new FileMask(svg,svgDesc));
+		v.add(new FileMask(allFiles,allFilesDesc)); // should always be at the last position
 
 		super.setDialogTitle(Messages.gettext("Export"));
 		super.setApproveButtonText(Messages.gettext("Export"));
@@ -101,14 +101,13 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		this.figureId = figureId;
 		
 		for (int i = 0; i < v.size(); i++) {
-			FileMask fm = (FileMask)v.elementAt(i);
-			if (i==v.size()-1){
+			FileMask fm = (FileMask)v.get(i);
+			if (i==v.size()-1){ /* Last case ... all files, remove the extension */
 				fm.clearExtensions();
 			}
 			super.addChoosableFileFilter(fm);
 		}
-				
-								   
+
         //Preview panel 
 		JPanel panelPreview = new JPanel();
 		

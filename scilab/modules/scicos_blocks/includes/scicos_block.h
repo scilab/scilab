@@ -34,45 +34,45 @@ extern void scicos_free(void *p);
 typedef void (*voidg)();
 
 typedef struct {   
-  int nevprt;	   
-  voidg funpt ;	   
-  int type;	   
-  int scsptr;	   
-  int nz;	   
-  double *z;	   
-  int noz;	   
-  int *ozsz;	   
-  int *oztyp;	   
-  void **ozptr;	   
-  int nx;	   
-  double *x;	   
-  double *xd;	   
-  double *res;	   
-  int *xprop;	   
-  int nin;	   
-  int *insz;	   
-  double **inptr;  
-  int nout;	   
-  int *outsz;	   
-  double **outptr; 
-  int nevout;	   
-  double *evout;   
-  int nrpar;	   
-  double *rpar;	   
-  int nipar;	   
-  int *ipar;	   
-  int nopar;	   
-  int *oparsz;	   
-  int *opartyp;	   
-  void **oparptr;  
-  int ng;	   
-  double *g;	   
-  int ztyp;	   
-  int *jroot;	   
-  char *label;	   
-  void **work;	   
-  int nmode;	   
-  int *mode;	   
+	int nevprt;	   
+	voidg funpt ;	   
+	int type;	   
+	int scsptr;	   
+	int nz;	   
+	double *z;	   
+	int noz;	   
+	int *ozsz;	   
+	int *oztyp;	   
+	void **ozptr;	   
+	int nx;	   
+	double *x;	   
+	double *xd;	   
+	double *res;	   
+	int *xprop;	   
+	int nin;	   
+	int *insz;	   
+	double **inptr;  
+	int nout;	   
+	int *outsz;	   
+	double **outptr; 
+	int nevout;	   
+	double *evout;   
+	int nrpar;	   
+	double *rpar;	   
+	int nipar;	   
+	int *ipar;	   
+	int nopar;	   
+	int *oparsz;	   
+	int *opartyp;	   
+	void **oparptr;  
+	int ng;	   
+	double *g;	   
+	int ztyp;	   
+	int *jroot;	   
+	char *label;	   
+	void **work;	   
+	int nmode;	   
+	int *mode;	   
 } scicos_block;    
 
 
@@ -97,20 +97,20 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
 int write_xml_states(int,const char *, char **, double *);
 
 #if _MSC_VER
-	#ifdef min
-		#undef min
-	#endif 
-	#ifdef max 
-		#undef max
-	#endif 
+#ifdef min
+#undef min
+#endif 
+#ifdef max 
+#undef max
+#endif 
 #endif 
 
 #ifndef max
-	#define max(a,b) ((a) >= (b) ? (a) : (b))
+#define max(a,b) ((a) >= (b) ? (a) : (b))
 #endif 
 
 #ifndef min
-	#define min(a,b) ((a) <= (b) ? (a) : (b))
+#define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
 
 

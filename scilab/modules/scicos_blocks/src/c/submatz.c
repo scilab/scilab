@@ -23,26 +23,26 @@
 /*--------------------------------------------------------------------------*/ 
 void submatz(scicos_block *block,int flag)
 {
-  double *ur;
-  double *ui;
-  double *yr;
-  double *yi;
-  int *r;
-  int nu,mu,i,j,ij,k;
+	int i = 0,j = 0;
 
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  r=GetIparPtrs(block);
-  ur=GetRealInPortPtrs(block,1);
-  ui=GetImagInPortPtrs(block,1);
-  yr=GetRealOutPortPtrs(block,1);
-  yi=GetImagOutPortPtrs(block,1);
-  k=0;
-  for (j=r[2]-1;j<r[3];j++)
-	{for (i=r[0]-1;i<r[1];i++)
-		{ij=i+j*mu;
-		 *(yr+k)=*(ur+ij);
-		 *(yi+k)=*(ui+ij);
-		 k++;}}
+	int mu = GetInPortRows(block,1);
+	int nu = GetInPortCols(block,1);
+	int *r = GetIparPtrs(block);
+	double *ur = GetRealInPortPtrs(block,1);
+	double *ui = GetImagInPortPtrs(block,1);
+	double *yr = GetRealOutPortPtrs(block,1);
+	double *yi = GetImagOutPortPtrs(block,1);
+	int k = 0;
+
+	for (j=r[2]-1;j<r[3];j++)
+	{
+		for (i=r[0]-1;i<r[1];i++)
+		{
+			int ij=i+j*mu;
+			*(yr+k)=*(ur+ij);
+			*(yi+k)=*(ui+ij);
+			k++;
+		}
+	}
 }
 /*--------------------------------------------------------------------------*/ 

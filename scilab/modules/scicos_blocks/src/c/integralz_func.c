@@ -21,12 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void  integralz_func(scicos_block *block,int flag)
 {
- int i;
- double *ur,*ui;
- double *yr,*yi;
+ int i = 0;
+ double *ur = NULL,*ui = NULL;
+ double *yr = NULL,*yi = NULL;
  ur=GetRealInPortPtrs(block,1);
  ui=GetImagInPortPtrs(block,1);
  yr=GetRealOutPortPtrs(block,1);

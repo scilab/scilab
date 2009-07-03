@@ -22,10 +22,11 @@
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "matz_cath.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 void mat_cath(scicos_block *block,int flag)
 {
-	int mu,nu,nin,so,pointerposition,ot,i;
+	int mu = 0,nu = 0,nin = 0,so = 0,pointerposition = 0,ot = 0,i = 0;
 	ot=GetOutType(block,1);
 	mu =GetInPortRows(block,1);
 	if (ot== SCSCOMPLEX_N){

@@ -122,7 +122,7 @@ int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrin
 	return 0;
 }
 
-int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iCols, char** _pstStrings)
+int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -132,7 +132,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 
 	int iTotalLen	= 0;
 
-  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
   Top = Top + Nbvars + 1;
 
 	iRet = getNewVarAddressFromPosition(Top, &piAddr);
@@ -154,12 +154,12 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 	return 0;
 }
 
-int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;
 
-	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	iRet = getVarAddressFromName(_pstName, &piAddr);
 	if(iRet)
 	{
 		return 1;

@@ -158,43 +158,39 @@ int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllDa
 /**
  * Get integer variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piData8 array of integer 8 bits
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger8(char* _pstName, int _iNameLen, int _iRows, int _iCols, char* _pcData8);
+int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _pcData8);
 
 /**
  * Get integer variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piData16 array of integer 16 bits
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger16(char* _pstName, int _iNameLen, int _iRows, int _iCols, short* _psData16);
+int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _psData16);
 
 /**
  * Get integer variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piData32 array of integer 32 bits
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int _iCols, int* _piData32);
+int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32);
 
 /**
  * Get integer variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piData64 array of integer 64 bits
@@ -202,57 +198,52 @@ int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int 
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int _iCols, long long* _pllData64);
+int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _pllData64);
 #endif
 
 /**
  * Get integer precision ( 8, 16, 32, 64 )
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length
  * @param[out] _piPrecison return integer precision ( 8, 1-, 32, 64 )
  */
-int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrecision);
+int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
 
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piData8 return array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger8(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, char* _pcData8);
+int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piData16 return array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger16(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, short* _psData16);
+int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _psData16);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piData32 return array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piData32);
+int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piData64 return array of integer 64 bits
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, long long* _pllData64);
+int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
 #endif
 #endif /* __INT_API__ */

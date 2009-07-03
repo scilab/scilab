@@ -27,28 +27,29 @@
 extern int C2F(dgetrf)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          double *wrk;
+{         
+	int *ipiv;
+    double *wrk;
 } mat_det_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_det(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu;
- int info;
- int i;
- double D,l;
- mat_det_struct *mdet;
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0;
+ int info = 0;
+ int i = 0;
+ double D = 0., l = 0.;
+ mat_det_struct *mdet = NULL;
  
- nu =GetInPortRows(block,1);
- u=GetRealInPortPtrs(block,1);
- y=GetRealOutPortPtrs(block,1);
+ nu = GetInPortRows(block,1);
+ u = GetRealInPortPtrs(block,1);
+ y = GetRealOutPortPtrs(block,1);
 
-             /*init : initialization*/
+/*init : initialization*/
 if (flag==4)
-
-   {if((*(block->work)=(mat_det_struct*) scicos_malloc(sizeof(mat_det_struct)))==NULL)
+   {
+	   if((*(block->work)=(mat_det_struct*) scicos_malloc(sizeof(mat_det_struct)))==NULL)
 	{set_block_error(-16);
 	 return;}
     mdet=*(block->work);

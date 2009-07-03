@@ -24,7 +24,7 @@
 /*--------------------------------------------------------------------------*/ 
 void  integral_func(scicos_block *block,int flag)
 {
-	int i;
+	int i = 0;
   if (flag==0){
     if(block->ng>0){
       for(i=0;i<block->nx;++i) {

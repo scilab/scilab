@@ -40,10 +40,10 @@ static int FindIndex(int, double , int , int , double *, int);
 /*--------------------------------------------------------------------------*/ 
 void lookup_c(scicos_block *block,int flag)
 {
-  double a,b,c,y1,y2,t1,t2;
-  int *ind,inow,i,ip1;
-  double *y,*u,u0;
-  double  d1,d2,h, dh, ddh, dddh;
+  double a = 0.,b = 0.,c = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.;
+  int *ind  = NULL,inow = 0,i = 0,ip1 = 0;
+  double *y = NULL,*u = NULL,u0 = 0.;
+  double  d1 = 0.,d2 = 0.,h = 0., dh = 0., ddh = 0., dddh = 0.;
 
     switch(flag)
       {
@@ -183,23 +183,20 @@ void lookup_c(scicos_block *block,int flag)
 /*--------------------------------------------------------------------------*/ 
 static int FindIndex(int order, double inp, int idown, int iup, double *data, int N)
  {
-  int im;
+
   if (inp<=data[0] )  return 0;
   if (inp>=data[N-1] ) return N-2;
-  /*
-  if ((order==0) || (order==8)|| (order==9)) {
-    if (inp>=data[N-1] ) return (N-1);
-  }else {
-    if (inp>=data[N-1] ) return (N-2);
+
+  while (idown+1!=iup )
+  {
+	int im = (int)((idown+iup)/2);
+    if (inp >= data[im]) 
+	{
+      idown = im;
     }
-  */
-  
-  while (idown+1!=iup ){
-    im = (int)((idown+iup)/2);
-    if (inp>=data[im]) {
-      idown=im;
-    }else if (inp<data[im]) {
-      iup=im;
+	else if (inp<data[im]) 
+	{
+      iup = im;
     }     
   }
   

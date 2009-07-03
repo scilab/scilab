@@ -49,23 +49,21 @@ int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
 /**
  * Create boolean named variable
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _iCols, int* _piBool);
+int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read boolean named variable
  * @param[in] _pstName variable name
- * @param[in] _iNameLen variable name length 
  * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
  * @param[out] _piBool return data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piBool);
+int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
 #endif /* __BOOLEAN_API__ */

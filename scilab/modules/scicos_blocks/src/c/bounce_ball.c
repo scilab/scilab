@@ -20,8 +20,8 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
-#include "scicos_block.h"
 #include "MALLOC.h"
+#include "scicos_block.h"
 /*--------------------------------------------------------------------------*/ 
 void bounce_ball(scicos_block *block,int flag)
 {

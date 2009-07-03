@@ -47,6 +47,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,2);
 	CheckLhs(1,1);
+
 	int iRows						= 0;
 	int iCols						= 0;
 	int iLen						= 0;
@@ -216,22 +217,22 @@ bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 	{
 		if(iComplex)
 		{
-			iRet			= createNamedComplexMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal, pdblImg);
+			iRet			= createNamedComplexMatrixOfDouble(_pstVarname, iRows, iCols, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createNamedMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal);
+			iRet			= createNamedMatrixOfDouble(_pstVarname, iRows, iCols, pdblReal);
 		}
 	}
 	else //if not null this variable is in a list
 	{
 		if(iComplex)
 		{
-			iRet			= createComplexMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
+			iRet			= createComplexMatrixOfDoubleInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal);
+			iRet			= createMatrixOfDoubleInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, pdblReal);
 		}
 	}
 
@@ -280,11 +281,11 @@ bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 
 	if(_piAddress == NULL)
 	{
-		iRet = createNamedMatrixOfString(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pstData);
+		iRet = createNamedMatrixOfString(_pstVarname, iRows, iCols, pstData);
 	}
 	else //if not null this variable is in a list
 	{
-		iRet = createMatrixOfStringInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pstData);
+		iRet = createMatrixOfStringInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, pstData);
 	}
 
 	char pstMsg[512];
@@ -338,11 +339,11 @@ bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 			if(_piAddress == NULL)
 			{
-				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+				iRet = createNamedMatrixOfInteger8( _pstVarname, iRows, iCols, pcData);
 			}
 			else
 			{
-				iRet = createMatrixOfInteger8InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pcData);
+				iRet = createMatrixOfInteger8InNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, pcData);
 			}
 		}
 		break;
@@ -358,11 +359,11 @@ bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 			if(_piAddress == NULL)
 			{
-				iRet = createNamedMatrixOfInteger16( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, psData);
+				iRet = createNamedMatrixOfInteger16( _pstVarname, iRows, iCols, psData);
 			}
 			else
 			{
-				iRet = createMatrixOfInteger16InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, psData);
+				iRet = createMatrixOfInteger16InNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, psData);
 			}
 		}
 		break;
@@ -378,11 +379,11 @@ bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 			if(_piAddress == NULL)
 			{
-				iRet = createNamedMatrixOfInteger32( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
+				iRet = createNamedMatrixOfInteger32( _pstVarname, iRows, iCols, piData);
 			}
 			else
 			{
-				iRet = createMatrixOfInteger32InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
+				iRet = createMatrixOfInteger32InNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, piData);
 			}
 		}
 		break;
@@ -397,14 +398,14 @@ bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 				return false;
 			}
 
-			iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			iRet = createNamedMatrixOfInteger8( _pstVarname, iRows, iCols, pcData);
 			if(_piAddress == NULL)
 			{
-				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+				iRet = createNamedMatrixOfInteger8( _pstVarname, iRows, iCols, pcData);
 			}
 			else
 			{
-				iRet = createMatrixOfInteger64InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pllData);
+				iRet = createMatrixOfInteger64InNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, pllData);
 			}
 #else
 			return false;
@@ -442,11 +443,11 @@ bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 	if(_piAddress == NULL)
 	{
-		iRet			= createNamedMatrixOfBoolean(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
+		iRet			= createNamedMatrixOfBoolean(_pstVarname, iRows, iCols, piData);
 	}
 	else //if not null this variable is in a list
 	{
-		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
+		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, piData);
 	}
 
 	char pstMsg[512];
@@ -511,22 +512,22 @@ bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 	{
 		if(iComplex)
 		{
-			iRet			=	createNamedComplexMatrixOfPoly(_pstVarname, strlen(_pstVarname), pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+			iRet			=	createNamedComplexMatrixOfPoly(_pstVarname, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			=	createNamedMatrixOfPoly(_pstVarname, strlen(_pstVarname), pstVarName, iRows, iCols, piNbCoef, pdblReal);
+			iRet			=	createNamedMatrixOfPoly(_pstVarname, pstVarName, iRows, iCols, piNbCoef, pdblReal);
 		}
 	}
 	else //if not null this variable is in a list
 	{
 		if(iComplex)
 		{
-			iRet			= createComplexMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+			iRet			= createComplexMatrixOfPolyInNamedList(_pstVarname, _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+			iRet			= createMatrixOfPolyInNamedList(_pstVarname, _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
 		}
 	}
 
@@ -588,13 +589,13 @@ bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress,
 		switch(_iVarType)
 		{
 		case sci_list :
-			iRet		= createNamedList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedList(_pstVarname, iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			iRet		= createNamedTList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedTList(_pstVarname, iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			iRet		= createNamedMList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedMList(_pstVarname, iRows * iCols, &piListAddr);
 			break;
 		default :
 			return false;
@@ -605,13 +606,13 @@ bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress,
 		switch(_iVarType)
 		{
 		case sci_list :
-			iRet		= createListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createListInNamedList(_pstVarname, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			iRet		= createTListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createTListInNamedList(_pstVarname, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			iRet		= createMListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createMListInNamedList(_pstVarname, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		default :
 			return false;

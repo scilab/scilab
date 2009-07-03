@@ -23,21 +23,24 @@
 /*--------------------------------------------------------------------------*/ 
 void mat_sumc(scicos_block *block,int flag)
 {
-  double *u;
-  double *y;
-  int nu,mu,i,j,ij;
-  double d;
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
+	int j = 0;
 
-  u=GetRealInPortPtrs(block,1);
-  y=GetRealOutPortPtrs(block,1);
+	int mu = GetInPortRows(block,1);
+	int nu = GetInPortCols(block,1);
 
-  for(j=0;j<nu;j++)
-       {d=0;
-	for (i=0;i<mu;i++)
-	   {ij=i+j*mu;
-	    d+=*(u+ij);}
-	*(y+j)=d;}
+	double *u = GetRealInPortPtrs(block,1);
+	double *y = GetRealOutPortPtrs(block,1);
+
+	for(j=0;j<nu;j++)
+	{
+		double d = 0.;
+		int i = 0;
+		for (i=0;i<mu;i++)
+		{
+			int ij = i + j*mu;
+			d += *(u + ij);
+		}
+		*(y+j) = d;
+	}
 }
 /*--------------------------------------------------------------------------*/ 

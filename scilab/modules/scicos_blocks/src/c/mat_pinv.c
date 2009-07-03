@@ -30,27 +30,29 @@ extern int C2F(dlacpy)();
 extern int C2F(dmmul)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         double *l0;
-	  double *LA;
- 	  double *LC;
-          double *LS;
-          double *LSV;
-          double *LSW;
-          double *LU;
-          double *LUT;
-          double *LV;
-          double *LVT;
-          double *dwork;
+{         
+	double *l0;
+	double *LA;
+	double *LC;
+	double *LS;
+	double *LSV;
+	double *LSW;
+	double *LU;
+	double *LUT;
+	double *LV;
+	double *LVT;
+	double *dwork;
 } mat_pinv_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_pinv(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int nu,mu;
- int info;
- int i,j,ij,ji,ii,lwork;
- mat_pinv_struct *ptr;
+ double *u = NULL;
+ double *y = NULL;
+ int nu = 0, mu = 0;
+ int info = 0;
+ int i = 0,j = 0,ij = 0,ji = 0,ii = 0,lwork = 0;
+ mat_pinv_struct *ptr = NULL;
+
  mu=GetInPortRows(block,1);
  nu=GetInPortCols(block,1);
  u=GetRealInPortPtrs(block,1);

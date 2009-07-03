@@ -53,26 +53,24 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
 /**
  * Get double variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pstStrings array of strings ( null terminated )
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iCols, char** _pstStrings);
+int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Get double variable data
  * @param[in] _pstName variable name
- * @param[in] _iNamelen variable name length
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pstStrings array of strings ( null terminated )
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 
 #endif /* __STRING_API__ */

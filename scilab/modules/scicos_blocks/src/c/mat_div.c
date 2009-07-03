@@ -34,27 +34,28 @@ extern int C2F(dgetrs)();
 extern int C2F(dgelsy1)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
-{         int *ipiv;
-          int *rank;
-          int *jpvt;
-          int *iwork;
-          double *dwork;
-	  double *LAF;
-	  double *LBT;
-	  double *LAT;
+{         
+	int *ipiv;
+	int *rank;
+	int *jpvt;
+	int *iwork;
+	double *dwork;
+	double *LAF;
+	double *LBT;
+	double *LAT;
 } mat_div_struct ;
 /*--------------------------------------------------------------------------*/ 
 void mat_div(scicos_block *block,int flag)
 {
- double *u1;
- double *u2;
- double *y;
- int mu1,mu2;
- int nu,nu2;
- int info;
- int i,j,l,lw,lu,ij,ji;
- mat_div_struct *ptr;
- double rcond, ANORM, EPS;
+ double *u1 = NULL;
+ double *u2 = NULL;
+ double *y = NULL;
+ int mu1 = 0,mu2 = 0;
+ int nu = 0,nu2 = 0;
+ int info = 0;
+ int i = 0,j = 0,l = 0,lw = 0,lu = 0,ij = 0,ji = 0;
+ mat_div_struct *ptr = NULL;
+ double rcond = 0., ANORM = 0., EPS = 0.;
 
  mu2 =GetInPortRows(block,1);
  nu =GetInPortCols(block,1);

@@ -98,3 +98,8 @@ createNamedMatrixOfInteger32
 createMatrixOfInteger8InNamedList
 createMatrixOfInteger16InNamedList
 createMatrixOfInteger32InNamedList
+readMatrixOfPolyInNamedList
+writeSparseMatrix
+getSparseMatrix
+writeSparseComplexMatrix
+getComplexSparseMatrix

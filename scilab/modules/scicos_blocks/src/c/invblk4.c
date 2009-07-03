@@ -29,8 +29,8 @@ void invblk4(scicos_block *block,int flag)
   Scicos block simulator
   Outputs the inverse of the input */
   
-  int i;
-  double ww;
+  int i = 0;
+  double ww = 0.;
   if (flag == 6){
     for(i=0;i< block->insz[0];i++){
       ww=block->inptr[0][i];
