@@ -35,8 +35,8 @@ void C2F(scigetdate) (time_t *dt, int *ierr);
 /**
  * Convert date time_t to int matrix
  * @param[in] dt time_t struct 
- * @param[out] datematrix date int matrix
+ * @param[out] datematrix date double matrix
  */
-void C2F(convertdate) (time_t *dt, int datematrix[]);
+void C2F(convertdate) (time_t *dt, double datematrix[]);
 
 #endif /* __GETDATE_H__ */

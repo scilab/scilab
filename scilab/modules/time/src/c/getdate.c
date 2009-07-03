@@ -82,7 +82,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
   #endif
 }
 /*--------------------------------------------------------------------------*/
-void C2F(convertdate)(time_t *dt,int datematrix[10])
+void C2F(convertdate)(time_t *dt,double datematrix[10])
 {
 	// check that dt > 0 (and dt < _MAX__TIME64_T if _MSC_VER is defined)
 	#ifdef _MSC_VER
