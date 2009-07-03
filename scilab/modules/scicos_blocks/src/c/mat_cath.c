@@ -41,7 +41,7 @@ void mat_cath(scicos_block *block,int flag)
 				u=GetInPortPtrs(block,i+1);
 				nu=GetInPortCols(block,i+1);
 				so=GetSizeOfIn(block,i+1);
-				memcpy((int*)y+pointerposition,u,mu*nu*so);
+				memcpy((char*)y+pointerposition,u,mu*nu*so);
 				pointerposition=pointerposition+mu*nu*so;
 			}
 		}

@@ -64,7 +64,7 @@ void  mswitch(scicos_block *block,int flag)
 			nu=GetInPortCols(block,2);
 			uj=GetInPortPtrs(block,2);
 			j=min(j,mu*nu);
-			memcpy(y,(int*)uj+(j-1)*my*ny*so,my*ny*so);
+			memcpy(y,(char*)uj+(j-1)*my*ny*so,my*ny*so);
 		} else{
 			j=min(j,nin-1);
 			uj=GetInPortPtrs(block,j+1);
