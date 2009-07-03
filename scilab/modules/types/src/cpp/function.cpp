@@ -15,14 +15,14 @@
 
 namespace types
 {
-  Function::Function *Function::createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule)
+  Function *Function::createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule)
   {
-    return new Function::Function(_szName, _pFunc, _szModule);
+    return new Function(_szName, _pFunc, _szModule);
   }
 
-  Function::Function *Function::createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule)
+  Function *Function::createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule)
   {
-    return new WrapFunction::WrapFunction(_szName, _pFunc, _szModule);
+    return new WrapFunction(_szName, _pFunc, _szModule);
   }
 
 

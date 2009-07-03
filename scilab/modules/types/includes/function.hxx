@@ -66,7 +66,9 @@ namespace types
       printf("Call old style GW ...\n");
       m_pOldFunc();
       printf("Fake Stack get ...\n");
-    }
+    
+	  return ReturnValue::AllGood;
+	}
   private :
     OLDGW_FUNC				m_pOldFunc;
 
