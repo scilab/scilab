@@ -15,7 +15,6 @@
 #include "gw_time.h"
 #include "stack-c.h"
 #include "api_common.h"
-#include "api_int.h"
 #include "api_double.h"
 #include "MALLOC.h"
 #include "Scierror.h"

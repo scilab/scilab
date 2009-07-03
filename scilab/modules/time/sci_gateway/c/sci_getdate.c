@@ -24,7 +24,6 @@
 #endif
 #include "gw_time.h"
 #include "api_common.h"
-#include "api_int.h"
 #include "api_double.h"
 #include "api_string.h"
 #include "stack-c.h"
