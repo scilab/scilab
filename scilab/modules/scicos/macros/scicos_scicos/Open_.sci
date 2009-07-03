@@ -65,7 +65,7 @@ function Open_()
 
     options = scs_m.props.options ;
 
-    set_background();
+    
 
     if size(scs_m.props.wpar,'*')>12 then
 
@@ -132,11 +132,11 @@ function Open_()
     end
     //**--------------
 
-    gh_axes = gca();
+    gh_axes = gca();drawlater();
     if gh_axes.children<>[] then
-      drawlater();
       delete(gh_axes.children); //** delete all the object in the window
     end
+    set_background();
     drawobjs(scs_m) ; //** draw all the objects in the diagram data structure
 
     if size(%cpr)==0 then
