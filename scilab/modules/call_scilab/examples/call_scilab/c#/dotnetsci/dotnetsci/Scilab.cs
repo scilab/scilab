@@ -137,17 +137,15 @@ namespace DotNetScilab
         /// <returns>a matrix of double from scilab. If Variable name does not exist returns null</returns>
         public unsafe double[] getNamedMatrixOfDouble(string matrixName)
         {
-            int iRows = 0;
-            int iCols = 0;
-
-            double[] matrixDouble = new double[0];
             // first , we want to known dimensions iRows and iCols
-            readNamedMatrixOfDouble(matrixName, &iRows , &iCols, matrixDouble);
+            int[] iDims = getNamedMatrixOfDoubleDimensions(matrixName);
+            int iRows = iDims[0];
+            int iCols = iDims[1];
 
             // we allocate matrixDouble array
             if (iRows * iCols > 0)
             {
-                matrixDouble = new double[iRows * iCols];
+                double[] matrixDouble = new double[iRows * iCols];
 
                 // get values in matrixDouble
                 readNamedMatrixOfDouble(matrixName, &iRows, &iCols, matrixDouble);
@@ -195,12 +193,11 @@ namespace DotNetScilab
         /// <returns>a matrix of string from scilab. If Variable name does not exist returns null</returns>
         public unsafe string[] getNamedMatrixOfString(string matrixName)
         {
-            int iRows = 0;
-            int iCols = 0;
-
             // first , we want to known dimensions iRows and iCols
-            readNamedMatrixOfString(matrixName, &iRows, &iCols, null, null);
-
+            int[] iDim = getNamedMatrixOfStringDimensions(matrixName);
+            int iRows = iDim[0];
+            int iCols = iDim[1];
+            
             // we allocate lengthmatrixString
             int[] lengthmatrixString = new int[iRows * iCols];
             // we get length of strings
@@ -268,16 +265,15 @@ namespace DotNetScilab
         /// <returns>a matrix of boolean from scilab. If Variable name does not exist returns null</returns>
         public unsafe Boolean[] getNamedMatrixOfBoolean(string matrixName)
         {
-            int iRows = 0;
-            int iCols = 0;
-
-            int[] matrixInt = new int[0];
             // first , we want to known dimensions iRows and iCols
-            readNamedMatrixOfBoolean(matrixName, &iRows, &iCols, matrixInt);
+            int[] iDim = getNamedMatrixOfBooleanDimensions(matrixName);
+            int iRows = iDim[0];
+            int iCols = iDim[1];
+
             // we allocate matrixInt array
             if (iRows * iCols > 0)
             {
-                matrixInt = new int[iRows * iCols];
+                int[] matrixInt = new int[iRows * iCols];
 
                 // get values in matrixDouble
                 readNamedMatrixOfBoolean(matrixName, &iRows, &iCols, matrixInt);
@@ -337,16 +333,15 @@ namespace DotNetScilab
         /// <returns>a matrix of int(32) from scilab. If Variable name does not exist returns null</returns>
         public unsafe int[] getNamedMatrixOfInt(string matrixName)
         {
-            int iRows = 0;
-            int iCols = 0;
-
-            int[] matrixInt = new int[0];
             // first , we want to known dimensions iRows and iCols
-            readNamedMatrixOfInteger32(matrixName, &iRows, &iCols, matrixInt);
+            int[] iDim = getNamedMatrixOfIntDimensions(matrixName);
+            int iRows = iDim[0];
+            int iCols = iDim[1];
+
             // we allocate matrixInt array
             if (iRows * iCols > 0)
             {
-                matrixInt = new int[iRows * iCols];
+                int[] matrixInt = new int[iRows * iCols];
 
                 // get values in matrixInt
                 readNamedMatrixOfInteger32(matrixName, &iRows, &iCols, matrixInt);
