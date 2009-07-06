@@ -20,9 +20,9 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[P1]=LFT(P,K)
-[P1]=LFT(P,r,K)
-[P1,r1]=LFT(P,r,Ps,rs)</synopsis>
+    <synopsis>[P1]=lft(P,K)
+[P1]=lft(P,r,K)
+[P1,r1]=lft(P,r,Ps,rs)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -68,16 +68,16 @@
     <para>
       <literal>r= size(P22) rs=size(P22s)</literal>
     </para>
-    <para><literal>LFT(P,r, K)</literal> is the linear fractional transform
+    <para><literal>lft(P,r, K)</literal> is the linear fractional transform
     between <literal>P</literal> and a controller <literal>K</literal>
     (<literal>K</literal> may be a gain or a controller in state space form
     or in transfer form);</para>
-    <para><literal>LFT(P,K)</literal> is <literal>LFT(P,r,K)</literal> with
+    <para><literal>lft(P,K)</literal> is <literal>lft(P,r,K)</literal> with
     <literal>r</literal>=size of <literal>K</literal> transpose;</para>
     <para>
       <literal>P1= P11+P12*K* (I-P22*K)^-1 *P21</literal>
     </para>
-    <para><literal>[P1,r1]=LFT(P,r,Ps,rs)</literal> returns the generalized (2
+    <para><literal>[P1,r1]=lft(P,r,Ps,rs)</literal> returns the generalized (2
     ports) lft of <literal>P</literal> and <literal>Ps</literal>.</para>
     <para><literal>P1</literal> is the pair two-port interconnected plant and the
     partition of <literal>P1</literal> into 4 blocks in given by
