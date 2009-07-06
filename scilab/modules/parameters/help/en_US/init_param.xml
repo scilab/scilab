@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
@@ -11,77 +10,85 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="init_param">
+<refentry version="5.0-subset Scilab" xml:id="init_param" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>23-Aug-2007</pubdate>
   </info>
+
   <refnamediv>
     <refname>init_param</refname>
-    <refpurpose> Initialize the structure which will handles the parameters list</refpurpose>
+
+    <refpurpose>Initialize the structure which will handles the parameters
+    list</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ga_list = init_param()</synopsis>
+
+    <synopsis>param_list = init_param()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
-        <term>ga_list</term>
+        <term>param_list</term>
+
         <listitem>
-          <para>an initialized list of parameters (this list is empty and is of type plist).
-       </para>
+          <para>an initialized list of parameters (this list is empty and is
+          of type plist).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-      This function initialize an empty list of parameters. You must initialize the list of parameters before using it.
-     </para>
-      </listitem>
-    </itemizedlist>
+        <para>This function initialize an empty list of parameters. You must
+        initialize the list of parameters before using it.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
    mylist = init_param();
    mylist = add_param(mylist,'minbound',[0 0 0]);
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="add_param"> add_param </link>
-      </member>
-      <member>
-        <link linkend="set_param"> set_param </link>
-      </member>
-      <member>
-        <link linkend="get_param"> get_param </link>
-      </member>
-      <member>
-        <link linkend="remove_param"> remove_param </link>
-      </member>
-      <member>
-        <link linkend="is_param"> is_param </link>
-      </member>
+      <member><link linkend="add_param"> add_param </link></member>
+
+      <member><link linkend="set_param"> set_param </link></member>
+
+      <member><link linkend="get_param"> get_param </link></member>
+
+      <member><link linkend="remove_param"> remove_param </link></member>
+
+      <member><link linkend="is_param"> is_param </link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <variablelist>
       <varlistentry>
         <term>collette</term>
+
         <listitem>
-          <para>
-    ycollet@freesurf.fr
-    </para>
+          <para>ycollet@freesurf.fr</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -22,7 +22,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[ga_list,err] = add_param(list_name,param_name,param_value)</synopsis>
+    <synopsis>[param_list,err] = add_param(list_name,param_name,param_value)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -49,7 +49,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>ga_list</term>
+        <term>param_list</term>
         <listitem>
           <para>the updated list of parameters.
        </para>
@@ -66,13 +66,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <itemizedlist>
-      <listitem>
         <para>
       This function creates a new parameter in a list of parameters. You can set the value of the parameter using this function or you can set it via a call to set_param.
      </para>
-      </listitem>
-    </itemizedlist>
   </refsection>
   <refsection>
     <title>Examples</title>
