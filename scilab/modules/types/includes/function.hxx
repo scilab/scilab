@@ -32,11 +32,11 @@ namespace types
     Function * 	getAsFunction(void);
     RealType getType(void) { return RealFunction; }
 
-    typedef Function::ReturnValue (*GW_FUNC)(typed_list &in, int* _piRetCount, typed_list &out); 
-    typedef Function::ReturnValue (*OLDGW_FUNC)();
+    typedef ReturnValue (*GW_FUNC)(typed_list &in, int* _piRetCount, typed_list &out); 
+    typedef ReturnValue (*OLDGW_FUNC)();
 
     void					whoAmI();
-    virtual Function::ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
+    virtual ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
 
     Function() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
@@ -62,11 +62,13 @@ namespace types
       m_szModule = _szModule;
     }
 
-    Function::ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out) {
+    ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out) {
       printf("Fake Stack put ...\n");
       printf("Call old style GW ...\n");
       m_pOldFunc();
       printf("Fake Stack get ...\n");
+    
+      return AllGood;
     }
   private :
     OLDGW_FUNC				m_pOldFunc;
