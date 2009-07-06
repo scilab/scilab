@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
@@ -11,99 +10,124 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get_param">
+<refentry version="5.0-subset Scilab" xml:id="get_param" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>23-Aug-2007</pubdate>
   </info>
+
   <refnamediv>
     <refname>get_param</refname>
-    <refpurpose> Get the value of a parameter in a parameter list </refpurpose>
+
+    <refpurpose>Get the value of a parameter in a parameter list</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[res,err] = get_param(list_name,param_name)</synopsis>
+
+    <synopsis>[res,err] = get_param(list_name,param_name,default_value)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>list_name</term>
+
         <listitem>
-          <para>the list of parameters. This list must have been initialize by a call to init_param.
-       </para>
+          <para>the list of parameters. This list must have been initialized
+          by a call to init_param.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>param_name</term>
+
         <listitem>
-          <para>a string. The name of the parameter to be add in the list of parameters.
-       </para>
+          <para>a string. The name of the parameter to be add in the list of
+          parameters.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>default_value</term>
+
+        <listitem>
+          <para>the default value to be stored in the parameter if param_name
+          has not been found.</para>
+        </listitem>
+      </varlistentry>
+
       <varlistentry>
         <term>res</term>
+
         <listitem>
-          <para>the value of the parameter. If the parameter doesn't exist, res = [].
-       </para>
+          <para>the value of the parameter. If the parameter doesn't exist,
+          res = [].</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>err</term>
+
         <listitem>
-          <para>an error flag which is set to %T if list_name is not of type plist (this list hasn't been initialized by a call to init_param).
-       </para>
+          <para>an error flag which is set to %T if list_name is not of type
+          plist (this list hasn't been initialized by a call to
+          init_param).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-      This function returns the value of the parameter param_name in a parameter list.
-     </para>
-      </listitem>
-    </itemizedlist>
+        <para>This function returns the value of the parameter param_name in a
+        parameter list. If the err output parameter is not present, when an
+        error occurs, a message is printed in the console.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   mylist = init_param();
-   mylist = add_param(mylist,'minbound',[0 0 0]);
-   disp(get_param(mylist,'minbound'));
-  ]]></programlisting>
+
+    <programlisting role="example">
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+disp(get_param(mylist,'minbound',-[1 1 1]));
+disp(get_param(mylist,'maxbound', [1 1 1]));
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="init_param"> init_param </link>
-      </member>
-      <member>
-        <link linkend="set_param"> set_param </link>
-      </member>
-      <member>
-        <link linkend="add_param"> add_param </link>
-      </member>
-      <member>
-        <link linkend="remove_param"> remove_param </link>
-      </member>
-      <member>
-        <link linkend="is_param"> is_param </link>
-      </member>
+      <member><link linkend="init_param"> init_param </link></member>
+
+      <member><link linkend="set_param"> set_param </link></member>
+
+      <member><link linkend="add_param"> add_param </link></member>
+
+      <member><link linkend="remove_param"> remove_param </link></member>
+
+      <member><link linkend="is_param"> is_param </link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <variablelist>
       <varlistentry>
         <term>collette</term>
+
         <listitem>
-          <para>
-    ycollet@freesurf.fr
-    </para>
+          <para>ycollet@freesurf.fr</para>
         </listitem>
       </varlistentry>
     </variablelist>
