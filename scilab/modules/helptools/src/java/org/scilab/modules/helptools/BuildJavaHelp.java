@@ -42,21 +42,24 @@ public final class BuildJavaHelp {
 	/**
 	 * Get the list of the files in a directory
 	 * @param directory the directory where files have to be searched
-	 * @return teh list of the files found
+	 * @return the list of the files found
 	 */
-	private static ArrayList<File> buildFileList(File directory) {
+	private static ArrayList<File> buildFileList(File directory,  String language) {
+	    String baseNameJar = Helpers.getBaseName(language) + ".jar";
 		ArrayList<File> listFile = new ArrayList<File>();
-
+		
 		File [] files = directory.listFiles();
 		for (int i = 0; i < files.length; i++) {
-
 			if (files[i].isDirectory()) {
-				listFile.addAll(buildFileList(files[i]));
+				listFile.addAll(buildFileList(files[i], language));
 			} else {
+			    /* bug 4407 */
+			    /* we do not add scilab_xx_XX_help.jar file to the list */
+			    if (files[i].compareTo(new File(baseNameJar)) != 0) {
 				listFile.add(files[i]);
+				}
 			}
 		}
-
 		return listFile;
 	}
 
@@ -74,6 +77,10 @@ public final class BuildJavaHelp {
 		final int compressionLevel = 5;
 		/* Stored into SCI/modules/helptools/jar */
 		String fileName = outputDirectory + "/" + baseName + ".jar";
+		
+		/* bug 4407 */
+		/* we do list of files before to create scilab_xx_XX_help.jar */
+		ArrayList<File> fileList = BuildJavaHelp.buildFileList(new File(outputDirectory), language);
 
 		try {
 
@@ -87,7 +94,7 @@ public final class BuildJavaHelp {
 		}
 
 		jarFile.setLevel(compressionLevel);
-		ArrayList<File> fileList = BuildJavaHelp.buildFileList(new File(outputDirectory));
+		
 		File []allFiles = fileList.toArray(new File [fileList.size()]);
 		for (int i = 0; i < allFiles.length; i++) {			
 			try {

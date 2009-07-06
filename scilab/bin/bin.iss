@@ -33,13 +33,6 @@ Source: bin\msvcm90.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcp90.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\Microsoft.VC90.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-#ifdef SCILAB_X64
-Source: bin\vcredist_VC80_x64.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\vcredist_x64.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-#else
-Source: bin\vcredist_x86.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-#endif
-;
 Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -47,17 +40,21 @@ Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\libst.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
+; used for localization
+Source: bin\libiconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+#ifndef SCILAB_X64
+Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+#endif
 ;
 Source: bin\zlib1.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libiconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\GNU_gettext.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -85,3 +82,4 @@ Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\szlibdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;

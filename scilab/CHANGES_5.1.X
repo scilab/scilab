@@ -19,7 +19,13 @@ Compilation:
   Note that this should be used into a binary since it is expensive
 
 * C++ => Java connector updated (using GIWS - 
-  http://www.scilab.org/giws/ version 1.0.2)
+  http://www.scilab.org/giws/ version 1.0.3)
+  There was a bug in GIWS:
+	The use of a static method returning an int wasn't calling the right
+	method.
+	It didn't seem to trigger any errors in the past but the latest 
+	version of the JDK is now complaining.
+
 
 * Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill which fixes 
   some minor compile time problems under NetBSD:
