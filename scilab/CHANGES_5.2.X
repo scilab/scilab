@@ -211,6 +211,9 @@ Bug fixes:
 
 * bug 4403 fixed - isinf was defined (when not provided by the system) with a return
 
+* bug 4407 fixed - help file scilab_xx_XX_help.jar have another scilab_xx_XX_help.jar embedded
+                   and not valid.
+
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
 * bug 4461 fixed - redefines prompt not displayed in a diary.

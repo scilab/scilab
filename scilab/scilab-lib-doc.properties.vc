@@ -2,7 +2,7 @@
  	
 
 ; xml.apache.org SVG Library 
-batik.jar=${thirdparty.dir}/batik.jar
+batik.jar=${thirdparty.dir}/batik-all-1.7.jar
 
 ; The Saxon XSLT Processor 
 saxon.jar=${thirdparty.dir}/saxon.jar
