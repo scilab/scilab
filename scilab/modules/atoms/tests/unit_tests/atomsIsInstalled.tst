@@ -8,13 +8,13 @@
 // <-- JVM NOT MANDATORY -->
 
 // Install toolbox N°1 for all users (SCI/.atoms)
-atomsInstallRegister("toolbox1","1.0",%T);
-atomsInstallRegister("toolbox1","1.1",%T);
-atomsInstallRegister("toolbox1","1.2",%T);
+atomsInstallRegister("toolbox1","1.0","A",%T);
+atomsInstallRegister("toolbox1","1.1","A",%T);
+atomsInstallRegister("toolbox1","1.2","A",%T);
 
 // Install toolbox N°2 for current user only (SCIHOME/atoms)
-atomsInstallRegister("toolbox2","0.1",%F);
-atomsInstallRegister("toolbox2","0.2",%F);
+atomsInstallRegister("toolbox2","0.1","A",%F);
+atomsInstallRegister("toolbox2","0.2","A",%F);
 
 // Check input parameters
 if execstr("atomsIsInstalled()","errcatch") == 0 then pause; end
