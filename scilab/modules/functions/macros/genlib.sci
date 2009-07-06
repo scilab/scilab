@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verbose,names)
+function genlib(nam,path,force,verbose,names)
   
 // get all .sci files in the specified directory
   
@@ -18,12 +18,7 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
   W          = who('get');
   np         = predef();
   predefined = or(W($-np+1:$)==nam);
-
-  success       = %t;
-  funcs         = [];
-  success_files = [];
-  failed_files  = [];
-
+  
   if verbose then
     mprintf(gettext("-- Creation of [%s] (Macros) --\n"),nam);
   end
@@ -75,7 +70,6 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
     
     if files==[] | files== "" then
       warning(msprintf(gettext("%s: No files with extension %s found in %s\n"),"genlib",".sci", path));
-      success = %f;
       return ;
     end
     
@@ -127,15 +121,8 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
         end
         
         // getf sci file and save functions it defines as a .bin file
-        result = getsave(scif);
+        getsave(scif);
         modified = %t;
-        if result <> [] then
-          success_files($+1) = scif
-          funcs = [funcs result]
-        else
-          failed_files($+1) = scif
-          success = %f
-        end
       end
     end
   end
@@ -155,7 +142,6 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
     //save it
     
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
-      success = %f;
       error(msprintf(gettext("%s: %s file cannot be created\n"),"genlib",path+'lib'));
     end
   else
@@ -177,7 +163,7 @@ function result = getsave(scifile)
   // utility function
   // performs a exec on file scifile
   
-  result = [];
+  result = %f;
   prot   = funcprot();
   nold   = size(who("get"),"*");
   
@@ -215,7 +201,6 @@ function result = getsave(scifile)
     clear ierr
     
     if new<>[] then
-      result = new($:-1:1)';
       execstr('save(u,'+strcat(new($:-1:1),',')+')');
     else
       msprintf(gettext("%s: File %s does not contain any function.\n"),"genlib",binfile)
