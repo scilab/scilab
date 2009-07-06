@@ -590,6 +590,21 @@ namespace ast
 		*/
 
 	}
+  
+	void ExecVisitor::visit (const ClassDec &e)
+	{
+		// TODO
+	}
+  
+	void ExecVisitor::visit (const PropertyDec &e)
+	{
+		// TODO
+	}
+  
+	void ExecVisitor::visit (const MethodDec &e)
+	{
+		// TODO
+	}
 	/** \} */
 
 	/** \name Visit Type dedicated Expressions related node.

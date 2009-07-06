@@ -14,6 +14,7 @@
 #define __FUNCTION_HXX__
 
 #include <string>
+#include <cstdio>
 #include "types.hxx"
 
 namespace types
