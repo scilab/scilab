@@ -52,10 +52,9 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
  * @param[out] _piNbItemRow return array of number of item for each row
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @param[out] _pdblReal return pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, int** _piAddress);
+int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * alloc sparse variable data
@@ -67,10 +66,9 @@ int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _pi
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @param[out] _pdblReal return pointer on data
  * @param[out] _pdblImg return pointer on img data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress);
+int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create sparse variable
@@ -81,10 +79,9 @@ int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
  * @param[in] _piNbItemRow array of number of item for each row
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @param[in] _pdblReal pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, int** _piAddress);
+int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create sparse variable
@@ -96,10 +93,9 @@ int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _pi
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @param[in] _pdblReal pointer on real data
  * @param[out] _pdblImg pointer on img data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress);
+int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Create named sparse variable
@@ -110,7 +106,6 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
  * @param[in] _piNbItemRow array of number of item for each row
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @param[in] _pdblReal pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
@@ -125,7 +120,6 @@ int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @param[in] _pdblReal pointer on real data
  * @param[out] _pdblImg pointer on img data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
@@ -139,7 +133,6 @@ int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
  * @param[out] _piNbItemRow return array of number of item for each row
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @param[out] _pdblReal pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
@@ -154,7 +147,6 @@ int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNb
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @param[out] _pdblReal pointer on real data
  * @param[out] _pdblImg pointer on img data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);

@@ -16,13 +16,12 @@
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
+#include "api_internal_boolean_sparse.h"
 
 //#include <string.h>
 #include "CallScilab.h"
 #include "stack-c.h"
 
-//internal boolean sparse functions
-static int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
@@ -50,14 +49,15 @@ int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 	return 0;
 }
 
-int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, int** _piAddress)
+int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iPos				= 0;
+	int* piAddr			= NULL;
 
-	getNewVarAddressFromPosition(iNewPos, _piAddress);
-	fillBooleanSparseMatrix(*_piAddress, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
+	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
 	iPos += _iRows + _iNbItem;
@@ -67,7 +67,7 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 	return 0;
 }
 
-static int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
+int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	if(_piAddress == NULL)
 	{
@@ -86,13 +86,12 @@ static int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int 
 	return 0;
 }
 
-int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, int** _piAddress)
+int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
-	int* piAddr				= NULL;
 
-	int iRet = allocBooleanSparseMatrix(_iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &piAddr);
+	int iRet = allocBooleanSparseMatrix(_iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 	if(iRet)
 	{
 		return 1;

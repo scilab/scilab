@@ -300,7 +300,7 @@ int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, i
  * @param[in] _iItemPos item postion in the list
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal return pointer on data
+ * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
 int createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
@@ -312,11 +312,23 @@ int createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iR
  * @param[in] _iItemPos item postion in the list
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal return pointer on real data
- * @param[in] _pdblImg return pointer on imaginary data
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
 int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+
+/**
+ * create double variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _pdblData pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexZMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * create double named variable in a list
@@ -325,7 +337,7 @@ int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, 
  * @param[in] _iItemPos item postion in the list
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal return pointer on data
+ * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
 int createMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal);
@@ -337,11 +349,23 @@ int createMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPo
  * @param[in] _iItemPos item postion in the list
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
- * @param[in] _pdblReal return pointer on real data
- * @param[in] _pdblImg return pointer on imaginary data
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
 int createComplexMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
+
+/**
+ * create double named variable in a list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _pdblData pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexZMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, doublecomplex* _pdblData);
 
 /**
  * read double named variable in a list
@@ -418,7 +442,6 @@ int createMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPo
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pstStrings array of strings ( null terminated )
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
@@ -474,6 +497,18 @@ int createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _i
  * @return if the operation successed (0) or not ( !0 )
  */
 int createMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+
+/**
+ * Read string variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piBool pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piBool);
 
 /*************************
  * polynomials functions *
@@ -587,6 +622,10 @@ int createMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos,
  */
 int createComplexMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
+/*********************
+ * integer functions *
+ *********************/
+
 /**
  * create integer 8 variable in a list
  * @param[in] _iVar variable number
@@ -636,6 +675,57 @@ int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int 
 #ifdef __SCILAB_INT64__
 int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData);
 #endif
+
+/**
+ * read integer 8 variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _iRows Number of row
+ * @param[OUT] _iCols Number of column
+ * @param[in] _pcData pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData);
+
+/**
+ * read integer 16 variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _iRows Number of row
+ * @param[OUT] _iCols Number of column
+ * @param[in] _psData pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData);
+
+/**
+ * read integer 32 variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _iRows Number of row
+ * @param[OUT] _iCols Number of column
+ * @param[in] _piData pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData);
+
+/**
+ * read integer 64 variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _iRows Number of row
+ * @param[OUT] _iCols Number of column
+ * @param[in] _pllData pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int getMatrixOfInteger64InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long* _pllData);
+#endif
+
 /**
  * Create integer 8 bis variable in named list
  * @param[in] _pstName variable name
@@ -685,6 +775,245 @@ int createMatrixOfInteger32InNamedList(char* _pstName, int* _piParent, int _iIte
 #ifdef __SCILAB_INT64__
 int createMatrixOfInteger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData);
 #endif
+
+/**
+ * read integer 8 named variable in a list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[in] _pcData return data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readMatrixOfIntger8InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char* _pcData);
+
+/**
+ * read integer 16 named variable in a list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[in] _psData return data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readMatrixOfIntger16InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short* _psData);
+
+/**
+ * read integer 32 named variable in a list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[in] _piData return data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readMatrixOfIntger32InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piData);
+
+/**
+ * read integer 64 named variable in a list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[in] _pllData return data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+#ifdef __SCILAB_INT64__
+int readMatrixOfIntger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, long long* _pllData);
+#endif
+
+/********************
+ * sparse functions *
+ ********************/
+
+/**
+ * Create complex sparse variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+
+/**
+ * Create complex sparse variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+
+/**
+ * Create sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on real data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+
+/**
+ * Create complex sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+
+/**
+ * get complex sparse variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[out] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[out] _piNbItemRow array of number of item for each row
+ * @param[out] _piColPos array of item column position ( 1 indexed )
+ * @param[out] _pdblReal pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+
+/**
+ * get complex sparse variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[out] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[out] _piNbItemRow array of number of item for each row
+ * @param[out] _piColPos array of item column position ( 1 indexed )
+ * @param[out] _pdblReal pointer on real data
+ * @param[out] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+
+/**
+ * read sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+
+/**
+ * read complex sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+
+
+/****************************
+ * boolean sparse functions *
+ ****************************/
+
+/**
+ * Create boolean variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+
+/**
+ * Create boolean sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _iNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+
+/**
+ * get boolean sparse variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[out] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[out] _piNbItemRow array of number of item for each row
+ * @param[out] _piColPos array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+
+/**
+ * read sparse variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent address of parent node
+ * @param[in] _piItemPos item postion in the list
+ * @param[out] _piRows Number of row
+ * @param[out] _piCols Number of column
+ * @param[out] _piNbItem Number of item
+ * @param[in] _piNbItemRow array of number of item for each row
+ * @param[in] _piColPos array of item column position ( 1 indexed )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 #endif /* __LIST_API__ */
 

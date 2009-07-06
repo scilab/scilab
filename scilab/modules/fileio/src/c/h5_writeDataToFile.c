@@ -840,7 +840,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 	space								= H5Screate_simple(1, dims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iCompress						= enableCompression(9, 2, dims);
+	iCompress						= enableCompression(9, 1, dims);
 	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
 	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
 	if(status)
@@ -879,6 +879,99 @@ int writeSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 {
 	return writeCommonSparseComplexMatrix(_iFile, _pstDatasetName, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
+
+int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos)
+{
+	int iRet							= 0;
+	int i									= 0;
+	int j									= 0;
+	hsize_t dims[1]				= {2};
+	herr_t status					= 0;
+	hid_t	space						= 0;
+	hid_t	dset						= 0;
+	hid_t	group						= 0;
+	hid_t iCompress				= 0;
+	hobj_ref_t* pDataRef	= 0; 
+	char pstRow[10]				= {0};
+	char pstCol[10]				= {0};
+
+
+	char* pstRowPath			= NULL;
+	char* pstColPath			= NULL;
+
+	char* pstGroupName		= NULL;
+
+
+	// Create ref matrix
+	//3 refs : 1 for data, 1 for Number Item by row ( row size ) and 1 for column position
+	pDataRef						= (hobj_ref_t *)malloc(23 * sizeof(hobj_ref_t));
+
+	// Generate groupname #<dataSetName>#
+	pstGroupName = createGroupName(_pstDatasetName);
+
+	//First create a group to store all referenced objects.
+	group								= H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+	status							= H5Gclose(group);
+
+	//Create each sub dataset and insert data
+	pstRowPath = createPathName(pstGroupName, 0);
+	status = writeInterger32Matrix(_iFile, pstRowPath, 1, _iRows, _piNbItemRow);
+	if(status)
+	{
+		return 1;
+	}
+
+	status = H5Rcreate(&pDataRef[0], _iFile, pstRowPath, H5R_OBJECT, -1);
+	if(status)
+	{
+		return 1;
+	}
+
+	pstColPath = createPathName(pstGroupName, 1);
+	status = writeInterger32Matrix(_iFile, pstColPath, 1, _iNbItem, _piColPos);
+	if(status)
+	{
+		return 1;
+	}
+
+	status = H5Rcreate(&pDataRef[1], _iFile, pstColPath, H5R_OBJECT, -1);
+	if(status)
+	{
+		return 1;
+	}
+
+
+	//free group names
+	free(pstRowPath);
+	free(pstColPath);
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space								= H5Screate_simple(1, dims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress						= enableCompression(9, 1, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pDataRef);
+	if(status)
+	{
+		return 1;
+	}
+	//Add attribute SCILAB_Class = poly to dataset
+	sprintf(pstRow, "%d", _iRows);
+	sprintf(pstCol, "%d", _iCols);
+	addAttribute(dset, g_SCILAB_CLASS					, g_SCILAB_CLASS_BSPARSE);
+	addAttribute(dset, g_SCILAB_CLASS_ROWS		, pstRow);
+	addAttribute(dset, g_SCILAB_CLASS_COLS		, pstCol);
+
+	//Close and release resources.
+	status							= H5Dclose(dset);
+	status							= H5Sclose(space);
+
+	free(pstGroupName);
+
+	return status;
+}
+
 
 //create a group and create hobj_ref_t array
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem)

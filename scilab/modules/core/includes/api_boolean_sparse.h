@@ -37,10 +37,9 @@ int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
  * @param[in] _iNbItem Number of item
  * @param[out] _piNbItemRow return array of number of item for each row
  * @param[out] _piColPos return array of item column position ( 1 indexed )
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, int** _piAddress);
+int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Create boolean sparse variable
@@ -50,10 +49,9 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
  * @param[in] _iNbItem Number of item
  * @param[in] _piNbItemRow array of number of item for each row
  * @param[in] _piColPos array of item column position ( 1 indexed )
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, int** _piAddress);
+int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create named boolean sparse variable

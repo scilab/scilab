@@ -35,7 +35,7 @@ bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int _iH5File, int *_piVar, char* _pstName);
 bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
 bool export_sparse(int _iH5File, int *_piVar, char* _pstName);
-bool export_boolean_sparse(int *_piVar, char* _pstName);
+bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName);
 bool export_matlab_sparse(int *_piVar, char* _pstName);
 bool export_ints(int _iH5File, int *_piVar, char* _pstName);
 bool export_handles(int *_piVar, char* _pstName);
@@ -144,7 +144,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 		}
 	case sci_boolean_sparse :
 		{
-			bReturn = export_boolean_sparse(_piVar, _pstName);
+			bReturn = export_boolean_sparse(_iH5File, _piVar, _pstName);
 			break;
 		}
 	case sci_matlab_sparse :
@@ -351,6 +351,34 @@ bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 
 	char pstMsg[512];
 	sprintf(pstMsg, "bool (%d x %d)", iRows, iCols);
+	print_type(pstMsg);
+	return true;
+}
+
+bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
+{
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int iNbItem					= 0;
+	int* piNbCoef				= NULL;
+	int* piNbItemRow		= NULL;
+	int* piColPos				= NULL;
+
+	iRet = getBooleanSparseMatrix(_piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iRet = writeBooleanSparseMatrix(_iH5File, _pstName, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+	if(iRet)
+	{
+		return false;
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "boolean sparse (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 	return true;
 }

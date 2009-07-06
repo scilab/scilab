@@ -169,6 +169,23 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 	return 0;
 }
 
+int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
+{
+	int iRet						= 0;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+
+
+	iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
+	return 0;
+}
+
 int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal)
 {
 	return createCommunNamedMatrixOfDouble(_pstName, 0, _iRows, _iCols, _pdblReal, NULL);
@@ -177,6 +194,40 @@ int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _p
 int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	return createCommunNamedMatrixOfDouble(_pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+}
+
+int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
+{
+	int iVarID[nsiz];
+  int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	int iSize					= _iRows * _iCols;
+	int iRet					= 0;
+	int *piAddr				= NULL;
+	double *pdblReal	= NULL;
+	double *pdblImg		= NULL;
+
+  C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+  Top = Top + Nbvars + 1;
+
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+
+	//write matrix information
+	fillCommonMatrixOfDouble(piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+
+	vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
+
+	//update "variable index"
+	updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (2) * 2);
+
+	Rhs = 0;
+	//Add name in stack reference list
+	createNamedVariable(iVarID);
+
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
+
+	return 0;
 }
 
 int createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)

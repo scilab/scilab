@@ -15,6 +15,7 @@
 
 #include "api_common.h"
 #include "api_internal_common.h"
+#include "api_internal_sparse.h"
 #include "api_sparse.h"
 
 #include "MALLOC.h"
@@ -22,13 +23,6 @@
 #include "stack-c.h"
 
 //internal sparse functions
-static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
-static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress);
-static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize);
-static int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress);
-static int createCommonNamedSparseMatrix(char* _pstName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-static int readCommonNamedSparseMatrix(char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-
 int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
 {
 	return getCommonSparseMatrix(_piAddress, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
@@ -39,7 +33,7 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 	return getCommonSparseMatrix(_piAddress, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	int iPos					= 0;
 
@@ -80,25 +74,26 @@ static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, i
 	return 0;
 }
 
-int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, int** _piAddress)
+int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
 {
-	return allocCommonSparseMatrix(_iVar, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL, _piAddress);
+	return allocCommonSparseMatrix(_iVar, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress)
+int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	return allocCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, _piAddress);
+	return allocCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress)
+int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int	iTotalSize	= 0;
 	int iOffset			= 0;
+	int* piAddr			= NULL;
 
-	getNewVarAddressFromPosition(iNewPos, _piAddress);
-	fillCommonSparseMatrix(*_piAddress, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
+	fillCommonSparseMatrix(piAddr, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
 	iOffset	= 5;//4 for header + 1 for NbItem
 	iOffset		+= _iRows + _iNbItem + !((_iRows + _iNbItem) % 2);
@@ -108,7 +103,7 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 	return 0;
 }
 
-static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
+int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
 {
 	if(_piAddress == NULL)
 	{
@@ -135,25 +130,24 @@ static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, in
 	return 0;
 }
 
-int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, int** _piAddress)
+int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
 {
-	return createCommonSparseMatrix(_iVar, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL, _piAddress);
+	return createCommonSparseMatrix(_iVar, 0, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress)
+int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-	return createCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, _piAddress);
+	return createCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress)
+int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
-	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	int iRet = allocCommonSparseMatrix(_iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &piAddr);
+	int iRet = allocCommonSparseMatrix(_iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	if(iRet)
 	{
 		return 1;
@@ -179,7 +173,7 @@ int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
 	return createCommonNamedSparseMatrix(_pstName, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int createCommonNamedSparseMatrix(char* _pstName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+int createCommonNamedSparseMatrix(char* _pstName, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -237,7 +231,7 @@ int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int
 	return readCommonNamedSparseMatrix(_pstName, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int readCommonNamedSparseMatrix(char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+int readCommonNamedSparseMatrix(char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;

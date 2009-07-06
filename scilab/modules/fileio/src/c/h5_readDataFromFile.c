@@ -131,6 +131,44 @@ static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
 	return iRet;
 }
 
+int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem)
+{
+	int iRet							= 0;
+	int iDummy						= 0;
+	char *pstScilabClass	= NULL;
+
+	//get number of item in the sparse matrix
+
+	iRet = getDataSetDims(_iDatasetId, &iDummy, _piNbItem);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	pstScilabClass = readAttribute(_iDatasetId, g_SCILAB_CLASS_ROWS);
+	if(pstScilabClass != NULL)
+	{
+		*_piRows = atoi(pstScilabClass);
+	}
+	
+	if(pstScilabClass)
+	{
+		free(pstScilabClass);
+	}
+
+	pstScilabClass = readAttribute(_iDatasetId, g_SCILAB_CLASS_COLS);
+	if(pstScilabClass != NULL)
+	{
+		*_piCols = atoi(pstScilabClass);
+	}
+	
+	if(pstScilabClass)
+	{
+		free(pstScilabClass);
+	}
+	return iRet;
+}
+
 static int isEmptyDataset(int _iDatasetId)
 {
 	return checkAttribute(_iDatasetId, (char*)g_SCILAB_CLASS_EMPTY, "true");
@@ -244,7 +282,7 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 		*_piRows = (int)lDims[0];
 		if (ndims == 1)
 		{
-			//check if double in this case read chid size
+			//check if double in this case read child size
 			if(getScilabTypeFromDataSet(_iDatasetId) == sci_matrix)
 			{
 				int iItemDataset				= 0;
@@ -254,6 +292,18 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 				H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, piItemRef);
 
 				getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
+				getDataSetDims(iItemDataset, _piRows, _piCols);
+				free(piItemRef);
+			}
+			else if(getScilabTypeFromDataSet(_iDatasetId) == sci_sparse || getScilabTypeFromDataSet(_iDatasetId) == sci_boolean_sparse)
+			{
+				int iItemDataset				= 0;
+				hobj_ref_t* piItemRef		= NULL;
+
+				piItemRef = (hobj_ref_t *) malloc (*_piRows * sizeof (hobj_ref_t));
+				H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, piItemRef);
+
+				getListItemDataset(_iDatasetId, piItemRef, 1, &iItemDataset);
 				getDataSetDims(iItemDataset, _piRows, _piCols);
 				free(piItemRef);
 			}
@@ -456,31 +506,12 @@ static int readComplexPoly(int _iDatasetId, int* _piNbCoef, double** _pdblReal, 
 
 static int readPoly(int _iDatasetId, int* _piNbCoef, double** _pdblData)
 {
-	//hid_t iFileType			= 0;
-	//hid_t iSpace				= 0;
-	//herr_t status				= 0;
-	//size_t iDim					= 0;
-	//hsize_t dims[1];
 	int iRows							= 0;
 	int iCols							= 0;
 
 	//Get the datatype and its size.
 	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-	//iFileType = H5Dget_type (_iDatasetId);
-	//iDim = H5Tget_size (iFileType);
-	//iDim++;                         // Make room for null terminator
-
-	////Get dataspace and allocate memory for read buffer.  This is a
-	////two dimensional attribute so the dynamic allocation must be done
-	////in steps.
-
-	//iSpace = H5Dget_space (_iDatasetId);
-	//H5Sget_simple_extent_dims (iSpace, dims, NULL);
-
-	//Allocate space for string data.
-	//*_piNbCoef = (int)dims[0];
-	//*_pdblData = (double*)malloc((int)dims[0] * sizeof(double));
 	*_piNbCoef = iRows * iCols;
 	*_pdblData = (double*)malloc(*_piNbCoef * sizeof(double));
 
@@ -669,6 +700,109 @@ int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pl
 	return status;
 }
 
+int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg)
+{
+	int	i								= 0;
+	int j								= 0;
+	hid_t obj						= 0;
+	hobj_ref_t *pRef		= (hobj_ref_t *)malloc(3 * sizeof (hobj_ref_t));
+	herr_t status;
+
+	/*
+	* Read the data.
+	*/
+	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+	if(status)
+	{
+		return 1;
+	}
+
+	//read Row data
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
+	status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+	if(status)
+	{
+		return 1;
+	}
+
+	//read cols data
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
+	status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+	if(status)
+	{
+		return 1;
+	}
+
+	//read sparse data
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[2]);
+
+	if(_iComplex)
+	{
+		status = readDoubleComplexMatrix(obj, 1, _iNbItem, _pdblReal, _pdblImg);
+	}
+	else
+	{
+		status = readDoubleMatrix(obj, 1, _iNbItem, _pdblReal);
+	}
+
+	if(status)
+	{
+		return 1;
+	}
+
+	free(pRef);
+
+	return status;
+}
+
+int readSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal)
+{
+	return readCommonSparseComplexMatrix(_iDatasetId, 0, _iRows, _iCols, _iNbItem, _piNbItemRow,	_piColPos, _pdblReal, NULL);
+}
+
+int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos, double *_pdblReal, double *_pdblImg)
+{
+	return readCommonSparseComplexMatrix(_iDatasetId, 1, _iRows, _iCols, _iNbItem, _piNbItemRow,	_piColPos, _pdblReal, _pdblImg);
+}
+
+int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,	int* _piColPos)
+{
+	int	i								= 0;
+	int j								= 0;
+	hid_t obj						= 0;
+	hobj_ref_t *pRef		= (hobj_ref_t *)malloc(2 * sizeof (hobj_ref_t));
+	herr_t status;
+
+	/*
+	* Read the data.
+	*/
+	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+	if(status)
+	{
+		return 1;
+	}
+
+	//read Row data
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
+	status = readInterger32Matrix(obj, 1, _iRows, _piNbItemRow);
+	if(status)
+	{
+		return 1;
+	}
+
+	//read cols data
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
+	status = readInterger32Matrix(obj, 1, _iNbItem, _piColPos);
+	if(status)
+	{
+		return 1;
+	}
+
+	free(pRef);
+
+	return status;
+}
+
 int getScilabTypeFromDataSet(int _iDatasetId)
 {
 	int iVarType					= 0;
@@ -698,6 +832,14 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
 	{
 		iVarType = sci_ints;
+	}
+	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_SPARSE) == 0)
+	{
+		iVarType = sci_sparse;
+	}
+	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_BSPARSE) == 0)
+	{
+		iVarType = sci_boolean_sparse;
 	}
 	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
 	{
