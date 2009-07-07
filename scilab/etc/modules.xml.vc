@@ -64,7 +64,6 @@
 <module name="sound" activate="yes"/>
 <module name="scipad" activate="yes"/>
 <module name="randlib" activate="yes"/>
-<module name="scilab2fortran" activate="yes"/>
 <module name="development_tools" activate="yes"/>
 <module name="demo_tools" activate="yes"/>
 <module name="spreadsheet" activate="yes"/>
@@ -83,4 +82,7 @@
 <module name="simulated_annealing" activate="yes"/>
 <module name="parameters" activate="yes"/>
 <module name="matio" activate="yes"/>
+<!-- comments -->
+<module name="scilab2fortran" activate="no"/>
+<!-- comments -->
 </modules>
