@@ -103,3 +103,10 @@ writeSparseMatrix
 getSparseMatrix
 writeSparseComplexMatrix
 getComplexSparseMatrix
+getBooleanSparseMatrix
+createSparseMatrixInNamedList
+createComplexSparseMatrixInNamedList
+createNamedSparseMatrix
+createNamedComplexSparseMatrix 
+createBooleanSparseMatrixInNamedList
+createNamedBooleanSparseMatrix
