@@ -1,14 +1,26 @@
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
 #
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 #### Target ######
 modulename=javasci
+
+#### javasci : Conf files ####
+libjavasci_la_rootdir = $(mydatadir)
+libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### javasci : init scripts ####
+libjavasci_la_etcdir = $(mydatadir)/etc
+libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
+
 
 if JAVASCI
 ### All the compilation process of java is deleguated to ant
@@ -49,17 +61,6 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/libscilab.la
-
-
-#### javasci : Conf files ####
-libjavasci_la_rootdir = $(mydatadir)
-libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-
-#### javasci : init scripts ####
-libjavasci_la_etcdir = $(mydatadir)/etc
-libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
-
 
 #### javasci : include files ####
 libjavasci_la_includedir=$(pkgincludedir)/javasci

@@ -51,7 +51,7 @@ function [fpen,gpen,ind]=pencost(x,ind,fncts,ne,nc,cpen);
 //              1,0,x(2)]')
 //
 // 2-call scilab's optim function (after loading pencost.sci (this file));
-// getf('pencost.sci','c') 
+// exec('pencost.sci','c') 
 // ne=0;nc=2;x0=[4;7];
 // penalizing constant cpen=100;
 // [f,x]=optim(list(pencost,myproblem,ne,nc,cpen),x0)

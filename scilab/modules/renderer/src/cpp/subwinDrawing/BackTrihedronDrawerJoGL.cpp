@@ -40,7 +40,7 @@ void BackTrihedronDrawerJoGL::drawAxesBox(int concealedCornerIndex)
   initializeDrawing();
 
   getBackTrihedronDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
-                                                       (float) sciGetLineWidth(pSubwin));
+                                                       (float)sciGetLineWidth(pSubwin));
 
   // get displayed bounds
   double bounds[6];

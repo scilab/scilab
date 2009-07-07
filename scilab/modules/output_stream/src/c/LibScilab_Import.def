@@ -9,7 +9,6 @@ errgst_
 cha1_
 vstk_
 recu_
-prntid_
 errmgr_
 errloc_
 stack_
@@ -24,10 +23,17 @@ checkrhs_
 checklhs_
 intersci_
 createvar_
-writelunitstring_
+getwsmat_
 getScilabMode
 cvname_
 getIntermediateMemoryNeeded
 getstackinfo_
 getWarningMode
+callFunctionFromGateway
+getmatdims_
+overload_
+vartype_ 
+getRecursionFunctionToCall
+isRecursionCallToFunction
+freeArrayOfString
 ;

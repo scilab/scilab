@@ -31,6 +31,9 @@ Scilab a better software.
 * Andrea Florio
 	- Misc patches for Opensuse
 
+* Oriol Gonzalez
+	- Catalan localization
+
 * Tomasz Pawel Gajc
 	- Misc patches for Mandriva
 
@@ -55,12 +58,15 @@ Scilab a better software.
 * Séverin Lemaignan
 	- Advice
 
-* Dan McMahill  
-	- Patches for netBSD
+* Dan McMahill 
+  	- Patches for NetBSD
 
 * Olivier Mehani
 	- Advice
 	- Patches
+
+* Armin Mohring
+  	- German localization
 
 * Stéphane Mottelet 
 	- Advice
@@ -84,6 +90,9 @@ Scilab a better software.
 	- Bug reports
 	- Bug fixes
 	- Advice
+
+* Federico Vera
+	- Spanish localization
 
 * François Vogel
 	- Scipad

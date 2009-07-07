@@ -15,7 +15,8 @@
 #include "gw_signal.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define SIGNAL_TAB_SIZE 9
+static gw_generic_table Tab[SIGNAL_TAB_SIZE]=
 {
 	{sci_ffir,   "ffir"},
 	{sci_fft,    "fft"},
@@ -30,7 +31,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_signal_processing(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,SIGNAL_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

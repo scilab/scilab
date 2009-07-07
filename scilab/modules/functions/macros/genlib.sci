@@ -138,7 +138,7 @@ function genlib(nam,path,force,verbose,names)
     end
     
     // create library
-    execstr(nam+'=lib('''+path1+''')')
+    execstr(nam+'=lib('''+getshortpathname(path1)+''')')
     //save it
     
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then

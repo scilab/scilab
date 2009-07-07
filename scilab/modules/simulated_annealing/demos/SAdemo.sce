@@ -1,10 +1,18 @@
-// example of use of the simulated annealing method
+//////////////////////////////////////////////////////
+// example of use of the simulated annealing method //
+//////////////////////////////////////////////////////
 
-// Definition of the Rastrigin test problem
+my_handle = scf(100001);
+clf(my_handle,'reset');
+demo_viewCode('SAdemo.sce');
 
-//
-// Rastrigin function
-//
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
+
+////////////////////////
+// Rastrigin function //
+////////////////////////
 
 function Res = min_bd_rastrigin()
 Res = [-1 -1]';
@@ -25,12 +33,13 @@ Proba_start = 0.8;
 It_intern = 1000;
 It_extern = 30;
 It_Pre    = 100;
+alpha     = 0.9;
 
 DoSA    = %T;
 DoFSA   = %F;
 DoVFSA  = %F;
 DoCSA   = %F;
-DoHuang = %T;
+DoHuang = %F;
 
 //////////////////////////////////////////
 
@@ -55,6 +64,7 @@ if DoSA then
   sa_params = add_param(sa_params,'temp_law', temp_law_default); // Optional
   sa_params = add_param(sa_params,'min_bound',Min);
   sa_params = add_param(sa_params,'max_bound',Max);
+  sa_params = add_param(sa_params,'alpha',alpha); // for the decreasing temperature law
 
   T0 = compute_initial_temp(x0, f, Proba_start, It_Pre, sa_params);
   printf('Initial temperature T0 = %f\n', T0);
@@ -64,7 +74,6 @@ if DoSA then
   printf('optimal solution:\n'); disp(x_opt);
   printf('value of the objective function = %f\n', f_opt);
 
-  scf();
   drawlater;
   subplot(2,1,1);
   xtitle('Geometrical annealing','Iteration','Mean / Variance');
@@ -248,4 +257,6 @@ if DoHuang then
   end
   drawnow;
 end
+
+funcprot(old_funcprot);
 

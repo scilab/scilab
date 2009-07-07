@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="erfc" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>erfc</refname>
 
-    <refpurpose>fonction erreur complémentaire.</refpurpose>
+    <refpurpose>fonction erreur complÃ©mentaire.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y = erfc(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur réel</para>
+          <para>vecteur rÃ©el</para>
         </listitem>
       </varlistentry>
 
@@ -38,7 +38,7 @@
         <term>y</term>
 
         <listitem>
-          <para>vecteur réel (de même taille que x)</para>
+          <para>vecteur rÃ©el (de mÃªme taille que x)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,12 +48,12 @@
     <title>Description</title>
 
     <para><literal>erfc</literal> calcule la fonction erreur
-    complémentaire.</para>
+    complÃ©mentaire.</para>
 
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/erfc_equation1.mml" />
+          <imagedata align="center" fileref="../mml/erfc_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -48,6 +48,7 @@
         <term>file</term>
         <listitem>
           <para>a Scilab string specifying a file name or a logical unit number (see <literal>file</literal>)</para>
+          <para>Note that is file=0, the message will be display on standard error stream (stderr).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -93,6 +94,9 @@ for tk=t
  fprintf(u,'time = %6.3f value = %6.3f',tk,sin(tk)) // write a line
 end
 file('close',u) //close the result file
+
+
+fprintf(0,'My error which is going to be displayed on the stderr') 
  
   ]]></programlisting>
   </refsection>

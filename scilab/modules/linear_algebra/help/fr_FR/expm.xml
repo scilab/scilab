@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> exponentielle de matrice  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>expm(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice carrée réelle ou complexe
+          <para>matrice carrÃ©e rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -39,15 +39,15 @@
     <para>
   </para>
     <para>
-    Pour <literal>X</literal> une matrice carrée <literal>expm(X)</literal> est la matrice
+    Pour <literal>X</literal> une matrice carrÃ©e <literal>expm(X)</literal> est la matrice
   </para>
     <para>
     expm(X) = I + X + X^2 /2 + ...
   </para>
     <para>
-    Le calcul fait appel à une 
-    bloc-diagonalisation préliminaire de <literal>X</literal> suivie d'une approximation 
-    de Padé sur chaque bloc.
+    Le calcul fait appel Ã  une 
+    bloc-diagonalisation prÃ©liminaire de <literal>X</literal> suivie d'une approximation 
+    de PadÃ© sur chaque bloc.
   </para>
   </refsection>
   <refsection>

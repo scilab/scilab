@@ -20,14 +20,15 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={ 
+#define RANDLIB_TAB_SIZE 1
+static gw_generic_table Tab[RANDLIB_TAB_SIZE]={ 
 	{sci_Rand, "Rand"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_randlib(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,RANDLIB_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

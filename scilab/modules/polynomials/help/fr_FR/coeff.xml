@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coeff">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>coeff</refname>
-    <refpurpose> coefficients d'une matrice de polynômes  </refpurpose>
+    <refpurpose> coefficients d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[C]=coeff(Mp [,v])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>Mp  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur (ligne ou colonne) d'entiers des degrés choisis
+          <para>vecteur (ligne ou colonne) d'entiers des degrÃ©s choisis
 </para>
         </listitem>
       </varlistentry>
@@ -41,13 +41,13 @@
     <title>Description</title>
     <para><literal>C=coeff(Mp)</literal>
     renvoie dans une grosse matrice <literal>C</literal> les coefficients de la
-    matrice de polynômes <literal>Mp</literal>. <literal>C</literal> est
-    partitionnée comme <literal>C=[C0,C1,...,Ck]</literal> 
-    où les <literal>Ci</literal> sont arrangés dans l'ordre décroissant .
+    matrice de polynÃ´mes <literal>Mp</literal>. <literal>C</literal> est
+    partitionnÃ©e comme <literal>C=[C0,C1,...,Ck]</literal> 
+    oÃ¹ les <literal>Ci</literal> sont arrangÃ©s dans l'ordre dÃ©croissant .
     <literal>k = maxi(degree(Mp))</literal>
   </para>
     <para><literal>C=coeff(Mp,v)</literal> renvoie la matrice des coefficients avec les 
-    degrés dans <literal>v</literal>.
+    degrÃ©s dans <literal>v</literal>.
   </para>
   </refsection>
   <refsection>

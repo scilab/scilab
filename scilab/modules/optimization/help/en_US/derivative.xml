@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="derivative" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -84,7 +84,8 @@
                 <informalequation>
                   <mediaobject>
                     <imageobject>
-                      <imagedata fileref="../mml/derivative_equation_1.mml" />
+                      <imagedata align="center"
+                                 fileref="../mml/derivative_equation_1.mml" />
                     </imageobject>
                   </mediaobject>
                 </informalequation>
@@ -141,7 +142,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/derivative_equation_2.mml" />
+          <imagedata align="center" fileref="../mml/derivative_equation_2.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

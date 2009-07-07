@@ -1,0 +1,382 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-29 14:56+0100\n"
+"PO-Revision-Date: 2009-02-17 11:06+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
+"caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"enter.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
+"enter.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrecte: Ha de ser un enter no-"
+"negatiu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de nombres reals o complexos o de cadenes de text o una llista.\n"
+
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: L'expressió donada no té valor.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Aquesta característica no està implementada: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''r'',''l'' "
+"or ''c''.\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr ""
+"%s: Aquesta característica no s'ha implementat: Ha de ser una variable del "
+"tipus %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un caràcter o "
+"un vector de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser ''%s''.\n"
+
+msgid "WARNING : \n"
+msgstr "Avís: \n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
+"de text o d'enters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"real.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser 'u' "
+"(superior) or 'l' (inferior) expected.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de nombres enters.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una matriu de "
+"cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de nombres reals o de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s: Els arguments d'entrada són d'un tipus incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= 1.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser ''%s'' o "
+"''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text simple.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument(s).\n"
+msgstr "%s : Els arguments d'entrata tenen una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s : Els arguments d'entrata tenen una mida incorrecta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
+"matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text o una matriu real buida.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un caràcter.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument #%d.\n"
+msgstr "%s : L'argument d'entrada #%d té una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"caràcter.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s.\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s : No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Character expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"caràcter.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser '%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de text o una matriu buida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row vector of strings or column "
+"vector of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"fila o columna de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text no-buida.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu no-"
+"buida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu no-"
+"buida de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
+"''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A character or a vector of single "
+"characters expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un caràcter "
+"o un vector de caràcters.\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Error d'assignació de memòria.\n"
+
+#, c-format
+msgid "%s: Delimiter must not be alphameric.\n"
+msgstr "%s: El delimitador no pot ser alfanumèric.\n"
+
+#, c-format
+msgid "%s: Capturing subpatterns error.\n"
+msgstr "%s: Error en la captura de subpatrons.\n"
+
+#, c-format
+msgid "%s: Partial matching not supported.\n"
+msgstr "%s: La comparació parcial no està suportada.\n"
+
+#, c-format
+msgid "%s: Contains explicit CR or LF match.\n"
+msgstr "%s: Conté una comprovació específica de CR o LF.\n"
+
+#, c-format
+msgid "%s: Duplicate name status changes.\n"
+msgstr "%s: Els canvis d'estat provoquen noms duplicats.\n"
+
+#, c-format
+msgid "%s: Returned count is too big for offset size.\n"
+msgstr "%s: El recompte retornat és massa gran per a la mida indicada.\n"
+
+#, c-format
+msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
+msgstr ""
+"%s: El límit no és relevant per a la comprovació DFA: Serà ignorat.\n"
+
+#, c-format
+msgid "%s: Can not compile pattern.\n"
+msgstr "%s: No es pot compilar el patró.\n"
+
+#, c-format
+msgid "%s: Matched text exceeds buffer limit.\n"
+msgstr "%s: El text comprovat desborda el límit de la memòria intermèdia.\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: Error desconegut.\n"

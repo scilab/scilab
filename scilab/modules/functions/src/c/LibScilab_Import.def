@@ -1,0 +1,19 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+callFunctionFromGateway
+getRecursionGatewayToCall
+isRecursionCallToFunction
+getRecursionFunctionToCall
+getMatrixOfString
+getVarType
+getVarAddressFromPosition
+checklhs_
+checkrhs_
+createMatrixOfString
+intersci_
+putlhsvar_
+;

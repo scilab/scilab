@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -24,7 +24,9 @@
     <synopsis>bOK=dos(command-name)
 bOK=dos(command-name,'-echo')
 [output,bOK]=dos(command-name)
-[output,bOK]=dos(command-name,'-echo')</synopsis>
+[output,bOK,exitcode]=dos(command-name)
+[output,bOK]=dos(command-name,'-echo')
+[output,bOK,exitcode]=dos(command-name,'-echo')</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
@@ -33,6 +35,8 @@ bOK=dos(command-name,'-echo')
     the calling shell. bOK returns if command has been executed.</para>
     <para>[output,bOK] = dos(command-name,'-echo') forces the output to the
     Command Window, even though it is also being assigned into a variable.</para>
+    <para>exitcode value returned by the external process.</para>
+    
     <para>To open the notepad editor and return control immediately to Scilab
     dos('start notepad')</para>
   </refsection>
@@ -43,6 +47,8 @@ bOK=dos(command-name,'-echo')
 dos('start notepad')
 dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's processus
 [s, w] = dos('foo')
+[s, w, code] = dos('dir')
+[s, w, code] = dos('foo')
 ]]></programlisting>
   </refsection>
   <refsection>

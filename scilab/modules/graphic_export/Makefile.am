@@ -1,8 +1,27 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### Graphic export module
-### INRIA - Scilab 2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+
+#### Name of the module and the path ######
+modulename=graphic_export
+
+#### graphic_export : Conf files ####
+libscigraphic_export_la_rootdir = $(mydatadir)
+libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### graphic_export : init scripts ####
+libscigraphic_export_la_etcdir = $(mydatadir)/etc
+libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.start
+
 
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
@@ -77,21 +96,13 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export.la libscigraphic_export-disable.la
+pkglib_LTLIBRARIES = libscigraphic_export-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigraphic_export.la 
+endif
 
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-
-#### Name of the module and the path ######
-modulename=graphic_export
-
-#### graphic_export : Conf files ####
-libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### graphic_export : init scripts ####
-libscigraphic_export_la_etcdir = $(mydatadir)/etc
-libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.start
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway

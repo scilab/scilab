@@ -1,10 +1,32 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### Vincent Couvert <vincent.couvert@inria.fr>
-### INRIA - Scilab 2007
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
+# Copyright (C) INRIA   - 2007 - Vincent COUVERT
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
-# List of the cpp files
+
+#### Target ######
+modulename=console
+
+#### console : Conf files ####
+libsciconsole_la_rootdir = $(mydatadir)
+libsciconsole_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### console : init scripts ####
+libsciconsole_la_etcdir = $(mydatadir)/etc
+libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
+
+
+
+#### console : List of the cpp files ####
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
 src/jni/GiwsException.cpp
 
@@ -18,7 +40,7 @@ src/cpp/PromptToHome.cpp \
 src/cpp/ScilabLinesUpdate.cpp \
 src/cpp/SetConsolePrompt.cpp
 
-# List of the c files
+#### console : List of the c files ####
 CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
 src/jni/DropFiles_wrap.c
 
@@ -55,7 +77,11 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole.la libsciconsole-disable.la
+pkglib_LTLIBRARIES = libsciconsole-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libsciconsole.la 
+endif
 
 libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
@@ -70,21 +96,12 @@ INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
 ## Change to include other Scilab modules/lib
 libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
-#### Name of the module and the path ######
-modulename=console
 
-#### console : Conf files ####
-libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-####�console : init scripts ####
-libsciconsole_la_etcdir = $(mydatadir)/etc
-libsciconsole_la_etc_DATA = etc/console.quit etc/console.start etc/configuration.xml
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/GuiManagement.i
 
-####�console : include files ####
+#### console : include files ####
 libsciconsole_la_includedir=$(pkgincludedir)/console
 libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
 includes/ClearConsolePart.h \
@@ -114,4 +131,3 @@ USEANT=1
 endif
 
 include $(top_srcdir)/Makefile.incl.am
-

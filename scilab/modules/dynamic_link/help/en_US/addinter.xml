@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,8 +26,7 @@
   <refnamediv>
     <refname>addinter</refname>
 
-    <refpurpose>new functions interface incremental/dynamic link at run
-    time</refpurpose>
+    <refpurpose>new functions interface dynamic link at run time.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -74,9 +74,8 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>addinter</literal> performs incremental/dynamic link of a
-    compiled C or Fortran new Scilab interface routine (see
-    <literal>intersci</literal> documentation) and define corresponding scilab
+    <para><literal>addinter</literal> performs dynamic link of a compiled C or
+    Fortran new Scilab interface routine and define corresponding scilab
     functions.</para>
 
     <para>You can use the command <literal>link('show')</literal> to get the
@@ -89,6 +88,48 @@
     <para>Number of 'addinter' in a scilab session can be limited by the
     operating system. On Windows, you cannot load more than 80 dynamic
     libraries at the same time.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting>
+if haveacompiler() then
+
+chdir(TMPDIR)
+src = ['#include &lt;math.h&gt;'
+'#include ""stack-c.h""'
+''
+'static double fun2(double x);'
+''     
+'void fun1(double *x,double *y) '
+'{'
+'  *y=fun2(*x)/(*x); '
+'} '
+''
+'static double fun2(double x)'
+'{ '
+'  return( sin(x+1));'
+'}'
+''
+'int sci_fun1(char *fname) '
+'{'
+'  int m1,n1,l1;'
+'  CheckRhs(1,1);'
+'  CheckLhs(1,1);'
+'  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m1, &amp;n1, &amp;l1);'
+'  fun1(stk(l1),stk(l1));'
+'  LhsVar(1) = 1;'
+'  return 0;'
+'}'];
+mputl(src,'example_addinter.c');
+files=['example_addinter.c'];
+ilib_build('addinter',['fun1_in_scilab','sci_fun1'],files,[]);
+disp(mgetl('loader.sce'));
+exec loader.sce;
+fun1_in_scilab(%pi)
+
+end // if haveacompiler()  </programlisting>
   </refsection>
 
   <refsection>

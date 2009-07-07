@@ -40,10 +40,12 @@ typedef enum
 	SCI_HFUNCTIONS_FIND = 1,SCI_HFUNCTIONS_BACKSEARCH = 2, SCI_HFUNCTIONS_ENTER = 3,SCI_HFUNCTIONS_DELETE = 4
 } SCI_HFUNCTIONS_ACTION;
 /*--------------------------------------------------------------------------*/
-/* maximum number of entries in the htable */
-/* in fact create_hashtable_scilab_functions used a prime > MAXTAB */
-/* WARNING : MAXTAB must be chosen > 2* the number of scilab functions */
-/* for good efficiency of the hash code */
+/* maximum number of entries in the htable 
+ * in fact create_hashtable_scilab_functions used a 
+ * prime > MAXELEMENTFUNCTIONLIST 
+ * WARNING : MAXELEMENTFUNCTIONLIST must be chosen > 2* the number of scilab
+ * functions 
+ * for good efficiency of the hash code */
 #define MAXELEMENTFUNCTIONLIST 1536
 /*--------------------------------------------------------------------------*/
 /** 

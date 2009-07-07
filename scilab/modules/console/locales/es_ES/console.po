@@ -1,0 +1,48 @@
+# Spanish translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-10-03 17:11+0200\n"
+"PO-Revision-Date: 2009-03-28 02:46+0000\n"
+"Last-Translator: Federico Vera <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "File or Directory"
+msgstr "Archivo o Directorio"
+
+msgid "Scilab Command"
+msgstr "Orden de Scilab"
+
+msgid "Scilab Function"
+msgstr "Función de Scilab"
+
+msgid "Graphics handle field"
+msgstr "Campo del manejador gráfico"
+
+msgid "Scilab Macro"
+msgstr "Macro de Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variable de Scilab"
+
+msgid "No help"
+msgstr "Sin ayuda"
+
+msgid "Out of Screen"
+msgstr "Fuera de pantalla"
+
+msgid "Could not change the Console Font."
+msgstr "No se ha podido cambiar el tipo de letra de consola."
+
+msgid "Could not change the Console Foreground."
+msgstr "No se ha podido cambiar el frente."

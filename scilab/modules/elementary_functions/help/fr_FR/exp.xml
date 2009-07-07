@@ -1,57 +1,68 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exp">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="exp" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>exp</refname>
-    <refpurpose> exponentielle  </refpurpose>
+
+    <refpurpose>exponentielle</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>exp(X)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>X  </term>
+        <term>X</term>
+
         <listitem>
-          <para>matrice carrée réelle ou complexe.
-</para>
+          <para>matrice carrÃ©e rÃ©elle ou complexe.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>exp(X)</literal> renvoie (élément par élément) l'exponentielle des éléments de <literal>X</literal>.
-  </para>
-    <para>
-  </para>
+
+    <para><literal>exp(X)</literal> renvoie (Ã©lÃ©ment par Ã©lÃ©ment)
+    l'exponentielle des Ã©lÃ©ments de <literal>X</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 x=[1,2,3+%i];
-log(exp(x))  // élément par élément
+log(exp(x))  // Ã©lÃ©ment par Ã©lÃ©ment
 2^x
 exp(x*log(2))
-
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="coff">coff</link>
-      </member>
-      <member>
-        <link linkend="log">log</link>
-      </member>
-      <member>
-        <link linkend="expm">expm</link>
-      </member>
+      <member><link linkend="coff">coff</link></member>
+
+      <member><link linkend="log">log</link></member>
+
+      <member><link linkend="expm">expm</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -10,8 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include <string.h>
+#include "api_double.h"
+#include "api_common.h"
+#include <string.h> /* memcpy */
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
@@ -21,145 +22,194 @@
 #include "MALLOC.h"
 #include "hess.h"
 
+static int getData(int* adr, int* piRows, int* piCols, double** pPtrData);
+static int  handleEmptyMatrix(int isComplex);
+static int  handleEyeMatrix( int isComplex, double* pData);
+static int zToRI(int rows, int cols, doublecomplex* pData, doublecomplex* pH);
+static double* allocH(int isComplex, int rows, int cols);
+
+static char* thisFunctionName=NULL;
+
 int C2F(inthess)(char *fname,unsigned long fname_len)
 {
   int iRows, iCols;
   double* pData= NULL;
-  double* pDataReal= NULL;
-  double* pDataImg= NULL;
+
   int complexArg= 0;
   int ret= 0;
+
+  int* adr1= NULL;
   /*   hess(A)  */
-  if ( (Rhs >= 1) && (GetType(1)!=sci_matrix) )
+  thisFunctionName= fname;
+  if (Rhs >= 1)
     {
-      OverLoad(1);
-      return 0;
-    }
-  CheckRhs(1,1); /* H[,U]= hess(A) */
-  CheckLhs(1,2);
-  
-  complexArg= iIsComplex(1);
-  
-  if(complexArg)
-    {
-      GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
-      /* c -> z */
-      pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
-      if(!pData)
+      getVarAddressFromPosition(1, &adr1);
+      if(getVarType(adr1)!=sci_matrix)
 	{
-	  Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-	  ret = 1;
-	}
-    }
-  else
-    {
-      GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
-    }
-  if( iRows != iCols)
-    {
-      Scierror(999,_("%s: Wrong size for input argument #%d: Square matrix expected.\n"),fname, 1);
-    }
-  else
-    {
-      if( iCols == 0)
-	{
-	  LhsVar(1)= 1;
-	  if(Lhs == 2)
-	    {
-	      double* unused;
-	      if(complexArg)
-		{
-		  iAllocComplexMatrixOfDouble(2, 0, 0, &unused, &unused);
-		}
-	      else
-		{
-		  iAllocMatrixOfDouble(2, 0, 0, &unused);
-		}
-	      LhsVar(2)= 2;
-	    }
+	  OverLoad(1);
+	  return 0;
 	}
       else
 	{
-	  if(iCols == -1 )
+	  double* pH= NULL;
+	  CheckRhs(1,1); /* H[,U]= hess(A) */
+	  CheckLhs(1,2);
+
+	  getData(adr1, &iRows, &iCols, &pData);
+
+	  if( iRows != iCols)
 	    {
-	      if( Lhs == 1 )
-		{
-		  LhsVar(1)= 1;
-		}
-	      else
-		{
-		  if(complexArg)
-		    {
-		      double* pHReal= NULL;
-		      double* pHImg= NULL;
-		      iAllocComplexMatrixOfDouble(2, -1, -1, &pHReal, &pHImg);
-		      *pHReal= *pDataReal;
-		      *pHImg= *pDataImg;
-		      *pDataReal= 1.;
-		      *pDataImg= 0.;
-		    }
-		  else
-		    {
-		      double* pH= NULL;
-		      iAllocMatrixOfDouble(2, -1, -1, &pH);
-		      *pH= *pData;
-		      *pData= 1.;
-		    }
-		  LhsVar(1)= 1;
-		  LhsVar(2)= 2;
-		}
+	      Scierror(20,_("%s: Wrong size for input argument #%d: Square matrix expected.\n"),fname, 1);
 	    }
 	  else
-	    { /* neither empty nor eye matrix: at last the interesting case ! */
-	      double* pH= NULL;
-	      double* pHReal= NULL;
-	      double* pHImg= NULL;
-	      if(Lhs == 2)
-		{ /* perform memory allocation for second Lhs (H) */
-		  if(complexArg)
-		    {
-		      if( (ret= iAllocComplexMatrixOfDouble(2, iRows, iCols, &pHReal, &pHImg)) )
-			{
-			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-			}
-		      else
-			{
-			  if( ( ret= !(pH= (double*) MALLOC(iRows * iCols * sizeof(doublecomplex) ) ) ) )
-			    {
-			      Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-			    }
-			}
-		    }
-		  else 
-		    {
-		      if( (ret= iAllocMatrixOfDouble(2, iRows, iCols, &pH)) )
-			{
-			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
-			}
-		    }
-		}
-	      ret = ret ? ret : iHessM(pData, iCols, complexArg, pH);
-	      if(complexArg)
+	    {
+	      complexArg= isVarComplex(adr1);
+	      if( iCols == 0)
 		{
-		  vGetPointerFromDoubleComplex((doublecomplex*)pData, iRows * iCols, pDataReal, pDataImg);
-		  FREE(pData);
-		  if(pH)
-		    {
-		      vGetPointerFromDoubleComplex((doublecomplex*)pH, iRows * iCols, pHReal, pHImg);
-		      FREE(pH);
-		    }
-		}
-	      if(Lhs == 1)
-		{
-		  LhsVar(1)= 1;
+		  handleEmptyMatrix(complexArg);
 		}
 	      else
 		{
-		  LhsVar(1)= 2;
-		  LhsVar(2)= 1;
+		  if(iCols == -1 )
+		    {
+		      handleEyeMatrix( complexArg, pData);
+		    }
+		  else
+		    { /* neither empty nor eye matrix: at last the interesting case ! */
+		      double* pRes= NULL;
+		      pH= (Lhs==2) ? allocH(complexArg, iRows, iCols) : NULL;
+
+		      ret = ret ? ret : iHessM(pData, iCols, complexArg, pH);
+
+		      allocMatrixOfDouble(Rhs+1, iRows, iCols, &pRes);
+
+		      memcpy(pRes, pData, iRows * iCols * sizeof(double));
+
+		      if(complexArg)
+			{
+			  zToRI(iRows, iCols, (doublecomplex*)pData, (doublecomplex*)pH);
+			}
+		    }
 		}
 	    }
+	}
+      if(Lhs == 1)
+	{
+	  LhsVar(1)= Rhs+1;
+	}
+      else
+	{
+	  LhsVar(1)= Rhs+2;
+	  LhsVar(2)= Rhs+1;
 	}
     }
   return ret;
 }      
+
+
+/*===========================================================================*/
+int getData(int* adr, int* piRows, int* piCols, double** pPtrData)
+{
+  if(isVarComplex(adr))
+    {
+      getComplexZMatrixOfDouble(adr, piRows, piCols, ((doublecomplex**)pPtrData));
+    }
+  else
+    {
+      getMatrixOfDouble(adr, piRows, piCols, pPtrData);
+    }
+  return 0;
+}
+
+int  handleEmptyMatrix(int isComplex)
+{
+  int i;
+  for (i=0; i!= Lhs; ++i)
+    {
+      double* unused;
+      if(isComplex)
+	{
+	  allocComplexMatrixOfDouble(Rhs+i+1,0, 0, &unused, &unused);
+	}
+      else
+	{
+	  allocMatrixOfDouble(Rhs+i+1, 0, 0, &unused);
+	}
+    }
+  return 0;
+}
+
+int  handleEyeMatrix( int isComplex, double* pData)
+{
+  if( Lhs >= 1 )
+    {
+      if(isComplex)
+	{
+	  double* pReal;
+	  double* pImg;
+	  allocComplexMatrixOfDouble(Rhs+1,-1, -1, &pReal, &pImg);
+	  *pReal= ((doublecomplex*)pData)->r;
+	  *pImg= ((doublecomplex*)pData)->i;
+	}
+      else
+	{
+	  double* pRes;
+	  allocMatrixOfDouble(Rhs+1, -1, -1, &pRes);
+	  *pRes= *pData;
+	}
+    }
+  if(Lhs >= 2)
+    {
+      if(isComplex)
+	{
+	  double* pHReal;
+	  double* pHImg;
+	  allocComplexMatrixOfDouble(Rhs+2,-1, -1, &pHReal, &pHImg);
+	  *pHReal= 1.;
+	  *pHImg= 0.;
+	}
+      else
+	{
+	  double* pH;
+	  allocMatrixOfDouble(Rhs+2, -1, -1, &pH);
+	  *pH= 1.;
+	}
+    }
+  return 0;
+}
+
+int zToRI(int rows, int cols, doublecomplex* pData, doublecomplex* pH)
+{
+  double * pReal;
+  double* pImg;
+  allocComplexMatrixOfDouble(Rhs+1, rows, cols, &pReal, &pImg);
+  vGetPointerFromDoubleComplex(pData, rows * cols, pReal, pImg);
+  FREE(pData);
+  if(pH)
+    {
+      allocComplexMatrixOfDouble(Rhs+2, rows, cols, &pReal, &pImg);
+      vGetPointerFromDoubleComplex(pH, rows * cols, pReal, pImg);
+      FREE(pH);
+    }
+  return 0;
+}
+
+double* allocH(int isComplex, int rows, int cols)
+{
+  double* pH= NULL;
+  if(isComplex)
+    {
+      if( (pH= (double*) MALLOC(rows * cols * sizeof(doublecomplex) ) )== NULL )
+	{
+	  Scierror(999,_("%s: Cannot allocate more memory.\n"),thisFunctionName);
+	}
+    }
+  else 
+    {
+      if( allocMatrixOfDouble(Rhs+2, rows, cols, &pH) )
+	{
+	  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), thisFunctionName);
+	}
+    }
+  return pH;
+}

@@ -127,25 +127,25 @@ lst=link()</synopsis>
 
     <programlisting role="example">
     //Example of the use of ilib_for_link with  a simple C code
+    cd TMPDIR
     f1=['#include &lt;math.h&gt;'
     'void fooc(double c[],double a[],double *b,int *m,int *n)'
-    'int *m,*n;'
     '{'
     '   int i;'
     '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
     '     c[i] = sin(a[i]) + *b; '
     '}'];
 
-    mputl(f1,'fooc.c')
+    mputl(f1,'fooc.c');
 
     //creating the shared library: a Makefile and a loader are 
     //generated, the code is compiled and a shared library built.
-    ilib_for_link('fooc','fooc.o',[],"c") 
+    ilib_for_link('fooc','fooc.c',[],"c") 
 
     // display the loader.sce file which calls link
     mprintf('%s\n',mgetl('loader.sce')) 
     // load the shared library 
-    exec loader.sce 
+    exec loader.sce;
 
     link('show') 
     // call the new linked entry point
@@ -153,6 +153,7 @@ lst=link()</synopsis>
     y1=call('fooc',a,2,'d',b,3,'d',size(a,1),4,'i',size(a,2),5,'i','out',size(a),1,'d')
     // check
     y1-(sin(a)+b)
+    exec cleaner.sce;
     
     </programlisting>
   </refsection>

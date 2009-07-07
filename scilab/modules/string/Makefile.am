@@ -23,9 +23,11 @@ src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c \
-src/c/kmp.c
+src/c/NumTokens.c \
+src/c/StringConvert.c \
+src/c/scistrtostr.c
 
-STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
+STRING_FORTRAN_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \
@@ -57,7 +59,8 @@ sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
 sci_gateway/c/sci_strtod.c \
 sci_gateway/c/sci_strtok.c \
-sci_gateway/c/sci_regexp.c
+sci_gateway/c/sci_regexp.c \
+sci_gateway/c/sci_NumTokens.c
 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
@@ -106,6 +109,9 @@ libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h includes/InitializeString.h \
 includes/cvstr.h includes/getfastcode.h \
 includes/stricmp.h includes/strsubst.h \
-includes/code2str.h
+includes/code2str.h \
+includes/NumTokens.h \
+includes/StringConvert.h \
+includes/scistrtostr.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -283,11 +283,23 @@ c     jc=i5
       s2=d1
       sp=d2
       u1=d3(1)
-      write(buf,4401) nc,nv,s2,sp,u1
- 4401 format(14h finished with,i3,10h gradients,i3,
-     &11h variables./
-     & 7h (s,s)=,d11.4,6h test=,d11.4/
-     &               32h cost of the extra constraint u=,d12.5)
+      write(buf,4401) nc,nv
+      call basout(io,lunit,buf(1:lnblnk(buf)))
+      
+      write(buf,44010)
+      call basout(io,lunit,buf(1:lnblnk(buf)))
+
+      write(buf,44011) s2,sp
+      call basout(io,lunit,buf(1:lnblnk(buf)))      
+      
+      write(buf,44012) u1
+      call basout(io,lunit,buf(1:lnblnk(buf)))
+      
+ 4401     format(14h finished with,i3,10h gradients,i3)
+44010     format(11h variables.)
+44011     format(7h (s,s)=,d11.4,6h test=,d11.4)
+44012     format(32h cost of the extra constraint u=,d12.5)
+      
       nn=nv/20
       if(10*nn.lt.nv) nn=nn+1
       l=0
@@ -303,7 +315,7 @@ c     MESSAGE DE NLIS2
 c     ================
  45   continue
       write (buf,4501)
- 4501 format (/4x,6h nlis2,10x,17htmin force a tmax)
+ 4501 format (4x,6h nlis2,10x,17htmin force a tmax)
       call basout(io,lunit,buf(1:lnblnk(buf)))
       goto 100
  46   continue

@@ -1,26 +1,40 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="trianfml">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="trianfml" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>trianfml</refname>
-    <refpurpose> triangularisation symbolique  </refpurpose>
+
+    <refpurpose>triangularisation symbolique</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[f [,sexp]]=trianfml(f [,sexp])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Triangularisation symbolique de la matrice <literal>f</literal>. La triangularisation est faite par manipulations élémentaires de lignes et de colonnes.
-    <literal>sexp</literal> est un ensemble d'expressions communes stockées par l'algorithme.
-  </para>
+
+    <para>Triangularisation symbolique de la matrice <literal>f</literal>. La
+    triangularisation est faite par manipulations Ã©lÃ©mentaires de lignes et de
+    colonnes. <literal>sexp</literal> est un ensemble d'expressions communes
+    stockÃ©es par l'algorithme.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 A=['1','2';'a','b']
 W=trianfml([A,string(eye(2,2))])
 U=W(:,3:4)
@@ -29,23 +43,20 @@ A=evstr(A)
 U=evstr(U)
 U*A
 evstr(W(:,1:2))
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="addf">addf</link>
-      </member>
-      <member>
-        <link linkend="mulf">mulf</link>
-      </member>
-      <member>
-        <link linkend="solve">solve</link>
-      </member>
-      <member>
-        <link linkend="trisolve">trisolve</link>
-      </member>
+      <member><link linkend="addf">addf</link></member>
+
+      <member><link linkend="mulf">mulf</link></member>
+
+      <member><link linkend="solve">solve</link></member>
+
+      <member><link linkend="trisolve">trisolve</link></member>
     </simplelist>
   </refsection>
 </refentry>

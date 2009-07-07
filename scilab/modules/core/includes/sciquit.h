@@ -16,18 +16,24 @@
 #include "machine.h"
 
 /**
- * 
  * Clean up and end Scilab
+ * from fortran
  */
 void C2F(sciquit)(void);
 
 /**
  *  Cleanup (terminate) all the different features/modules of scilab 
  * (GUI, TCL/TK, JVM ...)
- * but don't exist
  * @return 0 is the end of function is reached
  */
 int ExitScilab(void);
+
+/**
+* Exit from scilab and returns _errorCode as exit code 
+* @param[in] exit code
+*/
+void ExitWithCodeFromScilab(int _errorCode);
+
 
 #endif /*__SCIQUIT__*/
 /*--------------------------------------------------------------------------*/ 

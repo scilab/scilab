@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,22 +19,22 @@
     <refpurpose> squeeze</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>hypOut = squeeze(hypIn)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>hypIn</term>
         <listitem>
-          <para>hypermatrice ou matrice réelle.</para>
+          <para>hypermatrice ou matrice rÃ©elle.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>hypOut</term>
         <listitem>
-          <para>hypermatrcex ou matrice réelle.</para>
+          <para>hypermatrcex ou matrice rÃ©elle.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,8 +42,8 @@
   <refsection>
     <title>Description</title>
     <para> Elimine les dimensions de type "singleton" d'une hypermatrice,
-    c'est-à -dire toutes les dimensions de taille 1.
-    Les matrices sont quant à  elles inchangées. </para>
+    c'est-Ã Â -dire toutes les dimensions de taille 1.
+    Les matrices sont quant Ã Â  elles inchangÃ©es. </para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

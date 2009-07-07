@@ -15,6 +15,8 @@
 /*--------------------------------------------------------------------------*/
 /* For more information: http://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html */
 
+#include "machine.h"
+
 #include <errno.h>
 #include <string.h>
 #include <signal.h> /* for SIGINT */
@@ -23,9 +25,20 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <curses.h>
-#include <term.h>
 
+#if defined(HAVE_CURSES_H)
+#  include <curses.h>
+#elif defined(HAVE_NCURSES_H)
+#  include <ncurses.h>
+#endif
+
+#ifdef HAVE_TERMCAP_H
+#include <termcap.h>
+#endif
+
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
 
 #include "MALLOC.h"
 #include "completion.h"
@@ -33,7 +46,6 @@
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "ConsoleRead.h"
@@ -47,6 +59,7 @@
 #include "freeArrayOfString.h"
 #include "getCommonPart.h"
 #include "completeLine.h"
+#include "TermReadAndProcess.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 #define ATTUNIX
@@ -82,7 +95,8 @@
 #define TERMCAP
 #endif
 
-#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__)
+
+#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__) && !defined(__DragonFly__)
 #ifdef  __alpha
 #define B42UNIX
 #endif
@@ -93,7 +107,7 @@
 #define TERMCAP
 #endif
 
-#if defined(netbsd) || defined(freebsd)
+#if defined(netbsd) || defined(freebsd) || defined(__DragonFly__)
 #define TERMCAP
 #endif
 /*--------------------------------------------------------------------------*/
@@ -130,9 +144,9 @@ static struct termio arg;
 #define RIGHT_ARROW           0x014d
 #define SEARCH_BACKWARD       0x015e
 #define SEARCH_FORWARD        0x0160
-#define HOME                  0x0001  /* control-A */
-#define ENDS                  0x0005  /* control-E */
-#define LDEL                  0x0015  /* control-U */
+#define CTRL_A                0x0001  /* control-A */
+#define CTRL_E                0x0005  /* control-E */
+#define CTRL_U                0x0015  /* control-U */
 #define INS                   0x0014  /* control-T */
 #define DEL                   0x007f
 #define BS                    0x0008  /* control-H */
@@ -228,7 +242,7 @@ static char strings[128];   /* place to store output strings from termcap file *
 static char *KS=NULL;            /* enable keypad */
 static char *KE=NULL;            /* disable keypad */
 static char *CE=NULL;            /* clear to end of line */
-static char *BC=NULL;            /* backspace */
+char *BC=NULL;            /* backspace */
 static char *IM=NULL;            /* start insert mode */
 static char *IC=NULL;            /* insert character */
 static char *EI=NULL;            /* end insert mode */
@@ -259,13 +273,9 @@ static void updateToken(char *linebuffer)
  * line editor
  **********************************************************************/
 
-//void TermReadAndProcess(char *buffer,int *buf_size,int *len_line,int * eof,
-//			int *menusflag,int * modex,long int dummy1)
 char *TermReadAndProcess(void)
 {
 
-  //fprintf(stderr, "[TERM READ N PROCESS]...\n");
-  //fflush(NULL);
   int cursor_max = 0;
   int cursor = 0;
   int yank_len,i;
@@ -274,7 +284,7 @@ char *TermReadAndProcess(void)
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
-  char *buffer;
+  char *buffer = NULL;
 
   tmpPrompt = GetTemporaryPrompt(); /* Input function has been used ? */
   GetCurrentPrompt(Sci_Prompt);
@@ -304,12 +314,13 @@ char *TermReadAndProcess(void)
   set_cbreak();
   enable_keypad_mode();
 #endif
+
+  /* Display the Scilab prompt */
   if(sendprompt)
     {
       if(tmpPrompt!=NULL)
         {
           printf("%s",tmpPrompt);
-          ClearTemporaryPrompt();
         }
       else
         {
@@ -323,13 +334,10 @@ char *TermReadAndProcess(void)
 
   while(1)
     {
-      //fprintf(stderr, ".");
-      //fflush(NULL);
       /* main loop to read keyboard input */
       /* get next keystroke (no echo) returns -1 if interrupted */
       keystroke = gchar_no_echo();
-      //fprintf(stderr, "keystroke [%d]\n", keystroke);
-      //fflush(NULL);
+
       if ( (keystroke ==  CTRL_C) || (keystroke == CTRL_X) ) /* did not exist in old gtk version */
 	{
 	  int j = SIGINT;
@@ -388,12 +396,12 @@ char *TermReadAndProcess(void)
 	      }
 	      break;
 
-	    case HOME:
+	    case CTRL_A:
 	      backspace(cursor); /* move to beginning of the line */
 	      cursor = 0;
 	      break;
 
-	    case ENDS:  /* move to end of line */
+	    case CTRL_E:  /* move to end of line */
 	      while(cursor < cursor_max)
 		{
 		  putchar(wk_buf[cursor++]);
@@ -510,7 +518,7 @@ char *TermReadAndProcess(void)
 #endif
 	      break;
 
-	    case LDEL: /* clear line buffer */
+	    case CTRL_U: /* clear line buffer */
 	      backspace(cursor);
 	      erase_nchar(cursor_max);
 	      wk_buf[0] = NUL;
@@ -631,7 +639,8 @@ char *TermReadAndProcess(void)
  exit:
   /* copy to return buffer */
   buffer=strdup(wk_buf);
-  putchar('\r');  putchar('\n');
+  putchar('\r');
+  putchar('\n');
 #ifdef KEYPAD
   set_crmod();
   disable_keypad_mode();
@@ -688,7 +697,6 @@ static void displayPrompt(char *wk_buf)
 	if (tmpPrompt!=NULL)
 	{
 		sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-		ClearTemporaryPrompt();
 	}
 	else
 	{
@@ -983,10 +991,10 @@ static void backspace(int n)
     while(n--)
 #ifdef TERMCAP
       if(BC) {                 /* if control-H won-t work */
-	fputs(BC, stdout);
+		  fputs(BC, stdout);
       }
       else {                   /* otherwise just use a normal control-H */
-	putchar('\010');
+		  putchar('\010');
       }
 #else
     putchar('\010');
@@ -1025,11 +1033,14 @@ static void strip_blank(char *source)
     *p = NUL;
   }
 }
-/***********************************************************************
- * get single character with no echo
- * if interrupt is true, gchar_no_echo escape if an event arises
- **********************************************************************/
 
+/**
+ * get single character with no echo
+ * this is the function which retrieves the input from the user in nw
+ * and nwni modes
+ * if interrupt is true, gchar_no_echo escape if an event arises
+ * @return the number of the key (or the combinaison)
+ */
 static int gchar_no_echo(void)
 {
   int i;
@@ -1186,6 +1197,7 @@ static void init_io()
   erase_char = arg.sg_erase;
 #endif
 
+/* Get terminal mode */
 #ifdef ATTUNIX
 #ifdef HAVE_TERMIOS_H
   (void) tcgetattr (fd, &arg);
@@ -1246,6 +1258,7 @@ static void disable_keypad_mode()
  *we need references to thoses function if using KEYPAD but not Having TERMCAP
  ***********************************************************************/
 
+static void enable_keypad_mode(){}
 static void disable_keypad_mode(){}
 #endif
 

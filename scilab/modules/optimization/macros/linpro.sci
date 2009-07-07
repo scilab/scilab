@@ -14,5 +14,5 @@ function [x,lagr,f]=linpro(p,C,b,ci,cs,mi,x0,imp)
   msg = [gettext('This function has been moved to a external contribution.'); ..
         gettext('Please download quapro toolboxe.'); ..
         gettext('http://www.scilab.org/contrib/index_contrib.php?page=download.php');];
- warning(msg);
+  error(strcat(msg,ascii(10)));
 endfunction

@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="typename">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>typename</refname>
-    <refpurpose> associe un nom à un type de variable  </refpurpose>
+    <refpurpose> associe un nom Ã  un type de variable  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[types [ [,names]]=typename()
 typename(name,type)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>types  </term>
@@ -25,7 +25,7 @@ typename(name,type)</synopsis>
       <varlistentry>
         <term>names  </term>
         <listitem>
-          <para>vecteur colonne de chaînes de caractères, les noms associés à chaque code
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res, les noms associÃ©s Ã  chaque code
 </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@ typename(name,type)</synopsis>
       <varlistentry>
         <term>name  </term>
         <listitem>
-          <para>chaîne de caractères, le nom associé au nouveau type 
+          <para>chaÃ®ne de caractÃ¨res, le nom associÃ© au nouveau type 
 </para>
         </listitem>
       </varlistentry>
@@ -48,18 +48,19 @@ typename(name,type)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    La surcharge des opérateurs et primitives utilise des noms formels associés à
+    La surcharge des opÃ©rateurs et primitives utilise des noms formels associÃ©s Ã 
     chaque type de variable pour former les noms des fonctions de surcharge
-    (voir <literal>overloading</literal>). <literal>typename</literal> peut être utilisé pour gérer ces noms pour les types natifs de variables (les noms formels pour les types <literal>tlist</literal> ou <literal>mlist</literal> sont définis autrement, pour ceci voir <literal>overloading</literal>).
+    (voir <literal>overloading</literal>). <literal>typename</literal> peut Ãªtre utilisÃ© pour gÃ©rer ces noms pour les types natifs de variables (les noms formels pour les types <literal>tlist</literal> ou <literal>mlist</literal> sont dÃ©finis autrement, pour ceci voir <literal>overloading</literal>).
   </para>
     <para>
-    Sans argument d'entrée, <literal>typename</literal> renvoie les informations associées aux types de données déjà définis.
+    Sans argument d'entrÃ©e, <literal>typename</literal> renvoie les informations associÃ©es aux types de donnÃ©es dÃ©jÃ  dÃ©finis.
   </para>
     <para>
-    Avec les arguments d'entrée, <literal>typename</literal> associe un nom à un code de type de variable.
+    Avec les arguments d'entrÃ©e, <literal>typename</literal> associe un nom Ã  un code de type de variable.
   </para>
-    <para><literal>typename('',type)</literal> supprime le type de donnée défini par le code passé dans <literal>type</literal> dans la table des types de variables connus.
+    <para><literal>typename('',type)</literal> supprime le type de donnÃ©e dÃ©fini par le code passÃ© dans <literal>type</literal> dans la table des types de variables connus.
   </para>
+  <para>Nombre max de types defini est 50.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -1,37 +1,49 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="eval">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="eval" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>eval</refname>
-    <refpurpose> évaluation d'une matrice de chaînes de caractères  </refpurpose>
+
+    <refpurpose>Ã©valuation d'une matrice de chaÃ®nes de caractÃ¨res</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[H]= eval(Z)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>
-    renvoie le résultat de l'évaluation d'une matrice de chaînes de caractères <literal>Z</literal>.
-  </para>
+
+    <para>renvoie le rÃ©sultat de l'Ã©valuation d'une matrice de chaÃ®nes de
+    caractÃ¨res <literal>Z</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  // renvoie la matrice [1,0.909];
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="evstr">evstr</link>
-      </member>
-      <member>
-        <link linkend="execstr">execstr</link>
-      </member>
+      <member><link linkend="evstr">evstr</link></member>
+
+      <member><link linkend="execstr">execstr</link></member>
     </simplelist>
   </refsection>
 </refentry>

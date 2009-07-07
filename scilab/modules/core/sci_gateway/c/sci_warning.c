@@ -19,6 +19,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_warning)(char *fname,unsigned long fname_len)
 {
@@ -45,22 +48,21 @@ int C2F(sci_warning)(char *fname,unsigned long fname_len)
 				{
 					setWarningMode(TRUE);
 				}
+				freeArrayOfString(Input_Strings,1);
 			}
 			else
 			{
 				if (strcmp(Input_Strings[0],"query") == 0)
 				{
-					char *Output=NULL;
-
-					Output=(char*)MALLOC(4*sizeof(char));
+					char *Output = NULL;
 
 					if (getWarningMode())
 					{
-						strcpy(Output,"on");
+						Output = strdup("on");
 					}
 					else
 					{
-						strcpy(Output,"off");
+						Output = strdup("off");
 					}
 
 					n1=1;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
@@ -19,15 +19,10 @@
     <refpurpose>to quickly customize the lines appearance
   in a plot</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>None. The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very usefull to quickly specify such basic line properties.
-
-
-To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</synopsis>
-  </refsynopsisdiv>
   <refsection>
     <title>Description</title>
+    <para>The LineSpec is an optional argument that can be used inside a plot command to customize each new line aspect. It has to be given as a concatenated string containing information about color, line style or markers. It is very usefull to quickly specify such basic line properties.</para>
+    <para>To specify a red longdash-dot with diamond marker, the string can be 'r-.diam'. As you can see, a full complete spelling of each property value is not required but the string, which is a concatenation (in any order) of these three types of properties , must remain unambiguous. Furthermore, the string specification is not case sensitive.</para>
     <para>Here is a complete list of the <literal>LineSpec</literal> types you can
     specify (using <link linkend="plot">plot</link>).</para>
     <variablelist>

@@ -1,12 +1,24 @@
 #
-# Generated files
+# Generated files (common)
+#
+loader.sce
+cleaner.sce
+loader_gateway.sce
+cleaner_gateway.sce
+#
+# Generated files (Windows)
 #
 *.dll
 *.def
 *.obj
 Makelib.mak
-loader.sce
 master_help.xml
-loader_gateway.sce
 skeleton_*.c
 scilab_*_help
+#
+# Generated files (Linux)
+#
+libskeleton_c.c
+libskeleton_cpp.c
+libskeleton_fortran.c
+*.so

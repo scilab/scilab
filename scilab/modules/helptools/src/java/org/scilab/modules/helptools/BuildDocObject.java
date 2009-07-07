@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xml.sax.SAXParseException;
+import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
@@ -156,8 +157,28 @@ public class BuildDocObject extends StyleSheet {
 			} catch (java.io.IOException e) {
 				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
 			}
-			
 		}
+		
+        /* CHM Format */
+		if (format.equalsIgnoreCase("CHM")) {
+			specificArgs.add("use.id.as.filename=1");
+			specificArgs.add("html.stylesheet=htmlhelp.css");
+			specificArgs.add(USE_EXTENSIONS_1);
+			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
+			specificArgs.add("\"generate.toc= \"");
+			this.styleDoc = docbookPath + "/htmlhelp/htmlhelp.xsl";
+
+			/* Copy the css file for thr HTML pages */
+			String cssFile=new String(SCI+"/modules/helptools/css/htmlhelp.css");
+			try {
+				Helpers.copyFile(new File(cssFile), new File(outputDirectory+"/htmlhelp.css"));
+			} catch (java.io.FileNotFoundException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			} catch (java.io.IOException e) {
+				System.err.println(ERROR_WHILE_COPYING + cssFile + TO + outputDirectory + COLON + e.getMessage());			
+			}
+		}
+		
 
 		/* Java Help */
 		if (format.equalsIgnoreCase(JH_FORMAT) || format.equalsIgnoreCase(JAVAHELP_FORMAT)) {
@@ -165,6 +186,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("\"generate.toc= \"");
+			specificArgs.add("use.id.as.filename=1");
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
 		this.format = format;
@@ -208,6 +230,11 @@ public class BuildDocObject extends StyleSheet {
 			System.err.println("Public ID: "+e.getPublicId());
 			System.err.println("System Id: "+ e.getSystemId());
             return null;
+        } catch (SAXException e) {
+           System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
+					  + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
+		   return null;
+
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
@@ -264,13 +291,13 @@ public class BuildDocObject extends StyleSheet {
 		if (sourceDocProcessed == null) {
 		    throw new FileNotFoundException("Unable to parse generated master file.");
 		}
-		
+
 		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			/* PDF & postscript take other args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
-
+		//args.add("-t");
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);

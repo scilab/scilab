@@ -21,28 +21,28 @@
 
 function Open_()
 //
-// 
-//** Open a saved diagram 
-  
+//
+//** Open a saved diagram
+
   Cmenu  = []  ;
   Select = []  ;  //** empty
   //** Select_back = [] ; //** empty
-  //** %ppt = []; //** used to store last valid click position for "Paste" operation 
-  //** Clipboard = []; //** used in Copy Cut and Paste function  
-  
-  gh_curwin = scf(curwin); 
+  //** %ppt = []; //** used to store last valid click position for "Paste" operation
+  //** Clipboard = []; //** used in Copy Cut and Paste function
+
+  gh_curwin = scf(curwin);
 
   if edited & ~super_block then //** if is edited and is NOT a superblock
     num = messagebox(["Diagram has not been saved"],"modal","question",['OK','Go Back'])
-    if num==2 then 
+    if num==2 then
       return ; //** if "Go Back" then EXIT
     end
-    
+
    if alreadyran then
      do_terminate() ; // terminate current simulation
-   end  
-                                           
-    clear('%scicos_solver')  // avoids forcing implicit compilation in some situations    
+   end
+
+    clear('%scicos_solver')  // avoids forcing implicit compilation in some situations
 
     alreadyran = %f ;
 
@@ -52,32 +52,35 @@ function Open_()
 
   xselect();
 
-  [ok, scs_m, %cpr, edited] = do_load(); //** this is the function that really load the diagram 
+  [ok, scs_m, %cpr, edited] = do_load(); //** this is the function that really load the diagram
 
-  if super_block then 
+  if super_block then
     edited = %t;
   end
-  
+
   if ok then
-    if ~set_cmap(scs_m.props.options('Cmap')) then 
-      scs_m.props.options('3D')(1) = %f; // disable 3D block shape 
+    if ~set_cmap(scs_m.props.options('Cmap')) then
+      scs_m.props.options('3D')(1) = %f; // disable 3D block shape
     end
-    
-    options = scs_m.props.options ; 
+
+    options = scs_m.props.options ;
 
     set_background();
-    
+
     if size(scs_m.props.wpar,'*')>12 then
- 
+
       winsize = scs_m.props.wpar(9:10)
       winpos  = scs_m.props.wpar(11:12)
-      screensz = evstr(TCL_EvalStr('wm  maxsize .')) 
+      //-- screensz = evstr(TCL_EvalStr('wm  maxsize .'))
+
+      screensz = get(0, "screensize_px");
+      screensz = screensz(3:4);
       if min(winsize)>0  then  // window is not iconified
-        winpos = max(0,winpos-max(0,-screensz+winpos+winsize) )
-        scs_m;  // only used locally, does not affect the real scs_m
-        scs_m.props.wpar(11:12) = winpos  // make sure window remains inside
+         winpos = max(0,winpos-max(0,-screensz+winpos+winsize) )
+         scs_m;  // only used locally, does not affect the real scs_m
+         scs_m.props.wpar(11:12) = winpos  // make sure window remains inside
       end
-	
+
       %zoom = scs_m.props.wpar(13)
       pwindow_read_size(gh_curwin) ;
       window_read_size(gh_curwin)  ;
@@ -86,15 +89,15 @@ function Open_()
       window_set_size(gh_curwin);
     end
 
-    //** ----------------- 
-    
+    //** -----------------
+
     //** ------------------------ Context evaluation --------------------------
     if type(scs_m.props.context)==10 then
 
-      %now_win = get("current_figure"); 
-      
+      %now_win = get("current_figure");
+
       [%scicos_context,ierr] = script2var(scs_m.props.context, %scicos_context);
-      
+
       //** for backward compatibility for scifunc
       if ierr==0 then
 	%mm = getfield(1,%scicos_context)
@@ -103,10 +106,10 @@ function Open_()
 	  if ierr<>0 then
 	    break
 	  end
-	end //** of for 
+	end //** of for
       end
       //** end of for backward compatibility for scifunc
-      
+
       if ierr<>0 then
 	message(["Error occur when evaluating context:" lasterror()])
       else
@@ -121,21 +124,21 @@ function Open_()
 
 	end
       end
-      
+
       set("current_figure", %now_win);
 
     else
-      scs_m.props.context = ' '; //** put the context to void 
+      scs_m.props.context = ' '; //** put the context to void
     end
     //**--------------
 
     gh_axes = gca();
     if gh_axes.children<>[] then
-      drawlater();  
+      drawlater();
       delete(gh_axes.children); //** delete all the object in the window
     end
     drawobjs(scs_m) ; //** draw all the objects in the diagram data structure
-    
+
     if size(%cpr)==0 then
       needcompile = 4 ;
       alreadyran = %f ;
@@ -144,8 +147,8 @@ function Open_()
       needcompile = 0 ;
       alreadyran = %f ;
     end
-    
+
   end
-  
+
 endfunction
 

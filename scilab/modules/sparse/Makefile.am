@@ -106,8 +106,6 @@ src/fortran/dspmat.f \
 src/fortran/wspmsp.f \
 src/fortran/lspis.f \
 src/fortran/dspmin.f \
-src/fortran/dspdsp.f \
-src/fortran/wspdsp.f \
 src/fortran/writebuf.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_spcompa.c \

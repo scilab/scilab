@@ -121,7 +121,7 @@ end
 
 // Translation is done only if M-file has changed
 logtxt=[]
-resumelogtxt=[]
+resumelogtxt="";
 
 for i=1:size(funpath,1)
   kk=strindex(funpath(i),sep)

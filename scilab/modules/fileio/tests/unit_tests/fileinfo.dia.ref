@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+[x,err] = fileinfo(SCI);
+if err <> 0 then bugmes();quit;end
+if size(x,"*") <> 13 then bugmes();quit;end
+[x,err] = fileinfo("My_file_not_exist");
+if err == 0 then bugmes();quit;end
+if x <> [] then bugmes();quit;end
+ierr = execstr("fileinfo([SCI,SCIHOME])","errcatch");
+if ierr <> 999 then bugmes();quit;end
+FILES = [SCI;"My_file_not_exist";SCIHOME;TMPDIR];
+[X,ERRS] = fileinfo(FILES);
+if    or(isnan(X(1,:))) then bugmes();quit;end
+if ~ and(isnan(X(2,:))) then bugmes();quit;end
+if    or(isnan(X(3,:))) then bugmes();quit;end
+if    or(isnan(X(4,:))) then bugmes();quit;end
+if size(X(1,:),"*") <> 13 then bugmes();quit;end
+if size(FILES,"*") <> size(ERRS,"*") then bugmes();quit;end

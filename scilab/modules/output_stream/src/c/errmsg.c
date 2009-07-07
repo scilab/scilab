@@ -56,7 +56,7 @@ int C2F(errmsg)(int *n,int *errtyp)
 
 	*errtyp = 0; /* by default errors are recoverable */
 	/* errors not recoverable aren't catchable by top
-try,catch */ 
+       try,catch */ 
 	/* errors 2,3,16,26,31,34,35,40,46,47,276*/
 
     switch ((int)*n)
@@ -430,11 +430,11 @@ try,catch */
 		{
 			if (Rhs == 0)
 			{
-				displayAndStoreError(_("Function has no input argument...\n"));
+				displayAndStoreError(_("Wrong number of input arguments: This function has no input argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("Wrong number of arguments in function call...\n"));
+				displayAndStoreError(_("Wrong number of input arguments:\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Rhs, &C2F(iop).wte);
@@ -446,11 +446,11 @@ try,catch */
 		{
 			if (Lhs == 0)
 			{
-				displayAndStoreError(_("Function has no output.\n"));
+				displayAndStoreError(_("Wrong number of output arguments: This function has no output argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("Incorrect # of outputs in the function\n"));
+				displayAndStoreError(_("Wrong number of output arguments\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Lhs, &C2F(iop).wte);
@@ -489,7 +489,7 @@ try,catch */
 		break;
 		case 66:
 		{
-			displayAndStoreError(_("No more logical units available!\n"));
+			displayAndStoreError(_("Too many files opened!\n"));
 		}
 		break;
 		case 67:
@@ -1485,7 +1485,7 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 		{
 			displayAndStoreError(_("Wrong value for argument %d: eigenvalues must have negative real parts.\n"),Err);
 		}
-		break;
+	break;
 		case 270:
 		{
 			displayAndStoreError(_("Wrong value for argument %d: eigenvalues modulus must be less than one.\n"),Err);
@@ -1527,18 +1527,25 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 			displayAndStoreError(_("Too many commands defined.\n"));
 		}
 		break;
-                case 278: 
-		  {
-		    char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
-		    if (NameVarOnStack)
-		      {
-			displayAndStoreError(_("%s: Input arguments should have the same formal variable name.\n"),NameVarOnStack);
-			FREE(NameVarOnStack);
-			NameVarOnStack = NULL;
-		      }
-		  }
-		  break;
-                 case 279: case 280:
+        case 278: 
+		{
+			char *NameVarOnStack = getConvertedNameFromStack(CVNAME_READING_TYPE_4);
+			if (NameVarOnStack)
+			{
+				if (NameVarOnStack[0] != '0')
+				{
+					displayAndStoreError(_("%s: Input arguments should have the same formal variable name.\n"),NameVarOnStack);
+				}
+				else
+				{
+					displayAndStoreError(_("Input arguments should have the same formal variable name.\n"));
+				}
+				FREE(NameVarOnStack);
+				NameVarOnStack = NULL;
+			}
+		}
+		break;
+        case 279: case 280:
 		{
 			/* no message  */
 		}
@@ -1565,7 +1572,6 @@ Otherwise, send a bug report to :\n"),get_sci_data_strings(SAVE_ID));
 				displayAndStoreError(buffer);
 				FREE(buffer);
 			}
-
 		}
 		break;
     }

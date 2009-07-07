@@ -2,3 +2,8 @@
 # F2C conversion
 #
 src/fortran/*/*.c
+#
+# generated file .DEF
+#
+src/c/polynomials.def
+src/fortran/polynomials_f.def

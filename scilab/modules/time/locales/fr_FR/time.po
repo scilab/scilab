@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2008-08-13 08:08+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-02-24 21:32+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -49,16 +49,16 @@ msgid "May"
 msgstr "Mai"
 
 msgid "Jun"
-msgstr "Jun"
+msgstr "Juin"
 
 msgid "Jul"
-msgstr "Jul"
+msgstr "Juil"
 
 msgid "Aug"
-msgstr "Aoû"
+msgstr "Août"
 
 msgid "Sep"
-msgstr "Sép"
+msgstr "Sept"
 
 msgid "Oct"
 msgstr "Oct"

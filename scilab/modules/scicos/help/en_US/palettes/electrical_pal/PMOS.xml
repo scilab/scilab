@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -120,7 +120,7 @@ Some typical parameter sets are:
       <tr>
         <td align="center">W [m]</td>
         <td align="center">L[m]</td>
-        <td align="center">Beta [1/V²]</td>
+        <td align="center">Beta [1/VÂ²]</td>
         <td align="center">Vt [V]</td>
         <td align="center">K2</td>
         <td align="center">K5</td>

@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -131,7 +131,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -216,7 +216,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -302,7 +302,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../string/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../call_scilab/includes;../../../localization/includes;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="mexFunction=mex_libmx;mexfunction_=mexlibmx_;FORDLL;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -376,6 +376,10 @@
 				RelativePath="..\c\mexlib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\c\sci_gateway.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -384,6 +388,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\mex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_gateway.h"
 				>
 			</File>
 		</Filter>

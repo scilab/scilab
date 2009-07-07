@@ -10,110 +10,169 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
-static int cx1 = 1;
-static int cx0 = 0;
-static double c_b40 = 0.;
-/*--------------------------------------------------------------------------*/
-extern int C2F(vfinite)(int *n, double *v);
-extern int C2F(wbdiag)();
-extern int C2F(bdiag)();
-/*--------------------------------------------------------------------------*/
-/* [Ab [,X [,bs]]]=bdiag(A [,rMax]) */
-/*--------------------------------------------------------------------------*/
+#include "core_math.h" /* for Abs  macro */
+
+extern int C2F(vfinite)(int const*n, double const*v);
+
+extern void C2F(bdiag)(int const * lda, int const* n, double* a, double const * epsshr, double const* rMax, double* er, double* ei, int *bs
+		       , double* x, double* xi, double* scale, int const* job, int * fail);
+extern void C2F(wbdiag)(int const* lda, int const* n, double* ar, double* ai, double const*rMax, double* er, double* ei, int* bs
+			, double* xr , double* xi, double* yr, double* yi, double* scale, int const* job, int* fail);
+
 int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 {
-    int ix1, ix2;
-    double dx1;
-    int fail;
-    double rMax;
-    int ix, j, k, m, n;
-    double t;
-    int nbloc, lrMax;
-    int m1, n1, la, le, lj, it;
-    int lw, lx ;
-    int lai, lib, lbs, lxi, lxr;
+  int ret= 0;
+  double* pDataReal[2]={NULL, NULL};
+  double* pDataImg[2]={NULL, NULL};
+ 
+  int iCols[2]={0, 0}, iRows[2]= {0, 0};
+  int i;
 
-    CheckRhs(1,2);
-    CheckLhs(1,3);
-
-    GetRhsCVar(1,MATRIX_OF_DOUBLE_DATATYPE, &it, &m, &n, &la, &lai);
-    CheckSquare(1,m,n);
-
-    if (n == 0) {
-	CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE, &cx0, &cx0, &lx);
-	CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &cx0, &cx0, &lbs);
-	LhsVar(1) = 1;
-	LhsVar(2) = 2;
-	LhsVar(3) = 3;
-	return 0;
-    }
-    ix1 = (it + 1) * m * n;
-    if (C2F(vfinite)(&ix1, stk(la )) == 0) {
-	Err = 1;
-	Error(264);
-	return 0;
-    }
-    if (Rhs == 2) {
-	GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &n1, &m1, &lrMax);
-	CheckScalar(2,n1,m1);
-	rMax = *stk(lrMax );
-    } else {
-	rMax = 1.;
-	lj = la - 1;
-	ix1 = n;
-	for (j = 1; j <= ix1; ++j) {
-	    t = 0.;
-	    ix2 = n;
-	    for (ix = 1; ix <= ix2; ++ix) {
-		t += (dx1 = *stk(lj + ix ), Abs(dx1));
-	    }
-	    if (t > rMax) {
-		rMax = t;
-	    }
-	    lj += n;
+  /* /!\ TODO: original C code does not perform overload dispatching here, check that this is not an oversight */
+  CheckRhs(1,2);
+  CheckLhs(1,3);
+  for(i=0; i != Rhs; ++i)
+    {
+      if(GetType(i+1)!= sci_matrix)
+	{
+	  Scierror(201,_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),fname, i +1);
+	  ret= 201;
+	}
+      if(iIsComplex(i+1 ))
+	{
+	  GetRhsVarMatrixComplex(i+1, &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i ]);
+	}
+      else
+	{
+	  GetRhsVarMatrixDouble(i+1, &iRows[i], &iCols[i], &pDataReal[i]);
 	}
     }
-    CreateCVar(2,MATRIX_OF_DOUBLE_DATATYPE, &it, &n, &n, &lxr, &lxi);
-    ix1 = n << 1;
-    CreateVar(3,MATRIX_OF_DOUBLE_DATATYPE, &cx1, &ix1, &le);
-    CreateVar(4,MATRIX_OF_INTEGER_DATATYPE, &cx1, &n, &lib);
-    CreateVar(5,MATRIX_OF_DOUBLE_DATATYPE, &cx1, &n, &lw);
-    if (it == 0) {
-      /*     subroutine bdiag(lda,n,a,epsshr,rMax,er,ei,bs,x,xi,scale,job,fail) */
-      C2F(bdiag)(&n, &n, stk(la ), &c_b40, &rMax, stk(le ), stk(le + n ),
-		 istk(lib ), stk(lxr ), stk(lxi ), stk(lw ), &cx0, &fail);
-    } else {
-	C2F(wbdiag)(&n, &n, stk(la ), stk(la + n * n ), &rMax, stk(le ),
-		    stk(le + n ), istk(lib ), stk(lxr ), stk(lxi ), &t, &t, stk(lw ), &cx0, &fail);
+  if (iCols[0] != iRows[0])
+    {
+      Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+      ret= 20;
     }
-
-    if (fail) {
-      Scierror(24,_("%s: Non convergence in QR steps.\n"),fname);
-      return 0;
+  if((Rhs == 2) && ((iRows[1] != 1) || (iCols[1] != 1)))
+    {
+      Scierror(999,_("%s: Wrong size for input argument #%d: Scalar expected.\n"), fname, 2);
+      ret= 999;
     }
-    if (Lhs == 3) {
-      nbloc = 0;
-      for (k = 1; k <= n; ++k)
-	if (*istk(lib + k - 2 +1) >= 0)  ++nbloc;
-      CreateVar(6,MATRIX_OF_DOUBLE_DATATYPE, &nbloc, &cx1, &lbs);
-      ix = 0;
-      for (k = 1; k <= n; ++k) {
-	if (*istk(lib + k - 2 +1) >= 0) {
-	  *stk(lbs + ix ) = (double) *istk(lib + k - 2 +1);
-	  ++ix;
+  if(!ret)
+    {
+      if (iCols[0] == 0) /* && iRows[0] == 0 because  we checked that the matrix is square */
+	{
+	  double* dummy;
+	  iAllocMatrixOfDouble(Rhs+1 , 0, 0, &dummy) ;
+	  iAllocMatrixOfDouble(Rhs+2 , 0, 0, &dummy) ;
+	  LhsVar(1)= 1; /* original C code does not check for Lhs, so neither do I */
+	  LhsVar(2)= Rhs+1;
+	  LhsVar(3)= Rhs+2;
 	}
-      }
-    }
-    LhsVar(1) = 1;
-    LhsVar(2) = 2;
-    LhsVar(3) = 6;
-    return 0;
-} /* intbdiagr_ */
+      else
+	{	
+	  int const totalSize= iRows[0] * iCols[0];
+	  if (  ! (C2F(vfinite)(&totalSize, pDataReal[0]) &&(!iIsComplex(1) || (C2F(vfinite)(&totalSize, pDataImg[0])))))
+	    {
+	      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),1);
+	      ret= 264;;
+	    }
+	  if(!ret)
+	    {
+	      double rMax;
+	      if(Rhs==2)
+		{
+		  rMax= *pDataReal[1];
+		}
+	      else
+		{
+		  int j;
+		  for (j = 0; j != iCols[0]; ++j) 
+		    {
+		      double t = 0.;
+		      for (i = 0; i != iCols[0]; ++i) 
+			{
+			  t += Abs(pDataReal[0][i+j*iCols[0] ]);
+			}
+		      rMax= Max(t, rMax);
+		    }
+		}
+	      {
+		double* lxr;
+		double* lxi;
+		double* le;
+		int* lib;
+		double* lw;
+		int stackAllocError= 0;
+		if(iIsComplex(1))
+		  {
+		    stackAllocError= iAllocComplexMatrixOfDouble(Rhs+1, iCols[0], iCols[0], &lxr, &lxi);
+		  }
+		else
+		  {
+		    stackAllocError= iAllocMatrixOfDouble(Rhs+1, iCols[0], iCols[0], &lxr);
+		    lxi=lxr+iCols[0]*iCols[0];
+		  }
+	      /* allocating the two memory buffers in one place as the original code did */
+	      le= (double*) MALLOC( 2*iCols[0] * sizeof(double) ); 
+	      lib= (int*) MALLOC(iCols[0] * sizeof(int));
+	      lw= (double*)MALLOC(iCols[0] * sizeof(double));
+	      if(le && lib && lw && !stackAllocError)
+		{
+		  int fail;
+		  int const job=0;
+		  if(iIsComplex(1))
+		    {
+		      double dummy;
+		      C2F(wbdiag)(&iCols[0], &iCols[0], pDataReal[0], pDataImg[0], &rMax, le, le + iCols[0], lib, lxr , lxi,  &dummy, &dummy
+				  , lw, &job, &fail);
 
-/*--------------------------------------------------------------------------*/
+		    }
+		  else
+		    {      /*     subroutine bdiag(lda,n,a,epsshr,rMax,er,ei,bs,x,xi,scale,job,fail) */
+		      double const epsshr= 0.;
+		      C2F(bdiag)(&iCols[0], &iCols[0], pDataReal[0], &epsshr, &rMax, le, le + iCols[0], lib, lxr, lxi, lw, &job, &fail);
+		    }
+		  if (fail) 
+		    {
+		      Scierror(24,_("%s: Non convergence in QR steps.\n"),fname);
+		      ret= 24;
+		    }
+		  else
+		    {
+		      LhsVar(1) = 1;
+		      LhsVar(2) = Rhs+1;
+		      if (Lhs == 3) 
+			{
+			  double* lbs;
+			  int k, nbloc = 0;
+			  for (k = 0; k != iCols[0]; ++k)
+			    {
+			      nbloc+= (lib[k]>=0) ? 1: 0 ;
+			    }
+			  iAllocMatrixOfDouble(Rhs+2, nbloc, 1, &lbs);
+			  for (i = k = 0; k != iCols[0]; ++k) 
+			    {
+			      if(lib[k] >= 0)
+				{
+				  lbs[i]=(double) lib[k];
+				  ++i;
+				}
+			    }
+			  LhsVar(3) = Rhs+2;
+			}
+		    }
+		}
+	      FREE(le);
+	      FREE(lib);
+	      FREE(lw);
+	      }
+	    }
+	}
+    }
+  return ret;
+}

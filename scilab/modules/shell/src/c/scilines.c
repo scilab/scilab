@@ -11,10 +11,32 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-	#include <curses.h>
-	#include <term.h>
+
+#include "machine.h"
+
+/* for getenv() */
+#ifdef HAVE_STDLIB_H
+#include <stdlib.h>
 #endif
+
+#ifndef _MSC_VER
+
+#  if defined(HAVE_CURSES_H)
+#    include <curses.h>
+#  elif defined(HAVE_NCURSES_H)
+#    include <ncurses.h>
+#  endif
+
+#  ifdef HAVE_TERMCAP_H
+#    include <termcap.h>
+#  endif
+
+#  ifdef HAVE_TERM_H
+#    include <term.h>
+#  endif
+
+#endif /* !defined(_MSC_VER) */
+
 #include "scilines.h"
 #include "core_math.h"
 #include "stack-def.h"
@@ -89,7 +111,6 @@ BOOL setColumnsSize(int colums)
 /*--------------------------------------------------------------------------*/
 BOOL setLinesSize(int lines_)
 {
-
 	C2F(iop).lct[1] = Max(MIN_NUMBERS_LINES,lines_);
 	return TRUE;
 }

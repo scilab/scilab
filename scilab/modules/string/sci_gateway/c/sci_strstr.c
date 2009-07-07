@@ -25,7 +25,7 @@
 #include "strdup_windows.h"
 #endif
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strstr)(char *fname,unsigned long fname_len)
+int sci_strstr(char *fname,unsigned long fname_len)
 {
 	CheckRhs(2,2);
 	CheckLhs(0,1);

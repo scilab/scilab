@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mtable>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">zp</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mi>s</math:mi>
+     </math:mrow>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">dzpdx</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mfrac>
+       <math:mi>d</math:mi>
+       <math:mi math:fontstyle="italic">dx</math:mi>
+      </math:mfrac>
+     </math:mrow>
+     <math:mi>s</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">dzpdy</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mfrac>
+       <math:mi>d</math:mi>
+       <math:mi math:fontstyle="italic">dy</math:mi>
+      </math:mfrac>
+     </math:mrow>
+     <math:mi>s</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">d2zpdxx</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mfrac>
+       <math:msup>
+        <math:mi>d</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+       <math:msup>
+        <math:mi math:fontstyle="italic">dx</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+      </math:mfrac>
+     </math:mrow>
+     <math:mi>s</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">d2zpdxy</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mfrac>
+       <math:msup>
+        <math:mi>d</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">dx</math:mi>
+        <math:mo math:stretchy="false">⋅</math:mo>
+        <math:mi math:fontstyle="italic">dy</math:mi>
+       </math:mrow>
+      </math:mfrac>
+     </math:mrow>
+     <math:mi>s</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">d2zpdyy</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mfrac>
+       <math:msup>
+        <math:mi>d</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+       <math:msup>
+        <math:mi math:fontstyle="italic">dy</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+      </math:mfrac>
+     </math:mrow>
+     <math:mi>s</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">xp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mi>,</math:mi>
+       <math:mi math:fontstyle="italic">yp</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+  </math:mtable>
+  <math:annotation math:encoding="StarMath 5.0">stack {
+zp(i) = s(xp(i),yp(i)) #
+dzpdx(i) = {{d} over {dx}}s(xp(i),yp(i)) #
+dzpdy(i) = {{d} over {dy}}s(xp(i),yp(i)) #
+d2zpdxx(i) = {{d^2} over {dx^2}}s(xp(i),yp(i)) #
+d2zpdxy(i) = {{d^2} over {dx cdot dy}}s(xp(i),yp(i)) #
+d2zpdyy(i) = {{d^2} over {dy^2}}s(xp(i),yp(i))
+}</math:annotation>
+ </math:semantics>
+</math:math>

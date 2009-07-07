@@ -1,64 +1,74 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="log">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="log" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>log</refname>
-    <refpurpose> logarithme naturel  </refpurpose>
+
+    <refpurpose>logarithme naturel</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>y=log(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>x  </term>
+        <term>x</term>
+
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)
-</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>log(x)</literal> calcule le logarithme élément par élément : <literal>y(i,j)=log(x(i,j))</literal>.
-    Pour le logarithme matriciel voir la fonction <literal>logm</literal>.
-  </para>
+
+    <para><literal>log(x)</literal> calcule le logarithme Ã©lÃ©ment par Ã©lÃ©ment
+    : <literal>y(i,j)=log(x(i,j))</literal>. Pour le logarithme matriciel voir
+    la fonction <literal>logm</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 exp(log([1,%i,-1,-%i]))
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="log2">log2</link>
-      </member>
-      <member>
-        <link linkend="log10">log10</link>
-      </member>
-      <member>
-        <link linkend="hat">hat</link>
-      </member>
-      <member>
-        <link linkend="exp">exp</link>
-      </member>
-      <member>
-        <link linkend="frexp">frexp</link>
-      </member>
-      <member>
-        <link linkend="logm">logm</link>
-      </member>
-      <member>
-        <link linkend="ieee">ieee</link>
-      </member>
+      <member><link linkend="log2">log2</link></member>
+
+      <member><link linkend="log10">log10</link></member>
+
+      <member><link linkend="hat">hat</link></member>
+
+      <member><link linkend="exp">exp</link></member>
+
+      <member><link linkend="frexp">frexp</link></member>
+
+      <member><link linkend="logm">logm</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
     </simplelist>
   </refsection>
 </refentry>

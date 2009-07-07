@@ -184,7 +184,7 @@ messagebox([gettext('Welcome to LMITOOL');'      ';'   ';
         if RHS==0|RHS==1 then
           txtdo = ['    To solve your problem, you need to ';
               '1- load your functions using the command:';
-              '   getf('''+fname'+''')';
+              '   exec('''+fname'+''')';
               '2- Define '+DNAME+' and call function '+PROBNAME+' as follows:';
               '  '+'['+XNAME+']='+PROBNAME+'('+DNAME+')';
               '           Good luck! ';
@@ -196,7 +196,7 @@ messagebox([gettext('Welcome to LMITOOL');'      ';'   ';
           txtdo = [gettext('    To solve your problem, you need to ');
               gettext('1- edit file ')+fname
               gettext('2- load (and compile) your functions:');
-              '   getf('''+fname'+''')';
+              '   exec('''+fname'+''')';
               gettext('3- Define ')+DNAME+gettext(' and call ')+PROBNAME+gettext(' function:');
               '  '+'['+XNAME+']='+PROBNAME+'('+DNAME+')';
               gettext('To check the result, use [LME,LMI,OBJ]=')+PROBNAME+'_eval(list('+XNAME+'))']

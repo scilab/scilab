@@ -22,6 +22,7 @@
 #include "FileExist.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -38,12 +39,13 @@ int sci_dos(char *fname,unsigned long l)
 	char *Param2String=NULL;
 	BOOL ECHOMODE=FALSE;
 	BOOL DetachProcessOption=FALSE;
+	int exitCode = 0;
 
 	char **Output=NULL;
 	int numberoflines=0;
 
 	CheckRhs(1,2);
-	CheckLhs(1,2);
+	CheckLhs(1,3);
 
 	if (GetType(1)!=sci_strings) 
 	{
@@ -76,7 +78,7 @@ int sci_dos(char *fname,unsigned long l)
 		}
 	}
 
-	spawncommand(Param1String,DetachProcessOption);
+	exitCode = spawncommand(Param1String,DetachProcessOption);
 
 	Status=(int*)MALLOC(sizeof(int));
 
@@ -129,45 +131,50 @@ int sci_dos(char *fname,unsigned long l)
 
 	if (ECHOMODE) PrintOuput(Output,numberoflines);
 
+
 	if (Lhs == 1)
 	{
-		m1=1;n1=1;
+		m1 = 1; n1 = 1;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
 		LhsVar(1)=Rhs+1;
 	}
-	else /* Lhs == 2 */
+	else 
 	{
 		if (Output[0])
 		{
-			m1=numberoflines;
-			n1=1;
+			m1 = numberoflines;
+			n1 = 1;
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1, &n1, Output);
 		}
 		else
 		{
-			m1=0;
-			n1=0;
-			l1=0;
+			m1 = 0;
+			n1 = 0;
+			l1 = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
 		}
-		
-		LhsVar(1)=Rhs+1;
 
-		m1=1;n1=1;
+		LhsVar(1) = Rhs+1;
+
+		m1 = 1; n1 = 1;
 		CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-		LhsVar(2)=Rhs+2;
+		LhsVar(2) = Rhs+2;
+	}
+
+	if (Lhs > 2)
+	{
+		m1 = 1;
+		n1 = 1;
+		l1 = 0;
+		CreateVar(Rhs+3,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
+		stk(l1)[0] = exitCode;
+		LhsVar(3) = Rhs + 3;
 	}
 
 	C2F(putlhsvar)();
 
 	if (Status) {FREE(Status);Status=NULL;}
-	if (Output)
-	{
-		int i=0;
-		for(i=0;i<numberoflines;i++) if (Output[i]) {FREE(Output[i]);Output[i]=NULL;}
-		FREE(Output);
-		Output=NULL;
-	}
+	freeArrayOfString(Output, numberoflines);
 
 	ClosePipeInfo (pipeOut);
 	ClosePipeInfo (pipeErr);

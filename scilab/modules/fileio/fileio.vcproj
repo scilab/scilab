@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -53,7 +53,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -128,8 +128,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -137,7 +137,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -214,8 +214,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -223,7 +223,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -305,8 +305,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl;../operations/includes"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -314,7 +314,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -405,10 +405,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\do_xxprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\do_xxscanf.c"
 				>
 			</File>
@@ -417,7 +413,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\fileio.c"
+				RelativePath=".\src\c\fileinfo.c"
 				>
 			</File>
 			<File
@@ -430,6 +426,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\findfiles.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fullpath.c"
 				>
 			</File>
 			<File
@@ -453,11 +453,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getrelativefilename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getshortpathname.c"
 				>
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\gw_fileio.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\h5_fileManagement.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\h5_readDataFromFile.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\h5_writeDataToFile.c"
 				>
 			</File>
 			<File
@@ -529,6 +545,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\scanf_functions.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_chdir.c"
 				>
 			</File>
@@ -541,7 +561,47 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\cpp\sci_export_to_hdf5.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_fileext.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_fileinfo.c"
 				>
 			</File>
 			<File
@@ -565,6 +625,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_get_absolute_file_path.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_getcwd.c"
 				>
 			</File>
@@ -577,8 +641,24 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_getrelativefilename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
 				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\cpp\sci_import_from_hdf5.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="0"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_isdir.c"
@@ -625,10 +705,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_mput.c"
 				>
 			</File>
@@ -645,10 +721,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_msprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_msscanf.c"
 				>
 			</File>
@@ -657,7 +729,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_NumTokens.c"
+				RelativePath=".\sci_gateway\c\sci_newest.c"
 				>
 			</File>
 			<File
@@ -670,10 +742,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\scicurdir.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\set_xxprintf.c"
 				>
 			</File>
 			<File
@@ -715,10 +783,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\do_xxprintf.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\do_xxscanf.h"
 				>
 			</File>
@@ -727,7 +791,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\fileio.h"
+				RelativePath=".\src\c\fileinfo.h"
 				>
 			</File>
 			<File
@@ -740,6 +804,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\findfiles.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fullpath.h"
 				>
 			</File>
 			<File
@@ -763,11 +831,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getrelativefilename.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getshortpathname.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\gw_fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\h5_attributeConstants.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\h5_fileManagement.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\h5_readDataFromFile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\h5_writeDataToFile.h"
 				>
 			</File>
 			<File
@@ -839,11 +927,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\scicurdir.h"
+				RelativePath=".\src\c\scanf_functions.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\set_xxprintf.h"
+				RelativePath=".\includes\scicurdir.h"
 				>
 			</File>
 			<File
@@ -907,6 +995,10 @@
 		</File>
 		<File
 			RelativePath=".\sci_gateway\fileio_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\hdf5dll.lib"
 			>
 		</File>
 		<File

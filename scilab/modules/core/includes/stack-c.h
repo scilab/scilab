@@ -53,7 +53,10 @@ typedef enum {
   sci_list = 15,
   sci_tlist = 16,
   sci_mlist = 17,
-  sci_lufact_pointer = 128 /* lufact pointer */
+  sci_lufact_pointer = 128, /* lufact pointer */
+  sci_implicit_poly = 129,
+  sci_intrinsic_function = 130
+
 } sci_types;
 
 /*-------------------------------------------------

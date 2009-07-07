@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -10,40 +10,57 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ndims">
+<refentry version="5.0-subset Scilab" xml:id="ndims" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>ndims</refname>
-    <refpurpose> number of dimensions of an array</refpurpose>
+
+    <refpurpose>number of dimensions of an array</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>A</term>
+
         <listitem>
           <para>an array</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>n</term>
+
         <listitem>
           <para>integer, the number of dimensions of the array</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>n=ndims(A)</literal> return the number of dimension of the array <literal>A</literal>.
-    <literal>n</literal> is greater than or equal to 2.</para>
+
+    <para><literal>n=ndims(A)</literal> return the number of dimension of the
+    array <literal>A</literal>. <literal>n</literal> is greater than or equal
+    to 2.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 A=rand(2,3);
 ndims(A)
 
@@ -52,19 +69,20 @@ size(A),ndims(A)
 
 H=[1/%s,1/(%s+1)]
 ndims(H)
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="size">size</link>
-      </member>
+      <member><link linkend="size">size</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>S. Steer</para>
   </refsection>
 </refentry>

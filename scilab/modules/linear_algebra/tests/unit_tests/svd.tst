@@ -115,7 +115,7 @@ if Err(U*S*V'-Ac)>10000*%eps then pause,end
 if svd([])<>[] then pause,end
 if svd([],"e")<>[] then pause,end
 
-[U,S]=svd([]);
+[U,S,V]=svd([]);
 if U<>[]|S<>[]  then pause,end
 [U,S,V]=svd([]);
 if U<>[]|S<>[]|V<>[]  then pause,end
@@ -133,11 +133,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U'*U-eye())>10*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U1'*U1-eye())>200*%eps  then pause,end
 
@@ -164,11 +164,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U'*U-eye())>200*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U1'*U1-eye())>200*%eps  then pause,end
 
@@ -194,11 +194,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U'*U-eye())>200*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U1'*U1-eye())>200*%eps  then pause,end
 
@@ -225,11 +225,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U'*U-eye())>200*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>200*%eps  then pause,end
 if Err(U1'*U1-eye())>200*%eps  then pause,end
 
@@ -257,11 +257,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>1000*%eps  then pause,end
 if Err(U'*U-eye())>1000*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>1000*%eps  then pause,end
 if Err(U1'*U1-eye())>1000*%eps  then pause,end
 
@@ -288,11 +288,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U'*U-eye())>5000*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U1'*U1-eye())>5000*%eps  then pause,end
 
@@ -318,11 +318,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U'*U-eye())>5000*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U1'*U1-eye())>5000*%eps  then pause,end
 
@@ -349,11 +349,11 @@ S=svd(A);
 if or(S<0) then pause,end
 if sort(S)<>S  then pause,end
 
-[U,S1]=svd(A);
+[U,S1,V]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U'*U-eye())>5000*%eps  then pause,end
 
-[U1,S1]=svd(A,"e");
+[U1,S1,V]=svd(A,"e");
 if Err(S-diag(S1))>5000*%eps  then pause,end
 if Err(U1'*U1-eye())>5000*%eps  then pause,end
 

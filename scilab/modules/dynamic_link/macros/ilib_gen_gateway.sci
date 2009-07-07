@@ -15,8 +15,8 @@
 // attributes of function i.e mex fmex or scilab interface 
 // if name is a full path just extract the filename 
 
-function ilib_gen_gateway(name,tables)
-
+function gateway_filename = ilib_gen_gateway(name,tables)
+  gateway_filename = '';
   k = strindex(name,['/','\']);
   if k~=[] then
     path = part(name,1:k($));
@@ -60,6 +60,7 @@ function ilib_gen_gateway(name,tables)
     end 
     [gate,names] = new_names(table); 
     t = [ '#include <mex.h> ';
+          '#include <sci_gateway.h>';
 	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
 	        'extern Gatefunc ' + names(:) + ';';
 	        'static GenericTable Tab[]={';
@@ -73,18 +74,22 @@ function ilib_gen_gateway(name,tables)
 	        '  return 0;'
 	        '}'];
 
-	        
+	  gateway_filename = path + tname + '.c';
     // first chek if we already have a gateway 
-    [fd,ierr] = mopen(path+tname+'.c');
-    if ierr== 0 then
+    [fd,ierr] = mopen(gateway_filename);
+    if ierr == 0 then
       mclose(fd);
-      t1 = mgetl(path+tname+'.c') 
+      t1 = mgetl(gateway_filename);
       if t1 <> t then 
-	      mputl(t,path+tname+'.c');    
+	      mputl(t, gateway_filename);    
       end
     else
        // file does not exist we create it 
-       mputl(t,path+tname+'.c') ;   
+       mputl(t, gateway_filename) ;   
+    end
+    
+    if ilib_verbose() > 1 then
+      disp(t);
     end
   end
 endfunction

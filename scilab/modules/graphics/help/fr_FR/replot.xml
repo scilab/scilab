@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="replot">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>replot</refname>
-    <refpurpose>redessine la fenêtre graphique courante en
+    <refpurpose>redessine la fenÃªtre graphique courante en
   changeant les bornes</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>replot(rect)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>rect</term>
@@ -25,7 +25,7 @@
         <term>handle</term>
         <listitem>
           <para>argument optionnel. Handle(s) graphiques de type Axes
-          définissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
+          dÃ©finissant le(s) axe(s) auxquels les nouvelles bornes s'appliquent.
           Option uniquement disponible en nouveau mode graphique.</para>
         </listitem>
       </varlistentry>
@@ -33,16 +33,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>replot</literal> est utilisée pour redessiner la fenêtre graphique
-    courante en changeant les bornes, données sous la forme
+    <para><literal>replot</literal> est utilisÃ©e pour redessiner la fenÃªtre graphique
+    courante en changeant les bornes, donnÃ©es sous la forme
     <literal>rect=[xmin,ymin,xmax,ymax]</literal>. En ancien mode graphique,
     fonctionne uniquement avec le pilote <literal>"Rec"</literal>.</para>
     <para>En nouveau mode graphique, cette transformation s'applique aux axes
-    spécifiés par <literal>handle</literal> Si <literal>handle</literal> n'est pas
-    renseigné, la transformation s'applique à  l'axe courant de la figure
+    spÃ©cifiÃ©s par <literal>handle</literal> Si <literal>handle</literal> n'est pas
+    renseignÃ©, la transformation s'applique Ã Â  l'axe courant de la figure
     courante. La transformation change les valeurs <literal>data_bounds</literal>
-    des axes. A noter que la propriété <literal>tight_limits</literal> de l'axe doit
-    être mise à  <literal>"on"</literal> pour selectionner strictement ces bornes
+    des axes. A noter que la propriÃ©tÃ© <literal>tight_limits</literal> de l'axe doit
+    Ãªtre mise Ã Â  <literal>"on"</literal> pour selectionner strictement ces bornes
     (voir <link linkend="axes_properties">axes_properties</link>).<literal/></para>
   </refsection>
   <refsection>

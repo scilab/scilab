@@ -13,6 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include "TextToPrint.h"
 #include "win_mem_alloc.h" /* MALLOC */
+#include "charEncoding.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static HDC PrinterHDC=NULL;
 static char PrinterName[2048];
@@ -222,7 +224,8 @@ void PrintFile(char *filename)
 		HauteurCaractere= tm.tmHeight+tm.tmExternalLeading;
 		NbLigneParPage = GetDeviceCaps(PrintDC,VERTRES) / HauteurCaractere;
 
-		pFile = fopen (filename,"rt");
+		wcfopen(pFile , filename, "rt");
+
 		if (pFile)
 		{
 			if ( StartDoc( PrintDC, &di ) > 0 )
@@ -314,13 +317,12 @@ void PrintFile(char *filename)
 					}
 					else
 					{
-						LignePrint=(char*)MALLOC( (NombredeCaracteresparLignes+1)*sizeof(char));
-						strcpy(LignePrint,line);
+						LignePrint = strdup(line);
 						TextOut (PrintDC,(tm.tmMaxCharWidth+10), Index2*HauteurCaractere, LignePrint, (int)strlen(LignePrint));
 						if (LignePrint)
 						{
 							FREE(LignePrint);
-							LignePrint=NULL;
+							LignePrint = NULL;
 						}
 						Index2 ++;
 						if (Index2 == NbLigneParPage-4)

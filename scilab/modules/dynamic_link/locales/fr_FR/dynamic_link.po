@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-02-11 09:24+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-03-10 11:07+0000\n"
+"Last-Translator: Claire Alexandre <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Dynamic link"
@@ -23,39 +23,39 @@ msgstr "Lien dynamique"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s: Le fichier %s n'existe pas.\n"
+msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
+msgstr "%s : Ne peut pas ouvrir le fichier %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Doit être dans "
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
 "l'ensemble {%s}.\n"
 
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
-"%s: Cette fonction requière le compilateur C Microsoft visual studio.\n"
+"%s : Cette fonction requiert le compilateur C Microsoft visual studio.\n"
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
-msgstr "%s: Cette fonction a été implémentée pour Windows.\n"
+msgstr "%s : Cette fonction a été implémentée pour Windows.\n"
 
 #, c-format
 msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr "%s: Fonction non disponible sous Microsoft Windows.\n"
+msgstr "%s : Fonction non disponible sous Microsoft Windows.\n"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: Un compilateur fortran ou C est requis.\n"
+msgstr "%s : Un compilateur fortran ou C est requis.\n"
 
 msgid "   Generate a gateway file"
 msgstr "   Génère un fichier gateway"
@@ -65,7 +65,7 @@ msgstr "   Génère un fichier loader"
 
 #, c-format
 msgid "   Generate a Makefile: %s"
-msgstr "   Génère un Makefile: %s"
+msgstr "   Génère un Makefile : %s"
 
 msgid "   Generate a Makefile"
 msgstr "   Génère un Makefile"
@@ -84,76 +84,78 @@ msgstr "   Construction de la bibliothèque partagée (soyez patient)"
 
 #, c-format
 msgid "%s: An error occured during the compilation:\n"
-msgstr "%s: Une erreur est survenue lors de la compilation:\n"
+msgstr "%s : Une erreur est survenue lors de la compilation :\n"
 
 #, c-format
 msgid "%s: The command was:\n"
-msgstr "%s: La commande était:\n"
+msgstr "%s : La commande était :\n"
 
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
 msgstr ""
-"%s: Attention: Pas de code d'erreur retourné par la compilation, mais il y a "
-"des erreurs en sortie:\n"
+"%s : Attention : Pas de code d'erreur retourné par la compilation, mais il y "
+"a des erreurs en sortie :\n"
 
 msgid "   Running the Makefile"
 msgstr "   Exécute le Makefile"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
 msgstr ""
-"   %s: Copie les fichiers de compilation (Makefile*, libtool...) vers "
+"   %s : Copie les fichiers de compilation (Makefile*, libtool...) vers "
 "TMPDIR\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s: Une erreur s'est produite: %s\n"
+msgstr "%s : Une erreur s'est produite : %s\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
-msgstr "   %s: Copie %s vers TMPDIR\n"
+msgstr "   %s : Copie %s vers TMPDIR\n"
 
 #, c-format
 msgid "   %s: File %s ignored.\n"
-msgstr "   %s: Fichier %s ignoré.\n"
+msgstr "   %s : Fichier %s ignoré.\n"
 
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
-msgstr "   %s: Modification du Makefile dans TMPDIR.\n"
+msgstr "   %s : Modification du Makefile dans TMPDIR.\n"
 
 #, c-format
 msgid "%s: Error while modifing the reference Makefile:\n"
-msgstr "%s: Erreur pendant la modification du Makefile de référence:\n"
+msgstr "%s : Erreur pendant la modification du Makefile de référence :\n"
 
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
-msgstr "   %s: configure : Génère le Makefile.\n"
+msgstr "   %s : configure : Génère le Makefile.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d: %d attendu.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un scalaire "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Vecteur de chaîne de "
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Vecteur de chaîne de "
 "caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
-"%s: Mauvais type pour les arguments en entrée: Chaîne de caractères "
+"%s : Mauvais type pour les arguments d'entrée : Chaîne de caractères "
 "attendue.\n"
 
 #, c-format
@@ -163,37 +165,38 @@ msgstr ""
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
-msgstr "%s : Mauvaise valeur pour l'argument d'entrée n° %d: %s\n"
+msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : %s\n"
 
 msgid "Unique id of a shared library expected."
 msgstr "Id unique d'une bibliothèque partagée attendu."
 
 #, c-format
 msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n° %d: %s\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : %s\n"
 
 msgid "Unique dynamic library name expected."
-msgstr "Un nom unique de bibliothèque partégée attendu."
+msgstr "Un nom unique de bibliothèque partagée attendu."
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée. Vecteur de chaîne de caractères "
+"%s : Mauvais type pour l'argument d'entrée. Vecteur de chaîne de caractères "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée. Chaînes de caractères attendues.\n"
+"%s : Mauvais type pour l'argument d'entrée. Chaînes de caractères "
+"attendues.\n"
 
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s Mauvaise valeur pour l'argument d'entrée n° %d: '%s' ou '%s' attendu.\n"
+"%s Mauvaise valeur pour l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Entier attendu.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Entier attendu.\n"
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s\n"
@@ -205,21 +208,21 @@ msgstr "Interface %s non liée.\n"
 
 #, c-format
 msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: La bibliothèque partagée n'a pas été chargée: %s\n"
+msgstr "%s : La bibliothèque partagée n'a pas été chargée: %s\n"
 
 #, c-format
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr ""
-"%s: Ne peux pas ouvrir les fichiers partagés. Nombre maximum d'entrée %d "
+"%s : Ne peut pas ouvrir les fichiers partagés. Nombre maximum d'entrée %d "
 "atteint.\n"
 
 #, c-format
 msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: Bibliothèque partagée %s n'existe pas.\n"
+msgstr "%s : Bibliothèque partagée %s n'existe pas.\n"
 
 #, c-format
 msgid "%s: Already loaded from library %s\n"
-msgstr "%s: Déjà chargé à partir de la bibliothèque %s\n"
+msgstr "%s : Déjà chargé à partir de la bibliothèque %s\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
@@ -231,13 +234,13 @@ msgstr "Echec de l'édition de liens pour la bibliothèque partagée '%s'.\n"
 
 #, c-format
 msgid "An error occurred: %s\n"
-msgstr "Une erreur est survenue: %s\n"
+msgstr "Une erreur est survenue : %s\n"
 
 msgid "Shared archive loaded.\n"
 msgstr "Bibliothèque partagée chargée.\n"
 
 msgid "Link done.\n"
-msgstr "Edition de liens effectué.\n"
+msgstr "Edition de liens effectuée.\n"
 
 #, c-format
 msgid ""
@@ -258,7 +261,7 @@ msgstr "Point d'entrée %s dans la bibliothèque dynamique %d.\n"
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
 msgstr ""
-"Ne peux pas ouvrir les fichiers partagés maximum d'entrées %d atteint.\n"
+"Ne peut pas ouvrir les fichiers partagés maximum d'entrées %d atteint.\n"
 
 #, c-format
 msgid "Entry name %s.\n"

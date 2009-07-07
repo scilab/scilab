@@ -10,10 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+#include <errno.h>
+#include "PATH_MAX.h"
 #include "saveg.h"
 #include "localization.h"
 #include "machine.h"
+#include "charEncoding.h"
+#include "Scierror.h"
+
 static int CompString(char **s1, char **s2)
 {
   return strcmp((char*)*s1,(char*)*s2);
@@ -41,7 +45,7 @@ void C2F(saveg) (char *path, int *lpath,
 #endif
   char fname[2*MAXNAM];
   char description[2*MAXNAM];
-  char dir[1024], nname[2*MAXNAM];
+  char dir[PATH_MAX], nname[2*MAXNAM];
   int i;
   char **lar;
 
@@ -76,18 +80,24 @@ void C2F(saveg) (char *path, int *lpath,
   name[*lname] = '\0';
 
   if (!strcmp(path," ")) {
-    getcwd(dir,(int)strlen(dir));
+    if (getcwd(dir,PATH_MAX)==NULL){
+      Scierror(999,_("Could not get current working directory: %s\n"),strerror(errno));
+       return; 
+    }
     strcpy(nname,name);
   }
   else {
-#if (defined _MSC_VER)
-    getcwd(dir,(int)strlen(dir));
-#if (defined _MSC_VER)
+#ifdef _MSC_VER
+    if (getcwd(dir,PATH_MAX)==NULL){
+      Scierror(999,_("Could not get current working directory: %s\n"),strerror(errno));
+      return;
+    }
+#ifdef _MSC_VER
     it= chdir(path);
     chdir(dir);
 #else
     it= chdir_(path,strlen(path));
-    chdir_(dir,strlen(dir));
+    chdir_(dir,PATH_MAX);
 #endif
     if (it == 0) {
       strcpy(dir,path);
@@ -100,7 +110,13 @@ void C2F(saveg) (char *path, int *lpath,
 #endif
     else {
       strcpy(nname,StripGraph(my_basename(path)));
-      if (my_dirname(path) == NULL) getcwd(dir,(int)strlen(dir));
+      if (my_dirname(path) == NULL) {
+	if (getcwd(dir,PATH_MAX)==NULL){
+	  Scierror(999,_("Could not get current working directory: %s\n"),strerror(errno));
+	  return;
+	}
+
+      }
       else strcpy(dir,my_dirname(path));
     }
   }
@@ -124,7 +140,7 @@ void C2F(saveg) (char *path, int *lpath,
   strcat(fname,"/");
   strcat(fname,nname);
   strcat(fname,".graph");
-  f = fopen(fname,"w");
+  wcfopen(f,fname,"w");
   if (f == NULL) {
     sprintf(description,
 	    _("Unable to write file in directory %s, check access"),dir);

@@ -28,7 +28,7 @@
         #endif
       #endif
    #endif
-   #if defined(__alpha)	
+   #if defined(__alpha)	&& !defined(__NetBSD__) && !defined(linux)
      #include <sys/sysinfo.h> 
      #include <machine/hal_sysinfo.h>
    #endif

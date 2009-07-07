@@ -16,7 +16,7 @@ function browsevar()
   [%_nams,%_vol]=who('get');
   p=predef();
   sz=stacksize();
-  u=file('open',TMPDIR+'/browsevar.txt','unknown');
+  u = mopen(TMPDIR+'/browsevar.txt','wt');
   for %_k=1:size(%_nams,1)
     %_sz=' ';
     execstr('%_typ=type('+%_nams(%_k)+')')
@@ -27,11 +27,11 @@ function browsevar()
       if ierr<>0 then %_sz='?',end
     end
     
-    fprintf(u,"<d>%d {%s} %d {%s}",%_typ,strcat(string(%_sz),' by '),%_vol(%_k),%_nams(%_k));
+    mfprintf(u,"<d>%d {%s} %d {%s}\n",%_typ,strcat(string(%_sz),' by '),%_vol(%_k),%_nams(%_k));
   end
-  fprintf(u,"<m>%d %d %d",sz(1),sz(2),sz(2)/sz(1)*100);
-  fprintf(u,"<p>%d",p);
-  file('close',u);
+  mfprintf(u,"<m>%d %d %d\n",sz(1),sz(2),sz(2)/sz(1)*100);
+  mfprintf(u,"<p>%d\n",p);
+  mclose(u);
 
   tmpDir=strsubst(TMPDIR,'\','/');
   TCL_EvalStr('sciGUIBrowseVar ""'+tmpDir+'""');

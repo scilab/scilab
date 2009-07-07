@@ -4,6 +4,7 @@
 ##########
 
 if GUI
+if BUILD_HELP
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
@@ -15,6 +16,10 @@ GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+else
+GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 endif
 
 else
@@ -43,7 +48,9 @@ libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWA
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 
+if BUILD_HELP
 libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
+endif
 
 #### Target ######
 modulename=helptools

@@ -5,26 +5,55 @@ EXPORTS
 ;
 ;core
 ;
- IsAFile 
- com_
- recu_
- putlhsvar_
- intersci_
- stack_
- createvar_
- getrhsvar_
- checklhs_
- checkrhs_
- gettype_
- vstk_
- createvarfromptr_
- iop_
- GetFile
- getTMPDIR
- vartype_
- callFunctionFromGateway
- freeArrayOfString
- getWarningMode
- IsAScalar
+callFunctionFromGateway
+com_
+iop_
+getRecursionFunctionToCall
+isRecursionCallToFunction
+stack_
+getrhsvar_
+checklhs_
+checkrhs_
+gettype_
+vstk_
+putlhsvar_
+intersci_
+createvarfromptr_
+freeArrayOfString
+createvar_
+vartype_
+IsAScalar
+getTMPDIR
+iGetAddressFromItemPos
+iGetListItemType
+getMatrixOfDouble
+getComplexMatrixOfDouble
+isVarComplex
+getVarType
+getBooleanSparseMatrix
+createNamedBooleanSparseMatrix
+readNamedBooleanSparseMatrix
+createBooleanSparseMatrix
+getListItemAddress
+getListItemNumber
+getMatrixOfString
+createMatrixOfString
+createMatrixOfDouble
+createList
+createMatrixOfDoubleInList
+createComplexMatrixOfDoubleInList
+createListInList
+createNamedList
+createMatrixOfDoubleInNamedList
+getMatrixOfDoubleInList
+getListInList
+readNamedList
+readMatrixOfDoubleInNamedList
+getMatrixOfStringInList
+createMatrixOfStringInList
+createMatrixOfStringInNamedList
+createListInNamedList
+iAllocMatrixOfBoolean
+iArraySum
+GetRhsStringVar
 ;
-

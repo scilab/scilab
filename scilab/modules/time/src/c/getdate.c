@@ -26,6 +26,17 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
+#define YEAR_INDEX 0
+#define MONTH_INDEX 1
+#define WEEK_NUMBER_INDEX 2
+#define DAY_OF_YEAR_INDEX 3
+#define WEEKDAY_INDEX 4
+#define DAY_OF_MONTH_INDEX 5
+#define HOUR_OF_DAY_INDEX 6
+#define MINUTE_INDEX 7
+#define SECOND_INDEX 8
+#define MILLISECOND_INDEX 9
+/*--------------------------------------------------------------------------*/
 #define ISO_WEEK_START_WDAY 1 /* Monday */
 #define ISO_WEEK1_WDAY 4 /* Thursday */
 #define YDAY_MINIMUM (-366)
@@ -39,7 +50,8 @@ except every 100th isn't, and every 400th is).  */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef _MAX__TIME64_T
-		#define _MAX__TIME64_T     0x100000000000i64    /* number of seconds from 00:00:00, 01/01/1970 UTC to 23:59:59. 12/31/2999 UTC */
+/* number of seconds from 00:00:00, 01/01/1970 UTC to 23:59:59. 12/31/2999 UTC */
+		#define _MAX__TIME64_T     0x100000000000i64    
 	#endif
 #endif
 /*--------------------------------------------------------------------------*/
@@ -52,16 +64,16 @@ static int week_number (struct tm *tp);
 #endif
 static int week_days (int yday, int wday);
 /*--------------------------------------------------------------------------*/
-static int ChronoFlag=0;
+static int ChronoFlag = 0;
 /*--------------------------------------------------------------------------*/
 void  C2F(scigetdate)(time_t *dt,int *ierr)
 {
   *ierr=0;
   if (time(dt) == (time_t) - 1)
   {
-    *ierr=errno;
+    *ierr = errno;
   }
-  ChronoFlag=1;
+  ChronoFlag = 1;
 
   #ifdef _MSC_VER
     _ftime64( &timebufferW );
@@ -70,7 +82,7 @@ void  C2F(scigetdate)(time_t *dt,int *ierr)
   #endif
 }
 /*--------------------------------------------------------------------------*/
-void C2F(convertdate)(time_t *dt,int w[10])
+void C2F(convertdate)(time_t *dt,double datematrix[10])
 {
 	// check that dt > 0 (and dt < _MAX__TIME64_T if _MSC_VER is defined)
 	#ifdef _MSC_VER
@@ -79,16 +91,16 @@ void C2F(convertdate)(time_t *dt,int w[10])
 	if (*dt<0)
 	#endif
 	{
-		w[0] = 0;
-		w[1] = 0;
-		w[2] = 0;
-		w[3] = 0;
-		w[4] = 0;
-		w[5] = 0;
-		w[6] = 0;
-		w[7] = 0;
-		w[8] = 0;
-		w[9] = 0;
+		datematrix[YEAR_INDEX] = 0;
+		datematrix[MONTH_INDEX] = 0;
+		datematrix[WEEK_NUMBER_INDEX] = 0;
+		datematrix[DAY_OF_YEAR_INDEX] = 0;
+		datematrix[WEEKDAY_INDEX] = 0;
+		datematrix[DAY_OF_MONTH_INDEX] = 0;
+		datematrix[HOUR_OF_DAY_INDEX] = 0;
+		datematrix[MINUTE_INDEX] = 0;
+		datematrix[SECOND_INDEX] = 0;
+		datematrix[MILLISECOND_INDEX] = 0;
 		if (*dt<0)	Scierror(999,_("%s: Wrong value for input argument #%d: Must be > %d.\n"),"getdate",1,0);
 		#ifdef _MSC_VER
 		else Scierror(999,_("%s: Wrong value for input argument #%d: Must be < %d.\n"),"getdate",1,_MAX__TIME64_T);
@@ -100,28 +112,27 @@ void C2F(convertdate)(time_t *dt,int w[10])
 		nowstruct = localtime(dt);
 		if (nowstruct)
 		{
-			/** @TODO replace [int] by defines ... */
-			w[0] = 1900 + nowstruct->tm_year;
-			w[1] = 1    + nowstruct->tm_mon;
-			w[2] = week_number(nowstruct);
-			w[3] = 1    + nowstruct->tm_yday;
-			w[4] = 1    + nowstruct->tm_wday;
-			w[5] =        nowstruct->tm_mday;
-			w[6] =        nowstruct->tm_hour;
-			w[7] =        nowstruct->tm_min;
-			w[8] =        nowstruct->tm_sec;
+			datematrix[YEAR_INDEX] =           1900 + nowstruct->tm_year;
+			datematrix[MONTH_INDEX] =          1    + nowstruct->tm_mon;
+			datematrix[WEEK_NUMBER_INDEX] =    week_number(nowstruct);
+			datematrix[DAY_OF_YEAR_INDEX] =    1    + nowstruct->tm_yday;
+			datematrix[WEEKDAY_INDEX] =        1    + nowstruct->tm_wday;
+			datematrix[DAY_OF_MONTH_INDEX] =   nowstruct->tm_mday;
+			datematrix[HOUR_OF_DAY_INDEX] =    nowstruct->tm_hour;
+			datematrix[MINUTE_INDEX] =         nowstruct->tm_min;
+			datematrix[SECOND_INDEX] =         nowstruct->tm_sec;
             if (ChronoFlag)
 			{
-       #ifdef _MSC_VER
-				w[9] = timebufferW.millitm;
-			 #else
-				w[9] = timebufferU.tv_usec / 1000;  /* micro to ms */
-			 #endif
-			 ChronoFlag=0;
+			#ifdef _MSC_VER
+				datematrix[MILLISECOND_INDEX] = timebufferW.millitm;
+			#else
+				datematrix[MILLISECOND_INDEX] = timebufferU.tv_usec / 1000;  /* micro to ms */
+			#endif
+			 ChronoFlag = 0;
 			}
 			else
 			{
-				w[9] = 0;
+				datematrix[MILLISECOND_INDEX] = 0;
 			}
 		}
 	}

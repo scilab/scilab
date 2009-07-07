@@ -32,7 +32,6 @@ src/fortran/wmpadj.f \
 src/fortran/dmpmu.f \
 src/fortran/wpmul1.f \
 src/fortran/wmpcnc.f \
-src/fortran/dmpdsp.f \
 src/fortran/mptri.f \
 src/fortran/horner.f \
 src/fortran/idegre.f \
@@ -59,11 +58,12 @@ src/fortran/newest.f \
 src/fortran/dwmpmu.f \
 src/fortran/impcnc.f \
 src/fortran/wdmpad.f \
-src/fortran/fmt.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
-src/fortran/dmrdsp.f \
-src/fortran/quad.f
+src/fortran/quad.f \
+src/fortran/calcsc.f \
+src/fortran/writebufsfact.f
+
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

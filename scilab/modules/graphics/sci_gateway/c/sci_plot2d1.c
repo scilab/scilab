@@ -74,33 +74,18 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
 
   if (Rhs <= 0) {
     /* lauch the default routines depending on the name of the calling funtion */
-    if ( strcmp( fname, "plot2d2" ) == 0 )
-    {
-      char demo[]="x=(0:0.1:2*%pi)';plot2d2(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, FALSE ) ;
-    }
-    else if ( strcmp( fname, "plot2d3" ) == 0 )
-    {
-      char demo[]="x=(0:0.1:2*%pi)';plot2d3(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, FALSE ) ;
-    }
-    else if ( strcmp( fname, "plot2d4" ) == 0 )
-    {
-      char demo[]="x=(0:0.1:2*%pi)';plot2d4(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, FALSE ) ;
-    }
-    else
-    {
-      char demo[]="x=(0:0.1:2*%pi)';plot2d1(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);";
-      sci_demo( fname, demo, FALSE ) ;
-    }
+    sci_demo(fname, fname_len);
     return 0;
   }
   CheckRhs(1,9); /* to allow plot2dxx(y) */
 
 
   iskip=0;
-  if ( get_optionals(fname,opts) == 0) return 0;
+  if ( get_optionals(fname,opts) == 0) 
+  {
+	  C2F(putlhsvar)();
+	  return 0;
+  }
 
   if (GetType(1)==sci_strings) {
     /* logflags */
@@ -243,7 +228,8 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   Objplot2d (ptype,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend,rect, nax, flagNax);
 
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

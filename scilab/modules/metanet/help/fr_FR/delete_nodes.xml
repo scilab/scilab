@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>delete_nodes</refname>
-    <refpurpose> détruit des sommets  </refpurpose>
+    <refpurpose> dÃ©truit des sommets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = delete_nodes(v,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur d'entiers, numéros des sommets à détruire
+          <para>vecteur d'entiers, numÃ©ros des sommets Ã  dÃ©truire
 </para>
         </listitem>
       </varlistentry>
@@ -50,8 +50,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>delete_nodes</literal> renvoie le graphe <literal>g1</literal>, avec les sommets donnés par le 
-    vecteur <literal>v</literal> ayant été détruits.
+    <para><literal>delete_nodes</literal> renvoie le graphe <literal>g1</literal>, avec les sommets donnÃ©s par le 
+    vecteur <literal>v</literal> ayant Ã©tÃ© dÃ©truits.
   </para>
   </refsection>
   <refsection>

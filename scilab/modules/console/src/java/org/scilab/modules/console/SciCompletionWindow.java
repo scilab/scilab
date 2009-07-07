@@ -336,7 +336,7 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 			}
 		} else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
 			/* Delete a character in Scilab input command view */
-			if (inputParsingManager.getPartLevel(inputParsingManager.getCompletionLevel()).length() > 0) {
+			if (inputParsingManager.getPartLevel(inputParsingManager.getCompletionLevel()) != null) {
 				// Remove a key in input command line
 				inputParsingManager.backspace();
 

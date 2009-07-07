@@ -15,7 +15,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={
+#define PVM_TAB_SIZE 33
+static gw_generic_table Tab[PVM_TAB_SIZE]={
   {intspvm_joingroup,"pvm_joingroup"},
   {intspvm_lvgroup,"pvm_lvgroup"},
   {intspvm_gsize,"pvm_gsize"},
@@ -54,7 +55,7 @@ static gw_generic_table Tab[]={
 int gw_pvm(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,PVM_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

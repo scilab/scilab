@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/boolean/help/fr_FR";
-add_help_chapter("Booléens",path,%T);
+add_help_chapter("BoolÃ©ens",path,%T);
 clear path add_help_chapter;

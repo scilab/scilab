@@ -1,0 +1,298 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-05-27 18:59+0100\n"
+"PO-Revision-Date: 2008-11-27 20:21+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Falsche Anzahl an Eingangsargument(en).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: leere matrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+msgid "Choose a sparse matrix"
+msgstr "Wählen Sie eine dünn besetzte Matrix"
+
+msgid "   then click on OK   "
+msgstr "   dann klicken Sie auf OK   "
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: mindestens %d erwartet.\n"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: die Datei enthält ein rhs, wird aber nicht gelesen!"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s: aktuell die nicht zusammengesetzten (elementaren) Leermatrizen"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: keine Werte für diese Matrix (nur nicht Null Muster): einige Einsen "
+"einsetzen."
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" angeglichen (IN,vM) mit der iterativen Methode \n"
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " Iteration %3d: IM = %e  \n"
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Warnung: für Im Konvergenz bei rtol=%e \n"
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           nach %d Iterationen nicht erreicht (erhalten nur %e) \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" angenähert (lm,vm) mit der inversen iterativen Methode \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " Iteration %3d: lm =%e  \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Warnung: für lm Konvergenz bei rtol=%e \n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: quadratische Matrix erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: quadratische Matrix erwartet.\n"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr ""
+"%s: die Matrix und die LU Faktoren haben nicht die gleiche Dimension!\n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s: ungültiger Typ und/oder Wert für das zweite Argument.\n"
+
+msgid " For this demo the current stack size is not enought "
+msgstr " Für dieses Demo ist die Stapelgröße nicht ausreichend "
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " geben Sie das Folgende bei der Scilab Eingabezeile ein:          "
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           dann geben Sie Sciptdem()                "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               Hier zum Fortfahren Klicken                    "
+
+msgid "how to use this stuff"
+msgstr "Wie dieses Programm verwenden"
+
+msgid "display a speed comparison test"
+msgstr "einen Geschwindigkeitstest anzeigen"
+
+msgid "small tests for condestsp"
+msgstr "kleine Tests für condestsp"
+
+msgid "Click to choose a demo"
+msgstr "Hier klicken, um ein Demo auszuwählen"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument: gleiche Größe erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: keine gültige Referenz zu den "
+"CHolesky Faktoren.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symetric positive definite"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß symetrisch positiv definit "
+"sein."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher verfügbar\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+msgid "factorization"
+msgstr "Faktorisierung"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß ein gültige Referenz zur "
+"Cholesky Faktorisierung sein."
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr ""
+"%s: kein weiterer Speicher: vergrößere Stapelgröße %d unterstützende Worte "
+"werden benötigt.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: keine gültige Referenz zu den "
+"Cholesky Faktoren"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: nicht kompatibel zu der Cholesky "
+"Faktorisierung.\n"
+
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s: nicht genügend Speicher.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß eine gültige Referenz zu "
+"(umf) LU Faktoren sein.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s: %s\n"
+
+msgid "symbolic factorization"
+msgstr "symbolische Faktorisierung"
+
+msgid "Warning"
+msgstr "Warnung"
+
+msgid "The (square) matrix appears to be singular."
+msgstr "Die (quadratische) Matrix scheint singulär zu sein."
+
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "kein Platz, um die LU Zeiger in ListNumeric zu speichern"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s.\n"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "Dies ist keine Faktorisierung einer quadratischen Matrix"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "Dies ist eine Faktorisierung einer singulären Matrix"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: %s.\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "Matrix ist nicht kompatibel mit den gegebenen LU Faktoren"
+
+msgid "numeric factorization"
+msgstr "numerische Faktorisierung"
+
+msgid "singular matrix"
+msgstr "singuläre Matrix"
+
+msgid "not enough memory"
+msgstr "Nicht genügend Speicher"
+
+msgid "internal error"
+msgstr "interner Fehler"
+
+msgid "invalid matrix"
+msgstr "ungültige Matrix"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "GENMMD Ordnung arbeitet nur bei symetrischen Matrizen.\n"
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "Der untere Teil der Matrix muß repräsentiert werden.\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s: kein weiterer Speicher (n=%d, nnz=%d).\n"
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    CC^T Faktorisierung: Matrix ist nicht positiv definit.\n"
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        nicht positive Pivot in Spalte %d\n"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Scilab UMFPACK Modul nicht installiert.\n"

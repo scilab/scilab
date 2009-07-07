@@ -6,7 +6,7 @@
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -19,11 +19,11 @@ cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL io.lib" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -36,11 +36,11 @@ cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib fileio.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -53,11 +53,11 @@ cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL io.lib" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib fileio.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\io_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="io_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\io_f.lib" LinkDLL="true" AdditionalDependencies="Libscilab.lib output_stream_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -70,22 +70,14 @@ cd ..
 copy io_f_header.def+io_f.vcdef io_f.def &gt;nul" Description="Build io.def"/>
 				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL
 lib /DEF:&quot;$(InputDir)io_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)io.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)fileio.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\intdeff.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intdiary.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intdisp.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intexec.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intexecstr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intgetf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intprint.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intrat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intread4b.f"/>
@@ -94,7 +86,6 @@ lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<File RelativePath="..\..\sci_gateway\fortran\intwrite.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intwrite4b.f"/>
 		<File RelativePath=".\newsave.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\oldloadsave.f"/>
 		<File RelativePath=".\v2cunit.f"/>
 		<File RelativePath=".\v2unit.f"/>
 		<File RelativePath=".\writebuf.f"/></Filter>

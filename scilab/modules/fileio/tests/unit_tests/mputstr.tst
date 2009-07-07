@@ -5,11 +5,12 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-fd = mopen(TMPDIR+'/mputstr.txt','wt');
-mputstr('Scilab',fd);
-mclose(fd)
+// <-- JVM NOT MANDATORY -->
 
-fd = mopen(TMPDIR+'/mputstr.txt','rt');
-l = mgetstr(fd);
+this_file = pathconvert(TMPDIR+"/mputstr.txt",%F);
+
+fd = mopen(this_file,"wt");
+mputstr("Scilab",fd);
 mclose(fd);
-if l <> 'Scilab' then pause,end
+
+if mgetl(this_file) <> "Scilab" then pause,end

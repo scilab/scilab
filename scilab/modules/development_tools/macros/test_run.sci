@@ -39,6 +39,14 @@
 //       This test will be executed with the -l fr_FR option.
 //     <-- JVM NOT MANDATORY -->
 //       This test will be executed with the nwni mode by default.
+//     <-- WINDOWS ONLY -->
+//       If the operating system isn't Windows, the test is skipped.
+//     <-- UNIX ONLY -->
+//       If the operating system isn't an unix OS, the test is skipped.
+//     <-- LINUX ONLY -->
+//       If the operating system isn't Linux, the test is skipped.
+//     <-- MACOSX ONLY -->
+//       If the operating system isn't MacOSX, the test is skipped.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
@@ -119,19 +127,30 @@ function test_run(varargin)
 	global check_error_output;
 	global create_ref;
 	global launch_mode;
-	global launch_mode_arg; // TRUE if user specify the launch mode
+	global launch_mode_arg;  // TRUE if user specify the launch mode
+	
 	launch_mode_arg = %F;
 	
 	// test type
-	test_types        = ["unit_tests","nonreg_tests"];
-	test_types_keeped = "";
+	test_types         = ["unit_tests","nonreg_tests"];
+	test_types_keeped  = "all_tests"; // By default, lauch nonreg tests AND unitary tests
+	
+	skip_tests         = %F; // if true, the second argument is the list of tests
+	                         // to skip instead of the list of tests to launch
+	                         // By default, the second input argument is the list
+	                         // of test to launch
 	
 	check_ref          = %T;
 	check_error_output = %T;
 	create_ref         = %F;
-	launch_mode        = "-nw";
 	just_list_tests    = %F;
 	print_help         = %F;
+	
+	if and(getscilabmode() <> ["NW";"STD"]) then
+		launch_mode = "-nwni";
+	else
+		launch_mode = "-nw";
+	end
 	
 	test_count         = 0;
 	test_passed_count  = 0;
@@ -148,21 +167,22 @@ function test_run(varargin)
 	if rhs < 3 then
 		test_types_keeped = "all_tests";
 	else
+		
 		option_mat =  varargin(3);
 		
-		if ((grep(option_mat,"unit_tests")<>[]) & (grep(option_mat,"nonreg_tests")<>[])) ..
-			| (grep(option_mat,"all_tests")<>[]) then
+		if (or(option_mat == "unit_tests") & or(option_mat == "nonreg_tests")) ..
+			| (or(option_mat == "all_tests") ) then
 			test_types_keeped = "all_tests";
 			
-		elseif grep(option_mat,"unit_tests") <> [] then
+		elseif or(option_mat == "unit_tests") then
 			test_types_keeped = "unit_tests";
 			
-		elseif  grep(option_mat,"nonreg_tests") <> [] then
+		elseif or(option_mat == "nonreg_tests") then
 			test_types_keeped = "nonreg_tests";
-			
-		else
-			test_types_keeped = "all_tests";
-			
+		end
+		
+		if or(option_mat == "skip_tests") & rhs>=2 then
+			skip_tests = %T;
 		end
 		
 	end
@@ -183,12 +203,13 @@ function test_run(varargin)
 		module_list = getmodules();
 		module_list = gsort(module_list,"lr","i");
 		for k=1:size(module_list,'*')
-			test_add_module(module_list(k),test_types_keeped);
+			test_add_module(module_list(k),test_types_keeped,[]);
 		end
 	
 	elseif (rhs == 1) ..
 				| ((rhs == 2) & (varargin(2)==[])) ..
-				| ((rhs == 3) & (varargin(2)==[])) then
+				| ((rhs == 3) & (varargin(2)==[])) ..
+				| skip_tests then
 		
 		// One input argument
 		// test_run(<module_name>)
@@ -197,6 +218,13 @@ function test_run(varargin)
 		// varargin(1) = [<module_name_1>,<module_name_2>]
 		
 		module_mat = varargin(1);
+		
+		// Matrice of test to skip
+		if skip_tests then
+			skip_tests_mat = varargin(2);
+		else
+			skip_tests_mat = [];
+		end
 		
 		[nl,nc] = size(module_mat);
 		
@@ -207,7 +235,7 @@ function test_run(varargin)
 				if( (with_module(module_mat(i,j))) | .. // It's a scilab internal module
 					( isdir(module_mat(i,j)) & ..       // It's a toolbox
 					  ( isdir(module_mat(i,j)+"/tests/unit_tests") | isdir(module_mat(i,j)+"/tests/nonreg_tests") ) ) ) then
-					test_add_module(module_mat(i,j),test_types_keeped);
+					test_add_module(module_mat(i,j),test_types_keeped,skip_tests_mat);
 				else
 					error(sprintf(gettext("%s is not an installed module or toolbox"),module_mat(i,j)));
 				end
@@ -410,7 +438,7 @@ endfunction
 // => Add them to the test_mat matrix
 //-----------------------------------------------------------------------------
 
-function test_add_module(module_mat,test_type)
+function test_add_module(module_mat,test_type,skip_tests_mat)
 	
 	if (test_type == "all_tests") | (test_type == "unit_tests") then
 	
@@ -422,10 +450,18 @@ function test_add_module(module_mat,test_type)
 			module_test_dir = module_mat+"/tests/unit_tests";
 		end
 		
-		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		test_mat = [];
+		
+		if isdir(module_test_dir) then
+			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		end
 		
 		nl = size(test_mat,"*");
+		
 		for i=1:nl
+			if or(skip_tests_mat == test_mat(i)) then
+				continue;
+			end
 			test_add_onetest(module_mat,test_mat(i),"unit_tests");
 		end
 		
@@ -441,10 +477,18 @@ function test_add_module(module_mat,test_type)
 			module_test_dir = module_mat+"/tests/nonreg_tests";
 		end
 		
-		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		test_mat = [];
+		
+		if isdir(module_test_dir) then
+			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		end
 		
 		nl = size(test_mat,"*");
+		
 		for i=1:nl
+			if or(skip_tests_mat == test_mat(i)) then
+				continue;
+			end
 			test_add_onetest(module_mat,test_mat(i),"nonreg_tests");
 		end
 		
@@ -501,7 +545,12 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_use_try_catch      = %T;
 	this_use_graphics       = %F;
 	this_english_imposed    = '';
-	this_launch_mode        = "-nw";
+	
+	if and(getscilabmode() <> ["NW";"STD"]) then
+		this_launch_mode = "-nwni";
+	else
+		this_launch_mode = "-nw";
+	end
 	
 	// Some definitions
 	
@@ -581,6 +630,30 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	if grep(txt,"<-- REOPENED -->") <> [] then
 		status_msg = "skipped : Bug reopened";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~MSDOS) & (grep(txt,"<-- WINDOWS ONLY -->") <> [])  then
+		status_msg = "skipped : Windows only";
+		status_id  = 10;
+		return;
+	end
+	
+	if MSDOS & (grep(txt,"<-- UNIX ONLY -->") <> [])  then
+		status_msg = "skipped : Unix only";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~LINUX) & (grep(txt,"<-- LINUX ONLY -->") <> [])  then
+		status_msg = "skipped : Linux only";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~MACOSX) & (grep(txt,"<-- MACOSX ONLY -->") <> [])  then
+		status_msg = "skipped : MacOSX only";
 		status_id  = 10;
 		return;
 	end

@@ -282,7 +282,7 @@ namespace sciGraphics
 			sciInitLineWidth(m_aLines[i], sciGetLineWidth(legendedObject));
 			sciInitLineStyle(m_aLines[i], sciGetLineStyle(legendedObject));
 
-			if (   sciGetIsLine(legendedObject)
+			if (   sciGetIsDisplayingLines(legendedObject)
 				  || sciGetPolylineStyle(legendedObject) == 3
 					|| sciGetPolylineStyle(legendedObject) == 6)
 			{
@@ -349,17 +349,18 @@ namespace sciGraphics
 		int axesHeight;
 		sciGetViewingArea(parentSubwin, &axesXpos, &axesYpos, &axesWidth, &axesHeight);
 		// get text bounding box
-		int corner1[2];
-		int corner2[2];
-		int corner3[2];
-		int corner4[2];
+		double corner1[3];
+		double corner2[3];
+		double corner3[3];
+		double corner4[3];
 		if (opt == "draw")
 		{
 			getTextDrawer(m_pNames)->getScreenBoundingBox(corner1, corner2, corner3,corner4);
 		}
 		else
 		{
-			sciGetPixelBoundingBox(m_pNames, corner1, corner2, corner3, corner4);
+			//sciGetPixelBoundingBox(m_pNames, corner1, corner2, corner3, corner4);
+			getTextDrawer(m_pNames)->getScreenBoundingBox(corner1, corner2, corner3,corner4);
 		}
 		// the height of the box equals the text height
 		double textBoxPixelHeight = Abs(corner1[1] - corner3[1]);

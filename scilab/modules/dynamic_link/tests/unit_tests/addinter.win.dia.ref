@@ -13,6 +13,7 @@ if ~c_link('libintertest') then
    Running the makefile
    Compilation of addinter
    Building shared library (be patient)
+   Generate a cleaner file
   // load the shared library
   exec loader.sce ;
 Shared archive loaded.

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="cos" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="cosd" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -24,7 +24,8 @@
   <refnamediv>
     <refname>cosd</refname>
 
-    <refpurpose>cosinus  des éléments de l'argument donnés en degrés</refpurpose>
+    <refpurpose>cosinus des éléments de l'argument donnés en
+    degrés</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -39,39 +40,39 @@
     <variablelist>
       <varlistentry>
         <term>x</term>
-        <listitem>
-          <para>Tableau réel</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>y</term>
+
         <listitem>
           <para>Tableau réel</para>
         </listitem>
       </varlistentry>
 
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>Tableau réel</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
-    <para>Les éléments de <literal>y</literal> sont les cosinus des
-    éléments correspondants de <literal>x</literal> supposés donnés en
-    degré. Les résulats sont réels et dans <literal>[-1
-    1]</literal>. Pour les éléments qui sont égaux à
-    <literal>n*90</literal> ou <literal>n</literal> est entier et impair, le
-    résultat est exactement zéro.</para>
+
+    <para>Les éléments de <literal>y</literal> sont les cosinus des éléments
+    correspondants de <literal>x</literal> supposés donnés en degré. Les
+    résulats sont réels et dans <literal>[-1 1]</literal>. Pour les éléments
+    qui sont égaux à <literal>n*90</literal> ou <literal>n</literal> est
+    entier et impair, le résultat est exactement zéro.</para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 x=[0,30 45 60 90 360];
 cosd(x)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
@@ -81,8 +82,10 @@ cosd(x)
       <member><link linkend="cos">cos</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Auteurs</title>
+
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
     </simplelist>
