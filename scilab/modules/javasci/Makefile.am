@@ -6,7 +6,7 @@
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -55,7 +55,8 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/tclsci/includes \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/operations/includes
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \

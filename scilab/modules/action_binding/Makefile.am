@@ -38,6 +38,7 @@ libsciaction_binding_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/jni/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/operations/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

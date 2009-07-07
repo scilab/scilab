@@ -1,17 +1,17 @@
 /*
  * Scilab( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright(C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-#ifndef __CALELM_H 
-#define  __CALELM_H 
+#ifndef __CALELM_H
+#define  __CALELM_H
 
 #include "machine.h" /* int , C2F */
 
@@ -32,8 +32,6 @@ extern double C2F(derfcx)(double *x);
 extern int C2F(dgefa)(double *a, int *lda, int *n, int *ipvt, int *info);
 extern int C2F(ccopy)(int *n, char *dx, int *incx, char *dy, int *incy, int dx_len, int dy_len);
 extern double C2F(coshin)(double *x);
-extern int C2F(cupro)(int *n, double *w);
-extern int C2F(cuproi)(int *n, double *wr, double *wi);
 extern int C2F(cusum)(int *n, double *w);
 extern int C2F(dadd)(int *n, double *dx, int *incx, double *dy, int *incy);
 extern int C2F(dad)(double *a, int *na, int *i1, int *i2, int *j1, int *j2, double *r__, int *isw);
@@ -126,7 +124,6 @@ extern int C2F(wmmul)(double *ar, double *ai, int *na, double *br, double *bi, i
 extern int C2F(wmprod)(int *flag__, double *ar, double *ai, int *na, int *m, int *n, double *vr, double *vi, int *nv);
 extern int C2F(wmsum)(int *flag__, double *ar, double *ai, int *na, int *m, int *n, double *vr, double *vi, int *nv);
 extern int C2F(wmul)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci);
-extern double C2F(wnrm2)(int *n, double *xr, double *xi, int *incx);
 extern int C2F(wrscal)(int *n, double *s, double *xr, double *xi, int *incx);
 extern int C2F(wscal)(int *n, double *sr, double *si, double *xr, double *xi, int *incx);
 extern int C2F(wsign)(double *xr, double *xi, double *yr, double *yi, double *zr, double *zi);

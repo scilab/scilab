@@ -1883,7 +1883,7 @@ int crelist_G(int *slw,int *ilen,int *lw,int type)
   *istk(il + 2) = 1;
   ix1 = il + *ilen + 3;
   *lw = sadr(ix1);
-  if (*ilen == 0) *Lstk(*lw +1) = *lw;
+  if (*ilen == 0) *Lstk(*slw +1) = *lw;
   return 0;
 } 
 

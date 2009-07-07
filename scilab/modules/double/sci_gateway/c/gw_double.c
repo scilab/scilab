@@ -12,6 +12,8 @@
  */
 
 #include "stack-c.h"
+#include "double.h"
+
 /*--------------------------------------------------------------------------*/
 static int colon = 44;
 static int quote = 53;
@@ -95,7 +97,7 @@ int C2F(matops)(void)
 				}
 				return 0;
 			}
-		case 4: 
+		case 4:
 			{
 				/* concatenation [a;b] */
 				C2F(matcc)();
@@ -104,9 +106,9 @@ int C2F(matops)(void)
     }
 
 	/* :  +  -  * /  \  =  ' */
-    switch ((int)(op + 1 - colon)) 
+    switch ((int)(op + 1 - colon))
 	{
-		case 1: 
+		case 1:
 		{
 			/*  : */
 			C2F(vecimpl)();
@@ -118,14 +120,14 @@ int C2F(matops)(void)
 			C2F(matadd)();
 			return 0;
 		}
-	case 3: 
+	case 3:
 		{
 			/* substraction */
-			if (Rhs == 1) 
+			if (Rhs == 1)
 			{
 				/* .  unary minus */
 				C2F(matchsgn)();
-			} else 
+			} else
 			{
 				C2F(matsubst)();
 			}
@@ -134,22 +136,24 @@ int C2F(matops)(void)
 	case 4:
 		{
 			/*  multiplication */
-			C2F(matmult)();
+			matmult();
 			return 0;
 		}
-	case 5: 
+	case 5:
 		{
 			/* division a droite */
-			C2F(matrdiv)();
+			//C2F(matrdiv)();
+			matrdiv();
 			return 0;
 		}
 	case 6:
 		{
 			/* \ */
-			C2F(matldiv)();
+			//C2F(matldiv)();
+			matldiv();
 			return 0;
 		}
-	case 7:  
+	case 7:
 		{
 			/* == <= >= ~= */
 
@@ -158,11 +162,11 @@ int C2F(matops)(void)
 
 		}
 	case 8:
-	case 9: 
+	case 9:
 		{
 			ChooseOtherOperation(op);
 		}
-	case 10: 
+	case 10:
 		{
 			/* ' */
 			C2F(mattrc)();
@@ -173,29 +177,29 @@ int C2F(matops)(void)
 	ChooseOtherOperation(op);
 	return 0;
 
-} 
+}
 /*--------------------------------------------------------------------------*/
 int ChooseOtherOperation(int op)
 {
-	if (op == dstar) 
+	if (op == dstar)
 	{
 		/*  ^ */
 		C2F(matpow)();
 		return 0;
 	}
-	if (op == quote + dot) 
+	if (op == quote + dot)
 	{
 		/* .' */
 		C2F(mattr)();
 		return 0;
 	}
-	if (op == dstar + dot) 
+	if (op == dstar + dot)
 	{
 		/* .^ */
 		C2F(matxpow)();
 		return 0;
 	}
-	if (op >= dot * 3 + star) 
+	if (op >= dot * 3 + star)
 	{
 		/* .*. ./. .\. */
 		/* kronecker */
@@ -204,43 +208,43 @@ int ChooseOtherOperation(int op)
 		Rhs = 2;
 		return 0;
 	}
-	if (op >= (dot << 1) + star) 
+	if (op >= (dot << 1) + star)
 	{
 		/* *. /. \. */
 		Fin = -Fin;
 		return 0;
 
 	}
-	if (op >= less + equal) 
+	if (op >= less + equal)
 	{
 		/* == <= >= ~= */
 		C2F(matcmp)();
 		return 0;
 	}
-	if (op == dot + star) 
+	if (op == dot + star)
 	{
 		/* .* */
 		C2F(vecmul)();
 		return 0;
 	}
-	if (op == dot + slash) 
+	if (op == dot + slash)
 	{
 		/*  ./ */
 		C2F(vecrdiv)();
 		return 0;
 	}
-	if (op == dot + bslash) 
+	if (op == dot + bslash)
 	{
 		/* .\ */
 		C2F(vecldiv)();
 		return 0;
 	}
-	if (op == et || op == ou || op == non) 
+	if (op == et || op == ou || op == non)
 	{
 		C2F(matlog)();
 		return 0;
 	}
-	if (op >= less) 
+	if (op >= less)
 	{
 		/* == <= >= ~= */
 		C2F(matcmp)();

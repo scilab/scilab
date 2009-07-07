@@ -49,7 +49,8 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
-			-I$(top_srcdir)/modules/fileio/includes/
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -66,7 +67,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 ## Libraries necessary
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD =   $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/history_manager/libscihistory_manager.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscishell_la_LIBADD =   $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/history_manager/libscihistory_manager.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 # $(top_builddir)/modules/completion/libscicompletion.la
 modulename=shell
 

@@ -1452,6 +1452,7 @@ modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
+modules/operations/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

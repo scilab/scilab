@@ -14,7 +14,7 @@ src/c/sexpo.c \
 src/c/ignbin.c \
 src/c/ignpoi.c \
 src/c/sgamma.c \
-src/c/genbet.c 
+src/c/genbet.c
 
 RANDLIB_FORTRAN_SOURCES = \
 src/fortran/gennf.f \
@@ -36,7 +36,7 @@ src/fortran/genmul.f \
 src/fortran/genprm.f \
 src/fortran/gennor.f
 #src/fortran/genbet.f
-#src/fortran/sexpo.f 
+#src/fortran/sexpo.f
 #src/fortran/ignbin.f
 #src/fortran/ignpoi.f
 #src/fortran/sgamma.f
@@ -45,7 +45,8 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
 libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la
 
