@@ -115,6 +115,7 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/io/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes \
 				$(HDF5_CFLAGS)
@@ -132,6 +133,7 @@ INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 # pb of order $(top_builddir)/modules/shell/libscishell.la
 libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
 				$(top_builddir)/modules/string/libscistring.la \
+				$(top_builddir)/modules/string/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
 				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 				$(top_builddir)/libs/libst/libscilibst.la
