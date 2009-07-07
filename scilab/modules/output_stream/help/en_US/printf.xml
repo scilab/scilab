@@ -37,18 +37,6 @@
           <para>Specifies the data to be converted according to the format parameter.</para>
         </listitem>
       </varlistentry>
-      <varlistentry>
-        <term>str</term>
-        <listitem>
-          <para>column vector of character strings</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>file</term>
-        <listitem>
-          <para>a Scilab string specifying a file name or a logical unit number (see <literal>file</literal>)</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
   </refsection>
   <refsection>

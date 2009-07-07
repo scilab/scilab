@@ -24,6 +24,9 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*--------------------------------------------------------------------------*/
@@ -101,8 +104,7 @@ int sci_newest(char *fname,unsigned long fname_len)
 				for (i = 1; i <= RhsBackup; i++)
 				{
 					GetRhsVar(i,STRING_DATATYPE,&m1,&n1,&l1);
-					Str[i-1] = MALLOC(sizeof(char)*(strlen(cstk(l1))+1));
-					if (Str[i-1]) strcpy(Str[i-1],cstk(l1));
+					Str[i-1] = strdup(cstk(l1));
 				}
 
 				RetIndex = GetIndexLastModifiedFileInList(Str,RhsBackup);

@@ -17,8 +17,9 @@
 #include "CallMessageBox.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
+int sci_x_mdialog(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowDefaultValues = 0, nbColDefaultValues = 0;
@@ -58,6 +59,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
   setMessageBoxTitle(messageBoxID, _("Scilab Multiple Values Request"));
   /* Message */
   setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
+  freeArrayOfString(labelsAdr, nbCol*nbRow);
     
   /* READ THE LINE LABELS */
   if (VarType(2) ==  sci_strings)
@@ -69,6 +71,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
         return FALSE;
       }
       setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack((size_t)lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
+      freeArrayOfString(lineLabelsAdr, nbColLineLabels*nbRowLineLabels);
     }
   else 
     {
@@ -88,6 +91,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               return FALSE;
             }
           setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack((size_t)defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
+          freeArrayOfString(defaultValuesAdr, nbColDefaultValues*nbRowDefaultValues);
         }
       else
         {
@@ -98,6 +102,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               return FALSE;
             }
           setMessageBoxColumnLabels(messageBoxID, getStringMatrixFromStack((size_t)columnLabelsAdr), nbColColumnLabels*nbRowColumnLabels);
+          freeArrayOfString(columnLabelsAdr, nbColColumnLabels*nbRowColumnLabels);
        }
     }
   else 
@@ -118,6 +123,7 @@ int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len)
               return FALSE;
             }
           setMessageBoxDefaultInput(messageBoxID, getStringMatrixFromStack((size_t)defaultValuesAdr), nbColDefaultValues*nbRowDefaultValues);
+          freeArrayOfString(defaultValuesAdr, nbColDefaultValues*nbRowDefaultValues);
         }
       else 
         {

@@ -13,7 +13,8 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define ELEMENTARY_FUNCTIONS_TAB_SIZE 52
+static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 {
 	{C2F(sci_abs),"abs"},
 	{C2F(sci_real),"real"},
@@ -71,7 +72,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,ELEMENTARY_FUNCTIONS_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

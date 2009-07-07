@@ -12,6 +12,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
+#include <string.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -19,6 +20,9 @@
 #include "localization.h"
 #include "PATH_MAX.h"
 #include "fullpath.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_fullpath(char *fname,unsigned long fname_len)
 {
@@ -39,9 +43,7 @@ int sci_fullpath(char *fname,unsigned long fname_len)
 
 		if( get_full_path( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{
-			char *Output=NULL;
-			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));
-			strcpy(Output,fullpath);
+			char *Output = strdup(fullpath);
 
 			n1=1;
 			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);

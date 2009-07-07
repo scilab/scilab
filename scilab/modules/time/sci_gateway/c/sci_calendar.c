@@ -14,6 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_time.h"
 #include "stack-c.h"
+#include "api_common.h"
+#include "api_double.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "IsAScalar.h"
@@ -32,103 +34,113 @@ int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
 int sci_calendar(char *fname,unsigned long fname_len)
 {
-	static int l1,n1,m1;
+  int n1 = 0, m1 = 0;
+  int * p1_in_address = NULL;
+  int res = 0;
+  double * pDblReal = NULL;
+  
+  int month = 0;
+  int year = 0;
+  int day, day_1, numdays, i;
+  int a = 0;
+  
+  double *CALMONTH  = NULL;
+  double *tmpMatrix = NULL;
 
-	int month=0;
-	int year=0;
-	int day, day_1, numdays, i;
-	int a=0;
+  Rhs = Max(0, Rhs);
 
-	int *CALMONTH=NULL;
-	int *tmpMatrix=NULL;
-
-	Rhs = Max(0, Rhs);
-	CheckRhs(2,2);
-	CheckLhs(1,1);
-
-	if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
-	{
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		year=*istk(l1);
-
-		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		month=*istk(l1);
-
-		if ( (year<1800) || (year>3000) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,2,1800,3000);
-			return 0;
-		}
-
-		if ( (month<1) || (month>12) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,1,1,12);
-			return 0;
-		}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input arguments: Scalar values expected.\n"),fname);
-		return 0;
-	}
-	CALMONTH=(int *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(int) );
-	for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
-
-	/* check if the month of feb is 28 or 29 days */
-    numdays = days[month - 1];
-    if (2 == month && isBissextile(year)) ++numdays;
-
-	/* Starts the calendar on monday */
-    day_1 = (int)((ymd_to_scalar(year, month, 1) - (long)1) % 7L);
-
-	for (day = 0; day < day_1; ++day) a++;
-
-    /* Browse all the days */
-    for (day = 1; day <= numdays; ++day, ++day_1, day_1 %= 7)
+  CheckRhs(2,2);
+  CheckLhs(1,1);
+  
+  if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
     {
-        CALMONTH[a]= day;
-		a++;
+      getVarAddressFromPosition(1, &p1_in_address);
+      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+      year = (int)*pDblReal;
+      
+      getVarAddressFromPosition(2, &p1_in_address);
+      res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+
+      month = (int)*pDblReal;
+
+      if ( (year<1800) || (year>3000) )
+	{
+	  Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,2,1800,3000);
+	  return 0;
+	}
+      
+      if ( (month<1) || (month>12) )
+	{
+	  Scierror(999,_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"),fname,1,1,12);
+	  return 0;
+	}
     }
-	m1=NBRWEEK;
-	n1=NBRDAY;
-	tmpMatrix=CALMONTH;
+  else
+    {
+      Scierror(999,_("%s: Wrong type for input arguments: Scalar values expected.\n"),fname);
+      return 0;
+    }
 
-	CALMONTH = transposeMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
-	if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
+  CALMONTH=(double *)MALLOC( (NBRDAY*NBRWEEK)*sizeof(double) );
+  for (i=0;i<NBRDAY*NBRWEEK;i++) CALMONTH[i]=0;
+  
+  /* check if the month of feb is 28 or 29 days */
+  numdays = days[month - 1];
+  if (2 == month && isBissextile(year)) ++numdays;
+  
+  /* Starts the calendar on monday */
+  day_1 = (int)((ymd_to_scalar(year, month, 1) - (long)1) % 7L);
+  
+  for (day = 0; day < day_1; ++day) a++;
+  
+  /* Browse all the days */
+  for (day = 1; day <= numdays; ++day, ++day_1, day_1 %= 7)
+    {
+      CALMONTH[a]= day;
+      a++;
+    }
 
-	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&CALMONTH);
-	LhsVar(1)=Rhs+1;
+  m1=NBRWEEK;
+  n1=NBRDAY;
+  tmpMatrix=CALMONTH;
+  
+  CALMONTH = transposeMatrixDouble(NBRDAY,NBRWEEK,CALMONTH);
+  if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
+  
+  res = createMatrixOfDouble(Rhs+1, m1, n1, CALMONTH);
 
-	C2F(putlhsvar)();
+  LhsVar(1)=Rhs+1;
+  C2F(putlhsvar)();
+  
+  if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
 
-	if (CALMONTH) {FREE(CALMONTH);CALMONTH=NULL;}
-	return 0;
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int isBissextile (unsigned year)
 {
-    return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+  return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
 }
 /*--------------------------------------------------------------------------*/
 static unsigned months_to_days (unsigned month)
 {
-    return (month * 3057 - 3007) / 100;
+  return (month * 3057 - 3007) / 100;
 }
 /*--------------------------------------------------------------------------*/
 static long years_to_days (unsigned year)
 {
-    return year * 365L + year / 4 - year / 100 + year / 400;
+  return year * 365L + year / 4 - year / 100 + year / 400;
 }
 /*--------------------------------------------------------------------------*/
 static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
 {
-    long scalaire;
-    scalaire = day + months_to_days(month);
-    if ( month > 2 )
+  long scalaire;
+  scalaire = day + months_to_days(month);
+  if ( month > 2 )
     scalaire -= isBissextile(year) ? 1 : 2;
-    year--;
-    scalaire += years_to_days(year);
-    return scalaire;
+  year--;
+  scalaire += years_to_days(year);
+  return scalaire;
 }
 /*--------------------------------------------------------------------------*/
 

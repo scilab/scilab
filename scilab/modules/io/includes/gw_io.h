@@ -36,7 +36,6 @@ int C2F(sci_load)(char *fname,unsigned long fname_len);
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
 int C2F(sci_getio)(char *fname,unsigned long fname_len);
 int C2F(sci_setenv)(char *fname,unsigned long fname_len);
-int sci_export_to_hdf5(char *fname,unsigned long fname_len);
 
 int C2F(intgetenv)(char *fname,unsigned long fname_len);
 int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */

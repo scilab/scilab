@@ -9,9 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "double_api.h"
-#include "common_api.h"
-#include "string_api.h"
+#include "api_double.h"
+#include "api_common.h"
+#include "api_string.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -67,10 +67,9 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 
   int* adr1= NULL;
   int* adr2= NULL;
-  int* tmpRef= NULL;
   if ( Rhs >=1 )
     {
-      getVarAddressFromNumber(1, &adr1);
+      getVarAddressFromPosition(1, &adr1);
       if(getVarType(adr1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -82,7 +81,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	  CheckLhs(1, 4);
 	  if(Rhs == 2)
 	    {
-	      getVarAddressFromNumber(2, &adr2);
+	      getVarAddressFromPosition(2, &adr2);
 	      economy= isEconomyMode(adr2);
 	    }
 	  if( (complexArg= isVarComplex(adr1)) )
@@ -128,14 +127,14 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 
 			  if(Lhs == 4)
 			    {
-			      if( (Rhs == 2 ) && (getVarType(adr2) == sci_matrix)) /*  getVarAddressFromNumber(2, &adr2) was already called */
+			      if( (Rhs == 2 ) && (getVarType(adr2) == sci_matrix)) /*  getVarAddressFromPosition(2, &adr2) was already called */
 				{
 				  int dummy; /* original code does not check iRows == iCols == 1 */
 				  double* tmpData;
 				  getMatrixOfDouble(adr2, &dummy, &dummy, &tmpData);
 				  tol= *tmpData;
 				}
-			      allocMatrixOfDouble(Rhs+4, 1, 1, &pRk, &tmpRef);
+			      allocMatrixOfDouble(Rhs+4, 1, 1, &pRk);
 
 			    }
 			}
@@ -147,7 +146,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 			    }
 			  else /* Lhs == 1 */
 			    {
-			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV, &tmpRef);
+			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
 			      //iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
 			    }
 			}
@@ -260,23 +259,22 @@ int isEconomyMode(int*const adr2)
 int handleEmptyMatrix(void)
 {
   double* data;
-  int* tmpRef;
 
-  allocMatrixOfDouble(3, 0, 0, &data, &tmpRef);
+  allocMatrixOfDouble(3, 0, 0, &data);
   LhsVar(1)= 3;
   if(Lhs >= 2)
     {
-      allocMatrixOfDouble(4, 0, 0, &data, &tmpRef);
+      allocMatrixOfDouble(4, 0, 0, &data);
       LhsVar(2)= 4;
     }
   if(Lhs >=3)
     {
-      allocMatrixOfDouble(5, 0, 0, &data, &tmpRef);
+      allocMatrixOfDouble(5, 0, 0, &data);
       LhsVar(3)= 5;
     }
   if(Lhs == 4)
     {
-      allocMatrixOfDouble(6, 1, 1, &data, &tmpRef);
+      allocMatrixOfDouble(6, 1, 1, &data);
       *data= 0.;
       LhsVar(4)= 6;
     }
@@ -285,22 +283,21 @@ int handleEmptyMatrix(void)
 
 static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double* ptrsU[], double** ptrS, double* ptrsV[])
 {
-  int* tmpRef;
   if(isComplex)
     {
-      allocComplexMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+1, ptrsU+2, &tmpRef); 
+      allocComplexMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+1, ptrsU+2); 
       ptrsU[0]= (double*)MALLOC(rows * economyRows*(isComplex ? sizeof(doublecomplex): sizeof(double)));
-      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, &tmpRef);
-      allocComplexMatrixOfDouble(Rhs+3, cols, economyCols, ptrsV+1, ptrsV+2, &tmpRef);
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS);
+      allocComplexMatrixOfDouble(Rhs+3, cols, economyCols, ptrsV+1, ptrsV+2);
       ptrsV[0]= (double*)MALLOC(cols * economyCols*(isComplex ? sizeof(doublecomplex): sizeof(double)));
     }
   else
     {
       ptrsU[1]= ptrsU[2]= NULL;
-      allocMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+0, &tmpRef);
-      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, &tmpRef);
+      allocMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+0);
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS);
       ptrsV[1]= ptrsV[2]= (double*)NULL;
-      allocMatrixOfDouble(Rhs+3, cols, economyCols , ptrsV+0, &tmpRef);
+      allocMatrixOfDouble(Rhs+3, cols, economyCols , ptrsV+0);
     }
   return 0;
 }

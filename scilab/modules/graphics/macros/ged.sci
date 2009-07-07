@@ -1204,6 +1204,8 @@ function [h,Axes]=ged_getobject(pt)
   f=get("current_figure");
   aold=get("current_axes")
   axes_array=f.children
+  //retains only the entities of type Axes (remove uimenus)
+  axes_array(axes_array.type<>'Axes')=[];
   // assume that the lastly created objects
   // are at the beginning of the arrays of children
   // We can then select the last object

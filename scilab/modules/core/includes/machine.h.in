@@ -57,6 +57,9 @@
 /* Whether clock_gettime is available */
 #undef HAVE_CLOCK_GETTIME
 
+/* Define to 1 if you have the <curses.h> header file. */
+#undef HAVE_CURSES_H
+
 /* Define if the GNU dcgettext() function is already present or preinstalled.
    */
 #undef HAVE_DCGETTEXT
@@ -125,14 +128,23 @@
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT
 
+/* Define to 1 if you have the `curses' library (-lcurses). */
+#undef HAVE_LIBCURSES
+
 /* Define to 1 if you have the `dl' library (-ldl). */
 #undef HAVE_LIBDL
+
+/* Define to 1 if you have the `hdf5' library (-lhdf5). */
+#undef HAVE_LIBHDF5
 
 /* Define to 1 if you have the <libintl.h> header file. */
 #undef HAVE_LIBINTL_H
 
 /* Define to 1 if you have the `matio' library (-lmatio). */
 #undef HAVE_LIBMATIO
+
+/* Define to 1 if you have the `ncurses' library (-lncurses). */
+#undef HAVE_LIBNCURSES
 
 /* Define to 1 if you have the `pcre' library (-lpcre). */
 #undef HAVE_LIBPCRE
@@ -175,6 +187,9 @@
 
 /* Define to 1 if you have the `munmap' function. */
 #undef HAVE_MUNMAP
+
+/* Define to 1 if you have the <ncurses.h> header file. */
+#undef HAVE_NCURSES_H
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 #undef HAVE_NDIR_H
@@ -327,6 +342,9 @@
 /* Have Term Cap */
 #undef HAVE_TERMCAP
 
+/* Define to 1 if you have the <termcap.h> header file. */
+#undef HAVE_TERMCAP_H
+
 /* Define to 1 if you have the <termios.h> header file. */
 #undef HAVE_TERMIOS_H
 
@@ -362,6 +380,12 @@
 
 /* Define to 1 if you have the `_NSGetExecutablePath' function. */
 #undef HAVE__NSGETEXECUTABLEPATH
+
+/* HDF5 cflags */
+#undef HDF5_CFLAGS
+
+/* HDF5 library */
+#undef HDF5_LIBS
 
 /* Define to the value of ${prefix}, as a string. */
 #undef INSTALLPREFIX
@@ -444,6 +468,9 @@
 
 /* With the JAVA stuff (GUI, Console, JOGL...) */
 #undef WITH_GUI
+
+/* With the HDF5 library */
+#undef WITH_HDF5
 
 /* With the MATIO library */
 #undef WITH_MATIO

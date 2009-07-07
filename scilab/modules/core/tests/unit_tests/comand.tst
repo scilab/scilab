@@ -5,6 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- ENGLISH IMPOSED -->
+
+funcprot(0);
+
 clear //sdfdgd
 clear//sdfdgd
 a=1;

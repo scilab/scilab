@@ -124,25 +124,30 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
        end 
     end
   end
-  
+
   for it=1:L 
     table = tables(it);
     [mt,nt] = size(table);
  
-    for i=1:mt ; 
-      // mex files to be added 
-      if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' 
-        FILES_SRC_MATRIX = [FILES_SRC_MATRIX , table(i,2)];
+    for i=1:mt  
+      if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
+        MEXCFLAGS = "-Dmexfunction_=mex" + table(i,2) + "_ -DmexFunction=mex_" + table(i,2);
+        MEXFFLAGS = "-Dmexfunction=mex" + table(i,2);
+        if table(i,3)=='cmex' then
+          filenameMex = table(i,2) + '.c';
+        else
+          filenameMex = table(i,2) + '.f';
+        end
+        if grep(FILES_SRC_MATRIX,filenameMex) == [] then
+          FILES_SRC_MATRIX = [FILES_SRC_MATRIX , filenameMex];
+        end
       end
     end
   end
+
   
   FILES_SRC = strcat(FILES_SRC_MATRIX,' ');
   
-  if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
-    MEXCFLAGS = "-Dmexfunction_=mex$*_ -DmexFunction=mex_$*";
-    MEXFFLAGS = "-Dmexfunction=mex$*";
-  end
 
   OBJ_DEST_PATH = '';
   if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then

@@ -25,6 +25,7 @@ lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
    ilib_gen_Make: Copy mytest.o to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
+   Generate a cleaner file   
 link(lp,'mytest','c');
 Shared archive loaded.
 Link done.

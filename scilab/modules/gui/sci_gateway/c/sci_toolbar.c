@@ -21,6 +21,7 @@
 #include "ObjectStructure.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
+#include "freeArrayOfString.h"
 #if _MSC_VER
   #include "strdup_windows.h"
 #endif
@@ -104,6 +105,7 @@ int sci_toolbar(char *fname,unsigned long l)
           GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&param);
           if (nbRow*nbCol != 1)
             {
+              freeArrayOfString(param, nbRow*nbCol);
               Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
               return FALSE;
             }
@@ -111,9 +113,11 @@ int sci_toolbar(char *fname,unsigned long l)
           if ( (strcmp(param[0],"off")==0) || (strcmp(param[0],"on")==0) )
             {
               setToolbarVisible(figNum, strcmp(param[0],"on")==0);
+              freeArrayOfString(param, nbRow*nbCol);
             }
           else
             {
+              freeArrayOfString(param, nbRow*nbCol);
               Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "on", "off");
               return FALSE;
             }

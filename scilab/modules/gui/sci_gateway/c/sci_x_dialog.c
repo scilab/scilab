@@ -17,8 +17,9 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
+int sci_x_dialog(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
 
@@ -53,6 +54,7 @@ int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
   setMessageBoxTitle(messageBoxID, _("Scilab Input Value Request"));
   /* Message */
   setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
+  freeArrayOfString(labelsAdr, nbCol*nbRow);
     
   if (Rhs == 2)
     {
@@ -67,6 +69,7 @@ int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
         }
 
       setMessageBoxInitialValue(messageBoxID, getStringMatrixFromStack((size_t)initialValueAdr), nbCol*nbRow);
+      freeArrayOfString(initialValueAdr, nbCol*nbRow);
     }
 
   /* Display it and wait for a user input */

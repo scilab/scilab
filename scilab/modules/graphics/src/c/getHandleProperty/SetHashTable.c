@@ -15,13 +15,16 @@
 /* file: SetHashTable.c                                                   */
 /* desc : implementation of the scilab hashtable for the set procedure    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "SetHashTable.h"
 #include "setHandleProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 /** 
 * use for the singleton to know if the hashtable has already be created.
@@ -273,9 +276,7 @@ char **getDictionarySetProperties(int *sizearray)
 		*sizearray = NB_PROPERTIES;
 		for (i = 0;i < NB_PROPERTIES; i++)
 		{
-			char *propertyname = (char*)MALLOC(sizeof(char)*(strlen(propertyTable[i].key)+1));
-			if (propertyname) strcpy(propertyname,propertyTable[i].key);
-			dictionary [i] = propertyname;
+			dictionary [i] = strdup(propertyTable[i].key);
 		}
 	}
 	return dictionary;

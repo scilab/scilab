@@ -11,8 +11,8 @@
  *
  */
 
-#include "common_api.h"
-#include "double_api.h"
+#include "api_common.h"
+#include "api_double.h"
 
 #include "stack-c.h" /* for Rhs */
 
@@ -30,7 +30,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
   int* adr1;
   if(Rhs >=1)
     {
-      getVarAddressFromNumber(1, &adr1);
+      getVarAddressFromPosition(1, &adr1);
       if(getVarType(adr1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -71,8 +71,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	      {
 		double* pRcond;
 		int dim= iRows ? 1 : 0 ;
-		int* adrRcond;
-		allocMatrixOfDouble(2, dim, dim, &pRcond, &adrRcond);
+		allocMatrixOfDouble(2, dim, dim, &pRcond);
 		if(iRows)
 		  {
 		    if( iRows == -1 )

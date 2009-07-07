@@ -5,7 +5,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- ENGLISH IMPOSED -->
+
 // comp
+
+funcprot(0);
 
 deff("[a]=foo()","a=1","n")
 comp(foo);
