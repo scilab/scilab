@@ -51,7 +51,9 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/operations/includes/
+
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

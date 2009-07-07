@@ -173,7 +173,7 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 
-/** 
+/**
 *  Set the target real and imaginary part of an array from a source doublecomplex array.
 *  @param _poComplex the source array
 *  @param _iSize the number of elements to set
@@ -197,7 +197,7 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 /**
 *  Free the given pointer of double complex.
 *  Note
-*  The goal of this function is to allow the client 
+*  The goal of this function is to allow the client
 *  code to be independent of the particular allocation system used
 *  in oGetDoubleComplexFromPointer.
 *  @param _poComplex the array to free

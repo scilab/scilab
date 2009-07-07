@@ -23,10 +23,37 @@ src/c/qsort-double.c \
 src/c/qsort-int.c \
 src/c/qsort-short.c \
 src/c/qsort-string.c \
-src/c/IsEqualVar.c
+src/c/IsEqualVar.c \
+src/c/basic_functions.c \
+src/c/abs.c \
+src/c/acos.c \
+src/c/asin.c \
+src/c/atan.c \
+src/c/cos.c \
+src/c/cosh.c \
+src/c/sin.c \
+src/c/sinh.c \
+src/c/tan.c \
+src/c/exp.c \
+src/c/expm.c \
+src/c/log.c \
+src/c/sqrt.c \
+src/c/cupro.c \
+src/c/sign.c \
+src/c/ceil.c \
+src/c/eye.c \
+src/c/dmsum.c \
+src/c/dsearch.c \
+src/c/floor.c \
+src/c/mprod.c \
+src/c/pythag.c \
+src/c/matrix_generation.c \
+src/c/vmul.c \
+src/c/add_vector.c \
+src/c/sub_vector.c
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = 	src/cpp/sortTemplate.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -140,7 +167,6 @@ src/fortran/split.f \
 src/fortran/wdrdiv.f \
 src/fortran/imcopy.f \
 src/fortran/cbal.f \
-src/fortran/cuproi.f \
 src/fortran/dsum.f \
 src/fortran/urand.f \
 src/fortran/intp.f \
@@ -149,18 +175,15 @@ src/fortran/wipowe.f \
 src/fortran/wacos.f \
 src/fortran/wdpow1.f \
 src/fortran/zbesjg.f \
-src/fortran/dmsum.f \
 src/fortran/dlgama.f \
 src/fortran/exch.f \
 src/fortran/wsign.f \
 src/fortran/kronr.f \
 src/fortran/wrscal.f \
-src/fortran/pythag.f \
 src/fortran/dbeskg.f \
 src/fortran/dmmul1.f \
 src/fortran/dwpow.f \
 src/fortran/wmmul.f \
-src/fortran/dsearch.f \
 src/fortran/ddif.f \
 src/fortran/wdiv.f \
 src/fortran/wtan.f \
@@ -169,7 +192,6 @@ src/fortran/ddpow.f \
 src/fortran/magic.f \
 src/fortran/wcerr.f \
 src/fortran/ivimp.f \
-src/fortran/cupro.f \
 src/fortran/dadd.f \
 src/fortran/calerf.f \
 src/fortran/isort.f \
@@ -213,7 +235,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -252,7 +273,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/old_pythag.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \
@@ -270,9 +292,9 @@ sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
 sci_gateway/c/sci_triu.c \
 sci_gateway/c/sci_frexp.c \
-sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_rand.c \
 sci_gateway/c/sci_acos.c \
+sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
@@ -291,7 +313,6 @@ sci_gateway/c/sci_cumprod.c \
 sci_gateway/c/sci_cumsum.c \
 sci_gateway/c/sci_dsearch.c \
 sci_gateway/c/sci_nearfloat.c \
-sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_isreal.c \
 sci_gateway/c/sci_floor.c \
 sci_gateway/c/sci_real.c \
@@ -302,6 +323,7 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
+sci_gateway/c/sci_chinesehat.c \
 sci_gateway/c/sci_sort.c \
 sci_gateway/c/sci_isequalbitwise.c
 
@@ -334,15 +356,11 @@ sci_gateway/fortran/sci_f_zeros.f \
 sci_gateway/fortran/sci_f_ones.f \
 sci_gateway/fortran/sci_f_diag.f \
 sci_gateway/fortran/sci_f_number_properties.f \
-sci_gateway/fortran/sci_f_sum.f \
-sci_gateway/fortran/sci_f_cumprod.f \
 sci_gateway/fortran/sci_f_abs.f \
 sci_gateway/fortran/sci_f_spones.f \
 sci_gateway/fortran/sci_f_kron.f \
-sci_gateway/fortran/sci_f_dsearch.f \
 sci_gateway/fortran/sci_f_cumsum.f \
 sci_gateway/fortran/sci_f_nearfloat.f \
-sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_isreal.f \
 sci_gateway/fortran/sci_f_floor.f \
 sci_gateway/fortran/sci_f_real.f \
@@ -350,6 +368,7 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
+sci_gateway/fortran/sci_f_chinesehat.f \
 sci_gateway/fortran/sci_f_exp.f \
 sci_gateway/fortran/sci_f_sort.f 
 
@@ -378,13 +397,15 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/output_stream/includes
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_builddir)/modules/operations/includes
 
 # Includes need for the compilation
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/output_stream/includes
+-I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/double/includes/
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 

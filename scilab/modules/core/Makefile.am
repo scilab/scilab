@@ -305,6 +305,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
         -I$(top_srcdir)/modules/string/includes \
         -I$(top_srcdir)/modules/fileio/includes \
         -I$(top_srcdir)/modules/shell/includes \
+	-I$(top_srcdir)/modules/operations/includes \
 			$(XML_FLAGS)
 
 
@@ -357,7 +358,6 @@ includes/callinter.h \
 includes/callinterf.h \
 includes/commandwords.h \
 includes/core_math.h \
-includes/doublecomplex.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \

@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -13,7 +13,7 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define ELEMENTARY_FUNCTIONS_TAB_SIZE 52
+#define ELEMENTARY_FUNCTIONS_TAB_SIZE 53
 static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 {
 	{C2F(sci_abs),"abs"},
@@ -34,9 +34,9 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{C2F(sci_maxi),"maxi"},
 	{C2F(sci_maxi),"mini"},
 	{C2F(sci_kron),"kron"},
-	{C2F(sci_kron),"kron"},
-	{C2F(sci_kron),"kron"},
-	{C2F(sci_scimatrix),"matrix"},	
+	{C2F(sci_kron),".*."},
+	{C2F(sci_kron),"./."},
+	{C2F(sci_kron),".\\."},
 	{C2F(sci_sin),"sin"},
 	{C2F(sci_cos),"cos"},
 	{C2F(sci_atan),"atan"},
@@ -67,11 +67,12 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{C2F(sci_spones),"spones"},
 	{C2F(sci_gsort),"gsort"},
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
+	{C2F(sci_scimatrix),"matrix"},
 	{C2F(sci_sort),"sort"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
-{  
+{
 	callFunctionFromGateway(Tab,ELEMENTARY_FUNCTIONS_TAB_SIZE);
 	return 0;
 }

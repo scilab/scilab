@@ -1,0 +1,10 @@
+LIBRARY    operations_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; operations_f
+; --------------------------------------- 
+	dmpmu_
+	dpmul_
+

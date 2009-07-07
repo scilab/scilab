@@ -1,11 +1,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2007 - INRIA - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 modulename=fftw
@@ -58,6 +58,7 @@ libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/operations/includes \
 			$(FFTW3_CFLAGS)
 
 #### fftw : include files ####
