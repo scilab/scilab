@@ -1444,7 +1444,6 @@ modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
 modules/scipad/Makefile
-modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile

@@ -71,7 +71,6 @@ maple2scilab \
 m2sci \
 texmacs \
 scipad \
-scilab2fortran \
 development_tools \
 compatibility_functions \
 helptools \
