@@ -1429,6 +1429,7 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/api_scilab/Makefile
 modules/call_scilab/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
@@ -1443,7 +1444,6 @@ modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
 modules/scipad/Makefile
-modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile

@@ -35,6 +35,8 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 int writeSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 int writeSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
+int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);

@@ -40,6 +40,8 @@ bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
 
@@ -166,6 +168,16 @@ bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 	case sci_ints:
 		{
 			bRet = import_integer(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+			break;
+		}
+	case sci_sparse :
+		{
+			bRet = import_sparse(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+			break;
+		}
+	case sci_boolean_sparse :
+		{
+			bRet = import_boolean_sparse(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	default : 
@@ -541,6 +553,143 @@ bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 	}
 	free(pdblReal);
 	free(piNbCoef);
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+	int iRet						= 0;
+	int i								= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iComplex				= 0;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	int iNbItem					= 0;
+	int* piNbItemRow		= NULL;
+	int* piColPos				= NULL;
+
+	iRet								= getSparseDimension(_iDatasetId, &iRows, &iCols, &iNbItem);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iComplex						= isComplexData(_iDatasetId);
+
+
+	if(iComplex)
+	{
+		piNbItemRow				= (int*)malloc(iRows * sizeof(int));
+		piColPos					= (int*)malloc(iNbItem * sizeof(int));
+		pdblReal					= (double*)malloc(iNbItem * sizeof(double));
+		pdblImg						= (double*)malloc(iNbItem * sizeof(double));
+		iRet							= readSparseComplexMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+	}
+	else
+	{
+		piNbItemRow				= (int*)malloc(iRows * sizeof(int));
+		piColPos					= (int*)malloc(iNbItem * sizeof(int));
+		pdblReal					= (double*)malloc(iNbItem * sizeof(double));
+		iRet							= readSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+	}
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	if(_piAddress == NULL)
+	{
+		if(iComplex)
+		{
+			iRet			=	createNamedComplexSparseMatrix(_pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			=	createNamedSparseMatrix(_pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+		}
+	}
+	else //if not null this variable is in a list
+	{
+		if(iComplex)
+		{
+			iRet			= createComplexSparseMatrixInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			= createSparseMatrixInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+		}
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "sparse (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
+	free(piNbItemRow);
+	free(piColPos);
+	free(pdblReal);
+	if(iComplex)
+	{
+		free(pdblImg);
+	}
+
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+	int iRet						= 0;
+	int i								= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iNbItem					= 0;
+	int* piNbItemRow		= NULL;
+	int* piColPos				= NULL;
+
+	iRet								= getSparseDimension(_iDatasetId, &iRows, &iCols, &iNbItem);
+	if(iRet)
+	{
+		return false;
+	}
+
+
+	piNbItemRow				= (int*)malloc(iRows * sizeof(int));
+	piColPos					= (int*)malloc(iNbItem * sizeof(int));
+	iRet							= readBooleanSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+	if(iRet)
+	{
+		return false;
+	}
+
+	if(_piAddress == NULL)
+	{
+		iRet			=	createNamedBooleanSparseMatrix(_pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+	}
+	else //if not null this variable is in a list
+	{
+		iRet			= createBooleanSparseMatrixInNamedList(_pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "boolean sparse (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
+	free(piNbItemRow);
+	free(piColPos);
+
 
 	if(iRet)
 	{

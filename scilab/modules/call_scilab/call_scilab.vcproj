@@ -377,6 +377,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\DllmainCall_scilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fromc.c"
 				>
 			</File>

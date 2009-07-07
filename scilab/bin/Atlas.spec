@@ -25,25 +25,25 @@ comments = "# Athlon/Duron, Athlon XP" />
 <cpu cpu_manufacturer = "GenuineIntel" 
 cpu_family = "15"
 cpu_model = "5"
-dll_filename = "Atlas_PIVHT.dll"
+dll_filename = "Atlas_PIV.dll"
 comments = "# Pentium IV D" />
 <!-- =================================== -->
 <cpu cpu_manufacturer = "GenuineIntel"
 cpu_family = "15"
 cpu_model = "4"
-dll_filename = "Atlas_PIVHT.dll"
+dll_filename = "Atlas_PIV.dll"
 comments = "# Pentium IV, 512k cache" />
 <!-- =================================== -->
 <cpu cpu_manufacturer = "GenuineIntel"
 cpu_family = "15"
 cpu_model = "3"
-dll_filename = "Atlas_PIVHT.dll"
+dll_filename = "Atlas_PIV.dll"
 comments = "# Pentium IV (Prescott)" />
 <!-- =================================== -->
 <cpu cpu_manufacturer = "GenuineIntel"
 cpu_family = "15"
 cpu_model = "2"
-dll_filename = "Atlas_PIVHT.dll"
+dll_filename = "Atlas_PIV.dll"
 comments = "# Pentium IV with Hyperthreading" />
 <!-- =================================== -->
 <cpu cpu_manufacturer = "GenuineIntel"
@@ -51,6 +51,12 @@ cpu_family = "15"
 cpu_model = "*"
 dll_filename = "Atlas_PIV.dll"
 comments = "# Pentium IV" />
+<!-- =================================== -->
+<cpu cpu_manufacturer = "GenuineIntel"
+cpu_family = "6"
+cpu_model = "28"
+dll_filename = "Atlas_PIII.dll"
+comments = "# ATOM N270 MMX, SSE, SSE2, SSE3" />
 <!-- =================================== -->
 <cpu cpu_manufacturer = "GenuineIntel"
 cpu_family = "6"

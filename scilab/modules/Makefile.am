@@ -22,6 +22,7 @@ action_binding \
 arnoldi \
 elementary_functions \
 string \
+api_scilab \
 dynamic_link \
 fileio \
 history_manager \
@@ -70,7 +71,6 @@ maple2scilab \
 m2sci \
 texmacs \
 scipad \
-scilab2fortran \
 development_tools \
 compatibility_functions \
 helptools \
@@ -140,6 +140,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
