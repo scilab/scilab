@@ -43,7 +43,7 @@ libscifunctions_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la
 
 #### Target ######
 modulename=functions
