@@ -433,6 +433,12 @@ sub write_scilab_code
 	my $tagsref = $_[1];
 	my %tags    = %$tagsref;
 	
+	# TMPDIR management
+	# ==========================================================================
+	
+	my $TMPDIR = basename($fileout);
+	$TMPDIR =~ s/\.tst$//g;
+	$TMPDIR = 'pathconvert(TMPDIR+"/'.$TMPDIR.'")';
 	
 	# table management (ilib_build 2nd input argument)
 	# ==========================================================================
@@ -488,7 +494,8 @@ sub write_scilab_code
 	# ==========================================================================
 	
 	print FILEOUT 'ilib_verbose(0);'."\n";
-	print FILEOUT 'cd TMPDIR;'."\n";
+	print FILEOUT 'mkdir('.$TMPDIR.');'."\n";
+	print FILEOUT 'cd('.$TMPDIR.');'."\n";
 	print FILEOUT 'cflags = "-I"+SCI+"/modules/localization/includes";'."\n";
 	
 	print FILEOUT 'ilib_build(';
@@ -500,6 +507,7 @@ sub write_scilab_code
 	print FILEOUT '"",';                      # ldflags
 	print FILEOUT 'cflags);'."\n";            # cflags
 	
+	print FILEOUT 'exec("loader.sce");'."\n";
 	
 	# Ecriture du code
 	# ==========================================================================
