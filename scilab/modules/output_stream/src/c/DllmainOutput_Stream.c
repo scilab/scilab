@@ -9,22 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdio.h>
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
-	HWND hScilab = GetConsoleWindow();
-
-	if (hScilab)
-	{
-		/* force redirect stdout, stderr in console */
-		freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
-		freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
-	}
-
 	switch (reason) 
 	{
 	case DLL_PROCESS_ATTACH:
