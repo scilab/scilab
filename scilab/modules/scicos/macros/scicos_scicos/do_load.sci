@@ -128,10 +128,10 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   
   if ierr<>0 then
     if ext=='xml' then
-      message(mprintf(_('An error has occur during parsing of file %s.\n'+..
+      message(msprintf(_('An error has occured during parsing of file %s.\n'+..
 	       'Please check the format of your XML file\n'),fname))
     else
-      message(mprintf(_('An error has occur during loading of file %s.\n'),fname))
+      message(msprintf(_('An error has occured during loading of file %s.\n'),fname))
     end
     ok=%f
     scs_m=get_new_scs_m();     

@@ -9844,7 +9844,7 @@ function ok=WriteCodeToFile(Code,path)
 //  utility function for writing file
   ierr=execstr('mputl(Code,path)','errcatch')
   if ierr<>0 then
-    messagebox([mprintf(_('Error when writing the %s file.\n'),path);
+    messagebox([msprintf(_('Error when writing the %s file.\n'),path);
 		lasterror()],'modal','error')
     ok=%f
   else
