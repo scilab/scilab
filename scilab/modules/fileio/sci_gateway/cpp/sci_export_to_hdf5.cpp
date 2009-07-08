@@ -76,7 +76,8 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 		iRet = getVarAddressFromName(pstNameList[i + 1], &piAddrList[i]);
 		if(iRet)
 		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+			// 2 = 1 for filename + 1 because starting arg number is 1 for human being
+			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 2);
 			return 0;
 		}
 	}
