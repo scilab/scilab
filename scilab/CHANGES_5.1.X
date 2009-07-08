@@ -179,6 +179,8 @@ Bug fixes:
 
  * bug 4630 fixed - problem with the Scicos block affich
 
+ * bug 4635 fixed - Bad title in the french help of the graphic module
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
