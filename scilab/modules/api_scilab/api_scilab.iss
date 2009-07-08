@@ -27,8 +27,8 @@ Source: modules\{#MODULE_API_SCILAB}\version.xml; DestDir: {app}\modules\{#MODUL
 ;
 Source: modules\{#MODULE_API_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_API_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MODULE_API_SCILAB}\etc\{#MODULE_CALL_SCILAB}.quit; DestDir: {app}\modules\{#MODULE_API_SCILAB}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#MODULE_API_SCILAB}\etc\{#MODULE_CALL_SCILAB}.start; DestDir: {app}\modules\{#MODULE_API_SCILAB}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_API_SCILAB}\etc\{#MODULE_API_SCILAB}.quit; DestDir: {app}\modules\{#MODULE_API_SCILAB}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#MODULE_API_SCILAB}\etc\{#MODULE_API_SCILAB}.start; DestDir: {app}\modules\{#MODULE_API_SCILAB}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_API_SCILAB}\macros\buildmacros.sce; DestDir: {app}\modules\{#MODULE_API_SCILAB}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_API_SCILAB}\macros\buildmacros.bat; DestDir: {app}\modules\{#MODULE_API_SCILAB}\macros; Components: {#COMPN_SCILAB}
