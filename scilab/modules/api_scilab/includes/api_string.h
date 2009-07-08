@@ -13,6 +13,7 @@
 #define __STRING_API__
 
 #include <wchar.h>
+#include "dynlib_api_scilab.h"
 /*****************************/
 /*   string matrix functions   */
 /*****************************/
@@ -26,7 +27,7 @@
  * @param[out] _pstStrings return array of char
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+API_SCILAB_IMPEXP int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 /**
  * Get double variable data
@@ -37,7 +38,7 @@ int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLengt
  * @param[out] _pstStrings return array of wide char
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
+API_SCILAB_IMPEXP int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
 
 /**
  * Get double variable data
@@ -48,7 +49,7 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piL
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
+API_SCILAB_IMPEXP int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Get double variable data
@@ -59,7 +60,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
+API_SCILAB_IMPEXP int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Get double variable data
@@ -70,7 +71,7 @@ int createNamedMatrixOfString(char* _pstName, int _iRows, int _iCols, char** _ps
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+API_SCILAB_IMPEXP int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 
 #endif /* __STRING_API__ */

@@ -18,7 +18,7 @@
 #include "api_boolean_sparse.h"
 #include "api_internal_boolean_sparse.h"
 
-//#include <string.h>
+
 #include "CallScilab.h"
 #include "stack-c.h"
 

@@ -12,8 +12,7 @@
 #ifndef __BOOLEAN_API__
 #define __BOOLEAN_API__
 
-#include "machine.h"
-
+#include "dynlib_api_scilab.h"
 /**
  * Get boolean variable
  * @param[in] _piAddress variable address
@@ -22,7 +21,7 @@
  * @param[out] _piBool return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
+API_SCILAB_IMPEXP int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -33,7 +32,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
+API_SCILAB_IMPEXP int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -44,7 +43,7 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
+API_SCILAB_IMPEXP int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Create boolean named variable
@@ -54,7 +53,7 @@ int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
  * @param[in] _piBool pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
+API_SCILAB_IMPEXP int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Read boolean named variable
@@ -64,6 +63,6 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int _iCols, int* _piB
  * @param[out] _piBool return data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
+API_SCILAB_IMPEXP int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
 #endif /* __BOOLEAN_API__ */
