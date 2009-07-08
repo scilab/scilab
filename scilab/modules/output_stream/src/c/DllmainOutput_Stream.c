@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include <windows.h> 
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/libintl.lib")
