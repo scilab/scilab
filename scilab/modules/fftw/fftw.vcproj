@@ -6,7 +6,6 @@
 	ProjectGUID="{13B86307-5A11-48D6-94BE-71F77BCB82D1}"
 	RootNamespace="fftw"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -45,7 +44,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
-				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -127,7 +126,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
-				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -211,7 +210,7 @@
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
-				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -301,7 +300,7 @@
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../output_stream/includes;../windows_tools/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
-				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;FFTW_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

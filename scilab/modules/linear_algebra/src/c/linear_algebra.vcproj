@@ -6,7 +6,6 @@
 	ProjectGUID="{BC462A57-C5B3-4F93-8067-80363827DCDA}"
 	RootNamespace="linear_algebra"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
