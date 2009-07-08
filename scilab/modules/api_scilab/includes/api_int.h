@@ -12,6 +12,8 @@
 #ifndef __INT_API__
 #define __INT_API__
 
+#include "dynlib_api_scilab.h"
+
 #define SCI_INT8		1
 #define SCI_INT16		2
 #define SCI_INT32		4
@@ -26,7 +28,7 @@
  * @param[in] _piAddress variable address
  * @param[out] _piPrecison return integer precision ( 8, 1-, 32, 64 )
  */
-int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
+API_SCILAB_IMPEXP int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
 
 /**
  * Get integer 8 bit variable data
@@ -36,7 +38,7 @@ int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
  * @param[out] _piData8 return pointer on 8 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8);
+API_SCILAB_IMPEXP int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8);
 
 /**
  * Get integer 16 bit variable data
@@ -46,7 +48,7 @@ int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcD
  * @param[out] _piData16 return pointer on 16 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16);
+API_SCILAB_IMPEXP int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16);
 
 /**
  * Get integer 32 bit variable data
@@ -56,7 +58,7 @@ int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _p
  * @param[out] _piData32 return pointer on 32 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32);
+API_SCILAB_IMPEXP int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32);
 
 /**
  * Get integer 64 bit variable data
@@ -67,7 +69,7 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _pllData64);
+API_SCILAB_IMPEXP int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _pllData64);
 #endif
 
 /**
@@ -78,7 +80,7 @@ int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long*
  * @param[in] _piData8 array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8);
+API_SCILAB_IMPEXP int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8);
 
 /**
  * Get integer variable data
@@ -88,7 +90,7 @@ int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8);
  * @param[in] _piData16 array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16);
+API_SCILAB_IMPEXP int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16);
 
 /**
  * Get integer variable data
@@ -98,7 +100,7 @@ int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
  * @param[in] _piData32 array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32);
+API_SCILAB_IMPEXP int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32);
 
 /**
  * Get integer variable data
@@ -110,7 +112,7 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32);
  */
 
 #ifdef __SCILAB_INT64__
-int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64);
+API_SCILAB_IMPEXP int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64);
 #endif
 
 /**
@@ -121,7 +123,7 @@ int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllDa
  * @param[out] _piData8 return array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8);
+API_SCILAB_IMPEXP int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8);
 
 /**
  * Get integer variable data
@@ -131,7 +133,7 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8);
  * @param[out] _piData16 return array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16);
+API_SCILAB_IMPEXP int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16);
 
 /**
  * Get integer variable data
@@ -141,7 +143,7 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
  * @param[out] _piData32 return array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32);
+API_SCILAB_IMPEXP int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32);
 
 /**
  * Get integer variable data
@@ -152,7 +154,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32);
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllData64);
+API_SCILAB_IMPEXP int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllData64);
 #endif
 
 /**
@@ -164,7 +166,7 @@ int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _pllDa
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _pcData8);
+API_SCILAB_IMPEXP int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _pcData8);
 
 /**
  * Get integer variable data
@@ -175,7 +177,7 @@ int createNamedMatrixOfInteger8(char* _pstName, int _iRows, int _iCols, char* _p
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _psData16);
+API_SCILAB_IMPEXP int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* _psData16);
 
 /**
  * Get integer variable data
@@ -186,7 +188,7 @@ int createNamedMatrixOfInteger16(char* _pstName, int _iRows, int _iCols, short* 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32);
+API_SCILAB_IMPEXP int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _piData32);
 
 /**
  * Get integer variable data
@@ -198,7 +200,7 @@ int createNamedMatrixOfInteger32(char* _pstName, int _iRows, int _iCols, int* _p
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _pllData64);
+API_SCILAB_IMPEXP int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long long* _pllData64);
 #endif
 
 /**
@@ -206,7 +208,7 @@ int createNamedMatrixOfInteger64(char* _pstName, int _iRows, int _iCols, long lo
  * @param[in] _pstName variable name
  * @param[out] _piPrecison return integer precision ( 8, 1-, 32, 64 )
  */
-int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
+API_SCILAB_IMPEXP int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
 
 /**
  * Get integer named variable data
@@ -216,7 +218,7 @@ int getNamedMatrixOfIntegerPrecision(char* _pstName, int* _piPrecision);
  * @param[out] _piData8 return array of integer 8 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
+API_SCILAB_IMPEXP int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* _pcData8);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -225,7 +227,7 @@ int readNamedMatrixOfInteger8(char* _pstName, int* _piRows, int* _piCols, char* 
  * @param[out] _piData16 return array of integer 16 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _psData16);
+API_SCILAB_IMPEXP int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short* _psData16);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -234,7 +236,7 @@ int readNamedMatrixOfInteger16(char* _pstName, int* _piRows, int* _piCols, short
  * @param[out] _piData32 return array of integer 32 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32);
+API_SCILAB_IMPEXP int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* _piData32);
 /**
  * Get integer named variable data
  * @param[in] _pstName variable name
@@ -244,6 +246,6 @@ int readNamedMatrixOfInteger32(char* _pstName, int* _piRows, int* _piCols, int* 
  * @return if the operation successed (0) or not ( !0 )
  */
 #ifdef __SCILAB_INT64__
-int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
+API_SCILAB_IMPEXP int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
 #endif
 #endif /* __INT_API__ */

@@ -12,7 +12,7 @@
 #ifndef __COMMON_API__
 #define __COMMON_API__
 
-#include "machine.h"
+#include "dynlib_api_scilab.h"
 
 /* generics functions */
 
@@ -22,7 +22,7 @@
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarAddressFromPosition(int _iVar, int** _piAddress);
+API_SCILAB_IMPEXP int getVarAddressFromPosition(int _iVar, int** _piAddress);
 
 /**
  * Get memory address of a variable from the variable position
@@ -30,28 +30,28 @@ int getVarAddressFromPosition(int _iVar, int** _piAddress);
  * @param[out] _pstName variable name
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarNameFromPosition(int _iVar, char* _pstName);
+API_SCILAB_IMPEXP int getVarNameFromPosition(int _iVar, char* _pstName);
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarAddressFromName(char* _pstName, int** _piAddress);
+API_SCILAB_IMPEXP int getVarAddressFromName(char* _pstName, int** _piAddress);
 
 /**
  * Get variable type
  * @param[in] _piAddress variable address
  * @return scilab variable type ( sci_matrix, sci_strings, ... )
  */
-int getVarType(int* _piAddress);
+API_SCILAB_IMPEXP int getVarType(int* _piAddress);
 
 /**
  * Get complex information
  * @param[in] _piAddress variable address
  * @return if complex 1 otherwise 0
  */
-int isVarComplex(int* _piAddress);
+API_SCILAB_IMPEXP int isVarComplex(int* _piAddress);
 
 /**
  * Get variable dimension
@@ -60,19 +60,14 @@ int isVarComplex(int* _piAddress);
  * @param[out] _piCols Number of cols
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
+API_SCILAB_IMPEXP int getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
 
 /**
  * check if a variable is a matrix form ( row x col )
  * @param[in] _piAddress variable address
  * @return if matrix form type variable 1 otherwise 0
  */
-int isVarMatrixType(int* _piAddress);
-int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress);
-int updateLstk(int _iNewPos, int _iSCIDataAddress, int _iVarSize);
-void createNamedVariable(int *_piVarID);
-
-extern int C2F(stackp)(int *,int *);
+API_SCILAB_IMPEXP int isVarMatrixType(int* _piAddress);
 
 
 #endif /* __COMMON_API__ */

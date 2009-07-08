@@ -15,6 +15,7 @@
 
 #include <string.h>
 
+#include "machine.h"
 #include "CallScilab.h"
 #include "api_common.h"
 #include "api_internal_common.h"
@@ -25,6 +26,8 @@
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
+
+extern int C2F(stackp)(int *,int *);
 
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);

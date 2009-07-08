@@ -12,6 +12,8 @@
 #ifndef __SAPRSE_API__
 #define __SAPRSE_API__
 
+#include "dynlib_api_scilab.h"
+
 /*****************************/
 /*   sparse matrix functions */
 /*****************************/
@@ -27,7 +29,7 @@
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+API_SCILAB_IMPEXP int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * Get sparse variable data
@@ -41,7 +43,7 @@ int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem,
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * alloc sparse variable data
@@ -54,7 +56,7 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
  * @param[out] _pdblReal return pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
+API_SCILAB_IMPEXP int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal);
 
 /**
  * alloc sparse variable data
@@ -68,7 +70,7 @@ int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _pi
  * @param[out] _pdblImg return pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create sparse variable
@@ -81,7 +83,7 @@ int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+API_SCILAB_IMPEXP int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create sparse variable
@@ -95,7 +97,7 @@ int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _pi
  * @param[out] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Create named sparse variable
@@ -108,7 +110,7 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+API_SCILAB_IMPEXP int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Create named sparse variable
@@ -122,7 +124,7 @@ int createNamedSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem
  * @param[out] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 /**
  * Read named sparse variable
@@ -135,7 +137,7 @@ int createNamedComplexSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
  * @param[out] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
+API_SCILAB_IMPEXP int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal);
 
 /**
  * Read named sparse variable
@@ -149,6 +151,6 @@ int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNb
  * @param[out] _pdblImg pointer on img data
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+API_SCILAB_IMPEXP int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 #endif /* __SAPRSE_API__ */
