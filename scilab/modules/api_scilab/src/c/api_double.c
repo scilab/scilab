@@ -18,7 +18,7 @@
 #include "api_double.h"
 #include "api_internal_double.h"
 
-//#include <string.h>
+
 #include "CallScilab.h"
 #include "stack-c.h"
 

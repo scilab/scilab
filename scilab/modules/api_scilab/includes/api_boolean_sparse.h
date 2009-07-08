@@ -12,7 +12,7 @@
 #ifndef __BOOLEAN_SPARSE_API__
 #define __BOOLEAN_SPARSE_API__
 
-#include "machine.h"
+#include "dynlib_api_scilab.h"
 
 /*******************************/
 /*   boolean sparse functions   */
@@ -27,7 +27,7 @@
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
+API_SCILAB_IMPEXP int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Alloc boolean sparse variable data
@@ -39,7 +39,7 @@ int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
  * @param[out] _piColPos return array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+API_SCILAB_IMPEXP int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
 
 /**
  * Create boolean sparse variable
@@ -51,7 +51,7 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
  * @param[in] _piColPos array of item column position ( 1 indexed )
  * @return if the operation successed (0) or not ( !0 )
  */
-int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+API_SCILAB_IMPEXP int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Create named boolean sparse variable
@@ -64,7 +64,7 @@ int createBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
+API_SCILAB_IMPEXP int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos);
 
 /**
  * Read named boolean sparse variable
@@ -77,6 +77,6 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iRows, int _iCols, int _
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
+API_SCILAB_IMPEXP int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
 #endif /* __BOOLEAN_SPARSE_API__ */
