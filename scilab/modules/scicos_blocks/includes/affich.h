@@ -17,42 +17,6 @@
 #include "machine.h" /* C2F */
 
 /**
-* Initializattion routine of the text object for Affich block.
-*/
-void C2F(affichin)(int * fontId, 
-				   int * fontSize,
-				   int * color,
-				   double * winNum, 
-				   double * posX, 
-				   double * posY,
-				   double * width,
-				   double * height,
-				   double * textIndex);
-
-/**
-* Update of the Affich block text object with a new value.
-*/
-void C2F(affichup)(double * textIndex,
-				   double * winNum,
-				   char * value,
-				   int valueLength);
-
-/**
-* Initialization of the text object for Affich2 block.
-*/
-void C2F(affin2)(int * fontId, 
-				 int * fontSize,
-				 int * color,
-				 int * nbRow,
-				 int * nbCol,
-				 double * winNum, 
-				 double * posX, 
-				 double * posY,
-				 double * width,
-				 double * height,
-				 double * textIndex);
-
-/**
 * Update of one element of the text object used by Affich2 block.
 */
 void C2F(settxtel)(int * numRow, 
@@ -67,6 +31,13 @@ void C2F(settxtel)(int * numRow,
 */
 void C2F(affup2)( double * winNum, 
 				 double * textIndex);
+/**
+* Printing of the text object element used by affich.f routine
+*/
 
-
+void C2F(affichup)( double * textIndex,
+                    double * winNum,
+                    char * value,
+                    int valueLength);
 #endif
+
