@@ -54,11 +54,12 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 
   //Scicos palettes names ============================================================
   //**
-  pal_names = ['Sources'    ;'Sinks'           ;'Linear'          ;'Non_linear';
-               'Matrix'     ;'Integer'         ;'Events'          ;'Threshold' ;
-               'Others'     ;'Branching'       ;'Electrical'      ;'ThermoHydraulics';
-               'OldBlocks'  ;'DemoBlocks'];
 
+  pal_names = ['Sources'    ;'Sinks'         ;'Events'    ;'Branching';
+               'Linear'     ;'Non_linear'    ;'Matrix'    ;'Integer'  ;
+               'Modelica'   ;'Lookup_Tables' ;'Threshold' ;'Others'   ;
+               'DemoBlocks' ;'OldBlocks'];
+  
   scicos_pal = [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
 
   %scicos_gif = SCI+"/modules/scicos/help/scicos_doc/man/gif_icons/";

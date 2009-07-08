@@ -901,4 +901,3 @@ scs_m.objs(1)=scicos_block(..
                        nmode=0,..
                        equations=list()),..
               doc=list())
- 

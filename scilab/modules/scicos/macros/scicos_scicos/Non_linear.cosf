@@ -271,5 +271,4 @@ scs_m.objs(1)=scicos_block(..
                        nzcross=0,..
                        nmode=0,..
                        equations=list()),..
-              doc=list()) 
- 
+              doc=list())
