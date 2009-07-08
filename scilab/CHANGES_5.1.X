@@ -177,6 +177,8 @@ Bug fixes:
  * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
 		    to Paul Griffiths for the patch!
 
+ * bug 4630 fixed - problem with the Scicos block affich
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
