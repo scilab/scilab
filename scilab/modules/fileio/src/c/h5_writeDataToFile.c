@@ -35,30 +35,30 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
 		iLevel				= 9;
 	}
 
-	if(iLevel) 
+	if(iLevel)
 	{
 		iRet = H5Pcreate(H5P_DATASET_CREATE);
-		if(iRet<0) 
+		if(iRet<0)
 		{
 			iRet = 0;
-		} 
-		else 
+		}
+		else
 		{
-			if(H5Pset_layout(iRet,H5D_COMPACT)<0) 
+			if(H5Pset_layout(iRet,H5D_COMPACT)<0)
 			{
 				H5Pclose(iRet);
 				iRet = 0;
-			} 
-			else 
+			}
+			else
 			{
-				if(H5Pset_chunk(iRet,_iRank, _piDims)<0) 
+				if(H5Pset_chunk(iRet,_iRank, _piDims)<0)
 				{
 					H5Pclose(iRet);
 					iRet = 0;
 				}
 				else
 				{
-					if(H5Pset_deflate(iRet,iLevel)<0) 
+					if(H5Pset_deflate(iRet,iLevel)<0)
 					{
 						H5Pclose(iRet);
 						iRet = 0;
@@ -66,8 +66,8 @@ static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
 				}
 			}
 		}
-	} 
-	else 
+	}
+	else
 	{
 		iRet = H5Pcopy(H5P_DEFAULT);
 	}
@@ -128,7 +128,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	hsize_t     dims[2] = {_iRows, _iCols};
 	herr_t      status;
 	hid_t       space, dset, group, iCompress;
-	hobj_ref_t  *wdata; 
+	hobj_ref_t  *wdata;
 
 	char	      *groupName = (char *) malloc((strlen(_pstDatasetName) + 3) * sizeof(char));
 	char        *pstName = NULL;
@@ -140,13 +140,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	//Create ref matrix
 	wdata = (hobj_ref_t *) malloc(_iRows * _iCols * sizeof(hobj_ref_t));
 
-	// Generate groupname #<dataSetName>#
-	sprintf(groupName, "#%s#", _pstDatasetName);
-	pstSlash			= strstr(groupName, "/");
-	if(pstSlash != NULL)
-	{
-		pstSlash[0]					= '_';
-	}
+	groupName = createGroupName(_pstDatasetName);
 
 	//First create a group to store all referenced objects.
 	group = H5Gcreate (_iFile, groupName, H5P_DEFAULT);
@@ -156,12 +150,12 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	for (i = 0 ; i < _iRows ; ++i)
 	{
 		for ( j = 0 ; j < _iCols ; ++j)
-		{ 
-			pstName = (char*)malloc(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char)); 
+		{
+			pstName = (char*)malloc(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char));
 			//1 for null termination, 1 for round value, 2 for '#' characters
 			sprintf(pstName, "#%d#", i + _iRows * j);
 
-			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char)); 
+			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char));
 			//1 for null termination, 1 for separator, 2 for '#' characters
 			sprintf(pstPathName, "%s/%s", groupName, pstName);
 
@@ -210,6 +204,7 @@ char* createGroupName(char* _pstGroupName)
 	{
 		pstSlash[0]				= '_';
 	}
+
 	return pstGroupName;
 }
 
@@ -218,27 +213,16 @@ char* createPathName(char* _pstGroupName, int _iIndex)
 	char* pstName				= NULL;
 	char* pstPathName		= NULL;
 
-	pstName							= (char*)malloc(((int)log10((double)(_iIndex + 1)) + 3) * sizeof(char)); 
+	pstName							= (char*)malloc(((int)log10((double)(_iIndex + 1)) + 3) * sizeof(char));
 	//1 for null termination, 2 for '#' characters
 	sprintf(pstName, "#%d#", _iIndex);
 
-	pstPathName					= (char*)malloc((strlen(_pstGroupName) + strlen(pstName) + 2) * sizeof(char)); 
+	pstPathName					= (char*)malloc((strlen(_pstGroupName) + strlen(pstName) + 2) * sizeof(char));
 	//1 for null termination, 1 for separator, 2 for '#' characters
 	sprintf(pstPathName, "%s/%s", _pstGroupName, pstName);
 	return pstPathName;
 }
 
-int openGroup(int _iFile, char* _pstGroupName)
-{
-	hid_t	group;
-	group								=	H5Gopen(_iFile, _pstGroupName);
-	if(group == -1) //group not already exist, we can create it
-	{
-		group							= H5Gcreate(_iFile, _pstGroupName, H5P_DEFAULT);
-	}
-
-	return H5Gclose(group);
-}
 static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int _iIndex, int _iRows, int _iCols, double *_pdblData)
 {
 	hid_t space;
@@ -249,6 +233,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 	int i								= 0;
 	int j								= 0;
 	hobj_ref_t iRef			= 0;
+	hid_t	group					= 0;
 	double *__data			= NULL;
 
 	char* pstPathName		= NULL;
@@ -258,7 +243,8 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 	pstGroupName				= createGroupName(_pstDatasetName);
 	pstPathName					= createPathName(pstGroupName, _iIndex);
 
-	status = openGroup(_iFile, pstGroupName);
+	group								= H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+	status							= H5Gclose(group);
 	if(status)
 	{
 		return 1;
@@ -268,7 +254,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 
 	for (i = 0 ; i < _iRows ; ++i)
 	{
-		for (j = 0 ; j < _iCols ; ++j)  
+		for (j = 0 ; j < _iCols ; ++j)
 		{
 			__data[i * _iCols + j] = _pdblData[i + _iRows * j];
 		}
@@ -310,10 +296,11 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 
 		//Add attribute SCILAB_Class = double to dataset
 		addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
+
+		// create the ref
+		status = H5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
 	}
 
-	// create the ref
-	status = H5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
 
 	//Close and release resources.
 	status = H5Dclose (dset);
@@ -332,7 +319,7 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	hid_t space					= 0;
 	hid_t dset					= 0;
 	herr_t status				= 0;
-	hsize_t dims[2]			= {_iRows, _iCols};
+	hsize_t dims[1]			= {1};
 	hid_t iCompress			= 0;
 
 
@@ -446,7 +433,7 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 
 	for (i = 0 ; i < _iRows; i++)
 	{
-		for (j = 0 ; j < _iCols ; j++)  
+		for (j = 0 ; j < _iCols ; j++)
 		{
 			piData[i * _iCols + j] = _piData[i + _iRows * j];
 		}
@@ -483,7 +470,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 	hid_t	dset					= 0;
 	hid_t	group					= 0;
 	hid_t iCompress			= 0;
-	hobj_ref_t* pData		= 0; 
+	hobj_ref_t* pData		= 0;
 
 	char* pstName				= NULL;
 	char* pstPathName		= NULL;
@@ -593,7 +580,7 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
 
 	for (i = 0 ; i < _iRows; i++)
 	{
-		for (j = 0 ; j < _iCols ; j++)  
+		for (j = 0 ; j < _iCols ; j++)
 		{
 			pcData[i * _iCols + j] = _pcData[i + _iRows * j];
 		}
@@ -636,7 +623,7 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 
 	for (i = 0 ; i < _iRows; i++)
 	{
-		for (j = 0 ; j < _iCols ; j++)  
+		for (j = 0 ; j < _iCols ; j++)
 		{
 			psData[i * _iCols + j] = _psData[i + _iRows * j];
 		}
@@ -679,7 +666,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 
 	for (i = 0 ; i < _iRows; i++)
 	{
-		for (j = 0 ; j < _iCols ; j++)  
+		for (j = 0 ; j < _iCols ; j++)
 		{
 			piData[i * _iCols + j] = _piData[i + _iRows * j];
 		}
@@ -722,7 +709,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 
 	for (i = 0 ; i < _iRows; i++)
 	{
-		for (j = 0 ; j < _iCols ; j++)  
+		for (j = 0 ; j < _iCols ; j++)
 		{
 			pllData[i * _iCols + j] = _pllData[i + _iRows * j];
 		}
@@ -761,7 +748,7 @@ int writeCommonSparseComplexMatrix(int _iFile, char* _pstDatasetName, int _iComp
 	hid_t	dset						= 0;
 	hid_t	group						= 0;
 	hid_t iCompress				= 0;
-	hobj_ref_t* pDataRef	= 0; 
+	hobj_ref_t* pDataRef	= 0;
 	char pstRow[10]				= {0};
 	char pstCol[10]				= {0};
 
@@ -891,7 +878,7 @@ int writeBooleanSparseMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 	hid_t	dset						= 0;
 	hid_t	group						= 0;
 	hid_t iCompress				= 0;
-	hobj_ref_t* pDataRef	= 0; 
+	hobj_ref_t* pDataRef	= 0;
 	char pstRow[10]				= {0};
 	char pstCol[10]				= {0};
 
@@ -1016,16 +1003,16 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 
 	switch(_iVarType)
 	{
-	case sci_list : 
+	case sci_list :
 		pcstClass = g_SCILAB_CLASS_LIST;
 		break;
-	case sci_tlist : 
+	case sci_tlist :
 		pcstClass = g_SCILAB_CLASS_TLIST;
 		break;
-	case sci_mlist : 
+	case sci_mlist :
 		pcstClass = g_SCILAB_CLASS_MLIST;
 		break;
-	default : 
+	default :
 		return 1;
 	}
 
@@ -1064,7 +1051,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 
 		//Add attribute SCILAB_Class = string to dataset
 		addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
-	}  
+	}
 
 
 	//Close and release resources.
