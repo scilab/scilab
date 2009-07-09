@@ -10,6 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include "api_common.h"
+#include "api_double.h"
+
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
@@ -27,6 +31,9 @@ extern void C2F(wbdiag)(int const* lda, int const* n, double* ar, double* ai, do
 int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 {
   int ret= 0;
+
+  int* arg[2]= {NULL, NULL};
+
   double* pDataReal[2]={NULL, NULL};
   double* pDataImg[2]={NULL, NULL};
  
@@ -38,12 +45,13 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
   CheckLhs(1,3);
   for(i=0; i != Rhs; ++i)
     {
-      if(GetType(i+1)!= sci_matrix)
+      getVarAddressFromPosition(i+1, &arg[i]);
+      if(getVarType(arg[i])!= sci_matrix)
 	{
 	  Scierror(201,_("%s: Wrong type for argument %d: Real or complex matrix expected.\n"),fname, i +1);
 	  ret= 201;
 	}
-      if(iIsComplex(i+1 ))
+      if(isVarComplex(arg[i] ))
 	{
 	  GetRhsVarMatrixComplex(i+1, &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i ]);
 	}
@@ -67,8 +75,8 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
       if (iCols[0] == 0) /* && iRows[0] == 0 because  we checked that the matrix is square */
 	{
 	  double* dummy;
-	  iAllocMatrixOfDouble(Rhs+1 , 0, 0, &dummy) ;
-	  iAllocMatrixOfDouble(Rhs+2 , 0, 0, &dummy) ;
+	  allocMatrixOfDouble(Rhs+1, 0, 0, &dummy);
+	  allocMatrixOfDouble(Rhs+2, 0, 0, &dummy);
 	  LhsVar(1)= 1; /* original C code does not check for Lhs, so neither do I */
 	  LhsVar(2)= Rhs+1;
 	  LhsVar(3)= Rhs+2;
@@ -76,7 +84,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
       else
 	{	
 	  int const totalSize= iRows[0] * iCols[0];
-	  if (  ! (C2F(vfinite)(&totalSize, pDataReal[0]) &&(!iIsComplex(1) || (C2F(vfinite)(&totalSize, pDataImg[0])))))
+	  if (  ! (C2F(vfinite)(&totalSize, pDataReal[0]) &&(!isVarComplex(arg[0]) || (C2F(vfinite)(&totalSize, pDataImg[0])))))
 	    {
 	      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),1);
 	      ret= 264;;
@@ -125,7 +133,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 		{
 		  int fail;
 		  int const job=0;
-		  if(iIsComplex(1))
+		  if(isVarComplex(arg[0]))
 		    {
 		      double dummy;
 		      C2F(wbdiag)(&iCols[0], &iCols[0], pDataReal[0], pDataImg[0], &rMax, le, le + iCols[0], lib, lxr , lxi,  &dummy, &dummy
@@ -154,7 +162,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 			    {
 			      nbloc+= (lib[k]>=0) ? 1: 0 ;
 			    }
-			  iAllocMatrixOfDouble(Rhs+2, nbloc, 1, &lbs);
+			  allocMatrixOfDouble(Rhs + 2, nbloc, 1, &lbs);
 			  for (i = k = 0; k != iCols[0]; ++k) 
 			    {
 			      if(lib[k] >= 0)
