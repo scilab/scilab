@@ -285,3 +285,4 @@ Bug fixes:
 
 * bug 4626 fixed - when using the CLI version, completion make Scilab crash
 
+* bug 4638 fixed - this example with optim freezes scilab

@@ -64,8 +64,6 @@ c     . Check that the winId is valid.
          if(z(2).lt.0.0d0) return
          
 c     ---------------------------------------------------------------    
-      call initdraw(ipar(1), ipar(2), ipar(3), z(2), z(3), z(4), z(5),
-     &              z(6), z(7))
 
       endif
       end
@@ -116,24 +114,3 @@ c     . 6 : number of element to retrieve
 c      top=top-1
       return
       end
-c --------------------------------------------------
-      subroutine initdraw(fontid, fontsize, color, winnum, x, y,
-     &                    width, height, textind)
-      integer fontId
-      integer fontSize
-      integer color
-      double precision winNum
-      double precision x
-      double precision y
-      double precision width
-      double precision height
-
-      call affichin(fontid, fontsize, color, winnum, x, y, width,
-     &              height, textind)
- 
-      return
- 
-      end
-
-
-c -------------------------------------------------------------------------------------
