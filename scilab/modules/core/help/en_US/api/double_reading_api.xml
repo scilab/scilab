@@ -162,7 +162,6 @@ int read_double(char *fname,unsigned long fname_len)
         return 1;
     }
     LhsVar(1) = Rhs + 1;
-    PutLhsVar();
     return 0;
 }
         ]]>

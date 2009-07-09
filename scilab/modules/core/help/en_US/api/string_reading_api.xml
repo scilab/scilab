@@ -185,7 +185,6 @@ int read_string(char *fname,unsigned long fname_len)
     free(pstOut);
 
     LhsVar(1) = Rhs + 1;
-    PutLhsVar();
     return 0;
 }
             ]]>

@@ -237,7 +237,6 @@ int write_double(char *fname,unsigned long fname_len)
     //assign allocated variables to Lhs position
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
-    PutLhsVar();
     return 0;
 }
         ]]>

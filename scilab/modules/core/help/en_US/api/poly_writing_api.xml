@@ -138,7 +138,6 @@ int write_poly(char *fname,unsigned long fname_len)
 
     //assign allocated variables to Lhs position
     LhsVar(1) = Rhs + 1;
-    PutLhsVar();
     return 0;
 }
         ]]>
