@@ -88,7 +88,7 @@
         <!--Lib_name: double_reading-->
         <!--Func_list: read_double-->
         <title>Gateway Source</title>
-        <programlisting role="code gateway">
+        <programlisting role="code_gateway">
             <![CDATA[
 int read_double(char *fname,unsigned long fname_len)
 {
