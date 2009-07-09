@@ -5,7 +5,6 @@
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 	RootNamespace="localization"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

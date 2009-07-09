@@ -6,7 +6,6 @@
 	ProjectGUID="{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}"
 	RootNamespace="dcd_f2c_DLL"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
