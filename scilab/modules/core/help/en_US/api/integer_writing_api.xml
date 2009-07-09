@@ -202,7 +202,6 @@ int write_integer(char *fname,unsigned long fname_len)
     LhsVar(4) = Rhs + 4;
     LhsVar(5) = Rhs + 5;
     LhsVar(6) = Rhs + 6;
-    PutLhsVar();
     return 0;
 }
         ]]>
