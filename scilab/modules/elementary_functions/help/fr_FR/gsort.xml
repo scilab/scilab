@@ -81,7 +81,7 @@
           <para>Une chaîne de caractères définissant si le tri doit se faire
           dans l'ordre croissant <literal>('i')</literal> ou décroissant
           <literal>('d')</literal>. La valeur par défaut est
-          <literal>('i')</literal>.</para>
+          <literal>('d')</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -185,10 +185,10 @@ gsort(A,'lc','i')
 
 A=['Scilab' '2.6'
    'Scilab' '2.7'
-   'Scicos' '2.7'
+   'xcos' '2.7'
    'Scilab' '3.1'
-   'Scicos' '3.1'
-   'Scicos' '4.0'
+   'xcos' '3.1'
+   'xcos' '4.0'
    'Scilab' '4.0']
 
 gsort(A,'lr','i')
@@ -213,6 +213,5 @@ gsort(A,'lc','i')
     Sort Function". Software---Practice and Experience,
     23(11):1249-1265</para>
 
-    <para>http://www.enseignement.polytechnique.fr/profs/informatique/Jean-Jacques.Levy/poly/main2/node10.html</para>
   </refsection>
 </refentry>

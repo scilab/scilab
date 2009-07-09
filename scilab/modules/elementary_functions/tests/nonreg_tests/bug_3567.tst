@@ -75,20 +75,20 @@ x = [3,1,5];
 y = [2,4,1];
 c = x+y*%i;
 ierr = execstr("v = gsort(c,''lr'');","errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 0 then pause,end
 
 ierr = execstr("v = gsort(c,''l'');","errcatch");
 if ierr <> 999 then pause,end
 
 ierr = execstr("v = gsort(c,''lc'');","errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 0 then pause,end
 
 ierr = execstr("v = gsort(c,''rc'');","errcatch");
 if ierr <> 999 then pause,end
 
 ierr = execstr("v = gsort(c,''r'');","errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 0 then pause,end
 
 ierr = execstr("v = gsort(c,''c'');","errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 0 then pause,end
 
