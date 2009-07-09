@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="String management reading_API"
+<refentry version="5.0-subset Scilab" xml:id="Polynomial management reading_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,16 +19,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>String reading</refname>
+        <refname>Polynomial reading</refname>
         <refpurpose>
-            How to read matrices of strings in a gateway.
+            How to read matrices of polynomials in a gateway.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
-        <synopsis>API_SCILAB_IMPEXP int getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
-        <synopsis>API_SCILAB_IMPEXP int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
+        <para>This help describes how matrix of polynomials can be handled through the Scilab API.</para>
+        <synopsis>int getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
+        <synopsis>int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
