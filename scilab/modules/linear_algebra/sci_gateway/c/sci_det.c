@@ -10,6 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include "api_common.h"
+#include "api_double.h"
 
 #include <string.h>
 #include "stack-c.h"
@@ -29,82 +31,77 @@
 int C2F(intdet)(char *fname,unsigned long fname_len)
 {
   int ret= 0;
+  int* arg= NULL;
 
-  if ( (Rhs>=1) && (GetType(1)!=sci_matrix) )
+  if ( Rhs>=1 )
     {
-      OverLoad(1);
-      return 0;
-    }
-  CheckRhs(1, 1);
-  CheckLhs(1, 2);
-  {
-    double* pData;
-    double* pDataReal;
-    double* pDataImg;
-    int iRows, iCols;
-    int complexArg;
-    if( (complexArg= iIsComplex(1)) )
+      getVarAddressFromPosition(1, &arg);
+      if( getVarType(arg)!=sci_matrix )
+	{
+	  OverLoad(1);
+	  return 0;
+	}
+      CheckRhs(1, 1);
+      CheckLhs(1, 2);
       {
-	GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
-	/* c -> z */
-	pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
-	if(!pData)
+	double* pData;
+	int iRows, iCols;
+	int complexArg;
+	if( (complexArg= isVarComplex(arg)) )
 	  {
-	    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-	    ret = -1;
+	    getComplexZMatrixOfDouble(arg, &iRows, &iCols, (doublecomplex**)&pData);
 	  }
-      }
-    else
-      {
-	GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
-      }
-    if( iRows != iCols)
-      {
-	Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
-	ret= 1;
-      }
-    else
-      {
-	if(iRows == -1)
+	else
 	  {
-	    Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+	    getMatrixOfDouble(arg, &iRows, &iCols, &pData);
+	  }
+	if( iRows != iCols)
+	  {
+	    Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
 	    ret= 1;
 	  }
 	else
 	  {
-	    double* pMantissaReal= NULL;
-	    double* pMantissaImg= NULL;
-	    double* pExponent= NULL;
-	    if( (ret= 
-		 (complexArg
-		  ? iAllocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg)
-		  : iAllocMatrixOfDouble(2, 1, 1, &pMantissaReal))
-		 ||( (Lhs == 2) && iAllocMatrixOfDouble(3, 1, 1, &pExponent)))
-		)
+	    if(iRows == -1)
 	      {
-		Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+		ret= 1;
 	      }
 	    else
 	      {
-		int intExponent;
-		ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
-		if(pExponent)
+		double* pMantissaReal= NULL;
+		double* pMantissaImg= NULL;
+		double* pExponent= NULL;
+		if( (ret= 
+		     (complexArg
+		      ? allocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg)
+		      : allocMatrixOfDouble(2, 1, 1, &pMantissaReal))
+		     ||( (Lhs == 2) && allocMatrixOfDouble(3, 1, 1, &pExponent)))
+		    )
 		  {
-		    *pExponent= (double)intExponent;
+		    Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		  }
-	      }      
-	    LhsVar(1)= Lhs + 1;
-	    if(Lhs == 2)
-	      {
-		LhsVar(2)= 2;
+		else
+		  {
+		    int intExponent;
+		    ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
+		    if(pExponent)
+		      {
+			*pExponent= (double)intExponent;
+		      }
+		  }      
+		LhsVar(1)= Lhs + 1;
+		if(Lhs == 2)
+		  {
+		    LhsVar(2)= 2;
+		  }
 	      }
 	  }
+	if(complexArg)
+	  {
+	    vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+	  }
       }
-    if(complexArg)
-      {
-	vFreeDoubleComplexFromPointer((doublecomplex*)pData);
-      }
-  }
+    } 
   return ret;
 }
-
