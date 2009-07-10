@@ -10,9 +10,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include "api_common.h"
+#include "api_double.h"
 
 #include <string.h>
-#include <stdio.h>
+#include <stdio.h> /* sprintf */
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "localization.h"
@@ -22,31 +24,46 @@
 #include "Scierror.h"
 #include "invert_matrix.h"
 
+#include "msgs.h"
+
+#define STACK3
 
 int C2F(intinv)(char *fname,unsigned long fname_len)
 {
-	int ret = 0;
-	/*   inv(A)  */
-	if ( Rhs >=1 && GetType(1)!=sci_matrix)
+  int* arg;
+  int ret = 0;
+  /*   inv(A)  */
+  if(Rhs >= 1)
+    {
+      getVarAddressFromPosition(1, &arg);
+      if (getVarType(arg) !=sci_matrix)
 	{
-		OverLoad(1);
-		return 0;
+	  OverLoad(1);
+	  return 0;
 	}
-	/* from now on, we have an sci_matrix, so we can use iIsComplex */
-	CheckRhs(1,1); /* one and only one arg */
-	CheckLhs(1,1); /* one and only one returned value */
-	{
+      /* from now on, we have an sci_matrix, so we can use iIsComplex */
+      CheckRhs(1,1); /* one and only one arg */
+      CheckLhs(1,1); /* one and only one returned value */
+      {
 	int iRows, iCols;
 	double* pData;
 	double* pDataReal;
 	double* pDataImg;
-	int complexArg=iIsComplex(1);
+	int complexArg=isVarComplex(arg);
 	if(complexArg){
+#ifdef STACK3
 	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
+#else
+	  getComplexMatrixOfDouble(arg, &iRows, &iCols, &pDataReal, &pDataImg);
+#endif
 	  /* c -> z */
-	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
+ 	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
 	}else{
+#ifdef STACK3
 	  GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
+#else
+	  getMatrixOfDouble(arg, &iRows, &iCols, &pData);
+#endif
 	}
 	if(iRows != iCols){
 	  Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
@@ -65,18 +82,23 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	      }
 
 	      if(ret ==-1){
-		sciprint(_("Warning :\n"));
-		sciprint(_("%s : matrix is close to singular or badly scaled. rcond = %e\n"), fname, dblRcond);
+		sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
+		Msgs(5,1);
 	      }
 	    }
 	  }
 	}
-	/* redondant	if(ret >0){ Error(ret) ; } 
-	   else{*/
-	  LhsVar(1) = 1;
-	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ 
-	}*/
-	}
-	return 0;
+	if(ret >0)
+	  {
+	    Error(ret) ; 
+	  } 
+	else
+	  {
+	    LhsVar(1) = 1;
+	    /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_  */
+	  }
+      }
+    }
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
