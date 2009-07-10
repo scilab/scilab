@@ -26,7 +26,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how matrix of strngs can be handled through the Scilab API.</para>
+        <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
     </refsection>
     <refsection>
         <title>Create from existing data</title>
@@ -76,7 +76,7 @@
         <!--Lib_name: string_writing-->
         <!--Func_list: write_string-->
         <title>Gateway Source</title>
-        <programlisting role="code gateway">
+        <programlisting role="code_gateway">
             <![CDATA[
 int write_string(char *fname,unsigned long fname_len)
 {
@@ -114,7 +114,6 @@ int write_string(char *fname,unsigned long fname_len)
     
     //assign allocated variables to Lhs position
     LhsVar(1)       = Rhs + 1;
-    PutLhsVar();
     return 0;
 }
         ]]>

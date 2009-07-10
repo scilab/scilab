@@ -149,7 +149,7 @@
         <!--Lib_name: double_writing-->
         <!--Func_list: write_double-->
         <title>Gateway Source</title>
-        <programlisting role="code gateway">
+        <programlisting role="code_gateway">
             <![CDATA[
 int write_double(char *fname,unsigned long fname_len)
 {
@@ -237,7 +237,6 @@ int write_double(char *fname,unsigned long fname_len)
     //assign allocated variables to Lhs position
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
-    PutLhsVar();
     return 0;
 }
         ]]>

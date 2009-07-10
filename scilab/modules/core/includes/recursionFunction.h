@@ -53,10 +53,9 @@ BOOL isRecursionCallToFunction(void);
 
 /**
 * check if there a recursion call from a function (fortran)
-* @param[out] 0 (FALSE) or 1 (TRUE)
-* @return 0
+* @return  0 (FALSE) or 1 (TRUE)
 */
-int C2F(isrecursioncalltofunction)(int *bok);
+int C2F(isrecursioncalltofunction)(void);
 
 /**
 * Get Gateway ID from a recursion call
@@ -66,10 +65,9 @@ int getRecursionGatewayToCall(void);
 
 /**
 * Get Gateway ID from a recursion call (fortran)
-* @param[out] gateway ID or ERROR_GW_ID
-* @return 0
+* @return gateway ID or ERROR_GW_ID
 */
-int C2F(getrecursiongatewaytocall)(int *gw);
+int C2F(getrecursiongatewaytocall)(int *callID);
 
 /**
 * get Function ID from a recursion call 

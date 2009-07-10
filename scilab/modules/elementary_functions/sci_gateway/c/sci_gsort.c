@@ -60,35 +60,7 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,2);
 
-	if (Rhs == 3)
-    {
-		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-		CheckLength(3,m3,1);
-		if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"i","d");
-			return 0;
-		}
-		iord[0] = *cstk(l3);
-    }
 
-	if (Rhs >= 2)
-    {
-		char c;
-		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-		if ( m2 == 0 )
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),fname,2);
-			return 0;
-		}
-		c = *cstk(l2);
-		if ( (c != ROW_SORT) && (c != COLUMN_SORT) && (c != GLOBAL_SORT) && (c != LIST_SORT) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,2,"r","c","g","lr","lc");
-			return 0;
-		}
-		strcpy(typex,cstk(l2));
-    }
 
 
 	if (Rhs >= 1)
@@ -139,6 +111,36 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 			break;
 		}
     }
+
+	if (Rhs == 3)
+	{
+		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
+		CheckLength(3,m3,1);
+		if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
+		{
+			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"i","d");
+			return 0;
+		}
+		iord[0] = *cstk(l3);
+	}
+
+	if (Rhs >= 2)
+	{
+		char c;
+		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+		if ( m2 == 0 )
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),fname,2);
+			return 0;
+		}
+		c = *cstk(l2);
+		if ( (c != ROW_SORT) && (c != COLUMN_SORT) && (c != GLOBAL_SORT) && (c != LIST_SORT) )
+		{
+			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,2,"r","c","g","lr","lc");
+			return 0;
+		}
+		strcpy(typex,cstk(l2));
+	}
 
 	if ( typex[0] == LIST_SORT) 
     {
@@ -330,117 +332,8 @@ int C2F(sci_gsort)(char *fname, unsigned long fname_len)
 /*-----------------------------------------------------------------------------------*/
 static int gsort_complex(char *fname, char *mode, char *order)
 {
-	int realDataAdr = 0, complexDataAdr = 0;
-	int isComplex = 0;
-	int m = 0, n = 0;
-	
-	GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &isComplex, &m, &n, &realDataAdr, &complexDataAdr);
-
-	if (isComplex)
-	{
-		int iflag = 1;
-		int *indices = NULL;
-
-		double *realpart = NULL;
-		double *imagpart = NULL;
-
-		double *absolutevalues = NULL;
-
-		double *sorted_realpart = NULL;
-		double *sorted_imagpart = NULL;
-		int i = 0;
-
-		if ( mode[0] == GLOBAL_SORT )
-		{
-			if ( m*n != 0 )
-			{
-				indices = (int*)MALLOC(sizeof(int)*(m*n));
-				if (!indices)
-				{
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				}
-			}
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' expected .\n"),fname,2,"g");
-			return 0;
-		}
-
-		realpart = stk(realDataAdr);
-		imagpart = stk(complexDataAdr);
-
-		absolutevalues = (double*)MALLOC( (m*n) * sizeof(double) ) ;
-		if (!absolutevalues)
-		{
-			Scierror(999,_("%s: No more memory.\n"),fname);
-			return 0;
-		}
-
-		sorted_realpart = (double*)MALLOC(sizeof(double)*(m*n));
-		if (!sorted_realpart)
-		{
-			FREE(absolutevalues);
-			Scierror(999,_("%s: No more memory.\n"),fname);
-			return 0;
-		}
-
-		sorted_imagpart = (double*)MALLOC(sizeof(double)*(m*n));
-		if (!sorted_imagpart)
-		{
-			FREE(absolutevalues);
-			FREE(sorted_realpart);
-			Scierror(999,_("%s: No more memory.\n"),fname);
-			return 0;
-		}
-
-		/* abs() */
-		for (i = 0; i < m*n; i++)
-		{
-			absolutevalues[i] = sqrt( (realpart[i] * realpart[i]) + (imagpart[i] * imagpart[i]) );
-		}
-
-		/* sort */
-		C2F(gsortd)(absolutevalues,indices,&iflag,&m,&n,mode,order);
-	
-        /* sorted values */
-		for (i = 0; i< m*n ; i++)
-		{
-			sorted_realpart[i] = realpart[ indices[i] - 1 ];
-			sorted_imagpart[i] = imagpart[ indices[i] - 1 ];
-		}
-
-		/* put values on stack */
-		if (Lhs == 2)
-		{
-			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &isComplex, &m, &n, &sorted_realpart, &sorted_imagpart);                 
-			CreateVarFromPtr(Rhs + 2, MATRIX_OF_INTEGER_DATATYPE, &m, &n, &indices);
-
-			LhsVar(1) =  Rhs + 1;
-			LhsVar(2) =  Rhs + 2;
-			C2F(putlhsvar)();
-		}
-		else
-		{
-			CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &isComplex, &m, &n, &sorted_realpart, &sorted_imagpart);                 
-			LhsVar(1) =  Rhs + 1;
-			C2F(putlhsvar)();
-		}
-
-		if (indices) {FREE(indices); indices = NULL;}
-		if (indices) {FREE(sorted_realpart); sorted_realpart = NULL;}
-		if (indices) {FREE(sorted_imagpart); sorted_imagpart = NULL;}
-		if (indices) {FREE(realpart); realpart = NULL;}
-		if (indices) {FREE(imagpart); imagpart = NULL;}
-		if (indices) {FREE(absolutevalues); absolutevalues = NULL;}
-	}
-	else
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d.\n"),fname,1);
-		return 0;
-	}
-
+	int lw = 0;
+	C2F(overload)(&lw, "gsort", (unsigned long)strlen("gsort"));
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

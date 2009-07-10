@@ -17,9 +17,6 @@
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
-	/* force redirect stdout, stderr in console */
-	freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
-	freopen("CONOUT$", "wb", stderr); /* redirect stderr --> CONOUT$*/
 
 	switch (reason) 
 	{

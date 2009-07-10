@@ -80,7 +80,7 @@
         <!--Lib_name: string_reading-->
         <!--Func_list: read_string-->
         <title>Gateway Source</title>
-        <programlisting role="code gateway">
+        <programlisting role="code_gateway">
             <![CDATA[
 int read_string(char *fname,unsigned long fname_len)
 {
@@ -185,7 +185,6 @@ int read_string(char *fname,unsigned long fname_len)
     free(pstOut);
 
     LhsVar(1) = Rhs + 1;
-    PutLhsVar();
     return 0;
 }
             ]]>
