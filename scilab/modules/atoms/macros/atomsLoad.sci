@@ -126,7 +126,7 @@ function result = atomsLoad(name,version)
 		// =====================================================================
 		[is_loaded,loaded_version] =  atomsIsLoaded(name(i));
 		if is_loaded then
-			error(msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n","atomsLoad",name(i),loaded_version)));
+			error(msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n"),"atomsLoad",name(i),loaded_version));
 			continue;
 		end
 		

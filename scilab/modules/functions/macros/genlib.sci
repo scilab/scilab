@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function genlib(nam,path,force,verbose,names)
+function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verbose,names)
   
 // get all .sci files in the specified directory
   
@@ -18,6 +18,11 @@ function genlib(nam,path,force,verbose,names)
   W          = who('get');
   np         = predef();
   predefined = or(W($-np+1:$)==nam);
+
+  success       = %t;
+  funcs         = [];
+  success_files = [];
+  failed_files  = [];
   
   if verbose then
     mprintf(gettext("-- Creation of [%s] (Macros) --\n"),nam);
@@ -121,8 +126,15 @@ function genlib(nam,path,force,verbose,names)
         end
         
         // getf sci file and save functions it defines as a .bin file
-        getsave(scif);
+        result = getsave(scif);
         modified = %t;
+        if result <> [] then
+          success_files($+1) = scif
+          funcs = [funcs result]
+        else
+          failed_files($+1) = scif
+          success = %f
+        end
       end
     end
   end
@@ -142,6 +154,7 @@ function genlib(nam,path,force,verbose,names)
     //save it
     
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then
+      success = %f;
       error(msprintf(gettext("%s: %s file cannot be created\n"),"genlib",path+'lib'));
     end
   else
@@ -201,6 +214,7 @@ function result = getsave(scifile)
     clear ierr
     
     if new<>[] then
+      result = new($:-1:1)';
       execstr('save(u,'+strcat(new($:-1:1),',')+')');
     else
       msprintf(gettext("%s: File %s does not contain any function.\n"),"genlib",binfile)
