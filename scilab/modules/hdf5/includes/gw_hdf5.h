@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,24 +10,13 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include <windows.h> 
+#ifndef __GW_HDF5_H__
+#define __GW_HDF5_H__
 /*--------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/libintl.lib")
+int gw_hdf5(void);
 /*--------------------------------------------------------------------------*/ 
-int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
-{
-  switch (reason) 
-    {
-    case DLL_PROCESS_ATTACH:
-      break;
-    case DLL_PROCESS_DETACH:
-      break;
-    case DLL_THREAD_ATTACH:
-      break;
-    case DLL_THREAD_DETACH:
-      break;
-    }
-  return 1;
-}
+int sci_export_to_hdf5(char *fname,unsigned long fname_len);
+int sci_import_from_hdf5(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
-
+#endif /* __GW_HDF5_H__ */
+/*--------------------------------------------------------------------------*/

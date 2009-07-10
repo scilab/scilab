@@ -6,7 +6,7 @@
 	ProjectGUID="{4FC72D4A-80EE-4B1A-8724-0201C1A35621}"
 	RootNamespace="fileio"
 	Keyword="Win32Proj"
-
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -128,8 +128,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -214,8 +214,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -305,8 +305,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../../libs/hdf5/include;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS;_HDF5USEDLL_;WIN32"
+				AdditionalIncludeDirectories="includes;src/c;../../libs/MALLOC/includes;../windows_tools/includes;../api_scilab/includes;../core/includes;../string/includes;../output_stream/includes;../io/includes;../localization/includes;../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FILEIO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -465,18 +465,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\h5_fileManagement.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\h5_readDataFromFile.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\h5_writeDataToFile.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\isdir.c"
 				>
 			</File>
@@ -561,42 +549,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\cpp\sci_export_to_hdf5.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="0"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="0"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_fileext.c"
 				>
 			</File>
@@ -647,18 +599,6 @@
 			<File
 				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
 				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\cpp\sci_import_from_hdf5.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						CompileAs="0"
-					/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_isdir.c"
@@ -843,22 +783,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\h5_attributeConstants.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\h5_fileManagement.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\h5_readDataFromFile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\h5_writeDataToFile.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\isdir.h"
 				>
 			</File>
@@ -995,10 +919,6 @@
 		</File>
 		<File
 			RelativePath=".\sci_gateway\fileio_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\bin\hdf5dll.lib"
 			>
 		</File>
 		<File

@@ -80,7 +80,8 @@ demo_tools \
 genetic_algorithms \
 simulated_annealing \
 parameters \
-matio
+matio \
+hdf5
 
 #umfpack
 
@@ -177,7 +178,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/functions/libscifunctions.la 
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 $(top_builddir)/modules/umfpack/libsciumfpack.la \

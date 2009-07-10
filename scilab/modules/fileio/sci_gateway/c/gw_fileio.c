@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
-#define FILEIO_TAB_SIZE 38
+#define FILEIO_TAB_SIZE 36
 static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 	{sci_mopen, "mopen"},
 	{sci_mputstr, "mputstr"},
@@ -54,9 +54,7 @@ static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 	{sci_fileinfo,"fileinfo"},
 	{sci_newest,"newest"},
 	{sci_getrelativefilename,"getrelativefilename"},
-	{sci_get_absolute_file_path,"get_absolute_file_path"},
-	{sci_export_to_hdf5,"export_to_hdf5"},
-	{sci_import_from_hdf5,"import_from_hdf5"}
+	{sci_get_absolute_file_path,"get_absolute_file_path"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)

@@ -1,0 +1,8 @@
+// ====================================================================
+// This file contains command to be executed at the end 
+// of a scilab session for gui module
+// Copyright DIGITEO 2009
+// ====================================================================
+// delete help chapter
+del_help_chapter('hdf5',%T);
+// ====================================================================

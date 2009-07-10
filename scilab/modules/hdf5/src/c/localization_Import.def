@@ -1,0 +1,7 @@
+LIBRARY    scilocalization.dll
+
+
+EXPORTS
+setlanguage
+getlanguage
+localeToUTF

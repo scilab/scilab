@@ -1,0 +1,11 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+com_
+putlhsvar_
+intersci_
+checklhs_
+freeArrayOfString
+callFunctionFromGateway
+checkrhs_

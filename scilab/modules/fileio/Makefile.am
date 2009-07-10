@@ -84,32 +84,11 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c
 
-if HDF5
-FILEIO_SOURCES += src/c/h5_fileManagement.c \
-src/c/h5_writeDataToFile.c \
-src/c/h5_readDataFromFile.c
-
-#GATEWAY_SOURCES += \
-#sci_gateway/c/sci_import_from_hdf5.c
-
-GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp 
-
-else
-
-GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sci_no_hdf5.cpp
-
-endif
-
-
 libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
-				$(HDF5_CFLAGS)
+				-I$(top_srcdir)/modules/output_stream/includes
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -118,12 +97,11 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/localization/includes \
-				$(HDF5_CFLAGS)
+				-I$(top_srcdir)/modules/localization/includes
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
+libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 

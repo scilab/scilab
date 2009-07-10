@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,25 +9,24 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+/*--------------------------------------------------------------------------*/
+#include "gw_hdf5.h"
+#include "callFunctionFromGateway.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
-#include <windows.h> 
+/*  interface function */
 /*--------------------------------------------------------------------------*/ 
-#pragma comment(lib,"../../bin/libintl.lib")
+#define HDF5_TAB_SIZE 2
+static gw_generic_table Tab[HDF5_TAB_SIZE]={
+	{sci_export_to_hdf5,"export_to_hdf5"},
+	{sci_import_from_hdf5,"import_from_hdf5"}
+	};
 /*--------------------------------------------------------------------------*/ 
-int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
+int gw_hdf5(void)
 {
-  switch (reason) 
-    {
-    case DLL_PROCESS_ATTACH:
-      break;
-    case DLL_PROCESS_DETACH:
-      break;
-    case DLL_THREAD_ATTACH:
-      break;
-    case DLL_THREAD_DETACH:
-      break;
-    }
-  return 1;
+	Rhs = Max(0,Rhs);
+	callFunctionFromGateway(Tab, HDF5_TAB_SIZE);
+	return 0;
 }
 /*--------------------------------------------------------------------------*/ 
 
