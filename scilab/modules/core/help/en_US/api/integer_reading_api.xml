@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Integer management reading_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>Integer reading</refname>
+        <refpurpose>
+            How to read matrices of integers in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
+        <synopsis>int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8)</synopsis>
+        <synopsis>int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16)</synopsis>
+        <synopsis>int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32)</synopsis>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        Returns address of array ( size: _piRows * _piCols).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/integer_reading_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/integer_reading_api.tst-->
+        <!--Lib_name: integer_reading-->
+        <!--Func_list: read_integer-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int read_integer(char *fname,unsigned long fname_len)
+{
+    int i;
+    int iRet            = 0;
+
+    //output variable info
+    int iRows8          = 0;
+    int iCols8          = 0;
+    int iRows16         = 0;
+    int iCols16         = 0;
+    int iRows32         = 0;
+    int iCols32         = 0;
+    int iPrec           = 0;
+
+    int* piAddr8        = NULL;
+    int* piAddr16       = NULL;
+    int* piAddr32       = NULL;
+
+    char* pcData        = NULL;
+    short* psData       = NULL;
+    int* piData         = NULL;
+
+    char* pcDataOut     = NULL;
+    short* psDataOut    = NULL;
+    int* piDataOut      = NULL;
+
+    //check input/ouput arguments count
+    CheckRhs(3,3);
+    CheckLhs(3,3);
+
+    //get varialbe address
+    getVarAddressFromPosition(1, &piAddr8);
+    getVarAddressFromPosition(2, &piAddr16);
+    getVarAddressFromPosition(3, &piAddr32);
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr8, &iPrec);
+    if(iPrec != SCI_INT8)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr16, &iPrec);
+    if(iPrec != SCI_INT16)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr32, &iPrec);
+    if(iPrec != SCI_INT32)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger8(piAddr8, &iRows8, &iCols8, &pcData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger16(piAddr16, &iRows16, &iCols16, &psData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger32(piAddr32, &iRows32, &iCols32, &piData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //alloc new variable
+    pcDataOut   = (char*)malloc(sizeof(char) * iRows8 * iCols8);
+    //manipulation of data
+    for(i = 0 ; i < iRows8 * iCols8 ; i++)
+    {
+        pcDataOut[i] = pcData[i] * 2;
+    }
+
+    //alloc new variable
+    psDataOut   = (short*)malloc(sizeof(short) * iRows16 * iCols16);
+    //manipulation of data
+    for(i = 0 ; i < iRows16 * iCols16 ; i++)
+    {
+        psDataOut[i] = psData[i] * 4;
+    }
+
+    //alloc new variable
+    piDataOut   = (int*)malloc(sizeof(int) * iRows32 * iCols32);
+    //manipulation of data
+    for(i = 0 ; i < iRows32 * iCols32 ; i++)
+    {
+        piDataOut[i] = piData[i] * 8;
+    }
+
+    //create new variable
+    iRet = createMatrixOfInteger8(Rhs + 1, iRows8, iCols8, pcDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfInteger16(Rhs + 2, iRows16, iCols16, psDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfInteger32(Rhs + 3, iRows32, iCols32, piDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //assign allocated variables to Lhs position
+    LhsVar(1) = Rhs + 1;
+    LhsVar(2) = Rhs + 2;
+    LhsVar(3) = Rhs + 3;
+    return 0;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+a8  = int8([    1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+                
+a16  = int16([  1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+
+a32 = int32([   1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+
+[c8,c16,c32] = read_integer(a8, a16, a32);
+
+if or(c8 <> a8 * 2) then error("failed"), end
+if or(c16 <> a16 * 4) then error("failed"), end
+if or(c32 <> a32 * 8) then error("failed"), end
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

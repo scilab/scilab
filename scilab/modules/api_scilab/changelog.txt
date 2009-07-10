@@ -1,0 +1,8 @@
+action_binding (0.1-1) stable; urgency=medium
+
+  * First version of the module
+ -- Vincent COUVERT Wed, 24 Oct 2007 15:46:08D +0200
+
+  * Based on module_skeleton
+ -- Sylvestre Ledru  Tue, 13 Mar 2007 13:37:08D +0200
+ -- Allan CORNET  Sun, 13 30 2007 13:37:08D +0200

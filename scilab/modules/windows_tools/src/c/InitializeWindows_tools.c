@@ -11,11 +11,22 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
+#include <stdio.h>
+#include <windows.h>
 #include "InitializeWindows_tools.h"
+#include "fromc.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL InitializeWindows_tools(void)
 {
 	BOOL bOK = FALSE;
+
+	HWND hScilab = GetConsoleWindow();
+
+	if ( (hScilab) && IsFromC() )
+	{
+		/* force redirect stdout, stderr in console */
+		freopen("CONOUT$", "wb", stdout); /* redirect stdout --> CONOUT$*/
+	}
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/ 

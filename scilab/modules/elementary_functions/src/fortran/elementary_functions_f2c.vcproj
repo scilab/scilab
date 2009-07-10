@@ -6,7 +6,6 @@
 	ProjectGUID="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	RootNamespace="elementary_functions_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

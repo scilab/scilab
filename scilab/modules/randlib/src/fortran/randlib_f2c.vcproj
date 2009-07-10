@@ -6,7 +6,6 @@
 	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	RootNamespace="randlib_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

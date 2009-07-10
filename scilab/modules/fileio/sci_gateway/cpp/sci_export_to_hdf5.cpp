@@ -35,7 +35,7 @@ bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int _iH5File, int *_piVar, char* _pstName);
 bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
 bool export_sparse(int _iH5File, int *_piVar, char* _pstName);
-bool export_boolean_sparse(int *_piVar, char* _pstName);
+bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName);
 bool export_matlab_sparse(int *_piVar, char* _pstName);
 bool export_ints(int _iH5File, int *_piVar, char* _pstName);
 bool export_handles(int *_piVar, char* _pstName);
@@ -76,7 +76,8 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 		iRet = getVarAddressFromName(pstNameList[i + 1], &piAddrList[i]);
 		if(iRet)
 		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
+			// 2 = 1 for filename + 1 because starting arg number is 1 for human being
+			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 2);
 			return 0;
 		}
 	}
@@ -144,7 +145,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 		}
 	case sci_boolean_sparse :
 		{
-			bReturn = export_boolean_sparse(_piVar, _pstName);
+			bReturn = export_boolean_sparse(_iH5File, _piVar, _pstName);
 			break;
 		}
 	case sci_matlab_sparse :
@@ -351,6 +352,34 @@ bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 
 	char pstMsg[512];
 	sprintf(pstMsg, "bool (%d x %d)", iRows, iCols);
+	print_type(pstMsg);
+	return true;
+}
+
+bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
+{
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int iNbItem					= 0;
+	int* piNbCoef				= NULL;
+	int* piNbItemRow		= NULL;
+	int* piColPos				= NULL;
+
+	iRet = getBooleanSparseMatrix(_piVar, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iRet = writeBooleanSparseMatrix(_iH5File, _pstName, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+	if(iRet)
+	{
+		return false;
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "boolean sparse (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 	return true;
 }

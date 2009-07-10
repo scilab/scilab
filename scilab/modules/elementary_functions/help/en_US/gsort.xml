@@ -79,7 +79,7 @@
         <listitem>
           <para>a character string. It gives the ordering direction:
           <literal>'i'</literal> stand for increasing and
-          <literal>'d'</literal> for decreasing order.</para>
+          <literal>'d'</literal> for decreasing order (default).</para>
         </listitem>
       </varlistentry>
 
@@ -178,10 +178,10 @@ gsort(v,'lc','i')
 
 v=['Scilab' '2.6'
    'Scilab' '2.7'
-   'Scicos' '2.7'
+   'xcos' '2.7'
    'Scilab' '3.1'
-   'Scicos' '3.1'
-   'Scicos' '4.0'
+   'xcos' '3.1'
+   'xcos' '4.0'
    'Scilab' '4.0']
 
 gsort(v,'lr','i')
@@ -206,6 +206,5 @@ gsort(v,'lc','i')
     Sort Function". Software---Practice and Experience,
     23(11):1249-1265</para>
 
-    <para>http://www.enseignement.polytechnique.fr/profs/informatique/Jean-Jacques.Levy/poly/main2/node10.html</para>
   </refsection>
 </refentry>

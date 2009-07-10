@@ -177,6 +177,8 @@ Bug fixes:
 
 * bug 4181 fixed - remove the AdCommunications help page
 
+* bug 4217 fixed -  gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
+
 * bug 4262 fixed - lines returns incorrect values.
 
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
@@ -285,3 +287,6 @@ Bug fixes:
 
 * bug 4626 fixed - when using the CLI version, completion make Scilab crash
 
+* bug 4638 fixed - this example with optim freezes scilab
+
+* bug 4645 fixed - french 'gsort' help had some wrong informations.

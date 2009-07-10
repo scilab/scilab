@@ -6,7 +6,6 @@
 	ProjectGUID="{D98B0986-14E4-44FD-B006-CACE4B291F38}"
 	RootNamespace="interpolation_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
