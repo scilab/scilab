@@ -13,10 +13,26 @@
 #ifndef __H5_FILEMANAGEMENT_H__
 #define __H5_FILEMANAGEMENT_H__
 
-int createHDF5File(char *name);
+#include "dynlib_hdf5_scilab.h"
 
-int openHDF5File(char *name);
+/**
+*
+* @param[in]
+* @return
+*/
+HDF5_SCILAB_IMPEXP int createHDF5File(char *name);
 
-void closeHDF5File(int file);
+/**
+*
+* @param[in]
+* @return
+*/
+HDF5_SCILAB_IMPEXP int openHDF5File(char *name);
+
+/**
+*
+* @param[in]
+*/
+HDF5_SCILAB_IMPEXP void closeHDF5File(int file);
 
 #endif /* !__H5_FILEMANAGEMENT_H__ */

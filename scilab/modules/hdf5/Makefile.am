@@ -84,6 +84,7 @@ libscihdf5_la_include_HEADERS = includes/gw_hdf5.h \
 includes/h5_attributeConstants.h \
 includes/h5_fileManagement.h \
 includes/h5_readDataFromFile.h \
-includes/h5_writeDataToFile.h
+includes/h5_writeDataToFile.h \
+includes/dynlib_hdf5_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am
