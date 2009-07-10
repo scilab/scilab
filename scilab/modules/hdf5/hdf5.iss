@@ -28,7 +28,7 @@ Source: modules\{#HDF5}\license.txt; DestDir: {app}\modules\{#HDF5}; Components:
 Source: modules\{#HDF5}\readme.txt; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB}
 Source: modules\{#HDF5}\version.xml; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HDF5}\sci_gateway\hdf5_gateway.xml; DestDir: {app}\modules\{#HDF5}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#HDF5}\sci_gateway\hdf5_gateway.xml; DestDir: {app}\modules\{#HDF5}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HDF5}\includes\*.h; DestDir: {app}\modules\{#HDF5}\includes; Components: {#COMPN_SCILAB}
 ;
