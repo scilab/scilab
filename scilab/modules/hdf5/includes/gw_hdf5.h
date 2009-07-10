@@ -13,10 +13,12 @@
 #ifndef __GW_HDF5_H__
 #define __GW_HDF5_H__
 /*--------------------------------------------------------------------------*/ 
-int gw_hdf5(void);
+#include "dynlib_hdf5_scilab.h"
 /*--------------------------------------------------------------------------*/ 
-int sci_export_to_hdf5(char *fname,unsigned long fname_len);
-int sci_import_from_hdf5(char *fname,unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int gw_hdf5(void);
+/*--------------------------------------------------------------------------*/ 
+HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname,unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/
