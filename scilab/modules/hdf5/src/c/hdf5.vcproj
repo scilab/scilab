@@ -407,6 +407,26 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\gw_hdf5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\h5_attributeConstants.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\h5_fileManagement.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\h5_readDataFromFile.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\h5_writeDataToFile.h"
+				>
+			</File>
+			<File
 				RelativePath=".\resource.h"
 				>
 			</File>
