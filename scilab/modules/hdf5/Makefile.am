@@ -13,20 +13,21 @@ HDF5_SOURCES = src/c/h5_fileManagement.c \
 src/c/h5_writeDataToFile.c \
 src/c/h5_readDataFromFile.c
 
+GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
+
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp 
 
 else
 
 HDF5_SOURCES =
+GATEWAY_C_SOURCES =
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_no_hdf5.cpp
 
 endif
 
 
 #### hdf5 : include files ####
-libscihdf5_la_includedir=$(pkgincludedir)/hdf5
-libscihdf5_la_include_HEADERS = 
 
 libscihdf5_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -53,7 +54,7 @@ pkglib_LTLIBRARIES = libscihdf5.la
 
 libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
@@ -76,9 +77,6 @@ libscihdf5_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscihdf5_la_etcdir = $(mydatadir)/etc
 libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
-#### hdf5 : gateway declaration ####
-libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 
 #### hdf5 : include files ####
 libscihdf5_la_includedir=$(pkgincludedir)/hdf5
