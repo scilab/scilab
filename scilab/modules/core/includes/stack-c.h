@@ -27,7 +27,6 @@
 #include "stackTypeVariable.h"
 
 #include "BOOL.h"
-//#include "scisparse.h"  /* define SciSparse type */
 #include "stack1.h"
 #include "stack2.h"
 #include "stack3.h"

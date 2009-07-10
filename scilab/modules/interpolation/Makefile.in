@@ -267,6 +267,7 @@ MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
+OBJDUMP = @OBJDUMP@
 OBJEXT = @OBJEXT@
 OCAMLC = @OCAMLC@
 OCAMLDEP = @OCAMLDEP@
@@ -420,8 +421,8 @@ libsciinterpolation_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-		                -I$(top_srcdir)/modules/string/includes \
-                		-I$(top_srcdir)/modules/operations/includes
+				-I$(top_srcdir)/modules/string/includes \
+                -I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)

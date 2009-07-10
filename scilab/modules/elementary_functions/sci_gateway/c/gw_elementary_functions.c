@@ -13,7 +13,7 @@
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define ELEMENTARY_FUNCTIONS_TAB_SIZE 52
+#define ELEMENTARY_FUNCTIONS_TAB_SIZE 53
 static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 {
 	{C2F(sci_abs),"abs"},
@@ -67,12 +67,12 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{C2F(sci_spones),"spones"},
 	{C2F(sci_gsort),"gsort"},
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
-	{C2F(sci_scimatrix),"matrix"}
+	{C2F(sci_scimatrix),"matrix"},
+	{C2F(sci_sort),"sort"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
 {
-//  sciprint("WARNING ! : You are using a new generation module\n");
 	callFunctionFromGateway(Tab,ELEMENTARY_FUNCTIONS_TAB_SIZE);
 	return 0;
 }
