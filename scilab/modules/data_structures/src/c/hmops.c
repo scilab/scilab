@@ -26,6 +26,8 @@
 
 #define sign(a) ((a) < 0 ? -1 : 1)
 
+/* SCI_IMPLICIT_POLY is not used elsewhere in C code ... maybe fortran */
+#define SCI_IMPLICIT_POLY 129 
 #define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
 #define OLD_HYPERMAT -2
 
