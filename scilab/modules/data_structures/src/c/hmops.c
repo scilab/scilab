@@ -26,6 +26,8 @@
 
 #define sign(a) ((a) < 0 ? -1 : 1)
 
+/* SCI_IMPLICIT_POLY is not used elsewhere in C code ... maybe fortran */
+#define SCI_IMPLICIT_POLY 129 
 #define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
 #define OLD_HYPERMAT -2
 
@@ -455,7 +457,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       ti = (int *)td;
       return ( index_convert(td, ti, *mn, ind_max) );
 
-    case (sci_implicit_poly ):         /* p1:p2:p3 */
+    case (SCI_IMPLICIT_POLY):         /* p1:p2:p3 */
 
       il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
