@@ -67,6 +67,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int nbr_curves = 0;
   char *label = NULL;
 
+  /*Retrieving Parameters*/
   ipar = GetIparPtrs(block);
   nipar = GetNipar(block);
   rpar = GetRparPtrs(block);
@@ -88,7 +89,6 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   ymax = rpar[3]; 
   label = GetLabelPtrs(block);
   number_of_subwin = 1;
-
   /* If only one element to draw*/
   if (buffer_size == 1)
     {
@@ -103,9 +103,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 
-	  sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
-	  pFIGURE_FEATURE(scoGetPointerScopeWindow(*pScopeMemory))->pixmapMode = 1;
-
+	  //sciSetPixmapMode(scoGetPointerScopeWindow(*pScopeMemory),TRUE);
 
 	  for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory, 0) ; i++)
 	    {
@@ -130,9 +128,9 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       if(scoGetScopeActivation(*pScopeMemory) == 1)
 	{
 	  gomme_color = sciGetBackground(scoGetPointerAxes(*pScopeMemory,0));
-	  //sciSetIsBoxed(scoGetPointerAxes(*pScopeMemory,0),FALSE); //** obsolete in Scilab 5
-	  /*if mark style*/
-	  if(color[0] <= 0)
+
+	 
+	  if(color[0] <= 0)  /*if mark style*/
 	    {
 	      if(firstdraw == 1)
 		{
@@ -240,39 +238,34 @@ void canimxy(scicos_block * block, int flag)
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
-				scoRetrieveScopeMemory(block->work, &pScopeMemory);
-				if(scoGetScopeActivation(pScopeMemory) == 1)
-				{
-					/* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
-					/* Check if figure is still opened, otherwise, don't try to destroy it again. */
-					scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
-					if (figure != NULL)
-					{
-						if(scoGetLongDrawSize(pScopeMemory,0) == 0)
-						{
-							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-							{
-								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-								forceRedraw(pLongDraw);
-							}
-						}
-						else
-						{
-							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-							{
-								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-								forceRedraw(pLongDraw);
-							}
-						}
-					}
-					//Attention : here pShortDraw is a Window
-					/* pShortDraw = sciGetCurrentFigure(); */
-					/*pFIGURE_FEATURE(pShortDraw)->user_data = NULL;*/
-					/*pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;*/
-					clearUserData(figure);
-				}
-				scoFreeScopeMemory(block->work, &pScopeMemory);
-				break; //Break of the switch
+	scoRetrieveScopeMemory(block->work, &pScopeMemory);
+	if(scoGetScopeActivation(pScopeMemory) == 1)
+	  {
+	    /* Check if figure is still opened, otherwise, don't try to destroy it again. */
+	    scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+	    if (figure != NULL)
+	      {
+		if(scoGetLongDrawSize(pScopeMemory,0) == 0)
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+		else
+		  {
+		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+		      {
+			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+			forceRedraw(pLongDraw);
+		      }
+		  }
+		clearUserData(figure);
+	      }
+	  }
+	scoFreeScopeMemory(block->work, &pScopeMemory);
+	break; //Break of the switch
       }
       //free the memory which is allocated at each turn by some variables
  
