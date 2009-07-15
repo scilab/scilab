@@ -234,11 +234,17 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 */
 	public void bitmapExport(String userExtension) {
 		ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
-		String exportcmd;
+
+		String actualFilename=exportData.getExportName();
+		if (this.getExtension(actualFilename)==null){
+			// Could not get the extension from the user input
+			// take the one from the list
+			actualFilename+="."+userExtension;
+		}
 
 		//the export instruction for the selected format
-		exportcmd = "xs2" + exportData.getExportExtension() 
-		+ "(" + figureId + ", '" + exportData.getExportName() + "');";
+		String exportcmd = "xs2" + exportData.getExportExtension() 
+		+ "(" + figureId + ", '" + actualFilename + "');";
 		InterpreterManagement.putCommandInScilabQueue(exportcmd);		
 	}
 	
