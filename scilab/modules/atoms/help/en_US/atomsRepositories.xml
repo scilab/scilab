@@ -12,31 +12,26 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositories">
   <info>
-	<pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>atomsRepositories</refname>
     <refpurpose>Get the list of managed repositories</refpurpose>
   </refnamediv>
-  
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
   <!-- ===================================================================== -->
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
 	  repositories = atomsRepositories(level)
 	</synopsis>
   </refsynopsisdiv>
-  
   <!-- ===================================================================== -->
   <!-- Parameters -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Parameters</title>
-	
     <variablelist>
       <varlistentry>
         <term>level</term>
@@ -48,7 +43,6 @@
 		  </para>
         </listitem>
       </varlistentry>
-	  
       <varlistentry>
         <term>repositories</term>
         <listitem>
@@ -60,41 +54,32 @@
 		  </para>
         </listitem>
       </varlistentry>
-	  
     </variablelist>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Description</title>
     <para>
 	  
 	</para>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Examples -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
+    <programlisting role="example"><![CDATA[
 atomsRepositories()
 atomsRepositories('official')
 atomsRepositories('allusers')
 atomsRepositories('user')
-]]>
-	</programlisting>
+]]></programlisting>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- See also -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
@@ -106,11 +91,9 @@ atomsRepositories('user')
       </member>
     </simplelist>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

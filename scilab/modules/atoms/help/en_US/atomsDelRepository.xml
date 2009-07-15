@@ -12,31 +12,26 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsDelRepository">
   <info>
-	<pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>atomsDelRepository</refname>
     <refpurpose>Remove one or several URLs from the list of managed repositories</refpurpose>
   </refnamediv>
-  
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
   <!-- ===================================================================== -->
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
 	  nbDel = atomsDelRepository(url[,allusers])
 	</synopsis>
   </refsynopsisdiv>
-  
   <!-- ===================================================================== -->
   <!-- Parameters -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Parameters</title>
-	
     <variablelist>
       <varlistentry>
         <term>url</term>
@@ -46,7 +41,6 @@
 		  </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>allusers</term>
         <listitem>
@@ -62,7 +56,6 @@
 		  </para>
         </listitem>
       </varlistentry>
-	  
       <varlistentry>
         <term>nbDel</term>
         <listitem>
@@ -71,42 +64,33 @@
 		  </para>
         </listitem>
       </varlistentry>
-	  
     </variablelist>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Description -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Description</title>
     <para>
 	  
 	</para>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Examples -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
+    <programlisting role="example"><![CDATA[
 atomsRepositories()
 atomsAddRepository(["http://www.repository1.com";"http://www.repository2.com"])
 atomsRepositories()
 atomsDelRepository(["http://www.repository1.com";"http://www.repository2.com"])
 atomsRepositories()
-]]>
-	</programlisting>
+]]></programlisting>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- See also -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
@@ -118,11 +102,9 @@ atomsRepositories()
       </member>
     </simplelist>
   </refsection>
-  
   <!-- ===================================================================== -->
   <!-- Authors -->
   <!-- ===================================================================== -->
-  
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">

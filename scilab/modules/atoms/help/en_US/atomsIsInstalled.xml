@@ -10,12 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAddRepository">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsInstalled">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>atomsAddRepository</refname>
+    <refname>atomsIsInstalled</refname>
     <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  nbAdd = atomsAddRepository(url[,allusers])
+	  res = atomsIsInstalled(name[,version,allusers])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -34,10 +34,18 @@
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>url</term>
+        <term>name</term>
         <listitem>
           <para>
-			Matrix of strings : list of the URLs to add
+			Matrix of strings : Names of modules to test
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>version</term>
+        <listitem>
+          <para>
+			Matrix of strings : Versions of modules to test
 		  </para>
         </listitem>
       </varlistentry>
@@ -45,24 +53,15 @@
         <term>allusers</term>
         <listitem>
           <para>
-			A boolean : if this parameter is equal to TRUE (%T), URLs are added
-			for all users of the computer. The list of available URL for all users
-			is defined in SCI/.atoms/repositories.
-			
-			If allusers is set to TRUE (%T) and the directory SCI/.atoms/ is not
-			write accessible, atomsAddRepository will produce an error.
-			
-			if this parameter is equal to FALSE (%T), the URL is only added
-			for the current user. The list of URL only available for the current
-			user is defined in SCIHOME/atoms/repositories.
+			A boolean
 		  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>nbAdd</term>
+        <term>res</term>
         <listitem>
           <para>
-			An integer : the number of repositories successfully added.
+			
 		  </para>
         </listitem>
       </varlistentry>
@@ -83,9 +82,6 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-atomsRepositories()
-atomsAddRepository(["http://www.repository1.com";"http://www.repository1.com"
-atomsRepositories()
 ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
@@ -95,10 +91,10 @@ atomsRepositories()
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsDelRepository">atomsDelRepository</link>
+        <link linkend="atomsDelRepository">atomsInstall</link>
       </member>
       <member>
-        <link linkend="atomsRepositories">atomsRepositories</link>
+        <link linkend="atomsRepositories">atomsGetInstalled</link>
       </member>
     </simplelist>
   </refsection>
