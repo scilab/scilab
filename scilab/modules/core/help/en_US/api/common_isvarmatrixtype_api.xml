@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getvartype_API"
+<refentry version="5.0-subset Scilab" xml:id="Common isvarmatrixtype_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,16 +19,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarType</refname>
+        <refname>isVarMatrixType</refname>
 
         <refpurpose>
-            How to get type of a variable.
+            How to know if a variable is stored as a matrix.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to retrieve the scilab type of a variable.</para>
-        <synopsis>int getVarType(int* _piAddress)</synopsis>
+        <para>This help describes how to know if a variable is stored as a matrix.</para>
+        <synopsis>int isVarMatrixType(int* _piAddress)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -43,7 +43,7 @@
             </varlistentry>
         </variablelist>
         <title>Return value</title>
-        <para>This function returns the Scilab type of the variable ( sci_matrix, sci_strings, sci_ints, ... )</para>
+        <para>This function returns 1 if the variable is stored as matrix otherwise 0</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->

@@ -26,7 +26,7 @@
 /**
  * Get integer precision ( 8, 16, 32, 64 )
  * @param[in] _piAddress variable address
- * @param[out] _piPrecison return integer precision ( 8, 1-, 32, 64 )
+ * @param[out] _piPrecison return integer precision ( 8, 16, 32, 64 )
  */
 API_SCILAB_IMPEXP int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision);
 

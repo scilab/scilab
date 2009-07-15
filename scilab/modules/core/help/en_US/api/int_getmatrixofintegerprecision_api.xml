@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getvartype_API"
+<refentry version="5.0-subset Scilab" xml:id="Common getmatrixofintegerprecision_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,16 +19,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarType</refname>
+        <refname>getMatrixOfIntegerPrecision</refname>
 
         <refpurpose>
-            How to get type of a variable.
+            How to get precision of an integer matrix.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to retrieve the scilab type of a variable.</para>
-        <synopsis>int getVarType(int* _piAddress)</synopsis>
+        <para>This help describes how to get precision of an integer matrix.</para>
+        <synopsis>int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -37,13 +37,17 @@
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Address of the variable
+                        Address of the variable.
+                    </para>
+                </listitem>
+                <term>_piPrecision</term>
+                <listitem>
+                    <para>
+                        Return precision of an integer variable in bytes. ( 8 bits = 1, 16 bytes = 2, ... )
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <title>Return value</title>
-        <para>This function returns the Scilab type of the variable ( sci_matrix, sci_strings, sci_ints, ... )</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
