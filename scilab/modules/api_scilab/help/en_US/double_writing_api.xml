@@ -149,12 +149,12 @@
         <!--Lib_name: double_writing-->
         <!--Func_list: write_double-->
         <title>Gateway Source</title>
-        <programlisting role="code gateway">
+        <programlisting role="code_gateway">
             <![CDATA[
 int write_double(char *fname,unsigned long fname_len)
 {
     int i,j;
-
+    int iRet            = 0;
     //first variable info : real matrix of double 3 x 4
     int iRows1          = 3;
     int iCols1          = 4;
@@ -190,7 +190,12 @@ int write_double(char *fname,unsigned long fname_len)
     //}
 
     //create a variable from a existing data array
-    createMatrixOfDouble(Rhs + 1, iRows1, iCols1, pdblReal1);
+    iRet = createMatrixOfDouble(Rhs + 1, iRows1, iCols1, pdblReal1);
+    if(iRet)
+    {
+        //Error
+        return 1;
+    }
 
     //after creation, we can free memory.
     free(pdblReal1);
@@ -199,7 +204,12 @@ int write_double(char *fname,unsigned long fname_len)
     *************************/
 
     //reserve space in scilab memory and fill it
-    allocComplexMatrixOfDouble(Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+    iRet = allocComplexMatrixOfDouble(Rhs + 2, iRows2, iCols2, &pdblReal2, &pdblImg2);
+    if(iRet)
+    {
+        //Error
+        return 1;
+    }
 
     //fill array with incremental values for real part and decremental for imaginary part
     //[ 23i     1+22i       2+21i       3+20i       4+19i       5+18i
@@ -227,7 +237,6 @@ int write_double(char *fname,unsigned long fname_len)
     //assign allocated variables to Lhs position
     LhsVar(1) = Rhs + 1;
     LhsVar(2) = Rhs + 2;
-    PutLhsVar();
     return 0;
 }
         ]]>

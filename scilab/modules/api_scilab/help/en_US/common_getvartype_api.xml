@@ -27,7 +27,7 @@
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to retireve the scilab type of a variable.</para>
+        <para>This help describes how to retrieve the scilab type of a variable.</para>
         <synopsis>int getVarType(int* _piAddress)</synopsis>
     </refsection>
     <refsection>

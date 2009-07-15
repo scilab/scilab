@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getvaraddr_API"
+<refentry version="5.0-subset Scilab" xml:id="Common getvardimension_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,33 +19,37 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarAddressFromPosition</refname>
+        <refname>getVarDimension</refname>
 
         <refpurpose>
-            How to get address of an argument in a gateway.
+            How to get dimention of a variable stored as matrix.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to retireve address of an argument in a gateway.</para>
-        <synopsis>int getVarAddressFromPosition(int _iVar, int** _piAddress)</synopsis>
+        <para>This help describes how to get dimention of a variable stored as matrix.</para>
+        <synopsis>int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
-                <term>_iVar</term>
-                <listitem>
-                    <para>
-                        Position of the argument in the function call
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Return address of the Scilab variable.
+                        Address of the variable.
+                    </para>
+                </listitem>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows.
+                    </para>
+                </listitem>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns.
                     </para>
                 </listitem>
             </varlistentry>

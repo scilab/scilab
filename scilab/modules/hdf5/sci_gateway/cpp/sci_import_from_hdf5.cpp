@@ -14,7 +14,7 @@ extern "C"
 {
 #include <hdf5.h>
 #include <string.h>
-#include "gw_fileio.h"
+#include "gw_hdf5.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "Scierror.h"

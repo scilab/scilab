@@ -137,7 +137,7 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	sparse windows_tools functions overloading maple2scilab m2sci \
 	texmacs scipad development_tools compatibility_functions \
 	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio atoms scicos_blocks \
+	simulated_annealing parameters matio atoms hdf5 scicos_blocks \
 	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -375,7 +375,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	functions overloading maple2scilab m2sci texmacs scipad \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms $(am__append_1) scicos . \
+	parameters matio atoms hdf5 $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -450,7 +450,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/functions/libscifunctions.la 
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \

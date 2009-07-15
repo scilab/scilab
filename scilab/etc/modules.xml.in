@@ -82,4 +82,5 @@
 <module name="parameters" activate="yes"/>
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
+<module name="hdf5" activate="yes"/>
 </modules>
