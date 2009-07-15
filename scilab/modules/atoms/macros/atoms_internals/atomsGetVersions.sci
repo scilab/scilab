@@ -11,9 +11,10 @@
 
 // Return the sorted version list of the package entered as input argument
 
-function versions = atomsGetVersions(name,min_version,max_version)
+function versions = atomsGetVersions(name,min_version,max_version,min_version_included,max_version_included)
 	
 	// Initialize
+	// =========================================================================
 	versions = [];
 	
 	// Check input parameters
@@ -21,8 +22,8 @@ function versions = atomsGetVersions(name,min_version,max_version)
 	
 	rhs  = argn(2);
 	
-	if rhs < 1 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetVersions",1,3));
+	if rhs < 1 | rhs > 5 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetVersions",1,5));
 	end
 	
 	if type(name) <> 10 then
@@ -37,6 +38,14 @@ function versions = atomsGetVersions(name,min_version,max_version)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"atomsGetVersions",3));
 	end
 	
+	if (rhs>3) & (type(min_version_included)<>4) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetVersions",4));
+	end
+	
+	if (rhs>4) & (type(max_version_included)<>4) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetVersions",5));
+	end
+	
 	// Default values
 	// =========================================================================
 	
@@ -46,6 +55,14 @@ function versions = atomsGetVersions(name,min_version,max_version)
 	
 	if (rhs<3) | ( (rhs>=3) & (max_version=="") ) then
 		max_version = "9999999";
+	end
+	
+	if rhs<4 then
+		min_version_included = %T;
+	end
+	
+	if rhs<5 then
+		max_version_included = %T;
 	end
 	
 	// Get all package description
@@ -66,7 +83,18 @@ function versions = atomsGetVersions(name,min_version,max_version)
 	
 	// Delete out of bounds versions
 	// =========================================================================
-	package_versions_tab(find((atomsVersionCompare(package_versions_tab,max_version) > 0)|(atomsVersionCompare(package_versions_tab,min_version) < 0))) = [];
+	
+	if max_version_included then
+		package_versions_tab(find(atomsVersionCompare(package_versions_tab,max_version) >  0)) = [];
+	else
+		package_versions_tab(find(atomsVersionCompare(package_versions_tab,max_version) >= 0)) = [];
+	end
+	
+	if min_version_included then
+		package_versions_tab(find(atomsVersionCompare(package_versions_tab,min_version) <  0)) = [];
+	else
+		package_versions_tab(find(atomsVersionCompare(package_versions_tab,min_version) <= 0)) = [];
+	end
 	
 	// Sort the version matrix
 	// =========================================================================

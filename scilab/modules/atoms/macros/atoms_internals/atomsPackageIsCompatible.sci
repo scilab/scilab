@@ -114,9 +114,11 @@ function result = atomsPackageIsCompatible(parent_name,parent_version,child_name
 		// List versions of the dependency we can test
 		
 		if (this_dependency_dir == "~") | ..
-			( (this_dependency_dir == "=")  & (this_dependency_version == child_version ) ) | ..
+			( (this_dependency_dir == "=" ) & (this_dependency_version == child_version ) ) | ..
 			( (this_dependency_dir == ">=") & ( atomsVersionCompare(child_version,this_dependency_version) >= 0 ) ) | ..
-			( (this_dependency_dir == "<=") & ( atomsVersionCompare(child_version,this_dependency_version) <= 0 ) ) then
+			( (this_dependency_dir == ">" ) & ( atomsVersionCompare(child_version,this_dependency_version) >  0 ) ) | ..
+			( (this_dependency_dir == "<=") & ( atomsVersionCompare(child_version,this_dependency_version) <= 0 ) ) | ..
+			( (this_dependency_dir == "<" ) & ( atomsVersionCompare(child_version,this_dependency_version) <  0 ) ) then
 			
 			result = [ result ; %T ];
 		

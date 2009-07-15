@@ -132,7 +132,7 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 			this_dependency_success = %F;
 			
 			// Split dependencies to get 
-			//  - direction ("=", ">=", "<=", "~")
+			//  - direction ("=",">=",">","<=","<","~")
 			//  - dependence name
 			//  - dependence version (optional)
 			
@@ -155,6 +155,12 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 				
 			elseif this_dependency_dir == "<=" then
 				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version);
+			
+			elseif this_dependency_dir == ">" then
+				this_dependency_list = atomsGetVersions(this_dependency_name,this_dependency_version,"",%F,%F);
+				
+			elseif this_dependency_dir == "<" then
+				this_dependency_list = atomsGetVersions(this_dependency_name,"",this_dependency_version,%F,%F);
 				
 			end
 			

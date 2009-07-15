@@ -46,7 +46,7 @@ function result = atomsIsCompatible(version_str)
 	// Check input parameters value
 	// =========================================================================
 	
-	if regexp(version_str,"/^(>=|<=|=|==|~)\s/","o") == [] then
+	if regexp(version_str,"/^(>=|>|<=|<|=|==|~)\s/","o") == [] then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version/dependency.\n"),"atomsIsCompatible",1));
 	end
 	
@@ -87,12 +87,12 @@ function result = atomsIsCompatible(version_str)
 		return;
 	end
 	
-	if (dep_operator == ">") & comparison>=0 then
+	if (dep_operator == ">" ) & comparison>=0 then
 		result = %F;
 		return;
 	end
 	
-	if (dep_operator == "<") & comparison<=0 then
+	if (dep_operator == "<" ) & comparison<=0 then
 		result = %F;
 		return;
 	end
