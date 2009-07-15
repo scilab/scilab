@@ -93,11 +93,11 @@ function [a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,CI,
   CI = get(editCI,'String');
   CI1 = get(editCI1,'String');
   //type de la condition au limite en a (0 : Dirichlet, 1 : Neumann)
-  CLa_type = get(popa,'Value');
+  CLa_type = get(popa,'Value')-1; //S.S. : -1 to patch the 4667 bug
   // l'expression de la condition au limite en a (une chaine de caracteres)
   CLa_exp = get(editCLa,'String');
   //type de la condition au limite en b (0 : Dirichlet, 1 : Neumann)
-  CLb_type = get(popb,'Value');
+  CLb_type = get(popb,'Value')-1; //S.S. : -1 to patch the 4667 bug
   // l'expression de la condition au limite en b (une chaine de caracteres)
   CLb_exp = get(editCLb,'String');
   // les operateurs
