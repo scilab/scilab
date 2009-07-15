@@ -178,20 +178,25 @@ int isVarMatrixType(int* _piAddress)
 	{
 		int iType = getVarType(_piAddress);
 
-		if(	iType == sci_matrix ||
-				iType == sci_poly ||
-				iType == sci_boolean ||
-				iType == sci_sparse ||
-				iType == sci_boolean_sparse ||
-				iType == sci_matlab_sparse ||
-				iType == sci_ints ||
-				iType == sci_handles ||
-				iType == sci_strings)
-				return 1;
-		else
+		switch(iType)
 		{
+		case sci_matrix :
+		case sci_poly : 
+		case sci_boolean : 
+		case sci_sparse : 
+		case sci_boolean_sparse : 
+		case sci_matlab_sparse : 
+		case sci_ints : 
+		case sci_handles : 
+		case sci_strings : 
+			return 1;
+		default :
 			return 0;
 		}
+	}
+	else
+	{
+		return 0;
 	}
 	return 1;
 }

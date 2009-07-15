@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common iscomplex_API"
+<refentry version="5.0-subset Scilab" xml:id="Common getvaraddr_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,31 +19,37 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>isVarComplex</refname>
+        <refname>getVarAddressFromPosition</refname>
 
         <refpurpose>
-            How to get variable complexity.
+            How to get address of an argument in a gateway.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to retireve variable complexity.</para>
-        <synopsis>int isVarComplex(int* _piAddress)</synopsis>
+        <para>This help describes how to retrieve address of an argument in a gateway.</para>
+        <synopsis>int getVarAddressFromPosition(int _iVar, int** _piAddress)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
         <variablelist>
             <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position of the argument in the function call
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Address of the variable
+                        Return address of the Scilab variable.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
-        <title>Return value</title>
-        <para>This function returns the variable complexity (0 for real variable and 1 for complex)</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
