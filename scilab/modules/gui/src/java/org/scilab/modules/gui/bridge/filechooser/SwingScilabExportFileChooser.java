@@ -130,9 +130,8 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		JFrame frame = new JFrame();	
 		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int selection = super.showSaveDialog(frame);		
-		
-		if (selection == JFileChooser.APPROVE_OPTION) {		
-			FileMask ft = (FileMask)super.getFileFilter();
+		if (selection == JFileChooser.APPROVE_OPTION) {
+
 			this.exportName = super.getSelectedFile().getAbsolutePath();
 
 			//Test if there is a file with the same name
@@ -146,9 +145,19 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 				}
 			}
 
-
-			//get the extension from the Filter
-			String extensionCombo = ft.getExtensionFromFilter();
+			String extensionCombo = new String();
+			try {
+				// The try catch is necessary here when the user input the full
+				// filename (foo.jpg) and press tab. It is going to update
+				// the filter causing the following line to fail (cannot cast)
+				// Therefor, we switch back to the allFiles (*) case.
+				FileMask ft = (FileMask)super.getFileFilter();
+				//get the extension from the Filter
+				extensionCombo = ft.getExtensionFromFilter();
+				
+			}catch(java.lang.ClassCastException e){
+				extensionCombo = allFiles;
+			}
 
 			if (extensionCombo.equals(allFiles)) {				
 				exportManager();	
