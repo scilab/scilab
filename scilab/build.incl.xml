@@ -69,6 +69,8 @@
 		
 		<pathelement location="${jhall.jar}"/>
 
+		<pathelement location="${jgraph.jar}"/>
+
 	<!-- Only usefull for the documentation -->	
 		<pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
 		<pathelement location="${batik.jar}"/>

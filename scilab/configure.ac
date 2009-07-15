@@ -687,6 +687,13 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
+
+				# JFC/SWing Graph component
+				AC_JAVA_CHECK_PACKAGE([jgraph],[org.jgraph.plaf.basic.BasicGraphUI],[Graph component])
+				JGRAPH=$PACKAGE_JAR_FILE
+				AC_SUBST(JGRAPH)
+
+
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
 		fi
 	else
