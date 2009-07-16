@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2009 - INRIA Bernard Hugueney
+ * Copyright (C) ????-2009 - DIGITEO Bernard HUGUENEY
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -147,7 +147,6 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 			  else /* Lhs == 1 */
 			    {
 			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
-			      //iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
 			    }
 			}
 		      ret=  iSvdM(pData, iRows, iCols, complexArg, economy, tol, pSV, ptrsU[0], pS, ptrsV[0], pRk);
