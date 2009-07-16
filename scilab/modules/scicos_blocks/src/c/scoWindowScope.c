@@ -390,7 +390,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 	}
 
       //** combined condition for forced redraw
-      if ( ((delta_time>refresh_time) && (NbrPtsShort>=2)) || (NbrPtsShort>=scoGetShortDrawSize(pScopeMemory,i)) )
+      if ( ((delta_time>refresh_time) && (NbrPtsShort>=2)) && (NbrPtsShort>=scoGetShortDrawSize(pScopeMemory,i)) )
 	{ 
 	  //** printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); //** DEBUG ONLY 
 	  force_update[i] = 1; 
