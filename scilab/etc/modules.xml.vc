@@ -83,7 +83,6 @@
 <module name="simulated_annealing" activate="yes"/>
 <module name="parameters" activate="yes"/>
 <module name="matio" activate="yes"/>
-<<<<<<< HEAD:scilab/etc/modules.xml.vc
 <module name="atoms" activate="yes"/>
 <module name="hdf5" activate="yes"/>
 <!-- comments -->
