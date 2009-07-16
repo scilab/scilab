@@ -58,6 +58,18 @@ function result = atomsInstall(packages,allusers)
 		OSNAME = "macosx";
 	end
 	
+	// Architecture detection
+	// =========================================================================
+	
+	[dynamic_info,static_info] = getdebuginfo();
+	arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
+	
+	if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
+		ARCH = "64";
+	else
+		ARCH = "32";
+	end
+	
 	// Verbose Mode ?
 	// =========================================================================
 	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
@@ -273,9 +285,16 @@ function result = atomsInstall(packages,allusers)
 			
 			// Define the path of the downloaded file
 			// =================================================================
-			fileout = pathconvert(this_package_directory+this_package_details(OSNAME+"Name"),%F);
-			filein  = this_package_details(OSNAME+"Url");
-			filemd5 = this_package_details(OSNAME+"Md5");
+			
+			if isfield(this_package_details,OSNAME+ARCH+"Name") then
+				OSTYPE = OSNAME+ARCH;
+			else
+				OSTYPE = OSNAME;
+			end
+			
+			fileout = pathconvert(this_package_directory+this_package_details(OSTYPE+"Name"),%F);
+			filein  = this_package_details(OSTYPE+"Url");
+			filemd5 = this_package_details(OSTYPE+"Md5");
 			
 			// Launch the download
 			// =================================================================
