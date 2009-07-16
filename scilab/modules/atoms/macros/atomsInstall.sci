@@ -309,12 +309,12 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
 		if MSDOS then
-			rename_cmd = "rename";
+			rename_cmd = "rename """+this_package_details("extractedDirectory")+""" """+this_package_version+"""";
 		else
-			rename_cmd = "mv";
+			rename_cmd = "mv """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
 		end
 		
-		rename_cmd = rename_cmd+" """+this_package_details("extractedDirectory")+""" """+this_package_directory+this_package_version+"""";
+		
 		
 		[rep,stat]=unix_g(rename_cmd)
 		
