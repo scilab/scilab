@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -49,10 +49,10 @@
   <refsection id="Description_Integer_pal">
     <title>Description</title>
     <para>
-Cette palette est dédicacée aux nombres entiers.
-Des opérateurs variés sont ici implémentés pour la logique
+Cette palette est dÃ©dicacÃ©e aux nombres entiers.
+Des opÃ©rateurs variÃ©s sont ici implÃ©mentÃ©s pour la logique
 et la manipulation des champs de bits ainsi que des portes
-logiques qui sont fréquemment utilisées dans les circuits numériques.
+logiques qui sont frÃ©quemment utilisÃ©es dans les circuits numÃ©riques.
 
 </para>
   </refsection>
@@ -71,7 +71,7 @@ logiques qui sont fréquemment utilisées dans les circuits numériques.
       </listitem>
       <listitem>
         <para>
-          <link linkend="CONVERT">CONVERT - CONVERT Convertion de type de données</link>
+          <link linkend="CONVERT">CONVERT - CONVERT Convertion de type de donnÃ©es</link>
         </para>
       </listitem>
       <listitem>
@@ -106,7 +106,7 @@ logiques qui sont fréquemment utilisées dans les circuits numériques.
       </listitem>
       <listitem>
         <para>
-          <link linkend="SHIFT">SHIFT - SHIFT Décalage binaire</link>
+          <link linkend="SHIFT">SHIFT - SHIFT DÃ©calage binaire</link>
         </para>
       </listitem>
       <listitem>

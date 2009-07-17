@@ -5,7 +5,7 @@ c This file is released into the public domain
 
       subroutine ext6f(aname,b,c)
 c     example 6
-c     reading a vector in scilab internal stack using readmat interface
+c     reading a vector in scilab internal stack using creadmat interface
 c     -->link('ext6f.o','ext6f')
 c     -->a=[1,2,3];b=[2,3,4];
 c     -->c=call('ext6f','a',1,'c',b,2,'d','out',[1,3],3,'d')

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_SCALAR2VECTOR">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_SCALAR2VECTOR">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_SCALAR2VECTOR">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_SCALAR2VECTOR">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -99,17 +99,17 @@
     <title>Description</title>
     <para>
 Ce bloc convertit une valeur scalaire en un vecteur.
-Lorsque des blocs avec plus d'un port régulier son utilisés (comme Somme
-ou le bloc Relational Operator), vous pouvez mixer des entrées scalaires
+Lorsque des blocs avec plus d'un port rÃ©gulier son utilisÃ©s (comme Somme
+ou le bloc Relational Operator), vous pouvez mixer des entrÃ©es scalaires
 et vectorielles.
-Lorsque vous faites cela, les entrées scalaires sont étendues à des vecteurs
-dont les tailles sont égales aux tailles des vecteurs d'entrée.
-Si plus d'un port d'entrée est vectoriel, alors ils doivent avoir la même taille.
+Lorsque vous faites cela, les entrÃ©es scalaires sont Ã©tendues Ã  des vecteurs
+dont les tailles sont Ã©gales aux tailles des vecteurs d'entrÃ©e.
+Si plus d'un port d'entrÃ©e est vectoriel, alors ils doivent avoir la mÃªme taille.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_SCALAR2VECTOR">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_SCALAR2VECTOR">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -125,13 +125,13 @@ Si plus d'un port d'entrée est vectoriel, alors ils doivent avoir la même taille
         <para>
           <emphasis role="bold">size of output</emphasis>
         </para>
-        <para> Le nombre d'éléments du vecteur de sortie.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Le nombre d'Ã©lÃ©ments du vecteur de sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_SCALAR2VECTOR">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_SCALAR2VECTOR">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -140,14 +140,14 @@ Si plus d'un port d'entrée est vectoriel, alors ils doivent avoir la même taille
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -155,26 +155,26 @@ Si plus d'un port d'entrée est vectoriel, alors ils doivent avoir la même taille
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

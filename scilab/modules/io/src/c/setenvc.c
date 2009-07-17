@@ -26,19 +26,13 @@ static int UpdateEnvVar = 0;
 /*--------------------------------------------------------------------------*/
 BOOL setenvc(char *stringIn,char *valueIn)
 {
-	char *string = NULL;
-	char *value = NULL;
 	BOOL ret = TRUE;
 
-	char szTemp1[bsiz];
-	char szTemp2[bsiz];
-
-	string = UTFToLocale(stringIn, szTemp1);
-	value = UTFToLocale(valueIn, szTemp2);
+	
 
 #ifdef _MSC_VER
 	{
-		int len_env = 0; 
+		int len_env = 0;
 		/*
 		On Windows :
 		each process has two copies of the environment variables,
@@ -46,30 +40,45 @@ BOOL setenvc(char *stringIn,char *valueIn)
 		the value in both locations, so that other software that looks in
 		one place or the other is guaranteed to see the value.
 		*/
-		#define ENV_FORMAT "%s=%s"
-		if (SetEnvironmentVariableA(string,value) == 0) return FALSE;
-		len_env = (int) (strlen(string) + strlen(value) + strlen(ENV_FORMAT)) + 1;
+
+		#define ENV_FORMAT L"%s=%s"
+		wchar_t* wstringIn = to_wide_string(stringIn);
+		wchar_t* wvalueIn = to_wide_string(valueIn);
+
+
+
+		if (SetEnvironmentVariableW(wstringIn,wvalueIn) == 0)
+		{
+			ret = FALSE;
+		}
+
+		len_env = (int) (wcslen(wstringIn) + wcslen(wvalueIn) + wcslen(ENV_FORMAT)) + 1;
 		if (len_env < _MAX_ENV)
 		{
-			char *env = (char*) MALLOC(len_env * sizeof(char));
+			wchar_t *env = (wchar_t*) MALLOC(len_env * sizeof(wchar_t));
 			if (env)
 			{
-				sprintf(env,"%s=%s",string,value);
-				if ( _putenv(env) ) ret = FALSE;
+				swprintf(env, len_env, L"%s=%s", wstringIn, wvalueIn);
+				if(_wputenv(env))
+				{
+					ret = FALSE;
+				}
+
 				FREE(env);env = NULL;
 			}
 		}
+		else ret = FALSE;
 	}
 #else
 	/* linux and Mac OS X */
 	/* setenv() function is strongly preferred to putenv() */
 	/* http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/setenv.3.html */
-	if ( setenv(string,value,1) ) ret = FALSE;
+	if ( setenv(stringIn,valueIn,1) ) ret = FALSE;
 #endif
 
-	if (ret)
+	if(ret)
 	{
-		UpdateEnvVar = 1;
+		setUpdateEnvVar(1);
 		setenvtcl(stringIn,valueIn);
 	}
 

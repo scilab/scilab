@@ -1,3 +1,10 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
 //===============================
 d=dir('SCI/modules/core/macros/*.sci');
 if d(2) == [] then bugmes();quit;end
@@ -12,7 +19,7 @@ if d(2) == [] then bugmes();quit;end
 if MSDOS then
  TMP = getenv('TMP');
 else
- if isdir('/tmp') then
+ if isdir('/tmp') then 
    TMP = '/tmp';
  else
    TMP = TMPDIR;

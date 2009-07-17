@@ -58,7 +58,7 @@ void DrawableRectangleFactory::setStrategies( ConcreteDrawableRectangle * rectan
     rectangle->addDrawingStrategy( newFiller ) ;
   }
 
-  if ( sciGetIsLine( m_pDrawed ) )
+  if ( sciGetIsDisplayingLines( m_pDrawed ) )
   {
     RectangleLineDrawerJoGL * newLiner = new RectangleLineDrawerJoGL(rectangle);
     rectangle->addDrawingStrategy( newLiner ) ;

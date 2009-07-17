@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CLR">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CLR">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CLR">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CLR">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,14 +93,14 @@
   <refsection id="Description_CLR">
     <title>Description</title>
     <para>
-Ce bloc réalise un système linéaire SISO (Single Input Single Output) 
-représenté par une fonction de transfert rationnelle.
-La fonction rationnelle doit être une fonction propre.
+Ce bloc rÃ©alise un systÃ¨me linÃ©aire SISO (Single Input Single Output) 
+reprÃ©sentÃ© par une fonction de transfert rationnelle.
+La fonction rationnelle doit Ãªtre une fonction propre.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CLR">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CLR">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -116,21 +116,21 @@ La fonction rationnelle doit être une fonction propre.
         <para>
           <emphasis role="bold">Numerator</emphasis>
         </para>
-        <para> Ce paramètre définit le numérateur de la fonction de transfert.</para>
-        <para> Celà doit être un polynôme définit dans l'espace de LaPlace.</para>
-        <para> Propriétés : Type 'pol' de taille 1. </para>
+        <para> Ce paramÃ¨tre dÃ©finit le numÃ©rateur de la fonction de transfert.</para>
+        <para> CelÃ  doit Ãªtre un polynÃ´me dÃ©finit dans l'espace de LaPlace.</para>
+        <para> PropriÃ©tÃ©s : Type 'pol' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Denominator</emphasis>
         </para>
-        <para> Ce paramètre définit le dénominateur de la fonction de transfert. Celà doit être un polynôme définit dans l'espace de LaPlace.</para>
-        <para> Propriétés : Type 'pol' de taille 1.</para>
+        <para> Ce paramÃ¨tre dÃ©finit le dÃ©nominateur de la fonction de transfert. CelÃ  doit Ãªtre un polynÃ´me dÃ©finit dans l'espace de LaPlace.</para>
+        <para> PropriÃ©tÃ©s : Type 'pol' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CLR">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CLR">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -139,14 +139,14 @@ La fonction rationnelle doit être une fonction propre.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -154,26 +154,26 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

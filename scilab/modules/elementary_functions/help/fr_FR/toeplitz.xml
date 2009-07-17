@@ -1,59 +1,76 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="toeplitz">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="toeplitz" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>toeplitz</refname>
-    <refpurpose> matrice de Toeplitz  </refpurpose>
+
+    <refpurpose>matrice de Toeplitz</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>A=toeplitz(c [,r])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>a,c,r  </term>
+        <term>a,c,r</term>
+
         <listitem>
-          <para>matrice complexe, réelle, polynomiale ou de chaînes de caractères.
-</para>
+          <para>matrice complexe, rÃ©elle, polynomiale ou de chaÃ®nes de
+          caractÃ¨res.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Renvoie la matrice de Toeplitz dont la première ligne est <literal>r</literal>
-    et la première colonne est <literal>c</literal>.
-    <literal>c(1)</literal> doit être égal à <literal>r(1)</literal>. <literal>toeplitz(c)</literal> renvoie la matrice de Toeplitz symétrique.
-  </para>
+
+    <para>Renvoie la matrice de Toeplitz dont la premiÃ¨re ligne est
+    <literal>r</literal> et la premiÃ¨re colonne est <literal>c</literal>.
+    <literal>c(1)</literal> doit Ãªtre Ã©gal Ã  <literal>r(1)</literal>.
+    <literal>toeplitz(c)</literal> renvoie la matrice de Toeplitz
+    symÃ©trique.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 A=toeplitz(1:5);
-//
+
 T=toeplitz(1:5,1:2:7);T1=[1 3 5 7;2 1 3 5;3 2 1 3;4 3 2 1;5 4 3 2];
 T-T1
-//
+
 s=poly(0,'s');
 t=toeplitz([s,s+1,s^2,1-s]);
 t1=[s,1+s,s*s,1-s;1+s,s,1+s,s*s;s*s,1+s,s,1+s;1-s,s*s,1+s,s]
 t-t1
-//
+
 t=toeplitz(['1','2','3','4']);
 t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="matrix">matrix</link>
-      </member>
+      <member><link linkend="matrix">matrix</link></member>
     </simplelist>
   </refsection>
 </refentry>

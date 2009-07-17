@@ -18,68 +18,69 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 
   /**
    * Create a render for this object
    */
-  void createDrawer( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void createDrawer( sciPointObj * pObj ) ;
 
   /**
    * Delete the drawer of a graphic handle
    */
-  void destroyHandleDrawer( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void destroyHandleDrawer( sciPointObj * pObj ) ;
 
   /**
    * Draw a graphic handle.
    * Should normally not be called directly. Observers should call it automatically.
    */
-  void sciDrawObj( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void sciDrawObj( sciPointObj * pObj ) ;
 
   /**
    * Move a graphic handle
    */
-  void sciMoveObj(sciPointObj * pObj, const double translation[3]);
+  RENDERER_IMPEXP void sciMoveObj(sciPointObj * pObj, const double translation[3]);
 
   /**
   * Draw a single graphic handle.
   * Should normally not be called directly. Observers should call it automatically.
   */
-  void sciDrawSingleObj( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void sciDrawSingleObj( sciPointObj * pObj ) ;
 
   /**
    * Draw only a set of graphic handles.
    * @param pObjs an array of objects lying within the same figure
    */
-  void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs ) ;
+  RENDERER_IMPEXP void sciDrawSetOfObj(sciPointObj * pObjs[], int nbObjs ) ;
 
   /**
    * Redraw an object and all its children.
    * To be called on a figure to redraw a whole window
    */
-  void redrawHierarchy( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void redrawHierarchy( sciPointObj * pObj ) ;
 
   /**
    * Call display function on the children of an object
    */
-  void displayChildren( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void displayChildren( sciPointObj * pObj ) ;
 
   /**
    * Next call to display will force this object and its children to be drawn.
    */
-  void forceHierarchyRedraw( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void forceHierarchyRedraw( sciPointObj * pObj ) ;
 
   /**
    * Specify that an object has been modified and need to be redrawn.
    * To be used when several objects are modified in the same time.
    */
-  void forceRedraw(sciPointObj * pObj);
+  RENDERER_IMPEXP void forceRedraw(sciPointObj * pObj);
 
   /**
    * Force a move an object.
    * The move is schedule for the next redraw
    */
-  void forceMove(sciPointObj * pObj, double tx, double ty, double tz);
+  RENDERER_IMPEXP void forceMove(sciPointObj * pObj, double tx, double ty, double tz);
 
 #ifdef __cplusplus
 }

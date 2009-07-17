@@ -91,19 +91,6 @@ c
       r = min(n,q)
       l = 2*n + (r*(r+5))/2 + 2*q + 1
 
-c 
-c store the initial dvec to calculate below the unconstrained minima of
-c the critical value.
-c
-C       print *,'q=',q,' n=',n,' fddmat=',fddmat,' fdamat=',fdamat,
-C      $     ' meq=',meq
-C       print *,'C=['
-C       do i=1,n
-C          write(6,'(5(f5.0,1x))') (amat(i,j),j=1,q)
-C       enddo
-C       print *,']'
-C       write(6,'(''b=['',5(f5.0,'';''),'']'')') (bvec(j),j=1,q)
-
       do 10 i=1,n
          work(i) = dvec(i)
  10   continue

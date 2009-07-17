@@ -37,6 +37,7 @@
 #include <stdio.h>
 #include "spmalloc.h"
 #include "localization.h"
+#include "charEncoding.h"
 /*
  *  IMPORTS
  *
@@ -399,13 +400,14 @@ MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  I, Size;
 register  ElementPtr  pElement;
 int  Row, Col, Err;
-FILE  *pMatrixFile, *fopen();
+FILE  *pMatrixFile;
 
 /* Begin `spFileMatrix'. */
     ASSERT( IS_SPARSE( Matrix ) );
 
 /* Open file matrix file in write mode. */
-    if ((pMatrixFile = fopen(File, "w")) == NULL)
+		wcfopen(pMatrixFile, File, "w");
+    if(pMatrixFile == NULL)
         return 0;
 
 /* Output header. */
@@ -549,13 +551,13 @@ int spFileVector(char *eMatrix,char *File,RealVector RHS IMAG_RHS )
 MatrixPtr  Matrix = (MatrixPtr)eMatrix;
 register  int  I, Size, Err;
 FILE  *pMatrixFile;
-FILE  *fopen();
 
 /* Begin `spFileVector'. */
     ASSERT( IS_SPARSE( Matrix ) AND RHS != NULL)
 
 /* Open File in append mode. */
-    if ((pMatrixFile = fopen(File,"a")) == NULL)
+		wcfopen(pMatrixFile, File, "a");
+    if (pMatrixFile == NULL)
         return 0;
 
 /* Correct array pointers for ARRAY_OFFSET. */
@@ -668,13 +670,14 @@ register  int  Size, I;
 register  ElementPtr  pElement;
 int NumberOfElements;
 RealNumber  Data, LargestElement, SmallestElement;
-FILE  *pStatsFile, *fopen();
+FILE  *pStatsFile;
 
 /* Begin `spFileStats'. */
     ASSERT( IS_SPARSE( Matrix ) );
 
 /* Open File in append mode. */
-    if ((pStatsFile = fopen(File, "a")) == NULL)
+		wcfopen(pStatsFile, File, "a");
+    if(pStatsFile == NULL)
         return 0;
 
 /* Output statistics. */

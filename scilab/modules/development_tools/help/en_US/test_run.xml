@@ -72,6 +72,9 @@
             <listitem>
               <para>unit_test</para>
             </listitem>
+            <listitem>
+              <para>skip_tests</para>
+            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>

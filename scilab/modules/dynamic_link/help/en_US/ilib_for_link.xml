@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -40,7 +40,7 @@
       <varlistentry>
         <term>libs</term>
         <listitem>
-          <para>string matrix giving extra libraries needed for shred library creation</para>
+          <para>string matrix giving extra libraries needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -119,14 +119,14 @@
     current directory, <literal>loader</literal> script must be located in
     the same directory using the <literal>loadername</literal> variable.</para>
     <para>
-    Many examples are provided in <literal>examples/link-examples-so</literal>
-    directory.</para>
+    Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
+    directory. They are all released into the public domain.</para>
 	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
+	<para><emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis></para>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>Examples (C code)</title>
     <programlisting role="example"><![CDATA[
-
 
 if haveacompiler() then
 
@@ -142,7 +142,7 @@ mputl(f1,'fun1.c')
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
 
-ilib_for_link('ext1c','fun1.o',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c") 
 
 // load the shared library 
 
@@ -158,6 +158,7 @@ end
  
   ]]></programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">

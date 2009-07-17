@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="show_window">
   <info>
     <pubdate>$LastChangedDate: 2007-01-19 15:23:10 +0100 (ven., 19 janv. 2007) $</pubdate>
   </info>
   <refnamediv>
     <refname>show_window</refname>
-    <refpurpose> met la fenêtre une au premier plan</refpurpose>
+    <refpurpose> met la fenÃªtre une au premier plan</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>show_window([figure])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>figure</term>
         <listitem>
-          <para>identifiant ou handle de la figure à mettre au premier plan.</para>
+          <para>identifiant ou handle de la figure Ã  mettre au premier plan.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Avec un paramètre,<literal>show_window</literal>met la fenêtre spécifiée au premier plan,
-    qu'elle soit iconifiée ou non. Sinon, met la fenêtre courante au premier plan.
-    Une fenêtre est crée si aucune n'existait auparavant.</para>
+    <para>Avec un paramÃ¨tre,<literal>show_window</literal>met la fenÃªtre spÃ©cifiÃ©e au premier plan,
+    qu'elle soit iconifiÃ©e ou non. Sinon, met la fenÃªtre courante au premier plan.
+    Une fenÃªtre est crÃ©e si aucune n'existait auparavant.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

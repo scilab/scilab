@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -19,20 +19,20 @@
     <refpurpose>Reconstruction d'un vecteur contenant une Date</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>V=datevec(DT)
 [Y,M,D,H,MI,S]=datevec(DT)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			V = datevec(DT) convertie un nombre (défini par datenum) en un vecteur
-			contenant une date dont les éléments sont [year, month, day, hour, minute,
-			second]. DT peut être une matrice.
+			V = datevec(DT) convertie un nombre (dÃ©fini par datenum) en un vecteur
+			contenant une date dont les Ã©lÃ©ments sont [year, month, day, hour, minute,
+			second]. DT peut Ãªtre une matrice.
 		</para>
     <para>
 			[Y, M, D, H, MI, S] = datevec(DT) retourne les composants de la date dans 6 variables.
-			DT peut être une matrice.
+			DT peut Ãªtre une matrice.
 		</para>
   </refsection>
   <refsection>

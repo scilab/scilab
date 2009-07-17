@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y = gammaln(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres réels.</para>
+          <para>vecteur ou matrice de nombres rÃ©els.</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>y</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres réels de même taille que
+          <para>vecteur ou matrice de nombres rÃ©els de mÃªme taille que
           x.</para>
         </listitem>
       </varlistentry>
@@ -59,10 +59,10 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>gammaln(x)</literal> évalue le logarithme de la fonction
-    gamma pour les composantes de <literal>x</literal>., en évitant les
-    valeurs conduisant à un underflow ou un overflow. <literal>x</literal>
-    doit être à composantes réelles.</para>
+    <para><literal>gammaln(x)</literal> Ã©value le logarithme de la fonction
+    gamma pour les composantes de <literal>x</literal>., en Ã©vitant les
+    valeurs conduisant Ã  un underflow ou un overflow. <literal>x</literal>
+    doit Ãªtre Ã  composantes rÃ©elles.</para>
   </refsection>
 
   <refsection>

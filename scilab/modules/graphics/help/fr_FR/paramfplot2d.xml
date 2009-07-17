@@ -1,53 +1,53 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="paramfplot2d">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>paramfplot2d </refname>
-    <refpurpose> animation dans le plan d'une courbe définie par une fonction  </refpurpose>
+    <refpurpose> animation dans le plan d'une courbe dÃ©finie par une fonction  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>paramfplot2d(f,x,theta)
 paramfplot2d(f,x,theta,flag)
 paramfplot2d(f,x,theta,flagrect)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>valeurs réelles.
+          <para>valeurs rÃ©elles.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f  </term>
         <listitem>
-          <para>fonction <literal>y=f(x,t)</literal>. f est une fonction Scilab ou une routine externe liée dynamiquement (sous forme d'une chaîne de caractères).
+          <para>fonction <literal>y=f(x,t)</literal>. f est une fonction Scilab ou une routine externe liÃ©e dynamiquement (sous forme d'une chaÃ®ne de caractÃ¨res).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>theta  </term>
         <listitem>
-          <para>valeurs réelles (ensemble des paramètres).
+          <para>valeurs rÃ©elles (ensemble des paramÃ¨tres).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères <literal>'no'</literal> ou <literal>'yes'</literal>: si "yes" l'écran est effacé entre deux dessins consécutifs.
+          <para>chaÃ®ne de caractÃ¨res <literal>'no'</literal> ou <literal>'yes'</literal>: si "yes" l'Ã©cran est effacÃ© entre deux dessins consÃ©cutifs.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rect  </term>
         <listitem>
-          <para>"rectangle" [xmin, xmax, ymin, ymax] (vecteur 1 x 4 de valeurs réelles),
+          <para>"rectangle" [xmin, xmax, ymin, ymax] (vecteur 1 x 4 de valeurs rÃ©elles),
 </para>
         </listitem>
       </varlistentry>
@@ -56,13 +56,13 @@ paramfplot2d(f,x,theta,flagrect)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Dessin animé de la fonction x--&gt;f(x,t) pour t=theta(1),theta(2), etc.
-    f peut être une fonction Scilab ou une routine externe liée dynamiquement puisque
-    y=f(x,t) est évaluée comme y=feval(x(:),t,f) (voir feval).
+    Dessin animÃ© de la fonction x--&gt;f(x,t) pour t=theta(1),theta(2), etc.
+    f peut Ãªtre une fonction Scilab ou une routine externe liÃ©e dynamiquement puisque
+    y=f(x,t) est Ã©valuÃ©e comme y=feval(x(:),t,f) (voir feval).
   </para>
     <para>
-    f: fonction x,t -&gt; f(x,t) = à valeur dans R^N pour x = vecteur de R^N
-    et t = nombre réel. x est un N-vecteur de valeurs de x et pour chaque t dans theta, f(x,t) = N-vecteur de valeurs de y.
+    f: fonction x,t -&gt; f(x,t) = Ã  valeur dans R^N pour x = vecteur de R^N
+    et t = nombre rÃ©el. x est un N-vecteur de valeurs de x et pour chaque t dans theta, f(x,t) = N-vecteur de valeurs de y.
   </para>
   </refsection>
   <refsection>

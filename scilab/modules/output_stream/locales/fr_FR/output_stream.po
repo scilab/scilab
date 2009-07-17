@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2009-02-11 10:03+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-02-24 21:37+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Incorrect assignment.\n"
@@ -727,7 +727,7 @@ msgstr "%s: attend plus d'un argument.\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: problème avec un des points d'entrée.\n"
+msgstr "%s : problème avec un des points d'entrée.\n"
 
 #, c-format
 msgid "%s: the shared archive was not loaded.\n"

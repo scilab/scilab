@@ -12,42 +12,99 @@
  */
 
 #include <string.h>
-#include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
-extern int C2F(intddet)(char *fname, unsigned long fname_len);
-extern int C2F(intzdet)(char *fname, unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
+#include "doublecomplex.h"
+
+#include "det.h"
+
+/*
+ * det function see http://www.scilab.org/product/man/det.html
+ * det(X)
+ * [e,m]=det(X)
+ */
+
 int C2F(intdet)(char *fname,unsigned long fname_len)
 {
-	int *header1;
-	int CmplxA;int ret;
+  int ret= 0;
 
-	/*   det(A)  */
-	if (GetType(1)!=sci_matrix) 
-	{
-		OverLoad(1);
-		return 0;
-	}
-	header1 = (int *) GetData(1);
-	CmplxA=header1[3];
-	switch (CmplxA) 
-	{
-		case REAL:
-			ret = C2F(intddet)("det",3L);
-		break;
-		case COMPLEX:
-			ret = C2F(intzdet)("det",3L);
-		break;
-
-		default:
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-					fname,1);
-		break;
-	}
-	return 0;
+  if ( (Rhs>=1) && (GetType(1)!=sci_matrix) )
+    {
+      OverLoad(1);
+      return 0;
+    }
+  CheckRhs(1, 1);
+  CheckLhs(1, 2);
+  {
+    double* pData;
+    double* pDataReal;
+    double* pDataImg;
+    int iRows, iCols;
+    int complexArg;
+    if( (complexArg= iIsComplex(1)) )
+      {
+	GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
+	/* c -> z */
+	pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
+	if(!pData)
+	  {
+	    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+	    ret = -1;
+	  }
+      }
+    else
+      {
+	GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
+      }
+    if( iRows != iCols)
+      {
+	Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+	ret= 1;
+      }
+    else
+      {
+	if(iRows == -1)
+	  {
+	    Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+	    ret= 1;
+	  }
+	else
+	  {
+	    double* pMantissaReal= NULL;
+	    double* pMantissaImg= NULL;
+	    double* pExponent= NULL;
+	    if( (ret= 
+		 (complexArg
+		  ? iAllocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg)
+		  : iAllocMatrixOfDouble(2, 1, 1, &pMantissaReal))
+		 ||( (Lhs == 2) && iAllocMatrixOfDouble(3, 1, 1, &pExponent)))
+		)
+	      {
+		Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+	      }
+	    else
+	      {
+		int intExponent;
+		ret= iDetM(pData, iCols, pMantissaReal, complexArg ? pMantissaImg : NULL, pExponent ? &intExponent : NULL);
+		if(pExponent)
+		  {
+		    *pExponent= (double)intExponent;
+		  }
+	      }      
+	    LhsVar(1)= Lhs + 1;
+	    if(Lhs == 2)
+	      {
+		LhsVar(2)= 2;
+	      }
+	  }
+      }
+    if(complexArg)
+      {
+	vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+      }
+  }
+  return ret;
 }
-/*--------------------------------------------------------------------------*/
+

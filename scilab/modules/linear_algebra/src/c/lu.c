@@ -15,20 +15,22 @@
 #include "lu.h"
 #include "doublecomplex.h"
 
-extern int F2C(zgetrf)(int*, int*, double*, int*, int*, int*);
-extern int F2C(dgetrf)(int*, int*, double*, int*, int*, int*);
+extern void C2F(zgetrf)(int*, int*, double*, int*, int*, int*);
+extern void C2F(dgetrf)(int*, int*, double*, int*, int*, int*);
+extern void C2F(dlaset)(char const uplo[1] /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
+			, double const * pAlpha, double const * pBeta, double* pData, int const * pLDData);
+extern void C2F(dlaswp)(int const* n, double* a, int const* ldA, int const* k1, int const* k2, int const* iPiv, int const* incX);
+
 
 int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pdblEData )
 {
   int ret;
   int* piPivot;
-  int* piWork;
+  int* piWork= NULL;
   int iMinRowsCols;
-  double* pdblWork;
+  double* pdblWork= NULL;
   iMinRowsCols= Min( iRows, iCols);
   piPivot= (int*) MALLOC(iMinRowsCols * sizeof(int));
-  piWork= NULL;
-  pdblWork= NULL;
   if(pdblEData == NULL) /* must allocate more tmp memory when not computing E */
     {
       piWork= (int*) MALLOC(iRows * sizeof(int));
@@ -45,7 +47,7 @@ int iLuM(double* pData, int iRows, int iCols, int complexArg, double* pdblLData,
 int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, double* pdblUData, double* pdblEData
 	, int* piPivot, int* piWork, double* pdblWork)
 {
-  int ret;
+  int ret=0 ;
   int iInfo;
   if(complexArg)
     {
@@ -97,12 +99,14 @@ int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, 
 		}
 	    }
 	}
+
+
       /* init U */
       pdCurrentU= pdblUData;
       pdCurrentArg= pData;
       for( j= 0; j != iCols; ++j)
 	{
-	  pdCurrentArg= pData + j * iMinRowsCols * (complexArg ? 2 : 1);
+	  pdCurrentArg= pData + j * iRows * (complexArg ? 2 : 1);
 	  for ( i=0; i!= iMinRowsCols; ++i, ++pdCurrentU, ++pdCurrentArg)
 	    {
 	      if( i <= j)
@@ -129,7 +133,7 @@ int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, 
 	  for(i=0; i != iRows; ++i)
 	    {
 	      piWork[i]=i;
-	    }
+	    }       
 	  for(i=0; i != iMinRowsCols; ++i)
 	    {
 	      int ip;
@@ -142,26 +146,27 @@ int iLu(double* pData, int iRows, int iCols, int complexArg, double* pdblLData, 
 		  piWork[ip]= swapTmp;
 		}
 	    }
-	  for(i= 0; i != iRows; ++i)
+	  for(i=0; i != iRows; ++i)
 	    {
-	      int ip;
-	      ip=piWork[i];
-	      if(complexArg)
+	      for(j=0; j != iMinRowsCols; ++j)
 		{
-		  C2F(zcopy)(&iCols, pdblWork+(i*2), &iRows, pdblLData+(ip*2), &iRows); 
-		}
-	      else
-		{
-		  C2F(dcopy)(&iCols, pdblWork+i, &iRows, pdblLData+ip, &iRows);
+		  if(complexArg)
+		    {
+		      *(((doublecomplex*)pdblLData)+piWork[i]+j*iRows)= *(((doublecomplex*)pdblWork)+i+j*iRows);
+		    }
+		  else
+		    {
+		      *(pdblLData+piWork[i]+j*iRows)= *(pdblWork+i+j*iRows);
+		    }
 		}
 	    }
-	}/* end if E was not requested */
+  	}/* end if E was not requested */
       else
 	{
-	  double dblZero=0., dblOne=1.;
-	  int iOne=1;
-	  F2C(dlaset)("F", &iRows, &iRows, &dblZero, &dblOne, pdblEData, &iRows);
-	  F2C(dlaswp)(&iRows, pdblEData, &iRows, &iOne, &iMinRowsCols, piPivot, &iOne);
+	  double const dblZero=0., dblOne=1.;
+	  int const iOne=1;
+	  C2F(dlaset)("F", &iRows, &iRows, &dblZero, &dblOne, pdblEData, &iRows);
+	  C2F(dlaswp)(&iRows, pdblEData, &iRows, &iOne, &iMinRowsCols, piPivot, &iOne);
 	}
     }/* end if iInfo reported an error in [z|d]getrf */
   return ret;

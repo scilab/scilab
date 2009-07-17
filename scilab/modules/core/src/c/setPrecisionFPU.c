@@ -11,7 +11,7 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#if defined(linux) && ! defined(IS_64_BITS_CPU)
+#if defined(linux) && defined(__i386__)
 #include <fpu_control.h>
 #include "setPrecisionFPU.h"
 /*

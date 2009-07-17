@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fgrayplot">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>fgrayplot</refname>
-    <refpurpose> représentation 2D en pseudo-couleurs d'une surface définie par une fonction  </refpurpose>
+    <refpurpose> reprÃ©sentation 2D en pseudo-couleurs d'une surface dÃ©finie par une fonction  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
 fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y  </term>
@@ -32,7 +32,7 @@ fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>&lt;opt_args&gt;  </term>
         <listitem>
-          <para>une séquence d'affectations <literal>key1=value1, key2=value2</literal>,... o <literal>key1</literal>, <literal>key2,...</literal> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <literal>plot2d</literal>).
+          <para>une sÃ©quence d'affectations <literal>key1=value1, key2=value2</literal>,... o <literal>key1</literal>, <literal>key2,...</literal> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <literal>plot2d</literal>).
 </para>
         </listitem>
       </varlistentry>
@@ -47,12 +47,12 @@ fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>fgrayplot</literal> dessine une représentation 2D en pseudo-couleurs d'une surface définie par <literal>z=f(x,y)</literal> sur une grille définie par <literal>x</literal> et <literal>y</literal>.
-    Chaque rectangle sur la grille est rempli avec une couleur dépendant de la moyenne des 
+    <para><literal>fgrayplot</literal> dessine une reprÃ©sentation 2D en pseudo-couleurs d'une surface dÃ©finie par <literal>z=f(x,y)</literal> sur une grille dÃ©finie par <literal>x</literal> et <literal>y</literal>.
+    Chaque rectangle sur la grille est rempli avec une couleur dÃ©pendant de la moyenne des 
     valeurs de <literal>z</literal> aux coins du rectangle.
   </para>
     <para>
-    Taper <literal>fgrayplot()</literal> pour voir une démonstration de la fonction.
+    Taper <literal>fgrayplot()</literal> pour voir une dÃ©monstration de la fonction.
   </para>
   </refsection>
   <refsection>

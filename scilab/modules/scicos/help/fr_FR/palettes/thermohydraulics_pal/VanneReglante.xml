@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="VanneReglante">
   <refnamediv>
     <refname>VanneReglante</refname>
-    <refpurpose>Vanne réglante thermohydraulique</refpurpose>
+    <refpurpose>Vanne rÃ©glante thermohydraulique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="VanneReglante">Vanne réglante thermohydraulique</link>
+          <link linkend="VanneReglante">Vanne rÃ©glante thermohydraulique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_VanneReglante">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_VanneReglante">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_VanneReglante">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_VanneReglante">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="VanneReglante">Modèle Modelica</link>
+              <link linkend="VanneReglante">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - Boîte à outils des composants thermohydrauliques</link>
+          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - BoÃ®te Ã  outils des composants thermohydrauliques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,9 +93,9 @@
   <refsection id="Description_VanneReglante">
     <title>Description</title>
     <para>
-Le bloc de VanneReglante représente une Vanne Reglante ou une vanne à
-orifice variable. Le débit du fluide passe par la vanne et est
-proportionnel à l'ouverture de vanne, ,
+Le bloc de VanneReglante reprÃ©sente une Vanne Reglante ou une vanne Ã 
+orifice variable. Le dÃ©bit du fluide passe par la vanne et est
+proportionnel Ã  l'ouverture de vanne, ,
 </para>
     <para>
 </para>
@@ -107,15 +107,15 @@ proportionnel à l'ouverture de vanne, ,
       </inlinemediaobject>
     </para>
     <para>
-là où  est l'ouverture de vanne,  est la différence de
-pression, et  est le débit. Ce modèle est seulement employé pour
-les régimes laminaires d'écoulement.  est une constante qui dépend
-de la géométrie de la vanne et de la masse volumique de fluide.
+lÃ  oÃ¹  est l'ouverture de vanne,  est la diffÃ©rence de
+pression, et  est le dÃ©bit. Ce modÃ¨le est seulement employÃ© pour
+les rÃ©gimes laminaires d'Ã©coulement.  est une constante qui dÃ©pend
+de la gÃ©omÃ©trie de la vanne et de la masse volumique de fluide.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_VanneReglante">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_VanneReglante">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -132,23 +132,23 @@ de la géométrie de la vanne et de la masse volumique de fluide.
           <emphasis role="bold">Cvmax</emphasis>
         </para>
         <para> Cvmax (l'ouverture maxi)</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">p_rho</emphasis>
         </para>
         <para> Masse volumique du fluide</para>
-        <para> Propriétés : Type 'vec' de taille -1</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_VanneReglante">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_VanneReglante">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -186,25 +186,25 @@ de la géométrie de la vanne et de la masse volumique de fluide.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Cvmax'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Cvmax'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 8005.42
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 8005.42
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'p_rho'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'p_rho'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -224,8 +224,8 @@ de la géométrie de la vanne et de la masse volumique de fluide.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_VanneReglante">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_VanneReglante">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Hydraulics/VanneReglante.mo</para>

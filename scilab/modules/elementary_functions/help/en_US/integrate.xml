@@ -104,34 +104,33 @@
     <para>computes : <subscript><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math display="block"><mml:mi mathvariant="normal">x</mml:mi> <mml:mrow>
-            <mml:mrow> <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">i</mml:mi> <mml:mo
-            >)</mml:mo> </mml:mrow> <mml:mo >=</mml:mo> <mml:mrow>
-	      <mml:msubsup> <mml:mo >∫</mml:mo> <mml:msub> <mml:mi
-	      mathvariant="normal">x</mml:mi> <mml:mn>0</mml:mn>
-	      </mml:msub> <mml:mrow> <mml:msub> <mml:mi
-	      mathvariant="normal">x</mml:mi> <mml:mn>1</mml:mn>
-	      </mml:msub> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
-	      mathvariant="normal">i</mml:mi> <mml:mo >)</mml:mo>
-	      </mml:mrow> </mml:mrow> </mml:msubsup> <mml:mi
-	      mathvariant="normal">f</mml:mi> </mml:mrow> </mml:mrow>
-	      <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
-	      mathvariant="normal">v</mml:mi> <mml:mo>)</mml:mo>
-	      </mml:mrow> <mml:mi>d</mml:mi><mml:mi
-	      mathvariant="normal">v</mml:mi> <mml:annotation
-	      mml:encoding="StarMath 5.0">x(i)=int_{x_0}^{x_1(i)}
-	      f(v)dv</mml:annotation></mml:math>
+            <mml:math display="block"><mml:mi mathvariant="normal">x</mml:mi>
+            <mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            <mml:mo>=</mml:mo> <mml:mrow> <mml:msubsup> <mml:mo>∫</mml:mo>
+            <mml:msub> <mml:mi mathvariant="normal">x</mml:mi>
+            <mml:mn>0</mml:mn> </mml:msub> <mml:mrow> <mml:msub> <mml:mi
+            mathvariant="normal">x</mml:mi> <mml:mn>1</mml:mn> </mml:msub>
+            <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            </mml:mrow> </mml:msubsup> <mml:mi mathvariant="normal">f</mml:mi>
+            </mml:mrow> </mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
+            mathvariant="normal">v</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
+            <mml:mi>d</mml:mi><mml:mi mathvariant="normal">v</mml:mi>
+            <mml:annotation
+            mml:encoding="StarMath 5.0">x(i)=int_{x_0}^{x_1(i)}
+            f(v)dv</mml:annotation></mml:math>
           </imagedata>
         </imageobject>
-      </inlinemediaobject></subscript> for <literal>i=1:size(x1,'*')</literal></para>
+      </inlinemediaobject></subscript> for
+    <literal>i=1:size(x1,'*')</literal></para>
 
     <para>Where <inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math display="block"><mml:mi
-            mathvariant="normal">f</mml:mi> <mml:mo >(</mml:mo>
-            <mml:mi mathvariant="normal">v</mml:mi> <mml:mo
-            >)</mml:mo></mml:math>
+            <mml:math display="block"><mml:mi mathvariant="normal">f</mml:mi>
+            <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">v</mml:mi>
+            <mml:mo>)</mml:mo></mml:math>
           </imagedata>
         </imageobject>
       </inlinemediaobject> is given by the expression
@@ -152,16 +151,15 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-    x0=0;x1=0:0.1:2*%pi;
-    X=integrate('sin(x)','x',x0,x1);
-    norm(cos(x1)-(1-X))
+    <programlisting role="example"> 
+x0=0;x1=0:0.1:2*%pi;
+X=integrate('sin(x)','x',x0,x1);
+norm(cos(x1)-(1-X))
 
-    x1=-10:0.1:10;
-    X=integrate(['if x==0 then 1,';
-    'else sin(x)/x,end'],'x',0,x1)
-    
-    </programlisting>
+ x1=-10:0.1:10;
+X=integrate(['if x==0 then 1,';
+             'else sin(x)/x,end'],'x',0,x1)
+     </programlisting>
   </refsection>
 
   <refsection>

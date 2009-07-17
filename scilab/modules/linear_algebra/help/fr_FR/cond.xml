@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> conditionnement  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>cond(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice réelle ou complexe
+          <para>matrice rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Conditionnement en norme 2. <literal>cond(X)</literal> est le quotient entre la plus grande et la plus petite valeur singulière de <literal>X</literal>.
+    Conditionnement en norme 2. <literal>cond(X)</literal> est le quotient entre la plus grande et la plus petite valeur singuliÃ¨re de <literal>X</literal>.
   </para>
   </refsection>
   <refsection>

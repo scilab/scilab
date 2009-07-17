@@ -15,3 +15,12 @@ SEP #15 : Scilab Tree component
 SEP #16 : anti aliasing
 SEP #17 : add verbose option for dynamic link
 SEP #18 : scilab new binaries (linux, mac)
+SEP #19 : extend exit
+SEP #20 : Sparse Matrices Algorithms
+SEP #21 : Nelder-Mead Optimization Algorithm
+SEP #22 : Sorting Algorithms
+SEP #23 : Extend «diary()»
+SEP #24 : Introduce an easy way to manage sub chapters in the documentation
+SEP #25 : Extend "fileinfo" to manage a column vector as input argument
+SEP #26 : Extend "strsplit" to manage a column vector as input argument
+SEP #27 : Writing Scilab function uigetfile

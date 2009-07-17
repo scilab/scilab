@@ -149,13 +149,13 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	}
       else
 	{
-	  double *pdblLData;
-	  double *pdblLReal;
-	  double *pdblLImg;
-	  double *pdblUData;
-	  double *pdblUReal;
-	  double *pdblUImg;
-	  double *pdblEData;
+	  double *pdblLData= NULL;
+	  double *pdblLReal= NULL;
+	  double *pdblLImg= NULL;
+	  double *pdblUData= NULL;
+	  double *pdblUReal= NULL;
+	  double *pdblUImg= NULL;
+	  double *pdblEData= NULL;
 	  int iMinRowsCols;
 	      
 	  pdblEData= NULL;

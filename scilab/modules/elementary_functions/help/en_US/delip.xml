@@ -73,7 +73,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata>
+          <imagedata align="center">
             <mml:math><mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
             mml:stretchy="false">∫</mml:mo> <mml:mn>0</mml:mn>
             <mml:mi>x</mml:mi> </mml:munderover> <mml:mfrac> <mml:mi
@@ -107,14 +107,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 ck=0.5;
 delip([1,2],ck)
 deff('y=f(t)','y=1/sqrt((1-t^2)*(1-ck^2*t^2))')
 intg(0,1,f)    //OK since real solution!
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>

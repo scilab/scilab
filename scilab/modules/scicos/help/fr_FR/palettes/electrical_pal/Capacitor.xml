@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Capacitor">
   <refnamediv>
     <refname>Capacitor</refname>
-    <refpurpose>Condensateur électrique</refpurpose>
+    <refpurpose>Condensateur Ã©lectrique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Capacitor">Condensateur électrique</link>
+          <link linkend="Capacitor">Condensateur Ã©lectrique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Capacitor">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Capacitor">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Capacitor">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Capacitor">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Capacitor">Modèle Modelica</link>
+              <link linkend="Capacitor">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,9 +93,9 @@
   <refsection id="Description_Capacitor">
     <title>Description</title>
     <para>
-Un condensateur est un composant électrique ou électronique dont
-l'intérêt de base est d'avoir une capacité électrique. Son
-comportement électrique idéal est:</para>
+Un condensateur est un composant Ã©lectrique ou Ã©lectronique dont
+l'intÃ©rÃªt de base est d'avoir une capacitÃ© Ã©lectrique. Son
+comportement Ã©lectrique idÃ©al est:</para>
     <para>
 </para>
     <para>
@@ -106,7 +106,7 @@ comportement électrique idéal est:</para>
       </inlinemediaobject>
     </para>
     <para>
-où:
+oÃ¹:
 
 </para>
     <itemizedlist>
@@ -117,21 +117,21 @@ où:
         <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la tension aux bornes du composant.</para>
       </listitem>
       <listitem>
-        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la capacité électrique du condensateur.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la capacitÃ© Ã©lectrique du condensateur.</para>
       </listitem>
       <listitem>
         <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la variation de tension avec le temps.</para>
       </listitem>
     </itemizedlist>
     <para>
-Le condensateur peut être utilisé pour distinguer les signaux
-haute-fréquences et basse-fréquence. Cette faculté est très utile
+Le condensateur peut Ãªtre utilisÃ© pour distinguer les signaux
+haute-frÃ©quences et basse-frÃ©quence. Cette facultÃ© est trÃ¨s utile
 dans la conception des filtres.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Capacitor">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Capacitor">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -148,23 +148,23 @@ dans la conception des filtres.
           <emphasis role="bold">C (F)</emphasis>
         </para>
         <para> Capacitance</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Initial Voltage</emphasis>
         </para>
         <para> Voltage Initial</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Capacitor">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Capacitor">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -194,25 +194,25 @@ dans la conception des filtres.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'C'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'C'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.01
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.01
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'v'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'v'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> oui.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> oui.
 
 
 </para>
@@ -232,8 +232,8 @@ dans la conception des filtres.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_Capacitor">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_Capacitor">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/Capacitor.mo</para>

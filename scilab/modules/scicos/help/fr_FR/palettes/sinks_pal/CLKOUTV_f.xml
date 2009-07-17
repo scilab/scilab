@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CLKOUTV_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CLKOUTV_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CLKOUTV_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CLKOUTV_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,15 +93,15 @@
   <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
-Ce bloc doit seulement être utilisé à l'intérieur des superblocs.
-Il est utilisé pour représenter un port de sortie événementiel.
-Dans un superbloc, les ports doivent être numérotés à partir de 1
+Ce bloc doit seulement Ãªtre utilisÃ© Ã  l'intÃ©rieur des superblocs.
+Il est utilisÃ© pour reprÃ©senter un port de sortie Ã©vÃ©nementiel.
+Dans un superbloc, les ports doivent Ãªtre numÃ©rotÃ©s Ã  partir de 1
 jusqu'au nombre de ports.  
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CLKOUTV_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CLKOUTV_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -117,13 +117,13 @@ jusqu'au nombre de ports.
         <para>
           <emphasis role="bold">Port number</emphasis>
         </para>
-        <para> un entier qui définit le numéro de port.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> un entier qui dÃ©finit le numÃ©ro de port.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CLKOUTV_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CLKOUTV_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -132,25 +132,25 @@ jusqu'au nombre de ports.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

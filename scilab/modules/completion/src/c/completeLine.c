@@ -48,7 +48,17 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 
 		if (ptr_strrchar1) 
 		{
-			char *ptr_strrchar2 = strrstr(currentline, defaultPattern);
+			char *ptr_strrchar2 = NULL;
+
+			if (strcmp(defaultPattern,"") == 0)
+			{
+				if ( ((filePattern[strlen(filePattern)-1] == '\\') || (filePattern[strlen(filePattern)-1] == '/')) &&  ((int)strlen(filePattern) > 1) )
+				{
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
+				}
+				else ptr_strrchar2 = strrstr(currentline, filePattern);
+			}
+			else ptr_strrchar2 = strrstr(currentline, defaultPattern);
 
 			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(stringToAdd) + 1));
 

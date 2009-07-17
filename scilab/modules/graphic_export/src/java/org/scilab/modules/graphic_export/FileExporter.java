@@ -43,7 +43,7 @@ public class FileExporter {
 	 */
 	public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
 		DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
-		
+
 		if (exportedFig == null) {
 			// figure no longer exists
 			return ExportRenderer.IOEXCEPTION_ERROR;
@@ -55,7 +55,10 @@ public class FileExporter {
 		
 		ExportRenderer export;		
 		export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
-				
+		
+		// To be sure that their is a GLContext active for export
+		exportedFig.openGraphicCanvas();
+		
 		exportedFig.getRenderingTarget().addGLEventListener(export);
 		exportedFig.drawCanvas();
 		exportedFig.getRenderingTarget().removeGLEventListener(export);

@@ -45,11 +45,6 @@ import org.scilab.modules.localization.Messages;
 public class Scilab {
 
 	private static final String CLASS_NOT_FOUND = "Could not find class: ";
-
-	private static final String SCIDIR = System.getenv("SCI");
-
-	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
-	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
 	
 	private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
 
@@ -60,6 +55,13 @@ public class Scilab {
 	private static final String ENABLE = "true";
 	private static final String DISABLE = "false";
 	private static final String DISABLE_DDRAW = "sun.java2d.noddraw";
+
+	private static String SCIDIR;
+
+	private static String MENUBARXMLFILE;
+
+	private static String TOOLBARXMLFILE;
+
 	private Window mainView;
 
 	 /**
@@ -67,9 +69,27 @@ public class Scilab {
 	 * @param mode Mode Scilab -NW -NWNI -STD -API
 	 */
 	public Scilab(int mode) {
-		
-		// Set options for JOGL
-		// they must be set before creating GUI
+
+		/**
+		 * Set Scilab directory. Note that it is done in the constructor
+		 * and not as directly when setting the member because we had some
+		 * race condition. See bug #4419
+		 */
+		try {
+			SCIDIR = System.getenv("SCI");
+		}catch (Exception e) {
+			System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");
+			System.err.println(e.getLocalizedMessage());
+			System.exit(-1);
+		}
+
+		MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/main_menubar.xml";
+		TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/main_toolbar.xml";
+
+		/**
+		 * Set options for JOGL
+		 * they must be set before creating GUI
+		 */
 		setJOGLFlags();
 		
 		/*

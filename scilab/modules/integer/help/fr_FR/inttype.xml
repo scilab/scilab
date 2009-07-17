@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="inttype">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>inttype</refname>
-    <refpurpose>  type des entiers utilisés dans les types entiers de données.  </refpurpose>
+    <refpurpose>  type des entiers utilisÃ©s dans les types entiers de donnÃ©es.  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[i]=inttype(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
@@ -33,32 +33,32 @@
   <refsection>
     <title>Description</title>
     <para>
-    renvoie un entier donnant le type de données stockées dans
+    renvoie un entier donnant le type de donnÃ©es stockÃ©es dans
     <literal>x</literal> avec la convention suivante :
   </para>
     <para>
      1 
-    :  codage entier à 1 octet
+    :  codage entier Ã  1 octet
   </para>
     <para>
      2 
-    :  codage entier à 2 octets
+    :  codage entier Ã  2 octets
   </para>
     <para>
      4 
-    :  codage entier à 4 octets
+    :  codage entier Ã  4 octets
   </para>
     <para>
      11 
-    :  codage entier non-signé à 1 octet
+    :  codage entier non-signÃ© Ã  1 octet
   </para>
     <para>
      12 
-    :  codage entier non-signé à 2 octets
+    :  codage entier non-signÃ© Ã  2 octets
   </para>
     <para>
      14 
-    :  codage entier non-signé à 4 octets
+    :  codage entier non-signÃ© Ã  4 octets
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Modulo_Count">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Modulo_Count">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Modulo_Count">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Modulo_Count">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -99,13 +99,13 @@
     <title>Description</title>
     <para>
 Ce bloc est un bloc discret.
-Il délivre un signal scalaire périodique qui a une forme déterminée
+Il dÃ©livre un signal scalaire pÃ©riodique qui a une forme dÃ©terminÃ©e
 par les choix de l'utilisateur.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Modulo_Count">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Modulo_Count">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,20 +121,20 @@ par les choix de l'utilisateur.
         <para>
           <emphasis role="bold">initial state</emphasis>
         </para>
-        <para> Un état initial discret scalaire.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Un Ã©tat initial discret scalaire.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Modulo what number</emphasis>
         </para>
         <para> Nombre de signaux discrets requis.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Modulo_Count">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Modulo_Count">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -143,33 +143,33 @@ par les choix de l'utilisateur.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

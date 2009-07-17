@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>ilib_gen_loader(name,table)</synopsis>
+    <synopsis>ilib_gen_loader(name,table,[libs])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -35,6 +35,12 @@
         <term>table</term>
         <listitem>
           <para>2 column string matrix giving the table of pairs 'scilab-name' 'interface name'</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>libs</term>
+        <listitem>
+          <para>a string matrix, externals dynamic libraries filenames to load by loader file (optional).</para>
         </listitem>
       </varlistentry>
     </variablelist>

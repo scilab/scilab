@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,24 +19,24 @@
     <refpurpose> rang  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[i]=rank(X)
 [i]=rank(X,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice réelle ou complexe
+          <para>matrice rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
-          <para>nombre réel positif
+          <para>nombre rÃ©el positif
 </para>
         </listitem>
       </varlistentry>
@@ -44,17 +44,17 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal> rank(X)</literal> calcule le rang "numérique" de
-   <literal>X</literal> c'est à dire le nombre de ses valeurs
-   singulières supérieures à <literal>norm(size(X),'inf') *
+    <para><literal> rank(X)</literal> calcule le rang "numÃ©rique" de
+   <literal>X</literal> c'est Ã  dire le nombre de ses valeurs
+   singuliÃ¨res supÃ©rieures Ã  <literal>norm(size(X),'inf') *
    norm(X) * %eps</literal>.
   </para>
-    <para><literal>rank(X,tol)</literal> est le nombre de valeurs singulières de
-    <literal>X</literal> supérieures à <literal>tol</literal>.
+    <para><literal>rank(X,tol)</literal> est le nombre de valeurs singuliÃ¨res de
+    <literal>X</literal> supÃ©rieures Ã  <literal>tol</literal>.
   </para>
     <para>
-    Notez que la valeur par défaut de <literal>tol</literal> est
-    proportionnelle à <literal>norm(X)</literal>. Par exemple
+    Notez que la valeur par dÃ©faut de <literal>tol</literal> est
+    proportionnelle Ã  <literal>norm(X)</literal>. Par exemple
   </para>
     <para><literal>rank([1.d-80,0;0,1.d-80])</literal> vaut 2 !.
   </para>

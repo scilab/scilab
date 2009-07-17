@@ -141,6 +141,9 @@ pkgdocdir = $(mydatadir)
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
+# What is the mask of the MathML sources
+DOCMASKMML = *.mml
+
 install-html-local:
 if INSTALL_HELP_XML
 # If the user wants the help sources to be installed
@@ -155,7 +158,17 @@ if INSTALL_HELP_XML
 		  done ; \
 		fi; \
 	 fi; \
-	done
+	done; \
+	@echo "-------- Install of MathML sources --------"; \
+	 if test -d $(srcdir)/help/mml/; then \
+	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+		  done ; \
+		fi; \
+	fi
 endif
 
 ########### INSTALL DATA ###################
@@ -185,6 +198,7 @@ JARMASK=*.jar
 # Chapter file 
 HELP_CHAPTERDIR=help/
 HELP_CHAPTERFILE=addchapter.sce
+HELP_CHAPTERLANG = en_US fr_FR pt_BR
 install-data-local:
 # Install the tests
 	@echo "-------- Install tests (if any) --------"; \
@@ -204,7 +218,7 @@ install-data-local:
 	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
-	for lang in $(ALL_LINGUAS); do \
+	for lang in $(HELP_CHAPTERLANG); do \
 		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 		if test -f $$HELPFILE; then \
 			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \

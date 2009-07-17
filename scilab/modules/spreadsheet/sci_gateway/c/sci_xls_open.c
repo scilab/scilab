@@ -26,14 +26,14 @@
 #include "../../../fileio/includes/mopen.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetenvB.h"
 #include "tmpdir.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static char *xls_basename (char *name);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
+int sci_xls_open(char *fname,unsigned long fname_len)
 {
 #undef IN
 	#define max_char_xls_open 256
@@ -153,19 +153,7 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 	{
 		/* Create a typed list to return the properties */
 		CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &one, &ns, sst);
-		for (k = 0;k < ns; k++) 
-		{
-			if ( (sst) && (sst[k]))
-			{
-				FREE(sst[k]);
-				sst[k] = NULL;
-			}
-		}
-		if (sst)
-		{
-			FREE(sst);
-			sst = NULL;
-		}
+		freeArrayOfString(sst, ns);
 	}
 	else CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&ns,&ns,&l2);
 
@@ -173,20 +161,7 @@ int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
 	{
 		/* Create a typed list to return the properties */
 		CreateVarFromPtr(Rhs+3,MATRIX_OF_STRING_DATATYPE, &one, &nsheets, Sheetnames);
-
-		if (Sheetnames)
-		{
-			for (k = 0; k < nsheets; k++) 
-			{
-				if (Sheetnames[k])
-				{
-					FREE(Sheetnames[k]);
-					Sheetnames[k] = NULL;
-				}
-			}
-			FREE(Sheetnames);
-			Sheetnames = NULL;
-		}
+		freeArrayOfString(Sheetnames, nsheets);
 
 		CreateVar(Rhs+4,MATRIX_OF_DOUBLE_DATATYPE, &one, &nsheets, &l2);
 		for (i = 0;i < nsheets;i++) *stk(l2+i) = Abspos[i];

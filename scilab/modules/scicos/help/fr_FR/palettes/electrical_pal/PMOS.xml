@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_PMOS">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_PMOS">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_PMOS">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_PMOS">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PMOS">Modèle Modelica</link>
+              <link linkend="PMOS">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -95,7 +95,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -123,7 +123,7 @@ Some typical parameter sets are:
       <tr>
         <td align="center">W [m]</td>
         <td align="center">L[m]</td>
-        <td align="center">Beta [1/V²]</td>
+        <td align="center">Beta [1/VÂ²]</td>
         <td align="center">Vt [V]</td>
         <td align="center">K2</td>
         <td align="center">K5</td>
@@ -202,8 +202,8 @@ Some typical parameter sets are:
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Boîtededialogue_PMOS">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_PMOS">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -220,72 +220,72 @@ Some typical parameter sets are:
           <emphasis role="bold">Width [m]</emphasis>
         </para>
         <para> W</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Length [m]</emphasis>
         </para>
         <para> L</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Transconductance parameter [A/(V*V)]</emphasis>
         </para>
         <para> Beta</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Zero bias threshold voltage [V]</emphasis>
         </para>
         <para> Vt</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Bulk threshold parameter</emphasis>
         </para>
         <para> K2</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Reduction of pinch-off region</emphasis>
         </para>
         <para> K5</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Narrowing of channel [m]</emphasis>
         </para>
         <para> dW</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Shortening of channel [m]</emphasis>
         </para>
         <para> dL</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Drain-Source-Resistance [Ohm]</emphasis>
         </para>
         <para> RDS</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_PMOS">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_PMOS">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -331,95 +331,95 @@ Some typical parameter sets are:
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'W'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'W'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.00005
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.00005
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'L'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'L'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.000006
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.000006
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Beta'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Beta'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.0000105
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.0000105
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Vt'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Vt'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> -1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> -1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'K2'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'K2'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.41
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.41
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'K5'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'K5'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.839
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.839
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'dW'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'dW'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> -0.0000025
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> -0.0000025
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'dL'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'dL'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> -0.0000021
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> -0.0000021
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'RDS'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'RDS'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 10000000
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 10000000
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -439,8 +439,8 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_PMOS">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_PMOS">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/PMOS.mo</para>

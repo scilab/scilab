@@ -38,7 +38,7 @@ public:
   /**
    * Get the bounding box of the displayed text. Used to detect overlapping text.
    */
-  virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]);
+  virtual void getScreenBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
 
   /**
    * Draw the rectangle surrounding the text.
@@ -86,11 +86,6 @@ protected:
    * Compute the size in pixel of the user bounding box
    */
   void getUserSizePix(double & boxWidthPix, double & boxHeightPix);
-
-  /**
-   * Compute bounding box the text in pixels coordinates
-   */
-  void getPixelBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3]);
 
   /**
    * Get the object performing mapping with Java class.

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -49,13 +49,13 @@
   <refsection id="Description_Sinks_pal">
     <title>Description</title>
     <para>
-Dans la palette Sinks, vous pouvez trouver une variété de
-blocs utilisés pour afficher (Scope) et écrire les données
+Dans la palette Sinks, vous pouvez trouver une variÃ©tÃ© de
+blocs utilisÃ©s pour afficher (Scope) et Ã©crire les donnÃ©es
 dans des fichiers pendant la simulation ainsi que des ports
-de sortie utilisés dans les superblocs.
+de sortie utilisÃ©s dans les superblocs.
 </para>
     <para>
-Les blocs de cette palette ne possèdent pas de ports réguliers
+Les blocs de cette palette ne possÃ¨dent pas de ports rÃ©guliers
 de sortie.
 
 </para>
@@ -70,17 +70,17 @@ de sortie.
       </listitem>
       <listitem>
         <para>
-          <link linkend="CANIMXY">CANIMXY - Scope animé y=f(x)</link>
+          <link linkend="CANIMXY">CANIMXY - Scope animÃ© y=f(x)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="CANIMXY3D">CANIMXY3D - Scope animé z=f(x,y)</link>
+          <link linkend="CANIMXY3D">CANIMXY3D - Scope animÃ© z=f(x,y)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="CEVENTSCOPE">CEVENTSCOPE - Scope pour événements</link>
+          <link linkend="CEVENTSCOPE">CEVENTSCOPE - Scope pour Ã©vÃ©nements</link>
         </para>
       </listitem>
       <listitem>
@@ -100,12 +100,12 @@ de sortie.
       </listitem>
       <listitem>
         <para>
-          <link linkend="CMATVIEW">CMATVIEW - Scope matriciel coloré</link>
+          <link linkend="CMATVIEW">CMATVIEW - Scope matriciel colorÃ©</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="CMSCOPE">CMSCOPE - Scope à affichage multiple</link>
+          <link linkend="CMSCOPE">CMSCOPE - Scope Ã  affichage multiple</link>
         </para>
       </listitem>
       <listitem>
@@ -125,7 +125,7 @@ de sortie.
       </listitem>
       <listitem>
         <para>
-          <link linkend="OUT_f">OUT_f - Port de sortie régulier</link>
+          <link linkend="OUT_f">OUT_f - Port de sortie rÃ©gulier</link>
         </para>
       </listitem>
       <listitem>
@@ -135,7 +135,7 @@ de sortie.
       </listitem>
       <listitem>
         <para>
-          <link linkend="TOWS_c">TOWS_c - Données vers l'environnement Scilab</link>
+          <link linkend="TOWS_c">TOWS_c - DonnÃ©es vers l'environnement Scilab</link>
         </para>
       </listitem>
       <listitem>
@@ -150,7 +150,7 @@ de sortie.
       </listitem>
       <listitem>
         <para>
-          <link linkend="WRITEC_f">WRITEC_f - Ecriture de donnée binaire</link>
+          <link linkend="WRITEC_f">WRITEC_f - Ecriture de donnÃ©e binaire</link>
         </para>
       </listitem>
     </itemizedlist>

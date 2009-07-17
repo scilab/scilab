@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,24 +19,24 @@
     <refpurpose> factorisation LU  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[L,U]= lu(A)
 [L,U,E]= lu(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice carrée réelle ou complexe (m x n).
+          <para>matrice carrÃ©e rÃ©elle ou complexe (m x n).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>L,U  </term>
         <listitem>
-          <para>matrices carrées réelles ou complexes (n x n).
+          <para>matrices carrÃ©es rÃ©elles ou complexes (n x n).
 	  </para>
         </listitem>
       </varlistentry>
@@ -53,23 +53,23 @@
     <title>Description</title>
     <para><literal>[L,U]= lu(A)</literal> calcule deux matrices <literal>L</literal> et
       <literal>U</literal> telles que <literal>A = L*U</literal> avec <literal>U</literal>
-      triangulaire supérieure et <literal>L</literal> triangulaire inférieure
-      à une permutation des lignes près.
+      triangulaire supÃ©rieure et <literal>L</literal> triangulaire infÃ©rieure
+      Ã  une permutation des lignes prÃ¨s.
     </para>
     <para>
       Si <literal>A</literal> est de rang <literal>k</literal>, les lignes
-      <literal>k+1</literal> à <literal>n</literal> de <literal>U</literal> sont nulles.
+      <literal>k+1</literal> Ã  <literal>n</literal> de <literal>U</literal> sont nulles.
     </para>
     <para>
     </para>
     <para><literal>[L,U,E]= lu(A)</literal> calcule trois matrices <literal>L</literal>,
       <literal>U</literal> et <literal>E</literal> telles que <literal>E*A = L*U</literal>
-      avec <literal>U</literal> triangulaire supérieure, <literal>L</literal>
-      triangulaire inférieure et <literal>E</literal> une matrice de
+      avec <literal>U</literal> triangulaire supÃ©rieure, <literal>L</literal>
+      triangulaire infÃ©rieure et <literal>E</literal> une matrice de
       permutation.
     </para>
     <para>
-      Si <literal>A</literal> est une matrice réelle, il est possible en
+      Si <literal>A</literal> est une matrice rÃ©elle, il est possible en
       utilisant <literal>lufact</literal> et <literal>luget</literal>
       d'obtenir les matrices de permutations et quand
       <literal>A</literal> n'est pas inversible la compression des
@@ -112,8 +112,8 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>La décomposition LU est basée sur les routines Lapack  DGETRF pour
-    les matrices réelles et ZGETRF pour le cas complexe. </para>
+    <title>Fonctions UtilisÃ©es</title>
+    <para>La dÃ©composition LU est basÃ©e sur les routines Lapack  DGETRF pour
+    les matrices rÃ©elles et ZGETRF pour le cas complexe. </para>
   </refsection>
 </refentry>

@@ -21,49 +21,111 @@ c
       character*6 nomf
       integer index(nt),ialg(15)
       external simul
+      character bufstr*(4096)
 c
       if(imp.ge.4) then
-      write(io,10000)
+        write(bufstr,10000)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 10000 format (' dans gcbd. algorithme utilise: ')
-      if(ialg(1).eq.1)write(io,10001)
+      if(ialg(1).eq.1) then
+        write(bufstr,10001)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10001 format ('        emploi correction de powell ')
-      if(ialg(2).eq.1)write(io,10002)
+      if(ialg(2).eq.1) then
+        write(bufstr,10002)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10002 format ('  mise a jour de diag par la methode bfgs')
-      if(ialg(3).eq.1)write(io,10003)
+      if(ialg(3).eq.1) then
+        write(bufstr,10003)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10003 format ('  mise a echelle de diag par methode de shanno-phua')
-      if(ialg(3).eq.2)write(io,10004)
+      if(ialg(3).eq.2) then
+        write(bufstr,10004)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10004 format ('  mise a echelle de diag seulement a la 2e iter')
-      if(ialg(4).eq.1)write(io,10005)
+      if(ialg(4).eq.1) then 
+        write(bufstr,10005)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10005 format ('      memorisation pour choix iteration ')
-      if(ialg(5).eq.1)write(io,10006)
+      if(ialg(5).eq.1) then
+        write(bufstr,10006)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10006 format ('      memorisation par variable')
-      if(ialg(6).eq.1)write(io,10007)
+      if(ialg(6).eq.1) then
+        write(bufstr,10007)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10007 format ('      relachememt de variables a toutes les iteration')
-      if(ialg(6).eq.2)write(io,10008)
+      if(ialg(6).eq.2) then 
+        write(bufstr,10008)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10008 format ('      relachement de vars si decroissance g_norme')
-      if(ialg(6).eq.10)write(io,10009)
+      if(ialg(6).eq.10) then
+        write(bufstr,10009)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10009 format ('      relachement de vars si dec f % iter_init du cycle')
-      if(ialg(6).eq.11)write(io,10010)
+      if(ialg(6).eq.11) then
+        write(bufstr,10010)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10010 format ('      relachement de vars si dec f % dec du cycle')
-      if(ialg(7).eq.1)write(io,10011)
+      if(ialg(7).eq.1) then
+        write(bufstr,10011)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10011 format ('      choix de vars a relacher par bertsekas modifiee')
-      if(ialg(8).eq.1)write(io,10012)
+      if(ialg(8).eq.1) then
+        write(bufstr,10012)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10012 format ('      choix de dir descente par methode de gradient')
-      if(ialg(8).eq.2)write(io,10013)
+      if(ialg(8).eq.2) then
+        write(bufstr,10013)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10013 format ('      choix de dir descente par methode qn')
-      if(ialg(8).eq.3)write(io,10014)
+      if(ialg(8).eq.3) then
+        write(bufstr,10014)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10014 format ('      choix de dir descente par qn sans memoire.nt depl')
-      if(ialg(8).eq.4)write(io,10015)
+      if(ialg(8).eq.4) then
+        write(bufstr,10015)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10015 format ('      choix de dir descente par qn -mem,redem,sans acc.')
-      if(ialg(8).eq.5)write(io,10016)
+      if(ialg(8).eq.5) then
+        write(bufstr,10016)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10016 format ('     choix de dir descente par qn -mem,redem,avec acc.')
-      if(ialg(9).eq.2)write(io,10017)
+      if(ialg(9).eq.2) then
+        write(bufstr,10017)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10017 format ('      redem si relachement de vars')
-      if(ialg(9).eq.10)write(io,10018)
+      if(ialg(9).eq.10) then
+        write(bufstr,10018)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10018 format ('      redem si dec f % dec iter_init du cycle')
-      if(ialg(9).eq.11)write(io,10019)
+      if(ialg(9).eq.11) then
+        write(bufstr,10019)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10019 format ('      redem si dec f % dec totale du cycle.')
-      if(ialg(9).eq.12)write(io,10020)alg(9)
+      if(ialg(9).eq.12) then
+        write(bufstr,10020)alg(9)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 10020 format ('    redem si diminution du gradient des var libres d un',
      & 'facteur',d11.4)
       endif
@@ -90,7 +152,10 @@ c
       if(indsim.gt.0)go to 99
       indgc=-1
       if(indsim.eq.0)indgc=0
-      if(imp.gt.0)write(io,123)indgc
+      if(imp.gt.0) then
+        write(bufstr,123)indgc
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       go to 900
 99    continue
       ceps0=20.0d+0
@@ -128,7 +193,10 @@ c
       if(indgc.eq.1.or.indgc.ge.100)go to 150
       if(indgc.eq.2)go to 180
       indgc=-13
-      if(imp.gt.0) write(io,123) indgc
+      if(imp.gt.0) then
+        write(bufstr,123) indgc
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       go to 900
 c
 150   continue
@@ -153,8 +221,11 @@ c     bouclage
          go to 900
       endif
 201   continue
-      if(imp.ge.2)write(io,1210)iter,f
-1210  format(/' dans gcbd  iter=',i3,'  f=',d15.7)
+      if(imp.ge.2) then
+        write(bufstr,1210)iter,f
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+1210  format(' dans gcbd  iter=',i3,'  f=',d15.7)
       if(iter.eq.1)then
          irit=1
          goto 301
@@ -172,7 +243,10 @@ c     correction powell sur y si (y,s) trop petit
 260   bss=bss + diag(i)*s(inp,i)**2
       bss2=param*bss
       if(ys(inp).gt.bss2)go to 290
-      if(imp.gt.2)write(io,1270)ys(inp)
+      if(imp.gt.2) then 
+        write(bufstr,1270) ys(inp)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1270  format(' gcbd. emploi correction powell (y,s)=',d11.4)
       teta=param1*bss/(bss-ys(inp))
       teta1=1.0d+0-teta
@@ -182,7 +256,10 @@ c     correction powell sur y si (y,s) trop petit
 c     verif correction powell (facultatif; faire go to 300)
       ys1=ddot(n,s(inp,1),1,y(inp,1),1)
       ys1=abs(bss2-ys1)/bss2
-      if(imp.gt.2)write(io,1280)ys1
+      if(imp.gt.2) then
+        write(bufstr,1280) ys1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1280  format(' erreur relative correction powell =',d11.4)
 c
 c mise a jour de diag
@@ -236,7 +313,10 @@ c
             icycl=icycl+1
             np=0
             lb=1
-            if(imp.gt.2)write(io,1000)icycl
+            if(imp.gt.2) then
+              write(bufstr,1000) icycl
+              call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+              endif
 1000        format ('   redemarrage. icycl=',i5)
          endif
       endif
@@ -269,7 +349,10 @@ c     calcul de la derivee dans la direction dir
          go to 900
       endif
 c     restauration dir
-      if(imp.ge.3)write(io,1712)dfp,zero
+      if(imp.ge.3) then 
+         write(bufstr,1712)dfp,zero
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
 1712  format(' gcbd : restauration dir ; fp,zero',2d11.4)
       do 712 i=1,n
 712   dir(i)=-scal*g(i)
@@ -291,7 +374,10 @@ c     pas initial suivant idee fletcher
 c
       call rlbd(indrl,n,simul,x,binf,bsup,f,dfp,t,tmax,dir,g,tproj,
      &  amd,amf,imp,io,zero,nap,napm1,x2,izs,rzs,dzs)
-      if(imp.gt.2)write(io,750)indrl,t,f
+      if(imp.gt.2) then
+        write(bufstr,750)indrl,t,f
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 750   format(' retour mlibd indrl=',i6,' pas= ',d11.4,' f= ',d11.4)
       if(nap-napav.ge.5) irl=irl+1
       if(indrl.ge.10)then
@@ -301,7 +387,10 @@ c
          if(indsim.le.0)then
             indgc=-3
             if(indsim.eq.0)indgc=0
-            if(imp.gt.0)write(io,123)indgc
+            if(imp.gt.0) then
+              write(bufstr,123)indgc
+              call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+              endif
 123         format(' gcbd : retour avec indgc=',i8)
             go to 900
          endif
@@ -312,17 +401,24 @@ c
          if(indrl.eq.-3)indgc=13
          if(indrl.eq.-4)indgc=12
          if(indrl.le.-1000)indgc=11
-         if(imp.gt.0)write(io,123)indgc
+         if(imp.gt.0) then
+           write(bufstr,123)indgc
+           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+           endif
          go to 900
       endif
       if(imp.ge.5) then
          do 760 i=1,n
-760      if(imp.gt.2)write(io,777)i,x(i),g(i),dir(i)
+760      if(imp.gt.2) write(io,777)i,x(i),g(i),dir(i)
 777      format(' i=',i2,' xgd ',3f11.4)
+         
       endif
 c
       if(nap.lt.napmax)go to 758
-      if(imp.gt.0)  write(io,755)
+      if(imp.gt.0)  then
+        write(bufstr,755)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 755   format(' gcbd max appels simul')
       indgc=4
       go to 900
@@ -332,7 +428,10 @@ c     section 8 test de convergence
       do 805 i=1,n
       if(abs(x(i)-wk1(i)).gt.epsx(i))go to 806
 805   continue
-      if(imp.gt.0) write(io,1805)
+      if(imp.gt.0) then
+        write(bufstr,1805)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1805  format(' gcbd. retour apres convergence sur x')
       indgc=3
       go to 900
@@ -340,7 +439,10 @@ c     calcul grad residuel,norme l2
 806   continue
       difg=rednor(n,binf,bsup,x,epsx,g)
       diff=fn-f
-      if(imp.ge.2)write(io,860)epsg,difg,epsf,diff,nap
+      if(imp.ge.2) then
+        write(bufstr,860)epsg,difg,epsf,diff,nap
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 860   format(' gcbd. epsg,difg=',2d11.4,'  epsf,diff=',2d11.4
      &,'  nap=',i3)
 c
@@ -383,11 +485,22 @@ c
 c      fin des calculs
 900   if(indrl.eq.0)indgc=0
       if(indgc.eq.1.and.indrl.le.0)  indgc=indrl
-      if(imp.gt.0)write(io,123)indgc
-      if(imp.ge.1.and.indrl.le.zero)write(io,1910) indrl
-1910  format(' arret impose par la recherche lineaire. cf notice rlbd',
-     & /,' indicateur de rlbd=',i6)
-      if(imp.ge.1)write(io,950)f,difg,nap,iter,indgc
+      if(imp.gt.0) then
+         write(bufstr,123)indgc
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
+      if(imp.ge.1.and.indrl.le.zero) then
+        write(bufstr,1910)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write(bufstr,1911) indrl
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+1910  format(' arret impose par la recherche lineaire. cf notice rlbd')
+1911  format(' indicateur de rlbd=',i6)
+      if(imp.ge.1) then
+        write(bufstr,950)f,difg,nap,iter,indgc
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 950   format(' f,norme grad,nap,iter,indgc=',2e11.4,3i6)
 c
 c     autres impressions finales
@@ -396,6 +509,8 @@ c     autres impressions finales
       if(iter.gt.0) zrl=dble(nap)/dble(iter)
 2000  format('     nom    n       f        norm2g   nf   iter  rl/it ',
      &          ' irl   cpu  cycl   red')
-      write(io,2001)nomf,f,difg,nap,iter,zrl,irl
+     
+      write(bufstr,2001)nomf,f,difg,nap,iter,zrl,irl
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 2001  format(1x,a6,2e11.4,2i5,f6.2,i5)
       end

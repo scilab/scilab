@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_data_structures1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(scilist)(char *fname,unsigned long fname_len);
+extern int C2F(scilist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_scilist)(char *fname,unsigned long fname_len)
 {

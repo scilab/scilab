@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>A_propos_des_outils_M2SCI</refname>
-    <refpurpose>Présentation générale des outils de conversion de fichiers Matlab vers Scilab...</refpurpose>
+    <refpurpose>PrÃ©sentation gÃ©nÃ©rale des outils de conversion de fichiers Matlab vers Scilab...</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>Scilab 3.0 contient une nouvelle version d'outils pour convertir des fichiers Matlab vers Scilab.</para>
     <para>
-  A partir d'un fichier Matlab, <literal>mfile2sci</literal> modifie ce fichier pour qu'il puisse être
-  compilé par Scilab. Puis, ce code compilé est converti en "arbre" d'instructions
+  A partir d'un fichier Matlab, <literal>mfile2sci</literal> modifie ce fichier pour qu'il puisse Ãªtre
+  compilÃ© par Scilab. Puis, ce code compilÃ© est converti en "arbre" d'instructions
   par <literal>macr2tree</literal>. Cet "arbre" est une imbrication de listes et de tlists Scilab et
   est la base de la conversion. Chaque instruction de cet "arbre" est convertie en langage Scilab et
-  l'inférence est réalisé pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
-  le code est généré en utilisant <literal>tree2code</literal>.
+  l'infÃ©rence est rÃ©alisÃ© pour savoir ce que sont les variables. Une fois cet "arbre" converti en Scilab,
+  le code est gÃ©nÃ©rÃ© en utilisant <literal>tree2code</literal>.
   </para>
     <para>
-   Toutes les tlists utilisées pour coder cet arbre (et que nous appelons "tlists M2SCI") sont énumérées ci-dessous :
+   Toutes les tlists utilisÃ©es pour coder cet arbre (et que nous appelons "tlists M2SCI") sont Ã©numÃ©rÃ©es ci-dessous :
   </para>
     <itemizedlist>
       <listitem>
@@ -38,76 +38,76 @@
           <varlistentry>
             <term>funcall</term>
             <listitem>
-              <para>tlist représentant l'appel à une fonction créée par <literal>Funcall</literal></para>
+              <para>tlist reprÃ©sentant l'appel Ã  une fonction crÃ©Ã©e par <literal>Funcall</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>operation</term>
             <listitem>
-              <para>tlist représentant une opération créée par <literal>Operation</literal></para>
+              <para>tlist reprÃ©sentant une opÃ©ration crÃ©Ã©e par <literal>Operation</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>variable</term>
             <listitem>
-              <para>tlist représentant une variable créée par <literal>Variable</literal></para>
+              <para>tlist reprÃ©sentant une variable crÃ©Ã©e par <literal>Variable</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>cste</term>
             <listitem>
-              <para>tlist représentant une constante créée par <literal>Cste</literal></para>
+              <para>tlist reprÃ©sentant une constante crÃ©Ã©e par <literal>Cste</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>equal</term>
             <listitem>
-              <para>tlist représentant une instruction créée <literal>Equal</literal></para>
+              <para>tlist reprÃ©sentant une instruction crÃ©Ã©e <literal>Equal</literal></para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>ifthenelse</term>
             <listitem>
-              <para>tlist représentant une instruction de contrôle IF/THEN/ELSE créée dans les fonctions du "noyau" de M2SCI</para>
+              <para>tlist reprÃ©sentant une instruction de contrÃ´le IF/THEN/ELSE crÃ©Ã©e dans les fonctions du "noyau" de M2SCI</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>while</term>
             <listitem>
-              <para>tlist représentant une instruction de contrôle WHILE créée dans les fonctions du "noyau" de M2SCI</para>
+              <para>tlist reprÃ©sentant une instruction de contrÃ´le WHILE crÃ©Ã©e dans les fonctions du "noyau" de M2SCI</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>selectcase</term>
             <listitem>
-              <para>tlist représentant une instruction de contrôle SELECT/CASE créée dans les fonctions du "noyau" de M2SCI</para>
+              <para>tlist reprÃ©sentant une instruction de contrÃ´le SELECT/CASE crÃ©Ã©e dans les fonctions du "noyau" de M2SCI</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>for</term>
             <listitem>
-              <para>tlist représentant une instruction de contrôle FOR créée dans les fonctions du "noyau" de M2SCI</para>
+              <para>tlist reprÃ©sentant une instruction de contrÃ´le FOR crÃ©Ã©e dans les fonctions du "noyau" de M2SCI</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Le contenu des ces tlists est décrit dans les pages d'aide correspondantes.
+  Le contenu des ces tlists est dÃ©crit dans les pages d'aide correspondantes.
   </para>
     <para>
-  Les opérations sont converties en utilisant une fonction appelée <literal>%&lt;codeop&gt;2sci</literal> avec codeop
-  le code Scilab pour cette opérateur. Voir l'aide de overloading pour voir ces codes. Toutes
-  ces fonctions sont déjà écrites et sont dans le répertoire SCI/modules/m2sci/macros/percent/.
+  Les opÃ©rations sont converties en utilisant une fonction appelÃ©e <literal>%&lt;codeop&gt;2sci</literal> avec codeop
+  le code Scilab pour cette opÃ©rateur. Voir l'aide de overloading pour voir ces codes. Toutes
+  ces fonctions sont dÃ©jÃ  Ã©crites et sont dans le rÃ©pertoire SCI/modules/m2sci/macros/percent/.
   </para>
     <para>
-  Les appels aux fonctions sont convertis en utilisant une fonction appelée <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>.
-  Bon nombre de ces fonctions ont été écrites et sont dans le répertoire SCI/modules/m2sci/macros/sci_files/.
-  Nous travillons actuellemnt à l'augmentation du nombre de fonctions Matlab converties. Néanmoins, tout le monde peut
-  écrire ces fonctions en utilisant la pages d'aide sci_files.
+  Les appels aux fonctions sont convertis en utilisant une fonction appelÃ©e <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>.
+  Bon nombre de ces fonctions ont Ã©tÃ© Ã©crites et sont dans le rÃ©pertoire SCI/modules/m2sci/macros/sci_files/.
+  Nous travillons actuellemnt Ã  l'augmentation du nombre de fonctions Matlab converties. NÃ©anmoins, tout le monde peut
+  Ã©crire ces fonctions en utilisant la pages d'aide sci_files.
   </para>
     <para>
-  L'inférence est réalisée à l'aide de tlists de type "infer" contenant les champs :
+  L'infÃ©rence est rÃ©alisÃ©e Ã  l'aide de tlists de type "infer" contenant les champs :
   </para>
     <itemizedlist>
       <listitem>
@@ -142,19 +142,19 @@
           <varlistentry>
             <term>vtype</term>
             <listitem>
-              <para>type de donnée</para>
+              <para>type de donnÃ©e</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>property</term>
             <listitem>
-              <para>propriété de cette donnée</para>
+              <para>propriÃ©tÃ© de cette donnÃ©e</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
-    <para>Pour plus d'informations sur l'inférence, voir la page d'aide de m2scideclare.</para>
+    <para>Pour plus d'informations sur l'infÃ©rence, voir la page d'aide de m2scideclare.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

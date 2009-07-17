@@ -6,6 +6,8 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 r = getcommonpart(['home','homer']);
 if r <> 'home' then bugmes();quit;end;
 r = getcommonpart(['gethistory','gethistoryfile','gethis']);

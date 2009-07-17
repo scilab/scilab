@@ -31,6 +31,7 @@
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
 #include "PATH_MAX.h"
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
@@ -49,10 +50,15 @@ static void *DaemonOpenTCLsci(void* in)
 /* Checks if tcl/tk has already been initialised and if not */
 /* initialise it. It must find the tcl script */
 {
-	char *SciPath=NULL;
+	char *SciPath							= NULL;
+	char *SciPathShort				= NULL;
+	char *TkScriptpathShort		= NULL;
+	BOOL tkStarted						= FALSE;
+	BOOL bOK									= FALSE;
+
 	char TkScriptpath[PATH_MAX];
 	char MyCommand[2048]; /* @TODO: Check for buffer overflow */
-	BOOL tkStarted=FALSE;
+
 
 #ifndef _MSC_VER
 	DIR *tmpdir=NULL;
@@ -69,6 +75,7 @@ static void *DaemonOpenTCLsci(void* in)
 	}
 
 
+	SciPathShort = getshortpathname(SciPath, &bOK);
 
 #ifdef TCL_MAJOR_VERSION
 #ifdef TCL_MINOR_VERSION
@@ -82,25 +89,27 @@ static void *DaemonOpenTCLsci(void* in)
 
 #ifdef _MSC_VER
 
-	strcpy(TkScriptpath, SciPath);
+	strcpy(TkScriptpath, SciPathShort);
 	strcat(TkScriptpath, "/modules/tclsci/tcl/TK_Scilab.tcl");
 
-	tmpfile2 = fopen(TkScriptpath,"r");
+	TkScriptpathShort = getshortpathname(TkScriptpath, &bOK);
+	tmpfile2 = fopen(TkScriptpathShort, "r");
 	if (tmpfile2==NULL)
 	{
 		sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
 	}
 	else fclose(tmpfile2);
 #else
-	tmpdir=opendir(SciPath);
+	tmpdir=opendir(SciPathShort);
 	if (tmpdir==NULL)
 	{
 		sciprint(_("The SCI environment variable is not set.\nTcl initialisation failed !\n"));
 	}
 	else closedir(tmpdir);
-	strcpy(TkScriptpath,SciPath);
+	strcpy(TkScriptpath,SciPathShort);
 	strcat(TkScriptpath,"/modules/tclsci/tcl/TK_Scilab.tcl");
-	tmpfile2 = fopen(TkScriptpath,"r");
+	TkScriptpathShort = getshortpathname(TkScriptpath, &bOK);
+	tmpfile2 = fopen(TkScriptpathShort, "r");
 	if (tmpfile2==NULL)
 	{
 		sciprint(_("Unable to find Tcl initialisation scripts.\nCheck your SCI environment variable.\nTcl initialisation failed !"));
@@ -116,7 +125,7 @@ static void *DaemonOpenTCLsci(void* in)
 #ifdef _MSC_VER
 		/* Initialize TCL_LIBRARY & TK_LIBRARY variables environment */
 		/* Windows only */
-		SetTclTkEnvironment(SciPath);
+		SetTclTkEnvironment(SciPathShort);
 #endif
 
 		if ( getTclInterp() == NULL )
@@ -131,9 +140,9 @@ static void *DaemonOpenTCLsci(void* in)
 			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
-		if (getenv("SCI_DISABLE_TK")==NULL) { 
-			/* When SCI_DISABLE_TK is set in the env disable the TK init 
-			 * process. It is causing issues when Scilab is 
+		if (getenv("SCI_DISABLE_TK")==NULL) {
+			/* When SCI_DISABLE_TK is set in the env disable the TK init
+			 * process. It is causing issues when Scilab is
 			 * used through ssh.  */
 		  if ( Tk_Init(getTclInterp()) == TCL_ERROR)
 		    {
@@ -146,7 +155,7 @@ static void *DaemonOpenTCLsci(void* in)
 		}
 
 
-		sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
+		sprintf(MyCommand, "set SciPath \"%s\";",SciPathShort);
 
 		if ( Tcl_Eval(getTclInterp(),MyCommand) == TCL_ERROR  )
 		{
@@ -164,16 +173,33 @@ static void *DaemonOpenTCLsci(void* in)
 		TKmainWindow = Tk_MainWindow(getTclInterp());
 		releaseTclInterp();
 		Tk_GeometryRequest(TKmainWindow,2,2);
-		if ( Tcl_EvalFile(getTclInterp(),TkScriptpath) == TCL_ERROR  )
+		//printf("TkScriptpathShort : |%s|\n", TkScriptpathShort);
+		if ( Tcl_EvalFile(getTclInterp(),TkScriptpathShort) == TCL_ERROR  )
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath,Tcl_GetStringResult(getTclInterp()));
+			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpathShort,Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
 	}
 
 
-	if (SciPath) {FREE(SciPath);SciPath=NULL;}
+	if(SciPath)
+	{
+		FREE(SciPath);
+		SciPath=NULL;
+	}
+
+	if(SciPathShort)
+	{
+		FREE(SciPathShort);
+		SciPathShort=NULL;
+	}
+
+	if(TkScriptpathShort)
+	{
+		FREE(TkScriptpathShort);
+		TkScriptpathShort = NULL;
+	}
 
 	__LockSignal(&InterpReadyLock);
 	// Signal TclInterpreter init is now over.

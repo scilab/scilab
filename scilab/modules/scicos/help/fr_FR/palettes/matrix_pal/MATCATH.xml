@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATCATH">
   <refnamediv>
     <refname>MATCATH</refname>
-    <refpurpose>MATCATH Concaténation horizontale</refpurpose>
+    <refpurpose>MATCATH ConcatÃ©nation horizontale</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATCATH">MATCATH Concaténation horizontale</link>
+          <link linkend="MATCATH">MATCATH ConcatÃ©nation horizontale</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_MATCATH">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_MATCATH">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_MATCATH">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_MATCATH">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -95,7 +95,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Matrix_pal">Matrix - Palette d'opérations matricielles</link>
+          <link linkend="Matrix_pal">Matrix - Palette d'opÃ©rations matricielles</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -111,8 +111,8 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_MATCATH">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_MATCATH">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -128,20 +128,20 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
         <para>
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-        <para> Ce paramètre indique le type de donnée de la sortie. Ce bloc fonctionne uniquement avec des types de donnée réels(1) et complexes(2). Si un autre type que 1 et 2 est indiqué, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Ce paramÃ¨tre indique le type de donnÃ©e de la sortie. Ce bloc fonctionne uniquement avec des types de donnÃ©e rÃ©els(1) et complexes(2). Si un autre type que 1 et 2 est indiquÃ©, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">number of columns of each matrix</emphasis>
         </para>
         <para> It indicates the number of columns of the inputs matrices.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,1].</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,1].</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_MATCATH">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_MATCATH">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -150,14 +150,14 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -168,26 +168,26 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -221,7 +221,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATCATV">MATCATV - MATCATV Concaténation verticale (Bloc Scicos)</link>
+          <link linkend="MATCATV">MATCATV - MATCATV ConcatÃ©nation verticale (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

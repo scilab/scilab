@@ -1,67 +1,67 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="object_editor">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>object_editor </refname>
-    <refpurpose>description des capacités de
-  l'éditeur graphique</refpurpose>
+    <refpurpose>description des capacitÃ©s de
+  l'Ã©diteur graphique</refpurpose>
   </refnamediv>
   <refnamediv xml:id="graphic">
     <refname>graphic </refname>
-    <refpurpose>description des capacités de l'éditeur
+    <refpurpose>description des capacitÃ©s de l'Ã©diteur
   graphique</refpurpose>
   </refnamediv>
   <refnamediv xml:id="graphique">
     <refname>graphique </refname>
-    <refpurpose>description des capacités de l'éditeur
+    <refpurpose>description des capacitÃ©s de l'Ã©diteur
   graphique</refpurpose>
   </refnamediv>
   <refnamediv xml:id="menus">
     <refname>menus</refname>
-    <refpurpose>description des capacités de l'éditeur
+    <refpurpose>description des capacitÃ©s de l'Ã©diteur
   graphique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>La module graphique de Scilab permet de nombreuses intéractions
+    <para>La module graphique de Scilab permet de nombreuses intÃ©ractions
     entre l'utilisateur et le graphique aussi bien avant
-    qu'après sa création. Chaque fenêtre
-    graphique et les dessins qu'elle contient sont représentés sous forme
-    d'entités hiérarchiques. Le plus haut niveau de la hiérarchie est
-    toujours l'entité Figure. Chaque Figure définit au moins un enfant de type
-    Axes. Chaque entité Axes contient un ensemble d'entités feuilles (entités
-    terminales de la hiérarchie - elles n'ont pas de fils) qui sont les objets
-    de type Polylines, Rectangles, Arcs, Segs,... L'entités Axes peut
-    également contenir une entité intermédiaire nommé Compound qui regroupe un
-    ensemble d'entités filles.</para>
-    <para>Le principal intérêt du nouveau mode graphique réside dans sa capacité
-    à   changer à   volonté les propriétés des objets graphiques a
+    qu'aprÃ¨s sa crÃ©ation. Chaque fenÃªtre
+    graphique et les dessins qu'elle contient sont reprÃ©sentÃ©s sous forme
+    d'entitÃ©s hiÃ©rarchiques. Le plus haut niveau de la hiÃ©rarchie est
+    toujours l'entitÃ© Figure. Chaque Figure dÃ©finit au moins un enfant de type
+    Axes. Chaque entitÃ© Axes contient un ensemble d'entitÃ©s feuilles (entitÃ©s
+    terminales de la hiÃ©rarchie - elles n'ont pas de fils) qui sont les objets
+    de type Polylines, Rectangles, Arcs, Segs,... L'entitÃ©s Axes peut
+    Ã©galement contenir une entitÃ© intermÃ©diaire nommÃ© Compound qui regroupe un
+    ensemble d'entitÃ©s filles.</para>
+    <para>Le principal intÃ©rÃªt du nouveau mode graphique rÃ©side dans sa capacitÃ©
+    Ã Â Â  changer Ã Â Â  volontÃ© les propriÃ©tÃ©s des objets graphiques a
     priori et surtout a posteriori. Ce nouveau mode graphique est fourni avec
     une suite de commandes graphiques de haut niveau (voir <link linkend="set">set</link>,
-    <link linkend="get">get</link>) utliisées pour positionner les proriéts des objets
-    telles que les données, les coordonnées, échelles, couleur etc... sans
-    avoir à   rejouer les commandes initiales (comportement de l'ancien
+    <link linkend="get">get</link>) utliisÃ©es pour positionner les proriÃ©ts des objets
+    telles que les donnÃ©es, les coordonnÃ©es, Ã©chelles, couleur etc... sans
+    avoir Ã Â Â  rejouer les commandes initiales (comportement de l'ancien
     mode graphique).</para>
-    <para>Les entités graphiques ont un type <literal>handle</literal> dans Scilab.Un
-    handle est un identificateur unique qui est associé chaque instance d'un
-    objet graphique créé. En utilisant ce handle, il sera possible d'atteindre
-    les propriétés de l'entité considérée à   travers l'utilisation des
+    <para>Les entitÃ©s graphiques ont un type <literal>handle</literal> dans Scilab.Un
+    handle est un identificateur unique qui est associÃ© chaque instance d'un
+    objet graphique crÃ©Ã©. En utilisant ce handle, il sera possible d'atteindre
+    les propriÃ©tÃ©s de l'entitÃ© considÃ©rÃ©e Ã Â Â  travers l'utilisation des
     commandes "set" et "get". Les handles sont aussi utiles pour manipuler des
     objets graphiques, les bouger, les copier ou encore les supprimer.</para>
-    <para>Pour compléter ce nouveau mode, un éditeur graphique a été développé
+    <para>Pour complÃ©ter ce nouveau mode, un Ã©diteur graphique a Ã©tÃ© dÃ©veloppÃ©
     pour ces objets. Il s'agit d'un ensemble d'interfaces en Tcl/Tk
     disponibles pour chaque objet graphique (voir
-    <link linkend="graphics_entities">graphics_entities</link> pour plus de détail). Pour lancer
-    l'interface, il faut sélectionner le menu <literal>Edit</literal> dans la
-    fenêtre graphique. On a alors sept opérations d'édition disponibles:</para>
+    <link linkend="graphics_entities">graphics_entities</link> pour plus de dÃ©tail). Pour lancer
+    l'interface, il faut sÃ©lectionner le menu <literal>Edit</literal> dans la
+    fenÃªtre graphique. On a alors sept opÃ©rations d'Ã©dition disponibles:</para>
     <para/>
     <variablelist>
       <varlistentry>
         <term>Select figure as current: </term>
         <listitem>
-          <para>Positionne la figure comme étant la nouvelle figure courante.</para>
+          <para>Positionne la figure comme Ã©tant la nouvelle figure courante.</para>
           <para/>
         </listitem>
       </varlistentry>
@@ -75,11 +75,11 @@
       <varlistentry>
         <term>Erase figure: </term>
         <listitem>
-          <para>Efface le contenu de la figure. Son action correspond à   un
-        appel à <literal>clf</literal>.</para>
+          <para>Efface le contenu de la figure. Son action correspond Ã Â Â  un
+        appel Ã Â <literal>clf</literal>.</para>
           <para/>
           <para/>
-          <para>Les 8 derniers items sont dédiés exclusivement au nouveau mode
+          <para>Les 8 derniers items sont dÃ©diÃ©s exclusivement au nouveau mode
         graphique :</para>
           <para/>
         </listitem>
@@ -87,35 +87,35 @@
       <varlistentry>
         <term>Copy object/Copier: </term>
         <listitem>
-          <para>En utilisant la souris, cela permet de sélectionner un objet
+          <para>En utilisant la souris, cela permet de sÃ©lectionner un objet
         graphique 2D (comme une courbe, un rectangle...) et de le glisser dans
-        le presse-papier. Ainsi, par un prochain appel à   <literal>Paste
-        object</literal>, l'objet est recopié dans les axe courant.</para>
+        le presse-papier. Ainsi, par un prochain appel Ã Â Â  <literal>Paste
+        object</literal>, l'objet est recopiÃ© dans les axe courant.</para>
           <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Paste object/Coller: </term>
         <listitem>
-          <para>Permet à   l'utilisateur de coller un objet précédemment placé
+          <para>Permet Ã Â Â  l'utilisateur de coller un objet prÃ©cÃ©demment placÃ©
         dans le presse-papier sur l'axe courant.</para>
           <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Move object/Déplacer: </term>
+        <term>Move object/DÃ©placer: </term>
         <listitem>
           <para>En utilisant la souris, cette fonction permet de bouger un objet
-        2D (comme une courbe, un rectangle...) à   l'intérieur d'un axe
+        2D (comme une courbe, un rectangle...) Ã Â Â  l'intÃ©rieur d'un axe
         courant.</para>
           <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Delete object/Détruire: </term>
+        <term>Delete object/DÃ©truire: </term>
         <listitem>
-          <para>En utilisant la souris, cette fonction permet de détruire un objet
-        2D (like a curve, a rectangle...) que l'on sélectionne a
+          <para>En utilisant la souris, cette fonction permet de dÃ©truire un objet
+        2D (like a curve, a rectangle...) que l'on sÃ©lectionne a
         posteriori.</para>
           <para/>
         </listitem>
@@ -124,7 +124,7 @@
         <term>Figure Properties: </term>
         <listitem>
           <para>Lance l'interface Tcl/Tk pour l'objet Figure, handle de la figure
-        de la fenêtre courante.</para>
+        de la fenÃªtre courante.</para>
           <para/>
         </listitem>
       </varlistentry>
@@ -132,31 +132,31 @@
         <term>Current Axes Properties: </term>
         <listitem>
           <para>Lance l'interface Tcl/Tk pour l'objet Axes courant, handle de
-        l'axe courant de la fenêtre courante.</para>
+        l'axe courant de la fenÃªtre courante.</para>
           <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Start Entity Picker/Démarrer le sélecteur d'entités: </term>
+        <term>Start Entity Picker/DÃ©marrer le sÃ©lecteur d'entitÃ©s: </term>
         <listitem>
-          <para>Démarre un sélecteur d'entité pour pointer des objets 2D à  
+          <para>DÃ©marre un sÃ©lecteur d'entitÃ© pour pointer des objets 2D Ã Â Â 
         la souris et ainsi ouvrir leur interface Tcl/Tk pour pouvoir modifier
-        leurs propriétés. Le clic souris gauche permet d'éditer l'objet
-        cliqué; le clic droit réalise un déplacement de l'objet sélectionné.
+        leurs propriÃ©tÃ©s. Le clic souris gauche permet d'Ã©diter l'objet
+        cliquÃ©; le clic droit rÃ©alise un dÃ©placement de l'objet sÃ©lectionnÃ©.
         Remarque: pour l'instant, cette option fonctionne uniquement avec des
         objets 2D.</para>
           <para/>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Stop Entity Picker/Arrêter le sélecteur d'entités: </term>
+        <term>Stop Entity Picker/ArrÃªter le sÃ©lecteur d'entitÃ©s: </term>
         <listitem>
-          <para>Arrête l'action du sélecteur d'entité.</para>
+          <para>ArrÃªte l'action du sÃ©lecteur d'entitÃ©.</para>
           <para/>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para>Une fois l'interface graphique (fenêtre Tcl/Tk) activée en utilisant
+    <para>Une fois l'interface graphique (fenÃªtre Tcl/Tk) activÃ©e en utilisant
     les commandes <literal>Figure Properties</literal> ou <literal>Current Axes
     Properties</literal>, on distingue 2 zones pricnipales sur ces interfaces
     :</para>
@@ -164,12 +164,12 @@
     <para/>
     <variablelist>
       <varlistentry>
-        <term>Un arbre sélecteur: </term>
+        <term>Un arbre sÃ©lecteur: </term>
         <listitem>
-          <para>placé sur la gauche de la fenêtre de l'éditeur graphique, l'arbre
-        sélecteur permet de parcourir la hiérarchie des objets présents au
-        sein de la figure. On peut passer d'un objet à   l'autre en
-        déroulant la hiérarchie.</para>
+          <para>placÃ© sur la gauche de la fenÃªtre de l'Ã©diteur graphique, l'arbre
+        sÃ©lecteur permet de parcourir la hiÃ©rarchie des objets prÃ©sents au
+        sein de la figure. On peut passer d'un objet Ã Â Â  l'autre en
+        dÃ©roulant la hiÃ©rarchie.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -185,15 +185,15 @@
       <varlistentry>
         <term>Des onglets: </term>
         <listitem>
-          <para>La seconde zone d'intérêt est à   droite: les propriétés de
-        l'objet sélectionné dans l'arbre sont disposées dans une structure
-        multi-onglets. On y trouve différents types de propriétés telles le
+          <para>La seconde zone d'intÃ©rÃªt est Ã Â Â  droite: les propriÃ©tÃ©s de
+        l'objet sÃ©lectionnÃ© dans l'arbre sont disposÃ©es dans une structure
+        multi-onglets. On y trouve diffÃ©rents types de propriÃ©tÃ©s telles le
         <literal>Style</literal>, <literal>Data</literal>, <literal>Clipping</literal>... Elles
-        dépendent du type d'objet considéré. A travers cet éditeur, on peut
-        voir et changer les propriétés de ces objets de façon graphique comme
-        on le ferait à   travers l'emploi des fonctions <literal>"set"</literal>
+        dÃ©pendent du type d'objet considÃ©rÃ©. A travers cet Ã©diteur, on peut
+        voir et changer les propriÃ©tÃ©s de ces objets de faÃ§on graphique comme
+        on le ferait Ã Â Â  travers l'emploi des fonctions <literal>"set"</literal>
         et <literal>"get"</literal> dans la console. Voici un exemple d'onglets
-        affichant les propriétés d'un objet de type Axes:</para>
+        affichant les propriÃ©tÃ©s d'un objet de type Axes:</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -205,49 +205,49 @@
       </inlinemediaobject>
     </para>
     <para/>
-    <para>De plus, on peut légender/annoter la figure en utilisant des primitives
-    simples données dans le menu <literal>Insert</literal> de la fenêtre graphique.
-    En utilisant la souris et en suivant les instructions dans la sous-fenêtre
+    <para>De plus, on peut lÃ©gender/annoter la figure en utilisant des primitives
+    simples donnÃ©es dans le menu <literal>Insert</literal> de la fenÃªtre graphique.
+    En utilisant la souris et en suivant les instructions dans la sous-fenÃªtre
     de message, on peut ajouter un(e):</para>
     <para/>
     <variablelist>
       <varlistentry>
         <term>Line/Ligne: </term>
         <listitem>
-          <para>Dessine une ligne définie entre 2 clics souris gauche. La ligne
-        est définie dans le repère des axes du premier point sélectionné.</para>
+          <para>Dessine une ligne dÃ©finie entre 2 clics souris gauche. La ligne
+        est dÃ©finie dans le repÃ¨re des axes du premier point sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para/>
     <variablelist>
       <varlistentry>
-        <term>Polyline/Ligne brisée: </term>
+        <term>Polyline/Ligne brisÃ©e: </term>
         <listitem>
-          <para>Dessine une ligne brisée en sélectionnant un chemin (clic gauche)
-        et une fin (clic droit). La ligne brisée est définie dans le repère
-        des axes du premier point sélectionné.</para>
+          <para>Dessine une ligne brisÃ©e en sÃ©lectionnant un chemin (clic gauche)
+        et une fin (clic droit). La ligne brisÃ©e est dÃ©finie dans le repÃ¨re
+        des axes du premier point sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para/>
     <variablelist>
       <varlistentry>
-        <term>Arrow/Flèche: </term>
+        <term>Arrow/FlÃ¨che: </term>
         <listitem>
-          <para>Dessine une flèche définie entre 2 clics souris gauche. La flèche
-        est définie dans le repère des axes du premier point sélectionné.</para>
+          <para>Dessine une flÃ¨che dÃ©finie entre 2 clics souris gauche. La flÃ¨che
+        est dÃ©finie dans le repÃ¨re des axes du premier point sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para/>
     <variablelist>
       <varlistentry>
-        <term>Double arrow/Double flèche: </term>
+        <term>Double arrow/Double flÃ¨che: </term>
         <listitem>
-          <para>Dessine une double-flèche définie entre 2 clics souris gauche. La
-        flèche est définie dans le repère des axes du premier point
-        sélectionné.</para>
+          <para>Dessine une double-flÃ¨che dÃ©finie entre 2 clics souris gauche. La
+        flÃ¨che est dÃ©finie dans le repÃ¨re des axes du premier point
+        sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -256,10 +256,10 @@
       <varlistentry>
         <term>Text/Texte: </term>
         <listitem>
-          <para>Ouvre une boîte de dialogue pour entrer un texte, puis, en
-        cliquant qur une zone de la figure, insert le texte à   l'endroit
-        cliquer. Le texte est définie dans le repère des axes du point
-        sélectionné.</para>
+          <para>Ouvre une boÃ®te de dialogue pour entrer un texte, puis, en
+        cliquant qur une zone de la figure, insert le texte Ã Â Â  l'endroit
+        cliquer. Le texte est dÃ©finie dans le repÃ¨re des axes du point
+        sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -268,10 +268,10 @@
       <varlistentry>
         <term>Rectangle: </term>
         <listitem>
-          <para>Dessine un rectangle : 2 clics souris gauches définissent
-        respectivement le coin supérieur gauche et inférieur droit du
-        rectangle. Le rectangle est défini dans le repère des axes du premier
-        point sélectionné.</para>
+          <para>Dessine un rectangle : 2 clics souris gauches dÃ©finissent
+        respectivement le coin supÃ©rieur gauche et infÃ©rieur droit du
+        rectangle. Le rectangle est dÃ©fini dans le repÃ¨re des axes du premier
+        point sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -280,10 +280,10 @@
       <varlistentry>
         <term>Circle/Cercle: </term>
         <listitem>
-          <para>Dessine un cercle : 2 clics souris gauches définissent
-        respectivement le coin supérieur gauche et inférieur droit de la boîte
-        englobante du cercle. Le cercle est défini dans le repère des axes du
-        premier point sélectionné.</para>
+          <para>Dessine un cercle : 2 clics souris gauches dÃ©finissent
+        respectivement le coin supÃ©rieur gauche et infÃ©rieur droit de la boÃ®te
+        englobante du cercle. Le cercle est dÃ©fini dans le repÃ¨re des axes du
+        premier point sÃ©lectionnÃ©.</para>
         </listitem>
       </varlistentry>
     </variablelist>

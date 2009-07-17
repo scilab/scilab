@@ -65,71 +65,12 @@ for solver=solverlist
   if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 end
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3];
+verboselevels=[0];
 for verbose=verboselevels
   for solver=solverlist
     [f,x,g]=optim('rosenf',x0,solver,'td',valtd,imp=verbose);
     if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
-Optim stops: maximum number of calls to f is reached.
-
-Norm of projected gradient lower than   0.0000000D+00.
-
-entry in n1fc1 . n=   3 memax= 10  
-minimal array sizes: iz(    22)  rz(    85)  dz(   198)
-n1fc1      Incorrect end of fprf2
-End of optimization.
-
-Optim stops: maximum number of calls to f is reached.
-
-Norm of projected gradient lower than   0.0000000D+00.
-
-entry in n1fc1 . n=   3 memax= 10  
-minimal array sizes: iz(    22)  rz(    85)  dz(   198)
- n1fc1            diam1= 0.497D+00    eta2= 0.000D+00    ap= 0.201D-28
- n1fc1     10   25   0.1000126D+01   faisceau reduit a  2 gradients
- n1fc1     18   45   0.1000000D+01   faisceau reduit a  3 gradients
-n1fc1   eta2 assigned to  0.000D+00
- n1fc1     21   50   0.1000000D+01   convergence a 0.297D-08 pres  ( 0.00D+00)
-n1fc1      Incorrect end of fprf2
-End of optimization.
-
-Optim stops: maximum number of calls to f is reached.
-
-Norm of projected gradient lower than   0.0000000D+00.
-
-entry in n1fc1 . n=   3 memax= 10  
-minimal array sizes: iz(    22)  rz(    85)  dz(   198)
-n1fc1      1    1   0.1260000D+02  0.10D+01  0.20D+05  0.00D+00  2
- n1fc1            diam1= 0.497D+00    eta2= 0.000D+00    ap= 0.201D-28
-n1fc1      2    3   0.1412656D+01  0.10D+01  0.49D+03  0.00D+00  2
-n1fc1      3    7   0.1082768D+01  0.67D+00  0.67D+01  0.00D+00  3
-n1fc1      4   10   0.1081042D+01  0.66D-02  0.31D+00  0.00D+00  4
-n1fc1      5   13   0.1020070D+01  0.15D+00  0.30D+00  0.00D+00  4
-n1fc1      6   15   0.1010168D+01  0.21D-01  0.12D+02  0.20D+03  3
-n1fc1      7   16   0.1001164D+01  0.20D-01  0.44D+00  0.69D+01  3
-n1fc1      8   18   0.1000717D+01  0.18D-02  0.14D-02  0.36D+00  4
-n1fc1      9   20   0.1000191D+01  0.18D-02  0.38D-04  0.56D-01  4
-n1fc1     10   23   0.1000169D+01  0.44D-04  0.96D-01  0.19D+03  2
- n1fc1     10   25   0.1000126D+01   faisceau reduit a  2 gradients
-n1fc1     11   25   0.1000126D+01  0.87D-04  0.20D-02  0.14D+02  3
-n1fc1     12   27   0.1000121D+01  0.99D-05  0.45D-03  0.71D+00  4
-n1fc1     13   30   0.1000002D+01  0.24D-03  0.17D-04  0.00D+00  4
-n1fc1     14   34   0.1000002D+01  0.38D-06  0.35D-02  0.54D+02  2
-n1fc1     15   36   0.1000000D+01  0.30D-05  0.19D-03  0.77D+01  3
-n1fc1     16   38   0.1000000D+01  0.40D-06  0.13D-05  0.45D+00  3
-n1fc1     17   41   0.1000000D+01  0.40D-08  0.30D-04  0.19D+03  2
-n1fc1     18   43   0.1000000D+01  0.20D-07  0.70D-06  0.26D+02  3
- n1fc1     18   45   0.1000000D+01   faisceau reduit a  3 gradients
-n1fc1     19   45   0.1000000D+01  0.24D-08  0.55D-06  0.56D+02  3
-n1fc1     20   47   0.1000000D+01  0.11D-08  0.35D-07  0.00D+00  4
-n1fc1   eta2 assigned to  0.000D+00
- n1fc1     21   50   0.1000000D+01   convergence a 0.297D-08 pres  ( 0.00D+00)
-n1fc1     21   50   0.1000000D+01  0.30D-09  0.16D-08  0.62D+00  3
-n1fc1     22   54   0.1000000D+01  0.19D-10  0.18D-08  0.74D+00  3
-n1fc1      Incorrect end of fprf2
-End of optimization.
-
 // Clean-up
 ulink(linkid);

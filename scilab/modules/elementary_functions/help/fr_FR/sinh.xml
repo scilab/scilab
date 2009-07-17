@@ -1,49 +1,65 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sinh">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="sinh" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>sinh</refname>
-    <refpurpose>  sinus hyperbolique   </refpurpose>
+
+    <refpurpose>sinus hyperbolique</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[y]=sinh(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>x  </term>
+        <term>x</term>
+
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)
-</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Pour un vecteur ou une matrice, les éléments de <literal>sinh(x)</literal> sont les sinus hyperboliques des éléments de x. Pour le sinus hyperbolique matriciel utiliser la fonction <literal>sinhm(X)</literal>.
-  </para>
+
+    <para>Pour un vecteur ou une matrice, les Ã©lÃ©ments de
+    <literal>sinh(x)</literal> sont les sinus hyperboliques des Ã©lÃ©ments de x.
+    Pour le sinus hyperbolique matriciel utiliser la fonction
+    <literal>sinhm(X)</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 asinh(sinh([0,1,%i]))
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="sinhm">sinhm</link>
-      </member>
-      <member>
-        <link linkend="asinh">asinh</link>
-      </member>
+      <member><link linkend="sinhm">sinhm</link></member>
+
+      <member><link linkend="asinh">asinh</link></member>
     </simplelist>
   </refsection>
 </refentry>

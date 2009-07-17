@@ -82,6 +82,14 @@ includes/getCommonPart.h \
 includes/getPartLine.h \
 includes/completeLine.h
 
+#### completion : test file ####
+libscicompletion_la_testutilitiesdir = $(mydatadir)/tests/utilities
+libscicompletion_la_testutilities_DATA = tests/utilities/build_primitives.sce \
+tests/utilities/sci_completeline.c \
+tests/utilities/sci_getcommonpart.c \
+tests/utilities/sci_getfilepartlevel.c \
+tests/utilities/sci_getpartlevel.c
+
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/Completion.i
 

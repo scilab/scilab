@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>salesman</refname>
-    <refpurpose> résout le problème du voyageur de commerce  </refpurpose>
+    <refpurpose> rÃ©sout le problÃ¨me du voyageur de commerce  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>cir = salesman(g,[nstac])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,10 +50,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>salesman</literal> résout le problème du voyageur de commerce. <literal>g</literal> est un graphe orienté; 
+    <para><literal>salesman</literal> rÃ©sout le problÃ¨me du voyageur de commerce. <literal>g</literal> est un graphe orientÃ©; 
     <literal>nstac</literal> est un entier optionnel qui est une borne sur
-    la mémoire allouée pour résoudre ce problème. Sa valeur est 100*n*n par 
-    défaut où n est le nombre de sommets.
+    la mÃ©moire allouÃ©e pour rÃ©soudre ce problÃ¨me. Sa valeur est 100*n*n par 
+    dÃ©faut oÃ¹ n est le nombre de sommets.
   </para>
   </refsection>
   <refsection>

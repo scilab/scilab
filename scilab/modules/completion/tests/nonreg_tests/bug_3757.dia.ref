@@ -13,6 +13,8 @@
 // Under Scilex, the completion of paths is incorrect
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 // cd d:\Pro[TAB]
 currentline = 'cd d:\Pro';
 newline = completeline(currentline,'Projects',getfilepartlevel(currentline),getpartlevel(currentline),%t);

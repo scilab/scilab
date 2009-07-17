@@ -1,0 +1,39 @@
+*** TEST 1 PASSED ***
+
+TEST 2: Scilab/Matlab size does not match for res2: [1 1]/[1 10]
+TEST 2: M2SCI/Matlab type does not match for res2: Double/String
+*** TEST 2 FAILED ***
+
+TEST 3: Scilab/Matlab size does not match for res3: [0 0]/[1 0]
+*** TEST 3 FAILED ***
+
+*** TEST 4 FAILED ***
+
+TEST 5: Scilab/Matlab size does not match for res5: [1 1]/[1 5]
+TEST 5: M2SCI/Matlab type does not match for res5: Double/String
+*** TEST 5 FAILED ***
+
+*** TEST 6 FAILED ***
+
+TEST 7: Scilab/Matlab size does not match for res7: [0 0]/[1 0]
+*** TEST 7 FAILED ***
+
+*** TEST 8 FAILED ***
+
+*** TEST 9 FAILED ***
+
+*** TEST 10 FAILED ***
+
+*** TEST 11 FAILED ***
+
+TEST 12: Scilab/Matlab size does not match for res12: [0 0]/[1 0]
+*** TEST 12 FAILED ***
+
+*** TEST 13 FAILED ***
+
+*** TEST 14 FAILED ***
+
+*** TEST 15 FAILED ***
+
+*** TEST 16 FAILED ***
+

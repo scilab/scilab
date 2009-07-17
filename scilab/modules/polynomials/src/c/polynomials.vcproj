@@ -4,6 +4,8 @@
 	Version="9,00"
 	Name="polynomials"
 	ProjectGUID="{620D8FA7-3704-438E-BB1E-391C84401A2E}"
+	RootNamespace="polynomials"
+	Keyword="Win32Proj"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>
@@ -21,9 +23,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -44,39 +44,46 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomialstmp.def &gt;nul&#x0D;&#x0A;copy ..\polynomials_header.def+polynomialstmp.def  ..\polynomials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/polynomials.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib polynomials_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="polynomials.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -88,17 +95,17 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomials.def &gt;nul&#x0D;&#x0A;copy polynomials.def ..\..\..\..\..\libs\polynomials.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
 			>
 			<Tool
@@ -120,39 +127,46 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomialstmp.def &gt;nul&#x0D;&#x0A;copy ..\polynomials_header.def+polynomialstmp.def  ..\polynomials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/polynomials.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib polynomials_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="polynomials.def"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -164,18 +178,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomials.def &gt;nul&#x0D;&#x0A;copy polynomials.def ..\..\..\..\..\libs\polynomials.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -194,43 +209,52 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomialstmp.def &gt;nul&#x0D;&#x0A;copy ..\polynomials_header.def+polynomialstmp.def  ..\polynomials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/polynomials.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib polynomials_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="polynomials.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="1"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -242,18 +266,19 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomials.def &gt;nul&#x0D;&#x0A;copy polynomials.def ..\..\..\..\..\libs\polynomials.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="4"
-			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="2"
 			CharacterSet="2"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -273,43 +298,52 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
-				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;POLYNOMIALS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
-				PrecompiledHeaderFile=""
-				AssemblerListingLocation="$(ConfigurationName)/"
-				ObjectFile="$(ConfigurationName)/"
-				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
-				SuppressStartupBanner="true"
 				Detect64BitPortabilityProblems="false"
-				CompileAs="0"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1036"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				Description="Make dependencies"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)polynomials_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)polynomials_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n polynomials.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomialstmp.def &gt;nul&#x0D;&#x0A;copy ..\polynomials_header.def+polynomialstmp.def  ..\polynomials.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="../../../../libs/polynomials.lib"
-				SuppressStartupBanner="true"
+				Name="VCLinkerTool"
+				AdditionalDependencies="LibScilab.lib polynomials_f.lib"
+				OutputFile="../../../../bin/$(ProjectName).dll"
+				LinkIncremental="1"
+				ModuleDefinitionFile="polynomials.def"
+				GenerateDebugInformation="false"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				LinkTimeCodeGeneration="0"
+				RandomizedBaseAddress="1"
+				DataExecutionPrevention="0"
+				ImportLibrary="../../../../bin/$(ProjectName).lib"
+				TargetMachine="17"
+				CLRUnmanagedCodeCheck="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -321,8 +355,10 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="cd &quot;$(IntDir)&quot; &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n libscilab.dll %%f &gt;nul&#x0D;&#x0A;copy *.def polynomials.def &gt;nul&#x0D;&#x0A;copy polynomials.def ..\..\..\..\..\libs\polynomials.vcdef &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -333,6 +369,10 @@
 			Name="Source Files"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath=".\DllmainPolynomial.c"
+				>
+			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_polynomials.c"
 				>
@@ -406,10 +446,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath="..\..\includes\gw_polynomials.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="localization"
@@ -422,6 +458,22 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
+			<File
+				RelativePath=".\polynomials_header.def"
+				>
+			</File>
+			<Filter
+				Name="Imports"
+				>
+				<File
+					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+				<File
+					RelativePath=".\polynomials_f_Import.def"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<File
 			RelativePath="..\..\Makefile.am"

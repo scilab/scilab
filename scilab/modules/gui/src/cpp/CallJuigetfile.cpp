@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - DIGITEO - Sylvestre KOUMAR
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -67,6 +68,47 @@ void CallJuigetfileWithoutMultipleSelection(char ** mask, char ** description, i
 	else
 	{
 		Juigetfile::uigetfile(getScilabJavaVM(), mask, maskSize, description, maskSize, initialDirectory, titleBox);
+	}
+}
+
+void CallJuiputfileWithoutInput()
+{
+	Juigetfile::uiputfile(getScilabJavaVM());
+}
+
+void CallJuiputfileOnlyWithMask(char ** mask, char ** description, int maskSize)
+{
+	if (description == NULL)
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, NULL, 0);
+	}
+	else
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, description, maskSize);
+	}  
+}
+
+void CallJuiputfileWithMaskAndInitialdirectory(char ** mask, char ** description, int maskSize, char * initialDirectory)
+{
+	if (description == NULL)
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, NULL, 0, initialDirectory);
+	}
+	else
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, description, maskSize, initialDirectory);
+	}
+}
+
+void CallJuiputfileWithoutMultipleSelection(char ** mask, char ** description, int maskSize, char * initialDirectory, char * titleBox)
+{
+	if (description == NULL)
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, NULL, 0, initialDirectory, titleBox);
+	}
+	else
+	{
+		Juigetfile::uiputfile(getScilabJavaVM(), mask, maskSize, description, maskSize, initialDirectory, titleBox);
 	}
 }
 

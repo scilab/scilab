@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -49,13 +49,13 @@
   <refsection id="Description_Sources_pal">
     <title>Description</title>
     <para>
-La plupart des blocs de la palette source peuvent être compris comme
-des générateurs de données.
-Cette palette contient aussi des blocs pour lire des données dans des
-fichers, ainsi que des ports d'entrée utilisés dans les superblocs.
+La plupart des blocs de la palette source peuvent Ãªtre compris comme
+des gÃ©nÃ©rateurs de donnÃ©es.
+Cette palette contient aussi des blocs pour lire des donnÃ©es dans des
+fichers, ainsi que des ports d'entrÃ©e utilisÃ©s dans les superblocs.
 </para>
     <para>
-Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
+Les blocs de cette palette ne possÃ¨dent pas de ports rÃ©guliers d'entrÃ©e.
 
 </para>
   </refsection>
@@ -64,7 +64,7 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CLKINV_f">CLKINV_f - Port d'entrée événementiel</link>
+          <link linkend="CLKINV_f">CLKINV_f - Port d'entrÃ©e Ã©vÃ©nementiel</link>
         </para>
       </listitem>
       <listitem>
@@ -89,27 +89,27 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
       </listitem>
       <listitem>
         <para>
-          <link linkend="FROMWSB">FROMWSB - Données de l'environnement Scilab vers Scicos</link>
+          <link linkend="FROMWSB">FROMWSB - DonnÃ©es de l'environnement Scilab vers Scicos</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GENSIN_f">GENSIN_f - Générateur sinusoïdal</link>
+          <link linkend="GENSIN_f">GENSIN_f - GÃ©nÃ©rateur sinusoÃ¯dal</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GENSQR_f">GENSQR_f - Generator de signaux carré</link>
+          <link linkend="GENSQR_f">GENSQR_f - Generator de signaux carrÃ©</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="IN_f">IN_f - Port d'entrée régulier</link>
+          <link linkend="IN_f">IN_f - Port d'entrÃ©e rÃ©gulier</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="INIMPL_f">INIMPL_f - Port implicie d'entrée</link>
+          <link linkend="INIMPL_f">INIMPL_f - Port implicie d'entrÃ©e</link>
         </para>
       </listitem>
       <listitem>
@@ -124,7 +124,7 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
       </listitem>
       <listitem>
         <para>
-          <link linkend="RAND_m">RAND_m - Générateur aléatoire</link>
+          <link linkend="RAND_m">RAND_m - GÃ©nÃ©rateur alÃ©atoire</link>
         </para>
       </listitem>
       <listitem>
@@ -134,12 +134,12 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
       </listitem>
       <listitem>
         <para>
-          <link linkend="READC_f">READC_f - Lecture de donée binaire</link>
+          <link linkend="READC_f">READC_f - Lecture de donÃ©e binaire</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="RFILE_f">RFILE_f - Lecture à partir d'un fichier</link>
+          <link linkend="RFILE_f">RFILE_f - Lecture Ã  partir d'un fichier</link>
         </para>
       </listitem>
       <listitem>
@@ -149,7 +149,7 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
       </listitem>
       <listitem>
         <para>
-          <link linkend="SAWTOOTH_f">SAWTOOTH_f - Générateur de dents de scie</link>
+          <link linkend="SAWTOOTH_f">SAWTOOTH_f - GÃ©nÃ©rateur de dents de scie</link>
         </para>
       </listitem>
       <listitem>
@@ -159,7 +159,7 @@ Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
       </listitem>
       <listitem>
         <para>
-          <link linkend="STEP_FUNCTION">STEP_FUNCTION - Générateur de marche d'escalier</link>
+          <link linkend="STEP_FUNCTION">STEP_FUNCTION - GÃ©nÃ©rateur de marche d'escalier</link>
         </para>
       </listitem>
       <listitem>

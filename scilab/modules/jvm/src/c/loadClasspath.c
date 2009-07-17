@@ -28,6 +28,8 @@
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
+#include "getshortpathname.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/ 
 static xmlDocPtr ClassPathxmlDocPtr = NULL;
 /*--------------------------------------------------------------------------*/ 
@@ -71,7 +73,16 @@ BOOL LoadClasspath(char *xmlfilename)
 			char * XPath=(char*)MALLOC(sizeof(char)*(strlen(XPATH)+strlen(currentMode)-2+1)); /* -2 = strlen(%s) */
 			sprintf(XPath,XPATH,currentMode);
 
-			ClassPathxmlDocPtr = xmlParseFile (xmlfilename);
+			{
+				BOOL bConvert = FALSE;
+				char *shortxmlfilename = getshortpathname(xmlfilename,&bConvert);
+				if (shortxmlfilename)
+				{
+					ClassPathxmlDocPtr = xmlParseFile (shortxmlfilename);
+					FREE(shortxmlfilename);
+					shortxmlfilename = NULL;
+				}
+			}
 
 			if (ClassPathxmlDocPtr == NULL) 
 			{

@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clean">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>clean</refname>
-    <refpurpose> nettoie une matrice (arrondi à zéro des termes très petits)    </refpurpose>
+    <refpurpose> nettoie une matrice (arrondi Ã  zÃ©ro des termes trÃ¨s petits)    </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[B]=clean(A [,epsa [,epsr]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>une matrice (scalaire, polynômes, creuse, ...) 
+          <para>une matrice (scalaire, polynÃ´mes, creuse, ...) 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>epsa,epsr  </term>
         <listitem>
-          <para>nombres réels. Tolérances (valeurs par défaut resp. 1.d-10 et 1.d-10)
+          <para>nombres rÃ©els. TolÃ©rances (valeurs par dÃ©faut resp. 1.d-10 et 1.d-10)
 </para>
         </listitem>
       </varlistentry>
@@ -33,16 +33,16 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction élimine (force à zéro) les coefficients 
+    Cette fonction Ã©limine (force Ã  zÃ©ro) les coefficients 
     de valeur absolue &lt; <literal>epsa</literal> ou de valeur relative &lt; <literal>epsr</literal> 
-    (relative par rapport à la  norme 1 des coefficients)
-    dans un polynôme (éventuellement matrice de polynôme ou rationnelle).
+    (relative par rapport Ã  la  norme 1 des coefficients)
+    dans un polynÃ´me (Ã©ventuellement matrice de polynÃ´me ou rationnelle).
   </para>
     <para>
-    Les valeurs par défaut sont <literal>epsa=1.d-10</literal> et <literal>epsr=1.d-10</literal>.
+    Les valeurs par dÃ©faut sont <literal>epsa=1.d-10</literal> et <literal>epsr=1.d-10</literal>.
   </para>
     <para>
-    Pour une matrice constante (non polynomiale) <literal>clean(A,epsa)</literal> force à zéro
+    Pour une matrice constante (non polynomiale) <literal>clean(A,epsa)</literal> force Ã  zÃ©ro
     les termes de <literal>A</literal> plus petits que <literal>epsa</literal>.
   </para>
   </refsection>

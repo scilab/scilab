@@ -6,5 +6,4 @@ EXPORTS
 ; string_f
 ; --------------------------------------- 
 intstring_
-strdsp_
-strops_
+

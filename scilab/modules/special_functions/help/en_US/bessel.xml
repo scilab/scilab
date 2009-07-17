@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -177,7 +177,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bessel_equation1.mml" />
+          <imagedata align="center" fileref="../mml/bessel_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -188,7 +188,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bessel_equation2.mml" />
+          <imagedata align="center" fileref="../mml/bessel_equation2.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -200,7 +200,7 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bessel_equation3.mml" />
+          <imagedata align="center" fileref="../mml/bessel_equation3.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

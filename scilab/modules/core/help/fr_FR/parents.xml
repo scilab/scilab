@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="parents">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>parents ( )</refname>
-    <refpurpose> parenthèses droite et gauche  </refpurpose>
+    <refpurpose> parenthÃ¨ses droite et gauche  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>(expression)
 [...]=func(e1,e2,...)
 [x1,x2,...]=(e1,e2,...)
@@ -17,7 +17,7 @@ v(i)
 [...]=l(i)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
@@ -59,27 +59,27 @@ v(i)
   <refsection>
     <title>Description</title>
     <para>
-    Les parenthèses droite et gauche sont utilisées pour : 
+    Les parenthÃ¨ses droite et gauche sont utilisÃ©es pour : 
   </para>
     <para>
      *
-    Spécifier l'ordre d'évaluation dans des expressions, 
+    SpÃ©cifier l'ordre d'Ã©valuation dans des expressions, 
   </para>
     <para>
      *
-    Former la liste des arguments d'entrée d'une fonction. Les arguments multiples sont séparés par des virgules. 
+    Former la liste des arguments d'entrÃ©e d'une fonction. Les arguments multiples sont sÃ©parÃ©s par des virgules. 
   </para>
     <para>
      *
-    Sélectionner des éléments dans les vecteurs, matrices et listes.
+    SÃ©lectionner des Ã©lÃ©ments dans les vecteurs, matrices et listes.
   </para>
     <para>
-    Voir <literal>extraction</literal> et <literal>insertion</literal> pour de plus amples précisions.
+    Voir <literal>extraction</literal> et <literal>insertion</literal> pour de plus amples prÃ©cisions.
   </para>
     <para>
      *
-    [x1,x2,...]=(e1,e2,...) est équivalent aux commandes préalables %t_1 = e1,
-    %t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ..., où les
+    [x1,x2,...]=(e1,e2,...) est Ã©quivalent aux commandes prÃ©alables %t_1 = e1,
+    %t_2 = e2, ..., suivies de x1 = %t_1, x2 = %t_2, ..., oÃ¹ les
     variables %t_i, i = 1, 2, ... sont "invisibles" pour l'utilisateur.
   </para>
     <para>

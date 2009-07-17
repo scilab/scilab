@@ -4,6 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
 //

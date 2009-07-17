@@ -79,9 +79,9 @@ int size_list(void)
 
 	double *pReturnData	= NULL;
 
-	iGetListItemType(1, &iItemNumber, NULL);
+	iGetListItemType(1, NULL, &iItemNumber, NULL);
 	piItemType			= (int*)malloc(sizeof(int) * iItemNumber);
-	iGetListItemType(1, &iItemNumber, piItemType);
+	iGetListItemType(1, NULL, &iItemNumber, piItemType);
 
 	if(GetType(1) == sci_tlist && piItemType[0] == sci_strings)
 	{

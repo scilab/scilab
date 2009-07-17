@@ -19,19 +19,41 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/msgstxt.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
-				src/c/sciprint_nd.c \
 				src/c/sciprint_full.c \
 				src/c/errmds.c \
 				src/c/errmsg.c \
 				src/c/error.c \
-				src/c/error_internal.c
+				src/c/error_internal.c \
+				src/c/do_xxprintf.c \
+				src/c/set_xxprintf.c
+
+OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
+		src/fortran/wmdsp.f \
+		src/fortran/strdsp.f \
+		src/fortran/prntid.f \
+		src/fortran/print.f \
+		src/fortran/lspdsp.f \
+		src/fortran/fmttyp.f \
+		src/fortran/fmt.f \
+		src/fortran/dspdsp.f \
+		src/fortran/dmrdsp.f \
+		src/fortran/dmpdsp.f \
+		src/fortran/dmdspf.f \
+		src/fortran/dmdsp.f \
+		src/fortran/dldsp.f \
+		src/fortran/basouttofile.f \
+		src/fortran/formatnumber.f
 
 
-OUTPUT_STREAM_FORTRAN_SOURCES =
+GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
+		sci_gateway/c/sci_print.c \
+		sci_gateway/c/sci_mprintf.c \
+		sci_gateway/c/sci_msprintf.c \
+		sci_gateway/c/sci_disp.c
+		
 
-GATEWAY_C_SOURCES =
-
-GATEWAY_FORTRAN_SOURCES =
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
+			sci_gateway/fortran/intdisp.f
 
 libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
@@ -66,7 +88,7 @@ libscioutput_stream_la_etc_DATA = etc/output_stream.quit etc/output_stream.start
 
 #### output_stream : gateway declaration ####
 libscioutput_stream_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscioutput_stream_la_sci_gateway_DATA =
+libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 
 #### output_stream : include files ####
 libscioutput_stream_la_includedir=$(pkgincludedir)/output_stream
@@ -75,11 +97,12 @@ includes/erro.h \
 includes/do_error_number.h \
 includes/errmds.h \
 includes/sciprint.h \
-includes/sciprint_nd.h \
 includes/Scierror.h \
 includes/basout.h \
 includes/msgs.h \
-includes/sciprint_full.h
+includes/sciprint_full.h \
+includes/do_xxprintf.h \
+includes/gw_output_stream.h
 
 include $(top_srcdir)/Makefile.incl.am
 

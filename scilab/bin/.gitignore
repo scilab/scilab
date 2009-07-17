@@ -25,6 +25,8 @@ Scilex_pure.ini
 test.bin
 test_macro_exec
 libintertest.c
+mkl
+refblas
 fftw
 *.so.*
 *.so

@@ -45,7 +45,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
 	{
-		sci_demo(fname,"xsetm();",FALSE);
+		sci_demo(fname, fname_len);
 		return 0;
 	}
 
@@ -66,7 +66,6 @@ int sci_xset( char *fname, unsigned long fname_len )
   if ( !keyFound )
   {
     Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-    LhsVar(1)=0;
     return 0;
   }
 
@@ -75,7 +74,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
   {
     Scierror(999, _("%s : '%s' must be set\n"),fname, "window-number");
-    LhsVar(1)=0; return 0;
+		return 0;
   }
 
   if (Rhs == 2 && VarType(2) != sci_matrix) 
@@ -83,7 +82,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     /* second argument is not a scalar it must be a string */ 
     GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
     C2F(xsetg)(cstk(l1),cstk(l2),m1,m2);
-    LhsVar(1)=0; return 0;
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+    return 0;
   }
 
   if (Rhs == 1 && strcmp(cstk(l1),"default") == 0) 
@@ -160,13 +161,11 @@ int sci_xset( char *fname, unsigned long fname_len )
     if (*stk(lr) == 1)
     {
       Scierror(999, _("%s: Old graphic mode is no longer available. Please refer to the set help page.\n"),"xset");
-			LhsVar(1)=0;
 			return -1;
     }
     else if (*stk(lr) != 0)
     {
       Scierror(999,"%s: Wrong value for input argument: %d or %d expected.\n",fname,0, 1);
-			LhsVar(1)=0;
 			return -1;
     }
   }/* NG end */
@@ -350,7 +349,6 @@ int sci_xset( char *fname, unsigned long fname_len )
     else
     {
       Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-			LhsVar(1)=0;
 			return 0;
     }
 
@@ -362,6 +360,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   }
    
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

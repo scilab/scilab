@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -49,8 +49,8 @@
   <refsection id="Description_DemoBlocks_pal">
     <title>Description</title>
     <para>
-Les blocs de cette palette sont utilisés pour faire des
-diagrammes de démonstration.
+Les blocs de cette palette sont utilisÃ©s pour faire des
+diagrammes de dÃ©monstration.
 
 </para>
   </refsection>
@@ -59,7 +59,7 @@ diagrammes de démonstration.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BOUNCE">BOUNCE - Générateur de coordonnées de balles</link>
+          <link linkend="BOUNCE">BOUNCE - GÃ©nÃ©rateur de coordonnÃ©es de balles</link>
         </para>
       </listitem>
       <listitem>

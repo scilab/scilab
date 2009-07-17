@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_block">
   <refnamediv>
     <refname>scicos_block</refname>
-    <refpurpose>Définit une structure bloc</refpurpose>
+    <refpurpose>DÃ©finit une structure bloc</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_block">
     <title>Module</title>
@@ -39,7 +39,7 @@
   <refsection id="block_scicos_block">
     <title>block</title>
     <para>
- Une structure de base qui définit un bloc Scicos.
+ Une structure de base qui dÃ©finit un bloc Scicos.
 </para>
     <para>
 Cette structure inclut les champs <link linkend="scicos_graphics">graphics</link>, <link linkend="scicos_model">model</link>,
@@ -64,7 +64,7 @@ Type : scilab list.
         <para>
           <emphasis role="bold">graphics</emphasis>
         </para>
-        <para> Liste Scilab contenant les informations sur les données graphiques du bloc.</para>
+        <para> Liste Scilab contenant les informations sur les donnÃ©es graphiques du bloc.</para>
         <para> 
 Taille : 14.
 </para>
@@ -76,7 +76,7 @@ Type : scilab list.
         <para>
           <emphasis role="bold">model</emphasis>
         </para>
-        <para> Liste Scilab qui contient les informations du bloc utilisées pour la compilation.</para>
+        <para> Liste Scilab qui contient les informations du bloc utilisÃ©es pour la compilation.</para>
         <para> 
 Taille : 23.
 </para>
@@ -88,24 +88,24 @@ Type : liste scilab.
         <para>
           <emphasis role="bold">gui</emphasis>
         </para>
-        <para> Le nom de la fonction d'interface Scilab associée au bloc.</para>
+        <para> Le nom de la fonction d'interface Scilab associÃ©e au bloc.</para>
         <para> 
 Taille : 1.
 </para>
         <para>
-Type : chaîne de caractères.
+Type : chaÃ®ne de caractÃ¨res.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">doc</emphasis>
         </para>
-        <para> Un champ utilisé pour la documentation du bloc.</para>
+        <para> Un champ utilisÃ© pour la documentation du bloc.</para>
         <para> 
 Taille : 1.
 </para>
         <para>
-Type : chaîne de caractères.
+Type : chaÃ®ne de caractÃ¨res.
 </para>
       </listitem>
     </itemizedlist>

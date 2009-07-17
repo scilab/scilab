@@ -796,7 +796,7 @@ msgstr ""
 msgid ""
 "%s: Using xgetmouse with a flag to avoid the event queue to be cleared is "
 "obsolete.\n"
-"This functionnality will be permanently removed in Scilab 5.1.\n"
+"This functionality will be permanently removed in Scilab 5.1.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xlfont.c, line: 124

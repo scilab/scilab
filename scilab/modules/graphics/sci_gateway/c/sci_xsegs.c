@@ -39,7 +39,13 @@ int sci_xsegs(char *fname,unsigned long fname_len)
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
-  if (m2*n2 == 0) { LhsVar(1)=0; return 0;} 
+  if (m2*n2 == 0)
+	{
+		/* Empty segs */
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+		return 0;
+	} 
 
   if (Rhs == 3)
   {
@@ -77,6 +83,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
     
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

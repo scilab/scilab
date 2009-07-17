@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="roots" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,26 +14,26 @@
   <refnamediv>
     <refname>roots</refname>
 
-    <refpurpose>racines d'un polynôme</refpurpose>
+    <refpurpose>racines d'un polynÃ´me</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[x]=roots(p)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>polynôme à coefficients réels ou complexes ou vecteur des
-          coefficients du polynŽôme ordonnés par puissance décroissante
-          (compatibilité avec Matlab).</para>
+          <para>polynÃ´me Ã  coefficients rÃ©els ou complexes ou vecteur des
+          coefficients du polynÂŽÃ´me ordonnÃ©s par puissance dÃ©croissante
+          (compatibilitÃ© avec Matlab).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,11 +43,11 @@
     <title>Description</title>
 
     <para><literal>x=roots(p)</literal> renvoie dans le vecteur complexe
-    <literal>x</literal> les racines du polynôme <literal>p</literal>. Pour
-    les polynômes à coefficients réels et de degré &lt;=100, l'algorithme
-    rapide RPOLY (fondé sur la méthode de Jenkins-Traub) est utilisé. Dans les
-    autres cas, les racines sont calculées comme valeurs propres de la matrice
-    compagnon du polynôme. Pour forcer ce dernier algorithme dans tous les
+    <literal>x</literal> les racines du polynÃ´me <literal>p</literal>. Pour
+    les polynÃ´mes Ã  coefficients rÃ©els et de degrÃ© &lt;=100, l'algorithme
+    rapide RPOLY (fondÃ© sur la mÃ©thode de Jenkins-Traub) est utilisÃ©. Dans les
+    autres cas, les racines sont calculÃ©es comme valeurs propres de la matrice
+    compagnon du polynÃ´me. Pour forcer ce dernier algorithme dans tous les
     cas, utilisez <literal>x=roots(p,'e')</literal>.</para>
   </refsection>
 
@@ -57,7 +57,7 @@
     <programlisting role="example">
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
-A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynôme caractéristique
+A=rand(3,3);roots(poly(A,'x'))    // comparaison via le polynÃ´me caractÃ©ristique
 spec(A) 
  </programlisting>
   </refsection>
@@ -90,11 +90,11 @@ spec(A)
   </refsection>
 
   <refsection>
-    <title>Fonctions Utilisées</title>
+    <title>Fonctions UtilisÃ©es</title>
 
-    <para>Le code source de rpoly.f peut être trouvé dans le repertoire
-    routines/control de la distribution source de Scilab. Dans le cas où la
-    matrix compagnon est utilisée, le calcul des valeurs propres est effectué
+    <para>Le code source de rpoly.f peut Ãªtre trouvÃ© dans le repertoire
+    routines/control de la distribution source de Scilab. Dans le cas oÃ¹ la
+    matrix compagnon est utilisÃ©e, le calcul des valeurs propres est effectuÃ©
     en utilisant les routines DGEEV et ZGEEV de LAPACK.</para>
   </refsection>
 </refentry>

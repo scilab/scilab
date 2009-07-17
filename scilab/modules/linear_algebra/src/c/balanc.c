@@ -67,12 +67,12 @@ static int iBalanc2(double* pData1, double* pData2, int iCols, int complexArgs, 
 /* part of the API. cf balanc.h */
 int iBalancM(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2)
 {
-  int ret;
+  int ret= 0;
   double* pScale= MALLOC(iCols * sizeof(double));
   if(pData2) /* Rhs == 2 && Lhs == 4 */
     {
-      double* pRScale;
-      double* pWork;
+      double* pRScale= NULL;
+      double* pWork= NULL;
       if( (pRScale =  MALLOC(iCols * sizeof(double))) && (pWork=  MALLOC(iCols * 6 * sizeof(double))) )
 	{
 	  ret=iBalanc2(pData1, pData2, iCols, complexArgs, lhsData1, lhsData2, pScale, pRScale, pWork);

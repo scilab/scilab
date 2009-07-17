@@ -134,7 +134,9 @@ static int minimalWorkSize(int complexArg, int iRows, int iCols, int iRowsToComp
   return Max( Max(minGeqrf, minGeqp3), minGqr);
 }
 
-
+static int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
+       , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank
+	, int* piPivot, double* pdblTau, double* pdblWork, int iWorkSize, double* pdblRWork);
 int iQrM(double* pData, int iRows, int iCols, int /*bool*/ complexArg, int iRowsToCompute, double dblTol
 	 , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank)
 {
@@ -184,7 +186,6 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
   int economyMode= (iRowsToCompute < iRows);
   int info;
 
-  int* header=((int*)pdblE)-4;
   memset(pdblR, 0, iRowsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)));
   if(lhs == 2)
     {
@@ -199,11 +200,7 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
     }
   else
     {
-      int i;
-      for(i= 0; i != iCols; ++i)
-	{
-	  piPivot[i]=0;
-	}
+      memset(piPivot, 0, iCols*sizeof(int));
       if(complexArg)
 	{
 	  C2F(zgeqp3)(&iRows, &iCols, pData, &iRows, piPivot, pdblTau, pdblWork, &iWorkSize, pdblRWork, &info);
@@ -223,27 +220,6 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
 	{
 	  C2F(dlacpy)("U",&iRowsToCompute, &iCols, pData, &iRows, pdblR, &iRowsToCompute);
 	}
-      {
-	int i, j;
-	int jEnd= (economyMode || (iRows > iCols )) ? iCols : iRows ;
-	for(j = 0; j != jEnd; ++j)
-	  {
-	    for( i=j+1; i < iRowsToCompute; ++i)
-	      {
-		if(complexArg)
-		  {
-		    double* const cplx=pdblR+ 2*(i+j*iRowsToCompute) ;
-		    cplx[0]=0.;
-		    cplx[1]=0.;
-		  }
-		else
-		  {
-		    double* const ptr=pdblR+ (i+j*iRowsToCompute) ;
-		    *ptr=0.;
-		  }
-	      }
-	  }
-      }
       if( !economyMode && (iRows > iCols) )
 	{
 	  if(complexArg)
@@ -280,11 +256,11 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
 	{
 	  if(complexArg)
 	    {
-	      C2F(zlacpy)("F", &iRows, &iRowsToCompute, pData, &iRows, pdblQ, &iRowsToCompute);
+	      C2F(zlacpy)("F", &iRows, &iRowsToCompute, pData, &iRows, pdblQ, &iRows);
 	    }
 	  else
 	    {
-	      C2F(dlacpy)("F", &iRows, &iRowsToCompute, pData, &iRows, pdblQ, &iRowsToCompute);
+	      C2F(dlacpy)("F", &iRows, &iRowsToCompute, pData, &iRows, pdblQ, &iRows);
 	    }
 	}
       {
@@ -297,16 +273,11 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
 	else
 	  {
 	    C2F(dorgqr)(&iRows, &iRowsToCompute, &minRowsCols, pdblQ, &iRows, pdblTau
-				    , pdblWork, &iWorkSize, &info);
+	    				    , pdblWork, &iWorkSize, &info);
 	  }
       }
       if( lhs > 2 )
 	{
-	  /*
-	    double zero= 0.;
-	    C2F(dlaset)("F", &iCols, &iCols, Rows, &zero, &zero, pdblE, iCols);
-	  */
-	  /* /!\ changed the previous lines to memset*/
 	  memset(pdblE, 0, iCols * iCols * sizeof(double));
 	  { 
 	    int i, j;

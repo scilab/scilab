@@ -20,7 +20,10 @@
 
 Source: bin\helptools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\jar\*.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
-;
+
+#ifdef WITH_CHM
+Source: modules\{#HELPTOOLS}\chm\*.chm; DestDir: {app}\modules\{#HELPTOOLS}\chm; Components: {#COMPN_SCILAB}
+#endif
 
 Source: modules\{#HELPTOOLS}\sci_gateway\helptools_gateway.xml; DestDir: {app}\modules\{#HELPTOOLS}\sci_gateway; Components: {#COMPN_SCILAB}
 Source: thirdparty\docbook\*.*;DestDir: {app}\thirdparty\docbook; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
@@ -78,10 +81,6 @@ Source: modules\{#HELPTOOLS}\VERSION.xml; DestDir: {app}\modules\{#HELPTOOLS}; C
 Source: modules\{#HELPTOOLS}\readme.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\license.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\changelog.txt; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
-;
-; disabled
-;Source: modules\{#HELPTOOLS}\jar\scilab_fr_FR_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
-;Source: modules\{#HELPTOOLS}\jar\scilab_en_US_help.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HELPTOOLS}\*.xsl; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HELPTOOLS}\help.dtd; DestDir: {app}\modules\{#HELPTOOLS}; Components: {#COMPN_SCILAB}

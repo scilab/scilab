@@ -29,6 +29,9 @@
 #ifdef _MSC_VER
 #include "getenvc.h"
 #endif
+#include "getshortpathname.h"
+#include "BOOL.h"
+#include "charEncoding.h"
 /*---------------------------------------------------------------------------*/
 static void Underscores(int isfor, char *ename, char *ename1);
 static int SearchFandS(char *op, int ilib);
@@ -100,7 +103,7 @@ int scilabLink(int idsharedlibrary,
 			#ifdef _MSC_VER
 			{
 				char *pathSearch = searchEnv(filename,"PATH");
-				if ( (pathSearch) && ((int)strlen(pathSearch) > 0) )
+				if ( (pathSearch != NULL) && ((int)strlen(pathSearch) > 0) )
 				{
 					if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
 					{
@@ -299,7 +302,17 @@ void ShowDynLinks(void)
 		}
 	}
 
-	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("] : %d libraries.\n"),count);
+	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+	{
+		if ( (count == 1) || (count == 0) )
+		{
+			sciprint(_("] : %d library.\n"),count);
+		}
+		else
+		{
+			sciprint(_("] : %d libraries.\n"),count);
+		}
+	}
 
 	for ( i = NEpoints-1 ; i >=0 ; i--) 
 	{
@@ -329,7 +342,21 @@ int Sci_dlopen( char *loaded_file)
 	static DynLibHandle  hd1 = NULL;
 	int i = 0;
 
+	BOOL bConvert = FALSE;
+	
+	#ifdef _MSC_VER
+	{
+		wchar_t *wcfilename = to_wide_string(loaded_file);
+		if (wcfilename)
+		{
+			hd1 = LoadDynLibraryW(wcfilename);
+			FREE(wcfilename);
+			wcfilename = NULL;
+		}
+	}
+	#else
 	hd1 = LoadDynLibrary (loaded_file);
+	#endif
 
 	if ( hd1 == NULL )  return -1 ; /* the shared archive was not loaded. */
 

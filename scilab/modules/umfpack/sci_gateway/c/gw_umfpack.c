@@ -47,8 +47,8 @@
 #include "callFunctionFromGateway.h"
 #include "taucs_scilab.h"
 /*--------------------------------------------------------------------------*/
-
-static gw_generic_table Tab[]={
+#define UMFPACK_TAB_SIZE 12
+static gw_generic_table Tab[UMFPACK_TAB_SIZE]={
   {sci_umfpack, "umfpack"      },
   {sci_umf_lufact, "umf_lufact"   },
   {sci_umf_lusolve, "umf_lusolve"  },
@@ -66,7 +66,7 @@ static gw_generic_table Tab[]={
 /*--------------------------------------------------------------------------*/
 int gw_umfpack(void)
 {
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,UMFPACK_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

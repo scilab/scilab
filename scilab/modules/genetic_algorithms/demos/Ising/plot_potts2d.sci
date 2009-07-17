@@ -9,7 +9,6 @@
 
 function plot_potts2d(Var, Level)
 Size = size(Var,1);
-scf();
 drawlater;
 f=gcf();
 f.color_map = graycolormap(2*Level+1);

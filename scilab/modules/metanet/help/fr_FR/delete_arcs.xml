@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>delete_arcs</refname>
-    <refpurpose> détruit tous les arcs ou arêtes reliant un ensemble de sommets  </refpurpose>
+    <refpurpose> dÃ©truit tous les arcs ou arÃªtes reliant un ensemble de sommets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = delete_arcs(ij,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>ij  </term>
         <listitem>
-          <para>matrice d'entiers (numéros des sommets)
+          <para>matrice d'entiers (numÃ©ros des sommets)
 </para>
         </listitem>
       </varlistentry>
@@ -51,12 +51,12 @@
   <refsection>
     <title>Description</title>
     <para>
-    Si <literal>g</literal> est un graphe orienté,
-    <literal>delete_arcs</literal> renvoie le graphe <literal>g1</literal> avec les arcs définis par la matrice <literal>ij</literal> ayant été détruits.
-    <literal>ij</literal> doit être une matrice n x 2 contenant les numéros des sommets : les n arcs à détruire sont définis par les couples de sommets (<literal>ij(i,1)</literal>, <literal>ij(i,2)</literal>).
+    Si <literal>g</literal> est un graphe orientÃ©,
+    <literal>delete_arcs</literal> renvoie le graphe <literal>g1</literal> avec les arcs dÃ©finis par la matrice <literal>ij</literal> ayant Ã©tÃ© dÃ©truits.
+    <literal>ij</literal> doit Ãªtre une matrice n x 2 contenant les numÃ©ros des sommets : les n arcs Ã  dÃ©truire sont dÃ©finis par les couples de sommets (<literal>ij(i,1)</literal>, <literal>ij(i,2)</literal>).
   </para>
     <para>
-    Si <literal>g</literal> est un graphe non-orienté, les arêtes correspondant à la matrice <literal>ij</literal> sont détruites.
+    Si <literal>g</literal> est un graphe non-orientÃ©, les arÃªtes correspondant Ã  la matrice <literal>ij</literal> sont dÃ©truites.
   </para>
   </refsection>
   <refsection>

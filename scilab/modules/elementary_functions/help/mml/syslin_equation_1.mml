@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mtable>
+   <math:mtr>
+    <math:mrow>
+     <math:mrow>
+      <math:mi>s</math:mi>
+      <math:mo math:stretchy="false">⋅</math:mo>
+      <math:mi>x</math:mi>
+     </math:mrow>
+     <math:mo math:stretchy="false">=</math:mo>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>A</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi>x</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">+</math:mo>
+      <math:mrow>
+       <math:mi>B</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi>u</math:mi>
+      </math:mrow>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi>y</math:mi>
+     <math:mo math:stretchy="false">=</math:mo>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>C</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi>x</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">+</math:mo>
+      <math:mrow>
+       <math:mi>D</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi>u</math:mi>
+      </math:mrow>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mi>x</math:mi>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mn>0</math:mn>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mi math:fontstyle="italic">x0</math:mi>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+  </math:mtable>
+  <math:annotation math:encoding="StarMath 5.0">stack {
+s cdot x = A cdot x + B cdot u #
+y = C cdot x + D cdot u #
+x(0) = x0
+}</math:annotation>
+ </math:semantics>
+</math:math>

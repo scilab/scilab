@@ -15,7 +15,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]=
+#define LOCALIZATION_TAB_SIZE 7
+static gw_generic_table Tab[LOCALIZATION_TAB_SIZE]=
 {
 	{C2F(sci_setlanguage),"setlanguage"},
 	{C2F(sci_getlanguage),"getlanguage"},
@@ -29,7 +30,7 @@ static gw_generic_table Tab[]=
 int gw_localization(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,LOCALIZATION_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

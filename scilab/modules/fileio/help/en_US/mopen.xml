@@ -71,7 +71,7 @@
         <term>err</term>
 
         <listitem>
-          <para>a scalar. Error indicator</para>
+          <para>a scalar. Error indicator. see merror.</para>
         </listitem>
       </varlistentry>
 
@@ -211,6 +211,8 @@
 
     <simplelist type="inline">
       <member><link linkend="mclose">mclose</link></member>
+      
+      <member><link linkend="merror">merror</link></member>
 
       <member><link linkend="meof">meof</link></member>
 

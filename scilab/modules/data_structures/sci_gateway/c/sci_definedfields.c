@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_data_structures1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(definedfields)();
+extern int C2F(definedfields)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_definedfields)(char *fname,unsigned long fname_len)
 {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -85,7 +85,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/legendre_equation1.mml" />
+          <imagedata align="center" fileref="../mml/legendre_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -101,7 +101,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/legendre_equation2.mml" />
+          <imagedata align="center" fileref="../mml/legendre_equation2.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

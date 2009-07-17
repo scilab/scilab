@@ -1,0 +1,7 @@
+	LIBRARY    polynomials_f.dll
+
+
+EXPORTS
+
+; polynomials_f
+  blktit_

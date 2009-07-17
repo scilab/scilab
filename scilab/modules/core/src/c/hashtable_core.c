@@ -33,6 +33,7 @@ static int isprime(unsigned int number);
 /*--------------------------------------------------------------------------*/
 int create_hashtable_scilab_functions(unsigned int nel)
 {
+    unsigned int i;
 	if (htable == NULL)
 	{
 		nel |= 1;      /* make odd */
@@ -47,7 +48,14 @@ int create_hashtable_scilab_functions(unsigned int nel)
 		}
 		else
 		{
-			return 1;
+		  for(i=0;i<hashtableSize;i++)
+		    {
+		      htable[i].used = 0;
+		      strcpy(htable[i].entry.namefunction,"");
+		      htable[i].entry.key[0] = 0;
+		      htable[i].entry.data = 0;
+		    }
+		  return 1;
 		}
 	}
 	return 0;
@@ -111,6 +119,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 					case SCI_HFUNCTIONS_ENTER :
 						htable[idx].entry.data = *data;
 						if (name) strcpy(htable[idx].entry.namefunction,name);
+						else strcpy(htable[idx].entry.namefunction,"");
 						return OK;
 						break;
 					case SCI_HFUNCTIONS_DELETE :
@@ -147,6 +156,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						case SCI_HFUNCTIONS_ENTER :
 							htable[idx].entry.data = *data; 
 							if (name) strcpy(htable[idx].entry.namefunction,name);
+							else strcpy(htable[idx].entry.namefunction,"");
 							return OK;
 						case SCI_HFUNCTIONS_DELETE :
 							htable[idx].used = 0;
@@ -207,7 +217,10 @@ char **GetFunctionsList(int *sizeList)
 
 	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
 	{
-		if (htable[i].entry.namefunction) j++;
+		if (htable[i].entry.namefunction) 
+		{
+			if (strlen(htable[i].entry.namefunction) > 0) j++;
+		}
 	}
 	*sizeList=j;
 
@@ -219,8 +232,11 @@ char **GetFunctionsList(int *sizeList)
 	{
 		if (htable[i].entry.namefunction)
 		{
-			ListFunctions[j] = strdup(htable[i].entry.namefunction);
-			j++;
+			if (strlen(htable[i].entry.namefunction) > 0)
+			{
+				ListFunctions[j] = strdup(htable[i].entry.namefunction);
+				j++;
+			}
 		}
 	}
 	return ListFunctions;

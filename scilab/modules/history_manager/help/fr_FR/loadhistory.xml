@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
@@ -19,17 +19,17 @@
     <refpurpose>charge un fichier contenant l'historique</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>loadhistory()
 loadhistory(f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>chemin du fichier à charger</para>
+          <para>chemin du fichier Ã  charger</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,7 +37,7 @@ loadhistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>charge un fichier contenant l'historique</para>
-    <para>Par défaut, le nom du fichier contenant l'historique est SCIHOME+'/.history.scilab'</para>
+    <para>Par dÃ©faut, le nom du fichier contenant l'historique est SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

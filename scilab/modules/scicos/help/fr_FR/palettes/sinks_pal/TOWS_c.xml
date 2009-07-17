@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TOWS_c">
   <refnamediv>
     <refname>TOWS_c</refname>
-    <refpurpose>Données vers l'environnement Scilab</refpurpose>
+    <refpurpose>DonnÃ©es vers l'environnement Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TOWS_c">Données vers l'environnement Scilab</link>
+          <link linkend="TOWS_c">DonnÃ©es vers l'environnement Scilab</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TOWS_c">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TOWS_c">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TOWS_c">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TOWS_c">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -103,17 +103,17 @@
   <refsection id="Description_TOWS_c">
     <title>Description</title>
     <para>
-Ce bloc est utilisé pour transférer des données simulées dans
+Ce bloc est utilisÃ© pour transfÃ©rer des donnÃ©es simulÃ©es dans
 l'environnement Scilab.
 </para>
     <para>
-A chaque instants d'échantillonnage, aussi bien les dates que les valeurs
-de l'entrée sont enregistrées.
+A chaque instants d'Ã©chantillonnage, aussi bien les dates que les valeurs
+de l'entrÃ©e sont enregistrÃ©es.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TOWS_c">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TOWS_c">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -129,29 +129,29 @@ de l'entrée sont enregistrées.
         <para>
           <emphasis role="bold">Size of buffer</emphasis>
         </para>
-        <para> Définit la taille du buffer. Cela donne le nombre total d'échantillons qui seront enregistrés pendant la simulation.</para>
+        <para> DÃ©finit la taille du buffer. Cela donne le nombre total d'Ã©chantillons qui seront enregistrÃ©s pendant la simulation.</para>
         <para> Ce buffer est circulaire.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Scilab variable name</emphasis>
         </para>
-        <para> Définit le nom de la variable Scilab. Ce nom doit être un nom de variable valide.</para>
-        <para> La simulation doit être achevée pour pouvoir récupérer la variable dans Scilab.</para>
-        <para> Propriétés : Type 'str' de taille 1. </para>
+        <para> DÃ©finit le nom de la variable Scilab. Ce nom doit Ãªtre un nom de variable valide.</para>
+        <para> La simulation doit Ãªtre achevÃ©e pour pouvoir rÃ©cupÃ©rer la variable dans Scilab.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Inherit (no:0, yes:1)</emphasis>
         </para>
-        <para> Option pour choisir l'activation par héritage d'événement via le port d'entrée régulier ou explicitement par le port d'entrée événementiel.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Option pour choisir l'activation par hÃ©ritage d'Ã©vÃ©nement via le port d'entrÃ©e rÃ©gulier ou explicitement par le port d'entrÃ©e Ã©vÃ©nementiel.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TOWS_c">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TOWS_c">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -160,33 +160,33 @@ de l'entrée sont enregistrées.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type -1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -217,7 +217,7 @@ de l'entrée sont enregistrées.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROMWS_c">FROMWS_c - Données de l'environnement Scilab vers Scicos (Bloc Scicos)</link>
+          <link linkend="FROMWS_c">FROMWS_c - DonnÃ©es de l'environnement Scilab vers Scicos (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

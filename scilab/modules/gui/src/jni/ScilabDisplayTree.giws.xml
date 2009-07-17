@@ -1,0 +1,8 @@
+<package name="org.scilab.modules.gui.tree">
+  <object name="ScilabDisplayTree">  
+    <method name="scilabDisplayTree" returnType="void" modifier="static"/>	
+    <method name="scilabDisplayTree" returnType="void" modifier="static">
+      <parameter name="treeData" type="String[]"/>
+    </method>	
+  </object>
+</package>

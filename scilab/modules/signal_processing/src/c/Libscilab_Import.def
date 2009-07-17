@@ -27,6 +27,7 @@ GetRhsVarMatrixDouble
 GetRhsVarMatrixComplex
 iAllocMatrixOfDouble
 iAllocComplexMatrixOfDouble
+iGetListItemDouble
 ;GetType is a define, real symbol is
 gettype_
 unsfdcopy_

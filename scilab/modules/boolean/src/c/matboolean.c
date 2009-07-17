@@ -15,6 +15,7 @@
 #endif
 
 #include "stack-c.h"
+#include "Scierror.h"
 #include "core_math.h"
 #include "matboolean.h"
 /*--------------------------------------------------------------------------*/

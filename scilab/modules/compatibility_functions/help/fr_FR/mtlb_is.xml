@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>mtlb_is</refname>
-    <refpurpose>Fonction d'émulation de l'insertion dans une chaîne de caractères de Matlab</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de l'insertion dans une chaÃ®ne de caractÃ¨res de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    L'insertion se comporte différemment dans Matlab et dans Scilab pour les chaînes de caractères
-    étant donné que celles-ci ne sont pas considérées de la même façon.
+    L'insertion se comporte diffÃ©remment dans Matlab et dans Scilab pour les chaÃ®nes de caractÃ¨res
+    Ã©tant donnÃ© que celles-ci ne sont pas considÃ©rÃ©es de la mÃªme faÃ§on.
     </para>
     <para>
-    La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer les opérations d'insertion dans des 
-    chaînes de caractères. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Elle ne peut être remplacée.
+    La fonction <literal>str = mtlb_is(sto,sfrom,i,j)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer les opÃ©rations d'insertion dans des 
+    chaÃ®nes de caractÃ¨res. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Elle ne peut Ãªtre remplacÃ©e.
     </para>
-    <para>Attention : <literal>mtlb_is</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_is</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -118,6 +118,7 @@ static int dgeevWorkSizes(int iCols, int lhs, int* optWorkSize, int* minWorkSize
   double opt;
   C2F(dgeev)("N", "N", &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
   *optWorkSize= (int)opt;
+    
   *minWorkSize= (lhs==2) ? Max(1, 4* iCols) : Max(1, 3*iCols);
   return info;
 }

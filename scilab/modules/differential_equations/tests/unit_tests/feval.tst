@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Test 1
 
 deff("[z]=f(x,y,t)","z=x^2+y^2+t");

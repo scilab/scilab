@@ -1,0 +1,8 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;core
+com_
+callFunctionFromGateway
+;

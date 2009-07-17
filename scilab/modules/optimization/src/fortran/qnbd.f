@@ -101,11 +101,15 @@ c
       implicit double precision (a-h,o-z)
       real rzs(*)
       double precision dzs(*)
+      character bufstr*(4096)
       dimension binf(n),bsup(n),x(n),g(n),epsx(n)
       dimension trav(ntrav),itrav(nitrav),izs(*)
       external simul
 c
-      if(imp.ge.1)write(io,1010)
+      if(imp.ge.1) then
+        write(bufstr,1010)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1010  format(' *********** qnbd ****************')
 c
 c
@@ -133,7 +137,10 @@ c     decoupage du vecteur trav
       n4=n3+n
       n5=n4+n-1
       if(ntrav.lt.n5) then
-         if(imp.gt.0)write(io,110)ntrav,n5
+         if(imp.gt.0) then
+           write(bufstr,110)ntrav,n5
+           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+           endif
 110      format(' qnbd : ntrav=',i8,' devrait valoir ',i8)
          indqn=-11
          return
@@ -141,7 +148,10 @@ c     decoupage du vecteur trav
       ni1=n+1
       if(nitrav.lt.2*n) then
          ni2=2*n
-         if(imp.gt.0)write(io,111)nitrav,ni2
+         if(imp.gt.0) then
+           write(bufstr,111)nitrav,ni2
+           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+           endif
 111      format(' qnbd : nitrav=',i8,'devrait valoir',i8)
          indqn=-12
          return

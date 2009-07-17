@@ -14,7 +14,7 @@ c     ======================================================================
       include 'stack.h'
       integer while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
       integer do(nsiz),thenn(nsiz),cas(nsiz),sel(nsiz)
-      integer elsif(nsiz)
+      integer elsif(nsiz),for(nsiz),try(nsiz)
       integer semi,equal,eol,blank,comma,name,cmt
       integer lparen,rparen
       integer r,r1
@@ -32,8 +32,8 @@ c     ======================================================================
       data cas/236718604,nz1*673720360/
       data sel/236260892,673717516,nz2*673720360/
       data elsif/236721422,673713938,nz2*673720360/
-      
-
+      data try/ 673323805,nz1*673720360/
+      data for/672864271,nz1*673720360/
 
 
 c     
@@ -86,7 +86,7 @@ c     .  for matlab compatiblity  for (k=1:n)
       if(comp(1).ne.0) then
          rstk(pt) = 800
          call compcl(0)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
       endif
       rstk(pt) = 801
       icall=1
@@ -95,7 +95,7 @@ c     *call* expr
  05   continue
       if(err1.gt.0) goto 20
       if(comp(1).ne.0) call compcl(0)
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       if (pstk(pt-1).eq.1) then
 c     .  for matlab compatiblity: for (k=1:n)
          if (sym. eq. rparen) then
@@ -132,15 +132,15 @@ c     .  for matlab compatiblity: for (k=1:n)
       endif
 c     on recherche le "end" pour s'assurer que toutes les lignes relatives 
 c     sont chargee (pb des matrices sur plusieurs lignes)
-      call skpins(1)
-      if(err.gt.0) return
+      call skpins(1) 
+      if(err.gt.0.or.err1.gt.0) return
       first=.true.
  10   if(top.ne.ids(1,pt-1)) then 
          call error(115)
          return
       endif
       call nextj(ids(1,pt),pstk(pt-1))
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       if(pstk(pt-1).eq.0) goto  20
       first=.false.
       lpt(4) = pstk(pt)
@@ -158,7 +158,7 @@ c     .  remove variable associated to the expression and skip to the end
       endif
       if(comp(1).eq.0) goto 10
       call compcl(0)
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
 c     
 c     fin for
  20   continue
@@ -188,7 +188,7 @@ C      call putid(ids(1,pt),syn)
       if(ids(1,pt).eq.iwhile) then
 c     .  while, look for the end to be sure all lines are loaded
          call skpins(1)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
       endif
  35   lpt(4) = pstk(pt)
       pstk(pt)=lpt(4)
@@ -196,7 +196,7 @@ c     .  while, look for the end to be sure all lines are loaded
       call getsym
       rstk(pt)=803
       if(comp(1).ne.0) call compcl(0)
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       goto 37
  36   rstk(pt) = 803
       call getsym
@@ -236,7 +236,7 @@ c     looking for the "case" keyword
             rstk(pt)=807
             if(comp(1).ne.0) then
                call compcl(0)
-               if(err.gt.0) return
+               if(err.gt.0.or.err1.gt.0) return
             endif
          else
             call error(35)
@@ -300,12 +300,12 @@ c     .  added for matlab compatibility (then or , is not mandatory)
       if(comp(1).ne.0) goto 48
 c     comparaison ...
       ok=istrue(1)
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
       if(ok) then
          goto 50
       else
          call skpins(0)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          if(eqid(syn,else)) goto 60
          if(eqid(syn,elsif)) then
             if(ids(1,pt).ne.iif) then
@@ -325,7 +325,7 @@ c     comparaison ...
       endif
  48   rstk(pt)=804
       call  compcl(0)
-      if(err.gt.0) return
+      if(err.gt.0.or.err1.gt.0) return
 c     
 c     then
 c     --------
@@ -343,11 +343,11 @@ c     *call* parse
          if (ids(1,pt).eq.iwhile) go to 35
          if(.not.eqid(syn,ennd)) then
             call skpins(1)
-            if(err.gt.0) return
+            if(err.gt.0.or.err1.gt.0) return
          endif
       else
          call compcl(0)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          if(eqid(syn,else)) goto 60
          if(eqid(syn,elsif)) goto 36
          if(eqid(syn,cas))  goto 43
@@ -362,7 +362,7 @@ c     *call parse*
       return
  65   if(comp(1).ne.0) then
          call compcl(0)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
       endif
       goto 66
 c     
@@ -381,7 +381,7 @@ c---------
       if(comp(1).ne.0) then
          ids(1,pt)=0
          call compcl(1)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
       else
 c     .  set error control mode
          pstk(pt)=top
@@ -455,7 +455,7 @@ c     .  end of try without error (or end of catch)
             lct(4)=ids(6,pt)-10000*sym-100
          else
             call compcl(3)
-            if(err.gt.0) return
+            if(err.gt.0.or.err1.gt.0) return
          endif
       endif
  76   pt=pt-1
@@ -473,7 +473,7 @@ c---------
       endif
       if(comp(1).ne.0) then
          call compcl(2)
-         if(err.gt.0) return
+         if(err.gt.0.or.err1.gt.0) return
          icall=7
 c     *call* parse
          return
@@ -494,7 +494,7 @@ C       else
 c     .  no error occured in the try part, skip next instructions
          if(.not.eqid(syn,ennd)) then
             call skpins(1)
-            if(err.gt.0) return
+            if(err.gt.0.or.err1.gt.0) return
             goto 75
          endif
 C       endif

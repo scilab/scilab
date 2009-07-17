@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>graph_simp</refname>
-    <refpurpose> convertit un graphe en un graphe simple non-orienté  </refpurpose>
+    <refpurpose> convertit un graphe en un graphe simple non-orientÃ©  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = graph_simp(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -43,10 +43,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_simp</literal> renvoie le graphe simple non-orienté <literal>g1</literal> correspondant 
-    au multigraphe <literal>g</literal>. Elle détruit les boucles de <literal>g</literal>, remplace les arêtes 
-    orientées par des arêtes non-orientées et remplace les arêtes multiples 
-    par une seule arête.
+    <para><literal>graph_simp</literal> renvoie le graphe simple non-orientÃ© <literal>g1</literal> correspondant 
+    au multigraphe <literal>g</literal>. Elle dÃ©truit les boucles de <literal>g</literal>, remplace les arÃªtes 
+    orientÃ©es par des arÃªtes non-orientÃ©es et remplace les arÃªtes multiples 
+    par une seule arÃªte.
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CONST_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CONST_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CONST_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CONST_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,12 +98,12 @@
   <refsection id="Description_CONST_m">
     <title>Description</title>
     <para>
-Ce bloc est un générateur de valeurs constantes.
+Ce bloc est un gÃ©nÃ©rateur de valeurs constantes.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CONST_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CONST_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -120,15 +120,15 @@ Ce bloc est un générateur de valeurs constantes.
           <emphasis role="bold">Constant</emphasis>
         </para>
         <para> Une matrice de tous types.</para>
-        <para> Les dimensions de la matrice donnent les dimensions du port régulier de sortie.</para>
+        <para> Les dimensions de la matrice donnent les dimensions du port rÃ©gulier de sortie.</para>
         <para> La valeur de la constante(i,j) est la valeur de la composante(i,j) du port de sortie.</para>
-        <para> Le type de donnée de la sortie du bloc est hérité de cette valeur.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-2].</para>
+        <para> Le type de donnÃ©e de la sortie du bloc est hÃ©ritÃ© de cette valeur.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-2].</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CONST_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CONST_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -137,33 +137,33 @@ Ce bloc est un générateur de valeurs constantes.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

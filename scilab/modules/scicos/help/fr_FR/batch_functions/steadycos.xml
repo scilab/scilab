@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="steadycos">
   <refnamediv>
     <refname>steadycos</refname>
-    <refpurpose>Trouve un régime établi d'un système dynamique décrit par un diagramme scicos</refpurpose>
+    <refpurpose>Trouve un rÃ©gime Ã©tabli d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_steadycos">
@@ -51,8 +51,8 @@ This function finds the steady state for a given system described by a Scicos di
 [X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_steadycos">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_steadycos">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> a Scicos data structure</para>
@@ -108,17 +108,17 @@ This function finds the steady state for a given system described by a Scicos di
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="lincos">lincos - Construit par linéarisation un modèle linéaire d'équations d'état à partir d'un système dynamique décrit par un diagramme scicos (Fonction Scilab)</link>
+          <link linkend="lincos">lincos - Construit par linÃ©arisation un modÃ¨le linÃ©aire d'Ã©quations d'Ã©tat Ã  partir d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos (Fonction Scilab)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="scicos_simulate">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
+          <link linkend="scicos_simulate">scicos_simulate - Fonction pour Ã©xÃ©cuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="scicos">scicos - Editeur de schéma bloc et interface graphique pour le simulateur hybride (Fonction Scilab)</link>
+          <link linkend="scicos">scicos - Editeur de schÃ©ma bloc et interface graphique pour le simulateur hybride (Fonction Scilab)</link>
         </para>
       </listitem>
     </itemizedlist>

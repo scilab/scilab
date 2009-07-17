@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/string/help/fr_FR";
-add_help_chapter("Chaînes de caractères",path,%T);
+add_help_chapter("ChaÃ®nes de caractÃ¨res",path,%T);
 clear path add_help_chapter;

@@ -1,44 +1,44 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_choose">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>x_choose</refname>
-    <refpurpose> boîte de dialogue permettant de faire des choix  </refpurpose>
+    <refpurpose> boÃ®te de dialogue permettant de faire des choix  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[num]=x_choose(items,title [,button])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>items  </term>
         <listitem>
-          <para>vecteur colonne de chaînes de caractères. Les articles à choisir
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res. Les articles Ã  choisir
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>title  </term>
         <listitem>
-          <para>vecteur colonne de chaînes de caractères. Titre de la boîte
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res. Titre de la boÃ®te
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>button  </term>
         <listitem>
-          <para>chaîne de caractères, texte du bouton d'annulation ('Cancel' par défaut)
+          <para>chaÃ®ne de caractÃ¨res, texte du bouton d'annulation ('Cancel' par dÃ©faut)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>num  </term>
         <listitem>
-          <para>entier, le numéro de l'article choisi ou 0 si "Cancel" a été pressé.
+          <para>entier, le numÃ©ro de l'article choisi ou 0 si "Cancel" a Ã©tÃ© pressÃ©.
 </para>
         </listitem>
       </varlistentry>
@@ -47,7 +47,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie dans <literal>num</literal> le numéro de l'article choisi.
+    Renvoie dans <literal>num</literal> le numÃ©ro de l'article choisi.
   </para>
   </refsection>
   <refsection>

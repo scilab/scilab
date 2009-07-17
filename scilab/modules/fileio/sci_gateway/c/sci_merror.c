@@ -12,33 +12,63 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "merror.h"
 #include "Scierror.h"
 #include "localization.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "MALLOC.h"
+#include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-#define ALL_FILES_DESCRIPTOR -1
+#define PREVIOUS_FILE_DESCRIPTOR -1
 /*--------------------------------------------------------------------------*/
 int sci_merror(char *fname,unsigned long fname_len)
 {
 	int m1 = 0, n1 = 0, l1 = 0;
 	int one = 1, lr = 0;
-	int fd = ALL_FILES_DESCRIPTOR;
+	int fd = PREVIOUS_FILE_DESCRIPTOR;
 
 	Nbvars = 0;
 	CheckRhs(0,1);
-	CheckLhs(1,1);
-
+	CheckLhs(1,2);
 
 	if (Rhs == 0)
 	{
-		CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+		char *errmsg = NULL;
 
-		C2F(merror)(&fd, stk(lr));
+		int ierr = 0;
 
-		LhsVar(1)= Rhs + 1;
-		PutLhsVar();
+		C2F(merror)(&fd, &ierr);
+
+		CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+		*stk(lr) = (double)ierr;
+		LhsVar(1) = Rhs + 1;
+
+		if (Lhs == 2)
+		{
+			if (ierr == 0)
+			{
+				errmsg = strdup("");
+			}
+			else
+			{
+				errmsg = strdup(strerror(ierr));
+			}
+			if (errmsg)
+			{
+				n1 = 1;
+				CreateVarFromPtr(Rhs + 2,STRING_DATATYPE,(m1 = (int)strlen(errmsg), &m1),&n1,&errmsg);
+				LhsVar(2) = Rhs + 2;
+				FREE(errmsg);
+				errmsg = NULL;
+			}
+		}
+
+		C2F(putlhsvar)();
 		return 0;
 	}
 
@@ -51,12 +81,44 @@ int sci_merror(char *fname,unsigned long fname_len)
 			{
 				fd  = *istk(l1);
 
-				CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+				if ( GetFileOpenedInScilab(fd) )
+				{
+					int ierr = 0;
+					C2F(merror)(&fd, &ierr);
 
-				C2F(merror)(&fd, stk(lr));
+					CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+					*stk(lr) = (double)ierr;
+					LhsVar(1) = Rhs + 1;
 
-				LhsVar(1)= Rhs+1;
-				PutLhsVar();
+					if (Lhs == 2)
+					{
+						char *errmsg = NULL;
+
+						if (ierr == 0)
+						{
+							errmsg = strdup("");
+						}
+						else
+						{
+							errmsg = strdup(strerror(ierr));
+						}
+
+						if (errmsg)
+						{
+							n1 = 1;
+							CreateVarFromPtr(Rhs + 2,STRING_DATATYPE,(m1 = (int)strlen(errmsg), &m1),&n1,&errmsg);
+							LhsVar(2) = Rhs + 2;
+
+							FREE(errmsg);
+							errmsg = NULL;
+						}
+					}
+					C2F(putlhsvar)();
+				}
+				else
+				{
+					Scierror(999,_("%s: Cannot read file whose descriptor is %d: File is not active.\n"),fname,fd);
+				}
 			}
 			else
 			{

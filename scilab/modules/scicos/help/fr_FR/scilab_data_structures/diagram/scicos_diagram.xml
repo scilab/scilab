@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_diagram">
   <refnamediv>
     <refname>scicos_diagram</refname>
-    <refpurpose>Définit une structure scs_m</refpurpose>
+    <refpurpose>DÃ©finit une structure scs_m</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_diagram">
     <title>Module</title>
@@ -52,8 +52,8 @@ Type : liste scilab.
         <para>
           <emphasis role="bold">props</emphasis>
         </para>
-        <para> Propriétés du diagramme.</para>
-        <para> Cette entrée contient des informations diverses telles que des valeurs initiales du diagramme principal.</para>
+        <para> PropriÃ©tÃ©s du diagramme.</para>
+        <para> Cette entrÃ©e contient des informations diverses telles que des valeurs initiales du diagramme principal.</para>
         <para> 
 Cette variable est une tlist de type 
 et
@@ -74,9 +74,9 @@ Type : tlist scilab de type .
           <emphasis role="bold">objs</emphasis>
         </para>
         <para> Une liste d'objets inclus dans le diagramme Scicos.</para>
-        <para> Les objets utilisés dans Scicos sont<link linkend="scicos_block">block</link> ,<link linkend="scicos_link">link</link> et Text.</para>
-        <para> Les objets peuvent aussi être des structures de donnée effacées.</para>
-        <para> Les objets effacés sont marqués par list('Deleted').</para>
+        <para> Les objets utilisÃ©s dans Scicos sont<link linkend="scicos_block">block</link> ,<link linkend="scicos_link">link</link> et Text.</para>
+        <para> Les objets peuvent aussi Ãªtre des structures de donnÃ©e effacÃ©es.</para>
+        <para> Les objets effacÃ©s sont marquÃ©s par list('Deleted').</para>
         <para> 
 Taille : nombre total d'objets dans le diagramme.
 </para>
@@ -89,13 +89,13 @@ ou Text.
         <para>
           <emphasis role="bold">version</emphasis>
         </para>
-        <para> Une chaîne de caractères qui donne le numéro de version du diagramme Scicos. Cela est utilisé pour fournir une compatibilité avec les anciens diagrammes.</para>
-        <para> Notez que vous pouvez retrouver la version courante de Scicos en utilisant l'entrée 'About scicos' dans le menu help ou en utilisant la fonction get_scicos_version().</para>
+        <para> Une chaÃ®ne de caractÃ¨res qui donne le numÃ©ro de version du diagramme Scicos. Cela est utilisÃ© pour fournir une compatibilitÃ© avec les anciens diagrammes.</para>
+        <para> Notez que vous pouvez retrouver la version courante de Scicos en utilisant l'entrÃ©e 'About scicos' dans le menu help ou en utilisant la fonction get_scicos_version().</para>
         <para> 
 Taille : 1.
 </para>
         <para>
-Type : chaîne de caractères.
+Type : chaÃ®ne de caractÃ¨res.
 </para>
       </listitem>
     </itemizedlist>

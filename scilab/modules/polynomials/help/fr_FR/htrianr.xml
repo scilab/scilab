@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="htrianr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>htrianr</refname>
-    <refpurpose> triangularisation d'une matrice de polynômes  </refpurpose>
+    <refpurpose> triangularisation d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ar  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
-          <para>matrice unimodulaire de polynômes
+          <para>matrice unimodulaire de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -47,7 +47,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    triangularisation de la matrice de polynômes <literal>A</literal>.
+    triangularisation de la matrice de polynÃ´mes <literal>A</literal>.
   </para>
     <para><literal>A</literal> de taille <literal>[m,n]</literal>, <literal>m &lt;= n</literal>.
   </para>

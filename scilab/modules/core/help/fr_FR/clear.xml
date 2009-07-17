@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="clear">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,20 +8,20 @@
     <refpurpose> suppression de variables  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>clear a</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Cette commande supprime des variables non-protégées. Elle supprime de l'environnement les variables dont les noms sont spécifiés.
-    Sans argument <literal>clear</literal> supprime toutes les variables sauf celles qui ont été protégées par <literal>predef</literal>. La succession des commandes <literal>predef(0)</literal> et <literal>clear</literal> supprime toutes les variables. 
+    Cette commande supprime des variables non-protÃ©gÃ©es. Elle supprime de l'environnement les variables dont les noms sont spÃ©cifiÃ©s.
+    Sans argument <literal>clear</literal> supprime toutes les variables sauf celles qui ont Ã©tÃ© protÃ©gÃ©es par <literal>predef</literal>. La succession des commandes <literal>predef(0)</literal> et <literal>clear</literal> supprime toutes les variables. 
   </para>
     <para>
-    Habituellement, les variables protégées sont les librairies standard et les variables dont le nom commence par le caractère "%".
+    Habituellement, les variables protÃ©gÃ©es sont les librairies standard et les variables dont le nom commence par le caractÃ¨re "%".
   </para>
     <para>
-    Notez la syntaxe particulière :  <literal>clear a</literal> et non <literal>clear(a)</literal>. Notez aussi que <literal>a=[]</literal> ne supprime pas <literal>a</literal> mais affecte à <literal>a</literal> une matrice vide.
+    Notez la syntaxe particuliÃ¨re :  <literal>clear a</literal> et non <literal>clear(a)</literal>. Notez aussi que <literal>a=[]</literal> ne supprime pas <literal>a</literal> mais affecte Ã  <literal>a</literal> une matrice vide.
   </para>
   </refsection>
   <refsection>

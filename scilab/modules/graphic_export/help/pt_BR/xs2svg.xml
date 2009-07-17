@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xs2svg" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xs2svg</refname>
+
+    <refpurpose>Salva gráficos em um arquivo SVG</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xs2svg(win_num,filen [,orientation])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>vetor de inteiros ou escalar inteiro </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>filen</term>
+
+        <listitem>
+          <para>string, nome do arquivo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orientation</term>
+
+        <listitem>
+          <para>caractere opcional, com possíveis valores 'p' (retrato) ou 'l'
+          (paisagem). O valor padrão é 'p'</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xs2svg</literal> salva os gráficos gravados da janela
+    <literal>win_num</literal> em um arquivo <literal>filen</literal> em
+    sintaxe Postscript. Note que <literal>filen</literal> não deve ter
+    extensão.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"> 
+    scf(0)
+    plot2d()
+    //exportando para SVG
+    filename='foo.svg'
+    xs2svg(0,filename);
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set_posfig_dim">set_posfig_dim</link></member>
+
+      <member><link linkend="toprint">toprint</link></member>
+
+      <member><link linkend="printfigure">printfigure</link></member>
+
+      <member><link linkend="xs2bmp">xs2bmp</link></member>
+
+      <member><link linkend="xs2gif">xs2gif</link></member>
+
+      <member><link linkend="xs2jpg">xs2jpg</link></member>
+
+      <member><link linkend="xs2png">xs2png</link></member>
+
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
+      <member><link linkend="xs2eps">xs2eps</link></member>
+
+      <member><link linkend="xs2pdf">xs2pdf</link></member>
+
+      <member><link linkend="xs2ps">xs2ps</link></member>
+
+      <member><link linkend="xs2fig">xs2fig</link></member>
+
+      <member><link linkend="xs2emf">xs2emf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

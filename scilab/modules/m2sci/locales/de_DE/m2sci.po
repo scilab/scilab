@@ -1,0 +1,889 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-11-26 20:14+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Select the directory to convert"
+msgstr "Das Verzeichnis, welches konvertiert werden soll, auswählen"
+
+msgid "Select the file to convert"
+msgstr "Die Datei zum konvertieren auswählen"
+
+msgid "Select the directory for generated files"
+msgstr "Das Verzeichnis für erzeugte Dateien auswählen"
+
+msgid "About_M2SCI_tools"
+msgstr "Über M2SCI Miniprogramme"
+
+msgid "Not yet implemented."
+msgstr "Noch nicht implementiert."
+
+#, c-format
+msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
+msgstr "Extraktion von %s aus '%s'  tlist ist noch nicht implementiert."
+
+#, c-format
+msgid "index must be a list instead of a: %s."
+msgstr "Index könnte eine Liste anstatt %s sein."
+
+msgid "Wrong number of inputs."
+msgstr "falsche Anzahl an Eingängen"
+
+#, c-format
+msgid "lhslist should be a list and not a: %s."
+msgstr "lhslist sollte eine Liste und nicht %s sein."
+
+#, c-format
+msgid "expression can not be a: %s."
+msgstr "Ausdruck kann kein %s sein."
+
+#, c-format
+msgid "endsymbol should be a character string and not a: %s."
+msgstr "Endymbol sollte eine Zeichenkette und nicht %s sein."
+
+#, c-format
+msgid "name must be a string instead of a: %s."
+msgstr "Name muß eine Zeichenkette anstattt %s sein."
+
+#, c-format
+msgid "lhsnb must be a constant instead of a: %s."
+msgstr "lhsnb muß eine Konstante anstatt %s sein."
+
+#, c-format
+msgid "rhslist must be a list instead of a: %s."
+msgstr "rhslist muß eine Liste anstatt %s sein."
+
+#, c-format
+msgid "lhslist must be a list instead of a: %s."
+msgstr "lhslist muß eine Liste anstatt %s sein."
+
+#, c-format
+msgid "dims must be a list instead of a: %s."
+msgstr "Dimensionen müssen eine Liste anstatt %s sein."
+
+#, c-format
+msgid "type must be a ''type'' tlist instead of a: %s."
+msgstr "Type muß eine ''type'' tlist anstatt %s sein."
+
+#, c-format
+msgid "contents must be a ''contents'' tlist instead of a: %s."
+msgstr "Inhakte müssen ''contents'' tlist anstatt %s sein."
+
+#, c-format
+msgid "sciname must be a string instead of a: %s."
+msgstr "sciname muß eine Zeichenkette anstatt %s sein."
+
+#, c-format
+msgid "matname must be a string instead of a: %s."
+msgstr "matname muß eine Zeichenkette anstatt %s sein."
+
+#, c-format
+msgid "infer must be an ''infer'' tlist instead of a: %s."
+msgstr "infer muß eine ''infer'' tlist anstatt %s sein."
+
+#, c-format
+msgid "operator must be a string instead of a: %s."
+msgstr "Operator muß eine Zeichenkette anstatt %s sein."
+
+#, c-format
+msgid "operands must be a list instead of a: %s."
+msgstr "Operatoren müssen eine Liste anstatt %s sein."
+
+#, c-format
+msgid "out must be a list instead of a: %s."
+msgstr "Out muß eine Liste anstatt %s sein."
+
+#, c-format
+msgid "%s is not yet implemented."
+msgstr "%s ist noch nicht implementiert"
+
+msgid "list of properties is not yet implemented."
+msgstr "Liste der Eigenschaften ist noch nicht implementiert"
+
+#, c-format
+msgid "wrong property %s."
+msgstr "falsche Eigenschaften %s."
+
+#, c-format
+msgid "unknown clause type: %s."
+msgstr "unbekannter Anweisungstyp: %s."
+
+#, c-format
+msgid "Matlab function %s not yet converted, original calling sequence used."
+msgstr ""
+"Matlab Funktion %s noch nicht konvertiert, original aufgerufene Sequenz "
+"verwendt."
+
+#, c-format
+msgid "(Warning name conflict: function name changed from %s to %s)."
+msgstr ""
+"(Warnung: Namenskonflikt: Funktions Name wurde von %s nach %s geändert)."
+
+#, c-format
+msgid ""
+"Matlab toolbox(es) function %s not converted, original calling sequence used"
+msgstr ""
+"Matlab Zusatzprogramme hat %s Funktion nicht konvertiert, original "
+"aufgerufene Sequenz verwendet."
+
+#, c-format
+msgid ""
+"Matlab toolbox(es) function %s not converted, original calling sequence used."
+msgstr ""
+"Matlab Zusatzprogramme hat Funktionen %s nicht konvertiert, original "
+"aufgerufene Sequenz verwendet."
+
+#, c-format
+msgid "(Find this function in matlab/%s)."
+msgstr "(Diese Funktion in Matlab/%s finden)."
+
+#, c-format
+msgid "Unknown function %s not converted, original calling sequence used."
+msgstr ""
+"Unbekannte  Funktion %s nicht konvertiert, original aufgerufene Sequenz "
+"verwendet."
+
+#, c-format
+msgid "lhs cannot be a %s operation."
+msgstr "lhs kann keine %s Operation sein."
+
+#, c-format
+msgid "lhs cannot be a %s."
+msgstr "lhs kann kein %s sein."
+
+#, c-format
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
+msgstr ""
+"Rekursive Extraktion mit einem Index des Typs %s ist noch nicht "
+"implementiert."
+
+#, c-format
+msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
+msgstr "Fehler beim Ausführen: [sci_equiv]=sci_%s(mtlb_expr)."
+
+msgid ": The 24 first characters of the files names are equal: "
+msgstr ": Die ersten 24 Zeichen der Datei sind gleich: "
+
+#, c-format
+msgid "Matlab function %s not yet converted."
+msgstr "Matlab Funktion  %s ist noch nicht konvertiert."
+
+#, c-format
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr ""
+"mtlb(%s) kann durch %s() ersetzt werden oder %s oder %s ist eine M-Datei "
+"oder nicht."
+
+msgid "input argument must be an ''operation'' tlist."
+msgstr "Eingangsargument muß eine ''operation'' tlist sein."
+
+msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
+msgstr ""
+"Falsches Eingangsargument in getrhs(). (Muß eine ''funcall'' tlist sein)."
+
+#, c-format
+msgid "L.%d: Unknown variable %s is a M-file."
+msgstr "L.%d: unbekannte Variable %s ist eine M-Datei."
+
+#, c-format
+msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
+msgstr "L.%d: unbekannte Variable %s ist eine M-Datei (sci_%s exists)."
+
+#, c-format
+msgid "Variable %s supposed to be the Imaginary unit."
+msgstr "Variable %s angeblich eine imagiäre Einheit."
+
+#, c-format
+msgid "L.%d: Unknown variable %s."
+msgstr "L.%d: unbekannte Variable %s."
+
+#, c-format
+msgid "unknown instruction type %s."
+msgstr "unbekannter Instrktionstyp %s."
+
+#, c-format
+msgid "Bad use of isdefinedvar() with input: %s."
+msgstr "Falsche Verwendung von isdefinedvar() mit Eingang %s."
+
+#, c-format
+msgid " -- File %s contains more than one function -- "
+msgstr " --- Datei %s enthält mehr als eine Funktion --- "
+
+#, c-format
+msgid " -- Each function converted separately: %s -- "
+msgstr " --- Jede Funktion wird einzeln umgewandelt: %s --- "
+
+#, c-format
+msgid " -- Temporary files put in: %s -- "
+msgstr " --- temporäre Dateien in ablegen: %s --- "
+
+msgid "// Number of arguments in function call"
+msgstr "// Anzahl der Argument im Funktionsaufruf"
+
+msgid "// Display mode"
+msgstr "// Anzeigemodus"
+
+msgid "// Display warning for floating point exception"
+msgstr "// Warnung auf dem Bildschirm bei Fließpunktausnahmen."
+
+msgid "// Ouput variables initialisation (not found in input variables)"
+msgstr ""
+"// Initialisierung der Ausgangsvariablen (nicht in den Eingangsvariablen "
+"gefunden)"
+
+msgid "TESTING M2SCI: creating varslist file..."
+msgstr "Teste M2SCI: erzeuge varslist Datei..."
+
+#, c-format
+msgid ""
+"// Generated by M2SCI\n"
+"// Conversion function for Matlab %s\n"
+"// Input: tree = Matlab funcall tree\n"
+"// Ouput: tree = Scilab equivalent for tree"
+msgstr ""
+"// Erzeugt durch M2SCI\n"
+"// Konversions-Funktion für Matlab %s\n"
+"// Eingangsbaum = Funktion von Matlab\n"
+"// Ausgangsbaum = Äquivalent zu Scilabs Baum"
+
+#, c-format
+msgid ""
+"// Copyright INRIA (Generated by M2SCI)\n"
+"// Conversion function for Matlab %s()\n"
+"// Input: tree = Matlab funcall tree\n"
+"// Ouput: tree = Scilab equivalent for tree"
+msgstr ""
+"//Copyright INRIA (erzeugt durch M2SCI)\n"
+"//Konversions-Funktion für Matlab %s()\n"
+"//Eingangsbaum = Matlabs Baum für Funktionsaufrufe\n"
+"//Ausgangsbaum = Scilabs Äquivalent für einen Baum"
+
+msgid "//  dims(i,:) is the ith output argument dimensions vector"
+msgstr "// dims(i;:) ist das ith Ausgangsargument des Dimensions-Vektors"
+
+msgid "//  prop(i) is the ith output argument property"
+msgstr "// prop(i) ist die ith Eigenschaft des Ausgangsarguments"
+
+msgid "// Inference for varargout"
+msgstr "// Interferenz für Varargout"
+
+msgid ""
+"loginfos: verb_mode 0 should not be used in this context, information "
+"ignored."
+msgstr ""
+"Loginfos:  verb_mode 0 sollte in diesem Zusammenhang nicht verwendet werden, "
+"Information wird ignoriert."
+
+msgid "m2sciassume is obsolete, used m2scideclare instead."
+msgstr "m2sciassume ist veraltet, verwende m2scideclare anstattdessen."
+
+msgid "not matlab path"
+msgstr "kein matlab Pfad"
+
+msgid "wrong type of input."
+msgstr "Falscher Typ für Eingang."
+
+msgid "Conversion of M-tree..."
+msgstr "Konversion von M-tree..."
+
+#, c-format
+msgid "%s line %s out of %s..."
+msgstr "%s Zeile %s von %s..."
+
+msgid "Conversion of M-tree: Done"
+msgstr "Konversion von M-tree: Fertig"
+
+#, c-format
+msgid "No Scilab equivalent for: %s"
+msgstr "Kein Scilab Äquivalent für %s."
+
+#, c-format
+msgid "operator %s not found."
+msgstr "Operand %s nicht gefunden."
+
+msgid " may be replaced by:"
+msgstr " Könnte druch ersetzt werden:"
+
+msgid "if"
+msgstr "wenn"
+
+msgid ""
+"not enough data, you should give at least variable_name|dimensions|datatype."
+msgstr ""
+"nicht genug Daten, Sie sollten mindestens variable_name|dimensions|datatype "
+"angeben."
+
+msgid "too much data."
+msgstr "zu viele Daten"
+
+#, c-format
+msgid "Unknown datatype %s."
+msgstr "Unbekannter Datentyp %s."
+
+#, c-format
+msgid "Unknown property %s."
+msgstr "Unbekannte Eigenschaft %s."
+
+msgid "Wrong dimensions user data."
+msgstr "Falsche Dimension der Benutzerdaten"
+
+#, c-format
+msgid ""
+"Dimensions current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given dimension: %s\n"
+"   Current dimension: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"Dimensionen des aktuellen Werts und des m2scideclare Anweisungen kollidieren "
+"miteinander: %s\n"
+"   m2scideclare gegebene Dimensionen: %s\n"
+"   aktuelle Dimension: %s\n"
+"   m2scideclare ignoriert"
+
+#, c-format
+msgid ""
+"Type current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given type: %s\n"
+"   current type: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"Typ für den aktuellen Wert und die m2scideclare Angaben kollidieren "
+"miteinander: %s\n"
+"   m2scideclare gegebener Typ: %s\n"
+"   aktueller Typ: %s\n"
+"   m2scideclare ignoriert"
+
+#, c-format
+msgid ""
+"Property current value and m2scideclare statements conflict for: %s\n"
+"   m2scideclare given type: %s\n"
+"   current type: %s\n"
+"   m2scideclare IGNORED"
+msgstr ""
+"Eigenschaft des aktuellen Typs und m2scideclare Angaben kollidieren "
+"miteinander: %s\n"
+"   m2scideclare gegebener Typ: %s\n"
+"   aktueller Typ: %s\n"
+"   m2scideclare ignoriert"
+
+#, c-format
+msgid "%graphicswindow set to default value Handle."
+msgstr ""
+"%grafisches Fenster, um die voreingestellten Wert für die Handhabung "
+"einzustellen."
+
+#, c-format
+msgid "type %d is not implemented."
+msgstr "Typ %d ist noch nicht implementiert."
+
+msgid "Matlab to Scilab conversion tool"
+msgstr "Konversionsprogramm Matlab nach Scilab"
+
+msgid "&File"
+msgstr "&Datei"
+
+msgid "&Tools"
+msgstr "&Zusatzprogramme"
+
+msgid "&Edit"
+msgstr "&Editieren"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "?"
+msgstr "?"
+
+msgid "Mfile2sci help page"
+msgstr "Mfile2sci Hilfe Seite"
+
+msgid "Translatepaths help page"
+msgstr "Pfad für das Übersetzen der Hilfeseite"
+
+msgid "About M2SCI tools..."
+msgstr "Über M2SCI Zusatzprogramme"
+
+msgid "Convert"
+msgstr "Konvertieren"
+
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Generate pretty printed code: "
+msgstr "Schön gedruckten Code erzeugen: "
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nein"
+
+msgid "Verbose mode: "
+msgstr "wortreicher Modus: "
+
+msgid "0"
+msgstr "0"
+
+msgid "1"
+msgstr "1"
+
+msgid "2"
+msgstr "2"
+
+msgid "3"
+msgstr "3"
+
+msgid "Only double values used: "
+msgstr "Nur doppelte Werte verwendet: "
+
+msgid "Recursive conversion: "
+msgstr "Rekursive Konversion: "
+
+msgid "Output directory"
+msgstr "Ausgabe-Verzeichnis"
+
+msgid "Directory name: "
+msgstr "Verzeichnis-Name: "
+
+msgid "Browse"
+msgstr "Durchsuchen"
+
+msgid "Input directory"
+msgstr "Eingabe-Verzeichnis"
+
+msgid "Input file"
+msgstr "Eingabedatei"
+
+msgid "File name: "
+msgstr "Dateiname: "
+
+msgid "<enter a file name>"
+msgstr "<einen Dateiname eingeben>"
+
+msgid "Conversion mode"
+msgstr "Konvertierungsmodus"
+
+msgid "Convert a single file"
+msgstr "eine einzelne Datei konvertieren"
+
+msgid "Convert a whole directory"
+msgstr "ein ganzes Verzeichnis konvertieren"
+
+msgid "OFF"
+msgstr "AUS"
+
+msgid "NO"
+msgstr "NEIN"
+
+msgid "YES"
+msgstr "JA"
+
+msgid "ON"
+msgstr "EIN"
+
+msgid "****** Beginning of mfile2sci() session ******"
+msgstr "****** Beginn der mfile2sci() Sitzung ******"
+
+msgid "File to convert:"
+msgstr "Datei, die konvertiert werden soll"
+
+msgid "Result file path:"
+msgstr "Pfad der resultierenden Datei:"
+
+msgid "Recursive mode:"
+msgstr "Rekursiver Modus"
+
+msgid "Only double values used in M-file:"
+msgstr "Nur doppelte Werte in der M-Datei verwenden:"
+
+msgid "Verbose mode:"
+msgstr "wortreicher Modus"
+
+msgid "Generate formated code:"
+msgstr "formatierten Code erzeugen"
+
+msgid "M-file reading..."
+msgstr "M-Datei lesen..."
+
+msgid "M-file reading: Done"
+msgstr "M-Datei lesen: Fertig"
+
+#, c-format
+msgid "File %s is an empty file ! Nothing done..."
+msgstr "Datei %s ist eine leere Datei ! Nicht verarbeitet..."
+
+msgid "Syntax modification..."
+msgstr "Syntax Modifikation..."
+
+msgid "Syntax modification: Done"
+msgstr "Syntax Modifikation: Fertig"
+
+#, c-format
+msgid ""
+"Warning: file %s defines function %s instead of %s\n"
+"         %s.sci, %s.cat and sci_%s.sci will be generated !"
+msgstr ""
+"Warnung: Datei %s definiert die Funktion %s anstatt %s\n"
+"         %s.sci, %s.cat und sci_%s.sci werden erzeugt!"
+
+msgid "Macro to tree conversion..."
+msgstr "Makro nach Baum Konversion..."
+
+msgid "resumelogfile.dat"
+msgstr "resumelogfile.dat"
+
+msgid "resume"
+msgstr "Fortsetzen"
+
+#, c-format
+msgid "****** %s: Functions of mfile2sci() session ******"
+msgstr "****** %s: Funktionen der mfile2sci() Sitzung ******"
+
+#, c-format
+msgid ""
+"%d Matlab Function(s) not yet converted, original calling sequence used:"
+msgstr ""
+"%d Matlab Funktionen sind noch nicht konvertiert, original aufgerufenen "
+"Sequenz verwendet:"
+
+#, c-format
+msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
+msgstr ""
+"%d Matlab Zusatzprogramm(e) Funktionen, original aufgerufene Sequenz "
+"verwendet:"
+
+#, c-format
+msgid "%d Unknown Function(s), original calling sequence used :"
+msgstr "%d unbekannte Funktionen, original aufgerufene Sequenz verwendet:"
+
+msgid "Macro to tree conversion: Done"
+msgstr "Makro nach Baum konversion: Fertig"
+
+msgid ""
+"Translation may be improved: see the //! comments and for all mtlb_<funname> "
+"function call\n"
+"  Type help mtlb_<funname> in Scilab command window to get information about "
+"improvements."
+msgstr ""
+"Die Übersetzung könnte verbessert werden: siehe //!! Kommentare und für alle "
+"mtlb_<funname> Funktionsaufrufe\n"
+"  Geben Sie Hilfe mtlb_<funname> in Scilabs Konsole ein, um Informationen "
+"über Verbesserungen zu erhalten."
+
+msgid "Translation may be wrong (see the //!! comments)."
+msgstr "Die Übersetzung könnte fehlerhaft sein (siehe //!! Kommentare)."
+
+msgid "File contains no instruction, no translation made..."
+msgstr ""
+"Datei enthält keine Instruktionen, es wurde keine Überstzung gemacht..."
+
+msgid "****** End of mfile2sci() session ******"
+msgstr "****** Ende der mfile2sci() Sitzung ******"
+
+#, c-format
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgstr ""
+"Mindestens ein Operand von %s ist eine leere Matrix, Scilabs Äquivalent ist "
+"[]."
+
+#, c-format
+msgid "recursive extraction from a variable %s of type %s."
+msgstr "Rekursive Extraktion einer Variable %s des Typs %s."
+
+msgid "Extraction from strings with more than two indexes not implemented."
+msgstr ""
+"Extraktion einer Zeichenkette mit mehr als zwei Indizes ist nicht "
+"implemtiert."
+
+#, c-format
+msgid "M2SCI bug: extraction from unknown variable %s in varslist."
+msgstr ""
+"M2SCI Programmfehler: Extraktion einer unbekannten Variable %s in varslist."
+
+#, c-format
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgstr ""
+"Rekursives Einfügen in eine Variable, welche keine Zelle oder ein Strukt "
+"ist: %s."
+
+#, c-format
+msgid "destination variable is not a cell: %s is of type %s."
+msgstr "Zielvariable ist keine Zelle: %s ist vom Typ %s."
+
+#, c-format
+msgid "One operand is an empty matrix in : %s, result set to []."
+msgstr "Ein Operand ist eine leere Matrix in: %s, Ergebnis nach [] gesetzt."
+
+#, c-format
+msgid ""
+"At least one operand is an empty matrix for operator: %s, result set to []."
+msgstr ""
+"Mindestens ein Operand ist eine leere Matrix für Operand: %s, Ergebnis wird "
+"nach [] gesetzt."
+
+#, c-format
+msgid ""
+"If %s is outside [-1,1]\n"
+"   complex part of output of %s will be the opposite of Matlab one."
+msgstr ""
+"Wenn %s außerhalb [-1,1] liegt\n"
+"   komplexer Teil der Ausgabe von %s wird das Gegenteil der von Matlab sein."
+
+msgid "is Real."
+msgstr "ist reell"
+
+msgid "cube_scaling only used in 3d mode."
+msgstr "cube_scaling nur im 3d Modus verwendet."
+
+msgid "Bessel function is not implemented for 2 outputs arguments."
+msgstr "Bessel Funktion ist nicht für zwei Ausgangsargumente implementiert."
+
+msgid "is a scalar."
+msgstr "ist ein Skalar"
+
+#, c-format
+msgid "%s is not implemented."
+msgstr "%s ist nicht implementiert"
+
+msgid "Call to chol() with 2 outputs."
+msgstr "Aufruf von chol() mit zwei Ausgaben."
+
+msgid ""
+"All children will be deleted, no HandleVisibility property in Scilab "
+"graphics."
+msgstr ""
+"Alle Untergeordneten werden gelöscht, keine Eigenschaft der Handhabungs-"
+"Sichtbarkeit in Scilab Grafiken."
+
+msgid "All properties will be reset."
+msgstr "Alle Voreinstellungen werden zurückgesetzt."
+
+#, c-format
+msgid "%s will be ignored at run time."
+msgstr "%s wird beim Ausführen ignoriert."
+
+msgid "All windows will be deleted."
+msgstr "Alle Fenster werden gelöscht."
+
+#, c-format
+msgid ""
+"Scilab %s() does not work when dim input argument is greater than number of "
+"dims of first rhs..."
+msgstr ""
+"Scilab %s() funktioniert nicht, wenn dim Eingangsargument größer als die "
+"Anzahl der dims der ersten rhs..."
+
+msgid ""
+"Verify that overloading functions have been written for inputs in display()."
+msgstr ""
+"Überprüfen, ob Überlast-Funktionen für die Eingänge in Anzeige() geschrieben "
+"wurden."
+
+msgid "Drawing events are not queued in Scilab."
+msgstr ""
+"Zeichen Ereignisse werden in Scilab nicht in eine Warteschlange gestellt."
+
+#, c-format
+msgid ""
+"mtlb_eig() called because Scilab and Matlab value do not always match for %s."
+msgstr ""
+"mtlb_eig() aufgerufen, weil Scilab und Matlab Ausgabewerte nicht immer für "
+"%s übereinstimmen."
+
+msgid "''nobalance'' option, IGNORED."
+msgstr "'nobalance' Option, ignoriert."
+
+msgid "eig() with 2 inputs: consider generalized eigen. Check."
+msgstr ""
+"eig() mit zwei EIngängen: denken Sie an generalisierten eigen. Überprüfen."
+
+#, c-format
+msgid "%s, flag IGNORED."
+msgstr "%s, Kennzeichen ignoriert."
+
+msgid "Matlab exist(), mtlb_exist() is called."
+msgstr "Matlab existiert(), mtlb_exist() wird aufgerufen."
+
+msgid "mtlb_exist() is just a partial emulation of Matlab exist() function."
+msgstr ""
+"mtlb_exist() ist nur eine partielle Emulation von Matlab exist() Funktion."
+
+msgid "Unknown type for input parameter: consider fclose(fid)."
+msgstr "unbekannter Typ für EIngangsparameter: beachten Sie fclose(fid)."
+
+#, c-format
+msgid "%s with two outputs."
+msgstr "%s mit zwei Ausgaben"
+
+msgid "Verify that expression evaluated by execstr() is Scilab compatible."
+msgstr "Überprüfen, daß Ausdruck, der durch execstr() Scilab Kompatibel ist."
+
+msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
+msgstr ""
+"Kein Äquivalent für findstr() in Scilab, daher wird mtlb_findstr() "
+"aufgerufen."
+
+msgid "fopen(''all'') has no translation."
+msgstr "fopen('alle') hat keine Übersetzung."
+
+#, c-format
+msgid "%s (See fileinfo() function)."
+msgstr "%s (siehe Dateiinformation() Funktion)."
+
+msgid "W and A permission parameters."
+msgstr "W und A Berechtigungs-Parameter."
+
+msgid "fopen used with three outputs."
+msgstr "fopen wird mit drei Ausgängen verwendet."
+
+#, c-format
+msgid "No simple equivalent, so %s() is called."
+msgstr "Kein einfaches Äquivalent, daher %s() aufgreufen."
+
+#, c-format
+msgid "%s() called with skip parameter."
+msgstr "%s() mit Übersprungsparameter aufgerufen."
+
+#, c-format
+msgid "Not enough information on %s to set the proper flag."
+msgstr ""
+"Nicht genug Information bei %s, um das richtige Kennzeichen zu setzen."
+
+#, c-format
+msgid "Global variable %s added to M2SCI variable list."
+msgstr "Globale Variable %s zu M2SCI Variablen-Liste gesetzt."
+
+msgid "No minor grid in Scilab."
+msgstr "Kein niedrigeres Gitter in Scilab."
+
+#, c-format
+msgid "%s option."
+msgstr "%s Option."
+
+#, c-format
+msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
+msgstr "Scilab %s() arbeitet nicht mit kompexen Werten: %s Aufruf ignoriert."
+
+#, c-format
+msgid "Unhandled class: %s."
+msgstr "nicht unterstützte Klasse: %s."
+
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
+msgstr ""
+"isequal benötigt Felder in der gleichen Ordnung für Strukturen, die gleich "
+"sein müssen."
+
+msgid "Option -regexp not yet handled: will be ignored."
+msgstr "Option -regexp nocht nicht unterstützt: wird ignoriert."
+
+#, c-format
+msgid "%s is an empty matrix, so result is set to []."
+msgstr "%s ist eine leere Matrix, daher werden Ergebnisse nach [] gesetzt."
+
+msgid "second output argument will be ignored."
+msgstr "zweites Ausgabeargument wird ignoriert."
+
+msgid "-all option ignored."
+msgstr "-all Option ignoriert."
+
+#, c-format
+msgid "%s when called with three outputs."
+msgstr "%s wenn mit drei Ausgängen aufgerufen."
+
+#, c-format
+msgid "%s considered to be a Scilab macro."
+msgstr "%s: wird als Scilab Makro angenommen."
+
+msgid "string output can be different from Matlab num2str output."
+msgstr "Zeichenketten-Ausgabe kann von Matlabs num2str Ausgabe abweichen."
+
+msgid "See msprintf for solutions."
+msgstr "Siehe msprintf für Lösungen"
+
+msgid ""
+"Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is "
+"used."
+msgstr ""
+"Scilab und Matlab qr() zeigen in diesem Fall nicht die gleichen Ergebnisse "
+"an: mtlb_qr() wird verwendet."
+
+msgid "is not a character string matrix."
+msgstr "Ist keine Zeichenketten-Matrix."
+
+msgid ""
+"WARNING: Matlab reshape() suppresses singleton higher dimension, it is not "
+"the case for matrix."
+msgstr ""
+"Warnung: Matlab reshape() unterdrückt Sinleton der höheren Dimension, es ist "
+"nicht der Fall für eine Matrix."
+
+msgid "Option -append not yet handled: will be ignored."
+msgstr "Option -append wird noch nicht unterstützt: wird ignoriert."
+
+#, c-format
+msgid ""
+"In %s %s is a String,\n"
+"So result is set to %s."
+msgstr ""
+"In %s %s ist eine Zeichenkette.\n"
+"Daher wird das Ergebnis nach %s gesetzt."
+
+#, c-format
+msgid ""
+"M2SCI found: %s > size(size(%s),2),\n"
+"So result is set to 1."
+msgstr ""
+"M2SCI gefunden: %s > size(size(%s),2),\n"
+"Daher wird das Ergebnis nach 1 gesetzt."
+
+msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
+msgstr ""
+"Scilab sort() und gsort() verarbeiten keine multidimensionalen Datenfelder."
+
+msgid "Call to sparse(): nzmax option ignored."
+msgstr "Aufruf nach sparse(): nzmax Option ignoriert."
+
+msgid ""
+"For Scilab sparse(), input values must have the same size, not sure they "
+"have."
+msgstr ""
+"Für Scilab sparse(), Eingangs-Werte müssen die gleiche Größe haben, es ist "
+"nicht sicher, ob dies der Fall ist."
+
+msgid "message_id ignored in following line."
+msgstr "Message_id wird in der folgenden Zeile ignoriert."
+
+#, c-format
+msgid "%s: Output value set to ''on''."
+msgstr "%s: Ausgabe Wert nach 'ein' gesetzt."
+
+msgid "unitfile.dat"
+msgstr "unitfile.dat"

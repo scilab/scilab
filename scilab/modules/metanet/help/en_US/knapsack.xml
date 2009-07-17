@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -112,7 +112,7 @@
 	<listitem>
 	  <para>is a <literal>m</literal> by <literal>n</literal>
 	  matrix.</para>
-	  <para>est  une matrice <literal>m</literal> par <literal>n</literal> à valeurs dans {0,1}.</para>
+	  <para>est  une matrice <literal>m</literal> par <literal>n</literal> Ã  valeurs dans {0,1}.</para>
 	</listitem>
       </varlistentry>
     </variablelist>
@@ -208,7 +208,7 @@ profit*x'==earn
   </refsection>
   <refsection>
     <title>Bibliography</title>
-    <para>Coppersmith, D. "Knapsack Used in Factoring." §4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</para>
+    <para>Coppersmith, D. "Knapsack Used in Factoring." Â§4.6 in Open Problems in Communication and Computation (Ed. T. M. Cover and B. Gopinath). New York: Springer-Verlag, pp. 117-119, 1987.</para>
     <para>Honsberger, R. Mathematical Gems III. Washington, DC: Math. Assoc. Amer., pp. 163-166, 1985.</para>
   </refsection>
 </refentry>

@@ -52,7 +52,7 @@ void GridDrawerJoGL::initializeDrawing(void)
 
   // set line color and width
   getGridDrawerJavaMapper()->setGridParameters(getGridStyle(), (float)sciGetLineWidth(pSubwin), 
-																							 sciGetGridFront(pSubwin) == TRUE);
+											 sciGetGridFront(pSubwin) == TRUE);
 
 }
 /*------------------------------------------------------------------------------------------*/

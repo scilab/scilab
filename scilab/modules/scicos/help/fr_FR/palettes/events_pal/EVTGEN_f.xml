@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="EVTGEN_f">
   <refnamediv>
     <refname>EVTGEN_f</refname>
-    <refpurpose>Générateur d'événement</refpurpose>
+    <refpurpose>GÃ©nÃ©rateur d'Ã©vÃ©nement</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="EVTGEN_f">Générateur d'événement</link>
+          <link linkend="EVTGEN_f">GÃ©nÃ©rateur d'Ã©vÃ©nement</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_EVTGEN_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_EVTGEN_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_EVTGEN_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_EVTGEN_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,15 +98,15 @@
   <refsection id="Description_EVTGEN_f">
     <title>Description</title>
     <para>
-Un événement est généré sur le port unique de sortie événementiel
-si la valeur du paramètre <emphasis role="bold">Event time</emphasis> est plus grand ou égal à
-zéro.
-Si cette valeur est négative alors aucun événement ne sera généré.
+Un Ã©vÃ©nement est gÃ©nÃ©rÃ© sur le port unique de sortie Ã©vÃ©nementiel
+si la valeur du paramÃ¨tre <emphasis role="bold">Event time</emphasis> est plus grand ou Ã©gal Ã 
+zÃ©ro.
+Si cette valeur est nÃ©gative alors aucun Ã©vÃ©nement ne sera gÃ©nÃ©rÃ©.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_EVTGEN_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_EVTGEN_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -122,13 +122,13 @@ Si cette valeur est négative alors aucun événement ne sera généré.
         <para>
           <emphasis role="bold">Event Time</emphasis>
         </para>
-        <para> Un scalaire donnant la date de l'événement à produire.</para>
+        <para> Un scalaire donnant la date de l'Ã©vÃ©nement Ã  produire.</para>
         <para> Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_EVTGEN_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_EVTGEN_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -137,25 +137,25 @@ Si cette valeur est négative alors aucun événement ne sera généré.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

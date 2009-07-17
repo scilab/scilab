@@ -1,54 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="or">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="or" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>or |</refname>
-    <refpurpose> disjonction logique  </refpurpose>
+
+    <refpurpose>disjonction logique</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>or(A), or(A,'*')
 or(A,'r'), or(A,1)
 
 or(A,'c'), or(A,2)
 A|B</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para><literal>or(A)</literal> donne la disjonction (ou) logique des éléments de la matrice booléenne <literal>A</literal>. <literal>or(A)</literal> est vrai (<literal>%t</literal>) si au moins un terme de <literal>A</literal> est <literal>%t</literal>. 
-  </para>
-    <para><literal>y=or(A,'r')</literal> (ou <literal>y=or(A,1)</literal>) est la disjonction suivant l'indice de ligne. Chaque élément du vecteur ligne <literal>y</literal> contient la disjonction de chaque colonne de <literal>x</literal> (<literal>y(j)= or(A(i,j),i=1,m)</literal>).
-  </para>
-    <para><literal>y=or(A,'c')</literal> (ou <literal>y=or(A,2)</literal>) est la disjonction suivant l'indice de colonne. Chaque élément du vecteur colonne <literal>y</literal> contient la disjonction de chaque ligne de <literal>x</literal> 
-    (<literal>y(i)= or(A(i,j),j=1,n)</literal>)).
-  </para>
-    <para><literal>A|B</literal> renvoie la disjonction logique élément par élément des matrices booléennes  <literal>A</literal> et <literal>B</literal>. <literal>A</literal> et <literal>B</literal> doivent être des matrices de mêmes dimensions ou l'une d'elles doit être un simple booléen.
-  </para>
-    <para>
-  </para>
+
+    <para><literal>or(A)</literal> donne la disjonction (ou) logique des
+    Ã©lÃ©ments de la matrice boolÃ©enne <literal>A</literal>.
+    <literal>or(A)</literal> est vrai (<literal>%t</literal>) si au moins un
+    terme de <literal>A</literal> est <literal>%t</literal>.</para>
+
+    <para><literal>y=or(A,'r')</literal> (ou <literal>y=or(A,1)</literal>) est
+    la disjonction suivant l'indice de ligne. Chaque Ã©lÃ©ment du vecteur ligne
+    <literal>y</literal> contient la disjonction de chaque colonne de
+    <literal>x</literal> (<literal>y(j)= or(A(i,j),i=1,m)</literal>).</para>
+
+    <para><literal>y=or(A,'c')</literal> (ou <literal>y=or(A,2)</literal>) est
+    la disjonction suivant l'indice de colonne. Chaque Ã©lÃ©ment du vecteur
+    colonne <literal>y</literal> contient la disjonction de chaque ligne de
+    <literal>x</literal> (<literal>y(i)= or(A(i,j),j=1,n)</literal>)).</para>
+
+    <para><literal>A|B</literal> renvoie la disjonction logique Ã©lÃ©ment par
+    Ã©lÃ©ment des matrices boolÃ©ennes <literal>A</literal> et
+    <literal>B</literal>. <literal>A</literal> et <literal>B</literal> doivent
+    Ãªtre des matrices de mÃªmes dimensions ou l'une d'elles doit Ãªtre un simple
+    boolÃ©en.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 or([%t %t %f])
 [%t %t %f]|[%f %t %t]
 [%t %t %f]|%f
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="and">and</link>
-      </member>
-      <member>
-        <link linkend="not">not</link>
-      </member>
-      <member>
-        <link linkend="find">find</link>
-      </member>
+      <member><link linkend="and">and</link></member>
+
+      <member><link linkend="not">not</link></member>
+
+      <member><link linkend="find">find</link></member>
     </simplelist>
   </refsection>
 </refentry>

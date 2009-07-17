@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos">
   <refnamediv>
     <refname>scicos</refname>
-    <refpurpose>Editeur de schéma bloc et interface graphique pour le simulateur hybride</refpurpose>
+    <refpurpose>Editeur de schÃ©ma bloc et interface graphique pour le simulateur hybride</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>scs_m = scicos([toto])</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos">
@@ -43,32 +43,32 @@
   <refsection id="Description_scicos">
     <title>Description</title>
     <para>
-Scicos est un éditeur graphique pour construire des modèles
-de systèmes dynamiques hybrides.
+Scicos est un Ã©diteur graphique pour construire des modÃ¨les
+de systÃ¨mes dynamiques hybrides.
 </para>
     <para>
-L'appel à Scicos sans argument ouvre une fenêtre vierge de l'éditeur.
-Les modèles peuvent alors être assemblés, chargés, sauvegardés,
-compilés, simulés en utilisant les différentes interfaces utilisateur
-graphiques (GUI) de l'éditeur.
+L'appel Ã  Scicos sans argument ouvre une fenÃªtre vierge de l'Ã©diteur.
+Les modÃ¨les peuvent alors Ãªtre assemblÃ©s, chargÃ©s, sauvegardÃ©s,
+compilÃ©s, simulÃ©s en utilisant les diffÃ©rentes interfaces utilisateur
+graphiques (GUI) de l'Ã©diteur.
 Scicos est en fait une interface pour la compilation et le
 simulateur 'scicosim'.
-Des arguments en entrée et en sortie de la commande scicos peuvent
-aussi être utilisées pour réaliser des opérations de débogage.
+Des arguments en entrÃ©e et en sortie de la commande scicos peuvent
+aussi Ãªtre utilisÃ©es pour rÃ©aliser des opÃ©rations de dÃ©bogage.
 
 </para>
     <programlisting role="example"><![CDATA[
 scs_m = scicos([toto])
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_scicos">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_scicos">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">input : </emphasis> ce paramètre peut aussi bien être une structure de diagramme Scicos (scs_m) qu'une chaîne de caractères indiquant le chemin du fichier du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si aucun argument d'entrée est utilisé, un diagramme vide est ouvert (avec un nom par défaut 'Untitled'). </para>
+        <para><emphasis role="bold">input : </emphasis> ce paramÃ¨tre peut aussi bien Ãªtre une structure de diagramme Scicos (scs_m) qu'une chaÃ®ne de caractÃ¨res indiquant le chemin du fichier du diagramme Ã  charger dans l'Ã©diteur (extension .cos ou .cosf). Si aucun argument d'entrÃ©e est utilisÃ©, un diagramme vide est ouvert (avec un nom par dÃ©faut 'Untitled'). </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">scs_m : </emphasis> une structure de diagramme Scicos après édition.</para>
+        <para><emphasis role="bold">scs_m : </emphasis> une structure de diagramme Scicos aprÃ¨s Ã©dition.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -104,7 +104,7 @@ scs_m=scicos(scs_m);
       </listitem>
       <listitem>
         <para>
-          <link linkend="scicos_simulate">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
+          <link linkend="scicos_simulate">scicos_simulate - Fonction pour Ã©xÃ©cuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
         </para>
       </listitem>
     </itemizedlist>

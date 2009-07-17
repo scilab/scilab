@@ -106,12 +106,14 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 	 * @return double
 	 */
 	protected double fecValueToColorMapIndex(double value, double zMin, double zMax) {
-		//return ((value - zMin) / (zMax - zMin) * (colMax - colMin + 1.0) + colMin);
-		return (colMax - colMin) / (zMax - zMin) * (value - zMax) + colMax;
-		
-		//return (colMax - colMin - 1) / (zMax - zMin) * (value - zMax) + colMax;
-		//return (colMax - colMin - zMin) / (zMax - zMin) * (value - zMax) + colMax;
-	}	
+		if (zMin == zMax) {
+			// Use specified stupid zmin and zmax or the fec values are all the same
+			// so use one of the colormap bounds
+			return colMin;
+		} else {
+			return (colMax - colMin) / (zMax - zMin) * (value - zMax) + colMax;
+		}
+	}
 	
 	/**
 	 * Draw the triangles composing the fec object.

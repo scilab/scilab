@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="determ">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>determ</refname>
-    <refpurpose> déterminant d'une matrice de polynômes  </refpurpose>
+    <refpurpose> dÃ©terminant d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>res=determ(W [,k])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>W  </term>
         <listitem>
-          <para>matrice réelle de polynômes
+          <para>matrice rÃ©elle de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k  </term>
         <listitem>
-          <para>entier (borne supérieure pour le degré du déterminant de W)
+          <para>entier (borne supÃ©rieure pour le degrÃ© du dÃ©terminant de W)
 </para>
         </listitem>
       </varlistentry>
@@ -32,21 +32,21 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>res=determ(W [,k])</literal> renvoie le déterminant d'une
-    matrice réelle de polynômes (calculs fait par FFT si la taille de W
-    est supérieure à 2*2).
+    <para><literal>res=determ(W [,k])</literal> renvoie le dÃ©terminant d'une
+    matrice rÃ©elle de polynÃ´mes (calculs fait par FFT si la taille de W
+    est supÃ©rieure Ã  2*2).
   </para>
-    <para><literal>k</literal> est un entier plus grand que le degré effectif du
-    déterminant.  de <literal>W</literal>.
+    <para><literal>k</literal> est un entier plus grand que le degrÃ© effectif du
+    dÃ©terminant.  de <literal>W</literal>.
   </para>
     <para>
-    La valeur par défaut de <literal>k</literal> est la plus petite
+    La valeur par dÃ©faut de <literal>k</literal> est la plus petite
     puissance de 2 plus grande que <literal>n*maxi(degree(W))</literal>.
   </para>
     <para>
-    Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
-    fréquences de Fourier et FFT inverse appliquée aux coefficients du
-    déterminant.
+    MÃ©thode (pour les matrices dont la taille est supÃ©rieure Ã  2*2) : Ã©valuation du dÃ©terminant de <literal>W</literal> aux
+    frÃ©quences de Fourier et FFT inverse appliquÃ©e aux coefficients du
+    dÃ©terminant.
   </para>
   </refsection>
   <refsection>

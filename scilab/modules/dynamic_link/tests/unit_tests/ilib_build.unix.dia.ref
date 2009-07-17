@@ -54,6 +54,7 @@ ilib_build('foo',['scifun1','intfun1'],files,[]);
    ilib_gen_Make: Copy libfoo.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
+   Generate a cleaner file   
 // load the shared library
 exec loader.sce
  

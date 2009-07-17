@@ -21,16 +21,10 @@ f = figure(1);
 
 h1 = uicontrol(f,"style","pushbutton");
 
-if isempty(get(h1,"backgroundcolor")) then
-  pause;
-end
+if isempty(get(h1,"backgroundcolor")) then pause; end
 
 h2 = uicontrol(f,"style","text","string","abaoaqu");
-if isempty(get(h2,"position")) then
-  pause;
-end
+if isempty(get(h2,"position")) then pause; end
 
 h3 = uicontrol(f,"style","checkbox");
-if isempty(get(h3,"position")) then
-  pause;
-end
+if isempty(get(h3,"position")) then pause; end

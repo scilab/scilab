@@ -5,7 +5,11 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
+
 //argn
+
+funcprot(0);
 
 deff("[x,y]=foo(a,b)','[lhs,rhs]=argn(0);x=[lhs,rhs];y=-1')
 if or(foo(1)<>[1 1]) then pause,end

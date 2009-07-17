@@ -19,7 +19,8 @@
 #include "localization.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]={
+#define FFTW_TAB_SIZE 8
+static gw_generic_table Tab[FFTW_TAB_SIZE]={
 { sci_loadfftwlibrary,"loadfftwlibrary"},
 { sci_disposefftwlibrary,"disposefftwlibrary"},
 { sci_fftwlibraryisloaded,"fftwlibraryisloaded"},
@@ -55,7 +56,7 @@ int gw_fftw(void)
 		}
 	}
 
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,FFTW_TAB_SIZE);
 
 	return 0;
 }

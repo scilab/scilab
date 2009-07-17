@@ -12,7 +12,7 @@
 
 function r = isfield(s,field)
 	
-	r = %f;
+	r = [];
 	
 	rhs = argn(2);
 	
@@ -28,7 +28,14 @@ function r = isfield(s,field)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"isfield",2));
 	end
 	
-	w = getfield(1,s);
-	r = or(w(3:$)==field);
+	[nr,nc]     = size(field);
+	fields      = getfield(1,s);
+	fields(1:2) = [];
+	
+	for row=1:nr
+		for line=1:nc
+			r(row,line) = or(fields==field(row,line));
+		end
+	end
 	
 endfunction

@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="for">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>for</refname>
-    <refpurpose> mot clé pour les structures de boucles  </refpurpose>
+    <refpurpose> mot clÃ© pour les structures de boucles  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Utilisé pour spécifier une boucle. La syntaxe est la suivante :
+    UtilisÃ© pour spÃ©cifier une boucle. La syntaxe est la suivante :
   </para>
     <para>
       <literal>for variable=expression ,instruction,   ,instruction,end</literal>
@@ -29,7 +29,7 @@
     Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
   </para>
     <para>
-    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+    Attention : le nombre de caractÃ¨res constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limitÃ© Ã  16k.
   </para>
     <para>
   </para>

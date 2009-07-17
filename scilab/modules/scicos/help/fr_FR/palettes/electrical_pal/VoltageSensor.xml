@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="VoltageSensor">
   <refnamediv>
     <refname>VoltageSensor</refname>
-    <refpurpose>Capteur de tension électrique relative</refpurpose>
+    <refpurpose>Capteur de tension Ã©lectrique relative</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="VoltageSensor">Capteur de tension électrique relative</link>
+          <link linkend="VoltageSensor">Capteur de tension Ã©lectrique relative</link>
         </para>
       </listitem>
       <listitem>
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_VoltageSensor">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_VoltageSensor">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,7 +68,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="VoltageSensor">Modèle Modelica</link>
+              <link linkend="VoltageSensor">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -80,7 +80,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -88,19 +88,19 @@
   <refsection id="Description_VoltageSensor">
     <title>Description</title>
     <para>
-Ce composant est employé pour mesurer la différence de tension entre
-deux noeuds dans un circuit électrique. Le signal de sortie est la
-différence entre la tension du port noir et celle du port blanc.
-La conductance ohmique de ce bloc est zéro.
+Ce composant est employÃ© pour mesurer la diffÃ©rence de tension entre
+deux noeuds dans un circuit Ã©lectrique. Le signal de sortie est la
+diffÃ©rence entre la tension du port noir et celle du port blanc.
+La conductance ohmique de ce bloc est zÃ©ro.
 
 </para>
   </refsection>
-  <refsection id="Propriétéspardéfaut_VoltageSensor">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_VoltageSensor">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -149,8 +149,8 @@ La conductance ohmique de ce bloc est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_VoltageSensor">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_VoltageSensor">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/VoltageSensor.mo</para>

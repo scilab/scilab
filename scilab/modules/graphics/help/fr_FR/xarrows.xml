@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xarrows">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xarrows</refname>
-    <refpurpose> dessine un ensemble de flèches  </refpurpose>
+    <refpurpose> dessine un ensemble de flÃ¨ches  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>nx,ny  </term>
         <listitem>
-          <para>valeurs réelles ou matrices de même taille.
+          <para>valeurs rÃ©elles ou matrices de mÃªme taille.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>arsize  </term>
         <listitem>
-          <para>réel, taille des têtes des flèches. La valeur par défaut peut être obtenue  en prenant arsize = -1.
+          <para>rÃ©el, taille des tÃªtes des flÃ¨ches. La valeur par dÃ©faut peut Ãªtre obtenue  en prenant arsize = -1.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>style  </term>
         <listitem>
-          <para>matrice ou scalaire. Si <literal>style</literal> est positif il donne la couleur de ligne pour toutes les flèches. S'il est négatif  la couleur courante est utilisé. S'il est un vecteur, <literal>style(i)</literal> donne la couleur pour la flèche <literal>i</literal>.
+          <para>matrice ou scalaire. Si <literal>style</literal> est positif il donne la couleur de ligne pour toutes les flÃ¨ches. S'il est nÃ©gatif  la couleur courante est utilisÃ©. S'il est un vecteur, <literal>style(i)</literal> donne la couleur pour la flÃ¨che <literal>i</literal>.
 </para>
         </listitem>
       </varlistentry>
@@ -39,9 +39,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xarrows</literal> dessine un ensemble de flèches données par <literal>nx</literal> et <literal>ny</literal>.
+    <para><literal>xarrows</literal> dessine un ensemble de flÃ¨ches donnÃ©es par <literal>nx</literal> et <literal>ny</literal>.
     Si <literal>nx</literal> et <literal>ny</literal> sont des vecteurs,
-    la flèche numéro i est définie par
+    la flÃ¨che numÃ©ro i est dÃ©finie par
     <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>.
     Si <literal>nx</literal> et <literal>ny</literal> sont des matrices :
   </para>
@@ -50,9 +50,9 @@ nx=[xi_1 x1_2 ...; xf_1 xf_2 ...]
 ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
    ]]></programlisting>
     <para>
-    la flèche numéro <literal>k</literal> est définie par <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
+    la flÃ¨che numÃ©ro <literal>k</literal> est dÃ©finie par <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.
   </para>
-    <para><literal>xarrows</literal> utilise l'échelle graphique courante, qui peut être définie par appel préalable d'une fonction graphique de haut niveau comme <literal>plot2d</literal>.
+    <para><literal>xarrows</literal> utilise l'Ã©chelle graphique courante, qui peut Ãªtre dÃ©finie par appel prÃ©alable d'une fonction graphique de haut niveau comme <literal>plot2d</literal>.
   </para>
   </refsection>
   <refsection>

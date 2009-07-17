@@ -31,7 +31,12 @@ case 1
       error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
     end
 
-    addSingleMenu(0, varargin(1));
+    if getos()=="Darwin" then
+      // MACOSX version add a submenu with same name because parent menu can not have a callback
+      addMenuSubMenus(0, varargin(1), varargin(1));
+    else
+      addSingleMenu(0, varargin(1));
+    end
 
   else
     error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
@@ -73,7 +78,12 @@ case 2
       error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",2));
     end
 
-    addSingleMenuCallback(0, varargin(1), varargin(2));
+    if getos()=="Darwin" then
+      // MACOSX version add a submenu with same name because parent menu can not have a callback
+      addMenuSubMenusCallback(0, varargin(1), varargin(1), varargin(2));
+    else
+      addSingleMenuCallback(0, varargin(1), varargin(2));
+    end
 
   elseif type(varargin(1))==1 & type(varargin(2))==10
     // addmenu(graphic_window_id,menu_label)
@@ -88,7 +98,12 @@ case 2
       error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 2));
     end
 
-    addSingleMenu(scf(varargin(1)), varargin(2))
+    if getos()=="Darwin" then
+      // MACOSX version add a submenu with same name because parent menu can not have a callback
+      addMenuSubMenus(scf(varargin(1)), varargin(2), varargin(2));
+    else
+      addSingleMenu(scf(varargin(1)), varargin(2))
+    end
 
   else
     error(msprintf(_("%s: Wrong input arguments: %s or %s expected.\n"),"addmenu","(menu_label, action_in_a_list)","(graphic_window_id,menu_label)"));
@@ -150,7 +165,11 @@ case 3
       error(msprintf(_("%s: Wrong type for input argument #%d: A two-item list expected.\n"),"addmenu",3));
     end
 
-    addSingleMenuCallback(scf(varargin(1)), varargin(2), varargin(3));
+    if getos()=="Darwin" then
+      addMenuSubMenusCallback(scf(varargin(1)), varargin(2), varargin(2), varargin(3));
+    else
+      addSingleMenuCallback(scf(varargin(1)), varargin(2), varargin(3));
+    end
 
   else
     error(msprintf(_("%s: Wrong input arguments: %s, %s or %s expected.\n"),"addmenu","(menu_label, submenus_labels, actions_in_a_list)","(graphic_window_id, menu_label, submenus_labels)","(graphic_window_id, menu_label, action_in_a_list)"));

@@ -38,8 +38,7 @@ k=mode()</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>Utilisé <literal><emphasis
-    role="bold">uniquement</emphasis></literal> dans un script ou une
+    <para>Utilisé <emphasis role="bold"><literal>uniquement</literal></emphasis> dans un script ou une
     fonction, <literal>mode(k)</literal> permet de choisir le mode d'affichage
     utilisé pendant l'exécution, suivant la valeur de
     <literal>k</literal> :</para>

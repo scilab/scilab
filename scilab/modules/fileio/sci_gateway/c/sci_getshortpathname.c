@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,59 +18,57 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "charEncoding.h"
+#include "freeArrayOfString.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 int sci_getshortpathname(char *fname,unsigned long l)
 {
-	static int l1,n1,m1;
-	int bOK=FALSE;
-
 	CheckRhs(0,1);
 	CheckLhs(1,2);
 
 	if (GetType(1) == sci_strings)
 	{
-		char *LongName = NULL;
-		char *ShortName=NULL;
-		char szTemp[bsiz];
+		int n1 = 0,m1 = 0, m1n1 = 0;
+		char **LongNames = NULL;
+		char **ShortNames = NULL;
+		BOOL *bOK = NULL;
+		int i = 0;
 
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		/* Bug 3089 */
-		LongName = UTFToLocale(cstk(l1), szTemp);
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&LongNames);
+		m1n1 = m1*n1;
 
-		ShortName = getshortpathname(LongName,&bOK);
-
-		if (ShortName) 
+		if (m1n1 > 0)
 		{
-			char *ShortNameUTF = localeToUTF(ShortName, szTemp);
-			m1 =(int)strlen(ShortNameUTF);
-			n1 = 1;
-			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,&m1,&n1,&ShortNameUTF);
+			ShortNames = (char**) MALLOC(sizeof(char*)* (m1n1));
+			bOK = (BOOL*) MALLOC(sizeof(BOOL)*(m1n1));
+
+			if ( (ShortNames == NULL) || (bOK == NULL) )
+			{
+				freeArrayOfString(LongNames, m1n1);
+				Scierror(999,"%s : Memory allocation error.\n", fname);
+				return 0;
+			}
 		}
-		else 
+
+		for (i = 0;i < m1n1; i++)
 		{
-			m1 = 0;
-			n1 = 0;
-			l1 = 0;
-			CreateVar(Rhs+1,STRING_DATATYPE,  &m1, &n1, &l1);
+			ShortNames[i] = getshortpathname(LongNames[i], &bOK[i]);
 		}
-		
-		LhsVar(1)=Rhs+1;
+		freeArrayOfString(LongNames, m1n1);
 
-		if (ShortName) {FREE(ShortName);ShortName=NULL;}
+		CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,ShortNames);
+		LhsVar(1) = Rhs+1;
 
-		if (Lhs != 1) /* Lhs == 2 */
+		if (Lhs == 2) 
 		{
-			int *bOkOutINT=(int*)MALLOC(sizeof(int));
-
-			*bOkOutINT=bOK;
-			n1=1;
-			CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &bOkOutINT);
-			LhsVar(2)=Rhs+2;
-			if (bOkOutINT) {FREE(bOkOutINT);bOkOutINT=NULL;}
+			CreateVarFromPtr(Rhs+2,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1, &bOK);
+			LhsVar(2) = Rhs + 2;
 		}
 
 		C2F(putlhsvar)();
+
+		freeArrayOfString(ShortNames, m1n1);
+		if (bOK) {FREE(bOK); bOK = NULL;}
 	}
 	else
 	{

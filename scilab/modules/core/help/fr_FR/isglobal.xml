@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="isglobal">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>isglobal</refname>
-    <refpurpose>  vérifie si une variable est globale  </refpurpose>
+    <refpurpose>  vÃ©rifie si une variable est globale  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>t=isglobal(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>t  </term>
         <listitem>
-          <para>un booléen
+          <para>un boolÃ©en
 </para>
         </listitem>
       </varlistentry>
@@ -32,7 +32,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>isglobal(x)</literal> renvoie %T (vrai) si x a été déclarée en tant que variable globale et %F (faux) sinon.
+    <para><literal>isglobal(x)</literal> renvoie %T (vrai) si x a Ã©tÃ© dÃ©clarÃ©e en tant que variable globale et %F (faux) sinon.
   </para>
   </refsection>
   <refsection>

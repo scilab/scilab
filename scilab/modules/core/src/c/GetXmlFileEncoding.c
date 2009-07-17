@@ -16,27 +16,34 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "BOOL.h"
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 char *GetXmlFileEncoding(const char *filename)
 {
-#define DEFAULT_ENCODING "UTF-8"
-	char *encoding=NULL;
+	#define DEFAULT_ENCODING "UTF-8"
+	char *encoding = NULL;
 	xmlDocPtr doc = NULL;
+	BOOL bConvert = FALSE;
+	char *shortfilename = getshortpathname((char*)filename,&bConvert);
 
 	/* default */
 	encoding = strdup(DEFAULT_ENCODING);
 
-	doc = xmlParseFile (filename);
-	if (doc) 
+	if (shortfilename)
 	{
-		if (doc->encoding)
+		doc = xmlParseFile (filename);
+		FREE(shortfilename); shortfilename = NULL;
+		if (doc) 
 		{
-			if (encoding) {FREE(encoding);encoding=NULL;}
-			encoding = strdup((char*)doc->encoding);
+			if (doc->encoding)
+			{
+				if (encoding) {FREE(encoding);encoding=NULL;}
+				encoding = strdup((char*)doc->encoding);
+			}
 		}
+		xmlFreeDoc (doc);
 	}
-
-	xmlFreeDoc (doc);
 	return encoding;
 }
 /*--------------------------------------------------------------------------*/ 

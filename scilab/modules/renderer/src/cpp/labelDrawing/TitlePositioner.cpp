@@ -52,7 +52,7 @@ bool TitlePositioner::getAutoPosition(double pos[3])
   camera->getViewingArea(&xPos, &yPos, &width, &height);
 
   // get height of the text
-  int corners[4][2];
+  double corners[4][3];
   getTextDrawer(pLABEL_FEATURE(pLabel)->text)->getScreenBoundingBox(corners[0], corners[1],
                                                                     corners[2], corners[3]);
 

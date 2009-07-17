@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>line_graph</refname>
-    <refpurpose> graphe avec sommets correspondant aux arêtes  </refpurpose>
+    <refpurpose> graphe avec sommets correspondant aux arÃªtes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = line_graph(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -44,15 +44,15 @@
   <refsection>
     <title>Description</title>
     <para><literal>line_graph</literal> renvoie le graphe <literal>g1</literal> avec les sommets correspondant 
-    aux arêtes du graphe <literal>g</literal>.
-    <literal>g1</literal> est défini de la façon suivante :
-     - ses sommets correspondent aux arêtes de <literal>g</literal>
+    aux arÃªtes du graphe <literal>g</literal>.
+    <literal>g1</literal> est dÃ©fini de la faÃ§on suivante :
+     - ses sommets correspondent aux arÃªtes de <literal>g</literal>
      - 2 sommets du nouveau graphe sont adjacents si et seulement si les 
-     arêtes correspondantes du graphe <literal>g</literal> sont adjacentes.
+     arÃªtes correspondantes du graphe <literal>g</literal> sont adjacentes.
   </para>
     <para>
-    Les coordonnées des sommets de <literal>g1</literal> sont données par les milieux des
-    arêtes correspondantes de <literal>g</literal>.
+    Les coordonnÃ©es des sommets de <literal>g1</literal> sont donnÃ©es par les milieux des
+    arÃªtes correspondantes de <literal>g</literal>.
   </para>
   </refsection>
   <refsection>

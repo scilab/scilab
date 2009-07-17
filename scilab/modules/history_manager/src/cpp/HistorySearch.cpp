@@ -15,6 +15,9 @@ extern "C"
 {
 #include <string.h>
 #include <stdlib.h>
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 #include "HistorySearch.hxx"
 #include "MALLOC.h"
@@ -115,9 +118,7 @@ BOOL HistorySearch::search(void)
 
 				if (this->my_lines)
 				{
-					ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
-					if (ptrLine) strcpy(ptrLine,line.c_str());
-					this->my_lines[i-1] = ptrLine;
+					this->my_lines[i-1] = strdup(line.c_str());
 				}
 
 				if (this->my_linenumbers) this->my_linenumbers = (int*)REALLOC(this->my_linenumbers,i*(sizeof(int)));
@@ -153,9 +154,7 @@ BOOL HistorySearch::search(void)
 
 				if (this->my_lines)
 				{
-					ptrLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
-					if (ptrLine) strcpy(ptrLine,line.c_str());
-					this->my_lines[i-1] = ptrLine;
+					this->my_lines[i-1] = strdup(line.c_str());
 				}
 
 				if (this->my_linenumbers) this->my_linenumbers = (int*)REALLOC(this->my_linenumbers,i*(sizeof(int)));

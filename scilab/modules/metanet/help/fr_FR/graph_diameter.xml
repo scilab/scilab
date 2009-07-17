@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>graph_diameter</refname>
-    <refpurpose> diamètre d'un graphe  </refpurpose>
+    <refpurpose> diamÃ¨tre d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[d,p] = graph_diameter(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,11 +50,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_diameter</literal> calcule le diamètre du graphe <literal>g</literal> i.e. le
+    <para><literal>graph_diameter</literal> calcule le diamÃ¨tre du graphe <literal>g</literal> i.e. le
     plus grand des plus courts chemins entre deux sommets. La longueur des arcs 
-    est supposée entière (1 par défaut). La sortie est la valeur
+    est supposÃ©e entiÃ¨re (1 par dÃ©faut). La sortie est la valeur
     <literal>d</literal> de la longueur du
-    diamètre et <literal>p</literal> est le chemin correspondant.
+    diamÃ¨tre et <literal>p</literal> est le chemin correspondant.
   </para>
   </refsection>
   <refsection>

@@ -15,14 +15,24 @@ package org.scilab.modules.gui.bridge.tree;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Vector;
 
 import javax.swing.Icon;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -79,6 +89,27 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	public void setCallback(CallBack callback) {
 		this.callback = callback;
 	}
+
+	/**
+	 *  This is a private class to embed the JTree inside its Mouse Listener
+	 *  in order we can figure out on which leaff the user clicked on.
+	 */
+	private class ClickListener extends MouseAdapter {
+	    private JTree _jtree;
+	    
+	    public ClickListener(JTree jtree) {
+		_jtree = jtree;
+	    }
+	    
+	    public void mouseClicked(MouseEvent arg0) {
+		TreePath path = _jtree.getPathForLocation(arg0.getX(),arg0.getY());
+		/* We only want double click to do something */
+		if (path != null && arg0.getClickCount() >= 2) {
+		    ((SwingScilabTree) path.getLastPathComponent()).getCallback().actionPerformed(null);
+		}
+
+	    }
+	}
 	
 	public JComponent getAsComponent() {
 		// Tree Model
@@ -93,7 +124,8 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		jtree.setModel(model);		
 		// Set renderer
 		jtree.setCellRenderer(renderer);
-		
+
+		jtree.addMouseListener(new ClickListener(jtree));
 		jtree.setVisible(true);
 		
 		
@@ -108,6 +140,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		
 		Window window = ScilabWindow.createWindow();
 		Tab tab = ScilabTab.createTab("Tree Overview");
+		tab.setCallback(null);
 		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
 		window.addTab(tab);
 		tab.setVisible(true);

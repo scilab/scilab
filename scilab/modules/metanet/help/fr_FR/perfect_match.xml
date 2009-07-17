@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>perfect_match</refname>
-    <refpurpose> appariement parfait de coût minimum  </refpurpose>
+    <refpurpose> appariement parfait de coÃ»t minimum  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[cst,nmatch] = perfect_match(g,arcost)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -57,11 +57,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>perfect_match</literal> trouve un appariement parfait de coût minimum pour le graphe <literal>g</literal>.
-    <literal>g</literal> doit être un graphe non-orienté avec un nombre pair de sommets.
-    <literal>arcost</literal> est le vecteur des coût (entiers) des arcs (la dimension
-    de <literal>arcost</literal> est le double du nombre d'arêtes du graphe). 
-    Les sorties sont le vecteur <literal>nmatch</literal> de l'appariement parfait et le coût
+    <para><literal>perfect_match</literal> trouve un appariement parfait de coÃ»t minimum pour le graphe <literal>g</literal>.
+    <literal>g</literal> doit Ãªtre un graphe non-orientÃ© avec un nombre pair de sommets.
+    <literal>arcost</literal> est le vecteur des coÃ»t (entiers) des arcs (la dimension
+    de <literal>arcost</literal> est le double du nombre d'arÃªtes du graphe). 
+    Les sorties sont le vecteur <literal>nmatch</literal> de l'appariement parfait et le coÃ»t
     correspondant <literal>cst</literal>.
   </para>
   </refsection>

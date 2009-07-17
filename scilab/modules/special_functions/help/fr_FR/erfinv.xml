@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,22 +19,22 @@
     <refpurpose>fonction erreur inverse</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>y = erfinv(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>vecteur réel</para>
+          <para>vecteur rÃ©el</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>y  </term>
         <listitem>
-          <para>vecteur réel (de même taille que x)</para>
+          <para>vecteur rÃ©el (de mÃªme taille que x)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -44,7 +44,7 @@
     <para>
       <literal>erfinv</literal> calcule l'inverse de la fonction d'erreur
       <literal>erf</literal>.
-      <literal>x = erfinv(y)</literal> vérifie <literal>y = erf(x)</literal>,
+      <literal>x = erfinv(y)</literal> vÃ©rifie <literal>y = erf(x)</literal>,
       -1 &lt;= <literal>y</literal> &lt; 1, -inf &lt;= <literal>x</literal> &lt;= inf.
     </para>
   </refsection>
@@ -69,7 +69,7 @@ norm(x-erf(y),'inf')
     </simplelist>
   </refsection>
   <refsection>
-    <title>Références</title>
+    <title>RÃ©fÃ©rences</title>
     <para>Milton Abramowitz and Irene A. Stegun, eds. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. New York: Dover, 1972.</para>
   </refsection>
 </refentry>

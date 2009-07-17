@@ -26,6 +26,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL getversionmodule(char *modulename,
 					  int *sci_version_major,
@@ -67,7 +68,16 @@ BOOL getversionmodule(char *modulename,
 				int version_revision=0;
 				char *version_string=0;
 
-				doc = xmlParseFile (filename_VERSION_module);
+				{
+					BOOL bConvert = FALSE;
+					char *shortfilename_VERSION_module = getshortpathname(filename_VERSION_module,&bConvert);
+					if (shortfilename_VERSION_module)
+					{
+						doc = xmlParseFile (shortfilename_VERSION_module);
+						FREE(shortfilename_VERSION_module);
+						shortfilename_VERSION_module = NULL;
+					}
+				}
 
 				if (doc == NULL) 
 				{

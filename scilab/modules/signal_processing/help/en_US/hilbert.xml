@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hilbert">
+<?xml version="1.0" encoding="UTF-8"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hilbert">
 <info><pubdate>$LastChangedDate: 2008-03-14 10:58:09 +0000 (ven, 14 mar 2008) $</pubdate></info>
 <refnamediv>
 <refname>hilbert</refname>
@@ -28,7 +28,7 @@
     <para>The analytic signal <literal>x = xr + i*xi</literal> has a real part, <literal>xr</literal>, which
     is the original data, and an imaginary part, <literal>xi</literal>, which contains
     the Hilbert transform. The imaginary part is a version of the
-    original real sequence with a 90° phase shift.</para>
+    original real sequence with a 90Â° phase shift.</para>
   </refsection>
   <refsection>
     <title>References</title>

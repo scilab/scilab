@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,20 +16,20 @@
   </info>
   <refnamediv>
     <refname>unix_x</refname>
-    <refpurpose>exécution d'une commande Unix ou DOS,
-	sortie redirigée vers une fenêtre</refpurpose>
+    <refpurpose>exÃ©cution d'une commande Unix ou DOS,
+	sortie redirigÃ©e vers une fenÃªtre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>unix_x(command-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>command-name</term>
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,12 +37,12 @@
   <refsection>
     <title>Description</title>
     <para>
-			Envoie la chaîne <literal>command-name</literal> à  l'interpréteur
+			Envoie la chaÃ®ne <literal>command-name</literal> Ã Â  l'interprÃ©teur
 			de commande (sh sous Unix, ou command.com sous DOS). La sortie standard et
-			les erreurs sont reportées dans une fenêtre . Les erreurs se produisant dans
-			l'interpréteur de commande sont interceptées; notez que la *dernière erreur
-			uniquement* est signalée quand <literal>command-name</literal> est une suite de
-			commandes séparées par des ";"
+			les erreurs sont reportÃ©es dans une fenÃªtre . Les erreurs se produisant dans
+			l'interprÃ©teur de commande sont interceptÃ©es; notez que la *derniÃ¨re erreur
+			uniquement* est signalÃ©e quand <literal>command-name</literal> est une suite de
+			commandes sÃ©parÃ©es par des ";"
 		</para>
   </refsection>
   <refsection>

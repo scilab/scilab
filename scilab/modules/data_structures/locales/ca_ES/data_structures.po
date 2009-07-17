@@ -1,0 +1,52 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-02-12 11:52+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s)."
+msgstr "%s: Nombre incorrecte d'arguments d'entrada."
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " Una extracció d'hipermatrius ha de tenir com a mínim 2 arguments. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " L'argument no és una hipermatriu. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " Extracció d'hipermatriu incompatible. "
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "L'índex número %d de l'extracció d'hipermatriu és incorrecte. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments "
+msgstr " Una inserció d'hipermatriu ha de tenir com a mínim 3 arguments "
+
+msgid " Argument is not an hypermatrix "
+msgstr " L'argument no és una hipermatriu "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " Inserció d'hipermatriu incorrecta. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Massa arguments a la pila, editeu el stack.h i augmenteu el intersiz.\n"

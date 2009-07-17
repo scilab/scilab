@@ -47,7 +47,7 @@ void DrawableFecFactory::setStrategies(ConcreteDrawableFec * fec)
 {
   fec->removeDrawingStrategies();
   
-  if (sciGetIsLine(m_pDrawed))
+  if (sciGetIsDisplayingLines(m_pDrawed))
   {
     fec->addDrawingStrategy(new FecLineDrawerJoGL(fec));
   }

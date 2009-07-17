@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<refentry version="5.0-subset Scilab" xml:id="format" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>format</refname>
+
+    <refpurpose>impress&#227;o de n&#250;meros e formato de
+    exibi&#231;&#227;o</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seq&#252;&#234;ncia de Chamamento</title>
+
+    <synopsis>format([type],[long])
+v = format()
+format(m)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Par&#226;metros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>long</term>
+
+        <listitem>
+          <para>inteiro ( n&#250;mero m&#225;ximo de digitos (padr&#227;o
+          10))</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>um vetor para o formato corrente onde v(1) &#233; o de tipo de
+          formato : 0 para 'e' e 1 para 'v' v(2) n&#250;mero de
+          d&#237;gitos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>um vetor para ajuste de novo formato</para>
+
+          <para>m(1) n&#250;mero de digitos</para>
+
+          <para>m(2) tipo de formato : 0 para 'e' e 1 para 'v'</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descri&#231;&#227;o</title>
+
+    <para>Ajusta o formato de impress&#227;o corrente atrav&#233;s do
+    par&#226;metro <literal>type</literal> ; &#233; um dos seguintes :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"v"</term>
+
+        <listitem>
+          <para>para um formato vari&#225;vel (default) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"e"</term>
+
+        <listitem>
+          <para>para o formato "e" (nota&#231;&#227;o cient&#237;fica) </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>long</literal> define o n&#250;mero m&#225;ximo de
+    d&#237;gitos (padr&#227;o 10). <literal>format()</literal> retorna o vetor
+    que indica o fomato corrente: primeiro componente &#233; o tipo do formato
+    (1 se <literal>v</literal> ; 0 se <literal>e</literal> ); o segundo
+    componente &#233; o n&#250;mero de digitos.</para>
+
+    <para>No "formato vari&#225;vel", entradas de vetores que s&#227;o menores
+    que %eps vezes o valor absoluto m&#225;ximo das entradas era exibido como
+    "0" em vers&#245;es anteriores do Scilab. N&#227;o &#233; mais o caso, a
+    fun&#231;&#227;o de clean pode ser usada para ajustar as entradas
+    negligenci&#225;veis para zeros.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=rand(1,5);
+format('v',10);x
+format(20);x
+format('e',10);x
+format(20);x
+
+x=[100 %eps];
+format('e',10);x
+format('v',10);x
+
+format("v")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Tamb&#233;m</title>
+
+    <simplelist type="inline">
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="disp">disp</link></member>
+
+      <member><link linkend="print">print</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -82,10 +82,11 @@ phi=atand(y,x)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// example with the second form
+    <programlisting role="example"> 
+// example with the second form
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)
-</programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -103,8 +104,6 @@ atand(x)
 
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
-
-      <member></member>
     </simplelist>
   </refsection>
 </refentry>

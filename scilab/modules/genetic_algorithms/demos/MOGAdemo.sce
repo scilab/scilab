@@ -1,8 +1,14 @@
-//
-// Definition of the operators
-//
+////////////////////////////////////////
+// Demo of the MOGA Genetic Algorithm //
+////////////////////////////////////////
 
-// Definition of the deb_1 multiobjective test problem
+my_handle = scf(100001);
+clf(my_handle,'reset');
+demo_viewCode('MOGAdemo.sce');
+
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
 
 /////////////////////////
 // Deb 1 test function //
@@ -113,4 +119,6 @@ if (size(fobj_pop_opt,2)==2) then
   xtitle('Objective function space','f1','f2');
   drawnow;
 end
+
+funcprot(old_funcprot);
 

@@ -7,11 +7,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [res,err] = is_param(list_name,param_name)
+function [result,err] = is_param(list_name,param_name)
 [nargout,nargin] = argn();
-res = [];
+result = [];
 if typeof(list_name)=='plist' then
-  res = or(getfield(1,list_name)==param_name);
+  result = or(getfield(1,list_name)==param_name);
   if nargout==2 then err = %F; end
 else
   if nargout==2 then 

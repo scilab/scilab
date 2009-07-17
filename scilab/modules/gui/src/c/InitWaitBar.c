@@ -14,6 +14,7 @@
 #include "InitWaitBar.h"
 #include "BuildObjects.h"
 #include "ObjectStructure.h"
+#include "HandleManagement.h"
 
 sciPointObj *InitWaitBar(void)
 {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="example_1_function_1">
   <info>
     <pubdate>01-08-2006</pubdate>
@@ -18,7 +18,7 @@
         <term>b</term>
         <listitem>
           <para>
-            Description du paramètre "b"
+            Description du paramÃ¨tre "b"
          </para>
         </listitem>
       </varlistentry>
@@ -26,7 +26,7 @@
         <term>c</term>
         <listitem>
           <para>
-            Description du paramètre "c"
+            Description du paramÃ¨tre "c"
          </para>
         </listitem>
       </varlistentry>
@@ -34,7 +34,7 @@
         <term>a</term>
         <listitem>
           <para>
-            Description du paramètre "a"
+            Description du paramÃ¨tre "a"
          </para>
         </listitem>
       </varlistentry>
@@ -45,7 +45,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          Description détaillée de la fonction "example_1_function_1"
+          Description dÃ©taillÃ©e de la fonction "example_1_function_1"
         </para>
       </listitem>
     </itemizedlist>

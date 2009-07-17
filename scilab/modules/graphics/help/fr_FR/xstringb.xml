@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xstringb">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xstringb</refname>
-    <refpurpose> dessine des chaînes de caractères dans une boîte  </refpurpose>
+    <refpurpose> dessine des chaÃ®nes de caractÃ¨res dans une boÃ®te  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xstringb(x,y,str,w,h,[option])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h  </term>
         <listitem>
-          <para>vecteur de 4 scalaires définissant la boîte
+          <para>vecteur de 4 scalaires dÃ©finissant la boÃ®te
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str  </term>
         <listitem>
-          <para>matrice de chaînes de caractères.
+          <para>matrice de chaÃ®nes de caractÃ¨res.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>option  </term>
         <listitem>
-          <para>chaîne de caractères.
+          <para>chaÃ®ne de caractÃ¨res.
 </para>
         </listitem>
       </varlistentry>
@@ -39,13 +39,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xstringb</literal> dessine la matrice de chaînes de caractères <literal>str</literal> centrée dans le 
-    le rectangle <literal>rect=[x,y,w,h]</literal> (point en haut à gauche, largeur, hauteur) en coordonnées utilisateurs.
-    Si <literal>option</literal> est spécifiée avec la valeur <literal>"fill"</literal>, la taille de la police est calculée 
-    de manière à remplir le rectangle au maximum.
+    <para><literal>xstringb</literal> dessine la matrice de chaÃ®nes de caractÃ¨res <literal>str</literal> centrÃ©e dans le 
+    le rectangle <literal>rect=[x,y,w,h]</literal> (point en haut Ã  gauche, largeur, hauteur) en coordonnÃ©es utilisateurs.
+    Si <literal>option</literal> est spÃ©cifiÃ©e avec la valeur <literal>"fill"</literal>, la taille de la police est calculÃ©e 
+    de maniÃ¨re Ã  remplir le rectangle au maximum.
   </para>
     <para>
-    Taper <literal>xstringb()</literal> pour voir une démonstration de la fonction.
+    Taper <literal>xstringb()</literal> pour voir une dÃ©monstration de la fonction.
   </para>
   </refsection>
   <refsection>

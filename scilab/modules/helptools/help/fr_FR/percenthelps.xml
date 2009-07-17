@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,36 +16,36 @@
   </info>
   <refnamediv>
     <refname>%helps</refname>
-    <refpurpose> variable contenant les noms des répertoires des chapitres d'aide  </refpurpose>
+    <refpurpose> variable contenant les noms des rÃ©pertoires des chapitres d'aide  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para><literal>%helps</literal> est une matrice de chaînes de caractères à deux colonnes. Chaque ligne est formée comme ceci
+    <para><literal>%helps</literal> est une matrice de chaÃ®nes de caractÃ¨res Ã  deux colonnes. Chaque ligne est formÃ©e comme ceci
   </para>
     <programlisting><![CDATA[
-répertoire_du_chapitre    titre_du_chapitre
+rÃ©pertoire_du_chapitre    titre_du_chapitre
    ]]></programlisting>
     <para>
     Par exemple, nous avons le chapitre "graphics". 
     <literal>%helps(2,:)</literal>.
   </para>
     <para>
-    La valeur par défaut de <literal>%helps</literal> est initialisée dans le fichier <literal>SCI+"scilab.start"</literal>.
+    La valeur par dÃ©faut de <literal>%helps</literal> est initialisÃ©e dans le fichier <literal>SCI+"scilab.start"</literal>.
   </para>
     <para>
-    Pour ajouter de nouveaux chapitres d'aide il suffit d'ajouter des lignes à la variable <literal>%helps</literal>, par exemple dans le fichier utilisateur de démarrage <literal>SCIHOME/.scilab</literal> ou <literal>SCIHOME/scilab.ini</literal>.
+    Pour ajouter de nouveaux chapitres d'aide il suffit d'ajouter des lignes Ã  la variable <literal>%helps</literal>, par exemple dans le fichier utilisateur de dÃ©marrage <literal>SCIHOME/.scilab</literal> ou <literal>SCIHOME/scilab.ini</literal>.
   </para>
     <para>
     Par exemple, 
-    <literal>%helps=[%helps; "répertoire_du_chapitre",  "titre_du_chapitre"];</literal>
+    <literal>%helps=[%helps; "rÃ©pertoire_du_chapitre",  "titre_du_chapitre"];</literal>
   </para>
     <para>
     "titre_du_chapitre" devient le titre d'un nouveau chapitre.
   </para>
     <para>
-    Chaque répertoire d'aide contient des fichiers <literal>*.html</literal>,
-    généralement généré à partir d'un fichier XML, et un fichier
-    <literal>whatis.html</literal> contenant une ligne pour chaque mot-clé documenté
+    Chaque rÃ©pertoire d'aide contient des fichiers <literal>*.html</literal>,
+    gÃ©nÃ©ralement gÃ©nÃ©rÃ© Ã  partir d'un fichier XML, et un fichier
+    <literal>whatis.html</literal> contenant une ligne pour chaque mot-clÃ© documentÃ©
     dans le chapitre correspondant. Chaque ligne doit avoir le format :
   </para>
     <para>
@@ -53,12 +53,12 @@ répertoire_du_chapitre    titre_du_chapitre
     <programlisting><![CDATA[
 <BR><A HREF="item.html">item</A> - description rapide
    ]]></programlisting>
-    <para><literal>item</literal> est l'article de la liste d'aide, c'est-à-dire que la commande <literal>help item</literal> affiche le contenu du fichier <literal>item.html</literal>.
+    <para><literal>item</literal> est l'article de la liste d'aide, c'est-Ã -dire que la commande <literal>help item</literal> affiche le contenu du fichier <literal>item.html</literal>.
   </para>
     <para>
       
-    La commande <literal>apropos mot-clé</literal> renvoie les lignes de tous les fichiers
-    <literal>whatis</literal> dans lesquels <literal>mot-clé</literal> apparaît.
+    La commande <literal>apropos mot-clÃ©</literal> renvoie les lignes de tous les fichiers
+    <literal>whatis</literal> dans lesquels <literal>mot-clÃ©</literal> apparaÃ®t.
   </para>
     <para>
   </para>

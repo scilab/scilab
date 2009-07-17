@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 157 -->
 //
 // <-- Bugzilla URL -->
@@ -14,4 +16,4 @@
 //    Recursive extraction is not valid in this context
 
 name = 1;
-if execstr("name()(1)", "errcatch")<>0 then pause,end
+execstr("name()(1)", "errcatch");

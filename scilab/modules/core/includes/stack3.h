@@ -34,235 +34,7 @@
 #define BY_ALL			0
 #define	BY_MTLB			-1
 
-/**
- * Read a matrix in scilab's internal memory
- * calling sequence
- *     logic=creadmat('matrixname',m,n,scimat)
- * @example
- *    Amat is a real 2 x 3 scilab matrix
- *    your subroutine should be as follows:
- *    subroutine mysubr(...)
- *    ...
- * @code
- *    call readmat('Amat',m,n,scimat)
- *    => m=3 , n=2, and scimat(1)=Amat(1,1)
- *                      scimat(2)=Amat(2,1)
- *                      scimat(3)=Amat(3,1)
- *                      scimat(4)=Amat(1,2) ...
- *                      scimat(5)=Amat(3,2)
- *                      scimat(6)=Amat(3,2)
- * @endcode
- * @param name__ character string; name of the scilab variable.
- * @param m number of rows
- * @param n number of columns
- * @param scimat  matrix entries stored columnwise
- * @param name_len
- * @return if the operation successed (true) or not (false)
- */
-int C2F(readmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
-
-
-int C2F(creadmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
-int C2F(creadcmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
-int C2F(creadsmat)  (char *name__, int *m, int *n, double *scimat, unsigned long name_len);
-
-/**
- * cwritemat writes vector/matrix in scilab's memory
- * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * @param name__ character string; name of the scilab variable ( null terMinated)
- * @param m number of rows
- * @param n number of columns
- * @param mat matrix entries stored columnwise in Scilab object
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(cwritemat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
-
-
-/**
- * cwritemat writes vector/matrix of complex in scilab's memory
- * logic=cwritecmat('matrixname'//char(0),m,n,mat)
- * @param name__ character string; name of the scilab variable ( null terMinated)
- * @param m number of rows
- * @param n number of columns
- * @param mat complex matrix entries stored columnwise in Scilab object
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(cwritecmat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
-int C2F(readchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-
-
-/**
- * Read a string in scilab's memory
- * calling sequence
- *     logic=creadchain('matrixname',size,string)
- * @param name__ character string; name of the scilab variable.
- * @param itslen lenght of the string
- * @param chai the future string
- * @param name_len strlen of name__ (fortran needs it)
- * @param chai_len strlen of chai (fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(creadchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-
-
-/**
- * Read a string from a matrix of string in scilab's internal memory
- * calling sequence
- *     logic=creadchains('matrixname',size,string)
- * @param name__ character string; name of the scilab variable.
- * @param indiceRow The row position
- * @param indiceCol The column position
- * @param itslen The length of the retrieved string
- * @param chai the string retrieved
- * @param name_len strlen of name (fortran needs it)
- * @param chai_len strlen of chai (fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(creadchains)  (char *name__, int *indiceRow, int *indiceCol, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
-
-/**
- * Write a string into the Scilab memory
- *
- * @param name__ name of the scilab variable
- * @param m length of the string itself
- * @param chai the string itself
- * @param name_len strlen of name__ (fortran needs it)
- * @param chai_len strlen of chai (fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(cwritechain)  (char *name__, int *m, char *chai, unsigned long name_len, unsigned long chai_len);
-
-/**
-* Get length of strings by name
-* @param[in] name_ name of the scilab variable
-* @param[out] m number of rows of the matrix
-* @param[out] n number of columns of the matrix
-* @return array of length or NULL
-*/
-int *GetLengthStringMatrixByName(char *name_, int *m, int *n);
-
-/**
- * Get pointer on a named matrix
- * @param namex the name of the Scilab variable
- * @param m number of rows of the matrix
- * @param n number of columns of the matrix
- * @param lp
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
-*/
-int C2F(matptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
-
-/**
- * Get pointer on a named matrix
- * @param namex the name of the Scilab variable
- * @param m number of rows of the matrix
- * @param n number of columns of the matrix
- * @param lp
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
-*/
-int C2F(cmatptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
-
-/**
- * Get pointer on a named complex matrix
- * @param namex the name of the Scilab variable
- * @param m number of rows of the matrix
- * @param n number of columns of the matrix
- * @param lp
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
-*/
-int C2F(cmatcptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
-
-/**
- * Get pointer on a named string matrix
- * @param namex the name of the Scilab variable
- * @param m number of rows of the matrix
- * @param n number of columns of the matrix
- * @param ix
- * @param j
- * @param lp
- * @param nlr
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
-*/
-int C2F(cmatsptr)  (char *name__, int *m, int *n, int *ix, int *j, int *lp, int *nlr, unsigned long name_len);
-
-/**
- * Read a boolean matrix in scilab's memory
- * calling sequence
- *     logic=creadbmat('matrixname',m,n,scimat)
- * @example
- *    Amat is a real 2 x 3 scilab matrix
- *    your subroutine should be as follows:
- *    subroutine mysubr(...)
- *    ...
- * @code
- *    call creadbmat('Amat',m,n,scimat)
- *    => m=3 , n=2, and scimat(1)=Amat(1,1)
- *                      scimat(2)=Amat(2,1)
- *                      scimat(3)=Amat(3,1)
- *                      scimat(4)=Amat(1,2) ...
- *                      scimat(5)=Amat(3,2)
- *                      scimat(6)=Amat(3,2)
- * @endcode
- * @param name__ character string; name of the scilab variable.
- * @param m number of rows
- * @param n number of columns
- * @param scimat boolean matrix entries stored columnwise
- * @param name_len
- * @return if the operation successed (true) or not (false)
- */
-int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len);
-
-/**
- * cwritemat writes vector/matrix of boolean in scilab's memory
- * logic=cwritebmat('matrixname'//char(0),m,n,mat)
- * @code
- *	int A[]={1,0,0,1};   // Declare the matrix
- * // NOTE that it is an array of int and not an array of double
- *		int rowA=1, colA=4; // Size of the matrix
- *	char variableName[]="A";
- *
- *	C2F(cwritebmat)(variableName, &rowA, &colA, A,strlen(variableName)); // Write it into Scilab's memory
- * @endcode
- * @param name__ character string; name of the scilab variable ( null terMinated)
- * @param m number of rows
- * @param n number of columns
- * @param mat boolean matrix entries stored columnwise in Scilab object
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
- */
-int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
-
-/**
- * Get pointer on a named boolean matrix
- * @param namex the name of the Scilab variable
- * @param m number of rows of the matrix
- * @param n number of columns of the matrix
- * @param lp
- * @param name_len strlen of name__ (Fortran needs it)
- * @return if the operation successed (true) or not (false)
-*/
-int C2F(cmatbptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
-
-int C2F(str2name)  (char *name__, int *id, unsigned long name_len);
-int C2F(objptr)  (char *name__, int *lp, int *fin, unsigned long name_len);
 int C2F(putvar) (int *number, char *namex, unsigned long name_len );
-
-
-/**
- * Returns length of a "chain variable" in scilab
- * example :
- * in scilab --> str = "abcdefghijklmnopqrstuvwxyz";
- * in C getlengthchain("str") returns 26
- * @param namex
- * @return  -1 if error
-*/
-int getlengthchain(char *namex);
-
 
 /**
  * Returns if a variable is complex or not
@@ -270,12 +42,13 @@ int getlengthchain(char *namex);
  * @param _iVar the matrix
  * @return 1 if is complex 0 otherwise
  */
-int iIsComplex(int _iVar);
+/* int iIsComplex(int _iVar); */
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal);
 void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
 void GetRhsBooleanSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
+void GetRhsStringVar(int _iVarNum, int* _piRows, int* _piCols, int* _piLen, char* _pstData);
 
 void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData);
 void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
@@ -314,76 +87,85 @@ int iAllocMatrixOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char
 int iAllocMatrixOfStringToAddress(int _iAddr, int _iRows, int _iCols, int *_piLen, char **_piStringData);
 
 /*Get List Information*/
-//Get Item Count and type of each item
-int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType);
-//Get Sparse Item
+/* Get Item Count and type of each item */
+int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pElemType);
+/* Get SubList reference */
+int* iGetListItemList(int _iVar, int* _piParentList, int iItemPos);
+/* Get Sparse Item */
 int iGetListItemSparse(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg);
-//Get Poly Item
+/* Get Poly Item */
 int iGetListItemPoly(int _iVar, int _iItemNumber, int **_pVarName, int *_piRows, int *_piCols, int *_piPow, double **_pdblReal, double **_pdblImg);
-//Get Double Item
+/* Get Double Item */
 int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, double **_pdblReal, double **_pdblImg);
-//Does Item Complex
+/* Does Item Complex */
 int iIsComplexItemElem(int _iVar, int _iItemNumber);
-//Get Item String
+/* Get Item String */
 int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
+/* Get SubItem String */
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
+
 /*Create List*/
-//Reserved VarNum for List
+/* Reserved VarNum for List */
 int* iAllocList(int _iVar, int _iItemNumber);
 
-//Reserved VarNum for TList
+/* Reserved VarNum for TList */
 int* iAllocTList(int _iVar, int _iItemNumber);
 
-//Reserved VarNum for MList
+/* Reserved VarNum for MList */
 int* iAllocMList(int _iVar, int _iItemNumber);
 
-//Reserved VarNum for HyperMatrix
+/* Reserved VarNum for HyperMatrix */
 int* iAllocHyperMatrix(int _iVar, int _iItemNumber);
 
-//Reserved VarNum for list
+/* Reserved VarNum for list */
 int* iAllocListCommon(int _iVar, int _iItemNumber, int _iListType);
 
-//Child
-//Add Common List to ParentList ( internal use only )
+/* Child */
+/* Add Common List to ParentList ( internal use only ) */
 int* iListAllocListCommon(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber, int _iListType);
 
-//Add HyperMatrix to ParentList
+/* Add HyperMatrix to ParentList */
 int* iListAllocHyperMatrix(int _iVar, int* _piParentList, int _iItemPos, int _iDims);
 
-//Add MList to ParentList
+/* Add MList to ParentList */
 int* iListAllocMList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
 
-//Add TList to ParentList
+/* Add TList to ParentList */
 int* iListAllocTList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
 
-//Add List to ParentList
+/* Add List to ParentList */
 int* iListAllocList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
 
-//Add real matrix in _iVar list
+/* Add real matrix in _iVar list */
 int iListAllocMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double **_pdblRealData);
 
-//Add complex matrix in _iVar list
+/* Add complex matrix in _iVar list */
 int iListAllocComplexMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
-//Add real polynomial in _iVar list
+/* Add real polynomial in _iVar list */
 int iListAllocMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 
-//Add complex polynomial in _iVar list
+/* Add complex polynomial in _iVar list */
 int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
 
-//Add string matrix in _iVar list
+/* Add string matrix in _iVar list */
 int iListAllocString(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int *_piLen, char** _pszData);
 
-//Internal function automaticly call after the last insertion of data
+/* Internal function automaticly call after the last insertion of data */
 void vListClose(int _iVar);
 int* piGetParentNode(int* _piStart, int* _piToFind, int *_piPos);
 int IsKindOfList(int* _piNode);
 void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 
+/* Functions to retrieve variables information from pointer ( real memory address ) */
+int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen, int** _piString);
+
+int* iGetAddressFromItemPos(int *_piParent, int _iItemPos);
 
 
-//Internal fonctions to retrieve varaibles information from Address ( old "il" )
+/* Internal functions to retrieve varaibles information from Address ( old "il" ) */
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg);
 int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);

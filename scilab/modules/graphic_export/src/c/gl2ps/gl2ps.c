@@ -5172,9 +5172,11 @@ static void gl2psPrintSVGPrimitive(void *data)
 			
 			gl2psSVGGetColorString(prim->verts[0].rgba, col);
 			gl2psPrintf("<text fill=\"%s\" x=\"%g\" y=\"%g\" "
+					    "transform=\"rotate(%g, %g, %g)\" "
 					        "font-size=\"%d\" font-family=\"%s\" "
 				          "font-style=\"%s\" font-weight=\"%s\">%s</text>\n",
 						      col, xyz[0][0], xyz[0][1],
+						      -(prim->data.text->angle),	xyz[0][0], xyz[0][1],
 							    prim->data.text->fontsize,
 								  fontName,
 									(isItalicFont ? "italic" : (isObliqueFont ? "oblique" : "normal")),

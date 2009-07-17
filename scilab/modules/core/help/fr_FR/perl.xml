@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="perl">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,7 +8,7 @@
     <refpurpose>execute le script Perl.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>perl('perlfile')
 perl('perlfile',arg1,arg2,...)
 result = perl(...)</synopsis>
@@ -17,7 +17,7 @@ result = perl(...)</synopsis>
     <title>Description</title>
     <para>perl('perlfile') appelle le script Perl perlfile.</para>
     <para>perl('perlfile',arg1,arg2,...) appelle le script Perl perlfile et passe
-    les arguments arg1, arg2, ..., à perlfile.</para>
+    les arguments arg1, arg2, ..., Ã  perlfile.</para>
     <para>result = perl(...) retourne le resultat du script Perl.</para>
   </refsection>
   <refsection>

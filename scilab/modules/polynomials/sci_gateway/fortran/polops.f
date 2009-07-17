@@ -36,10 +36,6 @@ c
       sadr(l)=(l/2)+1
 c
       op=fin
-      if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' polops '//buf(1:4))
-      endif
 c
       fun=0
       lw=lstk(top+1)

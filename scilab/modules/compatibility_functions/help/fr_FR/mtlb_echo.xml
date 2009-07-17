@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,48 +16,48 @@
   </info>
   <refnamediv>
     <refname>mtlb_echo</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab echo</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab echo</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas d'équivalent Scilab pour la fonction Matlab <literal>echo</literal> mais quelques cas particuliers peuvent être remplacés par des appels à la fonction Scilab <literal>mode</literal>:</para>
+    <para>Il n'y a pas d'Ã©quivalent Scilab pour la fonction Matlab <literal>echo</literal> mais quelques cas particuliers peuvent Ãªtre remplacÃ©s par des appels Ã  la fonction Scilab <literal>mode</literal>:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>echo</literal> : est équivalent à <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compilées
+        <para><literal>echo</literal> : est Ã©quivalent Ã  <literal>mode(abs(mode()-1))</literal> dans Scilab pour les scripts et les fonctions non-compilÃ©es
         </para>
       </listitem>
       <listitem>
-        <para><literal>echo on</literal> : est équivalent à <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compilées
+        <para><literal>echo on</literal> : est Ã©quivalent Ã  <literal>mode(1)</literal> dans Scilab pour les scripts et les fonctions non-compilÃ©es
         </para>
       </listitem>
       <listitem>
-        <para><literal>echo off</literal> : est équivalent à <literal>mode(0)</literal>
+        <para><literal>echo off</literal> : est Ã©quivalent Ã  <literal>mode(0)</literal>
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_echo(arg1[,arg2])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>echo arg1 [arg2]</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <literal>mtlb_echo(arg1[,arg2])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>echo arg1 [arg2]</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_echo</literal> :
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_echo</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>arg1</literal> est égal à "on"
-        <literal>mtlb_echo(arg1)</literal> peut être remplacé par <literal>mode(1)</literal>
+        Si <literal>arg1</literal> est Ã©gal Ã  "on"
+        <literal>mtlb_echo(arg1)</literal> peut Ãªtre remplacÃ© par <literal>mode(1)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>arg1</literal> est égal à "off"
-        <literal>mtlb_echo(arg1)</literal> peut être remplacé par <literal>mode(0)</literal>
+        Si <literal>arg1</literal> est Ã©gal Ã  "off"
+        <literal>mtlb_echo(arg1)</literal> peut Ãªtre remplacÃ© par <literal>mode(0)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_echo</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_echo</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_ENDBLK">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_ENDBLK">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_ENDBLK">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_ENDBLK">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="ENDBLK">Contenu du super-bloc compilé</link>
+              <link linkend="ENDBLK">Contenu du super-bloc compilÃ©</link>
             </para>
           </listitem>
           <listitem>
@@ -103,18 +103,18 @@
   <refsection id="Description_ENDBLK">
     <title>Description</title>
     <para>
-Ce bloc peut être utiliser pour paramètrer le temps final de la simulation.
-Lorsque ce bloc est correctement paramétré alors le simulateur fera avancer le
-temps au temps final définit par le paramètre 'final integration time' de l'entrée
-Setup du menu Simulate à la date définie par le paramètre de la boîte de dialogue
+Ce bloc peut Ãªtre utiliser pour paramÃ¨trer le temps final de la simulation.
+Lorsque ce bloc est correctement paramÃ©trÃ© alors le simulateur fera avancer le
+temps au temps final dÃ©finit par le paramÃ¨tre 'final integration time' de l'entrÃ©e
+Setup du menu Simulate Ã  la date dÃ©finie par le paramÃ¨tre de la boÃ®te de dialogue
 'Final simulation time'.
-L'unique entrée de la boîte de dialogue peut être une valeur numérique
-ou bien une variable symbolique définit dans le contexte.
+L'unique entrÃ©e de la boÃ®te de dialogue peut Ãªtre une valeur numÃ©rique
+ou bien une variable symbolique dÃ©finit dans le contexte.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_ENDBLK">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_ENDBLK">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -130,14 +130,14 @@ ou bien une variable symbolique définit dans le contexte.
         <para>
           <emphasis role="bold">Final simulation time</emphasis>
         </para>
-        <para> Définit le temps final de la simulation.</para>
-        <para> Lorsque le simulateur passera par cette date, alors le temps courant sera avancé au temps final d'intégration.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> DÃ©finit le temps final de la simulation.</para>
+        <para> Lorsque le simulateur passera par cette date, alors le temps courant sera avancÃ© au temps final d'intÃ©gration.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_ENDBLK">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_ENDBLK">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -146,25 +146,25 @@ ou bien une variable symbolique définit dans le contexte.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -182,8 +182,8 @@ ou bien une variable symbolique définit dans le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenudusuperbloccompilé_ENDBLK">
-    <title>Contenu du super-bloc compilé</title>
+  <refsection id="ContenudusuperbloccompilÃ©_ENDBLK">
+    <title>Contenu du super-bloc compilÃ©</title>
     <para>
       <inlinemediaobject>
         <imageobject>

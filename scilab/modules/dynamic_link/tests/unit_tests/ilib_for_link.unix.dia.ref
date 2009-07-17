@@ -34,6 +34,7 @@ ilib_for_link('ext1c','fun1.o',[],"c")
    ilib_gen_Make: Copy fun1.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
+   Generate a cleaner file   
  ans  =
  
  libext1c.so   
@@ -49,7 +50,8 @@ exec loader.sce
  
 ext1c_path = get_absolute_file_path('loader.sce');
  
- 
+// ulink previous function with same name
+[bOK,ilib] = c_link('ext1c');if (bOK) then ulink(ilib),end  
 link(ext1c_path+'libext1c.so',['ext1c'],'c');
 Shared archive loaded.
 Link done.

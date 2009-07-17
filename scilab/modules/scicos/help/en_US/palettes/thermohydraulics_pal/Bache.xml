@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -134,14 +134,14 @@ blocked by a <emphasis role="bold">stopper</emphasis> block.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude du piquage d entrée 1: ze1 (m)</emphasis>
+          <emphasis role="bold">Altitude du piquage d entrÃ©e 1: ze1 (m)</emphasis>
         </para>
         <para> Altitude of the first input port</para>
         <para> Properties : Type 'vec' of size -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude du piquage d entrée 2: ze2 (m)</emphasis>
+          <emphasis role="bold">Altitude du piquage d entrÃ©e 2: ze2 (m)</emphasis>
         </para>
         <para> Altitude of the second input port</para>
         <para> Properties : Type 'vec' of size -1. </para>
@@ -169,14 +169,14 @@ blocked by a <emphasis role="bold">stopper</emphasis> block.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Température initiale du fluide : T0 (K)</emphasis>
+          <emphasis role="bold">TempÃ©rature initiale du fluide : T0 (K)</emphasis>
         </para>
         <para> Temperature of fluid in the tank</para>
         <para> Properties : Type 'vec' of size -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Si 0, masse volumique imposée du fluide : p_rho (kg/m3)</emphasis>
+          <emphasis role="bold">Si 0, masse volumique imposÃ©e du fluide : p_rho (kg/m3)</emphasis>
         </para>
         <para> Density of fluid</para>
         <para> Properties : Type 'vec' of size -1.</para>

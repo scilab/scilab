@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function Level = accept_func_default(F_current, F_neigh, T)
-Level = exp(-(F_neigh - F_current)/T);
+Level = exp(-(F_neigh - F_current)/max(T,%eps));
 endfunction

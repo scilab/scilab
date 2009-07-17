@@ -16,15 +16,17 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]={
-	{C2F(sci_xls_open),"xls_open"},
-	{C2F(sci_xls_read),"xls_read"}
+#define SPREADSHEET_TAB_SIZE 2
+static gw_generic_table Tab[SPREADSHEET_TAB_SIZE] = 
+{
+	{sci_xls_open,"xls_open"},
+	{sci_xls_read,"xls_read"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_spreadsheet(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,SPREADSHEET_TAB_SIZE);
 
 	return 0;
 }

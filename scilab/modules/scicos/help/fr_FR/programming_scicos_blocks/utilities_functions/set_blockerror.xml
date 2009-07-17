@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="set_blockerror">
   <refnamediv>
     <refname>set_blockerror</refname>
-    <refpurpose>Définit le numéro d'erreur de bloc</refpurpose>
+    <refpurpose>DÃ©finit le numÃ©ro d'erreur de bloc</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>set_blockerror(n)</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_set_blockerror">
@@ -43,7 +43,7 @@
   <refsection id="Description_set_blockerror">
     <title>Description</title>
     <para>
-Cette fonction permet de définir une erreur spécifique en cours de simulation pour le bloc courant. Si c'est fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera un message d'erreur associé au numéro donné en argument.  
+Cette fonction permet de dÃ©finir une erreur spÃ©cifique en cours de simulation pour le bloc courant. Si c'est fonction est utilisÃ©e, alors Ã  l'issue de l'Ã©xecution de la fonction de calcul du bloc, le simulateur s'arrÃªtera et retournera un message d'erreur associÃ© au numÃ©ro donnÃ© en argument.  
 </para>
     <para>
 </para>
@@ -51,18 +51,18 @@ Cette fonction permet de définir une erreur spécifique en cours de simulation po
 set_blockerror(n)
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_set_blockerror">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_set_blockerror">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">n</emphasis> : un numéro d'erreur. Les appels suivant sont autorisés :</para>
+        <para><emphasis role="bold">n</emphasis> : un numÃ©ro d'erreur. Les appels suivant sont autorisÃ©s :</para>
         <itemizedlist>
           <listitem>
             <para>
               <emphasis role="bold">set_blockerror(-1)</emphasis>
             </para>
             <para>
-le bloc a été appelé avec une valeur d'entrée en dehors du domaine autorisé
+le bloc a Ã©tÃ© appelÃ© avec une valeur d'entrÃ©e en dehors du domaine autorisÃ©
 </para>
           </listitem>
           <listitem>
@@ -70,7 +70,7 @@ le bloc a été appelé avec une valeur d'entrée en dehors du domaine autorisé
               <emphasis role="bold">set_blockerror(-2)</emphasis>
             </para>
             <para>
-une singularité a été rencontrée dans le bloc
+une singularitÃ© a Ã©tÃ© rencontrÃ©e dans le bloc
 </para>
           </listitem>
           <listitem>
@@ -86,7 +86,7 @@ le bloc a produit une erreur interne
               <emphasis role="bold">set_blockerror(-16)</emphasis>
             </para>
             <para>
-le bloc ne peut pas allouer de mémoire
+le bloc ne peut pas allouer de mÃ©moire
           
 </para>
           </listitem>

@@ -53,6 +53,7 @@ Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libiconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -80,3 +81,7 @@ Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+; hdf5 libraries
+Source: bin\szlibdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

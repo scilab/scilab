@@ -17,12 +17,13 @@
 // scilab x64 doesn't display graphics from a remote desktop
 
 // <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
+// <-- 64 BITS ONLY -->
 
 // install scilab x64 on windows
 // configure your remote desktop and connect to your pc
 // and launch scilab
 
-if ~MSDOS then pause,end
 if win64() <> %t then pause,end
 if istssession() <> %t then pause,end
 

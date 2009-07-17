@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ???? - INRIA - Serge STEER 
@@ -19,23 +19,23 @@
     <refpurpose> convertit un fichier  Matlab .mat  en un fichier binaire Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>mat_file_path</term>
         <listitem>
-          <para>Chaîne de caractères contenant le chemin du fichier d'entrée 
+          <para>ChaÃ®ne de caractÃ¨res contenant le chemin du fichier d'entrÃ©e 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sci_file_path </term>
         <listitem>
-          <para> Chaîne de caractères contenant le chemin du fichier résultant
+          <para> ChaÃ®ne de caractÃ¨res contenant le chemin du fichier rÃ©sultant
 </para>
         </listitem>
       </varlistentry>
@@ -45,8 +45,8 @@
     <title>Description</title>
     <para>
    convertit un fichier  Matlab .mat  en un fichier binaire compatible
-   avec la fonction <literal>load</literal>. Les types de données Matlab
-   sont convertis en leur équivalent Scilab.
+   avec la fonction <literal>load</literal>. Les types de donnÃ©es Matlab
+   sont convertis en leur Ã©quivalent Scilab.
   </para>
   </refsection>
   <refsection>
@@ -69,7 +69,7 @@
   </refsection>
   <refsection>
     <title>Bibliographie</title>
-    <para>Cette fonction a été développée en suivant le document   "MAT-File Format":
+    <para>Cette fonction a Ã©tÃ© dÃ©veloppÃ©e en suivant le document   "MAT-File Format":
 <ulink url="www.mathworks.com/access/helpdesk/help/pdf_doc/matlab/matfile_format.pdf"> matfile_format.pdf</ulink></para>
   </refsection>
 </refentry>

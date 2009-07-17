@@ -20,11 +20,7 @@ a=gca();
 delete(a);
 
 menu = findobj("label","test");
-if isempty(menu) then
-  pause
-end
-if menu.type<>"uimenu" then
-  pause
-end
+if isempty(menu) then pause; end
+if menu.type<>"uimenu" then pause; end
 
 delete(f);

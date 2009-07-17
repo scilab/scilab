@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_GAINBLK">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_GAINBLK">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_GAINBLK">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_GAINBLK">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -103,24 +103,24 @@
   <refsection id="Description_GAINBLK">
     <title>Description</title>
     <para>
-Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entrée U, où le nombre de lignes/colonnes de A est égal au nombre de lignes de U. Les types de données des entrées/sorties sont définis par le type de donnée de la matrice gain A.   Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différentes suivant le paramètre "DO ON OVERFLOW":  
+Le bloc GAINBLK calcule le produit d'une matrice carrÃ© A par une matrice d'entrÃ©e U, oÃ¹ le nombre de lignes/colonnes de A est Ã©gal au nombre de lignes de U. Les types de donnÃ©es des entrÃ©es/sorties sont dÃ©finis par le type de donnÃ©e de la matrice gain A.   Lorsqu'un dÃ©passement intervient, le rÃ©sulat peut prendre des valeurs diffÃ©rentes suivant le paramÃ¨tre "DO ON OVERFLOW":  
 </para>
     <para>
-1- Un résulat non saturé. 
+1- Un rÃ©sulat non saturÃ©. 
 </para>
     <para>
-2- Un résultat saturé. 
+2- Un rÃ©sultat saturÃ©. 
 </para>
     <para>
-3- Un message d'erreur est signalé lorsqu'un dépassement intervient. 
+3- Un message d'erreur est signalÃ© lorsqu'un dÃ©passement intervient. 
 </para>
     <para>
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_GAINBLK">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_GAINBLK">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -136,20 +136,20 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
         <para>
           <emphasis role="bold">Gain</emphasis>
         </para>
-        <para> Ce paramètre définit la matrice carré A. Ce paramètre supporte tous les types de données.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
+        <para> Ce paramÃ¨tre dÃ©finit la matrice carrÃ© A. Ce paramÃ¨tre supporte tous les types de donnÃ©es.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
         </para>
-        <para> Lorsque que ce paramètre est mis à la valeur 0, le résultat est similaire à une addition de deux matrices. Lorque la valeur est à 1, lorqu'un dépassement intervient, le bloc sature la valeur de sortie. Lorsque la valeur est égale à 2, alors, lors d'un dépassement de capacité, un message d'erreur est envoyé à l'utilisateur. Lorsque le type de donnée est un nombre réel ou un nombre complexe, ce paramètre n'est pas pris en compte.</para>
-        <para> Propriétés : Type 'vec' de taile 1.</para>
+        <para> Lorsque que ce paramÃ¨tre est mis Ã  la valeur 0, le rÃ©sultat est similaire Ã  une addition de deux matrices. Lorque la valeur est Ã  1, lorqu'un dÃ©passement intervient, le bloc sature la valeur de sortie. Lorsque la valeur est Ã©gale Ã  2, alors, lors d'un dÃ©passement de capacitÃ©, un message d'erreur est envoyÃ© Ã  l'utilisateur. Lorsque le type de donnÃ©e est un nombre rÃ©el ou un nombre complexe, ce paramÃ¨tre n'est pas pris en compte.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taile 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_GAINBLK">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_GAINBLK">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -158,14 +158,14 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -173,26 +173,26 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

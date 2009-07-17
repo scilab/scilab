@@ -38,7 +38,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( Rhs <= 0 )
   {
-    sci_demo(fname,"xsetm();",FALSE);
+    sci_demo(fname, fname_len);
     return 0;
   }
 
@@ -60,7 +60,6 @@ int sci_xget(char *fname,unsigned long fname_len)
   if ( !keyFound )
   {
     Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-    LhsVar(1)= 0;
     return -1;
   }
 
@@ -79,6 +78,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     CreateVar(Rhs+1,STRING_DATATYPE,&bufl,&one,&l3);
     strncpy(cstk(l3),C2F(cha1).buf,bufl);
     LhsVar(1)=Rhs+1;
+		C2F(putlhsvar)();
     return 0;
   }
   else if ( strcmp(cstk(l1),"colormap") == 0) 
@@ -173,7 +173,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"thickness") == 0)
     {
-      x1[0] = sciGetLineWidth(sciGetCurrentSubWin());
+      x1[0] = (int) sciGetLineWidth(sciGetCurrentSubWin());
       x2 = 1;
     }
     else if(strcmp(cstk(l1),"wdim") == 0)
@@ -283,7 +283,6 @@ int sci_xget(char *fname,unsigned long fname_len)
     else
     {
       Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-			LhsVar(1)= 0;
 			return -1;
     }
     if (x2 > 0) {
@@ -296,6 +295,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     LhsVar(1)=Rhs+1;
   }
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

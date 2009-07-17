@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>median</refname>
-    <refpurpose>médiane des termes d'une
+    <refpurpose>mÃ©diane des termes d'une
   matrice</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>y=median(x)
 y=median(x,'r')
 y=median(x,'c')
@@ -28,12 +28,12 @@ y=median(x,'m')
 y=median(x,dim)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>vecteur ou matrice réelle</para>
+          <para>vecteur ou matrice rÃ©elle</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,19 +53,19 @@ y=median(x,dim)</synopsis>
   <refsection>
     <title>Description</title>
     <para>Pour un vecteur ou une matrice <literal>x</literal>, <literal>y=median(x)</literal>
-    renvoie un scalaire <literal>y</literal> égal à  la médiane des termes de
+    renvoie un scalaire <literal>y</literal> Ã©gal Ã Â  la mÃ©diane des termes de
     <literal>x</literal>.</para>
     <para><literal>y=median(x,'r')</literal> (ou <literal>y=median(x,1)</literal>) est la
-    médiane selon l'indice de lignes. Chaque composante du vecteur ligne
-    <literal>y</literal> contient la médiane de chaque colonne de
+    mÃ©diane selon l'indice de lignes. Chaque composante du vecteur ligne
+    <literal>y</literal> contient la mÃ©diane de chaque colonne de
     <literal>x</literal>.</para>
     <para><literal>y=median(x,'c')</literal> (ou <literal>y=median(x,2)</literal>) est la
-    médiane selon l'indice de colonne. Chaque composante du vecteur colonne
-    <literal>y</literal> contient la médiane de chaque ligne de <literal>x</literal>.</para>
-    <para><literal>y=median(x,'m')</literal> est la médiane suivant la première
-    dimension non_singleton de <literal>x</literal>. (compatibilité avec matlab)</para>
-    <para><literal>y=median(x,dim)</literal> est la médiane suivant la dimension
-    <literal>dim</literal> de <literal>x</literal>. (compatibilité avec matlab)</para>
+    mÃ©diane selon l'indice de colonne. Chaque composante du vecteur colonne
+    <literal>y</literal> contient la mÃ©diane de chaque ligne de <literal>x</literal>.</para>
+    <para><literal>y=median(x,'m')</literal> est la mÃ©diane suivant la premiÃ¨re
+    dimension non_singleton de <literal>x</literal>. (compatibilitÃ© avec matlab)</para>
+    <para><literal>y=median(x,dim)</literal> est la mÃ©diane suivant la dimension
+    <literal>dim</literal> de <literal>x</literal>. (compatibilitÃ© avec matlab)</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

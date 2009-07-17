@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>getd</refname>
-    <refpurpose> chargement de toutes les fonctions contenues dans un répertoire  </refpurpose>
+    <refpurpose> chargement de toutes les fonctions contenues dans un rÃ©pertoire  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>getd(path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>path  </term>
         <listitem>
-          <para>chaîne de caractères, chemin du répertoire
+          <para>chaÃ®ne de caractÃ¨res, chemin du rÃ©pertoire
 </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>. 
+    Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) prÃ©sents dans le rÃ©pertoire <literal>path</literal>. 
   </para>
   </refsection>
   <refsection>

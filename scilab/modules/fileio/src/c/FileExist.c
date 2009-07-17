@@ -17,19 +17,28 @@
 #include <stdio.h>
 #endif
 #include "FileExist.h"
+#include "charEncoding.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL FileExist(char *filename)
 {
-
 #ifdef _MSC_VER
-	WIN32_FIND_DATA FindFileData;
-	HANDLE handle = FindFirstFile (filename, &FindFileData);
-	if (handle != INVALID_HANDLE_VALUE)
+	{
+		WIN32_FIND_DATAW FindFileData;
+		wchar_t *wcFilename = to_wide_string(filename);
+		if (wcFilename)
 		{
-			FindClose (handle);
-			return TRUE;
+			HANDLE handle = FindFirstFileW (wcFilename, &FindFileData);
+			FREE(wcFilename);
+			if (handle != INVALID_HANDLE_VALUE)
+			{
+				FindClose (handle);
+				return TRUE;
+			}
+			else return FALSE;
 		}
-	else return FALSE;
+		else return FALSE;
+	}
 #else
 	FILE* tmpFile=fopen(filename,"r");
 	if(tmpFile) 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -19,24 +19,24 @@
     <refpurpose>renvoie la date et l'heure</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>dt=getdate()
 x=getdate("s")
 dt=getdate(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>dt</term>
         <listitem>
-          <para>un vecteur entier à 10 composantes (voir plus bas)</para>
+          <para>un vecteur entier Ã  10 composantes (voir plus bas)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>un entier contenant la date en secondes écoulées depuis le 1er Janvier 1970</para>
+          <para>un entier contenant la date en secondes Ã©coulÃ©es depuis le 1er Janvier 1970</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,12 +47,12 @@ dt=getdate(x)</synopsis>
       <varlistentry>
         <term>dt=getdate()</term>
         <listitem>
-          <para> renvoie la date courante au format expliqué ci-dessous :</para>
+          <para> renvoie la date courante au format expliquÃ© ci-dessous :</para>
           <variablelist>
             <varlistentry>
               <term>dt(1)</term>
               <listitem>
-                <para>l'année (entier compris entre 0000 et 9999).</para>
+                <para>l'annÃ©e (entier compris entre 0000 et 9999).</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -64,7 +64,7 @@ dt=getdate(x)</synopsis>
             <varlistentry>
               <term>dt(3)</term>
               <listitem>
-                <para>le numéro de semaine à la norme ISO 8601 (entier compris entre 01 et 53).</para>
+                <para>le numÃ©ro de semaine Ã  la norme ISO 8601 (entier compris entre 01 et 53).</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -115,14 +115,14 @@ dt=getdate(x)</synopsis>
       <varlistentry>
         <term>x = getdate("s")</term>
         <listitem>
-          <para> renvoie un entier contenant le nombre de secondes écoulées depuis le 1er Janvier 1970, 00:00 UTC (Unix Time Convention).</para>
+          <para> renvoie un entier contenant le nombre de secondes Ã©coulÃ©es depuis le 1er Janvier 1970, 00:00 UTC (Unix Time Convention).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dt = getdate(x)</term>
         <listitem>
-          <para> renvoie dt au format ci-dessus, à partir de x (nombre de secondes depuis le 1er Janvier 1970). 
-        Dans ce cas, dt(10) est toujours égal à 0.</para>
+          <para> renvoie dt au format ci-dessus, Ã  partir de x (nombre de secondes depuis le 1er Janvier 1970). 
+        Dans ce cas, dt(10) est toujours Ã©gal Ã  0.</para>
         </listitem>
       </varlistentry>
     </variablelist>

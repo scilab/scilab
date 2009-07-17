@@ -15,6 +15,7 @@
 /*
  * Modified 2006 S.Steer A.Cornet (changing generic code to sepcialized code 
  * by hand macro expansion).
+ * Modified 2009 by S.Steer (to make in stable when index is wanted)
  */
 #include <string.h>
 #include "qsort.h"
@@ -37,14 +38,24 @@ static int swapcodestring( char ** parmi, char ** parmj, int n,int incr)
   return(0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCstring(char *i,char *j)
+static int compareCstring(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  return(strcmp(*((char * *) i),*((char **) j)));
+  int r=strcmp(*((char * *) i),*((char **) j));
+  if (r==0&&iflag) {
+    if ( *((int *)indi) > *((int *)indj)) r=1;
+    if ( *((int *)indi) < *((int *)indj)) r=-1;
+  }
+  return(r);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDstring(char *i,char *j)
+static int compareDstring(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  return(- strcmp(*((char * *) i),*((char **) j)));
+  int r=-strcmp(*((char * *) i),*((char **) j));
+  if (r==0&&iflag) {
+    if ( *((int *)indi) > *((int *)indj)) r=1;
+    if ( *((int *)indi) < *((int *)indj)) r=-1;
+  }
+  return(r);
 }
 /*--------------------------------------------------------------------------*/ 
 /******************************************************

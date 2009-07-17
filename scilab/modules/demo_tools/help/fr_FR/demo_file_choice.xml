@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,25 +16,25 @@
   </info>
   <refnamediv>
     <refname>demo_file_choice</refname>
-    <refpurpose> choisit et exécute un item au sein d'une liste </refpurpose>
+    <refpurpose> choisit et exÃ©cute un item au sein d'une liste </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>demo_file_choice(path,ch)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			La fonction demo_file_choice choisit et exécute un item choisi dans la variable
+			La fonction demo_file_choice choisit et exÃ©cute un item choisi dans la variable
 			'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de
-			texte dont la premiere colonne contient des noms d'items affichée dans une
-			fenêtre d'options et la deuxième, le nom d'un fichier correspondant qui sera
-			exécuté Le titre de la fenêtre d'options est 'Choose a demo'.
-			La variable 'path' est le chemin d'accès aux fichiers appelée dans la deuxième
-			colonne. La variable 'ch' permet d'éviter les cas particuliers 'root' et 'anim'
-			qui sont destinés à des démonstrations particulières. Il faut donc mettre autre
+			texte dont la premiere colonne contient des noms d'items affichÃ©e dans une
+			fenÃªtre d'options et la deuxiÃ¨me, le nom d'un fichier correspondant qui sera
+			exÃ©cutÃ© Le titre de la fenÃªtre d'options est 'Choose a demo'.
+			La variable 'path' est le chemin d'accÃ¨s aux fichiers appelÃ©e dans la deuxiÃ¨me
+			colonne. La variable 'ch' permet d'Ã©viter les cas particuliers 'root' et 'anim'
+			qui sont destinÃ©s Ã  des dÃ©monstrations particuliÃ¨res. Il faut donc mettre autre
 			chose que 'root' ou 'anim', 'no' par exemple.
-			Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
+			Quand on choisit d'abandonner la fenÃªtre d'options, la console est remise Ã  sa largeur 
 			initiale.
 		</para>
   </refsection>

@@ -16,7 +16,8 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define SYMBOLIC_TAB_SIZE 5
+static gw_generic_table Tab[SYMBOLIC_TAB_SIZE]=
 {
 {C2F(sci_addf),"addf"},
 {C2F(sci_subf),"subf"},
@@ -32,7 +33,7 @@ int gw_symbolic(void)
 		Scierror(39,_("%s: Wrong number of input arguments: %d expected.\n"),Tab[Fin-1].name, 2);
 		return 0;
 	}
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,SYMBOLIC_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

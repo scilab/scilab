@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -12,7 +12,7 @@
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="segs_properties">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû 2006)$</pubdate>
+    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoÃ» 2006)$</pubdate>
   </info>
   <refnamediv>
     <refname>segs_properties</refname>
@@ -80,8 +80,10 @@
       <varlistentry>
         <term>thickness: </term>
         <listitem>
-          <para>This field contains the <literal>thickness</literal> property for all
-        segments. Its value should be a non negative integer..</para>
+          <para>This property is a positive real specifying the arrow width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

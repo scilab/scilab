@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,25 +16,25 @@
   </info>
   <refnamediv>
     <refname>mstr2sci</refname>
-    <refpurpose>conversion d'une matrice de chaînes en matrice de caractères</refpurpose>
+    <refpurpose>conversion d'une matrice de chaÃ®nes en matrice de caractÃ¨res</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>a=mstr2sci(txt)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>chaîne de caractères ou matrice de chaînes</para>
+          <para>chaÃ®ne de caractÃ¨res ou matrice de chaÃ®nes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>vecteur ou matrice de caractères</para>
+          <para>vecteur ou matrice de caractÃ¨res</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,10 +42,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction convertit une chaîne de caractères Scilab en vecteur de caractères.
-    Le résultat est l'équivalent pour Scilab d'une chaîne de caractères Matlab.
+    Cette fonction convertit une chaÃ®ne de caractÃ¨res Scilab en vecteur de caractÃ¨res.
+    Le rÃ©sultat est l'Ã©quivalent pour Scilab d'une chaÃ®ne de caractÃ¨res Matlab.
     </para>
-    <para>Attention : <literal>mstr2sci</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mstr2sci</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_message">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>x_message</refname>
-    <refpurpose> boîte de dialogue modale  </refpurpose>
+    <refpurpose> boÃ®te de dialogue modale  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[num]=x_message(strings [,buttons])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>strings  </term>
         <listitem>
-          <para>vecteur de chaînes de caractères à afficher
+          <para>vecteur de chaÃ®nes de caractÃ¨res Ã  afficher
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>buttons  </term>
         <listitem>
-          <para>chaîne de caractère ou vecteur de deux chaînes de caractères donnant les noms des boutons ("Ok" par défaut).
+          <para>chaÃ®ne de caractÃ¨re ou vecteur de deux chaÃ®nes de caractÃ¨res donnant les noms des boutons ("Ok" par dÃ©faut).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>num  </term>
         <listitem>
-          <para>numéro du bouton pressé (si 2 boutons ont été spécifiés)
+          <para>numÃ©ro du bouton pressÃ© (si 2 boutons ont Ã©tÃ© spÃ©cifiÃ©s)
 </para>
         </listitem>
       </varlistentry>
@@ -40,7 +40,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Pour afficher un message (diagnostic, ... ) et attendre une réponse (pression sur un bouton). La fonction rend la main dès qu'un des deux boutons est pressé.
+    Pour afficher un message (diagnostic, ... ) et attendre une rÃ©ponse (pression sur un bouton). La fonction rend la main dÃ¨s qu'un des deux boutons est pressÃ©.
   </para>
     <para>
   </para>

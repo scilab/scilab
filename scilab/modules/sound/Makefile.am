@@ -47,6 +47,7 @@ libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 
 ####�sound : include files ####
 libscisound_la_includedir=$(pkgincludedir)/sound
-libscisound_la_include_HEADERS = includes/gw_sound.h
-
+libscisound_la_include_HEADERS = includes/gw_sound.h \
+		includes/dynlib_sound.h
+		
 include $(top_srcdir)/Makefile.incl.am

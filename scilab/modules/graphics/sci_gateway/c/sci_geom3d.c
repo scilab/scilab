@@ -54,12 +54,19 @@ int sci_geom3d( char * fname, unsigned long fname_len )
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
   CheckSameDims(2,3,m2,n2,m3,n3);
-  if (m1 * n1 == 0)  { LhsVar(1) = 0; return 0;}
+  if (m1 * n1 == 0)  
+  { 
+	  LhsVar(1) = 0;
+	  C2F(putlhsvar)();
+	  return 0;
+  }
 
   ix1 = m1 * n1;
   geom3d(stk(l1), stk(l2), stk(l3), ix1);
-  LhsVar(1)=1;
-  LhsVar(2)=2;
+
+  LhsVar(1) = 1;
+  LhsVar(2) = 2;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

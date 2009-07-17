@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_simulate">
   <refnamediv>
     <refname>scicos_simulate</refname>
-    <refpurpose>Fonction pour éxécuter une simulation scicos en ligne de commmande</refpurpose>
+    <refpurpose>Fonction pour Ã©xÃ©cuter une simulation scicos en ligne de commmande</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos_simulate">
@@ -54,8 +54,8 @@ Contrary to the function , the diagram need not be compiled before being saved.
 Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_scicos_simulate">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_scicos_simulate">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> scicos diagram (obtained by "load file.cos"). Note that the version of file.cos must be the current version. If not, load into scicos and save.</para>
@@ -64,7 +64,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
         <para><emphasis role="bold">Info :</emphasis> a list. It must be list() at the first call, then use output Info as input Info for the next calls. Info contains compilation and simulation information and is used to avoid recompilation when not needed.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">%scicos_context :</emphasis> a scilab struct containing values of symbolic variables used in the context and Scicos blocks. This is often used to change a parameter in the diagram context. In that case, make sure that in the diagram context the variable is defined such that it can be modified. Say a variable "a" is to be defined in the context having value 1, and later in batch mode, we want to change the value of "a". In that case, in the context of the diagram place: if exists('a') then a=1,end If you want then to run the simulation in batch mode using the value a=2, set: %scicos_context.a=2</para>
+        <para><emphasis role="bold">%scicos_context :</emphasis> a scilab struct containing values of symbolic variables used in the context and Scicos blocks. This is often used to change a parameter in the diagram context. In that case, make sure that in the diagram context the variable is defined such that it can be modified. Say a variable "a" is to be defined in the context having value 1, and later in batch mode, we want to change the value of "a". In that case, in the context of the diagram place: ifÂ exists('a') then a=1,end If you want then to run the simulation in batch mode using the value a=2, set: %scicos_context.a=2</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">flag :</emphasis> string. If it equals 'nw' (no window), then blocks using graphical windows are not executed. Note that the list of such blocks must be updated as new blocks are added.</para>
@@ -92,17 +92,17 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
       </listitem>
       <listitem>
         <para>
-          <link linkend="scicos">scicos - Editeur de schéma bloc et interface graphique pour le simulateur hybride (Fonction Scilab)</link>
+          <link linkend="scicos">scicos - Editeur de schÃ©ma bloc et interface graphique pour le simulateur hybride (Fonction Scilab)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="steadycos">steadycos - Trouve un régime établi d'un système dynamique décrit par un diagramme scicos (Fonction Scilab)</link>
+          <link linkend="steadycos">steadycos - Trouve un rÃ©gime Ã©tabli d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos (Fonction Scilab)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="lincos">lincos - Construit par linéarisation un modèle linéaire d'équations d'état à partir d'un système dynamique décrit par un diagramme scicos (Fonction Scilab)</link>
+          <link linkend="lincos">lincos - Construit par linÃ©arisation un modÃ¨le linÃ©aire d'Ã©quations d'Ã©tat Ã  partir d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos (Fonction Scilab)</link>
         </para>
       </listitem>
     </itemizedlist>

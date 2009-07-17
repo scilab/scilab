@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -111,7 +111,7 @@
 The MATBKSL block outputs the left matrix division. It is a solution to A*x=B. The higher input is the A matrix, the lower one is the B matrix, and the output is x. If A is an M-by-N1 matrix, B must be a M-by-N2 where N1 and N2 can be different or equal. The output x is a N1-by-N2 matrix.  
 </para>
     <para>
-The equivalent of BACKSLASH is "ïn Scilab.  
+The equivalent of BACKSLASH is "Ã¯n Scilab.  
 </para>
     <para>
 </para>

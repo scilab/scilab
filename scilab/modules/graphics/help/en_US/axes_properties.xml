@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -47,7 +47,7 @@
             <link linkend="rectangle_properties">rectangle_properties</link>, <link linkend="champ_properties">champ_properties</link>,
             <link linkend="axis_properties">axis_properties</link>, <link linkend="polyline_properties">polyline_properties</link>,
             <link linkend="segs_properties">segs_properties</link>, <link linkend="grayplot_properties">grayplot_properties</link>,
-            <link linkend="surface_properties">surface_properties</link>, <link linkend="param3d_properties">param3d_properties</link>,
+            <link linkend="surface_properties">surface_properties</link>,
             <link linkend="fec_properties">fec_properties</link>, <link linkend="text_properties">text_properties</link>,
             <link linkend="legend_properties">legend_properties</link>)</para>
               </listitem>
@@ -527,8 +527,11 @@
               <term>thickness: </term>
               <listitem>
                 <para>This field contains the default <literal>thickness</literal>
-            property value for all objects using line drawing. Its value
-            should be positive integer.</para>
+            property value for all objects using line drawing. It is a positive real specifying the line width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.
+			</para>
               </listitem>
             </varlistentry>
             <varlistentry>

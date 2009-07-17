@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="startup" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>January 2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>startup</refname>
+
+    <refpurpose>arquivo de inicialização</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O arquivo de inicialização<literal> SCIHOME/.scilab</literal> e
+    <literal>SCIHOME/scilab.ini</literal> são automaticamente executados (se
+    estiverem presentes) quando o Scilab é chamado, junto com o arquivo
+    <literal>scilab.star</literal> no diretório Scilab (SCI).</para>
+  </refsection>
+
+  <refsection>
+    <title>Observações</title>
+
+    <para>A última linha de um arquivo de inicialização deve ser terminada por
+    uma nova linha a ser levada em conta.</para>
+
+    <para>Definição de SCIHOME : no Windows : C:/Documents e
+    Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;</para>
+
+    <para>ou no Vista :
+    C:/&lt;User&gt;/AppData/Roaming/Scilab/&lt;Scilab-Version&gt;</para>
+
+    <para>No Linux/Unix :
+    /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="scilab">scilab</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

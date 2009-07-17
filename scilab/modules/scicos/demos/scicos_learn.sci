@@ -26,7 +26,7 @@ x_mdia=funptr('x_mdialog');clearfun('x_mdialog');newfun('x_mdialog1',x_mdia);
 c_cho=funptr('tk_choose');clearfun('tk_choose');newfun('tk_choose1',c_cho);
 xgetf=funptr('xgetfile');clearfun('xgetfile');newfun('xgetfile1',xgetf);
 //these function are redefined below
-getf SCI/demos/scicos/dialogs_learn.sci
+exec('SCI/demos/scicos/dialogs_learn.sci')
 tk_getfile=xgetfile
 tk_savefile=xgetfile
 tk_getcolor=getcolor

@@ -18,23 +18,24 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "ObjectStructure.h"
   
 
   /**
    * Create a new drawing observer for the graphic handle
    */
-  void createDrawingObserver( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void createDrawingObserver( sciPointObj * pObj ) ;
 
   /**
    * Delete all observers watching a graphic object
    */
-  void deleteObservers( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void deleteObservers( sciPointObj * pObj ) ;
 
   /**
    * Update all the watching observers
    */
-  void notifyObservers( sciPointObj * pObj ) ;
+  RENDERER_IMPEXP void notifyObservers( sciPointObj * pObj ) ;
 
 #ifdef __cplusplus
 }

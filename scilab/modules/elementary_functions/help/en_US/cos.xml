@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,50 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="cos">
+<refentry version="5.0-subset Scilab" xml:id="cos" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>cos</refname>
-    <refpurpose>  cosine function</refpurpose>
+
+    <refpurpose>cosine function</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[y]=cos(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>real or complex vector/matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    For a vector or a matrix, <literal>cos(x)</literal> is the cosine of its elements . 
-    For matrix  cosine use  <literal>cosm(X)</literal> function.</para>
+
+    <para>For a vector or a matrix, <literal>cos(x)</literal> is the cosine of
+    its elements . For matrix cosine use <literal>cosm(X)</literal>
+    function.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 x=[0,1,%i]
 acos(cos(x))
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="cosm">cosm</link>
-      </member>
+      <member><link linkend="cosm">cosm</link></member>
     </simplelist>
   </refsection>
 </refentry>

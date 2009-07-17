@@ -14,7 +14,6 @@
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
-#pragma comment(lib,"../../../../bin/scioutput_stream.lib")
 /*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

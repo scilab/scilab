@@ -11,6 +11,7 @@
  */
 
 #include "GetMatlabVariable.h"
+#include "freeArrayOfString.h"
 
 matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
 {
@@ -40,22 +41,26 @@ matvar_t *GetMlistVariable(int stkPos, const char *name, int matfile_version)
       if (strcmp(fieldNames[0], "ce")==0)
         {
           *Lstk(newStkPos) = pointerSave;
+          freeArrayOfString(fieldNames, nbRow * nbFields);
           return GetCellVariable(stkPos, name, matfile_version);
         }
       else if (strcmp(fieldNames[0], "st")==0)
         {
           *Lstk(newStkPos) = pointerSave;
+          freeArrayOfString(fieldNames, nbRow * nbFields);
           return GetStructVariable(stkPos, name, matfile_version);
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {
           /* TODO */
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
+          freeArrayOfString(fieldNames, nbRow * nbFields);
           return NULL;
         }
       else
         {
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
+          freeArrayOfString(fieldNames, nbRow * nbFields);
           return NULL;
         }
     }

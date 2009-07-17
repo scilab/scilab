@@ -117,6 +117,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
 
   deleteMenuCallBack(menuCallback);
 
+	C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

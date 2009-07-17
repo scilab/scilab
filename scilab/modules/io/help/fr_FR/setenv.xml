@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -20,23 +20,23 @@
   d'environnement</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>rep=setenv(nom, valeur )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>nom</term>
         <listitem>
-          <para>chaîne de caractères contenant le nom de la variable
+          <para>chaÃ®ne de caractÃ¨res contenant le nom de la variable
           d'environnement </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>valeur</term>
         <listitem>
-          <para>chaîne de caractères contenant la valeur de la variable
+          <para>chaÃ®ne de caractÃ¨res contenant la valeur de la variable
           d'environnement</para>
         </listitem>
       </varlistentry>

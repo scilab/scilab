@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TEXT_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TEXT_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TEXT_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TEXT_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,13 +93,13 @@
   <refsection id="Description_TEXT_f">
     <title>Description</title>
     <para>
-Ce bloc spécial est utilisé pour ajouter du texte dans un diagramme scicos.
+Ce bloc spÃ©cial est utilisÃ© pour ajouter du texte dans un diagramme scicos.
 Il n'affecte pas la simulation.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TEXT_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TEXT_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,27 +115,27 @@ Il n'affecte pas la simulation.
         <para>
           <emphasis role="bold">Text</emphasis>
         </para>
-        <para> la chaîne de caractères à afficher.</para>
-        <para> Propriétés : Type 'str' de taille -1 </para>
+        <para> la chaÃ®ne de caractÃ¨res Ã  afficher.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Font number</emphasis>
         </para>
         <para> un entier positif (plus petit que 6) donnant le type de la police.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Font size</emphasis>
         </para>
         <para> un entier positif donnant la taille de la police (voir<emphasis role="bold">xset</emphasis> ).</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TEXT_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TEXT_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -144,25 +144,25 @@ Il n'affecte pas la simulation.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

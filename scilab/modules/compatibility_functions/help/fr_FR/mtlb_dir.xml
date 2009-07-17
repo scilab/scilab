@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,28 +16,28 @@
   </info>
   <refnamediv>
     <refname>mtlb_dir</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab dir</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab dir</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>La fonction <literal>dir</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>La fonction <literal>dir</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Quand le résultat est stocké dans une variable: La fonction Matlab <literal>dir</literal> renvoie une structure
-	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les données ne peuvent être
-	extraites de la même manière.
+        Quand le rÃ©sultat est stockÃ© dans une variable: La fonction Matlab <literal>dir</literal> renvoie une structure
+	mais la fonction Scilab retourne une tlist de type 'dir', ce qui fait que les donnÃ©es ne peuvent Ãªtre
+	extraites de la mÃªme maniÃ¨re.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_dir([path])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>dir([path])</literal> quand la sortie est stockée dans une variable.
+    La fonction <literal>mtlb_dir([path])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>dir([path])</literal> quand la sortie est stockÃ©e dans une variable.
     Il n'est pas possible de remplacer cette fonction, sinon (si on la remplace par <literal>dir</literal>) 
-    les données ne pourront pas être extraites comme dans Matlab. Par exemple, l'équivalent Scilab pour l'instruction Matlab 
+    les donnÃ©es ne pourront pas Ãªtre extraites comme dans Matlab. Par exemple, l'Ã©quivalent Scilab pour l'instruction Matlab 
     <literal>L=dir;file_name=L(1).name;</literal> est <literal>L=dir();file_name=L.name(1);</literal>.
     </para>
-    <para>Attention : <literal>mtlb_dir</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_dir</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

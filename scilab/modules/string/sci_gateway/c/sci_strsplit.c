@@ -27,7 +27,7 @@ extern int C2F(icopy)(int *nbelements, int *arrayInput, int *incBetweenElementsI
 					  int *arrayOutput, int *incBetweenElementsOutputs);
 /* fortran function defined in SCI/modules/elementary_functions/src/fortran */
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strsplit)(char *fname,unsigned long fname_len)
+int sci_strsplit(char *fname,unsigned long fname_len)
 {
 	/* Check Input & Output parameters */
 	CheckRhs(2,2);

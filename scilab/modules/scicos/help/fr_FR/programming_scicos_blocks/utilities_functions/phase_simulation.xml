@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -27,7 +27,7 @@
     <refpurpose>Retourne la phase actuelle de simulation</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[psim]=phase_simulation()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_phase_simulation">
@@ -43,7 +43,7 @@
   <refsection id="Description_phase_simulation">
     <title>Description</title>
     <para>
-Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'intégration temporelle.  
+Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'intÃ©gration temporelle.  
 </para>
     <para>
 </para>
@@ -51,20 +51,20 @@ Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'inté
 [psim]=phase_simulation()
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_phase_simulation">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_phase_simulation">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">psim :</emphasis> retourne la phase courante de la simulation.</para>
         <itemizedlist>
           <listitem>
             <para><emphasis role="bold">1 :</emphasis>
-   Le simulateur est sur un point temporel d'activation discrète.
+   Le simulateur est sur un point temporel d'activation discrÃ¨te.
 </para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">2 :</emphasis>
-   Le simulateur est entrain de réaliser une intégration temporelle à temps continu.
+   Le simulateur est entrain de rÃ©aliser une intÃ©gration temporelle Ã  temps continu.
 </para>
           </listitem>
         </itemizedlist>

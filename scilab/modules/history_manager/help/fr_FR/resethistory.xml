@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
@@ -16,15 +16,15 @@
   </info>
   <refnamediv>
     <refname>resethistory</refname>
-    <refpurpose>Efface toutes les entrées dans l'historique courant.</refpurpose>
+    <refpurpose>Efface toutes les entrÃ©es dans l'historique courant.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>resethistory()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>Efface toutes les entrées dans l'historique courant.</para>
+    <para>Efface toutes les entrÃ©es dans l'historique courant.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> clique maximum d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[size,nodes] = max_clique(g,[ind])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -58,11 +58,11 @@
   <refsection>
     <title>Description</title>
     <para><literal>max_clique</literal> calcule la clique maximum d'un graphe <literal>g</literal> i.e. le 
-    sous-graphe complet de taille maximum. <literal>ind</literal> est un paramètre pour le 
-    choix de la méthode: si <literal>ind</literal> vaut 0 la méthode est un 
-    algorithme partiellement énumératif et si <literal>ind</literal> vaut 1 l'algorithme 
-    est de type programmation quadratique zéro-un. La valeur est 0 par défaut.
-    La sortie <literal>size</literal> est le nombre de sommets de la clique trouvée par
+    sous-graphe complet de taille maximum. <literal>ind</literal> est un paramÃ¨tre pour le 
+    choix de la mÃ©thode: si <literal>ind</literal> vaut 0 la mÃ©thode est un 
+    algorithme partiellement Ã©numÃ©ratif et si <literal>ind</literal> vaut 1 l'algorithme 
+    est de type programmation quadratique zÃ©ro-un. La valeur est 0 par dÃ©faut.
+    La sortie <literal>size</literal> est le nombre de sommets de la clique trouvÃ©e par
     l'algorithme et <literal>nodes</literal> est le vecteur des sommets correspondants.
   </para>
   </refsection>

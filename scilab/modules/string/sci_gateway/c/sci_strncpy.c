@@ -21,8 +21,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strncpy)(char *fname,unsigned long fname_len)
+int sci_strncpy(char *fname,unsigned long fname_len)
 {
 	CheckRhs(2,2);
 	CheckLhs(0,1);
@@ -66,7 +67,14 @@ int C2F(sci_strncpy)(char *fname,unsigned long fname_len)
 			{
 				for(j = 0; j < m2n2;j++)
 				{
-					int len = (int)strlen(InputString_Parameter1[j]);
+					int len = 0;
+					wchar_t *wcstring = to_wide_string(InputString_Parameter1[j]);
+					if (wcstring)
+					{
+						len = (int)wcslen(wcstring);
+						FREE(wcstring);
+						wcstring = NULL;
+					}
 					if ( len < InputLength_Parameter2[j] ) InputLength_Parameter2_checked[j] = len;
 					else
 					{
@@ -97,6 +105,9 @@ int C2F(sci_strncpy)(char *fname,unsigned long fname_len)
 			
 			for (i=0; i < m1n1 ; i++)
 			{
+				wchar_t *wcInput = NULL;
+				wchar_t *wcOutput = NULL;
+
 				int j = 0;
 				
 				if (m2n2 == 1) 
@@ -107,9 +118,19 @@ int C2F(sci_strncpy)(char *fname,unsigned long fname_len)
 				{
 					j = i; /* Input parameter One & two have same dimension */
 				}
-				
-				OutputStrings[i] = (char*)MALLOC(sizeof(char)*(InputLength_Parameter2_checked[j]+1));
-				if (OutputStrings[i]==NULL)
+
+				wcInput = to_wide_string(InputString_Parameter1[i]);
+				wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t)*(InputLength_Parameter2_checked[j]+1));
+				if (wcInput && wcOutput)
+				{
+					wcsncpy(wcOutput,wcInput,InputLength_Parameter2_checked[j]);
+					wcOutput[InputLength_Parameter2_checked[j]] = L'\0';
+
+					OutputStrings[i] = wide_string_to_UTF8(wcOutput);
+					FREE(wcOutput); wcOutput = NULL;
+					FREE(wcInput); wcInput = NULL;
+				}
+				else
 				{
 					if (InputLength_Parameter2_checked) 
 					{
@@ -121,8 +142,6 @@ int C2F(sci_strncpy)(char *fname,unsigned long fname_len)
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				}
-				strncpy(OutputStrings[i],InputString_Parameter1[i],InputLength_Parameter2_checked[j]);
-				OutputStrings[i][InputLength_Parameter2_checked[j]] = '\0';
 			}
 			
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,OutputStrings);

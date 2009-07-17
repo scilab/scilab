@@ -24,8 +24,8 @@ demolist=['Surface with holes 1','xbasc();showinstr(hole3d);hole3d();';
 	  'Black Hole','xbasc();showinstr(bh);bh(50);';
 	  'Riemann surface (n=2)','xbasc();showinstr(cplxroot);cplxroot(2,20,130,45);']
 
-getf(path+'Macros.sci');
-getf(path+'surfaces.sci');
+exec(path+'Macros.sci');
+exec(path+'surfaces.sci');
 
 while %t then
   num=x_choose(demolist(:,1),'Surface demos (From Euler)');

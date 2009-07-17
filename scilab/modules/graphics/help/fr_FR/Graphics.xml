@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="Graphics">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -14,31 +14,31 @@
       <varlistentry>
         <term>plot2d</term>
         <listitem>
-          <para>représentation de courbes dans le plan</para>
+          <para>reprÃ©sentation de courbes dans le plan</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>plot2d2</term>
         <listitem>
-          <para>représentation d'une fonction constante par morceaux</para>
+          <para>reprÃ©sentation d'une fonction constante par morceaux</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>plot2d3</term>
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de barres verticales</para>
+          <para>reprÃ©sentation de courbes dans le plan sous forme de barres verticales</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>plot2d4</term>
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de flèches</para>
+          <para>reprÃ©sentation de courbes dans le plan sous forme de flÃ¨ches</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fplot2d</term>
         <listitem>
-          <para>représentation d'une courbe définie par une fonction</para>
+          <para>reprÃ©sentation d'une courbe dÃ©finie par une fonction</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,13 +50,13 @@
       <varlistentry>
         <term>champ1</term>
         <listitem>
-          <para>champ de vecteur 2D. Flèches colorées</para>
+          <para>champ de vecteur 2D. FlÃ¨ches colorÃ©es</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fchamp</term>
         <listitem>
-          <para>champ défini par une équation différentielle du premier ordre</para>
+          <para>champ dÃ©fini par une Ã©quation diffÃ©rentielle du premier ordre</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -68,31 +68,31 @@
       <varlistentry>
         <term>fcontour2d</term>
         <listitem>
-          <para>courbes de niveau d'une surface (définie par une fonction)</para>
+          <para>courbes de niveau d'une surface (dÃ©finie par une fonction)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>grayplot</term>
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de couleurs</para>
+          <para>reprÃ©sentation d'une surface en 2D sous forme de couleurs</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fgrayplot</term>
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs</para>
+          <para>reprÃ©sentation d'une surface (dÃ©finie par une fonction) en 2D sous forme de couleurs</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Sgrayplot</term>
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de couleurs interpolées</para>
+          <para>reprÃ©sentation d'une surface en 2D sous forme de couleurs interpolÃ©es</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Sfgrayplot</term>
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs interpolées</para>
+          <para>reprÃ©sentation d'une surface (dÃ©finie par une fonction) en 2D sous forme de couleurs interpolÃ©es</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -127,37 +127,37 @@
       <varlistentry>
         <term>plot3d</term>
         <listitem>
-          <para>représentation en en couleurs d'une surface</para>
+          <para>reprÃ©sentation en en couleurs d'une surface</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>plot3d1</term>
         <listitem>
-          <para>représentation en en couleurs d'une surface</para>
+          <para>reprÃ©sentation en en couleurs d'une surface</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fplot3d</term>
         <listitem>
-          <para>représente une surface non paramétrique définie par une fonction</para>
+          <para>reprÃ©sente une surface non paramÃ©trique dÃ©finie par une fonction</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fplot3d1</term>
         <listitem>
-          <para>représente une surface non paramétrique définie par une fonction</para>
+          <para>reprÃ©sente une surface non paramÃ©trique dÃ©finie par une fonction</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param3d</term>
         <listitem>
-          <para>représente une courbe paramétrique en 3D</para>
+          <para>reprÃ©sente une courbe paramÃ©trique en 3D</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>param3d1</term>
         <listitem>
-          <para>représente des courbes paramétriques en 3D</para>
+          <para>reprÃ©sente des courbes paramÃ©triques en 3D</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -169,31 +169,31 @@
       <varlistentry>
         <term>fcontour</term>
         <listitem>
-          <para>courbes de niveau sur une surface en 3D définie par une fonction</para>
+          <para>courbes de niveau sur une surface en 3D dÃ©finie par une fonction</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>hist3d</term>
         <listitem>
-          <para>représentation d'un histogramme en 3D</para>
+          <para>reprÃ©sentation d'un histogramme en 3D</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>genfac3d</term>
         <listitem>
-          <para>calcule les facettes d'une surface non paramétrique</para>
+          <para>calcule les facettes d'une surface non paramÃ©trique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>eval3dp</term>
         <listitem>
-          <para>calcule les facettes d'une surface paramétrique </para>
+          <para>calcule les facettes d'une surface paramÃ©trique </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>geom3d</term>
         <listitem>
-          <para>projection 3D vers 2D après un dessin 3D</para>
+          <para>projection 3D vers 2D aprÃ¨s un dessin 3D</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -204,25 +204,25 @@
       <varlistentry>
         <term>xpoly</term>
         <listitem>
-          <para>dessine une ligne brisée ou un polygone</para>
+          <para>dessine une ligne brisÃ©e ou un polygone</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xpolys</term>
         <listitem>
-          <para>dessine un ensemble de lignes brisées ou de polygones</para>
+          <para>dessine un ensemble de lignes brisÃ©es ou de polygones</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xrpoly</term>
         <listitem>
-          <para>dessine un polygone régulier</para>
+          <para>dessine un polygone rÃ©gulier</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xsegs</term>
         <listitem>
-          <para>dessine des segments déconnectés</para>
+          <para>dessine des segments dÃ©connectÃ©s</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -292,12 +292,12 @@
     </variablelist>
   </refsection>
   <refsection>
-    <title>DESSINS DE FLÈCHES</title>
+    <title>DESSINS DE FLÃˆCHES</title>
     <variablelist>
       <varlistentry>
         <term>xarrows</term>
         <listitem>
-          <para>dessine un ensemble de flèches</para>
+          <para>dessine un ensemble de flÃ¨ches</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -308,37 +308,37 @@
       <varlistentry>
         <term>xstring</term>
         <listitem>
-          <para>dessine des chaînes de caractères</para>
+          <para>dessine des chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xstringl</term>
         <listitem>
-          <para>calcule une boîte contenant des chaînes de caractères</para>
+          <para>calcule une boÃ®te contenant des chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xstringb</term>
         <listitem>
-          <para>dessine des chaînes de caractères dans une boîte</para>
+          <para>dessine des chaÃ®nes de caractÃ¨res dans une boÃ®te</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xtitle</term>
         <listitem>
-          <para>ajoute des titres et légendes sur une fenêtre graphique</para>
+          <para>ajoute des titres et lÃ©gendes sur une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>titlepage</term>
         <listitem>
-          <para>ajoute un titre au milieu  d'une fenêtre graphique</para>
+          <para>ajoute un titre au milieu  d'une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xinfo</term>
         <listitem>
-          <para>affiche une chaîne de caractères dans la sous-fenêtre des messages</para>
+          <para>affiche une chaÃ®ne de caractÃ¨res dans la sous-fenÃªtre des messages</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -355,30 +355,30 @@
       <varlistentry>
         <term>graduate</term>
         <listitem>
-          <para>graduations simplifiées</para>
+          <para>graduations simplifiÃ©es</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>plotframe</term>
         <listitem>
-          <para>dessine un cadre avec axes et mise à l'échelle</para>
+          <para>dessine un cadre avec axes et mise Ã  l'Ã©chelle</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>TRANSFORMATIONS DE COORDONNÉES</title>
+    <title>TRANSFORMATIONS DE COORDONNÃ‰ES</title>
     <variablelist>
       <varlistentry>
         <term>isoview</term>
         <listitem>
-          <para>échelle isométrique (fonction obsolète)</para>
+          <para>Ã©chelle isomÃ©trique (fonction obsolÃ¨te)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>square</term>
         <listitem>
-          <para>échelle isométrique (par changement de la taille de la fenêtre)</para>
+          <para>Ã©chelle isomÃ©trique (par changement de la taille de la fenÃªtre)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -396,25 +396,25 @@
       <varlistentry>
         <term>xsetech</term>
         <listitem>
-          <para>choix d'une sous-fenêtre graphique</para>
+          <para>choix d'une sous-fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>subplot</term>
         <listitem>
-          <para>divise la fenêtre graphique en sous-fenêtres</para>
+          <para>divise la fenÃªtre graphique en sous-fenÃªtres</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xgetech</term>
         <listitem>
-          <para>donne l'échelle graphique courante </para>
+          <para>donne l'Ã©chelle graphique courante </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xchange</term>
         <listitem>
-          <para>transformation de coordonnées réelles vers pixels</para>
+          <para>transformation de coordonnÃ©es rÃ©elles vers pixels</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -431,13 +431,13 @@
       <varlistentry>
         <term>getcolor</term>
         <listitem>
-          <para>boîte de dialogue pour sélectionner des couleurs dans la table des couleurs</para>
+          <para>boÃ®te de dialogue pour sÃ©lectionner des couleurs dans la table des couleurs</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>addcolor</term>
         <listitem>
-          <para>ajout de nouvelles couleurs à la tables des couleurs</para>
+          <para>ajout de nouvelles couleurs Ã  la tables des couleurs</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -466,7 +466,7 @@
       <varlistentry>
         <term>xget</term>
         <listitem>
-          <para>récupère des valeurs du contexte graphique</para>
+          <para>rÃ©cupÃ¨re des valeurs du contexte graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -478,7 +478,7 @@
       <varlistentry>
         <term>getsymbol</term>
         <listitem>
-          <para>boîte de dialogue pour choisir un marqueur (ou symbole)</para>
+          <para>boÃ®te de dialogue pour choisir un marqueur (ou symbole)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -495,7 +495,7 @@
       <varlistentry>
         <term>xload</term>
         <listitem>
-          <para>charge des graphiques sauvés</para>
+          <para>charge des graphiques sauvÃ©s</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -512,13 +512,13 @@
       <varlistentry>
         <term>xbasc</term>
         <listitem>
-          <para>efface une fenêtre graphique et les graphiques enregistrés</para>
+          <para>efface une fenÃªtre graphique et les graphiques enregistrÃ©s</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xclear</term>
         <listitem>
-          <para> efface une fenêtre graphique</para>
+          <para> efface une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -542,43 +542,43 @@
       <varlistentry>
         <term>xbasr</term>
         <listitem>
-          <para>redessine une fenêtre graphique</para>
+          <para>redessine une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>replot</term>
         <listitem>
-          <para>redessine une fenêtre graphique avec de nouvelles bornes</para>
+          <para>redessine une fenÃªtre graphique avec de nouvelles bornes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xpause</term>
         <listitem>
-          <para>suspend l'exécution de Scilab </para>
+          <para>suspend l'exÃ©cution de Scilab </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xselect</term>
         <listitem>
-          <para>met une fenêtre graphique au premier plan</para>
+          <para>met une fenÃªtre graphique au premier plan</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xdel</term>
         <listitem>
-          <para>supprime une fenêtre graphique</para>
+          <para>supprime une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>winsid</term>
         <listitem>
-          <para>renvoie la liste des fenêtre graphiques</para>
+          <para>renvoie la liste des fenÃªtre graphiques</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>xname</term>
         <listitem>
-          <para>change le nom d'une fenêtre graphique</para>
+          <para>change le nom d'une fenÃªtre graphique</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -595,7 +595,7 @@
       <varlistentry>
         <term>locate</term>
         <listitem>
-          <para>sélection d'un ensemble de points</para>
+          <para>sÃ©lection d'un ensemble de points</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -607,18 +607,18 @@
     </variablelist>
   </refsection>
   <refsection>
-    <title>ÉDITEUR INTERACTIF</title>
+    <title>Ã‰DITEUR INTERACTIF</title>
     <variablelist>
       <varlistentry>
         <term>edit_curv</term>
         <listitem>
-          <para>éditeur graphique interactif</para>
+          <para>Ã©diteur graphique interactif</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>gr_menu</term>
         <listitem>
-          <para>éditeur graphique élémentaire</para>
+          <para>Ã©diteur graphique Ã©lÃ©mentaire</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -630,7 +630,7 @@
       <varlistentry>
         <term>ged</term>
         <listitem>
-          <para>:EDiteur interactif des propriétésdes entités graphiques  </para>
+          <para>:EDiteur interactif des propriÃ©tÃ©sdes entitÃ©s graphiques  </para>
         </listitem>
       </varlistentry>
     </variablelist>

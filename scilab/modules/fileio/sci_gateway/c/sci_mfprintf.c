@@ -16,10 +16,17 @@
 #include "gw_fileio.h"
 #include "filesmanagement.h"
 #include "localization.h"
+#include "BOOL.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/ 
-int sci_fprintf(char *fname,unsigned long fname_len)
+#ifdef _MSC_VER
+static BOOL forceSTDERRredirect = TRUE;
+#endif
+/*--------------------------------------------------------------------------*/ 
+int sci_mfprintf(char *fname,unsigned long fname_len)
 {
 	FILE *f;
+	BOOL isSTD = FALSE;
 	int fileMode = 0;
 	int l1 = 0, m1 = 0, n1 = 0;
 	int l2 = 0,m2 = 0,n2 = 0;
@@ -51,18 +58,53 @@ int sci_fprintf(char *fname,unsigned long fname_len)
 
 	param1 = *istk(l1);
 
-	f = GetFileOpenedInScilab(param1);
-	if (f == (FILE *)0)
+	switch (param1)
+	{
+	case 0:
+		#ifdef _MSC_VER
+		if ( (getScilabMode()  == SCILAB_STD) && (forceSTDERRredirect == TRUE) )
+		{
+			/*  Console redirect stderr --> CONOUT$*/
+			freopen("CONOUT$", "wb", stderr); 
+			forceSTDERRredirect = FALSE;
+		}
+		#endif
+		f = stderr;
+		break;
+	case 5:
+		// stdin; 
+		f = (FILE *)0;
+		break;
+	case 6:
+		f = stdout;
+		break;
+	default:
+		f = GetFileOpenedInScilab(param1);
+		break;
+	}
+
+	if (f == (FILE *)0 )
 	{
 		Scierror(999,_("%s: Wrong file descriptor: %d.\n"),fname,*istk(l1));
 		return 0;
 	}
 
-	fileMode = GetFileModeOpenedInScilab(param1);
+	switch (param1)
+	{
+	case 0: case 6:
+		isSTD = TRUE;
+		break;
+	default:
+		isSTD = FALSE;
+		fileMode = GetFileModeOpenedInScilab(param1);
+		break;
+	}
+
+	
 	/* checks file mode */
 	/* bug 3898 */
 	/* read only attrib 1xx*/
-	if ( (fileMode >= 100) && (fileMode < 200) )
+	if ( (fileMode >= 100) && (fileMode < 200) && !isSTD)
 	{
 		Scierror(999,_("%s: Wrong file mode: READ only.\n"),fname);
 		return 0;

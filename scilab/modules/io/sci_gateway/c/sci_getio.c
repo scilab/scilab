@@ -13,6 +13,7 @@
 #include "gw_io.h"
 #include "stack-c.h"
 #include "MALLOC.h"
+#include "diary.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getio)(char *fname,unsigned long fname_len)
 {
@@ -27,7 +28,7 @@ int C2F(sci_getio)(char *fname,unsigned long fname_len)
 
 	values[0] =  C2F(iop).rio;
 	values[1] =  C2F(iop).rte;
-	values[2] =  C2F(iop).wio;
+	values[2] =  getdiary();
 	values[3] =  C2F(iop).wte;
 
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE,&one,&four,&values);

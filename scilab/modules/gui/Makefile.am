@@ -1,9 +1,37 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-### Vincent COUVERT <vincent.couvert@inria.fr>
-### INRIA - Scilab 2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
+# Copyright (C) INRIA   - 2007 - Vincent COUVERT
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+#### Target ######
+modulename=gui
+
+
+#### gui : Conf files ####
+libscigui_la_rootdir = $(mydatadir)
+libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+
+#### gui : init scripts ####
+libscigui_la_etcdir = $(mydatadir)/etc
+libscigui_la_etc_DATA = etc/gui.quit \
+etc/gui.start \
+etc/graphics_menubar.xml \
+etc/graphics_toolbar.xml \
+etc/helpbrowser_menubar.xml \
+etc/main_menubar.xml \
+etc/main_toolbar.xml \
+etc/flexdock-themes.xml
+
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -108,7 +136,10 @@ sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
-src/cpp/CallJuigetfile.cpp
+src/cpp/CallJuigetfile.cpp \
+src/cpp/displaytree.cpp \
+src/jni/ScilabDisplayTree.cpp
+
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -117,7 +148,8 @@ src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
-src/jni/Juigetfile.giws.xml
+src/jni/Juigetfile.giws.xml \
+src/jni/ScilabDisplayTree.giws.xml
 
 
 if GIWS
@@ -158,7 +190,9 @@ sci_gateway/cpp/sci_setlookandfeel.cpp \
 sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
-sci_gateway/cpp/sci_uigetfile.cpp
+sci_gateway/cpp/sci_uigetfile.cpp \
+sci_gateway/cpp/sci_displaytree.cpp \
+sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -214,7 +248,12 @@ GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
 libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
-pkglib_LTLIBRARIES = libscigui.la libscigui-disable.la
+
+pkglib_LTLIBRARIES = libscigui-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigui.la 
+endif
 
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
@@ -226,27 +265,6 @@ INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-
-#### Target ######
-modulename=gui
-
-
-#### gui : Conf files ####
-libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-
-#### gui : init scripts ####
-libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml
 
 
 #### gui : gateway declaration ####
@@ -376,7 +394,5 @@ images/icons/zoom-area.png
 
 
 if GUI
-
 USEANT=1
-
 endif

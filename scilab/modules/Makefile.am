@@ -191,6 +191,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/functions/libscifunctions.la 
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 $(top_builddir)/modules/umfpack/libsciumfpack.la \

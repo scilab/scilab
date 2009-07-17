@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="empty">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -9,9 +9,9 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para><literal> [] </literal> désigne une matrice vide. Elle est définie de façon unique et possède
+    <para><literal> [] </literal> dÃ©signe une matrice vide. Elle est dÃ©finie de faÃ§on unique et possÃ¨de
     0 lignes et 0 colonnes, soit <literal> size([]) =[0,0] </literal>.
-    Les convention suivantes sont adoptées :
+    Les convention suivantes sont adoptÃ©es :
   </para>
     <para>
       <literal> [] * A = A * [] = [] </literal>
@@ -28,7 +28,7 @@
     </para>
     <para>
     Les fonctions matricielles renvoient <literal>[]</literal> ou un message d'erreur
-    quand il n'y pas de réponse évidente. Les systèmes dynamiques linéaires 
+    quand il n'y pas de rÃ©ponse Ã©vidente. Les systÃ¨mes dynamiques linÃ©aires 
     (listes de type <literal>syslin</literal>) peuvent avoir plusieurs lignes ou colonnes.
   </para>
   </refsection>

@@ -22,15 +22,8 @@ set(h1,'string',"item 1|item 2|item 3");
 set(h1,'value',[1 3]);
 
 // used to generates an error
-try
-  subplot(1,2,2);
-catch
-  // an error occured, but should not
-  pause;
-end;
+ierr = execstr('subplot(1,2,2)','errcatch');
+if ierr <> 0 then pause, end
 
 X=1:100;
 plot(X,X);
-
-
-

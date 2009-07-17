@@ -12,5 +12,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 //------------------------------------
-//genlib('windows_toolslib','SCI/modules/windows_tools/macros',%f,%t);
+genlib('windows_toolslib','SCI/modules/windows_tools/macros',%f,%t);
 //------------------------------------

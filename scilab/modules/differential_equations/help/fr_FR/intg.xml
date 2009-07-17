@@ -1,58 +1,58 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="intg">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>intg</refname>
-    <refpurpose> intégration numérique adaptative  </refpurpose>
+    <refpurpose> intÃ©gration numÃ©rique adaptative  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>a,b  </term>
         <listitem>
-          <para>nombres réels
+          <para>nombres rÃ©els
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f  </term>
         <listitem>
-          <para>fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+          <para>fonction externe (fonction Scilab ou chaÃ®ne de caractÃ¨res ou liste).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ea, er  </term>
         <listitem>
-          <para>nombres réels
+          <para>nombres rÃ©els
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ea  </term>
         <listitem>
-          <para>erreur absolue désirée (1.d-14 par défaut)
+          <para>erreur absolue dÃ©sirÃ©e (1.d-14 par dÃ©faut)
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>er  </term>
         <listitem>
-          <para>erreur relative (1.d-8 par défaut)
+          <para>erreur relative (1.d-8 par dÃ©faut)
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>err  </term>
         <listitem>
-          <para>estimation de l'erreur absolue sur le résultat
+          <para>estimation de l'erreur absolue sur le rÃ©sultat
 	  </para>
         </listitem>
       </varlistentry>
@@ -60,43 +60,43 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>intg(a,b,f)</literal> approche l'intégrale de <literal>a</literal> à
-      <literal>b</literal> de <literal>f(t)dt</literal>. La fonction <literal>f</literal> doit être
+    <para><literal>intg(a,b,f)</literal> approche l'intÃ©grale de <literal>a</literal> Ã 
+      <literal>b</literal> de <literal>f(t)dt</literal>. La fonction <literal>f</literal> doit Ãªtre
       continue.</para>
-    <para>L'évaluation satisfait si possible
-      <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> où I représente la valeur
-      exacte de l'intégrale. </para>
+    <para>L'Ã©valuation satisfait si possible
+      <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> oÃ¹ I reprÃ©sente la valeur
+      exacte de l'intÃ©grale. </para>
     <para><literal>f</literal> est une fonction externe :</para>
     <para>Si <literal>f</literal>  est une fonction Scilab elle doit avoir la liste
       d'appel :
       <literal>y = f(t)</literal></para>
     <para>Si <literal>f</literal> est une liste, cette liste doit avoir la structure
-      suivante : <literal> list(f,x1,x2,...)</literal> où <literal>f</literal> est une
+      suivante : <literal> list(f,x1,x2,...)</literal> oÃ¹ <literal>f</literal> est une
       fonction Scilab avec la liste d'appel : <literal>f(t,x1,x2,...)</literal>.</para>
-    <para>Si <literal>f</literal> est une chaîne de caractères, ce paramètre désigne le
-      nom d'un fonction Fortran ou d'une procédure C ayant une liste d'appel fixée:  </para>
-    <para>Dans le cas Fortran la liste d'appel doit être:
-      <literal>double precision function f(x)</literal> où <literal>x</literal> est aussi
+    <para>Si <literal>f</literal> est une chaÃ®ne de caractÃ¨res, ce paramÃ¨tre dÃ©signe le
+      nom d'un fonction Fortran ou d'une procÃ©dure C ayant une liste d'appel fixÃ©e:  </para>
+    <para>Dans le cas Fortran la liste d'appel doit Ãªtre:
+      <literal>double precision function f(x)</literal> oÃ¹ <literal>x</literal> est aussi
       un nombre double precision. </para>
-    <para>Dans la cas  C la liste d'appel doit être:
+    <para>Dans la cas  C la liste d'appel doit Ãªtre:
       <literal>double f(double *x)</literal>. </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-    //External écrit en Scilab
+    //External Ã©crit en Scilab
     function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
     exact=-2.5432596188;
     I=intg(0,2*%pi,f)
     abs(exact-I)
 
-    //External écrit en Scilab avec un argument
+    //External Ã©crit en Scilab avec un argument
     function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
     I=intg(0,2*%pi,list(f1,30))
     abs(exact-I)
 
 
-    // External écrit en Fortran (un compilateur Fortran est nécessaire)
+    // External Ã©crit en Fortran (un compilateur Fortran est nÃ©cessaire)
     // Ecriture du code fortran
     F=['      double precision function ffun(x)'
     '      double precision x,pi'
@@ -107,13 +107,13 @@
     mputl(F,TMPDIR+'/ffun.f')
     // compilation du code Fortran
     l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
-    // link incrémental
+    // link incrÃ©mental
     link(l,'ffun','f')
     // integration de la fonction
     I=intg(0,2*%pi,'ffun')
     abs(exact-I)
 
-    // External écrit en C (un compilateur C est nécessaire)
+    // External Ã©crit en C (un compilateur C est nÃ©cessaire)
     // Ecriture du code C
     C=['#include <math.h>'
     'double cfun(double *x)'
@@ -154,7 +154,7 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
+    <title>Fonctions UtilisÃ©es</title>
     <para>Les programmes correspondants (dqag0.f et  dqags.f de quadpack)  se
       trouvent dabs le repertoire   routines/integ  :</para>
   </refsection>

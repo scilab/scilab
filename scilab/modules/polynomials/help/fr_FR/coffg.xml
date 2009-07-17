@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="coffg">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>coffg</refname>
-    <refpurpose> inverse d'une matrice de polynômes  </refpurpose>
+    <refpurpose> inverse d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Ns,d]=coffg(Fs)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>Fs  </term>
         <listitem>
-          <para>matrice carrée de polynômes
+          <para>matrice carrÃ©e de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -25,15 +25,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coffg</literal> calcule <literal>Fs^-1</literal> par la méthode des cofacteurs, où <literal>Fs</literal> est une matrice de polynômes.
+    <para><literal>coffg</literal> calcule <literal>Fs^-1</literal> par la mÃ©thode des cofacteurs, oÃ¹ <literal>Fs</literal> est une matrice de polynÃ´mes.
   </para>
     <para>
     inverse de <literal>Fs</literal> = <literal>Ns/d</literal>
   </para>
-    <para><literal>d</literal> = dénominateur commun; <literal>Ns</literal> = numérateur (une matrice de polynômes).
+    <para><literal>d</literal> = dÃ©nominateur commun; <literal>Ns</literal> = numÃ©rateur (une matrice de polynÃ´mes).
   </para>
     <para>
-    (pour les grandes matrices, s'armer de patience... les résultats sont en général fiables)
+    (pour les grandes matrices, s'armer de patience... les rÃ©sultats sont en gÃ©nÃ©ral fiables)
   </para>
   </refsection>
   <refsection>

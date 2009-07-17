@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-01-15 21:59+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2009-03-23 13:57+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -50,6 +50,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: Ожидалось ''%s'', ''%s'' или "
+"''%s''.\n"
 
 #, c-format
 msgid ""
@@ -77,7 +79,7 @@ msgstr "%s: Произошла ошибка: %s\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -87,6 +89,8 @@ msgstr "%s: Неверный тип входного аргумента: Ожи�
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидался массив 1 x n или m x "
+"1.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -194,7 +198,7 @@ msgstr "%s: Неверный дескриптор файла: %d.\n"
 
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
-msgstr ""
+msgstr "%s: Неверный режим файла: READ only.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -230,6 +234,8 @@ msgstr "%s: Задаваемый формат не может включать �
 #, c-format
 msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: данные не подходят под "
+"формат.\n"
 
 msgid "Not enough entries."
 msgstr "Не достаточно элементов."

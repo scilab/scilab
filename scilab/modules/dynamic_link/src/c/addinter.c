@@ -141,15 +141,15 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 	k1 = inum+1;
 	for (i = 0;i < sizefcts; i++)
 	{
-		int id[nsiz],zero=0,trois=3,fptr = 0,fptr1 = 0,quatre=4;
+		int id[nsiz],zero=0,three=3,fptr = 0,fptr1 = 0,four=4;
 
 		/* find a previous functions with same name */
 		C2F(cvname)(id,fcts[i],&zero,(unsigned long)strlen(fcts[i]));
 		fptr1 = fptr = (DynInterfStart+k1)*100 +(i+1);
 		/* clear previous def set fptr1 to 0*/
-		C2F(funtab)(id,&fptr1,&quatre,"NULL_NAME",0); 
+		C2F(funtab)(id,&fptr1,&four,"NULL_NAME",0); 
 		/* reinstall */
-		C2F(funtab)(id,&fptr,&trois,fcts[i],(unsigned long)strlen(fcts[i])); 
+		C2F(funtab)(id,&fptr,&three,fcts[i],(unsigned long)strlen(fcts[i])); 
 	}
 
 	return ierr;

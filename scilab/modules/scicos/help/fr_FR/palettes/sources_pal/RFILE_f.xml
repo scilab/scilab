@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="RFILE_f">
   <refnamediv>
     <refname>RFILE_f</refname>
-    <refpurpose>Lecture à partir d'un fichier</refpurpose>
+    <refpurpose>Lecture Ã  partir d'un fichier</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="RFILE_f">Lecture à partir d'un fichier</link>
+          <link linkend="RFILE_f">Lecture Ã  partir d'un fichier</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_RFILE_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_RFILE_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_RFILE_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_RFILE_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,10 +98,10 @@
   <refsection id="Description_RFILE_f">
     <title>Description</title>
     <para>
-Ce bloc permet à l'utilisateur de lire des données dans un fichier.
-Ces données peuvent être formatées ou binaires.
-Les paramètres <emphasis role="bold">Output record selection</emphasis> et <emphasis role="bold">Time record selection</emphasis>
-permettent de selectionner des données parmi les enregistrements du fichier.
+Ce bloc permet Ã  l'utilisateur de lire des donnÃ©es dans un fichier.
+Ces donnÃ©es peuvent Ãªtre formatÃ©es ou binaires.
+Les paramÃ¨tres <emphasis role="bold">Output record selection</emphasis> et <emphasis role="bold">Time record selection</emphasis>
+permettent de selectionner des donnÃ©es parmi les enregistrements du fichier.
 Chaque appel au bloc avance d'un enregistrement.
 </para>
     <para>
@@ -109,8 +109,8 @@ Ce bloc fonctionne de paire avec le bloc
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_RFILE_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_RFILE_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -127,41 +127,41 @@ Ce bloc fonctionne de paire avec le bloc
           <emphasis role="bold">Time record selection</emphasis>
         </para>
         <para> une matrice vide ou un entier positif.</para>
-        <para> Si un entier<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est donnée, le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu est supposé être la date de l'événement de sortie. Si ce paramètre est vide, alors le bloc ne fournit pas d'événements de sortie. Propriétés : Type 'vec' de taille -1. </para>
+        <para> Si un entier<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est donnÃ©e, le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> Ã©lÃ©ment de l'enregistrement lu est supposÃ© Ãªtre la date de l'Ã©vÃ©nement de sortie. Si ce paramÃ¨tre est vide, alors le bloc ne fournit pas d'Ã©vÃ©nements de sortie. PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Outputs record selection</emphasis>
         </para>
         <para> un vecteur d'entiers positifs.</para>
-        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> Ã©lÃ©ment de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Input file name</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le chemin du fichier.</para>
-        <para> Propriétés : Type 'str' de taille 1. </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le chemin du fichier.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Input Format</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramètre est renseigné alors il doit être encadrer par des paranthèses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
-        <para> Propriétés : Type 'str' de taille 1. </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramÃ¨tre est renseignÃ© alors il doit Ãªtre encadrer par des paranthÃ¨ses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Buffer size</emphasis>
         </para>
-        <para> Pour améliorer l'efficacité de la lecture, il est possible d'enregistrer les données d'entrée dans un buffer. Les données sont alors délivrées à chaque appel du bloc lorsque le buffer est rempli.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Pour amÃ©liorer l'efficacitÃ© de la lecture, il est possible d'enregistrer les donnÃ©es d'entrÃ©e dans un buffer. Les donnÃ©es sont alors dÃ©livrÃ©es Ã  chaque appel du bloc lorsque le buffer est rempli.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_RFILE_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_RFILE_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -170,33 +170,33 @@ Ce bloc fonctionne de paire avec le bloc
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

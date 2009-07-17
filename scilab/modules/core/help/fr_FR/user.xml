@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="user">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>user</refname>
-    <refpurpose> interfaçage d'une routine Fortran ou C  </refpurpose>
+    <refpurpose> interfaÃ§age d'une routine Fortran ou C  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
     Avec cette commande il est possible d'utiliser un programme externe 
-    comme une commande Scilab où
+    comme une commande Scilab oÃ¹
     <literal>(s_1,s_2,...,s_lhs)</literal> sont les variables de sortie et
-     <literal>(e_1,e_2,...,e_rhs)</literal> sont les variables d'entrée. Pour utiliser cette commande dans Scilab il faut écrire quelques lignes dans la subroutine Fortran <literal>user</literal> de Scilab. Voir <literal>intersci</literal> ou la documentation de Scilab pour plus d'informations.
+     <literal>(e_1,e_2,...,e_rhs)</literal> sont les variables d'entrÃ©e. Pour utiliser cette commande dans Scilab il faut Ã©crire quelques lignes dans la subroutine Fortran <literal>user</literal> de Scilab. Voir <literal>intersci</literal> ou la documentation de Scilab pour plus d'informations.
   </para>
   </refsection>
   <refsection>

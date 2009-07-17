@@ -28,7 +28,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_convstr)(char *fname,unsigned long fname_len)
+int sci_convstr(char *fname,unsigned long fname_len)
 {
 	char **Input_Matrix = NULL;
 	char **Output_Matrix = NULL;

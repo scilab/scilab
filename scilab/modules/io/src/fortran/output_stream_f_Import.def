@@ -1,0 +1,6 @@
+LIBRARY    output_stream_f.dll
+
+
+EXPORTS
+print_
+fmttyp_

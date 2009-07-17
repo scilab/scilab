@@ -39,11 +39,8 @@
 
 #ifdef _MSC_VER
 #include <direct.h> /*_getcwd _chdir*/
-#endif
-#if (defined _MSC_VER)
-
 #include <io.h>
-#define  getcwd(x,y) _getcwd(x,y)
+#define getcwd(x,y) _getcwd(x,y)
 #define chdir(x) _chdir(x)
 #endif
 

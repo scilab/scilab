@@ -14,7 +14,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>tri par ordre décroissant</refpurpose>
+    <refpurpose>tri stable par l'agorithme "quick sort"</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -92,12 +92,17 @@
     <para><literal>y=sort(A)</literal> est valide quand <literal>A</literal>
     est un vecteur creux. le tri suivant les lignes ou les colonnes n'est pas
     implémenté pour les matrices creuses.</para>
+
+    <para><emphasis role="bold">Remarque: </emphasis>Cette fonction est
+    obsolete et peut être remplacée par <link
+    linkend="gsort">gsort</link>.</para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">[s,p]=sort(rand(1,10));
+    <programlisting role="example"> 
+[s,p]=sort(rand(1,10));
 // p est une permutation aléatoire de 1:10
 A=[1,2,5;3,4,2];
 [A_trie,q]=sort(A);A(q(:))-A_trie(:)

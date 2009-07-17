@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="semicolon">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>semicolon (;)</refname>
-    <refpurpose>séparateur de lignes ou d'instructions Scilab</refpurpose>
+    <refpurpose>sÃ©parateur de lignes ou d'instructions Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    Les points-virgules sont utilisés pour séparer des lignes dans une définition de matrice.
+    Les points-virgules sont utilisÃ©s pour sÃ©parer des lignes dans une dÃ©finition de matrice.
   </para>
     <para>
-    Les points-virgules sont aussi utilisés pour marquer la fin d'une instruction. Dans ce cas le résultat n'est pas affiché. On peut utiliser à la place une virgule (,) qui permet de séparer les instructions sans supprimer l'affichage.
+    Les points-virgules sont aussi utilisÃ©s pour marquer la fin d'une instruction. Dans ce cas le rÃ©sultat n'est pas affichÃ©. On peut utiliser Ã  la place une virgule (,) qui permet de sÃ©parer les instructions sans supprimer l'affichage.
   </para>
   </refsection>
   <refsection>

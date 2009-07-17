@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -64,7 +64,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
         <para><emphasis role="bold">Info :</emphasis> a list. It must be list() at the first call, then use output Info as input Info for the next calls. Info contains compilation and simulation information and is used to avoid recompilation when not needed.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">%scicos_context :</emphasis> a Scilab struct containing values of symbolic variables used in the context and Scicos blocks. This is often used to change a parameter in the diagram context. In that case, make sure that in the diagram context the variable is defined such that it can be modified. Say a variable "a" is to be defined in the context having value 1, and later in batch mode, we want to change the value of "a". In that case, in the context of the diagram place: if exists('a') then a=1,end If you want then to run the simulation in batch mode using the value a=2, set: %scicos_context.a=2</para>
+        <para><emphasis role="bold">%scicos_context :</emphasis> a Scilab struct containing values of symbolic variables used in the context and Scicos blocks. This is often used to change a parameter in the diagram context. In that case, make sure that in the diagram context the variable is defined such that it can be modified. Say a variable "a" is to be defined in the context having value 1, and later in batch mode, we want to change the value of "a". In that case, in the context of the diagram place: ifÂ exists('a') then a=1,end If you want then to run the simulation in batch mode using the value a=2, set: %scicos_context.a=2</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">flag :</emphasis> string. If it equals 'nw' (no window), then blocks using graphical windows are not executed. Note that the list of such blocks must be updated as new blocks are added.</para>

@@ -183,6 +183,11 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 			  double[] bottom, double[] top,
  			  double[] zCoord) {
 		
+		if (getThickness() <= 0.0f) {
+			// not outline to draw
+			return;
+		}
+		
 		GL gl = getGL();
 
 

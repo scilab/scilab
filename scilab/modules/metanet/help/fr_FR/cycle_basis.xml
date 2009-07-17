@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>cycle_basis</refname>
-    <refpurpose> base des cycles d'un graphe simple non-orienté  </refpurpose>
+    <refpurpose> base des cycles d'un graphe simple non-orientÃ©  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>spc = cycle_basis(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -44,17 +44,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Tout d'abord un arbre couvrant est trouvé avec <literal>min_weight_tree</literal> et est 
-    ensuite utilisé pour trouver tous les cycles fondamentaux par rapport à 
-    cet arbre. Ils sont renvoyés sous forme d'un 
-    ensemble de cycles, chaque cycle étant représenté par un ensemble d'arêtes.
-    Ces cycles sont renvoyés dans une matrice creuse<literal>spc</literal> : chaque ligne 
-    de cette matrice correspond à un cycle.
+    Tout d'abord un arbre couvrant est trouvÃ© avec <literal>min_weight_tree</literal> et est 
+    ensuite utilisÃ© pour trouver tous les cycles fondamentaux par rapport Ã  
+    cet arbre. Ils sont renvoyÃ©s sous forme d'un 
+    ensemble de cycles, chaque cycle Ã©tant reprÃ©sentÃ© par un ensemble d'arÃªtes.
+    Ces cycles sont renvoyÃ©s dans une matrice creuse<literal>spc</literal> : chaque ligne 
+    de cette matrice correspond Ã  un cycle.
   </para>
     <para>
-    Le graphe <literal>g</literal> est supposé simple, non-orienté et connecté
-    (<literal>cycle_basis</literal> ne vérifie pas que le graphe est simple, utiliser 
-    <literal>graph_simp</literal>m avant l'appel si nécessaire).
+    Le graphe <literal>g</literal> est supposÃ© simple, non-orientÃ© et connectÃ©
+    (<literal>cycle_basis</literal> ne vÃ©rifie pas que le graphe est simple, utiliser 
+    <literal>graph_simp</literal>m avant l'appel si nÃ©cessaire).
   </para>
   </refsection>
   <refsection>

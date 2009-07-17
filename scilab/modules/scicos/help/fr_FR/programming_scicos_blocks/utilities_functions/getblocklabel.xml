@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -39,14 +39,14 @@
 [label]=getblocklabel(blk)
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_getblocklabel">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_getblocklabel">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">blk :</emphasis> Paramètre entier. Définit l'index d'un bloc dans la structure compilée.</para>
+        <para><emphasis role="bold">blk :</emphasis> ParamÃ¨tre entier. DÃ©finit l'index d'un bloc dans la structure compilÃ©e.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">label :</emphasis> Chaînes de caractères. Retourne le label du bloc numéroté blk.</para>
+        <para><emphasis role="bold">label :</emphasis> ChaÃ®nes de caractÃ¨res. Retourne le label du bloc numÃ©rotÃ© blk.</para>
       </listitem>
     </itemizedlist>
   </refsection>

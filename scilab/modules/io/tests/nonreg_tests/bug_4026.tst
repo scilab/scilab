@@ -16,9 +16,10 @@
 //
 
 // <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
+
 // With the "unix" command under Windows, it is not possible to run an external program which has a long path name.
 
 // put a executable in a long path name
 // unix("C:/Program Files/OpenOffice.org 3/program/scalc.exe")
 // scalc must be launched
-

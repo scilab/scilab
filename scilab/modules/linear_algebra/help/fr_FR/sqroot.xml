@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> factorisation hermitienne W*W'  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>sqroot(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice complexe ou réelle, symétrique définie non-négative
+          <para>matrice complexe ou rÃ©elle, symÃ©trique dÃ©finie non-nÃ©gative
 </para>
         </listitem>
       </varlistentry>

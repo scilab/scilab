@@ -21,7 +21,7 @@
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(complexify)(int *num);
+extern int C2F(complexify)(int const *num);
 /*--------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {

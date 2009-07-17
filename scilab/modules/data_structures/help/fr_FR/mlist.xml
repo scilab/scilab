@@ -1,46 +1,46 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mlist">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>mlist</refname>
-    <refpurpose>Objet Scilab, définition d'une liste
-  typée</refpurpose>
+    <refpurpose>Objet Scilab, dÃ©finition d'une liste
+  typÃ©e</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>mlist(typ,a1,....an )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>vecteur de chaînes de caractères</para>
+          <para>vecteur de chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ai</term>
         <listitem>
-          <para>objet Scilab (<literal>matrice, liste, chaîne...</literal>).</para>
+          <para>objet Scilab (<literal>matrice, liste, chaÃ®ne...</literal>).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Les objets de type <literal>mlist</literal> sont très similaires aux objets
+    <para>Les objets de type <literal>mlist</literal> sont trÃ¨s similaires aux objets
     de type <literal>tlist</literal>. Si <literal>M</literal> est de type mlist, pour tout
     indice <literal>i</literal> qui n'est pas le nom d'un champ de la liste,
-    <literal>M(i)</literal> n'est pas le <literal>i</literal>-ème champ de la liste mais
-    est interprété comme le <literal>i</literal>-ème terme de <literal>M</literal> vu
-    comme un vecteur. C'est la seule différence entre <literal>mlist</literal> et
+    <literal>M(i)</literal> n'est pas le <literal>i</literal>-Ã¨me champ de la liste mais
+    est interprÃ©tÃ© comme le <literal>i</literal>-Ã¨me terme de <literal>M</literal> vu
+    comme un vecteur. C'est la seule diffÃ©rence entre <literal>mlist</literal> et
     <literal>tlist</literal>.</para>
     <para/>
-    <para>Les champs des mlist doivent donc être manipulés par leur noms. Il
-    peuvent aussi être manipulés avec les fonctions <literal>getfield</literal> et
+    <para>Les champs des mlist doivent donc Ãªtre manipulÃ©s par leur noms. Il
+    peuvent aussi Ãªtre manipulÃ©s avec les fonctions <literal>getfield</literal> et
     <literal>setfield</literal>.</para>
     <para/>
   </refsection>
@@ -48,15 +48,15 @@
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
-// définition de la fonction d'affichage
+// dÃ©finition de la fonction d'affichage
 deff('%V_p(M)','disp(M.name+'':''+string(M.value))')
-// définition de la fonction d'extraction
+// dÃ©finition de la fonction d'extraction
 deff('r=%V_e(i,M)',..
 'r=mlist([''V'',''name'',''value''],M.name(i),M.value(i))')
-M(2) // Le deuxième terme du vecteur M
+M(2) // Le deuxiÃ¨me terme du vecteur M
 M.value 
 
-// définition de M comme une tlist
+// dÃ©finition de M comme une tlist
 M=tlist(['V','name','value'],['a','b','c'],[1 2 3]);
 M(2)
 

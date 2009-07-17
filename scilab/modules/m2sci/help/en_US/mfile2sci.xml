@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) ???? - INRIA - Serge STEER 
@@ -135,7 +135,7 @@
     help mtlb_&lt;function_name&gt; in Scilab command window
   </para>
     <para>
-    Some other functions like plot, has no straightforward �quivalent in
+    Some other functions like plot, has no straightforward ï¿½quivalent in
     scilab. They are also replaced by an emulation function named
     mtlb_&lt;function_name&gt;.
   </para>
@@ -178,7 +178,7 @@ mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
 // Show the new code
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
 // get it into scilab
-getf(TMPDIR+'/rot90.sci')
+exec(TMPDIR+'/rot90.sci')
 // Execute it
 m=rand(4,2);rot90(m,1)
  

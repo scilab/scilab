@@ -645,9 +645,12 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   
   
   
-  nlow= round(*xminv/ width2);
+  /* nlow= round(*xminv/ width2); */
+	/* Don't use round because the (int) cast may overflow */
+	nlow = floor(*xminv / width2 + 0.5);
   low=nlow* width2;
-  nup = round(*xmaxv/ width2);
+  //nup = round(*xmaxv/ width2);
+	nup = floor(*xmaxv / width2 + 0.5);
   up = nup * width2;
   
   if ( low > *xminv )
@@ -1415,7 +1418,7 @@ int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
 /*--------------------------------------------------------------------------*/
 char * copyFormatedValue( double value, const char format[5], int bufferSize )
 {
-  char * buffer = MALLOC( bufferSize * sizeof(char) ) ;
+  char * buffer = (char*)MALLOC( bufferSize * sizeof(char) ) ;
   char * res = NULL ;
   int resLength = 0 ;
 
@@ -1428,7 +1431,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   resLength =  (int)strlen( buffer ) + 1 ; /* + 1 <=> 0 terminating char */
 
-  res = MALLOC( resLength * sizeof(char) ) ;
+  res = (char*)MALLOC( resLength * sizeof(char) ) ;
 
   if ( res == NULL )
   {

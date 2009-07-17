@@ -39,7 +39,7 @@ static int sci_strcat_one_rhs(char *fname);
 static int sci_strcat_rhs_one_is_a_matrix(char *fname);
 static int sumlengthstring(int rhspos);
 /*-------------------------------------------------------------------------------------*/
-int C2F(sci_strcat)(char *fname,unsigned long fname_len)
+int sci_strcat(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,3);
 	CheckLhs(1,1);
@@ -70,145 +70,186 @@ int C2F(sci_strcat)(char *fname,unsigned long fname_len)
 /*-------------------------------------------------------------------------------------*/
 static int sci_strcat_three_rhs(char *fname) 
 { 
-	char typ = 0;
-	char **Input_String_One = NULL;
-	char **Output_String = NULL;
-	static char def_sep[] ="";
-	char *Input_String_Two = def_sep;
-	static int un=1;
 	int Row_One = 0,Col_One = 0;
+	char **Input_String_One = NULL;
 	int mn = 0;
-	int i = 0,j = 0,k = 0;
-	int Row_Two = 0,Col_Two = 0;
-	int Row_Three = 0,Col_Three = 0;
-	int l3 = 0,nchars = 0; 
+	static char def_sep[] = "";
+	char *Input_String_Two = def_sep;
+	char typ = 0;
+	int i = 0;
 
-	switch ( VarType(1)) 
+	if (VarType(1) != sci_strings)
 	{
-	case sci_strings :
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
-		mn = Row_One*Col_One;  
-		if (Rhs >= 2) 
-		{ 
-			/* second argument always a string and not a matrix of string */
-			int l2 = 0;
-			GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
-			Input_String_Two = cstk(l2);
-		}
-		if (Rhs >= 3) 
-		{
-			GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3);
-			if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
-			if (typ != COL && typ != ROW ) 
-			{
-				Scierror(999,_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
-				return 0;
-			}
-		}
-		switch ( typ ) 
-		{
-		case STAR : 
-			/* just return one string */ 
-			for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]); 
-			nchars += (mn-1)*(int)strlen(Input_String_Two);
-			CreateVar(Rhs+1,STRING_DATATYPE,&un,&nchars,&l3);
-			k=0;
-			for ( i = 0 ; i < mn ; i++ ) 
-			{
-				for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
-				if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
-			}
-			freeArrayOfString(Input_String_One,mn);
-			LhsVar(1) = Rhs+1  ;
-			break;
-		case COL: 
-			/* return a column matrix */ 
-			if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
-			{
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return 0;
-			}
-			Output_String[Row_One]=NULL;
-			for (i= 0 ; i < Row_One ; i++) 
-			{
-				/* length of row i */ 
-				nchars = 0;
-				for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
-				nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
-
-				Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
-				if ( Output_String[i] == NULL) 
-				{
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				} 
-				/* fill the string */
-				strcpy(Output_String[i],Input_String_One[i]);
-
-				if ( Output_String[i] == NULL) 
-				{
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				} 
-
-				for ( j = 1 ; j < Col_One ; j++ ) 
-				{
-					strcat(Output_String[i],Input_String_Two); 
-					strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
-				}
-				
-			}
-			
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &un, Output_String);
-			freeArrayOfString(Input_String_One,mn);
-			freeArrayOfString(Output_String,Row_One+1);
-			LhsVar(1) = Rhs+1  ;
-			
-			break;
-		case ROW: 
-			/* return a row matrix */ 
-			if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
-			{
-				Scierror(999,_("%s: No more memory.\n"),fname);
-				return 0;
-			}
-			Output_String[Col_One]=NULL;
-			for (j= 0 ; j < Col_One ; j++) 
-			{
-				/* length of col j */ 
-				nchars = 0;
-				for ( i = 0 ; i < Row_One ; i++ ) 
-				{
-					nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
-				}
-				nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
-
-				Output_String[j] = strdup(Input_String_One[j*Row_One]);
-
-				if ( Output_String[j] == NULL) 
-				{
-					Scierror(999,_("%s: No more memory.\n"),fname);
-					return 0;
-				} 
-
-				for ( i = 1 ; i < Row_One ; i++ ) 
-				{
-					strcat(Output_String[j],Input_String_Two); 
-					strcat(Output_String[j],Input_String_One[i+ Row_One*j]);
-				}
-			}
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &un, &Col_One, Output_String);
-			freeArrayOfString(Input_String_One,mn);
-			freeArrayOfString(Output_String,Col_One+1);
-			LhsVar(1) = Rhs+1  ;
-			break;
-		}
-		break; 
-	default : 
-		OverLoad(1);
-		break; 
+		Scierror(999,_("%s: Wrong type for input argument #%d: a string vector expected.\n"),fname,1); 
+		return 0;
 	}
 
+	if (VarType(2) != sci_strings)
+	{
+		Scierror(999,"%s : Wrong size for input argument #%d: Single string expected.\n",fname,2);
+		return 0;
+	}
+
+	if (VarType(3) != sci_strings)
+	{
+		Scierror(999,"%s : Wrong size for input argument #%d: Single string expected.\n",fname,3);
+		return 0;
+	}
+
+	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_One,&Col_One,&Input_String_One);
+	mn = Row_One*Col_One;  
+
+	if (Rhs >= 2) 
+	{ 
+		/* second argument always a string and not a matrix of string */
+		int l2 = 0;
+		int Row_Two = 0,Col_Two = 0;
+		GetRhsVar(2,STRING_DATATYPE,&Row_Two,&Col_Two,&l2);
+		Input_String_Two = cstk(l2);
+	}
+
+	if (Rhs >= 3) 
+	{
+		int Row_Three = 0,Col_Three = 0;
+		int l3 = 0;
+		GetRhsVar(3,STRING_DATATYPE,&Row_Three,&Col_Three,&l3);
+		if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
+		if (typ != COL && typ != ROW ) 
+		{
+			freeArrayOfString(Input_String_One,mn);
+			Scierror(999,_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
+			return 0;
+		}
+	}
+
+	switch ( typ ) 
+	{
+		case STAR : 
+			{
+				int nchars = 0; 
+				int one = 1;
+				int l3 = 0;
+				int k = 0;
+
+				/* just return one string */ 
+				for ( i = 0 ; i < mn ; i++ ) nchars += (int)strlen(Input_String_One[i]); 
+				nchars += (mn-1)*(int)strlen(Input_String_Two);
+
+				CreateVar(Rhs+1,STRING_DATATYPE,&one,&nchars,&l3);
+
+				for ( i = 0 ; i < mn ; i++ ) 
+				{
+					int j = 0;
+					for ( j =0 ; j < (int)strlen(Input_String_One[i]) ; j++ ) *cstk(l3+ k++) = Input_String_One[i][j]; 
+					if ( i != mn-1) for ( j =0 ; j < (int)strlen(Input_String_Two) ; j++ ) *cstk(l3+ k++) = Input_String_Two[j];
+				}
+				freeArrayOfString(Input_String_One,mn);
+				LhsVar(1) = Rhs+1  ;
+			}
+		break;
+		case COL: 
+			{
+				char **Output_String = NULL;
+				int nchars = 0;
+				int one = 1;
+				/* return a column matrix */ 
+				if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
+				{
+					freeArrayOfString(Input_String_One,mn);
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
+				Output_String[Row_One]=NULL;
+				for (i= 0 ; i < Row_One ; i++) 
+				{
+					int j = 0;
+					/* length of row i */ 
+					nchars = 0;
+					for ( j = 0 ; j < Col_One ; j++ ) nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
+					nchars += (Col_One-1)*(int)strlen(Input_String_Two); 
+
+					Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
+					if ( Output_String[i] == NULL) 
+					{
+						freeArrayOfString(Output_String,i);
+						freeArrayOfString(Input_String_One,mn);
+						Scierror(999,_("%s: No more memory.\n"),fname);
+						return 0;
+					} 
+					/* fill the string */
+					strcpy(Output_String[i],Input_String_One[i]);
+
+					for ( j = 1 ; j < Col_One ; j++ ) 
+					{
+						strcat(Output_String[i],Input_String_Two); 
+						strcat(Output_String[i],Input_String_One[i+ Row_One*j]);
+					}
+
+				}
+
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &Row_One, &one, Output_String);
+				freeArrayOfString(Input_String_One,mn);
+				freeArrayOfString(Output_String,Row_One+1);
+				LhsVar(1) = Rhs+1  ;
+			}
+		break;
+
+		case ROW:
+			{
+				char **Output_String = NULL;
+				int nchars = 0;
+				int j = 0;
+				int one = 1;
+				/* return a row matrix */ 
+				if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
+				{
+					freeArrayOfString(Input_String_One,mn);
+					Scierror(999,_("%s: No more memory.\n"),fname);
+					return 0;
+				}
+				Output_String[Col_One]=NULL;
+				for (j= 0 ; j < Col_One ; j++) 
+				{
+					/* length of col j */ 
+					nchars = 0;
+					for ( i = 0 ; i < Row_One ; i++ ) 
+					{
+						nchars += (int)strlen(Input_String_One[i+ Row_One*j]);
+					}
+					nchars += (Row_One-1)*(int)strlen(Input_String_Two); 
+
+					Output_String[j] = strdup(Input_String_One[j*Row_One]);
+
+					if ( Output_String[j] == NULL) 
+					{
+						freeArrayOfString(Output_String,j);
+						freeArrayOfString(Input_String_One,mn);
+						Scierror(999,_("%s: No more memory.\n"),fname);
+						return 0;
+					} 
+
+					for ( i = 1 ; i < Row_One ; i++ ) 
+					{
+						strcat(Output_String[j],Input_String_Two); 
+						strcat(Output_String[j],Input_String_One[i+ Row_One*j]);
+					}
+				}
+				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &one, &Col_One, Output_String);
+				freeArrayOfString(Input_String_One,mn);
+				freeArrayOfString(Output_String,Col_One+1);
+				LhsVar(1) = Rhs+1  ;
+			}
+		break;
+
+		default:
+			{
+				freeArrayOfString(Input_String_One,mn);
+				Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
+				return 0;
+			}
+		break;
+
+	}
 	C2F(putlhsvar)();
 	return 0;
 }
@@ -223,7 +264,7 @@ static int sci_strcat_two_rhs(char *fname)
 	
 	if (Type_Two != sci_strings)
 	{
-		Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname); 
+		Scierror(246,_("%s: Wrong type for input argument #%d: Single string expected.\n"),fname,2); 
 		return 0;
 	}
 	else /* sci_strings */
@@ -236,7 +277,7 @@ static int sci_strcat_two_rhs(char *fname)
 		if (Number_Inputs_Two != 1)
 		{
 			freeArrayOfString(Input_String_Two,Number_Inputs_Two);
-			Scierror(36,"%s : Wrong type for input argument #%d: Single string expected.\n",fname,2);
+			Scierror(36,"%s : Wrong size for input argument #%d: Single string expected.\n",fname,2);
 			return 0;
 		}
 	}

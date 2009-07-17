@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 15:01+0100\n"
-"PO-Revision-Date: 2008-12-21 21:10+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2009-02-13 10:13+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -54,11 +54,11 @@ msgstr "%s: Неверный размер входного аргумента"
 
 #, c-format
 msgid "%s is not an installed module or toolbox"
-msgstr ""
+msgstr "%s не является установленным модулем или набором инструментов"
 
 #, c-format
 msgid "The test %s is not available from the %s toolbox"
-msgstr ""
+msgstr "Тест %s недоступен из набора инструментов %s"
 
 #, c-format
 msgid "The ref file (%s) doesn''t exist"

@@ -5,7 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <!-- ENGLISH IMPOSED -->
+
 //syntax with no explicit lhs
+
 1
 -1
 1+1

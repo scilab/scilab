@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intstring) (void); /* fortran routine */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_string)(char *fname,unsigned long fname_len)
+int sci_string(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(1,3);

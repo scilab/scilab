@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ldiv">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>ldiv</refname>
-    <refpurpose> division longue d'une matrice de polynômes  </refpurpose>
+    <refpurpose> division longue d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[x]=ldiv(n,d,k)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>n,d  </term>
         <listitem>
-          <para>deux matrices réelles de polynômes
+          <para>deux matrices rÃ©elles de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -33,11 +33,11 @@
   <refsection>
     <title>Description</title>
     <para><literal>x=ldiv(n,d,k)</literal> donne les <literal>k</literal> premiers coefficients de la division longue
-    de <literal>n</literal> par <literal>d</literal> i.e. le développement de Taylor de la matrice rationnelle
-    <literal>[nij(z)/dij(z)]</literal> à l'infini.
+    de <literal>n</literal> par <literal>d</literal> i.e. le dÃ©veloppement de Taylor de la matrice rationnelle
+    <literal>[nij(z)/dij(z)]</literal> Ã  l'infini.
   </para>
     <para>
-    Les coefficients du développement de <literal>nij/dij</literal> sont stockés dans  
+    Les coefficients du dÃ©veloppement de <literal>nij/dij</literal> sont stockÃ©s dans  
     <literal>x((i-1)*n+k,j)  k=1:n</literal>
   </para>
   </refsection>

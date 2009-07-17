@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>min_lcost_flow2</refname>
-    <refpurpose> flot de coût linéaire minimum  </refpurpose>
+    <refpurpose> flot de coÃ»t linÃ©aire minimum  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[c,phi,flag] = min_lcost_flow2(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -35,7 +35,7 @@
       <varlistentry>
         <term>c  </term>
         <listitem>
-          <para>valeur du coût
+          <para>valeur du coÃ»t
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>problème soluble ou pas (0 ou 1)
+          <para>problÃ¨me soluble ou pas (0 ou 1)
 </para>
         </listitem>
       </varlistentry>
@@ -57,30 +57,30 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_flow2</literal> calcule flot de coût linéaire minimum dans un réseau 
-    <literal>g</literal>. Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
-    le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problème n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est égal à 0, sinon il est égal à 1.
+    <para><literal>min_lcost_flow2</literal> calcule flot de coÃ»t linÃ©aire minimum dans un rÃ©seau 
+    <literal>g</literal>. Elle renvoie le coÃ»t total du flot sur les arcs <literal>c</literal> et
+    le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problÃ¨me n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est Ã©gal Ã  0, sinon il est Ã©gal Ã  1.
   </para>
     <para>
-    Les bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
+    Les bornes sur les flots sont donnÃ©es par les Ã©lÃ©ments <literal>edge_min_cap</literal> et
     <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité minimum doit être égal à zéro. Les valeurs des capacités maximum doivent être entières et positives.
-    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
+    La valeur de la capacitÃ© minimum doit Ãªtre Ã©gal Ã  zÃ©ro. Les valeurs des capacitÃ©s maximum doivent Ãªtre entiÃ¨res et positives.
+    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas donnÃ©es (vecteur vide <literal>[]</literal>), elles sont supposÃ©es nulles sur chaque arÃªte.
   </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être entiers et positifs.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+    Les coÃ»ts sur les arÃªtes sont donnÃ©s par les Ã©lÃ©ments <literal>edge_cost</literal> du graphe.
+    Les coÃ»ts doivent Ãªtre entiers et positifs.
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), 
+    elle est supposÃ© nulle sur chaque arÃªte.
   </para>
     <para>
   </para>
     <para>
-    La demande sur les sommets est donnée par l'élément <literal>node_demand</literal> du graphe.
-    Les demandes doivent être des nombre entiers. La somme des demandes doit être nulle pour que le problème soit soluble. Si la valeur de <literal>node_demand</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), elle est supposée nulle sur chaque sommet.
+    La demande sur les sommets est donnÃ©e par l'Ã©lÃ©ment <literal>node_demand</literal> du graphe.
+    Les demandes doivent Ãªtre des nombre entiers. La somme des demandes doit Ãªtre nulle pour que le problÃ¨me soit soluble. Si la valeur de <literal>node_demand</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), elle est supposÃ©e nulle sur chaque sommet.
   </para>
     <para>
-    Cette fonction utilise un algorithme de relaxation dû à D. Bertsekas.
+    Cette fonction utilise un algorithme de relaxation dÃ» Ã  D. Bertsekas.
   </para>
   </refsection>
   <refsection>
@@ -94,8 +94,8 @@ g('node_y')=[56 221 316 318 316 143 214 321 217 126 215 80 330 437 439];
 show_graph(g);
 g1=g; ma=arc_number(g1); n=g1('node_number');
 g1('edge_min_cap')=0.*ones(1,ma);
-messagebox(['Generation aléatoire des données';
-           'Les premiers problèmes générés peuvent être insolubles'],"modal");
+messagebox(['Generation alÃ©atoire des donnÃ©es';
+           'Les premiers problÃ¨mes gÃ©nÃ©rÃ©s peuvent Ãªtre insolubles'],"modal");
 while %T then
  rand('uniform');
  g1('edge_max_cap')=round(20*rand(1,ma))+20*ones(1,ma);

@@ -15,6 +15,7 @@
 // error R6034 at startup when you launch tests on Windows x64
 
 // <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
 
 if win64() <> %t then pause,end
 

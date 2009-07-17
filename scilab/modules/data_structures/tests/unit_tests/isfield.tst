@@ -38,8 +38,29 @@ if lasterror() <> "isfield: Wrong type for input argument #1: struct array expec
 
 // Fonctionnality
 
-my_struct = struct("field_1",123,"field_2",456);
+my_struct = struct("field_1",123,"field_2",456,"field_4",789);
 
 if ~ isfield(my_struct,"field_1") then pause, end
 if ~ isfield(my_struct,"field_2") then pause, end
 if   isfield(my_struct,"field_3") then pause, end
+if ~ isfield(my_struct,"field_4") then pause, end
+
+fields = [ "field_1" "field_2" ; "field_3" "field_4" ; "field_3" "field_4" ];
+ref    = [    %T        %T     ;    %F        %T     ;    %F        %T     ];
+if or( isfield( my_struct , fields ) <> ref ) then pause, end
+
+
+fields = [ "field_1" "field_2" "field_3" "field_4" "field_3" "field_4" ];
+ref    = [    %T        %T        %F        %T        %F        %T     ];
+if or( isfield( my_struct , fields ) <> ref ) then pause, end
+
+
+fields = [ "field_1" ; "field_2" ; "field_3" ; "field_4" ; "field_3" ; "field_4" ];
+ref    = [    %T     ;    %T     ;    %F     ;    %T     ;    %F     ;    %T     ];
+if or( isfield( my_struct , fields ) <> ref ) then pause, end
+
+
+fields = [ "field_1" "field_2" "field_3" ; "field_4" "field_3" "field_4" ];
+ref    = [    %T        %T        %F     ;    %T        %F        %T     ];
+if or( isfield( my_struct , fields ) <> ref ) then pause, end
+

@@ -9,6 +9,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intsimp(id)
       INCLUDE 'stack.h'
 
+Cc (DLL Import Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /csimp/
+cDEC$ ENDIF      
       integer id(nsiz)
       integer simpmd
       common/csimp/ simpmd

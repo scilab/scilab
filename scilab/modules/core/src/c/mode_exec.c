@@ -16,10 +16,10 @@
 /*--------------------------------------------------------------------------*/ 
 BOOL setExecMode(int _mode)
 {
-	int *Lct = C2F(iop).lct - 1;
-	if ( _mode != Lct[4] )
+	int *Lct = C2F(iop).lct;
+	if ( _mode != Lct[3] )
 	{
-		Lct[4] = _mode;
+		Lct[3] = _mode;
 		return TRUE;
 	}
 	return FALSE;
@@ -27,7 +27,7 @@ BOOL setExecMode(int _mode)
 /*--------------------------------------------------------------------------*/ 
 int getExecMode(void)
 {
-	int *Lct = C2F(iop).lct - 1;
-	return Lct[4];
+	int *Lct = C2F(iop).lct;
+	return Lct[3];
 }
 /*--------------------------------------------------------------------------*/ 

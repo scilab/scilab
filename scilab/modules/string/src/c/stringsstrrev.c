@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,6 +18,10 @@
 #include "stringsstrrev.h"
 #include "freeArrayOfString.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*----------------------------------------------------------------------------*/
 char **strings_strrev(char **Input_strings,int Dim_Input_strings)
 {
@@ -29,12 +34,8 @@ char **strings_strrev(char **Input_strings,int Dim_Input_strings)
 			int i = 0;	
 			for (i = 0;i < Dim_Input_strings;i++)
 			{
-				Output_strings[i] = (char*)MALLOC(sizeof(char)*(strlen(Input_strings[i])+1));
-				if (Output_strings[i])
-				{
-					strcpy(Output_strings[i],scistrrev(Input_strings[i]));
-				}
-				else
+				Output_strings[i] = scistrrev(Input_strings[i]);
+				if (!Output_strings[i])
 				{
 					freeArrayOfString(Output_strings,i);
 					return Output_strings;
@@ -47,25 +48,35 @@ char **strings_strrev(char **Input_strings,int Dim_Input_strings)
 /*----------------------------------------------------------------------------*/
 char* scistrrev(char* str)
 {
-#if _MSC_VER
-	return _strrev(str);
-#else
-	if ( !str ) return NULL;
-	int i = strlen(str);
-	int t = !(i%2)? 1 : 0;      // check the length of the string .
-	int j = 0,k = 0;
-
-	/* copy character by character to reverse string */
-	k = 0;
-	for(j = i-1; j > (i/2 -t) ; j-- ) /* @TODO add comment */
+	char *revstr = NULL;
+	if (str)
 	{
-		/* j starts from end of string */
-		/* k starts from beginning of string */
-		char ch  = str[j]; /* ch temp. character */
-		str[j]   = str[k]; /* end and beginning characters are exchanged */
-		str[k++] = ch;
-	}
-	return str;
+		wchar_t *wcstr = to_wide_string(str);
+#ifdef _MSC_VER
+		wchar_t *wcrevstr = _wcsrev(wcstr);
+		revstr = wide_string_to_UTF8(wcrevstr);
+		if (wcrevstr) {FREE(wcrevstr);wcrevstr = NULL;}
+#else
+		int i = 0;
+		int t = 0;
+		int j = 0, k = 0;
+
+		if (wcstr) i = (int)wcslen(wcstr);
+		t = !(i%2)? 1 : 0;      // check the length of the string .
+		
+		/* copy character by character to reverse string */
+		k = 0;
+		for(j = i-1; j > (i/2 -t) ; j-- )
+		{
+			/* j starts from end of string */
+			/* k starts from beginning of string */
+			wchar_t ch  = wcstr[j]; /* ch temp. character */
+			wcstr[j]   = wcstr[k]; /* end and beginning characters are exchanged */
+			wcstr[k++] = ch;
+		}
+		revstr = wide_string_to_UTF8(wcstr);
 #endif
+	}
+	return revstr;
 }
 /*----------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,44 +16,44 @@
   </info>
   <refnamediv>
     <refname>mtlb_beta</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab beta</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab beta</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>beta</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des paramètres d'entrée de tailles différentes : les paramètres d'entrée de la fonction 
-	<literal>beta</literal> de Matlab doivent être de même taille sauf si l'un d'entre eux est un scalaire.
-	Les paramètres d'entrée de la fonction <literal>beta</literal> de Scilab doivent être de même taille
-	même si l'un d'entre eux est un scalaire.
+        Avec des paramÃ¨tres d'entrÃ©e de tailles diffÃ©rentes : les paramÃ¨tres d'entrÃ©e de la fonction 
+	<literal>beta</literal> de Matlab doivent Ãªtre de mÃªme taille sauf si l'un d'entre eux est un scalaire.
+	Les paramÃ¨tres d'entrÃ©e de la fonction <literal>beta</literal> de Scilab doivent Ãªtre de mÃªme taille
+	mÃªme si l'un d'entre eux est un scalaire.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_beta(A,B)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>beta(A,B)</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <literal>mtlb_beta(A,B)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>beta(A,B)</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_beta</literal> :
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_beta</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>A</literal> est un scalaire mais pas <literal>B</literal>
-        <literal>Y = mtlb_beta(A,B)</literal> peut être remplacé par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut Ãªtre remplacÃ© par <literal>C=B;C(:)=A;Y = mtlb_beta(C,B);</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>B</literal> est un scalaire mais pas <literal>A</literal>
-        <literal>Y = mtlb_beta(A,B)</literal> peut être remplacé par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
+        <literal>Y = mtlb_beta(A,B)</literal> peut Ãªtre remplacÃ© par <literal>C=A;C(:)=B;Y = mtlb_beta(A,C);</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_beta</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_beta</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

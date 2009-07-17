@@ -14,6 +14,7 @@
 #include "stack-c.h"
 #include "str2sci.h"
 #include "cvstr.h"
+#include "Scierror.h"
 
 void str2sci(char** x,int n,int m)
 {

@@ -14,44 +14,46 @@
 #include "gw_string.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define STRING_TAB_SIZE 31
+static gw_generic_table Tab[STRING_TAB_SIZE]=
 {
-	{C2F(sci_length),"length"},
-	{C2F(sci_part),"part"},
-	{C2F(sci_string),"string"},
-	{C2F(sci_convstr),"convstr"},
-	{C2F(sci_emptystr),"emptystr"},
-	{C2F(sci_str2code),"str2code"},
-	{C2F(sci_code2str),"code2str"},
-	{C2F(sci_strcat),"strcat"},
-	{C2F(sci_strindex),"strindex"},
-	{C2F(sci_strsubst),"strsubst"},
-	{C2F(sci_ascii),"ascii"},
-	{C2F(sci_grep),"grep"},
-	{C2F(sci_tokens),"tokens"},
-	{C2F(sci_strsplit),"strsplit"},
-	{C2F(sci_stripblanks),"stripblank"},
-	{C2F(sci_strcmp),"strcmp"},
-	{C2F(sci_isletter),"isletter"},
-	{C2F(sci_isdigit),"isdigit"},
-	{C2F(sci_isalphanum),"isalphanum"},
-	{C2F(sci_isascii),"isascii"},
-	{C2F(sci_strcspn),"strcspn"},
-	{C2F(sci_strncpy),"strncpy"},
-	{C2F(sci_strrchr),"strrchr"},
-	{C2F(sci_strchr),"strchr"},
-	{C2F(sci_strstr),"strstr"},
-	{C2F(sci_strrev),"strrev"},
-	{C2F(sci_strtok),"strtok"},
-	{C2F(sci_strspn),"strspn"},
-	{C2F(sci_strtod),"strtod"},
-	{C2F(sci_regexp),"regexp"}
+	{sci_length,"length"},
+	{sci_part,"part"},
+	{sci_string,"string"},
+	{sci_convstr,"convstr"},
+	{sci_emptystr,"emptystr"},
+	{sci_str2code,"str2code"},
+	{sci_code2str,"code2str"},
+	{sci_strcat,"strcat"},
+	{sci_strindex,"strindex"},
+	{sci_strsubst,"strsubst"},
+	{sci_ascii,"ascii"},
+	{sci_grep,"grep"},
+	{sci_tokens,"tokens"},
+	{sci_strsplit,"strsplit"},
+	{sci_stripblanks,"stripblank"},
+	{sci_strcmp,"strcmp"},
+	{sci_isletter,"isletter"},
+	{sci_isdigit,"isdigit"},
+	{sci_isalphanum,"isalphanum"},
+	{sci_isascii,"isascii"},
+	{sci_strcspn,"strcspn"},
+	{sci_strncpy,"strncpy"},
+	{sci_strrchr,"strrchr"},
+	{sci_strchr,"strchr"},
+	{sci_strstr,"strstr"},
+	{sci_strrev,"strrev"},
+	{sci_strtok,"strtok"},
+	{sci_strspn,"strspn"},
+	{sci_strtod,"strtod"},
+	{sci_regexp,"regexp"},
+	{sci_NumTokens,"NumTokens"}
 
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,STRING_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

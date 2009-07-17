@@ -98,7 +98,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   // Display a warning if a flag has been given (obsolete use)
   if (displayWarning)
     {
-      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"),fname);
+      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionality will be permanently removed in Scilab 5.1.\n"),fname);
     }
 
   // Call Java to get mouse information
@@ -145,15 +145,16 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
   switch (Lhs) {
   case 1:
+		C2F(putlhsvar)();
     return 0;
   case 2:
-    LhsVar(1) = Rhs+1;
-
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
     *stk(l2) = windowsID; /* this is the window number */
     LhsVar(2) = Rhs+2;
+		C2F(putlhsvar)();
     return 0;
   }
+	C2F(putlhsvar)();
   return -1 ;
 }
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="IN_f">
   <refnamediv>
     <refname>IN_f</refname>
-    <refpurpose>Port d'entrée régulier</refpurpose>
+    <refpurpose>Port d'entrÃ©e rÃ©gulier</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="IN_f">Port d'entrée régulier</link>
+          <link linkend="IN_f">Port d'entrÃ©e rÃ©gulier</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_IN_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_IN_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_IN_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_IN_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,15 +93,15 @@
   <refsection id="Description_IN_f">
     <title>Description</title>
     <para>
-Ce bloc doit être utilisé dans un superbloc pour représenter un port
-d'entrée régulier. La taille de ce port est automatiquement ajustée.
-Dans un superbloc, les ports d'entrée réguliers doivent être numérotés
-de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
+Ce bloc doit Ãªtre utilisÃ© dans un superbloc pour reprÃ©senter un port
+d'entrÃ©e rÃ©gulier. La taille de ce port est automatiquement ajustÃ©e.
+Dans un superbloc, les ports d'entrÃ©e rÃ©guliers doivent Ãªtre numÃ©rotÃ©s
+de 1 jusqu'au nombre de ports d'entrÃ©e rÃ©guliers composant le superbloc.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_IN_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_IN_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -117,13 +117,13 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
         <para>
           <emphasis role="bold">Port number</emphasis>
         </para>
-        <para> un entier qui définit le numéro de port.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> un entier qui dÃ©finit le numÃ©ro de port.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_IN_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_IN_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -132,33 +132,33 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type -1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

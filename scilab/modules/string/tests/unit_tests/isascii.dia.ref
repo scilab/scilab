@@ -19,3 +19,19 @@ if isascii(code2str(300)) <> %F then bugmes();quit;end
 // =============================================================================
 if or(isascii(code2str(300:350))) <> %F then bugmes();quit;end
 // =============================================================================
+tab_ref = [
+"世界A您好",
+"азеAазея",
+"ハロー・Aワールド",
+"เฮลโลเAวิลด์",
+"حرياتAوحقوق",
+"תוAכנית"];
+r_ref = list([%F,%F,%T,%F,%F], ..
+[%F,%F,%F,%T,%F,%F,%F,%F], ..
+[%F,%F,%F,%F,%T,%F,%F,%F,%F], ..
+[%F,%F,%F,%F,%F,%F,%T,%F,%F,%F,%F,%F], ..
+[%F,%F,%F,%F,%F,%T,%F,%F,%F,%F,%F], ..
+[%F,%F,%T,%F,%F,%F,%F]);
+for i = 1 : size(tab_ref,'*')
+ if and(isascii(tab_ref(i))<> r_ref(i)) then bugmes();quit;end
+end

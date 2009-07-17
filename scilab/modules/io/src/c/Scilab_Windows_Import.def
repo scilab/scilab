@@ -6,5 +6,6 @@ EXPORTS
 ; scilab_windows
 ;
  strdup_windows
+ wstrdup_windows
 ;
 

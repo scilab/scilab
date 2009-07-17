@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -50,7 +50,7 @@
     <title>Description</title>
     <para>
 Dans la palette Branching, vous pouvez trouver divers blocs
-pour la gestion des données véhiculées par les liens réguliers.
+pour la gestion des donnÃ©es vÃ©hiculÃ©es par les liens rÃ©guliers.
 
 </para>
   </refsection>
@@ -59,22 +59,22 @@ pour la gestion des données véhiculées par les liens réguliers.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CLKFROM">CLKFROM - Récepteur de donnée pour un boc CLKGOTO</link>
+          <link linkend="CLKFROM">CLKFROM - RÃ©cepteur de donnÃ©e pour un boc CLKGOTO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="CLKGOTO">CLKGOTO - Transmetteur de donnée pour un bloc CLKFROM</link>
+          <link linkend="CLKGOTO">CLKGOTO - Transmetteur de donnÃ©e pour un bloc CLKFROM</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="CLKGotoTagVisibility">CLKGotoTagVisibility - Définit la portée des données d'un bloc CLKGOTO</link>
+          <link linkend="CLKGotoTagVisibility">CLKGotoTagVisibility - DÃ©finit la portÃ©e des donnÃ©es d'un bloc CLKGOTO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="DEMUX">DEMUX - Démultiplexeur</link>
+          <link linkend="DEMUX">DEMUX - DÃ©multiplexeur</link>
         </para>
       </listitem>
       <listitem>
@@ -99,32 +99,32 @@ pour la gestion des données véhiculées par les liens réguliers.
       </listitem>
       <listitem>
         <para>
-          <link linkend="FROM">FROM - FROM Récepteur de données d'un bloc GOTO</link>
+          <link linkend="FROM">FROM - FROM RÃ©cepteur de donnÃ©es d'un bloc GOTO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="FROMMO">FROMMO - FROMMO Récepteur de données d'un bloc GOTOMO</link>
+          <link linkend="FROMMO">FROMMO - FROMMO RÃ©cepteur de donnÃ©es d'un bloc GOTOMO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GOTO">GOTO - GOTO Transmetteur de données vers un bloc FROM</link>
+          <link linkend="GOTO">GOTO - GOTO Transmetteur de donnÃ©es vers un bloc FROM</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GOTOMO">GOTOMO - GOTOMO Transmetteur de données vers un bloc FROMMO</link>
+          <link linkend="GOTOMO">GOTOMO - GOTOMO Transmetteur de donnÃ©es vers un bloc FROMMO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Définit la portée des données d'un bloc GOTO</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTO</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibilityMO">GotoTagVisibilityMO - Définit la portée des données d'un bloc GOTOMO</link>
+          <link linkend="GotoTagVisibilityMO">GotoTagVisibilityMO - DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTOMO</link>
         </para>
       </listitem>
       <listitem>
@@ -139,7 +139,7 @@ pour la gestion des données véhiculées par les liens réguliers.
       </listitem>
       <listitem>
         <para>
-          <link linkend="M_SWITCH">M_SWITCH - Switch à port multiple</link>
+          <link linkend="M_SWITCH">M_SWITCH - Switch Ã  port multiple</link>
         </para>
       </listitem>
       <listitem>

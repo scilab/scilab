@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose>  estimation de l'inverse du conditionnement  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>rcond(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice carrée réelle ou complexe
+          <para>matrice carrÃ©e rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -39,14 +39,14 @@
     <para><literal>rcond(X)</literal> est une estimation de l'inverse du conditionnement de <literal>X</literal> pour la norme l_1.
   </para>
     <para>
-    Si <literal>X</literal> est bien conditionnée, <literal>rcond(X)</literal> est proche 1.
+    Si <literal>X</literal> est bien conditionnÃ©e, <literal>rcond(X)</literal> est proche 1.
     Sinon, <literal>rcond(X)</literal> est proche de 0.
   </para>
     <para><literal>[r,z]=rcond(X)</literal> renvoie <literal>rcond(X)</literal> dans
     <literal>r</literal> et renvoie aussi <literal>z</literal> tel que <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal> 
   </para>
     <para>
-    Ainsi,  si <literal>rcond</literal> est très petit <literal>z</literal> est un vecteur se trouvant dans le noyau de X.
+    Ainsi,  si <literal>rcond</literal> est trÃ¨s petit <literal>z</literal> est un vecteur se trouvant dans le noyau de X.
   </para>
   </refsection>
   <refsection>

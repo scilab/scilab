@@ -42,8 +42,6 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	double* pDataImg;
 	int complexArg=iIsComplex(1);
 	if(complexArg){
-	  /* original code in intzgetri uses getrhsvar('c'), NOT getrhscvar ! */
-	  /* on crée une copie en format 'z' de la rhs var */
 	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
 	  /* c -> z */
 	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
@@ -51,7 +49,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	  GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
 	}
 	if(iRows != iCols){
-	  Err = 1;
+	  Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
 	  ret=20;
 	}else{
 	  if(iCols != 0){
@@ -73,11 +71,11 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	    }
 	  }
 	}
-	if(ret >0){ Error(ret) ; }
-	else{
+	/* redondant	if(ret >0){ Error(ret) ; } 
+	   else{*/
 	  LhsVar(1) = 1;
-	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ */
-	}
+	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ 
+	}*/
 	}
 	return 0;
 }

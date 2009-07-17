@@ -294,6 +294,7 @@ c     Copyright INRIA
       real rtv
       dimension u(nu),g(nu),itv(*),rtv(*),dtv(*),iu(5)
       external icsef,icsec2,icsei
+      character bufstr*(4096)
 c
       common/icsez/ t0,tf,dti,dtf,ermx,iu,nuc,nuv,ilin,nti,ntf,ny,nea,
      &itmx,nex,nob,ntob,ntobi,nitu,ndtu
@@ -380,7 +381,13 @@ c
 c
       mdtv=max(mdtv1,mdtv2)
       if (mitv.gt.nitv.or.mdtv.gt.ndtv) then
-        if (nitv+ndtv.gt.0) write(*,8003) mitv,mdtv
+        if (nitv+ndtv.gt.0) then
+            write (bufstr,8003)
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            
+            write (bufstr,8004) mitv,mdtv
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
         nitv=mitv
         ndtv=mdtv
         return
@@ -755,8 +762,8 @@ c
 c
 c format
 c
- 8003 format(1x,'icse : taille des tableaux itv,dtv insuffisante',/,
-     +       8x,'valeurs minimales ',i6,2x,i6)
+ 8003 format(1x,'icse : taille des tableaux itv,dtv insuffisante')
+ 8004 format(8x,'valeurs minimales ',i6,2x,i6)
 c
 c fin
 c

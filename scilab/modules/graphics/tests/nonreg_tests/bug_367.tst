@@ -36,7 +36,7 @@ t3=abs(t3);
 x0=0;
 y0=0;
 rep=[x0,y0,-1];
-for i=1:5:144640
+for i=1:5:100
     origen=i; //*100+1;
     xsetech([0,0,1,0.5]);
     plot(x(origen:origen+99));

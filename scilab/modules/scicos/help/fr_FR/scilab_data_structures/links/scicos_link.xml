@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_link">
   <refnamediv>
     <refname>scicos_link</refname>
-    <refpurpose>Définit une structure link</refpurpose>
+    <refpurpose>DÃ©finit une structure link</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_link">
     <title>Module</title>
@@ -52,43 +52,43 @@ Type : liste scilab.
         <para>
           <emphasis role="bold">xx</emphasis>
         </para>
-        <para> Un vecteur de coordonnées des abscisses x d'un lien. Un lien est définit comme une polyline.</para>
+        <para> Un vecteur de coordonnÃ©es des abscisses x d'un lien. Un lien est dÃ©finit comme une polyline.</para>
         <para> 
 Taille : nombre total de points du liens.
 </para>
         <para>
-Type : vecteur colonne de nombre réels.
+Type : vecteur colonne de nombre rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">yy</emphasis>
         </para>
-        <para> Un vecteur de coordonnées des ordonnées y d'un lien. Un lien est définit comme une polyline.</para>
+        <para> Un vecteur de coordonnÃ©es des ordonnÃ©es y d'un lien. Un lien est dÃ©finit comme une polyline.</para>
         <para> 
 Taille : nombre total de points du liens.
 </para>
         <para>
-Type : vecteur colonne de nombre réels.
+Type : vecteur colonne de nombre rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">id</emphasis>
         </para>
-        <para> Une chaîne de caractères définissant l'identification du lien.</para>
+        <para> Une chaÃ®ne de caractÃ¨res dÃ©finissant l'identification du lien.</para>
         <para> 
 Taille : 1.
 </para>
         <para>
-Type : chaîne de caractères.
+Type : chaÃ®ne de caractÃ¨res.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">thick</emphasis>
         </para>
-        <para> Un vecteur de taille deux définissant l'épaisseur du lien.</para>
+        <para> Un vecteur de taille deux dÃ©finissant l'Ã©paisseur du lien.</para>
         <para> 
 Taille : 2.
 </para>
@@ -100,7 +100,7 @@ Type : vecteur ligne de nombre entiers.
         <para>
           <emphasis role="bold">ct</emphasis>
         </para>
-        <para> La première entrée de ce vecteur désigne la couleur et la deuxième la nature du lien. La valeur de cette dernière entrée est 1 pour un lien régulier, -1 pour un lien d'activation et 2 pour un lien implicite.</para>
+        <para> La premiÃ¨re entrÃ©e de ce vecteur dÃ©signe la couleur et la deuxiÃ¨me la nature du lien. La valeur de cette derniÃ¨re entrÃ©e est 1 pour un lien rÃ©gulier, -1 pour un lien d'activation et 2 pour un lien implicite.</para>
         <para> 
 Taille : 2.
 </para>
@@ -112,7 +112,7 @@ Type : vecteur ligne de nombre entiers.
         <para>
           <emphasis role="bold">from</emphasis>
         </para>
-        <para> Un vecteur de taille 3 qui designe un numéro de bloc, un numéro de port et un type de port (0 pour une sortie et 1 pour une entrée) concernant l'origine du lien. Notez que la troisième entrée peut être 1 si le lien est implicite. Sinon il est zéro.</para>
+        <para> Un vecteur de taille 3 qui designe un numÃ©ro de bloc, un numÃ©ro de port et un type de port (0 pour une sortie et 1 pour une entrÃ©e) concernant l'origine du lien. Notez que la troisiÃ¨me entrÃ©e peut Ãªtre 1 si le lien est implicite. Sinon il est zÃ©ro.</para>
         <para> 
 Taille : 3.
 </para>
@@ -124,7 +124,7 @@ Type : vecteur ligne de nombre entiers.
         <para>
           <emphasis role="bold">to</emphasis>
         </para>
-        <para> Un vecteur de taille 3 qui designe un numéro de bloc, un numéro de port et un type de port (0 pour une sortie et 1 pour une entrée) concernant la destination du lien. Notez que la troisième entrée peut être 1 si le lien est implicite. Sinon il est zéro.</para>
+        <para> Un vecteur de taille 3 qui designe un numÃ©ro de bloc, un numÃ©ro de port et un type de port (0 pour une sortie et 1 pour une entrÃ©e) concernant la destination du lien. Notez que la troisiÃ¨me entrÃ©e peut Ãªtre 1 si le lien est implicite. Sinon il est zÃ©ro.</para>
         <para> 
 Taille : 3.
 </para>

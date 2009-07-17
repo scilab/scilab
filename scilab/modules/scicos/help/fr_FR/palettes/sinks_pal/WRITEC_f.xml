@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="WRITEC_f">
   <refnamediv>
     <refname>WRITEC_f</refname>
-    <refpurpose>Ecriture de donnée binaire</refpurpose>
+    <refpurpose>Ecriture de donnÃ©e binaire</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="WRITEC_f">Ecriture de donnée binaire</link>
+          <link linkend="WRITEC_f">Ecriture de donnÃ©e binaire</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_WRITEC_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_WRITEC_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_WRITEC_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_WRITEC_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,12 +98,12 @@
   <refsection id="Description_WRITEC_f">
     <title>Description</title>
     <para>
-Ce bloc permet d'écrire des données dans un fichier C au format binaire.
+Ce bloc permet d'Ã©crire des donnÃ©es dans un fichier C au format binaire.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_WRITEC_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_WRITEC_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -119,48 +119,48 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
         <para>
           <emphasis role="bold">Input size</emphasis>
         </para>
-        <para> un scalaire, la taille de l'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> un scalaire, la taille de l'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Output file name</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le chemin du fichier.</para>
-        <para> Propriétés : Type 'str' de taille 1 </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le chemin du fichier.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Output Format</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le format à utiliser.</para>
-        <para> Propriétés : Type 'str' de taille 1 </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le format Ã  utiliser.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Buffer size</emphasis>
         </para>
-        <para> Pour améliorer l'efficacité du bloc, il est possible de mettre les données dans un buffer. L'écriture dans le fichier est alors fait après chaque appel au bloc lorsque le buffer est rempli.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Pour amÃ©liorer l'efficacitÃ© du bloc, il est possible de mettre les donnÃ©es dans un buffer. L'Ã©criture dans le fichier est alors fait aprÃ¨s chaque appel au bloc lorsque le buffer est rempli.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Initial record index</emphasis>
         </para>
-        <para> Un scalaire. Cela définit le premier enregistrement à lire dans le fichier.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Un scalaire. Cela dÃ©finit le premier enregistrement Ã  lire dans le fichier.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Swap mode 0/1</emphasis>
         </para>
-        <para> Avec le paramètre<emphasis role="bold">Swap mode=1</emphasis> le fichier est supposé être au format IEEE "little endian" et les données sont entrelacées si nécessaire pour répondre au format IEEE du processeur. Si<emphasis role="bold">Swap mode=0</emphasis> alors l'entrelacement est désactivé.</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> Avec le paramÃ¨tre<emphasis role="bold">Swap mode=1</emphasis> le fichier est supposÃ© Ãªtre au format IEEE "little endian" et les donnÃ©es sont entrelacÃ©es si nÃ©cessaire pour rÃ©pondre au format IEEE du processeur. Si<emphasis role="bold">Swap mode=0</emphasis> alors l'entrelacement est dÃ©sactivÃ©.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_WRITEC_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_WRITEC_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -169,33 +169,33 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

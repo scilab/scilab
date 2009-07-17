@@ -13,8 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include "gw_data_structures1.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(gratyp)();
-extern int C2F(mtlist)();
+extern int C2F(gratyp)(); /* fortran */
+extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_glist)(char *fname,unsigned long fname_len)
 {

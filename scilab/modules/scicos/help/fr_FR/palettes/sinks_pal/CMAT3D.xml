@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CMAT3D">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CMAT3D">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CMAT3D">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CMAT3D">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -108,8 +108,8 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CMAT3D">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CMAT3D">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -126,40 +126,40 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
           <emphasis role="bold">Bounds Vector X (-1 for standard)</emphasis>
         </para>
         <para> If you let -1 the x ticks would be between 0 and 1 else you can put your own vector.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Bounds Vector Y (-1 for standard)</emphasis>
         </para>
         <para> If you let -1 the x ticks would be between 0 and 1 else you can put your own vector.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">ColorMap</emphasis>
         </para>
         <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
-        <para> Propriétés : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMAT3D_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
+        <para> PropriÃ©tÃ©s : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMAT3D_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Zmin</emphasis>
         </para>
         <para> Minimum value in Z values</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Zmax</emphasis>
         </para>
         <para> Maximum values in Z values</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CMAT3D">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CMAT3D">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -168,33 +168,33 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -225,7 +225,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CMATVIEW">CMATVIEW - Scope matriciel coloré (Bloc Scicos)</link>
+          <link linkend="CMATVIEW">CMATVIEW - Scope matriciel colorÃ© (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

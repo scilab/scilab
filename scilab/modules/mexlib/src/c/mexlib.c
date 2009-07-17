@@ -65,7 +65,8 @@
 #include "cerro.h"
 #include "erro.h"
 #include "localization.h"
-
+#include "Scierror.h"
+#include "CallScilab.h"
 
 static char *the_current_mex_name;
 
@@ -2058,14 +2059,6 @@ int fortran_mex_gateway(char *fname, FGatefuncH F)
 }
 
 
-/** generic scilab interface **/
-
-int sci_gateway(char *fname, GatefuncS F)
-{
-  (*F)(fname,(int)strlen(fname));
-  if (!C2F(putlhsvar)()) {return 0;}
-  return 0;
-}
 
 int mxGetElementSize(const mxArray *ptr)
 { int k, it;

@@ -1,4 +1,3 @@
-****** Beginning of validation of UPPER.dia.ref ******
 *** TEST 1 PASSED ***
 
 *** TEST 2 PASSED ***
@@ -55,44 +54,43 @@
 
 *** TEST 28 PASSED ***
 
-TEST 29: Scilab and Matlab size do not match but result is OK because is a String for res29
+TEST 29: Scilab/Matlab size does not match for res29: [1 1]/[1 4]
 *** TEST 29 PASSED ***
 
-TEST 30: Scilab and Matlab size do not match but result is OK because is a String for res30
+TEST 30: Scilab/Matlab size does not match for res30: [1 1]/[1 12]
 *** TEST 30 PASSED ***
 
-TEST 31: Scilab and Matlab size do not match but result is OK because is a String for res31
+TEST 31: Scilab/Matlab size does not match for res31: [3 1]/[3 4]
 *** TEST 31 PASSED ***
 
-TEST 32: Scilab and Matlab size do not match but result is OK because is a String for res32
+TEST 32: Scilab/Matlab size does not match for res32: [2 1]/[2 12]
 *** TEST 32 PASSED ***
 
 *** TEST 33 PASSED ***
 
-TEST 34: Scilab and Matlab size do not match but result is OK because is a String for res34
+TEST 34: Scilab/Matlab size does not match for res34: [1 1]/[1 4]
 *** TEST 34 PASSED ***
 
-TEST 35: Scilab and Matlab size do not match but result is OK because is a String for res35
+TEST 35: Scilab/Matlab size does not match for res35: [1 1]/[1 12]
 *** TEST 35 PASSED ***
 
-TEST 36: Scilab and Matlab size do not match but result is OK because is a String for res36
+TEST 36: Scilab/Matlab size does not match for res36: [3 1]/[3 4]
 *** TEST 36 PASSED ***
 
-TEST 37: Scilab and Matlab size do not match but result is OK because is a String for res37
+TEST 37: Scilab/Matlab size does not match for res37: [2 1]/[2 12]
 *** TEST 37 PASSED ***
 
 *** TEST 38 PASSED ***
 
-TEST 39: Scilab and Matlab size do not match but result is OK because is a String for res39
+TEST 39: Scilab/Matlab size does not match for res39: [1 1]/[1 4]
 *** TEST 39 PASSED ***
 
-TEST 40: Scilab and Matlab size do not match but result is OK because is a String for res40
+TEST 40: Scilab/Matlab size does not match for res40: [1 1]/[1 12]
 *** TEST 40 PASSED ***
 
-TEST 41: Scilab and Matlab size do not match but result is OK because is a String for res41
+TEST 41: Scilab/Matlab size does not match for res41: [3 1]/[3 4]
 *** TEST 41 PASSED ***
 
-TEST 42: Scilab and Matlab size do not match but result is OK because is a String for res42
+TEST 42: Scilab/Matlab size does not match for res42: [2 1]/[2 12]
 *** TEST 42 PASSED ***
 
-****** End of validation of UPPER.dia.ref ******

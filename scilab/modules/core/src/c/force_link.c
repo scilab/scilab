@@ -24,6 +24,12 @@ IERODE_struct C2F(ierode);
 /* manages CTRL-C event */
 BASBRK_struct C2F(basbrk);
 
+/** 
+* simpmd : rational fraction simplification mode
+* used in polynomials and inisci.f (core)
+*/
+CSIMP_struct C2F(csimp);
+
 #else
 /***********************************************************
 * Unused function just here to force linker to load some 

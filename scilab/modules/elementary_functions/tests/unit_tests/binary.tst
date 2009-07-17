@@ -13,7 +13,7 @@
 
 file_1 = TMPDIR+'/test_binary_1.bin';
 
-mopen(file_1,'wb');
+fid = mopen(file_1,'wb');
 
 mput(1996,'l');
 mput(1996,'i');
@@ -51,9 +51,9 @@ mput(1996,'db');
 mput(1996,'fb');
 
 mputstr('Scilab');
-mclose();
+mclose(fid);
 
-mopen(file_1,'rb');
+fid = mopen(file_1,'rb');
 
 if 1996<>mget(1,'l')  then pause,end
 if 1996<>mget(1,'i')  then pause,end
@@ -91,7 +91,7 @@ if 1996<>mget(1,'db')  then pause,end
 if 1996<>mget(1,'fb')  then pause,end
 
 if 'Scilab'<>mgetstr(6) then pause,end
-mclose();
+mclose(fid);
 
 // -----------------------------------------------------------------------------
 // TEST 2
@@ -163,25 +163,25 @@ if a<>0 then pause,end
 
 file_5 = TMPDIR+'/test_binary_5.bin';
 
-mopen(file_5,'wb');
+fid = mopen(file_5,'wb');
 mput(1:100,'l');
-mclose();
+mclose(fid);
 
-mopen(file_5,'rb');
+fid = mopen(file_5,'rb');
 X=mget(200,'l');
-mclose();
+mclose(fid);
 
 if size(X,'*')<> 100        then pause,end
 if norm(X-(1:100))> 10*%eps then pause,end
 
 file_6 = TMPDIR+'/test_binary_6.bin';
-mopen(file_6,'wb');
+fid = mopen(file_6,'wb');
 mput(1:100,'c');
-mclose();
+mclose(fid);
 
-mopen(file_6,'rb');
+fid = mopen(file_6,'rb');
 X=mget(200,'c');
-mclose();
+mclose(fid);
 
 if size(X,'*')<> 100        then pause,end
 if norm(X-(1:100))> 10*%eps then pause,end

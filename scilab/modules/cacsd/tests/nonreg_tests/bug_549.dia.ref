@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 549 -->
 //
 // <-- Bugzilla URL -->
@@ -17,8 +23,8 @@
 //    Allard Benoit on Linux version 3.0 / 9.1 distribution Debian / Mandrake with  WMaker / KDE as window manager
 //    France
 //    November 18, 2003 at 15:38:42
-// <-- INTERACTIVE TEST -->
+// <-- JVM NOT MANDATORY -->
 p = poly(0,'p');
 G = syslin('c', (1-p)/((p+1)*(p+3)));
 t = [0:1/100:8];
-diary(TMPDIR+"/bug549.txt");
+csim('step',t,G);

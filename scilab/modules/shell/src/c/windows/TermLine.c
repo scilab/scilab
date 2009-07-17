@@ -24,6 +24,7 @@
 #include "strdup_windows.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */	
@@ -214,9 +215,8 @@ void moveBackHistory(void)
 
 	if (newline)
 	{
-		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline, szLocale));
+		copyLine(newline);
 		FREE(newline);
 		newline = NULL;
 	}
@@ -239,9 +239,8 @@ void moveForwardHistory(void)
 
 	if (newline)
 	{
-		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline, szLocale));
+		copyLine(newline);
 		FREE(newline);
 		newline = NULL;
 	}
@@ -427,8 +426,7 @@ void putLineSearchedHistory(void)
 
 	if (line)
 	{
-		char szLocale[bsiz];
-		copyLine(UTFToLocale(line, szLocale));
+		copyLine(line);
 		FREE(line);
 		line = NULL;
 	}

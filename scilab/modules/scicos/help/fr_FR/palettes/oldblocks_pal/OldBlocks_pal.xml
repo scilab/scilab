@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -50,7 +50,7 @@
     <title>Description</title>
     <para>
 Cette palette contient des anciens blocs Scicos.
-Elle est fournie pour pouvoir assurer la compatibilité
+Elle est fournie pour pouvoir assurer la compatibilitÃ©
 avec des anciens diagrammes contenant ces anciens blocs.
 
 </para>
@@ -95,7 +95,7 @@ avec des anciens diagrammes contenant ces anciens blocs.
       </listitem>
       <listitem>
         <para>
-          <link linkend="DEMUX_f">DEMUX_f - Démultiplexeur (Ancien bloc)</link>
+          <link linkend="DEMUX_f">DEMUX_f - DÃ©multiplexeur (Ancien bloc)</link>
         </para>
       </listitem>
       <listitem>
@@ -110,7 +110,7 @@ avec des anciens diagrammes contenant ces anciens blocs.
       </listitem>
       <listitem>
         <para>
-          <link linkend="DOLLAR_f">DOLLAR_f - Opérateur retard (Ancien bloc)</link>
+          <link linkend="DOLLAR_f">DOLLAR_f - OpÃ©rateur retard (Ancien bloc)</link>
         </para>
       </listitem>
       <listitem>
@@ -125,7 +125,7 @@ avec des anciens diagrammes contenant ces anciens blocs.
       </listitem>
       <listitem>
         <para>
-          <link linkend="generic_block">generic_block - Bloc générique (Ancien bloc)</link>
+          <link linkend="generic_block">generic_block - Bloc gÃ©nÃ©rique (Ancien bloc)</link>
         </para>
       </listitem>
       <listitem>
@@ -165,7 +165,7 @@ avec des anciens diagrammes contenant ces anciens blocs.
       </listitem>
       <listitem>
         <para>
-          <link linkend="RAND_f">RAND_f - Générateur aléatoire (Ancien bloc)</link>
+          <link linkend="RAND_f">RAND_f - GÃ©nÃ©rateur alÃ©atoire (Ancien bloc)</link>
         </para>
       </listitem>
       <listitem>

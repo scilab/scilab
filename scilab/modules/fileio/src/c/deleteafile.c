@@ -19,6 +19,8 @@
 #else
 	#include <Windows.h>
 #endif
+#include "charEncoding.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 BOOL deleteafile(char *filename)
 {
@@ -33,8 +35,13 @@ BOOL deleteafile(char *filename)
 	}
 	#else
 	{
-        
-		bOK = DeleteFile(filename);
+        wchar_t *wcfilename = to_wide_string(filename);
+		if (wcfilename)
+		{
+			bOK = DeleteFileW(wcfilename);
+			FREE(wcfilename);
+			wcfilename = NULL;
+		}
 	}
 	#endif
 	return bOK;

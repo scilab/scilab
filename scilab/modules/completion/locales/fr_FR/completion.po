@@ -8,31 +8,31 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-06-13 12:39+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"PO-Revision-Date: 2009-03-09 17:22+0000\n"
+"Last-Translator: Claire Alexandre <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l'argument n°%d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: '%s', '%s', '%s', '%s', '%s' ou "
+"%s : Mauvais type pour l'argument d'entrée : '%s', '%s', '%s', '%s', '%s' ou "
 "'%s' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Mauvais nombre d'argument(s) de sortie.\n"
+msgstr "%s : Mauvais nombre d'argument(s) de sortie.\n"
 
 msgid "Scilab completion module not installed.\n"
 msgstr "Le module de complétion Scilab n'est pas installé.\n"

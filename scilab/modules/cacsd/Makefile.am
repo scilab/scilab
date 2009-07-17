@@ -159,7 +159,6 @@ src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
 src/fortran/front.f \
-src/fortran/calcsc.f \
 src/fortran/wgefa.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \

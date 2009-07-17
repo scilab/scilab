@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,30 +19,30 @@
     <refpurpose> Algorithme de Leverrier   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle carrée
+          <para>matrice rÃ©elle carrÃ©e
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>z  </term>
         <listitem>
-          <para>chaîne de caractères
+          <para>chaÃ®ne de caractÃ¨res
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rmax  </term>
         <listitem>
-          <para>paramètre optionnel (voir <literal>bdiag</literal>) 
+          <para>paramÃ¨tre optionnel (voir <literal>bdiag</literal>) 
 	  </para>
         </listitem>
       </varlistentry>

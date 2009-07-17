@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="square">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>square</refname>
-    <refpurpose> échelle isométrique 2D (change la taille de la fenêtre)  </refpurpose>
+    <refpurpose> Ã©chelle isomÃ©trique 2D (change la taille de la fenÃªtre)  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xmin,xmax,ymin,ymax  </term>
         <listitem>
-          <para>4 valeurs réelles
+          <para>4 valeurs rÃ©elles
 </para>
         </listitem>
       </varlistentry>
@@ -25,12 +25,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>square</literal> est utilisée pour avoir une échelle identique sur les axes x et y. 
+    <para><literal>square</literal> est utilisÃ©e pour avoir une Ã©chelle identique sur les axes x et y. 
     Les valeurs 
     <literal>xmin, xmax, ymin, ymax</literal> sont les bornes du dessin
-    et <literal>square</literal> change les dimensions de la fenêtre graphique pour que les échelles soient identiques.
-    <literal>square</literal> change l'échelle graphique courante et
-    peut être utilisée en conjonction avec les routines graphiques nécessitant que l'échelle soit définie au préalable (mode <literal>fstrf="x0z"</literal> dans <literal>plot2d</literal>).
+    et <literal>square</literal> change les dimensions de la fenÃªtre graphique pour que les Ã©chelles soient identiques.
+    <literal>square</literal> change l'Ã©chelle graphique courante et
+    peut Ãªtre utilisÃ©e en conjonction avec les routines graphiques nÃ©cessitant que l'Ã©chelle soit dÃ©finie au prÃ©alable (mode <literal>fstrf="x0z"</literal> dans <literal>plot2d</literal>).
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -112,7 +112,7 @@ A=USV'
 The pseudoinverse x of A is given by:  
 </para>
     <para>
-X=VS"U' where S"(i,j)=1/S(i,j) (if S(i,j) =0), U' and V are respectively the transpose of U and V'.  
+X=VS"U' where S"(i,j)=1/S(i,j) (if S(i,j)Â =0), U' and V are respectively the transpose of U and V'.  
 </para>
     <para>
 and we have A*X*A=A and X*A*X=X. Both A*X and X*A are Hermitian . A warning message is printed if the input is badly scaled or nearly singular.  

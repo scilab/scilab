@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="whereami">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,14 +8,14 @@
     <refpurpose> donne l'arborescence d'appel de l'instruction courante  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>whereami()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Affiche l'arborescence des appels jusqu'à l'emplacement courant, où se trouve
-    l'appel à whereami(). Peut être utilisé suite à un appel à <literal>pause</literal>.
+    Affiche l'arborescence des appels jusqu'Ã  l'emplacement courant, oÃ¹ se trouve
+    l'appel Ã  whereami(). Peut Ãªtre utilisÃ© suite Ã  un appel Ã  <literal>pause</literal>.
   </para>
   </refsection>
   <refsection>

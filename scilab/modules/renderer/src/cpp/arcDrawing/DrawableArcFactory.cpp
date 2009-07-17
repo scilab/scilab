@@ -48,16 +48,18 @@ void DrawableArcFactory::update( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableArcFactory::setStrategies( ConcreteDrawableArc * arc )
 {
+	sciPointObj * pArc = arc->getDrawedObject();
+
   arc->removeDrawingStrategies();
 
-  if ( sciGetIsFilled(arc->getDrawedObject()) )
+  if ( sciGetIsFilled(pArc) )
   {
     ArcFillDrawerJoGL * strategy = new ArcFillDrawerJoGL(arc);
     strategy->setJavaMapper(new ArcFillDrawerJavaMapper());
     arc->addDrawingStrategy(strategy);
   }
 
-  if ( sciGetIsLine(arc->getDrawedObject()) )
+	if ( sciGetIsDisplayingLines(pArc) )
   {
     ArcLineDrawerJoGL * strategy = new ArcLineDrawerJoGL(arc);
     strategy->setJavaMapper(new ArcLineDrawerJavaMapper());

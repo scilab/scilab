@@ -14,12 +14,12 @@
 #ifndef __GW_SOUND__
 #define __GW_SOUND__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
+#include "dynlib_sound.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_sound(void);
+SOUND_IMPEXP int gw_sound(void);
 /*--------------------------------------------------------------------------*/ 
-int sci_Beep(char *fname,unsigned long fname_len);
-int sci_Playsound(char *fname,unsigned long fname_len);
+SOUND_IMPEXP int sci_Beep(char *fname,unsigned long fname_len);
+SOUND_IMPEXP int sci_Playsound(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SOUND__ */
 /*--------------------------------------------------------------------------*/

@@ -83,6 +83,7 @@
   <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="libraryinfo" />
   <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="getdebuginfo" />
   <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="readgateway" />
+  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="exit" />
   <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
   
 </GATEWAY>

@@ -46,13 +46,19 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    sci_demo(fname, "t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);", FALSE);
+		sci_demo(fname, fname_len);
     return 0;
   }
   CheckRhs(3,7);
 
-  if ( get_optionals(fname,opts) == 0) { return 0 ; }
-  if ( FirstOpt() < 4) {
+  if ( get_optionals(fname,opts) == 0) 
+  {
+	  C2F(putlhsvar)();
+	  return 0 ; 
+  }
+
+  if ( FirstOpt() < 4) 
+  {
     Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
       fname,1, 4);
     return -1;
@@ -62,7 +68,12 @@ int sci_grayplot( char *fname, unsigned long fname_len )
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   CheckVector(2,m2,n2);
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
-  if (m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
+  if (m3 * n3 == 0) 
+  { 
+	  LhsVar(1)=0;
+	  C2F(putlhsvar)();
+	  return 0;
+  } 
 
   CheckDimProp(2,3,m2 * n2 != n3);
   CheckDimProp(1,3,m1 * n1 != m3);
@@ -99,7 +110,8 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   Objgrayplot (stk(l1), stk(l2), stk(l3), &m3, &n3, strf, rect, nax, flagNax);
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

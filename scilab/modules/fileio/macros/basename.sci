@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC
+// Copyright (C) - 2009 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,9 +13,26 @@ function [files]= basename(files,flag,flagexpand)
 // if flag == %t files are first converted
 // according to MSDOS
 
-  [lhs,rhs]=argn(0) 
+  [lhs,rhs]=argn(0);
+  
+  if (files == []) | (files == '') then
+    return
+  end
+  
+  if type(files) <> 10 then
+    error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"basename",1) );
+  end
+  
   if rhs <= 1 then flag = %t ; end 
   if rhs <= 2 then flagexpand = %t ; end 
+  
+  if (type(flag) <> 4) then
+    error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"basename",2));
+  end
+
+  if (type(flagexpand) <> 4) then
+    error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"basename",3));
+  end
 
   if flag == %t then 
     files = pathconvert(files,%f,flagexpand); 
@@ -23,16 +41,9 @@ function [files]= basename(files,flag,flagexpand)
   sep = filesep();
 
   for i=1:size(files,'*')
-    fname = files(i) 
-    pref_pos = strindex(fname,sep); 
-    if pref_pos <> [] then 
-      fname = part(fname,pref_pos($) +1:length(fname)); 
+    if files(i) <> '' then
+      files(i) = fileparts(files(i),'fname');
     end
-    suf_pos = strindex(fname,'.'); 
-    if suf_pos <> [] then 
-      fname =  part(fname,1:suf_pos($)-1);
-    end
-    files(i)= fname; 
   end
 endfunction
 

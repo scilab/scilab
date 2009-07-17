@@ -1,3 +1,11 @@
+Sylvestre LEDRU, 25/06/09
+ * Catalan version added (thanks to Oriol Gonzalez)
+ * version --> 7.19
+
+Scilab operational team, 27/03/09
+ * Patch to not use ScilabEval synchronously
+ * version --> 7.21.1
+
 Francois VOGEL, 25/02/09
  * Added further helper procs for debugging bug 4053 (colorization stops on
    an error)

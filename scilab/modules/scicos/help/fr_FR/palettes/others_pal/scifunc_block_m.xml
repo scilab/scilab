@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_scifunc_block_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_scifunc_block_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_scifunc_block_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_scifunc_block_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -101,8 +101,8 @@ is slower. For more information see Scicos reference manual.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_scifunc_block_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_scifunc_block_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -118,69 +118,69 @@ is slower. For more information see Scicos reference manual.
         <para>
           <emphasis role="bold">input ports sizes</emphasis>
         </para>
-        <para> Un scalaire. Le nombre de ports réguliers d'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un scalaire. Le nombre de ports rÃ©guliers d'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">output port sizes</emphasis>
         </para>
-        <para> Un scalaire. Le nombre de ports réguliers de sortie.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un scalaire. Le nombre de ports rÃ©guliers de sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">input event ports sizes</emphasis>
         </para>
-        <para> Un scalaire. Le nombre de ports événementiel d'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un scalaire. Le nombre de ports Ã©vÃ©nementiel d'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">output events ports sizes</emphasis>
         </para>
-        <para> Un scalaire. Le nombre de ports événementiel de sortie.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un scalaire. Le nombre de ports Ã©vÃ©nementiel de sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">initial continuous state</emphasis>
         </para>
-        <para> Un vecteur colonne. Conditions initiales des états continus.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un vecteur colonne. Conditions initiales des Ã©tats continus.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">initial discrete state</emphasis>
         </para>
-        <para> Un vecteur colonne. Conditions initiales des états discrets.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Un vecteur colonne. Conditions initiales des Ã©tats discrets.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">System parameters vector</emphasis>
         </para>
-        <para> une chaîne de caractères : c ou d (<emphasis role="bold">CBB</emphasis> ou<emphasis role="bold">DBB</emphasis> ), les autres types ne sont supportés.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> une chaÃ®ne de caractÃ¨res : c ou d (<emphasis role="bold">CBB</emphasis> ou<emphasis role="bold">DBB</emphasis> ), les autres types ne sont supportÃ©s.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">initial firing vector </emphasis>
         </para>
-        <para> Un vecteur. La taille de ce vecteur correspond au nombre de sorties événementielles. La valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/scifunc_block_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entrée spécifie la date initiale préprogrammée du <inlinemediaobject><imageobject><imagedata fileref="../../../images/scifunc_block_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> port événementiel de sortie. Si la valeur est inférieure à zéro, alors aucun événement n'est préprogrammé.</para>
-        <para> Propriétés : Type 'vec' de taille sum(%4) </para>
+        <para> Un vecteur. La taille de ce vecteur correspond au nombre de sorties Ã©vÃ©nementielles. La valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/scifunc_block_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entrÃ©e spÃ©cifie la date initiale prÃ©programmÃ©e du <inlinemediaobject><imageobject><imagedata fileref="../../../images/scifunc_block_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> port Ã©vÃ©nementiel de sortie. Si la valeur est infÃ©rieure Ã  zÃ©ro, alors aucun Ã©vÃ©nement n'est prÃ©programmÃ©.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille sum(%4) </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">is block always active </emphasis>
         </para>
         <para> other dialogues are opened consecutively where used may input Scilab code associated with the computations needed (block initialization, outputs, continuous and discrete state, output events date, block ending)</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_scifunc_block_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_scifunc_block_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -189,14 +189,14 @@ is slower. For more information see Scicos reference manual.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -204,26 +204,26 @@ is slower. For more information see Scicos reference manual.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

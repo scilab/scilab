@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> union de deux graphes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g2 = graph_union(g,g1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,12 +50,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_union</literal> crée un nouveau graphe <literal>g2</literal>. L'ensemble des sommets de <literal>g2</literal>
+    <para><literal>graph_union</literal> crÃ©e un nouveau graphe <literal>g2</literal>. L'ensemble des sommets de <literal>g2</literal>
     est l'union (au sens usuel) de l'ensemble des sommets de <literal>g</literal> et <literal>g1</literal>.
-    <literal>g2</literal> a une arête pour chaque arête de<literal>g</literal> et une arête pour chaque arête 
+    <literal>g2</literal> a une arÃªte pour chaque arÃªte de<literal>g</literal> et une arÃªte pour chaque arÃªte 
     de <literal>g1</literal>.
-    Les arêtes de <literal>g</literal> et <literal>g1</literal> ayant les mêmes destinations sont 
-    conservées et dans ce cas <literal>g2</literal> a des arêtes multiples.
+    Les arÃªtes de <literal>g</literal> et <literal>g1</literal> ayant les mÃªmes destinations sont 
+    conservÃ©es et dans ce cas <literal>g2</literal> a des arÃªtes multiples.
   </para>
   </refsection>
   <refsection>

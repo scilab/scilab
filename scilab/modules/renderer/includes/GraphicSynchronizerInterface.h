@@ -18,92 +18,93 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 
 /**
  * Protect the data of a figure and its children from being accessed from an other thread.
  */
-void startFigureDataWriting(sciPointObj * pFigure) ;
+RENDERER_IMPEXP void startFigureDataWriting(sciPointObj * pFigure) ;
 
 /**
  * Should be called after a call to startFigureDataWriting to remove figure locking.
  */
-void endFigureDataWriting(sciPointObj * pFigure);
+RENDERER_IMPEXP void endFigureDataWriting(sciPointObj * pFigure);
 
 /**
  * Protect the data of a figure from being writen by an other thread.
  */
-void startFigureDataReading(sciPointObj * pFigure);
+RENDERER_IMPEXP void startFigureDataReading(sciPointObj * pFigure);
 
 /**
  * Should be called after a call to startFigureDataReading to remove figure locking.
  */
-void endFigureDataReading(sciPointObj * pFigure);
+RENDERER_IMPEXP void endFigureDataReading(sciPointObj * pFigure);
 
 /**
  * Protect the data of a figure from being writen or displayed by an other thread.
  */
-void startFigureDataDisplaying(sciPointObj * pFigure);
+RENDERER_IMPEXP void startFigureDataDisplaying(sciPointObj * pFigure);
 
 /**
  * Should be called after a call to startFigureDataDisplaying to remove figure locking.
  */
-void endFigureDataDisplaying(sciPointObj * pFigure);
+RENDERER_IMPEXP void endFigureDataDisplaying(sciPointObj * pFigure);
 
 /**
  * Protect all graphic hierarchy from being accessed from an other thread.
  */
-void startGraphicDataWriting( void );
+RENDERER_IMPEXP void startGraphicDataWriting( void );
 
 /**
  * Should be called after a call to startGraphicDataWriting.
  */
-void endGraphicDataWriting( void );
+RENDERER_IMPEXP void endGraphicDataWriting( void );
 
 /**
  * Protect all graphic hierarchy from being written by an other thread.
  */
-void startGraphicDataReading( void );
+RENDERER_IMPEXP void startGraphicDataReading( void );
 
 /**
  * Should be called after a call to startGraphicDataWriting.
  */
-void endGraphicDataReading( void );
+RENDERER_IMPEXP void endGraphicDataReading( void );
 
 /**
  * Protect all graphic hierarchy from being written by an other thread.
  */
-void startGraphicDataDisplaying( void ) ;
+RENDERER_IMPEXP void startGraphicDataDisplaying( void ) ;
 
 /**
  * Should be called after a call to endFigureDataDisplaying.
  */
-void endGraphicDataDisplaying( void ) ;
+RENDERER_IMPEXP void endGraphicDataDisplaying( void ) ;
 
 /**
  * Disable synchronization for a figure.
  * By default synchrnonization is enalbe
  * To be used with caution.
  */
-void enableFigureSynchronization(sciPointObj * pFigure);
+RENDERER_IMPEXP void enableFigureSynchronization(sciPointObj * pFigure);
 
 /**
  * Enable synchronization for a figure.
  * By default synchrnonization is enalbe
  * To be used with caution.
  */
-void disableFigureSynchronization(sciPointObj * pFigure);
+RENDERER_IMPEXP void disableFigureSynchronization(sciPointObj * pFigure);
 
 /**
  * To be called before any call to startGraphicData***
  * Allocates data needed by these functions.
  */
-void createGraphicSynchronizer( void ) ;
+RENDERER_IMPEXP void createGraphicSynchronizer( void ) ;
 
 /**
  * Deallocates data needed by startGraphicData*** functions.
  */
-void destroyGraphicSynchronizer( void ) ;
+RENDERER_IMPEXP void destroyGraphicSynchronizer( void ) ;
 
 #ifdef __cplusplus
 }

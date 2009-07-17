@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_PerteDP">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_PerteDP">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_PerteDP">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_PerteDP">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PerteDP">Modèle Modelica</link>
+              <link linkend="PerteDP">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - Boîte à outils des composants thermohydrauliques</link>
+          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - BoÃ®te Ã  outils des composants thermohydrauliques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,21 +93,21 @@
   <refsection id="Description_PerteDP">
     <title>Description</title>
     <para>
-Un bloc de PertDP représente un tuyau hydraulique avec des pertes de
-charge. Ce composant représente une perte de charge hydraulique où la
-perte de pression est directement proportionnelle au débit, état
-laminaire.  Ce bloc a une direction; c.-à-d. la direction positive est
-quand le fluide entre par le port d'entrée (le noir). Ceci signifie
-que ce bloc suppose que le débit est positif si le fluide découle du
-port noir vers le port blanc.  Les paramètres importants de ce composant
-sont la longueur, le diamètre du tuyau, les altitudes des ports
-d'entrée et de sortie, et quelques autres coefficients
+Un bloc de PertDP reprÃ©sente un tuyau hydraulique avec des pertes de
+charge. Ce composant reprÃ©sente une perte de charge hydraulique oÃ¹ la
+perte de pression est directement proportionnelle au dÃ©bit, Ã©tat
+laminaire.  Ce bloc a une direction; c.-Ã -d. la direction positive est
+quand le fluide entre par le port d'entrÃ©e (le noir). Ceci signifie
+que ce bloc suppose que le dÃ©bit est positif si le fluide dÃ©coule du
+port noir vers le port blanc.  Les paramÃ¨tres importants de ce composant
+sont la longueur, le diamÃ¨tre du tuyau, les altitudes des ports
+d'entrÃ©e et de sortie, et quelques autres coefficients
 thermo-hydrauliques.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_PerteDP">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_PerteDP">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -124,51 +124,51 @@ thermo-hydrauliques.
           <emphasis role="bold">Longueur du tube : L (m)</emphasis>
         </para>
         <para> Longeur du tube</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Diamètre interne du tube : D (m)</emphasis>
+          <emphasis role="bold">DiamÃ¨tre interne du tube : D (m)</emphasis>
         </para>
-        <para> Diamètre interne du tube</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> DiamÃ¨tre interne du tube</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Coefficient de perte de charge-frottement(S.U) : lambda</emphasis>
         </para>
         <para> Coefficient de perte de charge-frottement(S.U)</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude entrée tuyauterie : z1 (m)</emphasis>
+          <emphasis role="bold">Altitude entrÃ©e tuyauterie : z1 (m)</emphasis>
         </para>
-        <para> Altitude entrée tuyauterie (z1)</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Altitude entrÃ©e tuyauterie (z1)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Altitude sortie tuyauterie : z2 (m)</emphasis>
         </para>
-        <para> Altitude entrée tuyauterie (z2)</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Altitude entrÃ©e tuyauterie (z2)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Si 0, masse volumique imposée fu fluide : p_rho (kg/m3)</emphasis>
+          <emphasis role="bold">Si 0, masse volumique imposÃ©e fu fluide : p_rho (kg/m3)</emphasis>
         </para>
-        <para> masse volumique imposée fu fluide</para>
-        <para> Propriétés : Type 'vec' de taille -1</para>
+        <para> masse volumique imposÃ©e fu fluide</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_PerteDP">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_PerteDP">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -198,65 +198,65 @@ thermo-hydrauliques.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'L'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'L'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 10
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 10
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'D'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'D'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.2
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.2
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'lambda'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'lambda'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.03
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.03
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'z1'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'z1'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'z2'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'z2'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'p_rho'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'p_rho'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -276,8 +276,8 @@ thermo-hydrauliques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_PerteDP">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_PerteDP">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Hydraulics/PerteDP.mo</para>

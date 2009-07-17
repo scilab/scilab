@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="global">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>global </refname>
-    <refpurpose> définition de variables globales  </refpurpose>
+    <refpurpose> dÃ©finition de variables globales  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>global('nam1',...,'namn')
 global nam1 ... namn</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>nam1,..., namn  </term>
@@ -27,11 +27,11 @@ global nam1 ... namn</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Habituellement, chaque fonction Scilab a ses propres variables locales et peut accéder "en lecture uniquement" à toutes les variables de l'environnement principal et des fonctions appelantes. Le mot-clé <literal>global</literal> permet de partager certaines variables en lecture/écriture entre des fonctions.
-    Toute affectation à ces variables est propagée à toutes les autres fonctions ayant déclaré cette variable globale (avec le mot-clé <literal>global</literal>).
+    Habituellement, chaque fonction Scilab a ses propres variables locales et peut accÃ©der "en lecture uniquement" Ã  toutes les variables de l'environnement principal et des fonctions appelantes. Le mot-clÃ© <literal>global</literal> permet de partager certaines variables en lecture/Ã©criture entre des fonctions.
+    Toute affectation Ã  ces variables est propagÃ©e Ã  toutes les autres fonctions ayant dÃ©clarÃ© cette variable globale (avec le mot-clÃ© <literal>global</literal>).
   </para>
     <para>
-    Si la variable n'existe pas au moment où elle est déclarée globale avec le mot-clé <literal>global</literal>, elle est initialisée avec une matrice vide [].
+    Si la variable n'existe pas au moment oÃ¹ elle est dÃ©clarÃ©e globale avec le mot-clÃ© <literal>global</literal>, elle est initialisÃ©e avec une matrice vide [].
   </para>
   </refsection>
   <refsection>

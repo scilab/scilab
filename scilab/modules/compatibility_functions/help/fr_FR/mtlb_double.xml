@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,55 +16,55 @@
   </info>
   <refnamediv>
     <refname>mtlb_double</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab double</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab double</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>double</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramètre d'entrée de type chaîne de caractère : La fonction <literal>double</literal> de Scilab
-	ne tolère pas ce type d'entrée alors que la fonction <literal>double</literal> de Matlab retourne
+        Avec un paramÃ¨tre d'entrÃ©e de type chaÃ®ne de caractÃ¨re : La fonction <literal>double</literal> de Scilab
+	ne tolÃ¨re pas ce type d'entrÃ©e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de codes ASCII.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec un paramètre d'entrée de type booléen : La fonction <literal>double</literal> de Scilab
-	ne tolère pas ce type d'entrée alors que la fonction <literal>double</literal> de Matlab retourne
+        Avec un paramÃ¨tre d'entrÃ©e de type boolÃ©en : La fonction <literal>double</literal> de Scilab
+	ne tolÃ¨re pas ce type d'entrÃ©e alors que la fonction <literal>double</literal> de Matlab retourne
 	une matrice de doubles.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_double(A)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'était pas
-    possible de savoir ce qu'était <literal>A</literal> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_double</literal> :
+    La fonction <literal>mtlb_double(A)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>double(A)</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©tait <literal>A</literal> pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_double</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> est une chaîne de caractère
-        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>asciimat(A)</literal>
+        Si <literal>A</literal> est une chaÃ®ne de caractÃ¨re
+        <literal>mtlb_double(A)</literal> peut Ãªtre remplacÃ© par <literal>asciimat(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>A</literal> est une matrice de booléens
-        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>bool2s(A)</literal>
+        Si <literal>A</literal> est une matrice de boolÃ©ens
+        <literal>mtlb_double(A)</literal> peut Ãªtre remplacÃ© par <literal>bool2s(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>A</literal> est une matrice de doubles
-        <literal>mtlb_double(A)</literal> peut être remplacé par <literal>A</literal>
+        <literal>mtlb_double(A)</literal> peut Ãªtre remplacÃ© par <literal>A</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_double</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_double</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

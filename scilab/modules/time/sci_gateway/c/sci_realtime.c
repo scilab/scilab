@@ -11,37 +11,61 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
-#include "sci_realtime.h"
+#include "gw_time.h"
+#include "realtime.h"
+#include "api_common.h"
+#include "api_double.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(realtime)(double *t);
-extern int C2F(realtimeinit)(double *t,double *scale); 
-/*--------------------------------------------------------------------------*/ 
-int C2F(sci_realtimeinit)(char *fname,unsigned long fname_len)
+int sci_realtimeinit(char *fname,unsigned long fname_len)
 {
- int m1,n1,l1;
- double zer=0.0;
- CheckRhs(1,1);
- CheckLhs(1,1);
- /*  checking variable scale */
- GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
- CheckScalar(1,m1,n1);
- /* cross variable size checking */
- C2F(realtimeinit)(&zer,stk(l1));
- LhsVar(1)=0;
- return 0;
+  int m1 = 0,n1 = 0;
+  int * p1_in_address = NULL;
+  int res = 0;
+  double * pDblReal = NULL;
+  double zer=0.0;
+
+  CheckRhs(1,1);
+  CheckLhs(1,1);
+
+  /*  checking variable scale */
+  
+  CheckScalar(1,m1,n1);
+
+  getVarAddressFromPosition(1, &p1_in_address);
+  res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+
+  /* cross variable size checking */
+  C2F(realtimeinit)(&zer,pDblReal);
+
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
+  return 0;
 }
 /*--------------------------------------------------------------------------*/  
-int C2F(sci_realtime)(char *fname,unsigned long fname_len)
+int sci_realtime(char *fname,unsigned long fname_len)
 {
- int m1,n1,l1;
- CheckRhs(1,1);
- CheckLhs(1,1);
- /*  checking variable t */
- GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
- CheckScalar(1,m1,n1);
- /* cross variable size checking */
- C2F(realtime)(stk(l1));
- LhsVar(1)=0;
- return 0;
+  int m1 = 0,n1 = 0;
+  int * p1_in_address = NULL;
+  int res = 0;
+  double * pDblReal = NULL;
+
+  CheckRhs(1,1);
+  CheckLhs(1,1);
+
+  /*  checking variable t */
+  CheckScalar(1,m1,n1);
+
+  getVarAddressFromPosition(1, &p1_in_address);
+  res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
+
+  /* cross variable size checking */
+  C2F(realtime)(pDblReal);
+
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
+  return 0;
 }               
 /*--------------------------------------------------------------------------*/ 

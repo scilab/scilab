@@ -1,17 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
-#ifndef _MSC_VER
-#include <sys/param.h>
-#endif
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007 - INRIA - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #include <string.h>
 #include <stdlib.h>
 #include "PATH_MAX.h"
@@ -21,10 +18,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#define _fullpath(a,r,l) realpath(r,a)
-#endif
+#include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;
@@ -67,7 +61,7 @@ void SetCurrentFileId(int Id)
 {
 	if (Id == -1) PreviousFile = -1;
 	else PreviousFile = CurFile;
-	
+
 	CurFile = Id;
 }
 /*--------------------------------------------------------------------------*/
@@ -138,7 +132,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	}
 	else
 	{
-		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
+		if( get_full_path( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
 			ptrName = strdup(fullpath);
 			if (ptrName)
@@ -237,7 +231,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		char fullpath[PATH_MAX*4];
 		int i=0;
 
-		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);
@@ -260,8 +254,7 @@ int GetIdFromFilename(char *filename)
 	{
 		char fullpath[PATH_MAX*4];
 		int i=0;
-
-		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);

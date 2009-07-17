@@ -1,0 +1,22 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- Non-regression test for bug 4141 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4141
+//
+// Short description:
+// ascii doesn't support extended ascii values in the range of [128-255].
+//==============================================================
+ref = [65 66 67 129 130 131];
+r = ascii(ascii(ref));
+if ref <> r then bugmes();quit;end
+ref = 127:255;
+r = ascii(ascii(ref));
+if r <> ref then bugmes();quit;end
+//==============================================================

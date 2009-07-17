@@ -18,46 +18,30 @@
 f = figure();
 
 execstr("f.enable = ""on""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Enable") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Enable") then pause; end
 
 execstr("f.label = ""toto""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Label") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Label") then pause; end
 
 execstr("f.string = ""toto""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "String") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "String") then pause; end
 
 execstr("f.backgroundcolor = [0.5 0.5 0.5]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "BackgroundColor") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "BackgroundColor") then pause; end
 
 execstr("f.foregroundcolor = [0.5 0.5 0.5]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "ForegroundColor") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "ForegroundColor") then pause; end
 
 execstr("f.fontweight = ""bold""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontWeight") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontWeight") then pause; end
 
 f.fontunits = "pixels";
 
 execstr("f.fontsize = 12", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontSize") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontSize") then pause; end
 
 execstr("f.fontangle = ""italic""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontAngle") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontAngle") then pause; end
 
 f.min = 10;
 
@@ -72,26 +56,16 @@ f.value = 1;
 f.units = "pixels";
 
 execstr("f.relief = ""raised""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Relief") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "Relief") then pause; end
 
 execstr("f.horizontalalignment = ""right""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "HorizontalAlignment") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "HorizontalAlignment") then pause; end
 
 execstr("f.verticalalignment = ""left""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "VerticalAlignment") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "VerticalAlignment") then pause; end
 
 execstr("f.fontname = ""arial""", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontName") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "FontName") then pause; end
 
 execstr("f.sliderstep = [1 2]", "errcatch");
-if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "SliderStep") then
-  pause
-end
+if lasterror()<>msprintf(gettext("No ''%s'' property for this object.\n"), "SliderStep") then pause; end

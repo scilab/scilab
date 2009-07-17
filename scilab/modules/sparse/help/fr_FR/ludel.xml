@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>ludel</refname>
-    <refpurpose> libération de la mémoire allouée à des facteurs LU creux  </refpurpose>
+    <refpurpose> libÃ©ration de la mÃ©moire allouÃ©e Ã  des facteurs LU creux  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ludel(hand)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>hand  </term>
         <listitem>
-          <para>pointeur vers des facteurs L,U creux déjà calculés (sortie de lufact)
+          <para>pointeur vers des facteurs L,U creux dÃ©jÃ  calculÃ©s (sortie de lufact)
 </para>
         </listitem>
       </varlistentry>
@@ -37,11 +37,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction est à utiliser conjointement avec <literal>lufact</literal>. Elle libère la mémoire allouée pour le stockage des facteurs L,U creux renvoyés par <literal>lufact</literal>.
+    Cette fonction est Ã  utiliser conjointement avec <literal>lufact</literal>. Elle libÃ¨re la mÃ©moire allouÃ©e pour le stockage des facteurs L,U creux renvoyÃ©s par <literal>lufact</literal>.
   </para>
     <para>
     La suite de commandes <literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
-    résout le système linéaire creux <literal>A*x = b</literal> et libère les facteurs creux dont <literal>p</literal> est le pointeur.
+    rÃ©sout le systÃ¨me linÃ©aire creux <literal>A*x = b</literal> et libÃ¨re les facteurs creux dont <literal>p</literal> est le pointeur.
   </para>
   </refsection>
   <refsection>

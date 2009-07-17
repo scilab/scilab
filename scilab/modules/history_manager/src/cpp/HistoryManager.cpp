@@ -27,6 +27,10 @@ extern "C"
 	#include "inffic.h"
 	#include "InitializeHistoryManager.h"
 	#include "TerminateHistoryManager.h"
+	#include "freeArrayOfString.h"
+	#ifdef _MSC_VER
+	#include "strdup_windows.h"
+	#endif
 };
 /*------------------------------------------------------------------------*/
 #define MAXBUF	1024
@@ -93,8 +97,7 @@ BOOL appendLineToScilabHistory(char *line)
 		int i = 0;
 		char *cleanedline = NULL;
 		/* remove space & carriage return at the end of line */
-		cleanedline = (char*) MALLOC(sizeof(char)*(strlen(line)+1));
-		strcpy(cleanedline,line);
+		cleanedline = strdup(line);
 
 		/* remove carriage return at the end of line */
 		for (i = (int) strlen(cleanedline); i > 0 ; i--)
@@ -201,21 +204,7 @@ int getSizeAllLinesOfScilabHistory(void)
 
 	if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
 
-	if (lines)
-	{
-		int i = 0;
-
-		for (i=0;i < nbElements;i++)
-		{
-			if (lines[i])
-			{
-				FREE(lines[i]);
-				lines[i]=NULL;
-			}
-		}
-		FREE(lines);
-		lines=NULL;
-	}
+	freeArrayOfString(lines, nbElements);
 
 	return nbElements;
 }
@@ -392,8 +381,7 @@ char *HistoryManager::getFilename(void)
 
 	if (! my_file.getFilename().empty())
 	{
-		filename = (char*)MALLOC(sizeof(char)*(my_file.getFilename().length()+1));
-		if (filename) strcpy(filename,my_file.getFilename().c_str());
+		filename = strdup(my_file.getFilename().c_str());
 	}
 	return filename;
 }
@@ -443,9 +431,11 @@ BOOL HistoryManager::loadFromFile(char *filename)
 
 		/* add date & time @ begin session */
 		commentbeginsession = getCommentDateSession(TRUE);
-		appendLine(commentbeginsession);
-		if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
-
+		if (commentbeginsession)
+		{
+			appendLine(commentbeginsession);
+			FREE(commentbeginsession);commentbeginsession=NULL;
+		}
 		bOK = TRUE;
 	}
 	return bOK;
@@ -468,8 +458,11 @@ void HistoryManager::reset(void)
 
 	/* Add date & time begin session */
 	commentbeginsession = getCommentDateSession(TRUE);
-	appendLine(commentbeginsession);
-	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
+	if (commentbeginsession)
+	{
+		appendLine(commentbeginsession);
+		FREE(commentbeginsession);commentbeginsession=NULL;
+	}
 }
 /*--------------------------------------------------------------------------*/
 char **HistoryManager::getAllLines(int *numberoflines)
@@ -489,13 +482,8 @@ char **HistoryManager::getAllLines(int *numberoflines)
 			string line = (*it_commands).get();
 			if (!line.empty())
 			{
-				char *pLine = (char*)MALLOC(sizeof(char)*(strlen(line.c_str())+1));
-				if (pLine)
-				{
-					strcpy(pLine,line.c_str());
-					lines[i] = pLine;
-					i++;
-				}
+				lines[i] = strdup(line.c_str());
+				i++;
 			}
 		}
 		*numberoflines = i;
@@ -514,11 +502,7 @@ char *HistoryManager::getLastLine(void)
 		str = (*it_commands).get();
 		if (!str.empty())
 		{
-			line = (char*)MALLOC(sizeof(char)*(strlen(str.c_str())+1));
-			if (line)
-			{
-				strcpy(line,str.c_str());
-			}
+			line = strdup(str.c_str());
 		}
 	}
 	return line;
@@ -547,12 +531,7 @@ char *HistoryManager::getNthLine(int N)
 				str = (*it_commands).get();
 				if (!str.empty())
 				{
-					line = (char*)MALLOC(sizeof(char)*(strlen(str.c_str())+1));
-					if (line)
-					{
-						strcpy(line,str.c_str());
-					}
-					return line;
+					return strdup(str.c_str());
 				}
 			}
 			i++;
@@ -622,8 +601,7 @@ char *HistoryManager::getPreviousLine(void)
 		std::string line = my_search.getPreviousLine();
 		if (!line.empty())
 		{
-			returnedline = (char*)MALLOC(sizeof(char)*(line.size()+1));
-			if (returnedline) strcpy(returnedline,line.c_str());
+			returnedline = strdup(line.c_str());
 		}
 	}
 	return returnedline;
@@ -636,9 +614,7 @@ char *HistoryManager::getNextLine(void)
 	if (my_search.getSize() > 0)
 	{
 		std::string line = my_search.getNextLine();
-		returnedline = (char*)MALLOC(sizeof(char)*(line.length()+1));
-		if (returnedline) strcpy(returnedline,line.c_str());
-
+		returnedline = strdup(line.c_str());
 	}
 	return returnedline;
 }
@@ -660,8 +636,7 @@ char * HistoryManager::getToken(void)
 
 	if (!token.empty())
 	{
-		returnedtoken = (char*)MALLOC(sizeof(char)*(token.length()+1));
-		if (returnedtoken) strcpy(returnedtoken,token.c_str());
+		returnedtoken = strdup(token.c_str());
 	}
 	return returnedtoken;
 }

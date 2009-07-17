@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_SampleCLK">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_SampleCLK">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_SampleCLK">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_SampleCLK">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -124,8 +124,8 @@ The second method uses the Multifrequency block it generates events only for spe
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_SampleCLK">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_SampleCLK">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -141,20 +141,20 @@ The second method uses the Multifrequency block it generates events only for spe
         <para>
           <emphasis role="bold">Sample time</emphasis>
         </para>
-        <para> L'instant d'échantillonnage.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> L'instant d'Ã©chantillonnage.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Offset</emphasis>
         </para>
-        <para> La valeur du décalage.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La valeur du dÃ©calage.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_SampleCLK">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_SampleCLK">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -163,25 +163,25 @@ The second method uses the Multifrequency block it generates events only for spe
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -219,7 +219,7 @@ The second method uses the Multifrequency block it generates events only for spe
       </listitem>
       <listitem>
         <para>
-          <link linkend="M_freq">M_freq - Horloge à fréquence multiples (Bloc Scicos)</link>
+          <link linkend="M_freq">M_freq - Horloge Ã  frÃ©quence multiples (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

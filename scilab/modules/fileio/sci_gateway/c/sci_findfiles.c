@@ -21,7 +21,6 @@
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
@@ -39,7 +38,6 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 	char **FilesList = NULL;
 	int sizeListReturned = 0;
 	BOOL needtofreefilespec = FALSE;
-	char szTempLocale[bsiz];
 
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,2) ;
@@ -105,7 +103,7 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 	}
 
 	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
-	FilesList = findfiles(pathextented,UTFToLocale(filespec, szTempLocale),&sizeListReturned);
+	FilesList = findfiles(pathextented, filespec, &sizeListReturned);
 	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
 
 	if (FilesList)

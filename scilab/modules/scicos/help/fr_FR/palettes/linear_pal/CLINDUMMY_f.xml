@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CLINDUMMY_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CLINDUMMY_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -88,16 +88,16 @@
   <refsection id="Description_CLINDUMMY_f">
     <title>Description</title>
     <para>
-Ce bloc peut être placé dans tous diagrammes qui contient un ou
+Ce bloc peut Ãªtre placÃ© dans tous diagrammes qui contient un ou
 des blocs 'zero-crossing' et qui ne dispose pas de blocs contenant
-des états continus (x) temps dépendant (dep_t=%t).
-Grâce à cela, le simulateur utilisera le solveur ode pour la détection
+des Ã©tats continus (x) temps dÃ©pendant (dep_t=%t).
+GrÃ¢ce Ã  cela, le simulateur utilisera le solveur ode pour la dÃ©tection
 de surfaces des blocs 'zero-crossing'.
 
 </para>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CLINDUMMY_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CLINDUMMY_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -106,25 +106,25 @@ de surfaces des blocs 'zero-crossing'.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

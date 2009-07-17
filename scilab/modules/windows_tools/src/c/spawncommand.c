@@ -135,7 +135,7 @@ int spawncommand(char *command,BOOL DetachProcess)
 	CloseHandle(pipeThreads[0]);
 	CloseHandle(pipeThreads[1]);
 
-	return 0;
+	return ExitCode;
 }
 /*--------------------------------------------------------------------------*/
 int ClosePipeInfo (pipeinfo pipe)

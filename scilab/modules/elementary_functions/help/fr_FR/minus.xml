@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="minus">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>minus (-)</refname>
-    <refpurpose> opérateur de soustraction, changement de signe  </refpurpose>
+    <refpurpose> opÃ©rateur de soustraction, changement de signe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>X-Y
 -Y</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
+          <para>scalaire, vecteur ou matrice de nombres, polynÃ´mes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Y  </term>
         <listitem>
-          <para>scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
+          <para>scalaire, vecteur ou matrice de nombres, polynÃ´mes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
 </para>
         </listitem>
       </varlistentry>
@@ -37,11 +37,11 @@
     Soustraction
   </para>
     <para>
-    Pour les opérandes numériques la signification est celle de la soustraction habituelle. Si l'un des opérandes est une matrice (ou un vecteur) et l'autre un scalaire l'opération est effectuée pour chaque élément de la matrice. Si <literal>Y==[]</literal> le résultat est <literal>X</literal>. Si <literal>X==[]</literal> le résultat est <literal>-Y</literal>.
+    Pour les opÃ©randes numÃ©riques la signification est celle de la soustraction habituelle. Si l'un des opÃ©randes est une matrice (ou un vecteur) et l'autre un scalaire l'opÃ©ration est effectuÃ©e pour chaque Ã©lÃ©ment de la matrice. Si <literal>Y==[]</literal> le rÃ©sultat est <literal>X</literal>. Si <literal>X==[]</literal> le rÃ©sultat est <literal>-Y</literal>.
   </para>
     <para>
-    La soustraction peut être aussi définie pour d'autres types de données via 
-    la surcharge d'opérateurs (voir overloading).
+    La soustraction peut Ãªtre aussi dÃ©finie pour d'autres types de donnÃ©es via 
+    la surcharge d'opÃ©rateurs (voir overloading).
   </para>
   </refsection>
   <refsection>

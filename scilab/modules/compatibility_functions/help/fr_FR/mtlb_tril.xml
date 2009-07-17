@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,54 +16,54 @@
   </info>
   <refnamediv>
     <refname>mtlb_tril</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab tril</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab tril</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>tril</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>tril</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec des paramètres d'entrée complexes : La fonction Matlab <literal>tril</literal> peut être
-	utilisée avec des données complexes mais pas la fonction Scilab.
+        Avec des paramÃ¨tres d'entrÃ©e complexes : La fonction Matlab <literal>tril</literal> peut Ãªtre
+	utilisÃ©e avec des donnÃ©es complexes mais pas la fonction Scilab.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec des paramètres d'entrée de type chaîne de caractère : étant donné que Matlab et Scilab
-	ne considèrent pas les chaînes de caractères de la même façon, la fonction <literal>tril</literal>
-	ne donne pas le même résultat pour ce type d'entrée dans Scilab et dans Matlab.
+        Avec des paramÃ¨tres d'entrÃ©e de type chaÃ®ne de caractÃ¨re : Ã©tant donnÃ© que Matlab et Scilab
+	ne considÃ¨rent pas les chaÃ®nes de caractÃ¨res de la mÃªme faÃ§on, la fonction <literal>tril</literal>
+	ne donne pas le mÃªme rÃ©sultat pour ce type d'entrÃ©e dans Scilab et dans Matlab.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec des paramètres d'entrée booléens : La fonction Matlab <literal>tril</literal> peut être
-	utilisée avec des données booléennes mais pas la fonction Scilab.
+        Avec des paramÃ¨tres d'entrÃ©e boolÃ©ens : La fonction Matlab <literal>tril</literal> peut Ãªtre
+	utilisÃ©e avec des donnÃ©es boolÃ©ennes mais pas la fonction Scilab.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_tril(x,k)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>tril(x,k)</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_tril</literal> :
+    La fonction <literal>mtlb_tril(x,k)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>tril(x,k)</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_tril</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>X</literal> contient des doubles réels
-        <literal>mtlb_tril(x,k)</literal> peut être remplacé par <literal>tril(x,k)</literal>
+        Si <literal>X</literal> contient des doubles rÃ©els
+        <literal>mtlb_tril(x,k)</literal> peut Ãªtre remplacÃ© par <literal>tril(x,k)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>X</literal> contient des booléens
-        <literal>mtlb_tril(x,k)</literal> peut être remplacé par <literal>tril(bool2s(x),k)</literal>
+        Si <literal>X</literal> contient des boolÃ©ens
+        <literal>mtlb_tril(x,k)</literal> peut Ãªtre remplacÃ© par <literal>tril(bool2s(x),k)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_tril</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_tril</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

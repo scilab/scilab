@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_DELAYV_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_DELAYV_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_DELAYV_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_DELAYV_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,8 +98,8 @@ Ajoutez ici un paragraphe pour la description de la fonction
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_DELAYV_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_DELAYV_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,27 +115,27 @@ Ajoutez ici un paragraphe pour la description de la fonction
         <para>
           <emphasis role="bold">Number of inputs</emphasis>
         </para>
-        <para> Définit la taille du vecteur de la première entrée régulière et de la seule sortie régulière</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> DÃ©finit la taille du vecteur de la premiÃ¨re entrÃ©e rÃ©guliÃ¨re et de la seule sortie rÃ©guliÃ¨re</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Register initial condition</emphasis>
         </para>
-        <para> Définit la longueur et les conditions initiales du registre à décalage.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> DÃ©finit la longueur et les conditions initiales du registre Ã  dÃ©calage.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Max delay</emphasis>
         </para>
-        <para> Ce paramètre définit la plus grande valeur du retard. Cette valeur ne peut pas être négative.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Ce paramÃ¨tre dÃ©finit la plus grande valeur du retard. Cette valeur ne peut pas Ãªtre nÃ©gative.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_DELAYV_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_DELAYV_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -144,14 +144,14 @@ Ajoutez ici un paragraphe pour la description de la fonction
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -162,26 +162,26 @@ Ajoutez ici un paragraphe pour la description de la fonction
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 2</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 2</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

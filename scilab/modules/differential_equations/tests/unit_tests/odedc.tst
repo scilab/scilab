@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Copyright INRIA
 deff('xcd=f(t,xc,xd,iflag)',...
     ['if iflag==0 then '

@@ -21,14 +21,10 @@ h = uicontrol(f,"style","listbox",..
     "position",[10 10 150 150],..
     "string",["\Q\q"])
 
-if get(h,"string") <> "\Q\q" then
-  pause;
-end
+if get(h,"string") <> "\Q\q" then pause; end
 
 set(h,"string",["\Q","\q"]) 
 
-if or(get(h,"string") <> ["\Q","\q"]) then
-  pause;
-end
+if or(get(h,"string") <> ["\Q","\q"]) then pause; end
 
 

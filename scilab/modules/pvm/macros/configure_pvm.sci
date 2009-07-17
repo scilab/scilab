@@ -48,13 +48,15 @@ function bOK = configure_pvm()
       
       if fileinfo(home+'/.pvmd.conf') == [] then
         pcname = getenv('COMPUTERNAME','');
-        pvm_root = getenv('PVM_ROOT');
-        pvm_arch = getenv('PVM_ARCH');
-        conf = pcname + ' dx='+getshortpathname(pvm_root)+'\lib\' + pvm_arch + '\pvmd3.exe ep=' + SCI + '/bin;' + SCI + '/module/pvm/pvm3/bin/' + pvm_arch;
-        try
-          mputl(conf, home+'/.pvmd.conf');
-        catch
-          mputl(conf, SCI+'/.pvmd.conf');
+        pvm_root = getenv('PVM_ROOT','');
+        pvm_arch = getenv('PVM_ARCH','');
+        if ( (pvm_root<>'') & (pvm_arch<>'') ) then 
+          conf = pcname + ' dx='+getshortpathname(pvm_root)+'\lib\' + pvm_arch + '\pvmd3.exe ep=' + SCI + '/bin;' + SCI + '/module/pvm/pvm3/bin/' + pvm_arch;
+          try
+            mputl(conf, home+'/.pvmd.conf');
+          catch
+            mputl(conf, SCI+'/.pvmd.conf');
+          end
         end
       end
       

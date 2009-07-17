@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xrect">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,17 +8,17 @@
     <refpurpose> dessine un rectangle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xrect(x,y,w,h)
 xrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h  </term>
         <listitem>
-          <para>4 valeurs réelles définissant le rectangle.
+          <para>4 valeurs rÃ©elles dÃ©finissant le rectangle.
 </para>
         </listitem>
       </varlistentry>
@@ -26,8 +26,8 @@ xrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xrect</literal> dessine un rectangle défini par <literal>[x,y,w,h]</literal> 
-    (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant le style de ligne courant.
+    <para><literal>xrect</literal> dessine un rectangle dÃ©fini par <literal>[x,y,w,h]</literal> 
+    (point en haut Ã  gauche, largeur, hauteur) en coordonnÃ©es utilisateur et en utilisant le style de ligne courant.
   </para>
   <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
   </refsection>

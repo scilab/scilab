@@ -29,6 +29,7 @@ c declaration des scalaires
       integer  memuti, nrzuti, memsup, m, retour, iter,
      /   ntotap, nmisaj, i, iu, is, ieta, inu, j, kj, k, kp1
       logical  gc, iterqn, intfor, redfor, redem, termi
+      character bufstr*(4096)
 c
       external  simul, prosca
 c
@@ -44,7 +45,10 @@ c
       if (memh .ge. memuti) then
       gc=.false.
       nrzuti=memuti+4*n
-      if (imp .gt. 1) write(io,1) nrzuti
+      if (imp .gt. 1) then 
+      write(bufstr,1) nrzuti
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      endif
       else if (memh .lt. memsup) then
       info=3
       return
@@ -55,11 +59,16 @@ c m est le nombre de mises a jour admissible
 c memuti est ici le nombre de places memoire utilisees pour stocker h
       memuti=m * memsup
       nrzuti=memuti+4*n
-      if (imp .gt. 1) write(io,2) m,nrzuti
+      if (imp .gt. 1) then
+        write(bufstr,2) m
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write(bufstr,3) nrzuti
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       endif
 1     format(40h     methode de quasi-newton. nrz utile=,i7)
-2     format(38h     methode du gradient conjugue avec,i3,
-     / 14h mises a jour.,11h nrz utile=,i7)
+2     format(38h     methode du gradient conjugue avec,i3)
+3     format(14h mises a jour.,11h nrz utile=,i7)
 c
 c  ***********************************************
 c  phase ii:initialisations propres a l'optimiseur
@@ -136,19 +145,28 @@ c
       call n1gc2b(n,simul,prosca,xx,f,dg,alpha,d,x,g,imp,io,retour,
      /           ntotap,nsim,intfor,dx,eps,izs,rzs,dzs)
 c
-      if (imp .gt. 3) write(io,6003)
+      if (imp .gt. 3) then
+      write(bufstr,6003)
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      endif
       if ((retour .eq. 4).or.((retour .eq. 1).and.(i .eq. 1))) then
       info=6
       return
       else if (retour .eq. 1) then
-      if (imp .gt. 1) write(io,6002) iter,ntotap
+      if (imp .gt. 1) then
+        write(bufstr,6002) iter,ntotap
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       goto 3000
       else
 c calcul de (g,g)
       if((i .gt. 1) .and. gc) ggcarr=gcarre
       call prosca(n,g,g,gcarre,izs,rzs,dzs)
       normg=sqrt(gcarre)
-      if (imp .gt. 2) write(io,6001)iter,ntotap,f
+      if (imp .gt. 2) then
+        write(bufstr,6001)iter,ntotap,f
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       if (retour .eq. 2) then
       info=0
       goto 99999
@@ -344,7 +362,10 @@ c test:la direction de recherche est elle bien de descente
       call prosca(n,d,g,dg1,izs,rzs,dzs)
       if (dg1 .ge. zero) then
       info=7
-      if (imp .gt. 1) write(io,10101) dg1
+      if (imp .gt. 1) then
+        write(bufstr,10101) dg1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       goto 99999
       else
       goto 4000

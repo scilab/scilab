@@ -112,8 +112,9 @@ public class GL2PSRenderer extends ExportRenderer {
 			}						
 			
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
-					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT 
-					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | exportOrientation, GL.GL_RGBA, 0, null, null, null, null, 
+					GL2PS.GL2PS_SIMPLE_SORT, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
+					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
+					GL.GL_RGBA, 0, null, null, null, null, 
 					0, 0, 0, buffsize, ExportRenderer.getFileName());	
 
 			if (gl2psBeginPageStatut != GL2PS.GL2PS_SUCCESS) {
@@ -145,8 +146,9 @@ public class GL2PSRenderer extends ExportRenderer {
 			exportedFigure.setDefaultShadeFacetDrawer();
 			exportedFigure.enableAntialiasing();
 
-			if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS) {
-				//Get the GL2PS error and convert it into an export error
+			if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS && gl2psEndPageStatut != GL2PS.GL2PS_NO_FEEDBACK) {
+				// No feedback just mean that the feedback remains empty ie that the figure is empty
+				// Get the GL2PS error and convert it into an export error
 				setExportErrorFromGL2PS(gl2psEndPageStatut);
 				return;
 			}		

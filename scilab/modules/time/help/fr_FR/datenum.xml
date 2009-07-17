@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -19,7 +19,7 @@
     <refpurpose>Convertie une date en un nombre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>N = datenum()
 N = datenum(DT)
 N = datenum(Y, M, D)
@@ -36,20 +36,20 @@ N = datenum(Y, M, D, H, MI, S)</synopsis>
 			N = datenum() retourne le nombre correspondant a la date courante.
 		</para>
     <para>
-			N = datenum(DT) retourne le nombre correspondant a la date représentée par
+			N = datenum(DT) retourne le nombre correspondant a la date reprÃ©sentÃ©e par
 			la matrice DT. DT est soit une matrice m * 3 ou une matrice m * 6 contenant
 			respectivement une date entiere (annee,mois,jour,heure,minute,seconde) ou une
 			date partielle (annee,mois,jour).
 		</para>
     <para>
 			N = datenum(Y, M, D) retourne le nombre correspondant aux elements Y,
-			M, D (annee, mois, jour). Y, M et D peuvent être des matrices de même
+			M, D (annee, mois, jour). Y, M et D peuvent Ãªtre des matrices de mÃªme
 			dimensions ou de simples scalaires.
 		</para>
     <para>
 			N = datenum(Y, M, D, H, MI, S) retourne le nombre correspondant aux
 			elements Y, M, D, H, MI, et S (annee, mois, jour, heure, minute, et
-			seconde).Y, M, D, H, MI, et S peuvent être des matrices de même
+			seconde).Y, M, D, H, MI, et S peuvent Ãªtre des matrices de mÃªme
 			dimensions ou de simples scalaires.
 		</para>
   </refsection>

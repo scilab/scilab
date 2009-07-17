@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_RICC">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_RICC">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_RICC">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_RICC">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -95,7 +95,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Matrix_pal">Matrix - Palette d'opérations matricielles</link>
+          <link linkend="Matrix_pal">Matrix - Palette d'opÃ©rations matricielles</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -126,8 +126,8 @@ The user can choose between two methods of computation. For the continuous time 
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_RICC">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_RICC">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -144,19 +144,19 @@ The user can choose between two methods of computation. For the continuous time 
           <emphasis role="bold">Type (1=Cont 2=Disc)</emphasis>
         </para>
         <para> For continuous time signal set this parameter to 1. For discrete input time set it to 2.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Model(1=Schr 2=sign(cont) inv(disc))</emphasis>
         </para>
         <para> To use the Shur method in computation set this parameter to 1. To use matrix sign function approach in continuous case or the inverse free spectral decomposition method in discrete case set this parameter to 2.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_RICC">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_RICC">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -165,14 +165,14 @@ The user can choose between two methods of computation. For the continuous time 
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-1] / type 1</emphasis>
@@ -186,26 +186,26 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -236,7 +236,7 @@ The user can choose between two methods of computation. For the continuous time 
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Matrix_pal">Matrix_pal - Palette d'opérations matricielles (Palette Scicos)</link>
+          <link linkend="Matrix_pal">Matrix_pal - Palette d'opÃ©rations matricielles (Palette Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

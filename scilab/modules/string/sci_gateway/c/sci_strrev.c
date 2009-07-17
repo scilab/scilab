@@ -23,7 +23,7 @@
 #include "freeArrayOfString.h"
 #include "stringsstrrev.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strrev)(char *fname,unsigned long fname_len)
+int sci_strrev(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);

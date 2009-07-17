@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,20 +16,20 @@
   </info>
   <refnamediv>
     <refname>asciimat</refname>
-    <refpurpose>conversion d'une matrice de chaînes ASCII</refpurpose>
+    <refpurpose>conversion d'une matrice de chaÃ®nes ASCII</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>a=asciimat(txt)
 txt=asciimat(a)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>chaîne de caractères ou matrice de chaînes</para>
+          <para>chaÃ®ne de caractÃ¨res ou matrice de chaÃ®nes</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -43,8 +43,8 @@ txt=asciimat(a)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction convertit une chaîne de caractères Scilab en codes ASCII ou une matrice de codes ASCII en chaîne de caractères Scilab.
-    La valeur retournée est une matrice ayant le même nombre de lignes que l'entrée,
+    Cette fonction convertit une chaÃ®ne de caractÃ¨res Scilab en codes ASCII ou une matrice de codes ASCII en chaÃ®ne de caractÃ¨res Scilab.
+    La valeur retournÃ©e est une matrice ayant le mÃªme nombre de lignes que l'entrÃ©e,
     ce qui n'est pas le cas de la fonction <literal>ascii</literal>.
     </para>
   </refsection>

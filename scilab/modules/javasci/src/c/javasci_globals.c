@@ -10,6 +10,7 @@
  *
  */
 #include <stdlib.h>
+#include <string.h>
 #include "machine.h"
 #ifndef _MSC_VER
  #ifdef WITH_TK
@@ -24,6 +25,7 @@
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
+#include "strdup_windows.h"
 #endif
 #include "LaunchScilabSignal.h"
 
@@ -101,8 +103,7 @@ void Initialize(void)
     }
     else
 	{
-		char *pathSCI=(char*)MALLOC((strlen(sciPath)+1)*sizeof(char));
-		strcpy(pathSCI,sciPath);
+		char *pathSCI = strdup(sciPath);
 		SetScilabEnvironmentVariables(pathSCI);
 		if (pathSCI) {FREE(pathSCI);pathSCI=NULL;}
 	}

@@ -48,7 +48,6 @@ c
       indtes=0
       imp=0
       io=wte
-      if(wio.gt.0) io=wio
       zero=stk(leps)
       df0=1.0d+0
       immx=0

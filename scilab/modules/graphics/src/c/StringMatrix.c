@@ -20,6 +20,9 @@
 #include <stdio.h>
 #include "StringMatrix.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 /*----------------------------------------------------------------------------------*/
 StringMatrix * newFullStringMatrix( char ** textMat, int nbRow, int nbCol )
@@ -78,8 +81,7 @@ void copyStrMatElement( StringMatrix * mat, int row, int col, const char * copyS
   {
     FREE( changedString ) ;
   }
-  changedString = MALLOC( (strlen( copyStr ) + 1) * sizeof(char) ) ;
-  strcpy( changedString, copyStr ) ;
+  changedString = strdup(copyStr);
   mat->data[row + col * mat->nbRow] = changedString ;
 }
 /*----------------------------------------------------------------------------------*/

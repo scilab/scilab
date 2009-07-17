@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-01-23 01:25+0000\n"
+"PO-Revision-Date: 2009-04-05 17:37+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "&File"
@@ -911,7 +911,7 @@ msgid "2D/3D &Rotation"
 msgstr "2D/3D &Вращение"
 
 msgid "&Select as current figure"
-msgstr "&Установить текущим графическим окном"
+msgstr "&Выбрать текущим графическим окном"
 
 msgid "&Redraw figure"
 msgstr "&Перерисовать графическое окно"
@@ -956,7 +956,7 @@ msgid "&Change current directory..."
 msgstr "С&менить текущий каталог..."
 
 msgid "&Display current directory"
-msgstr "&Отобразить текущий каталог"
+msgstr "О&тобразить текущий каталог"
 
 msgid "&Quit"
 msgstr "В&ыход"
@@ -995,19 +995,19 @@ msgid "Clear &History"
 msgstr "&Очистить журнал команд"
 
 msgid "Clear C&onsole"
-msgstr "О&чистить консоль"
+msgstr "О&чистить командное окно"
 
 msgid "&Control"
 msgstr "&Управление"
 
 msgid "&Resume"
-msgstr "&Продолжить"
+msgstr "&Возобновить"
 
 msgid "&Abort"
-msgstr "&Остановить"
+msgstr "&Завершить"
 
 msgid "&Interrupt"
-msgstr "&Прервать"
+msgstr "&Приостановить"
 
 msgid "&Applications"
 msgstr "&Инструменты"
@@ -1019,13 +1019,13 @@ msgid "&Scicos"
 msgstr "&Scicos"
 
 msgid "&Matlab to Scilab translator"
-msgstr "&Преобразование Matlab -> Scilab"
+msgstr "&MATLAB -> Scilab"
 
 msgid "Scilab &Help"
 msgstr "&Содержание"
 
 msgid "Scilab &Demonstrations"
-msgstr "&Демонстрация возможностей"
+msgstr "&Примеры"
 
 msgid "&Web links"
 msgstr "&Веб-ресурсы"

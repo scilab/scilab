@@ -25,7 +25,8 @@
   <refnamediv>
     <refname>save</refname>
 
-    <refpurpose>saving variables in binary files</refpurpose>
+    <refpurpose>Save a variable or a serie of variables in a binary
+    file</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -43,7 +44,7 @@ save(fd [,x1,x2,...,xn])</synopsis>
         <term>filename</term>
 
         <listitem>
-          <para>character string containing the path of the file</para>
+          <para>Character string containing the path of the file</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +52,7 @@ save(fd [,x1,x2,...,xn])</synopsis>
         <term>fd</term>
 
         <listitem>
-          <para>a file descriptor given by a call to mopen</para>
+          <para>A file descriptor given by a call to mopen</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +60,7 @@ save(fd [,x1,x2,...,xn])</synopsis>
         <term>xi</term>
 
         <listitem>
-          <para>arbitrary Scilab variable(s)</para>
+          <para>Arbitrary Scilab variable(s)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -71,10 +72,11 @@ save(fd [,x1,x2,...,xn])</synopsis>
     <para>The <literal>save</literal> command can be used to save Scilab
     current variables in a binary file. If a variable is a graphic handle, the
     <literal>save</literal> function saves all the corresponding <link
-    linkend="graphics_entities">graphics_entities</link> definition. </para>
-    <para>Since
-    Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved by this
-    function. </para>
+    linkend="graphics_entities">graphics_entities</link> definition.</para>
+
+    <para>Since Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link
+    linkend="uicontrol">uicontrol</link> handles are also saved by this
+    function.</para>
 
     <para>The file can be given either by its paths or by its descriptor
     previously given by <literal>mopen</literal>.</para>
@@ -89,8 +91,11 @@ save(fd [,x1,x2,...,xn])</synopsis>
     <literal>save(fd,x,y)</literal> saves only named variables
     <literal>x</literal> and <literal>y</literal>.</para>
 
-    <para>Saved variables can be reloaded by the <literal>load</literal>
+    <para>Saved variables can be reloaded by the <literal><link linkend="load">load</link></literal>
     command.</para>
+
+    <para>Note that the written file is portable to other operating systems
+    and architectures (little and big endian).</para>
   </refsection>
 
   <refsection>
@@ -128,6 +133,8 @@ mclose(fd)
 
     <simplelist type="inline">
       <member><link linkend="load">load</link></member>
+
+      <member><link linkend="write">write</link></member>
 
       <member><link linkend="save_format">save_format</link></member>
 

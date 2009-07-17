@@ -18,11 +18,11 @@ c     Copyright INRIA
       include 'stack.h'
       common /mtlbc/ mmode
 c
-      integer plus,quote,equal,less,great,insert,extrac
+      integer plus,quote,equal,less,great,insert,extrac,dot
       integer top0,iadr,sadr,op,vol,volr,rhs1
       logical isany
 c
-      data plus/45/,quote/53/
+      data plus/45/,quote/53/,dot/51/
       data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
 c     
       iadr(l)=l+l-1
@@ -68,7 +68,7 @@ c
       vol=istk(id1+mn1)-1
 c
       goto (60,120,130,65) op
-      if (rhs .eq. 1.and.op.eq.quote) goto 110
+      if (rhs .eq. 1.and.(op.eq.quote.or.op.eq.quote+dot)) goto 110
       if (op .eq. plus ) go to 20
       if(op.eq.equal.or.op.eq.less+great) goto 180
 c
@@ -93,10 +93,15 @@ c     .  []+b
 c     .  a+[]
          return
       elseif(m1.ne.m2.or.n1.ne.n2) then
-         top=top0
-         rhs=rhs1
-         fin=-fin
+         m1n1 = m1 * n1
+         m2n2 = m2 * n2
+         if (m1n1.eq.1 .or. m2n2.eq.1) then
+c     overload %c_a_c
+           goto 10
+         else
+         call error(8)
          return
+         endif
       endif
       if(istk(il1).ne.istk(il2)) goto 10
       err=lw+sadr(istk(id1+mn1)+istk(id2+mn2))-lstk(bot)

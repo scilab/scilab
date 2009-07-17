@@ -25,10 +25,11 @@
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "BOOL.h"
-#include "charEncoding.h"
+
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec);
@@ -38,36 +39,38 @@ static BOOL find_spec( char *filename ,char *filespec);
 char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
 	char **ListFiles = NULL;
-	char *strPattern = NULL;
+	wchar_t *wcstrPattern = NULL;
+	wchar_t *wcfilespec = NULL;
+	wchar_t *wcpath = NULL;
 	HANDLE hFile;
-	WIN32_FIND_DATA FileInformation;
-	int nbElements=0;
+	WIN32_FIND_DATAW FileInformation;
+	int nbElements = 0;
+	int len = 0;
 
+	wcfilespec = to_wide_string(filespec);
+	wcpath = to_wide_string(path);
 
-	strPattern = (char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
-	sprintf(strPattern,"%s/%s", path, filespec);
+	len = (int)( wcslen(wcpath) + wcslen(wcfilespec) + 8);
+	wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*len);
+	swprintf(wcstrPattern,len,L"%s/%s", wcpath, wcfilespec);
 
-	hFile = FindFirstFile(strPattern, &FileInformation);
-	if (strPattern) {FREE(strPattern);strPattern=NULL;}
+	hFile = FindFirstFileW(wcstrPattern, &FileInformation);
+	if (wcstrPattern) {FREE(wcstrPattern); wcstrPattern = NULL;}
+
 	if(hFile != INVALID_HANDLE_VALUE)
 	{
 		do
 		{
-			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
+			if (  wcscmp(FileInformation.cFileName,L".") &&  wcscmp(FileInformation.cFileName,L"..") )
 			{
-				char szTemp[bsiz];
-				char *utfFileName = NULL;
 				nbElements++;
 				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
 				else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
-				utfFileName = localeToUTF(FileInformation.cFileName, szTemp);
-				ListFiles[nbElements-1] = strdup(utfFileName);
+				ListFiles[nbElements-1] = wide_string_to_UTF8(FileInformation.cFileName);
 			}
-
-		} while(FindNextFile(hFile, &FileInformation) == TRUE);
+		} while(FindNextFileW(hFile, &FileInformation) == TRUE);
 	}
 	FindClose(hFile);
-
 	*sizeListReturned = nbElements;
 	return ListFiles;
 }
@@ -91,8 +94,6 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 			{
 				if ( find_spec(read->d_name ,filespec) )
 				{
-					char *utfFileName = NULL;
-					char szTemp[bsiz];
 					nbElements++;
 					if (ListFiles)
 					{
@@ -102,9 +103,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 					{
 						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
 					}
-
-					utfFileName = localeToUTF(read->d_name, szTemp);
-					ListFiles[nbElements-1] = strdup(utfFileName);
+					ListFiles[nbElements-1] = strdup(read->d_name);
 				}
 			}
 		}

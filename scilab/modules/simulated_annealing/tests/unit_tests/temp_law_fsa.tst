@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM_NOT_MANDATORY -->
+
 T = temp_law_fsa(10, 9, 8, 7, 6, []);
 
 if norm(T - 10 * (1+6)/(2+6)) > 1e-3 then pause,end

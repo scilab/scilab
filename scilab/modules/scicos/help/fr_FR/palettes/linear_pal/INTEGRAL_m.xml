@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_INTEGRAL_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_INTEGRAL_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_INTEGRAL_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_INTEGRAL_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,12 +98,12 @@
   <refsection id="Description_INTEGRAL_m">
     <title>Description</title>
     <para>
-Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
+Ce bloc est un intÃ©grateur. La sortie est l'intÃ©grale de l'entrÃ©e.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_INTEGRAL_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_INTEGRAL_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -119,42 +119,42 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
         <para>
           <emphasis role="bold">Initial Condition</emphasis>
         </para>
-        <para> Un vecteur ou un scalaire définissant les conditions initiales.</para>
-        <para> La définition du type de donnée en entrée/sortie est définit grâce à ce paramètre. Le type peut être réel ou complexe.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
+        <para> Un vecteur ou un scalaire dÃ©finissant les conditions initiales.</para>
+        <para> La dÃ©finition du type de donnÃ©e en entrÃ©e/sortie est dÃ©finit grÃ¢ce Ã  ce paramÃ¨tre. Le type peut Ãªtre rÃ©el ou complexe.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">With re-intialization</emphasis>
         </para>
-        <para> Si ce paramètre est mis à<emphasis role="bold">1</emphasis> , celui-ci permet la réinitialisation de l'état à une condition initiale définie par la valeur présente sur le deuxième port d'entrée régulier.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Si ce paramÃ¨tre est mis Ã <emphasis role="bold">1</emphasis> , celui-ci permet la rÃ©initialisation de l'Ã©tat Ã  une condition initiale dÃ©finie par la valeur prÃ©sente sur le deuxiÃ¨me port d'entrÃ©e rÃ©gulier.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">With saturation</emphasis>
         </para>
-        <para> Si ce paramètre est placé à 1, alors les états sont limités à des valeurs qui seront comprises entre la limite basse de saturation (Lower limit) et la limite haute de saturation (Upper limit).</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Si ce paramÃ¨tre est placÃ© Ã  1, alors les Ã©tats sont limitÃ©s Ã  des valeurs qui seront comprises entre la limite basse de saturation (Lower limit) et la limite haute de saturation (Upper limit).</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Upper limit</emphasis>
         </para>
-        <para> La limite haute de saturation de l'intégration.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
+        <para> La limite haute de saturation de l'intÃ©gration.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Lower limit</emphasis>
         </para>
-        <para> La limite basse de saturation de l'intégration.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1].</para>
+        <para> La limite basse de saturation de l'intÃ©gration.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1].</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_INTEGRAL_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_INTEGRAL_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -163,14 +163,14 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -178,26 +178,26 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

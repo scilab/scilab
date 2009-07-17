@@ -31,7 +31,7 @@ evals=spec(A,B)
 [alpha,beta,Z]=spec(A,B)
 [alpha,beta,Q,Z]=spec(A,B)
 */
-extern int C2F(complexify)(int *num);
+extern int C2F(complexify)(int const*num);
 
 /* internal function used to detect imaginary part completly and strictly equal to 0. causing troubles to LAPACK. */  
 static int isArrayZero(int size , double * values)
@@ -117,7 +117,7 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 		       ? C2F(vfiniteComplex)(&totalSize, pData) 
 		       : C2F(vfinite)(&totalSize, pDataReal)))
 		  {
-		    SciError(264);
+		    Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),1);
 		    return 0;
 		  }
 		if( (symmetric=C2F(issymmetric)(&Rhs) ) )
@@ -308,7 +308,7 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				      ? C2F(vfiniteComplex)(&totalSize, pData[i]) 
 				      : C2F(vfinite)(&totalSize, pDataReal[i]) ) )))
 		    {/* /!\ reusing error msg, but could be more explicit ny being prefixed by %s for fname */
-		      Scierror(999,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"),i+1);
+		      Scierror(264, _("Wrong value for argument %d: Must not contain NaN or Inf.\n"),i+1);
 		    }
 		}
 	      if(!inf)

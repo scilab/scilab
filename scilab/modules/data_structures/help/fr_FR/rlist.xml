@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rlist">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>rlist</refname>
-    <refpurpose> définition d'une fraction rationnelle  </refpurpose>
+    <refpurpose> dÃ©finition d'une fraction rationnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>rlist()
 rlist(a1,....an)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>rlist(a1,....an)</literal> est équivalent à
+    <para><literal>rlist(a1,....an)</literal> est Ã©quivalent Ã 
     <literal>tlist(['r','num';'den','dt'], a1,....an)</literal> 
   </para>
     <para>
-    Crée une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont présents dans les arguments. Aucune vérification de type ou de taille n'est faite sur les <literal>ai</literal>.
+    CrÃ©e une <literal>tlist</literal> avec <literal>['r','num';'den','dt']</literal> comme premier argument et les <literal>ai</literal> comme termes suivants s'ils sont prÃ©sents dans les arguments. Aucune vÃ©rification de type ou de taille n'est faite sur les <literal>ai</literal>.
   </para>
     <para>
   </para>

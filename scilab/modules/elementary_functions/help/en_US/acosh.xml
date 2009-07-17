@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,50 +10,65 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="acosh">
+<refentry version="5.0-subset Scilab" xml:id="acosh" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>acosh</refname>
-    <refpurpose> hyperbolic cosine inverse</refpurpose>
+
+    <refpurpose>hyperbolic cosine inverse</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[t]=acosh(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>real or complex vector</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
           <para>real or complex vector</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    the components of vector <literal>t</literal> are the ArgCosh of the 
-    corresponding entries of vector <literal>x</literal>.
-    Definition domain is ]1,+infinity[.
-    It takes his values in</para>
+
+    <para>the components of vector <literal>t</literal> are the ArgCosh of the
+    corresponding entries of vector <literal>x</literal>. Definition domain is
+    ]1,+infinity[.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 x=[0,1,%i];
 cosh(acosh(x))
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
 </refentry>

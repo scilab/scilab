@@ -12,6 +12,9 @@
 #include "callfftw.h"
 /*--------------------------------------------------------------------------*/
 #include "dynamiclibrary.h"
+#include "getshortpathname.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 typedef void (*PROC_FFTW_EXECUTE_SPLIT_DFT) (const fftw_plan p, double *ri, double *ii, double *ro, double *io);
 typedef fftw_plan (*PROC_FFTW_PLAN_GURU_SPLIT_DFT) (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ii, double *ro, double *io, unsigned flags);
@@ -44,7 +47,19 @@ BOOL LoadFFTWLibrary(char *libraryname)
 
 	if (hinstLib == NULL)
 	{
+		#ifdef _MSC_VER
+		{
+			wchar_t * wclibraryname = to_wide_string(libraryname);
+			if (wclibraryname)
+			{
+				hinstLib = LoadDynLibraryW(wclibraryname); 
+				FREE(wclibraryname);
+				wclibraryname = NULL;
+			}
+		}
+		#else
 		hinstLib = LoadDynLibrary(libraryname);
+		#endif
 		MY_FFTW_EXECUTE_SPLIT_DFT=NULL;
 		MY_FFTW_PLAN_GURU_SPLIT_DFT=NULL;
 		MY_FFTW_DESTROY_PLAN=NULL;

@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 ierr = execstr('mclearerr()','errcatch');
 ierr = execstr('mclearerr(''toto'')','errcatch');
 ierr = execstr('mclearerr([1 2])','errcatch');

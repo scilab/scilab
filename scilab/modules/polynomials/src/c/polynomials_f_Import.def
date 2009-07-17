@@ -1,0 +1,23 @@
+LIBRARY    polynomials_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; polynomials_f
+; --------------------------------------- 
+intbez_
+intpclean_
+intcoeff_
+intdegree_
+intpdiag_
+intpdiv_
+intpoly_
+intpprod_
+introots_
+intsfact_
+intsimp_
+intsimpmd_
+intpsum_
+intptriu_
+intptriu_
+intvarn_

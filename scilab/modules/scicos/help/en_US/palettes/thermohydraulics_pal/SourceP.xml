@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -129,14 +129,14 @@ fluid flows out of the block.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Enthalpie spécifique de la source : H0 (J/kg)</emphasis>
+          <emphasis role="bold">Enthalpie spÃ©cifique de la source : H0 (J/kg)</emphasis>
         </para>
         <para> Specific enthalpie of the thermohydraulic source</para>
         <para> Properties : Type 'vec' of size -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">1:température fixée - 2:enthalpie fixée : option_temperature</emphasis>
+          <emphasis role="bold">1:tempÃ©rature fixÃ©e - 2:enthalpie fixÃ©e : option_temperature</emphasis>
         </para>
         <para> Temperature option. 1: fixed temperature - 2: fixed enthalpy</para>
         <para> Properties : Type 'vec' of size -1.</para>

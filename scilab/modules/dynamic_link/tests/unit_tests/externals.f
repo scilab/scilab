@@ -111,7 +111,7 @@ c     -------------------------------------------
       subroutine ext6f(aname,b,c)
 c     -------------------------------------------      
 c     example 6
-c     reading a vector in scilab internal stack using readmat interface
+c     reading a vector in scilab internal stack using creadmat interface
 c     -->link('ext6f.o','ext6f')
 c     -->a=[1,2,3];b=[2,3,4];
 c     -->c=call('ext6f','a',1,'c',b,2,'d','out',[1,3],3,'d')
@@ -225,7 +225,7 @@ c
 c     -------------------------------------------      
       subroutine ext10f(neq, t, y, ydot)
 c     -------------------------------------------
-c     exemple with a call to readmat routine
+c     exemple with a call to creadmat routine
 c     -->param=[0.04,10000,3d+7];
 c     -->link('ext10f.o','ext10f')
 c     -->y=ode([1;0;0],0,[0.4,4],'ext10f')

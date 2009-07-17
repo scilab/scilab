@@ -117,8 +117,10 @@ c     .     end of file encountered
          call promptecho(wte,buf(1:n),n)
       endif
       if (rio.eq.rte) then
+c     We need to remove wio here (new diary)
+c     -2 equals INPUT for diary (see basout)
          if(wio.ne.0) then
-            call promptecho(wio,buf(1:n),n)
+            call promptecho(-2,buf(1:n),n)
          endif
          lct(1)=1
       endif

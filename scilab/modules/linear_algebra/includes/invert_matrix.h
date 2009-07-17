@@ -18,8 +18,5 @@ int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 		   , double* pdblRcond);
 
 // TODO : add comments
-int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
-		  , double * pdblRcond, int* piPivot, void* pWork
-		  , unsigned long lWorkSize, double* pdblWork);
 
 #endif /* !_INVERT_MATRIX_H_ */

@@ -3,6 +3,7 @@
  * Copyright (C) 2001-2008 - ENPC  - Jean-Philippe Chancelier <jpc@cermics.enpc.fr>
  * Copyright (C) 2004-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
  * Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2008-2009 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -54,11 +55,16 @@ IMPORT_SIGNAL __threadSignal LaunchScilab;
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
 static __threadLock commandQueueSingleAccess = __StaticInitLock;
-
 /*--------------------------------------------------------------------------*/
-int StoreCommand ( char *command)
+int StoreCommand (char *command)
 {
   return (StoreCommandWithFlag (command, 0));
+}
+
+/*--------------------------------------------------------------------------*/
+int StorePrioritaryCommand (char *command)
+{
+  return (StorePrioritaryCommandWithFlag (command, 0));
 }
 
 /*--------------------------------------------------------------------------*/
@@ -101,6 +107,51 @@ int StoreCommandWithFlag (char *command,int flag)
 				q = r;
 			}
 	    q->next = p;
+	}
+	__UnLock(&commandQueueSingleAccess);
+	//**
+	//** We have something to do, awake Scilab !!!!!!
+	//**
+	__Signal(&LaunchScilab);
+	return (0);
+}
+
+/*--------------------------------------------------------------------------*/
+/*
+ * try to execute a command or add it to the _BEGINNING_ of command queue
+ * flag = 0 : the command is not shown in scilab window
+ * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
+ */
+/*--------------------------------------------------------------------------*/
+int StorePrioritaryCommandWithFlag (char *command,int flag)
+{
+  CommandRec *p = NULL;
+
+	p = (CommandRec *) MALLOC (sizeof (CommandRec));
+	if (p == (CommandRec *) 0)
+	  {
+	    sciprint(_("%s: No more memory.\n"),"send_command");
+	    return (1);
+	  }
+	p->flag = flag;
+	p->command = (char *) MALLOC ((strlen (command) + 1) * sizeof (char));
+	if (p->command == (char *) 0)
+	  {
+	    FREE(p);
+	    sciprint(_("%s: No more memory.\n"),"send_command");
+	    return (1);
+	  }
+	strcpy (p->command, command);
+	p->next = NULL;
+	__Lock(&commandQueueSingleAccess);
+	if (commandQueue == NULL)
+	{
+		commandQueue = p;
+	}
+	else
+	{
+	  p->next = commandQueue;
+	    commandQueue = p;
 	}
 	__UnLock(&commandQueueSingleAccess);
 	//**

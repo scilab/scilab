@@ -46,22 +46,32 @@ int sci_param3d( char * fname, unsigned long fname_len )
 
   char * labels = NULL ;
 
-  if (Rhs <= 0) {
-    sci_demo(fname,"t=0:0.1:5*%pi;param3d(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);", FALSE);
+  if (Rhs <= 0)
+  {
+    sci_demo(fname, fname_len);
     return 0;
   }
 
   CheckRhs(3,8);
 
-  if ( get_optionals(fname,opts) == 0) return 0;
-  if ( FirstOpt() < 4) {
-    Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
-      fname,1, 4);
+  if ( get_optionals(fname,opts) == 0) 
+  {
+	  C2F(putlhsvar)();
+	  return 0;
+  }
+  if ( FirstOpt() < 4) 
+  {
+    Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname,1, 4);
     return(0);
   }
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-  if (m1 * n1 == 0) { LhsVar(1) = 0; return 0;} 
+  if (m1 * n1 == 0) 
+  { 
+	  LhsVar(1) = 0; 
+	  C2F(putlhsvar)();
+	  return 0;
+  } 
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
   CheckSameDims(1,2,m1,n1,m2,n2);
@@ -88,7 +98,8 @@ int sci_param3d( char * fname, unsigned long fname_len )
   
 
   /* NG end */
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_params">
   <refnamediv>
     <refname>scicos_params</refname>
-    <refpurpose>Définit une structure params</refpurpose>
+    <refpurpose>DÃ©finit une structure params</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_params">
     <title>Module</title>
@@ -52,32 +52,32 @@ Type : liste scilab.
         <para>
           <emphasis role="bold">wpar</emphasis>
         </para>
-        <para> Ce vecteur n'est actuellement pas utilisé.</para>
-        <para> Il devrait être utilisé dans le futur pour enregistrer les paramètres de la fenêtre tels que la position et la taille.</para>
+        <para> Ce vecteur n'est actuellement pas utilisÃ©.</para>
+        <para> Il devrait Ãªtre utilisÃ© dans le futur pour enregistrer les paramÃ¨tres de la fenÃªtre tels que la position et la taille.</para>
         <para> 
 Taille : 6.
 </para>
         <para>
-Type : vecteur colonne de nombre réels.
+Type : vecteur colonne de nombre rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">title</emphasis>
         </para>
-        <para> Vecteur de chaîne de caractères, où la première contient le titre du diagramme (le nom par défaut du ficher de sauvegarde) et la deuxième est le chemim du répertoire.</para>
+        <para> Vecteur de chaÃ®ne de caractÃ¨res, oÃ¹ la premiÃ¨re contient le titre du diagramme (le nom par dÃ©faut du ficher de sauvegarde) et la deuxiÃ¨me est le chemim du rÃ©pertoire.</para>
         <para> 
 Taille : 2.
 </para>
         <para>
-Type : vecteur line de chaîne de caractères.
+Type : vecteur line de chaÃ®ne de caractÃ¨res.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">tol</emphasis>
         </para>
-        <para> Un vecteur contenant les paramètres de la simulation qui inclue les tolérances utilisées par le solveur:
+        <para> Un vecteur contenant les paramÃ¨tres de la simulation qui inclue les tolÃ©rances utilisÃ©es par le solveur:
 
 </para>
         <itemizedlist>
@@ -86,7 +86,7 @@ Type : vecteur line de chaîne de caractères.
               <emphasis role="bold">atol  </emphasis>
             </para>
             <para>
-tolérance absolue pour l'intégration
+tolÃ©rance absolue pour l'intÃ©gration
 
 
 </para>
@@ -96,7 +96,7 @@ tolérance absolue pour l'intégration
               <emphasis role="bold">rtol  </emphasis>
             </para>
             <para>
-tolérance relative pour l'intégration.
+tolÃ©rance relative pour l'intÃ©gration.
 </para>
             <para>
 
@@ -107,8 +107,8 @@ tolérance relative pour l'intégration.
               <emphasis role="bold">ttol  </emphasis>
             </para>
             <para>
-tolérance sur le temps. Si une période d'intégration est
-                        inférieure à ttol, le solveur n'est pas appellé.
+tolÃ©rance sur le temps. Si une pÃ©riode d'intÃ©gration est
+                        infÃ©rieure Ã  ttol, le solveur n'est pas appellÃ©.
 </para>
             <para>
 
@@ -119,11 +119,11 @@ tolérance sur le temps. Si une période d'intégration est
               <emphasis role="bold">deltat</emphasis>
             </para>
             <para>
-Interval temporel maximal entre deux points d'intégration.
+Interval temporel maximal entre deux points d'intÃ©gration.
 </para>
             <para>
-Si une période d'intégration est plus grande que deltat, 
-                        le solveur est appelé plus d'une fois de manière à maintenir
+Si une pÃ©riode d'intÃ©gration est plus grande que deltat, 
+                        le solveur est appelÃ© plus d'une fois de maniÃ¨re Ã  maintenir
                         le pas au niveau de deltat
 
 
@@ -134,13 +134,13 @@ Si une période d'intégration est plus grande que deltat,
               <emphasis role="bold">scale </emphasis>
             </para>
             <para>
-Facteur d'échelle temps-réel (Real-time scaling);
-                        la valeur 0 correspond à un facteur d'échelle nul.
+Facteur d'Ã©chelle temps-rÃ©el (Real-time scaling);
+                        la valeur 0 correspond Ã  un facteur d'Ã©chelle nul.
 </para>
             <para>
 Ce facteur associe le temps de la simulation au temps
-                        réel en seconde. Une valeur égale à 1, signifie que 
-                        chaque untité de temps Scicos correspond à une seconde.
+                        rÃ©el en seconde. Une valeur Ã©gale Ã  1, signifie que 
+                        chaque untitÃ© de temps Scicos correspond Ã  une seconde.
 </para>
             <para>
 
@@ -151,9 +151,9 @@ Ce facteur associe le temps de la simulation au temps
               <emphasis role="bold">solver</emphasis>
             </para>
             <para>
-Choix du solveur numérique. Une valeur 0 signifie qu'un
-                        solveur ODE sera utilisé et 100 signifie qu'un solveur
-                        DAE sera utilisé.
+Choix du solveur numÃ©rique. Une valeur 0 signifie qu'un
+                        solveur ODE sera utilisÃ© et 100 signifie qu'un solveur
+                        DAE sera utilisÃ©.
 </para>
             <para>
 
@@ -164,7 +164,7 @@ Choix du solveur numérique. Une valeur 0 signifie qu'un
               <emphasis role="bold">hmax  </emphasis>
             </para>
             <para>
-Pas maximal d'intégration pour le solveur.
+Pas maximal d'intÃ©gration pour le solveur.
 </para>
             <para>
 0 signifie pas de limites.
@@ -179,7 +179,7 @@ Pas maximal d'intégration pour le solveur.
 Taille : 7.
 </para>
         <para>
-Type : vecteur colonne de nombre réels.
+Type : vecteur colonne de nombre rÃ©els.
 </para>
       </listitem>
       <listitem>
@@ -187,33 +187,33 @@ Type : vecteur colonne de nombre réels.
           <emphasis role="bold">tf</emphasis>
         </para>
         <para> Le temps final de simulation.</para>
-        <para> La simulation s'arrête a ce temps.</para>
-        <para> La valeur par défaut est 100000.</para>
+        <para> La simulation s'arrÃªte a ce temps.</para>
+        <para> La valeur par dÃ©faut est 100000.</para>
         <para> 
 Taille : 1.
 </para>
         <para>
-Type : réel.
+Type : rÃ©el.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">context</emphasis>
         </para>
-        <para> Un vecteur de chaînes de caractères contenant des instructions Scilab définissant des variables Scilab à utiliser dans les boîtes de dialogues des blocs (comme paramètres symboliques).</para>
-        <para> Toutes instructions valides Scilab peuvent être utilisées ainsi que des commentaires.</para>
+        <para> Un vecteur de chaÃ®nes de caractÃ¨res contenant des instructions Scilab dÃ©finissant des variables Scilab Ã  utiliser dans les boÃ®tes de dialogues des blocs (comme paramÃ¨tres symboliques).</para>
+        <para> Toutes instructions valides Scilab peuvent Ãªtre utilisÃ©es ainsi que des commentaires.</para>
         <para> 
 Taille : nombre de lignes du contexte.
 </para>
         <para>
-Type : Vecteur colonne de chaînes de caractères.
+Type : Vecteur colonne de chaÃ®nes de caractÃ¨res.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">void1</emphasis>
         </para>
-        <para> Champ inutilisé.</para>
+        <para> Champ inutilisÃ©.</para>
         <para> 
 Taille : -.
 </para>
@@ -225,7 +225,7 @@ Type : -.
         <para>
           <emphasis role="bold">options</emphasis>
         </para>
-        <para> Liste Scilab de type scsopt définissant les propriétés graphiques de l'éditeur telles que la couleur de fond et la couleur des liens.</para>
+        <para> Liste Scilab de type scsopt dÃ©finissant les propriÃ©tÃ©s graphiques de l'Ã©diteur telles que la couleur de fond et la couleur des liens.</para>
         <para> 
 Les champs sont les suivant:
  
@@ -237,19 +237,19 @@ Les champs sont les suivant:
               <emphasis role="bold">3D        </emphasis>
             </para>
             <para>
-Une liste à deux entrées. La première est un booléen
+Une liste Ã  deux entrÃ©es. La premiÃ¨re est un boolÃ©en
                             indiquant si les blocs doivent avoir un aspect 3D.
 </para>
             <para>
-La seconde entrée indique la couleur dans la palette de
-                            couleur courante (colormap) qui doit être utilisée pour
-                            créer l'effet 3D. Par défaut celle ci est 33 ce qui
-                            correspond à gris, couleur ajoutée par Scicos à la palette
+La seconde entrÃ©e indique la couleur dans la palette de
+                            couleur courante (colormap) qui doit Ãªtre utilisÃ©e pour
+                            crÃ©er l'effet 3D. Par dÃ©faut celle ci est 33 ce qui
+                            correspond Ã  gris, couleur ajoutÃ©e par Scicos Ã  la palette
                             standard qui contients 32 couleurs.
 </para>
             <para>
 
-La valeur par défault de cette list est donc list(%t,33).
+La valeur par dÃ©fault de cette list est donc list(%t,33).
 </para>
           </listitem>
           <listitem>
@@ -257,8 +257,8 @@ La valeur par défault de cette list est donc list(%t,33).
               <emphasis role="bold">Background</emphasis>
             </para>
             <para>
-Un vecteur avec deux entrées: la couleur d'arrière plan et
-                            la couleur d'avant plan. La valeur par défaut est [8,1].
+Un vecteur avec deux entrÃ©es: la couleur d'arriÃ¨re plan et
+                            la couleur d'avant plan. La valeur par dÃ©faut est [8,1].
 </para>
             <para>
 
@@ -269,14 +269,14 @@ Un vecteur avec deux entrées: la couleur d'arrière plan et
               <emphasis role="bold">link      </emphasis>
             </para>
             <para>
-Les couleurs par défauts pour les liens réguleurs et les
-                            liens d'activations. Ces couleurs sont utilisées uniquement
+Les couleurs par dÃ©fauts pour les liens rÃ©guleurs et les
+                            liens d'activations. Ces couleurs sont utilisÃ©es uniquement
                             pour de nouvelles constructions. Ces choix n'affectent pas
-                            les liens déjà présent sur le diagramme.
+                            les liens dÃ©jÃ  prÃ©sent sur le diagramme.
 </para>
             <para>
 
-Les valeurs par défaut sont [1,5] ce qui correspond à noir
+Les valeurs par dÃ©faut sont [1,5] ce qui correspond Ã  noir
                             et rouge pour la palette de couleurs standard de Scilab.
 </para>
           </listitem>
@@ -285,8 +285,8 @@ Les valeurs par défaut sont [1,5] ce qui correspond à noir
               <emphasis role="bold">ID        </emphasis>
             </para>
             <para>
-Une liste de deux vecteurs qui définit le type de la police
-                            et la taille de la police. Les valeurs par défaut sont
+Une liste de deux vecteurs qui dÃ©finit le type de la police
+                            et la taille de la police. Les valeurs par dÃ©faut sont
                             [5,1],[4,1].
 </para>
             <para>
@@ -299,8 +299,8 @@ Une liste de deux vecteurs qui définit le type de la police
             </para>
             <para>
 Une matrice de taille 3,n contenant les valeurs RGB des
-                            couleurs à ajouter à la palette de couleur. La valeur par
-                            défaut est [0.8,0.8,0.8] (couleur grise).
+                            couleurs Ã  ajouter Ã  la palette de couleur. La valeur par
+                            dÃ©faut est [0.8,0.8,0.8] (couleur grise).
 </para>
             <para>
 </para>
@@ -319,7 +319,7 @@ Type : tlist scilab de type scsopt.
         <para>
           <emphasis role="bold">void2</emphasis>
         </para>
-        <para> Champ inutilisé.</para>
+        <para> Champ inutilisÃ©.</para>
         <para> 
 Taille : -.
 </para>
@@ -331,7 +331,7 @@ Type : -.
         <para>
           <emphasis role="bold">void3</emphasis>
         </para>
-        <para> Champ inutilisé.</para>
+        <para> Champ inutilisÃ©.</para>
         <para> 
 Taille : -.
 </para>
@@ -348,7 +348,7 @@ Type : -.
 Taille : 1.
 </para>
         <para>
-Type : Chaînes de caractères.
+Type : ChaÃ®nes de caractÃ¨res.
 </para>
       </listitem>
     </itemizedlist>

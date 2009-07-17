@@ -17,40 +17,41 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "BOOL.h"
 
 /**
  * @return number of fonts installed (used) by scilab
  */
-int getNbInstalledFonts(void);
+RENDERER_IMPEXP int getNbInstalledFonts(void);
 
 /**
 * returns fontnames installed (used) by scilab
 * @param[out] size of array returned
 * @return fonts name 
 */
-char **getInstalledFontsName(int *sizeArray); 
+RENDERER_IMPEXP char **getInstalledFontsName(int *sizeArray); 
 
 /**
 * returns fontnames available on your system
 * @param[out] size of array returned
 * @return fonts name 
 */
-char **getAvailableFontsName(int *sizeArray); 
+RENDERER_IMPEXP char **getAvailableFontsName(int *sizeArray); 
 
 /**
 * check if a font name is available
 * @param[in] a font name
 * @return TRUE or FALSE
 */
-BOOL isAvailableFontsName(char *fontname); 
+RENDERER_IMPEXP BOOL isAvailableFontsName(char *fontname); 
 
 /**
 * Add a new font from its font name.
 * @param fontName name of the font to add.
 * @return index of the added font.
 */
-int addFont(char *fontname);
+RENDERER_IMPEXP int addFont(char *fontname);
 
 /**
 * Replace a font in the font list by a new one.
@@ -58,7 +59,7 @@ int addFont(char *fontname);
 * @param[in] fontName Name of the font.
 * @return index of the added font or -1 if an error occured.
 */
-int changeFont(int index, char * fontName);
+RENDERER_IMPEXP int changeFont(int index, char * fontName);
 
 /**
 * Replace a font in the font list by a new one.
@@ -68,12 +69,12 @@ int changeFont(int index, char * fontName);
 * @param[in] if it is Italic.
 * @return index of the added font or -1 if an error occured.
 */
-int changeFontWithProperty(int index, char * fontName, BOOL isBold, BOOL isItalic);
+RENDERER_IMPEXP int changeFontWithProperty(int index, char * fontName, BOOL isBold, BOOL isItalic);
 
 /**
 * reset xlfont with initiale values
 */
-void resetFontManager(void);
+RENDERER_IMPEXP void resetFontManager(void);
 
 /**
 * Replace a font in the font list by a new one loaded by its filename.
@@ -81,14 +82,14 @@ void resetFontManager(void);
 * @param[in] filename of font
 * @return index of the added font or -1 if an error occured.
 */
-int changeFontFromFilename (int index, char * FontFilename);
+RENDERER_IMPEXP int changeFontFromFilename (int index, char * FontFilename);
 
 /**
 * Add a new font from its font filename.
 * @param[in] filename of font
 * @return index of the added font or -1 if an error occured.
 */
-int addFontFromFilename (char * FontFilename);
+RENDERER_IMPEXP int addFontFromFilename (char * FontFilename);
 
 #ifdef __cplusplus
 }

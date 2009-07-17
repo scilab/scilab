@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bezout">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>bezout</refname>
-    <refpurpose> équation de Bezout pour les polynômes  </refpurpose>
+    <refpurpose> Ã©quation de Bezout pour les polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[pgcd,U]=bezout(p1,p2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p1, p2  </term>
         <listitem>
-          <para>deux polynômes réels ou deux entiers (type égal à 8)
+          <para>deux polynÃ´mes rÃ©els ou deux entiers (type Ã©gal Ã  8)
 </para>
         </listitem>
       </varlistentry>
@@ -32,7 +32,7 @@
       <literal>[p1,p2]*U = [pgcd,0]</literal>
     </para>
     <para>
-    Le PPCM de <literal>p1</literal> et <literal>p2</literal> est donné par
+    Le PPCM de <literal>p1</literal> et <literal>p2</literal> est donnÃ© par
   </para>
     <para><literal>p1*U(1,2)</literal> (ou <literal>-p2*U(2,2)</literal>)
   </para>
@@ -40,7 +40,7 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-// cas des polynômes
+// cas des polynÃ´mes
 x=poly(0,'x');
 p1=(x+1)*(x-3)^5;p2=(x-2)*(x-3)^3;
 [pgcd,U]=bezout(p1,p2) 

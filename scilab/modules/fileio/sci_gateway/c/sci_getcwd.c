@@ -36,14 +36,11 @@ int sci_getcwd(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		char szTemp[bsiz];
-		char* utfPath = localeToUTF(path, szTemp);
-
 		int n1 = 1;
-		int m1 = (int)strlen(utfPath);
+		int m1 = (int)strlen(path);
 
 		n1 = 1;
-		CreateVarFromPtr(Rhs+1, STRING_DATATYPE, &m1, &n1, &utfPath);
+		CreateVarFromPtr(Rhs+1, STRING_DATATYPE, &m1, &n1, &path);
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
 	}

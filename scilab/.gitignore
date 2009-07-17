@@ -65,6 +65,7 @@ run.iss
 setup.iss
 tasks.iss
 types.iss
+isxdl.dll
 uninstalldelete.iss
 custommessages.iss
 en_US_scilab.isl
@@ -72,6 +73,12 @@ fr_FR_scilab.isl
 ru_RU_scilab.isl
 zh_CN.isl
 zh_CN_scilab.isl
+ca_ES.isl
+ca_ES_scilab.isl
+de_DE.isl
+de_DE_scilab.isl
+es_ES.isl
+es_ES_scilab.isl
 #
 # VS solution files (windows)
 #
@@ -100,6 +107,7 @@ modules/*/sci_gateway/fortran/*.c
 # others files (windows)
 #
 *.db
+*.manifest
 
 #
 # scilab/ specific files
@@ -118,6 +126,7 @@ tcllib
 _tmp_project.h
 scilab-bin
 scilab6-bin
+scilab-cli-bin
 tclmajor
 tclminor
 .libs

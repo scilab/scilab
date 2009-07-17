@@ -27,6 +27,7 @@
 */
 
 #include "scoSetProperty.h"
+#include "HandleManagement.h" /* sciGetHandle */
 
 void scoSetHandleShortDraw(ScopeMemory * pScopeMemory, int i,int j, long value)
 {

@@ -6,6 +6,8 @@
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 currentline = 'cd /home/sy';
 r = completeline(currentline,'sylvestre',getfilepartlevel(currentline),getpartlevel(currentline),%t);
 if r <> 'cd /home/sylvestre' then bugmes();quit;end

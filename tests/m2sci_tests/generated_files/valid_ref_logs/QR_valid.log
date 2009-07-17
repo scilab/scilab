@@ -1,4 +1,3 @@
-****** Beginning of validation of QR.dia.ref ******
 *** TEST 1 PASSED ***
 
 *** TEST 2 PASSED ***
@@ -161,23 +160,14 @@
 
 *** TEST 81 PASSED ***
 
-TEST 82: Scilab and Matlab size do not match for res192
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 82 FAILED ***
+TEST 82: Scilab/Matlab size does not match for res192: [0 0]/[1 0]
+*** TEST 82 PASSED ***
 
-TEST 83: Scilab and Matlab size do not match for res195
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 83 FAILED ***
+TEST 83: Scilab/Matlab size does not match for res195: [0 0]/[1 0]
+*** TEST 83 PASSED ***
 
-TEST 84: Scilab and Matlab size do not match for res198
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 84 FAILED ***
+TEST 84: Scilab/Matlab size does not match for res198: [0 0]/[1 0]
+*** TEST 84 PASSED ***
 
 *** TEST 85 PASSED ***
 
@@ -227,4 +217,3 @@ Trying to compare results...
 
 *** TEST 108 PASSED ***
 
-****** End of validation of QR.dia.ref ******

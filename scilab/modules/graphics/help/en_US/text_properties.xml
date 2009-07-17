@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -198,7 +198,7 @@
             clipped.</para>
             </listitem>
             <listitem>
-              <para><literal>"cliprf"</literal> this means that the text is clipped
+              <para><literal>"clipgrf"</literal> this means that the text is clipped
             outside the Axes box.</para>
             </listitem>
             <listitem>

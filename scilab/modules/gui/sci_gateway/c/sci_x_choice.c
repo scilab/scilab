@@ -18,9 +18,10 @@
 #include "CallMessageBox.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
+int sci_x_choice(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowDefaultValues = 0, nbColDefaultValues = 0;
@@ -82,17 +83,20 @@ int C2F(sci_x_choice)(char *fname,unsigned long fname_len)
 
   /* Message */
   setMessageBoxMultiLineMessage(messageBoxID, getStringMatrixFromStack((size_t)labelsAdr), nbCol*nbRow);
-    
+  freeArrayOfString(labelsAdr, nbRow*nbCol);
+
   /* READ THE LABELS */
   if (VarType(3) ==  sci_strings)
     {
       GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRowLineLabels,&nbColLineLabels,&lineLabelsAdr);
       if (nbRow !=1 && nbCol !=1)
       {
+        freeArrayOfString(lineLabelsAdr, nbRowLineLabels*nbColLineLabels);
         Scierror(999, _("%s: Wrong size for input argument #%d: Vector of strings expected.\n"), fname, 3);
         return FALSE;
       }
       setMessageBoxLineLabels(messageBoxID, getStringMatrixFromStack((size_t)lineLabelsAdr), nbColLineLabels*nbRowLineLabels);
+      freeArrayOfString(lineLabelsAdr, nbRowLineLabels*nbColLineLabels);
     }
   else 
     {

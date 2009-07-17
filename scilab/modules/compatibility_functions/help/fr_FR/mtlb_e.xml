@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,57 +16,57 @@
   </info>
   <refnamediv>
     <refname>mtlb_e</refname>
-    <refpurpose>Fonction d'émulation de l'extraction Matlab</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de l'extraction Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, l'extraction se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, l'extraction se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-	Lors de l'extraction de données d'une matrice avec comme indice un vecteur : 
+	Lors de l'extraction de donnÃ©es d'une matrice avec comme indice un vecteur : 
 	Matlab retourne un vecteur ligne alors que Scilab retourne un vecteur colonne.
         </para>
       </listitem>
       <listitem>
         <para>
-	Lors de l'extraction de données d'une matrice d'une chaîne de caractères : étant donné que
-	les matrices de chaînes de caractères peuvent être adressées comme tout autre type de
-	matrice dans Matlab (chaque caractère peut être adressé),
-	l'extraction à partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
-	ceci ne peut être fait de la même manière et la fonction <literal>part</literal> doit être utilisée. 
+	Lors de l'extraction de donnÃ©es d'une matrice d'une chaÃ®ne de caractÃ¨res : Ã©tant donnÃ© que
+	les matrices de chaÃ®nes de caractÃ¨res peuvent Ãªtre adressÃ©es comme tout autre type de
+	matrice dans Matlab (chaque caractÃ¨re peut Ãªtre adressÃ©),
+	l'extraction Ã  partir d'une telle matrice ne change pas des autres types. Mais dans Scilab
+	ceci ne peut Ãªtre fait de la mÃªme maniÃ¨re et la fonction <literal>part</literal> doit Ãªtre utilisÃ©e. 
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_e(B,k)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>A=B(k)</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_e</literal> :
+    La fonction <literal>mtlb_e(B,k)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>A=B(k)</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les opÃ©randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_e</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>    
 	Si <literal>B</literal> est un vecteur
-	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=B(k)</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut Ãªtre remplacÃ© par <literal>A=B(k)</literal>
 	</para>
       </listitem>
       <listitem>
         <para>    
 	Si <literal>B</literal> est une matrice
-	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=B(k).'</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut Ãªtre remplacÃ© par <literal>A=B(k).'</literal>
  	</para>
       </listitem>
       <listitem>
         <para>    
-	Si <literal>B</literal> est une chaîne de caractères et
+	Si <literal>B</literal> est une chaÃ®ne de caractÃ¨res et
 	k est une scalaire ou un vecteur
-	<literal>A=mtlb_e(B,k)</literal> peut être remplacé par <literal>A=part(B,k)</literal>
+	<literal>A=mtlb_e(B,k)</literal> peut Ãªtre remplacÃ© par <literal>A=part(B,k)</literal>
  	</para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_e</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_e</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

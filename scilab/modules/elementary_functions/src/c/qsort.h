@@ -21,9 +21,9 @@ int swapcodeint(char * parmi,char * parmj,int n,int incr);
 #define swapind(a, b)  if ( flag==1) swapcodeind(a,b,1,es1)
 #define vecswap(a, b, n) if ((n) > 0) swapcode(a, b, n/es,es)
 #define vecswapind(a, b, n) if ((n) > 0 && flag == 1) swapcodeind(a,b,n/es1,es1) 
-#define med3(res,tabres,a, b, c, xa,xb,xc,cmp) cmp(a, b) < 0 ?		\
-  (cmp(b, c) < 0 ? (res=b,tabres=xb) :					\
-   (cmp(a, c) < 0 ? (res=c,tabres=xc) : (res=a,tabres=xa) ))		\
-    :(cmp(b, c) > 0 ? (res=b,tabres=xb) : (cmp(a, c) < 0 ? (res=a,tabres=xa) : (res=c,tabres=xc) ))
+#define med3(res,tabres,a, b, c, xa,xb,xc,cmp) cmp(a, b,xa,xb) < 0 ?	\
+   (cmp(b, c, xb, xc) < 0 ? (res=b,tabres=xb) : \
+    (cmp(a, c, xa, xc) < 0 ? (res=c,tabres=xc) : (res=a,tabres=xa) ))	\
+  :(cmp(b, c, xb, xc) > 0 ? (res=b,tabres=xb) : (cmp(a, c, xa, xc) < 0 ? (res=a,tabres=xa) : (res=c,tabres=xc) ))
 
 #endif /* __QSORT_H__ */

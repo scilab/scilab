@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,66 +10,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="linspace">
+<refentry version="5.0-subset Scilab" xml:id="linspace" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>linspace</refname>
-    <refpurpose>linearly spaced
-  vector</refpurpose>
+
+    <refpurpose>linearly spaced vector</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x1,x2</term>
+
         <listitem>
           <para>real or complex scalars</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>n</term>
+
         <listitem>
           <para>integer (number of values) (default value = 100)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>v</term>
+
         <listitem>
           <para>real or complex row vector</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>Linearly spaced vector. <literal>linspace(x1, x2)</literal> generates a row
-    vector of n (default value=100) linearly equally spaced points between
-    <literal>x1</literal> and <literal>x2</literal>. If <literal>x1</literal> or <literal>x2</literal>
-    are complex then <literal>linspace(x1,x2)</literal> returns a row vector of n
-    complexes, the real (resp. imaginary) parts of the n complexes are
-    linearly equally spaced between the real (resp. imaginary) parst of
-    <literal>x1</literal> and <literal>x2</literal></para>
+
+    <para>Linearly spaced vector. <literal>linspace(x1, x2)</literal>
+    generates a row vector of n (default value=100) linearly equally spaced
+    points between <literal>x1</literal> and <literal>x2</literal>. If
+    <literal>x1</literal> or <literal>x2</literal> are complex then
+    <literal>linspace(x1,x2)</literal> returns a row vector of n complexes,
+    the real (resp. imaginary) parts of the n complexes are linearly equally
+    spaced between the real (resp. imaginary) parst of <literal>x1</literal>
+    and <literal>x2.</literal></para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 linspace(1,2,10)
 linspace(1+%i,2+2*%i,10)
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="logspace">logspace</link>
-      </member>
+      <member><link linkend="logspace">logspace</link></member>
     </simplelist>
   </refsection>
 </refentry>

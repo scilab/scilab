@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-12-21 12:57+0000\n"
-"Last-Translator: kkirill <Unknown>\n"
+"PO-Revision-Date: 2009-03-23 13:17+0000\n"
+"Last-Translator: voronaam <voronaam@yandex.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -279,12 +279,12 @@ msgstr "%s: Не удалось открыть ни ''%s'', ни ''%s'', ни ''
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
-msgstr ""
+msgstr "%s: Фактор нормирования m - 1 равен нулю.\n"
 
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
-msgstr ""
+msgstr "%s: Фактор нормирования n - 1 равен нулю.\n"

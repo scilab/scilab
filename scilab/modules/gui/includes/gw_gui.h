@@ -14,27 +14,25 @@
 #ifndef __GW_GUI__
 #define __GW_GUI__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-/*--------------------------------------------------------------------------*/
 int gw_gui(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_dialog)(char *fname,unsigned long fname_len);
-int C2F(sci_x_choose)(char *fname,unsigned long fname_len);
-int C2F(sci_x_mdialog)(char *fname,unsigned long fname_len);
-int C2F(sci_x_choice)(char *fname,unsigned long fname_len);
+int sci_x_dialog(char *fname,unsigned long fname_len);
+int sci_x_choose(char *fname,unsigned long fname_len);
+int sci_x_mdialog(char *fname,unsigned long fname_len);
+int sci_x_choice(char *fname,unsigned long fname_len);
 int sci_delmenu(char *fname,unsigned long fname_len);
 int sci_setmenu(char *fname,unsigned long fname_len);
 int sci_unsetmenu(char *fname,unsigned long fname_len);
 int sci_uigetdir(char *fname,unsigned long l);
-#include "sci_raise_window.h"
+int sci_raise_window ( char * fname, unsigned long fname_len ) ;
 int sci_getlookandfeel( char * fname, unsigned long fname_len ) ;
 int sci_getinstalledlookandfeels( char * fname, unsigned long fname_len ) ;
 int sci_setlookandfeel( char * fname, unsigned long fname_len ) ;
-int C2F(sci_ClipBoard)(char *fname,unsigned long l);
+int sci_ClipBoard(char *fname,unsigned long l);
 int sci_toolbar(char *fname,unsigned long l);
 int sci_uicontrol(char *fname,unsigned long l);
 int sci_uimenu(char *fname,unsigned long l);
-int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len);
+int sci_x_choose_modeless(char *fname,unsigned long fname_len);
 int sci_messagebox(char *fname,unsigned long l);
 int sci_waitbar(char *fname,unsigned long l);
 int sci_progressionbar(char *fname,unsigned long l);
@@ -51,6 +49,8 @@ int sci_printsetupbox(char *fname,unsigned long l);
 int sci_toprint(char *fname,unsigned long l);
 int sci_uigetfile( char * fname, unsigned long fname_len ) ;
 int sci_usecanvas(char *fname,unsigned long l);
+int sci_displaytree(char *fname,unsigned long l);
+int sci_uiputfile( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Non_linear_pal">
   <refnamediv>
     <refname>Non_linear_pal</refname>
-    <refpurpose>Palette Non-linéaire</refpurpose>
+    <refpurpose>Palette Non-linÃ©aire</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -49,7 +49,7 @@
   <refsection id="Description_Non_linear_pal">
     <title>Description</title>
     <para>
-Cette palette contient des fonctions non-linéaires.
+Cette palette contient des fonctions non-linÃ©aires.
 
 </para>
   </refsection>
@@ -68,7 +68,7 @@ Cette palette contient des fonctions non-linéaires.
       </listitem>
       <listitem>
         <para>
-          <link linkend="EXPRESSION">EXPRESSION - Expression mathématique</link>
+          <link linkend="EXPRESSION">EXPRESSION - Expression mathÃ©matique</link>
         </para>
       </listitem>
       <listitem>
@@ -133,7 +133,7 @@ Cette palette contient des fonctions non-linéaires.
       </listitem>
       <listitem>
         <para>
-          <link linkend="TrigFun">TrigFun - Fonction trigonométrique</link>
+          <link linkend="TrigFun">TrigFun - Fonction trigonomÃ©trique</link>
         </para>
       </listitem>
     </itemizedlist>

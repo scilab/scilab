@@ -1,0 +1,135 @@
+*** TEST 1 PASSED ***
+
+*** TEST 2 PASSED ***
+
+*** TEST 3 PASSED ***
+
+*** TEST 4 PASSED ***
+
+*** TEST 5 PASSED ***
+
+*** TEST 6 PASSED ***
+
+*** TEST 7 PASSED ***
+
+*** TEST 8 PASSED ***
+
+*** TEST 9 PASSED ***
+
+*** TEST 10 PASSED ***
+
+*** TEST 11 PASSED ***
+
+*** TEST 12 PASSED ***
+
+*** TEST 13 PASSED ***
+
+*** TEST 14 PASSED ***
+
+*** TEST 15 PASSED ***
+
+*** TEST 16 PASSED ***
+
+*** TEST 17 PASSED ***
+
+*** TEST 18 PASSED ***
+
+*** TEST 19 PASSED ***
+
+*** TEST 20 PASSED ***
+
+*** TEST 21 PASSED ***
+
+*** TEST 22 PASSED ***
+
+*** TEST 23 PASSED ***
+
+*** TEST 24 PASSED ***
+
+*** TEST 25 PASSED ***
+
+*** TEST 26 PASSED ***
+
+*** TEST 27 PASSED ***
+
+*** TEST 28 PASSED ***
+
+*** TEST 29 PASSED ***
+
+*** TEST 30 PASSED ***
+
+*** TEST 31 PASSED ***
+
+*** TEST 32 PASSED ***
+
+*** TEST 33 PASSED ***
+
+*** TEST 34 PASSED ***
+
+*** TEST 35 PASSED ***
+
+*** TEST 36 PASSED ***
+
+*** TEST 37 PASSED ***
+
+*** TEST 38 PASSED ***
+
+*** TEST 39 PASSED ***
+
+*** TEST 40 PASSED ***
+
+*** TEST 41 PASSED ***
+
+*** TEST 42 PASSED ***
+
+*** TEST 43 PASSED ***
+
+TEST 44: Scilab and Matlab values do not match for res44
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan]
+Matlab value: [%inf,%i*1.5707963267949,%inf]
+*** TEST 44 FAILED ***
+
+TEST 45: Scilab and Matlab values do not match for res45
+Scilab value: [%nan+%i*%nan;-%i*1.5707963267949;%nan+%i*%nan]
+Matlab value: [%inf;%i*1.5707963267949;%inf]
+*** TEST 45 FAILED ***
+
+TEST 46: Scilab and Matlab values do not match for res46
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan;%nan+%i*%nan,%nan+%i*%nan,-%i*1.5707963267949]
+Matlab value: [%inf,%i*1.5707963267949,%inf;%inf,%inf,%i*1.5707963267949]
+*** TEST 46 FAILED ***
+
+*** TEST 47 FAILED ***
+
+TEST 48: Scilab and Matlab values do not match for res48
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan]
+Matlab value: [%inf,%i*1.5707963267949,%inf]
+*** TEST 48 FAILED ***
+
+TEST 49: Scilab and Matlab values do not match for res49
+Scilab value: [%nan+%i*%nan;-%i*1.5707963267949;%nan+%i*%nan]
+Matlab value: [%inf;%i*1.5707963267949;%inf]
+*** TEST 49 FAILED ***
+
+TEST 50: Scilab and Matlab values do not match for res50
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan;%nan+%i*%nan,%nan+%i*%nan,-%i*1.5707963267949]
+Matlab value: [%inf,%i*1.5707963267949,%inf;%inf,%inf,%i*1.5707963267949]
+*** TEST 50 FAILED ***
+
+*** TEST 51 FAILED ***
+
+TEST 52: Scilab and Matlab values do not match for res52
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan]
+Matlab value: [%inf,%i*1.5707963267949,%inf]
+*** TEST 52 FAILED ***
+
+TEST 53: Scilab and Matlab values do not match for res53
+Scilab value: [%nan+%i*%nan;-%i*1.5707963267949;%nan+%i*%nan]
+Matlab value: [%inf;%i*1.5707963267949;%inf]
+*** TEST 53 FAILED ***
+
+TEST 54: Scilab and Matlab values do not match for res54
+Scilab value: [%nan+%i*%nan,-%i*1.5707963267949,%nan+%i*%nan;%nan+%i*%nan,%nan+%i*%nan,-%i*1.5707963267949]
+Matlab value: [%inf,%i*1.5707963267949,%inf;%inf,%inf,%i*1.5707963267949]
+*** TEST 54 FAILED ***
+

@@ -74,23 +74,36 @@ if {$tcl_platform(platform) == "unix" && $Tk85} {
 # This test is also consistent with scilab-gtk (i.e. Scilab5 will be set
 # to false when running aside scilab-gtk)
 
-if {$standaloneScipad} {
-    # no possible test, since launching Scipad outside of Scilab is used
-    # for debugging it, it is safe to fool Scipad by telling it Scilab 5
-    # environment is around
-    set Scilab5 true
-    set Scilab4 false
-} else {
-    set comm1 "if (whereis(scipad)==\"utillib\") then "
-    set comm2 "  TCL_SetVar(\"Scilab5\",\"false\",\"scipad\");"
-    set comm3 "  TCL_SetVar(\"Scilab4\",\"true\",\"scipad\");"
-    set comm4 "else"
-    set comm5 "  TCL_SetVar(\"Scilab5\",\"true\",\"scipad\");"
-    set comm6 "  TCL_SetVar(\"Scilab4\",\"false\",\"scipad\");"
-    set comm7 "end"
-    set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
-    ScilabEval_lt $fullcomm "sync" "seq"
-}
+# [SYNCEXEC] Patch start
+# [SYNCEXEC] {
+# [SYNCEXEC] Calling TCL_Eval* will freeze Scilab : Deadlock process
+# [SYNCEXEC] Scilab Already know if we are in Scilab 4 or 5,
+# [SYNCEXEC] We may set this Variable in scipad.sci instead ?
+
+# if {$standaloneScipad} {
+#     # no possible test, since launching Scipad outside of Scilab is used
+#     # for debugging it, it is safe to fool Scipad by telling it Scilab 5
+#     # environment is around
+#     set Scilab5 true
+#     set Scilab4 false
+# } else {
+#     set comm1 "if (whereis(scipad)==\"utillib\") then "
+#     set comm2 "  TCL_SetVar(\"Scilab5\",\"false\",\"scipad\");"
+#     set comm3 "  TCL_SetVar(\"Scilab4\",\"true\",\"scipad\");"
+#     set comm4 "else"
+#     set comm5 "  TCL_SetVar(\"Scilab5\",\"true\",\"scipad\");"
+#     set comm6 "  TCL_SetVar(\"Scilab4\",\"false\",\"scipad\");"
+#     set comm7 "end"
+#     set fullcomm [concat $comm1 $comm2 $comm3 $comm4 $comm5 $comm6 $comm7]
+#     ScilabEval_lt $fullcomm "sync" "seq"
+# }
+
+# [SYNCEXEC] Forcing value to what should have been returned.
+set Scilab5 true
+set Scilab4 false
+# [SYNCEXEC] }
+# [SYNCEXEC] Patch end
+
 
 # End of Scilab version detection
 #############
@@ -260,7 +273,15 @@ setdefaultfonts
 if {![info exists lang]} {
 
     # try to use the same locale as Scilab
-    ScilabEval_lt "try;TCL_SetVar(\"lang\",convstr(getlanguage(),\"l\"),\"scipad\");end" "sync" "seq"
+# [SYNCEXEC] Patch start
+# [SYNCEXEC] {
+# [SYNCEXEC] Just comment the call for now
+# [SYNCEXEC] We might set this variable in scipad.sci before starting.
+
+    #ScilabEval_lt "try;TCL_SetVar(\"lang\",convstr(getlanguage(),\"l\"),\"scipad\");end" "sync" "seq"
+
+# [SYNCEXEC] }
+# [SYNCEXEC] Patch end
 
     if {![info exists lang]} {
         # Select a fallback in case setting the locale through getlanguage() failed

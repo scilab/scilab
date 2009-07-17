@@ -12,38 +12,40 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#include "sci_timer.h"
+#include "gw_time.h"
+#include "api_double.h"
 #include "timer.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_timer)(char *fname,unsigned long fname_len)
+int sci_timer(char *fname,unsigned long fname_len)
 {
-	int l1 = 0,n1 = 0;
-	double timerval = 0;
+  double timerval = 0;
+  
+  Rhs = Max(0, Rhs);
+  CheckLhs(0,1);
+  CheckRhs(0,0);
+  
+  timerval = scilab_timer();
 
-	Rhs = Max(0, Rhs);
-	CheckLhs(0,1);
-	CheckRhs(0,0);
+  if (timerval >= 0.)
+    {
+      int n1 = 1, res = 0;
+      double * pDblReal = NULL;
 
-	timerval = scilab_timer();
+      res = allocMatrixOfDouble(Rhs+1, n1, n1, &pDblReal);
 
-	if (timerval >= 0.)
-	{
-		int l1 = 0, n1 = 1;
-
-		CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &n1, &n1,&l1);
-		*stk(l1) = (double)timerval;
-
-		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
-	}
-	else
-	{
-		Scierror(999,_("%s: An error occurred.\n"), fname);
-	}
-
-	return 0;
+      *pDblReal = (double)timerval;
+      
+      LhsVar(1) = Rhs+1;
+      C2F(putlhsvar)();
+    }
+  else
+    {
+      Scierror(999,_("%s: An error occurred.\n"), fname);
+    }
+  
+  return 0;
 }
 /*--------------------------------------------------------------------------*/

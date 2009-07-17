@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-06-17 06:02+0000\n"
+"PO-Revision-Date: 2009-04-12 06:57+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -49,19 +49,19 @@ msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[继续显示？如果停止请按 n 键，继续显示请按任意其他键]"
 
 msgid "File or Directory"
-msgstr ""
+msgstr "文件或目录"
 
 msgid "Scilab Function"
-msgstr ""
+msgstr "Scilab函数"
 
 msgid "Scilab Command"
-msgstr ""
+msgstr "Scilab命令"
 
 msgid "Scilab Macro"
-msgstr ""
+msgstr "Scilab宏"
 
 msgid "Scilab Variable"
-msgstr ""
+msgstr "Scilab变量"
 
 msgid "Graphics handle field"
-msgstr ""
+msgstr "Scilab句柄域"

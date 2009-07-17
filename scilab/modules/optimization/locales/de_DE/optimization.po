@@ -1,0 +1,183 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-03-04 09:10+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Optimization and Simulation"
+msgstr "Optimierung und Simulation"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: falscher Typ für Eingangsargument.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: N-dimensionales Datenfeld "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: ein Spaltenvektor erwartet.\n"
+
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s: Ordnung muß 1,2 oder 4 sein.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Funktion erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Falsche Anzahl an Eingangsargument(en).\n"
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: Gewichtungs-Matrix muß quadratisch sein.\n"
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: ursprüngliche Vermutung nicht durchführbar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: falsche Größe für Eingangsargument #%d."
+
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s: x0 ist nicht durchführbar."
+
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr "%s: ungebundenes Problem!"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " Anzahl der Bedingungen (%s)'),'lmisolver',%m,%fm));"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: Anzahl an Spalten %d erwartet.\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s: zu viele Iterationen (mehr als %d).\n"
+
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr "%s: Genauigkeit unzureichend, um Konvergenzkriterium zu genügen.\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: Länge des Arbeits-Datenfelds ist zu kurz.\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: die Bedingungens sind inkonsistent.\n"
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s: Argument 3: falsche Anzahl an Spalten %d erwartet\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: kann keinen zusätzlichen Speicher belegen.\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: das Minimierungsproblem hat keine Lösung.\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Q ist nicht symetrisch positiv definit.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m muß mindestens ein sein.\n"
+
+msgid "L must be at least one.\n"
+msgstr "L muß mindestens ein sein.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d] muß mindestens eins sein.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu muß mindestens 1.0. sein.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "Matrizen Fi, i=1,...,m sind linear abhängig.\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+"Z0 genügt den Gleichheits-Bedingungen für duale Urpsrüglichkeit nicht.\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "Arbeistsbereich zu klein. Benötige mindestens %d*sizeof(double).\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "Fehler in dspgv, info = %d.\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 ist nicht hauptsächlich strikt ursprünglich.\n"
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 ist nicht positiv definit.\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Zhat einen negativen Eigenwert.\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+"\n"
+"    primal obj. dual obj. dual. gap \n"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "Fehler in dgels, info = %d.\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "Fehler in dtrcon, info = %d.\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+"Die Matrizen F_i, i=1,...,m sind linear abhängig (oder die ursprünglichen "
+"Punkte sind sehr schlecht konditioniert).\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "Fehler in dspst, info = %d.\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "Fehler in dspev, info = %d.\n"

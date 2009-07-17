@@ -26,6 +26,8 @@
 #include "strdup_windows.h"
 #endif
 #include "strsubst.h"
+#include "sciprint.h"
+#include "warningmode.h"
 
 
 /* A number of things vary for Windows builds. Originally, pcretest opened its
@@ -253,7 +255,8 @@ options, followed by a set of test data, terminated by an empty line. */
 
 pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,int *Output_End)
 {
-	int options = 0;
+	/* ALL strings are managed as UTF-8 by default */
+	int options = PCRE_UTF8;
 	int size_offsets = 45;
 	int size_offsets_max;
 	int *offsets = NULL;
@@ -268,6 +271,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	char *copynamesptr=NULL;
 	char *getnamesptr=NULL;
+
+	int rc = 0;
+	(void)pcre_config(PCRE_CONFIG_UTF8, &rc);
+	if (rc != 1)
+	{
+		return UTF8_NOT_SUPPORTED;
+	}
 
 	/* bug 3891 */
 	/* backslash characters are not interpreted for input */
@@ -341,7 +351,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	/* Look for options after final delimiter */
 
-	options = 0;
+	options = 8192;
 		
 	while (*pp != 0)
     {
@@ -369,7 +379,17 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 			case 'U': options |= PCRE_UNGREEDY; break;
 			case 'X': options |= PCRE_EXTRA; break;
 			case 'Z': break;
-			case '8': options |= PCRE_UTF8; break;
+			case '8': 
+				{
+					int rc = 0;
+					(void)pcre_config(PCRE_CONFIG_UTF8, &rc);
+					if (rc != 1)
+					{
+						return UTF8_NOT_SUPPORTED;
+					}
+					options |= PCRE_UTF8;
+				}
+				break;
 			case '?': options |= PCRE_NO_UTF8_CHECK; break;
 			case 'L':
 				ppp = pp;
@@ -720,6 +740,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
+						if (back_p) FREE(back_p);
 						return PCRE_FINISHED_OK;
 					}
 				}
@@ -806,9 +827,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
         }
 	}  /* End of loop for /g and /G */
 
+	FREE(back_p);
     continue;
     }    /* End of loop for data lines */
-	FREE(back_p);
   }
 	
 	FREE(buffer);

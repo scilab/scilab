@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
@@ -19,23 +19,23 @@
     <refpurpose>Appel de l'interface graphique d'export.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>exportUI(figId)
 exportUI(fig)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>figId</term>
         <listitem>
-          <para>entier, identifiant de la figure à exporter.</para>
+          <para>entier, identifiant de la figure Ã  exporter.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fig</term>
         <listitem>
-          <para>handle d'object Figure, handle de la figure à exporter.</para>
+          <para>handle d'object Figure, handle de la figure Ã  exporter.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -43,7 +43,7 @@ exportUI(fig)</synopsis>
   <refsection>
     <title>Description</title>
     <para> La routine <literal>exportUI</literal>
-	   lance l'interface graphique dediée à l'export de fenêtre graphique sous forme de fichier image.
+	   lance l'interface graphique dediÃ©e Ã  l'export de fenÃªtre graphique sous forme de fichier image.
     </para>
   </refsection>
  <refsection>

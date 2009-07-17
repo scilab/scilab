@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_SIGNUM">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_SIGNUM">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_SIGNUM">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_SIGNUM">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Non_linear_pal">Non_linear - Palette Non-linéaire</link>
+          <link linkend="Non_linear_pal">Non_linear - Palette Non-linÃ©aire</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -103,8 +103,8 @@ Ajoutez ici un paragraphe pour la description de la fonction
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_SIGNUM">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_SIGNUM">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -120,13 +120,13 @@ Ajoutez ici un paragraphe pour la description de la fonction
         <para>
           <emphasis role="bold">use zero_crossing </emphasis>
         </para>
-        <para> A sélectionner pour permettre la détection 'zero-crossing'.</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> A sÃ©lectionner pour permettre la dÃ©tection 'zero-crossing'.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_SIGNUM">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_SIGNUM">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -135,14 +135,14 @@ Ajoutez ici un paragraphe pour la description de la fonction
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -150,26 +150,26 @@ Ajoutez ici un paragraphe pour la description de la fonction
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

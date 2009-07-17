@@ -25,14 +25,18 @@ public class Juigetfile {
 	
 	public static final String[] DEFAULT_MASK = {"*.bin", "*.sce", "*.sci", "*.sc*", "*.cos*"};
 	public static final String DEFAULT_INITIAL_DIRECTORY = System.getProperty("user.dir");
-	public static final String DEFAULT_BOX_TITLE = "uigetfile";
+	public static final String DEFAULT_BOX_TITLE_OPEN = "uigetfile";
+	public static final String DEFAULT_BOX_TITLE_SAVE = "uiputfile";
 	public static final boolean DEFAULT_MULTIPLE_SELECTION = false;
+	public static final int OPEN_DIALOG = 0;
+	public static final int SAVE_DIALOG = 1;
 	
 	private static String[] mask;
 	private static String[] description;
 	private static String initialDirectory;
 	private static String boxtTitle;
 	private static boolean multipleSelection;	
+	private static int dialogType = SAVE_DIALOG;	
 	
 	/**
 	 * PRIVATE constructor
@@ -48,7 +52,7 @@ public class Juigetfile {
 		String[] description = new String[0];
 		mask = DEFAULT_MASK;
 		
-		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
+		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE_OPEN, DEFAULT_MULTIPLE_SELECTION, OPEN_DIALOG);
 	}
 	
 	/**
@@ -57,7 +61,7 @@ public class Juigetfile {
 	 * @param description for each mask
 	 */
 	public static void uigetfile(String[] mask, String[] description) {		
-		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
+		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE_OPEN, DEFAULT_MULTIPLE_SELECTION, OPEN_DIALOG);
 	}
 	
 	/**
@@ -67,8 +71,7 @@ public class Juigetfile {
 	 * @param initialDirectory of the opened file chooser
 	 */
 	public static void uigetfile(String[] mask, String[] description, String initialDirectory) {
-		//System.out.println("entering java call");
-		uigetfile(mask, description, initialDirectory, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
+		uigetfile(mask, description, initialDirectory, DEFAULT_BOX_TITLE_OPEN, DEFAULT_MULTIPLE_SELECTION, OPEN_DIALOG);
 	}
 	
 	/**
@@ -79,7 +82,48 @@ public class Juigetfile {
 	 * @param boxtTitle title of the opened file chooser
 	 */
 	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle) {
-		uigetfile(mask, description, initialDirectory, boxtTitle, DEFAULT_MULTIPLE_SELECTION);
+		uigetfile(mask, description, initialDirectory, boxtTitle, DEFAULT_MULTIPLE_SELECTION, OPEN_DIALOG);
+	}
+	
+	/**
+	 * uiputfile called with 0 arg 
+	 */
+	public static void uiputfile() {	
+		String[] mask = new String[DEFAULT_MASK.length];
+		String[] description = new String[0];
+		mask = DEFAULT_MASK;
+		
+		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE_SAVE, DEFAULT_MULTIPLE_SELECTION, SAVE_DIALOG);
+	}
+	
+	/**
+	 * uiputfile called with 1 arg (mask)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 */
+	public static void uiputfile(String[] mask, String[] description) {	
+		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE_SAVE, DEFAULT_MULTIPLE_SELECTION, SAVE_DIALOG);
+	}
+	
+	/**
+	 * uiputfile called with 2 args (mask, initial directory)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 * @param initialDirectory of the opened file chooser
+	 */
+	public static void uiputfile(String[] mask, String[] description, String initialDirectory) {
+		uigetfile(mask, description, initialDirectory, DEFAULT_BOX_TITLE_SAVE, DEFAULT_MULTIPLE_SELECTION, SAVE_DIALOG);
+	}
+
+	/**
+	 * uiputfile called with 3 args (mask, initial directory, filechooser box title)
+	 * @param mask of the file chooser
+	 * @param description for each mask
+	 * @param initialDirectory of the opened file chooser
+	 * @param boxtTitle title of the opened file chooser
+	 */
+	public static void uiputfile(String[] mask, String[] description, String initialDirectory, String boxtTitle) {
+		uigetfile(mask, description, initialDirectory, boxtTitle, DEFAULT_MULTIPLE_SELECTION, SAVE_DIALOG);
 	}
 	
 	
@@ -91,16 +135,14 @@ public class Juigetfile {
 	 * @param initialDirectory initial directory of uigetfile
 	 * @param boxtTitle title of the file chooser
 	 * @param multipleSelection enable or not the multiple selection
+	 * @param dialogType SAVE or OPEN a file ?
 	 */
-	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle, boolean multipleSelection) {
-		//System.out.println("[CALL] java uigetfile");
+	public static void uigetfile(String[] mask, String[] description, String initialDirectory, String boxtTitle, boolean multipleSelection, int dialogType) {
 		Juigetfile.mask = mask;
-		//Juigetfile.description = description;
 		Juigetfile.initialDirectory = initialDirectory;
 		Juigetfile.boxtTitle = boxtTitle;
 		Juigetfile.multipleSelection = multipleSelection;
-		
-		//System.out.println("Juigetfile.multipleSelection: " + Juigetfile.multipleSelection);
+		Juigetfile.dialogType = dialogType;
 		
 		if (description.length != 0) {
 			Juigetfile.description = description;
@@ -114,6 +156,7 @@ public class Juigetfile {
 		ssfc.setInitialDirectory(Juigetfile.initialDirectory);
 		ssfc.setTitle(Juigetfile.boxtTitle);
 		ssfc.setMultipleSelection(Juigetfile.multipleSelection);		
+		ssfc.setUiDialogType(Juigetfile.dialogType);		
 		ssfc.displayAndWait();	
 		
 		
@@ -231,7 +274,7 @@ public class Juigetfile {
 		SwingScilabFileChooser ssfc = new SwingScilabFileChooser();				
 		ssfc.setDirectorySelectionOnly();
 		if (Juigetfile.initialDirectory != null) {
-			System.out.println("initialDir = " + Juigetfile.initialDirectory);
+                    //System.out.println("initialDir = " + Juigetfile.initialDirectory);
 			ssfc.setInitialDirectory(Juigetfile.initialDirectory);
 		}
 		if (Juigetfile.boxtTitle != null) {

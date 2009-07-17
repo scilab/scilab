@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="pol2str">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>pol2str</refname>
-    <refpurpose> conversion polynôme vers chaîne de caractères  </refpurpose>
+    <refpurpose> conversion polynÃ´me vers chaÃ®ne de caractÃ¨res  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[str]=pol2str(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>polynôme réel
+          <para>polynÃ´me rÃ©el
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>str  </term>
         <listitem>
-          <para>chaîne de caractères
+          <para>chaÃ®ne de caractÃ¨res
 </para>
         </listitem>
       </varlistentry>
@@ -33,7 +33,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    convertit le polynôme p en une chaîne de caractères (fonction utilitaire).
+    convertit le polynÃ´me p en une chaÃ®ne de caractÃ¨res (fonction utilitaire).
   </para>
   </refsection>
   <refsection>

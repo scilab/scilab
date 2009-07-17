@@ -12,13 +12,22 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+#include <errno.h>
 #include "merror.h"
 #include "filesmanagement.h"
 /*--------------------------------------------------------------------------*/
-void C2F(merror) (int *fd, double *res)
+void C2F(merror) (int *fd, int *res)
 {       
 	FILE *fa= GetFileOpenedInScilab(*fd);
-	*res = fa ? ferror(fa) : 1;
+	if (fa)
+	{
+
+		*res = ferror(fa);
+	}
+	else
+	{
+		*res = EINVAL;
+	}
 }
 /*--------------------------------------------------------------------------*/
 

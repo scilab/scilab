@@ -1,57 +1,74 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="atanhm">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="atanhm" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>atanhm</refname>
-    <refpurpose> tangente hyperbolique inverse d'une matrice carrée  </refpurpose>
+
+    <refpurpose>tangente hyperbolique inverse d'une matrice
+    carrÃ©e</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>t=atanhm(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>x  </term>
+        <term>x</term>
+
         <listitem>
-          <para>matrice carrée complexe ou réelle
-</para>
+          <para>matrice carrÃ©e complexe ou rÃ©elle</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>t  </term>
+        <term>t</term>
+
         <listitem>
-          <para>matrice carrée complexe ou réelle
-</para>
+          <para>matrice carrÃ©e complexe ou rÃ©elle</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>atanhm(x)</literal> est l'arctangente hyperbolique matricielle de la matrice x.
-    Le résultat peut être imprécis si <literal>x</literal> n'est pas symétrique.
-  </para>
+
+    <para><literal>atanhm(x)</literal> est l'arctangente hyperbolique
+    matricielle de la matrice x. Le rÃ©sultat peut Ãªtre imprÃ©cis si
+    <literal>x</literal> n'est pas symÃ©trique.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 A=[1,2;3,4];
 tanhm(atanhm(A))
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="atanh">atanh</link>
-      </member>
-      <member>
-        <link linkend="tanhm">tanhm</link>
-      </member>
+      <member><link linkend="atanh">atanh</link></member>
+
+      <member><link linkend="tanhm">tanhm</link></member>
     </simplelist>
   </refsection>
 </refentry>

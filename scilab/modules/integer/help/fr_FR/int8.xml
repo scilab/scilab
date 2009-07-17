@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="int8">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>int8 </refname>
-    <refpurpose> conversion au codage entier à 1 octet  </refpurpose>
+    <refpurpose> conversion au codage entier Ã  1 octet  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="int16">
     <refname>int16</refname>
-    <refpurpose> conversion au codage entier à 2 octets  </refpurpose>
+    <refpurpose> conversion au codage entier Ã  2 octets  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="int32">
     <refname>int32</refname>
-    <refpurpose> conversion au codage entier à 4 octets  </refpurpose>
+    <refpurpose> conversion au codage entier Ã  4 octets  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="uint8">
     <refname>uint8 </refname>
-    <refpurpose> conversion au codage entier non signé à 1 octet  </refpurpose>
+    <refpurpose> conversion au codage entier non signÃ© Ã  1 octet  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="uint16">
     <refname>uint16</refname>
-    <refpurpose> conversion au codage entier non signé à 2 octets  </refpurpose>
+    <refpurpose> conversion au codage entier non signÃ© Ã  2 octets  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="uint32">
     <refname>uint32</refname>
-    <refpurpose> conversion au codage entier non signé à 4 octets  </refpurpose>
+    <refpurpose> conversion au codage entier non signÃ© Ã  4 octets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>y=int8(X)
 y=int16(X)
 y=int32(X)
@@ -37,7 +37,7 @@ y=uint16(X)
 y=uint32(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
@@ -49,7 +49,7 @@ y=uint32(X)</synopsis>
       <varlistentry>
         <term>y  </term>
         <listitem>
-          <para>matrice d'entiers codés sur 1,2 ou 4 octets.
+          <para>matrice d'entiers codÃ©s sur 1,2 ou 4 octets.
 </para>
         </listitem>
       </varlistentry>
@@ -58,7 +58,7 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Convertit et stocke sous forme d'entiers. Ces types de données sont particulièrement intéressants pour stocker des images, de longs signaux, ...
+    Convertit et stocke sous forme d'entiers. Ces types de donnÃ©es sont particuliÃ¨rement intÃ©ressants pour stocker des images, de longs signaux, ...
   </para>
     <variablelist>
       <varlistentry>

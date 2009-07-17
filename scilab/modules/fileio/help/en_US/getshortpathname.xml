@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -11,63 +11,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getshortpathname">
+<refentry version="5.0-subset Scilab" xml:id="getshortpathname" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>getshortpathname</refname>
-    <refpurpose>get short path name (Only for
-  Windows)</refpurpose>
+
+    <refpurpose>get short path name (Only for Windows)</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>shortpath=getshortgpathname(longpath)
 [shortpath,bOK]=getshortpathname(longpath)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>longpath</term>
+
         <listitem>
-          <para>A character string the long path</para>
+          <para>A character string or matrix of strings the long path</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>shortpath</term>
+
         <listitem>
-          <para>A character string the short path</para>
+          <para>A character string or a matrix of strings the short
+          path</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>bOK</term>
+
         <listitem>
-          <para>A boolean %T if path has been converted else %F</para>
+          <para>A boolean %T or a matrix of boolean if path has been converted
+          else %F</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>The getshortpathname primitive converts the specified path to its short
-    form.</para>
+
+    <para>The getshortpathname primitive converts the specified path to its
+    short form.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[[shortpath,bOK]=getshortpathname(SCI) 
- ]]></programlisting>
+
+    <programlisting role="example">[shortpath,bOK]=getshortpathname(SCI) 
+[shortpaths,bOKs]=getshortpathname([SCI;SCI]) 
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="getlongpathname">getlongpathname</link>
-      </member>
+      <member><link linkend="getlongpathname">getlongpathname</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>Allan CORNET</para>
   </refsection>
 </refentry>

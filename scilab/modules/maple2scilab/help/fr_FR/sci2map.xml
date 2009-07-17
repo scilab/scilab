@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,28 +19,28 @@
     <refpurpose> conversion de variables Scilab vers Maple  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>txt=sci2map(a,Map-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>objet Scilab (matrice, polynôme, liste, chaîne)</para>
+          <para>objet Scilab (matrice, polynÃ´me, liste, chaÃ®ne)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Map-name</term>
         <listitem>
-          <para>chaîne de caractères (nom de la variable Maple)</para>
+          <para>chaÃ®ne de caractÃ¨res (nom de la variable Maple)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>vecteur de chaînes de caractères contenant le code Maple</para>
+          <para>vecteur de chaÃ®nes de caractÃ¨res contenant le code Maple</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,9 +48,9 @@
   <refsection>
     <title>Description</title>
     <para>
-			Génère le code Maple nécessaire pour envoyer la variable Scilab 
+			GÃ©nÃ¨re le code Maple nÃ©cessaire pour envoyer la variable Scilab 
 			<literal>a</literal> vers Maple : le nom de la variable dans Maple est <literal>Map-name</literal>.
-			Une procédure Maple <literal>maple2scilab</literal> se trouve dans le dossier <literal>SCIDIR/maple</literal>.
+			Une procÃ©dure Maple <literal>maple2scilab</literal> se trouve dans le dossier <literal>SCIDIR/maple</literal>.
 		</para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -20,22 +20,22 @@
   court</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[p,lp] = shortest_path(i,j,g,[typ])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i</term>
         <listitem>
-          <para>entier, numéro du sommet de départ</para>
+          <para>entier, numÃ©ro du sommet de dÃ©part</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j</term>
         <listitem>
-          <para>entier, numéro du sommet d'arrivée</para>
+          <para>entier, numÃ©ro du sommet d'arrivÃ©e</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -47,13 +47,13 @@
       <varlistentry>
         <term>typ</term>
         <listitem>
-          <para>chaîne de caractères, type du chemin le plus court</para>
+          <para>chaÃ®ne de caractÃ¨res, type du chemin le plus court</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>p</term>
         <listitem>
-          <para>vecteur ligne des numéros des arcs du chemin s'il existe</para>
+          <para>vecteur ligne des numÃ©ros des arcs du chemin s'il existe</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -69,15 +69,15 @@
     <para><literal>shortest_path</literal> renvoie le chemin le plus court
     <literal>p</literal> du sommet <literal>i</literal> au sommet <literal>j</literal> s'il
     existe, et le vecteur vide <literal>[]</literal> sinon. L'argument optionnel
-    <literal>typ</literal> est une chaîne définissant le type du chemin, 'arc' pour
+    <literal>typ</literal> est une chaÃ®ne dÃ©finissant le type du chemin, 'arc' pour
     le chemin le plus court par rapport au nombre d'arcs et 'length' pour le
-    chemin le plus court par rapport à  la longueur des arêtes
+    chemin le plus court par rapport Ã Â  la longueur des arÃªtes
     <literal>edge_length</literal>.</para>
-    <para>Pour le chemin le plus court par rapport à  la longueur des arêtes, les
-    longueurs sont données par les éléments <literal>edge_length</literal> du
-    graphe. Si cette valeur n'est pas donnée (vecteur vide <literal>[]</literal>),
-    elle est supposée nulle sur chaque arête. Les longueurs peuvent être
-    positives ou négatives (ou nulles).</para>
+    <para>Pour le chemin le plus court par rapport Ã Â  la longueur des arÃªtes, les
+    longueurs sont donnÃ©es par les Ã©lÃ©ments <literal>edge_length</literal> du
+    graphe. Si cette valeur n'est pas donnÃ©e (vecteur vide <literal>[]</literal>),
+    elle est supposÃ©e nulle sur chaque arÃªte. Les longueurs peuvent Ãªtre
+    positives ou nÃ©gatives (ou nulles).</para>
     <para>Quand le chemin le plus court existe, <literal>lp</literal> est la longueur
     du chemin.</para>
   </refsection>
@@ -96,7 +96,7 @@ g1('edge_length')=int(20*rand(1,ma));
 [p,lp]=shortest_path(13,1,g1,'length');
 p
 messagebox(['Voici le chemin le plus court';
-           'Le nom des arcs peut être visualisé en selectionnant la valeur ""Name"" pour les arcs';
+           'Le nom des arcs peut Ãªtre visualisÃ© en selectionnant la valeur ""Name"" pour les arcs';
            'dans le menu Graph->Options.'],"modal");
 g1('edge_name')=string(g1('edge_length'));
 edgecolor=ones(1:ma);edgecolor(p)=11*ones(p);

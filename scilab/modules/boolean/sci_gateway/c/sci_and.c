@@ -12,6 +12,7 @@
 
 #include <string.h>
 #include "stack-c.h"
+#include "Scierror.h"
 #include "vect_and.h"
 /*--------------------------------------------------------------------------*/
 int C2F(intand)(char *fname,unsigned long l);

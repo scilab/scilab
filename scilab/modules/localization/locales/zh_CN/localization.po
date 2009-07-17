@@ -1,0 +1,48 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-02-10 09:22+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: This feature is only used on Windows.\n"
+msgstr "%s：改功能只能在Windows下使用。\n"
+
+#, c-format
+msgid "Unsupported language '%s'.\n"
+msgstr "不支持语言 '%s'。\n"
+
+msgid "The language for menus cannot be changed on a running console.\n"
+msgstr "不可以在正在运行的控制台中改变菜单的语言。\n"
+
+msgid "Restart Scilab to apply to menus.\n"
+msgstr "重启 Scilab 以将改变应用到菜单。\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr "%s：第一个输入参数的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Unsupported language '%s'.\n"
+msgstr "%s：不支持语言 '%s'.\n"
+
+#, c-format
+msgid "Switching to default language : '%s'.\n"
+msgstr "切换到缺省语言：'%s'。\n"

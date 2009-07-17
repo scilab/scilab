@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_MATMUL">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_MATMUL">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,7 +68,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_MATMUL">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_MATMUL">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -100,7 +100,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Matrix_pal">Matrix - Palette d'opérations matricielles</link>
+          <link linkend="Matrix_pal">Matrix - Palette d'opÃ©rations matricielles</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -108,13 +108,13 @@
   <refsection id="Description_MATMUL">
     <title>Description</title>
     <para>
-Le bloc MATMUL fait la multiplication matricielle de ses deux entrées. Le nombre de lignes de la seconde matrice doit être égal au nombre de colonnes de la première. La sortie est une matrice où le nombre de lignes est égal à celui de la première matrice d'entrée et où le nombre de colonnes est égal à celui de la deuxième matrice d'entrée.  
+Le bloc MATMUL fait la multiplication matricielle de ses deux entrÃ©es. Le nombre de lignes de la seconde matrice doit Ãªtre Ã©gal au nombre de colonnes de la premiÃ¨re. La sortie est une matrice oÃ¹ le nombre de lignes est Ã©gal Ã  celui de la premiÃ¨re matrice d'entrÃ©e et oÃ¹ le nombre de colonnes est Ã©gal Ã  celui de la deuxiÃ¨me matrice d'entrÃ©e.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_MATMUL">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_MATMUL">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -130,15 +130,15 @@ Le bloc MATMUL fait la multiplication matricielle de ses deux entrées. Le nombre
         <para>
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
-        <para> Ce paramètre indique le type de donnée de la sortie. Ce bloc fonctionne uniquement avec des types de donnée réels(1) et complexes(2). Si un autre type que 1 et 2 est indiqué, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Ce paramÃ¨tre indique le type de donnÃ©e de la sortie. Ce bloc fonctionne uniquement avec des types de donnÃ©e rÃ©els(1) et complexes(2). Si un autre type que 1 et 2 est indiquÃ©, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Multiplication rule (1= * 2= .* )</emphasis>
         </para>
         <para> ?</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -150,8 +150,8 @@ B=[9 8 7 6;5 4 3 2;9 7 5 3]
 y=[46 37 28 19;115 94 73 52]
 ]]></programlisting>
   </refsection>
-  <refsection id="Propriétéspardéfaut_MATMUL">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_MATMUL">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -160,14 +160,14 @@ y=[46 37 28 19;115 94 73 52]
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -178,26 +178,26 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-3] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -247,7 +247,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATBKSL">MATBKSL - MATBKSL Division matricielle à gauche (Bloc Scicos)</link>
+          <link linkend="MATBKSL">MATBKSL - MATBKSL Division matricielle Ã  gauche (Bloc Scicos)</link>
         </para>
       </listitem>
       <listitem>

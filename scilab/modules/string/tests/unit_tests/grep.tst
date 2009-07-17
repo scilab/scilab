@@ -531,4 +531,177 @@ if grep('fools'                                   ,'/(foo|fool|money|parted)$/' 
 //if grep('cabd'                                    ,'/a(?{"\{"})b/'                         ,'r') <>  1   then pause,end
 //if grep('A\B'                                     ,'/a\\b/i'                               ,'r') <>  1   then pause,end
 //if grep('aaaaaaaaaaaaaaab'                        ,'/(a|aa|aaa|aaaa|aaaaa|aaaaaa)(??{$1&&"foo"})(b|c)/','r') <>  []  then pause,end
-//========================================================================================
+//======================================================================================== 
+str = "世界您好";
+needle = "界";
+[r,w] = grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+str = "азеазея";
+needle = "з";
+[r,w] = grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+str = "ハロー・ワールド";
+needle = "ワ";
+[r,w] = grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+str = "เฮลโลเวิลด์";
+needle = "วิ";
+[r,w] = grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+str = "حريات وحقوق";
+needle = "و";
+[r,w] = grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+str = "תוכנית";
+needle = "ו";
+grep(str,needle);
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+//======================================================================================== 
+// Chinese
+str = '世界您好';
+[r,w] = grep(str,'/^世界/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/世界$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/您好$/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/^您好/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/界您/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'界您');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/界_您/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Russian
+str = 'привет мир';
+[r,w] = grep(str,'/^привет/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/привет$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/мир$/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/^мир/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/вет\sм/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/вет_м/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Cyrilic
+str = 'АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ';
+
+[r,w] = grep(str,'/^АБВГДЄЖЅЗИІКЛМНОПҀР/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/АБВГДЄЖЅЗИІКЛМНОПҀР$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ$/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/^ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/ИІКЛМНОПҀРСТѸФХѠЦЧШЩЪ/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Japanese
+str = '丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃';
+
+[r,w] = grep(str,'/^丑丞串乃之乎也云亘亙些亦/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/丑丞串乃之乎也云亘亙些亦$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/凰凱函刹劉劫勁勃$/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/^凰凱函刹劉劫勁勃/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/亨亮仔伊伎伍伽佃佑伶侃/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/亨亮仔伊_伎伍伽佃佑伶侃/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Thaï
+str = 'มกระดุกกระดิก';
+[r,w] = grep(str,'/^มกระดุกกร/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/มกระดุกกร$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/กกระดิก$/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/^กกระดิก/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = grep(str,'/ดุกก/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = grep(str,'/ดุก_ก/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 

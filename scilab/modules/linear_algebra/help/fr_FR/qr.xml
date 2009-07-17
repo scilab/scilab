@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,39 +19,39 @@
     <refpurpose> factorisation QR  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Q,R]=qr(X [,"e"])
 [Q,R,E]=qr(X [,"e"])
 [Q,R,rk,E]=qr(X [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice réelle ou complexe
+          <para>matrice rÃ©elle ou complexe
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
-          <para>nombre réel positif
+          <para>nombre rÃ©el positif
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q  </term>
         <listitem>
-          <para>matrice carrée unitaire
+          <para>matrice carrÃ©e unitaire
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>R  </term>
         <listitem>
-          <para>matrice de même dimensions que <literal>X</literal>
+          <para>matrice de mÃªme dimensions que <literal>X</literal>
 	  </para>
         </listitem>
       </varlistentry>
@@ -73,61 +73,61 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supérieure
-      <literal>R</literal> de même
-      dimensions que <literal>X</literal> et une matrice carrée othogonale
+    <para><literal>[Q,R] = qr(X)</literal> renvoie une matrice triangulaire supÃ©rieure
+      <literal>R</literal> de mÃªme
+      dimensions que <literal>X</literal> et une matrice carrÃ©e othogonale
       (unitaire dans le cas complexe) <literal>Q</literal> telles que
       <literal>X = Q*R</literal>.
 
       <literal>[Q,R] = qr(X,"e")</literal>  renvoie une decomposition de
-      taille réduite: si <literal>X</literal> est une matrice <literal>m x
+      taille rÃ©duite: si <literal>X</literal> est une matrice <literal>m x
 	n</literal> avec <literal>m &gt; n</literal> alors seulement les
-      <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
-      ainsi que les <literal>n</literal> premières lignes de
+      <literal>n</literal> premiÃ¨res colonnes de <literal>Q</literal> sont calculÃ©es
+      ainsi que les <literal>n</literal> premiÃ¨res lignes de
       <literal>R</literal>.   
     </para>
     <para>
-      Il découle de <literal>Q*R = X</literal> que la
-      <literal>k</literal>ième colonne de <literal>X</literal> peut s'exprimer comme
-      une combinaison linéaire des <literal>k</literal> premieres colonnes de
+      Il dÃ©coule de <literal>Q*R = X</literal> que la
+      <literal>k</literal>iÃ¨me colonne de <literal>X</literal> peut s'exprimer comme
+      une combinaison linÃ©aire des <literal>k</literal> premieres colonnes de
       <literal>Q</literal> (avec les coefficients <literal>R(1,k), ...,
 	R(k,k)</literal>. Les <literal>k</literal> premieres colonnes de
-      <literal>Q</literal> forment une base orthogonale du sous espace généré
+      <literal>Q</literal> forment une base orthogonale du sous espace gÃ©nÃ©rÃ©
       par les Les <literal>k</literal> premieres colonnes de
       <literal>X</literal>. Si la colonne <literal>k</literal> de <literal>X</literal> est
-      une combinaison linéaire des <literal>p</literal> premiéres colonnes de
-      <literal>X</literal> alors les éléments <literal>R(p+1,k), ...,
+      une combinaison linÃ©aire des <literal>p</literal> premiÃ©res colonnes de
+      <literal>X</literal> alors les Ã©lÃ©ments <literal>R(p+1,k), ...,
 	R(k,k)</literal> sont nuls. Dans cette situation <literal>R</literal> est
-      une matrice trapézoidale supérieure. Si <literal>X</literal> est de rang
+      une matrice trapÃ©zoidale supÃ©rieure. Si <literal>X</literal> est de rang
       <literal>rk</literal> alors les lignes  <literal>R(rk+1,:), R(rk+2,:),
 	...</literal> sont nulles.
 
     </para>
     <para><literal>[Q,R,E] = qr(X)</literal> renvoie une matrice de permutations (de
       colonnes) <literal>E</literal>,
-      une matrice triangulaire supérieure <literal>R</literal> dont les
-      éléments diagonaux sont classés par ordre décroissant et une
+      une matrice triangulaire supÃ©rieure <literal>R</literal> dont les
+      Ã©lÃ©ments diagonaux sont classÃ©s par ordre dÃ©croissant et une
       matrice unitaire <literal>Q</literal> telles que <literal>X*E = Q*R</literal>.
       si <literal>rk</literal> est le rang de <literal>X</literal> les
-      <literal>rk</literal> premiers éléménts diagonaux de <literal>R</literal> sont
+      <literal>rk</literal> premiers Ã©lÃ©mÃ©nts diagonaux de <literal>R</literal> sont
       tous non nuls. <literal>[Q,R,E] = qr(X,"e")</literal>  renvoie une decomposition de
-      taille réduite: si <literal>X</literal> est une matrice <literal>m x
+      taille rÃ©duite: si <literal>X</literal> est une matrice <literal>m x
 	n</literal> avec <literal>m &gt; n</literal> alors seulement les
-      <literal>n</literal> premières colonnes de <literal>Q</literal> sont calculées
-      ainsi que les <literal>n</literal> premières lignes de
+      <literal>n</literal> premiÃ¨res colonnes de <literal>Q</literal> sont calculÃ©es
+      ainsi que les <literal>n</literal> premiÃ¨res lignes de
       <literal>R</literal>.   
     </para>
     <para><literal>[Q,R,rk,E] = qr(X [,tol])</literal>renvoie de plus 
-      <literal>rk</literal> =rang estimé de <literal>X</literal>. 
-      Plus précisément, 
-      <literal>rk</literal> est le nombre d'éléments diagonaux de
-      <literal>R</literal> supérieurs à <literal>tol</literal>. La valeur par défaut
+      <literal>rk</literal> =rang estimÃ© de <literal>X</literal>. 
+      Plus prÃ©cisÃ©ment, 
+      <literal>rk</literal> est le nombre d'Ã©lÃ©ments diagonaux de
+      <literal>R</literal> supÃ©rieurs Ã  <literal>tol</literal>. La valeur par dÃ©faut
       de <literal>tol</literal> est <literal>R(1,1)*%eps*max(size(R))</literal> 
     </para>
     <para>
-      renvoie <literal>rk</literal> = rang estimé de <literal>X</literal>. Ici,
-      <literal>rk</literal> est le nombre d'éléments diagonaux de <literal>R</literal>
-      supérieurs à <literal>R(1,1)*%eps*max(size(R)</literal>.
+      renvoie <literal>rk</literal> = rang estimÃ© de <literal>X</literal>. Ici,
+      <literal>rk</literal> est le nombre d'Ã©lÃ©ments diagonaux de <literal>R</literal>
+      supÃ©rieurs Ã  <literal>R(1,1)*%eps*max(size(R)</literal>.
     </para>
   </refsection>
   <refsection>
@@ -168,9 +168,9 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>La décomposition QR est basée sur les routines Lapack  DGEQRF, DGEQPF,
-      DORGQR pour les matrices réelles et ZGEQRF, ZGEQPF, ZORGQR pour le cas
+    <title>Fonctions UtilisÃ©es</title>
+    <para>La dÃ©composition QR est basÃ©e sur les routines Lapack  DGEQRF, DGEQPF,
+      DORGQR pour les matrices rÃ©elles et ZGEQRF, ZGEQPF, ZORGQR pour le cas
       complexe.</para>
   </refsection>
 </refentry>

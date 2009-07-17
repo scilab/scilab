@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM_NOT_MANDATORY -->
+
 T = temp_law_default(10, 9, 8, 7, 6, []);
 
 if norm(T - 0.9*10) > 1e-3 then pause,end

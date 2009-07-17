@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="winqueryreg">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -9,7 +9,7 @@
   registres de Microsoft Windows</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>value = winqueryreg('name', 'rootkey', 'subkey')
 value = winqueryreg('rootkey', 'subkey', 'valname')
 value = winqueryreg('rootkey', 'subkey')</synopsis>
@@ -26,7 +26,7 @@ value = winqueryreg('rootkey', 'subkey')</synopsis>
     <para>value = winqueryreg('rootkey', 'subkey', 'valname') retourne la valeur
     pour la clef valname dans rootkey\subkey.</para>
     <para>value = winqueryreg('rootkey', 'subkey') retourne la valeur "par
-    défaut" de la clef rootkey\subkey.</para>
+    dÃ©faut" de la clef rootkey\subkey.</para>
     <para><literal>Note</literal>Les arguments 'name' et 'rootkey' sont
     "case-sensitive". Les arguments 'subkey' et 'valname' ne le sont pas.</para>
   </refsection>

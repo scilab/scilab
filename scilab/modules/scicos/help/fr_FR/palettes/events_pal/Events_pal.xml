@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -49,10 +49,10 @@
   <refsection id="Description_Events_pal">
     <title>Description</title>
     <para>
-La palette 'Events' (événements) est utilisée pour manipuler les
-événements sur le diagramme. Elle contient entre autre plusieurs
+La palette 'Events' (Ã©vÃ©nements) est utilisÃ©e pour manipuler les
+Ã©vÃ©nements sur le diagramme. Elle contient entre autre plusieurs
 sources d'activation, des blocs synchrones ainsi que des blocs
-pour regrouper/combiner les événements sur un seul lien.
+pour regrouper/combiner les Ã©vÃ©nements sur un seul lien.
 
 </para>
   </refsection>
@@ -86,22 +86,22 @@ pour regrouper/combiner les événements sur un seul lien.
       </listitem>
       <listitem>
         <para>
-          <link linkend="EVTDLY_f">EVTDLY_f - Retard événementiel (Ancien bloc)</link>
+          <link linkend="EVTDLY_f">EVTDLY_f - Retard Ã©vÃ©nementiel (Ancien bloc)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="EVTGEN_f">EVTGEN_f - Générateur d'événement</link>
+          <link linkend="EVTGEN_f">EVTGEN_f - GÃ©nÃ©rateur d'Ã©vÃ©nement</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="EVTVARDLY">EVTVARDLY - Retard variable événementiel</link>
+          <link linkend="EVTVARDLY">EVTVARDLY - Retard variable Ã©vÃ©nementiel</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="freq_div">freq_div - Diviseur de fréquence</link>
+          <link linkend="freq_div">freq_div - Diviseur de frÃ©quence</link>
         </para>
       </listitem>
       <listitem>
@@ -116,7 +116,7 @@ pour regrouper/combiner les événements sur un seul lien.
       </listitem>
       <listitem>
         <para>
-          <link linkend="M_freq">M_freq - Horloge à fréquence multiples</link>
+          <link linkend="M_freq">M_freq - Horloge Ã  frÃ©quence multiples</link>
         </para>
       </listitem>
       <listitem>

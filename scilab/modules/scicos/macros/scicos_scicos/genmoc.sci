@@ -29,7 +29,7 @@ function genmoc(path,force,verbose)
   //++ Check that modelica compiler is available
   //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    error(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"), "genmoc"))
+    error(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "genmoc"))
     return
   end
 

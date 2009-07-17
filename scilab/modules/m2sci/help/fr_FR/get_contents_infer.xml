@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -20,11 +20,11 @@
   informations dans le contenu d'une "tlist M2SCI"</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[infer,pos]=get_contents_infer(m2scitlist,index)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>m2scitlist</term>
@@ -35,7 +35,7 @@
       <varlistentry>
         <term>index</term>
         <listitem>
-          <para>un index tel que ceux retournés par <literal>macr2tree</literal>.</para>
+          <para>un index tel que ceux retournÃ©s par <literal>macr2tree</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -55,10 +55,10 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction recherche les informations d'inférence pour un
-    index donné dans le contenu d'une Cell ou d'une Struct en tenant
-    compte des <literal>*</literal>. Si aucune information correspond à cet
-    index, les valeurs retournées sont infer=Infer() et pos=0.
+    Cette fonction recherche les informations d'infÃ©rence pour un
+    index donnÃ© dans le contenu d'une Cell ou d'une Struct en tenant
+    compte des <literal>*</literal>. Si aucune information correspond Ã  cet
+    index, les valeurs retournÃ©es sont infer=Infer() et pos=0.
     </para>
   </refsection>
   <refsection>

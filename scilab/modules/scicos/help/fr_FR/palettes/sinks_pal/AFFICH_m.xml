@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_AFFICH_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_AFFICH_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_AFFICH_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_AFFICH_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -94,12 +94,12 @@
     <title>Description</title>
     <para>
 Pendant la simulation, ce bloc affiche sur le diagramme 
-la valeur lue sur son unique port d'entrée.
+la valeur lue sur son unique port d'entrÃ©e.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_AFFICH_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_AFFICH_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,55 +115,55 @@ la valeur lue sur son unique port d'entrée.
         <para>
           <emphasis role="bold">Input Size</emphasis>
         </para>
-        <para> Définit explicitement la taille du port d'entrée.</para>
-        <para> Propriétés : Type 'mat' de taille [1,2]. </para>
+        <para> DÃ©finit explicitement la taille du port d'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [1,2]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Font number</emphasis>
         </para>
-        <para> Entier, la taille de la fonte sélectionnée (voir xset).</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Entier, la taille de la fonte sÃ©lectionnÃ©e (voir xset).</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Font size</emphasis>
         </para>
-        <para> Entier, la taille de la police utilisée.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Entier, la taille de la police utilisÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Color</emphasis>
         </para>
-        <para> Entier, la couleur sélectionnée pour le texte. (voir xset)</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Entier, la couleur sÃ©lectionnÃ©e pour le texte. (voir xset)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Total number of digits</emphasis>
         </para>
-        <para> Un entier plus grand que 3. C'est le nombre de chiffres utilisés pour représenter le nombre affiché. (incluant le signe, la partie enière et les chiffres après la virgule)</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Un entier plus grand que 3. C'est le nombre de chiffres utilisÃ©s pour reprÃ©senter le nombre affichÃ©. (incluant le signe, la partie eniÃ¨re et les chiffres aprÃ¨s la virgule)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Number of rational part digits</emphasis>
         </para>
-        <para> Un entier plus grand ou égal à 0. C'est le nombre de chiffres affichés après la virgule.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Un entier plus grand ou Ã©gal Ã  0. C'est le nombre de chiffres affichÃ©s aprÃ¨s la virgule.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Block inherits </emphasis>
         </para>
-        <para> Option pour choisir l'activation par héritage d'événement via le port d'entrée régulier ou explicitement par le port d'entrée événementiel.</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> Option pour choisir l'activation par hÃ©ritage d'Ã©vÃ©nement via le port d'entrÃ©e rÃ©gulier ou explicitement par le port d'entrÃ©e Ã©vÃ©nementiel.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_AFFICH_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_AFFICH_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -172,33 +172,33 @@ la valeur lue sur son unique port d'entrée.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

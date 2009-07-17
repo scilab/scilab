@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="drawaxis">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,24 +8,24 @@
     <refpurpose> dessine un axe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>drawaxis([options])
 // options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
-        <term>dir=chaîne  </term>
+        <term>dir=chaÃ®ne  </term>
         <listitem>
-          <para>utilisé pour spécifier la direction des graduations. <literal>chaîne</literal> peut être choisi parmi  'u','r','d','l' ('l' est la valeur par défaut). Les valeurs 'u','r','d','l' signifient up (en haut), right (à droite) , down (en bas) , left (à gauche).
+          <para>utilisÃ© pour spÃ©cifier la direction des graduations. <literal>chaÃ®ne</literal> peut Ãªtre choisi parmi  'u','r','d','l' ('l' est la valeur par dÃ©faut). Les valeurs 'u','r','d','l' signifient up (en haut), right (Ã  droite) , down (en bas) , left (Ã  gauche).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>tics=chaîne  </term>
+        <term>tics=chaÃ®ne  </term>
         <listitem>
-          <para>valeur décrivant comment sont données les graduations.   <literal>chaîne</literal> peut être choisi parmi 'v','r', et 'i' ('v' est la valeur par défaut).
+          <para>valeur dÃ©crivant comment sont donnÃ©es les graduations.   <literal>chaÃ®ne</literal> peut Ãªtre choisi parmi 'v','r', et 'i' ('v' est la valeur par dÃ©faut).
 </para>
         </listitem>
       </varlistentry>
@@ -37,30 +37,30 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>val=chaîne  </term>
+        <term>val=chaÃ®ne  </term>
         <listitem>
-          <para>une matrice de chaînes de caractères donnant les labels à dessiner en face des graduations.
+          <para>une matrice de chaÃ®nes de caractÃ¨res donnant les labels Ã  dessiner en face des graduations.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fontsize=int  </term>
         <listitem>
-          <para>spécifie la taille de la police utilisée pour dessiner les labels des graduations. La valeur par défaut est  <literal>-1</literal> (taille courante de police).
+          <para>spÃ©cifie la taille de la police utilisÃ©e pour dessiner les labels des graduations. La valeur par dÃ©faut est  <literal>-1</literal> (taille courante de police).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>format_n=chaîne  </term>
+        <term>format_n=chaÃ®ne  </term>
         <listitem>
-          <para>format utilisé pour afficher les nombres au dessus des graduations.
+          <para>format utilisÃ© pour afficher les nombres au dessus des graduations.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>seg= 1 ou 0  </term>
         <listitem>
-          <para>valeur contrôlant l'affichage du segment de base de l'axe (1 par défaut).
+          <para>valeur contrÃ´lant l'affichage du segment de base de l'axe (1 par dÃ©faut).
 </para>
         </listitem>
       </varlistentry>
@@ -74,14 +74,14 @@
       <varlistentry>
         <term>textcolor=entier  </term>
         <listitem>
-          <para>spécifie la couleur à utiliser pour afficher les valeurs sur l'axe. La valeur par défaut est <literal>-1</literal> (couleur courante).
+          <para>spÃ©cifie la couleur Ã  utiliser pour afficher les valeurs sur l'axe. La valeur par dÃ©faut est <literal>-1</literal> (couleur courante).
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ticscolor=entier  </term>
         <listitem>
-          <para>spécifie la couleur à utiliser pour dessiner les graduations. La valeur par défaut est <literal>-1</literal> (couleur courante).
+          <para>spÃ©cifie la couleur Ã  utiliser pour dessiner les graduations. La valeur par dÃ©faut est <literal>-1</literal> (couleur courante).
 </para>
         </listitem>
       </varlistentry>
@@ -89,35 +89,35 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>drawaxis</literal> est utilisée pour dessiner un axe vertical ou horizontal. La direction de l'axe est donnée par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations 
-    dirigées vers le haut (<literal>'u'</literal>) ou le bas (<literal>'d'</literal>). 
+    <para><literal>drawaxis</literal> est utilisÃ©e pour dessiner un axe vertical ou horizontal. La direction de l'axe est donnÃ©e par dir <literal>dir = 'u'</literal> ou <literal>'d'</literal> donne un axe horizontal avec des graduations 
+    dirigÃ©es vers le haut (<literal>'u'</literal>) ou le bas (<literal>'d'</literal>). 
     <literal>dir = 'r'</literal> ou <literal>'l'</literal> donne un axe vertical avec des graduations allant vers la droite (<literal>'r'</literal>) ou vers la gauche (<literal>'l'</literal>). 
   </para>
     <para><literal>x</literal> et <literal>y</literal> donnent les positions des graduations. 
     Si l'axe est horizontal alors <literal>y</literal> 
-    doit être un scalaire ou peut être omis et <literal>x</literal> 
+    doit Ãªtre un scalaire ou peut Ãªtre omis et <literal>x</literal> 
     est un vecteur. La signification de <literal>x</literal> 
-    est contrôlée par <literal>tics</literal>. 
+    est contrÃ´lÃ©e par <literal>tics</literal>. 
   </para>
     <para>
     Si <literal>tics='v'</literal> alors <literal>x</literal> donne les positions des graduations sur l'axe des x. 
   </para>
     <para>
-    Si <literal>tics='r'</literal> alors <literal>x</literal> doit être de taille 3. <literal>x=[xmin,xmax,n]</literal> et 
+    Si <literal>tics='r'</literal> alors <literal>x</literal> doit Ãªtre de taille 3. <literal>x=[xmin,xmax,n]</literal> et 
     <literal>n</literal> donne le nombre d'intervalles.
   </para>
     <para>
-    Si <literal>tics='i'</literal> alors <literal>x</literal> doit être de taille 4, <literal>x=[k1,k2,a,n]</literal>. 
+    Si <literal>tics='i'</literal> alors <literal>x</literal> doit Ãªtre de taille 4, <literal>x=[k1,k2,a,n]</literal>. 
     Dans ce cas <literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal> et <literal>n</literal> donne le nombre d'intervalles.
   </para>
     <para>
-    Si <literal>y</literal> est omis alors l'axe est positionné en haut du cadre si <literal>dir='u'</literal> ou en bas si <literal>dir='d'</literal>
+    Si <literal>y</literal> est omis alors l'axe est positionnÃ© en haut du cadre si <literal>dir='u'</literal> ou en bas si <literal>dir='d'</literal>
   </para>
     <para>
-    Par défaut, les nombres sont dessinés sur l'axe. Ils sont dessinés en utilisant un format par défaut qui peut être changé avec <literal>format_n</literal>. 
-    Il est aussi possible d'afficher des chaînes de caractères données au lieu des nombres, 
+    Par dÃ©faut, les nombres sont dessinÃ©s sur l'axe. Ils sont dessinÃ©s en utilisant un format par dÃ©faut qui peut Ãªtre changÃ© avec <literal>format_n</literal>. 
+    Il est aussi possible d'afficher des chaÃ®nes de caractÃ¨res donnÃ©es au lieu des nombres, 
     si <literal>val</literal> est fourni en argument. La taille de <literal>val</literal> doit alors
-    être égale au nombre de graduations. 
+    Ãªtre Ã©gale au nombre de graduations. 
   </para>
   </refsection>
   <refsection>
@@ -131,7 +131,7 @@ drawaxis(x=2:7,dir='u',tics='v')
 // axe horizontal en bas du cadre
 drawaxis(x=2:7,dir='d',tics='v') 
 
-// axe horizontal donné par une plage de variation 
+// axe horizontal donnÃ© par une plage de variation 
 drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
 
 // axe vertical
@@ -140,9 +140,9 @@ drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
 drawaxis(y=2:7,dir='r',tics='v')
 drawaxis(y=2:7,dir='l',tics='v')
 
-// axe horizontal avec chaînes de caractères au dessus des graduations
+// axe horizontal avec chaÃ®nes de caractÃ¨res au dessus des graduations
 drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
-// axe vertical avec chaînes de caractères au dessus des graduations
+// axe vertical avec chaÃ®nes de caractÃ¨res au dessus des graduations
 drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
 
 // axe horizontal avec 'i' 

@@ -42,7 +42,8 @@ COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/io/libsciio.la
+$(top_builddir)/modules/io/libsciio.la \
+$(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
@@ -90,7 +91,9 @@ scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/elementary_functions/includes/ \
 						-I$(top_srcdir)/modules/types/includes/ \
 						-I$(top_srcdir)/modules/system_env/includes/ \
-						-I$(top_srcdir)/modules/functions_manager/includes/
+						-I$(top_srcdir)/modules/functions_manager/includes/ \
+						-I$(top_srcdir)/modules/shell/includes/
+
 
 scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la \
@@ -150,6 +153,9 @@ icons/puffin_48.xpm \
 icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
+
+valgrinddir=$(pkgdatadir)/tools/profiling
+valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
@@ -317,4 +323,45 @@ pkgconfig_DATA = scilab.pc
 
 .NOTPARALLEL: macros doc
 
+CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/
+CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
 
+# These binaries are built here and not in the call_scilab module because 
+# we do need libscilab.so to exist before building these files
+# To build them, just launch "make check-am"
+# To run them, see the help of call Scilab in particular 
+# "Compile and run with Call Scilab"
+check_PROGRAMS = call_scilab_c_simple call_scilab_c call_scilab_c_getlastjob call_scilab_c_DisableInteractiveMode call_scilab_readwriteboolean call_scilab_readwritecomplexmatrix call_scilab_readwritematrix call_scilab_readwritestring
+
+call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
+call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+
+call_scilab_c_simple_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+call_scilab_c_simple_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_simple_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_c_getlastjob_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
+call_scilab_c_getlastjob_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_getlastjob_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_c_DisableInteractiveMode_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+call_scilab_c_DisableInteractiveMode_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_DisableInteractiveMode_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwriteboolean_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
+call_scilab_readwriteboolean_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwriteboolean_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritecomplexmatrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+call_scilab_readwritecomplexmatrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritecomplexmatrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritematrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
+call_scilab_readwritematrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
+call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)

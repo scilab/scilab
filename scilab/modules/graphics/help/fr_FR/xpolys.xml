@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xpolys">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xpolys</refname>
-    <refpurpose> dessine un ensemble de lignes brisées ou de polygones  </refpurpose>
+    <refpurpose> dessine un ensemble de lignes brisÃ©es ou de polygones  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xpolys(xpols,ypols,[draw])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xpols,ypols  </term>
         <listitem>
-          <para>matrices de même taille (p,n) (points des lignes brisées).
+          <para>matrices de mÃªme taille (p,n) (points des lignes brisÃ©es).
 	  </para>
         </listitem>
       </varlistentry>
@@ -32,23 +32,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpolys</literal> dessine un ensemble de lignes brisées ou de polygones.
-      Les coordonnées de chaque ligne brisée
-      sont stockées dans une colonne de <literal>xpols</literal> et <literal>ypols</literal>.
+    <para><literal>xpolys</literal> dessine un ensemble de lignes brisÃ©es ou de polygones.
+      Les coordonnÃ©es de chaque ligne brisÃ©e
+      sont stockÃ©es dans une colonne de <literal>xpols</literal> et <literal>ypols</literal>.
     </para>
     <para>
-      Le style de la ligne brisée i est donné par <literal>draw(i)</literal> :
+      Le style de la ligne brisÃ©e i est donnÃ© par <literal>draw(i)</literal> :
     </para>
     <itemizedlist>
       <listitem>
-        <para>Si <literal>draw(i)</literal> &lt; 0 , le marqueur numéro
-	  <literal>-draw(i)</literal> est utilisé (les marqueurs sont dessinés en
+        <para>Si <literal>draw(i)</literal> &lt; 0 , le marqueur numÃ©ro
+	  <literal>-draw(i)</literal> est utilisÃ© (les marqueurs sont dessinÃ©s en
 	  utilisant la couleur courante). Utiliser <literal>xset()</literal> pour
 	  voir les codes des marqueurs.</para>
       </listitem>
       <listitem>
-        <para>Si <literal>draw(i)</literal> &gt; 0, la couleur numéro
-	  <literal>draw(i)</literal> est utilisé pour dessiner la ligne brisée
+        <para>Si <literal>draw(i)</literal> &gt; 0, la couleur numÃ©ro
+	  <literal>draw(i)</literal> est utilisÃ© pour dessiner la ligne brisÃ©e
 	  i. Utiliser <literal>xset()</literal> pour voir les codes des
 	  couleurs.</para>
       </listitem>

@@ -33,6 +33,14 @@ typedef FARPROC DynLibFuncPtr;
 IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibHandle LoadDynLibrary(char *libname);
 
 /**
+* Maps the specified executable module into the address space of the calling process
+* @param name of dynamic library (wide char)
+* @return Handle to the loaded library
+*/
+IMPORT_EXPORT_DYNAMICLIBRARY_DLL DynLibHandle LoadDynLibraryW(wchar_t *libname);
+
+
+/**
 * Decrements the reference count of the loaded dynamic-link library
 * @param Handle to the loaded library
 * @return BOOL If the function succeeds, the return value is nonzero

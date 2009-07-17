@@ -11,10 +11,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
 /*
- * Modified 2006 S.Steer A.Cornet (changing generic code to sepcialized code 
+ * Modified 2006 by S.Steer and A.Cornet INRIA  (changing generic code to sepcialized code 
  * by hand macro expansion).
+ * Modified 2009 by S.Steer  INRIA (to make in stable when index is wanted)
  */
 
 #include "qsort.h"
@@ -36,39 +36,47 @@ static int swapcodechar(char * parmi,char * parmj,int n,int incr)
   return(0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCchar(char *i,char *j)
+static int compareCchar(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((char *)i) > *((char *)j))
-    return (1);
-  if ( *((char *)i) < *((char *)j))
-    return (-1);
+  if ( *((char *)i) > *((char *)j)) return (1);
+  if ( *((char *)i) < *((char *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDchar(char *i,char *j)
+static int compareDchar(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((char *)i) < *((char *)j))
-    return (1);
-  if ( *((char *)i) > *((char *)j))
-    return (-1);
+  if ( *((char *)i) < *((char *)j)) return (1);
+  if ( *((char *)i) > *((char *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCuchar(char *i,char *j)
+static int compareCuchar(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((unsigned char *)i) > *((unsigned char *)j))
-    return (1);
-  if ( *((unsigned char *)i) < *((unsigned char *)j))
-    return (-1);
+  if ( *((unsigned char *)i) > *((unsigned char *)j)) return (1);
+  if ( *((unsigned char *)i) < *((unsigned char *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDuchar(char *i,char *j)
+static int compareDuchar(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((unsigned char *)i) < *((unsigned char *)j))
-    return (1);
-  if ( *((unsigned char *)i) > *((unsigned char *)j))
-    return (-1);
+  if ( *((unsigned char *)i) < *((unsigned char *)j)) return (1);
+  if ( *((unsigned char *)i) > *((unsigned char *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 

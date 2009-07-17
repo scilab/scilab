@@ -1,50 +1,50 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xpoly">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xpoly</refname>
-    <refpurpose>dessine une ligne brisée ou un
+    <refpurpose>dessine une ligne brisÃ©e ou un
   polygone</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xv,yv</term>
         <listitem>
-          <para>matrices de même taille (points de la ligne brisée).</para>
+          <para>matrices de mÃªme taille (points de la ligne brisÃ©e).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dtype</term>
         <listitem>
-          <para>chaîne de caractères (style de dessin, valeur par défaut :
+          <para>chaÃ®ne de caractÃ¨res (style de dessin, valeur par dÃ©faut :
           "lines").</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>close</term>
         <listitem>
-          <para>entier. Si close=1, la ligne brisée est fermée (valeur par
-          défaut : 0).</para>
+          <para>entier. Si close=1, la ligne brisÃ©e est fermÃ©e (valeur par
+          dÃ©faut : 0).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xpoly</literal> dessine une ligne brisée décrite par les vecteurs de
-    coordonnées <literal>xv</literal> et <literal>yv</literal>. Si <literal>xv</literal> et
-    <literal>yv</literal> sont des matrices elles sont considérées comme des
-    vecteurs (par concaténation de leurs colonnes). Si close=1 un segment
-    supplémentaire est ajouté entre le premier et le dernier point de la ligne
-    brisée. <literal>dtype</literal> peut être égal à   <literal>"lines"</literal>
+    <para><literal>xpoly</literal> dessine une ligne brisÃ©e dÃ©crite par les vecteurs de
+    coordonnÃ©es <literal>xv</literal> et <literal>yv</literal>. Si <literal>xv</literal> et
+    <literal>yv</literal> sont des matrices elles sont considÃ©rÃ©es comme des
+    vecteurs (par concatÃ©nation de leurs colonnes). Si close=1 un segment
+    supplÃ©mentaire est ajoutÃ© entre le premier et le dernier point de la ligne
+    brisÃ©e. <literal>dtype</literal> peut Ãªtre Ã©gal Ã Â Â  <literal>"lines"</literal>
     pour utiliser le style de ligne courant ou <literal>"marks"</literal> pour
     utiliser des marqueurs.</para>
   </refsection>

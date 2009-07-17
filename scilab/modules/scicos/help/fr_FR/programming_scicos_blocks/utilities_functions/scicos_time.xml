@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -39,11 +39,11 @@
 t=scicos_time()
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_scicos_time">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_scicos_time">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">t :</emphasis> c'est le temps courant de la simulation retourné par un nombre réel.</para>
+        <para><emphasis role="bold">t :</emphasis> c'est le temps courant de la simulation retournÃ© par un nombre rÃ©el.</para>
       </listitem>
     </itemizedlist>
   </refsection>

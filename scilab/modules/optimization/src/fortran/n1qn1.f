@@ -65,15 +65,32 @@ c!
       implicit double precision (a-h,o-z)
       dimension x(n),g(n),var(n),zm(*),izs(*),dzs(*)
       real rzs(*)
+      character bufstr*(4096)
       external simul
       if (imp.gt.0) then
-         write(lp,*)
-         write(lp,*) '***** enters -qn code- (without bound cstr)'
-         write(lp,*) 'dimension=',n,', epsg=',eps, 
-     $                ', verbosity level: imp=',imp
-         write(lp,*) 'max number of iterations allowed: iter=',niter
-         write(lp,*) 'max number of calls to costf allowed: nap=',nsim
-         write(lp,*) '------------------------------------------------'
+         call basout(io, lp, '')
+         call basout(io, lp, 
+     $    '***** enters -qn code- (without bound cstr)')
+
+         write(bufstr,750)n,eps,imp
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+
+750   	 format('dimension=',i10,', epsq=',e24.16,
+     $ ', verbosity level: imp=',i10)
+
+
+         
+         write(bufstr,751)niter
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+751   	 format('max number of iterations allowed: iter=',i10)
+
+         
+         write(bufstr,752) nsim
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+752   	 format('max number of calls to costf allowed: nap=',i10)
+         
+         call basout(io ,lp ,
+     $    '------------------------------------------------')
       endif
       nd=1+(n*(n+1))/2
       nw=nd+n
@@ -85,6 +102,9 @@ c!
      1 niter,nsim,imp,lp,zm,zm(nd),zm(nw),zm(nxa),zm(nga),
      2 zm(nxb),zm(ngb),izs,rzs,dzs)
       if (imp.gt.0) then
-         write (lp,*) '***** leaves -qn code-, gradient norm=',sqrt(eps)
+       write(bufstr,753) sqrt(eps)
+       call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+753    format('***** leaves -qn code-, gradient norm=',e24.16)
+     
       endif
       end

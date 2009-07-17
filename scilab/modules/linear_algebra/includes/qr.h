@@ -32,7 +32,4 @@
  */  
 int iQrM(double* pData, int iRows, int iCols, int /*bool*/ complexArg, int iRowsToCompute, double dblTol
 	 , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank);
-int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
-       , double* pdblQ, double* pdblR, double* pdblE, double* pdblRank
-       , int* piPivot, double* pdblTau, double* pdblWork, int iWorkSize, double* pdblRWork);
 #endif

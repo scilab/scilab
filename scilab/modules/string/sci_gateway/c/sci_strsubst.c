@@ -26,7 +26,7 @@
 #define CHAR_R "r"
 #define CHAR_S "s"
 /*-------------------------------------------------------------------------------------*/
-int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
+int sci_strsubst(char *fname,unsigned long fname_len)
 {
 	BOOL bStrsubst_with_pattern = FALSE;
 	CheckRhs(3,4);
@@ -117,6 +117,9 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 
 				if (VarType(4) != sci_strings)
 				{
+					freeArrayOfString(strings_input,m1n1);
+					freeArrayOfString(string_to_search,m2n2);
+					freeArrayOfString(replacement_string,m3n3);
 					Scierror(999,_("%s: Wrong type for input argument #%d: A character expected.\n"),fname,4);
 					return 0;
 				}
@@ -125,6 +128,9 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 				
 				if (m4n4 != 1)
 				{
+					freeArrayOfString(strings_input,m1n1);
+					freeArrayOfString(string_to_search,m2n2);
+					freeArrayOfString(replacement_string,m3n3);
 					freeArrayOfString(Strings_Input4,m4n4);
 					Scierror(999,_("%s: Wrong size for input argument #%d: A character expected.\n"),fname,4);
 					return 0;
@@ -144,6 +150,9 @@ int C2F(sci_strsubst)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
+					freeArrayOfString(strings_input,m1n1);
+					freeArrayOfString(string_to_search,m2n2);
+					freeArrayOfString(replacement_string,m3n3);
 					freeArrayOfString(Strings_Input4,m4n4);
 					Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,4,"s","r");
 					return 0;

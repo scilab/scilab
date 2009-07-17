@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,25 @@
   <refnamediv>
     <refname>acosd</refname>
 
-    <refpurpose>cosinus inverse des éléments de l'argument, résultat en  degré.</refpurpose>
+    <refpurpose>cosinus inverse des Ã©lÃ©ments de l'argument, rÃ©sultat en
+    degrÃ©.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>t=acosd(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>Tableau réel ou complexe.</para>
+          <para>Tableau rÃ©el ou complexe.</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +50,7 @@
         <term>t</term>
 
         <listitem>
-          <para>Tableau réel ou complexe.</para>
+          <para>Tableau rÃ©el ou complexe.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,32 +59,33 @@
   <refsection>
     <title>Description</title>
 
-    <para>Les éléments de <literal>t</literal> sont les cosinus
-    inverse exprimés en degrés des éléments correspondants de
-    <literal>x</literal> (t=acos(x)*180/%pi).  Pour les données
-    réelles dans <literal> [-1, 1]</literal>, les résultats sont réel
-    dans l'intervalle <literal>[0 180];</literal></para>
+    <para>Les Ã©lÃ©ments de <literal>t</literal> sont les cosinus inverse
+    exprimÃ©s en degrÃ©s des Ã©lÃ©ments correspondants de <literal>x</literal>
+    (t=acos(x)*180/%pi). Pour les donnÃ©es rÃ©elles dans <literal> [-1,
+    1]</literal>, les rÃ©sultats sont rÃ©el dans l'intervalle <literal>[0
+    180].</literal></para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 acosd(x)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
     <title>Voir aussi</title>
+
     <simplelist type="inline">
       <member><link linkend="acos">acos</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Auteurs</title>
+
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
     </simplelist>

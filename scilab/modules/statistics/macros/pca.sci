@@ -66,6 +66,7 @@ function [lambda,facpr,comprinc]=pca(x)
     return; 
   end
   [facpr,comprinc,lambda]=princomp(wcenter(x,1))
+  lambda(:,2)=lambda(:,1)/sum(lambda(:,1))
 endfunction
 
 

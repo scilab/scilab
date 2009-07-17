@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>sci_files</refname>
-    <refpurpose>Comment écrire des fonctions de conversion</refpurpose>
+    <refpurpose>Comment Ã©crire des fonctions de conversion</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>  
-  Pour convertir les appels à des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelée
-  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont définies dans des <literal>sci_files</literal>
-  dans le répertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
-  ne permet pas encore de convertir les appels à toutes les fonctions Matlab.
+  Pour convertir les appels Ã  des fonctions Matlab, <literal>mfile2sci</literal> utilise une fonctions appelÃ©e
+  <literal>sci_&lt;nom_de_la_fonction_Matlab&gt;</literal>. Toutes ces fonctions sont dÃ©finies dans des <literal>sci_files</literal>
+  dans le rÃ©pertoire SCI/modules/m2sci/macros/sci_files/. La palette de <literal>sci_files</literal> fournie dans Scilab
+  ne permet pas encore de convertir les appels Ã  toutes les fonctions Matlab.
   Cependant, un utilisateur Scilab peut ajouter des <literal>sci_files</literal> (pour des fonctions Matlab
   ou pour ses propres fonctions) en utilisant les conseils suivants.
   </para>
     <para>
-  Dans M2SCI, un appel à une fonction est considéré comme un "arbre" (c'est aussi le cas des instructions
-  du fichier à convertir), représenté dans Scilab par une <literal>tlist</literal> avec les champs suivants :
+  Dans M2SCI, un appel Ã  une fonction est considÃ©rÃ© comme un "arbre" (c'est aussi le cas des instructions
+  du fichier Ã  convertir), reprÃ©sentÃ© dans Scilab par une <literal>tlist</literal> avec les champs suivants :
   </para>
     <itemizedlist>
       <listitem>
@@ -44,33 +44,33 @@
           <varlistentry>
             <term>lhsnb</term>
             <listitem>
-              <para>nombre de paramètres de sortie de la fonction Matlab</para>
+              <para>nombre de paramÃ¨tres de sortie de la fonction Matlab</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>lhs</term>
             <listitem>
-              <para>liste des paramètres de sortie de la fonction Matlab</para>
+              <para>liste des paramÃ¨tres de sortie de la fonction Matlab</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>rhs</term>
             <listitem>
-              <para>liste des paramètres d'entrée de la fonction Matlab</para>
+              <para>liste des paramÃ¨tres d'entrÃ©e de la fonction Matlab</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Une <literal>sci_function</literal> a un paramètre d'entrée <literal>tree</literal> qui est aussi la sortie de cette fonction.
+  Une <literal>sci_function</literal> a un paramÃ¨tre d'entrÃ©e <literal>tree</literal> qui est aussi la sortie de cette fonction.
   Une <literal>sci_function</literal> doit convertir cet arbre pour qu'il soit compatible avec Scilab
-  en changeant name, lhsnb, lhs et/ou rhs. L'autre rôle de cette fonction est de gérer
-  l'inférence. L'arbre d'entrée contient des données d'inférence dans ses rhs qui devront être mises à jour avec
-  ce que l'on peut inférer pour les lhs de cette fonction. 
+  en changeant name, lhsnb, lhs et/ou rhs. L'autre rÃ´le de cette fonction est de gÃ©rer
+  l'infÃ©rence. L'arbre d'entrÃ©e contient des donnÃ©es d'infÃ©rence dans ses rhs qui devront Ãªtre mises Ã  jour avec
+  ce que l'on peut infÃ©rer pour les lhs de cette fonction. 
   </para>
     <para>
-  Plusieurs fonctions ont été écrites pour aider à la rédaction de fonctions de conversion :
+  Plusieurs fonctions ont Ã©tÃ© Ã©crites pour aider Ã  la rÃ©daction de fonctions de conversion :
   </para>
     <itemizedlist>
       <listitem>
@@ -78,50 +78,50 @@
           <varlistentry>
             <term>Funcall</term>
             <listitem>
-              <para>créé un arbre qui représente l'appel à une fonction</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente l'appel Ã  une fonction</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Operation</term>
             <listitem>
-              <para>créé un arbre qui représente une opération</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente une opÃ©ration</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Variable</term>
             <listitem>
-              <para>créé un arbre qui représente une variable</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente une variable</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Cste</term>
             <listitem>
-              <para>créé un arbre qui représente une constante</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente une constante</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Infer</term>
             <listitem>
-              <para>créé un arbre qui représente les données d'inférence</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente les donnÃ©es d'infÃ©rence</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Type</term>
             <listitem>
-              <para>créé un arbre qui représente le type pour l'inférence</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente le type pour l'infÃ©rence</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>Equal</term>
             <listitem>
-              <para>créé un arbre qui représente une instruction</para>
+              <para>crÃ©Ã© un arbre qui reprÃ©sente une instruction</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Quelques fonctions ont été écrites pour récupèrer les propriétés des opérandes/entrées. En considérant A comme une tlist utilisée dans l'arbre, vous pouvez utiliser les fonctions suivantes :
+  Quelques fonctions ont Ã©tÃ© Ã©crites pour rÃ©cupÃ¨rer les propriÃ©tÃ©s des opÃ©randes/entrÃ©es. En considÃ©rant A comme une tlist utilisÃ©e dans l'arbre, vous pouvez utiliser les fonctions suivantes :
   </para>
     <informaltable border="1">
       <tr>
@@ -130,31 +130,31 @@
       </tr>
       <tr>
         <td>is_empty(A)</td>
-        <td>toutes les dimensions de A sont égales à 0</td>
+        <td>toutes les dimensions de A sont Ã©gales Ã  0</td>
       </tr>
       <tr>
         <td>not_empty(A)</td>
-        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 0</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diffÃ©rente de 0</td>
       </tr>
       <tr>
         <td>is_a_scalar(A)</td>
-        <td>toutes les dimensions de A sont égales 1</td>
+        <td>toutes les dimensions de A sont Ã©gales 1</td>
       </tr>
       <tr>
         <td>not_a_scalar(A)</td>
-        <td>toutes les dimensions de A sont connues et au moins une dimension de A est différente de 1</td>
+        <td>toutes les dimensions de A sont connues et au moins une dimension de A est diffÃ©rente de 1</td>
       </tr>
       <tr>
         <td>is_a_vector(A)</td>
-        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont égales à 1</td>
+        <td>toutes les dimensions de A sotn connues et toutes les dimensions de A sauf une sont Ã©gales Ã  1</td>
       </tr>
       <tr>
         <td>not_a_vector(A)</td>
-        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supérieures à 1</td>
+        <td>toutes les dimensions de A sotn connues et au moins deux dimensions de A sont supÃ©rieures Ã  1</td>
       </tr>
       <tr>
         <td>is_real(A)</td>
-        <td>A est réel</td>
+        <td>A est rÃ©el</td>
       </tr>
       <tr>
         <td>is_complex(A)</td>
@@ -162,7 +162,7 @@
       </tr>
       <tr>
         <td>isdefinedvar(A)</td>
-        <td>A est une variable déjà définie dans le M-file en cours de conversion</td>
+        <td>A est une variable dÃ©jÃ  dÃ©finie dans le M-file en cours de conversion</td>
       </tr>
       <tr>
         <td>allunknown(A)</td>
@@ -170,7 +170,7 @@
       </tr>
     </informaltable>
     <para>
-  D'autres fonctions ont été écrites pour des besoins spécifiques lors de l'écriture de fonctions de conversion :
+  D'autres fonctions ont Ã©tÃ© Ã©crites pour des besoins spÃ©cifiques lors de l'Ã©criture de fonctions de conversion :
   </para>
     <itemizedlist>
       <listitem>
@@ -178,46 +178,46 @@
           <varlistentry>
             <term>first_non_singleton</term>
             <listitem>
-              <para>est équivalente à <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. Séquence d'appel : dim = first_non_singleton(A)</para>
+              <para>est Ã©quivalente Ã  <link linkend="firstnonsingleton">firstnonsingleton</link> pour une tlist M2SCI. SÃ©quence d'appel : dim = first_non_singleton(A)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>gettempvar</term>
             <listitem>
-              <para>génére une variable temporaire portant une nom qui n'existe pas. Séquence d'appel : v = gettempvar()</para>
+              <para>gÃ©nÃ©re une variable temporaire portant une nom qui n'existe pas. SÃ©quence d'appel : v = gettempvar()</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>insert</term>
             <listitem>
-              <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</para>
+              <para>permet d'insÃ©rer des instruction. SÃ©quence d'appel : insert(Equal(...),opt) avec opt~=1 pour insÃ©rer avan tl'instruction courante et opt=1 pour insÃ©rer aprÃ¨s celle-ci.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>getoperands</term>
             <listitem>
-              <para>peut être utilisée pour extraire chaque opérande comme une variable. Séquence d'appel : [A,B] = getoperands(operation_tlist)</para>
+              <para>peut Ãªtre utilisÃ©e pour extraire chaque opÃ©rande comme une variable. SÃ©quence d'appel : [A,B] = getoperands(operation_tlist)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>getrhs</term>
             <listitem>
-              <para>peut être utilisée pour extraire chaque paramètre comme une variable. Séquence d'appel : [A,...] = getrhs(funcall_tlist)</para>
+              <para>peut Ãªtre utilisÃ©e pour extraire chaque paramÃ¨tre comme une variable. SÃ©quence d'appel : [A,...] = getrhs(funcall_tlist)</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term>convert2double</term>
             <listitem>
-              <para>change le type de l'entrée quand ce type n'est pas implémenté pour une fonction particulière de Scilab. Séquence d'appel : A = convert2double(A)</para>
+              <para>change le type de l'entrÃ©e quand ce type n'est pas implÃ©mentÃ© pour une fonction particuliÃ¨re de Scilab. SÃ©quence d'appel : A = convert2double(A)</para>
             </listitem>
           </varlistentry>
         </variablelist>
       </listitem>
     </itemizedlist>
     <para>
-  Pour plus d'informations sur la façon d'écrire ces fichiers, consulter le répertoire
+  Pour plus d'informations sur la faÃ§on d'Ã©crire ces fichiers, consulter le rÃ©pertoire
   SCI/modules/m2sci/macros/sci_files/ qui donne de nombreux exemples, des plus simples (e.g. sci_abs.sci)
-  aux plus compliqués (e.g. sci_zeros.sci).
+  aux plus compliquÃ©s (e.g. sci_zeros.sci).
   </para>
   </refsection>
   <refsection>

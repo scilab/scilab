@@ -27,6 +27,8 @@
 #if _MSC_VER
 #include "strdup_Windows.h"
 #endif
+#include "getshortpathname.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 static char *getModuleXmlFilename(char *modulename);
 static struct gateway_struct *readGatewayXmlFile(char *filenameXml);
@@ -88,7 +90,16 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 		int PRIMITIVE_ID=0;
 		char *PRIMITIVE_NAME=NULL;
 
-		doc = xmlParseFile (filenameXml);
+		{
+			BOOL bConvert = FALSE;
+			char *shortfilenameXml = getshortpathname(filenameXml,&bConvert);
+			if (shortfilenameXml)
+			{
+				doc = xmlParseFile (shortfilenameXml);
+				FREE(shortfilenameXml);
+				shortfilenameXml = NULL;
+			}
+		}
 
 		if (doc == NULL) 
 		{

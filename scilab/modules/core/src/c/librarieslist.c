@@ -19,6 +19,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "CallScilab.h"
 /*--------------------------------------------------------------------------*/
 static int getnumberoflibraries(void);
 /*--------------------------------------------------------------------------*/

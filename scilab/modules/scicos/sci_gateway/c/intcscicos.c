@@ -27,11 +27,10 @@
 #include "stack-c.h"
 #define Top C2F(vstk).top
 
-/* REORGANIZATION */
 #include "BuildObjects.h"
-/* #include "../interf/intcommongraphics.h" */
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "HandleManagement.h" /* sciGetPointerFromHandle */
 
 #include "cvstr.h"
 #include "sciprint.h"
@@ -4266,7 +4265,7 @@ int intpermutobj_c(char *fname,unsigned long fname_len)
                "for Rhs(1).\n",fname);
   return 0; }
  hdl_1=(unsigned long)*hstk(l1);
- pobj_1=sciGetPointerFromHandle(hdl_1);
+ pobj_1 = sciGetPointerFromHandle(hdl_1);
  if (pobj_1==NULL) {
   Scierror(999,"%s :the handle is not "
                "or no more valid.\n",fname);

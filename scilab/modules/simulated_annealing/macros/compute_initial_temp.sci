@@ -28,12 +28,12 @@ end
 
 f_list    = [];
 x_current = x0;
-f_current = cit_f(x_current);
+f_current = _cit_f(x_current);
 f_list    = [f_list f_current];
 
 for i=1:ItMX
   x_current = neigh_func(x_current, 0, param);
-  f_current = cit_f(x_current);
+  f_current = _cit_f(x_current);
   f_list = [f_list f_current];
 end
 

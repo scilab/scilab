@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -104,19 +104,19 @@ Raccourcis clavier permanents :
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">'Ctrl + c' :</emphasis> Copie les objets sélectionnés dans le clipboard scicos</para>
+        <para><emphasis role="bold">'Ctrl + c' :</emphasis> Copie les objets sÃ©lectionnÃ©s dans le clipboard scicos</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">'Ctrl + v' :</emphasis> Colle les objets du clipboard scicos</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">'Ctrl + a' :</emphasis> Sélectionne tous les objets de la fenêtre courante</para>
+        <para><emphasis role="bold">'Ctrl + a' :</emphasis> SÃ©lectionne tous les objets de la fenÃªtre courante</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">'Ctrl + s' :</emphasis> Sauvegarde le diagramme courant</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">'Ctrl + clic gauche' :</emphasis> Ajoute des objets à la selection courante</para>
+        <para><emphasis role="bold">'Ctrl + clic gauche' :</emphasis> Ajoute des objets Ã  la selection courante</para>
       </listitem>
     </itemizedlist>
   </refsection>

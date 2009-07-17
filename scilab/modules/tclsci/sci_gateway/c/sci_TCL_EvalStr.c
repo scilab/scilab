@@ -35,7 +35,7 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
       char *tclSlave = NULL;
 
       char **Str=NULL;
-      int m1,n1,i,j;
+      int m1,n1,i;
       int m2,n2,l2;
       char **ReturnArrayString=NULL;
       int k=0;
@@ -138,8 +138,7 @@ int sci_TCL_EvalStr(char *fname,unsigned long l)
       LhsVar(1)=Rhs+1;
       C2F(putlhsvar)();
 
-      for (i=0;i<n1;i++) for (j=0;j<m1;j++) { FREE(ReturnArrayString[i+n1*j]);ReturnArrayString[i+n1*j]=NULL; }
-      FREE(ReturnArrayString);
+	  freeArrayOfString(ReturnArrayString,m1*n1);
       freeArrayOfString(Str,m1*n1);
     }
   else

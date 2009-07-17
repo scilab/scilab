@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> trace d'une matrice  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>trace(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice carrée, réelle, complexe, polynomiale ou rationnelle.
+          <para>matrice carrÃ©e, rÃ©elle, complexe, polynomiale ou rationnelle.
 </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
     <para><literal>trace(X)</literal> calcule la trace de <literal>X</literal>.
   </para>
     <para>
-    Identique à <literal>sum(diag(X))</literal>.
+    Identique Ã  <literal>sum(diag(X))</literal>.
   </para>
   </refsection>
   <refsection>

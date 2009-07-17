@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book [
+<!--Begin Entities-->
+<!ENTITY example_4_function_1 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_1.xml">
+<!ENTITY example_4_function_2 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_2.xml">
+<!ENTITY example_4_function_3 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_3.xml">
+<!ENTITY example_4_function_4 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_4.xml">
+<!ENTITY example_4_function_5 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_5.xml">
+<!ENTITY example_4_function_6 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_6.xml">
+<!ENTITY example_4_function_7 SYSTEM "/home/pmarecha/work/master/scilab/modules/helptools/examples/example_4/help/en_US/example_4_function_7.xml">
+<!--End Entities-->
+]>
+<book version="5.0-subset Scilab" xml:lang="en_US"
+      xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:db="http://docbook.org/ns/docbook">
+  <info xml:id='example_4'>
+    <title>"example 1" Toolbox</title>
+  </info>
+
+<part xml:id='functions'>
+<title>Functions</title>
+&example_4_function_1;
+&example_4_function_2;
+<chapter xml:id='chapter_1'>
+<title>My First Sub-Chapter</title>
+&example_4_function_3;
+&example_4_function_4;
+&example_4_function_5;
+</chapter>
+<chapter xml:id='chapter_2'>
+<title>My Second Sub-Chapter</title>
+&example_4_function_6;
+&example_4_function_7;
+</chapter>
+</part>
+</book>

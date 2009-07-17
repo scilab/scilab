@@ -59,13 +59,14 @@
     <title>Description</title>
 
     <para>The elements of <literal>t</literal> are the tangent of the elements
-    of <literal>x</literal></para>
+    of <literal>x.</literal></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"> 
+mod=ieee();ieee(2);
 x=[0,30 45 60 90 360];
 tand(x)
   </programlisting>

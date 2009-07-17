@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>apropos</refname>
-    <refpurpose> recherche d'un mot-clé dans l'aide de Scilab   </refpurpose>
+    <refpurpose> recherche d'un mot-clÃ© dans l'aide de Scilab   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>apropos(key)
 apropos(regexp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>key</term>
         <listitem>
-          <para>Une chaîne de caractères, la séquence de caractères à rechercher</para>
+          <para>Une chaÃ®ne de caractÃ¨res, la sÃ©quence de caractÃ¨res Ã  rechercher</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>regexp</term>
         <listitem>
-          <para> Une chaîne de caractères, l'expression régulière à
+          <para> Une chaÃ®ne de caractÃ¨res, l'expression rÃ©guliÃ¨re Ã 
 	    rechercher. Cette syntaxe ne fonctionne que le browser "Scilab Browser"</para>
         </listitem>
       </varlistentry>
@@ -44,9 +44,9 @@ apropos(regexp)</synopsis>
   <refsection>
     <title>Description</title>
     <para><literal>apropos(key)</literal> recherche les pages d'aides contenant la
-      séquence de caractères <literal>key</literal> dans leur section "SHORT_DESCRIPTION".</para>
+      sÃ©quence de caractÃ¨res <literal>key</literal> dans leur section "SHORT_DESCRIPTION".</para>
     <para><literal>apropos(regexp)</literal>
-      recherche les pages d'aides contenant l'expression régulière donnée par
+      recherche les pages d'aides contenant l'expression rÃ©guliÃ¨re donnÃ©e par
       <literal>regexp</literal> dans leur section "SHORT_DESCRIPTION".</para>
   </refsection>
   <refsection>
@@ -56,7 +56,7 @@ apropos('ode')
 apropos ode 
 apropos "list of"
 apropos "sin.*hyperbolique"
-apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractères "ab"
+apropos "^ab"  //rechercher les pages d'aide dont le nom commence par les deux caractÃ¨res "ab"
 apropos "quadratic.*solver"
  ]]></programlisting>
   </refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> trouve un ou plusieurs points d'articulation  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>nart = articul([i],g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -51,12 +51,12 @@
   <refsection>
     <title>Description</title>
     <para><literal>articul</literal> trouve un ou plusieurs points d'articulation (s'il existent) 
-    du graphe <literal>g</literal>. <literal>nart</literal> est le vecteur ligne des numéros des sommets 
-    d'articulation : détruire un de ces sommets augmente le nombre de 
+    du graphe <literal>g</literal>. <literal>nart</literal> est le vecteur ligne des numÃ©ros des sommets 
+    d'articulation : dÃ©truire un de ces sommets augmente le nombre de 
     composantes connexes du graphe.
-    <literal>i</literal> est le numéro optionnel de sommet à partir duquel l'algorithme 
-    démarre. 
-    La valeur par défaut est 1. Notez que le résultat dépend fortement du 
+    <literal>i</literal> est le numÃ©ro optionnel de sommet Ã  partir duquel l'algorithme 
+    dÃ©marre. 
+    La valeur par dÃ©faut est 1. Notez que le rÃ©sultat dÃ©pend fortement du 
     choix de ce sommet.
   </para>
   </refsection>

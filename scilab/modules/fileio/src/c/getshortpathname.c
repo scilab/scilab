@@ -14,12 +14,36 @@
 #include <string.h>
 #include "getshortpathname.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_SHORT
 		#define MAX_PATH_SHORT 260
 	#endif
 #endif
+/*--------------------------------------------------------------------------*/
+int C2F(getshortpathname)(char *pathname,int *len)
+{
+	if (pathname)
+	{
+		BOOL bConvert = FALSE;
+		char *result = NULL;
+		pathname[*len] = 0;
+		result = getshortpathname(pathname,&bConvert);
+		if (result)
+		{
+			strcpy(pathname, result);
+			*len = (int)strlen(result);
+			FREE(result);
+			result = NULL;
+			return 1;
+		}
+	}
+	return 0;
+}
 /*--------------------------------------------------------------------------*/
 char *getshortpathname(char *longpathname,BOOL *convertok)
 {
@@ -29,31 +53,37 @@ char *getshortpathname(char *longpathname,BOOL *convertok)
 	{
 		#ifdef _MSC_VER
 		/* first we try to call to know path length */
-		int length = GetShortPathName(longpathname, NULL, 0);
+		wchar_t *ptwlongpathname = to_wide_string(longpathname);
+		wchar_t *ptwShortName = NULL;
+		int length = GetShortPathNameW(ptwlongpathname, NULL, 0);
 
 		if (length <= 0 ) length = MAX_PATH_SHORT;
 
-		ShortName = (char*)MALLOC((length)*sizeof(char));
+		ptwShortName = (wchar_t*)MALLOC((length + 1)*sizeof(wchar_t));
 
-		if (ShortName) 
+		if (ptwShortName) 
 		{
 			/* second converts path */
-			if ( GetShortPathName(longpathname, ShortName, length) )
+			if ( GetShortPathNameW(ptwlongpathname, ptwShortName, length) )
 			{
+				ShortName = wide_string_to_UTF8(ptwShortName);
 				*convertok = TRUE;
 			}
 			else
 			{
 				/* FAILED */
-				strcpy(ShortName, longpathname);
+				ShortName = strdup(longpathname);
 				*convertok = FALSE;
 			}
+			if (ptwShortName) {FREE(ptwShortName);ptwShortName = NULL;}
 		}
 		else
 		{
 			/* FAILED */
+			ShortName = strdup(longpathname);
 			*convertok = FALSE;
 		}
+		if (ptwlongpathname) { FREE(ptwlongpathname); ptwlongpathname = NULL;}
 		#else
 		/* Linux */
 		int length = (int)strlen(longpathname) + 1;

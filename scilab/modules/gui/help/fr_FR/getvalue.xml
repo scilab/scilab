@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getvalue">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>getvalue</refname>
-    <refpurpose> boîte de dialogue de saisie de paramètres   </refpurpose>
+    <refpurpose> boÃ®te de dialogue de saisie de paramÃ¨tres   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>desc  </term>
         <listitem>
-          <para>vecteur colonne de chaînes de caractères, 
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res, 
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labels  </term>
         <listitem>
-          <para>vecteur colonne de n chaînes de caractères, <literal>labels(i)</literal> est l'entête du i-ème paramètre
+          <para>vecteur colonne de n chaÃ®nes de caractÃ¨res, <literal>labels(i)</literal> est l'entÃªte du i-Ã¨me paramÃ¨tre
 	  </para>
         </listitem>
       </varlistentry>
@@ -38,7 +38,7 @@
             <varlistentry>
               <term>typ_i  </term>
               <listitem>
-                <para>définit le type de la ième valeur. typ_i peut prendre l'une des valeurs :
+                <para>dÃ©finit le type de la iÃ¨me valeur. typ_i peut prendre l'une des valeurs :
 		</para>
                 <variablelist>
                   <varlistentry>
@@ -72,7 +72,7 @@
                   <varlistentry>
                     <term>"str"  </term>
                     <listitem>
-                      <para>chaîne de caractères
+                      <para>chaÃ®ne de caractÃ¨res
 		      </para>
                     </listitem>
                   </varlistentry>
@@ -89,24 +89,24 @@
             <varlistentry>
               <term>dim_i  </term>
               <listitem>
-                <para>définit les dimensions de la i-ème valeur. Ce doit être un entier
+                <para>dÃ©finit les dimensions de la i-Ã¨me valeur. Ce doit Ãªtre un entier
 		  ou un vecteur de deux entiers. -1 signifie que les dimensions ne sont
-		  pas définies.
+		  pas dÃ©finies.
 		</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>ini  </term>
               <listitem>
-                <para>vecteur colonne de n chaînes de caractères, <literal>ini(i)</literal>
-		  donne la valeur par défaut du i-ème paramètre
+                <para>vecteur colonne de n chaÃ®nes de caractÃ¨res, <literal>ini(i)</literal>
+		  donne la valeur par dÃ©faut du i-Ã¨me paramÃ¨tre
 		</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>ok  </term>
               <listitem>
-                <para>booléen, %t (vrai) si le bouton "Ok" a été pressé, %f
+                <para>boolÃ©en, %t (vrai) si le bouton "Ok" a Ã©tÃ© pressÃ©, %f
 		  (faux) pour le bouton "Cancel"
 		</para>
               </listitem>
@@ -114,10 +114,10 @@
             <varlistentry>
               <term>xi  </term>
               <listitem>
-                <para>contient le i-ème paramètre si ok=%t. Si la liste des arguments de
-		  sortie contient un <literal>xi</literal> de plus que nécessaire, la valeur
-		  du dernier <literal>xi</literal> contient le vecteur des chaînes de
-		  caractères correspondant aux paramètres choisis.
+                <para>contient le i-Ã¨me paramÃ¨tre si ok=%t. Si la liste des arguments de
+		  sortie contient un <literal>xi</literal> de plus que nÃ©cessaire, la valeur
+		  du dernier <literal>xi</literal> contient le vecteur des chaÃ®nes de
+		  caractÃ¨res correspondant aux paramÃ¨tres choisis.
 		</para>
               </listitem>
             </varlistentry>
@@ -130,16 +130,16 @@
     <title>Description</title>
     <para>
       Cette fonction est une interface vers la fonction <literal>x_mdialog</literal>
-      avec contrôle d'erreur, vérification de taille et de type des
-      paramètres, évaluation des expressions Scilab, etc.
+      avec contrÃ´le d'erreur, vÃ©rification de taille et de type des
+      paramÃ¨tres, Ã©valuation des expressions Scilab, etc.
     </para>
   </refsection>
   <refsection>
     <title>REMARQUES</title>
     <para>
-      Toute expression Scilab valide peut être utilisée pour entrer un
-      paramètre; pour les matrices  et les vecteurs <literal>getvalues</literal>
-      ajoute [ ] autour des valeurs rentrées avant leur évaluation.
+      Toute expression Scilab valide peut Ãªtre utilisÃ©e pour entrer un
+      paramÃ¨tre; pour les matrices  et les vecteurs <literal>getvalues</literal>
+      ajoute [ ] autour des valeurs rentrÃ©es avant leur Ã©valuation.
     </para>
   </refsection>
   <refsection>

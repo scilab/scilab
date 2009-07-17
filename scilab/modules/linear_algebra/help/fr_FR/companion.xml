@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> matrice compagnon  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>A=companion(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>polynôme ou vecteur de polynômes
+          <para>polynÃ´me ou vecteur de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice carrée
+          <para>matrice carrÃ©e
 </para>
         </listitem>
       </varlistentry>
@@ -44,14 +44,14 @@
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie une matrice <literal>A</literal> dont le polynôme caractéristique est
-    <literal>p</literal> si <literal>p</literal> est unitaire (le coefficient de plus haut degré est égal à un). Si <literal>p</literal> n'est pas unitaire
-    le polynôme caractéristique de <literal>A</literal> est égal à
-    <literal>p/c</literal> où <literal>c</literal> est le coefficient de plus haut degré de <literal>p</literal>.
+    Renvoie une matrice <literal>A</literal> dont le polynÃ´me caractÃ©ristique est
+    <literal>p</literal> si <literal>p</literal> est unitaire (le coefficient de plus haut degrÃ© est Ã©gal Ã  un). Si <literal>p</literal> n'est pas unitaire
+    le polynÃ´me caractÃ©ristique de <literal>A</literal> est Ã©gal Ã 
+    <literal>p/c</literal> oÃ¹ <literal>c</literal> est le coefficient de plus haut degrÃ© de <literal>p</literal>.
   </para>
     <para>
-    Si <literal>p</literal> est un vecteur de polynômes unitaires, <literal>A</literal> est bloc-diagonale,
-    et le polynôme caractéristique du i-ème bloc est égal à <literal>p(i)</literal>.
+    Si <literal>p</literal> est un vecteur de polynÃ´mes unitaires, <literal>A</literal> est bloc-diagonale,
+    et le polynÃ´me caractÃ©ristique du i-Ã¨me bloc est Ã©gal Ã  <literal>p(i)</literal>.
   </para>
   </refsection>
   <refsection>

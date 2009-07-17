@@ -5,9 +5,13 @@
 
 MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c 
 
-if IS_64_BITS_CPU
-MALLOC_C_SOURCES += src/malloc.c
-endif
+# Commented since it is causing more problems than it solves...
+# If you are trying to run Scilab on a 64 bits CPU and a seg fault
+# is triggered on startup, please uncomment the following line:
+#MALLOC_C_SOURCES += src/malloc.c
+#if IS_64_BITS_CPU
+#MALLOC_C_SOURCES += src/malloc.c
+#endif
 
 libscimalloc_la_includedir=$(pkgincludedir)/malloc
 

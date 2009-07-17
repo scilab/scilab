@@ -54,6 +54,9 @@ void pcre_error(char *fname,int errorCode){
 			case MATCH_LIMIT:
 				Scierror(999,_("%s: Matched text exceeds buffer limit.\n"),fname);
 				break;
+			case UTF8_NOT_SUPPORTED:
+				Scierror(999,_("%s: Current PCRE library does not support UTF-8.\n"),fname);
+				break;
 			default:
 				Scierror(999,_("%s: Unknown error.\n"),fname);
 				break;

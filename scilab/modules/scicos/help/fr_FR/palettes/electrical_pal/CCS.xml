@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CCS">
   <refnamediv>
     <refname>CCS</refname>
-    <refpurpose>Source de courant contrôlée</refpurpose>
+    <refpurpose>Source de courant contrÃ´lÃ©e</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CCS">Source de courant contrôlée</link>
+          <link linkend="CCS">Source de courant contrÃ´lÃ©e</link>
         </para>
       </listitem>
       <listitem>
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CCS">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CCS">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,7 +68,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="CCS">Modèle Modelica</link>
+              <link linkend="CCS">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -103,12 +103,12 @@ This block is an ideal current source. The current value is controlled through t
     <para>
 </para>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CCS">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CCS">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -157,8 +157,8 @@ This block is an ideal current source. The current value is controlled through t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_CCS">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_CCS">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/CCS.mo</para>
@@ -170,7 +170,7 @@ This block is an ideal current source. The current value is controlled through t
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CVS">CVS - Source de tension contrôlée (Bloc Scicos)</link>
+          <link linkend="CVS">CVS - Source de tension contrÃ´lÃ©e (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

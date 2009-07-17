@@ -28,6 +28,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       endif
       l=lnblnk(prpt)
       temp = prpt(1:l)//string(1:strl)
+c     display command line with prompt as output     
       call basout(io,lunit,temp(1:l+strl))
       return 
       end

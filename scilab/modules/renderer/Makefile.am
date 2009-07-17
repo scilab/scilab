@@ -1,7 +1,28 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2007
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2007 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+
+#### Target ####
+modulename=renderer
+
+#### renderer : Conf files ####
+libscirenderer_la_rootdir = $(mydatadir)
+libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### renderer : init scripts ####
+libscirenderer_la_etcdir = $(mydatadir)/etc
+libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
+
+
 
 # List of the c files
 RENDERER_CPP_SOURCES = \
@@ -356,21 +377,13 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscirenderer.la libscirenderer-disable.la
+pkglib_LTLIBRARIES =  libscirenderer-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscirenderer.la
+endif
 
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-
-#### Name of the module and the path ######
-modulename=renderer
-
-#### renderer : Conf files ####
-libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### renderer : init scripts ####
-libscirenderer_la_etcdir = $(mydatadir)/etc
-libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 #### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -386,7 +399,8 @@ includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
 includes/JavaInteraction.h \
 includes/RendererFontManager.h \
-includes/rendererBasicAlgos.h
+includes/rendererBasicAlgos.h \
+includes/dynlib_renderer.h
 
 
 

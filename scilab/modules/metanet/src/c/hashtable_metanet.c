@@ -15,6 +15,9 @@
 #include <stdlib.h>
 #include "MALLOC.h"
 #include "hashtable_metanet.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static struct hashtable *Table_Metanet=NULL;
 static unsigned hsize;
@@ -122,19 +125,15 @@ static ENTRY *SearchHashtable_string(struct hashtable *hash_table, const char* k
 	{
 		struct key_string *kElem=NULL;
 
-		k->Key_String=MALLOC((strlen(key)+1)*sizeof(char));
-		strcpy(k->Key_String,key);
+		k->Key_String = strdup(key);
 
 		kElem=hashtable_search(hash_table,k);
 
 		if (kElem)
 		{
-			return_entry=(ENTRY*)MALLOC(sizeof(ENTRY));
-			return_entry->key=(char*)MALLOC(sizeof(char)*(strlen(key)+1));
-			return_entry->data=(char*)MALLOC(sizeof(char)*(strlen(kElem->Key_String)+1));
-
-			strcpy(return_entry->key,key);
-			strcpy(return_entry->data,kElem->Key_String);
+			return_entry = (ENTRY*)MALLOC(sizeof(ENTRY));
+			return_entry->key = strdup(key);
+			return_entry->data = strdup(kElem->Key_String);
 		}
 
 		FREE(k->Key_String);
@@ -169,11 +168,8 @@ ENTRY* myhsearch(ENTRY item,SCIACTION action)
 			k = (struct key_string*)MALLOC(sizeof(struct key_string));
 			v = (struct value_string*)MALLOC(sizeof(struct value_string));
 
-			k->Key_String = (char *) MALLOC( sizeof(char) * (strlen(item.key)+1) );
-			v->Value_String = (char *) MALLOC( sizeof(char) * (strlen(item.data)+1) );
-
-			strcpy(k->Key_String,item.key);
-			strcpy(v->Value_String,item.data);
+			k->Key_String = strdup(item.key);
+			v->Value_String = strdup(item.data);
 
 			InsertHashtable_string(Table_Metanet,k,v);
 			filled++;

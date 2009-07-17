@@ -44,7 +44,7 @@ void SegsLineDrawerJoGL::drawSegs(const double xStarts[], const double xEnds[],
   sciPointObj * pSegs = m_pDrawed->getDrawedObject();
 
   initializeDrawing();
-  getLineDrawerJavaMapper()->setLineParameters((float) sciGetLineWidth(pSegs), sciGetLineStyle(pSegs));
+  getLineDrawerJavaMapper()->setLineParameters((float)sciGetLineWidth(pSegs), sciGetLineStyle(pSegs));
   try
   {
     getLineDrawerJavaMapper()->drawSegs(xStarts, xEnds,

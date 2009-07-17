@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_DELAY_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_DELAY_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_DELAY_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_DELAY_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="DELAY_f">Contenu du super-bloc compilé</link>
+              <link linkend="DELAY_f">Contenu du super-bloc compilÃ©</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -93,13 +93,13 @@
   <refsection id="Description_DELAY_f">
     <title>Description</title>
     <para>
-Ce super-bloc compilé réalise un retard discret. Il est construit avec un registre à décalage et une horloge. La valeur du retard est donnée par la pas temporel discret multiplié par le nombre-1 d'état du registre.  
+Ce super-bloc compilÃ© rÃ©alise un retard discret. Il est construit avec un registre Ã  dÃ©calage et une horloge. La valeur du retard est donnÃ©e par la pas temporel discret multipliÃ© par le nombre-1 d'Ã©tat du registre.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_DELAY_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_DELAY_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,20 +115,20 @@ Ce super-bloc compilé réalise un retard discret. Il est construit avec un regist
         <para>
           <emphasis role="bold">Discretisation time step</emphasis>
         </para>
-        <para> Définit la période temporelle de l'horloge intégrée.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> DÃ©finit la pÃ©riode temporelle de l'horloge intÃ©grÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Register initial state</emphasis>
         </para>
-        <para> Définit la longueur et les conditions initiales du registre à décalage.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> DÃ©finit la longueur et les conditions initiales du registre Ã  dÃ©calage.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_DELAY_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_DELAY_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -137,14 +137,14 @@ Ce super-bloc compilé réalise un retard discret. Il est construit avec un regist
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -152,26 +152,26 @@ Ce super-bloc compilé réalise un retard discret. Il est construit avec un regist
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -189,8 +189,8 @@ Ce super-bloc compilé réalise un retard discret. Il est construit avec un regist
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenudusuperbloccompilé_DELAY_f">
-    <title>Contenu du super-bloc compilé</title>
+  <refsection id="ContenudusuperbloccompilÃ©_DELAY_f">
+    <title>Contenu du super-bloc compilÃ©</title>
     <para>
       <inlinemediaobject>
         <imageobject>

@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="quote">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>quote (')</refname>
-    <refpurpose> opérateur de transposition, délimiteur de chaîne de caractères  </refpurpose>
+    <refpurpose> opÃ©rateur de transposition, dÃ©limiteur de chaÃ®ne de caractÃ¨res  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-    L'apostrophe ou "quote" (<literal>'</literal>) est utilisé pour noter la transposition (conjuguée) des matrices.
+    L'apostrophe ou "quote" (<literal>'</literal>) est utilisÃ© pour noter la transposition (conjuguÃ©e) des matrices.
   </para>
     <para>
-    Le symbole (<literal>.'</literal>) doit être utilisé pour une transposition non conjuguée.
+    Le symbole (<literal>.'</literal>) doit Ãªtre utilisÃ© pour une transposition non conjuguÃ©e.
   </para>
     <para>
-    L'apostrophe (') ou le guillemet (") sont aussi utilisés pour délimiter les chaînes de caractères (une chaîne de caractères est définie entre deux apostrophes ou guillemets). Une apostrophe ou un guillemet doivent être doublés s'ils font partie de la chaîne de caractères elle même.
+    L'apostrophe (') ou le guillemet (") sont aussi utilisÃ©s pour dÃ©limiter les chaÃ®nes de caractÃ¨res (une chaÃ®ne de caractÃ¨res est dÃ©finie entre deux apostrophes ou guillemets). Une apostrophe ou un guillemet doivent Ãªtre doublÃ©s s'ils font partie de la chaÃ®ne de caractÃ¨res elle mÃªme.
   </para>
     <para>
   </para>
@@ -26,8 +26,8 @@
     <programlisting role="example"><![CDATA[
 [1+%i, 2]'
 [1+%i, 2].'
-x='Ceci est une chaîne de caractères'
-'Et Dieu dit : ''que la lumière soit'''
+x='Ceci est une chaÃ®ne de caractÃ¨res'
+'Et Dieu dit : ''que la lumiÃ¨re soit'''
  ]]></programlisting>
   </refsection>
 </refentry>

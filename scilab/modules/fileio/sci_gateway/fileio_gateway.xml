@@ -43,30 +43,33 @@
 <PRIMITIVE gatewayId="34" primitiveId="8" primitiveName="mseek" />
 <PRIMITIVE gatewayId="34" primitiveId="9" primitiveName="mtell" />
 <PRIMITIVE gatewayId="34" primitiveId="10" primitiveName="mclearerr" />
-<PRIMITIVE gatewayId="34" primitiveId="11" primitiveName="mprintf" />
-<PRIMITIVE gatewayId="34" primitiveId="12" primitiveName="mfprintf" />
-<PRIMITIVE gatewayId="34" primitiveId="13" primitiveName="msprintf" />
-<PRIMITIVE gatewayId="34" primitiveId="14" primitiveName="mscanf" />
-<PRIMITIVE gatewayId="34" primitiveId="15" primitiveName="mfscanf" />
-<PRIMITIVE gatewayId="34" primitiveId="16" primitiveName="msscanf" />
-<PRIMITIVE gatewayId="34" primitiveId="17" primitiveName="fscanfMat" />
-<PRIMITIVE gatewayId="34" primitiveId="18" primitiveName="fprintfMat" />
-<PRIMITIVE gatewayId="34" primitiveId="19" primitiveName="NumTokens" />
-<PRIMITIVE gatewayId="34" primitiveId="20" primitiveName="merror" />
-<PRIMITIVE gatewayId="34" primitiveId="21" primitiveName="findfiles" />
-<PRIMITIVE gatewayId="34" primitiveId="22" primitiveName="maxfiles" />
-<PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="getdrives" />
-<PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="fullpath" />
-<PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="deletefile" />
-<PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="pathsep"/>
-<PRIMITIVE gatewayId="34" primitiveId="27" primitiveName="filesep"/>
-<PRIMITIVE gatewayId="34" primitiveId="28" primitiveName="getlongpathname"/>
-<PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="getshortpathname"/>
-<PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="fileext"/>
-<PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="isdir"/>
-<PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="removedir"/>
-<PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="createdir"/>
-<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="pwd" />
-<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="getcwd" />
-<PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="chdir" />
+<PRIMITIVE gatewayId="34" primitiveId="11" primitiveName="mfprintf" />
+<PRIMITIVE gatewayId="34" primitiveId="12" primitiveName="mscanf" />
+<PRIMITIVE gatewayId="34" primitiveId="13" primitiveName="mfscanf" />
+<PRIMITIVE gatewayId="34" primitiveId="14" primitiveName="msscanf" />
+<PRIMITIVE gatewayId="34" primitiveId="15" primitiveName="fscanfMat" />
+<PRIMITIVE gatewayId="34" primitiveId="16" primitiveName="fprintfMat" />
+<PRIMITIVE gatewayId="34" primitiveId="17" primitiveName="merror" />
+<PRIMITIVE gatewayId="34" primitiveId="18" primitiveName="findfiles" />
+<PRIMITIVE gatewayId="34" primitiveId="19" primitiveName="maxfiles" />
+<PRIMITIVE gatewayId="34" primitiveId="20" primitiveName="getdrives" />
+<PRIMITIVE gatewayId="34" primitiveId="21" primitiveName="fullpath" />
+<PRIMITIVE gatewayId="34" primitiveId="22" primitiveName="deletefile" />
+<PRIMITIVE gatewayId="34" primitiveId="23" primitiveName="pathsep"/>
+<PRIMITIVE gatewayId="34" primitiveId="24" primitiveName="filesep"/>
+<PRIMITIVE gatewayId="34" primitiveId="25" primitiveName="getlongpathname"/>
+<PRIMITIVE gatewayId="34" primitiveId="26" primitiveName="getshortpathname"/>
+<PRIMITIVE gatewayId="34" primitiveId="27" primitiveName="fileext"/>
+<PRIMITIVE gatewayId="34" primitiveId="28" primitiveName="isdir"/>
+<PRIMITIVE gatewayId="34" primitiveId="29" primitiveName="removedir"/>
+<PRIMITIVE gatewayId="34" primitiveId="30" primitiveName="createdir"/>
+<PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="pwd" />
+<PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="getcwd" />
+<PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="chdir" />
+<PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="fileinfo" />
+<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="newest" />
+<PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="getrelativefilename" />
+<PRIMITIVE gatewayId="34" primitiveId="36" primitiveName="get_absolute_file_path" />
+<PRIMITIVE gatewayId="34" primitiveId="37" primitiveName="export_to_hdf5" />
+<PRIMITIVE gatewayId="34" primitiveId="38" primitiveName="import_from_hdf5" />
 </GATEWAY>

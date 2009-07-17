@@ -4,8 +4,7 @@
 ##########
 
 FILEIO_SOURCES = src/c/FileExist.c \
-src/c/fileio.c \
-src/c/do_xxprintf.c \
+src/c/scanf_functions.c \
 src/c/do_xxscanf.c \
 src/c/findfiles.c \
 src/c/Status2Mode.c \
@@ -40,21 +39,19 @@ src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
 src/c/removedir.c \
-src/c/set_xxprintf.c \
 src/c/cluni0.c \
-src/c/scicurdir.c
-
+src/c/scicurdir.c \
+src/c/fullpath.c \
+src/c/fileinfo.c \
+src/c/getrelativefilename.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_mfprintf.c \
-sci_gateway/c/sci_mprintf.c \
-sci_gateway/c/sci_msprintf.c \
 sci_gateway/c/sci_mscanf.c \
 sci_gateway/c/sci_msscanf.c \
 sci_gateway/c/sci_mfscanf.c \
 sci_gateway/c/sci_fprintfMat.c \
-sci_gateway/c/sci_NumTokens.c \
 sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_findfiles.c \
 sci_gateway/c/sci_maxfiles.c \
@@ -81,7 +78,38 @@ sci_gateway/c/sci_mopen.c \
 sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
-sci_gateway/c/sci_mtell.c
+sci_gateway/c/sci_mtell.c \
+sci_gateway/c/sci_fileinfo.c \
+sci_gateway/c/sci_newest.c \
+sci_gateway/c/sci_get_absolute_file_path.c  \
+sci_gateway/c/sci_getrelativefilename.c
+
+if HDF5
+FILEIO_SOURCES += src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c \
+src/c/h5_readDataFromFile.c
+
+#GATEWAY_SOURCES += \
+#sci_gateway/c/sci_import_from_hdf5.c
+
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_export_to_hdf5.cpp \
+sci_gateway/cpp/sci_import_from_hdf5.cpp 
+
+else
+
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_no_hdf5.cpp
+
+endif
+
+
+libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/operations/includes \
+				$(HDF5_CFLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -90,20 +118,25 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes \
-				-I$(top_srcdir)/modules/operations/includes
+				-I$(top_srcdir)/modules/operations/includes \
+				$(HDF5_CFLAGS)
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+				$(top_builddir)/modules/string/libscistring.la \
+				$(top_builddir)/libs/MALLOC/libscimalloc.la \
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/libs/libst/libscilibst.la
 #### Target ######
 modulename=fileio
 

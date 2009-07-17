@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="type">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,11 +8,11 @@
     <refpurpose> Retourne le type d'une variable  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[i]=type(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
@@ -32,11 +32,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>type(x)</literal> renvoie un entier donnant le code numérique du type de <literal>x</literal> définit comme suit :
+    <para><literal>type(x)</literal> renvoie un entier donnant le code numÃ©rique du type de <literal>x</literal> dÃ©finit comme suit :
   </para>
     <para>
      1 
-    :  matrice réelle ou complexe.
+    :  matrice rÃ©elle ou complexe.
   </para>
     <para>
      2 
@@ -44,7 +44,7 @@
   </para>
     <para>
      4 
-    :  matrice booléenne.
+    :  matrice boolÃ©enne.
   </para>
     <para>
      5
@@ -52,7 +52,7 @@
   </para>
     <para>
      6
-    :  matrice creuse booléene.
+    :  matrice creuse boolÃ©ene.
   </para>
     <para>
      7
@@ -60,7 +60,7 @@
   </para>
     <para>
      8
-    :  matrice d'entiers codés sur 1, 2 ou 4 octets.
+    :  matrice d'entiers codÃ©s sur 1, 2 ou 4 octets.
   </para>
     <para>
      9
@@ -68,15 +68,15 @@
   </para>
     <para>
      10 
-    :  matrice de chaînes de caractères.
+    :  matrice de chaÃ®nes de caractÃ¨res.
   </para>
     <para>
      11 
-    :  fonction non-compilée (Code Scilab).
+    :  fonction non-compilÃ©e (Code Scilab).
   </para>
     <para>
      13 
-    :  fonction compilée (Code Scilab).
+    :  fonction compilÃ©e (Code Scilab).
   </para>
     <para>
      14 
@@ -88,11 +88,11 @@
   </para>
     <para>
      16 
-    :  liste typée (tlist).
+    :  liste typÃ©e (tlist).
   </para>
     <para>
      17
-    :  liste typée orientée matrice (mlist).
+    :  liste typÃ©e orientÃ©e matrice (mlist).
   </para>
     <para>
      128
@@ -100,11 +100,11 @@
   </para>
     <para>
      129
-    : polynôme implicite utilisé pour indexer.
+    : polynÃ´me implicite utilisÃ© pour indexer.
   </para>
     <para>
      130
-    : fonction Scilab intrinsèque (Code C ou Fortran).
+    : fonction Scilab intrinsÃ¨que (Code C ou Fortran).
   </para>
   </refsection>
   <refsection>

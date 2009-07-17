@@ -79,15 +79,16 @@ olddir=pwd();
     // 6. Fortran style open/close 
     // filename fixed, but string in fortran file still in UTF encoding
     // =========================================================================
-    
-    fd=file('open',fileName+'_open','new');
+    fd = mopen(fileName+'_open','w');
     if (fileinfo(fileName+'_open')==[]) then pause, end
     fprintf(fd,'%s %f',specialName+'3',%pi);
     filestuff=fileinfo(fileName+'_open');
     if (filestuff==[] & filestuff(1)>0) then pause, end
-    file('close',fd);
+    mclose(fd);
     
-    fprintf(fileName+'_fprintf','%s %f',specialName+'3',%pi); 
+    fd = mopen(fileName+'_fprintf','wt');
+    mfprintf(fd,'%s %s',specialName+'3',string(%pi)); 
+    mclose(fd);
     filestuff=fileinfo(fileName+'_fprintf');
     if (filestuff==[] & filestuff(1)>0) then pause, end
     
@@ -213,15 +214,17 @@ olddir=pwd();
     // 6. Fortran style open/close 
     // filename fixed, but string in fortran file still in UTF encoding
     // =========================================================================
-    
-    fd=file('open',fileName+'_open','new');
+
+    fd = mopen(fileName+'_open','w');
     if (fileinfo(fileName+'_open')==[]) then pause, end
-    fprintf(fd,'%s %f',specialName+'3',%pi);
+    mfprintf(fd,'%s %s',specialName+'3',string(%pi));
     filestuff=fileinfo(fileName+'_open');
     if (filestuff==[] & filestuff(1)>0) then pause, end
-    file('close',fd);
+    mclose(fd);
     
-    fprintf(fileName+'_fprintf','%s %f',specialName+'3',%pi); 
+    fd = mopen(fileName+'_fprintf','wt');
+    mfprintf(fd,'%s %s',specialName+'3',string(%pi)); 
+    mclose(fd);
     filestuff=fileinfo(fileName+'_fprintf');
     if (filestuff==[] & filestuff(1)>0) then pause, end
     
@@ -281,6 +284,3 @@ olddir=pwd();
     chdir("..");
     removedir(dirName);
     
-
-
-chdir(olddir);

@@ -1,4 +1,4 @@
-	LIBRARY    scioutput_stream.dll
+	LIBRARY    output_stream.dll
 
 
 EXPORTS

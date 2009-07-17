@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_BIGSOM_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_BIGSOM_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_BIGSOM_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_BIGSOM_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,13 +93,13 @@
   <refsection id="Description_BIGSOM_f">
     <title>Description</title>
     <para>
-Le bloc somme réalise l'addition de ses entrées.
-Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
+Le bloc somme rÃ©alise l'addition de ses entrÃ©es.
+Ce bloc peut additionner des scalaires ou des vecteurs d'entrÃ©e.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_BIGSOM_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_BIGSOM_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,13 +115,13 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
         <para>
           <emphasis role="bold">Inputs ports signs/gain</emphasis>
         </para>
-        <para> Définit le signe de l'addition ainsi qu'un gain pour chaque entrée.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> DÃ©finit le signe de l'addition ainsi qu'un gain pour chaque entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_BIGSOM_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_BIGSOM_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -130,14 +130,14 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -148,26 +148,26 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

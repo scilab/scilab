@@ -5,24 +5,24 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
 function h=%h_load(fd)
   global init_immediate_drawing
   init_immediate_drawing = 0;
-  
+
   if exists('xload_mode')==0 then xload_mode=%f,end
   version=mget(4,'uc',fd)
- 
+
   // saving/loading character with 'c' is actually quite buggy
   characterFormat = 'uc';
-  
+
   immediate_drawing="";
-  
+
   h=[];
-  
+
   if is_higher_than([3 1 0 1]) then // case 3 1 0 2 and after
     hsize = mget(2,characterFormat,fd)
     for i=1:hsize(1)
@@ -102,13 +102,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	  h.figure_size = figure_size;
 	  // set axes_size last because it's more important than figure_size
 	  h.axes_size = axes_size;
-      
+
       if ( is_higher_than([4 1 2 0]) ) then
         h.viewport = viewport;
         h.info_message = info_message ;
         h.tag = tag ;
       end
-	  
+
       h.figure_name=figure_name
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
@@ -122,12 +122,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.rotation_style = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // rotation_style
 
     end
-    
+
     if ( is_higher_than([4 1 2 0]) ) then
       h.event_handler = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // event_handler
       h.event_handler_enable = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // event_handler_enable
     end
-    
+
     // children
     n_axes=mget(1,'il',fd);
     if n_axes==1 then
@@ -152,11 +152,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       axes_visible= toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)) ;
     end
-    
+
     if is_higher_than( [3 1 0 1] ) then // axes_reverse
       axes_reverse = toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)) ;
     end
-    
+
     set(a,"axes_visible", axes_visible)
     set(a,"axes_reverse", axes_reverse)
     set(a,"grid"        , mget(mget(1,characterFormat,fd),'il',fd)) //grid
@@ -186,7 +186,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(titl,"background"       , mget(1,'il',fd)); // title.background
       set(titl,"fill_mode"        , toggle(mget(1,characterFormat,fd))); //title.fill_mode
     end
-    
+
     set(titl,"font_style"       , mget(1,characterFormat,fd)); // title.font_style
     set(titl,"font_size"        , mget(1,characterFormat,fd)); // title.font_size
 
@@ -198,7 +198,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set( titl, "auto_rotation", auto_rotation ) ;
       set( titl, "auto_position", auto_position ) ;
     end
-    
+
     // x_label
     set(x_label,"visible"   , toggle(mget(1,characterFormat,fd))) // x_label.visible
     if is_higher_than( [4 1 2 0] ) then
@@ -217,7 +217,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(x_label,"font_style"     , mget(1,characterFormat,fd)); // x_label.font_style
     set(x_label,"font_size"      , mget(1,characterFormat,fd)); // x_label.font_size
-    
+
     if is_higher_than([3 0 0 0]) then
       auto_rotation =  toggle(mget(1,characterFormat,fd)) ; // x_label.auto_rotation
       set(x_label,"font_angle"   , mget(1,'dl',fd)); // x_label.font_angle
@@ -226,7 +226,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set( x_label, "auto_rotation", auto_rotation ) ;
       set( x_label, "auto_position", auto_position ) ;
     end
-    
+
     // y_label
     set(y_label,"visible"        , toggle(mget(1,characterFormat,fd)))
     if is_higher_than( [4 1 2 0] ) then
@@ -245,7 +245,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(y_label,"font_style"     , mget(1,characterFormat,fd));
     set(y_label,"font_size"      , mget(1,characterFormat,fd));
-    
+
     if is_higher_than([3 0 0 0]) then
       auto_rotation =  toggle(mget(1,characterFormat,fd)) ; // y_label.auto_rotation
       set(y_label,"font_angle"   , mget(1,'dl',fd)); // y_label.font_angle
@@ -254,7 +254,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set( y_label, "auto_rotation", auto_rotation ) ;
       set( y_label, "auto_position", auto_position ) ;
     end
-    
+
     if view=='3d' then
       // z_label
       z_label=a.z_label
@@ -275,7 +275,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
       set(z_label,"font_style"     , mget(1,characterFormat,fd));
       set(z_label,"font_size"      , mget(1,characterFormat,fd));
-      
+
       if is_higher_than([3 0 0 0]) then
 	auto_rotation =  toggle(mget(1,characterFormat,fd)) ; // z_label.auto_rotation
         set(z_label,"font_angle"   , mget(1,'dl',fd)); // z_label.font_angle
@@ -285,12 +285,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         set( z_label, "auto_position", auto_position ) ;
       end
     end
-    
-    
-    
+
+
+
     if is_higher_than([3 0 0 0]) then
       auto_ticks=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_ticks
-      
+
       ticks=['ticks','locations','labels']
       sz=mget(1,'sl',fd) // x_ticks.locations
       if sz>0 then
@@ -302,7 +302,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	x_ticks_locations=[];
       end
 	set(a,'x_ticks',tlist(ticks,x_ticks_locations,x_ticks_labels))
-      
+
       sz=mget(1,'sl',fd) // y_ticks.locations
       if sz>0 then
 	y_ticks_locations=mget(sz,'dl',fd)'
@@ -335,9 +335,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       set(a, "box", toggle(mget(1,characterFormat,fd) ) ) // box
     end
-    
+
     set(a,"sub_tics"             , mget(mget(1,characterFormat,fd),characterFormat,fd)) // sub_tics
-    if ~(is_higher_than([3 1 0 1]) ) then 
+    if ~(is_higher_than([3 1 0 1]) ) then
       mget(1,'il',fd); // tics_color is removed F.Leray 15.03.05
     end
     set(a,"font_style"           , mget(1,characterFormat,fd));  // font_style
@@ -347,10 +347,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(a,"fractional_font", toggle(mget(1,characterFormat,fd))); // fractional_font
     end
     set(a,"isoview"              , toggle(mget(1,characterFormat,fd))) // isoview
- 
+
     cube_scaling    = toggle(mget(1,characterFormat,fd)) // cube_scaling
     rotation_angles = mget(2,'dl',fd); // rotation_angles
-    
+
     if a.view=='2d' then
       set(a,"view"               , view);
     end
@@ -360,18 +360,18 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	set(a,"rotation_angles"   , rotation_angles)
       end
     end
-    
+
     if is_higher_than([3 0 0 0]) then // log_flags
       log_flags= ascii(mget(3,characterFormat,fd));
     else
       log_flags= ascii(mget(2,characterFormat,fd));
     end
 
-    
+
     set(a,"tight_limits"         , toggle(mget(1,characterFormat,fd))) // tight_limits
     data_bounds = matrix(mget(mget(1,characterFormat,fd),'dl',fd),2,-1) // data_bounds
-    
-    
+
+
     if view=='2d'& a.view=='3d' then
       data_bounds(2,3)=0;
     end
@@ -396,7 +396,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 1 0 1]) then
       set(a,"margins"              , mget(4,'dl',fd))  // margins
     end
-    
+
     set(a,"axes_bounds"          , mget(4,'dl',fd))  // axes_bounds
     set(a,"auto_clear"           , toggle(mget(1,characterFormat,fd))) // auto_clear
     set(a,"auto_scale"           , toggle(mget(1,characterFormat,fd))) // auto_scale
@@ -407,7 +407,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       set(a, "arc_drawing_method", "nurbs"); // default value, real circle
     end
-    
+
     set(a,"hiddencolor"          , mget(1,'il',fd)), // hidden_color
     set(a,"line_mode"            , toggle(mget(1,characterFormat,fd))), // line_mode
     set(a,"line_style"           , mget(1,characterFormat,fd)) // line_style
@@ -415,14 +415,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"mark_mode"            , toggle(mget(1,characterFormat,fd))), //mark_mode
     set(a,"mark_style"           , mget(1,characterFormat,fd)) // mark_style
     set(a,"mark_size"            , mget(1,characterFormat,fd)) // mark_size
-    if is_higher_than([3 0 0 0]) then  
-      
-      if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit 
+    if is_higher_than([3 0 0 0]) then
+
+      if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated' ;
-      else 
+      else
 	msu='point';
       end
-      
+
       set(a,"mark_size_unit"   , msu)
       set(a,"mark_foreground"      , mget(1,'il',fd)) ; // mark_foreground
       set(a,"mark_background"      , mget(1,'il',fd)) ; // mark_background
@@ -436,7 +436,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(a,"clip_box",mget(4,'dl',fd)) ;
     end
     set(a,"clip_state"           ,clip_state);
-    
+
     // children
     nbChildren = mget(1,'il',fd) ;
     for k = 1 : nbChildren
@@ -444,18 +444,18 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     //next lines because tools used to rebuild children change the
     //data_bounds an axes_visible properties
-    set(a,"data_bounds"          , data_bounds) ; 
+    set(a,"data_bounds"          , data_bounds) ;
     set(a,"log_flags"            , log_flags);
-	
+
     set(a,"axes_visible"          , axes_visible) ;
     if is_higher_than([4 1 2 0] ) then
       set(a, "box", boxtype ) ;
-    end   
+    end
 
     h=a;
     load_user_data(fd) ; // user_data
     global %LEG
-    
+
     if %LEG<>[] then
       //get handles from paths
       links=get_links_from_path(a,%LEG.paths)
@@ -467,16 +467,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 	L.font_color      = %LEG.font_color
 	L.fractional_font = %LEG.fractional_font
 	L.mark_mode       = 'off';
-	L.legend_location = %LEG.legend_location 
+	L.legend_location = %LEG.legend_location
 	L.position        = %LEG.position
 	L.line_mode       = %LEG.line_mode
 	L.thickness       = %LEG.thickness
 	L.foreground      = %LEG.foreground
 	L.fill_mode       = %LEG.fill_mode
 	L.background      = %LEG.background
-	L.clip_state      = %LEG.clip_state  
+	L.clip_state      = %LEG.clip_state
 	if %LEG.clip_state=='on' then
-	  L.clip_box      = %LEG.clip_box 
+	  L.clip_box      = %LEG.clip_box
 	end
 	L.user_data       = %LEG.user_data
       else
@@ -484,73 +484,73 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
     end
     clearglobal %LEG
-      
+
   case "Polyline"
 
     visible=toggle(mget(1,characterFormat,fd)) // visible
     sz=mget(2,'il',fd); // data
-    data=matrix(mget(prod(sz),'dl',fd),sz(1),-1); 
-    if is_higher_than([3 1 0 0]) then  
+    data=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
+    if is_higher_than([3 1 0 0]) then
       closed      = toggle(mget(1,characterFormat,fd)) // closed
     end
     line_mode      = toggle(mget(1,characterFormat,fd)) // line_mode
-    if is_higher_than([3 1 0 0]) then  
+    if is_higher_than([3 1 0 0]) then
       fill_mode      = toggle(mget(1,characterFormat,fd)) // fill_mode
     end
     line_style     = mget(1,characterFormat,fd); // line_style
     thickness      = mget(1,'sl',fd); // thickness
-    if is_higher_than([3 1 0 1]) then  
+    if is_higher_than([3 1 0 1]) then
       arrow_size_factor = mget(1,'sl',fd); // arrow_size_factor
     end
     polyline_style = mget(1,characterFormat,fd); // polyline_style
-    
+
     if is_higher_than([3 1 0 1] ) then
       size_interp_color = mget(1,'sl',fd) ; // interp_color_vector
       interp_color_vector = mget( size_interp_color, 'dl', fd ) ;
       interp_color_mode   = toggle( mget( 1, characterFormat, fd ) ) ; // interp_color_mode
     end
-    
+
     mark_mode      = toggle(mget(1,characterFormat,fd)) // mark_mode
     mark_style     = mget(1,characterFormat,fd); // mark_style
     mark_size      = mget(1,characterFormat,fd); // mark_size
-    
+
     msu='tabulated'
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated' ;
-      else 
+      else
 	msu='point';
       end
     end
 
     foreground     = mget(1,'il',fd); // foreground
-    
-    if is_higher_than([3 1 0 0]) then  
+
+    if is_higher_than([3 1 0 0]) then
       background     = mget(1,'il',fd); // background
     end
-  
-    if is_higher_than([3 0 0 0]) then  
+
+    if is_higher_than([3 0 0 0]) then
       mark_foreground=mget(1,'il',fd) // mark_foreground
       mark_background=mget(1,'il',fd) // mark_background
     end
-    
-    if is_higher_than([3 1 0 0]) then  
+
+    if is_higher_than([3 1 0 0]) then
       sz_x_shift=mget(1,'sl',fd) // x_shift
       x_shift=mget(sz_x_shift,'dl',fd)'
 
       sz_y_shift=mget(1,'sl',fd) // y_shift
       y_shift=mget(sz_y_shift,'dl',fd)'
-      
+
       sz_z_shift=mget(1,'sl',fd) // z_shift
       z_shift=mget(sz_z_shift,'dl',fd)'
     end
-    
+
     if is_higher_than([3 1 0 1]) then
       bar_width = mget( 1, 'dl', fd ) ; // bar_width
     end
-    
+
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
-    
+
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd) ; // clip_box
     else
@@ -584,21 +584,21 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,'y_shift',y_shift);
       set(h,'z_shift',z_shift);
     end
-    
+
     if is_higher_than([3 1 0 1]) then
       set(h,"interp_color_mode",interp_color_mode);
       if interp_color_mode == 'on' then
-	set(h,"interp_color_vector",interp_color_vector);	
+	set(h,"interp_color_vector",interp_color_vector);
       end
       set(h,"bar_width",bar_width);
     end
-    
+
     if clip_state =='' then clip_state='clipgrf',end
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
-    
+
     load_user_data(fd) // user_data
-  
+
   case "Plot3d" then
     visible=toggle(mget(1,characterFormat,fd)) // visible
     surface_mode   = toggle(mget(1,characterFormat,fd)) // surface_mode
@@ -607,21 +607,26 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     mark_mode      = toggle(mget(1,characterFormat,fd)) // mark_mode
     mark_style     = mget(1,characterFormat,fd); // mark_style
     mark_size      = mget(1,characterFormat,fd); // mark_size
-    
+
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated' ;
-      else 
+      else
 	msu='point';
       end
       mark_foreground=mget(1,'il',fd) // mark_foreground
       mark_background=mget(1,'il',fd) // mark_background
     else
-      msu='tabulated'  
+      msu='tabulated'
     end
-    
-    color_mode     = mget(1,characterFormat,fd); // color_mode
-    color_flag     = mget(1,characterFormat,fd); // color_flag
+
+    if is_higher_than([5 1 1 0]) then
+	  color_mode     = mget(1,'il',fd); // color_mode
+	  color_flag     = mget(1,'il',fd); // color_flag
+	else
+	  color_mode     = mget(1,characterFormat,fd);
+	  color_flag     = mget(1,characterFormat,fd);
+	end
 
     sz=mget(2,'il',fd); // data.x
     x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
@@ -629,26 +634,50 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd); // data.z
     z=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
-    
+
     if or(color_flag==[2,5]) then
          sz=mget(2,'il',fd); // data.color
 	 clr=matrix(mget(prod(sz),'il',fd),sz(1),-1);
     end
     hiddencolor    = mget(1,'il',fd); // hidden_color
-    
+
     // plot3d modify the given rotation angles
     // trick to force keeping the good rotation angles F.Leray 18.02.05
+    // same issue with axes properties... B.Jofret 21.04.09
     a=gca();
     rotation_angles = a.rotation_angles;
-    
+    axes_visible = a.axes_visible;
+    box = a.box;
+    margins = a.margins;
+    x_label_visible = a.x_label.visible;
+    y_label_visible = a.y_label.visible;
+    z_label_visible = a.z_label.visible;
+	x_label_text = a.x_label.text;
+	y_label_text = a.y_label.text;
+	z_label_text = a.z_label.text;
+	axes_isoview = a.isoview;
+
+
     if or(color_flag==[2 5]) then
       plot3d1(x,y,list(z,clr))
     else
       plot3d(x,y,z)
     end
-    
+
+    // Restore this properties after plot3d.
     a.rotation_angles = rotation_angles;
-    
+    a.axes_visible = axes_visible;
+    a.box = box;
+    a.margins = margins;
+    a.x_label.visible = x_label_visible;
+    a.y_label.visible = y_label_visible;
+    a.z_label.visible = z_label_visible;
+	a.x_label.text = x_label_text;
+	a.y_label.text = y_label_text;
+	a.z_label.text = z_label_text;
+	a.isoview = axes_isoview;
+
+
     h=gce();
     set(h,"visible",visible)
     set(h,"surface_mode",surface_mode)
@@ -671,13 +700,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if clip_state=='on' then
         set(h,"clip_box", mget(4,'dl',fd)) // clip_box
       end
-      set(h,"clip_state",clip_state); 
+      set(h,"clip_state",clip_state);
     end
 
     load_user_data(fd)
-    
+
   case "Fac3d" then
-    
+
     visible=toggle(mget(1,characterFormat,fd)) // visible
     surface_mode   = toggle(mget(1,characterFormat,fd)) // surface_mode
     foreground     = mget(1,'il',fd); // foreground
@@ -688,43 +717,61 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated';
-      else 
+      else
 	  msu='point';
       end
       mark_foreground=mget(1,'il',fd) ; // mark_foreground
       mark_background=mget(1,'il',fd) ; // mark_background
     end
-    color_mode     = mget(1,characterFormat,fd); // color_mode
-    color_flag     = mget(1,characterFormat,fd); // color_flag
- 
+    if is_higher_than([5 1 1 0]) then
+	  color_mode     = mget(1,'il',fd); // color_mode
+	  color_flag     = mget(1,'il',fd); // color_flag
+	else
+	  color_mode     = mget(1,characterFormat,fd);
+	  color_flag     = mget(1,characterFormat,fd);
+	end
+
     sz=mget(2,'il',fd); // data.x
     x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd); // data.y
     y=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd); // data.z
     z=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
-    
+
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       sz=mget(2,'il',fd); // data.z
       clr=matrix(mget(prod(sz),'il',fd),sz(1),-1);
-      
+
       if ascii(mget(1,characterFormat,fd)) == 's' then // cdata_mapping
 	cdata_mapping = 'scaled' ;
       else
 	cdata_mapping = 'direct'  ;
       end
-      
+
     elseif or(color_flag==[2 5]) then
       // compatibility with old version
       sz=mget(2,'il',fd); // data.z
       clr=matrix(mget(prod(sz),'il',fd),sz(1),-1);
     end
     hiddencolor    = mget(1,'il',fd); // hiddencolor
-    
+
     // plot3d modify the given rotation angles
     // trick to force keeping the good rotation angles F.Leray 18.02.05
+    // same issue with axes properties... B.Jofret 21.04.09
+	// and labels text and isoview
     a=gca();
     rotation_angles = a.rotation_angles;
+    axes_visible = a.axes_visible;
+    box = a.box;
+    margins = a.margins;
+    x_label_visible = a.x_label.visible;
+    y_label_visible = a.y_label.visible;
+    z_label_visible = a.z_label.visible;
+	x_label_text = a.x_label.text;
+	y_label_text = a.y_label.text;
+	z_label_text = a.z_label.text;
+	axes_isoview = a.isoview;
+
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       plot3d1(x,y,list(z,clr))
     elseif or(color_flag==[2 5]) then
@@ -732,9 +779,20 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       plot3d(x,y,z)
     end
-    
+
+   // Restore this properties after plot3d.
     a.rotation_angles = rotation_angles;
-    
+    a.axes_visible = axes_visible;
+    a.box = box;
+    a.margins = margins;
+    a.x_label.visible = x_label_visible;
+    a.y_label.visible = y_label_visible;
+    a.z_label.visible = z_label_visible;
+	a.x_label.text = x_label_text;
+	a.y_label.text = y_label_text;
+	a.z_label.text = z_label_text;
+	a.isoview = axes_isoview;
+
     h=gce();
     set(h,"visible",visible)
     set(h,"surface_mode",surface_mode)
@@ -751,7 +809,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"mark_foreground",mark_foreground),
       set(h,"mark_background",mark_background)
     end
-    
+
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       set(h,"cdata_mapping",cdata_mapping);
     end
@@ -761,14 +819,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if clip_state=='on' then
         set(h,"clip_box", mget(4,'dl',fd)) // clip_box
       end
-      set(h,"clip_state",clip_state); 
+      set(h,"clip_state",clip_state);
     end
-    
+
     load_user_data(fd) ; // user_data
-  
+
   case "Compound"
     // children
-    n=mget(1,'il',fd)        
+    n=mget(1,'il',fd)
     H=[]
     for k=1:n
       htmp = load_graphichandle(fd)
@@ -778,12 +836,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 1 0 1]) then // visible
      h.visible = toggle(mget(1,characterFormat,fd)) ;
     end
-    
+
     load_user_data(fd) // user_data
-    
-  
+
+
   case "Agregation" // for compatibility with old save
-       
+
     // children
     n=mget(1,'il',fd)
     H=[]
@@ -792,13 +850,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       H=[htmp H]
     end
     h=glue(H)
-    
+
     if is_higher_than([3 1 0 1]) then // visible
       h.visible = toggle(mget(1,characterFormat,fd)) ;
     end
-    
+
     load_user_data(fd) // user_data
-  
+
   case "Rectangle"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     thickness      = mget(1,'sl',fd); // thickness
@@ -808,7 +866,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 0 0 0]) then
       if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated' ;
-      else 
+      else
 	msu='point';
       end
       mark_foreground=mget(1,'il',fd) // mark_foreground
@@ -816,12 +874,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       msu='tabulated'
     end
-    
+
     line_mode      = toggle(mget(1,characterFormat,fd)) ; // line_mode
     line_style     = mget(1,characterFormat,fd); // line_style
     fill_mode      = toggle(mget(1,characterFormat,fd)) ; // fill_mode
     foreground     = mget(1,'il',fd); // foreground
-    
+
     if is_higher_than([3 1 0 1]) then
       background = mget(1,'il',fd); // background
     end
@@ -842,7 +900,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-    
+
     // draw the rectangle
     xrect(0,1,1,1); // create the rectangle with dummy values
     h=get('hdl')
@@ -866,25 +924,25 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"line_mode",line_mode)
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
-    
+
     load_user_data(fd) ; // user_data
-    
+
   case "Arc"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     thickness      = mget(1,'sl',fd); // thickness
     line_style     = mget(1,characterFormat,fd);  // line_style
-    
+
     if is_higher_than([3 1 0 1])
       line_mode = toggle(mget(1,characterFormat,fd)) ; // line_mode
     end
-    
+
     fill_mode      = toggle(mget(1,characterFormat,fd)) // fill_mode
     foreground     = mget(1,'il',fd); // foreground
-    
+
     if is_higher_than([3 1 0 1]) then
       background = mget(1,'il',fd) ; // background
     end
-    
+
     if (is_higher_than([5 0 3 0])) then
 	  // data size might be 6 or 7
 	  data = mget(mget(1,'il',fd),'dl',fd); // data
@@ -927,9 +985,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"arc_drawing_method", drawing_method) ;
     if clip_state=='on' then set(h,"clip_box",clip_box),end
     set(h,"clip_state",clip_state);
-    
+
     load_user_data(fd) // user_data
-    
+
   case "Champ"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     sz=mget(2,'il',fd); // data.x
@@ -940,29 +998,29 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     fx=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
     sz=mget(2,'il',fd); // data.fy
     fy=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
-    
+
     // draw the champ
     champ(x,y,fx,fy);
     h=gce();
-        
+
     set(h,"visible",visible);
     set(h,"line_style",mget(1,characterFormat,fd)); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"colored",toggle(mget(1,characterFormat,fd))) // colored
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
-    
+
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd)) // clip_box
     end
-    set(h,"clip_state",clip_state);  
+    set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
-    
+
   case "Segs"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     sz             = mget(2,'il',fd) // data
     data           = matrix(mget(prod(sz),'dl',fd),sz(1),-1)
-    
+
     // draw the segs
     xsegs(data(:,1),data(:,2))
     h=gce()
@@ -974,7 +1032,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"line_style",mget(1,characterFormat,fd)); // line_style
     set(h,"thickness",mget(1,'sl',fd)) // thickness
     set(h,"arrow_size",mget(1,'dl',fd)) // arrow_size
-    
+
     n=mget(1,'il',fd) // segs_color
     set(h,"segs_color",mget(n,'il',fd))
     // it is needed to set it at the end, ut I don't know why
@@ -982,9 +1040,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"mark_style"           , mget(1,characterFormat,fd)) // mark_style
     set(h,"mark_size"            , mget(1,characterFormat,fd)) // mark_size
     if is_higher_than([3 0 0 0]) then
-      if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit 
+      if ascii(mget(1,characterFormat,fd))=='t' then // mark_size_unit
 	msu='tabulated'
-      else 
+      else
 	msu='point';
       end
       set(h,"mark_size_unit"     , msu) ;
@@ -995,14 +1053,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
 
     set(h,"mark_mode", mark_mode ) ;
-    
+
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd)) // clip_box
     end
     set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
-    
+
   case "Grayplot"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     if is_higher_than([3 0 0 0]) then
@@ -1016,7 +1074,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       sz = mget(2,'il',fd) // data
       data = matrix(mget(prod(sz),'dl',fd),sz(1),-1)
     end
-    
+
     data_mapping   = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // data_mapping
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
@@ -1024,14 +1082,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-    
+
     // draw the grayplot
     if is_higher_than([3 0 0 0]) then
       grayplot(x,y,z)
     else
       grayplot(data(2:$,1),data(1,2:$),data(2:$,2:$))
     end
-    
+
     h=get('hdl')
     set(h,"visible",visible)
     set(h,"data_mapping",data_mapping)
@@ -1039,9 +1097,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"clip_box",  clip_box)
     end
     set(h,"clip_state",clip_state);
-    
+
     load_user_data(fd) // user_data
-    
+
   case "Matplot"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     sz=mget(2,'il',fd); // data
@@ -1053,7 +1111,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-    
+
     // draw the matplot
     Matplot(data);
 
@@ -1066,7 +1124,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(h,"clip_state",clip_state);
     // user_data
     load_user_data(fd)
-    
+
   case "Fec"
     visible        = toggle(mget(1,characterFormat,fd)) // visible
     sz             = mget(2,'il',fd) // data
@@ -1091,7 +1149,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
-    
+
    case "Legend"
     if is_higher_than( [5 0 0 0] ) then
       global %LEG
@@ -1120,7 +1178,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       if %LEG.clip_state=='on' then
 	%LEG.clip_box      = mget(4,'dl',fd); // clip_box
       end
-      load(fd,"user_data") 
+      load(fd,"user_data")
       %LEG.user_data       = user_data;
     else
       visible         = toggle(mget(1,characterFormat,fd)) // visible
@@ -1128,11 +1186,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       mark_mode       = toggle(mget(1,characterFormat,fd)) // mark_mode
       mark_foreground = mget(1,'il',fd) ; // mark_foreground
       mark_background = mget(1,'il',fd) ; // mark_background
-      
+
       //text=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // text
-      
+
       text = load_text_vector(fd); // text
-      
+
       //create the legend
       //get the number of lines of the legend
       lineFeedPosition = strindex(text,'@')
@@ -1145,14 +1203,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       H=unglue(get('hdl'));
       h=H(1);
       delete(H(2));
-      
+
       set(h,"visible",visible)
       set(h,"line_mode",line_mode);
       set(h,"mark_mode",mark_mode);
       set(h,"mark_foreground",mark_foreground) ;
       set(h,"mark_background",mark_background) ;
       set(h,"foreground", mget(1,'il',fd)); // foreground
-      
+
       set(h,"font_style", mget(1,characterFormat,fd)); // font_style
       set(h,"font_size" , mget(1,characterFormat,fd)); // font_size
       if is_higher_than( [4 1 2 0] ) then
@@ -1164,10 +1222,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
       set(h,"clip_state",clip_state);
     end
-    
+
   case "Text"
     visible         = toggle(mget(1,characterFormat,fd)) // visible
-    
+
     if is_higher_than( [4 1 2 0] ) then
       text            = load_text_matrix( fd ) ;
     else
@@ -1177,45 +1235,45 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     data            = matrix(mget(prod(sz),'dl',fd),sz(1),-1) // data
     text_box        = mget(2,'dl',fd) // text_box
     text_box_mode   = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // text_box_mode
-    
+
     // draw the text
     if text_box_mode == 'off' then
       xstring(data(1),data(2),text)
     else
       xstringb(data(1),data(2),text,text_box(1),text_box(2))
     end
-    
+
     h=get('hdl');
 	set(h,"data",data);
     set(h,"visible",visible) ;
     set(h,"text_box_mode",text_box_mode)
     set(h,"foreground"           , mget(1,'il',fd)); // foreground
     set(h,"font_style"           , mget(1,characterFormat,fd)); // font_style
-    
+
     if text_box_mode == 'filled' then // font_size
       mget(1,characterFormat,fd) ;
     else
       set(h,"font_size", mget(1,characterFormat,fd));
     end
-    
+
     set(h,"font_angle"           , mget(1,'dl',fd)); // font_angle
-    
+
     //adding JB Silvy 28/11/05
     // box drawing
     if is_higher_than([3 1 0 1]) then
       set( h, "box"      , toggle( mget( 1, characterFormat, fd ) ) ) ; // box
       set( h, "line_mode", toggle( mget( 1, characterFormat, fd ) ) ) ; // line_mode
       set( h, "fill_mode", toggle( mget( 1, characterFormat, fd ) ) ) ; // fill_mode
-      
+
       set( h, "font_foreground", mget( 1, 'il', fd ) ) ; // font_foreground
       set( h, "background"     , mget( 1, 'il', fd ) ) ; // background
     end
-    
+
     if is_higher_than( [4 1 2 0] ) then
       set( h, "alignment", ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)  ) ) ; // alignment
       set( h, "fractional_font", toggle( mget( 1, characterFormat, fd ) ) ) ; // fractional_font
     end
-    
+
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd) // clip_box
@@ -1223,11 +1281,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-    set(h,"clip_state",clip_state); 
+    set(h,"clip_state",clip_state);
     load_user_data(fd) // user_data
   case 'Axis'
     if is_higher_than([3 1 0 0]) then
-     
+
       visible          = toggle(mget(1,characterFormat,fd)) // visible
       n                = mget(1,'il',fd) // tics_direction
       tics_direction   = ascii(mget(n,characterFormat,fd));
@@ -1264,7 +1322,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       set(h,"clip_state",clip_state);
       load_user_data(fd) // user_data
     end
-    
+
   case "uimenu"
     if is_higher_than( [4 1 2 0] ) then
       h = uimenu("parent", gcf());
@@ -1277,7 +1335,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.callback_type = mget(1,"il",fd); // Callback Type
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
     end
-    
+
   case "uicontrol"
     if is_higher_than( [4 1 2 0] ) then
       uistyle = ascii(mget(mget(1,"c",fd),"c",fd)); // Style
@@ -1289,7 +1347,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.fontname = ascii(mget(mget(1,"c",fd),"c",fd)); // FontName
       fontsize_in_units = mget(1,"dl",fd); // FontSize
       h.fontunits = ascii(mget(mget(1,"c",fd),"c",fd)); // FontUnits
-      h.fontsize = fontsize_in_units; // FontSize written after 'FontUnits' to avoid them to be computed again 
+      h.fontsize = fontsize_in_units; // FontSize written after 'FontUnits' to avoid them to be computed again
       h.fontweight = ascii(mget(mget(1,"c",fd),"c",fd)); // FontWeight
       ncolors = mget(1,"il",fd); // Foregroundcolor (size)
       h.foregroundcolor = mget(ncolors,"dl",fd); // ForegroundColor (data)
@@ -1305,7 +1363,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.sliderstep = mget(ndata,"dl",fd); // SliderStep (data)
       h.string = load_text_matrix(fd) ; // String
       h.units = ascii(mget(mget(1,"c",fd),"c",fd)); // Units
-      h.position = position_in_units; // Position written after 'Units' to avoid them to be computed again 
+      h.position = position_in_units; // Position written after 'Units' to avoid them to be computed again
       ndata = mget(1,"il",fd); // Value (size)
       h.value = mget(ndata,"dl",fd); // Value (data)
       h.verticalalignment = ascii(mget(mget(1,"c",fd),"c",fd)); // VerticalAlignment
@@ -1315,7 +1373,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       load_user_data(fd); // Userdata
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
     end
-    
+
   else
       warning("type " +typ+" unhandled");
   end
@@ -1331,7 +1389,7 @@ function load_user_data(fd)
   if is_higher_than([3 1 0 0]) then
     h; //make a copy of the calling context h here
     load(fd,'user_data')
-    if user_data<>[] then 
+    if user_data<>[] then
       h.user_data=user_data;
     end
   end
@@ -1375,7 +1433,7 @@ function links=get_links_from_path(ax,paths)
   links=[];ok=%t
   for p=paths
     e=ax;
-    for kp=1:size(p,'*'), 
+    for kp=1:size(p,'*'),
       if or(e.type==['Axes','Compound'])&p(kp)<=size(e.children,'*') then
 	e=e.children(p(kp)),
       else

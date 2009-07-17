@@ -19,8 +19,7 @@
 #include "getScilabDirectory.h"
 #include "scilabDefaults.h"
 #include "ConvertSlash.h"
-/*--------------------------------------------------------------------------*/
-#define putenv _putenv
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
@@ -74,53 +73,6 @@ void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 
 }
 /*--------------------------------------------------------------------------*/
-char *GetScilabDirectory(BOOL UnixStyle)
-{
-	LPSTR ScilabModuleName=NULL;
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char fname[_MAX_FNAME];
-	char ext[_MAX_EXT];
-
-	char *SciPathName=NULL;
-	char *DirTmp=NULL;
-
-	ScilabModuleName = (LPSTR) MALLOC (MAX_PATH+ 1);
-
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("LibScilab"), (LPSTR) ScilabModuleName, MAX_PATH))
-	{
-		if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
-		return NULL;
-	}
-
-	_splitpath(ScilabModuleName,drive,dir,fname,ext);
-	if (ScilabModuleName) {FREE(ScilabModuleName);ScilabModuleName=NULL;}
-	if (dir[strlen(dir)-1] == '\\') dir[strlen(dir)-1] = '\0';
-
-	DirTmp=strrchr (dir, '\\');
-	if (strlen(dir)-strlen(DirTmp)>0)
-	{
-		dir[strlen(dir)-strlen(DirTmp)] = '\0';
-	}
-	else return NULL;
-
-	SciPathName=(char*)MALLOC((int)(strlen(drive)+strlen(dir)+5)*sizeof(char));
-	
-	_makepath(SciPathName,drive,dir,NULL,NULL);
-
-	if ( UnixStyle )
-	{	
-		int i=0;
-		for (i=0;i<(int)strlen(SciPathName);i++)
-		{
-			if (SciPathName[i]=='\\') SciPathName[i]='/';
-		}
-	}
-	SciPathName[strlen(SciPathName)-1]='\0';
-	setSCIpath(SciPathName);
-	return SciPathName;
-}
-/*--------------------------------------------------------------------------*/
 BOOL Set_SCI_PATH(char *DefaultPath)
 {
 	BOOL bOK = FALSE;
@@ -155,69 +107,37 @@ BOOL Set_SCI_PATH(char *DefaultPath)
 /*--------------------------------------------------------------------------*/
 BOOL Set_HOME_PATH(char *DefaultPath)
 {
-	BOOL bOK=FALSE;
-	char env[PATH_MAX + 1 + 10];
-	char *GetHOMEpath=NULL;
-
-	GetHOMEpath=getenv ("HOME");
-
-	if (GetHOMEpath) 
+	wchar_t *wHOME = _wgetenv(L"HOME");
+	if (wHOME == NULL)
 	{
-		char ShortPath[PATH_MAX+1];
-		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=MALLOC(((int)strlen(GetHOMEpath)+1)*sizeof(char));
-		if (GetShortPathName(GetHOMEpath,ShortPath,PATH_MAX)==0)
+		wchar_t *wUserProfile = _wgetenv(L"USERPROFILE");
+		if (wUserProfile)
 		{
-			fprintf(stderr,"\n%s%s\n","Incorrect HOME path. Please verify your HOME environment variable.\n",
-				"HOME has been redefined.");
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
-
-			/* to be sure that it's unix format */
-			/* c:/progra~1/scilab-3.1 */
-			GetShortPathName(DefaultPath,ShortPath,PATH_MAX);
-			slashToAntislash(ShortPath,CopyOfDefaultPath);
-			sprintf (env, "HOME=%s",ShortPath);
-			SetEnvironmentVariableA("HOME",ShortPath);
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-			
+			return SetEnvironmentVariableW(L"HOME", wUserProfile);
 		}
 		else
 		{
-			/* to be sure that it's unix format */
-			/* c:/progra~1/scilab-3.1 */
-			slashToAntislash(ShortPath,CopyOfDefaultPath);
-			sprintf (env, "HOME=%s",CopyOfDefaultPath);
-			SetEnvironmentVariableA("HOME",CopyOfDefaultPath);
-			if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
+			/* if USERPROFILE is not defined , we use default profile */
+			wchar_t *wAllUsersProfile = _wgetenv(L"ALLUSERSPROFILE");
+			if (wAllUsersProfile)
+			{
+				return SetEnvironmentVariableW(L"HOME", wUserProfile);
+			}
+			else
+			{
+				BOOL bRes = FALSE;
+				wchar_t *wDefault = to_wide_string(DefaultPath);
+				if (wDefault)
+				{
+					bRes = SetEnvironmentVariableW(L"HOME", wDefault);
+					FREE(wDefault);
+					wDefault = NULL;
+				}
+				return bRes;
+			}
 		}
 	}
-	else
-	{
-		char ShortPath[PATH_MAX+1];
-		char *CopyOfDefaultPath=NULL;
-		CopyOfDefaultPath=MALLOC(((int)strlen(DefaultPath)+1)*sizeof(char));
-
-		/* to be sure that it's unix format */
-		/* c:/progra~1/scilab-3.1 */
-		AntislashToSlash(DefaultPath,CopyOfDefaultPath);
-		GetShortPathName(CopyOfDefaultPath,ShortPath,PATH_MAX);
-		sprintf (env, "HOME=%s",ShortPath);
-		SetEnvironmentVariableA("HOME",ShortPath);
-		
-		if (CopyOfDefaultPath) {FREE(CopyOfDefaultPath);CopyOfDefaultPath=NULL;}
-	}
-
-	if (_putenv (env))
-	{
-		bOK=FALSE;
-	}
-	else
-	{
-		bOK=TRUE;
-	}
-
-	return bOK;
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
@@ -225,22 +145,22 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 	BOOL bOK=TRUE;
 
 	#ifdef _MSC_VER
-		putenv ("COMPILER=VC++");
+		_putenv ("COMPILER=VC++");
 	#endif
 
 	/* WIN32 variable Environment */
     #ifdef _WIN32
-		putenv ("WIN32=OK");
+		_putenv ("WIN32=OK");
 	#endif
 
 	/* WIN64 variable Environment */
     #ifdef _WIN64
-		putenv ("WIN64=OK");
+		_putenv ("WIN64=OK");
 	#endif
 
 	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
 	{
-		putenv ("SCILAB_MSTS_SESSION=OK");
+		_putenv ("SCILAB_MSTS_SESSION=OK");
 	}
 
 	return bOK;

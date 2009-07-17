@@ -14,8 +14,8 @@
 // Free error on Scilab exit
 
 // <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
 
 // On Windows, debug version
 // launch scilab and close it many times
 // no error @ exit
-

@@ -30,7 +30,6 @@ src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/Funtab.c \
 src/c/csignal.c \
-src/c/prompt.c \
 src/c/callinterf.c \
 src/c/scimem.c \
 src/c/banier.c \
@@ -80,22 +79,34 @@ src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
 src/c/getos.c \
 src/c/mode_exec.c \
-src/c/predef.c
+src/c/predef.c \
+src/c/transposeMatrix.c \
+src/c/recursionFunction.c \
+src/c/api_common.c \
+src/c/api_double.c \
+src/c/api_int.c \
+src/c/api_poly.c \
+src/c/api_sparse.c \
+src/c/api_boolean_sparse.c \
+src/c/api_boolean.c \
+src/c/api_string.c \
+src/c/api_list.c \
+src/c/typename.c \
+src/c/inittypenames.c \
+src/c/funcprot.c
+
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
 endif
 
 
-CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
-src/fortran/clunit.f \
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
-src/fortran/dldsp.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
-src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
@@ -133,16 +144,13 @@ src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
 src/fortran/allops.f \
-src/fortran/print.f \
 src/fortran/mname.f \
-src/fortran/prntid.f \
 src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/namstr.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
 src/fortran/majmin.f \
-src/fortran/dmdspf.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
@@ -157,7 +165,6 @@ src/fortran/whatln.f \
 src/fortran/errmgr.f \
 src/fortran/defmat.f \
 src/fortran/mklist.f \
-src/fortran/dmdsp.f \
 src/fortran/sigbas.f \
 src/fortran/indxg.f \
 src/fortran/matz.f \
@@ -168,13 +175,11 @@ src/fortran/getfunction.f \
 src/fortran/stackp.f \
 src/fortran/dbasin.f \
 src/fortran/macro.f \
-src/fortran/lspdsp.f \
 src/fortran/extlarg.f \
 src/fortran/getstr.f \
 src/fortran/cvwm.f \
 src/fortran/storeglobal.f \
 src/fortran/lst2vars.f \
-src/fortran/fmttyp.f \
 src/fortran/basnms.f \
 src/fortran/matc.f \
 src/fortran/ptrback.f \
@@ -190,13 +195,10 @@ src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \
-src/fortran/formatnumber.f \
-src/fortran/wmdsp.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f \
-src/fortran/promptecho.f
+src/fortran/isinstring.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -233,7 +235,6 @@ sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clear.c \
-sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
 sci_gateway/c/sci_getmodules.c \
@@ -260,10 +261,11 @@ sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c
+sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_comp.c \
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
@@ -273,39 +275,37 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
-sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
-sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
+sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = 	-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/libs/MALLOC/includes/ \
-			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-            -I$(top_srcdir)/modules/intersci/includes \
-            -I$(top_srcdir)/modules/call_scilab/includes \
-            -I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/tclsci/includes \
-			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/pvm/includes \
-			-I$(top_srcdir)/modules/elementary_functions/includes \
-			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/fileio/includes \
-			-I$(top_srcdir)/modules/operations/includes \
+libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+        -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes \
+        -I$(top_srcdir)/modules/intersci/includes \
+        -I$(top_srcdir)/modules/call_scilab/includes \
+        -I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/tclsci/includes \
+        -I$(top_srcdir)/modules/dynamic_link/includes \
+        -I$(top_srcdir)/modules/pvm/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+        -I$(top_srcdir)/modules/string/includes \
+        -I$(top_srcdir)/modules/fileio/includes \
+        -I$(top_srcdir)/modules/shell/includes \
+	-I$(top_srcdir)/modules/operations/includes \
 			$(XML_FLAGS)
 
 
@@ -388,7 +388,6 @@ includes/machine.h.vc \
 includes/Os_specific.h \
 includes/PARAMS.h \
 includes/PATH_MAX.h \
-includes/prompt.h \
 includes/realmain.h \
 includes/returnanan.h \
 includes/returnProperty.h \
@@ -424,6 +423,18 @@ includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h \
 includes/getos.h \
-includes/mode_exec.h
+includes/mode_exec.h \
+includes/transposeMatrix.h \
+includes/api_boolean.h \
+includes/api_double.h \
+includes/api_sparse.h \
+includes/api_boolean_sparse.h \
+includes/api_int.h \
+includes/api_string.h \
+includes/api_common.h \
+includes/api_poly.h \
+includes/api_variable.h \
+includes/api_list.h \
+includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

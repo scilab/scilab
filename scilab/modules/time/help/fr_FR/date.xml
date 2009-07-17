@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>date</refname>
-    <refpurpose> date courante sous forme d'une chaîne de caractères</refpurpose>
+    <refpurpose> date courante sous forme d'une chaÃ®ne de caractÃ¨res</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>dt=date()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>dt</term>
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>dt=date() renvoie une chaîne de caractères contenant la date au format jj-mmm-aaaaa.</para>
+    <para>dt=date() renvoie une chaÃ®ne de caractÃ¨res contenant la date au format jj-mmm-aaaaa.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

@@ -14,6 +14,7 @@
 #include "gw_dynamic_link.h"
 #include "stack-c.h"
 #include "machine.h" /* C2F */
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intfort)(char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/

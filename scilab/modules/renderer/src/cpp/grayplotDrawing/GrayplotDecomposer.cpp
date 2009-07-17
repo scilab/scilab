@@ -99,21 +99,33 @@ void GrayplotDecomposer::decomposeScaledColors(int colors[])
   sciPointObj * pGray = m_pDrawed->getDrawedObject();
   sciGrayplot * ppGray = pGRAYPLOT_FEATURE(pGray);
 
-  double lowColor = ppGray->pvecz[0];
-  double highColor = ppGray->pvecz[0];
+  double lowColor;
+  double highColor;
+	bool colorInit = false;
 
   // first find lower and higher Z values
-  for (int i = 1; i < nbRow * nbCol; i++)
+  for (int i = 0; i < nbRow * nbCol; i++)
   {
     double curColor = ppGray->pvecz[i];
-    if (curColor > highColor)
-    {
-      highColor = curColor;
-    }
-    else if (curColor < lowColor)
-    {
-      lowColor = curColor;
-    }
+		if (finite(curColor))
+		{
+			if (!colorInit)
+			{
+				// first non %nan color
+				lowColor = curColor;
+				highColor = curColor;
+				colorInit = true;
+			}
+			else if (curColor > highColor)
+			{
+				highColor = curColor;
+			}
+			else if (curColor < lowColor)
+			{
+				lowColor = curColor;
+			}
+		}
+		
   }
 
 

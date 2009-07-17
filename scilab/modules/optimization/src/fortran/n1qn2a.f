@@ -32,6 +32,7 @@ c
       real r
       double precision d1,t,tmin,tmax,gnorm,eps1,precon,ff
       double precision ps,ps2,hp0
+      character bufstr*(4096)
 c
 c---- parametres
 c
@@ -46,7 +47,10 @@ c
       isim=1
       call prosca (n,g,g,ps,izs,rzs,dzs)
       gnorm=sqrt(ps)
-      if (impres.ge.1) write (io,900) f,gnorm
+      if (impres.ge.1) then
+        write (bufstr,900) f,gnorm
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 900   format (5x,'f          = ',d15.8,
      /      /,5x,'norme de g = ',d15.8)
 c
@@ -57,13 +61,21 @@ c
       do 10 i=1,n
           d(i)=-g(i)*precon
 10    continue
-      if (impres.ge.5) write(io,899) precon
-899   format (/,' n1qn2a: direction de descente -g: precon = ',d10.3)
+      if (impres.ge.5) then
+        write(bufstr,899) precon
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+899   format (' n1qn2a: direction de descente -g: precon = ',d10.3)
       if (impres.eq.3) then
-          write(io,901)
-          write(io,9010)
+          write(bufstr,901)
+          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+          write(bufstr,9010)
+          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
-      if (impres.eq.4) write(io,901)
+      if (impres.eq.4) then
+        write(bufstr,901)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 c
 c     ---- initialisation pour nlis0
 c
@@ -89,13 +101,26 @@ c
               goto 100
           endif
       endif
-      if (impres.ge.5) write(io,901)
-901   format (/,1x,79('-'))
-      if (impres.ge.4) write(io,9010)
-9010  format (1x)
-      if (impres.ge.3) write (io,902) iter,isim,f,hp0
-902   format (' n1qn2: iter ',i3,', simul ',i3,
-     /        ', f=',d15.8,', h''(0)=',d12.5)
+      if (impres.ge.5) then 
+        write(bufstr,901)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+901   format (1x,79('-'))
+      if (impres.ge.4) then
+        write(bufstr,9010)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+9010  format (1x,' ')
+      if (impres.ge.3) then
+        write (bufstr,902) iter,isim
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        write (bufstr,9020) f,hp0
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        endif
+902   format (' n1qn2: iter ',i3,', simul ',i3)
+9020  format (', f=',d15.8,', h''(0)=',d12.5)
       do 101 i=1,n
           gg(i)=g(i)
 101   continue
@@ -103,7 +128,10 @@ c
 c
 c     ---- recherche lineaire et nouveau point x(k+1)
 c
-      if (impres.ge.5) write (io,903)
+      if (impres.ge.5) then
+        write (bufstr,903)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 903   format (/,' n1qn2: recherche lineaire')
 c
 c         ---- calcul de tmin
@@ -135,7 +163,10 @@ c             ---- descente bloquee sur tmax
 c                  [sortie rare (!!) d'apres le code de nlis0]
 c
               mode=3
-              if (impres.ge.1) write(io,904) iter
+              if (impres.ge.1) then 
+                write(bufstr,904) iter
+                call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+                endif
 904           format (/,' >>> n1qn2 (iteration ',i3,
      /                '): recherche lineaire bloquee sur tmax: ',
      /                'reduire l''echelle')
@@ -166,7 +197,10 @@ c
       call prosca(n,g,g,ps,izs,rzs,dzs)
       eps1=sqrt(ps)/gnorm
 c
-      if (impres.ge.5) write (io,905) eps1
+      if (impres.ge.5) then
+        write (bufstr,905) eps1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 905   format (/,' n1qn2: test d''arret sur g: ',d12.5)
       if (eps1.lt.epsg) then
           mode=1
@@ -174,14 +208,20 @@ c
       endif
       if (iter.eq.niter) then
           mode=4
-          if (impres.ge.1) write (io,906) iter
+          if (impres.ge.1) then
+            write (bufstr,906) iter
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
 906       format (/,' >>> n1qn2 (iteration ',i3,
      /            '): nombre maximal d''iterations atteint')
           goto 1000
       endif
       if (isim.ge.nsim) then
           mode=5
-          if (impres.ge.1) write (io,907) iter,isim
+          if (impres.ge.1) then
+            write (bufstr,907) iter,isim
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
 907       format (/,' >>> n1qn2 (iteration ',i3,'): ',i6,
      /            ' appels a simul (nombre maximal atteint)')
           goto 1000
@@ -205,7 +245,10 @@ c
       call prosca (n,ybar(1,jmax),sbar(1,jmax),d1,izs,rzs,dzs)
       if (d1.le.0.0d+0) then
           mode=7
-          if (impres.ge.1) write (io,908) iter,d1
+          if (impres.ge.1) then
+            write (bufstr,908) iter,d1
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
 908       format (/,' >>> n1qn2 (iteration ',i2,
      /            '): le produit scalaire (y,s) = ',d12.5,
      /            /,27x,'n''est pas positif')
@@ -216,7 +259,10 @@ c         ---- precon: facteur de mise a l'echelle
 c
       call prosca (n,ybar(1,jmax),ybar(1,jmax),ps,izs,rzs,dzs)
       precon=d1/ps
-      if (impres.ge.5) write (io,909) d1,precon
+      if (impres.ge.5) then
+        write (bufstr,909) d1,precon
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 909   format (/,' n1qn2: mise a jour: (y,s) = ',d10.3,
      /          ' Oren-Spedicato = ',d10.3)
 c
@@ -242,7 +288,10 @@ c
       call prosca (n,d,g,hp0,izs,rzs,dzs)
       if (hp0.ge.0.0d+0) then
           mode=7
-          if (impres.ge.1) write (io,910) iter,hp0
+          if (impres.ge.1) then
+            write (bufstr,910) iter,hp0
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
 910       format (/,' >>> n1qn2 (iteration ',i2,'): ',
      /            /,5x,'la direction de recherche d n''est pas de ',
      /             'descente: (g,d) = ',d12.5)
@@ -257,7 +306,8 @@ c
           ps=min(-ps,1.0d+0)
           ps=acos(ps)
           r=real(ps*180./pi)
-          write (io,911) r
+          write (bufstr,911) r
+          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 911       format (/,' n1qn2: direction de descente d: ',
      /              'angle(-g,d) = ',f5.1,' degres')
       endif

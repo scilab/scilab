@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-07-25 14:43+0000\n"
+"PO-Revision-Date: 2009-04-02 02:03+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -49,7 +49,7 @@ msgstr "%s：结果目录 %s 不存在或不可读。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
 "expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：应该为\"%s\"、\"%s\"或\"%s\"。\n"
 
 #, c-format
 msgid ""
@@ -75,7 +75,7 @@ msgstr "%s：出现错误：%s\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: A string expected.\n"
@@ -84,7 +84,7 @@ msgstr "%s：输入参数的类型错误：应该为一个字符串。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的大小错误：应该为一个1xn或mx1数组。\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -180,7 +180,7 @@ msgstr "%s：错误的文件描述符：%d。\n"
 
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
-msgstr ""
+msgstr "%s：错误的文件模式：只能读。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -212,10 +212,10 @@ msgstr "%s：制定的格式不能包含如何'\\n'符号\n"
 
 #, c-format
 msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：数据与格式不符。\n"
 
 msgid "Not enough entries."
-msgstr ""
+msgstr "入口不足。"
 
 #, c-format
 msgid "%s: Not enough arguments.\n"
@@ -226,7 +226,7 @@ msgstr "缓冲区太小。"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
-msgstr ""
+msgstr "%s：不可将转换标志 'l' 或 'h' 与 's'标志混在一起。\n"
 
 #, c-format
 msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
@@ -243,7 +243,7 @@ msgstr "未关闭的 [ 标志。"
 
 #, c-format
 msgid "%s: An error occurred: too many (> %d) conversion required.\n"
-msgstr ""
+msgstr "%s：发生了一个错误：需要太多（>%d）转换。\n"
 
 #, c-format
 msgid ""
@@ -328,7 +328,7 @@ msgstr "%s：输入参数#%d（%s）的大小错误：应该为非空字符串�
 
 #, c-format
 msgid "%s: No File opened in Scilab.\n"
-msgstr ""
+msgstr "%s：在Scilab中没有打开的文件。\n"
 
 #, c-format
 msgid ""
@@ -341,7 +341,7 @@ msgstr "%s：当打开或读写'%s'时发生错误。\n"
 
 #, c-format
 msgid "%s: Error while opening, reading or writing.\n"
-msgstr ""
+msgstr "%s：打开文件，读文件或写文件时发生错误。\n"
 
 #, c-format
 msgid ""
@@ -354,12 +354,12 @@ msgstr "%s：在 %s 中发生了一个错误：errno=%s\n"
 
 #, c-format
 msgid "Warning: Error while opening %s: %s\n"
-msgstr ""
+msgstr "警告：打开%s时发生错误：%s\n"
 
 #, c-format
 msgid "Warning: Could not remove file %s: %s\n"
-msgstr ""
+msgstr "警告：不能删除文件%s：%s\n"
 
 #, c-format
 msgid "Warning: Could not remove directory %s: %s\n"
-msgstr ""
+msgstr "警告：不能删除目录%s：%s\n"

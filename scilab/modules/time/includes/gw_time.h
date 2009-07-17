@@ -11,22 +11,22 @@
  */
 
 /*--------------------------------------------------------------------------*/ 
-#ifndef __GW_TIME__
-#define __GW_TIME__
+#ifndef __GW_TIME_H__
+#define __GW_TIME_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
+#include "dynlib_time.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_time(void);
+TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/ 
 /* interface for the previous function Table */ 
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_getdate)(char *fname,unsigned long fname_len);
-int C2F(sci_calendar)(char *fname,unsigned long fname_len);
-int C2F(sci_timer)(char *fname,unsigned long fname_len);
-int C2F(sci_sleep)(char *fname,unsigned long fname_len);
-int C2F(sci_xpause)(char *fname,unsigned long fname_len);
-int C2F(sci_realtimeinit)(char *fname,unsigned long fname_len);
-int C2F(sci_realtime)(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_getdate(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_calendar(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_timer(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_sleep(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_xpause(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_realtimeinit(char *fname,unsigned long fname_len);
+TIME_IMPEXP int sci_realtime(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
-#endif /*  __GW_TIME__ */
+#endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

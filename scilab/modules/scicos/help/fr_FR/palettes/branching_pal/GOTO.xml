@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="GOTO">
   <refnamediv>
     <refname>GOTO</refname>
-    <refpurpose>GOTO Transmetteur de données vers un bloc FROM</refpurpose>
+    <refpurpose>GOTO Transmetteur de donnÃ©es vers un bloc FROM</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GOTO">GOTO Transmetteur de données vers un bloc FROM</link>
+          <link linkend="GOTO">GOTO Transmetteur de donnÃ©es vers un bloc FROM</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_GOTO">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_GOTO">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_GOTO">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_GOTO">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -118,8 +118,8 @@ This block can support all the data types.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_GOTO">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_GOTO">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -135,20 +135,20 @@ This block can support all the data types.
         <para>
           <emphasis role="bold">Tag</emphasis>
         </para>
-        <para> Ce paramètre définit le label de ce bloc.</para>
-        <para> Propriétés : Type 'str' de taille -1. </para>
+        <para> Ce paramÃ¨tre dÃ©finit le label de ce bloc.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Tag Visibility(1=Local 2=scoped 3= global)</emphasis>
         </para>
-        <para> Ce paramètre définit la porté du label de ce bloc. Elle peut être locale(1), scoped(2) ou globale(3).</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Ce paramÃ¨tre dÃ©finit la portÃ© du label de ce bloc. Elle peut Ãªtre locale(1), scoped(2) ou globale(3).</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_GOTO">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_GOTO">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -157,33 +157,33 @@ This block can support all the data types.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type -1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -206,12 +206,12 @@ This block can support all the data types.
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="FROM">FROM - FROM Récepteur de données d'un bloc GOTO (Bloc Scicos)</link>
+          <link linkend="FROM">FROM - FROM RÃ©cepteur de donnÃ©es d'un bloc GOTO (Bloc Scicos)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Définit la portée des données d'un bloc GOTO (Bloc Scicos)</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTO (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

@@ -5,11 +5,13 @@ SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 all :: $(LIBRARY).dll
 
-$(LIBRARY).dll: $(OBJS)
+$(LIBRARY).dll: $(OBJS_WITH_PATH)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	$(DUMPEXTS) -o "$*.def" "$*.dll" $(OBJS_WITH_PATH)
-	$(LINKER) $(LINKER_FLAGS) $(OBJS_WITH_PATH) $(OTHERLIBS) $(SCIIMPLIB) $(SCILAB_LIBS) $(EXTRA_LDFLAGS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	$(LINKER) $(LINKER_FLAGS) $(OBJS_WITH_PATH) $(OTHERLIBS) \
+$(SCIIMPLIB) $(FORTRAN_RUNTIME_LIBRARIES) $(SCILAB_LIBS) \
+$(EXTRA_LDFLAGS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 
 clean	::
 	-del "$(DIR_OBJ)\*.obj"

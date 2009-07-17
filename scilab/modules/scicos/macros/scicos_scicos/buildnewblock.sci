@@ -450,7 +450,7 @@ function SCode=gen_loader(blknam,for_link)
          'link(fileso,blknam,''c'');'
          '//** Load the gui function';
          'if fileinfo(DIR+blknam+''_c.sci'')<>[] then'
-         '  getf(DIR+blknam+''_c.sci'');'
+         '  exec(DIR+blknam+''_c.sci'');'
          'end']
 
   SCode=[SCode;
@@ -490,12 +490,12 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
      "SCIDIR            = "+SCI
      "SCIDIR1           = "+WSCI
      "DUMPEXTS          = """+WSCI+"\bin\dumpexts"""
-     "SCIIMPLIB         = """+SCIHOME+"\lcclib\LibScilablcc.lib"""
-     "SCILIBS           = """+SCIHOME+"\lcclib\LibScilablcc.lib"""
-     "SCICOSCLIB        = """+SCIHOME+"\lcclib\scicoslcc.lib"""
-     "SCICOSFLIB        = """+SCIHOME+"\lcclib\scicos_flcc.lib"""
-     "SCICOS_BLOCKSCLIB = """+SCIHOME+"\lcclib\scicos_blockslcc.lib"""
-     "SCICOS_BLOCKSFLIB = """+SCIHOME+"\lcclib\scicos_blocks_flcc.lib"""
+     "SCIIMPLIB         = """+SCIHOME+"\lcclib\LibScilab.lib"""
+     "SCILIBS           = """+SCIHOME+"\lcclib\LibScilab.lib"""
+     "SCICOSCLIB        = """+SCIHOME+"\lcclib\scicos.lib"""
+     "SCICOSFLIB        = """+SCIHOME+"\lcclib\scicos_f.lib"""
+     "SCICOS_BLOCKSCLIB = """+SCIHOME+"\lcclib\scicos_blocks.lib"""
+     "SCICOS_BLOCKSFLIB = """+SCIHOME+"\lcclib\scicos_blocks_f.lib"""
      "LIBRARY      = lib"+blknam
      "CC           = lcc"
      "LINKER       = lcclnk"

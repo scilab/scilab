@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> trouve un chemin entre deux sommets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>p = find_path(i,j,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro du sommet de départ
+          <para>entier, numÃ©ro du sommet de dÃ©part
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j  </term>
         <listitem>
-          <para>entier, numéro su sommet d'arrivée
+          <para>entier, numÃ©ro su sommet d'arrivÃ©e
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>vecteur ligne des numéros des arcs du chemin s'il existe
+          <para>vecteur ligne des numÃ©ros des arcs du chemin s'il existe
 </para>
         </listitem>
       </varlistentry>
@@ -57,8 +57,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>find_path</literal> renvoie un chemin <literal>p</literal> du sommet numéro <literal>i</literal> au 
-    sommet numéro <literal>j</literal> s'il en existe un, et le vecteur vide <literal>[]</literal> sinon.
+    <para><literal>find_path</literal> renvoie un chemin <literal>p</literal> du sommet numÃ©ro <literal>i</literal> au 
+    sommet numÃ©ro <literal>j</literal> s'il en existe un, et le vecteur vide <literal>[]</literal> sinon.
   </para>
   </refsection>
   <refsection>

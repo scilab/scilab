@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DEMUX">
   <refnamediv>
     <refname>DEMUX</refname>
-    <refpurpose>Démultiplexeur</refpurpose>
+    <refpurpose>DÃ©multiplexeur</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DEMUX">Démultiplexeur</link>
+          <link linkend="DEMUX">DÃ©multiplexeur</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_DEMUX">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_DEMUX">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_DEMUX">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_DEMUX">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,18 +98,18 @@
   <refsection id="Description_DEMUX">
     <title>Description</title>
     <para>
-En fournissant un vecteur sur le port d'entrée régulier, ce bloc
-peut séparer les éléments de l'entrée par des vecteurs sur les ports
+En fournissant un vecteur sur le port d'entrÃ©e rÃ©gulier, ce bloc
+peut sÃ©parer les Ã©lÃ©ments de l'entrÃ©e par des vecteurs sur les ports
 de sortie.
-L'entrée est donc définie 
-, où   sont
-numérotés dans un ordre décroissant.
-Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
+L'entrÃ©e est donc dÃ©finie 
+, oÃ¹   sont
+numÃ©rotÃ©s dans un ordre dÃ©croissant.
+Les tailles des ports d'entrÃ©e et de sortie sont dÃ©terminÃ©es par le contexte.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_DEMUX">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_DEMUX">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -125,13 +125,13 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
         <para>
           <emphasis role="bold">number of output ports or vector de tailles</emphasis>
         </para>
-        <para> un entier positif supérieur ou égale à 8.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> un entier positif supÃ©rieur ou Ã©gale Ã  8.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_DEMUX">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_DEMUX">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -140,14 +140,14 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [0,1] / type 1</emphasis>
@@ -155,7 +155,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -165,19 +165,19 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

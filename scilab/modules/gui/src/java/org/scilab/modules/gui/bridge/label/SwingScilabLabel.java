@@ -12,7 +12,11 @@
  */
 package org.scilab.modules.gui.bridge.label;
 
+import java.awt.Font;
+import java.lang.reflect.InvocationTargetException;
+
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.label.SimpleLabel;
@@ -41,6 +45,33 @@ public class SwingScilabLabel extends JLabel implements SimpleLabel {
 	public SwingScilabLabel() {
 		super();
 		setOpaque(true);
+	}
+	
+	/**
+	 * Apply a new font for the label.
+	 * @param font new font to use.
+	 */
+	public void setFont(Font font) {
+		final Font fontF = font;
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				public void run() {
+					superSetFont(fontF);
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Just call super.setFont
+	 * @param font cool font
+	 */
+	private void superSetFont(Font font) {
+		super.setFont(font);
 	}
 	
 	/**

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="acscd" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>acscd</refname>
+
+    <refpurpose>computa o arco-cossecante elemento a elemento do argumento com
+    resutado em graus</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y = acscd(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>array de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>array de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>computa o arco-cossecante elemento a elemento do argumento com
+    resutado em graus. Para entradas reais com valores absolutos maiores que
+    1, o resultado é real.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    x=linspace(1,20,200);
+    x=[-x($:-1:1) %nan x];
+    plot(x,acscd(x))
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cscd">cscd</link></member>
+
+      <member><link linkend="acsc">acsc</link></member>
+
+      <!--<member>
+        <link linkend="csgn">csgn</link>
+      </member>-->
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Referências</title>
+
+    <simplelist type="vert">
+      <member>Kahan, W., "Branch cuts for complex elementary functions, or,
+      Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
+      conference on The State of the Art in Numerical Analysis, University of
+      Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
+      1987, 165-210.</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

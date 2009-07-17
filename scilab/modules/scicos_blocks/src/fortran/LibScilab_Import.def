@@ -22,6 +22,8 @@ funs_
 isbyref_
 errgst_
 ierode_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 ;
 ; elementary_functions
 sciround_
@@ -34,5 +36,3 @@ intp_
 iset_
 unsfdcopy_
 ;
-; polynomials_f
-wprxc_

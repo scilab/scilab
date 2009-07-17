@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="overloading" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>overloading</refname>
+
+    <refpurpose>capacidades de overloading ("sobrecarga") de exibições,
+    funções e operadores</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>No Scilab, exibições, funções e operadores de variáveis podem ser
+    definidos para novos objetos utilizando funções (codificadas no Scilab ou
+    primitivas). </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Exibição (Display)</term>
+
+        <listitem>
+          <para>a exibição de objetos definidos por uma estrutura
+          <literal>tlist</literal> pode ser sobrecarregada (a exibição padrão
+          é semelhante a de <literal>list</literal>'s). A função de sobrecarga
+          não deve ter argumentos de saída e deve ter um único argumento de
+          entrada. Seu nome é formado como segue:
+          <literal>%&lt;tlist_type&gt;_p</literal> onde
+          <literal>%&lt;tlist_type&gt;</literal> significa a primeira entrada
+          do componente do tipo <literal>tlist</literal> truncado aos 9
+          primeiros caracteres.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Operadores (Operators)</term>
+
+        <listitem>
+          <para>cada operador que não está definido para dados tipos de
+          operandos pode ser definido. A função de sobrecarga deve ter um
+          único argumento de saída e um ou dois de entrada de acordo com o
+          número de operandos. O nome da função é definido como segue:</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>para operadores binários:
+    <literal>%&lt;tipo_do_primeiro_operando&gt;_&lt;código_do_
+    operador&gt;_&lt;tipo_do_segundo_operando&gt;</literal></para>
+
+    <para>para operadores unários:
+    <literal>%&lt;tipo_do_operando&gt;_&lt;código_do_operador&gt;</literal></para>
+
+    <para>Operadores de extração e inserção que são n-nários são descritos
+    abaixo. </para>
+
+    <para><literal>&lt;tipo_do_operando&gt;</literal>,
+    <literal>&lt;tipo_do_primeiro_operando&gt;</literal>,
+    <literal>&lt;tipo_do_segundo_operando&gt;</literal> são seqüências de
+    caracteres associadas a cada tipo de dado como descrito na tabela
+    seguinte: </para>
+
+    <informaltable border="1">
+      <tr>
+        <td>tipo de dado</td>
+
+        <td>código "char"</td>
+
+        <td>tipo de dado</td>
+
+        <td>código "char"</td>
+      </tr>
+
+      <tr>
+        <td>constante</td>
+
+        <td><literal>s</literal></td>
+
+        <td>booleano</td>
+
+        <td><literal>b</literal></td>
+      </tr>
+
+      <tr>
+        <td>string</td>
+
+        <td><literal>c</literal></td>
+
+        <td>bibilioteca</td>
+
+        <td><literal>f</literal></td>
+      </tr>
+
+      <tr>
+        <td>ponteiro de função</td>
+
+        <td><literal>fptr</literal></td>
+
+        <td>manipulador</td>
+
+        <td><literal>h</literal></td>
+      </tr>
+
+      <tr>
+        <td>inteiro</td>
+
+        <td><literal>i</literal></td>
+
+        <td>lista</td>
+
+        <td><literal>l</literal></td>
+      </tr>
+
+      <tr>
+        <td>função</td>
+
+        <td><literal>m</literal></td>
+
+        <td>função compilada</td>
+
+        <td><literal>mc</literal></td>
+      </tr>
+
+      <tr>
+        <td>polinômio</td>
+
+        <td><literal>p</literal></td>
+
+        <td>esparso</td>
+
+        <td><literal>sp</literal></td>
+      </tr>
+
+      <tr>
+        <td>esparso booleano</td>
+
+        <td><literal>spb</literal></td>
+
+        <td>tlist</td>
+
+        <td><literal>tlist_type</literal></td>
+      </tr>
+
+      <tr>
+        <td>polinômio de tamanho implícito</td>
+
+        <td><literal>ip</literal></td>
+
+        <td>matriz esparsa do Matlab</td>
+
+        <td><literal>msp</literal></td>
+      </tr>
+
+      <tr>
+        <td>mlist</td>
+
+        <td><literal>mlist_type</literal></td>
+
+        <td>ponteiro</td>
+
+        <td><literal>ptr</literal></td>
+      </tr>
+    </informaltable>
+
+    <para><literal>&lt;código_do_operador&gt;</literal> é um único caractere
+    associado a cada operador como descrito na tabela seguinte: </para>
+
+    <informaltable border="1">
+      <tr>
+        <td>operador</td>
+
+        <td>código "char"</td>
+
+        <td>operador</td>
+
+        <td>código "char"</td>
+      </tr>
+
+      <tr>
+        <td><literal>'</literal></td>
+
+        <td>t</td>
+
+        <td>+</td>
+
+        <td>a</td>
+      </tr>
+
+      <tr>
+        <td>-</td>
+
+        <td>s</td>
+
+        <td>*</td>
+
+        <td>m</td>
+      </tr>
+
+      <tr>
+        <td><literal>/</literal></td>
+
+        <td>r</td>
+
+        <td>\</td>
+
+        <td>l</td>
+      </tr>
+
+      <tr>
+        <td><literal>^</literal></td>
+
+        <td>p</td>
+
+        <td>.*</td>
+
+        <td>x</td>
+      </tr>
+
+      <tr>
+        <td>./</td>
+
+        <td>d</td>
+
+        <td>.\</td>
+
+        <td>q</td>
+      </tr>
+
+      <tr>
+        <td>.*.</td>
+
+        <td>k</td>
+
+        <td>./.</td>
+
+        <td>y</td>
+      </tr>
+
+      <tr>
+        <td><literal>.\.</literal></td>
+
+        <td>z</td>
+
+        <td>:</td>
+
+        <td>b</td>
+      </tr>
+
+      <tr>
+        <td>*.</td>
+
+        <td>u</td>
+
+        <td>/.</td>
+
+        <td>v</td>
+      </tr>
+
+      <tr>
+        <td><literal>\.</literal></td>
+
+        <td>w</td>
+
+        <td>[a,b]</td>
+
+        <td>c</td>
+      </tr>
+
+      <tr>
+        <td>[a;b]</td>
+
+        <td>f</td>
+
+        <td>() extraction</td>
+
+        <td>e</td>
+      </tr>
+
+      <tr>
+        <td>() insertion</td>
+
+        <td>i</td>
+
+        <td>==</td>
+
+        <td>o</td>
+      </tr>
+
+      <tr>
+        <td>&lt;&gt;</td>
+
+        <td>n</td>
+
+        <td>|</td>
+
+        <td>g</td>
+      </tr>
+
+      <tr>
+        <td>&amp;</td>
+
+        <td>h</td>
+
+        <td><literal>.^</literal></td>
+
+        <td>j</td>
+      </tr>
+
+      <tr>
+        <td>~</td>
+
+        <td>5</td>
+
+        <td>.'</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>&lt;</td>
+
+        <td>1</td>
+
+        <td>&gt;</td>
+
+        <td>2</td>
+      </tr>
+
+      <tr>
+        <td>&lt;=</td>
+
+        <td>3</td>
+
+        <td>&gt;=</td>
+
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td></td>
+
+        <td></td>
+
+        <td>iext</td>
+
+        <td>6</td>
+      </tr>
+    </informaltable>
+
+    <para>A função de sobrecarga para sintaxe de extração
+    <literal>b=a(i1,...,in)</literal> tem a seguinte seqüência de chamamento:
+    <literal>b=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal></para>
+
+    <para>e a sintaxe<literal>[x1,..,xm]=a(i1,...,in)</literal> tem a seguinte
+    seqüência de chamamento:
+    <literal>[x1,..,xm]=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal></para>
+
+    <para></para>
+
+    <para>A função de sobrecarga associada à sintaxe de inserção
+    <literal>a(i1,...,in)=b</literal> tem a segunite seqüência de
+    chamamento:<literal>
+    a=%&lt;tipo_de_b&gt;_i_&lt;tipo_de_a&gt;(i1,...,in,b,a)</literal>.</para>
+
+    <para></para>
+
+    <para>O código "char" <literal>6</literal> pode ser usado para alguns
+    algoritmos de inserção complexos como <literal>x.b(2)=33</literal> onde o
+    campo <literal>b</literal> não está definido na estrutura
+    <literal>x</literal>. A inserção é automaticamente decomposta em
+    <literal>temp=x.b;</literal> <literal>temp(2)=33;</literal>
+    <literal>x.b=temp</literal>. O código "char" <literal>6</literal> é usado
+    para o primeiro passo desse algoritmo. A função de sobrecarga de
+    <literal>6</literal> é muito semelhante à função de
+    <literal>e</literal>'s.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Funções (Functions)</term>
+
+        <listitem>
+          <para>algumas funções primitivas básicas também podem ser
+          sobrecarregadas para novos tipo de dados. Quando tal função não é
+          definida para tipos de dados particulares, a função <literal>
+          %&lt;tipo_de_um_argumento&gt;_&lt;nome_da_função&gt;</literal> é
+          chamada. O usuário pode adicionar a esta função chamada a definição
+          associada aos tipos de dados de entrada. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//EXIBIÇÃO
+deff('[]=%tab_p(l)','disp([['' '';l(3)] [l(2);string(l(4))]])')
+tlist('tab',['a','b'],['x';'y'],rand(2,2))
+
+//OPERADOR
+deff('x=%c_a_s(a,b)','x=a+string(b)')
+'s'+1
+
+//FUNÇÃO
+deff('x=%c_sin(a)','x=''sin(''+a+'')''')
+sin('2*x')
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="disp">disp</link></member>
+
+      <member><link linkend="symbols">symbols</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

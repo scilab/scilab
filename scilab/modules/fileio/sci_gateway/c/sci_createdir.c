@@ -23,7 +23,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int sci_createdir(char *fname,unsigned long l)
 {

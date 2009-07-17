@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 function Res = min_bd_deb_1(n)
 if ~isdef('n','local') then n = 10; end;
 Res = zeros(n,1);

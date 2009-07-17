@@ -377,7 +377,7 @@ dnl  $USER_TCL_LIB_PATH : user specified path where to look for libtcl
 dnl  $USER_TK_LIB_PATH : user specified path where to look for libtk
 dnl
 dnl OUPUTS :  the following variables are set
-dnl  WITH_TKSCI : =1 if all was OK, 0 otherwise
+dnl  WITH_TKSCI : =yes if all was OK, no otherwise
 dnl  TCL_INC_PATH : flag to give to cpp if one wants to include tcl.h
 dnl  TK_INC_PATH : flag to give to cpp if one wants to include tk.h
 dnl  TCLTK_LIBS : complete line to link tcl/tk with scilab
@@ -386,7 +386,7 @@ dnl  TCL_VERSION : version of the found tcl includes and libs
 dnl  TK_VERSION : version of the found tk includes and libs
 dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
-  WITH_TKSCI=0
+  WITH_TKSCI=no
   TCL_LIB_OK=0
   TCL_INCLUDE_OK=0
   # Check for tcl header file
@@ -450,6 +450,6 @@ dnl In addition, if the test was OK, the WITH_TK cpp symbol is defined
 
   else 
         TCLTK_LIBS=$TK_LIB" $TCLTK_LIBS"
-        WITH_TKSCI=1
+        WITH_TKSCI=yes
   fi
 ])

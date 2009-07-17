@@ -57,6 +57,13 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
           parent = figure;
         }
 
+      if (figure == NULL)
+        {
+          // Can not set the parent
+          Scierror(999, _("Wrong value for '%s' property: A '%s' or '%s' handle expected.\n"), "Parent", "Figure", "Frame uicontrol");
+          return SET_PROPERTY_ERROR;
+        }
+
       if (sciGetEntityType(figure) == SCI_FIGURE)
         {
           // Get the position from Java to reset it

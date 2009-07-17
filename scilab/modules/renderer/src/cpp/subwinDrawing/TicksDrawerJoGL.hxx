@@ -18,6 +18,11 @@
 #include "TicksDrawerBridge.hxx"
 #include "TicksDrawerJavaMapper.hxx"
 
+#ifdef _MSC_VER
+#pragma warning(once : 4250)
+#endif
+
+
 namespace sciGraphics
 {
 

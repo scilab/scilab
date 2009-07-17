@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,37 +16,37 @@
   </info>
   <refnamediv>
     <refname>mtlb_l</refname>
-    <refpurpose>Fonction d'émulation de la division à gauche de Matlab</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la division Ã  gauche de Matlab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la division à gauche se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la division Ã  gauche se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-	Avec des opérandes de type chaîne de caractères : L'opérateur <literal>\</literal> 
-	ne peut pas être utilisé dans Scilab avec des chaînes de caractères, alors que
-	dans Matlab c'est possible. Et dans ce cas, le résultat donné par matlab est
-	tranposé d'une manière très floue...
+	Avec des opÃ©randes de type chaÃ®ne de caractÃ¨res : L'opÃ©rateur <literal>\</literal> 
+	ne peut pas Ãªtre utilisÃ© dans Scilab avec des chaÃ®nes de caractÃ¨res, alors que
+	dans Matlab c'est possible. Et dans ce cas, le rÃ©sultat donnÃ© par matlab est
+	tranposÃ© d'une maniÃ¨re trÃ¨s floue...
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_l(a,b)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_l</literal> :
+    La fonction <literal>mtlb_l(a,b)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>A\B</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les opÃ©randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_l</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaînes de caractères
-        <literal>mtlb_l(A,B)</literal> peut être remplacé par <literal>A\B</literal>
+        Si <literal>A</literal> et <literal>B</literal> ne sont pas des chaÃ®nes de caractÃ¨res
+        <literal>mtlb_l(A,B)</literal> peut Ãªtre remplacÃ© par <literal>A\B</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_l</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_l</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

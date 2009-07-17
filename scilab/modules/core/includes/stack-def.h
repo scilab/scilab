@@ -119,7 +119,6 @@ typedef struct
 	int lct[8]; /**< @TODO : add comment */
 	int lin[lsiz]; /**< @TODO : add comment */
 	int lpt[6]; /**< @TODO : add comment */
-	int hio; /**< @TODO : add comment */
 	int rio; /* Id input (fortran) file descriptor */
 	int wio; /* Id output (fortran) file descriptor */
 	int rte; /* Id input (fortran) terminal descriptor (stdin)  */
@@ -385,6 +384,17 @@ typedef struct {
 } BASBRK_struct;
 
 IMPORT BASBRK_struct C2F(basbrk);
+
+/** 
+* simpmd : rational fraction simplification mode
+* used in polynomials and inisci.f (core)
+*/
+typedef struct {
+	int simpmd;
+} CSIMP_struct;
+
+IMPORT CSIMP_struct C2F(csimp);
+
 
 #endif /** STACK_DEF  **/
 

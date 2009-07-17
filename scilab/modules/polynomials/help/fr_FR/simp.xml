@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="simp">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,24 +8,24 @@
     <refpurpose> simplification rationnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[N1,D1]=simp(N,D)
 H1=simp(H)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>N,D  </term>
         <listitem>
-          <para>polynômes réels ou matrices de polynômes réels
+          <para>polynÃ´mes rÃ©els ou matrices de polynÃ´mes rÃ©els
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>H  </term>
         <listitem>
-          <para>matrice de fractions rationnelles (i.e matrice avec des termes <literal>n/d</literal>, <literal>n</literal> et <literal>d</literal> polynômes réels) 
+          <para>matrice de fractions rationnelles (i.e matrice avec des termes <literal>n/d</literal>, <literal>n</literal> et <literal>d</literal> polynÃ´mes rÃ©els) 
 </para>
         </listitem>
       </varlistentry>
@@ -33,14 +33,14 @@ H1=simp(H)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[n1,d1]=simp(n,d)</literal> calcule deux polynômes <literal>n1</literal> et <literal>d1</literal>
+    <para><literal>[n1,d1]=simp(n,d)</literal> calcule deux polynÃ´mes <literal>n1</literal> et <literal>d1</literal>
     tels que<literal>n1/d1 = n/d</literal>.
   </para>
     <para>
-    Si <literal>N</literal> et <literal>D</literal> sont des matrices de polynômes le calcul
-    est fait élément par élément.
+    Si <literal>N</literal> et <literal>D</literal> sont des matrices de polynÃ´mes le calcul
+    est fait Ã©lÃ©ment par Ã©lÃ©ment.
   </para>
-    <para><literal>H1=simp(H)</literal> est aussi valide (chaque terme de <literal>H</literal> est simplifié dans <literal>H1</literal>).
+    <para><literal>H1=simp(H)</literal> est aussi valide (chaque terme de <literal>H</literal> est simplifiÃ© dans <literal>H1</literal>).
   </para>
     <para>
     Attention : 
@@ -50,14 +50,14 @@ H1=simp(H)</synopsis>
     simplification.
   </para>
     <para>
-    - Pour les systèmes dynamiques linéaires avec un intégrateur la simplification
-    change le gain statique. (<literal>H(0)</literal> pour les systèmes continus ou <literal>H(1)</literal> pour les systèmes discrets)
+    - Pour les systÃ¨mes dynamiques linÃ©aires avec un intÃ©grateur la simplification
+    change le gain statique. (<literal>H(0)</literal> pour les systÃ¨mes continus ou <literal>H(1)</literal> pour les systÃ¨mes discrets)
   </para>
     <para>
-    - Pour les données complexes, <literal>simp</literal> renvoie ses entrées.
+    - Pour les donnÃ©es complexes, <literal>simp</literal> renvoie ses entrÃ©es.
   </para>
     <para>
-    - Une simplification est effectuée après la plupart des opérations rationnelles. Il est possible de la supprimer en utilisant la fonction <literal>simp_mode</literal>.
+    - Une simplification est effectuÃ©e aprÃ¨s la plupart des opÃ©rations rationnelles. Il est possible de la supprimer en utilisant la fonction <literal>simp_mode</literal>.
   </para>
   </refsection>
   <refsection>

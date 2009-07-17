@@ -113,8 +113,8 @@ static int returnRectAndButton(const double selectedRect[4], int button)
     LhsVar(2) = Rhs + 2;
   }
 
+  C2F(putlhsvar)();
   return 0;
-
 }
 /*--------------------------------------------------------------------------*/
 int sci_rubberbox(char * fname, unsigned long fname_len)
@@ -131,7 +131,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 	if (Rhs == 0)
 	{
 		/* rubberbox() */
-    rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
+		rubberBox(sciGetCurrentSubWin(), TRUE, NULL, selectedRect, &button);
 	}
 	else if (Rhs == 1)
 	{

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="atan" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="atand" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -13,8 +13,8 @@
   <refnamediv>
     <refname>atand</refname>
 
-    <refpurpose>2-quadrants et 4-quadrants tangeante inverse des
-    éléments de l'argument, résultats exprimés en degrés.</refpurpose>
+    <refpurpose>2-quadrants et 4-quadrants tangeante inverse des éléments de
+    l'argument, résultats exprimés en degrés.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -68,27 +68,28 @@ phi=atand(y,x)</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>La première forme calcule la tangente inverse sur 2-quadrants
-    de éléments de l'argument et retourne le résultat en degrés. Les
-    éléments de <literal>phi</literal> sont dans l'intervalle 
-    <literal>[-90, 90]</literal>.</para>
+    <para>La première forme calcule la tangente inverse sur 2-quadrants de
+    éléments de l'argument et retourne le résultat en degrés. Les éléments de
+    <literal>phi</literal> sont dans l'intervalle <literal>[-90,
+    90]</literal>.</para>
 
-    <para>La seconde forme calcule la tangeante inverse sur
-    4-quadrants, c'est a dire l'angle en degrés ddu nombre complexe
-    <literal>x+i*y</literal>.  Les éléments de <literal>phi</literal>
-    sont dans l'intervalle <literal>[-180,180]</literal>.</para>
+    <para>La seconde forme calcule la tangeante inverse sur 4-quadrants, c'est
+    a dire l'angle en degrés ddu nombre complexe <literal>x+i*y</literal>. Les
+    éléments de <literal>phi</literal> sont dans l'intervalle
+    <literal>[-180,180]</literal>.</para>
 
-    <para>les deux formes retourne des valeurs indentiques pour les 
+    <para>les deux formes retourne des valeurs indentiques pour les
     <literal>x&gt;0</literal>.</para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">// exemple avec la seconde forme
+    <programlisting role="example"> 
+// exemple avec la seconde forme
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)
-</programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -106,8 +107,6 @@ atand(x)
 
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
-
-      <member></member>
     </simplelist>
   </refsection>
 </refentry>

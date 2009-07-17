@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CurrentSensor">
   <refnamediv>
     <refname>CurrentSensor</refname>
-    <refpurpose>Capteur de courant électrique</refpurpose>
+    <refpurpose>Capteur de courant Ã©lectrique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CurrentSensor">Capteur de courant électrique</link>
+          <link linkend="CurrentSensor">Capteur de courant Ã©lectrique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CurrentSensor">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CurrentSensor">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,7 +68,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="CurrentSensor">Modèle Modelica</link>
+              <link linkend="CurrentSensor">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -80,7 +80,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -88,19 +88,19 @@
   <refsection id="Description_CurrentSensor">
     <title>Description</title>
     <para>
-Ce bloc est inséré en série dans un circuit électrique pour mesurer le
-courant qui passe à travers. Si le courant positif <emphasis role="bold">entre</emphasis> par le
-port noir, il est consideré positif. La résistance ohmique de ce
-composant est zéro.
+Ce bloc est insÃ©rÃ© en sÃ©rie dans un circuit Ã©lectrique pour mesurer le
+courant qui passe Ã  travers. Si le courant positif <emphasis role="bold">entre</emphasis> par le
+port noir, il est considerÃ© positif. La rÃ©sistance ohmique de ce
+composant est zÃ©ro.
 
 </para>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CurrentSensor">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CurrentSensor">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -149,8 +149,8 @@ composant est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_CurrentSensor">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_CurrentSensor">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/CurrentSensor.mo</para>

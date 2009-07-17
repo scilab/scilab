@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge STEER
@@ -60,7 +60,7 @@
     points where the nyquist plot of <literal>h</literal> crosses the
     unit circle. In other words the phase margin is the difference
     between the phase of the frequency response of
-    <literal>h</literal> and -180° when the gain of
+    <literal>h</literal> and -180Â° when the gain of
     <literal>h</literal> is 1.</para>
     <para>The algorithm uses polynomial root finder to solve the equations:</para>
     <variablelist>

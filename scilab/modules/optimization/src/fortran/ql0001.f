@@ -110,6 +110,7 @@ C
 C*********************************************************************
 C
 C
+      character bufstr*(4096)
       INTEGER NMAX,MMAX,N,MNN,LWAR,LIWAR
       DIMENSION C(NMAX,NMAX),D(NMAX),A(MMAX,NMAX),B(MMAX),
      1      XL(N),XU(N),X(N),U(MNN),WAR(LWAR),IWAR(LIWAR)
@@ -171,8 +172,10 @@ C
       IF (INFO.EQ.2) GOTO 90
       IDIAG=0
       IF ((DIAG.GT.ZERO).AND.(DIAG.LT.1000.0)) IDIAG=DIAG
-      IF ((IPRINT.GT.0).AND.(IDIAG.GT.0))
-     1   WRITE(IOUT,1000) IDIAG
+      IF ((IPRINT.GT.0).AND.(IDIAG.GT.0)) then
+        WRITE(bufstr,1000) IDIAG
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       IF (INFO .LT. 0) GOTO  70
 C
 C     REORDER MULTIPLIER
@@ -191,36 +194,53 @@ C
 C     ERROR MESSAGES
 C
    70 IFAIL=-INFO+10
-      IF ((IPRINT.GT.0).AND.(NACT.GT.0))
-     1     WRITE(IOUT,1100) -INFO,(IWAR(I),I=1,NACT)
+      IF ((IPRINT.GT.0).AND.(NACT.GT.0)) then
+           WRITE(bufstr,1100) -INFO,(IWAR(I),I=1,NACT)
+           call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+           endif
       RETURN
    80 IFAIL=5
-      IF (IPRINT .GT. 0) WRITE(IOUT,1200)
+      IF (IPRINT .GT. 0) then
+        WRITE(bufstr,1200)
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       RETURN
    81 IFAIL=5
-      IF (IPRINT .GT. 0) WRITE(IOUT,1210)
+      IF (IPRINT .GT. 0) then
+        WRITE(bufstr,1210)
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       RETURN
    82 IFAIL=5
-      IF (IPRINT .GT. 0) WRITE(IOUT,1220)
+      IF (IPRINT .GT. 0) then
+        WRITE(bufstr,1220)
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       RETURN
    40 IFAIL=1
-      IF (IPRINT.GT.0) WRITE(IOUT,1300) MAXIT
+      IF (IPRINT.GT.0) then
+        WRITE(bufstr,1300) MAXIT
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       RETURN
    90 IFAIL=2
-      IF (IPRINT.GT.0) WRITE(IOUT,1400) 
+      IF (IPRINT.GT.0) then 
+        WRITE(bufstr,1400) 
+        call basout(io_out ,IOUT ,bufstr(1:lnblnk(bufstr)))
+        endif
       RETURN
 C
 C     FORMAT-INSTRUCTIONS
 C
- 1000 FORMAT(/8X,28H***QL: MATRIX G WAS ENLARGED,I3,
+ 1000 FORMAT(8X,28H***QL: MATRIX G WAS ENLARGED,I3,
      1        20H-TIMES BY UNITMATRIX)
- 1100 FORMAT(/8X,18H***QL: CONSTRAINT ,I5,
-     1        19H NOT CONSISTENT TO ,/,(10X,10I5))
- 1200 FORMAT(/8X,21H***QL: LWAR TOO SMALL)
- 1210 FORMAT(/8X,22H***QL: LIWAR TOO SMALL)
- 1220 FORMAT(/8X,20H***QL: MNN TOO SMALL)
- 1300 FORMAT(/8X,37H***QL: TOO MANY ITERATIONS (MORE THAN,I6,1H))
- 1400 FORMAT(/8X,50H***QL: ACCURACY INSUFFICIENT TO ATTAIN CONVERGENCE) 
+ 1100 FORMAT(8X,18H***QL: CONSTRAINT ,I5,
+     1        19H NOT CONSISTENT TO ,(10X,10I5))
+ 1200 FORMAT(8X,21H***QL: LWAR TOO SMALL)
+ 1210 FORMAT(8X,22H***QL: LIWAR TOO SMALL)
+ 1220 FORMAT(8X,20H***QL: MNN TOO SMALL)
+ 1300 FORMAT(8X,37H***QL: TOO MANY ITERATIONS (MORE THAN,I6,1H))
+ 1400 FORMAT(8X,50H***QL: ACCURACY INSUFFICIENT TO ATTAIN CONVERGENCE) 
       END
 C
       SUBROUTINE QL0002(N,M,MEQ,MMAX,MN,MNN,NMAX,LQL,A,B,GRAD,G,

@@ -2,6 +2,5 @@ LIBRARY    scilocalization.dll
 
 
 EXPORTS
-setlanguage
-getlanguage
-localeToUTF
+wide_string_to_UTF8
+to_wide_string

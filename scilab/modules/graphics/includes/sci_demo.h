@@ -25,10 +25,8 @@
 /**
  * Lacunch some code inside Scilab.
  * @param[in] fname Name of the routine from which demo is launched
- * @param[in] code  Scilab script of the demo
- * @param[in] flagx If flagx is TRUE, display the code of the demo in the
- *                  console. Otherwise, silent execution.
+ * @param[in] fname_len length of fname
  */
-int sci_demo( char * fname, char * code, BOOL flagx ) ;
+int sci_demo( char * fname, int fname_len);
 
 #endif /* _SCI_DEMO_H_ */

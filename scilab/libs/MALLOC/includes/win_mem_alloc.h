@@ -46,7 +46,7 @@ IMPORT_EXPORT_MALLOC_DLL void MyVirtualFree(LPVOID lpAddress,char *fichier,int l
 #ifdef SCISTACKMALLOC
 #undef SCISTACKMALLOC
 #endif
-#define SCISTACKMALLOC(x) MyVirtualAlloc((unsigned)x,__FILE__,__LINE__)
+#define SCISTACKMALLOC(x) MyVirtualAlloc((unsigned long)x,__FILE__,__LINE__)
 
 #ifdef SCISTACKFREE
 #undef SCISTACKFREE

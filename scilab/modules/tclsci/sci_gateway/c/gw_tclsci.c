@@ -23,7 +23,8 @@
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */
 /*--------------------------------------------------------------------------*/
- static gw_generic_table Tab[]=
+#define TCLSCI_TAB_SIZE 13
+ static gw_generic_table Tab[TCLSCI_TAB_SIZE]=
  {
   {sci_TCL_DoOneEvent,"TCL_DoOneEvent"},
   {sci_TCL_EvalStr,"TCL_EvalStr"},
@@ -47,7 +48,7 @@ int gw_tclsci(void)
 		if (isTkStarted())
 		{
 			Rhs = Max(0, Rhs);
-			callFunctionFromGateway(Tab);
+			callFunctionFromGateway(Tab,TCLSCI_TAB_SIZE);
 		}
 		else
 		{

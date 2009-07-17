@@ -1,0 +1,190 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-02-16 10:07+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Optimization and Simulation"
+msgstr "Optimització and Simulació"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: L'argument d'entrada és d'un tipus incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector n-"
+"dimensional.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector "
+"columna.\n"
+
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s: L'ordre ha de ser 1, 2 o 4.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"funció.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s: La matriu ha de ser quadrada.\n"
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s: La hipòtesi inicial no és factible.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta."
+
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s: x0 no és factible."
+
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr "%s: El problema no té límits definits!"
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr " número de constants (%s)'),'lmisolver',%m,%fm));"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir %d "
+"columnes.\n"
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s: Hi ha massa iteracions (més de %d).\n"
+
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr ""
+"%s: La precisió és insuficient per a satisfer els criteris de convergència.\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s: La mida dels vectors de treball és massa petita.\n"
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s: Les limitacions són inconsistents.\n"
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s: Argument 3: ha de tenir %d columnes\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: No es pot assignar més memòria.\n"
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s: El problema de minimització no té solució.\n"
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s: Q no és simètrica definida positiva.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m ha de ser com a mínim 1.\n"
+
+msgid "L must be at least one.\n"
+msgstr "L ha de ser com a mínim 1.\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d]  ha de ser com a mínim 1.\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu ha de ser com a mínim 1.0.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "Les matrius Fi, i=1,...,m són linealment dependents.\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+"Z0 no satisfà les condicions d'igualtat per a la factibilitat dual.\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr ""
+"La zona de treball és massa petita.  Com a mínim es necessita "
+"%d*sizeof(double).\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "Error a dspgv, info = %d.\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr "x0 no és estrictament factible primària.\n"
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0 no és definida positiva.\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z té un valor propi negatiu.\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+"\n"
+"    obj. primari obj. dual  gap dual. \n"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "Error a dgels, info = %d.\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "Error a dtrcon, info = %d.\n"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr ""
+"Les matrius F_i, i=1,...,m són linealment dependents (o els punts inicials "
+"estan molt malament condicionats).\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "Error a dspst, info = %d.\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "Error a dspev, info = %d.\n"

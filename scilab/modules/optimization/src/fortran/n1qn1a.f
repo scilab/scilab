@@ -21,6 +21,7 @@ c
       implicit double precision (a-h,o-z)
       dimension x(n),g(n),scale(n),h(*),d(n),w(n),
      1 xa(n),ga(n),xb(n),gb(n),izs(*),dzs(*)
+      character bufstr*(4096)
       real rzs(*)
       external simul
       double precision dnrm2 ! (blas routine) added by Bruno to get
@@ -40,8 +41,14 @@ c     next line added by Serge to avoid Inf and Nan's (04/2007)
       if (vfinite(1,f).ne.1.and.vfinite(n,g).ne.1) indic=-1
       if (indic.gt.0) go to 13
       if (iprint.eq.0) go to 12
-      if (indic.lt.0) write (lp,1000)
-      if (indic.eq.0) write (lp,1001)
+      if (indic.lt.0) then
+        write (bufstr,1000)
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
+      if (indic.eq.0) then
+        write (bufstr,1001)
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
    12 acc=0.0d+0
       niter=1
       nsim=1
@@ -100,7 +107,10 @@ c               factorisation du hessien
  305  continue
 c
       if (k.ge.n) go to 100
-   70 if (iprint.ne.0) write (lp,1010)
+   70 if (iprint.ne.0) then
+          write(bufstr,1010)
+          call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
       go to 20
 c                verification que la diagonale est positive
    80 k=1
@@ -173,11 +183,14 @@ c               initialisation du pas
       if (dff.gt.0.0d+0) step=min(step,(dff+dff)/(-dga))
 
       if (iprint.ge.2) then
-         write (lp,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+         write (bufstr,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
      $                ', nb calls=',nfun,', f=',fa
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+         
          if (iprint.ge.3) then
-            write (lp,'(A,G10.4)')
+            write (bufstr,'(A,G10.4)')
      $            ' linear search: initial derivative=',dga/dnrm2(n,d,1)
+            call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          endif
       endif
 c              boucle de reherche lineaire
@@ -194,7 +207,10 @@ c     next line added by Serge to avoid Inf and Nan's (04/2007)
 c              test sur indic
       if (indic.gt.0) goto 185
       if (indic.lt.0) goto 183
-      if (iprint.gt.0) write (lp,1001)
+      if (iprint.gt.0) then
+        write (bufstr,1001)
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
       do 182 i=1,n
       x(i)=xb(i)
   182 g(i)=gb(i)
@@ -203,11 +219,15 @@ c              test sur indic
       ial=1
       step=step/10.0d+0
       if (iprint.ge.3) then
-         write (lp,'(A,G10.4,A,I2)') 
+         write (bufstr,'(A,G10.4,A,I2)') 
      $   '                step length=',c,', indic=',indic
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
       if (stepbd.gt.steplb) goto 170
-      if (iprint.ne.0.and.isfv.lt.2) write (lp,1023)
+      if (iprint.ne.0.and.isfv.lt.2) then
+        write (bufstr,1023)
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
       goto 240
 c             stockage si c'est la plus petite valeur
   185 isfv=min(2,isfv)
@@ -232,9 +252,11 @@ c               calcul de la derivee directionnelle
       s=fb-fa
 * a small change (Bruno): to give a better indication about
 *  the directionnal derivative I scale it by || d ||
-      write (lp,'(A,G10.4,A,G10.4,A,G10.4)')
+      write (bufstr,'(A,G10.4,A,G10.4,A,G10.4)')
      $  '                step length=',c,
      $  ', df=',s,', derivative=',dgb/dnrm2(n,d,1)
+     
+      call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 c               test si la fonction a descendu
   231 if (fb-fa.le.0.10d+0*c*dga) go to 280
       ial=0
@@ -243,8 +265,9 @@ c               iteration terminee si le pas est minimum
   240 if (isfv.ge.2) go to 110
 c               ici, tout est termine
   250 if (iprint.gt.0) then
-         write (lp,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
+         write (bufstr,'(A,I4,A,I4,A,G10.4)') ' iter num ',itr,
      $                ', nb calls=',nfun,', f=',f
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
       endif
       acc=0.0d+0
       do 260 i=1,n
@@ -264,7 +287,10 @@ c               interpolation cubique
 c               ceci est un pas de descente
   280 if (ial.eq.0) goto 285
       if (stepbd.gt.steplb) go to 285
-      if (iprint.ne.0.and.isfv.lt.2) write (lp,1023)
+      if (iprint.ne.0.and.isfv.lt.2) then
+        write (bufstr,1023)
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
       go to 240
   285 stepbd=stepbd-step
       stmin=c

@@ -9,7 +9,7 @@
 
 if haveacompiler() then
 
-
+ 
 // we use TMPDIR for compilation 
 	
   foo=['void foo(double *a,double *b,double *c)';
@@ -21,6 +21,8 @@ if haveacompiler() then
   disp(foo);
   	
 if ~c_link('foo') then
+  cur_ilib_verbose = ilib_verbose();
+  ilib_verbose(1);
   path = getcwd(); 
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
@@ -29,7 +31,8 @@ if ~c_link('foo') then
   mprintf(gettext('Call ilib_for_link to build C function.\n'));
   ilib_for_link(['foo'],'foo.c',[],"c");
   exec loader.sce ;
-  chdir(path) 
+  chdir(path);
+  ilib_verbose(cur_ilib_verbose);
 end	
 
 //Z = X+Y by C function

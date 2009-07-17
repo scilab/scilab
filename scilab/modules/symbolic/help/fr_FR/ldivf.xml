@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ldivf">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>ldivf</refname>
-    <refpurpose> division à gauche symbolique  </refpurpose>
+    <refpurpose> division Ã  gauche symbolique  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ldivf('d','c')</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie la chaîne de caractères <literal>'c\d'</literal>
-    Des simplifications triviales du type <literal>'1\c' = 'c'</literal> sont effectuées.
+    Renvoie la chaÃ®ne de caractÃ¨res <literal>'c\d'</literal>
+    Des simplifications triviales du type <literal>'1\c' = 'c'</literal> sont effectuÃ©es.
   </para>
   </refsection>
   <refsection>

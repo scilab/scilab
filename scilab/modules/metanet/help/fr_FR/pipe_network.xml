@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>pipe_network</refname>
-    <refpurpose> résout le problème du réseau de tuyaux  </refpurpose>
+    <refpurpose> rÃ©sout le problÃ¨me du rÃ©seau de tuyaux  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[x,pi] = pipe_network(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -51,12 +51,12 @@
   <refsection>
     <title>Description</title>
     <para><literal>pipe_network</literal> renvoie les valeurs des flots et des potentiels
-    pour le problème du réseau de tuyaux (problème de flots avec deux lois de Kirchhoff).
-    Le graphe doit être orienté. Le problème doit être soluble (la somme des
-    demandes des sommets doit être égale à 0). Les résistances sur les arcs doivent être strictement positives et sont données par les valeurs de l'élément 'edge_weight' du graphe.
+    pour le problÃ¨me du rÃ©seau de tuyaux (problÃ¨me de flots avec deux lois de Kirchhoff).
+    Le graphe doit Ãªtre orientÃ©. Le problÃ¨me doit Ãªtre soluble (la somme des
+    demandes des sommets doit Ãªtre Ã©gale Ã  0). Les rÃ©sistances sur les arcs doivent Ãªtre strictement positives et sont donnÃ©es par les valeurs de l'Ã©lÃ©ment 'edge_weight' du graphe.
   </para>
     <para>
-    Le problème est résolu à l'aide d'une factorisation LU creuse.
+    Le problÃ¨me est rÃ©solu Ã  l'aide d'une factorisation LU creuse.
   </para>
   </refsection>
   <refsection>

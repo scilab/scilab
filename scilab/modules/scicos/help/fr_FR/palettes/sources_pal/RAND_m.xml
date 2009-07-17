@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="RAND_m">
   <refnamediv>
     <refname>RAND_m</refname>
-    <refpurpose>Générateur aléatoire</refpurpose>
+    <refpurpose>GÃ©nÃ©rateur alÃ©atoire</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="RAND_m">Générateur aléatoire</link>
+          <link linkend="RAND_m">GÃ©nÃ©rateur alÃ©atoire</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_RAND_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_RAND_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_RAND_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_RAND_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,17 +98,17 @@
   <refsection id="Description_RAND_m">
     <title>Description</title>
     <para>
-Ce bloc est un générateur de nombres aléatoires : chaque composante de sortie
-prend des valeurs constantes aléatoires par morceaux. Pour chaque événement les
-sorties prennent des nouvelles valeurs indépendantes.
+Ce bloc est un gÃ©nÃ©rateur de nombres alÃ©atoires : chaque composante de sortie
+prend des valeurs constantes alÃ©atoires par morceaux. Pour chaque Ã©vÃ©nement les
+sorties prennent des nouvelles valeurs indÃ©pendantes.
 </para>
     <para>
-La taille du port de sortie est déterminée par la taille des matrices <emphasis role="bold">A</emphasis> et <emphasis role="bold">B</emphasis>.
+La taille du port de sortie est dÃ©terminÃ©e par la taille des matrices <emphasis role="bold">A</emphasis> et <emphasis role="bold">B</emphasis>.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_RAND_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_RAND_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -124,8 +124,8 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
         <para>
           <emphasis role="bold">Datatype(1=real double  2=complex)</emphasis>
         </para>
-        <para> Ce paramètre indique le type de donnée de la sortie. Ce bloc fonctionne uniquement avec des types de donnée réels(1) et complexes(2). Si un autre type que 1 et 2 est indiqué, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
-        <para> Propriétiés : Type 'vec' de taille 1. </para>
+        <para> Ce paramÃ¨tre indique le type de donnÃ©e de la sortie. Ce bloc fonctionne uniquement avec des types de donnÃ©e rÃ©els(1) et complexes(2). Si un autre type que 1 et 2 est indiquÃ©, alors Scicos retourne le message d'erreur "Datatype is not supported".</para>
+        <para> PropriÃ©tiÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
@@ -134,35 +134,35 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
         <para> 0 ou 1.</para>
         <para> 0 pour une distribution uniforme sur [A,A+B].</para>
         <para> 1 pour une distribution normale.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">A</emphasis>
         </para>
         <para> matrice</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-2]. </para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-2]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">B</emphasis>
         </para>
         <para> matrice</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-2]. </para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-2]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">seed</emphasis>
         </para>
         <para> matrice</para>
-        <para> Valeur de "graine" pour une séquence de nombre aléatoire.</para>
-        <para> Le premier nombre est pour la partie réelle et le deuxième pour la partie imaginaire.</para>
-        <para> Propriétés : Type 'mat' de taille [1,2].</para>
+        <para> Valeur de "graine" pour une sÃ©quence de nombre alÃ©atoire.</para>
+        <para> Le premier nombre est pour la partie rÃ©elle et le deuxiÃ¨me pour la partie imaginaire.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [1,2].</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_RAND_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_RAND_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -171,33 +171,33 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

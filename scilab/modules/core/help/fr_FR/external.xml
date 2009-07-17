@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="external">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -10,52 +10,52 @@
   <refsection>
     <title>Description</title>
     <para>
-    Fonction ou routine externe nécessitée par des commandes particulières.
+    Fonction ou routine externe nÃ©cessitÃ©e par des commandes particuliÃ¨res.
   </para>
     <para>
-    Un "external" est une fonction ou une routine qui est utilisée comme argument d'une
+    Un "external" est une fonction ou une routine qui est utilisÃ©e comme argument d'une
     "primitive de haut niveau", telle que <literal>ode</literal>, <literal>optim</literal>, <literal>schur</literal>...
   </para>
     <para>
-    La séquence d'appel de la fonction ou de la routine est en général imposée
-    par la primitive de haut niveau qui impose en particulier les arguments d'entrée.
+    La sÃ©quence d'appel de la fonction ou de la routine est en gÃ©nÃ©ral imposÃ©e
+    par la primitive de haut niveau qui impose en particulier les arguments d'entrÃ©e.
   </para>
     <para>
     Par exemple la fonction externe <literal>costfunc</literal> est un argument de la primitive <literal>optim</literal>.
-    Sa séquence d'appel doit être de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et 
-    <literal>optim</literal> (primitive permettant de résoudre des problèmes d'optimisation) est invoquée ainsi :
+    Sa sÃ©quence d'appel doit Ãªtre de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et 
+    <literal>optim</literal> (primitive permettant de rÃ©soudre des problÃ¨mes d'optimisation) est invoquÃ©e ainsi :
   </para>
     <programlisting><![CDATA[
 optim(costfunc,...)
    ]]></programlisting>
     <para>
-    Ici <literal>costfunc</literal> (la fonction coût à minimiser avec <literal>optim</literal>)
-    calcule <literal>f=f(x)</literal> et <literal>g=</literal> le gradient de <literal>f</literal> en <literal>x</literal> (<literal>ind</literal> est un entier dont l'usage est précisé dans l'aide de <literal>optim</literal>).
+    Ici <literal>costfunc</literal> (la fonction coÃ»t Ã  minimiser avec <literal>optim</literal>)
+    calcule <literal>f=f(x)</literal> et <literal>g=</literal> le gradient de <literal>f</literal> en <literal>x</literal> (<literal>ind</literal> est un entier dont l'usage est prÃ©cisÃ© dans l'aide de <literal>optim</literal>).
   </para>
     <para>
-    Si d'autres variables sont nécessaires à la fonction externe, ces variables
-    peuvent être définies dans son environnement. Elles peuvent aussi être stockées dans une liste :
+    Si d'autres variables sont nÃ©cessaires Ã  la fonction externe, ces variables
+    peuvent Ãªtre dÃ©finies dans son environnement. Elles peuvent aussi Ãªtre stockÃ©es dans une liste :
     par exemple
   </para>
     <programlisting><![CDATA[
 [f,g,ind]=costfunc(x,ind,a,b,c) 
    ]]></programlisting>
     <para>
-    est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacé par <literal>list(costfunc,a,b,c)</literal>. 
-    La séquence d'appel à <literal>optim</literal> est donc maintenant :
+    est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacÃ© par <literal>list(costfunc,a,b,c)</literal>. 
+    La sÃ©quence d'appel Ã  <literal>optim</literal> est donc maintenant :
   </para>
     <programlisting><![CDATA[
 optim(list(costfunc,a1,b1,c1),....
    ]]></programlisting>
     <para>
-    Un "external" peut aussi être une routine Fortran ou C : cela peut permettre d'accélérer les calculs.
+    Un "external" peut aussi Ãªtre une routine Fortran ou C : cela peut permettre d'accÃ©lÃ©rer les calculs.
   </para>
     <para>
-    Le nom de la routine est donné comme argument à la primitive de haut niveau sous forme d'une
-    chaîne de caractères. La séquence d'appel est aussi imposée. Des exemples sont donnés dans le répertoire <literal>routines/default</literal> (voir le fichier <literal>README</literal>).
+    Le nom de la routine est donnÃ© comme argument Ã  la primitive de haut niveau sous forme d'une
+    chaÃ®ne de caractÃ¨res. La sÃ©quence d'appel est aussi imposÃ©e. Des exemples sont donnÃ©s dans le rÃ©pertoire <literal>routines/default</literal> (voir le fichier <literal>README</literal>).
   </para>
     <para>
-    Les routines externes Fortran ou C peuvent aussi être liées dynamiquement (voir <literal>link</literal>).
+    Les routines externes Fortran ou C peuvent aussi Ãªtre liÃ©es dynamiquement (voir <literal>link</literal>).
   </para>
   </refsection>
   <refsection>

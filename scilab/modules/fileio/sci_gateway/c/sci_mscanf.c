@@ -17,7 +17,8 @@
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
 #include "localization.h"
-#include "fileio.h"
+#include "scanf_functions.h"
+#include "StringConvert.h"
 #include "xscion.h"
 #include "../../../shell/includes/zzledt.h"
 #include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */
@@ -75,12 +76,22 @@ int sci_scanf(char *fname,unsigned long fname_len)
 		//C2F(zzledt)(String,&len,&lline,&status,&interrupt,&iflag,(long int)strlen(String));
 		//getLine(String,&len,&lline,&status);
 		String = getConsoleInputLine();
+		if (String == NULL)
+		{
+			Scierror(999,_("%s: Data mismatch.\n"),fname);
+			return 0;
+		}
 		lline = (int)strlen(String);
 
 		if (lline == 0) {String[0] = ' ';lline=1;}
 		/** use the scaned line as input **/
 		args = Rhs; /* args set to Rhs on entry */
-		if (do_xxscanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) return 0;
+		if (do_xxscanf("scanf",(FILE *) 0,cstk(l1),&args,String,&retval,buf,type) < 0) 
+		{
+			if (String) {FREE(String); String = NULL;}
+			return 0;
+		}
+		if (String) {FREE(String); String = NULL;}
 
 		if ((err=Store_Scan(&nrow,&ncol,type_s,type,&retval,&retval_s,buf,&data,rowcount,args)) <0 )
 		{

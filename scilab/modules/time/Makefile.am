@@ -6,8 +6,7 @@
 ### SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
-src/c/getdate.c \
-src/c/InversionMatrixInt.c
+src/c/getdate.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
 sci_gateway/c/sci_timer.c \
@@ -58,11 +57,9 @@ libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 #### time : include files ####
 libscitime_la_includedir=$(pkgincludedir)/time
 libscitime_la_include_HEADERS = includes/gw_time.h \
-includes/sci_getdate.h \
-includes/sci_timer.h \
-includes/sci_realtime.h \
-includes/sci_xpause.h \
-includes/sci_sleep.h \
-includes/sci_calendar.h
+includes/dynlib_time.h \
+includes/realtime.h \
+includes/timer.h
+
 
 include $(top_srcdir)/Makefile.incl.am

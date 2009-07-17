@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> flot maximum entre deux sommets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[v,phi,flag] = max_flow(i,j,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro du sommet de départ
+          <para>entier, numÃ©ro du sommet de dÃ©part
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j  </term>
         <listitem>
-          <para>entier,  numéro du sommet d'arrivée
+          <para>entier,  numÃ©ro du sommet d'arrivÃ©e
 </para>
         </listitem>
       </varlistentry>
@@ -63,7 +63,7 @@
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>problème soluble ou non (0 ou 1)
+          <para>problÃ¨me soluble ou non (0 ou 1)
 </para>
         </listitem>
       </varlistentry>
@@ -74,16 +74,16 @@
     <para><literal>max_flow</literal> renvoie la valeur du flot maximum <literal>v</literal> du sommet
     <literal>i</literal> au sommet <literal>j</literal> si elle existe, et la valeur des flots 
     sur chaque arc sous forme d'un vecteur ligne <literal>phi</literal>. Les calculs sont 
-    faits en nombres entiers. Le graphe doit être orienté. Si le problème n'est 
-    pas soluble, <literal>flag</literal> est égal à 0, sinon il est égal à 1.
+    faits en nombres entiers. Le graphe doit Ãªtre orientÃ©. Si le problÃ¨me n'est 
+    pas soluble, <literal>flag</literal> est Ã©gal Ã  0, sinon il est Ã©gal Ã  1.
   </para>
     <para>
-    Les bornes sur le flot sont données par les éléments <literal>edge_min_cap</literal> et
+    Les bornes sur le flot sont donnÃ©es par les Ã©lÃ©ments <literal>edge_min_cap</literal> et
     <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité maximum doit être supérieure ou égale à 
-    la capacité minimum.
-    Si la valeur de <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> n'est pas donnée 
-    (vecteur ligne vide <literal>[]</literal>), elle est supposée égale à 0 sur chaque arête.
+    La valeur de la capacitÃ© maximum doit Ãªtre supÃ©rieure ou Ã©gale Ã  
+    la capacitÃ© minimum.
+    Si la valeur de <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> n'est pas donnÃ©e 
+    (vecteur ligne vide <literal>[]</literal>), elle est supposÃ©e Ã©gale Ã  0 sur chaque arÃªte.
   </para>
   </refsection>
   <refsection>

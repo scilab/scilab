@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -23,14 +23,14 @@
   </info>
   <refnamediv>
     <refname>knapsack</refname>
-    <refpurpose> résout un problème du sac à dos 0-1 multiple   </refpurpose>
+    <refpurpose> rÃ©sout un problÃ¨me du sac Ã  dos 0-1 multiple   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[earn,ind] = knapsack(profit,weight,capa,[bck])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>profit  </term>
@@ -78,9 +78,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> Le problème du sac à dos multiple est défini
-    mathématiquement comme suit: </para>
-    <para> Etants donnés  n objets (n &gt;= 2) et m sacs à dos (m &gt;= 1)</para>
+    <para> Le problÃ¨me du sac Ã  dos multiple est dÃ©fini
+    mathÃ©matiquement comme suit: </para>
+    <para> Etants donnÃ©s  n objets (n &gt;= 2) et m sacs Ã  dos (m &gt;= 1)</para>
     <para> Maximiser le "profit global"
     <literal>E=profit*sum(X,1)</literal> sous les contraintes: </para>
     <para>
@@ -92,64 +92,64 @@
     <para>
       <literal>X(j,i)= 0 or 1</literal>
     </para>
-    <para> Où</para>
+    <para> OÃ¹</para>
     <variablelist>
       <varlistentry>
         <term>profit</term>
         <listitem>
 	  <para> est le vecteur des "profits"
-	  associés à chaque objet. Les élements de ce vecteur
-	  doivent être des entiers positifs.</para>
+	  associÃ©s Ã  chaque objet. Les Ã©lements de ce vecteur
+	  doivent Ãªtre des entiers positifs.</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
 	<term>weight</term>
 	<listitem>
-	  <para>est le vecteur des "poids".  Les élements de ce vecteur
-	  doivent être des entiers positifs.</para>
+	  <para>est le vecteur des "poids".  Les Ã©lements de ce vecteur
+	  doivent Ãªtre des entiers positifs.</para>
 	</listitem>
       </varlistentry>
       <varlistentry>
 	<term>capa</term>
 	<listitem>
-	  <para>est le vecteur des "capacités de chacun des sacs à dos.  Les élements de ce vecteur
-	  doivent être des entiers positifs.</para> 
+	  <para>est le vecteur des "capacitÃ©s de chacun des sacs Ã  dos.  Les Ã©lements de ce vecteur
+	  doivent Ãªtre des entiers positifs.</para> 
 	</listitem>
       </varlistentry>
       <varlistentry>
 	<term>X</term>
 	<listitem>
-	  <para>est  une matrice <literal>m</literal> par <literal>n</literal> à valeurs dans {0,1}.</para>
+	  <para>est  une matrice <literal>m</literal> par <literal>n</literal> Ã  valeurs dans {0,1}.</para>
 	</listitem>
       </varlistentry>
     </variablelist>
      <para><literal>[earn,ind] = knapsack(profit,weight,capa)</literal>
-    résoud le problème ci-dessus.  Il retourne dans</para>
+    rÃ©soud le problÃ¨me ci-dessus.  Il retourne dans</para>
    <variablelist>
       <varlistentry>
         <term>earn</term>
 	<listitem>
-	  <para>La valeur du critère <literal>E</literal> pour la
-	  solution "optimale" si elle a pu être calculée. Sinon,
-	  <literal>earn</literal> est affecté à une valeur
-	  négative:</para>
+	  <para>La valeur du critÃ¨re <literal>E</literal> pour la
+	  solution "optimale" si elle a pu Ãªtre calculÃ©e. Sinon,
+	  <literal>earn</literal> est affectÃ© Ã  une valeur
+	  nÃ©gative:</para>
 	  <variablelist>
 	    <varlistentry>
 	      <term>-3</term>
 	      <listitem>
-		<para>signifie qu'un sac à dos ne peut contenir aucun objet.</para>
+		<para>signifie qu'un sac Ã  dos ne peut contenir aucun objet.</para>
 	      </listitem>
 	    </varlistentry>
 	    <varlistentry>
 	      <term>-4</term>
 	      <listitem>
-		<para>signifie qu'un objet ne peut entrer dans aucun sac à dos. </para>
+		<para>signifie qu'un objet ne peut entrer dans aucun sac Ã  dos. </para>
 	      </listitem>
 	    </varlistentry>
 	    <varlistentry>
 	      <term>-5</term>
 	      <listitem>
-		<para>signifie qu'un sac à dos contient tous les objets.</para>
+		<para>signifie qu'un sac Ã  dos contient tous les objets.</para>
 	      </listitem>
 	    </varlistentry>
 	  </variablelist>
@@ -159,11 +159,11 @@
 	<term>ind</term>
 	<listitem>
 	  <para>Le vecteur entiers des localisations optimales:
-	  <literal>ind(i)</literal> donne le numéro du sac à dos
-	  où a été positionné l'objet
+	  <literal>ind(i)</literal> donne le numÃ©ro du sac Ã  dos
+	  oÃ¹ a Ã©tÃ© positionnÃ© l'objet
 	  <literal>i</literal>, si l'objet fait partie de la solution,
-	  sinon <literal>ind(i)</literal> est égal à 0. La
-	  matrice <literal>X</literal> peut être calculée à
+	  sinon <literal>ind(i)</literal> est Ã©gal Ã  0. La
+	  matrice <literal>X</literal> peut Ãªtre calculÃ©e Ã 
 	  partir de <literal>ind</literal> par
 	  </para>
 	  <programlisting><![CDATA[
@@ -180,9 +180,9 @@
      <term>bck</term>
      <listitem>
        <para>est un entier optionnel qui donne le
-       nombre maximum de "backtrackings" qui peuvent être
-       éffectués si l'on recherche une solution heuristique. Si la solution exacte et requise alors 
-       <literal>bck</literal> doit être omis ou assigné à une valeur négative.</para>
+       nombre maximum de "backtrackings" qui peuvent Ãªtre
+       Ã©ffectuÃ©s si l'on recherche une solution heuristique. Si la solution exacte et requise alors 
+       <literal>bck</literal> doit Ãªtre omis ou assignÃ© Ã  une valeur nÃ©gative.</para>
      </listitem>
    </varlistentry>
   </variablelist>

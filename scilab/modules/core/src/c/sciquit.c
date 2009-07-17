@@ -36,7 +36,6 @@ int ExitScilab(void)
   
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-		TerminateGUI();
 		TerminateTclTk();
 		TerminateGraphics();
 		TerminateGUI();
@@ -54,32 +53,38 @@ int ExitScilab(void)
 /*--------------------------------------------------------------------------*/ 
 void C2F(sciquit)(void)
 {
-	#ifdef _MSC_VER
-	    /* bug 3672 */
-		/* Create a Mutex (closing scilab)
-		  used by files association 
-	    */
-		createMutexClosingScilab();
-	#endif
+	int defaultExitCode = 0;
+	ExitWithCodeFromScilab(defaultExitCode);
+}
+/*--------------------------------------------------------------------------*/
+void ExitWithCodeFromScilab(int _errorCode)
+{
+#ifdef _MSC_VER
+	/* bug 3672 */
+	/* Create a Mutex (closing scilab)
+	used by files association 
+	*/
+	createMutexClosingScilab();
+#endif
 
 	ExitScilab();
 
-	#ifdef sun 
-		#ifndef SYSV
-  			char **out;
-			ieee_flags("clearall","exception","all", &out);
-		#endif 
-	#endif 
+#ifdef sun 
+#ifndef SYSV
+	char **out;
+	ieee_flags("clearall","exception","all", &out);
+#endif 
+#endif 
 
-	#ifdef _MSC_VER
-		/* close mutex (closing scilab)
-		   used by files association 
-        */
-		terminateMutexClosingScilab();
-		/* kill process and return 0 */
-		killScilabProcess(0);
-	#else
-		exit(0);
-	#endif
+#ifdef _MSC_VER
+	/* close mutex (closing scilab)
+	used by files association 
+	*/
+	terminateMutexClosingScilab();
+	/* kill process and return 0 */
+	killScilabProcess(_errorCode);
+#else
+	exit(_errorCode);
+#endif
 }
 /*--------------------------------------------------------------------------*/

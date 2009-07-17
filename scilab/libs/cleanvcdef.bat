@@ -14,8 +14,6 @@
 @del /Q double_f.vcdef
 @del /Q elementary_functions.vcdef
 @del /Q elementary_functions_f.vcdef
-@del /Q polynomials.vcdef
-@del /Q polynomials_f.vcdef
 @del /Q sparse.vcdef
 @del /Q special_functions.vcdef
 @del /Q special_functions_f.vcdef

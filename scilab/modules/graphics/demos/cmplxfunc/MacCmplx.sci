@@ -112,7 +112,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 		param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
 		yellow_line = get('hdl');
 		yellow_line.thickness = 3;
-		captions(yellow_line, "the real "+StrFunc+" function", "out_lower_left");
+		captions(yellow_line, "the real "+StrFunc+" function", "lower_caption");
 	end
 	
 	// Title

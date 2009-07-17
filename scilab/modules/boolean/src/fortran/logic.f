@@ -17,14 +17,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       INCLUDE 'stack.h'
 c     
-      integer dot,colon
+      integer quote,dot,colon
       integer less,great,equal,et,ou,non
       integer insert,extrac
 c     
       integer iadr,sadr,op,top0
       logical isany
 c     
-      data dot/51/,colon/44/
+      data quote/53/,dot/51/,colon/44/
       data less/59/,great/60/,equal/50/
       data ou/57/,et/58/,non/61/
       data insert/2/,extrac/3/
@@ -129,6 +129,7 @@ c
 c     
 c          :  +   -  * /  \
       goto(15,15,15,15,15,15,130,06,06,40,130,130) op+1-colon
+      if(op.eq.quote+dot) goto 40
       if(op.eq.ou.or.op.eq.et) goto 20
       if(op.eq.non) goto 30
 c     

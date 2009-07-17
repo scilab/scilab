@@ -20,6 +20,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 struct VariableStruct
 {
@@ -354,19 +355,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 
 	 C2F(putlhsvar)();
 
-	 if (Tab)
-	 {
-		 for (i=0;i<lenStructArray;i++)
-		 {
-			 if (Tab[i])
-			 {
-				 FREE(Tab[i]);
-				 Tab[i]=NULL;
-			 }
-		 }
-		 FREE(Tab);
-		 Tab=NULL;
-	 }
+	 freeArrayOfString(Tab, lenStructArray);
 	 if (Size) {FREE(Size);Size=NULL;}
 	 return 0;
  }
@@ -396,19 +385,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n,LocalTab);
 	 LhsVar(1)=Rhs+1;
 
-	 if (LocalTab)
-	 {
-		 for (i=0;i<lenStructArray;i++)
-		 {
-			 if (LocalTab[i])
-			 {
-				 FREE(LocalTab[i]);
-				 LocalTab[i]=NULL;
-			 }
-		 }
-		 FREE(LocalTab);
-		 LocalTab=NULL;
-	 }
+	 freeArrayOfString(LocalTab, lenStructArray);
 	 C2F(putlhsvar)();
 	 return 0;
  }

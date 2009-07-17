@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>dlgamma</refname>
 
-    <refpurpose>dérivée de la fonction gammaln ou fonction psi.</refpurpose>
+    <refpurpose>dÃ©rivÃ©e de la fonction gammaln ou fonction psi.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y = dlgamma(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur réel.</para>
+          <para>vecteur rÃ©el.</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>y</term>
 
         <listitem>
-          <para>vecteur réel de même taille.</para>
+          <para>vecteur rÃ©el de mÃªme taille.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,18 +58,18 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>dlgamma(x)</literal> calcule la dérivée de la fonction
+    <para><literal>dlgamma(x)</literal> calcule la dÃ©rivÃ©e de la fonction
     gammaln pour chaque composante de <literal>x</literal>.</para>
 
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/dlgamma_equation1.mml" />
+          <imagedata align="center" fileref="../mml/dlgamma_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
 
-    <para><literal>x</literal> doit être réel. Cette fonction est aussi connue
+    <para><literal>x</literal> doit Ãªtre rÃ©el. Cette fonction est aussi connue
     sous le nom de fonction psi</para>
   </refsection>
 

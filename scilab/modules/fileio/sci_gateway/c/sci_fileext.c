@@ -18,7 +18,6 @@
 #include "FindFileExtension.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int sci_fileext(char *fname,unsigned long fname_len)
 {
@@ -46,8 +45,7 @@ int sci_fileext(char *fname,unsigned long fname_len)
 				if (Input_filenames[i])
 				{
 					/* Bug 3089 */
-					char szTempUTF[bsiz];
-					Output_extensions[i] = FindFileExtension(UTFToLocale(Input_filenames[i], szTempUTF));
+					Output_extensions[i] = FindFileExtension(Input_filenames[i]);
 				}
 				else
 				{
@@ -57,10 +55,12 @@ int sci_fileext(char *fname,unsigned long fname_len)
 			CreateVarFromPtr( Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, Output_extensions );
 			LhsVar(1)=Rhs+1;
 			C2F(putlhsvar)();
+			freeArrayOfString(Input_filenames, m1*n1);
 			freeArrayOfString(Output_extensions,m1*n1);
 		}
 		else
 		{
+			freeArrayOfString(Input_filenames, m1*n1);
 			Scierror(999,_("%s: No more memory.\n"),fname);
 		}
 	}

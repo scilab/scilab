@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xs2emf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xs2emf</refname>
+
+    <refpurpose>envia gráficos para um arquivo em sintaxe EMF (apenas para
+    Windows)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xs2emf(win_num,filen [,orientation])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>escalar inteiro </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>filen</term>
+
+        <listitem>
+          <para>string, o nome do arquivo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orientation</term>
+
+        <listitem>
+          <para>caractere opcional com valores possíveis 'p' (retrato) ou 'l'
+          (paisagem). O valor padrão é 'p'.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xs2emf</literal> envia os gráficos gravados em uma janela
+    <literal>win_num</literal> para o arquivo <literal>filen</literal> no
+    formato EMF.</para>
+
+    <para>Para o formato EMF, criamos um arquivo EPS que será convertido para
+    o formato EMFpor pstoedit.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+if MSDOS then
+  scf(0);
+  plot2d();
+  //Exportando para EMF
+  xs2emf(0,'foo.emf');
+end
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xs2bmp">xs2bmp</link></member>
+
+      <member><link linkend="xs2gif">xs2gif</link></member>
+
+      <member><link linkend="xs2jpg">xs2jpg</link></member>
+
+      <member><link linkend="xs2png">xs2png</link></member>
+
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
+      <member><link linkend="xs2eps">xs2eps</link></member>
+
+      <member><link linkend="xs2pdf">xs2pdf</link></member>
+
+      <member><link linkend="xs2svg">xs2svg</link></member>
+
+      <member><link linkend="xs2ps">xs2ps</link></member>
+
+      <member><link linkend="xs2fig">xs2fig</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>A.C</para>
+  </refsection>
+</refentry>

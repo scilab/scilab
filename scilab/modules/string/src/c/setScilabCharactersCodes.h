@@ -15,7 +15,6 @@
 #ifndef __SETSCILABCHARACTERSCODES_H__
 #define __SETSCILABCHARACTERSCODES_H__
 
-#include "BOOL.h" /* BOOL */
 
 /** ASCII printable characters
 *  http://en.wikipedia.org/wiki/ASCII

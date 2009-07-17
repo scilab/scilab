@@ -1,4 +1,14 @@
-// example of use of the genetic algorithm
+/////////////////////////////////////////////
+// example of use of the genetic algorithm //
+/////////////////////////////////////////////
+
+my_handle = scf(100001);
+clf(my_handle,'reset');
+demo_viewCode('GAdemo.sce');
+
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
 
 // Definition of the Rastrigin test problem
 
@@ -64,16 +74,6 @@ for i=1:size(X,1)
   end
 end
 
-scf();
-drawlater;
-xset('fpf',' ');
-contour(x,y,Z', 10);
-_axes = get("current_axes");
-_axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
-xtitle('Genetic Algorithm - real variable','x1','x2');
-
-drawnow;
-
 ///////////////////////
 // Genetic Algorithm //
 ///////////////////////
@@ -81,7 +81,14 @@ drawnow;
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 if (size(pop_opt(1)',2)==2) then
+subplot(2,1,1);
   drawlater;
+  xset('fpf',' ');
+  contour(x,y,Z', 10);
+  _axes = gca();
+  _axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
+  xtitle('Genetic Algorithm - real variable','x1','x2');
+
   printf('plotting init population ...\n');
   for i=1:length(pop_init)
     plot(pop_init(i)(1),pop_init(i)(2),'r.');
@@ -116,11 +123,11 @@ ga_params = add_param(ga_params,'multi_cross_nb',3);
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 if (size(pop_opt(1)',2)==2) then
-  scf();
+  subplot(2,1,2);
   drawlater;
   xset('fpf',' ');
   contour(x,y,Z', 10);
-  _axes = get("current_axes");
+  _axes = gca();
   _axes.data_bounds = [Min(1) Max(1) Min(2) Max(2)];
   xtitle('Genetic Algorithm - binary variables','x1','x2');
   
@@ -139,3 +146,6 @@ printf('Genetic Algorithm - binary: %d points from pop_opt\n', nb_disp);
 for i=1:nb_disp 
   printf('Individual %d: x(1) = %f x(2) = %f -> f = %f\n', i, pop_opt(i)(1), pop_opt(i)(2), fobj_pop_opt(i));
 end
+
+funcprot(old_funcprot);
+

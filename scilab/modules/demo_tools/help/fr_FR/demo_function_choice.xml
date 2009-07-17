@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,21 +16,21 @@
   </info>
   <refnamediv>
     <refname>demo_function_choice</refname>
-    <refpurpose> choisit et exécute un item au sein d'une liste </refpurpose>
+    <refpurpose> choisit et exÃ©cute un item au sein d'une liste </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>demo_function_choice()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_function_choice choisit et exécute un item choisi dans la 
+		La fonction demo_function_choice choisit et exÃ©cute un item choisi dans la 
 		variable 'demolist' qui doit figurer avant. La variable 'demolist' est une matrice de texte dont la 
-		premiere colonne contient des noms d'items affichés dans une fenêtre d'options 
-		et la deuxième, le nom d'une fonction correspondante qui sera exécuté. Le titre 
-		de la fenêtre d'options est 'Choose a demo'.
-		Quand on choisit d'abandonner la fenêtre d'options, la console est remise à sa largeur 
+		premiere colonne contient des noms d'items affichÃ©s dans une fenÃªtre d'options 
+		et la deuxiÃ¨me, le nom d'une fonction correspondante qui sera exÃ©cutÃ©. Le titre 
+		de la fenÃªtre d'options est 'Choose a demo'.
+		Quand on choisit d'abandonner la fenÃªtre d'options, la console est remise Ã  sa largeur 
 		initiale.
 		</para>
   </refsection>

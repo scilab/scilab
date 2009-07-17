@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2008-08-21 15:28+0000\n"
+"PO-Revision-Date: 2009-04-12 06:56+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Signal Processing"
-msgstr ""
+msgstr "信号处理"
 
 #, c-format
 msgid ""
@@ -78,7 +78,7 @@ msgstr "%s：输入参数#%d的值错误：Not sampled high enough。\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
-msgstr ""
+msgstr "%s：参数#%d和参数#%d必须为同样大小。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -153,4 +153,4 @@ msgstr "%s：输入参数#%d的值错误：元素必须以升序排列。\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"
-msgstr ""
+msgstr "%s：在频率范围的结束处有非常突然的变化。\n"

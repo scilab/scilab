@@ -10,7 +10,6 @@
  *
  */
 
-#include "invert_matrix.h"
 #include "MALLOC.h"
 #include "core_math.h" // Max
 #include "machine.h" // C2F
@@ -18,7 +17,10 @@
 #include <stdio.h> // debug
 #include <math.h> //sqrt
 
-extern double C2F(dlamch)(char* , unsigned long int);
+#include "invert_matrix.h"
+
+
+extern double C2F(dlamch)(char const* , unsigned long int);
 extern double C2F(dlange)(char const * norm, int const * piRows, int const * piCols
 			  , double const *pData, int const * piLDData, double* pdblWork);
 extern double C2F(zlange)(char const * norm, int const * piRows, int const * piCols
@@ -33,32 +35,35 @@ extern void C2F(zgecon)(char const * norm, int const* piCols, double const * pDa
 extern void C2F(dgecon)(char const * norm, int const* piCols, double const * pData
 			, int const * piLDDA, double const* pdblAnorm
 			, double* pdblRcond, double* pdblWork, int* piRWork, int* piInfo);
+
+extern void C2F(zgetri)( int const* n, doublecomplex* a, int const* ldA, int const* iPiv, doublecomplex* work, int const* workSize, int* info);
+extern void C2F(dgetri)( int const* n, double* a, int const* ldA, int const* iPiv, double* work, int const* workSize, int* info);
+
+
+int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
+		  , double * pdblRcond, int* piPivot, void* pWork
+		  , int iWorkSize, double* pdblWork);
+
+
 /*
   TODO replace ugly constant 17 with properly #define d (enum ed ? ) constant
   for malloc error.
 */
 int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
-		   , double* pdblRcond);
-
-int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
-		  , double * pdblRcond, int* piPivot, void* pWork
-		  , unsigned long lWorkSize, double* pdblWork);
-
-int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 		   , double* pdblRcond){
   int ret=0;
   int* piPivot=(int*)MALLOC(iCols*sizeof(int));
   if(piPivot){
-    unsigned long lWorkSize= Max(1, 4*iCols);
+    int iWorkSize= Max(1, 4*iCols);
     void* pWork= complexArg
-      ? MALLOC(lWorkSize*sizeof(doublecomplex))
+      ? MALLOC(iWorkSize*sizeof(doublecomplex))
       : MALLOC(iCols*sizeof(int));
     if(pWork){
-      double* pdblWork=(double*)MALLOC(lWorkSize*sizeof(double) *(complexArg  ? 2: 1));
+      double* pdblWork=(double*)MALLOC(iWorkSize*sizeof(double) *(complexArg  ? 2: 1));
 
       if(pdblWork){
 	ret = iInvertMatrix(iRows, iCols, pData, complexArg, pdblRcond, piPivot
-			    , pWork, lWorkSize, pdblWork);
+			    , pWork, iWorkSize, pdblWork);
 	FREE(pdblWork);
       }else{
 	ret = 17;// TODO: this is not a stack allocation pb anymore because we (tried to) use the heap
@@ -76,7 +81,7 @@ int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 
 int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
 		  , double * pdblRcond, int* piPivot, void* pWork
-		  , unsigned long lWorkSize, double* pdblWork){
+		  , int iWorkSize, double* pdblWork){
   int iInfo;
   int ret = 0; // >0 erreur <0 warning
   /* ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
@@ -114,12 +119,12 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
     if(*pdblRcond <= sqrt(C2F(dlamch)("e",1L))){ ret = -1; }
     if(complexArg)
       {
-	C2F(zgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &lWorkSize
+	C2F(zgetri)( &iCols, (doublecomplex*)pData, &iCols, piPivot, (doublecomplex*)pdblWork, &iWorkSize
 		     , &iInfo);
       }
     else
       {
-	C2F(dgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &lWorkSize
+	C2F(dgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &iWorkSize
 		     , &iInfo);
       }
     /* surprisingly enough, the original Fortran code does not check returned iInfo ...*/

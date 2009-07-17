@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -19,12 +19,12 @@
     <refpurpose> termine la session graphique courante  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xend()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>xend</literal> est utilisée pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a été ouvert par <literal>xinit</literal>. 
+    <para><literal>xend</literal> est utilisÃ©e pour terminer une session graphique. Avec les pilotes PostScript, XFig ou Gif,  <literal>xend</literal> ferme le fichier qui a Ã©tÃ© ouvert par <literal>xinit</literal>. 
   </para>
   </refsection>
   <refsection>

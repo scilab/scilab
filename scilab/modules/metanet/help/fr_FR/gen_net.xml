@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,34 +16,34 @@
   </info>
   <refnamediv>
     <refname>gen_net</refname>
-    <refpurpose> génération aléatoire ou interactive d'un réseau  </refpurpose>
+    <refpurpose> gÃ©nÃ©ration alÃ©atoire ou interactive d'un rÃ©seau  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g = gen_net(name,oriented,v)
 g = gen_net()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>name  </term>
         <listitem>
-          <para>chaîne de caractères, le nom du graphe
+          <para>chaÃ®ne de caractÃ¨res, le nom du graphe
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>oriented  </term>
         <listitem>
-          <para> entier, 0 (graphe non-orienté) ou 1 (graphe orienté)
+          <para> entier, 0 (graphe non-orientÃ©) ou 1 (graphe orientÃ©)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur ligne avec 12 valeurs pour définir le réseau
+          <para>vecteur ligne avec 12 valeurs pour dÃ©finir le rÃ©seau
 </para>
         </listitem>
       </varlistentry>
@@ -58,20 +58,20 @@ g = gen_net()</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>gen_net</literal> génère un réseau <literal>g</literal>.
-    Les arguments sont le nom du graphe, un flag égal à 0
-    (graphe non-orienté) ou 1 (graphe orienté) et un vecteur décrivant
-    le réseau (voir ci-dessous).
+    <para><literal>gen_net</literal> gÃ©nÃ¨re un rÃ©seau <literal>g</literal>.
+    Les arguments sont le nom du graphe, un flag Ã©gal Ã  0
+    (graphe non-orientÃ©) ou 1 (graphe orientÃ©) et un vecteur dÃ©crivant
+    le rÃ©seau (voir ci-dessous).
   </para>
     <para>
-    Si aucun argument n'est donné, une boîte de dialogue pour la définition
+    Si aucun argument n'est donnÃ©, une boÃ®te de dialogue pour la dÃ©finition
     de tous les arguments est ouverte.
   </para>
-    <para><literal>v</literal> doit être un vecteur ligne avec 12 valeurs.
+    <para><literal>v</literal> doit Ãªtre un vecteur ligne avec 12 valeurs.
     La signification de ces valeurs est :
   </para>
     <para>
-    Graine pour random : utilisé pour l'initialisation du générateur aléatoire
+    Graine pour random : utilisÃ© pour l'initialisation du gÃ©nÃ©rateur alÃ©atoire
   </para>
     <para>
     Nombre de sommets
@@ -83,38 +83,38 @@ g = gen_net()</synopsis>
     Nombre de puits
   </para>
     <para>
-    Coût Minimum
+    CoÃ»t Minimum
   </para>
     <para>
-    Coût Maximum
+    CoÃ»t Maximum
   </para>
     <para>
-    Ressources d'entrée
+    Ressources d'entrÃ©e
   </para>
     <para>
     Ressources de sortie
   </para>
     <para>
-    Capacité Minimum
+    CapacitÃ© Minimum
   </para>
     <para>
-    Capacité Maximum
+    CapacitÃ© Maximum
   </para>
     <para>
-    Pourcentage d'arêtes avec coûts : entre 0 et 100
-    Pourcentage d'arêtes avec capacités : entre 0 et 100
+    Pourcentage d'arÃªtes avec coÃ»ts : entre 0 et 100
+    Pourcentage d'arÃªtes avec capacitÃ©s : entre 0 et 100
   </para>
     <para>
-    Le coût des arêtes sans coût est fixé au coût minimum.
-    La capacité maximum des arêtes sans capacité est fixée aux ressources 
-    d'entrée.
+    Le coÃ»t des arÃªtes sans coÃ»t est fixÃ© au coÃ»t minimum.
+    La capacitÃ© maximum des arÃªtes sans capacitÃ© est fixÃ©e aux ressources 
+    d'entrÃ©e.
   </para>
     <para>
-    Le résultat est un réseau <literal>g</literal> construit sur un graphe planaire connecté, 
-    en utilisant une méthode de triangulation. De plus, les calculs sont faits 
-    de manière à obtenir un réseau cohérent. Les valeurs des coûts et des 
-    capacités maximum sont affectées aux arêtes. Les capacités minimum sont 
-    réduites à 0.
+    Le rÃ©sultat est un rÃ©seau <literal>g</literal> construit sur un graphe planaire connectÃ©, 
+    en utilisant une mÃ©thode de triangulation. De plus, les calculs sont faits 
+    de maniÃ¨re Ã  obtenir un rÃ©seau cohÃ©rent. Les valeurs des coÃ»ts et des 
+    capacitÃ©s maximum sont affectÃ©es aux arÃªtes. Les capacitÃ©s minimum sont 
+    rÃ©duites Ã  0.
   </para>
   </refsection>
   <refsection>
@@ -123,7 +123,7 @@ g = gen_net()</synopsis>
 v=[1,10,2,1,0,10,100,100,0,100,50,50];
 g=gen_net('foo',1,v);
 show_graph(g)
-// génération interactive
+// gÃ©nÃ©ration interactive
 g=gen_net();
 show_graph(g)
  ]]></programlisting>

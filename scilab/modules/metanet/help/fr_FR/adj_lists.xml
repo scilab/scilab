@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,12 +19,12 @@
     <refpurpose> calcule des listes d'adjacence  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[lp,la,ls] = adj_lists(g)
 [lp,la,ls] = adj_lists(oriented,n,tail,head)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -36,7 +36,7 @@
       <varlistentry>
         <term>oriented  </term>
         <listitem>
-          <para>entier, 0 (graphe non-orienté) ou 1 (graphe orienté)
+          <para>entier, 0 (graphe non-orientÃ©) ou 1 (graphe orientÃ©)
 </para>
         </listitem>
       </varlistentry>
@@ -50,35 +50,35 @@
       <varlistentry>
         <term>tail  </term>
         <listitem>
-          <para>le vecteur ligne des numéros des sommets origines du graphe (sa taille est égale au nombre d'arêtes du graphe)
+          <para>le vecteur ligne des numÃ©ros des sommets origines du graphe (sa taille est Ã©gale au nombre d'arÃªtes du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>head  </term>
         <listitem>
-          <para>le vecteur ligne des numéros des sommets extrémités du graphe (sa taille est égale au nombre d'arêtes du graphe)
+          <para>le vecteur ligne des numÃ©ros des sommets extrÃ©mitÃ©s du graphe (sa taille est Ã©gale au nombre d'arÃªtes du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>lp  </term>
         <listitem>
-          <para>vecteur ligne, tableau de pointeurs de la description du graphe sous forme de liste d'adjacence (sa taille est égale au nombre de sommets du graphe + 1) 
+          <para>vecteur ligne, tableau de pointeurs de la description du graphe sous forme de liste d'adjacence (sa taille est Ã©gale au nombre de sommets du graphe + 1) 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>la  </term>
         <listitem>
-          <para>vecteur ligne, tableau d'arcs de la description du graphe sous forme de liste d'adjacence (sa taille est égale au nombre d'arêtes du graphe) 
+          <para>vecteur ligne, tableau d'arcs de la description du graphe sous forme de liste d'adjacence (sa taille est Ã©gale au nombre d'arÃªtes du graphe) 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ls  </term>
         <listitem>
-          <para>vecteur ligne, tableau de sommets de la description du graphe sous forme de liste d'adjacence (sa taille est égale au nombre d'arêtes du graphe)
+          <para>vecteur ligne, tableau de sommets de la description du graphe sous forme de liste d'adjacence (sa taille est Ã©gale au nombre d'arÃªtes du graphe)
 </para>
         </listitem>
       </varlistentry>
@@ -88,7 +88,7 @@
     <title>Description</title>
     <para><literal>adj_lists</literal> calcule le vecteur ligne de la description du graphe <literal>g</literal> sous forme de liste d'adjacence.
     Il est aussi possible de donner <literal>adj_lists</literal>, la description du
-    graphe donnée par le nombre de sommets <literal>n</literal> ainsi que les vecteurs lignes <literal>tail</literal> et <literal>head</literal>.
+    graphe donnÃ©e par le nombre de sommets <literal>n</literal> ainsi que les vecteurs lignes <literal>tail</literal> et <literal>head</literal>.
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
@@ -19,18 +19,12 @@
     <refpurpose>to customize the objects appearance
   (curves, surfaces...) in a plot or surf command.</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Calling Sequence</title>
-    <synopsis>None. The GlobalProperty is an optional argument that can be used inside a plot or surf command. It allows a global customization of all the new plotted lines (respectivly surfaces). It has to be given as a couple {PropertyName, PropertyValue}. Several couples can be set at the same time in a plot or surf call.
-
-
-PropertyName must be a string defining the property to set.The PropertyValue can be a real, integer or string (scalar or matrix) depending on the type of property used. For example, to specify a red (color) longdash-dot (line style) with diamond marker (marker), the sequence should be : 'Colo','red','LineSt','-.','Marker','diam'.
-
-
-As you can see, a full complete spelling of each property name and value is not required but those arguments, specified in any order, must remain unambiguous. Furthermore, the string specification is not case sensitive. GlobalProperty is predominant on all LineSpec previously stated.</synopsis>
-  </refsynopsisdiv>
   <refsection>
     <title>Description</title>
+    <para>The GlobalProperty is an optional argument that can be used inside a <link linkend="plot">plot</link> or <link linkend="surf">surf</link> command. It allows a global customization of all the new plotted lines (respectivly surfaces). It has to be given as a couple {PropertyName, PropertyValue}. Several couples can be set at the same time in a plot or surf call.</para>
+    <para>PropertyName must be a string defining the property to set.The PropertyValue can be a real, integer or string (scalar or matrix) depending on the type of property used. For example, to specify a red (color) longdash-dot (line style) with diamond marker (marker), the sequence should be : 'Colo','red','LineSt','-.','Marker','diam'.</para>
+    <para>As you can see, a full complete spelling of each property name and value is not required but those arguments, specified in any order, must remain unambiguous. Furthermore, the string specification is not case sensitive. GlobalProperty is predominant on all LineSpec previously stated.</para>
+
     <para>Here is a complete list of the <literal>PropertyName</literal> you can
     specify (using <link linkend="plot">plot</link> or <link linkend="surf">surf</link>) and their available
     associated <literal>PropertyValue</literal>. If not specified, those properties

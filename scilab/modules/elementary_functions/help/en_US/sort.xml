@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>order sorting</refpurpose>
+    <refpurpose>stable sorting by "quick sort" algorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -34,8 +34,7 @@
     <synopsis>
       [s, [k]]=sort(v)
       [s, [k]]=sort(v,'r')
-      [s, [k]]=sort(v,'c')
-</synopsis>
+      [s, [k]]=sort(v,'c')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -73,8 +72,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>the <literal>sort</literal> function is now obsolete. It can be
-    replaced by the function <link linkend="gsort">gsort</link>.</para>
+    <para>the <literal>sort</literal> implements a "bubble sort algorithm".
+    </para>
 
     <para><literal>s=sort(v)</literal> sorts <literal>v</literal> in
     decreasing order. If <literal>v</literal> is a matrix, sorting is done
@@ -107,16 +106,15 @@
     sparse vector. Column/row sorting is not implemented for sparse
     matrix.</para>
 
-    <para>Limitation : if <literal>v</literal> includes %nan elements, matrix
-    will not sort. please uses <link linkend="gsort">gsort</link> in this
-    case.</para>
+    <para><emphasis role="bold">Remark</emphasis> : <literal>sort </literal>is
+    now obsolete it may be replaced by<emphasis role="bold"> <link
+    linkend="gsort">gsort</link> .</emphasis></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 [s,p]=sort(rand(1,10));
 //p  is a random permutation of 1:10
 A=[1,2,5;3,4,2];
@@ -126,8 +124,7 @@ sort(v)
 sort(v')
 sort(v,'r')  //Does nothing for row vectors
 sort(v,'c')
- 
-  </programlisting>
+    </programlisting>
   </refsection>
 
   <refsection>

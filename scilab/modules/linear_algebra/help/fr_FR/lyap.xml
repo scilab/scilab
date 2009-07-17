@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> Equation de Lyapunov  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[X]=lyap(A,C,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A, C  </term>
         <listitem>
-          <para>matrices réelles, <literal>C</literal> doit être symétrique
+          <para>matrices rÃ©elles, <literal>C</literal> doit Ãªtre symÃ©trique
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères, 'c' ou 'd'
+          <para>chaÃ®ne de caractÃ¨res, 'c' ou 'd'
 	  </para>
         </listitem>
       </varlistentry>
@@ -43,7 +43,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>X = lyap(A,C,flag)</literal> résout l'équation matricielle de
+    <para><literal>X = lyap(A,C,flag)</literal> rÃ©sout l'Ã©quation matricielle de
       Lyapunov en temps continu ou discret
     </para>
     <programlisting><![CDATA[

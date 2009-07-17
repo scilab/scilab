@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="stacksize">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -9,26 +9,26 @@
   Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>stacksize(n)
 sz=stacksize()
 stacksize('min')
 stacksize('max')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
         <listitem>
-          <para>entier, la taille de pile désirée, en nombre de mots
-          double-précision words</para>
+          <para>entier, la taille de pile dÃ©sirÃ©e, en nombre de mots
+          double-prÃ©cision words</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sz</term>
         <listitem>
-          <para>vecteur à  deux composantes [taille_totale taille_utilisée]</para>
+          <para>vecteur Ã Â  deux composantes [taille_totale taille_utilisÃ©e]</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,15 +38,15 @@ stacksize('max')</synopsis>
     <para>Scilab stocke les variables usuelles dans une pile <literal>stk</literal>
     (pour les variables globales voir <literal>gstacksize</literal>).</para>
     <para><literal>stacksize(n)</literal> permet d'augmenter ou de diminuer la taille
-    de cette pile. La taille maximum dépend de la mémoire (physique ou
+    de cette pile. La taille maximum dÃ©pend de la mÃ©moire (physique ou
     virtuelle) restante.</para>
     <para><literal>stacksize('max')</literal> permet d'augmenter la taille au maximum de
     la pile scilab.</para>
     <para><literal>stacksize('min')</literal> permet de diminuer la taille au minimum de
     la pile scilab.</para>
-    <para><literal>sz=stacksize()</literal> renvoie un vecteur à  deux composantes
+    <para><literal>sz=stacksize()</literal> renvoie un vecteur Ã Â  deux composantes
     contenant la taille totale de la pile et la taille actuellement
-    utilisée.</para>
+    utilisÃ©e.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
