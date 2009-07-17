@@ -702,12 +702,20 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+				if test $HDF5_ENABLE = yes;  then
+				# HDF5 java lib
+				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
+				  JHDF5=$PACKAGE_JAR_FILE
+				  AC_SUBST(JHDF5)
+				fi
+
 				# Logging (flexdock dep)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
+
 		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -1724,6 +1732,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "HDF5 configuration:"
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+   echo "  HDF5 Java ........... = $JHDF5"
 else
    echo "Not using HDF5"
 fi
