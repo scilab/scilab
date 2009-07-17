@@ -46,7 +46,7 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
     mprintf('%s',' xml->Modelica : '+Flati); mprintf('\n\r');
   else 
     MSG3= mgetl(tmpdir+'ixml2modelica.err');
-    x_message(['------- XML to Modelica error message:-------';MSG3]);
+    messagebox([_('------- XML to Modelica error message:-------');MSG3],'info','modal');
     ok=%f
     TCL_EvalStr("Compile_finished nok "+ %_winId); 
     return	         
@@ -78,7 +78,9 @@ function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)
     end
   else
     MSG3= mgetl(tmpdir+'imodelicac.err');
-    x_message(['-------Modelica compiler error flat2C:-------';MSG3;'Please read the error message in the Scilab window']);
+    messagebox([_('-------Modelica compiler error flat2C:-------');
+	       MSG3;
+	       _('Please read the error message in the Scilab window')],'info','modal');
     ok=%f,
     TCL_EvalStr("Compile_finished nok "+ %_winId); 
     return	         

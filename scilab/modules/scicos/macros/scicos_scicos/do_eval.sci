@@ -27,7 +27,9 @@ needcompile1=max(2,needcompile)
 %mprt=funcprot()
 funcprot(0) 
 getvalue=setvalue;
-deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);global %scicos_prob;%scicos_prob=%t')
+deff('message(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
+		    'global %scicos_prob;'
+		    '%scicos_prob=resume(%t)'])
 
 global %scicos_prob
 %scicos_prob=%f
@@ -117,23 +119,15 @@ for %kk=1:%nx
 	    else
 	      for i=1:length(model.equations.parameters(2))
 		if or((model.equations.parameters(2)(i))<>(model_n.equations.parameters(2)(i))) then
-		  needcompile=0				
+		  needcompile=0	
 		  XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
-		  XML=pathconvert(XML,%f,%t);    
+		  if ~deletefile(XML) then
+		    messagebox(msprintf(_('Unable to delete the file: %s'),XML),'error','modal');
+		  end
 		  XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
-		  XMLTMP=pathconvert(XMLTMP,%f,%t);
-		  if MSDOS then 
-		    cmnd='del /F '+XML+' '+XMLTMP;
-		    if execstr('unix_s(cmnd)','errcatch')<>0 then
-		      x_message(['Unable to delete the XML file']);
-		    end
-		  else
-		    cmnd='rm -f '+XML+' '+XMLTMP
-		    if execstr('unix_s(cmnd)','errcatch')<>0 then
-		      x_message(['Unable to delete the XML file']);
-		    end
-		  end  
-		  
+		  if ~deletefile(XMLTMP) then
+		    messagebox(msprintf(_('Unable to delete the file: %s'),XMLTMP),'error','modal');
+		  end
 		  break;
 		end
 	      end

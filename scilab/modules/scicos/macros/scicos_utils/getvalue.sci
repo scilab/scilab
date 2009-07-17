@@ -247,17 +247,15 @@ while %t do
     execstr('%'+string(%kk)+'=%vv')
   end
   if %nok>0 then
-    x_message(['answer given for '+%labels(%nok);
-             'has invalid dimension: ';
-             'waiting for dimension  '+%ssz])
+    messagebox(msprintf(_('answer given for %s\n has invalid dimension: \n'+..
+             'waiting for dimension  %s'),%labels(%nok),%ssz),'error','modal');
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      x_message(['answer given for '+%labels(-%nok);
-	'has incorrect type :'+ %typ(-2*%nok-1)])
+      messagebox(msprintf(_('answer given for %s has incorrect type: %s'),%labels(-%nok),%typ(-2*%nok-1)),'error','modal');
     else
-      x_message(['answer given for '+%labels(-%nok);
-	'is incorrect:'+lasterror()])
+      messagebox([msprintf(_('answer given for %s is incorrect: %s'), %labels(-%nok))
+		  lasterror()],'error','modal');
     end
     %ini=%str
   else

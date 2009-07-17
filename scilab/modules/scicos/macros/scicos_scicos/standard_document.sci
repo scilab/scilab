@@ -308,7 +308,7 @@ function texte = standard_document(objet, k)
           if type(funname)==10 then
             ierr=execstr('docfun='+funname,'errcatch')
             if ierr<>0 then
-              x_message('function '+funname+' not found')
+              messagebox(msprintf(_('function %s not found'),funname),'error','modal')
               return
             end
           else
@@ -316,9 +316,10 @@ function texte = standard_document(objet, k)
           end
           ierr=execstr('doc=docfun(''get'',doc)','errcatch')
           if ierr==0&doc<>[] then
+	    D=_('Documentation');
             texte = [texte;
-                     'Documentation';
-                     '-------------';
+                     _('Documentation');
+                     part('-',ones(1,length(_('Documentation'))))
                      ' '
                      doc;
                      ' ']
@@ -330,24 +331,27 @@ function texte = standard_document(objet, k)
     case 'Link' then
       identification = objet.id
       if objet.ct(2) == 1 then
-        sous_type = 'Regular Link'
+        sous_type = _('Regular Link')
       else
-        sous_type = 'Event link'
+        sous_type = _('Event link')
       end
 
       //- Informations generales
-      texte = ['General informations';
-               '--------------------';
+      labels=[_('Object type') 
+	  _('Identification') 
+	  _('Object number in diagram')]
+      values=[sous_type;
+	      identification;
+	      string(k)];
+      texte = [_('General informations');
+	       part('-',ones(1,length(_('General informations'))))
                ' '
-               'Object type                : '+sous_type;
-               'Identification             : '+identification';
-               'Object number in diagram   : '+string(k);
-               ' ']
+               part(labels,1:max(lentgh(labels)+10)+':'+values]
 
       //- Compiled link memory zone
       from=objet.from
       if %cpr<>list() then
-        if sous_type == 'Regular Link' then
+        if sous_type == _('Regular Link') then
           scs_m_tmp=scs_m
 
           while %t
@@ -393,32 +397,30 @@ function texte = standard_document(objet, k)
               end
             end
 
-            txt = ['Compiled link memory zone  : outtb('+string(kl)+')']
-            txt = [txt;
-                   '                     Area  : ['+string(kmin)+':'+string(kmax)+']']
-            txt = [txt;
-                   '                     Type  : '+typeof(%cpr.state.outtb(kl))']
-            txt = [txt;
-                   '                     Size  : '+sci2exp(size(%cpr.state.outtb(kl)))';
+            txt = [_('Compiled link memory :')
+		   '               '+_('Zone')+'  : outtb('+string(kl)+')'
+                   '               '+_('Area')+'  : ['+string(kmin)+':'+string(kmax)+']'
+                   '               '+_('Type')+'  : '+typeof(%cpr.state.outtb(kl))'
+                   '               '+_('Size')+'  : '+sci2exp(size(%cpr.state.outtb(kl)))';
                    ' ']
           else
-            txt = ['Compiled link memory zone  : Not available';' ']
+            txt = [_('Compiled link memory zone  : Not available');' ']
           end
         end
       else
-        txt = ['Compiled link memory zone  : Not available';' ']
+        txt = [_('Compiled link memory zone  : Not available');' ']
       end
       texte=[texte;txt]
 
       //- Connexions
-      tableau = [' ', 'Block', 'Port' ;
+      tableau = [' ', _('Block'), _('Port') ;
                  '-', '-', '-';
-                 'From', string(objet.from(1:2));
-                 'to', string(objet.to(1:2))]
+                 _('From'), string(objet.from(1:2));
+                 _('to'), string(objet.to(1:2))]
 
       texte = [texte;
-               'Connections';
-               '-----------';
+	       _('Connections');
+	       part('-',ones(1,length(_('Connections'))))
                ' '
                tabule(tableau);
                ' ']

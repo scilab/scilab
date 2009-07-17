@@ -21,11 +21,11 @@
 
 function [txt,rpar,ipar] = create_modelica(blklst,corinvm,cmat,name,scs_m)
   
-  if exists('%Modelica_Init','global')==0 then 
+  if exists('%Modelica_Init')==0 then 
     // Modelica_Init becomes true only in "Modelicainitialize_.sci"
     %Modelica_Init=%f;
   end
-  if exists('%Modelica_ParEmb','global')==0 then 
+  if exists('%Modelica_ParEmb')==0 then 
     %Modelica_ParEmb=%t;
   end  
   
@@ -259,8 +259,8 @@ function     Pari=construct_Pars(Pari,opari,Parembed)
    [a1,b1]=size(C);
    npi=a1*b1;
    if typeof(C)== 'hypermat' then   
-     x_message('Hyper Matrix is not supported')
-     return ''
+     messagebox(_('Hyper Matrix is not supported'),'error','modal')
+     return 
    end
    
    if (type(C)==1) then
@@ -278,7 +278,7 @@ function     Pari=construct_Pars(Pari,opari,Parembed)
    else 
      par_type='UnKnown_Type'
      FIXED='???'
-     message("type not recognized");ok=%f;
+     messagebox(_("Type not recognized"),'error','modal');ok=%f;
    end  
 
    if ~Parembed then 
@@ -310,16 +310,15 @@ function eopari = construct_redeclar(opari)
    C=opari; 
    npi=size(C,'*');
 
-   if typeof(C)== 'hypermat' | ~isreal(C) then   
-     x_message('Hyper Matrix is not supported')
-     return ''
+   if typeof(C)== 'hypermat' then   
+     messagebox(_('Hyper Matrix is not supported'),'error','modal')
+     return 
    end
-
    if  ~isreal(C) then   
-     x_message('Only Real parameetr is supported')
-     return ''
+     messagebox(_('Complex Matrix is not supported'),'error','modal')
+     return 
    end
-   
+ 
    if (npi==1) then, 
      eopari=strsubst(string(C),'D','e');  
    else

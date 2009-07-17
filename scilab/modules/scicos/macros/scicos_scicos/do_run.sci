@@ -177,7 +177,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 
     tf=scs_m.props.tf;
     if tf*tolerances==[] then 
-      x_message(['Simulation parameters not set';'use setup button']);
+      messagebox(msprintf(_('Simulation parameters not set, \n use the setup menu')),'error','modal');
       return;
     end
 
@@ -191,16 +191,13 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
     if fileinfo(XML)<>[] then 
       if MSDOS then 
 	cmnd='copy /Y /A '+XML+' '+XMLTMP;
-	if execstr('unix_s(cmnd)','errcatch')<>0 then
-	  x_message(['Unable to copy XML files']);
-	end
       else
 	cmnd='cp -f '+XML+' '+XMLTMP;
-	if execstr('unix_s(cmnd)','errcatch')<>0 then
-	  x_message(['Unable to copy XML files']);
-	end
       end     
-      
+      if execstr('unix_s(cmnd)','errcatch')<>0 then
+	messagebox(_('Unable to copy XML files'),'error','modal');
+      end
+
       //x_message(['Scicos cannot find the XML data file required for the simulation';..
       //	 'please either compile the diagram, in this case Sccios uses'; 
       //	 'parameters defined in Scicos blocks and the Scicos context';
@@ -228,29 +225,25 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
         Scicos_commands=cmd;
 
       else //** simulator error
-        message(['Initialisation problem:';str_err])
+        messagebox([_('Initialisation problem:');str_err],'error','modal')
         scf(curwin);
       end
       ok=%f
-      //xset('window',curwin)
       return
     end
     scf(gh_win);
-    //xset('window',win);
   end
 
   //** scicos simulation
   //needreplay=%t
   tf=scs_m.props.tf;
   setmenu(curwin,'Stop')
-  //timer()
   needreplay=%t
- timer()
+
   //** run scicosim via 'start' flag
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	       '''run'',tolerances)','errcatch')
  
-  disp(timer())
   %cpr.state=state
   //** no error
   if ierr==0 then

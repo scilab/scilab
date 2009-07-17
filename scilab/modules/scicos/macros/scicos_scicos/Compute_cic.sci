@@ -43,8 +43,8 @@ function ok=Compute_cic(method,Nunknowns)
 
   if nxModelica~=nx2 then 
     TCL_EvalStr("Compute_finished nok "+ %_winId); 
-    x_message(['Your model contains states defined in standard Scicos blocks.';...
-	       'Current initialization interface does not support mixed models.']); 
+    messagebox(msprintf(_('Your model contains states defined in standard Scicos blocks.\n'+..
+	       'Current initialization interface does not support mixed models.')),'error','modal'); 
     return
   end
 //  TCL_GettVar("sciGUITable(win,"+%_winId+",data,TOTO)",RRR);
@@ -55,11 +55,13 @@ function ok=Compute_cic(method,Nunknowns)
     ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''start'',tolerances)','errcatch')
     if ierr<>0 then
       TCL_EvalStr("Compute_finished nok "+ %_winId); 
-      x_message(['Initialisation problem!(Scicosim-start) ']); return
+      messagebox(msprintf(_('Initialisation problem in %s '),'Scicosim-start'),'error','modal'); 
+      return
     end  
   catch 
       TCL_EvalStr("Compute_finished nok "+ %_winId); 
-      x_message('Initialisation problem (Scicosim-start) '); return
+      messagebox(msprintf(_('Initialisation problem in %s '),'Scicosim-start'),'error','modal'); 
+      return
   end
   //--------------------------------------------------------------
   Ida_ierr=0;
@@ -70,11 +72,11 @@ function ok=Compute_cic(method,Nunknowns)
      unsetmenu(curwin,'stop')
      if Ida_ierr<>0 then,
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
-       x_message('Initialisation problem (Sundials)'); 
+       messagebox(msprintf(_('Initialisation problem in %s '),'Sundials'),'error','modal'); 
      end
     catch
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
-       x_message('Initialisation problem (Sundials) '); 
+       messagebox(msprintf(_('Initialisation problem in %s '),'Sundials'),'error','modal'); 
     end  
   end
   //--------------------------------------------------------------
@@ -91,11 +93,11 @@ function ok=Compute_cic(method,Nunknowns)
     unsetmenu(curwin,'stop')
      if ierr<>0 then,
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
-       x_message('Initialisation problem (Kinsol) '); 
+       messagebox(msprintf(_('Initialisation problem in %s '),'Kinsol'),'error','modal'); 
      end
     catch
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
-       x_message('Initialisation problem (Kinsol) '); 
+       messagebox(msprintf(_('Initialisation problem in %s '),'Kinsol'),'error','modal'); 
     end  
   end
   //--------------------------------------------------------------
@@ -113,7 +115,7 @@ function ok=Compute_cic(method,Nunknowns)
       end	
     catch 
       TCL_EvalStr("Compute_finished nok "+ %_winId); 
-      x_message('Initialisation problem in the Fsolve method'); 
+      messagebox(msprintf(_('Initialisation problem in %s '),'Fsolve'), 'error','modal'); 
     end
   end
   //--------------------------------------------------------------
@@ -131,7 +133,7 @@ function ok=Compute_cic(method,Nunknowns)
      end
    catch
       TCL_EvalStr("Compute_finished nok "+ %_winId); 
-      x_message('Initialisation problem in the Optim method'); 
+      messagebox(msprintf(_('Initialisation problem in the %s method'),'Optim'), 'error','modal');
    end
  end
   //--------------------------------------------------------------
@@ -143,7 +145,7 @@ function ok=Compute_cic(method,Nunknowns)
      for i=1:nx2, state.x(i)=xmin(i);end  
    catch
       TCL_EvalStr("Compute_finished nok "+ %_winId); 
-      x_message('Initialisation problem in the Nelder_Mead method'); 
+      messagebox(msprintf(_('Initialisation problem in the %s method'),' Nelder_Mead'), 'error','modal');
    end
  end
  //--------------------------------------------------------------
@@ -152,11 +154,11 @@ function ok=Compute_cic(method,Nunknowns)
      ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''hompack77'',tolerances)','errcatch')
      if ierr<>0 then, 
        TCL_EvalStr("Compute_finished nok "+ %_winId); 
-       x_message('Initialisation problem in the hompack77 method'); 
+       messagebox(msprintf(_('Initialisation problem in the %s method'),'hompack77'), 'error','modal');
      end
    catch
- 	TCL_EvalStr("Compute_finished nok "+ %_winId); 
-	x_message('Initialisation problem in the hompack77 method'); 
+     TCL_EvalStr("Compute_finished nok "+ %_winId); 
+     messagebox(msprintf(_('Initialisation problem in the %s method'),'hompack77'), 'error','modal');
    end
   
  end
@@ -190,12 +192,14 @@ function ok=Compute_cic(method,Nunknowns)
    ierr=execstr('[state,t]=scicosim(state,%tcur,tf,icpr.sim,''finish'',tolerances)','errcatch')
    if ierr<>0 then,
       	TCL_EvalStr("Compute_finished nok "+ %_winId); 
-	x_message('Initialisation problem in the finish phase'); return
+	messagebox(_('Initialisation problem in the finish phase'), 'error','modal'); 
+	return
    end
   end     
  catch
   TCL_EvalStr("Compute_finished nok "+ %_winId); 
-  x_message('Initialisation problem in the finish phase'); return
+  messagebox(_('Initialisation problem in the finish phase'), 'error','modal'); 
+  return
  end
  //------------------------------
  TCL_SetVar("sciGUITable(win,"+%_winId+",data,IERROR)",Err);

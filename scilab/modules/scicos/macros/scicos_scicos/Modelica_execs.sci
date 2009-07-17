@@ -56,9 +56,19 @@ function [ok,modelicac,translator,xml2modelica]=Modelica_execs()
   if strindex(translator,' ')<>[] then translator='""'+translator+'""',end
   if strindex(xml2modelica,' ')<>[] then xml2modelica='""'+xml2modelica+'""',end
 
-  if (fileinfo(modelicac)==[])    then x_message(['Scilab cannot find the Modelica compiler:';modelicac]);ok=%f;return;end
-  if (fileinfo(translator)==[])   then x_message(['Scilab cannot find the Modelica translator:';translator]);ok=%f;return;end
-  if (fileinfo(xml2modelica)==[]) then x_message(['Scilab cannot find the XML to modelica convertor:';xml2modelica]);ok=%f;return;end
+  if (fileinfo(modelicac)==[])    then 
+    messagebox([_('Scilab cannot find the Modelica compiler:');modelicac],'error','modal');
+    ok=%f;return;
+  end
+  if (fileinfo(translator)==[])   then 
+    messagebox(['_(Scilab cannot find the Modelica translator:');translator],'error','modal');
+    ok=%f;return;
+  end
+  if (fileinfo(xml2modelica)==[]) then
+    messagebox([_('Scilab cannot find the XML to modelica convertor:'); 
+	       xml2modelica],'error','modal');
+    ok=%f;return;
+  end
 
   endfunction
  

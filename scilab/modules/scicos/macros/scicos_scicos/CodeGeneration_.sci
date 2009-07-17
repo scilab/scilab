@@ -946,8 +946,10 @@ function XX=gen_allblk()
   //@@ run 'set' job of the CBLOCK4
   prot=funcprot();funcprot(0)
   getvalue=setvalue;
-  deff('message(txt)','x_message(''In block ''+XX.gui+'': ''+txt);global %scicos_prob;%scicos_prob=%t')
-  deff('[ok,tt,cancel] =  CC4(funam,tt,i,o)','ok=%t,cancel=%f')
+  deff('message(txt)',['messagebox(''In block ''+XX.gui+'': ''+txt,''Warning'',''info'',''modal'');'
+		    'global %scicos_prob;'
+		    '%scicos_prob=%t'])
+
   %scicos_prob = %f
   XX = CBLOCK4('set',XX)
   funcprot(prot)

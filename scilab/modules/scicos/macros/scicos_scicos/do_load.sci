@@ -260,7 +260,9 @@ function [ok,scs_m]=do_define_and_set(scs_m,flg)
 %mprt=funcprot()
 funcprot(0) 
 getvalue=setvalue;
-deff('message(txt)','x_message(''In block ''+o.gui+'': ''+txt);global %scicos_prob;%scicos_prob=resume(%t)')
+deff('message(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
+		    'global %scicos_prob;'
+		    '%scicos_prob=resume(%t)'])
 
 global %scicos_prob
 %scicos_prob=%f
@@ -275,14 +277,15 @@ deff('[ok,tt,dep_ut] = genfunc1(tt,ni,no,nci,nco,nx,nz,nrp,type_)',..
 deff('result         = dialog(labels,valueini)','result=valueini')
 deff('[result,Quit]  = scstxtedit(valueini,v2)','result=valueini,Quit=0')
 deff('[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)',..
-     '[dirF,nameF,extF]=fileparts(funam);..
-      tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);..
-      if (extF=='''')  then,..
-         funam1=tarpath+nameF+''.mo'';..
-      elseif fileinfo(funam)==[] then,..
-         funam1=funam;..
-      end;..
-      mputl(tt,funam1);')
+     ['[dirF,nameF,extF]=fileparts(funam);'
+      'tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);'
+      'if (extF=='''')  then'
+      '   funam1=tarpath+nameF+''.mo'';'
+      'elseif fileinfo(funam)==[] then'
+      '   funam1=funam;'
+      'end;'
+     ' mputl(tt,funam1);'])
+
 context=scs_m.props.context
 if argn(2)<2 then
   global %scicos_context;
@@ -299,9 +302,9 @@ for i=1:n
     sim=o.model.sim;
     ierr=execstr('o='+o.gui+'(""define"",o);','errcatch');
      if ierr<>0 then
-       x_message(['An error occured while opening the diagram';
-	   lasterror();
-	   'The diagram will not be opened'])
+       messagebox([_('An error occured while opening the diagram:');
+		   lasterror();
+		   _('The diagram will not be opened')],'error','modal')
        ok=%f;
        scs_m= get_new_scs_m();;
        return
@@ -329,9 +332,9 @@ for i=1:n
     else
      ierr=execstr('o='+o.gui+'(""set"",o);','errcatch');
      if ierr<>0 then
-       x_message(['An error occured while opening the diagram';
-	   lasterror();
-	   'The diagram will not be opened'])
+       messagebox([_('An error occured while opening the diagram:');
+		   lasterror();
+		   _('The diagram will not be opened')],'error','modal')
        ok=%f;
        scs_m= get_new_scs_m();;
        return

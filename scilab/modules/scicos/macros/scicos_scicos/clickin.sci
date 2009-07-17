@@ -283,28 +283,19 @@ if typeof(o)=="Block" then
               if or((eq.parameters(2)(i))<> (eqn.parameters(2)(i))) then
                 needcompile=0
 		
-		  XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
-		  XML=pathconvert(XML,%f,%t);    
-		  XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
-		  XMLTMP=pathconvert(XMLTMP,%f,%t);
-		  if MSDOS then 
-		    cmnd='del /F '+XML+' '+XMLTMP;
-		    if execstr('unix_s(cmnd)','errcatch')<>0 then
-		      x_message(['Unable to delete the XML file']);
-		    end
-		  else
-		    cmnd='rm -f '+XML+' '+XMLTMP
-		    if execstr('unix_s(cmnd)','errcatch')<>0 then
-		      x_message(['Unable to delete the XML file']);
-		    end
-		  end     
-   		
+		XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
+		if ~deletefile(XML) then
+		  messagebox(msprintf(_('Unable to delete the file: %s'),XML),'error','modal');
+		end
+		XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
+		if ~deletefile(XMLTMP) then
+		  messagebox(msprintf(_('Unable to delete the file: %s'),XMLTMP),'error','modal');
+		end
                 break;
               end
             end
           end
         end
-
 
         if (size(o.model.sim)>1) then
 	  if (o.model.sim(2)==30004) then // only if it is the Modelica generic block

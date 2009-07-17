@@ -24,7 +24,7 @@ function Modelicainitialize_()
 
   name=scs_m.props.title(1);
   if ~validvar(name) then 
-    x_message([name;'is not a valid name, please change the title of the diagram.']);
+    messagebox(msprintf(_("%s is not a valid name, please change the title of the diagram."),name),'error','modal');
     return
   end
   
