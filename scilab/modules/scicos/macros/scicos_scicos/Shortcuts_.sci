@@ -23,10 +23,18 @@ function Shortcuts_()
 
 %rr=lines()
 %scicos_short
-lines(0)
-disp(%scicos_short)
-lines(%rr(2));
-xpause(1000)
+
+mess= ['[Ctrl]+[x] --> Cut'
+       '[Ctrl]+[c] --> Copy'
+       '[Ctrl]+[v] --> Paste '
+       '[Delete] or [backspace]--> Delete '
+       '[Ctrl]+[z] --> Undo '
+       '[Ctrl]+[s] --> Save the diagram '
+       '[Ctrl]+[a] --> Select all '
+       ' '
+       %scicos_short(:,1)+' --> '+%scicos_short(:,2)];
+messagebox(mess,_("Defined shortcuts"),'info',_("Close"))
+
 xinfo('Select an item in a menu to set shortcut')
 EnableAllMenus()
 [btn,%pt,cwin,Cmenu]=cosclick()
@@ -35,18 +43,18 @@ if Cmenu<>'Quit' then
   if Cmenu<>[] then
     %koko=find(%scicos_short(:,2)==Cmenu)
     if %koko<>[] then
-      txt=x_mdialog(['Edit the short cut (a-z)';'only lower case letters allowed'],..
+      txt=x_mdialog(msprintf(_('Edit the short cut,\n only letters allowed')),..
 	  %scicos_short(%koko,2),%scicos_short(%koko,1))
       if txt<>[] then 
 	if txt<>emptystr() then txt=part(txt(1),1);end
 	if find(txt==%scicos_short(:,1))<>[] then
-	  message(txt+' already in use for '+..
+	  message(txt+_(' is already in use for ')+..
 	      %scicos_short( find(txt==%scicos_short(:,1)),2))
 	elseif txt==emptystr() then
 	  %scicos_short=[%scicos_short(1:%koko-1,:);
 	      %scicos_short(%koko+1:$,:)];%okay=%t;
-	elseif ascii(txt)>122|ascii(txt)<97 then
-	  message(txt+' is not in a-z')
+	elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) then
+	  message(txt+_(' is not a letter'))
 	else
 	  %scicos_short(%koko,1)=txt;%okay=%t;
 	end
@@ -54,15 +62,15 @@ if Cmenu<>'Quit' then
     else
       %koko=find(%cor_item_exec(:,1)==Cmenu)
       if %koko<>[] then
-        txt=x_mdialog(['Add new short cut (a-z)';'only lower case letters allowed'],..
+        txt=x_mdialog(msprintf(_('Edit the short cut,\n only letters allowed')),..
 	    %cor_item_exec(%koko,1),emptystr())
 	if txt<>[] then 
 	  txt=part(txt(1),1)
 	  if find(txt==%scicos_short(:,1))<>[] then
-	    message(txt+' already in use for '+..
+	    message(txt+_(' is already in use for ')+..
 		%scicos_short( find(txt==%scicos_short(:,1)),2))
-	  elseif ascii(txt)>122|ascii(txt)<97 then
-	    message(txt+' is not in a-z')
+	  elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) then
+	    message(txt+_(' is not a letter'))
 	  else
 	    %scicos_short=[%scicos_short;..
 		[part(txt(1),1),%cor_item_exec(%koko,1)]];
@@ -73,7 +81,7 @@ if Cmenu<>'Quit' then
     end 
     if %okay then 
       if execstr('save(''.scicos_short'',%scicos_short)','errcatch') <>0 then
-	message('Cannot save .scicos_short in current directory')
+	message(msprintf(_('Cannot save ""%s"" in current directory'),'.scicos_short'))
       end
       %tableau=emptystr([1:100]);
       for %Y=1:size(%scicos_short,1)
