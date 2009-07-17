@@ -37,7 +37,6 @@
     </refsection>
     <refsection>
         <title>Parameters</title>
-
         <variablelist>
             <varlistentry>
                 <term>_iVar</term>
@@ -47,7 +46,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_iRows</term>
                 <listitem>
@@ -56,7 +54,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_iCols</term>
                 <listitem>
@@ -65,7 +62,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblReal</term>
                 <listitem>
@@ -74,7 +70,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblImg</term>
                 <listitem>
@@ -83,7 +78,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
         </variablelist>
     </refsection>
     <refsection>
@@ -93,7 +87,6 @@
     </refsection>
     <refsection>
         <title>Parameters</title>
-
         <variablelist>
             <varlistentry>
                 <term>_iVar</term>
@@ -103,7 +96,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_iRows</term>
                 <listitem>
@@ -112,7 +104,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_iCols</term>
                 <listitem>
@@ -121,7 +112,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblReal</term>
                 <listitem>
@@ -130,7 +120,6 @@
                     </para>
                 </listitem>
             </varlistentry>
-
             <varlistentry>
                 <term>_pdblImg</term>
                 <listitem>
@@ -139,10 +128,8 @@
                     </para>
                 </listitem>
             </varlistentry>
-
         </variablelist>
     </refsection>
-
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/double_writing_api.c-->
         <!--File_scilab: SCI/modules/core/tests/unit_tests/double_writing_api.tst-->
@@ -242,7 +229,6 @@ int write_double(char *fname,unsigned long fname_len)
         ]]>
         </programlisting>
     </refsection>
-
     <refsection>
         <title>Scilab test script</title>
         <programlisting role="code_scilab">

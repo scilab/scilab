@@ -43,6 +43,7 @@
 	
 	<path id="compile.classpath">
 	
+	  <pathelement location="${library.hdf5.dir}/${library.hdf5.name}"/>
 	  <pathelement location="${library.localization.dir}/${library.localization.name}"/>
 		<pathelement location="${library.shell.dir}/${library.shell.name}"/>
 		<pathelement location="${library.history_manager.dir}/${library.history_manager.name}"/>
@@ -66,6 +67,8 @@
 		<pathelement location="${jrosetta-engine.jar}"/>
 
 		<pathelement location="${jogl.jar}"/>
+
+		<pathelement location="${jhdf5.jar}"/>
 		
 		<pathelement location="${jhall.jar}"/>
 

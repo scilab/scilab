@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getmatrixofintegerprecision_API"
+<refentry version="5.0-subset Scilab" xml:id="int_getmatrixofintegerprecision_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getMatrixOfIntegerPrecision</refname>
+        <refname>Integer Precision</refname>
 
         <refpurpose>
             How to get precision of an integer matrix.
@@ -40,6 +40,8 @@
                         Address of the variable.
                     </para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piPrecision</term>
                 <listitem>
                     <para>

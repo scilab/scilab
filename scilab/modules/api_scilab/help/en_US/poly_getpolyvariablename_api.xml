@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getpolyvariablename_API"
+<refentry version="5.0-subset Scilab" xml:id="poly_getpolyvariablename_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getPolyVariableName</refname>
+        <refname>Polynomial Symbolic Variable</refname>
 
         <refpurpose>
             How to get the symbolic variable name.
@@ -40,12 +40,16 @@
                         Address of the variable.
                     </para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_pstVarName</term>
                 <listitem>
                     <para>
                         Return the symbolic varaible name
                     </para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piVarNameLen</term>
                 <listitem>
                     <para>

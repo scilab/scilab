@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarType</refname>
+        <refname>Variable Type</refname>
 
         <refpurpose>
             How to get type of a variable.

@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarAddressFromPosition</refname>
+        <refname>Variable Reference</refname>
 
         <refpurpose>
             How to get address of an argument in a gateway.
