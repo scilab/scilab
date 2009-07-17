@@ -61,7 +61,7 @@ function [ok,modelicac,translator,xml2modelica]=Modelica_execs()
     ok=%f;return;
   end
   if (fileinfo(translator)==[])   then 
-    messagebox(['_(Scilab cannot find the Modelica translator:');translator],'error','modal');
+    messagebox([_('Scilab cannot find the Modelica translator:');translator],'error','modal');
     ok=%f;return;
   end
   if (fileinfo(xml2modelica)==[]) then

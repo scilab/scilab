@@ -346,7 +346,7 @@ function texte = standard_document(objet, k)
       texte = [_('General informations');
 	       part('-',ones(1,length(_('General informations'))))
                ' '
-               part(labels,1:max(lentgh(labels)+10)+':'+values]
+               part(labels,1:max(length(labels)+10))+':'+values]
 
       //- Compiled link memory zone
       from=objet.from
