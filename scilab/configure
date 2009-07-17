@@ -863,11 +863,6 @@ PVM_INCLUDE
 PVM_LIB
 PVM_ARCH
 PVMGETARCH
-HDF5_FALSE
-HDF5_TRUE
-HDF5_ENABLE
-HDF5_LIBS
-HDF5_CFLAGS
 FFTW_FALSE
 FFTW_TRUE
 FFTW_ENABLE
@@ -924,6 +919,7 @@ JAVA_HOME
 JAVA_JNI_LIBS
 JAVA_JNI_INCLUDE
 COMMONS_LOGGING
+JHDF5
 JROSETTA_ENGINE
 JROSETTA_API
 GLUEGEN_RT
@@ -939,6 +935,11 @@ JAVAH
 JAVA_G
 JAVA
 JAVAC
+HDF5_FALSE
+HDF5_TRUE
+HDF5_ENABLE
+HDF5_LIBS
+HDF5_CFLAGS
 NM
 USE_DYNAMIC_STACK_FALSE
 USE_DYNAMIC_STACK_TRUE
@@ -1086,6 +1087,7 @@ with_javasci
 with_gui
 enable_build_swig
 enable_build_giws
+with_hdf5
 with_jdk
 with_ant
 enable_nls
@@ -1097,7 +1099,6 @@ with_ocaml
 with_fftw
 with_fftw_include
 with_fftw_library
-with_hdf5
 with_pvm
 with_pvm_include
 with_pvm_library
@@ -1830,6 +1831,7 @@ Optional Packages:
   --without-javasci       Disable the Java/Scilab interface (javasci)
   --without-gui           Disable the Scilab Graphical User Interface (GUI).
                           Intended for embedded/clustering/grid Scilab
+  --without-hdf5          Disable the interface to the HDF5 library
   --with-jdk=DIR          use JDK from DIR
   --with-ant=DIR          Use ant from DIR
   --with-libiconv-prefix[=DIR]  search for libiconv in DIR/include and DIR/lib
@@ -1841,7 +1843,6 @@ Optional Packages:
   --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
-  --without-hdf5          Disable the interface to the HDF5 library
   --without-pvm           Disable the interface to the PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library directory
@@ -11267,6 +11268,295 @@ fi
 
 
 
+
+#################
+## HDF5
+#################
+
+
+# Check whether --with-hdf5 was given.
+if test "${with_hdf5+set}" = set; then
+  withval=$with_hdf5;
+fi
+
+
+HDF5_ENABLE=no
+
+if test "$with_hdf5" != no; then
+
+
+saved_cflags=$CFLAGS
+saved_LIBS="$LIBS"
+
+HDF5_CFLAGS=""
+HDF5_LIBS="-lhdf5"
+
+CFLAGS="$CFLAGS $HDF5_CFLAGS"
+LIBS="$LIBS $HDF5_LIBS"
+
+if test "${ac_cv_header_hdf5_h+set}" = set; then
+  { $as_echo "$as_me:$LINENO: checking for hdf5.h" >&5
+$as_echo_n "checking for hdf5.h... " >&6; }
+if test "${ac_cv_header_hdf5_h+set}" = set; then
+  $as_echo_n "(cached) " >&6
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_hdf5_h" >&5
+$as_echo "$ac_cv_header_hdf5_h" >&6; }
+else
+  # Is the header compilable?
+{ $as_echo "$as_me:$LINENO: checking hdf5.h usability" >&5
+$as_echo_n "checking hdf5.h usability... " >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <hdf5.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ $as_echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+$as_echo "$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ $as_echo "$as_me:$LINENO: checking hdf5.h presence" >&5
+$as_echo_n "checking hdf5.h presence... " >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <hdf5.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ $as_echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+$as_echo "$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: accepted by the compiler, rejected by the preprocessor!" >&5
+$as_echo "$as_me: WARNING: hdf5.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: proceeding with the compiler's result" >&5
+$as_echo "$as_me: WARNING: hdf5.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: present but cannot be compiled" >&5
+$as_echo "$as_me: WARNING: hdf5.h: present but cannot be compiled" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h:     check for missing prerequisite headers?" >&5
+$as_echo "$as_me: WARNING: hdf5.h:     check for missing prerequisite headers?" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: see the Autoconf documentation" >&5
+$as_echo "$as_me: WARNING: hdf5.h: see the Autoconf documentation" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h:     section \"Present But Cannot Be Compiled\"" >&5
+$as_echo "$as_me: WARNING: hdf5.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: proceeding with the preprocessor's result" >&5
+$as_echo "$as_me: WARNING: hdf5.h: proceeding with the preprocessor's result" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: in the future, the compiler will take precedence" >&5
+$as_echo "$as_me: WARNING: hdf5.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------ ##
+## Report this to http://bugzilla.scilab.org/ ##
+## ------------------------------------------ ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ $as_echo "$as_me:$LINENO: checking for hdf5.h" >&5
+$as_echo_n "checking for hdf5.h... " >&6; }
+if test "${ac_cv_header_hdf5_h+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  ac_cv_header_hdf5_h=$ac_header_preproc
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_hdf5_h" >&5
+$as_echo "$ac_cv_header_hdf5_h" >&6; }
+
+fi
+if test "x$ac_cv_header_hdf5_h" = x""yes; then
+  HDF5_CFLAGS="$CFLAGS"
+else
+  { { $as_echo "$as_me:$LINENO: error: Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package" >&5
+$as_echo "$as_me: error: Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+
+
+{ $as_echo "$as_me:$LINENO: checking for H5Dopen in -lhdf5" >&5
+$as_echo_n "checking for H5Dopen in -lhdf5... " >&6; }
+if test "${ac_cv_lib_hdf5_H5Dopen+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lhdf5  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char H5Dopen ();
+int
+main ()
+{
+return H5Dopen ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext && {
+	 test "$cross_compiling" = yes ||
+	 $as_test_x conftest$ac_exeext
+       }; then
+  ac_cv_lib_hdf5_H5Dopen=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_hdf5_H5Dopen=no
+fi
+
+rm -rf conftest.dSYM
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_lib_hdf5_H5Dopen" >&5
+$as_echo "$ac_cv_lib_hdf5_H5Dopen" >&6; }
+if test $ac_cv_lib_hdf5_H5Dopen = yes; then
+  cat >>confdefs.h <<_ACEOF
+#define HAVE_LIBHDF5 1
+_ACEOF
+
+  LIBS="-lhdf5 $LIBS"
+
+else
+  { { $as_echo "$as_me:$LINENO: error: libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct" >&5
+$as_echo "$as_me: error: libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+CFLAGS=$saved_cflags
+LIBS="$saved_LIBS"
+
+
+
+
+
+cat >>confdefs.h <<_ACEOF
+#define HDF5_CFLAGS "$HDF5_CFLAGS"
+_ACEOF
+
+
+cat >>confdefs.h <<_ACEOF
+#define HDF5_LIBS "$HDF5_LIBS"
+_ACEOF
+
+
+
+cat >>confdefs.h <<\_ACEOF
+#define WITH_HDF5 /**/
+_ACEOF
+
+
+# Gets compilation and library flags
+
+# TODO: check if the JNI JHDF5 library are available
+   HDF5_ENABLE=yes
+fi
+
+
+ if test "$with_hdf5" != no; then
+  HDF5_TRUE=
+  HDF5_FALSE='#'
+else
+  HDF5_TRUE='#'
+  HDF5_FALSE=
+fi
+
+
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -11495,7 +11785,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 11498 "configure"
+// #line 11788 "configure"
 
 
 public class conftest {
@@ -11545,7 +11835,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11548 "configure"
+// #line 11838 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -11593,7 +11883,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 11596 "configure"
+// #line 11886 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -11620,7 +11910,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 11623 "configure"
+// #line 11913 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12936,7 +13226,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12939 "configure"
+// #line 13229 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -13009,7 +13299,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13012 "configure"
+// #line 13302 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13082,7 +13372,7 @@ $as_echo_n "checking looks2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13085 "configure"
+// #line 13375 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13158,7 +13448,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13161 "configure"
+// #line 13451 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13231,7 +13521,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13234 "configure"
+// #line 13524 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13304,7 +13594,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13307 "configure"
+// #line 13597 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13377,7 +13667,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13380 "configure"
+// #line 13670 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13451,7 +13741,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13454 "configure"
+// #line 13744 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13524,7 +13814,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13527 "configure"
+// #line 13817 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13597,7 +13887,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13600 "configure"
+// #line 13890 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13651,6 +13941,81 @@ $as_echo "$as_me: error: Could not find or use the Java package/jar jrosetta-eng
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 
 
+				if test $HDF5_ENABLE = yes;  then
+				# HDF5 java lib
+
+	{ $as_echo "$as_me:$LINENO: checking jhdf5" >&5
+$as_echo_n "checking jhdf5... " >&6; }
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jar_resolved=`ls $jar 2>/dev/null`
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 13964 "configure"
+import ncsa.hdf.hdf5lib.HDF5Constants;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+        echo "yes" >&5
+
+            { $as_echo "$as_me:$LINENO: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+      done
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:$LINENO: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&2;}
+	  else
+		  { { $as_echo "$as_me:$LINENO: error: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&5
+$as_echo "$as_me: error: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&2;}
+   { (exit 1); exit 1; }; }
+	  fi
+    fi
+
+				  JHDF5=$PACKAGE_JAR_FILE
+
+				fi
+
 				# Logging (flexdock dep)
 
 	{ $as_echo "$as_me:$LINENO: checking commons-logging" >&5
@@ -13670,7 +14035,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13673 "configure"
+// #line 14038 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -13728,6 +14093,7 @@ $as_echo "$as_me: error: Could not find or use the Java package/jar commons-logg
 cat >>confdefs.h <<\_ACEOF
 #define WITH_GUI /**/
 _ACEOF
+
 
 		fi
 	else
@@ -21510,292 +21876,6 @@ fi
 
 
 #################
-## HDF5
-#################
-
-
-# Check whether --with-hdf5 was given.
-if test "${with_hdf5+set}" = set; then
-  withval=$with_hdf5;
-fi
-
-
-HDF5_ENABLE=no
-
-if test "$with_hdf5" != no; then
-
-
-saved_cflags=$CFLAGS
-saved_LIBS="$LIBS"
-
-HDF5_CFLAGS=""
-HDF5_LIBS="-lhdf5"
-
-CFLAGS="$CFLAGS $HDF5_CFLAGS"
-LIBS="$LIBS $HDF5_LIBS"
-
-if test "${ac_cv_header_hdf5_h+set}" = set; then
-  { $as_echo "$as_me:$LINENO: checking for hdf5.h" >&5
-$as_echo_n "checking for hdf5.h... " >&6; }
-if test "${ac_cv_header_hdf5_h+set}" = set; then
-  $as_echo_n "(cached) " >&6
-fi
-{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_hdf5_h" >&5
-$as_echo "$ac_cv_header_hdf5_h" >&6; }
-else
-  # Is the header compilable?
-{ $as_echo "$as_me:$LINENO: checking hdf5.h usability" >&5
-$as_echo_n "checking hdf5.h usability... " >&6; }
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-$ac_includes_default
-#include <hdf5.h>
-_ACEOF
-rm -f conftest.$ac_objext
-if { (ac_try="$ac_compile"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
-$as_echo "$ac_try_echo") >&5
-  (eval "$ac_compile") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest.$ac_objext; then
-  ac_header_compiler=yes
-else
-  $as_echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_header_compiler=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-{ $as_echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
-$as_echo "$ac_header_compiler" >&6; }
-
-# Is the header present?
-{ $as_echo "$as_me:$LINENO: checking hdf5.h presence" >&5
-$as_echo_n "checking hdf5.h presence... " >&6; }
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-#include <hdf5.h>
-_ACEOF
-if { (ac_try="$ac_cpp conftest.$ac_ext"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
-$as_echo "$ac_try_echo") >&5
-  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } >/dev/null && {
-	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       }; then
-  ac_header_preproc=yes
-else
-  $as_echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-  ac_header_preproc=no
-fi
-
-rm -f conftest.err conftest.$ac_ext
-{ $as_echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
-$as_echo "$ac_header_preproc" >&6; }
-
-# So?  What about this header?
-case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
-  yes:no: )
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: accepted by the compiler, rejected by the preprocessor!" >&5
-$as_echo "$as_me: WARNING: hdf5.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: proceeding with the compiler's result" >&5
-$as_echo "$as_me: WARNING: hdf5.h: proceeding with the compiler's result" >&2;}
-    ac_header_preproc=yes
-    ;;
-  no:yes:* )
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: present but cannot be compiled" >&5
-$as_echo "$as_me: WARNING: hdf5.h: present but cannot be compiled" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h:     check for missing prerequisite headers?" >&5
-$as_echo "$as_me: WARNING: hdf5.h:     check for missing prerequisite headers?" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: see the Autoconf documentation" >&5
-$as_echo "$as_me: WARNING: hdf5.h: see the Autoconf documentation" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h:     section \"Present But Cannot Be Compiled\"" >&5
-$as_echo "$as_me: WARNING: hdf5.h:     section \"Present But Cannot Be Compiled\"" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: proceeding with the preprocessor's result" >&5
-$as_echo "$as_me: WARNING: hdf5.h: proceeding with the preprocessor's result" >&2;}
-    { $as_echo "$as_me:$LINENO: WARNING: hdf5.h: in the future, the compiler will take precedence" >&5
-$as_echo "$as_me: WARNING: hdf5.h: in the future, the compiler will take precedence" >&2;}
-    ( cat <<\_ASBOX
-## ------------------------------------------ ##
-## Report this to http://bugzilla.scilab.org/ ##
-## ------------------------------------------ ##
-_ASBOX
-     ) | sed "s/^/$as_me: WARNING:     /" >&2
-    ;;
-esac
-{ $as_echo "$as_me:$LINENO: checking for hdf5.h" >&5
-$as_echo_n "checking for hdf5.h... " >&6; }
-if test "${ac_cv_header_hdf5_h+set}" = set; then
-  $as_echo_n "(cached) " >&6
-else
-  ac_cv_header_hdf5_h=$ac_header_preproc
-fi
-{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_hdf5_h" >&5
-$as_echo "$ac_cv_header_hdf5_h" >&6; }
-
-fi
-if test "x$ac_cv_header_hdf5_h" = x""yes; then
-  HDF5_CFLAGS="$CFLAGS"
-else
-  { { $as_echo "$as_me:$LINENO: error: Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package" >&5
-$as_echo "$as_me: error: Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package" >&2;}
-   { (exit 1); exit 1; }; }
-
-fi
-
-
-
-
-{ $as_echo "$as_me:$LINENO: checking for H5Dopen in -lhdf5" >&5
-$as_echo_n "checking for H5Dopen in -lhdf5... " >&6; }
-if test "${ac_cv_lib_hdf5_H5Dopen+set}" = set; then
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lhdf5  $LIBS"
-cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char H5Dopen ();
-int
-main ()
-{
-return H5Dopen ();
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext conftest$ac_exeext
-if { (ac_try="$ac_link"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
-$as_echo "$ac_try_echo") >&5
-  (eval "$ac_link") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest$ac_exeext && {
-	 test "$cross_compiling" = yes ||
-	 $as_test_x conftest$ac_exeext
-       }; then
-  ac_cv_lib_hdf5_H5Dopen=yes
-else
-  $as_echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_lib_hdf5_H5Dopen=no
-fi
-
-rm -rf conftest.dSYM
-rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
-      conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:$LINENO: result: $ac_cv_lib_hdf5_H5Dopen" >&5
-$as_echo "$ac_cv_lib_hdf5_H5Dopen" >&6; }
-if test $ac_cv_lib_hdf5_H5Dopen = yes; then
-  cat >>confdefs.h <<_ACEOF
-#define HAVE_LIBHDF5 1
-_ACEOF
-
-  LIBS="-lhdf5 $LIBS"
-
-else
-  { { $as_echo "$as_me:$LINENO: error: libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct" >&5
-$as_echo "$as_me: error: libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct" >&2;}
-   { (exit 1); exit 1; }; }
-
-fi
-
-CFLAGS=$saved_cflags
-LIBS="$saved_LIBS"
-
-
-
-
-
-cat >>confdefs.h <<_ACEOF
-#define HDF5_CFLAGS "$HDF5_CFLAGS"
-_ACEOF
-
-
-cat >>confdefs.h <<_ACEOF
-#define HDF5_LIBS "$HDF5_LIBS"
-_ACEOF
-
-
-
-cat >>confdefs.h <<\_ACEOF
-#define WITH_HDF5 /**/
-_ACEOF
-
-
-# Gets compilation and library flags
-
-   HDF5_ENABLE=yes
-fi
-
-
- if test "$with_hdf5" != no; then
-  HDF5_TRUE=
-  HDF5_FALSE='#'
-else
-  HDF5_TRUE='#'
-  HDF5_FALSE=
-fi
-
-
-#################
 ## MPI
 #################
 
@@ -28846,7 +28926,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 28849 "configure"
+#line 28929 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -29405,7 +29485,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 29408 "configure"
+#line 29488 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -30256,7 +30336,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30259 "configure"
+// #line 30339 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -30329,7 +30409,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30332 "configure"
+// #line 30412 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -30404,7 +30484,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30407 "configure"
+// #line 30487 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -30477,7 +30557,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30480 "configure"
+// #line 30560 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -30550,7 +30630,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30553 "configure"
+// #line 30633 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -30623,7 +30703,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30626 "configure"
+// #line 30706 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -30696,7 +30776,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30699 "configure"
+// #line 30779 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -30769,7 +30849,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30772 "configure"
+// #line 30852 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -30843,7 +30923,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 30846 "configure"
+// #line 30926 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -31544,7 +31624,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 31547 "configure"' > conftest.$ac_ext
+  echo '#line 31627 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -33414,11 +33494,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33417: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33497: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33421: \$? = $ac_status" >&5
+   echo "$as_me:33501: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33704,11 +33784,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33707: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33787: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:33711: \$? = $ac_status" >&5
+   echo "$as_me:33791: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -33808,11 +33888,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:33811: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:33891: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:33815: \$? = $ac_status" >&5
+   echo "$as_me:33895: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -36293,7 +36373,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 36296 "configure"
+#line 36376 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -36393,7 +36473,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 36396 "configure"
+#line 36476 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -38822,11 +38902,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38825: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38905: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38829: \$? = $ac_status" >&5
+   echo "$as_me:38909: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38926,11 +39006,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38929: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:39009: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:38933: \$? = $ac_status" >&5
+   echo "$as_me:39013: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -40524,11 +40604,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40527: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40607: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:40531: \$? = $ac_status" >&5
+   echo "$as_me:40611: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40628,11 +40708,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40631: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40711: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:40635: \$? = $ac_status" >&5
+   echo "$as_me:40715: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -42860,11 +42940,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:42863: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:42943: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:42867: \$? = $ac_status" >&5
+   echo "$as_me:42947: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -43150,11 +43230,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:43153: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:43233: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:43157: \$? = $ac_status" >&5
+   echo "$as_me:43237: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -43254,11 +43334,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:43257: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:43337: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:43261: \$? = $ac_status" >&5
+   echo "$as_me:43341: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -46220,7 +46300,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml modules/jvm/etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml modules/jvm/etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -46437,6 +46517,13 @@ $as_echo "$as_me: error: conditional \"USE_DYNAMIC_STACK\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
+if test -z "${HDF5_TRUE}" && test -z "${HDF5_FALSE}"; then
+  { { $as_echo "$as_me:$LINENO: error: conditional \"HDF5\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+$as_echo "$as_me: error: conditional \"HDF5\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
 if test -z "${NEED_JAVA_TRUE}" && test -z "${NEED_JAVA_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"NEED_JAVA\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
@@ -46490,13 +46577,6 @@ if test -z "${FFTW_TRUE}" && test -z "${FFTW_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"FFTW\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 $as_echo "$as_me: error: conditional \"FFTW\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${HDF5_TRUE}" && test -z "${HDF5_FALSE}"; then
-  { { $as_echo "$as_me:$LINENO: error: conditional \"HDF5\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-$as_echo "$as_me: error: conditional \"HDF5\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -47129,6 +47209,7 @@ do
     "modules/core/Makefile") CONFIG_FILES="$CONFIG_FILES modules/core/Makefile" ;;
     "modules/api_scilab/Makefile") CONFIG_FILES="$CONFIG_FILES modules/api_scilab/Makefile" ;;
     "modules/call_scilab/Makefile") CONFIG_FILES="$CONFIG_FILES modules/call_scilab/Makefile" ;;
+    "modules/hdf5/Makefile") CONFIG_FILES="$CONFIG_FILES modules/hdf5/Makefile" ;;
     "modules/fftw/Makefile") CONFIG_FILES="$CONFIG_FILES modules/fftw/Makefile" ;;
     "modules/umfpack/Makefile") CONFIG_FILES="$CONFIG_FILES modules/umfpack/Makefile" ;;
     "modules/scicos/Makefile") CONFIG_FILES="$CONFIG_FILES modules/scicos/Makefile" ;;
@@ -47815,28 +47896,27 @@ $as_echo "$as_me: executing $ac_file commands" >&6;}
 
 
   case $ac_file$ac_mode in
-    "depfiles":C) test x"$AMDEP_TRUE" != x"" || {
-  # Autoconf 2.62 quotes --file arguments for eval, but not when files
-  # are listed without --file.  Let's play safe and only enable the eval
-  # if we detect the quoting.
-  case $CONFIG_FILES in
-  *\'*) eval set x "$CONFIG_FILES" ;;
-  *)   set x $CONFIG_FILES ;;
-  esac
-  shift
-  for mf
-  do
-    # Strip MF so we end up with the name of the file.
-    mf=`echo "$mf" | sed -e 's/:.*$//'`
-    # Check whether this is an Automake generated Makefile or not.
-    # We used to match only the files named `Makefile.in', but
-    # some people rename them; so instead we look at the file content.
-    # Grep'ing the first line is not enough: some people post-process
-    # each Makefile.in and add a new line on top of each file to say so.
-    # Grep'ing the whole file is not good either: AIX grep has a line
-    # limit of 2048, but all sed's we know have understand at least 4000.
-    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
-      dirpart=`$as_dirname -- "$mf" ||
+    "depfiles":C) test x"$AMDEP_TRUE" != x"" || # Autoconf 2.62 quotes --file arguments for eval, but not when files
+# are listed without --file.  Let's play safe and only enable the eval
+# if we detect the quoting.
+case $CONFIG_FILES in
+*\'*) eval set x "$CONFIG_FILES" ;;
+*)   set x $CONFIG_FILES ;;
+esac
+shift
+for mf
+do
+  # Strip MF so we end up with the name of the file.
+  mf=`echo "$mf" | sed -e 's/:.*$//'`
+  # Check whether this is an Automake generated Makefile or not.
+  # We used to match only the files named `Makefile.in', but
+  # some people rename them; so instead we look at the file content.
+  # Grep'ing the first line is not enough: some people post-process
+  # each Makefile.in and add a new line on top of each file to say so.
+  # Grep'ing the whole file is not good either: AIX grep has a line
+  # limit of 2048, but all sed's we know have understand at least 4000.
+  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+    dirpart=`$as_dirname -- "$mf" ||
 $as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$mf" : 'X\(//\)[^/]' \| \
 	 X"$mf" : 'X\(//\)$' \| \
@@ -47859,28 +47939,28 @@ $as_echo X"$mf" |
 	    q
 	  }
 	  s/.*/./; q'`
-    else
-      continue
-    fi
-    # Extract the definition of DEPDIR, am__include, and am__quote
-    # from the Makefile without running `make'.
-    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
-    test -z "$DEPDIR" && continue
-    am__include=`sed -n 's/^am__include = //p' < "$mf"`
-    test -z "am__include" && continue
-    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
-    # When using ansi2knr, U may be empty or an underscore; expand it
-    U=`sed -n 's/^U = //p' < "$mf"`
-    # Find all dependency output files, they are included files with
-    # $(DEPDIR) in their names.  We invoke sed twice because it is the
-    # simplest approach to changing $(DEPDIR) to its actual value in the
-    # expansion.
-    for file in `sed -n "
-      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
-	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
-      # Make sure the directory exists.
-      test -f "$dirpart/$file" && continue
-      fdir=`$as_dirname -- "$file" ||
+  else
+    continue
+  fi
+  # Extract the definition of DEPDIR, am__include, and am__quote
+  # from the Makefile without running `make'.
+  DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+  test -z "$DEPDIR" && continue
+  am__include=`sed -n 's/^am__include = //p' < "$mf"`
+  test -z "am__include" && continue
+  am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+  # When using ansi2knr, U may be empty or an underscore; expand it
+  U=`sed -n 's/^U = //p' < "$mf"`
+  # Find all dependency output files, they are included files with
+  # $(DEPDIR) in their names.  We invoke sed twice because it is the
+  # simplest approach to changing $(DEPDIR) to its actual value in the
+  # expansion.
+  for file in `sed -n "
+    s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+       sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
+    # Make sure the directory exists.
+    test -f "$dirpart/$file" && continue
+    fdir=`$as_dirname -- "$file" ||
 $as_expr X"$file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$file" : 'X\(//\)[^/]' \| \
 	 X"$file" : 'X\(//\)$' \| \
@@ -47903,7 +47983,7 @@ $as_echo X"$file" |
 	    q
 	  }
 	  s/.*/./; q'`
-      { as_dir=$dirpart/$fdir
+    { as_dir=$dirpart/$fdir
   case $as_dir in #(
   -*) as_dir=./$as_dir;;
   esac
@@ -47944,11 +48024,10 @@ $as_echo X"$as_dir" |
   } || test -d "$as_dir" || { { $as_echo "$as_me:$LINENO: error: cannot create directory $as_dir" >&5
 $as_echo "$as_me: error: cannot create directory $as_dir" >&2;}
    { (exit 1); exit 1; }; }; }
-      # echo "creating $dirpart/$file"
-      echo '# dummy' > "$dirpart/$file"
-    done
+    # echo "creating $dirpart/$file"
+    echo '# dummy' > "$dirpart/$file"
   done
-}
+done
  ;;
     "po-directories":C)
     for ac_file in $CONFIG_FILES; do
@@ -48307,6 +48386,20 @@ else
 echo "  JAVA disabled"
 fi
 
+
+echo ""
+echo "Java dependencies:"
+if test ! -z "$JAVAC"; then
+echo "  Flexdock ............ = $FLEXDOCK"
+echo "  JOGL ................ = $JOGL"
+echo "  Jhall  .............. = $JHALL"
+echo "  JHDF5  .............. = $JHDF5"
+echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Jrosetta (API) ...... = $JROSETTA_API"
+echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
+echo "  Commons Logging ..... = $COMMONS_LOGGING"
+fi
+
 echo ""
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
@@ -48326,6 +48419,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "HDF5 configuration:"
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+   echo "  HDF5 Java ........... = $JHDF5"
 else
    echo "Not using HDF5"
 fi

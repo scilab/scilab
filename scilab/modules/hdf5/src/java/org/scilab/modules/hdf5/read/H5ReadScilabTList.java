@@ -10,13 +10,18 @@
  * 
  */
 
-#ifndef __H5_FILEMANAGEMENT_H__
-#define __H5_FILEMANAGEMENT_H__
+package org.scilab.modules.hdf5.read;
 
-int createHDF5File(char *name);
+import java.util.ArrayList;
 
-int openHDF5File(char *name);
+import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-void closeHDF5File(int file);
+import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 
-#endif /* !__H5_FILEMANAGEMENT_H__ */
+public class H5ReadScilabTList extends H5ReadScilabCommonList {
+
+    public static void readData(int dataSetId, ScilabTList scilabList) throws NullPointerException, HDF5Exception {
+	readData(dataSetId, (ArrayList) scilabList);
+    }
+
+}

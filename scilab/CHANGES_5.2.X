@@ -290,3 +290,5 @@ Bug fixes:
 * bug 4638 fixed - this example with optim freezes scilab
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
+
+* bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
