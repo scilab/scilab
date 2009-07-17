@@ -318,5 +318,4 @@ equation
   Q = C1.Q;
   0 = if (Q > 0) then C1.H - C1.Hm else C2.H - C2.Hm;
 
-end Flowmeter; 
- 
+end Flowmeter;
