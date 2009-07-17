@@ -98,7 +98,7 @@ function nbDel = atomsDelRepository(url,allusers)
 	// =========================================================================
 	
 	if nbDel > 0 then
-		mdelete(pathconvert(SCIHOME+"/.atoms/packages",%F));
+		atomsGetTOOLBOXES(%T);
 	end
 	
 endfunction

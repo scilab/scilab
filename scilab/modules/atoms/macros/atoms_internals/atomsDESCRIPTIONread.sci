@@ -40,6 +40,10 @@ function description_out = atomsDESCRIPTIONread(file_in)
 	current_toolbox  = struct();
 	current_field    = "";
 	
+	if isempty(lines_in) then
+		return;
+	end
+	
 	for i=1:(size(lines_in,"*")+1)
 		
 		// File totally read : register the latest toolbox

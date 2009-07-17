@@ -90,7 +90,6 @@ function nbAdd = atomsAddRepository(url,allusers)
 	// =========================================================================
 	
 	for i=1:size(url,"*")
-		disp(currentRepositories);
 		// Add the URL only if it doesn't already exist
 		if find( currentRepositories == url(i) ) == [] then
 			repositories = [ repositories ; url(i) ];
@@ -105,9 +104,8 @@ function nbAdd = atomsAddRepository(url,allusers)
 		
 		mputl(repositories, atoms_directory+"repositories");
 		
-		// Delete the packages file (created by atomsGetTOOLBOXES) to force reload
-		// the different distant TOOLBOXES files
-		mdelete(pathconvert(SCIHOME+"/.atoms/packages",%F));
+		// Force reload the different distant TOOLBOXES files
+		atomsGetTOOLBOXES(%T);
 		
 	end
 	
