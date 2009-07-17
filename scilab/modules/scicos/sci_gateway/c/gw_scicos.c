@@ -27,7 +27,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={
+#define SCICOS_TAB_SIZE 27
+static gw_generic_table Tab[SCICOS_TAB_SIZE]={
 {C2F(sci_var2vec),"var2vec"},
 {C2F(sci_vec2var),"vec2var"},
 {C2F(sci_getblocklabel),"getblocklabel"},
@@ -38,7 +39,6 @@ static gw_generic_table Tab[]={
 {C2F(sci_sci_tree3),"sci_tree3"},
 {C2F(sci_sci_tree4),"sci_tree4"},
 {C2F(sci_curblock),"curblock"},
-
 {C2F(sci_scicos_time),"scicos_time"},
 {C2F(sci_duplicate),"duplicate"},
 {C2F(sci_diffobjs),"diffobjs"},
@@ -61,7 +61,7 @@ static gw_generic_table Tab[]={
 int gw_scicos(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,SCICOS_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

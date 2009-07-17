@@ -6,7 +6,6 @@
 	ProjectGUID="{DFA0D75B-F7EF-4D02-B33F-486829405315}"
 	RootNamespace="intersci"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -45,7 +44,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTERSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -127,7 +126,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTERSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -211,7 +210,7 @@
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTERSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -300,7 +299,7 @@
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
-				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
+				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTERSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"

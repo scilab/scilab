@@ -41,7 +41,7 @@
         <submenu label="&amp;Save environment...">
             <callback
             instruction='
-              %fileToSave = uigetfile("*.sav", getcwd(), gettext("Select a file to write"));
+              %fileToSave = uiputfile("*.sav", getcwd(), gettext("Select a file to write"));
               if ~isempty(%fileToSave) then
                 if isempty(fileparts(%fileToSave, "extension")) then
                   %fileToSave = %fileToSave + ".sav";

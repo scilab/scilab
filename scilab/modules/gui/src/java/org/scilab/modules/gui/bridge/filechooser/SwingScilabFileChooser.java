@@ -19,6 +19,9 @@ import java.util.StringTokenizer;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
@@ -39,6 +42,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	private int selectionSize; 	
 	private int filterIndex;
 	private int maskSize;
+	private int dialogType;
 	
 	private String[] maskDescription;	
 
@@ -120,7 +124,12 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		
 		JFrame parentFrame = new JFrame();
 		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-		int returnValue = this.showOpenDialog(parentFrame);
+		int returnValue = 0;
+		if (this.dialogType == JFileChooser.SAVE_DIALOG) {
+			returnValue = this.showSaveDialog(parentFrame);
+		} else {
+			returnValue = this.showOpenDialog(parentFrame);
+		}
 		
 		//User validate the uigetfile
 		if (returnValue == APPROVE_OPTION) {
@@ -136,6 +145,37 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 				}					
 			} else {
 				File file = this.getSelectedFile();
+				
+				if (this.dialogType == JFileChooser.SAVE_DIALOG) {
+					//Test if there is a file with the same name	
+					if (file.exists()) {
+						int actionDialog = JOptionPane.showConfirmDialog(this, Messages.gettext("Replace existing file?"), Messages.gettext("File already exist"), JOptionPane.YES_NO_OPTION);
+
+						if (actionDialog == JOptionPane.YES_OPTION) {
+
+						} else {
+							// Same as cancel case
+							selection = new String[1];
+							selection[0] = "";
+							selectionSize = 0;
+							selectionPath = "";	
+							selectionFileNames = new String[1];
+							selectionFileNames[0] = "";
+							//set the filter index of the JFileChooser at 0 if "cancel" button was selected
+							filterIndex = 0;
+						
+							//return the filechooser's informations 
+							//they are stocked into FileChooserInfos
+							FileChooserInfos.getInstance().setSelection(selection);
+							FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
+							FileChooserInfos.getInstance().setSelectionFileNames(selectionFileNames);
+							FileChooserInfos.getInstance().setSelectionSize(selectionSize);			
+							FileChooserInfos.getInstance().setFilterIndex(filterIndex);			
+							return;
+						}
+					}
+				}
+
 				selection = new String[1];
 				selection[0] = file.getAbsolutePath();
 				selectionPath = file.getParentFile().getPath();
@@ -243,5 +283,13 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	 */
 	public void setFilterIndex(int filterIndex) {
 		setFilterIndex(filterIndex);
+	}
+	
+	/**
+	 * Set the dialog type (save or open a file ?)
+	 * @param dialogType the dialog type
+	 */
+	public void setUiDialogType(int dialogType) {
+		this.dialogType = dialogType;
 	}
 }

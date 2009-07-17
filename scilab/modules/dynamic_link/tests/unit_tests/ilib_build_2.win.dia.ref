@@ -79,6 +79,7 @@ ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
    Compilation of c_sum.c
    Compilation of sci_csum.c
    Building shared library (be patient)
+   Generate a cleaner file   
 // load the shared library
 exec loader.sce
  

@@ -8,8 +8,8 @@
 mode(-1)
 path=get_absolute_file_path('pendule.dem');
 
-getf(path+'simulation.sci')
-getf(path+'graphics.sci')
+exec(path+'simulation.sci')
+exec(path+'graphics.sci')
 
 //disable displayed lines control
 display_props=lines(); lines(0)

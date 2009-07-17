@@ -6,7 +6,7 @@
 	ProjectGUID="{EAF0949C-28D2-497C-954F-FC13B32FF2F3}"
 	RootNamespace="slatec_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+
 	>
 	<Platforms>
 		<Platform

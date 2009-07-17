@@ -17,6 +17,7 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
+#include <string.h>
 #include "gw_fileio.h"
 #include "isdir.h"
 #include "stack-c.h"
@@ -25,6 +26,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int sci_isdir(char *fname,unsigned long fname_len)
 {
@@ -70,13 +74,11 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		 */
 		if(strcmp(path,"SCI") == 0)
 		{
-			myPath = (char*)MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
-			strcpy(myPath,"SCI/");
+			myPath = strdup("SCI/");
 		}
 		if(strcmp(path,"~") == 0)
 		{
-			myPath = (char*)MALLOC((m1+2)*sizeof(char)); /* +2 because the / added + \0 */
-			strcpy(myPath,"~/");
+			myPath = strdup("~/");
 		}
 		/* End of the crappy workaround */
 

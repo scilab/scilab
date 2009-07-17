@@ -450,7 +450,7 @@ function SCode=gen_loader(blknam,for_link)
          'link(fileso,blknam,''c'');'
          '//** Load the gui function';
          'if fileinfo(DIR+blknam+''_c.sci'')<>[] then'
-         '  getf(DIR+blknam+''_c.sci'');'
+         '  exec(DIR+blknam+''_c.sci'');'
          'end']
 
   SCode=[SCode;

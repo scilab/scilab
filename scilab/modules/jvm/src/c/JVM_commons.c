@@ -19,6 +19,7 @@
 #include "getshortpathname.h"
 #include "BOOL.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 static DynLibHandle hLibJVM = NULL;
 /*--------------------------------------------------------------------------*/ 
@@ -65,16 +66,17 @@ BOOL FreeDynLibJVM(void)
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadFuntionsJVM(char *filedynlib)
 {
-
-	BOOL bConvert = FALSE;
-	/* libname on format 8.3 for localization problem */
-	char *shortLibName = getshortpathname(filedynlib,&bConvert);
-	if (shortLibName)
+	#ifdef _MSC_VER
+	wchar_t * wcfiledynlib = to_wide_string(filedynlib);
+	if (wcfiledynlib)
 	{
-		hLibJVM = LoadDynLibrary(shortLibName); 
-		FREE(shortLibName);
-		shortLibName = NULL;
+		hLibJVM = LoadDynLibraryW(wcfiledynlib); 
+		FREE(wcfiledynlib);
+		wcfiledynlib = NULL;
 	}
+	#else
+	hLibJVM = LoadDynLibrary(filedynlib); 
+	#endif
 	
 	if (hLibJVM)
 	{

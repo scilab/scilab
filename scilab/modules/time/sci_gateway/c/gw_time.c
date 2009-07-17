@@ -15,7 +15,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={
+#define TIME_TAB_SIZE 7
+static gw_generic_table Tab[TIME_TAB_SIZE]={
     {sci_getdate,"getdate"},
 	{sci_calendar,"Calendar"},
 	{sci_timer,"timer"},
@@ -28,7 +29,7 @@ static gw_generic_table Tab[]={
 int gw_time(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,TIME_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

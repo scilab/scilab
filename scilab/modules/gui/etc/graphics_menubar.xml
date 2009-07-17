@@ -20,7 +20,7 @@
         <submenu label="&amp;Save...">
              <callback
             instruction='
-              %fileToSave = uigetfile("*.scg", getcwd(), gettext("Select a file to write"));
+              %fileToSave = uiputfile("*.scg", getcwd(), gettext("Select a file to write"));
               if ~isempty(%fileToSave) then
                 if isempty(fileparts(%fileToSave, "extension")) then
                   %fileToSave = %fileToSave + ".scg";

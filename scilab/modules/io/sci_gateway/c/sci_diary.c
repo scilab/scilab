@@ -25,7 +25,7 @@
 int C2F(sci_diary)(char *fname,unsigned long fname_len)
 {
 
-	int l1 = 0, m1 = 0, n1 = 0;
+	int m1 = 0, n1 = 0, l1 = 0;
 
 	CheckRhs(0,1);
 	CheckLhs(0,1);
@@ -42,7 +42,6 @@ int C2F(sci_diary)(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		int l1 = 0, m1 = 0, n1 = 0;
 		char ** Inputstr = NULL;
 		
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Inputstr);

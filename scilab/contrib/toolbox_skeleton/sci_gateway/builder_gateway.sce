@@ -18,6 +18,7 @@ else
 end
 
 tbx_build_gateway_loader(languages, sci_gateway_dir);
+tbx_build_gateway_clean(languages, sci_gateway_dir);
 
 clear tbx_builder_gateway_lang tbx_build_gateway_loader;
 clear sci_gateway_dir;

@@ -6,7 +6,6 @@
 	ProjectGUID="{45CA5B12-7601-4968-AE16-16069FD1A152}"
 	RootNamespace="gui"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -747,6 +746,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_uimenu.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_uiputfile.cpp"
 				>
 			</File>
 			<File

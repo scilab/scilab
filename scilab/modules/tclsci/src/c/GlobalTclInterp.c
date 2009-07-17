@@ -19,8 +19,10 @@
 #include "GlobalTclInterp.h"
 #include "Thread_Wrapper.h"
 
-Tcl_Interp	*__globalTclInterp;
+Tcl_Interp	*__globalTclInterp = NULL;
 __threadLock	singleInterpAccess;
+
+static initialized = 0;
 
 /*
 ** Initialize the global interpreter.
@@ -30,6 +32,9 @@ void initTclInterp(void) {
   __Lock(&singleInterpAccess);
   __globalTclInterp = Tcl_CreateInterp();
   __UnLock(&singleInterpAccess);
+
+  /* indicate that we have in fact initialized our mutex */
+  initialized = 1;
 }
 
 /*
@@ -44,6 +49,9 @@ void deleteTclInterp(void) {
 ** Get the Global Interpreter
 */
 Tcl_Interp *getTclInterp(void) {
+	if (! initialized ) {
+		return NULL;
+	}
   __Lock(&singleInterpAccess);
   return __globalTclInterp;
 }
@@ -52,7 +60,10 @@ Tcl_Interp *getTclInterp(void) {
 ** Release Tcl Interp after use.
 */
 void releaseTclInterp(void) {
-  __UnLock(&singleInterpAccess);
+	/* only try to unlock if we have already initialized our threading system */
+	if ( initialized ) {
+		__UnLock(&singleInterpAccess);
+	}
 }
 
 /*

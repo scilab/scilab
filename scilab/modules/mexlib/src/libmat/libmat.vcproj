@@ -5,7 +5,6 @@
 	Name="libmat"
 	ProjectGUID="{8A508625-C2AA-4295-AA76-16E4E456D13D}"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -375,6 +374,10 @@
 				RelativePath="..\c\mexlib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\c\sci_gateway.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -383,6 +386,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\mex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_gateway.h"
 				>
 			</File>
 		</Filter>

@@ -57,6 +57,7 @@ libn=ilib_for_link('dgesvtst','dgesvtst.o',[],'f');
    ilib_gen_Make: Copy dgesvtst.f to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
+   Generate a cleaner file   
 exec loader.sce;
 Shared archive loaded.
 Link done.

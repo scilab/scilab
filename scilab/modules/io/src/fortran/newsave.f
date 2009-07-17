@@ -34,8 +34,8 @@ c
       call v2cunit(top0+1,'wb',fd,opened,ierr) 
       if(ierr.gt.0) return
       if(ierr.lt.0) then
-c     file has been opened by fortran, use oldsave (compatibility)
-         call oldsave
+c     file has been opened by fortran, oldsave (return a error)
+         call error(43)
          return
       endif
 
@@ -165,10 +165,10 @@ c
       call v2cunit(top,'rb',fd,opened,ierr)
       if(ierr.gt.0) return
       if(ierr.lt.0) then
-c     compatibility (file opened by fortran)
+c     oldload (file opened by fortran returns a error)
          top=top0
-         call oldload
          k1=fin
+         call error(43)
          return
       endif
 c     test for compatibility
@@ -177,10 +177,10 @@ c     test for compatibility
       call mgetnc (fd,it,1,'il'//char(0),ierr)
       if(endian.eq.1.and.it.eq.28.or.
      $     endian.eq.0.and.it.eq.469762048) then
-c     .  old mode
+c     .  old mode (returns a error)
          if(.not.opened)  call mclose (fd,res)
-         call oldload
          k1=fin
+         call error(43)
          return
       else
          call mseek(fd,int(offset),'set'//char(0),ierr)

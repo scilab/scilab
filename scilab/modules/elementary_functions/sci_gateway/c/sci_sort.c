@@ -43,7 +43,9 @@ int C2F(sci_sort) (char *fname,unsigned long fname_len)
 
 		if (Cmplx == COMPLEX)
 		{
-			C2F(sci_gsort)(fname,fname_len);
+			int lw = 0;
+			C2F(overload)(&lw, "sort", (unsigned long)strlen("sort"));
+			return 0;
 		}
 		else
 		{

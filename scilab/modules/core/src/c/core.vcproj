@@ -5,7 +5,6 @@
 	Name="core"
 	ProjectGUID="{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 	RootNamespace="core"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -45,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -121,7 +120,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -198,7 +197,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -277,7 +276,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../api_scilab/includes;../../../string/includes;../../../functions/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../shell/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c;../../../graphics/includes"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -395,6 +394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\funcprot.c"
+				>
+			</File>
+			<File
 				RelativePath=".\Funtab.c"
 				>
 			</File>
@@ -499,6 +502,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inittypenames.c"
+				>
+			</File>
+			<File
 				RelativePath=".\intmacr2tree.c"
 				>
 			</File>
@@ -560,6 +567,10 @@
 			</File>
 			<File
 				RelativePath=".\realmain.c"
+				>
+			</File>
+			<File
+				RelativePath=".\recursionFunction.c"
 				>
 			</File>
 			<File
@@ -644,6 +655,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_funptr.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\mexlib\src\c\sci_gateway.c"
 				>
 			</File>
 			<File
@@ -887,6 +902,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\typename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\version.c"
 				>
 			</File>
@@ -980,19 +999,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\call_scilab\src\c\fromc.h"
-				>
-			</File>
-			<File
-				RelativePath=".\fromc.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\fromjava.h"
-				>
-			</File>
-			<File
-				RelativePath=".\fromjava.h"
+				RelativePath=".\funcprot.h"
 				>
 			</File>
 			<File
@@ -1084,6 +1091,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inittypenames.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intmacr2tree.h"
 				>
 			</File>
@@ -1164,6 +1175,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\recursionFunction.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\returnanan.h"
 				>
 			</File>
@@ -1177,6 +1192,10 @@
 			</File>
 			<File
 				RelativePath=".\run.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\mexlib\includes\sci_gateway.h"
 				>
 			</File>
 			<File
@@ -1277,6 +1296,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\transposeMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\typename.h"
 				>
 			</File>
 			<File

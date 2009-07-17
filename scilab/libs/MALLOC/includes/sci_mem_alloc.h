@@ -86,7 +86,7 @@
 #define CALLOC(x,y) MyCalloc((size_t) x, (size_t) y,__FILE__,__LINE__)
 
 /* Only for Scilab Stacksize use VirtualAlloc on Window */
-#define SCISTACKMALLOC(x) MyAlloc((unsigned)x,__FILE__,__LINE__)
+#define SCISTACKMALLOC(x) MyAlloc((unsigned long)x,__FILE__,__LINE__)
 #define SCISTACKFREE(x) MyFree((void *) x,__FILE__,__LINE__)
 
 #define Top C2F(vstk).top

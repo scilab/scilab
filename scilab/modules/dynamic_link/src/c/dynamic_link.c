@@ -31,6 +31,7 @@
 #endif
 #include "getshortpathname.h"
 #include "BOOL.h"
+#include "charEncoding.h"
 /*---------------------------------------------------------------------------*/
 static void Underscores(int isfor, char *ename, char *ename1);
 static int SearchFandS(char *op, int ilib);
@@ -102,7 +103,7 @@ int scilabLink(int idsharedlibrary,
 			#ifdef _MSC_VER
 			{
 				char *pathSearch = searchEnv(filename,"PATH");
-				if ( (pathSearch) && ((int)strlen(pathSearch) > 0) )
+				if ( (pathSearch != NULL) && ((int)strlen(pathSearch) > 0) )
 				{
 					if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
 					{
@@ -342,14 +343,20 @@ int Sci_dlopen( char *loaded_file)
 	int i = 0;
 
 	BOOL bConvert = FALSE;
-	/* libname on format 8.3 for localization problem */
-	char *shortLibName = getshortpathname(loaded_file,&bConvert);
-	if (shortLibName)
+	
+	#ifdef _MSC_VER
 	{
-		hd1 = LoadDynLibrary (shortLibName);
-		FREE(shortLibName);
-		shortLibName = NULL;
+		wchar_t *wcfilename = to_wide_string(loaded_file);
+		if (wcfilename)
+		{
+			hd1 = LoadDynLibraryW(wcfilename);
+			FREE(wcfilename);
+			wcfilename = NULL;
+		}
 	}
+	#else
+	hd1 = LoadDynLibrary (loaded_file);
+	#endif
 
 	if ( hd1 == NULL )  return -1 ; /* the shared archive was not loaded. */
 

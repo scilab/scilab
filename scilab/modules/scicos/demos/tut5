@@ -6,7 +6,7 @@
   We start with an empty diagram and before launching scicos,
   we load toto.sci (the block created in the previous tutorial):
   
-  getf toto.sci
+  exec toto.sci
   scicos
   
   o //OK

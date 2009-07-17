@@ -38,7 +38,6 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
 {
   int c,count,info;
   long int offset;
-  char *tmpChar = NULL;
   count=0;
   *nr=0;
 

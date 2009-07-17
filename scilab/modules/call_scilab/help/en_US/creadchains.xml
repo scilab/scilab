@@ -36,7 +36,7 @@
   <refsection>
     <title>Parameters</title>
 
-    <para><variablelist>
+	<variablelist>
         <varlistentry>
           <term>name</term>
 
@@ -90,7 +90,7 @@
             ability to be called from fortran</para>
           </listitem>
         </varlistentry>
-      </variablelist></para>
+      </variablelist>
   </refsection>
 
   <refsection>
@@ -127,7 +127,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritechain">cwritechain</link>,
-      <link linkend="StringManagement">String Management</link>
+      <link linkend="StringManagement_callscilab">String Management</link>
 </member>
     </simplelist>
   </refsection>

@@ -22,7 +22,7 @@
 // 
    l=10; r=1000; c=0.000001; e=10; pe1=0.002; pe2=0.0001;
 // 
-   getf('SCI/demos/misc/oscil.sci')
+   exec('SCI/demos/misc/oscil.sci')
    halt()
 // initialization : 
 // --------------   

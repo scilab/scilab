@@ -5,7 +5,6 @@
 	Name="data_structures_f2c"
 	ProjectGUID="{8091E9B6-4C08-4218-A63D-742867CCFE9F}"
 	RootNamespace="data_structures_f2c"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

@@ -6,7 +6,6 @@
 	ProjectGUID="{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}"
 	RootNamespace="Callsci Example "
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -45,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../core/includes"
+				AdditionalIncludeDirectories="../../../../../core/includes;../../../../includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -124,7 +123,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../../core/includes"
+				AdditionalIncludeDirectories="../../../../../core/includes;../../../../includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -201,7 +200,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../../../core/includes"
+				AdditionalIncludeDirectories="../../../../../core/includes;../../../../includes"
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -278,7 +277,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../../../../core/includes"
+				AdditionalIncludeDirectories="../../../../../core/includes;../../../../includes"
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"

@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/graphic_export/help/fr_FR";
-add_help_chapter("Graphics : export et impression",path,%T);
+add_help_chapter("Graphiques: export et impression",path,%T);
 clear path add_help_chapter;

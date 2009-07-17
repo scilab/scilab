@@ -88,8 +88,7 @@ load(fd [,x1,...,xn])</synopsis>
 
     <para>Even if the binary file format has changed with 2.5 version of
     Scilab, <literal>load(filename,...)</literal> is able to read old format
-    files. Previous file format can be accessed for a while using function
-    <link linkend="oldsave">oldsave</link> and <link linkend="oldload">oldload</link>.</para>
+    files.</para>
 
     <para>Note that the written file is portable to other operating systems
     and architectures (little and big endian).</para>
@@ -114,6 +113,8 @@ load('vals.dat','a','b');
 
     <simplelist type="inline">
       <member><link linkend="save">save</link></member>
+
+      <member><link linkend="read">read</link></member>
 
       <member><link linkend="listvarinfile">listvarinfile</link></member>
 

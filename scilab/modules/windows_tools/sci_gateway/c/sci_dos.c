@@ -22,6 +22,7 @@
 #include "FileExist.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
@@ -173,13 +174,7 @@ int sci_dos(char *fname,unsigned long l)
 	C2F(putlhsvar)();
 
 	if (Status) {FREE(Status);Status=NULL;}
-	if (Output)
-	{
-		int i=0;
-		for(i=0;i<numberoflines;i++) if (Output[i]) {FREE(Output[i]);Output[i]=NULL;}
-		FREE(Output);
-		Output=NULL;
-	}
+	freeArrayOfString(Output, numberoflines);
 
 	ClosePipeInfo (pipeOut);
 	ClosePipeInfo (pipeErr);

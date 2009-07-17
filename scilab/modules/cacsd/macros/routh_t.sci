@@ -1,5 +1,14 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA - Serge STEER
+// Copyright (C) 1999 - Lucien.Povy@eudil.fr (to get a good table)
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function r=routh_t(h,k)
-// Copyright INRIA - Serge Steer
 //r=routh_t(h,k) computes routh table of denominator of the
 //system described by transfer matrix SISO continue h with the
 //feedback by the gain k
@@ -7,7 +16,6 @@ function r=routh_t(h,k)
 //k, formal expression of the Routh table.
 //r=routh_t(d) computes Routh table of h :attention ! d=denom of system
 //!
-//modified 15/10/99, by Lucien.Povy@eudil.fr to get a good table
 [lhs,rhs]=argn(0);
 h1=h(1);
 if rhs==2 then

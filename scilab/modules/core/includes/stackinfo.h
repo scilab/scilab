@@ -92,6 +92,28 @@ int getLocalSizefromId(int n);
 */
 int getGlobalSizefromId(int n);
 
+/**
+* check if a variable named exists on scilab stack (local & global)
+* @param[in] variable name
+* @return BOOL : TRUE if variable exists
+*/
+BOOL existVariableNamedOnStack(char *varname);
+
+/**
+* check if a variable named exists on scilab stack (local)
+* @param[in] variable name
+* @return BOOL : TRUE if variable exists
+*/
+BOOL existLocalVariableNamedOnStack(char *varname);
+
+/**
+* check if a variable named exists on scilab stack (global)
+* @param[in] variable name
+* @return BOOL : TRUE if variable exists
+*/
+BOOL existGlobalVariableNamedOnStack(char *varname);
+
+
 #endif /*__STACKINFO_H__*/
 /*--------------------------------------------------------------------------*/ 
 

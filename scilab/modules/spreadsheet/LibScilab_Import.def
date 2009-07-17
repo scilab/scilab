@@ -15,5 +15,6 @@ EXPORTS
  returnanan_
  getTMPDIR
  vartype_
+ freeArrayOfString
  ;
 

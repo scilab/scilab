@@ -10,7 +10,7 @@ ilib_verbose(0);
 
 mydir = TMPDIR + filesep() + "loadlib";
 createdir(mydir);
-chdir(mydir)
+chdir(mydir);
 
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");

@@ -6,7 +6,6 @@
 	ProjectGUID="{8CCDD3C2-B025-4A12-A986-1AA28D7C0C33}"
 	RootNamespace="graphics"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -70,7 +69,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmdd.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -153,7 +152,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmdd.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -238,7 +237,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -328,7 +327,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="libmmd.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"

@@ -92,10 +92,10 @@ int main(void)
 
     <simplelist type="inline">
       <member><link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>, 
-      <link linkend="MatrixManagement">Matrix Management</link>, 
-      <link linkend="BooleanManagement">Boolean Management</link>, 
-      <link linkend="ComplexManagement">Complex Management</link>, 
-      <link linkend="StringManagement">String Management</link>
+      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
+      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
+      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
+      <link linkend="StringManagement_callscilab">String Management</link>
 </member>
     </simplelist>
   </refsection>

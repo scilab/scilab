@@ -83,6 +83,8 @@ typename(name,type)</synopsis>
     <para><literal>typename('',type)</literal> suprime o tipo de dado
     fornecido pelo seu código <literal>type</literal> de tabelas de tipos de
     dados conhecidos.</para>
+    
+    <para>Number max. of defined types is 50.</para>
   </refsection>
 
   <refsection>

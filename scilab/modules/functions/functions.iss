@@ -18,13 +18,20 @@
 ;
 #define FUNCTIONS "functions"
 ;
+Source: bin\functions.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\functions_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\readme.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\license.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
+Source: modules\{#FUNCTIONS}\sci_gateway\functions_gateway.xml; DestDir: {app}\modules\{#FUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.quit; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FUNCTIONS}\etc; Components: {#COMPN_SCILAB}
+;
+Source: modules\{#FUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#FUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\help\addchapter.sce; DestDir: {app}\modules\{#FUNCTIONS}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;

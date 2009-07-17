@@ -14,15 +14,17 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define RENDERER_TAB_SIZE 0
+static gw_generic_table Tab[RENDERER_TAB_SIZE]=
 {
 
 };
 /*--------------------------------------------------------------------------*/
+/* This gateway is not used and it should be not built */
 int gw_renderer(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,RENDERER_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

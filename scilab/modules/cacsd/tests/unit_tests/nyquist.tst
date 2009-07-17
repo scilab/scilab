@@ -6,6 +6,8 @@
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
+
 function r=checknyquist(Args,leg)
   if size(Args)==1 then Args($+1)=1d-3; Args($+1)=1d+3;end
   [frq,rf,splitf]=repfreq(Args(:));repi=imag(rf);repf=real(rf);

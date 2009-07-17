@@ -20,7 +20,6 @@
 /*--------------------------------------------------------------------------*/
 int sci_timer(char *fname,unsigned long fname_len)
 {
-	int l1 = 0,n1 = 0;
 	double timerval = 0;
 
 	Rhs = Max(0, Rhs);

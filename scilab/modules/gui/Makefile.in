@@ -72,9 +72,9 @@ subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -145,7 +145,7 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getinstalledlookandfeels.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
-	libscigui_la-sci_displaytree.lo
+	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo
 am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -301,17 +301,25 @@ FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_CFLAGS = @HDF5_CFLAGS@
+HDF5_ENABLE = @HDF5_ENABLE@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INTLLIBS = @INTLLIBS@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -331,11 +339,15 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -345,6 +357,8 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
+MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
@@ -365,9 +379,10 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
+PVM_ARCH = @PVM_ARCH@
 PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
@@ -390,14 +405,16 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -694,7 +711,8 @@ sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
-sci_gateway/cpp/sci_displaytree.cpp
+sci_gateway/cpp/sci_displaytree.cpp \
+sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
 	-I$(srcdir)/includes/ \
@@ -1077,6 +1095,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfont.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiputfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
@@ -1458,6 +1477,13 @@ libscigui_la-sci_displaytree.lo: sci_gateway/cpp/sci_displaytree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_displaytree.cpp' object='libscigui_la-sci_displaytree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
+
+libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiputfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiputfile.Tpo -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uiputfile.Tpo $(DEPDIR)/libscigui_la-sci_uiputfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uiputfile.cpp' object='libscigui_la-sci_uiputfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp

@@ -55,6 +55,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
+					freeArrayOfString(InputString_Parameter,m*n);
 					Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 					return 0;
 				}
@@ -132,6 +133,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
+				freeArrayOfString(InputString_Parameter1,m1*n1);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 			}
 			return 0;
@@ -200,6 +202,7 @@ int C2F(sci_error)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
+				freeArrayOfString(InputString_Parameter2,m2*n2);
 				Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
 			}
 

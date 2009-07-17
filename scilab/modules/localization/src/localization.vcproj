@@ -5,7 +5,6 @@
 	Name="localization"
 	ProjectGUID="{ECFFEB0C-1EDA-45EE-9A10-B18143852E17}"
 	RootNamespace="localization"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -484,6 +483,38 @@
 			<File
 				RelativePath=".\jni\Messages_wrap.c"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="STATIC_LINKED"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="STATIC_LINKED"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="STATIC_LINKED"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						PreprocessorDefinitions="STATIC_LINKED"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="..\sci_gateway\c\sci_dgettext.c"

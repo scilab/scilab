@@ -1,47 +1,77 @@
 /* ==================================================================== */
 /* Allan CORNET */
-/* INRIA 2008 */
+/* DIGITEO 2009 */
 /* Template toolbox_skeleton */
 /* This file is released into the public domain */
 /* ==================================================================== */
 #include "stack-c.h" 
+#include "api_common.h"
+#include "api_double.h"
+#include "Scierror.h"
+#include "MALLOC.h"
 /* ==================================================================== */
 extern int csum(double *a,double *b,double *c);
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
-  int l1, m1, n1, l2, m2, n2, m3, n3,l3;
-
-  double a,b,c;
+  int m1 = 0, n1 = 0;
+  int *piAddressVarOne = NULL;
+  double *pdVarOne = NULL;
   
-  a = 0;
-  b = 0;
-  c = 0;
+  int m2 = 0, n2 = 0;
+  int *piAddressVarTwo = NULL;
+  double *pdVarTwo = NULL;
+  
+  int m_out = 0, n_out = 0;
+  double dOut = 0.0;
 
   /* --> result = csum(3,8)
   /* check that we have only 2 parameters input */
   /* check that we have only 1 parameters output */
   CheckRhs(2,2) ;
   CheckLhs(1,1) ;   
-
-  /* get first parameter and put in 'a' */
-  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-  a = *stk(l1);
   
-  /* get second parameter and put in 'a' */
-  GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
-  b= *stk(l2) ;
- 
-  /* call fortran fsum subroutine */
-  csum(&a,&b,&c);
+  /* get Address of inputs */
+  getVarAddressFromPosition(1, &piAddressVarOne);
+  getVarAddressFromPosition(2, &piAddressVarTwo);
   
-  /* create a variable on scilab's stack */
-  m3=1;
-  n3=1;
-  CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
-  *stk(l3) = c;
+  /* check input type */
+  if ( getVarType(piAddressVarOne) != sci_matrix )
+  {
+  	Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,1);
+  	return 0;
+  }
+  
+  if ( getVarType(piAddressVarTwo) != sci_matrix )
+  {
+  	Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
+  	return 0;
+  }
 
-  LhsVar(1) = Rhs+1; 
+  /* get matrix */
+  getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
+  getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
+  
+  /* check size */
+  if ( (m1 != n1) && (n1 != 1) ) 
+  {
+  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,1);
+  	return 0;
+  }
+  if ( (m2 != n2) && (n2 != 1) ) 
+  {
+  	Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
+  	return 0;
+  }
+  
+  /* call c function csum */
+  csum(&pdVarOne[0],&pdVarTwo[0],&dOut);
+  
+  /* create result on stack */
+  m_out = 1;  n_out = 1;
+  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+  LhsVar(1) = Rhs + 1; 
+  
   return 0;
 }
 /* ==================================================================== */

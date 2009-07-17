@@ -6,7 +6,6 @@
 	ProjectGUID="{A3AD381E-C0DD-45BB-ACB2-C0A0DB33A606}"
 	RootNamespace="signal_processing"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

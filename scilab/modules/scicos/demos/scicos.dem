@@ -80,7 +80,7 @@ while %t do
   case 	'bouncing balls' then
     scicos('SCI/modules/scicos/demos/bounce.cosf');
 //  case 'Live demo' then
-//    getf('SCI/modules/scicos/demos/scicos_play.sci','n')
+//    exec('SCI/modules/scicos/demos/scicos_play.sci','n')
 //    scicos_play('SCI/modules/scicos/demos/live.dat')
   case 'sound demo' then  
     scicos('SCI/modules/scicos/demos/sound.cosf');
@@ -130,7 +130,7 @@ while %t do
 	end
       end
       str='SCI/modules/scicos/demos/tut'+string(n)
-      getf('SCI/modules/scicos/demos/scicos_play.sci')
+      exec('SCI/modules/scicos/demos/scicos_play.sci')
       scicos_play(str)
       chdir(dirr)
     end

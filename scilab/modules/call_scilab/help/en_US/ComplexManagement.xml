@@ -104,9 +104,9 @@
 	    <link linkend="creadcmat">creadcmat</link>,
 <link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="ComplexManagement">Complex Management</link>, <link
-      linkend="BooleanManagement">Boolean Management</link>, <link
-      linkend="StringManagement">String Management</link></member>
+      linkend="ComplexManagement_callscilab ">Complex Management</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
+      linkend="StringManagement_callscilab">String Management</link></member>
     </simplelist>
   </refsection>
 

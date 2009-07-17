@@ -14,6 +14,7 @@
 #include "dynamiclibrary.h"
 #include "getshortpathname.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 typedef void (*PROC_FFTW_EXECUTE_SPLIT_DFT) (const fftw_plan p, double *ri, double *ii, double *ro, double *io);
 typedef fftw_plan (*PROC_FFTW_PLAN_GURU_SPLIT_DFT) (int rank, const fftw_iodim *dims, int howmany_rank, const fftw_iodim *howmany_dims, double *ri, double *ii, double *ro, double *io, unsigned flags);
@@ -48,14 +49,12 @@ BOOL LoadFFTWLibrary(char *libraryname)
 	{
 		#ifdef _MSC_VER
 		{
-			BOOL bConvert = FALSE;
-			/* libname on format 8.3 for localization problem */
-			char *shortLibName = getshortpathname(libraryname,&bConvert);
-			if (shortLibName)
+			wchar_t * wclibraryname = to_wide_string(libraryname);
+			if (wclibraryname)
 			{
-				hinstLib = LoadDynLibrary(shortLibName);
-				FREE(shortLibName);
-				shortLibName = NULL;
+				hinstLib = LoadDynLibraryW(wclibraryname); 
+				FREE(wclibraryname);
+				wclibraryname = NULL;
 			}
 		}
 		#else

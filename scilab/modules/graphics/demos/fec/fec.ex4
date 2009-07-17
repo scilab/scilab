@@ -9,7 +9,7 @@
 mode(0);
 
 path=get_absolute_file_path('fec.ex4');
-getf(path+'fec_demo.sci');
+exec(path+'fec_demo.sci');
 
 curFig             = scf(100001);
 clf(curFig,"reset");

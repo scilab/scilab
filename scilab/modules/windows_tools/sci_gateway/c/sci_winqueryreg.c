@@ -15,6 +15,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_winqueryreg(char *fname,unsigned long l)
 {
@@ -74,11 +75,7 @@ int sci_winqueryreg(char *fname,unsigned long l)
 
 					CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &NumbersElm, &n1, &ListKeysName);
 
-					for (i=0; i<NumbersElm;i++)
-					{
-						FREE(ListKeysName[i]);
-						ListKeysName[i]=NULL;
-					}
+					freeArrayOfString(ListKeysName, NumbersElm);
 
 					LhsVar(1)=Rhs+1;
 					C2F(putlhsvar)();

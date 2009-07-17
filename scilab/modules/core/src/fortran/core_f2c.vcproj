@@ -6,7 +6,6 @@
 	ProjectGUID="{C352587B-F5E4-457C-80EE-A1AEAB176C8E}"
 	RootNamespace="core_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -335,10 +334,6 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath=".\algebre.c"
-				>
-			</File>
 			<File
 				RelativePath=".\allops.c"
 				>
@@ -688,10 +683,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_funcprot.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_global.c"
 				>
 			</File>
@@ -725,14 +716,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_setbpt.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.c"
 				>
 			</File>
 			<File
@@ -838,6 +821,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\includes\callinter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\stack.h"
 				>
 			</File>
@@ -851,10 +838,6 @@
 		<Filter
 			Name="Fortran Files"
 			>
-			<File
-				RelativePath=".\algebre.f"
-				>
-			</File>
 			<File
 				RelativePath=".\allops.f"
 				>
@@ -1204,10 +1187,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_funcprot.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_global.f"
 				>
 			</File>
@@ -1241,14 +1220,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_setbpt.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.f"
 				>
 			</File>
 			<File

@@ -368,9 +368,20 @@ function test_run(varargin)
 		
 		for i=1:test_count
 			
+			test_list_1 = test_list(i,1);
+			
+			// Improve the display of the module
+			if isdir(test_list_1) then
+				if part(test_list(i,1),1:length(SCI)) == SCI then
+					test_list_1 = "SCI" + part(test_list_1,length(SCI)+1:length(test_list_1));
+				elseif part(test_list(i,1),1:length(SCIHOME)) == SCIHOME then
+					test_list_1 = "SCIHOME" + part(test_list_1,length(SCIHOME)+1:length(test_list_1));
+				end
+			end
+			
 			printf("   %03d/%03d - ",i,test_count);
-			printf("[%s] %s",test_list(i,1),test_list(i,2));
-			for j = length(test_list(i,2) + test_list(i,1)):50
+			printf("[%s] %s",test_list_1,test_list(i,2));
+			for j = length(test_list(i,2) + test_list_1):50
 				printf(".");
 			end
 			

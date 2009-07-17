@@ -31,6 +31,7 @@ ilib_build('bug',['ex2c_1','intex2c'],files,[]);
    Running the makefile
    Compilation of bug_2085
    Building shared library (be patient)
+   Generate a cleaner file   
 // load the shared library
 exec loader.sce
  

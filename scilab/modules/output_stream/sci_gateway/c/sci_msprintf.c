@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_msprintf(char *fname,unsigned long fname_len)
 {
@@ -200,8 +201,9 @@ int sci_msprintf(char *fname,unsigned long fname_len)
 	/** Create a Scilab String : lstr must not be freed **/
 	n2=1;
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &n, &n2, strs);
-	for (k=0;k<n;k++) FREE(strs[k]);
-	FREE(strs);
+
+	freeArrayOfString(strs, n);
+	
 	LhsVar(1)=Rhs+1;
 	PutLhsVar();
 	return 0;

@@ -9,97 +9,63 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/
 #include "gw_io.h"
-#include "gw_output_stream.h" /* sci_disp */
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define IO_TAB_SIZE 18
+static gw_generic_table Tab[IO_TAB_SIZE]=
 {
-{C2F(sci_oldload),"oldload"},
+{C2F(sci_setenv),"setenv"},
 {C2F(sci_read),"read"},
-{C2F(sci_getf),"getf"},
-{C2F(sci_exec),"exec"},
-{C2F(sci_lib),"lib"},
+{C2F(sci_getenv),"getenv"},
+{C2F(sci_getio),"getio"},
 {C2F(sci_diary),"diary"},
-{C2F(sci_oldsave),"oldsave"},
+{C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
-{C2F(sci_deff),"deff"},
 {C2F(sci_file),"file"},
 {C2F(sci_host),"host"},
 {C2F(sci_unix),"unix"},
 {C2F(sci_readb),"readb"},
 {C2F(sci_writb),"writb"},
-{C2F(sci_execstr),"execstr"},
 {C2F(sci_getpid),"getpid"},
-{C2F(sci_getenv),"getenv"},
 {C2F(sci_read4b),"read4b"},
 {C2F(sci_write4b),"write4b"},
 {C2F(sci_save),"save"},
-{C2F(sci_load),"load"},
-{C2F(sci_mgetl),"mgetl"},
-{C2F(sci_getio),"getio"},
-{C2F(sci_setenv),"setenv"},
-{sci_export_to_hdf5,"export_to_hdf5"}
+{C2F(sci_load),"load"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {  
-	 /* Recursion */
-	 if (C2F(recu).rstk[C2F(recu).pt-1] / 100 == 9)
-	 {
-		switch ((int)(C2F(recu).rstk[C2F(recu).pt-1] - 901))
+	/* Recursion from a function */
+	if ( isRecursionCallToFunction() )
+	{
+		switch ( getRecursionFunctionToCall() )
 		{
-			case 1: 
-			{
-				C2F(intexec)("exec",(unsigned long)strlen("exec"));
-				return 0;
-			}
-			case 2: 
-			{
-				C2F(intexecstr)("execstr",(unsigned long)strlen("execstr"));
-				return 0;
-			}
-			case 3: 
-			{
-				C2F(intgetf)(); 
-				return 0;
-			}
-			case 4:  
-			{
-				C2F(intsave)(); 
-				return 0;
-			}
-			case 5:
-			{
-				C2F(sci_load)("load",(unsigned long)strlen("load"));
-			}
-			case 6: 
-			{
-				return 0;
-			}
-			case 7:
-			{
-				#define disp_fname "disp"
-				sci_disp(disp_fname,strlen(disp_fname));
-				return 0;
-			}
-			case 8: 
-			{
-				C2F(intexec)("exec",(unsigned long)strlen("exec"));
-				return 0;
-			}
+			case RECURSION_CALL_SAVE:
+				{
+					C2F(intsave)(); 
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_LOAD:
+				{
+					C2F(sci_load)("load",(unsigned long)strlen("load"));
+					return 0;
+				}
+				break;
 			default:
-				return 0;
+				break;
 		}
 	}
-	 else
-	 {
+	else
+	{
 		Rhs = Max(0, Rhs);
-		callFunctionFromGateway(Tab);
-	 }
+		callFunctionFromGateway(Tab,IO_TAB_SIZE);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

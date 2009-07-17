@@ -6,7 +6,6 @@
 	ProjectGUID="{CEF88C5F-6820-46D4-BCCD-44D5581481C5}"
 	RootNamespace="libmx"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -376,6 +375,10 @@
 				RelativePath="..\c\mexlib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\c\sci_gateway.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -384,6 +387,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\mex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_gateway.h"
 				>
 			</File>
 		</Filter>

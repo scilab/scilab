@@ -1418,7 +1418,7 @@ int ChooseGoodFormat( char * c_format,char logflag, double *_grads,int n_grads )
 /*--------------------------------------------------------------------------*/
 char * copyFormatedValue( double value, const char format[5], int bufferSize )
 {
-  char * buffer = MALLOC( bufferSize * sizeof(char) ) ;
+  char * buffer = (char*)MALLOC( bufferSize * sizeof(char) ) ;
   char * res = NULL ;
   int resLength = 0 ;
 
@@ -1431,7 +1431,7 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   resLength =  (int)strlen( buffer ) + 1 ; /* + 1 <=> 0 terminating char */
 
-  res = MALLOC( resLength * sizeof(char) ) ;
+  res = (char*)MALLOC( resLength * sizeof(char) ) ;
 
   if ( res == NULL )
   {

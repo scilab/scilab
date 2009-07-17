@@ -119,7 +119,6 @@ typedef struct
 	int lct[8]; /**< @TODO : add comment */
 	int lin[lsiz]; /**< @TODO : add comment */
 	int lpt[6]; /**< @TODO : add comment */
-	int hio; /**< @TODO : add comment */
 	int rio; /* Id input (fortran) file descriptor */
 	int wio; /* Id output (fortran) file descriptor */
 	int rte; /* Id input (fortran) terminal descriptor (stdin)  */

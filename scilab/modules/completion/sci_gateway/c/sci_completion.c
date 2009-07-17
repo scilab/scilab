@@ -25,13 +25,13 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 {
 	int l1 = 0, m1 = 0, n1 = 0;
 	char *partOfWord = NULL;
+	char ** Inputs1 = NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,6);
 
 	if (GetType(1) == sci_strings)
 	{
-		char ** Inputs1 = NULL;
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Inputs1);
 		if ( (m1 == n1) && (n1 == 1) )
 		{
@@ -69,16 +69,17 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 				char **Inputs2 = NULL;
 				char *param2 = NULL;
 				char **Results = NULL;
-				int sizeResults = 0;
+				int sizeResults = 0, m2 = 0, n2 = 0;
 
-				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Inputs2);
-				if ( (m1 == n1) && (n1 == 1) )
+				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Inputs2);
+				if ( (m2 == n2) && (n2 == 1) )
 				{
 					param2 = Inputs2[0];
 				}
 				else
 				{
-					freeArrayOfString(Inputs2,m1 * n1);
+					freeArrayOfString(Inputs1,m1 * n1);
+					freeArrayOfString(Inputs2,m2 * n2);
 					Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 					return 0;
 				}
@@ -109,18 +110,20 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					freeArrayOfString(Inputs2,m1*n1);
+					freeArrayOfString(Inputs1,m1 * n1);
+					freeArrayOfString(Inputs2,m2 * n2);
 					Scierror(999,_("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,"functions","commands","variables","macros","graphic_properties","files");
 					return 0;
 				}
 				putResultOnStack(1,Results,sizeResults);
 				freePointerDictionary(Results,sizeResults);
-				freeArrayOfString(Inputs2,m1*n1);
+				freeArrayOfString(Inputs2,m2*n2);
 				C2F(putlhsvar)();
 
 			}
 			else
 			{
+				freeArrayOfString(Inputs1,m1 * n1);
 				Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname,2);
 				return 0;
 			}
@@ -133,6 +136,7 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 
 		if (Rhs == 2)
 		{
+			freeArrayOfString(Inputs1,m1 * n1);
 			Scierror(999,_("%s: Wrong number of output argument(s).\n"),fname);
 			return 0;
 		}
@@ -198,6 +202,7 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 
 		C2F(putlhsvar)();
 	}
+	freeArrayOfString(Inputs1,m1 * n1);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -11,6 +11,8 @@
 //
 // <-- Short Description -->
 // for loop variable not removed when an error arises within a for called in try context
+// <-- ENGLISH IMPOSED -->
+funcprot(0);
 function r=test()
   r=%f
   try
@@ -27,7 +29,5 @@ deff('r=test()',['r=%f'
 'catch'
 '    r=%t'
 'end'],'n')
-Warning : redefining function: test                    . Use funcprot(0) to avoid this message
-
 if ~test() then bugmes();quit;end
 if lasterror()<>'test' then bugmes();quit;end

@@ -6,7 +6,6 @@
 	ProjectGUID="{C2EDD447-BB60-41A1-973B-8213FCA9ECD4}"
 	RootNamespace="io_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -399,27 +398,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexec.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexecstr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.c"
 				>
 			</File>
 			<File
@@ -475,10 +454,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\oldloadsave.c"
-				>
-			</File>
-			<File
 				RelativePath=".\v2cunit.c"
 				>
 			</File>
@@ -523,27 +498,7 @@
 			Name="Fortran files"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexec.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intexecstr.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.f"
 				>
 			</File>
 			<File
@@ -612,10 +567,6 @@
 			</File>
 			<File
 				RelativePath=".\newsave.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\oldloadsave.f"
 				>
 			</File>
 			<File

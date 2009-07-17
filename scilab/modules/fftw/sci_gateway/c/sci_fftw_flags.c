@@ -10,6 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <string.h>
 #include "sci_fftw_flags.h"
 #include "fftw_utilities.h"
 #include "MALLOC.h"
@@ -17,6 +18,9 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 extern unsigned cur_fftw_flags;
 /*--------------------------------------------------------------------------*/
@@ -177,13 +181,12 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 			return(0);
 		}
 
-		len = (int)strlen(Str[0]);
-		if ((Str3[0] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
+		Str3[0] = strdup(Str[0]);
+		if (Str3[0] == NULL) 
 		{
 			Scierror(999,_("%s: No more memory.\n"),fname);
 			return(0);
 		}
-		strcpy(Str3[0],Str[0]);
 	}
 	else 
 	{
@@ -201,14 +204,14 @@ int sci_fftw_flags(char *fname,unsigned long fname_len)
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return(0);
 				}
-				len = (int)strlen(Str[i]);
-				if ((Str3[j-1] = (char *)MALLOC(sizeof(char)*(len+1))) == NULL) 
+
+				Str3[j-1] = strdup(Str[i]);
+				if (Str3[j-1] == NULL) 
 				{
 					freeArrayOfString(Str3,j);
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return(0);
 				}
-				strcpy(Str3[j-1],Str[i]);
 			}
 		}
 	}

@@ -22,10 +22,10 @@
 #include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
-
-static BOOL loadedDep=FALSE;
-
-static gw_generic_table Tab[]= 
+static BOOL loadedDep = FALSE;
+/*--------------------------------------------------------------------------*/
+#define GRAPHIC_EXPORT_TAB_SIZE 9
+static gw_generic_table Tab[GRAPHIC_EXPORT_TAB_SIZE]= 
 {
   {sci_xs2bmp,"xs2bmp"},
   {sci_xs2gif,"xs2gif"},
@@ -49,8 +49,8 @@ int gw_graphic_export(void)
 			loadedDep=TRUE;
 		}
 
-		callFunctionFromGateway(Tab);
-		C2F(putlhsvar)();
+		callFunctionFromGateway(Tab,GRAPHIC_EXPORT_TAB_SIZE);
+		
 	}
 	else
 	{

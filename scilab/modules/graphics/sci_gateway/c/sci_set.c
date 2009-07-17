@@ -26,6 +26,7 @@
 #include "GetProperty.h"
 #include "InitObjects.h"
 #include "GraphicSynchronizerInterface.h"
+#include "freeArrayOfString.h"
 
 #include "SetHashTable.h"
 #include "SetPropertyStatus.h"
@@ -55,6 +56,7 @@ static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType,
 int sci_set(char *fname, unsigned long fname_len)
 {
 	int lw = 0;
+	int isMatrixOfString = 0;
 	CheckRhs(2,3);
 	CheckLhs(0,1);
 
@@ -147,6 +149,7 @@ int sci_set(char *fname, unsigned long fname_len)
 				} 
 				else
 				{
+					isMatrixOfString = 1;
 					GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				}
 			}
@@ -180,6 +183,7 @@ int sci_set(char *fname, unsigned long fname_len)
 					|| strcmp( cstk(l2), "axes_reverse" ) == 0
 					|| strcmp( cstk(l2), "text"      ) == 0 )
 				{
+					isMatrixOfString = 1;
 					GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&numrow3,&numcol3,&l3);
 				} 
 				else
@@ -247,6 +251,12 @@ int sci_set(char *fname, unsigned long fname_len)
 			/* No object specified */
 			sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
 		}
+		
+		if(isMatrixOfString)
+		{
+			freeArrayOfString((char**)l3, numrow3*numcol3);
+		}
+		
 		LhsVar(1) = 0;
 		C2F(putlhsvar)();
 	}

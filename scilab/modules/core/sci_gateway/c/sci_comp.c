@@ -12,7 +12,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
- extern int C2F(intcomp)(void);
+ extern int C2F(intcomp)(void); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_comp)(char *fname,unsigned long fname_len)
 {

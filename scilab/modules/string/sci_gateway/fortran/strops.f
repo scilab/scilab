@@ -93,10 +93,15 @@ c     .  []+b
 c     .  a+[]
          return
       elseif(m1.ne.m2.or.n1.ne.n2) then
-         top=top0
-         rhs=rhs1
-         fin=-fin
+         m1n1 = m1 * n1
+         m2n2 = m2 * n2
+         if (m1n1.eq.1 .or. m2n2.eq.1) then
+c     overload %c_a_c
+           goto 10
+         else
+         call error(8)
          return
+         endif
       endif
       if(istk(il1).ne.istk(il2)) goto 10
       err=lw+sadr(istk(id1+mn1)+istk(id2+mn2))-lstk(bot)

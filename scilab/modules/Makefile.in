@@ -64,9 +64,9 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -127,7 +127,7 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link fileio \
+	elementary_functions string api_scilab dynamic_link fileio \
 	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
@@ -135,10 +135,10 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing call_scilab sound time \
 	sparse windows_tools functions overloading maple2scilab m2sci \
-	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters matio \
-	scicos_blocks scicos . javasci
+	texmacs scipad development_tools compatibility_functions \
+	helptools fftw umfpack demo_tools genetic_algorithms \
+	simulated_annealing parameters matio hdf5 scicos_blocks scicos \
+	. javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -182,17 +182,25 @@ FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_CFLAGS = @HDF5_CFLAGS@
+HDF5_ENABLE = @HDF5_ENABLE@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INTLLIBS = @INTLLIBS@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -212,11 +220,15 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -226,6 +238,8 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
+MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
@@ -246,9 +260,10 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
+PVM_ARCH = @PVM_ARCH@
 PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
@@ -271,14 +286,16 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -347,7 +364,7 @@ top_srcdir = @top_srcdir@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 SUBDIRS = core output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link fileio \
+	elementary_functions string api_scilab dynamic_link fileio \
 	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
@@ -356,10 +373,9 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	intersci metanet signal_processing core call_scilab \
 	interpolation sound time randlib sparse windows_tools \
 	functions overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio $(am__append_1) scicos . \
-	$(am__append_2)
+	development_tools compatibility_functions helptools fftw \
+	umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters matio hdf5 $(am__append_1) scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -396,6 +412,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
@@ -431,7 +448,9 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \

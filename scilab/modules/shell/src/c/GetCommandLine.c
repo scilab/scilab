@@ -30,10 +30,12 @@
 #include "TermReadAndProcess.h"
 #include "stack-def.h"
 #include "diary.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
-#define strdup _strdup
 #else
 #define IMPORT_SIGNAL extern
 #endif
@@ -42,7 +44,7 @@
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
 static char* tmpPrompt = NULL;
-static char * __CommandLine;
+static char * __CommandLine = NULL;
 /*--------------------------------------------------------------------------*/
 
 IMPORT_SIGNAL __threadSignal		LaunchScilab;
@@ -68,6 +70,8 @@ static void getCommandLine(void)
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
+  if (__CommandLine) {FREE(__CommandLine); __CommandLine = NULL;}
+
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
@@ -81,7 +85,7 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-      __CommandLine = ConsoleRead();
+      __CommandLine = strdup(ConsoleRead());
     }
   else
     {
@@ -188,6 +192,8 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
+
+  if (__CommandLine) { FREE(__CommandLine); __CommandLine = NULL;}
   __CommandLine = strdup("");
 
   if (ismenu() == 0)

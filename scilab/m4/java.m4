@@ -120,7 +120,7 @@ AC_DEFUN([AC_PROG_JAVAC], [
         AC_MSG_ERROR([Could not compile simple Java program with '$JAVAC'. Try with the Sun JDK (1.5 or 6).])
     fi
 
-    AC_MSG_LOG([Using JAVAC=$JAVAC], 1)
+    AC_MSG_LOG([Using JAVAC=$JAVAC])
 ])
 
 
@@ -304,7 +304,7 @@ AC_DEFUN([AC_JAVA_CLASSPATH], [
         ac_java_classpath="${ac_java_classpath}:${CLASSPATH}"
     fi
 
-    AC_MSG_LOG([Using CLASSPATH=$ac_java_classpath], 1)
+    AC_MSG_LOG([Using CLASSPATH=$ac_java_classpath],1)
     AC_MSG_RESULT($ac_java_classpath)
 ])
 
@@ -425,7 +425,12 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
+		  s390x) # s390 arch can also returns s390x
+		  machine=s390
+		  ;;
     esac
+
+	AC_MSG_LOG([Looking for JNI libs with $machine as machine hardware name])
 
     # Check for known JDK installation layouts
 
@@ -438,9 +443,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=jre/lib/$machine/libjava.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
@@ -466,9 +471,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=jre/lib/amd64/libjava.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -484,9 +489,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=jre/lib/i386/client/libjvm.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -502,9 +507,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=jre/bin/classic/libjvm.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
 
                 D=`dirname $ac_java_jvm_dir/$F`
                 ac_java_jvm_jni_lib_runtime_path=$D
@@ -520,9 +525,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=../Libraries/libjava.jnilib
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
 		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
 
                 D=`dirname $ac_java_jvm_dir/$F`
@@ -539,14 +544,14 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 
         F=lib/jvm.lib
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F], 1)
+            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
             if test -f $ac_java_jvm_dir/$F ; then
                 # jre/bin/client must contain jvm.dll
                 # jre/bin/server directory could also contain jvm.dll,
                 # just assume the user wants to use the client JVM.
                 DLL=jre/bin/client/jvm.dll
                 if test -f $ac_java_jvm_dir/$DLL ; then
-                    AC_MSG_LOG([Found $ac_java_jvm_dir/$F], 1)
+                    AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
                     D1=$ac_java_jvm_dir/jre/bin
                     D2=$ac_java_jvm_dir/jre/bin/client
                     ac_java_jvm_jni_lib_runtime_path="${D1}:${D2}"
@@ -567,8 +572,8 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
     AC_MSG_LOG([Using the following JNI library flags $ac_java_jvm_jni_lib_flags])
     AC_MSG_LOG([Using the following runtime library path $ac_java_jvm_jni_lib_runtime_path])
 
-    AC_MSG_LOG([Using LD_PRELOAD=$ac_java_jvm_ld_preload], 1)
-    AC_MSG_LOG([Using LD_BIND_NOW=$ac_java_jvm_ld_bind_now], 1)
+    AC_MSG_LOG([Using LD_PRELOAD=$ac_java_jvm_ld_preload],1)
+    AC_MSG_LOG([Using LD_BIND_NOW=$ac_java_jvm_ld_bind_now],1)
 
     # Make sure we can compile and link a trivial JNI program
 

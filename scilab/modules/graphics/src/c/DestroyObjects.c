@@ -44,6 +44,7 @@
 #include "get_ticks_utils.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"
+#include "freeArrayOfString.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
@@ -238,6 +239,11 @@ int DestroyFigure (sciPointObj * pthis)
   if (pFIGURE_FEATURE(pthis)->eventHandler != NULL)
   {
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
+  }
+  
+  if (pFIGURE_FEATURE(pthis)->name != NULL)
+  {
+    FREE( pFIGURE_FEATURE(pthis)->name ) ;
   }
   
 	destroyUiobjectTag(pthis);
@@ -682,16 +688,13 @@ void destroyGraphicPointer(void * pointer)
  */
 void destroyGraphicStringArray(char ** strArray, int nbStrings)
 {
-  int i;
-  for (i = 0; i < nbStrings; i++)
-  {
-    FREE(strArray[i]);
-  }
-  FREE(strArray);
+	freeArrayOfString(strArray,nbStrings);
 }
 /*--------------------------------------------------------------------------------*/
 void destroyRelationShip(sciPointObj * pObj)
 {
+	/* Don't destroy relationShip for labels since the relationShip of a label
+	is contained in (and destroyed with) its text attribute (see ConstructLabel) */
 	if (pObj->relationShip != NULL && sciGetEntityType(pObj) != SCI_LABEL)
 	{
 		FREE(pObj->relationShip);

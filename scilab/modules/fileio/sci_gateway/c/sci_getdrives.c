@@ -16,6 +16,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "getdrives.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_getdrives(char *fname,unsigned long l)
 {
@@ -46,16 +47,8 @@ int sci_getdrives(char *fname,unsigned long l)
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
 
-	if (Drives)
-	{
-		for (i=0;i<nbDrives;i++)
-		{
-			if (Drives[i]) {FREE(Drives[i]);Drives[i]=NULL;}
-		}
-		FREE(Drives);
-		Drives=NULL;
-		nbDrives=0;
-	}
+	freeArrayOfString(Drives, nbDrives);
+	nbDrives = 0;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

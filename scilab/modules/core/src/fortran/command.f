@@ -393,6 +393,14 @@ c     .     abort in an exec
                rio = pstk(pt-1)
             endif
          endif
+      elseif  (rstk(pt) .eq. 808) then
+c     .  abort in a try, reset the error control modes
+         errct=ids(2,pt)
+         err2=ids(3,pt)
+         err1=ids(4,pt)
+         errpt=ids(5,pt)
+         sym=ids(6,pt)/10000
+         lct(4)=ids(6,pt)-10000*sym-100
       elseif  (rstk(pt) .eq. 1001) then
 c     .  abort in an external unstack it
          niv=niv-1
@@ -495,8 +503,8 @@ c     . add an third argument to deff, to notify that it is called by function
          rhs=3
          lhs=1
 c         *call* deff
-         fun=5
-         fin=10
+         fun=31
+         fin=2
          go to 999
       endif
 

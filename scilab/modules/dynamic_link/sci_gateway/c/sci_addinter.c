@@ -17,6 +17,7 @@
 #include "localization.h"
 #include "dl_genErrorMessage.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*-----------------------------------------------------------------------------------*/
 int sci_addinter(char *fname,unsigned long fname_len)
 {
@@ -41,6 +42,7 @@ int sci_addinter(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&sharedlibname);
 		if ( (m1 != n1) && (n1 != 1) )
 		{
+			freeArrayOfString(sharedlibname, m1*n1);
 			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
 			return 0;
 		}
@@ -50,12 +52,18 @@ int sci_addinter(char *fname,unsigned long fname_len)
 
 		if ( (m2 != n2) && (n2 != 1) )
 		{
+			freeArrayOfString(sharedlibname, m1*n1);
+			freeArrayOfString(spname, m2*n2);
+			freeArrayOfString(fcts, m3*n3);
 			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,2);
 			return 0;
 		}
 
 		if ( (m3 > 1) &&  (n3 > 1) ) /* check vector string */
 		{
+			freeArrayOfString(sharedlibname, m1*n1);
+			freeArrayOfString(spname, m2*n2);
+			freeArrayOfString(fcts, m3*n3);
 			Scierror(999,_("%s: Wrong size for input argument #%d: String vector expected.\n"),fname,3);
 			return 0;
 		}
@@ -79,6 +87,10 @@ int sci_addinter(char *fname,unsigned long fname_len)
 		{
 			dl_genErrorMessage(fname, ierr, sharedlibname[0]);
 		}
+		
+		freeArrayOfString(sharedlibname, m1*n1);
+		freeArrayOfString(spname, m2*n2);
+		freeArrayOfString(fcts, m3*n3);
 	}
 	else
 	{

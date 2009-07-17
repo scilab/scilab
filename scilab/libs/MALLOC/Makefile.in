@@ -54,17 +54,16 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@IS_64_BITS_CPU_TRUE@am__append_1 = src/malloc.c
 DIST_COMMON = $(libscimalloc_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = libs/MALLOC
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -88,12 +87,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscimalloc_la_DEPENDENCIES =
-am__libscimalloc_la_SOURCES_DIST = src/sci_mem_alloc.c \
-	src/getmaxMALLOC.c src/malloc.c
-@IS_64_BITS_CPU_TRUE@am__objects_1 = libscimalloc_la-malloc.lo
-am__objects_2 = libscimalloc_la-sci_mem_alloc.lo \
-	libscimalloc_la-getmaxMALLOC.lo $(am__objects_1)
-am_libscimalloc_la_OBJECTS = $(am__objects_2)
+am__objects_1 = libscimalloc_la-sci_mem_alloc.lo \
+	libscimalloc_la-getmaxMALLOC.lo
+am_libscimalloc_la_OBJECTS = $(am__objects_1)
 libscimalloc_la_OBJECTS = $(am_libscimalloc_la_OBJECTS)
 libscimalloc_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscimalloc_la_CFLAGS) \
@@ -111,7 +107,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscimalloc_la_SOURCES)
-DIST_SOURCES = $(am__libscimalloc_la_SOURCES_DIST)
+DIST_SOURCES = $(libscimalloc_la_SOURCES)
 libscimalloc_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscimalloc_la_include_HEADERS)
 ETAGS = etags
@@ -159,17 +155,25 @@ FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_CFLAGS = @HDF5_CFLAGS@
+HDF5_ENABLE = @HDF5_ENABLE@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INTLLIBS = @INTLLIBS@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -189,11 +193,15 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -203,6 +211,8 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
+MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
@@ -223,9 +233,10 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
+PVM_ARCH = @PVM_ARCH@
 PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
@@ -248,14 +259,16 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -320,8 +333,15 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c \
-	$(am__append_1)
+MALLOC_C_SOURCES = src/sci_mem_alloc.c src/getmaxMALLOC.c 
+
+# Commented since it is causing more problems than it solves...
+# If you are trying to run Scilab on a 64 bits CPU and a seg fault
+# is triggered on startup, please uncomment the following line:
+#MALLOC_C_SOURCES += src/malloc.c
+#if IS_64_BITS_CPU
+#MALLOC_C_SOURCES += src/malloc.c
+#endif
 libscimalloc_la_includedir = $(pkgincludedir)/malloc
 libscimalloc_la_include_HEADERS = includes/sci_mem_alloc.h \
 includes/MALLOC.h \
@@ -352,7 +372,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -473,7 +493,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimalloc_la-getmaxMALLOC.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimalloc_la-malloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscimalloc_la-sci_mem_alloc.Plo@am__quote@
 
 .c.o:
@@ -510,13 +529,6 @@ libscimalloc_la-getmaxMALLOC.lo: src/getmaxMALLOC.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/getmaxMALLOC.c' object='libscimalloc_la-getmaxMALLOC.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -c -o libscimalloc_la-getmaxMALLOC.lo `test -f 'src/getmaxMALLOC.c' || echo '$(srcdir)/'`src/getmaxMALLOC.c
-
-libscimalloc_la-malloc.lo: src/malloc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -MT libscimalloc_la-malloc.lo -MD -MP -MF $(DEPDIR)/libscimalloc_la-malloc.Tpo -c -o libscimalloc_la-malloc.lo `test -f 'src/malloc.c' || echo '$(srcdir)/'`src/malloc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscimalloc_la-malloc.Tpo $(DEPDIR)/libscimalloc_la-malloc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/malloc.c' object='libscimalloc_la-malloc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimalloc_la_CFLAGS) $(CFLAGS) -c -o libscimalloc_la-malloc.lo `test -f 'src/malloc.c' || echo '$(srcdir)/'`src/malloc.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

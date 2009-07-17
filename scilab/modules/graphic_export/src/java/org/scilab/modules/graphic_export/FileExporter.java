@@ -43,7 +43,7 @@ public class FileExporter {
 	 */
 	public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
 		DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
-		
+
 		if (exportedFig == null) {
 			// figure no longer exists
 			return ExportRenderer.IOEXCEPTION_ERROR;

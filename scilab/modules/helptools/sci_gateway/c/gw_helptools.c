@@ -20,10 +20,10 @@
 #include "BOOL.h"
 #include "loadOnUseClassPath.h"
 /*--------------------------------------------------------------------------*/
-
-static BOOL loadedDep=FALSE;
-
-static gw_generic_table Tab[]=
+static BOOL loadedDep = FALSE;
+/*--------------------------------------------------------------------------*/
+#define HELPTOOLS_TAB_SIZE 1
+static gw_generic_table Tab[HELPTOOLS_TAB_SIZE]=
 {
 	{sci_buildDoc,"buildDoc"}
 };
@@ -45,7 +45,7 @@ int gw_helptools(void)
 		loadedDep=TRUE;
 	}
 
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,HELPTOOLS_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -70,6 +70,7 @@ int sci_isalphanum(char *fname,unsigned long fname_len)
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
 			LhsVar(1) = Rhs+1 ;
 			C2F(putlhsvar)();
+			freeArrayOfString(Input_StringMatrix,mn);
 			return 0;
 		}
 	}

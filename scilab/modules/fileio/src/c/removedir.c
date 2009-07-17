@@ -82,7 +82,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 	{
 		do
 		{
-			if(FileInformation.cFileName[0] != '.')
+			if ( (wcscmp(FileInformation.cFileName,L".") != 0) && (wcscmp(FileInformation.cFileName,L"..") != 0) )
 			{
 				strFilePath = (wchar_t*)MALLOC(sizeof(wchar_t)*(wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName))));
 				swprintf(strFilePath,wcslen(refcstrRootDirectory)+5+wcslen((wchar_t*)(FileInformation.cFileName)),L"%s\\%s",refcstrRootDirectory,FileInformation.cFileName);

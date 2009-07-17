@@ -20,6 +20,7 @@
 #include "sci_pvm.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/ 
 /******************************************
  * SCILAB function : pvm_config, fin = 9
@@ -45,36 +46,10 @@ int intspvm_config(char *fname,unsigned long fname_len)
   FREE(pdtid);
 
   CreateListVarFromPtr(1,4,MATRIX_OF_STRING_DATATYPE,&ne3,&un,pname);
-  if (pname)
-  {
-	  int i=0;
-	  for(i=0;i<ne3;i++)
-	  {
-		  if (pname[i])
-		  {
-			  FREE(pname[i]);
-			  pname[i]=NULL;
-		  }
-	  }
-	  FREE(pname);
-	  pname=NULL;
-  }
+  freeArrayOfString(pname, ne3);
 
   CreateListVarFromPtr(1,5,MATRIX_OF_STRING_DATATYPE,&ne3,&un,parch);
-  if (parch)
-  {
-	  int i=0;
-	  for(i=0;i<ne3;i++)
-	  {
-		  if (parch[i])
-		  {
-			  FREE(parch[i]);
-			  parch[i]=NULL;
-		  }
-	  }
-	  FREE(parch);
-	  parch=NULL;
-  }
+  freeArrayOfString(parch, ne3);
 
   CreateListVarFromPtr(1,6,MATRIX_OF_INTEGER_DATATYPE,&un,&ne3,&pspeed);
   FREE(pspeed);

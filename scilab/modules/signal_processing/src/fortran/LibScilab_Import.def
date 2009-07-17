@@ -29,6 +29,8 @@ getrmat_
 checkrhs_
 getmat_
 errgst_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 ;
 ;elementary_functions
 coshin_

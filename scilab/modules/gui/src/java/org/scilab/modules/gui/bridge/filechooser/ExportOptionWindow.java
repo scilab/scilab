@@ -50,9 +50,6 @@ public class ExportOptionWindow extends JFrame implements ActionListener {
      */
 	public ExportOptionWindow(ExportData exportData) {
 		this.exportData = exportData;		
-		displayOptionWindow();
-		landscapePortraitOption();
-		
 	}
 
 	/**
