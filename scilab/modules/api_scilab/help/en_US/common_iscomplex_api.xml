@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>isVarComplex</refname>
+        <refname>Variable Complexity</refname>
 
         <refpurpose>
             How to get variable complexity.

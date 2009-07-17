@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getvardimension_API"
+<refentry version="5.0-subset Scilab" xml:id="Common_getvardimension_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarDimension</refname>
+        <refname>Variable Dimension</refname>
 
         <refpurpose>
             How to get dimention of a variable stored as matrix.
@@ -40,12 +40,16 @@
                         Address of the variable.
                     </para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piRows</term>
                 <listitem>
                     <para>
                         Return number of rows.
                     </para>
                 </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>_piCols</term>
                 <listitem>
                     <para>

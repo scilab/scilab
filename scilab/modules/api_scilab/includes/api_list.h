@@ -37,33 +37,30 @@ API_SCILAB_IMPEXP int getListItemAddress(int* _piAddress, int _iItemNum, int** _
 
 /**
  * get a list from a list
- * @param[in] _iVar variable number
  * @param[in] _piParent pointer on the parent 
  * @param[in] _iItemPos position of the new list in the parent
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress);
+API_SCILAB_IMPEXP int getListInList(int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a tlist from a list
- * @param[in] _iVar variable number
  * @param[in] _piParent pointer on the parent 
  * @param[in] _iItemPos position of the new list in the parent
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress);
+API_SCILAB_IMPEXP int getTListInList(int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a mlist from a list
- * @param[in] _iVar variable number
  * @param[in] _piParent pointer on the parent 
  * @param[in] _iItemPos position of the new list in the parent
  * @param[out] _piAddress return list address
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress);
+API_SCILAB_IMPEXP int getMListInList(int* _piParent, int _iItemPos, int** _piAddress);
 
 /**
  * get a list from a named list
@@ -684,7 +681,7 @@ API_SCILAB_IMPEXP int createMatrixOfInteger32InList(int _iVar, int* _piParent, i
  * @param[in] _piParent address of parent node
  * @param[in] _iItemPos item postion in the list
  * @param[out] _iRows Number of row
- * @param[OUT] _iCols Number of column
+ * @param[out] _iCols Number of column
  * @param[in] _pcData pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
@@ -696,7 +693,7 @@ API_SCILAB_IMPEXP int getMatrixOfInteger8InList(int _iVar, int* _piParent, int _
  * @param[in] _piParent address of parent node
  * @param[in] _iItemPos item postion in the list
  * @param[out] _iRows Number of row
- * @param[OUT] _iCols Number of column
+ * @param[out] _iCols Number of column
  * @param[in] _psData pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
@@ -708,7 +705,7 @@ API_SCILAB_IMPEXP int getMatrixOfInteger16InList(int _iVar, int* _piParent, int 
  * @param[in] _piParent address of parent node
  * @param[in] _iItemPos item postion in the list
  * @param[out] _iRows Number of row
- * @param[OUT] _iCols Number of column
+ * @param[out] _iCols Number of column
  * @param[in] _piData pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
@@ -720,7 +717,7 @@ API_SCILAB_IMPEXP int getMatrixOfInteger32InList(int _iVar, int* _piParent, int 
  * @param[in] _piParent address of parent node
  * @param[in] _iItemPos item postion in the list
  * @param[out] _iRows Number of row
- * @param[OUT] _iCols Number of column
+ * @param[out] _iCols Number of column
  * @param[in] _pllData pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */

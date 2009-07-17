@@ -38,7 +38,7 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 static int createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress, int iNamed);
 static int createCommonNamedList(char* _pstName, int _iListType, int _iNbItem, int** _piAddress);
 static int createCommonListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
-static int getCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
+static int getCommonListInList(int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
 static int getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
 static int readCommonNamedList(char* _pstName, int _iListType, int* _piNbItem, int** _piAddress);
 static int fillCommonList(int* _piAddress, int _iListType, int _iNbItem);
@@ -249,22 +249,22 @@ static int readCommonNamedList(char* _pstName, int _iListType, int* _piNbItem, i
 	return 0;
 }
 
-int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+int getListInList(int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_iVar, _piParent, _iItemPos, sci_list, _piAddress);
+	return getCommonListInList(_piParent, _iItemPos, sci_list, _piAddress);
 }
 
-int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+int getTListInList(int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_iVar, _piParent, _iItemPos, sci_tlist, _piAddress);
+	return getCommonListInList(_piParent, _iItemPos, sci_tlist, _piAddress);
 }
 
-int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+int getMListInList(int* _piParent, int _iItemPos, int** _piAddress)
 {
-	return getCommonListInList(_iVar, _piParent, _iItemPos, sci_mlist, _piAddress);
+	return getCommonListInList(_piParent, _iItemPos, sci_mlist, _piAddress);
 }
 
-int getCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
+int getCommonListInList(int* _piParent, int _iItemPos, int _iListType, int** _piAddress)
 {
 	int iRet			= 0;
 
@@ -792,6 +792,12 @@ int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iR
 
 	int* piItemAddr		= NULL;
 	int* piEnd				= NULL;
+
+	getListItemNumber(_piParent, &iNbItem);
+	if(iNbItem < _iItemPos)
+	{
+		return 1;
+	}
 
 	iRet = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
 	if(iRet)
