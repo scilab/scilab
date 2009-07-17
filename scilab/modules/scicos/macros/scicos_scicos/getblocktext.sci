@@ -44,7 +44,6 @@ function k=getblocktext(scs_m,pt)
       x=xxx(1);
       y=xxx(2);
       //end
-      mprintf("getblocktext pt=%s orig=%s,sz=%s\n",sci2exp([x,y],0),sci2exp(orig,0),sci2exp(sz,0))
 
       data=[(orig(1)-dx-x)*(orig(1)+sz(1)+dx-x),..
 	    (orig(2)-dy-y)*(orig(2)+sz(2)+dy-y)]
