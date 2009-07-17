@@ -91,10 +91,10 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsDelRepository">atomsInstall</link>
+        <link linkend="atomsInstall">atomsInstall</link>
       </member>
       <member>
-        <link linkend="atomsRepositories">atomsGetInstalled</link>
+        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
       </member>
     </simplelist>
   </refsection>
