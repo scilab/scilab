@@ -15,15 +15,6 @@
 @SET_MAKE@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2009 - DIGITEO - Allan CORNET
-#
-# This file must be used under the terms of the CeCILL.
-# This source file is licensed as described in the file COPYING, which
-# you should have received as part of this distribution.  The terms
-# are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
 # Copyright (C) 2008      - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 #
@@ -371,6 +362,16 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2009 - DIGITEO - Allan CORNET
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+USEANT = 1
 @HDF5_FALSE@HDF5_SOURCES = 
 @HDF5_TRUE@HDF5_SOURCES = src/c/h5_fileManagement.c \
 @HDF5_TRUE@src/c/h5_writeDataToFile.c \
