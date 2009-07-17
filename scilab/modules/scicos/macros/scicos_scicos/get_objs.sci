@@ -35,10 +35,7 @@ function k=get_objs(gr_k,l)
   //         not compiled scicos structure 
   //        (scs_m.objs)
   //
-  if exists('%scicos_with_grid') then
-      k = l - gr_k ; //create a grid in the last children
-                     //if %scicos_with_grid exists
-  else
+
     k = l - gr_k + 1;
-  end
+
 endfunction

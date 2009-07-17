@@ -245,11 +245,12 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
   setmenu(curwin,'Stop')
   //timer()
   needreplay=%t
-
+ timer()
   //** run scicosim via 'start' flag
   ierr=execstr('[state,t]=scicosim(%cpr.state,%tcur,tf,%cpr.sim,'+..
 	       '''run'',tolerances)','errcatch')
-
+ 
+  disp(timer())
   %cpr.state=state
   //** no error
   if ierr==0 then

@@ -22,18 +22,21 @@
 function Grid_()
   Cmenu = [] ;
   
-  gh_window = scf(%win);
-
   if exists('%scicos_with_grid') then
+    gh_window = scf(%win);
+    gh_axes=gca()
+
     %scicos_with_grid = ~%scicos_with_grid;
     if %scicos_with_grid then
-      gh_window.children.children($).visible="on"
+      if ~exists('%scs_wgrid') then
+	gh_axes.grid=ones(1,2)*12
+      else
+	gh_axes.grid=ones(1,2)*%scs_wgrid(3)
+      end
     else
-      gh_window.children.children($).visible="off"
+      gh_axes.grid=-ones(1,2);
     end
   end
 
   drawnow();
-  //** show_pixmap() ; //** not useful on Scilab 5
-
 endfunction

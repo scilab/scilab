@@ -33,13 +33,8 @@ function [%scs_wgrid]=do_grid(%scs_wgrid)
       %scs_wgrid(1)=b1
       %scs_wgrid(2)=b2
       %scs_wgrid(3)=colorr
+      drawlater()
       drawgrid();
-      
-      gh_window = scf(%win);gh_axes=gca();
-      
-      swap_handles(gh_axes.children($),...
-		   gh_axes.children(1));
-      delete(gh_axes.children(1));
       drawnow();
       break
     end

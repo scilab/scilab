@@ -127,8 +127,8 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Zoom out',..
               'Fit diagram to figure',..
   	      'Default window parameters',..
-              'Available Parameters'];
-//**              'Grid'];
+              'Available Parameters',..
+              'Grid'];
 
   Simulate = ['Simulate',..
               'Setup',..
@@ -153,7 +153,6 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'ID fonts',..
 	      'Icon',..
 	      'Icon Editor'];
-//**              'Set grid',..
 
   Tools    = ['Tools',..
               'Create Mask',..
@@ -279,7 +278,6 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 		 'g','Grid';
 		 'h','Help']
 
-//** 		 'g','Grid'; //** it will be reactivated later 
             
   //Scicos Modelica librabry path definitions==============================
   modelica_libs='SCI/modules/scicos_blocks/macros/'+['Electrical','Hydraulics'];

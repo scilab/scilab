@@ -44,9 +44,7 @@ function Zoomin_()
     window_set_size(gh_window, viewport);
 
     if exists('%scicos_with_grid') & %scicos_with_grid==%t then
-      drawgrid(); //** draw the new grid and put in the bottom of stack
-      swap_handles(gh_window.children.children($), gh_window.children.children(1));
-      delete(gh_window.children.children(1)); //** delete the old grid
+      drawgrid(); //** set the new grid 
     end
 
     drawnow();
