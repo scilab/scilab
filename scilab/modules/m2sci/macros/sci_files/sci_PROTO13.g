@@ -92,7 +92,7 @@ else
     end
   else
     tree.name="mtlb_MFUN"
-    tree.lhs(1).dims=allunknwon(A.dims)
+    tree.lhs(1).dims=allunknown(A.dims)
   end
 end
 endfunction
