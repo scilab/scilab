@@ -26,23 +26,21 @@
 function Zoomin_()
 //** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
 //**                geometrical correction (Ramine)
-
     Cmenu = [];
     xinfo("Zoom in");
-
     gh_window = gh_current_window; 
-
+    //** Get the current postion of the visible part of graphics in the panner. 
+    viewport  = gh_window.viewport; //** [x,y]
     zoomfactor = 1.2 ; 
     %zoom = %zoom * zoomfactor;
 
-    drawlater();
-
-    //** Get the current postion of the visible part of graphics in the panner.
-    viewport = gh_window.viewport; //** [x,y]
-
     //** geometrical correction: zoom in the center
     viewport = viewport * zoomfactor - 0.5 * gh_window.figure_size * (1 - zoomfactor)  ;
-    viewport = max([0,0],min(viewport,-gh_window.figure_size + gh_window.axes_size)) 
+    //    viewport = max([0,0],min(viewport,-gh_window.figure_size +gh_window.axes_size)) 
+    
+    
+    drawlater();
+ 
     window_set_size(gh_window, viewport);
 
     if exists('%scicos_with_grid') & %scicos_with_grid==%t then
@@ -52,7 +50,5 @@ function Zoomin_()
     end
 
     drawnow();
-    //** show_pixmap();
-
     xinfo(' ');
 endfunction
