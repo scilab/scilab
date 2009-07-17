@@ -40,8 +40,6 @@ function Defaultlinkcolors_()
       delete(gh_axes.children)
     end
     drawobjs(scs_m, gh_curwin) //** Re-draw all the graphics object
-    // drawnow();              //** OBSOLETE (now included in drawobjs)
-    // show_pixmap() ;         //** OBSOLETE in Scilab 5
 
     Cmenu = [], %pt = []
   end
