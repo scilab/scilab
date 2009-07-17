@@ -18,8 +18,8 @@ function result = atomsLoad(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	rhs = argn(2);
-	if rhs <> 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsLoad",2));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsLoad",1,2));
 	end
 	
 	// Check input parameters type
@@ -29,24 +29,43 @@ function result = atomsLoad(name,version)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsLoad",1));
 	end
 	
-	if type(version) <> 10 then
+	if (rhs>1) & (type(version) <> 10) then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsLoad",2));
 	end
 	
 	// name and version must have the same size
 	// =========================================================================
 	
-	if or( size(name) <> size(version) ) then
+	if (rhs>1) & (or( size(name) <> size(version) )) then
 		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsLoad",1,2));
 	end
+	
+	// If only one input argument, define the version (The Most Recent Version)
+	// =========================================================================
+	
+	if rhs<2 then
+		for i=1:size(name,"*")
+			
+			this_module_versions = atomsGetInstalledVers(name(i));
+			
+			if isempty(this_module_versions) then
+				error(msprintf(gettext("%s: No version of the module ''%s'' is installed.\n"),"atomsLoad",name(i)));
+			else
+				version(i) = this_module_versions(1);
+			end
+			
+		end
+		
+	else
 	
 	// Check if the packages to load are installed
 	// =========================================================================
 	
-	if or( ~ atomsIsInstalled(name,version) ) then
-		for i=1:size(name,"*")
-			if ~atomsIsInstalled(name(i),version(i)) then
-				error(msprintf(gettext("%s: the package ''%s - %s'' is not installed.\n"),"atomsLoad",name(i),version(i)));
+		if or( ~ atomsIsInstalled(name,version) ) then
+			for i=1:size(name,"*")
+				if ~atomsIsInstalled(name(i),version(i)) then
+					error(msprintf(gettext("%s: the module ''%s - %s'' is not installed.\n"),"atomsLoad",name(i),version(i)));
+				end
 			end
 		end
 	end
