@@ -46,6 +46,10 @@ The option is "disableUnderMode" and can be:
 	<load on="graphic_export"/>
 </path>
 
+<path value="@JHDF5@" load="onUse">
+        <load on="hdf5BasedFeature"/>
+</path>
+
 <!-- Documentation (not mandatory) -->
 <path value="@JEUCLID_CORE@" load="onUse">
 	<load on="documentationGeneration"/>

@@ -66,6 +66,8 @@
 		<pathelement location="${jrosetta-engine.jar}"/>
 
 		<pathelement location="${jogl.jar}"/>
+
+		<pathelement location="${jhdf5.jar}"/>
 		
 		<pathelement location="${jhall.jar}"/>
 
