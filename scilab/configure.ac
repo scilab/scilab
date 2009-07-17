@@ -1713,6 +1713,19 @@ else
 echo "  JAVA disabled"
 fi
 
+
+echo ""
+echo "Java dependencies:"
+if test ! -z "$JAVAC"; then
+echo "  Flexdock ............ = $FLEXDOCK"
+echo "  JOGL ................ = $JOGL"
+echo "  Jhall  .............. = $JHALL"
+echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Jrosetta (API) ...... = $JROSETTA_API"
+echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
+echo "  Commons Logging ..... = $COMMONS_LOGGING"
+fi
+
 echo "" 
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
