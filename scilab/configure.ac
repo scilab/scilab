@@ -601,6 +601,26 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+
+#################
+## HDF5
+#################
+
+AC_ARG_WITH(hdf5,
+	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
+
+HDF5_ENABLE=no
+
+if test "$with_hdf5" != no; then
+   AC_HDF5()
+# TODO: check if the JNI JHDF5 library are available
+   HDF5_ENABLE=yes
+fi
+
+AC_SUBST(HDF5_ENABLE)
+AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -992,23 +1012,6 @@ fi
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
-
-#################
-## HDF5
-#################
-
-AC_ARG_WITH(hdf5,
-	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
-
-HDF5_ENABLE=no
-
-if test "$with_hdf5" != no; then
-   AC_HDF5()
-   HDF5_ENABLE=yes
-fi
-
-AC_SUBST(HDF5_ENABLE)
-AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 
 #################
 ## MPI
