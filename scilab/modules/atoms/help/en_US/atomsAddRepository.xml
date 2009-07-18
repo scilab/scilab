@@ -10,12 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsAddRepository">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositoryAdd">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>atomsAddRepository</refname>
+    <refname>atomsRepositoryAdd</refname>
     <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  nbAdd = atomsAddRepository(url[,allusers])
+	  nbAdd = atomsRepositoryAdd(url[,allusers])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -50,7 +50,7 @@
 			is defined in SCI/.atoms/repositories.
 			
 			If allusers is set to TRUE (%T) and the directory SCI/.atoms/ is not
-			write accessible, atomsAddRepository will produce an error.
+			write accessible, atomsRepositoryAdd will produce an error.
 			
 			if this parameter is equal to FALSE (%T), the URL is only added
 			for the current user. The list of URL only available for the current
@@ -83,9 +83,9 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-atomsRepositories()
-atomsAddRepository(["http://www.repository1.com";"http://www.repository1.com"
-atomsRepositories()
+atomsRepositoryList()
+atomsRepositoryAdd(["http://www.repository1.com";"http://www.repository1.com"
+atomsRepositoryList()
 ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
@@ -95,10 +95,10 @@ atomsRepositories()
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsDelRepository">atomsDelRepository</link>
+        <link linkend="atomsRepositoryDel">atomsRepositoryDel</link>
       </member>
       <member>
-        <link linkend="atomsRepositories">atomsRepositories</link>
+        <link linkend="atomsRepositoryList">atomsRepositoryList</link>
       </member>
     </simplelist>
   </refsection>

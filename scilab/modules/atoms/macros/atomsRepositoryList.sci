@@ -9,7 +9,7 @@
 
 // get the list of repositories
 
-function repositories = atomsRepositories(level)
+function repositories = atomsRepositoryList(level)
 	
 	rhs           = argn(2);
 	repositories  = [];
@@ -18,28 +18,28 @@ function repositories = atomsRepositories(level)
 	// =========================================================================
 	
 	if rhs > 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositories",0,1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositoryList",0,1));
 	end
 	
 	// Check input argument type (if any)
 	// =========================================================================
 	
 	if (rhs==1) & (type(level) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositories",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument dimension (if any)
 	// =========================================================================
 	
 	if (rhs==1) & (size(level,"*")<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositories",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Check input argument values (if any)
 	// =========================================================================
 	
 	if (rhs==1) & (and(level<>["user","allusers","official"])) then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositories",1));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositoryList",1));
 	end
 	
 	// Define the needed paths

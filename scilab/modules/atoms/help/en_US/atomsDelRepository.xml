@@ -10,12 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsDelRepository">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositoryDel">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>atomsDelRepository</refname>
+    <refname>atomsRepositoryDel</refname>
     <refpurpose>Remove one or several URLs from the list of managed repositories</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  nbDel = atomsDelRepository(url[,allusers])
+	  nbDel = atomsRepositoryDel(url[,allusers])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -49,7 +49,7 @@
 			from "allusers" and "user" list.
 			
 			If allusers is set to TRUE (%T) and the directory SCI/.atoms/ is not
-			write accessible, atomsDelRepository will produce an error.
+			write accessible, atomsRepositoryDel will produce an error.
 			
 			if this parameter is equal to FALSE (%T), URLs are only removed
 			from "user" list.
@@ -81,11 +81,11 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-atomsRepositories()
-atomsAddRepository(["http://www.repository1.com";"http://www.repository2.com"])
-atomsRepositories()
-atomsDelRepository(["http://www.repository1.com";"http://www.repository2.com"])
-atomsRepositories()
+atomsRepositoryList()
+atomsRepositoryAdd(["http://www.repository1.com";"http://www.repository2.com"])
+atomsRepositoryList()
+atomsRepositoryDel(["http://www.repository1.com";"http://www.repository2.com"])
+atomsRepositoryList()
 ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
@@ -95,10 +95,10 @@ atomsRepositories()
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsDelRepository">atomsAddRepository</link>
+        <link linkend="atomsRepositoryDel">atomsRepositoryAdd</link>
       </member>
       <member>
-        <link linkend="atomsRepositories">atomsRepositories</link>
+        <link linkend="atomsRepositoryList">atomsRepositoryList</link>
       </member>
     </simplelist>
   </refsection>

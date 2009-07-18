@@ -9,7 +9,7 @@
 
 // Load the 1st scenario : See scene1.test.atoms.scilab.org.txt
 
-atomsSetOfficialRep("http://scene1.test.atoms.scilab.org");
+atomsRepositorySetOfl("http://scene1.test.atoms.scilab.org");
 atomsGetTOOLBOXES(%T);
 
 // Install the toolbox 5

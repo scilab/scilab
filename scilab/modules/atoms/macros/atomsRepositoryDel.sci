@@ -9,7 +9,7 @@
 
 // Remove an URL to the list of repositories, and returns
 
-function nbDel = atomsDelRepository(url,allusers)
+function nbDel = atomsRepositoryDel(url,allusers)
 	
 	rhs   = argn(2);
 	nbDel = 0;
@@ -18,14 +18,14 @@ function nbDel = atomsDelRepository(url,allusers)
 	// =========================================================================
 	
 	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDelRepository",1,2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositoryDel",1,2));
 	end
 	
 	// Check URLs specified as first input argument
 	// =========================================================================
 	
 	if type(url) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsDelRepository",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRepositoryDel",1));
 	end
 	
 	// Apply changes for all users or just for me ?
@@ -43,12 +43,12 @@ function nbDel = atomsDelRepository(url,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsDelRepository",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRepositoryDel",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsDelRepository",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	

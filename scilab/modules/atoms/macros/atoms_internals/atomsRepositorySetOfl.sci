@@ -9,7 +9,7 @@
 
 // Add an URL to the list of repositories, and returns
 
-function atomsSetOfficialRep(url)
+function atomsRepositorySetOfl(url)
 	
 	
 	
@@ -18,24 +18,24 @@ function atomsSetOfficialRep(url)
 	// =========================================================================
 	rhs = argn(2);
 	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsSetOfficialRep",1));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositorySetOfl",1));
 	end
 	
 	// Check URLs specified as first input argument
 	// =========================================================================
 	
 	if type(url) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single String expected.\n"),"atomsSetOfficialRep",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single String expected.\n"),"atomsRepositorySetOfl",1));
 	end
 	
 	if size(url,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single String expected.\n"),"atomsSetOfficialRep",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single String expected.\n"),"atomsRepositorySetOfl",1));
 	end
 	
 	valid_url_pattern    = "/^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-]+))*$/";
 	
 	if ~ regexp(url,valid_url_pattern,"o") == 1 then
-		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"),"atomsSetOfficialRep",1,url));
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"),"atomsRepositorySetOfl",1,url));
 	end
 	
 	// Overwrite "repositories" file

@@ -10,12 +10,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositories">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRepositoryList">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>atomsRepositories</refname>
+    <refname>atomsRepositoryList</refname>
     <refpurpose>Get the list of managed repositories</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  repositories = atomsRepositories(level)
+	  repositories = atomsRepositoryList(level)
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -71,10 +71,10 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-atomsRepositories()
-atomsRepositories('official')
-atomsRepositories('allusers')
-atomsRepositories('user')
+atomsRepositoryList()
+atomsRepositoryList('official')
+atomsRepositoryList('allusers')
+atomsRepositoryList('user')
 ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
@@ -84,10 +84,10 @@ atomsRepositories('user')
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="atomsRepositories">atomsAddRepository</link>
+        <link linkend="atomsRepositoryList">atomsRepositoryAdd</link>
       </member>
       <member>
-        <link linkend="atomsRepositories">atomsDelRepository</link>
+        <link linkend="atomsRepositoryList">atomsRepositoryDel</link>
       </member>
     </simplelist>
   </refsection>

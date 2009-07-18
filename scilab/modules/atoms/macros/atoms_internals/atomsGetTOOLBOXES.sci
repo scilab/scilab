@@ -77,7 +77,7 @@ function packages = atomsGetTOOLBOXES(update)
 		// loop on available repositories
 		// =====================================================================
 		
-		repositories = atomsRepositories();
+		repositories = atomsRepositoryList();
 		repositories = repositories(:,1);
 		
 		if ~isdir(pathconvert(TMPDIR+"/atoms")) then

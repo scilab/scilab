@@ -9,12 +9,12 @@
 
 // Add an URL to the list of repositories, and returns
 
-function nbAdd = atomsAddRepository(url,allusers)
+function nbAdd = atomsRepositoryAdd(url,allusers)
 	
 	rhs                    = argn(2);
 	nbAdd                = 0;
 	repositories         = []; // Column vector that contain user repositories
-	currentRepositories  = atomsRepositories();
+	currentRepositories  = atomsRepositoryList();
 	currentRepositories  = currentRepositories(:,1);
 	valid_url_pattern    = "/^((((H|h)(T|t)|(F|f))(T|t)(P|p)((S|s)?))\:\/\/)?(www.|[a-zA-Z0-9].)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\:[0-9]{1,5})*(\/($|[a-zA-Z0-9\.\,\;\?\''\\\+&amp;%\$#\=~_\-]+))*$/";
 	
@@ -22,19 +22,19 @@ function nbAdd = atomsAddRepository(url,allusers)
 	// =========================================================================
 	
 	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAddRepository",1,2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositoryAdd",1,2));
 	end
 	
 	// Check URLs specified as first input argument
 	// =========================================================================
 	
 	if type(url) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAddRepository",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRepositoryAdd",1));
 	end
 	
 	for i=1:size(url,"*")
 		if ~ regexp(url(i),valid_url_pattern,"o") == 1 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: This ("+url(i)+") is not a valid URL.\n"),"atomsAddRepository",1));
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: This ("+url(i)+") is not a valid URL.\n"),"atomsRepositoryAdd",1));
 		end
 	end
 	
@@ -53,12 +53,12 @@ function nbAdd = atomsAddRepository(url,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsDelRepository",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRepositoryDel",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsDelRepository",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRepositoryDel",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	
