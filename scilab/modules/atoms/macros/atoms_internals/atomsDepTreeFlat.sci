@@ -98,10 +98,6 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 	
 	for i=1:size(version,"*")
 		
-		// Get dependencies of this toolbox
-		// =========================================================================
-		this_package_details = atomsToolboxDetails(name,version(i));
-		
 		// Check if the wanted version is compatible with the current scilab version.
 		// =========================================================================
 		
@@ -127,7 +123,7 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 			dependencies = [];
 		end
 		
-		for i=1:size(dependencies,"*")
+		for j=1:size(dependencies,"*")
 			
 			this_dependency_success = %F;
 			
@@ -136,7 +132,7 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 			//  - dependence name
 			//  - dependence version (optional)
 			
-			this_dependency_tab     = stripblanks(strsplit(dependencies(i),regexp(stripblanks(dependencies(i)),"/\s/")));
+			this_dependency_tab     = stripblanks(strsplit(dependencies(j),regexp(stripblanks(dependencies(j)),"/\s/")));
 			
 			this_dependency_dir     = this_dependency_tab(1);
 			this_dependency_name    = this_dependency_tab(2);
@@ -164,9 +160,9 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 				
 			end
 			
-			for j=1:size(this_dependency_list,"*")
+			for k=1:size(this_dependency_list,"*")
 				
-				tree = atomsDependencyTree(this_dependency_name,this_dependency_list(j),tree_out);
+				tree = atomsDependencyTree(this_dependency_name,this_dependency_list(k),tree_out);
 				
 				// Dependency Tree fails
 				

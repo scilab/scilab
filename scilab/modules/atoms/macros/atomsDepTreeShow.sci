@@ -1,0 +1,138 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+// internal function
+
+// Input arguments :
+
+//   name : . technical name of the package
+//          . single string
+//          . mandatory
+
+//   version : . version of the package
+//             . single string
+//             . optional
+
+//   tree_in : . Tree that will be concatenated in the output tree
+//             . struct
+//             . optional
+
+
+// Output arguments :
+
+//   tree_out : . Dependency tree of the package
+//              . struct
+//              . mandatory
+//              . Example :
+//                   tree_out  = 
+//                   toolbox_5 - 1.0: [1x1 struct]
+//                   toolbox_4 - 1.0: [1x1 struct]
+//                   toolbox_2 - 1.3: [1x1 struct]
+//                   toolbox_1 - 1.9: [1x1 struct]
+
+//   version_out : . version of the package
+//                 . single string
+//                 . optional
+
+function atomsShowTree(name,version)
+	
+	lhs = argn(1);
+	rhs = argn(2);
+	
+	// Check number of input arguments
+	// =========================================================================
+	
+	if (rhs < 1) | (rhs > 2) then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsShowTree",1,2));
+	end
+	
+	// Check input parameters type
+	// =========================================================================
+	
+	if type(name) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+	end
+	
+	if (rhs>=2) & (type(version) <> 10) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShowTree",2));
+	end
+	
+	// Check input parameters dimensions
+	// =========================================================================
+	
+	if size(name) <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+	end
+	
+	if (rhs>=2) & (size(name)<>1) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+	end
+	
+	// Get the dependency tree
+	// =========================================================================
+	
+	if rhs>1 then
+		tree = atomsDependencyTree2(name,version)
+	else
+		tree = atomsDependencyTree2(name)
+	end
+	
+	situation = struct();
+	situation("current_level")  = 1;
+	
+	atomsDispTree(tree,situation)
+	
+endfunction
+
+
+function atomsDispTree(tree,situation)
+	
+	fields      = getfield(1,tree);
+	fields(1:2) = [];
+	
+	current_level = situation("current_level");
+	situation("level"+string(current_level)+"_number") = size(fields,"*");
+	situation("level"+string(current_level)+"_pos")    = 1;
+	
+	for i=1:size(fields,"*")
+		
+		this_package_details = tree(fields(i));
+		
+		for j=1:current_level-1
+			if situation("level"+string(j)+"_pos") < situation("level"+string(j)+"_number") then
+				mprintf("|   ");
+			else
+				mprintf("    ");
+			end
+		end
+		
+		if current_level == 1 then
+			mprintf("    ");
+		elseif situation("level"+string(current_level)+"_pos") == situation("level"+string(current_level)+"_number") then
+			mprintf("`-- ");
+		else
+			mprintf("|-- ");
+		end
+		
+		mprintf("%s - %s\n",this_package_details("Toolbox"),this_package_details("Version"));
+		
+		if isfield(this_package_details,"DependencyTree") then
+			
+			next_situation                  = situation;
+			next_situation("current_level") = current_level + 1;
+			this_package_deptree            = this_package_details("DependencyTree");
+			atomsDispTree(this_package_deptree,next_situation);
+			
+		end
+		
+		situation("level"+string(current_level)+"_pos") = situation("level"+string(current_level)+"_pos") + 1;
+		
+	end
+	
+endfunction
