@@ -24,7 +24,7 @@
 //                 !                      !
 //                 !~  U  toolbox_5  1.0  !
 
-//   tree_out : . Dependency tree of the package (returned by atomsDependencyTree)
+//   tree_out : . Dependency tree of the package (returned by atomsDepTreeFlat)
 //              . struct
 //              . mandatory
 //              . Example :
@@ -97,7 +97,7 @@ function [insList,depTree] = atomsInstallList(packages)
 		end
 		
 		// Build the depencency tree
-		[tree,version_out]  = atomsDependencyTree(package_names(i),package_versions(i));
+		[tree,version_out]  = atomsDepTreeFlat(package_names(i),package_versions(i));
 		
 		if (type(tree) == 4) & (~ tree) then
 			chdir(initialpath);
@@ -105,7 +105,7 @@ function [insList,depTree] = atomsInstallList(packages)
 		end
 		
 		// Update the  package_versions(i) with the version returned by
-		// atomsDependencyTree
+		// atomsDepTreeFlat
 		package_versions(i) = version_out;
 		
 		// Concatenate the tree with the existing one

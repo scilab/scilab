@@ -40,7 +40,7 @@
 //                 . single string
 //                 . optional
 
-function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
+function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	
 	lhs = argn(1);
 	rhs = argn(2);
@@ -49,33 +49,33 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 	// =========================================================================
 	
 	if (rhs < 1) | (rhs > 3) then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDependencyTree",1,3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDepTreeFlat",1,3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	if (rhs>=2) & (type(version) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDependencyTree",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",2));
 	end
 	
 	if (rhs==3) & (type(tree_in) <> 17) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDependencyTree",3));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"atomsDepTreeFlat",3));
 	end
 	
 	// Check input parameters dimensions
 	// =========================================================================
 	
 	if size(name) <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	if (rhs>=2) & (size(name)<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeFlat",1));
 	end
 	
 	// If version not define, version is the list of version compatible with
@@ -162,7 +162,7 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 			
 			for k=1:size(this_dependency_list,"*")
 				
-				tree = atomsDependencyTree(this_dependency_name,this_dependency_list(k),tree_out);
+				tree = atomsDepTreeFlat(this_dependency_name,this_dependency_list(k),tree_out);
 				
 				// Dependency Tree fails
 				

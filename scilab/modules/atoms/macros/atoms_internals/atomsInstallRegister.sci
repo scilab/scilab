@@ -106,7 +106,7 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 		// Get the depencency tree & and child package
 		// ---------------------------------------------------------------------
 		
-		childs_tree = atomsDependencyTree(name(i),version(i));
+		childs_tree = atomsDepTreeFlat(name(i),version(i));
 		childs_mat  = getfield(1,childs_tree);
 		childs_mat(1:2) = [];
 		childs_mat( find(childs_mat == name(i)+" - "+version(i)) ) = [];

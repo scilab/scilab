@@ -78,9 +78,9 @@ function atomsShowTree(name,version)
 	// =========================================================================
 	
 	if rhs>1 then
-		tree = atomsDependencyTree2(name,version)
+		tree = atomsDepTreeExt(name,version)
 	else
-		tree = atomsDependencyTree2(name)
+		tree = atomsDepTreeExt(name)
 	end
 	
 	situation = struct();

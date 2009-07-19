@@ -40,7 +40,7 @@
 //                 . single string
 //                 . optional
 
-function [tree_out,version_out] = atomsDependencyTree2(name,version)
+function [tree_out,version_out] = atomsDepTreeExt(name,version)
 	
 	lhs = argn(1);
 	rhs = argn(2);
@@ -49,29 +49,29 @@ function [tree_out,version_out] = atomsDependencyTree2(name,version)
 	// =========================================================================
 	
 	if (rhs < 1) | (rhs > 2) then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDependencyTree",1,2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDepTreeExt",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeExt",1));
 	end
 	
 	if (rhs>=2) & (type(version) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDependencyTree",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeExt",2));
 	end
 	
 	// Check input parameters dimensions
 	// =========================================================================
 	
 	if size(name) <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeExt",1));
 	end
 	
 	if (rhs>=2) & (size(name)<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeExt",1));
 	end
 	
 	// If version not define, version is the list of version compatible with
@@ -153,7 +153,7 @@ function [tree_out,version_out] = atomsDependencyTree2(name,version)
 			
 			for k=1:size(this_dependency_list,"*")
 				
-				tree = atomsDependencyTree2(this_dependency_name,this_dependency_list(k));
+				tree = atomsDepTreeExt(this_dependency_name,this_dependency_list(k));
 				
 				// Dependency Tree fails
 				
