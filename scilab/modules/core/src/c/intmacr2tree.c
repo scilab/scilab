@@ -79,6 +79,8 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   int sz = 0; /* Size */
   int newinstr = 0; /* flag used to know if a new instruction has been created (1->TRUE) */
 
+  int deleted = 0;
+
   /* Verify number of RHS arguments */
   CheckRhs(1,1);
 
@@ -197,7 +199,6 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   }
 
   /* Fill list */
-  int deleted = 0;
   for(k=1;k<=nbstat;k++)
     {
       newinstr = 0;
@@ -2249,6 +2250,13 @@ static int isAComment(int stkPos)
 {
   int il = iadr(*Lstk(stkPos));
 
+  int nbElements = 0;
+  int firstElementAdr = 0;
+  int firstChar = 0;
+  int secondChar = 0;
+  int thirdChar = 0;
+  int fourthChar = 0;
+
   /* If not a tlist then cannot be a comment */
   if (*istk(il) != 16)
     {
@@ -2262,12 +2270,12 @@ static int isAComment(int stkPos)
     }
 
   /* Now the tlist can be a comment or a cste */
-  int nbElements = *istk(il + 1);
-  int firstElementAdr = iadr(sadr(il + 3 + nbElements));
-  int firstChar = *istk(firstElementAdr + 7);
-  int secondChar = *istk(firstElementAdr + 8);
-  int thirdChar = *istk(firstElementAdr + 9);
-  int fourthChar = *istk(firstElementAdr + 10);
+  nbElements = *istk(il + 1);
+  firstElementAdr = iadr(sadr(il + 3 + nbElements));
+  firstChar = *istk(firstElementAdr + 7);
+  secondChar = *istk(firstElementAdr + 8);
+  thirdChar = *istk(firstElementAdr + 9);
+  fourthChar = *istk(firstElementAdr + 10);
   
   /* 12 = Scilab code for 'c' */
   /* 24 = Scilab code for 'o' */
