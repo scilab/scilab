@@ -747,7 +747,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	tail = [ tail; "diary(0);" ];
 	
 	if this_use_graphics then
-		tail = [ tail; "xdel(winsid());" ];
+		tail = [ tail; "xdel(winsid());sleep(1000);" ];
 	end
 	
 	tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];
