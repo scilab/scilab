@@ -201,6 +201,23 @@ static int GetControlInstruction(int *data,int *index,int *nblines);
 static int CreateCsteTList(char *type,int *data,int *index);
 
 /****************************************************************
+ Function name: CreateInlineTList
+ Decription: 
+ Create on Scilab stack an "operation" tlist:
+   tlist(["inline","prototype","definition"],function_prototype,function_definition)
+ Input:
+  - data: pointer to compiled macro code
+  - index: index of current int in data
+  - nblines: pointer to number of lines in macro
+ Output:
+  - nblines: pointer to number of lines in macro
+ Returned value:
+  - 0 if execution succeeds
+  - not null if execution fails
+****************************************************************/
+static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr);
+
+/****************************************************************
  Function name: CreateOperationTList
  Decription: 
  Create on Scilab stack an "operation" tlist:
@@ -299,3 +316,16 @@ static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length);
   - number of list items corresponding to code
 ****************************************************************/
 int complexity(int *data,int *index,int *lgth);
+
+/****************************************************************
+ Function name: isAComment
+ Description:
+  Determine if a variable is a "comment" tlist
+ Input:
+  - stkPos: position on Scilab stack
+ Output:
+  - No output
+ Returned value:
+  - 1 if the variable at position stkPos is a "comment" tlist and 0 else
+****************************************************************/
+static int isAComment(int stkPos);
