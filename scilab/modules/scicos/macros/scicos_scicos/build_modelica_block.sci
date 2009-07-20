@@ -39,8 +39,9 @@ name=stripblanks(scs_m.props.title(1))+'_im';
 //## write txt in the file path+name+'.mo'
 path=pathconvert(stripblanks(path),%t,%t)
 mputl(txt,path+name+'.mo');
-mprintf('--------------------------------------------\n\r');
-mprintf('%s',' Main Modelica : '+path+name+'.mo'); mprintf('\n\r');
+mprintf('%s\n',['--------------------------------------------\';
+		msprintf(_(' Main Modelica : %s'),path+name+'.mo')
+		''])
 
 //## search for 
 
