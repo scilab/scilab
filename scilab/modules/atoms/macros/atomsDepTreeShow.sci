@@ -40,7 +40,7 @@
 //                 . single string
 //                 . optional
 
-function atomsShowTree(name,version)
+function atomsDepTreeShow(name,version)
 	
 	lhs = argn(1);
 	rhs = argn(2);
@@ -49,29 +49,29 @@ function atomsShowTree(name,version)
 	// =========================================================================
 	
 	if (rhs < 1) | (rhs > 2) then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsShowTree",1,2));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsDepTreeShow",1,2));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	if (rhs>=2) & (type(version) <> 10) then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsShowTree",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",2));
 	end
 	
 	// Check input parameters dimensions
 	// =========================================================================
 	
 	if size(name) <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	if (rhs>=2) & (size(name)<>1) then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShowTree",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDepTreeShow",1));
 	end
 	
 	// Get the dependency tree
@@ -86,6 +86,7 @@ function atomsShowTree(name,version)
 	situation = struct();
 	situation("current_level")  = 1;
 	
+	mprintf("\n");
 	atomsDispTree(tree,situation)
 	
 endfunction
