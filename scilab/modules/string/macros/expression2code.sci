@@ -36,6 +36,9 @@ case "operation" then
   nb_op=size(e.operands)
   if and(operator<>["cc","cceol"]) then
     for i=1:nb_op
+      if e.operands(i)==list("EOL") then
+	continue
+      end
       operands=[operands;expression2code(e.operands(i))]
     end
   end
@@ -46,7 +49,7 @@ case "operation" then
       if typeof(e.operands(i))=="operation" then
 	if e.operands(i).operator=="rc" then
 	  operands(i)=part(operands(i),2:length(operands(i))-1)
-	  elseif or(e.operands(i).operator==["cceol"]) then
+	elseif or(e.operands(i).operator==["cceol"]) then
 	  operands(1)=part(operands(1),2:length(operands(1)))
 	  operands($)=part(operands($),1:length(operands($))-1)
 	end
@@ -101,6 +104,8 @@ case "operation" then
       if i==1 then
 	if size(opi,"*")>1 then
 	  C = [C+opi(1);opi(2:$)]
+	elseif opi=="(EOL)" then
+	  C = [C;""];
 	else
 	  C = C+opi
 	end
@@ -108,6 +113,8 @@ case "operation" then
       else
 	if size(opi,"*")>1 then
 	  C = [C(1:$-1);C($)+opi(1);opi(2:$)]
+	elseif opi=="(EOL)" then
+	  C = [C;""]
 	else
 	  C = [C(1:$-1);C($)+opi]
 	end
@@ -285,7 +292,12 @@ case "funcall" then
       C=C+"()"
     end
   else
-    C=e.name+"("+rhs2code(e.rhs)+")"
+    rhscode = rhs2code(e.rhs);
+    if size(rhscode,"*")==1 then
+      C=[e.name+"("+rhscode+")"]
+    else
+      C=[e.name+"("+rhscode(1);rhscode(2:($-1));rhscode($)+")"]
+    end  
   end
   // ----
   // LIST
@@ -319,6 +331,11 @@ case "list"
   // EQUAL (can occur fir disp(a=1) for example)
   // -----
 case "equal"
+  C=instruction2code(e)
+  // -------
+  // COMMENT (inside a matrix declaration for example)
+  // -------
+case "comment"
   C=instruction2code(e)
 else
   error(msprintf(gettext("%s: This feature has not been implemented: %s.\n"),"expression2code",typeof(e)));
