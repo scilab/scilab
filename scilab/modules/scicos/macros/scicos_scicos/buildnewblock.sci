@@ -72,7 +72,7 @@ function ok = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
 
   //** adjust path and name of object files
   //   to include in the building process
-  if (libs ~= emptystr()) then
+  if (libs ~= emptystr())&libs ~= [] then
     libs=pathconvert(libs,%f,%t)
 
   end
