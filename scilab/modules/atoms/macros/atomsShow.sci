@@ -42,6 +42,13 @@ function atomsShow(name,version)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsShow",2));
 	end
 	
+	
+	// If version is not defined, the Most Recent Version is used
+	// =========================================================================
+	if rhs<2 then
+		version = atomsGetMRVersion(name);
+	end
+	
 	// Get the details of this package
 	// =========================================================================
 	

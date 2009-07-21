@@ -50,9 +50,7 @@ function versions = atomsCompatibleVersions(name)
 	
 	for i=1:size(package_versions_tab,"*")
 		this_version = package_versions(package_versions_tab(i));
-		if atomsIsCompatible(this_version("ScilabVersion")) then
-			versions = [ versions ; package_versions_tab(i) ];
-		end
+		versions = [ versions ; package_versions_tab(i) ];
 	end
 	
 	// Sort the version matrix

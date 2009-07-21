@@ -98,16 +98,7 @@ function [tree_out,version_out] = atomsDepTreeFlat(name,version,tree_in)
 	
 	for i=1:size(version,"*")
 		
-		// Check if the wanted version is compatible with the current scilab version.
-		// =========================================================================
-		
 		this_package_details = atomsToolboxDetails(name,version(i));
-		
-		if ~ atomsIsCompatible(this_package_details("ScilabVersion")) then
-			tree_out = %F;
-			return tree_out;
-		end
-		
 		tree_out(name+" - "+version(i)) = this_package_details;
 		
 		if lhs>1 then
