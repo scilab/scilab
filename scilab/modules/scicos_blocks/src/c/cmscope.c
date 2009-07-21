@@ -148,8 +148,8 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scicos_free(xmin);
   scicos_free(xmax);
 
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+  /* use only single buffering to be sure to draw on the screen */
+  sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
 /*--------------------------------------------------------------------------*/ 
 /** \fn void cmscope(scicos_block * block, int flag)
