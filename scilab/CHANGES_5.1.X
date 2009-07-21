@@ -185,12 +185,16 @@ Bug fixes:
  * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
                     to Paul Griffiths for the patch!
 
- * bug 4630 fixed - problem with the Scicos block affich
+ * bug 4618 fixed - buttmag produces a warning because of redefining symbol sample.
 
- * bug 4635 fixed - Bad title in the french help of the graphic module
+ * bug 4630 fixed - Problem with the Scicos block affich.
+
+ * bug 4635 fixed - Bad title in the french help of the graphic module.
 
  * bug 4656 fixed - part(input_matrix,[]) always returned a single string even if
                     input_matrix had a several dimensions
+
+ * bug 4683 fixed - There is no example of the use of tlist in the dedicated page.
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
