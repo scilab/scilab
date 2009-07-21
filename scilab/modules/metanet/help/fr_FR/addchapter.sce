@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/metanet/help/fr_FR";
-add_help_chapter("Metanet : Graphes & Reseaux",path,%T);
+add_help_chapter("Metanet : Graphes & Réseaux",path,%T);
 clear path add_help_chapter;

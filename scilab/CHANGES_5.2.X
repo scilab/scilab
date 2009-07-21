@@ -290,6 +290,8 @@ Bug fixes:
 
 * bug 4626 fixed - when using the CLI version, completion make Scilab crash
 
+* bug 4636 fixed - Metanet on-line help : an accent was missing on the "e" in the french version 
+
 * bug 4638 fixed - this example with optim freezes scilab
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
