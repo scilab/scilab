@@ -6,6 +6,7 @@
 	ProjectGUID="{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}"
 	RootNamespace="api_scilab"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -396,6 +397,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\api_pointer.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\api_poly.c"
 				>
 			</File>
@@ -458,6 +463,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\api_internal_pointer.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\api_internal_poly.h"
 				>
 			</File>
@@ -471,6 +480,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\api_list.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\api_pointer.h"
 				>
 			</File>
 			<File

@@ -9,18 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
-#ifndef __VARIABLE_API__
-#define __VARIABLE_API__
+#ifndef __INTERNAL_POINTER_API__
+#define __INTERNAL_POINTER_API__
 
-#include "api_common.h"
-#include "api_double.h"
-#include "api_string.h"
-#include "api_int.h"
-#include "api_poly.h"
-#include "api_sparse.h"
-#include "api_boolean.h"
-#include "api_boolean_sparse.h"
-#include "api_pointer.h"
-#include "api_list.h"
+int fillPointer(int *_piAddress, void** _pvPtr);
 
-#endif /* __VARIABLE_API__ */
+#endif /* __INTERNAL_POINTER_API__ */
