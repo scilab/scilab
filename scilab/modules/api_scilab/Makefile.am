@@ -12,7 +12,8 @@ src/c/api_int.c \
 src/c/api_list.c \
 src/c/api_poly.c \
 src/c/api_sparse.c \
-src/c/api_string.c
+src/c/api_string.c \
+src/c/api_pointer.c
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
