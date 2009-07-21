@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 disp([1 2],3);
 disp('A string');
 disp("høyesterettsjustitiarius","disp test :");
