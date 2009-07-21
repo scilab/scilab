@@ -97,7 +97,7 @@ function paths = pathconvert(paths, flagtrail, flagexpand, str)
     for i = 1:size(paths,'*') 
       path = paths(i);
       len = length(path);
-      if len > 0 then
+      if (len > 0) & (path <> sep) then
         if part(path, length(path)) == sep then 
           paths(i) = part(paths(i), 1:length(path)-1);
         end
