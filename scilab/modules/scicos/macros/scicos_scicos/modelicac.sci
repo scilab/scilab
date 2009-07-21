@@ -1,7 +1,7 @@
 function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui)
 //Scilab interface  with external tool modelicac.exe
-
-  tmpdir=pathconvert(TMPDIR,%t,%t);  
+  incidence=''
+  tmpdir=pathconvert(TMPDIR,%t,%t);  //for error log and  shell scripts
   xmlfileTMP=pathconvert(xmlfileTMP,%f,%t);  
   Cfile=pathconvert(Cfile,%f,%t);  
 
@@ -23,8 +23,6 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui)
   Errfile= '>""'+tmpdir+'S_modelicac.err""'
   instr=strcat([exe,Flat,Flat_functions,XMLfiles,out,JAC,Errfile],' ')
   
-//  instr='""'+modelicac=pathconvert(SCI+'/bin/modelicac.exe',%f,%t)+'"" ""'+Flat+'""  '+Flat_functions+' '+XMLfiles+' -o ""'+Cfile+'"" '+JAC+' > ""'+tmpdir+'S_modelicac.err""';    
-  
   if MSDOS then,   
     mputl(instr,tmpdir+'genm2.bat'), 
     instr=tmpdir+'genm2.bat';
@@ -37,6 +35,7 @@ function  ok=modelicac(Flat,Flat_functions,xmlfileTMP,Jacobian,Cfile,with_gui)
     ok=%f,
     return
   end     
-  //modelicac produce incorrect include path for Scilab5 fix it
-  mputl(strsubst(mgetl(Cfile),'scicos/scicos_block.h','scicos_block.h'),Cfile)
+  //S. Steer: modelicac produce incorrect include path for Scilab5 fix it
+  //the modelicac code has to be changed when available
+  mputl(strsubst(mgetl(Cfile),'scicos/scicos_block.h','scicos_block.h'), Cfile)
 endfunction

@@ -1,4 +1,4 @@
-function [ok,Flat,xmlfile,Relfile]=translator(filemo,Mblocks,modelica_libs,outpath)
+function [ok]=translator(filemo,Mblocks,modelica_libs,Flat)
 //Generate the flat model of the Modelica model given in the filemo file
 //and the Modelica libraries. Interface to the external tool
 //translator.exe
@@ -9,16 +9,14 @@ function [ok,Flat,xmlfile,Relfile]=translator(filemo,Mblocks,modelica_libs,outpa
    
   mlibs=pathconvert(modelica_libs,%f,%t)
   filemo=pathconvert(filemo,%f,%t) 
+  Flat=pathconvert(Flat,%f,%t) 
   
-  //Create the outout files paths
   name=basename(filemo)
   namef=name+'f';
-  Flat=outpath+namef+'.mo';// flat modelica file path
-  xmlfile=outpath+namef+'_init.xml';// initialization XML file    
-  Relfile=outpath+namef+'_relations.xml';
 
+ 
   molibs=[]
-  mlibsM=pathconvert(outpath+'Modelica/',%f,%t)      
+  mlibsM=pathconvert(TMPDIR+'/Modelica/',%f,%t)      
   for k=1:size(Mblocks,'r')
     funam=stripblanks(Mblocks(k))
     [dirF,nameF,extF]=fileparts(funam);
