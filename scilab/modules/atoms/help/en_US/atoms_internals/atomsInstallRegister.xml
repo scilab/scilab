@@ -10,13 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsDepTreeShow">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsInstallRegister">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>atomsDepTreeShow</refname>
-    <refpurpose>Show the dependency tree of an external module</refpurpose>
+    <refname>atomsInstallRegister</refname>
+    <refpurpose>Add one or more external modules in the list of installed modules</refpurpose>
   </refnamediv>
   <!-- ===================================================================== -->
   <!-- Calling Sequence -->
@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  atomsDepTreeShow(name[,version])
+	  nbAdd = atomsInstallRegister(name,version,status,allusers)
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -37,7 +37,7 @@
         <term>name</term>
         <listitem>
           <para>
-			Matrix of strings : External module name
+			Matrix of strings : External module's technical name
 		  </para>
         </listitem>
       </varlistentry>
@@ -45,16 +45,31 @@
         <term>version</term>
         <listitem>
           <para>
-			Matrix of strings : External module version. This is an optional parameter.
-			If it's not defined, the most recent version of the module is used.
+			Matrix of strings : External module's version
 		  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>result</term>
+        <term>status</term>
         <listitem>
           <para>
-			Matrix of Booleans
+			Matrix of strings : External module's installation status
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>allusers</term>
+        <listitem>
+          <para>
+			Matrix of booleans
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nbAdd</term>
+        <listitem>
+          <para>
+			
 		  </para>
         </listitem>
       </varlistentry>
@@ -65,32 +80,8 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para><literal>atomsDepTreeShow</literal> shows the dependency tree of an external module.
+    <para><literal>atomsInstallRegister</literal> add one or more external modules in the list of installed modules.
 	</para>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- Examples -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsDepTreeShow("toolbox_6")
-]]></programlisting>
-  </refsection>
-  <!-- ===================================================================== -->
-  <!-- See also -->
-  <!-- ===================================================================== -->
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="atomsShow">atomsShow</link>
-      </member>
-      <member>
-        <link linkend="atomsList">atomsList</link>
-      </member>
-    </simplelist>
   </refsection>
   <!-- ===================================================================== -->
   <!-- Authors -->

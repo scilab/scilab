@@ -44,8 +44,7 @@
     <programlisting role="example"><![CDATA[
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsList();
-]]>
-	</programlisting>
+]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->
