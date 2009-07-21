@@ -24,7 +24,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-	  result = atomsInstall(name[,version,allusers])
+	  result = atomsInstall(module[,allusers]])
 	</synopsis>
   </refsynopsisdiv>
   <!-- ===================================================================== -->
@@ -34,18 +34,10 @@
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>name</term>
+        <term>module</term>
         <listitem>
           <para>
 			Matrix of strings : External module name
-		  </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>version</term>
-        <listitem>
-          <para>
-			Matrix of strings : External module version
 		  </para>
         </listitem>
       </varlistentry>
@@ -80,8 +72,7 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Description</title>
-    <para>
-	  
+    <para><literal>atomsInstall</literal> install one or more external modules.
 	</para>
   </refsection>
   <!-- ===================================================================== -->
@@ -89,14 +80,16 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[
+    <programlisting role="example"><![CDATA[
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
-atomsInstall("toolbox_5");
+
+atomsInstall("toolbox_5 1.0");
+atomsInstall("toolbox_6");
+
 atomsRemove("toolbox_5");
-]]>
-	</programlisting>
+atomsRemove("toolbox_6");
+]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->
@@ -111,7 +104,7 @@ atomsRemove("toolbox_5");
         <link linkend="atomsGetInstalled">atomsGetInstalled</link>
       </member>
       <member>
-        <link linkend="atomsGetInstalled">atomsRemove</link>
+        <link linkend="atomsRemove">atomsRemove</link>
       </member>
     </simplelist>
   </refsection>
