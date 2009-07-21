@@ -390,16 +390,12 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 	}
 
       //** combined condition for forced redraw
-      if ( ((delta_time>refresh_time) && (NbrPtsShort>=2)) && (NbrPtsShort>=scoGetShortDrawSize(pScopeMemory,i)) )
-	{ 
-	  //** printf("Delta Time Forced Update = %f ; buffer = %d \n", delta_time, NbrPtsShort); //** DEBUG ONLY 
-	  force_update[i] = 1; 
-	}
-      else
-	{ 
-	  force_update[i] = 0; //** do not update the subwin 
-	}                  
-      //** ------ End of Real Time section ------------------------------------------------------
+      //S.Steer time condition commented out because it slow down the display 
+      //an option should be to increase the ShortDraw size if it is full before refresh_time is reached
+      force_update[i]=/*((delta_time>refresh_time) && (NbrPtsShort>=2)) ||*/ 
+	(NbrPtsShort>=scoGetShortDrawSize(pScopeMemory,i));
+
+
 
       NumCurvTotal += scoGetNumberOfCurvesBySubwin(pScopeMemory,i);
 
