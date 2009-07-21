@@ -115,7 +115,8 @@ function result = atomsUpdate(name,allusers)
 		this_package_MRV_ins  = this_package_versions(1);   // Most Recent Version Installed
 		this_package_MRV_ava  = atomsGetMRVersion(name(i)); // Most Recent Version Available
 		
-		if atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 then
+		if (this_package_MRV_ava == -1) | ..
+				( atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 ) then
 			// The installed version is already the Most Recent Version Available
 			if VERBOSE then
 				mprintf("\t%s (%s) : The most recent version is already installed\n",name(i),this_package_MRV_ins);
@@ -123,9 +124,6 @@ function result = atomsUpdate(name,allusers)
 			
 			continue;
 		end
-		
-		// Remove old toolboxes
-		// atomsRemove(name(i),allusers);
 		
 		// Install the new toolbox
 		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
