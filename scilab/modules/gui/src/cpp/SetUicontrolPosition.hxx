@@ -28,6 +28,7 @@ extern "C"
 #include "SetPropertyStatus.h"
 #include "UicontrolStyleToString.h"
 #include "HandleManagement.h"
+#include "GraphicSynchronizerInterface.h"
 }
 
 #endif /* __SET_UICONTROL_POSITION_HXX__ */
