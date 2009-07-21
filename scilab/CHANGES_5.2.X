@@ -73,6 +73,9 @@ fileio functions:
   - fileinfo manages column vector of strings (SEP #25)
   
   - basename uses fileparts
+  
+  - pathconvert : If the flagtrail argument is set to FALSE and the trailing separator
+                  of the path is removed (if present of course). See Bug 4468.
 
 Dynamic link:
 =============
@@ -292,3 +295,5 @@ Bug fixes:
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
+
+* bug 4688 fixed - listfiles("/") returned an error.
