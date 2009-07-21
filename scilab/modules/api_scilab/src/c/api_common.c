@@ -58,7 +58,7 @@ int getVarAddressFromPosition(int _iVar, int** _piAddress)
 	}
 
 	*_piAddress		= istk(iAddr);
-	//intersci_.ntypes[_iVar - 1] = '$' ;
+	intersci_.ntypes[_iVar - 1] = '$' ;
 	return 0;
 }
 
