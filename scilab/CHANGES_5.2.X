@@ -73,6 +73,9 @@ fileio functions:
   - fileinfo manages column vector of strings (SEP #25)
   
   - basename uses fileparts
+  
+  - pathconvert : If the flagtrail argument is set to FALSE and the trailing separator
+                  of the path is removed (if present of course). See Bug 4468.
 
 Dynamic link:
 =============
