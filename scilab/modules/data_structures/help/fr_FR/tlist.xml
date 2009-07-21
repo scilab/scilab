@@ -88,6 +88,48 @@
   </para>
   </refsection>
   <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+// tlist creation
+t = tlist(["listtype","field1","field2"], [], []);
+t.field1(1) = 10;
+t.field1(2) = 20;
+t.field2(1) = "Scilab";
+t.field2(2) = "tlist";
+t.field2(3) = "example";
+
+// Fields contents display
+disp(t.field1)
+disp(t.field2)
+
+// Generic tlist display
+disp(t)
+
+// Overloading display for this type of tlist
+function %listtype_p(mytlist)
+
+f = fieldnames(mytlist);
+
+// typeof(mytlist) <=> f(1)
+mprintf("Displaying a tlist of type: %s\n", typeof(mytlist));
+
+mprintf("\n");
+
+mprintf("-- Field ''%s'' --\n", f(1));
+mprintf("Contents: %s\n", sci2exp(mytlist(f(1))));
+
+mprintf("\n");
+
+mprintf("-- Field ''%s'' --\n", f(2));
+mprintf("Contents: %s\n", sci2exp(mytlist(f(2))));
+
+endfunction
+
+// Display using overloading function
+disp(t)
+]]></programlisting>
+  </refsection>
+  <refsection>
     <title>Voir Aussi</title>
     <simplelist type="inline">
       <member>
