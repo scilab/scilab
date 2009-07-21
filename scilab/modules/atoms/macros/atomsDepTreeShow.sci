@@ -19,26 +19,7 @@
 //             . single string
 //             . optional
 
-//   tree_in : . Tree that will be concatenated in the output tree
-//             . struct
-//             . optional
-
-
 // Output arguments :
-
-//   tree_out : . Dependency tree of the package
-//              . struct
-//              . mandatory
-//              . Example :
-//                   tree_out  = 
-//                   toolbox_5 - 1.0: [1x1 struct]
-//                   toolbox_4 - 1.0: [1x1 struct]
-//                   toolbox_2 - 1.3: [1x1 struct]
-//                   toolbox_1 - 1.9: [1x1 struct]
-
-//   version_out : . version of the package
-//                 . single string
-//                 . optional
 
 function atomsDepTreeShow(name,version)
 	
