@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="recons" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>recons</refname>
+
+    <refpurpose>reciprocal function for aplat.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>r = recons(fl,ind)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fl</term>
+
+        <listitem>
+          <para>a "flat" list.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>a list of paths</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>a hierachical list build with the leaves of fl</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Reciprocal function for aplat. Creates a hierachical list given a flat one and a list of paths.</para>
+<para>utility function for vec2list and lmisolver.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+        [lf,ind]=aplat(list(1,2,list([3,1],'xxx',list([3,2,1]))));
+        recons(lf,ind)
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="aplat">aplat</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>F.D and S.S. INRIA</member>
+    </simplelist>
+  </refsection>
+
+
+</refentry>
