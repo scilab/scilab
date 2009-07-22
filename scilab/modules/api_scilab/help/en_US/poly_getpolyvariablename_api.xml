@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Polynomial Symbolic Variable</refname>
+        <refname>Polynomial Symbolic Variable (Scilab gateway)</refname>
 
         <refpurpose>
             How to get the symbolic variable name.

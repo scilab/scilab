@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Integer Precision</refname>
+        <refname>Integer Precision (Scilab gateway)</refname>
 
         <refpurpose>
             How to get precision of an integer matrix.
@@ -45,7 +45,7 @@
                 <term>_piPrecision</term>
                 <listitem>
                     <para>
-                        Return precision of an integer variable in bytes. ( 8 bits = 1, 16 bytes = 2, ... )
+                        Return precision of an integer variable in bytes. ( SCI_INT8, SCI_UINT8, SCI_INT16, ... )
                     </para>
                 </listitem>
             </varlistentry>

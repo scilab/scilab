@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Get child list</refname>
+        <refname>Get child (list type) (Scilab gateway)</refname>
 
         <refpurpose>
             How to get the address of a list in a list.

@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Polynomial reading</refname>
+        <refname>Polynomial reading (Scilab gateway)</refname>
         <refpurpose>
             How to read matrices of polynomials in a gateway.
         </refpurpose>

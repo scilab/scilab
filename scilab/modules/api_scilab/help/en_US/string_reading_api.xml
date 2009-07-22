@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>String reading</refname>
+        <refname>String reading (Scilab gateway)</refname>
         <refpurpose>
             How to read matrices of strings in a gateway.
         </refpurpose>
@@ -60,7 +60,7 @@
                 <term>_piLength</term>
                 <listitem>
                     <para>
-                        Address of array of strings length (need to be allocated size: _piRows * _piCols)
+                        Address of array of strings length (must be allocated size: _piRows * _piCols)
                     </para>
                 </listitem>
             </varlistentry>
@@ -68,7 +68,7 @@
                 <term>_pstStrings</term>
                 <listitem>
                     <para>
-                        Address of array of char* (need to be allocated size: _piRows * _piCols)
+                        Address of array of char* (must be allocated size: _piRows * _piCols)
                     </para>
                 </listitem>
             </varlistentry>

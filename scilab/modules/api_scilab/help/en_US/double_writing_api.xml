@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Double writing</refname>
+        <refname>Double writing (Scilab gateway)</refname>
 
         <refpurpose>
             How to write matrices of doubles in a gateway.
