@@ -366,6 +366,8 @@ function test_run(varargin)
 		printf("   TMPDIR = %s\n",TMPDIR);
 		printf("\n");
 		
+		start_date = getdate();
+		
 		for i=1:test_count
 			
 			printf("   %03d/%03d - ",i,test_count);
@@ -397,6 +399,8 @@ function test_run(varargin)
 			end
 		end
 		
+		end_date = getdate();
+		
 		// Summary
 		
 		if test_count<>0 then
@@ -416,6 +420,7 @@ function test_run(varargin)
 		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
 		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
 		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
+		printf("   length                          %4.2f sec \n" ,etime(end_date,start_date));
 		printf("   --------------------------------------------------------------------------\n");
 		
 		if test_failed_count > 0 then
