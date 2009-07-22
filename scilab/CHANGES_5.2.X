@@ -99,6 +99,9 @@ Online Help :
 
  - Sub-Chapters are now allowed (See SEP #24)
  - xmltochm exports help to chm format (Windows)
+ - add_help_chapter now accepts string array as input argument : consequently,
+   several online help chapters can be added at the same time.
+ - add_help_chapter now accepts to add help chapters with the same title.
  
  call_scilab module :
  ====================
