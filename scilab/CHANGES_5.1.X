@@ -7,6 +7,9 @@ Improvements:
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
+Functions removed:
+==================
+* lgfft (http://bugzilla.scilab.org/show_bug.cgi?id=4600)
 
 Compilation:
 ============
@@ -168,6 +171,8 @@ Bug fixes:
                     added to the graphic window
 
  * bug 4596 fixed - g_margin fails to return the gain margins in some cases.
+
+ * bug 4600 fixed - missing function inside lgfft (lgfft must be removed).
 
  * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval
                     (+ some other problems fixed in mtlb_eval).
