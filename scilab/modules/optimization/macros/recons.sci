@@ -9,7 +9,7 @@
 //
 function [r,ind]=recons(r,ind)
 //reconstruct a list from a flat list (see aplat)
-  if ind==-1 then r=r(:);return;end
+  if ind==-1 then return;end
   nr=size(r)
   ma=0
   for k=nr:-1:1

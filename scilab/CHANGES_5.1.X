@@ -198,6 +198,8 @@ Bug fixes:
 
  * bug 4683 fixed - There is no example of the use of tlist in the dedicated page.
 
+ * bug 4601 fixed - hidden functions and missing help for vec2list list2vec aplat and recons.
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
