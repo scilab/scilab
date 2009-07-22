@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Variable Reference</refname>
+        <refname>Variable Reference (Scilab gateway)</refname>
 
         <refpurpose>
             How to get address of an argument in a gateway.

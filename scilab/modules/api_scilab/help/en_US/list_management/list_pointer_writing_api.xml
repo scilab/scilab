@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="list_string_writing_API"
+<refentry version="5.0-subset Scilab" xml:id="list_pointer_writing_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,19 +19,19 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>String writing (Scilab gateway)</refname>
+        <refname>Pointer writing (Scilab gateway)</refname>
 
         <refpurpose>
-            How to add matrix of string in a list.
+            How to add pointer in a list.
         </refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
-        <para>This help describes how to add matrix of string in a list.</para>
+        <para>This help describes how to add pointer in a list.</para>
     </refsection>
     <refsection>
-        <title>Description</title>
-        <synopsis>int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+        <title>Create from existing data</title>
+        <synopsis>int createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -61,26 +61,10 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>_iRows</term>
+                <term>_pvPtr</term>
                 <listitem>
                     <para>
-                        Number of rows of the new variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_iCols</term>
-                <listitem>
-                    <para>
-                        Number of columns of the new variable.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>_pstStrings</term>
-                <listitem>
-                    <para>
-                        Address of array of char* (size: _iCols * _iRows).
+                        Address of the pointer.
                     </para>
                 </listitem>
             </varlistentry>

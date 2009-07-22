@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Variable Type</refname>
+        <refname>Variable Type (Scilab gateway)</refname>
 
         <refpurpose>
             How to get type of a variable.

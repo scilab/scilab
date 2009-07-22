@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Variable Dimension</refname>
+        <refname>Variable Dimension (Scilab gateway)</refname>
 
         <refpurpose>
             How to get dimention of a variable stored as matrix.

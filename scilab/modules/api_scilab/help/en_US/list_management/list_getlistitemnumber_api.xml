@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Item Number</refname>
+        <refname>Item Number (Scilab gateway)</refname>
 
         <refpurpose>
             How to get the number of items in a list (list, mlist, tlist).

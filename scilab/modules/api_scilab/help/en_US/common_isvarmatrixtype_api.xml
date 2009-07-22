@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Matrix Type</refname>
+        <refname>Matrix Type (Scilab gateway)</refname>
 
         <refpurpose>
             How to know if a variable is stored as a matrix.
