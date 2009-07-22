@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/graphics/help/pt_BR";
-add_help_chapter("Biblioteca de Gráficos",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Biblioteca de Gráficos",SCI+"/modules/graphics/help/pt_BR",%T);
+

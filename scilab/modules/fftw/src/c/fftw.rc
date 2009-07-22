@@ -48,8 +48,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 5,1,0,0
- PRODUCTVERSION 5,1,0,0
+ FILEVERSION 5,2,0,0
+ PRODUCTVERSION 5,2,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -66,12 +66,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Scilab"
             VALUE "FileDescription", "fftw module"
-            VALUE "FileVersion", "5, 1, 0, 0"
+            VALUE "FileVersion", "5, 2, 0, 0"
             VALUE "InternalName", "fftw"
             VALUE "LegalCopyright", "Copyright (C) 2009"
             VALUE "OriginalFilename", "fftw.rc"
             VALUE "ProductName", " fftw"
-            VALUE "ProductVersion", "5, 0, 0, 0"
+            VALUE "ProductVersion", "5, 2, 0, 0"
         END
     END
     BLOCK "VarFileInfo"

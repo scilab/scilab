@@ -67,13 +67,13 @@ USE_F2C=NO
 FC=ifort 
 FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
 /noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
-/iface:cref /libs:dll /threads /c /Qvc9 \
+/iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"
 #==================================================
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 FC_OPTIONS=$(FC_OPTIONS_COMMON) /Zi /Od /debug /dbglibs
-FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib
+FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib /NODEFAULTLIB:LIBCMT.lib
 #==================================================
 !ELSE
 FC_OPTIONS=$(FC_OPTIONS_COMMON)
@@ -132,7 +132,7 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 .f90{$(DIR_OBJ)}.obj	:
-	@echo ----------- Compile file $< (using INTEL FORTRAN) -------------
+	@echo ----------- Compile file $< (using INTEL FORTRAN 90) -------------
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 !ENDIF

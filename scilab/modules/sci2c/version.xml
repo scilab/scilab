@@ -18,5 +18,5 @@
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 
 <MODULE_VERSION name="sci2c">
-<VERSION major="5" minor="1" maintenance="0" revision="0" string="stable" />
+<VERSION major="5" minor="2" maintenance="0" revision="0" string="stable" />
 </MODULE_VERSION>

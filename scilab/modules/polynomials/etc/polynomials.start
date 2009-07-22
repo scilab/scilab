@@ -7,22 +7,26 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// polynomials module initialisation file
-// ====================================================================
 //Load  functions libraries
+// =============================================================================
 load('SCI/modules/polynomials/macros/lib');
-// ====================================================================
+
 // Special variables definition
-%s=poly(0,'s');%z=poly(0,'z');
-$=poly(0,'$')
-// ====================================================================
-//add help chapter
-add_module_help_chapter('polynomials');
-// ====================================================================
-//add demo
-pathdemos = pathconvert(SCI+"/modules/polynomials/demos/polynomials.dem.gateway.sce",%f,%t);
-add_demo(gettext("Polynomials"),pathdemos);
-clear pathdemos ;
-// ====================================================================
+// =============================================================================
+%s = poly(0,'s');
+%z = poly(0,'z');
+$  = poly(0,'$')
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("polynomials");
+end
+
+// Add demo
+// =============================================================================
+if WITH_DEMOS then
+	pathdemos = pathconvert(SCI+"/modules/polynomials/demos/polynomials.dem.gateway.sce",%f,%t);
+	add_demo(gettext("Polynomials"),pathdemos);
+	clear pathdemos ;
+end

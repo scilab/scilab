@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
 //
@@ -8,9 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// =============================================================================
-// demo_tools module initialisation file
-// =============================================================================
-
 // Load  functions library
+// =============================================================================
 load('SCI/modules/demo_tools/macros/lib');

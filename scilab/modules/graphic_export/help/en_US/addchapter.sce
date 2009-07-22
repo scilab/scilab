@@ -1,5 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Allan Cornet
 // Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
@@ -8,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/graphic_export/help/"+getdefaultlanguage();
-add_help_chapter("Graphics : exporting and printing",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Graphics : exporting and printing",SCI+"/modules/graphic_export/help/en_US",%T);
+

@@ -73,6 +73,9 @@ fileio functions:
   - fileinfo manages column vector of strings (SEP #25)
   
   - basename uses fileparts
+  
+  - pathconvert : If the flagtrail argument is set to FALSE and the trailing separator
+                  of the path is removed (if present of course). See Bug 4468.
 
 Dynamic link:
 =============
@@ -96,6 +99,9 @@ Online Help :
 
  - Sub-Chapters are now allowed (See SEP #24)
  - xmltochm exports help to chm format (Windows)
+ - add_help_chapter now accepts string array as input argument : consequently,
+   several online help chapters can be added at the same time.
+ - add_help_chapter now accepts to add help chapters with the same title.
  
  call_scilab module :
  ====================
@@ -176,6 +182,8 @@ Bug fixes:
 * bug 4110 fixed - Demos order differs between Linux and Windows versions
 
 * bug 4181 fixed - remove the AdCommunications help page
+
+* bug 4217 fixed -  gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
 * bug 4262 fixed - lines returns incorrect values.
 
@@ -265,6 +273,8 @@ Bug fixes:
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
 
+* bug 4573 fixed - core.start tried to load add_module_help_chapter even if it not exists
+
 * bug 4574 fixed - ilib_build does not check if library is already loaded in scilab.
 
 * bug 4584 fixed - On Windows , home value was wrong
@@ -285,3 +295,12 @@ Bug fixes:
 
 * bug 4626 fixed - when using the CLI version, completion make Scilab crash
 
+* bug 4636 fixed - Metanet on-line help : an accent was missing on the "e" in the french version 
+
+* bug 4638 fixed - this example with optim freezes scilab
+
+* bug 4645 fixed - french 'gsort' help had some wrong informations.
+
+* bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
+
+* bug 4688 fixed - listfiles("/") returned an error.

@@ -1,701 +1,1120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="Graphics">
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Graphics" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>Graphics</refname>
-    <refpurpose> contenu de la librairie graphique
-  </refpurpose>
+
+    <refpurpose>contenu de la librairie graphique</refpurpose>
   </refnamediv>
+
   <refsection>
-    <title>DESSINS 2D</title>
+    <title>Dessins 2d</title>
+
     <variablelist>
       <varlistentry>
-        <term>plot2d</term>
+        <term><link linkend="plot2d">plot2d</link></term>
+
         <listitem>
           <para>représentation de courbes dans le plan</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot2d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plot2d2</term>
+        <term><link linkend="plot2d2">plot2d2</link></term>
+
         <listitem>
           <para>représentation d'une fonction constante par morceaux</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot2d2.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plot2d3</term>
+        <term><link linkend="plot2d3">plot2d3</link></term>
+
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de barres verticales</para>
+          <para>représentation de courbes dans le plan sous forme de barres
+          verticales</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot2d3.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plot2d4</term>
+        <term><link linkend="plot2d4">plot2d4</link></term>
+
         <listitem>
-          <para>représentation de courbes dans le plan sous forme de flèches</para>
+          <para>représentation de courbes dans le plan sous forme de
+          flèches</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot2d4.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fplot2d</term>
+        <term><link linkend="fplot2d">fplot2d</link></term>
+
         <listitem>
           <para>représentation d'une courbe définie par une fonction</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fplot2d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>champ</term>
+        <term><link linkend="champ">champ</link></term>
+
         <listitem>
           <para>champ de vecteur 2D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/champ.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>champ1</term>
+        <term><link linkend="champ1">champ1</link></term>
+
         <listitem>
           <para>champ de vecteur 2D. Flèches colorées</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/champ1.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fchamp</term>
+        <term><link linkend="fchamp">fchamp</link></term>
+
         <listitem>
-          <para>champ défini par une équation différentielle du premier ordre</para>
+          <para>champ défini par une équation différentielle du premier
+          ordre</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fchamp.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>contour2d</term>
+        <term><link linkend="contour2d">contour2d</link></term>
+
         <listitem>
           <para>courbes de niveau d'une surface</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fcontour2d</term>
+        <term><link linkend="fcontour2d">fcontour2d</link></term>
+
         <listitem>
-          <para>courbes de niveau d'une surface (définie par une fonction)</para>
+          <para>courbes de niveau d'une surface (définie par une
+          fonction)</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fcontour2d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>grayplot</term>
+        <term><link linkend="grayplot">grayplot</link></term>
+
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de couleurs</para>
+          <para>représentation d'une surface en 2D sous forme de
+          couleurs</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/grayplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fgrayplot</term>
+        <term><link linkend="fgrayplot">fgrayplot</link></term>
+
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs</para>
+          <para>représentation d'une surface (définie par une fonction) en 2D
+          sous forme de couleurs</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fgrayplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>Sgrayplot</term>
+        <term><link linkend="Sgrayplot">Sgrayplot</link></term>
+
         <listitem>
-          <para>représentation d'une surface en 2D sous forme de couleurs interpolées</para>
+          <para>représentation d'une surface en 2D sous forme de couleurs
+          interpolées</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/Sgrayplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>Sfgrayplot</term>
+        <term><link linkend="Sfgrayplot">Sfgrayplot</link></term>
+
         <listitem>
-          <para>représentation d'une surface (définie par une fonction) en 2D sous forme de couleurs interpolées</para>
+          <para>représentation d'une surface (définie par une fonction) en 2D
+          sous forme de couleurs interpolées</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/Sfgrayplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xgrid</term>
+        <term><link linkend="xgrid">xgrid</link></term>
+
         <listitem>
           <para>ajoute une grille sur un dessin 2D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/xgrid.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>errbar</term>
+        <term><link linkend="errbar">errbar</link></term>
+
         <listitem>
           <para>ajoute des barres d'erreur sur un dessin 2D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/errbar.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>histplot</term>
+        <term><link linkend="histplot">histplot</link></term>
+
         <listitem>
           <para>dessine un histogramme</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/histplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>Matplot</term>
+        <term><link linkend="Matplot">Matplot</link></term>
+
         <listitem>
-          <para>dessin en 2D d'une matrice en pseudo-couleurs </para>
+          <para>dessin en 2D d'une matrice en pseudo-couleurs</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/Matplot.png" /></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS 3D</title>
+    <title>Dessins 3d</title>
+
     <variablelist>
       <varlistentry>
-        <term>plot3d</term>
+        <term><link linkend="plot3d">plot3d</link></term>
+
         <listitem>
           <para>représentation en en couleurs d'une surface</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot3d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plot3d1</term>
+        <term><link linkend="plot3d1">plot3d1</link></term>
+
         <listitem>
           <para>représentation en en couleurs d'une surface</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plot3d1.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fplot3d</term>
+        <term><link linkend="fplot3d">fplot3d</link></term>
+
         <listitem>
-          <para>représente une surface non paramétrique définie par une fonction</para>
+          <para>représente une surface non paramétrique définie par une
+          fonction</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fplot3d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fplot3d1</term>
+        <term><link linkend="fplot3d1">fplot3d1</link></term>
+
         <listitem>
-          <para>représente une surface non paramétrique définie par une fonction</para>
+          <para>représente une surface non paramétrique définie par une
+          fonction</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fplot3d1.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>param3d</term>
+        <term><link linkend="param3d">param3d</link></term>
+
         <listitem>
           <para>représente une courbe paramétrique en 3D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/param3d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>param3d1</term>
+        <term><link linkend="param3d1">param3d1</link></term>
+
         <listitem>
           <para>représente des courbes paramétriques en 3D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/param3d1.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>contour</term>
+        <term><link linkend="contour">contour</link></term>
+
         <listitem>
           <para>courbes de niveau sur une surface en 3D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/contour.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>fcontour</term>
+        <term><link linkend="fcontour">fcontour</link></term>
+
         <listitem>
-          <para>courbes de niveau sur une surface en 3D définie par une fonction</para>
+          <para>courbes de niveau sur une surface en 3D définie par une
+          fonction</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/fcontour.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>hist3d</term>
+        <term><link linkend="hist3d">hist3d</link></term>
+
         <listitem>
           <para>représentation d'un histogramme en 3D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/hist3d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>genfac3d</term>
+        <term><link linkend="genfac3d">genfac3d</link></term>
+
         <listitem>
           <para>calcule les facettes d'une surface non paramétrique</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/genfac3d.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>eval3dp</term>
+        <term><link linkend="eval3dp">eval3dp</link></term>
+
         <listitem>
-          <para>calcule les facettes d'une surface paramétrique </para>
+          <para>calcule les facettes d'une surface paramétrique</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/eval3dp.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>geom3d</term>
+        <term><link linkend="geom3d">geom3d</link></term>
+
         <listitem>
           <para>projection 3D vers 2D après un dessin 3D</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/geom3d.png" /></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS DE POLYGONES ET DE LIGNES</title>
+    <title>Dessins de polygones et de lignes</title>
+
     <variablelist>
       <varlistentry>
-        <term>xpoly</term>
+        <term><link linkend="xpoly">xpoly</link></term>
+
         <listitem>
           <para>dessine une ligne brisée ou un polygone</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xpolys</term>
+        <term><link linkend="xpolys">xpolys</link></term>
+
         <listitem>
           <para>dessine un ensemble de lignes brisées ou de polygones</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xrpoly</term>
+        <term><link linkend="xrpoly">xrpoly</link></term>
+
         <listitem>
           <para>dessine un polygone régulier</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xsegs</term>
+        <term><link linkend="xsegs">xsegs</link></term>
+
         <listitem>
           <para>dessine des segments déconnectés</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xfpoly</term>
+        <term><link linkend="xfpoly">xfpoly</link></term>
+
         <listitem>
           <para>remplit un polygone</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xfpolys</term>
+        <term><link linkend="xfpolys">xfpolys</link></term>
+
         <listitem>
           <para>remplit un ensemble de polygones</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS DE RECTANGLES</title>
+    <title>Dessins de rectangles</title>
+
     <variablelist>
       <varlistentry>
-        <term>xrect</term>
+        <term><link linkend="xrect">xrect</link></term>
+
         <listitem>
           <para>dessine un rectangle</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xfrect</term>
+        <term><link linkend="xfrect">xfrect</link></term>
+
         <listitem>
           <para>remplit un rectangle</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xrects</term>
+        <term><link linkend="xrects">xrects</link></term>
+
         <listitem>
           <para>dessine ou remplit un ensemble de rectangles</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS DES ARCS</title>
+    <title>Dessins des arcs</title>
+
     <variablelist>
       <varlistentry>
-        <term>xarc</term>
+        <term><link linkend="xarc">xarc</link></term>
+
         <listitem>
           <para>dessine un arc d'ellipse</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xarcs</term>
+        <term><link linkend="xarcs">xarcs</link></term>
+
         <listitem>
           <para>dessine des arcs d'ellipses</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xfarc</term>
+        <term><link linkend="xfarc">xfarc</link></term>
+
         <listitem>
           <para>remplit un secteur angulaire d'ellipse</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xfarcs</term>
+        <term><link linkend="xfarcs">xfarcs</link></term>
+
         <listitem>
           <para>remplit des secteurs angulaires d'ellipses</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS DE FLÈCHES</title>
+    <title>Dessins de flèches</title>
+
     <variablelist>
       <varlistentry>
-        <term>xarrows</term>
+        <term><link linkend="xarrows">xarrows</link></term>
+
         <listitem>
           <para>dessine un ensemble de flèches</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>DESSINS DE TEXTES</title>
+    <title>Dessins de textes</title>
+
     <variablelist>
       <varlistentry>
-        <term>xstring</term>
+        <term><link linkend="xstring">xstring</link></term>
+
         <listitem>
           <para>dessine des chaînes de caractères</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xstringl</term>
+        <term><link linkend="xstringl">xstringl</link></term>
+
         <listitem>
           <para>calcule une boîte contenant des chaînes de caractères</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xstringb</term>
+        <term><link linkend="xstringb">xstringb</link></term>
+
         <listitem>
           <para>dessine des chaînes de caractères dans une boîte</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/xstringb.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xtitle</term>
+        <term><link linkend="xtitle">xtitle</link></term>
+
         <listitem>
           <para>ajoute des titres et légendes sur une fenêtre graphique</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/xtitle.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>titlepage</term>
+        <term><link linkend="titlepage">titlepage</link></term>
+
         <listitem>
-          <para>ajoute un titre au milieu  d'une fenêtre graphique</para>
+          <para>ajoute un titre au milieu d'une fenêtre graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xinfo</term>
+        <term><link linkend="xinfo">xinfo</link></term>
+
         <listitem>
-          <para>affiche une chaîne de caractères dans la sous-fenêtre des messages</para>
+          <para>affiche une chaîne de caractères dans la sous-fenêtre des
+          messages</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>CADRES ET AXES</title>
+    <title>Cadres et axes</title>
+
     <variablelist>
       <varlistentry>
-        <term>xaxis</term>
+        <term><link linkend="xaxis">xaxis</link></term>
+
         <listitem>
-          <para>dessine un axe </para>
+          <para>dessine un axe</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>graduate</term>
+        <term><link linkend="graduate">graduate</link></term>
+
         <listitem>
           <para>graduations simplifiées</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plotframe</term>
+        <term><link linkend="plotframe">plotframe</link></term>
+
         <listitem>
           <para>dessine un cadre avec axes et mise à l'échelle</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>TRANSFORMATIONS DE COORDONNÉES</title>
+    <title>Transformation de coordonnées</title>
+
     <variablelist>
       <varlistentry>
-        <term>isoview</term>
+        <term><link linkend="isoview">isoview</link></term>
+
         <listitem>
           <para>échelle isométrique (fonction obsolète)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>square</term>
+        <term><link linkend="square">square</link></term>
+
         <listitem>
-          <para>échelle isométrique (par changement de la taille de la fenêtre)</para>
+          <para>échelle isométrique (par changement de la taille de la
+          fenêtre)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>scaling</term>
+        <term><link linkend="scaling">scaling</link></term>
+
         <listitem>
           <para>transformation affine d'un ensemble de points</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>rotate</term>
+        <term><link linkend="rotate">rotate</link></term>
+
         <listitem>
-          <para>rotation d'un ensemble de points  </para>
+          <para>rotation d'un ensemble de points</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xsetech</term>
+        <term><link linkend="xsetech">xsetech</link></term>
+
         <listitem>
           <para>choix d'une sous-fenêtre graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>subplot</term>
+        <term><link linkend="subplot">subplot</link></term>
+
         <listitem>
           <para>divise la fenêtre graphique en sous-fenêtres</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xgetech</term>
+        <term><link linkend="xgetech">xgetech</link></term>
+
         <listitem>
-          <para>donne l'échelle graphique courante </para>
+          <para>donne l'échelle graphique courante</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xchange</term>
+        <term><link linkend="xchange">xchange</link></term>
+
         <listitem>
           <para>transformation de coordonnées réelles vers pixels</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>COULEURS</title>
+    <title>Couleurs</title>
+
     <variablelist>
       <varlistentry>
-        <term>colormap</term>
+        <term><link linkend="colormap">colormap</link></term>
+
         <listitem>
-          <para> utilisation des tables de couleurs</para>
+          <para>utilisation des tables de couleurs</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>getcolor</term>
+        <term><link linkend="getcolor">getcolor</link></term>
+
         <listitem>
-          <para>boîte de dialogue pour sélectionner des couleurs dans la table des couleurs</para>
+          <para>boîte de dialogue pour sélectionner des couleurs dans la table
+          des couleurs</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>addcolor</term>
+        <term><link linkend="addcolor">addcolor</link></term>
+
         <listitem>
           <para>ajout de nouvelles couleurs à la tables des couleurs</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>graycolormap</term>
+        <term><link linkend="graycolormap">graycolormap</link></term>
+
         <listitem>
           <para>table de couleurs du noir au blanc</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>hotcolormap</term>
+        <term><link linkend="hotcolormap">hotcolormap</link></term>
+
         <listitem>
           <para>table de couleurs "chaude" du rouge au jaune</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>CONTEXTE GRAPHIQUE</title>
+    <title>Contexte graphique</title>
+
     <variablelist>
       <varlistentry>
-        <term>xset</term>
+        <term><link linkend="xset">xset</link></term>
+
         <listitem>
           <para>change des valeurs du contexte graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xget</term>
+        <term><link linkend="xget">xget</link></term>
+
         <listitem>
           <para>récupère des valeurs du contexte graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xlfont</term>
+        <term><link linkend="xlfont">xlfont</link></term>
+
         <listitem>
-          <para>charge une police dans le contexte graphique ou donne la liste des polices</para>
+          <para>charge une police dans le contexte graphique ou donne la liste
+          des polices</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>getsymbol</term>
+        <term><link linkend="getsymbol">getsymbol</link></term>
+
         <listitem>
           <para>boîte de dialogue pour choisir un marqueur (ou symbole)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>SAUVEGARDE ET CHARGEMENT</title>
+    <title>Sauvegarde et chargement</title>
+
     <variablelist>
       <varlistentry>
-        <term>xsave</term>
+        <term><link linkend="xsave">xsave</link></term>
+
         <listitem>
           <para>sauve les graphiques dans un fichier</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xload</term>
+        <term><link linkend="xload">xload</link></term>
+
         <listitem>
           <para>charge des graphiques sauvés</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xs2fig</term>
+        <term><link linkend="xs2fig">xs2fig</link></term>
+
         <listitem>
           <para>envoie des graphiques dans un fichier au format XFig</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term><link linkend="xs2gif">xs2gif</link></term>
+
+        <listitem>
+          <para>envoie des graphiques dans un fichier au format Gif</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><link linkend="xs2ppm">xs2ppm</link></term>
+
+        <listitem>
+          <para>envoie des graphiques dans un fichier au format PPM</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>PRIMITIVES GRAPHIQUES</title>
+    <title>Primitives graphiques</title>
+
     <variablelist>
       <varlistentry>
-        <term>xbasc</term>
+        <term><link linkend="xbasc">xbasc</link></term>
+
         <listitem>
-          <para>efface une fenêtre graphique et les graphiques enregistrés</para>
+          <para>efface une fenêtre graphique et les graphiques
+          enregistrés</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xclear</term>
+        <term><link linkend="xclear">xclear</link></term>
+
         <listitem>
-          <para> efface une fenêtre graphique</para>
+          <para>efface une fenêtre graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>driver</term>
+        <term><link linkend="driver">driver</link></term>
+
         <listitem>
           <para>choisit un pilote graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xinit</term>
+        <term><link linkend="xinit">xinit</link></term>
+
         <listitem>
           <para>initialisation d'un pilote graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xend</term>
+        <term><link linkend="xend">xend</link></term>
+
         <listitem>
           <para>termine une session graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xbasr</term>
+        <term><link linkend="xbasr">xbasr</link></term>
+
         <listitem>
           <para>redessine une fenêtre graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>replot</term>
+        <term><link linkend="replot">replot</link></term>
+
         <listitem>
-          <para>redessine une fenêtre graphique avec de nouvelles bornes</para>
+          <para>redessine une fenêtre graphique avec de nouvelles
+          bornes</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xpause</term>
+        <term><link linkend="xpause">xpause</link></term>
+
         <listitem>
-          <para>suspend l'exécution de Scilab </para>
+          <para>suspend l'exécution de Scilab</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xselect</term>
+        <term><link linkend="xselect">xselect</link></term>
+
         <listitem>
           <para>met une fenêtre graphique au premier plan</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xdel</term>
+        <term><link linkend="xdel">xdel</link></term>
+
         <listitem>
           <para>supprime une fenêtre graphique</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>winsid</term>
+        <term><link linkend="winsid">winsid</link></term>
+
         <listitem>
           <para>renvoie la liste des fenêtre graphiques</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xname</term>
+        <term><link linkend="xname">xname</link></term>
+
         <listitem>
           <para>change le nom d'une fenêtre graphique</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>POSITION DE LA SOURIS</title>
+    <title>Position de la souris</title>
+
     <variablelist>
       <varlistentry>
-        <term>xclick</term>
+        <term><link linkend="xclick">xclick</link></term>
+
         <listitem>
           <para>attend un clic de souris</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>locate</term>
+        <term><link linkend="locate">locate</link></term>
+
         <listitem>
           <para>sélection d'un ensemble de points</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>xgetmouse</term>
+        <term><link linkend="xgetmouse">xgetmouse</link></term>
+
         <listitem>
           <para>renvoie la position courante du pointeur de la souris</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>ÉDITEUR INTERACTIF</title>
+    <title>Éditeur interactif</title>
+
     <variablelist>
       <varlistentry>
-        <term>edit_curv</term>
+        <term><link linkend="edit_curv">edit_curv</link></term>
+
         <listitem>
           <para>éditeur graphique interactif</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>gr_menu</term>
+        <term><link linkend="sd2sci">sd2sci</link></term>
+
         <listitem>
-          <para>éditeur graphique élémentaire</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sd2sci</term>
-        <listitem>
-          <para>conversion d'objets gr_menu en instructions Scilab </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>ged</term>
-        <listitem>
-          <para>:EDiteur interactif des propriétésdes entités graphiques  </para>
+          <para>conversion d'objets gr_menu en instructions Scilab</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
-    <title>FONCTIONS GRAPHIQUES EN AUTOMATIQUE</title>
+    <title>Fonctions graphiques en automatique</title>
+
     <variablelist>
       <varlistentry>
-        <term>bode</term>
+        <term><link linkend="bode">bode</link></term>
+
         <listitem>
           <para>diagramme de Bode</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/bode.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>gainplot</term>
+        <term><link linkend="gainplot">gainplot</link></term>
+
         <listitem>
-          <para>magnitude plot</para>
+          <para>diagramme de gain</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/gainplot.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>nyquist</term>
+        <term><link linkend="nyquist">nyquist</link></term>
+
         <listitem>
-          <para>Nyquist plot</para>
+          <para>diagramme de Nyquist</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/nyquist.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>m_circle</term>
+        <term><link linkend="m_circle">m_circle</link></term>
+
         <listitem>
-          <para>M-circle plot</para>
+          <para>diagramme M-circle</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/m_circle.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>chart</term>
+        <term><link linkend="chart">chart</link></term>
+
         <listitem>
-          <para>Nichols chart</para>
+          <para>abaque de Nichols</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/chart.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>black</term>
+        <term><link linkend="black">black</link></term>
+
         <listitem>
-          <para>Black's diagram</para>
+          <para>diagramme de Black</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/black.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>evans</term>
+        <term><link linkend="evans">evans</link></term>
+
         <listitem>
-          <para>Evans root locus</para>
+          <para>lieu des racines d'Evans</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/evans.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>sgrid</term>
+        <term><link linkend="sgrid">sgrid</link></term>
+
         <listitem>
-          <para>s-plane grid lignes</para>
+          <para>grille du plan s</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/sgrid.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>plzr</term>
+        <term><link linkend="plzr">plzr</link></term>
+
         <listitem>
-          <para>pole-zero plot</para>
+          <para>diagramme pôle-zéro</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/plzr.png" /></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>zgrid</term>
+        <term><link linkend="zgrid">zgrid</link></term>
+
         <listitem>
-          <para>zgrid plot</para>
+          <para>diagramme zgrid</para>
+
+          <para><emphasis role="bold">Exemple:</emphasis></para>
+
+          <para><imagedata fileref="../images/zgrid.png" /></para>
         </listitem>
       </varlistentry>
     </variablelist>

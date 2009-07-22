@@ -7,13 +7,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// io module initialisation file 
-// ====================================================================
 //Load  functions libraries
+// =============================================================================
 load('SCI/modules/io/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('io');
-// ====================================================================
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("io");
+end

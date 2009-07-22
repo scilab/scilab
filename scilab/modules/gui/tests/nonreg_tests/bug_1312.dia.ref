@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1312
 //
 // <-- Short Description -->
-//
+//    
 // <-- TEST WITH GRAPHIC -->
 sx=170;
 sy=450;
