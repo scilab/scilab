@@ -191,6 +191,8 @@ Bug fixes:
 
  * bug 4635 fixed - Bad title in the french help of the graphic module.
 
+ * bug 4650 fixed - SCI/modules/graphics/macros/Sfgrayplot.sci has not been modified for localization.
+
  * bug 4656 fixed - part(input_matrix,[]) always returned a single string even if
                     input_matrix had a several dimensions
 
