@@ -24,6 +24,7 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
+#include "strdup_windows.h"
 }
 
 //#define PRINT_DEBUG
@@ -47,10 +48,6 @@ bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
-
-#ifdef _MSC_VER
-#define strdup _strdup
-#endif
 
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
