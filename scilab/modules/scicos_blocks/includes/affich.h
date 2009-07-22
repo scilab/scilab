@@ -40,3 +40,4 @@ void C2F(affichup)( double * textIndex,
                     char * value,
                     int valueLength);
 #endif
+
