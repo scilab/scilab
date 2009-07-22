@@ -700,12 +700,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term><link linkend="gr_menu">gr_menu</link></term>
-        <listitem>
-          <para>Simple interactives graphic editor</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term><link linkend="sd2sci">sd2sci</link></term>
         <listitem>
           <para>gr_menu structure to scilab instruction convertor</para>

@@ -985,14 +985,6 @@
       </varlistentry>
 
       <varlistentry>
-        <term><link linkend="gr_menu">gr_menu</link></term>
-
-        <listitem>
-          <para>éditeur graphique élémentaire</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term><link linkend="sd2sci">sd2sci</link></term>
 
         <listitem>
