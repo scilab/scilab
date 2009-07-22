@@ -10,7 +10,6 @@
 
 //Load  functions libraries
 // =============================================================================
-clear pathconvert;
 load('SCI/modules/functions/macros/lib');
 
 // Add help chapter
