@@ -1,15 +1,22 @@
-// ====================================================================
-// texmacs module initialisation file 
-// Copyright INRIA 2006
-// ====================================================================
-//Load functions library
-// theses macros are loaded only in texmacs mode
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006 - INRIA
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+//Load  functions libraries
+// =============================================================================
 if with_texmacs() then
   load('SCI/modules/texmacs/macros/overloading/lib');
 end
 load('SCI/modules/texmacs/macros/lib');
 clear with_texmacs;
-// ====================================================================
-//add help chapter
-add_module_help_chapter('texmacs');
-// ====================================================================
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("texmacs");
+end

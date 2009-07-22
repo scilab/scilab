@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/development_tools/help/"+getdefaultlanguage();
-add_help_chapter("Ferramentas de Desenvolvimento",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Ferramentas de Desenvolvimento",SCI+"/modules/development_tools/help/pt_BR",%T);
+

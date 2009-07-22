@@ -37,6 +37,8 @@ Source: modules\{#HDF5}\includes\*.h; DestDir: {app}\modules\{#HDF5}\includes; C
 Source: modules\{#HDF5}\etc\{#HDF5}.quit; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HDF5}\etc\{#HDF5}.start; DestDir: {app}\modules\{#HDF5}\etc; Components: {#COMPN_SCILAB}
 ;
+Source: thirdparty\jhdf5.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+;
 ;
 ;Source: modules\{#HDF5}\macros\buildmacros.sce; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\buildmacros.bat; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}

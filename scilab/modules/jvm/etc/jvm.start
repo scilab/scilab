@@ -1,6 +1,3 @@
-// ====================================================================
-// jvm module initialisation file 
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
 // This file must be used under the terms of the CeCILL.
@@ -9,13 +6,14 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-//Load  functions libraries
+// Load  functions libraries
+// =============================================================================
 if (getscilabmode()<>'NWNI') then
   load('SCI/modules/jvm/macros/lib');
-end  
-// ====================================================================
-//add help chapter
-add_module_help_chapter('jvm');
-// ====================================================================
+end
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("jvm");
+end

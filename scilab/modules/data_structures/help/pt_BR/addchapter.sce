@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/data_structures/help/pt_BR";
-add_help_chapter("Estruturas de Dados",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Estruturas de Dados",SCI+"/modules/data_structures/help/pt_BR",%T);
+

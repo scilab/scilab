@@ -1320,7 +1320,7 @@ static int CreateOperationTList(int *data,int *index2)
 
   int one = 1;
 
-  int stkPos = Top;
+  int stkPos = 0;
   int nbOps = 0;
 
   /* Memory allocation */
@@ -1362,7 +1362,7 @@ static int CreateOperationTList(int *data,int *index2)
     }
 
   /* In case a EOL is inserted in a row/column catenation */
-  stkPos = 0;
+  stkPos = Top;
   if(operator_index2!=24)
     {
       while (nbOps!=nb_operands && stkPos>0)
@@ -1461,7 +1461,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   int m_mat = 0;
   int n_mat = 0;
 
-  int stkPos = Top;
+  int stkPos = 0;
   int nbOps = 0;
   
   /* Memory allocation */

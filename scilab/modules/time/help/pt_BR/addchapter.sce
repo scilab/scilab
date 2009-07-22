@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/time/help/pt_BR";
-add_help_chapter("Data e Hora",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Data e Hora",SCI+"/modules/time/help/pt_BR",%T);
+

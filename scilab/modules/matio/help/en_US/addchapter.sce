@@ -1,12 +1,11 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007 - INRIA - Vincent COUVERT
-// 
+// Copyright (C) 2009 - DIGITEO
+//
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/matio/help/"+getdefaultlanguage();
-add_help_chapter("Matlab binary files I/O",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Matlab binary files I/O",SCI+"/modules/matio/help/en_US",%T);
+

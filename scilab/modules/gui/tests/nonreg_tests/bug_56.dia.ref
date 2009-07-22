@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 //    findobj does not seem to work, if the
-// value contains upper-case letters: e.g. the following does
+// value contains upper-case letters: e.g. the following does 
 // not give the result 1 as desired
 f = figure(1);
 h = uicontrol("tag","F");

@@ -1,6 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Allan CORNET
-// Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
 // Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
@@ -9,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/console/help/fr_FR";
-add_help_chapter("Console",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Console",SCI+"/modules/console/help/fr_FR",%T);
+

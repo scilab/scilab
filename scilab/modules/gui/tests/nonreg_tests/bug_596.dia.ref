@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=596
 //
 // <-- Short Description -->
-//    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing
+//    uicontrol has problem in parsing string arguments: 'string' and 'callback' arguments containing 
 //    spaces, apostrophes and doublequotes give strange (repeatable) results
 f = figure(1);
 uicontrol(f,"style","pushbutton","position",[10 10 150 20],..
