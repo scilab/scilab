@@ -115,6 +115,10 @@ function ok = add_help_chapter(helptitle,path,modulemode)
 		ok(i) = %T;
 	end
 	
+	// Go to the original location
+	// =========================================================================	
+	chdir(current_directory);
+	
 	// Reshape ok
 	// =========================================================================	
 	ok = matrix(ok,size(path));

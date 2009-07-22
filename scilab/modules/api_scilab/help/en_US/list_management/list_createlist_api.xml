@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Create List</refname>
+        <refname>Create List (Scilab gateway)</refname>
 
         <refpurpose>
             How to get create a list in Scilab memory.

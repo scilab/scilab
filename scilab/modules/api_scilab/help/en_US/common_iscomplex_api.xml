@@ -19,7 +19,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>Variable Complexity</refname>
+        <refname>Variable Complexity (Scilab gateway)</refname>
 
         <refpurpose>
             How to get variable complexity.
