@@ -96,19 +96,20 @@ clear larg args L
 // loads modules ======================================================
 
 modules = getmodules();
-index = size(modules);
-for i = 1:index(1) do
- exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
+WITH_HELPTOOLS = ((with_module("helptools"))  & (getscilabmode() <> "NWNI"));
+WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
+
+for i=1:size(modules,"*")
+  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
-clear modules index i add_demo add_help_chapter add_module_help_chapter
+clear modules i add_demo add_help_chapter add_module_help_chapter WITH_HELPTOOLS WITH_DEMOS
 
 // Create some configuration variables ================================
-home = getenv('HOME',SCI);
+home = getenv("HOME",SCI);
 if MSDOS then
   // path of scilab main directory for Windows
-  WSCI = getlongpathname(pathconvert(SCI,%f,%f,'w'));
-  clear pathconvert
+  WSCI = getlongpathname(pathconvert(SCI,%f,%f,"w"));
 else
   if getenv('PRINTERS','ndef') == "ndef" then
     setenv("PRINTERS","lp");

@@ -270,6 +270,8 @@ Bug fixes:
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
 
+* bug 4573 fixed - core.start tried to load add_module_help_chapter even if it not exists
+
 * bug 4574 fixed - ilib_build does not check if library is already loaded in scilab.
 
 * bug 4584 fixed - On Windows , home value was wrong

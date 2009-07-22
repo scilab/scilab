@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2006 - INRIA
+// Copyright (C) 2006 - INRIA - Scilab
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,13 +7,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// sparse module initialisation file 
-// ====================================================================
-//Load  functions libraries
+// Load  functions libraries
+// =============================================================================
 load('SCI/modules/sparse/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('sparse');
-// ====================================================================
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("sparse");
+end
