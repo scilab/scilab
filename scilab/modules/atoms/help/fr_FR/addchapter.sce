@@ -7,6 +7,4 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/atoms/help/"+getdefaultlanguage();
-add_help_chapter("Atoms",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Atoms",SCI+"/modules/atoms/help/fr_FR",%T);
