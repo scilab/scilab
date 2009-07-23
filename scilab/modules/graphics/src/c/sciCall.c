@@ -16,6 +16,9 @@
  *    Graphic library
  *    Graphic subroutines interface
  --------------------------------------------------------------------------*/
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
 
 #include "SetProperty.h"
 #include "GetProperty.h"
