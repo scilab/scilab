@@ -13,6 +13,12 @@
 
 function packages_disp = atomsSearch( search , fields )
 	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atoms_internalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	rhs = argn(2);
 	
 	// Check number of input arguments
