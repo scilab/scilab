@@ -17,8 +17,6 @@
  *    Graphic subroutines interface
  --------------------------------------------------------------------------*/
 
-#include <string.h> /* strtok */
-
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
