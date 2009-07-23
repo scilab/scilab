@@ -8,6 +8,9 @@ Improvements:
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
+Functions removed:
+==================
+* lgfft (http://bugzilla.scilab.org/show_bug.cgi?id=4600)
 
 Compilation:
 ============
@@ -170,6 +173,10 @@ Bug fixes:
 
  * bug 4596 fixed - g_margin fails to return the gain margins in some cases.
 
+ * bug 4600 fixed - missing function inside lgfft (lgfft must be removed).
+
+ * bug 4601 fixed - hidden functions and missing help for vec2list list2vec aplat and recons.
+
  * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval
                     (+ some other problems fixed in mtlb_eval).
 
@@ -192,12 +199,15 @@ Bug fixes:
 
  * bug 4635 fixed - Bad title in the french help of the graphic module.
 
+ * bug 4646 fixed - Assigning a string to an element of a matrix of numbers does not give an error.
+
  * bug 4650 fixed - SCI/modules/graphics/macros/Sfgrayplot.sci has not been modified for localization.
 
  * bug 4656 fixed - part(input_matrix,[]) always returned a single string even if
                     input_matrix had a several dimensions
 
  * bug 4683 fixed - There is no example of the use of tlist in the dedicated page.
+
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

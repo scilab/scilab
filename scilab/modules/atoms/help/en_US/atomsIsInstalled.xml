@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsInstalled">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atomsIsInstalled</refname>
+    <refpurpose>Add one or several URLs to the list of managed repositories</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  res = atomsIsInstalled(name[,version,allusers])
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>
+			Matrix of strings : Names of modules to test
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>version</term>
+        <listitem>
+          <para>
+			Matrix of strings : Versions of modules to test
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>allusers</term>
+        <listitem>
+          <para>
+			A boolean
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>
+			
+		  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para>
+	  
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsInstall">atomsInstall</link>
+      </member>
+      <member>
+        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

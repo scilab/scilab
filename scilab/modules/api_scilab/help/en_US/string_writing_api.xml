@@ -88,12 +88,12 @@ int write_string(char *fname,unsigned long fname_len)
     char** pstData  = NULL;
 
     //data to put in the new variable
-    char string0[]  = "sample";
-    char string1[]  = "with";
-    char string2[]  = "strings";
-    char string3[]  = "gateway";
-    char string4[]  = "manipulation";
-    char string5[]  = "API";
+    char string0[]  = "may";
+    char string1[]  = "be";
+    char string2[]  = "the";
+    char string3[]  = "with";
+    char string4[]  = "puffin";
+    char string5[]  = "you";
 
     //alloc new array
     pstData         = (char**)malloc(sizeof(char*) * iRows * iCols);
@@ -123,7 +123,7 @@ int write_string(char *fname,unsigned long fname_len)
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
             <![CDATA[
-a_ref = "sample strings manipulation with gateway API ";
+a_ref = "may the puffin be with you ";
 b = [];
 a = write_string();
 for i=1:size(a,"r")
