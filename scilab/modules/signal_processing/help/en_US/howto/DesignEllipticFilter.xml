@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="DesignEllipticFilter"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>How to design an elliptic filter</refname>
+
+    <refpurpose>How to design an elliptic filter (analog and
+    digital)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>The goal is to design a simple analog and digital elliptic
+    filter.</para>
+  </refsection>
+
+  <refsection>
+    <title>Designing an analog elliptic filter</title>
+
+    <para>There are several possibilities to design an elliptic lowpass
+    filter. We can use <link linkend="analpf">analpf</link> or <link
+    linkend="zpell">zpell</link>. We will use zpell to produce the poles and
+    zeros of the filter. Once we have got these poles and zeros, we will have
+    to translate this representation into a <link
+    linkend="syslin">syslin</link> one.</para>
+
+    <para>And then, the filter can be represented in bode plot.</para>
+
+    <programlisting> 
+// analog elliptic (Bessel), order 2, cutoff 1 Hz
+Epsilon = 3;  // ripple of filter in pass band (0&lt;epsilon&lt;1)
+A       = 60; // attenuation of filter in stop band (A&gt;1)
+OmegaC  = 10; // pass band cut-off frequency in Hertz
+OmegaR  = 50; // stop band cut-off frequency in Hertz
+
+// Generate the filter
+[_zeros,pols,gain] = zpell(3,60,10,50);
+
+// Generate the equivalent linear system of the filter
+num   = gain * real(poly(_zeros,'s'));;
+den   = real(poly(pols,'s'));
+elatf = syslin('c',num,den);
+
+// Plot the resulting filter
+bode(elatf,0.01,100);
+title('Analog Elliptic filter');
+ </programlisting>
+
+    <para>Bode plot is only suited for analog filters.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center"
+                   fileref="../../images/analog_elliptic_filter.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>If you want to design a highpass, bandpass or bandstop filter, you
+    can first design a lowpass and then transfrom this lowpass filter using
+    the <link linkend="trans">trans</link> function.</para>
+  </refsection>
+
+  <refsection>
+    <title>Designing a digital elliptic filter</title>
+
+    <para>Now, let's focus on how to produce a digital lowpass elliptic
+    filter.</para>
+
+    <para>We can produce two kinds of digital filters:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>an IIR (Infinite Impulse Response).</para>
+
+        <para>To compute such a filter, we can use the following
+        functions:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><link linkend="iir">iir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="eqiir">eqiir</link></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>a FIR (Finite Impulse Response).</para>
+
+        <para>To compute such a filter, we can use the following
+        functions:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><link linkend="eqfir">eqfir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="ffilt">ffilt</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="wfir">wfir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="fsfirlin">fsfirlin</link></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+    <para>For our demonstration, we will use the <link
+    linkend="iir">iir</link> function.</para>
+
+    <programlisting role="example"> 
+Order   = 2; // The order of the filter
+Fs      = 1000; // The sampling frequency
+Fcutoff = 40;   // The cutoff frequency
+
+// We design a low pass elliptic filter
+hz = iir(Order,'lp','ellip',[Fcutoff/Fs/2 0],[0.1 0.1]);
+
+// We compute the frequency response of the filter
+[frq,repf]=repfreq(hz,0:0.001:0.5);
+[db_repf, phi_repf] = dbphi(repf);
+
+// And plot the bode like representation of the digital filter
+subplot(2,1,1);
+plot2d(Fs*frq,db_repf);
+xtitle('Obtained Frequency Response (Magnitude)');
+subplot(2,1,2);
+plot2d(Fs*frq,phi_repf);
+xtitle('Obtained Frequency Response (Phase in degree)');
+ </programlisting>
+
+    <para>Here is the representation of the digital elliptic filter.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center"
+                   fileref="../../images/digital_elliptic_filter.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>To represent the filter in phase and magnitude, we need first to
+    convert the discrete impulse response into magnitude and phase using the
+    <link linkend="dbphi">dbphi</link> function. This convertion is done using
+    a set of normalized frequencies.</para>
+  </refsection>
+
+  <refsection>
+    <title>Filtering a signal using the digital filter</title>
+
+    <para>Designing a filter is a first step. Once done, this filter will be
+    used to transform a signal. To get rid of some noise for example.</para>
+
+    <para>In the following examples, we will filter a gaussian noise.</para>
+
+    <programlisting>
+rand('normal');
+Input = rand(1,1000); // Produce a random gaussian noise
+t     = 1:1000;
+
+sl= tf2ss(hz); // From transfert function to syslin representation
+y = flts(Input,sl); // Filter the signal
+
+subplot(2,1,1);
+plot(t,Input);
+xtitle('The gaussian noise','t','y');
+subplot(2,1,2);
+plot(t,y);
+xtitle('The filtered gaussian noise','t','y');
+ </programlisting>
+
+    <para>Here is the representation of the signal before and after
+    filtering.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/digital_filtered_noise.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>As we can see in the result, the high frequencies of the noise have
+    been removed and it remains only the low frequencies. The signal is still
+    noisy, but it contains mainly low frequencies.</para>
+  </refsection>
+
+  <refsection>
+    <title>Filtering a signal using the analog filter</title>
+
+    <para>To filter a signal using an analog filter, we have two
+    strategies:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>transform the analog filter into a discrete one using the <link
+        linkend="dscr">dscr</link> function</para>
+      </listitem>
+
+      <listitem>
+        <para>apply the <link linkend="csim">csim</link> function to filter
+        the signal</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>First, we try using the <link linkend="dscr">dscr</link> + <link
+    linkend="flts">flts</link> functions.</para>
+
+    <programlisting> 
+rand('normal');
+Input = rand(1,1000); // Produce a random gaussian noise
+n     = 1:1000; // The sample index
+
+eldtf = dscr(elatf,1/100); // Discretization of the linear filter
+y = flts(Input,eldtf); // Filter the signal
+
+subplot(2,1,1);
+plot(n,Input);
+xtitle('The gaussian noise','n','y');
+subplot(2,1,2);
+plot(n,y);
+xtitle('The filtered gaussian noise','n','y');
+ </programlisting>
+
+    <para>Here is the representation of the signal before and after filtering
+    using the <link linkend="dscr">dscr</link> + <link
+    linkend="flts">flts</link> approach.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/analog_filtered_noise.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>Next, we use the <link linkend="csim">csim</link> function.</para>
+
+    <programlisting> 
+rand('normal');
+Input = rand(1,1000); // Produce a random gaussian noise
+t     = 1:1000;
+t     = t*0.01; // Convert sample index into time steps
+
+y = csim(Input,t,elatf); // Filter the signal
+
+subplot(2,1,1);
+plot(t,Input);
+xtitle('The gaussian noise','t','y');
+subplot(2,1,2);
+plot(t,y);
+xtitle('The filtered gaussian noise','t','y');
+ </programlisting>
+
+    <para>Here is the representation of the signal before and after filtering
+    using the <link linkend="csim">csim</link> approach.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/analog_filtered_noise_csim.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>The main difference between the <link linkend="dscr">dscr</link> +
+    <link linkend="flts">flts</link> approach and the <link
+    linkend="csim">csim</link> approach: the <link linkend="dscr">dscr</link>
+    + <link linkend="flts">flts</link> uses samples whereas the <link
+    linkend="csim">csim</link> functions uses time steps.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="iir">iir</link></member>
+
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="zpell">zpell</link></member>
+
+      <member><link linkend="flts">flts</link></member>
+
+      <member><link linkend="tf2ss">tf2ss</link></member>
+
+      <member><link linkend="dscr">dscr</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="trans">trans</link></member>
+
+      <member><link linkend="analpf">analpf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

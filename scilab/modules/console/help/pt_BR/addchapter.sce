@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/console/help/pt_BR";
-add_help_chapter("Console",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Console",SCI+"/modules/console/help/pt_BR",%T);
+

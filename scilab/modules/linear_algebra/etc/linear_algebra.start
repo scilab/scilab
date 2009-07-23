@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA
 //
@@ -8,12 +7,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// elementary_functions module initialisation file
-// ====================================================================
-
 //Load  functions libraries
+// =============================================================================
 load('SCI/modules/linear_algebra/macros/lib');
 
-//add help chapter
-add_module_help_chapter('linear_algebra');
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("linear_algebra");
+end

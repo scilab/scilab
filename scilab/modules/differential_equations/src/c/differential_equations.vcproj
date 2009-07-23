@@ -4,7 +4,6 @@
 	Version="9,00"
 	Name="differential_equations"
 	ProjectGUID="{F0190B5D-FB21-47A2-99AC-06627CDD0F8A}"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

@@ -5,7 +5,6 @@
 	Name="BuildChm"
 	ProjectGUID="{D319F719-F429-4842-A6F9-B1227FE2A54D}"
 	Keyword="MakeFileProj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

@@ -17,5 +17,5 @@
 
 <!DOCTYPE MODULE_VERSION SYSTEM "../core/xml/version.dtd">
 <MODULE_VERSION name="helptools">
-<VERSION major="5" minor="1" maintenance="0" revision="0" string="unstable-svn" />
+<VERSION major="5" minor="2" maintenance="0" revision="0" string="unstable-git" />
 </MODULE_VERSION>

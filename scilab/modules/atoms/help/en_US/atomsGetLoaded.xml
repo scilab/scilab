@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="atomsGetLoaded" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atomsGetLoaded</refname>
+    <refpurpose>Get the list of loaded external modules</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  loaded = atomsGetLoaded()
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>loaded</term>
+        <listitem>
+          <para>5xn String matrix :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>1st column</literal> : External module's technical name
+				</para>
+            </listitem>
+            <listitem>
+              <para><literal>2nd column</literal> : External module's version
+				</para>
+            </listitem>
+            <listitem>
+              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
+				the external module has been installed for all users or only for the
+				current user.
+				</para>
+            </listitem>
+            <listitem>
+              <para><literal>4th column</literal> : External module's installation path
+				</para>
+            </listitem>
+            <listitem>
+              <para><literal>5th column</literal> : I/A, this parameter tell if
+				the external module has been automatically or intentionnaly installed.
+				</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para><literal>atomsGetLoaded</literal> returns the list of loaded external modules
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+atomsSetConfig("Verbose","True");
+atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+atomsInstall("toolbox_5");
+atomsLoad("toolbox_5");
+
+atomsGetLoaded("toolbox_5");
+
+atomsRemove("toolbox_5");
+]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsLoad">atomsLoad</link>
+      </member>
+      <member>
+        <link linkend="atomsIsLoaded">atomsIsLoaded</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

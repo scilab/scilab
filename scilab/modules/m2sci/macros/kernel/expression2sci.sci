@@ -90,6 +90,10 @@ case "variable"
   end
 // --- operand is a list (only for operations) ---
 case "list"
+  if lstsize(mtlb_expr)==1 & mtlb_expr==list("EOL") then
+    sci_expr=mtlb_expr
+    return
+  end
   for k=1:size(mtlb_expr)
     if typeof(mtlb_expr(k))=="cste" then
       mtlb_expr(k)=Cste(mtlb_expr(k).value)
@@ -110,6 +114,9 @@ case "list"
       error(msprintf(gettext("recursive extraction with one index of type %s is not yet implemented."),typeof(mtlb_expr(k))))
     end
   end
+  sci_expr=mtlb_expr
+// --- operand is a comment ---
+case "comment"
   sci_expr=mtlb_expr
 // --- Expression is a not tolerated tlist ---
 else

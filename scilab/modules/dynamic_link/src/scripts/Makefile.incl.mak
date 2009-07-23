@@ -39,16 +39,14 @@ CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"
 # include options 
 INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/core/includes" \
+-I"$(SCIDIR)/modules/api_scilab/includes" \
 -I"$(SCIDIR)/modules/call_scilab/includes" \
 -I"$(SCIDIR)/modules/output_stream/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
--I"$(SCIDIR)/libs/intl" \
--I"$(SCIDIR)/libs/f2c" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
--I"$(SCIDIR)/modules/localization/includes" \
--I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/time/includes" \
+-I"$(SCIDIR)/libs/f2c" \
 -I"$(SCIDIR)/libs/intl"
 
 
@@ -67,15 +65,15 @@ USE_F2C=NO
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 10.x)
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
-FC_OPTIONS_COMMON=/nologo /G6 /DFORDLL /assume:underscore \
+FC_OPTIONS_COMMON=/nologo /DFORDLL /assume:underscore \
 /noaltparam /f77rtl /fpscomp:nolibs /names:lowercase \
-/iface:cref /libs:dll /threads /dbglibs /c /Qvc9 \
+/iface:cref /threads /c /Qvc9 \
 /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
 /include:"$(SCIDIR1)/modules/core/includes"
 #==================================================
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 FC_OPTIONS=$(FC_OPTIONS_COMMON) /Zi /Od /debug /dbglibs
-FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib
+FORTRAN_RUNTIME_LIBRARIES = libifcoremdd.lib libmmdd.lib /NODEFAULTLIB:LIBCMT.lib
 #==================================================
 !ELSE
 FC_OPTIONS=$(FC_OPTIONS_COMMON)
@@ -100,7 +98,8 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
 "$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
-"$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib"
+"$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib" \
+"$(SCIDIR1)/bin/api_scilab.lib"
 #==================================================
 # default rules for Fortran 77 & 90 Compilation 
 #==================================================
@@ -133,7 +132,7 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 .f90{$(DIR_OBJ)}.obj	:
-	@echo ----------- Compile file $< (using INTEL FORTRAN) -------------
+	@echo ----------- Compile file $< (using INTEL FORTRAN 90) -------------
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 !ENDIF

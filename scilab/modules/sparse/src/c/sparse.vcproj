@@ -5,7 +5,6 @@
 	Name="sparse"
 	ProjectGUID="{51240B08-5E4E-439B-B745-C870D5B513BF}"
 	RootNamespace="sparse"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

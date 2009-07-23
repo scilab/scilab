@@ -11,6 +11,8 @@ jhall.jar=@JHALL@
 
 gluegen.jar=@GLUEGEN_RT@
 
+jhdf5.jar=@JHDF5@
+
 jrosetta-API.jar=@JROSETTA_API@
 
 jrosetta-engine.jar=@JROSETTA_ENGINE@

@@ -6,7 +6,7 @@
 	ProjectGUID="{96248E56-C84A-4803-9F50-25E2089AB6B8}"
 	RootNamespace="eispack_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+
 	>
 	<Platforms>
 		<Platform

@@ -81,10 +81,11 @@
       <varlistentry>
         <term>Position</term>
         <listitem>
-          <para>allows to control the geometrical aspect of the control.
+          <para>allows to control the geometrical aspect of the figure.
     It is a [1,4] real vector [x y width height] where the letters stand for the x
-    location of the left bottom corner, the y location of the left bottom
-    corner, the width and the height of the uicontrol.
+    location of the top left corner, the y location of the top left corner, the width and the height of the virtual graphics window
+    (the part of the figure which contains uicontrols and graphics).
+    See the <emphasis role="bold">axes_size</emphasis> property description in <link linkend="figure_properties">figure properties</link> help page.
     One can also set this property by giving a string where the fields are separated by a "|", ie "x|y|width|height".
            </para>
         </listitem>

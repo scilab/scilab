@@ -1,3 +1,13 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) INRIA 
+// Copyright (C) ENPC - J-Ph. Chancelier
+// 
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at    
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 function [arc,resid]=armax1(r,s,q,y,u,b0f)
 //[arc,resid>=armax1(r,s,q,y,u,[b0f])
 //
@@ -35,9 +45,6 @@ function [arc,resid]=armax1(r,s,q,y,u,b0f)
 //     moindre carre donne dans armax
 // Exemple :
 //
-// Auteur: J-Ph. Chancelier ENPC Cergrene
-//!
-// Copyright INRIA
   [lhs,rhs]=argn(0)
   if rhs<=5,b0f=0;end
   if s==-1,b0f=0;end // Seems not natural, but makes things work 

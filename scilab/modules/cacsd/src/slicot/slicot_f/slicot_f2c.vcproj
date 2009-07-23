@@ -6,7 +6,6 @@
 	ProjectGUID="{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
 	RootNamespace="slicot_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

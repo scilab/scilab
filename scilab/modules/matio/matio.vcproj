@@ -6,7 +6,6 @@
 	ProjectGUID="{7757B22F-9512-4380-9E40-EFD50575028D}"
 	RootNamespace="matio"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
