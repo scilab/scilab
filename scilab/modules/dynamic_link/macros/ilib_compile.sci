@@ -77,7 +77,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
    
   else
     //** ---------- Linux section ---------------------  
-	defaultModulesCHeader=[ "core", "mexlib", "output_stream" ];
+	defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
 	defaultModulesFHeader=[ "core" ];
 	
     // Source tree version

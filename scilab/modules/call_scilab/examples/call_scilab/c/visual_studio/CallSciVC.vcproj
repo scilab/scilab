@@ -6,7 +6,6 @@
 	ProjectGUID="{0A05EAA1-BB0E-4221-A475-8A4DAD003CCA}"
 	RootNamespace="Callsci Example "
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform

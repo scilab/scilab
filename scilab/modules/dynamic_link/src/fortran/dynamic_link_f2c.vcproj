@@ -6,7 +6,7 @@
 	ProjectGUID="{9BC28602-73B4-4FBB-9583-478D2F047CA4}"
 	RootNamespace="dynamic_link_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+
 	>
 	<Platforms>
 		<Platform

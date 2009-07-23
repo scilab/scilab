@@ -5,15 +5,10 @@ EXPORTS
 ;core
 com_
 callFunctionFromGateway
-getRecursionGatewayToCall
-isRecursionCallToFunction
 getRecursionFunctionToCall
-getMatrixOfString
-getVarType
-getVarAddressFromPosition
+isRecursionCallToFunction
 checklhs_
 checkrhs_
-createMatrixOfString
 intersci_
 putlhsvar_
 ;

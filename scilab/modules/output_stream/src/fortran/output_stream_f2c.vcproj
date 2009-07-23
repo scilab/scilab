@@ -6,7 +6,6 @@
 	ProjectGUID="{E60B43CC-73EA-457E-8DEE-31D0B2BDFA4B}"
 	RootNamespace="output_stream_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

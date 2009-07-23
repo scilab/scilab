@@ -601,6 +601,26 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+
+#################
+## HDF5
+#################
+
+AC_ARG_WITH(hdf5,
+	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
+
+HDF5_ENABLE=no
+
+if test "$with_hdf5" != no; then
+   AC_HDF5()
+# TODO: check if the JNI JHDF5 library are available
+   HDF5_ENABLE=yes
+fi
+
+AC_SUBST(HDF5_ENABLE)
+AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -682,12 +702,20 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+				if test $HDF5_ENABLE = yes;  then
+				# HDF5 java lib
+				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
+				  JHDF5=$PACKAGE_JAR_FILE
+				  AC_SUBST(JHDF5)
+				fi
+
 				# Logging (flexdock dep)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
+
 		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -992,23 +1020,6 @@ fi
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
-
-#################
-## HDF5
-#################
-
-AC_ARG_WITH(hdf5,
-	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
-
-HDF5_ENABLE=no
-
-if test "$with_hdf5" != no; then
-   AC_HDF5()
-   HDF5_ENABLE=yes
-fi
-
-AC_SUBST(HDF5_ENABLE)
-AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
 
 #################
 ## MPI
@@ -1429,7 +1440,9 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/api_scilab/Makefile
 modules/call_scilab/Makefile
+modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
@@ -1443,7 +1456,6 @@ modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
 modules/scipad/Makefile
-modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1453,6 +1465,7 @@ modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/operations/Makefile
+modules/atoms/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1702,6 +1715,19 @@ else
 echo "  JAVA disabled"
 fi
 
+
+echo ""
+echo "Java dependencies:"
+if test ! -z "$JAVAC"; then
+echo "  Flexdock ............ = $FLEXDOCK"
+echo "  JOGL ................ = $JOGL"
+echo "  Jhall  .............. = $JHALL"
+echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Jrosetta (API) ...... = $JROSETTA_API"
+echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
+echo "  Commons Logging ..... = $COMMONS_LOGGING"
+fi
+
 echo "" 
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
@@ -1721,6 +1747,7 @@ if test $HDF5_ENABLE = yes;  then
    echo "HDF5 configuration:"
    echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
    echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+   echo "  HDF5 Java ........... = $JHDF5"
 else
    echo "Not using HDF5"
 fi

@@ -129,7 +129,7 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link fileio \
+	elementary_functions string api_scilab dynamic_link fileio \
 	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
@@ -137,10 +137,10 @@ DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
 	differential_equations cacsd polynomials boolean double pvm io \
 	intersci metanet signal_processing call_scilab sound time \
 	sparse windows_tools functions overloading maple2scilab m2sci \
-	texmacs scipad scilab2fortran development_tools \
-	compatibility_functions helptools fftw umfpack demo_tools \
-	genetic_algorithms simulated_annealing parameters matio \
-	scicos_blocks scicos . javasci
+	texmacs scipad development_tools compatibility_functions \
+	helptools fftw umfpack demo_tools genetic_algorithms \
+	simulated_annealing parameters matio atoms hdf5 scicos_blocks \
+	scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -218,6 +218,7 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
+JHDF5 = @JHDF5@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -374,7 +375,7 @@ top_srcdir = @top_srcdir@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 SUBDIRS = core operations output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link fileio \
+	elementary_functions string api_scilab dynamic_link fileio \
 	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
@@ -383,9 +384,9 @@ SUBDIRS = core operations output_stream action_binding arnoldi \
 	intersci metanet signal_processing core call_scilab \
 	interpolation sound time randlib sparse windows_tools \
 	functions overloading maple2scilab m2sci texmacs scipad \
-	scilab2fortran development_tools compatibility_functions \
-	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio $(am__append_1) scicos . \
+	development_tools compatibility_functions helptools fftw \
+	umfpack demo_tools genetic_algorithms simulated_annealing \
+	parameters matio atoms hdf5 $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -423,6 +424,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
@@ -459,7 +461,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/functions/libscifunctions.la 
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \

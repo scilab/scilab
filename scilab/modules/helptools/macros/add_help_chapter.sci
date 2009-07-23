@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,146 +8,127 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// Parameters
+//
+// title      : A string array - Chapter title 
+// path       : A string array - Chapter path 
+// modulemode : A boolean      - %F by default
+//                             - if TRUE, the chpater is consider as internal module online help,
+//                               otherwise, it's consider as external online help,
+
+// Description
+//
+// This function adds a new entry in the helps list. The help chapter files are to
+// be located in a single directory. If the given path already exists in the helps
+// list, nothing is done. The function checks if the directory exist.
+
 function ok = add_help_chapter(helptitle,path,modulemode)
 	
-	// =========================================================================================
-	// Modified by Pierre MARECHAL
-	// Scilab team
-	// Copyright INRIA
-	// Date : August 1st 2006
-	//
-	// add_help_chapter(title,path)
-	//
-	// Parameters
-	//
-	// 	title : a character string, the help chapter title 
-	// 	path : a character string, the path of the directory containing the help files.
-	// 	modulemode : a boolean %F by default.
-	//  if %F add to %modules_helps else to %helps.
-	//
-	// Description
-	//
-	// 	This function adds a new entry in the helps list. The help chapter files are to
-	// 	be located in a single directory. If the given  title  already exists in the helps
-	// 	list associated with the same path nothing is done. The function checks if the
-	// 	directory exist.
-	// =========================================================================================
+	ok = [];
 	
-	global %helps;
-	global %helps_modules;
-	ok = %F;
+	// Check input arguments
+	// =========================================================================
 	
-	// V�rification des param�tres
-	// --------------------------------------------------------------------------------
-	[lhs,rhs]=argn(0);
-	if rhs <> 3 then modulemode=%F; end
+	[lhs,rhs] = argn(0);
 	
-	if ( rhs > 3 | rhs < 2 ) then error(39); end
-	if type(helptitle) <> 10 then error(55,1); end
-	if type(path) <> 10 then error(55,2); end
+	// Input arguments number
+	// -------------------------------------------------------------------------
 	
-	// Sauvegarde du chemin dans lequel l'on se trouve
-	// --------------------------------------------------------------------------------
+	if rhs < 2 | rhs > 3 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"add_help_chapter",2,3));
+	end
+	
+	// Input arguments types
+	// -------------------------------------------------------------------------
+	
+	if type(helptitle) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"add_help_chapter",1));
+	end
+	
+	if type(path) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"add_help_chapter",2));
+	end
+	
+	if (rhs>2) & (type(modulemode) <> 4) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"add_help_chapter",3));
+	end
+	
+	// Input arguments dimensions
+	// -------------------------------------------------------------------------
+	
+	if or( size(helptitle) <> size(path) ) then
+		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"add_help_chapter",1,2));
+	end
+	
+	// Default value
+	// =========================================================================
+	
+	if rhs < 3 then
+		modulemode = %F;
+	end
+	
+	if modulemode then
+		global %helps_modules;
+		this_help = %helps_modules;
+	else
+		global %helps;
+		this_help = %helps;
+	end
+	
+	// Save the current path
+	// =========================================================================
 	current_directory = pwd();
 	
-	// Conversion du chemin dans le format du syst�me d'exploitation utilis�
-	// --------------------------------------------------------------------------------
-	path=pathconvert(path,%f,%t);
+	// Loop on "path"
+	// =========================================================================	
+	path = pathconvert(path,%F);
 	
-	// V�rification que la cha�ne de caract�re pass� en deuxi�me param�tre est bien un chemin
-	// --------------------------------------------------------------------------------
-	if ~isdir(path) then 
-		error('second argument should give the path to a directory');
-	
-	// Transformation du chemin pass� en deuxi�me param�tre
-	// --------------------------------------------------------------------------------
-	else
-		chdir(path);
+	for i=1:size(path,"*") 
+		
+		ok(i) = %F;
+		
+		// Get the absolute path of "path"
+		// ---------------------------------------------------------------------
+		
+		if ~isdir(path(i)) then 
+			chdir(current_directory);
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: An existing directory expected.\n"),"add_help_chapter",2));
+		end
+		
+		chdir(path(i));
+		
 		if MSDOS then
-			path = getlongpathname(pwd());
+			path(i) = getlongpathname(pwd());
 		else
-			path = pwd();
+			path(i) = pwd();
 		end
-		chdir(current_directory);
+		
+		// Check if the path is already added
+		// ---------------------------------------------------------------------
+		
+		if find( this_help(:,1) == path(i)) <> [] then
+			continue;
+		end
+		
+		this_help = [ this_help ; path(i) helptitle(i) ];
+		
+		ok(i) = %T;
 	end
 	
-	// V�rification que le titre n'est pas d�ja pr�sent dans %helps
-	// --------------------------------------------------------------------------------
-	if (modulemode) then
-	  k1 = find( %helps_modules(:,2) == helptitle);
+	// Go to the original location
+	// =========================================================================	
+	chdir(current_directory);
+	
+	// Reshape ok
+	// =========================================================================	
+	ok = matrix(ok,size(path));
+	
+	// That's all
+	// =========================================================================
+	if modulemode then
+		%helps_modules = this_help;
 	else
-	  k1 = find( %helps(:,2) == helptitle);
-	end
-	
-	
-	
-	if k1 == [] then
-		
-		// Cas o� le titre du chapitre n'est pas pr�sent
-		if (modulemode) then
-		 %helps_modules=[%helps_modules;path,helptitle];
-		else
-		  %helps=[%helps;path,helptitle];
-		end
-		
-		ok = %T;
-		return;
-	
-	else
-	  if (modulemode) then
-	    k2 = find( %helps_modules(k1,1) == path );
-	  else
-	    k2 = find( %helps(k1,1) == path );
-	  end
-		
-		if k2 <> [] then 
-			// Cas o� le path est �galement le m�me
-			return;
-		else
-			
-			for i=1:100
-			  if modulemode then
-			    k3 = find( %helps_modules(:,2) == helptitle+' ('+string(i)+')' );
-			  else
-			    k3 = find( %helps(:,2) == helptitle+' ('+string(i)+')' );
-			  end
-				
-				if k3 == [] then
-					// On a pas trouv� de "title (i)"
-					if modulemode then
-					  k4 = find( %helps_modules(k3,1) == path );
-					else
-					  k4 = find( %helps(k3,1) == path );
-					end
-					
-					if k4 == [] then
-					  if modulemode then
-					    %helps_modules=[%helps_modules;path,helptitle+' ('+string(i)+')'];
-					  else
-					    %helps=[%helps;path,helptitle+' ('+string(i)+')'];
-					  end
-						
-						ok = %T;
-						return;
-					else
-						return;
-					end
-					
-				else
-					// On a trouv� "title (i)"
-					if modulemode then
-					  if find( %helps_modules(k3,1) == path ) <> [] then
-						  return;
-					  end
-					else
-					  if find( %helps(k3,1) == path ) <> [] then
-						  return;
-					  end
-					end
-					
-				end
-			end
-		end
+		%helps = this_help;
 	end
 	
 endfunction

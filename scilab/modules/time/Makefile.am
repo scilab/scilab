@@ -20,7 +20,8 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/operations/includes
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 pkglib_LTLIBRARIES = libscitime.la
 

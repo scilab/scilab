@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/randlib/help/pt_BR";
-add_help_chapter("Randlib",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Randlib",SCI+"/modules/randlib/help/pt_BR",%T);
+
