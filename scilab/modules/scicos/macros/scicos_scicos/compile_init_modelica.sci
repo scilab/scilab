@@ -20,71 +20,27 @@
 //
 function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)  
   lines(0)
- %_winId=TCL_GetVar("IHMLoc");
+  %_winId=TCL_GetVar("IHMLoc");
   global icpr;
 
-  tmpdir=TMPDIR+'\'; tmpdir=pathconvert(tmpdir,%f,%t)    
-  ext='\*.mo';       ext=pathconvert(ext,%f,%t)  
-  [ok,modelicac,translator,xml2modelica]=Modelica_execs();
-  
-  if (~ok) then, 
-    TCL_EvalStr("Compile_finished nok "+ %_winId); 
-    return; 
-  end
+  //set paths for generated files  
+  outpath=pathconvert(TMPDIR,%t,%t);  
+ 
 
-  xmlfile=tmpdir+xmlmodel+'_init.xml'; if MSDOS then,xmlfile=strsubst(xmlfile,'\','\\') ;end
+  xmlfile=outpath+xmlmodel+'_init.xml'; 
   namei=xmlmodel+'i';
-  Flati=tmpdir+xmlmodel+'i.mo';
-  FlatCi=tmpdir+xmlmodel+'i.c';
-  incidencei=tmpdir+xmlmodel+'i_incidence_matrix.xml';
-  Flat_functions=tmpdir+xmlmodel+'_functions'+'.mo';
-  //--------------------------------------------------------------------
-  instr='""'+xml2modelica+'"" ""'+xmlfile+'"" -o ""'+Flati+'""  > ""'+tmpdir+'ixml2modelica.err""'    
-  if MSDOS then, mputl(instr,tmpdir+'igenx.bat');instr=tmpdir+'igenx.bat';end
+  Flati=outpath+xmlmodel+'i.mo';
+  FlatCi=outpath+xmlmodel+'i.c';
+  incidencei=outpath+xmlmodel+'i_incidence_matrix.xml';
+  Flat_functions=outpath+xmlmodel+'_functions'+'.mo';
   
-  if execstr('unix_s(instr)','errcatch')==0 then
-    mprintf('%s',' xml->Modelica : '+Flati); mprintf('\n\r');
-  else 
-    MSG3= mgetl(tmpdir+'ixml2modelica.err');
-    messagebox([_('------- XML to Modelica error message:-------');MSG3],'info','modal');
-    ok=%f
-    TCL_EvalStr("Compile_finished nok "+ %_winId); 
-    return	         
-  end
-
   //--------------------------------------------------------------------
-  if fileinfo(Flat_functions)==[] then,
-    Flat_functions=" ";
-  else
-    Flat_functions='""'+Flat_functions+'""';
-  end
-
-  if jaco=='0' then   
-    JAC='';
-  else
-    JAC=' -jac ';
-  end
-  
-  instr='""'+modelicac+'"" ""'+Flati+'"" '+Flat_functions+' '+JAC+' -with-init-in ""'+xmlfile+'"" -with-init-out ""'+xmlfile+'"" -o ""'+FlatCi+'"" > ""'+tmpdir+'imodelicac.err""'
-
-  if MSDOS then, mputl(instr,tmpdir+'igenm.bat'); instr=tmpdir+'igenm.bat'; end
-  if execstr('unix_s(instr)','errcatch')==0 then
-    mprintf('%s',' Init C code   : '+FlatCi); mprintf('\n\r');
-    ok=Link_modelica_C(FlatCi)
-    [nipar,nrpar,nopar,nz,nx,nx_der,nx_ns,nin,nout,nm,ng,dep_u]=reading_incidence(incidencei)
-    if (~ok) then, 
-      TCL_EvalStr("Compile_finished nok "+ %_winId); 
-      return; 
-    end
-  else
-    MSG3= mgetl(tmpdir+'imodelicac.err');
-    messagebox([_('-------Modelica compiler error flat2C:-------');
-	       MSG3;
-	       _('Please read the error message in the Scilab window')],'info','modal');
-    ok=%f,
-    TCL_EvalStr("Compile_finished nok "+ %_winId); 
-    return	         
-  end
+  ok=xml2modelica(xmlfile,Flati)
+  if ~ok then return,end
+  ok=modelicac(Flati,Flat_functions,xmlfileTMP,jaco,FlatCi,%f)
+  if ~ok then return,end
+  mprintf('%s\n',' Init C code   : '+FlatCi);
+ 
   
   //build model data structure of the block equivalent to the implicit
   bllst=bllst;nblock=length(bllst);
