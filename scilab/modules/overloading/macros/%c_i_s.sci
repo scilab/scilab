@@ -13,7 +13,7 @@ function M=%c_i_s(varargin)
   N=varargin(rhs-1)//inserted matrix
   index=varargin(1) //
   if size(M,'*')<>0 then
-    error(_('affection of a string  in a matrix of numbers is not implemented'))
+    error(_("Affection of a string in a matrix of numbers is not implemented."))
   end
   if rhs==3 then
      if type(index)==10 then  //M.x=N or M.entries=N 
