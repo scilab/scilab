@@ -20,6 +20,7 @@
 #include "api_sparse.h"
 #include "api_boolean.h"
 #include "api_boolean_sparse.h"
+#include "api_pointer.h"
 #include "api_list.h"
 
 #endif /* __VARIABLE_API__ */

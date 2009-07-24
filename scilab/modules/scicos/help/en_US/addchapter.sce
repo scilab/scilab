@@ -1,5 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@scilab.org>
 // Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
@@ -8,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/scicos/help/" + getdefaultlanguage();
-add_help_chapter("Scicos",path,%F);
-clear path add_help_chapter;
+add_help_chapter("Scicos",SCI+"/modules/scicos/help/en_US",%F);
+

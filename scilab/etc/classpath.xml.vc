@@ -46,6 +46,9 @@ The option is "disableUnderMode" and can be:
 	<load on="graphic_export"/>
 </path>
 
+<path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
+        <load on="hdf5BasedFeature"/>
+</path>
 
 <!-- Documentation (not mandatory) -->
 <path value="$SCILAB/thirdparty/jeuclid-core.jar" load="onUse">

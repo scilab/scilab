@@ -72,24 +72,6 @@ typedef enum {
 #define I_UINT16 12
 #define I_UINT32 14
 
-/*
-@TODO
-some other are definied in data_structures/src/c/hmops.c
-
-#define SCI_REAL_OR_CMPLX 1
-#define SCI_POLYNOMIAL 2
-#define SCI_BOOLEAN 4
-#define SCI_SP_BOOLEAN 6
-#define SCI_INTEGER 8
-#define SCI_IMPLICIT_POLY 129
-#define SCI_STRING sci_strings
-#define SCI_MLIST sci_mlist
-#define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
-#define OLD_HYPERMAT -2
-
-See if it is interesting including them here
-*/
-
 /* a set of define for the associated casts */
 
 #define IC_CHAR(x) ((char *) (x))

@@ -7,14 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// console module initialisation file
-// ====================================================================
-//Load  functions libraries
-//load("SCI/modules/console/macros/lib");
-// ====================================================================
-//add help chapter
-add_module_help_chapter("console");
-clear add_module_help_chapter;
-// ====================================================================
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("console");
+end
