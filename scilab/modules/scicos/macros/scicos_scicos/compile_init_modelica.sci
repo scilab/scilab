@@ -19,6 +19,7 @@
 // See the file ../license.txt
 //
 function   [ok]=  compile_init_modelica(xmlmodel,paremb,jaco)  
+  //called by Initilization IHM
   lines(0)
   %_winId=TCL_GetVar("IHMLoc");
   global icpr;
