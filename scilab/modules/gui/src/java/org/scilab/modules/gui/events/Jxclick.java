@@ -108,7 +108,7 @@ public final class Jxclick {
 	 */
 	private static void keyActionFilter(KeyEvent keyEvent) {	
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
-			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
+			if (!Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
 			} 
 			else {
