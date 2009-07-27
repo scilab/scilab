@@ -143,7 +143,8 @@
               <term>the symbol <literal> : </literal></term>
 
               <listitem>
-                <para><literal /> which stands for "all elements".</para>
+                <para><literal></literal> which stands for "all
+                elements".</para>
 
                 <itemizedlist>
                   <listitem>
@@ -200,11 +201,12 @@
                 readability.</para>
               </listitem>
             </varlistentry>
-	  </variablelist>
-	  <para>For matrices with more than 2 dimensions (see:<link
-	  linkend="hypermatrices">hypermatrices</link>) the dimensionality
-	  is automatically reduced when right-most dimensions are equal to
-	  1.</para>
+          </variablelist>
+
+          <para>For matrices with more than 2 dimensions (see:<link
+          linkend="hypermatrices">hypermatrices</link>) the dimensionality is
+          automatically reduced when right-most dimensions are equal to
+          1.</para>
         </listitem>
       </varlistentry>
 
@@ -217,15 +219,11 @@
           a recursive extraction without intermediate copies. The
           instructions</para>
 
-          <para>
-            <literal>[...]=l(k1)...(kn)(i)</literal>
-          </para>
+          <para><literal>[...]=l(k1)...(kn)(i)</literal></para>
 
           <para>and</para>
 
-          <para>
-            <literal>[...]=l(list(k1,...,kn,i))</literal>
-          </para>
+          <para><literal>[...]=l(list(k1,...,kn,i))</literal></para>
 
           <para>are interpreted as:</para>
 
@@ -246,88 +244,94 @@
           <para>Note that, <literal> l(list())</literal> is the same as
           <literal> l</literal>.</para>
 
-	  <variablelist>
-	    <varlistentry>
-	      <term>i and j may be :</term>
-	      <listitem>
-		<variablelist>
-		  <varlistentry>
-		    <term>real scalar or vector or matrix with positive
-		    elements.</term>
+          <variablelist>
+            <varlistentry>
+              <term>i and j may be :</term>
 
-		    <listitem>
-		      <para><literal>[r1,...rn]=l(i)</literal> extracts the
-		      <literal>i(k)</literal> elements from the list l and store
-		      them in <literal>rk</literal> variables for
-		      <literal>k</literal> from 1 to
-		      <literal>size(i,'*')</literal></para>
-		    </listitem>
-		  </varlistentry>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>real scalar or vector or matrix with positive
+                    elements.</term>
 
-		  <varlistentry>
-		    <term>the symbol <literal> : </literal></term>
-		    <listitem>
-		      <para>which stands for "all elements".</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para><literal>[r1,...rn]=l(i)</literal> extracts the
+                      <literal>i(k)</literal> elements from the list l and
+                      store them in <literal>rk</literal> variables for
+                      <literal>k</literal> from 1 to
+                      <literal>size(i,'*')</literal></para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>a vector of booleans.</term>
+                  <varlistentry>
+                    <term>the symbol <literal> : </literal></term>
 
-		    <listitem>
-		      <para>If <literal>i</literal> is a vector of booleans it is
-		      interpreted as <literal>find(i)</literal>.</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>which stands for "all elements".</para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>a polynomial.</term>
+                  <varlistentry>
+                    <term>a vector of booleans.</term>
 
-		    <listitem>
-		      <para>If <literal>i</literal> is a vector of polynomials or
-		      implicit polynomial vector it is interpreted as
-		      <literal>horner(i,m)</literal> where
-		      <literal>m=size(l)</literal>. Even if this feature works for
-		      all polynomials, it is recommended to use polynomials in
-		      <literal>$</literal> for readability.</para>
-		    </listitem>
-		  </varlistentry>
-		</variablelist>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term>k1,..kn may be :</term>
-	      <listitem>
-		<variablelist>
-		  <varlistentry>
-		    <term>real positive scalar,</term>
-		    <listitem>
-		      <para></para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>If <literal>i</literal> is a vector of booleans it
+                      is interpreted as <literal>find(i)</literal>.</para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>a polynomial,</term>
+                  <varlistentry>
+                    <term>a polynomial.</term>
 
-		    <listitem>
-		      <para>interpreted as <literal>horner(ki,m)</literal> where
-		      <literal>m</literal> is the corresponding sub-list
-		      size.</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>If <literal>i</literal> is a vector of polynomials
+                      or implicit polynomial vector it is interpreted as
+                      <literal>horner(i,m)</literal> where
+                      <literal>m=size(l)</literal>. Even if this feature works
+                      for all polynomials, it is recommended to use
+                      polynomials in <literal>$</literal> for
+                      readability.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
 
-		  <varlistentry>
-		    <term>a character string</term>
+            <varlistentry>
+              <term>k1,..kn may be :</term>
 
-		    <listitem>
-		      <para>associated with a sub-list entry name.</para>
-		    </listitem>
-		  </varlistentry>
-		</variablelist>
-	      </listitem>
-	    </varlistentry>
-	  </variablelist>
-	</listitem>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>real positive scalar,</term>
+
+                    <listitem>
+                      <para></para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>a polynomial,</term>
+
+                    <listitem>
+                      <para>interpreted as <literal>horner(ki,m)</literal>
+                      where <literal>m</literal> is the corresponding sub-list
+                      size.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>a character string</term>
+
+                    <listitem>
+                      <para>associated with a sub-list entry name.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -345,8 +349,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 // MATRIX CASE
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -369,6 +372,7 @@ b=[1/%s,(%s+1)/(%s-1)]
 b(1,1)
 b(1,$)
 b(2) // the numerator
+
 // LIST OR TLIST CASE
 l=list(1,'qwerw',%s)
 l(1)
@@ -380,9 +384,7 @@ dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2)('a')
 dts(2)('b')(1,2)
 [a,b]=dts(2)(['a','b'])
-
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
