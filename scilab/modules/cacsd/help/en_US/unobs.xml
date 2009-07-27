@@ -10,88 +10,107 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="unobs">
+<refentry version="5.0-subset Scilab" xml:id="unobs" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>unobs</refname>
-    <refpurpose> unobservable subspace</refpurpose>
+
+    <refpurpose>unobservable subspace</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[n,[U]]=unobs(A,C,[tol])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>A, C</term>
+
         <listitem>
           <para>real matrices</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>tol</term>
+
         <listitem>
-          <para>tolerance used when evaluating ranks (QR factorizations).</para>
+          <para>tolerance used when evaluating ranks (QR
+          factorizations).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>n</term>
+
         <listitem>
           <para>dimension of unobservable subspace.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>U</term>
+
         <listitem>
-          <para>orthogonal change of basis which puts <literal>(A,B)</literal> in canonical form.</para>
+          <para>orthogonal change of basis which puts <literal>(A,B)</literal>
+          in canonical form.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable form of an <literal>(A,C)</literal> 
-    pair.
-    The <literal>n</literal> first columns of <literal>U</literal> make a basis for the unobservable
+
+    <para><literal>[n,[U]]=unobs(A,C,[tol])</literal> gives the unobservable
+    form of an <literal>(A,C)</literal> pair. The <literal>n</literal> first
+    columns of <literal>U</literal> make a basis for the unobservable
     subspace.</para>
-    <para>
-    The <literal>(2,1)</literal> block (made of last <literal>nx-n</literal> rows and <literal>n</literal> first 
-    columns) of <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first columns 
-    of <literal>C*U</literal> are zero.</para>
+
+    <para>The <literal>(2,1)</literal> block (made of last
+    <literal>nx-n</literal> rows and <literal>n</literal> first columns) of
+    <literal>U'*A*U</literal> is zero and and the <literal>n</literal> first
+    columns of <literal>C*U</literal> are zero.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 A=diag([1,2,3]);C=[1,0,0];
 unobs(A,C)
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="contr">contr</link>
-      </member>
-      <member>
-        <link linkend="contrss">contrss</link>
-      </member>
-      <member>
-        <link linkend="canon">canon</link>
-      </member>
-      <member>
-        <link linkend="cont_mat">cont_mat</link>
-      </member>
-      <member>
-        <link linkend="spantwo">spantwo</link>
-      </member>
-      <member>
-        <link linkend="dt_ility">dt_ility</link>
-      </member>
+      <member><link linkend="contr">contr</link></member>
+
+      <member><link linkend="contrss">contrss</link></member>
+
+      <member><link linkend="canon">canon</link></member>
+
+      <member><link linkend="cont_mat">cont_mat</link></member>
+
+      <member><link linkend="spantwo">spantwo</link></member>
+
+      <member><link linkend="dt_ility">dt_ility</link></member>
     </simplelist>
   </refsection>
 </refentry>
