@@ -64,6 +64,8 @@ Core functions:
      + predef
      + type
      + typename
+     
+ - sethomedirectory is obsolete. 
 
 fileio functions:
 =================
