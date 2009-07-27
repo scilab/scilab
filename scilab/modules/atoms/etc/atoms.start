@@ -10,7 +10,6 @@
 // Load  functions libraries
 // =============================================================================
 load("SCI/modules/atoms/macros/lib");
-load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 // Add help chapter
 // =============================================================================

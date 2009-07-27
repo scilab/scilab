@@ -11,6 +11,12 @@
 
 function nbAdd = atomsRepositoryAdd(url,allusers)
 	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atoms_internalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	rhs                    = argn(2);
 	nbAdd                = 0;
 	repositories         = []; // Column vector that contain user repositories

@@ -13,6 +13,12 @@
 
 function result = atomsInstall(packages,allusers)
 	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atoms_internalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	result = [];
 	
 	// Save the initial path
