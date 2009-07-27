@@ -165,6 +165,8 @@ Bug fixes:
  
  * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
 
+ * bug 4564 fixed - Unable to edit matrices using x_mdialog function.
+
  * bug 4580 fixed - rpem documentation made more accurate
  
  * bug 4592 fixed - The ged entity picker produces an error if a menu has been
