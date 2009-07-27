@@ -64,6 +64,8 @@ Core functions:
      + predef
      + type
      + typename
+     
+ - sethomedirectory is obsolete. 
 
 fileio functions:
 =================
@@ -304,3 +306,5 @@ Bug fixes:
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
 * bug 4688 fixed - listfiles("/") returned an error.
+
+* bug 4684 fixed - printf(), mprintf, msprintf do not properly deal with -%inf.

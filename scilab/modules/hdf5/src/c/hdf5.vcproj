@@ -464,7 +464,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\hdf5_gateway.xml"
+			RelativePath="..\..\sci_gateway\hdf5_gateway.xml"
 			>
 		</File>
 		<File
