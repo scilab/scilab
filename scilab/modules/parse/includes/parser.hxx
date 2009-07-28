@@ -26,7 +26,7 @@
 		#define EXTERN_PARSE __declspec (dllimport)
 	#endif
 #else
-	#define EXTERN_PARSE 
+	#define EXTERN_PARSE
 #endif
 
 
@@ -38,6 +38,7 @@ private:
     _stop_on_first_error = false;
     _strict_mode = false;
     _exit_status = Succeded;
+    _control_status = new std::list<ControlStatus>();
   }
   ~Parser()
   {
@@ -47,9 +48,17 @@ private:
 public:
   enum ParserStatus {
     Succeded ,
-    Failed ,
+    Failed
+  };
+
+ public:
+  enum ControlStatus {
+    AllControlClosed,
     WithinFor,
-    WithinWhile
+    WithinWhile,
+    WithinIf,
+    WithinElse,
+    WithinElseIf
   };
 
 public:
@@ -85,6 +94,21 @@ public:
   ParserStatus	getExitStatus(void) { return _exit_status; }
   void	setExitStatus(ParserStatus exit_status) { _exit_status = exit_status; }
 
+  ControlStatus getControlStatus(void) {
+    if (!_control_status->empty())
+      {
+	return _control_status->front();
+      }
+    return AllControlClosed;
+  }
+  void pushControlStatus(ControlStatus control_status) { _control_status->push_front(control_status); }
+  void popControlStatus(void) {
+    if(!_control_status->empty())
+      {
+	_control_status->pop_front();
+      }
+  }
+
   bool isStrictMode(void) { return _strict_mode; }
   void enableStrictMode(void) { _strict_mode = true; }
   void disableStrictMode(void) { _strict_mode = false; }
@@ -113,6 +137,7 @@ private :
   bool _stop_on_first_error;
   ast::Exp* _the_program;
   ParserStatus _exit_status;
+  std::list<ControlStatus> *_control_status;
 };
 
 #endif /* !_PARSER_HH_ */
