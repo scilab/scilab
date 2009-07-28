@@ -55,17 +55,15 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 isglobal(1)
 global a
 isglobal(a)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="global">global</link></member>

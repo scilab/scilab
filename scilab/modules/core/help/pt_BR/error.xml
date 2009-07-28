@@ -48,7 +48,7 @@ error(n,pos)</synopsis>
         <term>pos</term>
 
         <listitem>
-          <para>um inteiro. Um parâmetro para a mensagem de erro </para>
+          <para>um inteiro. Um parâmetro para a mensagem de erro</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -64,12 +64,12 @@ error(n,pos)</synopsis>
     <literal>execstr(...,'errcatch')</literal>.</para>
 
     <para><literal>error(message)</literal> imprime o string contido em
-    <literal>message</literal>. O número associado à mensagem de erro é 10000.
-    </para>
+    <literal>message</literal>. O número associado à mensagem de erro é
+    10000.</para>
 
     <para><literal>error(message,n)</literal> imprime o string contido em
     <literal>message</literal>. O número associado à mensagem de erro é dado
-    por n . Este número deve ser maior que 10000. </para>
+    por n . Este número deve ser maior que 10000.</para>
 
     <para><literal>error(n)</literal> imprime a mensagem de erro predefinda
     associada ao número de erro <literal>n</literal>.</para>
@@ -87,13 +87,10 @@ error(n,pos)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 error('my error message')
 error(43)
 error(52,3)
-
- 
   </programlisting>
   </refsection>
 

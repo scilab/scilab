@@ -57,10 +57,10 @@ s=getvariablesonstack('global')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">getvariablesonstack()
-  getvariablesonstack('local')
-  getvariablesonstack('global')
-
+    <programlisting role="example"> 
+getvariablesonstack()
+getvariablesonstack('local')
+getvariablesonstack('global')
    </programlisting>
   </refsection>
 

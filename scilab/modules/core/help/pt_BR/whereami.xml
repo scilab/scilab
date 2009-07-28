@@ -18,7 +18,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>whereami()</synopsis>
   </refsynopsisdiv>
@@ -33,19 +33,17 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 deff('y=test(a)',['y=sin(a)+1';
                   'y=t1(y)';
                   'y=y+1'])
 deff('y=t1(y)',['y=y^2';'whereami()'])
 test(1)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="where">where</link></member>
