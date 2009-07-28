@@ -82,7 +82,10 @@ scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
-scilab6_bin_SOURCES		= $(top_srcdir)/modules/core/src/cpp/scilab.cpp
+scilab6_bin_SOURCES		= 	$(top_srcdir)/modules/core/src/cpp/scilab.cpp \
+					$(top_srcdir)/modules/core/src/cpp/tasks.cpp 
+
+#					$(top_srcdir)/modules/core/src/cpp/yaspio.cpp
 scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/parse/includes/ \
 						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
@@ -92,7 +95,9 @@ scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/types/includes/ \
 						-I$(top_srcdir)/modules/system_env/includes/ \
 						-I$(top_srcdir)/modules/functions_manager/includes/ \
-						-I$(top_srcdir)/modules/shell/includes/
+						-I$(top_srcdir)/modules/shell/includes/ \
+						-I$(top_srcdir)/modules/console/includes/
+
 
 
 scilab6_bin_LDADD = $(top_builddir)/modules/libscilab.la \
