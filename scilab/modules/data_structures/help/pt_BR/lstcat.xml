@@ -41,7 +41,7 @@
         <term>li</term>
 
         <listitem>
-          <para>lista ou qualquer outro tipo de variável </para>
+          <para>lista ou qualquer outro tipo de variável</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>lc</term>
 
         <listitem>
-          <para>uma lista </para>
+          <para>uma lista</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -67,12 +67,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 lstcat(list(1,2,3),33,list('foo',%s))
 lstcat(1,2,3)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>

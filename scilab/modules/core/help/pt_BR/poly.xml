@@ -30,7 +30,7 @@
         <term>a</term>
 
         <listitem>
-          <para>matriz ou número real </para>
+          <para>matriz ou número real</para>
         </listitem>
       </varlistentry>
 
@@ -101,14 +101,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    s=poly(0,"s");p=1+s+2*s^2;
-    A=rand(2,2);poly(A,"x")
-    //frações racionais
-    h=(1+2*%s)/poly(1:4,'s','c')
-    
-  </programlisting>
+    <programlisting role="example">     
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+
+//frações racionais
+h=(1+2*%s)/poly(1:4,'s','c')
+      </programlisting>
   </refsection>
 
   <refsection>

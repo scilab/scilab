@@ -41,7 +41,7 @@
         <term>dims</term>
 
         <listitem>
-          <para>vetor de dimensões da hipermatriz </para>
+          <para>vetor de dimensões da hipermatriz</para>
         </listitem>
       </varlistentry>
 
@@ -73,10 +73,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 M=hypermat([2 3 2 2],1:24)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 </refentry>

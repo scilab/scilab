@@ -157,6 +157,8 @@ Bug fixes:
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
                     FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
+ * bug 4491 fixed - get() with wrong argument causes EXCEPTION_ACCESS_VIOLATION error.
+
  * bug 4508 fixed - Can't create a file when saving/exporting a figure under
                     MacOSX.
 

@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>OS=getos()
 [OS,Version]=getos()</synopsis>
@@ -33,8 +33,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">OS=getos()
-[OS,version]=getos()
+    <programlisting role="example"> 
+OS = getos()
+[OS,version] = getos()
   </programlisting>
   </refsection>
 

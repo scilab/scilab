@@ -18,7 +18,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>version=getversion()
 [version,opts]=getversion()
@@ -87,12 +87,13 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">getversion()
-[version,opts]=getversion()
-ver=getversion('scilab')
-verstr=getversion('scilab','string_info')
-ver=getversion('overloading')
-verstr=getversion('overloading','string_info')
+    <programlisting role="example"> 
+getversion()
+[version,opts] = getversion()
+ver    = getversion('scilab')
+verstr = getversion('scilab','string_info')
+ver    = getversion('overloading')
+verstr = getversion('overloading','string_info')
    </programlisting>
   </refsection>
 

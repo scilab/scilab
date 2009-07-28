@@ -1,42 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="warning">
+<refentry version="5.0-subset Scilab" xml:id="warning" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>warning</refname>
+
     <refpurpose>warning messages</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>warning('string')
 warning('off')
 warning('on')
 mode = warning('query')</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
+
     <para>prints the character string <literal>'string'</literal> in a warning
     message</para>
+
     <para><literal>'on'</literal> enable warning messages.</para>
+
     <para><literal>'off'</literal> disable warning messages.</para>
+
     <para><literal>'query'</literal> get state 'on' or 'off'.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[warning('on') 
+
+    <programlisting role="example"> 
+warning('on') 
 warning('this is a warning')
 warning('off')
 warning('this is a warning')
 warning('query')
-warning('on')]]></programlisting>
+warning('on')
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="error">error</link>
-      </member>
+      <member><link linkend="error">error</link></member>
     </simplelist>
   </refsection>
 </refentry>
