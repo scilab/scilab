@@ -58,7 +58,7 @@
  SendScilabJob("disp(B);"); /* Display B */
  ]]></programlisting>
 
-    <programlisting roles="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[ 
 /* Read the previously declared matrix of boolean B */
  int rowB_ = 0, colB_ = 0, lp_ = 0;
  int i = 0, j = 0;
