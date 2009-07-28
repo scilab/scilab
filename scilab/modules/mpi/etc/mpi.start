@@ -1,0 +1,15 @@
+// ====================================================================
+// gui module initialisation file 
+// Copyright DIGITEO 2009
+// ====================================================================
+//Load  functions libraries
+load('SCI/modules/mpi/macros/lib');
+// ====================================================================
+//add help chapter
+//add_module_help_chapter('mpi');
+// ====================================================================
+//add demos
+//pathdemos = pathconvert(SCI+"/modules/mpi/demos/mpi.dem.gateway.sce",%f,%t);
+//add_demo(gettext("mpi"),pathdemos);
+clear pathdemos;
+// ====================================================================
