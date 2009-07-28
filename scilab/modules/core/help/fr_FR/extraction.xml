@@ -35,7 +35,7 @@
 
     <variablelist>
       <varlistentry>
-        <term>x </term>
+        <term>x</term>
 
         <listitem>
           <para>matrice de tout type</para>
@@ -90,9 +90,7 @@
                     <para><literal>r=x(i,j)</literal> construit la matrice
                     <literal>r</literal> telle que:</para>
 
-                    <para>
-                      <literal>r(l,k)=x(int(i(l)),int(j(k)))</literal>
-                    </para>
+                    <para><literal>r(l,k)=x(int(i(l)),int(j(k)))</literal></para>
 
                     <para>pour <literal>l</literal> variant de 1 à
                     <literal>size(i,'*')</literal></para>
@@ -209,29 +207,28 @@
                 par souci de lisibilité.</para>
               </listitem>
             </varlistentry>
-	  </variablelist>
+          </variablelist>
 
-	  <para>Dans le case des matrices ayant plus de 2 dimensions
-	  (voir:<link linkend="hypermatrices">hypermatrices</link>) la
-	  dimensionalité est automatiquement réduite si les dimensions les
-	  plus à droite sont égales à 1.</para>
-	</listitem>
+          <para>Dans le case des matrices ayant plus de 2 dimensions
+          (voir:<link linkend="hypermatrices">hypermatrices</link>) la
+          dimensionalité est automatiquement réduite si les dimensions les
+          plus à droite sont égales à 1.</para>
+        </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>CAS DES LISTES</term>
+
         <listitem>
           <para>S'ils sont présents, les <literal>ki</literal> donnent le
           chemin vers un terme d'une sous-liste de la liste
           <literal>l</literal>. Ils permettent de faire une extraction
-          récursive directe sans utiliser de variable intermédiaire. </para>
+          récursive directe sans utiliser de variable intermédiaire.</para>
 
-         <para> Les instructions:</para>
+          <para>Les instructions:</para>
 
-          <para>
-            <literal>[...]=l(k1)...(kn)(i) et
-            [...]=l(list(k1,...,kn,i))</literal>
-          </para>
+          <para><literal>[...]=l(k1)...(kn)(i) et
+          [...]=l(list(k1,...,kn,i))</literal></para>
 
           <para>sont interprétées comme :</para>
 
@@ -241,10 +238,8 @@
 
           <para>De même, les instructions</para>
 
-          <para>
-            <literal>l(k1)...(kn)(i,j) et
-            l(list(k1,...,kn,list(i,j))</literal>
-          </para>
+          <para><literal>l(k1)...(kn)(i,j) et
+          l(list(k1,...,kn,list(i,j))</literal></para>
 
           <para>sont interprétées comme :</para>
 
@@ -252,100 +247,107 @@
           <literal>lkn = lkn-1(kn)</literal>,
           <literal>lkn(i,j)</literal></para>
 
-	  <variablelist>
-	    <varlistentry>
-	      <term><literal>i</literal> et <literal>j</literal>, peuvent être
-	      :</term>
-	      <listitem>
-		<variablelist>
-		  <varlistentry>
-		    <term>un scalaire, un vecteur ou matrice à termes positifs </term>
-		    <listitem>
-		      <para>
-			<literal>[r1,...rn]=l(i)</literal> extrait les termes
-			<literal>i(k)</literal> de la liste l et les stocke dans les
-			variables <literal>rk</literal> pour <literal>k</literal>
-		      variant de 1 à <literal>size(i,'*')</literal></para>
-		    </listitem>
-		  </varlistentry>
+          <variablelist>
+            <varlistentry>
+              <term><literal>i</literal> et <literal>j</literal>, peuvent être
+              :</term>
 
-		  <varlistentry>
-		    <term>le symbole <literal> : </literal> </term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>un scalaire, un vecteur ou matrice à termes
+                    positifs</term>
 
-		    <listitem>
-		      <para> qui représente "tous les éléments".</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para><literal>[r1,...rn]=l(i)</literal> extrait les
+                      termes <literal>i(k)</literal> de la liste l et les
+                      stocke dans les variables <literal>rk</literal> pour
+                      <literal>k</literal> variant de 1 à
+                      <literal>size(i,'*')</literal></para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>un vecteur de booléens</term>
+                  <varlistentry>
+                    <term>le symbole <literal> : </literal></term>
 
-		    <listitem>
-		      <para>Si <literal>i</literal> est un vecteur de booléens, il
-		      est interprété comme <literal>find(i)</literal>.</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>qui représente "tous les éléments".</para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>un polynôme</term>
+                  <varlistentry>
+                    <term>un vecteur de booléens</term>
 
-		    <listitem>
-		      <para>Si <literal>i</literal> est un vecteur de polynômes ou
-		      de polynômes implicites il est interprété comme
-		      <literal>horner(i,m)</literal> où
-		      <literal>m=size(l)</literal>. Même si cette fonctionnalité
-		      marche pour tous les polynômes, il est recommandé d'utiliser
-		      des polynômes dans <literal>$</literal> par souci de
-		      lisibilité.</para>
-		    </listitem>
-		  </varlistentry>
-		</variablelist>
-	      </listitem>
-	    </varlistentry>
-	    <varlistentry>
-	      <term><literal>k1</literal>,..<literal>kn</literal> peuvent être :</term>
-	      <listitem>
-		<variablelist>
-		  
-		  <varlistentry>
-		    <term>un nombre réel positif à valeur entière</term>
-		    <listitem>
-		      <para></para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>Si <literal>i</literal> est un vecteur de
+                      booléens, il est interprété comme
+                      <literal>find(i)</literal>.</para>
+                    </listitem>
+                  </varlistentry>
 
-		  <varlistentry>
-		    <term>un polynôme</term>
-		    <listitem>
-		      <para>un polynôme, interprété comme
-		      <literal>horner(ki,m)</literal> ou <literal>m</literal> est la
-		      taille de la sous-liste correspondante.</para>
-		    </listitem>
-		  </varlistentry>
+                  <varlistentry>
+                    <term>un polynôme</term>
 
-		  <varlistentry>
-		    <term>une chaîne de caractères</term>
-		    <listitem>
-		      <para>associée à un nom d'entrée de sous-liste</para>
-		    </listitem>
-		  </varlistentry>
+                    <listitem>
+                      <para>Si <literal>i</literal> est un vecteur de
+                      polynômes ou de polynômes implicites il est interprété
+                      comme <literal>horner(i,m)</literal> où
+                      <literal>m=size(l)</literal>. Même si cette
+                      fonctionnalité marche pour tous les polynômes, il est
+                      recommandé d'utiliser des polynômes dans
+                      <literal>$</literal> par souci de lisibilité.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
 
-		</variablelist>
-	      </listitem>
-	    </varlistentry>
-	  </variablelist>
-	 
-	  <para>Quand le chemin désigne plusieurs termes d'une liste
-	  l'instruction doit avoir autant de termes dans la liste des
-	  arguments du membre de gauche que le nombre de termes sélectionnés.
-	  Mais si la syntaxe d'extraction est utilisée dans les arguments
-	  d'entrée d'une fonction, chaque terme renvoyé est ajouté aux
-	  arguments d'entrée.</para>
+            <varlistentry>
+              <term><literal>k1</literal>,..<literal>kn</literal> peuvent être
+              :</term>
 
-	  <para>Notez que <literal>l(list())</literal> est identique à
-	  <literal>l</literal>.</para>
-	
-	</listitem>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>un nombre réel positif à valeur entière</term>
+
+                    <listitem>
+                      <para></para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>un polynôme</term>
+
+                    <listitem>
+                      <para>un polynôme, interprété comme
+                      <literal>horner(ki,m)</literal> ou <literal>m</literal>
+                      est la taille de la sous-liste correspondante.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>une chaîne de caractères</term>
+
+                    <listitem>
+                      <para>associée à un nom d'entrée de sous-liste</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para>Quand le chemin désigne plusieurs termes d'une liste
+          l'instruction doit avoir autant de termes dans la liste des
+          arguments du membre de gauche que le nombre de termes sélectionnés.
+          Mais si la syntaxe d'extraction est utilisée dans les arguments
+          d'entrée d'une fonction, chaque terme renvoyé est ajouté aux
+          arguments d'entrée.</para>
+
+          <para>Notez que <literal>l(list())</literal> est identique à
+          <literal>l</literal>.</para>
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -364,42 +366,42 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-      // CAS DES MATRICES
-      a=[1 2 3;4 5 6]
-      a(1,2)
-      a([1 1],2)
-      a(:,1)
-      a(:,3:-1:1)
-      a(1)
-      a(6)
-      a(:)
-      a([%t %f %f %t])
-      a([%t %f],[2 3])
-      a(1:2,$-1)
-      a($:-1:1,2)
-      a($)
-      //
-      x='test'
-      x([1 1;1 1;1 1])
-      //
-      b=[1/%s,(%s+1)/(%s-1)]
-      b(1,1)
-      b(1,$)
-      b(2) // le numérateur
-      // CAS des LISTES (types LIST et TLIST)
-      l=list(1,'qwerw',%s)
-      l(1)
-      [a,b]=l([3 2])
-      l($)
-      x=tlist(l(2:3)) // construction d'une TLIST avec les deux derniers termes de l
-      //
-      dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
-      dts(2)('a')
-      dts(2)('b')(1,2)
-      [a,b]=dts(2)(['a','b'])
+    <programlisting role="example"> 
+// Cas des matrices
+a=[1 2 3;4 5 6]
+a(1,2)
+a([1 1],2)
+a(:,1)
+a(:,3:-1:1)
+a(1)
+a(6)
+a(:)
+a([%t %f %f %t])
+a([%t %f],[2 3])
+a(1:2,$-1)
+a($:-1:1,2)
+a($)
 
-    </programlisting>
+x='test'
+x([1 1;1 1;1 1])
+
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)
+b(1,$)
+b(2) // le numérateur
+
+// Cas des listes (types list et tlist)
+l=list(1,'qwerw',%s)
+l(1)
+[a,b]=l([3 2])
+l($)
+x=tlist(l(2:3)) // construction d'une TLIST avec les deux derniers termes de l
+
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2)('a')
+dts(2)('b')(1,2)
+[a,b]=dts(2)(['a','b'])
+     </programlisting>
   </refsection>
 
   <refsection>

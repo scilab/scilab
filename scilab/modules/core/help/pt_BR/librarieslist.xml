@@ -47,8 +47,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">librarieslist()
-
+    <programlisting role="example"> 
+librarieslist()
    </programlisting>
   </refsection>
 

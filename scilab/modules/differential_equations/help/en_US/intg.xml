@@ -11,87 +11,120 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="intg">
+<refentry version="5.0-subset Scilab" xml:id="intg" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>intg</refname>
-    <refpurpose> definite integral</refpurpose>
+
+    <refpurpose>definite integral</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>a,b</term>
+
         <listitem>
           <para>real numbers</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
           <para>external (function or list or string)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ea, er</term>
+
         <listitem>
           <para>real numbers</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ea</term>
+
         <listitem>
-          <para>absolute error required on the result. Default value: 1.d-14</para>
+          <para>absolute error required on the result. Default value:
+          1.d-14</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>er</term>
+
         <listitem>
-          <para>relative error required on the result. Default value: 1.d-8</para>
+          <para>relative error required on the result. Default value:
+          1.d-8</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>err</term>
+
         <listitem>
           <para>estimated absolute error on the result.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>intg(a,b,f)</literal> evaluates the definite integral  from <literal>a</literal> to
-    <literal>b</literal> of <literal>f(t)dt</literal>. The function <literal>f(t)</literal>
-      should be continuous.</para>
+
+    <para><literal>intg(a,b,f)</literal> evaluates the definite integral from
+    <literal>a</literal> to <literal>b</literal> of <literal>f(t)dt</literal>.
+    The function <literal>f(t)</literal> should be continuous.</para>
+
     <para>The evaluation hopefully satisfies following claim for accuracy:
     <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> where I stands for the
     exact value of the integral.</para>
+
     <para><literal>f</literal> is an external :</para>
-    <para>
-    If <literal>f</literal> is function its definition must be as follows
-    <literal> y = f(t) </literal></para>
-    <para>
-    If <literal>f</literal> is a list the list must be as follows:
-    <literal> list(f,x1,x2,...)</literal> where <literal>f</literal> is a function with calling
-    sequence <literal>f(t,x1,x2,...)</literal>.</para>
-    <para>If <literal>f</literal> is a string it refers to a the name
-    of a Fortran function or a C prodedure with a given calling sequence: </para>
-    <para>In the fortran case the calling sequence should be 
-	<literal>double precision function f(x)</literal> where <literal>x</literal> is
-      also a double precision number. </para>
-    <para>In the C case the calling sequence should be 
-	<literal>double f(double *x)</literal>. </para>
+
+    <para>If <literal>f</literal> is function its definition must be as
+    follows <literal> y = f(t) </literal></para>
+
+    <para>If <literal>f</literal> is a list the list must be as follows:
+    <literal> list(f,x1,x2,...)</literal> where <literal>f</literal> is a
+    function with calling sequence <literal>f(t,x1,x2,...)</literal>.</para>
+
+    <para>If <literal>f</literal> is a string it refers to a the name of a
+    Fortran function or a C prodedure with a given calling sequence:</para>
+
+    <para>In the fortran case the calling sequence should be <literal>double
+    precision function f(x)</literal> where <literal>x</literal> is also a
+    double precision number.</para>
+
+    <para>In the C case the calling sequence should be <literal>double
+    f(double *x)</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 //Scilab function case
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -113,17 +146,20 @@ F=['      double precision function ffun(x)'
    '      return'
    '      end'];
 mputl(F,TMPDIR+'/ffun.f')
+
 // compile the fortran code
 l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+
 // incremental linking
 link(l,'ffun','f')
+
 //integrate the function
 I=intg(0,2*%pi,'ffun')
 abs(exact-I)
 
 // C code case (C compiler required)
 // write down the C code
-C=['#include <math.h>'
+C=['#include &lt;math.h&gt;'
    'double cfun(double *x)'
    '{'
    '  double y,pi=3.14159265358979312;'
@@ -131,40 +167,41 @@ C=['#include <math.h>'
    '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
    '}'];
 mputl(C,TMPDIR+'/cfun.c')
+
 // compile the C code
 l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+
 // incremental linking
 link(l,'cfun','c')
+
 //integrate the function
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
-
- 
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="intc">intc</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-      <member>
-        <link linkend="inttrap">inttrap</link>
-      </member>
-      <member>
-        <link linkend="intsplin">intsplin</link>
-      </member>
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="inttrap">inttrap</link></member>
+
+      <member><link linkend="intsplin">intsplin</link></member>
+
+      <member><link linkend="ode">ode</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Used Functions</title>
-    <para>The associated routines can be found in  routines/integ directory :</para>
-    <para>dqag0.f and dqags.f from quadpack </para>
+
+    <para>The associated routines can be found in routines/integ directory
+    :</para>
+
+    <para>dqag0.f and dqags.f from quadpack</para>
   </refsection>
 </refentry>

@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>123.33
 a.*b
@@ -72,8 +72,7 @@ a.*b
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 //ponto decimal
 1.345
 
@@ -88,12 +87,11 @@ a=  "aqui, eu começo um  grande string... //mas não quero continuar aqui
      - e aqui eu continuo."
 y=12..
 45
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="star">star</link></member>

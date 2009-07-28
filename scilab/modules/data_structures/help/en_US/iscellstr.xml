@@ -66,8 +66,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 iscellstr(1)
 
 iscellstr(cell())
@@ -79,7 +78,6 @@ strcell(1).entries="Scilab";
 strcell(2).entries="iscellstr";
 strcell(3).entries="help";
 iscellstr(strcell)
-
   </programlisting>
   </refsection>
 

@@ -31,10 +31,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>
-  tbx_build_loader(toolbox_name)
-  tbx_build_loader(toolbox_name, toolbox_path)
-    </synopsis>
+    <synopsis>tbx_build_loader(toolbox_name)
+tbx_build_loader(toolbox_name, toolbox_path)    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -64,7 +62,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"> 
 // Recommended usage
 tbx_build_cleaner("mytoolbox", get_absolute_file_path('builder.sce'))
    </programlisting>

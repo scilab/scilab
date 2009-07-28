@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -17,79 +17,83 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Double reading (Scilab gateway)</refname>
 
-    <refnamediv>
-        <refname>Double reading (Scilab gateway)</refname>
+    <refpurpose>How to read matrices of doubles in a gateway.</refpurpose>
+  </refnamediv>
 
-        <refpurpose>
-            How to read matrices of doubles in a gateway.
-        </refpurpose>
-    </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how matrix of doubles can be handled through the Scilab API.</para>
-        <synopsis>int readMatrixOfDouble(int* _piAddress _iVar, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
-        <synopsis>int readComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
-    </refsection>
-    <refsection>
-        <title>Parameters</title>
+  <refsection>
+    <title>Description</title>
 
-        <variablelist>
-            <varlistentry>
-                <term>_piAddress</term>
-                <listitem>
-                    <para>
-                        Address of the Scilab variable.
-                    </para>
-                </listitem>
-            </varlistentry>
+    <para>This help describes how matrix of doubles can be handled through the
+    Scilab API.</para>
 
-            <varlistentry>
-                <term>_piRows</term>
-                <listitem>
-                    <para>
-                        Return number of rows.
-                    </para>
-                </listitem>
-            </varlistentry>
+    <synopsis>int getMatrixOfDouble(int* _piAddress _iVar, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
 
-            <varlistentry>
-                <term>_piCols</term>
-                <listitem>
-                    <para>
-                        Return number of columns.
-                    </para>
-                </listitem>
-            </varlistentry>
+    <synopsis>int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
+  </refsection>
 
-            <varlistentry>
-                <term>_pdblReal</term>
-                <listitem>
-                    <para>
-                        Return address of real data array (size: _iCols * _iRows)
-                    </para>
-                </listitem>
-            </varlistentry>
+  <refsection>
+    <title>Parameters</title>
 
-            <varlistentry>
-                <term>_pdblImg</term>
-                <listitem>
-                    <para>
-                        Return address of imaginary data array (size: _iCols * _iRows)
-                    </para>
-                </listitem>
-            </varlistentry>
+    <variablelist>
+      <varlistentry>
+        <term>_piAddress</term>
 
-        </variablelist>
-    </refsection>
-    <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/double_reading_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/double_reading_api.tst-->
-        <!--Lib_name: double_reading-->
-        <!--Func_list: read_double-->
-        <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <listitem>
+          <para>Address of the Scilab variable.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>_piRows</term>
+
+        <listitem>
+          <para>Return number of rows.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>_piCols</term>
+
+        <listitem>
+          <para>Return number of columns.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>_pdblReal</term>
+
+        <listitem>
+          <para>Return address of real data array (size: _iCols *
+          _iRows)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>_pdblImg</term>
+
+        <listitem>
+          <para>Return address of imaginary data array (size: _iCols *
+          _iRows)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <!--File_gateway: SCI/modules/core/tests/unit_tests/double_reading_api.c-->
+
+    <!--File_scilab: SCI/modules/core/tests/unit_tests/double_reading_api.tst-->
+
+    <!--Lib_name: double_reading-->
+
+    <!--Func_list: read_double-->
+
+    <title>Gateway Source</title>
+
+    <programlisting role="code_gateway">            
 int read_double(char *fname,unsigned long fname_len)
 {
     int i;
@@ -111,7 +115,7 @@ int read_double(char *fname,unsigned long fname_len)
     ************************/
 
     //get variable address
-    getVarAddressFromPosition(1, &piAddr);
+    getVarAddressFromPosition(1, &amp;piAddr);
 
     //check type
     if(getVarType(piAddr) != sci_matrix)
@@ -127,12 +131,12 @@ int read_double(char *fname,unsigned long fname_len)
     if(iComplex)
     {
         //get size and data from Scilab memory
-        iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+        iRet = getComplexMatrixOfDouble(piAddr, &amp;iRows, &amp;iCols, &amp;pdblReal, &amp;pdblImg);
     }
     else
     {
         //get size and data from Scilab memory
-        iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+        iRet = getMatrixOfDouble(piAddr, &amp;iRows, &amp;iCols, &amp;pdblReal);
     }
 
     if(iRet)
@@ -149,7 +153,7 @@ int read_double(char *fname,unsigned long fname_len)
     }
     else
     {
-        for(i = 0 ; i < iRows * iCols ; i++)
+        for(i = 0 ; i &lt; iRows * iCols ; i++)
         {
             pdblReal[i] *= -1;
         }
@@ -164,14 +168,13 @@ int read_double(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     return 0;
 }
-        ]]>
-        </programlisting>
-    </refsection>
+                </programlisting>
+  </refsection>
 
-    <refsection>
-        <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+  <refsection>
+    <title>Scilab test script</title>
+
+    <programlisting role="code_scilab">            
 a = [   0 1 2 3; ..
         4 5 6 7; ..
         8 9 10 11];
@@ -183,9 +186,8 @@ b = [   23*%i,      1+22*%i,    2+21*%i,    3+20*%i,    4+19*%i,    5+18*%i; ..
 a2 = read_double(a);
 b2 = read_double(b);
 
-if or(a2 <> a * -1) then error("failed"), end
-if or(b2 <> (imag(b) + real(b) * %i)) then error("failed"), end
-            ]]>
-        </programlisting>
-    </refsection>
+if or(a2 &lt;&gt; a * -1) then error("failed"), end
+if or(b2 &lt;&gt; (imag(b) + real(b) * %i)) then error("failed"), end
+                    </programlisting>
+  </refsection>
 </refentry>

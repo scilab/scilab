@@ -24,7 +24,9 @@ extern "C"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
-#include "strdup_windows.h"
+#ifdef _MSC_VER
+ #include "strdup_windows.h"
+#endif
 }
 
 //#define PRINT_DEBUG

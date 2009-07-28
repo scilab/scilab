@@ -25,7 +25,7 @@
     <refname>bool2s</refname>
 
     <refpurpose>converte uma matriz de valores booleanos para uma matriz de
-    valores 0 ou 1 </refpurpose>
+    valores 0 ou 1</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -43,7 +43,7 @@
 
         <listitem>
           <para>um vetor ou matriz de valores booleanos ou uma matriz
-          constante </para>
+          constante</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -65,12 +65,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 bool2s([%t %t %f %t])
 bool2s([2.3 0 10 -1])
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>

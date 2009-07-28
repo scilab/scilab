@@ -11,154 +11,193 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="impl">
+<refentry version="5.0-subset Scilab" xml:id="impl" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>impl</refname>
-    <refpurpose> differential algebraic equation</refpurpose>
+
+    <refpurpose>differential algebraic equation</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>y0,ydot0</term>
+
         <listitem>
           <para>real vectors or matrix (initial conditions).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t0</term>
+
         <listitem>
           <para>real scalar (initial time).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
           <para>real vector (times at which the solution is computed).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>res,adda</term>
+
         <listitem>
           <para>externals (function or character string or list).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>type</term>
+
         <listitem>
-          <para>string <literal>'adams'</literal> or <literal>'stiff'</literal></para>
+          <para>string <literal>'adams'</literal> or
+          <literal>'stiff'</literal></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>atol,rtol</term>
+
         <listitem>
-          <para>real scalar or real vector of the same size as  as <literal>y</literal>.</para>
+          <para>real scalar or real vector of the same size as as
+          <literal>y</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>jac</term>
+
         <listitem>
           <para>external (function or character string or list).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Solution of the linear implicit differential equation</para>
-    <para>
-    A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
-    <para><literal>t0</literal> is the initial instant, <literal>y0</literal> is the vector of initial conditions
-    Vector <literal>ydot0</literal> of the time derivative of <literal>y</literal> at <literal>t0</literal> must
-    also be given.
-    r
-    The input <literal>res</literal> is an external i.e. a function with
-    specified syntax, or the name a Fortran subroutine or a C function 
-    (character string) with specified calling sequence or a list.</para>
-    <para>
-    If <literal>res</literal> is a function, its syntax must be as follows:</para>
-    <programlisting><![CDATA[
 
+    <para>Solution of the linear implicit differential equation</para>
+
+    <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
+
+    <para><literal>t0</literal> is the initial instant, <literal>y0</literal>
+    is the vector of initial conditions Vector <literal>ydot0</literal> of the
+    time derivative of <literal>y</literal> at <literal>t0</literal> must also
+    be given. r The input <literal>res</literal> is an external i.e. a
+    function with specified syntax, or the name a Fortran subroutine or a C
+    function (character string) with specified calling sequence or a
+    list.</para>
+
+    <para>If <literal>res</literal> is a function, its syntax must be as
+    follows:</para>
+
+    <programlisting> 
 r = res(t,y,ydot)
-   
-    ]]></programlisting>
-    <para>
-    where <literal>t</literal> is a real scalar (time) and <literal>y</literal> and <literal>ydot</literal> are
-    real vector (state and derivative of the state). 
-    This function must return <literal>r=g(t,y)-A(t,y)*ydot</literal>.</para>
-    <para>
-    If <literal>res</literal> is a character string, it refers to the name of a Fortran
-    subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do that.</para>
-    <para><literal>res</literal> can also be a list: see the help of <literal>ode</literal>.</para>
-    <para>
-    The input <literal>adda</literal> is also an external.</para>
-    <para>
-    If <literal>adda</literal> is a function, its syntax must be as follows:</para>
-    <programlisting><![CDATA[
+     </programlisting>
 
+    <para>where <literal>t</literal> is a real scalar (time) and
+    <literal>y</literal> and <literal>ydot</literal> are real vector (state
+    and derivative of the state). This function must return
+    <literal>r=g(t,y)-A(t,y)*ydot</literal>.</para>
+
+    <para>If <literal>res</literal> is a character string, it refers to the
+    name of a Fortran subroutine or a C function. See
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    that.</para>
+
+    <para><literal>res</literal> can also be a list: see the help of
+    <literal>ode</literal>.</para>
+
+    <para>The input <literal>adda</literal> is also an external.</para>
+
+    <para>If <literal>adda</literal> is a function, its syntax must be as
+    follows:</para>
+
+    <programlisting> 
 r = adda(t,y,p)
-   
-    ]]></programlisting>
-    <para>
-    and it must return <literal>r=A(t,y)+p</literal> where <literal>p</literal> is a matrix to be
-    added to <literal>A(t,y)</literal>.</para>
-    <para>
-    If <literal>adda</literal> is a character string, it refers to the name of a Fortran
-    subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do that.</para>
-    <para><literal>adda</literal> can also be a list: see the help of <literal>ode</literal>.</para>
-    <para>
-    The input <literal>jac</literal> is also an external.</para>
-    <para>
-    If <literal>jac</literal> is a function, its syntax must be as follows:</para>
-    <programlisting><![CDATA[
+     </programlisting>
 
+    <para>and it must return <literal>r=A(t,y)+p</literal> where
+    <literal>p</literal> is a matrix to be added to
+    <literal>A(t,y)</literal>.</para>
+
+    <para>If <literal>adda</literal> is a character string, it refers to the
+    name of a Fortran subroutine or a C function. See
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    that.</para>
+
+    <para><literal>adda</literal> can also be a list: see the help of
+    <literal>ode</literal>.</para>
+
+    <para>The input <literal>jac</literal> is also an external.</para>
+
+    <para>If <literal>jac</literal> is a function, its syntax must be as
+    follows:</para>
+
+    <programlisting> 
 j = jac(t,y,ydot)
-   
-    ]]></programlisting>
-    <para>
-    and it must return the Jacobian of <literal>r=g(t,y)-A(t,y)*ydot</literal> with
-    respect to <literal>y</literal>.</para>
-    <para>
-    If <literal>jac</literal> is a character string, it refers to the name of a Fortran
-    subroutine or a C function. See
-    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do that.</para>
-    <para><literal>jac</literal> can also be a list: see the help of <literal>ode</literal>.</para>
+     </programlisting>
+
+    <para>and it must return the Jacobian of
+    <literal>r=g(t,y)-A(t,y)*ydot</literal> with respect to
+    <literal>y</literal>.</para>
+
+    <para>If <literal>jac</literal> is a character string, it refers to the
+    name of a Fortran subroutine or a C function. See
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> for an example to do
+    that.</para>
+
+    <para><literal>jac</literal> can also be a list: see the help of
+    <literal>ode</literal>.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
 // Using hot restart 
 //[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
 // hot start from previous call 
 //[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
 //maxi(abs(x1-x))
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="dassl">dassl</link>
-      </member>
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
-      <member>
-        <link linkend="external">external</link>
-      </member>
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="external">external</link></member>
     </simplelist>
   </refsection>
 </refentry>

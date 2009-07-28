@@ -21,11 +21,11 @@
     <refname>catch</refname>
 
     <refpurpose>início de um bloco catch numa instrução de controle try-catch
-    (significa "prender...") </refpurpose>
+    (significa "prender...")</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>try
 statements
@@ -35,7 +35,7 @@ end</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> Descrição </title>
+    <title>Descrição</title>
 
     <para>A instrução de controle
     <literal>try</literal>-<literal>catch</literal>pode ser usada para
@@ -67,26 +67,22 @@ end</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
- file_path=TMPDIR+'/wrong
- try
-    u=mopen(file_path,'r')
-    x=mget(10,'c',u)
-  catch
-    disp(['o arquivo '+file_path+ ' não pode ser lido',
-          'usando valores padrões para x'])
-    x=1:10
-  end 
-  [error_message,error_number]=lasterror(%t)
- 
-
- 
-  </programlisting>
+    <programlisting role="example"> 
+file_path=TMPDIR+'/wrong
+try
+  u=mopen(file_path,'r')
+  x=mget(10,'c',u)
+catch
+  disp(['o arquivo '+file_path+ ' não pode ser lido',
+        'usando valores padrões para x'])
+  x=1:10
+end 
+[error_message,error_number]=lasterror(%t)
+   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="error">error</link></member>

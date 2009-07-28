@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="list2vec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>list2vec</refname>
+
+    <refpurpose>Catenates list entries in a matrix.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[bigVector,varsizes] = list2vec(li)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>li</term>
+
+        <listitem>
+          <para>a list with n entries. The list entries must be 2D matrices with comptible
+          types.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bigVector</term>
+
+        <listitem>
+          <para>A column vector. Formed by the elements of the
+          corresponding list entry.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>varsizes</term>
+
+        <listitem>
+          <para>An n by 3 matrix. Each row contains the dimensions of the
+          corresponding list entry.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Catenates list entries in a column vector. The list entries are supposed to
+    be matrices with compatible types with respect to catenation.</para>
+<para>This function is a subsidiary for <link
+    linkend="lmisolver">lmisolver</link></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+        list2vec(list(1,2,3))
+        list2vec(list([1 2 3],[4;5],[%s %s+1]))
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="vec2list">vec2list</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>F.D. INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

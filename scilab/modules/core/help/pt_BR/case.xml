@@ -25,8 +25,7 @@
 
     <para>Use-a do seguinte modo:</para>
 
-    <programlisting>
-
+    <programlisting> 
 select expressão0,
  case expressão1 then instruções1,
  case expressão2 then instruções2,
@@ -34,8 +33,7 @@ select expressão0,
  case expressãon then instruçõesn,
  [else instruções],
 end
-   
-    </programlisting>
+     </programlisting>
   </refsection>
 
   <refsection>

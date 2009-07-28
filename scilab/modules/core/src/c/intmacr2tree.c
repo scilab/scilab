@@ -1288,6 +1288,7 @@ static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
   // Free memory
   freeArrayOfString(str, nCols*nRows);
   FREE(int_str);
+  return 0;
 }
 
 /****************************************************************
@@ -2216,7 +2217,7 @@ int complexity(int *data,int *index2,int *lgth)
 
       if (codeSave==15)
         {
-          if (begin>0 & data[cur_ind]!=29) /* Inside a list of inputs or operands */
+          if ( (begin>0) && (data[cur_ind]!=29) ) /* Inside a list of inputs or operands */
             {
               count--; /* No new instruction created */
             }

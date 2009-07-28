@@ -10,46 +10,64 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lcf">
+<refentry version="5.0-subset Scilab" xml:id="lcf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>lcf</refname>
-    <refpurpose> normalized coprime factorization</refpurpose>
+
+    <refpurpose>normalized coprime factorization</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[N,M]=lcf(sl)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>sl</term>
+
         <listitem>
-          <para>linear system given in state space or transfer function (<literal>syslin</literal> list)</para>
+          <para>linear system given in state space or transfer function
+          (<literal>syslin</literal> list)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>N,M</term>
+
         <listitem>
           <para>two linear systems (<literal>syslin</literal> list)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Computes normalized coprime factorization of the linear dynamic 
+
+    <para>Computes normalized coprime factorization of the linear dynamic
     system <literal>sl</literal>.</para>
-    <para>
-      <literal>sl = M^-1 N</literal>
-    </para>
+
+    <para><literal>sl = M^-1 N</literal></para>
   </refsection>
+
   <refsection>
     <title>Authors</title>
-    <para>F. D.; ;   </para>
+
+    <para>F. D.</para>
   </refsection>
 </refentry>
