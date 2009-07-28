@@ -101,7 +101,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // This example shows how to write a Scilab matrix of boolean in Scilab engine
 // It is the equivalent to 
 // B=[F F T F;
@@ -112,11 +112,11 @@
 int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
-C2F(cwritebmat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 printf("\n");
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display B */
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

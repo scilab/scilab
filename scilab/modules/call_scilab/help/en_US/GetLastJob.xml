@@ -79,7 +79,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple GetLastJob example
 // See SCI/modules/call_scilab/examples/basicExamples/GetLastJob.c for 
 // the full code
@@ -90,7 +90,7 @@ if (code!=0){
   printf("Failed command: %s\n",lastjob);
  }
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

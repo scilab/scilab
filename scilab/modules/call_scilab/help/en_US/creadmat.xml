@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 /* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwritematrix.c
 int rowB_ = 0, colB_ = 0, lp_ = 0;
@@ -113,19 +113,19 @@ int i = 0, j = 0;
 char variableToBeRetrievedB[] = "B";
 
 /* First, retrieve the size of the matrix */
-C2F(cmatptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
 /* Alloc the memory */
 matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 /* Load the matrix */
-C2F(creadmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
 
 printf("\n");
 printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-for(j = 0 ; j &lt; rowB_ ; j++)
+for(j = 0 ; j < rowB_ ; j++)
  {
-  for(i = 0 ; i &lt; colB_ ; i++)
+  for(i = 0 ; i < colB_ ; i++)
    {
     /* Display the formated matrix ... the way the user
      * expect */
@@ -133,7 +133,7 @@ for(j = 0 ; j &lt; rowB_ ; j++)
    }
   printf("\n"); /* New row of the matrix */
  }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

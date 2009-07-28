@@ -100,14 +100,14 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple StartScilab example
 if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
  {
   fprintf(stderr,"Error while calling StartScilab\n");
   return -1;
  }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
