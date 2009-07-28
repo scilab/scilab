@@ -1,67 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fieldnames">
+<refentry version="5.0-subset Scilab" xml:id="fieldnames" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>fieldnames</refname>
-    <refpurpose>returne les noms de champs d'une tlist, d'une mlist ou d'une struct</refpurpose>
+
+    <refpurpose>returne les noms de champs d'une tlist, d'une mlist ou d'une
+    struct</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
+
     <synopsis>f=fieldnames(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Paramètres</title>
+
     <variablelist>
       <varlistentry>
-        <term>x  </term>
+        <term>x</term>
+
         <listitem>
-          <para>une tlist,  une mlist ou une struct.</para>
+          <para>une tlist, une mlist ou une struct.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
           <para>Un vecteur colonne de chaînes de caractères</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    returne les noms de champs d'une tlist, d'une mlist ou d'une struct.</para>
+
+    <para>returne les noms de champs d'une tlist, d'une mlist ou d'une
+    struct.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 clear t;
 t.a=1;
 t.b=2;
 fieldnames(t)
 fieldnames(1/%s)
 fieldnames(tf2ss(1/%s))
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-     <member>
-        <link linkend="extraction">extraction</link>
-      </member>  
-      <member>
-        <link linkend="getfield">getfield</link>
-      </member>
-      <member>
-        <link linkend="tlist">tlist</link>
-      </member>
-      <member>
-        <link linkend="mlist">mlist</link>
-      </member>
-      <member>
-        <link linkend="mlist">struct</link>
-      </member>
+      <member><link linkend="extraction">extraction</link></member>
+
+      <member><link linkend="getfield">getfield</link></member>
+
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="mlist">mlist</link></member>
+
+      <member><link linkend="mlist">struct</link></member>
     </simplelist>
   </refsection>
 </refentry>

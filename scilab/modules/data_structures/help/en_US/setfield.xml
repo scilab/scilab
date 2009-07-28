@@ -10,69 +10,86 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="setfield">
+<refentry version="5.0-subset Scilab" xml:id="setfield" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>setfield</refname>
-    <refpurpose>  list field insertion</refpurpose>
+
+    <refpurpose>list field insertion</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>setfield(i,x,l)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
-          <para>matrix  of any  possible types</para>
+          <para>matrix of any possible types</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>l</term>
+
         <listitem>
           <para>list, tlist or mlist variable</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>i</term>
+
         <listitem>
           <para>field index, see insertion for more details.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    This function is an equivalent of <literal>l(i)=x</literal> syntax for field
-    extraction with the only difference that it also applies to
+
+    <para>This function is an equivalent of <literal>l(i)=x</literal> syntax
+    for field extraction with the only difference that it also applies to
     <literal>mlist</literal> objects.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 l=list(1,'qwerw',%s)
 l(1)='Changed'
 l(0)='Added'
 l(6)=['one more';'added']
-//
 
 a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
 setfield(3,1:8,a);a // set the field value to 1:8
- 
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="insertion">insertion</link>
-      </member>
+      <member><link linkend="insertion">insertion</link></member>
     </simplelist>
   </refsection>
 </refentry>
