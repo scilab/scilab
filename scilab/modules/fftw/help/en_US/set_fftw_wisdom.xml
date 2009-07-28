@@ -10,74 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="set_fftw_wisdom" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="set_fftw_wisdom">
   <info>
     <pubdate>February 2006</pubdate>
   </info>
-
   <refnamediv>
     <refname>set_fftw_wisdom</refname>
-
     <refpurpose>set fftw wisdom</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>set_fftw_wisdom(txt)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>txt</term>
-
         <listitem>
           <para>String matrix that contains fftw wisdom.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>This function set the fftw wisdom with a string matrix.</para>
+    <para>
+     This function set the fftw wisdom with a string matrix.
+    </para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
-    <programlisting role="example"> 
-//return fftw wisdom
-txt=get_fftw_wisdom();
-
-//set fftw wisdom
-set_fftw_wisdom(txt);
-
-//reset fftw wisdom
-fftw_forget_wisdom();
-   </programlisting>
+ //return fftw wisdom
+ txt=get_fftw_wisdom();
+ //set fftw wisdom
+ set_fftw_wisdom(txt);
+ //reset fftw wisdom
+ fftw_forget_wisdom();
+ 
+  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="fftw">fftw</link></member>
-
-      <member><link linkend="get_fftw_wisdom">get_fftw_wisdom</link></member>
-
-      <member><link
-      linkend="fftw_forget_wisdom">fftw_forget_wisdom</link></member>
+      <member>
+        <link linkend="fftw">fftw</link>
+      </member>
+      <member>
+        <link linkend="get_fftw_wisdom">get_fftw_wisdom</link>
+      </member>
+      <member>
+        <link linkend="fftw_forget_wisdom">fftw_forget_wisdom</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

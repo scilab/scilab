@@ -989,9 +989,27 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
 
              
 
+<<<<<<< HEAD:scilab/modules/differential_equations/help/en_US/bvode.xml
             <listitem><para>And in Scilab</para><programlisting>  function g=gsub(i,zu,parameters) </programlisting>
             <para>Note that in contrast to <literal>f</literal> in <literal>fsub</literal>, here only one value per call is returned in <literal>g</literal>.</para>
             </listitem>
+=======
+            <listitem>And in Scilab <programlisting>  function g=gsub(i,zu,parameters) </programlisting></listitem>
+
+             Note that in contrast to 
+
+            <literal>f</literal>
+
+             in 
+
+            <literal>fsub</literal>
+
+             , here only one value per call is returned in 
+
+            <literal>g</literal>
+
+             . 
+>>>>>>> 678ea5b... correct bug 4184 for differential_equations - uniformisation of the examples presentation:scilab/modules/differential_equations/help/en_US/bvode.xml
           </itemizedlist>
         </listitem>
       </varlistentry>
