@@ -113,7 +113,8 @@ void execAstTask(bool timed)
 		}
 		catch(string sz)
 		{
-			std::cerr << sz << std::endl;
+		  YaspWrite((char *) sz.c_str());
+		  YaspWrite("\n");
 		}
 		delete execMe;
 	}

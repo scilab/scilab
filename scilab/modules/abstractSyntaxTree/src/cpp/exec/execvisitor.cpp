@@ -77,7 +77,8 @@ namespace ast
 		result_set(psz);
 		if(e.is_verbose())
 		{
-			std::cout << psz->toString(10,75) << std::endl;
+		  YaspWrite((char *) psz->toString(10,75).c_str());
+		  YaspWrite("\n");
 		}
 	}
 
@@ -108,7 +109,8 @@ namespace ast
 		result_set(pdbl);
 		if(e.is_verbose())
 		{
-			std::cout <<  pdbl->toString(10,75) << std::endl;
+		  YaspWrite((char *) pdbl->toString(10,75).c_str());
+		  YaspWrite("\n");
 		}
 	}
 
@@ -134,9 +136,11 @@ namespace ast
 			result_set(pI);
 			if(pI != NULL && e.is_verbose())
 			{
-				std::cout << e.name_get() << " = " << std::endl;
-				std::cout << std::endl;
-				std::cout << pI->toString(10,75) << std::endl;
+			  std::ostringstream ostr;
+			  ostr << e.name_get() << " = " << std::endl;
+			  ostr << std::endl;
+			  ostr << pI->toString(10,75) << std::endl;
+			  YaspWrite((char *) ostr.str().c_str());
 			}
 		}
 		else
@@ -324,7 +328,9 @@ namespace ast
 				delete[] piDimSize;
 				if(e.is_verbose())
 				{
-					std::cout <<  pResult->toString(10,75) << std::endl;
+				  std::ostringstream ostr;
+				  ostr <<  pResult->toString(10,75) << std::endl;
+				  YaspWrite((char *) ostr.str().c_str());
 				}
 
 			}
@@ -653,7 +659,9 @@ namespace ast
 
 		if(e.is_verbose())
 		{
-			std::cout <<  pIL->toString(10,75) << std::endl;
+		  std::ostringstream ostr;
+		  ostr <<  pIL->toString(10,75) << std::endl;
+		  YaspWrite((char *) ostr.str().c_str());
 		}
 	}
 	/** \} */

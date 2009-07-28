@@ -718,7 +718,8 @@ namespace ast
 
 		if(e.is_verbose())
 		{
-			std::cout << pResult->toString(10,75) << std::endl;
+		  YaspWrite((char *) pResult->toString(10,75).c_str());
+		  YaspWrite("\n");
 		}
 
 		delete execMeL;
