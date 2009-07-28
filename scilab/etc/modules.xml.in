@@ -83,5 +83,5 @@
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
-<module name="xpad" activate="@XPAD_ENABLE@"/>
+<module name="xpad" activate="@GUI_ENABLE@"/>
 </modules>

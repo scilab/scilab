@@ -21,7 +21,7 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
 libscixpad_la_etc_DATA = etc/xpad.quit \
-etc/xpad.start \
+etc/xpad.start
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -38,7 +38,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xpad
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xpad.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -53,9 +53,8 @@ libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/localization/includes \			
+			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
-
 
 # Without the xpad module 
 libscixpad_disable_la_CFLAGS = -Iincludes/ \
@@ -73,11 +72,12 @@ endif
 
 libscixpad_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscixpad_la_SOURCES = $(XPAD_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XPAD_CPP_SOURCES)
+libscixpad_la_SOURCES = $(XPAD_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XPAD_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(XPAD_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixpad_la_CFLAGS)
+
 
 
 libscixpad_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
