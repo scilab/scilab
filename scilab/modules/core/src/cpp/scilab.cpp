@@ -372,6 +372,10 @@ static int interactiveMain (void)
 				*/
 				if (dumpStack == true) { dumpStackTask(); }
 			}
+			else
+			  {
+			    std::cerr << "Parser control : " << Parser::getInstance()->getControlStatus() << std::endl;
+			  }
 		}
 	}
 #ifdef DEBUG
