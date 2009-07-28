@@ -83,7 +83,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"> 
 if MSDOS then
   filename = SCI+'\bin\libscilab.dll';
 
