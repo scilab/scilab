@@ -21,9 +21,10 @@ void Parser::PrintError(std::string msg) {
  // Need to have getline !!!
 #ifndef _MSC_VER
  char *codeLine = NULL;
+ std::ostringstream ostr;
 
  /** First print where in the script the error is located */
- std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
 
  /*
  ** If the error is a the very beginning of a line
@@ -35,27 +36,27 @@ void Parser::PrintError(std::string msg) {
    --yylloc.first_line;
  }
 
- std::cerr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
+ ostr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
  free(codeLine);
 
  /** Then underline what causes the trouble */
- std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
  for( i = 1 ; i < yylloc.first_column ; ++i) {
-   std::cerr << " ";
+   ostr << " ";
  }
- std::cerr << "^";
+ ostr << "^";
  for( i = i + 1 ; i < yylloc.last_column ; ++i) {
-   std::cerr << "~";
+   ostr << "~";
  }
  if( yylloc.first_column != yylloc.last_column ) {
-   std::cerr << "^" ;
+   ostr << "^" ;
  }
- std::cerr << std::endl;
+ ostr << std::endl;
 #endif
 
  /** Finally display the Lexer / Parser message */
- std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
- std::cerr << *(Parser::getInstance()->getFileName()) << " : " <<
+ ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ ostr << *(Parser::getInstance()->getFileName()) << " : " <<
    yylloc.first_line << "." << yylloc.first_column <<
    " - " <<
    yylloc.last_line << "." << yylloc.last_column <<
@@ -65,4 +66,6 @@ void Parser::PrintError(std::string msg) {
  //yylloc.first_line -= yylloc.last_line;
  //yylloc.last_line = yylloc.first_line;
  //yylloc.last_column = yylloc.first_column;
+ 
+ Parser::getInstance()->appendErrorMessage(ostr.str());
 }

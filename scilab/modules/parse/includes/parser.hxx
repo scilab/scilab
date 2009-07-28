@@ -39,6 +39,7 @@ private:
     _strict_mode = false;
     _exit_status = Succeded;
     _control_status = new std::list<ControlStatus>();
+    _error_message = new std::string();
   }
   ~Parser()
   {
@@ -94,6 +95,10 @@ public:
   ParserStatus	getExitStatus(void) { return _exit_status; }
   void	setExitStatus(ParserStatus exit_status) { _exit_status = exit_status; }
 
+  char *getErrorMessage(void);
+  void appendErrorMessage(std::string ostr);
+  void resetErrorMessage(void) { _error_message->clear(); }
+
   ControlStatus getControlStatus(void) {
     if (!_control_status->empty())
       {
@@ -101,12 +106,20 @@ public:
       }
     return AllControlClosed;
   }
-  void pushControlStatus(ControlStatus control_status) { _control_status->push_front(control_status); }
+  void pushControlStatus(ControlStatus control_status) { 
+    //std::cout << "Push front : " << control_status << std::endl;
+    _control_status->push_front(control_status); 
+  }
   void popControlStatus(void) {
     if(!_control_status->empty())
       {
+	//std::cout << "Pop front" << std::endl;
+	//std::cout << "size = " << _control_status->size() << std::endl;
 	_control_status->pop_front();
       }
+  }
+  void resetControlStatus(void) {
+    _control_status->clear();
   }
 
   bool isStrictMode(void) { return _strict_mode; }
@@ -133,6 +146,7 @@ private :
   static Parser* me;
   const std::string* _file_name;
   const std::string* _prog_name;
+  std::string* _error_message;
   bool _strict_mode;
   bool _stop_on_first_error;
   ast::Exp* _the_program;

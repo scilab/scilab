@@ -16,30 +16,54 @@
 #include <iostream>
 #include <string.h>
 
-#include "timer.hxx"
-
 extern "C"
 {
+	#ifndef _MSC_VER
+		#include <unistd.h>
+	#endif
+
 	#include "SetScilabEnvironment.h"
 	#include "prompt.h"
+	#include "localization.h"
 	#include "InitializeLocalization.h"
 	#include "MALLOC.h"
 	#include "setgetSCIpath.h"
 	#include "inisci-c.h"
+	#include "scilabmode.h"
+	#ifdef _MSC_VER
+		#include "../src/c/scilab_windows/getScilabDirectory.h"
+	#endif
+	#include "ConsoleRead.h"
+	#include "../../../console/includes/InitializeConsole.h"
+	#include "../../../jvm/includes/InitializeJVM.h"
+#include "InitializeCore.h"
+#include "../../../shell/includes/InitializeShell.h"
+#include "../../../console/includes/InitializeConsole.h"
+#include "../../../tclsci/includes/InitializeTclTk.h"
+#include "../../../localization/includes/InitializeLocalization.h"
+#include "../../../graphics/includes/graphicModuleLoad.h"
+#include "../../../jvm/includes/InitializeJVM.h"
 #ifdef _MSC_VER
-	#include "../src/c/scilab_windows/getScilabDirectory.h"
-#else
+#include "../../../windows_tools/includes/InitializeWindows_tools.h"
 #endif
+#include "../../../gui/includes/InitializeGUI.h"
+#include "../../../string/includes/InitializeString.h"
+#include "scilabmode.h"
+#include "SetScilabEnvironment.h"
+#include "../../../jvm/includes/loadBackGroundClassPath.h"
+  /*
+** HACK HACK HACK
+*/
+	extern char *TermReadAndProcess(void);
 }
 
+#include "yaspio.hxx"
+#include "tasks.hxx"
 #include "exit_status.hxx"
 #include "parser.hxx"
 #include "context.hxx"
-#include "visitor.hxx"
-#include "printvisitor.hxx"
-#include "execvisitor.hxx"
-#include "debugvisitor.hxx"
 #include "configvariable.hxx"
+#include "context.hxx"
 //#include "setenvvar.hxx"
 #include "funcmanager.hxx"
 
@@ -48,13 +72,12 @@ extern "C"
 const char*	prog_name;
 const char*	file_name;
 
-timer _timer;
-
 bool printAst = false;
-bool execAst = false;
+bool execAst = true;
 bool dumpAst = false;
 bool dumpStack = false;
 bool timed = false;
+bool consoleMode = false;
 
 using symbol::Context;
 using std::string;
@@ -82,10 +105,12 @@ static void usage (void)
 	std::cerr << "--display-tree : Display Syntax tree formated as understood scilab code." << std::endl;
 	std::cerr << "--context-dump : Display what is stored in scilab at the end." << std::endl;
 	std::cerr << "--timed : Enable timer." << std::endl;
-	std::cerr << "--exec : Run the scilab code." << std::endl;
+	std::cerr << "--no-exec : Do not run the scilab code." << std::endl;
 	std::cerr << "--debug : Print the AST nodes." << std::endl;
 	std::cerr << "-f file : Batch mode on the given file." << std::endl;
 	std::cerr << "-l lang : Change the language of scilab ( default : en_US )" << std::endl;
+	std::cerr << "-nw : Enable console mode" << std::endl;
+	std::cerr << "-nwni : Enable console mode" << std::endl;
 	std::cerr << "--help : Display this help." << std::endl;
 }
 
@@ -117,8 +142,8 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		else if (!strcmp("--debug", argv[i])) {
 			dumpAst = true;
 		}
-		else if (!strcmp("--exec", argv[i])) {
-			execAst = true;
+		else if (!strcmp("--no-exec", argv[i])) {
+			execAst = false;
 		}
 		else if (!strcmp("--context-dump", argv[i])) {
 			dumpStack = true;
@@ -133,6 +158,10 @@ static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
 		else if (!strcmp("-l", argv[i])) {
 			i++;
 			*_piLangIndex = i;
+		}
+		else if (!strcmp("-nw", argv[i]) || !strcmp("-nwni", argv[i])) {
+		  consoleMode = true;
+		  setScilabMode(SCILAB_NWNI);
 		}
 	}
 
@@ -154,121 +183,11 @@ extern "C"
 #ifndef _MSC_VER
 #include <unistd.h>
 #endif
-	extern char *TermReadAndProcess(void);
+#include "scilabmode.h"
+  extern char *TermReadAndProcess(void);
+  extern void ConsolePrintf(char*);
 }
 
-/*
-** Parse
-**
-** Parse the given file and create the AST.
-*/
-static Parser::ParserStatus parseFileTask(void)
-{
-#ifdef DEBUG
-	std::cerr << "*** Processing " << file_name << " file..." << std::endl;
-#endif
-
-	if (timed) { _timer.start(); }
-	{
-		Parser::getInstance()->parseFile(file_name, prog_name);
-	}
-	if (timed) { _timer.check("Parsing"); }
-
-	return (Parser::getInstance()->getExitStatus());
-}
-
-/*
-** Parse
-**
-** Parse the given command and create the AST.
-*/
-static Parser::ParserStatus parseCommandTask(char *command)
-{
-#ifdef DEBUG
-	std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
-#endif
-
-	if (timed) { _timer.start(); }
-	{
-		Parser::getInstance()->parse(command);
-	}
-	if (timed) { _timer.check("Parsing"); }
-
-	return (Parser::getInstance()->getExitStatus());
-}
-
-/*
-** Dump AST
-**
-** Display the AST in human readable format.
-*/
-static void dumpAstTask(void)
-{
-	if (timed) { _timer.start(); }
-	{
-		ast::DebugVisitor debugMe = *new ast::DebugVisitor();
-		if (Parser::getInstance()->getTree())
-		  {
-		    Parser::getInstance()->getTree()->accept(debugMe);
-		  }
-	}
-	if (timed) { _timer.check("AST Dump"); }
-}
-
-/*
-** Pretty Print
-**
-** Pretty print the Stored AST.
-*/
-static void printAstTask(void)
-{
-	if (timed) { _timer.start(); }
-	{
-		ast::PrintVisitor printMe = *new ast::PrintVisitor(std::cout);
-		Parser::getInstance()->getTree()->accept(printMe);
-	}
-	if (timed) { _timer.check("Pretty Print"); }
-}
-
-
-/*
-** Exec Tree
-**
-** Execute the stored AST.
-*/
-static void execAstTask(void)
-{
-	ast::ExecVisitor *execMe = new ast::ExecVisitor();
-
-	if (timed) { _timer.start(); }
-	{
-		try
-		{
-			Parser::getInstance()->getTree()->accept(*execMe);
-		}
-		catch(string sz)
-		{
-			std::cerr << sz << std::endl;
-		}
-		delete execMe;
-	}
-	if (timed) { _timer.check("Execute AST"); }
-}
-
-
-/*
-** Dump Stack Trace
-**
-** Display what is stored in scilab.
-*/
-static void dumpStackTask(void)
-{
-	if (timed) { _timer.start(); }
-	{
-		Context::getInstance()->print();
-	}
-	if (timed) { _timer.check("Dumping Stack"); }
-}
 
 /*
 ** -*- Batch Main -*-
@@ -278,38 +197,74 @@ static int batchMain (void)
 	/*
 	** -*- PARSING -*-
 	*/
-	Parser::ParserStatus parseResult = parseFileTask();
+	Parser::ParserStatus parseResult = parseFileTask(timed, file_name, prog_name);
 
 	/*
 	** -*- DUMPING TREE -*-
 	*/
-	if (dumpAst == true) { dumpAstTask(); }
+	if (dumpAst == true) { dumpAstTask(timed); }
 
 	if (parseResult != Parser::Succeded)
 	{
-		return PARSE_ERROR;
+	  YaspWrite(Parser::getInstance()->getErrorMessage());
+	  return PARSE_ERROR;
 	}
 
 	/*
 	** -*- PRETTY PRINT TREE -*-
 	*/
-	if (printAst == true) { printAstTask(); }
+	if (printAst == true) { printAstTask(timed); }
 
 	/*
 	** -*- EXECUTING TREE -*-
 	*/
-	if (execAst == true) { execAstTask(); }
+	if (execAst == true) { execAstTask(timed); }
 
 	/*
 	** -*- DUMPING STACK AFTER EXECUTION -*-
 	*/
-	if (dumpStack == true) { dumpStackTask(); }
+	if (dumpStack == true) { dumpStackTask(timed); }
 
 #ifdef DEBUG
 	std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
 	return WELL_DONE;
+}
+
+#define SCI_VERSION_STRING "scilab-6.0 (aka YaSp)"
+
+static void banner()
+{
+  int i;
+  char *line = "        ___________________________________________        ";
+  int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
+  
+  YaspWrite(line);
+  YaspWrite("\n");
+  
+  /* To center the version name */
+  for( i=0 ; i<startVersion ; i++ )
+    {
+      YaspWrite(" ");
+    }
+  
+  YaspWrite(SCI_VERSION_STRING);
+  YaspWrite("\n\n");
+  
+  YaspWrite(_("                 Consortium Scilab (DIGITEO)\n"));
+  
+  YaspWrite(_("               Copyright (c) 1989-2009 (INRIA)\n"));
+  YaspWrite(_("               Copyright (c) 1989-2007 (ENPC)\n"));
+  YaspWrite(line);
+  YaspWrite("\n");
+
+  
+#if ( defined(_MSC_VER) && ( (_MSC_VER >= 1200) && (_MSC_VER < 1300) ) )
+  YaspWritesciprint("\n\n");
+  YaspWritesciprint(_("Warning: the operational team of the Scilab Consortium\ndoesn't provide and doesn't support this version of Scilab built with\n"));
+  YaspWritesciprint("   ");
+#endif
 }
 
 /*
@@ -320,23 +275,28 @@ static int interactiveMain (void)
 	Parser::ParserStatus parseResult;
 	bool exit = false;
 	int pause = 0;
-
-	std::cout << "-*- Yet Another Scilab Project -*-" << std::endl;
-	std::cout << std::endl;
-	std::cout << std::endl;
+	char *command;
+	
+	banner();
 
 	while (!exit)
 	{
-		/* Display prompt */
-/*
-		std::cout << std::endl;
-		std::cout << "YaSp --> ";
+	  C2F(setprlev)(&pause);
 
-*/
-		C2F(setprlev)(&pause);
-		char *command = TermReadAndProcess();
+	  //	  std::cout << "[" << Parser::getInstance()->getControlStatus()
+	  //		    << "]" << std::endl;
+	  if (Parser::getInstance()->getControlStatus() == Parser::AllControlClosed) 
+	    {
+	      command = YaspRead();
+	    }
+	  else
+	    {
+	      sprintf(command, "%s\n%s", command, YaspRead());
+	    }
 
-
+	  //	  std::cout << "---" << std::endl << "Command = " << std::endl;
+	  //	  std::cout << command << std::endl;
+	  //	  std::cout << "---" << std::endl;
 		if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
 		{
 			exit = true;
@@ -348,32 +308,33 @@ static int interactiveMain (void)
 			/*
 			** -*- PARSING -*-
 			*/
-			parseResult = parseCommandTask(command);
+			parseResult = parseCommandTask(timed, command);
 
 			/*
 			** -*- DUMPING TREE -*-
 			*/
-			if (dumpAst == true) { dumpAstTask(); }
+			if (dumpAst == true) { dumpAstTask(timed); }
 
 			if (parseResult == Parser::Succeded)
 			{
 				/*
 				** -*- PRETTY PRINT TREE -*-
 				*/
-				if (printAst == true) { printAstTask(); }
+				if (printAst == true) { printAstTask(timed); }
 
 				/*
 				** -*- EXECUTING TREE -*-
 				*/
-				if (execAst == true) { execAstTask(); }
+				if (execAst == true) { execAstTask(timed); }
 
 				/*
 				** -*- DUMPING STACK AFTER EXECUTION -*-
 				*/
-				if (dumpStack == true) { dumpStackTask(); }
+				if (dumpStack == true) { dumpStackTask(timed); }
 			}
 			else
 			  {
+			    YaspWrite(Parser::getInstance()->getErrorMessage());
 			    std::cerr << "Parser control : " << Parser::getInstance()->getControlStatus() << std::endl;
 			  }
 		}
@@ -384,21 +345,74 @@ static int interactiveMain (void)
 	return WELL_DONE;
 }
 
+static void TermPrintf(char *text)
+{
+  std::cout << text;
+}
+
 /*
 ** -*- MAIN -*-
 */
 int main(int argc, char *argv[])
 {
-	int	iFileIndex = INTERACTIVE;
+	int iFileIndex = INTERACTIVE;
 	int iLangIndex = 0;
 	int iMainRet = 0;
 	prog_name = argv[0];
 
+	setScilabMode(SCILAB_STD);
 	Parser::getInstance()->disableParseTrace();
 	get_option(argc, argv, &iFileIndex, &iLangIndex);
 
+	if (consoleMode)
+	  {
+	    setYaspInputMethod(&TermReadAndProcess);
+	    setYaspOutputMethod(&TermPrintf);
+	  }
+	else
+	  {
+	    setYaspInputMethod(&ConsoleRead);
+	    setYaspOutputMethod(&ConsolePrintf);
+	  }
+
 	/* Scilab Startup */
 	InitializeEnvironnement();
+	
+	InitializeString();
+
+	InitializeLocalization();
+
+	#ifdef _MSC_VER
+	InitializeWindows_tools();
+	#endif
+
+	InitializeCore();
+
+	InitializeShell();
+
+	if ( getScilabMode() != SCILAB_NWNI ) 
+	{
+		/* bug 3702 */
+		/* tclsci creates a TK window on Windows */
+		/* it changes focus on previous windows */
+		/* we put InitializeTclTk before InitializeGUI */
+
+		InitializeTclTk();
+		InitializeJVM();
+		InitializeGUI();
+		
+		/* create needed data structure if not already created */
+		loadGraphicModule() ;
+                
+		/* Standard mode -> init Java Console */
+		if ( getScilabMode() == SCILAB_STD ) 
+		{
+			/* Initialize console: lines... */
+			InitializeConsole();
+		}
+		
+		loadBackGroundClassPath();
+	}
 
 	/* set current language of scilab */
 	FuncManager *pFM = new FuncManager();
