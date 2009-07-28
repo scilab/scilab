@@ -28,14 +28,14 @@ v(i)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>Parâmetros </title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matriz de qualquer tipo possível</para>
+          <para>matriz de qualquer tipo possível </para>
         </listitem>
       </varlistentry>
 
@@ -43,7 +43,7 @@ v(i)
         <term>v</term>
 
         <listitem>
-          <para>vetor linha ou coluna de qualquer tipo possível</para>
+          <para>vetor linha ou coluna de qualquer tipo possível </para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ v(i)
         <term>l</term>
 
         <listitem>
-          <para>variável tipo lista</para>
+          <para>variável tipo lista </para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@ v(i)
         <term>func</term>
 
         <listitem>
-          <para>qualquer nome de função</para>
+          <para>qualquer nome de função </para>
         </listitem>
       </varlistentry>
 
@@ -87,7 +87,7 @@ v(i)
     <para>* Selecionar elementos dentro de vetores, matrizes e listas.Ver
     ajuda em insertion e extraction para maiores informações.</para>
 
-    <para>* [x1,x2,...]=(e1,e2,...) é equivalente a realizar primeiro %t_1 =
+    <para> * [x1,x2,...]=(e1,e2,...) é equivalente a realizar primeiro %t_1 =
     e1, %t_2 = e2, ..., e então x1 = %t_1, x2 = %t_2, ..., onde as variáveis
     %t_i, i = 1, 2, ... são visíveis ao usuário.</para>
   </refsection>
@@ -95,35 +95,37 @@ v(i)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 3^(-1)
 x=poly(0,"x");
-
+//
 (x+10)/2
 i3=eye(3,3)
-
+//
 a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
 a(:,3)=[]
 a(1,$)=33
 a(2,[$ $-1])
 a(:,$+1)=[10;11;12]
-
+//
 w=ssrand(2,2,2);ssprint(w)
 ssprint(w(:,1))
 ss2tf(w(:,1)) 
-
+//
 l=list(1,2,3,4)
 [a,b,c,d]=l(:)
 l($+1)='novo'
-
+//
 v=%t([1 1 1 1 1])
-
+//
 [x,y,z]=(1,2,3)
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="colon">colon</link></member>

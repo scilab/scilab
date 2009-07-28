@@ -42,9 +42,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-getscilabmode()
- </programlisting>
+    <programlisting role="example">getscilabmode()</programlisting>
   </refsection>
 
   <refsection>

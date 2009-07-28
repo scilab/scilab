@@ -22,18 +22,19 @@
     <para>Uma seqüência de duas barras <literal> // </literal> fora de uma
     definição de string marca o início de um comentário. As barras, tanto
     quanto o restante dos caracteres até o fim das linhas não são
-    interpretados.</para>
+    interpretados. </para>
 
     <para>Dentro de uma função, as primeiras linhas de comentário até a
     primeira instrução ou linha vazia podem ser usadas para fornecer o
-    conteúdo padrão para a documentação de ajuda da função ("help" da
-    função).</para>
+    conteúdo padrão para a documentação de ajuda da função ("help" da função).
+    </para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 g=9.81// a gravidade
 
 text='a//b'
@@ -45,6 +46,8 @@ function y=myfunction(x)
 endfunction
 
 help myfunction
-  </programlisting>
+
+ 
+ </programlisting>
   </refsection>
 </refentry>

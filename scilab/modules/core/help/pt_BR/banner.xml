@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>banner()</synopsis>
   </refsynopsisdiv>
@@ -31,9 +31,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-clc();banner()
- </programlisting>
+    <programlisting role="example">clc();banner()
+</programlisting>
   </refsection>
 
   <refsection>

@@ -17,21 +17,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[symb]=varn(p)
 [pm]=varn(x,var)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>polinômio (matriz de polinômios)</para>
+          <para>polinômio (matriz de polinômios) </para>
         </listitem>
       </varlistentry>
 
@@ -47,7 +47,7 @@
         <term>x</term>
 
         <listitem>
-          <para>polinômio ou matriz de polinômios</para>
+          <para>polinômio ou matriz de polinômios </para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@
         <term>var</term>
 
         <listitem>
-          <para>variável simbólica (string)</para>
+          <para>variável simbólica (string) </para>
         </listitem>
       </varlistentry>
 
@@ -84,15 +84,18 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
+// 
 s=poly(0,'s');p=[s^2+1,s];
 varn(p)
 varn(p,'x')
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="horner">horner</link></member>

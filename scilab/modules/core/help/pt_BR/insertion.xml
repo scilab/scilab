@@ -389,7 +389,8 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 // CASO DE MATRIZES
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -403,25 +404,26 @@ a([%t %f],1)=33
 a(1:2,$-1)=[2;4]
 a($:-1:1,1)=[8;7]
 a($)=123
-
+//
 x='teste'
 x([4 5])=['4','5']
-
+//
 b=[1/%s,(%s+1)/(%s-1)]
 b(1,1)=0
 b(1,$)=b(1,$)+1
 b(2)=[1 2] // o numerador
-
 // CASO DE LISTAS OU TLISTS
 l=list(1,'qwerw',%s)
 l(1)='Modificado'
 l(0)='Adicionado'
 l(6)=['mais um';'adicionado']
-
+//
+//
 dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2).a=33
 dts(2)('b')(1,2)=-100
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>

@@ -44,8 +44,7 @@ exit(n)</synopsis>
         <term>n</term>
 
         <listitem>
-          <para>Le status de sortie retournera n (si specifie). Autrement, la
-          valeur sera zero.</para>
+          <para>Le status de sortie retournera  n (si specifie). Autrement, la valeur sera zero.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,11 +53,9 @@ exit(n)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting> 
-exit
+    <programlisting>exit
 i = 4;
-exit(i);  
- </programlisting>
+exit(i);  </programlisting>
   </refsection>
 
   <refsection>

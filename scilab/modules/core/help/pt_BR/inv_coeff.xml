@@ -67,21 +67,21 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-A=int(10*rand(2,6))
+    <programlisting role="example">
 
+A=int(10*rand(2,6))
 // Construindo uma matriz de polinômios de grau 1
 P=inv_coeff(A,1)
 norm(coeff(P)-A)
-
 // Usando valor padrão para o grau
 P1=inv_coeff(A)
 norm(coeff(P1)-A)
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>
