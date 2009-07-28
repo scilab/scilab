@@ -29,12 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-<<<<<<< HEAD:scilab/modules/call_scilab/help/en_US/cwritecmat.xml
-    <para>int C2F(cwritecmat) (char *name, int *m, int *n, double *mat,
-    unsigned long name_len);</para>
-=======
     <synopsis>int C2F(cwritecmat)  (char *name, int *m, int *n, double *mat, unsigned long name_len);</synopsis>
->>>>>>> origin/5.1:scilab/modules/call_scilab/help/en_US/cwritecmat.xml
   </refsynopsisdiv>
 
   <refsection>
