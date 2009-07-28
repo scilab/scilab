@@ -57,9 +57,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-ifortv = findmsifortcompiler()
- </programlisting>
+    <programlisting role="example">ifortv = findmsifortcompiler()
+</programlisting>
   </refsection>
 
   <refsection>
