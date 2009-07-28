@@ -31,8 +31,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>tbx_build_gateway_loader(langs)
-tbx_build_gateway_loader(langs, gateway_path)    </synopsis>
+    <synopsis>
+  tbx_build_gateway_loader(langs)
+  tbx_build_gateway_loader(langs, gateway_path)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -63,7 +65,7 @@ tbx_build_gateway_loader(langs, gateway_path)    </synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 // Recommended usage
 tbx_build_gateway_clean(['c', 'fortran'], get_absolute_file_path('builder_gateway.sce'))
    </programlisting>
