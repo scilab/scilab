@@ -44,47 +44,19 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   int displayWarning = FALSE;
   int selPosition = 0;
 
-  CheckRhs(0,2);
+  CheckRhs(0,1);
   CheckLhs(1,2);
-
-  // Select current figure or create it
-  sciGetCurrentFigure();
 
   switch(Rhs)
     {
     case 1:
-      if (GetType(1)==sci_matrix)
-        {
-          displayWarning = TRUE;
-        }
-      else if (GetType(1)==sci_boolean)
+      if (GetType(1)==sci_boolean)
         {
           selPosition = 1;
         }
       else
         {
-          Scierror(999, _("%s: Wrong type for input argument #%d: Single double or boolean vector expected.\n"), fname, 1);
-          return FALSE;
-        }
-      break;
-    case 2:
-      if (GetType(1)==sci_matrix)
-        {
-          displayWarning = TRUE;
-        }
-      else
-        {
-          Scierror(999, _("%s: Wrong type for input argument #%d: Single double expected.\n"), fname, 1);
-          return FALSE;
-        }
-
-      if (GetType(2)==sci_boolean)
-        {
-          selPosition = 2;
-        }
-      else
-        {
-          Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 2);
+          Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), fname, 1);
           return FALSE;
         }
       break;
@@ -94,12 +66,8 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
       break;
     }
 
-
-  // Display a warning if a flag has been given (obsolete use)
-  if (displayWarning)
-    {
-      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionality will be permanently removed in Scilab 5.1.\n"),fname);
-    }
+  // Select current figure or create it
+  sciGetCurrentFigure();
 
   // Call Java to get mouse information
   if (selPosition!=0)

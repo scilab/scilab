@@ -28,14 +28,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-<synopsis>BOOL TerminateScilab(char *ScilabQuit);</synopsis>
+    <synopsis>BOOL TerminateScilab(char *ScilabQuit);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Description</title>
 
-    <para>This fonction stops the Scilab engine. It is strongly recommanded
-    to call this function at the end when using Call Scilab .</para>
+    <para>This fonction stops the Scilab engine. It is strongly recommanded to
+    call this function at the end when using Call Scilab .</para>
 
     <para>BOOL is just a simple typedef on int (<literal>typedef int
     BOOL</literal>). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
@@ -46,13 +46,12 @@
     <title>Parameters</title>
 
     <variablelist>
-
       <varlistentry>
         <term>ScilabQuit</term>
 
         <listitem>
-          <para>a standard C char* containing the path to Scilab quit
-          script (scilab.quit)</para>
+          <para>a standard C char* containing the path to Scilab quit script
+          (scilab.quit)</para>
 
           <para>If ScilabStartup is NULL, Scilab will use the default path
           (detected from SCIpath).</para>
@@ -74,30 +73,26 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple TerminateScilab example
-	if ( TerminateScilab(NULL) == FALSE ) {
-		fprintf(stderr,"Error while calling TerminateScilab\n");
-		return -2;
-	}
-
-</programlisting>
+    <programlisting role="example"><![CDATA[
+// A simple TerminateScilab example
+if ( TerminateScilab(NULL) == FALSE ) {
+ fprintf(stderr,"Error while calling TerminateScilab\n");
+ return -2;
+}
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-
       <member><link linkend="compile_and_run_call_scilab">Compile and run with
-      call_scilab</link>, 
-	<link linkend="StartScilab">StartScilab</link>, 
-
-      <link linkend="SendScilabJob">SendScilabJob</link>,
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link>
-</member>
+      call_scilab</link>, <link linkend="StartScilab">StartScilab</link>,
+      <link linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
+      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
+      linkend="StringManagement_callscilab">String Management</link></member>
     </simplelist>
   </refsection>
 

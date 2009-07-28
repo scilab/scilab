@@ -140,12 +140,16 @@
               <para>This form allows to pass parameters other than t,y,ydot to
               the function. It must be as follows:</para>
 
-              <programlisting>list(res,x1,x2,...)            </programlisting>
+              <programlisting> 
+list(res,x1,x2,...)
+ </programlisting>
 
               <para>where the calling sequence of the function
               <literal>res</literal> is now</para>
 
-              <programlisting>r=res(t,y,ydot,x1,x2,...)             </programlisting>
+              <programlisting> 
+r=res(t,y,ydot,x1,x2,...)
+ </programlisting>
 
               <para><literal>res</literal> still returns
               <literal>r=g(t,y,ydot)</literal> as a function of
@@ -163,14 +167,14 @@
 
               <para>In C The calling sequence must be:</para>
 
-              <programlisting>
+              <programlisting> 
 void res(double *t, double y[], double yd[], double r[],
-                                          int *ires, double rpar[], int ipar[]) 
+         int *ires, double rpar[], int ipar[]) 
      </programlisting>
 
               <para>In Fortran it must be:</para>
 
-              <programlisting>
+              <programlisting> 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
@@ -207,12 +211,16 @@ integer ires,ipar(*)
 
               <para>it must be as follows</para>
 
-              <programlisting>list(jac,x1,x2,...)              </programlisting>
+              <programlisting>
+list(jac,x1,x2,...)
+ </programlisting>
 
               <para>where the calling sequence of the function
               <literal>jac</literal> is now</para>
 
-              <programlisting>r=jac(t,y,ydot,cj,x1,x2,...)    </programlisting>
+              <programlisting> 
+r=jac(t,y,ydot,cj,x1,x2,...)
+ </programlisting>
 
               <para><literal>jac</literal> still returns
               <literal>dg/dy+cj*dg/dydot</literal> as a function of
@@ -227,15 +235,18 @@ integer ires,ipar(*)
 
               <para>In C The calling sequence must be:</para>
 
-              <programlisting>  void jac(double *t, double y[], double yd[], double
-              pd[], double *cj, double rpar[], int ipar[])
-</programlisting>
+              <programlisting> 
+void jac(double *t, double y[], double yd[], double pd[],
+         double *cj, double rpar[], int ipar[])
+ </programlisting>
 
               <para>In Fortran it must be:</para>
 
-              <programlisting>  subroutine jac(t,y,yd,pd,cj,rpar,ipar)
-  double precision t, y(*),yd(*),pd(*),cj,rpar(*)
-  integer ipar(*)</programlisting>
+              <programlisting> 
+subroutine jac(t,y,yd,pd,cj,rpar,ipar)
+double precision t, y(*),yd(*),pd(*),cj,rpar(*)
+integer ipar(*)
+ </programlisting>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -263,12 +274,16 @@ integer ires,ipar(*)
 
               <para>it must be as follows</para>
 
-              <programlisting>list(surf,x1,x2,...)              </programlisting>
+              <programlisting> 
+list(surf,x1,x2,...)
+ </programlisting>
 
               <para>where the calling sequence of the function
               <literal>surf</literal> is now</para>
 
-              <programlisting>r=surf(t,y,x1,x2,...)             </programlisting>
+              <programlisting> 
+r=surf(t,y,x1,x2,...)
+ </programlisting>
             </listitem>
 
             <listitem>
@@ -279,13 +294,17 @@ integer ires,ipar(*)
 
               <para>In C The calling sequence must be:</para>
 
-              <programlisting>  void surf(int *ny, double *t, double y[], int *ng, double gout[])</programlisting>
+              <programlisting> 
+void surf(int *ny, double *t, double y[], int *ng, double gout[])
+ </programlisting>
 
               <para>In Fortran it must be:</para>
 
-              <programlisting>  subroutine surf(ny,t,y,ng,gout)
-  double precision t, y(*),gout(*)
-  integer ny,ng</programlisting>
+              <programlisting> 
+subroutine surf(ny,t,y,ng,gout)
+double precision t, y(*),gout(*)
+integer ny,ng
+ </programlisting>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -325,7 +344,7 @@ integer ires,ipar(*)
               <term>info(3)</term>
 
               <listitem>
-                <para>: <literal>2</literal> components vector which give the
+                <para><literal>2</literal> components vector which give the
                 definition <literal>[ml,mu]</literal> of band matrix computed
                 by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
                 "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>. If
@@ -401,11 +420,9 @@ integer ires,ipar(*)
 
     <para>Solution of the implicit differential equation</para>
 
-    <programlisting>
-
-    g(t,y,ydot)=0
-    y(t0)=y0  and   ydot(t0)=ydot0
-   
+    <programlisting> 
+g(t,y,ydot)=0
+y(t0)=y0  and   ydot(t0)=ydot0
     </programlisting>
 
     <para>Returns the surface crossing instants and the number of the surface
@@ -417,8 +434,7 @@ integer ires,ipar(*)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1&lt;=t&lt;=6
 //g1 = ((2*log(y)+8)/t - 5)*y 
 //g2 = log(y) - 2.2491 
@@ -430,8 +446,7 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 //(Should return nn=[2.4698972 2])
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>

@@ -81,6 +81,7 @@ genetic_algorithms \
 simulated_annealing \
 parameters \
 matio \
+atoms \
 hdf5
 
 #umfpack

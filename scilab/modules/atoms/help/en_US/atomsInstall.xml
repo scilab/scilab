@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsInstall">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>atomsInstall</refname>
+    <refpurpose>Install one or several external modules</refpurpose>
+  </refnamediv>
+  <!-- ===================================================================== -->
+  <!-- Calling Sequence -->
+  <!-- ===================================================================== -->
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  result = atomsInstall(module[,allusers]])
+	</synopsis>
+  </refsynopsisdiv>
+  <!-- ===================================================================== -->
+  <!-- Parameters -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>module</term>
+        <listitem>
+          <para>
+			Matrix of strings : External module name
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>allusers</term>
+        <listitem>
+          <para>
+			A boolean : if this parameter is equal to TRUE (%T), the external module
+			is installed for all users of the computer and is located in
+			SCI/contrib.
+			
+			If allusers is set to TRUE (%T) and the directory SCI/contrib/ is not
+			write accessible, atomsInstall returns an error.
+			
+			if this parameter is equal to FALSE (%T), the external module is only
+			installed for the current user and is loacted in SCIHOME/atoms.
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>result</term>
+        <listitem>
+          <para>
+			
+		  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Description -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Description</title>
+    <para><literal>atomsInstall</literal> install one or more external modules.
+	</para>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Examples -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+atomsSetConfig("Verbose","True");
+atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
+
+atomsInstall("toolbox_5 1.0");
+atomsInstall("toolbox_6");
+
+atomsRemove("toolbox_5");
+atomsRemove("toolbox_6");
+]]></programlisting>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- See also -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="atomsIsInstalled">atomsIsInstalled</link>
+      </member>
+      <member>
+        <link linkend="atomsGetInstalled">atomsGetInstalled</link>
+      </member>
+      <member>
+        <link linkend="atomsRemove">atomsRemove</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <!-- ===================================================================== -->
+  <!-- Authors -->
+  <!-- ===================================================================== -->
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Pierre MARECHAL - DIGITEO</member>
+    </simplelist>
+  </refsection>
+</refentry>

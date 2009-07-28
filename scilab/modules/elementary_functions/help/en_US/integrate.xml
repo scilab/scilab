@@ -104,7 +104,8 @@
     <para>computes : <subscript><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math display="block"><mml:mi mathvariant="normal">x</mml:mi>
+            <mml:math display="block">
+            <mml:mi mathvariant="normal">x</mml:mi>
             <mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
             mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
             <mml:mo>=</mml:mo> <mml:mrow> <mml:msubsup> <mml:mo>∫</mml:mo>
@@ -128,7 +129,8 @@
     <para>Where <inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math display="block"><mml:mi mathvariant="normal">f</mml:mi>
+            <mml:math display="block">
+            <mml:mi mathvariant="normal">f</mml:mi>
             <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">v</mml:mi>
             <mml:mo>)</mml:mo></mml:math>
           </imagedata>

@@ -24,8 +24,7 @@
   <refnamediv>
     <refname>SendScilabJobs</refname>
 
-    <refpurpose>Send Scilab tasks from a C/C++ code
-    (call_scilab)</refpurpose>
+    <refpurpose>Send Scilab tasks from a C/C++ code (call_scilab)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,32 +34,44 @@
   <refsection>
     <title>Description</title>
 
-    <para>This fonction is provided in call_scilab. This function send many tasks
-    which will be proccessed by the Scilab engine.</para>
-	<para>Note that the ending ";" is not mandatory at the end of a command.</para>
+    <para>This fonction is provided in call_scilab. This function send many
+    tasks which will be proccessed by the Scilab engine.</para>
+
+    <para>Note that the ending ";" is not mandatory at the end of a
+    command.</para>
   </refsection>
 
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>jobs</term>
+
         <listitem>
-          <para>an array of standard C char* containing the Scilab instructions</para>
+          <para>an array of standard C char* containing the Scilab
+          instructions</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>numberjobs</term>
+
         <listitem>
           <para>The number of the Scilab instructions</para>
         </listitem>
       </varlistentry>
-     <varlistentry>
+
+      <varlistentry>
         <term>returns</term>
+
         <listitem>
           <para>0 is all the operations are successful.</para>
+
           <para>-10 if .</para>
-          <para>&lt;0 and &gt; -10 when an error occurred in the execution.</para>
+
+          <para>&lt;0 and &gt; -10 when an error occurred in the
+          execution.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -69,33 +80,30 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple SendScilabJobs example
+    <programlisting role="example"><![CDATA[ 
+// A simple SendScilabJobs example
 
-	char* jobs[3];
-	jobs[0]="a = 1";
-	jobs[1]="b = 3";
-	jobs[2]="c = a + b;";
-	SendScilabJobs(jobs,3);
-	SendScilabJob("disp(c);"); // Will display   4.
-</programlisting>
+char* jobs[3];
+jobs[0]="a = 1";
+jobs[1]="b = 3";
+jobs[2]="c = a + b;";
+SendScilabJobs(jobs,3);
+SendScilabJob("disp(c);"); // Will display   4.
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link>,
-	<link linkend="SendScilabJob">SendScilabJob</link>,
-
-	<link linkend="compile_and_run_call_scilab">Compile and run with
-      call_scilab</link>,
-
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link>
-</member>
-
+      <member><link linkend="Scilab">Scilab</link>, <link
+      linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link>, <link linkend="MatrixManagement_callscilab">Matrix
+      Management</link>, <link linkend="BooleanManagement_callscilab">Boolean
+      Management</link>, <link linkend="ComplexManagement_callscilab">Complex
+      Management</link>, <link linkend="StringManagement_callscilab">String
+      Management</link></member>
     </simplelist>
   </refsection>
 

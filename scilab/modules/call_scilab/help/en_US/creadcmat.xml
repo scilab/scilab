@@ -24,68 +24,70 @@
   <refnamediv>
     <refname>creadcmat</refname>
 
-    <refpurpose>Read a single complex or a matrix of complex from Scilab memory using
-    call_scilab.</refpurpose>
+    <refpurpose>Read a single complex or a matrix of complex from Scilab
+    memory using call_scilab.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadcmat) (char *name, int *m, int *n, double *scimat, unsigned long name_len);
-</para>
+    <synopsis>int C2F(creadcmat)(char *name, int *m, int *n, double *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
 
-     <variablelist>
-        <varlistentry>
-          <term>name</term>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
 
-          <listitem>
-            <para>The name of the future Scilab variable</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term>m</term>
+        <listitem>
+          <para>The name of the future Scilab variable</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>Number of rows</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>m</term>
 
-        <varlistentry>
-          <term>n</term>
+        <listitem>
+          <para>Number of rows</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>Number of columns</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>n</term>
 
-        <varlistentry>
-          <term>scimat</term>
+        <listitem>
+          <para>Number of columns</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-				 <para>The actual matrix of complex (array of double). Note that it is going to be stored in Scilab columnwise and the second half of the array is used for complex values.</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>scimat</term>
 
-        <varlistentry>
-          <term>name_len</term>
+        <listitem>
+          <para>The actual matrix of complex (array of double). Note that it
+          is going to be stored in Scilab columnwise and the second half of
+          the array is used for complex values.</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>The length of the variable <emphasis>name
-            </emphasis>(fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>name_len</term>
 
-        <varlistentry>
-          <term>C2F</term>
+        <listitem>
+          <para>The length of the variable <emphasis>name </emphasis>(fortran
+          compatibility)</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>C2F is just a macro which provides to this function the
-            ability to be called from fortran</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+      <varlistentry>
+        <term>C2F</term>
+
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 
   <refsection>
@@ -101,38 +103,37 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">		/* Load the previously set variable B */
+    <programlisting role="example"><![CDATA[
+/* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
-	int rowB_ = 0, colB_ = 0, lp_ = 0;
-	int i = 0,j = 0;
+int rowB_ = 0, colB_ = 0, lp_ = 0;
+int i = 0,j = 0;
 
-	double *matrixOfComplexB = NULL;
-	char variableToBeRetrievedB[] = "B";
+double *matrixOfComplexB = NULL;
+char variableToBeRetrievedB[] = "B";
 
-	/* First, retrieve the size of the matrix */
-	C2F(cmatcptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+/* First, retrieve the size of the matrix */
+C2F(cmatcptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
-	/* Alloc the memory */
-	matrixOfComplexB = (double*)malloc((rowB_*colB_*2)*sizeof(double));
+/* Alloc the memory */
+matrixOfComplexB = (double*)malloc((rowB_*colB_*2)*sizeof(double));
 
-	/* Load the matrix */
-	C2F(creadcmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
+/* Load the matrix */
+C2F(creadcmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfComplexB,strlen(variableToBeRetrievedB) );
 
-	printf("\n");
-	printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-	for(j = 0 ; j &lt; rowB_ ; j++)
-		{
-			for(i = 0 ; i &lt; colB_ ; i++)
-				{
-					/* Display the formated matrix ... the way the user
-					 * expect */
-					printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB[(rowB_*colB_)+(i * rowB_ + j)]);
-				}
-			printf("\n"); /* New row of the matrix */
-		}
-
-
-</programlisting>
+printf("\n");
+printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+for(j = 0 ; j < rowB_ ; j++)
+ {
+  for(i = 0 ; i < colB_ ; i++)
+   {
+    /* Display the formated matrix ... the way the user
+     * expect */
+    printf("%5.2f + %5.2f.i  ",matrixOfComplexB[i * rowB_ + j],matrixOfComplexB[(rowB_*colB_)+(i * rowB_ + j)]);
+   }
+  printf("\n"); /* New row of the matrix */
+ }
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -142,7 +143,8 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritecmat">cwritecmat</link>, <link
-      linkend="ComplexManagement_callscilab">Complex Management</link></member>
+      linkend="ComplexManagement_callscilab">Complex
+      Management</link></member>
     </simplelist>
   </refsection>
 

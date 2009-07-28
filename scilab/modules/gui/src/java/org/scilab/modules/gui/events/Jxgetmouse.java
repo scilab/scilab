@@ -130,7 +130,7 @@ public final class Jxgetmouse {
 		 * If a key is pressed, only remember the key and if CTRL is pressed either.
 		 */
 		if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
-			if (Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
+			if (!Character.isJavaIdentifierStart(keyEvent.getKeyChar())) {
 				keyChar = keyEvent.getKeyChar(); 
 			} else {
 				if (keyEvent.isShiftDown()) {

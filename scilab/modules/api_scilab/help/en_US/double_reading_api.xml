@@ -28,8 +28,8 @@
     <refsection>
         <title>Description</title>
         <para>This help describes how matrix of doubles can be handled through the Scilab API.</para>
-        <synopsis>int readMatrixOfDouble(int* _piAddress _iVar, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
-        <synopsis>int readComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <synopsis>int getMatrixOfDouble(int* _piAddress _iVar, int* _piRows, int* _piCols, double** _pdblReal)</synopsis>
+        <synopsis>int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)</synopsis>
     </refsection>
     <refsection>
         <title>Parameters</title>

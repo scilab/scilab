@@ -195,9 +195,10 @@ int read_string(char *fname,unsigned long fname_len)
         <title>Scilab test script</title>
         <programlisting role="code_scilab">
             <![CDATA[
+a_ref = ["may the puffin be with you"];
 a_ref = ["sample strings manipulation with gateway API"];
-a = ["sample", "strings", "manipulation"; "with","gateway","API"];
-b = tonio(a);
+a = ["may", "the", "puffin"; "be","with","you"];
+b = read_string(a);
 if a_ref <> b then error("failed"), end
             ]]>
         </programlisting>
