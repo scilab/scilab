@@ -137,7 +137,8 @@ c=cell(x)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 a=cell(3)
 b=cell(3,1)
 c=cell([2,3,4])
@@ -164,6 +165,8 @@ b(1).entries
 
 // Dimensions of b
 b.dims
+
+
   </programlisting>
   </refsection>
 
