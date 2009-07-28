@@ -31,7 +31,7 @@
             <listitem>
               <para><literal>a=expr</literal> onde <literal>a</literal> é um
               nome de variável e <literal>expr</literal> uma expressão do
-              Scilab cuja avaliação conduz a um único resultado.</para>
+              Scilab cuja avaliação conduz a um único resultado. </para>
             </listitem>
 
             <listitem>
@@ -82,13 +82,15 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">     
-a = sin(3.2)
-M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
-[u,s] = schur(M)
-[1:10] == 4 
-1~=2
-      </programlisting>
+    <programlisting role="example">
+    
+    a = sin(3.2)
+    M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+    [u,s] = schur(M)
+    [1:10] == 4 
+    1~=2
+    
+  </programlisting>
   </refsection>
 
   <refsection>

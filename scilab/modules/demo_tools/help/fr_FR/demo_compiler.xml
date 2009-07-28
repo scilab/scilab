@@ -10,70 +10,55 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="demo_compiler" xml:lang="fr"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="demo_compiler">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>demo_compiler</refname>
-
-    <refpurpose>teste la présence d'un compilateur</refpurpose>
+    <refpurpose> teste la présence d'un compilateur </refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
-
     <synopsis>status = demo_compiler()</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Description</title>
-
-    <para>La fonction demo_compiler interroge l'ordinateur pour savoir s'il
-    possède un compilateur C. Elle renvoie un booléen corresdondant à la
-    présence ou non du compilateur.</para>
+    <para>
+			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
+			compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+			compilateur.
+		</para>
   </refsection>
-
   <refsection>
     <title>Exemples</title>
-
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 select num,
  case 0
   return;
  case 2 then 
   st = demo_compiler(); //The compiler will be used
   if (st==%t) then
-   mode(0);
-   wheel_build_and_load()
- end
+	  mode(0);
+	  wheel_build_and_load()
+	end
  case 1 then // A precomputed value
-  x=read(path+'/x.wrt',8,301);
-  wheelg=wheelgs;
-  show(x);
+	x=read(path+'/x.wrt',8,301);
+	wheelg=wheelgs;
+	show(x);
 end
- </programlisting>
+	]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Voir Aussi</title>
-
     <simplelist type="inline">
-      <member><link
-      linkend="findmsvccompiler">findmsvccompiler</link></member>
+      <member>
+        <link linkend="findmsvccompiler">findmsvccompiler</link>
+      </member>
     </simplelist>
   </refsection>
-
   <refsection>
     <title>Auteurs</title>
-
     <simplelist type="vert">
       <member>G.H</member>
     </simplelist>

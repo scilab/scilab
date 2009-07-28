@@ -44,7 +44,7 @@
 
         <listitem>
           <para>pode ser um vetor, matriz ou hipermatriz de booleanos, uma
-          matriz ou hipermatriz "padrão".</para>
+          matriz ou hipermatriz "padrão". </para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@
           <para>um inteiro fornecendo o número máximo de índices a serem
           retornados. o valor padrão é -1, que significa "todos". Esta opção
           pode ser usada por eficiência, para evitar uma busca por todos os
-          índices.</para>
+          índices. </para>
         </listitem>
       </varlistentry>
 
@@ -95,7 +95,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 A=rand(1,20);
 w=find(A&lt;0.4)
 A(w)
@@ -108,7 +109,8 @@ H=rand(4,3,5); //uma hipermatriz
 [i,j,k]=find(H&gt;0.9)  
 
 H(i(1),j(1),k(1))
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>

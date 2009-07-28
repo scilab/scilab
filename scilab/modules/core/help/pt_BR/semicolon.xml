@@ -30,14 +30,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-a=[1,2,3;4,5,6];
-a=1;b=1,c=2
+    <programlisting role="example">
+    a=[1,2,3;4,5,6];
+    a=1;b=1,c=2
     </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="comma">comma</link></member>

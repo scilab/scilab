@@ -71,8 +71,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-[m,p]=libraryinfo('corelib')
+    <programlisting role="example">[m,p]=libraryinfo('corelib')
    </programlisting>
   </refsection>
 

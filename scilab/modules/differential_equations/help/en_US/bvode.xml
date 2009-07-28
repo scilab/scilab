@@ -403,7 +403,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           component of <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
                   <mml:mo mml:stretchy="false">)</mml:mo>
@@ -427,7 +427,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           <literal>ltol(j)</literal> -th component of <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
                   <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
@@ -438,7 +438,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           <inlinemediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                    <mml:math>
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mrow>
@@ -585,7 +585,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           <para>if <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mi>v</mml:mi>
                   </mml:semantics></mml:math>
                 </imagedata>
@@ -617,7 +617,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           the column vector <literal>f=</literal> <inlinemediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                    <mml:math>
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mo mml:stretchy="false">[</mml:mo>
@@ -766,20 +766,26 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting>  subroutine fsub(x,zu,f)
-  double precision zu(*), f(*),x </programlisting>
+              <programlisting><![CDATA[
+subroutine fsub(x,zu,f)
+double precision zu(*), f(*),x 
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting>  void fsub(double *x, double *zu, double *f)</programlisting>
+              <programlisting><![CDATA[
+void fsub(double *x, double *zu, double *f)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab</para>
 
-              <programlisting>  function f=fsub(x,zu,parameters) </programlisting>
+              <programlisting><![CDATA[
+function f=fsub(x,zu,parameters)
+]]></programlisting>
 
                
             </listitem>
@@ -801,7 +807,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <mediaobject>
               <imageobject>
                 <imagedata align="center">
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mrow> <mml:mi
                   mml:fontstyle="italic">df</mml:mi> <mml:mrow> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
@@ -841,20 +847,26 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting>  subroutine dfsub(x,zu,df)
-  double precision zu(*), df(*),x </programlisting>
+              <programlisting><![CDATA[
+subroutine dfsub(x,zu,df)
+double precision zu(*), df(*),x
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting>  void dfsub(double *x, double *zu, double *df)</programlisting>
+              <programlisting><![CDATA[
+void dfsub(double *x, double *zu, double *df)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab</para>
 
-              <programlisting>  function df=dfsub(x,zu,parameters) </programlisting>
+              <programlisting><![CDATA[
+function df=dfsub(x,zu,parameters)
+]]></programlisting>
 
                
             </listitem>
@@ -870,7 +882,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
           <inlinemediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                    <mml:math>
                       <mml:semantics>
                         <mml:mrow>
                           <mml:msub>
@@ -929,7 +941,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             </inlinemediaobject> given z=<inlinemediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                    <mml:math>
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mi>z</mml:mi>
@@ -974,9 +986,11 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting>  subroutine gsub(i,zu,g)
-  double precision zu(*), g(*)
-  integer i</programlisting>
+              <programlisting><![CDATA[
+subroutine gsub(i,zu,g)
+double precision zu(*), g(*)
+integer i
+]]></programlisting>
             </listitem>
 
              
@@ -984,14 +998,20 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting>  void gsub(int *i, double *zu, double *g)</programlisting>
+              <programlisting><![CDATA[
+void gsub(int *i, double *zu, double *g)
+]]></programlisting>
             </listitem>
 
              
-
-            <listitem><para>And in Scilab</para><programlisting>  function g=gsub(i,zu,parameters) </programlisting>
+            <listitem>
+              <para>And in Scilab</para>
+              <programlisting><![CDATA[
+function g=gsub(i,zu,parameters)
+]]></programlisting>
             <para>Note that in contrast to <literal>f</literal> in <literal>fsub</literal>, here only one value per call is returned in <literal>g</literal>.</para>
             </listitem>
+
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -1010,7 +1030,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <mediaobject>
               <imageobject>
                 <imagedata align="center">
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mrow> <mml:mi
                   mml:fontstyle="italic">dg</mml:mi> <mml:mrow> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
@@ -1050,20 +1070,26 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting>  subroutine dgsub(i,zu,dg)
-  double precision zu(*), dg(*)</programlisting>
+              <programlisting><![CDATA[
+subroutine dgsub(i,zu,dg)
+double precision zu(*), dg(*)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting>  void dgsub(int *i, double *zu, double *dg)</programlisting>
+              <programlisting><![CDATA[
+void dgsub(int *i, double *zu, double *dg)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab </para>
 
-              <programlisting>  function dg=dgsub(i,zu,parameters) </programlisting>
+              <programlisting><![CDATA[
+function dg=dgsub(i,zu,parameters)
+]]></programlisting>
 
                
             </listitem>
@@ -1089,20 +1115,26 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             <listitem>
               <para>In Fortran the calling sequence must be:</para>
 
-              <programlisting>  subroutine guess(x,zu,dmval)
-  double precision x,z(*), dmval(*)</programlisting>
+              <programlisting><![CDATA[
+subroutine guess(x,zu,dmval)
+double precision x,z(*), dmval(*)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>In C the function prototype must be</para>
 
-              <programlisting>  void fsub(double *x, double *zu, double *dmval)</programlisting>
+              <programlisting><![CDATA[
+void fsub(double *x, double *zu, double *dmval)
+]]></programlisting>
             </listitem>
 
             <listitem>
               <para>And in Scilab </para>
 
-              <programlisting>  function [dmval,zu]=fsub(x,parameters) </programlisting>
+              <programlisting><![CDATA[
+function [dmval,zu]=fsub(x,parameters)
+]]></programlisting>
 
                
             </listitem>
@@ -1154,7 +1186,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
       <mediaobject>
         <imageobject>
           <imagedata align="left">
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+            <mml:math>
               <mml:semantics>
                 <mml:mrow>
                   <mml:mo mml:stretchy="true">{</mml:mo>
@@ -1369,7 +1401,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
     <mediaobject>
         <imageobject>
           <imagedata align="left">
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+            <mml:math>
               <mml:semantics>
                 <mml:mrow>
                   <mml:mo mml:stretchy="true">{</mml:mo>
@@ -1685,7 +1717,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
         <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                <mml:math>
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mfrac>
@@ -1839,7 +1871,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
         <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                <mml:math>
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -1994,7 +2026,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
         <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                <mml:math>
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mi>u</mml:mi>
@@ -2131,7 +2163,7 @@ zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
             </imageobject>
         </mediaobject>
 
-        <programlisting role="example"> 
+        <programlisting role="example"><![CDATA[ 
 N=1;// just one differential equation
 m=4;//a fourth order  differential equation
 M=sum(m);
@@ -2207,18 +2239,18 @@ zu([1,3],[1 $]) //should be zero
 plot(xpoints,zu(1,:)) // the evolution of the solution u
 zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
 norm(zu-zu1)
-	</programlisting>
+	]]></programlisting>
       </listitem>
 
       <listitem>
         <para>Same problem using <literal>bvodeS</literal> and an initial guess </para>
-        <programlisting role="example"> 
+        <programlisting role="example"><![CDATA[ 
 function [z,lhS]=zstart(x)
   z=zeros(5,1);z(5)=1;
   lhS=[0;1];
 endfunction
 zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
-	  </programlisting>
+	  ]]></programlisting>
 
          
       </listitem>
@@ -2234,7 +2266,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
         <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                <mml:math>
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -2475,7 +2507,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
         <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                <mml:math>
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -2536,7 +2568,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
 
         <para>for <literal>x=0</literal> and <literal>x=1</literal></para>
 
-        <programlisting role="example"> 
+        <programlisting role="example"><![CDATA[ 
 N=2;// two differential equations
 m=[2 2];//each differential equation is of second  order
 M=sum(m);
@@ -2632,13 +2664,13 @@ ipar(9)=1;//iguess
 zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
         fsub2,dfsub2,gsub2,dgsub2,guess2);
 scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and psi
-</programlisting>
+]]></programlisting>
       </listitem>
 
       <listitem>
         <para>An eigenvalue problem:</para>
 
-        <programlisting role="example">
+        <programlisting role="example"><![CDATA[
 // y''(x)=-la*y(x)
 // BV: y(0)=y'(0); y(1)=0
 // Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
@@ -2682,13 +2714,13 @@ clf()
 plot(x,[z(1,:)' z(2,:)']) 
 xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
 legend(['y(x)';'y''(x)'])
-      </programlisting>
+      ]]></programlisting>
       </listitem>
 
       <listitem>
          <para>A boundary value problem with more than one solution.</para>
 
-        <programlisting role="example">
+        <programlisting role="example"><![CDATA[
 // DE: y''(x)=-exp(y(x))
 // BV: y(0)=0; y(1)=0
 // This boundary value problem has more than one solution.
@@ -2749,7 +2781,7 @@ xtitle('Two different solutions','x',' ')
 subplot(2,1,2)
 plot2d(x,z1(1,:),style=[5])
 xtitle(' ','x',' ')
-      </programlisting>
+      ]]></programlisting>
 
          
       </listitem>
@@ -2757,7 +2789,7 @@ xtitle(' ','x',' ')
       <listitem>
         <para>A multi-point boundary value problem.</para>
 
-        <programlisting role="example">
+        <programlisting role="example"><![CDATA[
 // DE y'''(x)=1
 // z=[y(x);y'(x);y''(x)]
 // BV: y(-1)=2 y(1)=2
@@ -2788,7 +2820,7 @@ y=x.^3/6+x.^2-x./6+1
 endfunction
 
 disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
-      </programlisting>
+      ]]></programlisting>
       </listitem>
     </itemizedlist>
   </refsection>

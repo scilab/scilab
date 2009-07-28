@@ -62,7 +62,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+            <mml:math>
             <mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
             mml:stretchy="false">∫</mml:mo> <mml:mn>0</mml:mn>
             <mml:mi>x</mml:mi> </mml:munderover> <mml:mfrac> <mml:mi

@@ -49,7 +49,7 @@
           <para><inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:math>
                   <mml:semantics> <mml:mfenced mml:close=""
                   mml:open=""> <mml:mtable> <mml:mtr> <mml:mtd> <mml:msub>
                   <mml:mi>R</mml:mi> <mml:mn>0</mml:mn> </mml:msub> </mml:mtd>
@@ -100,7 +100,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+            <mml:math>
             <mml:semantics> <mml:mrow> <mml:mrow> <mml:mfenced
             mml:close="" mml:open=""> <mml:mtable> <mml:mtr> <mml:mtd>
             <mml:mi>I</mml:mi> </mml:mtd> <mml:mtd> <mml:mrow> <mml:mo

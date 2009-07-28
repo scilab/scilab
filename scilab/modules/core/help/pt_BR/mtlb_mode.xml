@@ -17,14 +17,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>mmode=mtlb_mode()
 mtlb_mode(mmode)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
@@ -41,19 +41,23 @@ mtlb_mode(mmode)</synopsis>
     <title>Descrição</title>
 
     <para>Adições e subtrações do Scilab e do Matlab funcionam de modo
-    diferente quando usadas com matrizes vazias:</para>
+    diferente quando usadas com matrizes vazias: </para>
 
     <variablelist>
       <varlistentry>
         <term>Scilab</term>
 
         <listitem>
-          <programlisting> 
+          <para>:</para>
+
+          <programlisting>
+
 a+[] --&gt;a
 a-[] --&gt;a
 []+a --&gt;a
 []-a --&gt;-a
-         </programlisting>
+   
+        </programlisting>
         </listitem>
       </varlistentry>
 
@@ -61,12 +65,14 @@ a-[] --&gt;a
         <term>Matlab</term>
 
         <listitem>
-          <programlisting> 
+          <programlisting>
+
 a+[] --&gt;[]
 a-[] --&gt;[]
 []+a --&gt;[]
 []-a --&gt;[]
-         </programlisting>
+   
+        </programlisting>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -80,7 +86,7 @@ a-[] --&gt;[]
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="empty">empty</link></member>

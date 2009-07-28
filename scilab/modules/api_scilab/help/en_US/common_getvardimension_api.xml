@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -17,64 +17,56 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv>
-    <refname>Variable Dimension (Scilab gateway)</refname>
 
-    <refpurpose>How to get dimention of a variable stored as
-    matrix.</refpurpose>
-  </refnamediv>
+    <refnamediv>
+        <refname>Variable Dimension (Scilab gateway)</refname>
 
-  <refsection>
-    <title>Description</title>
-
-    <para>This help describes how to get dimention of a variable stored as
-    matrix.</para>
-
-    <synopsis>int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_piAddress</term>
-
-        <listitem>
-          <para>Address of the variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piRows</term>
-
-        <listitem>
-          <para>Return number of rows.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piCols</term>
-
-        <listitem>
-          <para>Return number of columns.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
-
-    <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
-
-    <!--Lib_name: commom_function-->
-
-    <!--Func_list: commom_function-->
-
-    <title>Gateway Source</title>
-
-    <programlisting role="code_gateway">            
+        <refpurpose>
+            How to get dimention of a variable stored as matrix.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get dimention of a variable stored as matrix.</para>
+        <synopsis>int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)</synopsis>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
+        <!--Lib_name: commom_function-->
+        <!--Func_list: commom_function-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
 int printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
@@ -83,7 +75,7 @@ int commom_function(char *fname,unsigned long fname_len)
     int iRet        = 0;
     int *piAddr1    = NULL;
 
-    for(i = 0 ; i &lt; Rhs ; i++)
+    for(i = 0 ; i < Rhs ; i++)
     {
         iRet = printf_info(i + 1);
         if(iRet)
@@ -97,7 +89,7 @@ int commom_function(char *fname,unsigned long fname_len)
     {
         //1 for true, 0 for false
         iRet = !iRet;
-        createMatrixOfBoolean(1, 1, 1, &amp;iRet);
+        createMatrixOfBoolean(1, 1, 1, &iRet);
         //assign allocated variables to Lhs position
         LhsVar(1) = 1;
     }
@@ -120,7 +112,7 @@ int printf_info(int _iVar)
     int iItem       = 0;
     int iComplex    = 0;
 
-    iRet = getVarAddressFromPosition(_iVar, &amp;piAddr);
+    iRet = getVarAddressFromPosition(_iVar, &piAddr);
     if(iRet)
     {
         return 1;
@@ -153,9 +145,9 @@ int printf_info(int _iVar)
             char* pstSign       = pstSigned;
 
             int iPrec           = 0;
-            iRet = getMatrixOfIntegerPrecision(piAddr, &amp;iPrec);
+            iRet = getMatrixOfIntegerPrecision(piAddr, &iPrec);
 
-            if(iPrec &gt; 10)
+            if(iPrec > 10)
             {
                 pstSign = pstUnsigned;
             }
@@ -188,23 +180,24 @@ int printf_info(int _iVar)
     sciprint("\tDimensions: ");
     if(isVarMatrixType(piAddr))
     {
-        getVarDimension(piAddr, &amp;iRows, &amp;iCols);
+        getVarDimension(piAddr, &iRows, &iCols);
         sciprint("%d x %d", iRows, iCols);
     }
     else
     {
-        getListItemNumber(piAddr, &amp;iItem);
+        getListItemNumber(piAddr, &iItem);
         sciprint("%d", iItem);
     }
     return 0;
 }
+        ]]>
         </programlisting>
-  </refsection>
+    </refsection>
 
-  <refsection>
-    <title>Scilab test script</title>
-
-    <programlisting role="code_scilab">            
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -212,6 +205,7 @@ l4 = uint16([1000,2000,3000]);
 l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 commom_function(l(1:$))
-            </programlisting>
-  </refsection>
+            ]]>
+        </programlisting>
+    </refsection>
 </refentry>

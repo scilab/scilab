@@ -11,7 +11,7 @@
  */
 extern "C" {
 #include "stack-c.h"
-#include "gw_fileio.h"
+#include "gw_hdf5.h"
 #include "Scierror.h"
 #include "localization.h"
 }

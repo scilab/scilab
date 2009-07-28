@@ -29,12 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-<<<<<<< HEAD:scilab/modules/call_scilab/help/en_US/cwritecmat.xml
-    <para>int C2F(cwritecmat) (char *name, int *m, int *n, double *mat,
-    unsigned long name_len);</para>
-=======
     <synopsis>int C2F(cwritecmat)  (char *name, int *m, int *n, double *mat, unsigned long name_len);</synopsis>
->>>>>>> origin/5.1:scilab/modules/call_scilab/help/en_US/cwritecmat.xml
   </refsynopsisdiv>
 
   <refsection>
@@ -108,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // This example shows how to write a Scilab matrix of complex in Scilab engine
 /* 
  * Write a matrix into Scilab
@@ -121,12 +116,12 @@ double B[]={1,3,4,9,2,8,3,2,1,0,-1,0,1/2,42,0,0};   /* Declare the matrix */
 int rowB=2, colB=4; /* Size of the matrix */
 char variableNameB[] = "B";
 
-C2F(cwritecmat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+C2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 
 printf("\n");
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display B */
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

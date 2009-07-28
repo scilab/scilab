@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
@@ -38,19 +38,18 @@ k=mode()</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>Utilisé <emphasis
-    role="bold"><literal>uniquement</literal></emphasis> dans un script ou une
+    <para>Utilisé <emphasis role="bold"><literal>uniquement</literal></emphasis> dans un script ou une
     fonction, <literal>mode(k)</literal> permet de choisir le mode d'affichage
-    utilisé pendant l'exécution, suivant la valeur de <literal>k</literal>
-    :</para>
+    utilisé pendant l'exécution, suivant la valeur de
+    <literal>k</literal> :</para>
 
     <variablelist>
       <varlistentry>
         <term>k = 0</term>
 
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées (voir <link
-          linkend="semicolon">semicolon</link> ou <link
+          <para>les nouvelles valeurs des variables sont affichées (voir
+          <link linkend="semicolon">semicolon</link> ou <link
           linkend="comma">comma</link>).</para>
         </listitem>
       </varlistentry>
@@ -59,8 +58,8 @@ k=mode()</synopsis>
         <term>k = -1</term>
 
         <listitem>
-          <para>l'exécution est silencieuse (rien n'est affiché : mode par
-          défaut pour les fonctions)</para>
+          <para>l'exécution est silencieuse (rien n'est affiché :
+          mode par défaut pour les fonctions)</para>
         </listitem>
       </varlistentry>
 
@@ -69,9 +68,7 @@ k=mode()</synopsis>
 
         <listitem>
           <para>valeur par défaut retourné au prompt de scilab.</para>
-
-          <para>veuillez noter que ce mode ne doit pas etre utilisé au prompt
-          mais seulement via un script ou une fonction.</para>
+          <para>veuillez noter que ce mode ne doit pas etre utilisé au prompt mais seulement via un script ou une fonction.</para>
         </listitem>
       </varlistentry>
 
@@ -79,9 +76,10 @@ k=mode()</synopsis>
         <term>k = 1 ou k = 3</term>
 
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque
-          ligne de commande est affichée et précédée de l'invite de commande
-          (mode par défaut pour les scripts lancés par "exec")</para>
+          <para>les nouvelles valeurs des variables sont affichées,
+          chaque ligne de commande est affichée et
+          précédée de l'invite de commande (mode par
+          défaut pour les scripts lancés par "exec")</para>
         </listitem>
       </varlistentry>
 
@@ -89,39 +87,42 @@ k=mode()</synopsis>
         <term>k = 4 ou k = 7</term>
 
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque
-          ligne de commande est affichée et précédée de l'invite de commande.
-          L'exécution est interrompue après chaque ligne et reprend après un
+          <para>les nouvelles valeurs des variables sont affichées,
+          chaque ligne de commande est affichée et
+          précédée de l'invite de commande. L'exécution
+          est interrompue après chaque ligne et reprend après un
           appui sur la touche entrée/return.</para>
 
-          <para>Si la touche entrée/return et précédée du caractère "p",
-          l'éxecution est suspendue (voir <link
+          <para>Si la touche entrée/return et précédée du
+          caractère "p", l'éxecution est suspendue (voir <link
           linkend="pause">pause</link>).</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>k &gt; 7</term>
+        <term>k > 7</term>
 
         <listitem>
-          <para>mode défini par l'utilisateur. Si vous définissez votre propre
-          mode, il est recommandé d'utiliser des valeurs &gt; 100.</para>
+          <para>mode défini par l'utilisateur. Si vous définissez
+          votre propre mode, il est recommandé d'utiliser des valeurs
+          > 100.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>L'affichage est supprimé dans les fonctions compilées (voir getf ou
-    comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux
-    ("-1").</para>
-
-    <para>Les fonctions incluses dans une librairie de fonctions scilab sont
-    executés avec le mode "-1".</para>
+    <para>L'affichage est supprimé dans les fonctions compilées
+    (voir getf ou comp). Par défaut les fonctions Scilab sont
+    éxécutées en mode silencieux ("-1").</para>
+    
+    <para>Les fonctions incluses dans une librairie de fonctions scilab sont executés avec le mode "-1".</para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="exemple"> 
+    <programlisting role="exemple">
+// copier - coller ces lignes dans scilab
+
 function example_mode( level_mode )
  mode(level_mode)
  a = 3
@@ -138,7 +139,9 @@ example_mode(3)
 example_mode(7)
 
 mode(2)
-   </programlisting>
+
+
+  </programlisting>
   </refsection>
 
   <refsection>
@@ -157,3 +160,4 @@ mode(2)
     </simplelist>
   </refsection>
 </refentry>
+

@@ -31,7 +31,7 @@ y=matrix(v,[sizes])</synopsis>
         <term>v</term>
 
         <listitem>
-          <para>vetor, matriz ou hipermatriz</para>
+          <para>vetor, matriz ou hipermatriz </para>
         </listitem>
       </varlistentry>
 
@@ -39,7 +39,7 @@ y=matrix(v,[sizes])</synopsis>
         <term>n,m</term>
 
         <listitem>
-          <para>inteiros</para>
+          <para>inteiros </para>
         </listitem>
       </varlistentry>
 
@@ -47,7 +47,7 @@ y=matrix(v,[sizes])</synopsis>
         <term>sizes</term>
 
         <listitem>
-          <para>vetor de inteiros</para>
+          <para>vetor de inteiros </para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@ y=matrix(v,[sizes])</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>vetor, matriz ou hipermatriz</para>
+          <para>vetor, matriz ou hipermatriz </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -87,16 +87,18 @@ y=matrix(v,[sizes])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 a=[1 2 3;4 5 6]
 matrix(a,1,6)
 matrix(a,1,-1)
 matrix(a,3,2)
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="matrices">matrices</link></member>

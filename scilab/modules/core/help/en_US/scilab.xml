@@ -216,7 +216,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 # Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"

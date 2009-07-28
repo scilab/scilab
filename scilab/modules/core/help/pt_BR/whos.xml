@@ -65,16 +65,16 @@ whos -name nam</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 lines(0) 
 whos()
 whos -type boolean
 whos -name %
- </programlisting>
+</programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="who">who</link></member>
