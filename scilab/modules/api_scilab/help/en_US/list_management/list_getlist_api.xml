@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -10,82 +10,73 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="list_getlist_API" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="list_getlist_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv>
-    <refname>Get child (list type) (Scilab gateway)</refname>
 
-    <refpurpose>How to get the address of a list in a list.</refpurpose>
-  </refnamediv>
+    <refnamediv>
+        <refname>Get child (list type) (Scilab gateway)</refname>
 
-  <refsection>
-    <title>Description</title>
-
-    <para>This help describes how to get the address of a list in a
-    list.</para>
-
-    <synopsis>int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-
-    <synopsis>int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-
-    <synopsis>int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_iVar</term>
-
-        <listitem>
-          <para>Position of the list in the function call.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piParent</term>
-
-        <listitem>
-          <para>Address of the parent item.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iItemPos</term>
-
-        <listitem>
-          <para>Position in parent list.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piAddress</term>
-
-        <listitem>
-          <para>Return address of the list.</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <!--File_gateway: SCI/modules/core/tests/unit_tests/list_getlist_api.c-->
-
-    <!--File_scilab: SCI/modules/core/tests/unit_tests/list_getlist_api.tst-->
-
-    <!--Lib_name: list_getlist_api-->
-
-    <!--Func_list: list_getlist-->
-
-    <title>Gateway Source</title>
-
-    <programlisting role="code_gateway">            
+        <refpurpose>
+            How to get the address of a list in a list.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get the address of a list in a list.</para>
+        <synopsis>int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
+        <synopsis>int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
+        <synopsis>int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position of the list in the function call.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position in parent list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Return address of the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/list_getlist_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/list_getlist_api.tst-->
+        <!--Lib_name: list_getlist_api-->
+        <!--Func_list: list_getlist-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
 int list_getlist(char *fname,unsigned long fname_len)
 {
     int iRet        = 0;
@@ -109,20 +100,20 @@ int list_getlist(char *fname,unsigned long fname_len)
     //      value2 = [1,2,3]
     //      value3 = int32([1,2,3]))
 
-    iRet = getVarAddressFromPosition(1, &amp;piAddr);
+    iRet = getVarAddressFromPosition(1, &piAddr);
     if(iRet)
     {
         return 1;
     }
 
     //get MList info
-    iRet = getMListInList(1, piAddr, 1, &amp;piAddrM);
+    iRet = getMListInList(1, piAddr, 1, &piAddrM);
     if(iRet)
     {
         return 1;
     }
 
-    iRet = getListItemNumber(piAddrM, &amp;iItemM);
+    iRet = getListItemNumber(piAddrM, &iItemM);
     if(iRet)
     {
         return 1;
@@ -131,13 +122,13 @@ int list_getlist(char *fname,unsigned long fname_len)
 
 
     //get TList info
-    iRet = getTListInList(1, piAddr, 2, &amp;piAddrT);
+    iRet = getTListInList(1, piAddr, 2, &piAddrT);
     if(iRet)
     {
         return 1;
     }
 
-    iRet = getListItemNumber(piAddrT, &amp;iItemT);
+    iRet = getListItemNumber(piAddrT, &iItemT);
     if(iRet)
     {
         return 1;
@@ -148,17 +139,19 @@ int list_getlist(char *fname,unsigned long fname_len)
     LhsVar(1) = 0;
     return 0;
 }
-                </programlisting>
-  </refsection>
+        ]]>
+        </programlisting>
+    </refsection>
 
-  <refsection>
-    <title>Scilab test script</title>
-
-    <programlisting role="code_scilab">            
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
 M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
 T=tlist(['V','value1','value2','value3'],['a','b','c'], [1,2,3], int32([1,2,3]));
 L=list(M,T);
 list_getlist(L)
-                    </programlisting>
-  </refsection>
+            ]]>
+        </programlisting>
+    </refsection>
 </refentry>

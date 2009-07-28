@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -17,177 +17,151 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv>
-    <refname>Integer writing (Scilab gateway)</refname>
 
-    <refpurpose>How to add matrix of integer in a list.</refpurpose>
-  </refnamediv>
+    <refnamediv>
+        <refname>Integer writing (Scilab gateway)</refname>
 
-  <refsection>
-    <title>Description</title>
-
-    <para>This help describes how to add matrix of integer in a list.</para>
-
-    <para>There are 2 types of functions which can be used to write in the
-    memory of Scilab.</para>
-  </refsection>
-
-  <refsection>
-    <title>Create from existing data</title>
-
-    <synopsis>int createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)</synopsis>
-
-    <synopsis>int createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)</synopsis>
-
-    <synopsis>int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)</synopsis>
-
-    <synopsis>int createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)</synopsis>
-
-    <synopsis>int createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)</synopsis>
-
-    <synopsis>int createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_iVar</term>
-
-        <listitem>
-          <para>Position in the Scilab memory where you want to put the
-          variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piParent</term>
-
-        <listitem>
-          <para>Address of the parent of the new item.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iItemPos</term>
-
-        <listitem>
-          <para>Position of the new item in the list.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iRows</term>
-
-        <listitem>
-          <para>Number of rows of the new variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iCols</term>
-
-        <listitem>
-          <para>Number of columns of the new variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16,
-        _puiData32</term>
-
-        <listitem>
-          <para>Address of data array (size: _iCols * _iRows)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <title>Write directly in Scilab memory</title>
-
-    <synopsis>int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)</synopsis>
-
-    <synopsis>int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)</synopsis>
-
-    <synopsis>int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)</synopsis>
-
-    <synopsis>int allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)</synopsis>
-
-    <synopsis>int allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)</synopsis>
-
-    <synopsis>int allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_iVar</term>
-
-        <listitem>
-          <para>Position in the Scilab memory where you want to put the
-          variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piParent</term>
-
-        <listitem>
-          <para>Address of the parent of the new item.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iItemPos</term>
-
-        <listitem>
-          <para>Position of the new item in the list.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iRows</term>
-
-        <listitem>
-          <para>Number of rows of the new variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iCols</term>
-
-        <listitem>
-          <para>Number of columns of the new variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16,
-        _puiData32</term>
-
-        <listitem>
-          <para>Return address of data array (size: _iCols * _iRows)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <!--File_gateway: SCI/modules/core/tests/unit_tests/list_createlist_api.c-->
-
-    <!--File_scilab: SCI/modules/core/tests/unit_tests/list_createlist_api.tst-->
-
-    <!--Lib_name: list_createlist-->
-
-    <!--Func_list: list_createlist-->
-
-    <title>Gateway Source</title>
-
-    <programlisting role="code_gateway">            
+        <refpurpose>
+            How to add matrix of integer in a list.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to add matrix of integer in a list.</para>
+        <para>There are 2 types of functions which can be used to write in the memory of Scilab.</para>
+    </refsection>
+    <refsection>
+        <title>Create from existing data</title>
+        <synopsis>int createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)</synopsis>
+        <synopsis>int createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)</synopsis>
+        <synopsis>int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)</synopsis>
+        <synopsis>int createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)</synopsis>
+        <synopsis>int createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)</synopsis>
+        <synopsis>int createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)</synopsis>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent of the new item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position of the new item in the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Write directly in Scilab memory</title>
+        <synopsis>int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)</synopsis>
+        <synopsis>int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)</synopsis>
+        <synopsis>int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)</synopsis>
+        <synopsis>int allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)</synopsis>
+        <synopsis>int allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)</synopsis>
+        <synopsis>int allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)</synopsis>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent of the new item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position of the new item in the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Number of columns of the new variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Return address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/list_createlist_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/list_createlist_api.tst-->
+        <!--Lib_name: list_createlist-->
+        <!--Func_list: list_createlist-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
 int list_createlist(char *fname,unsigned long fname_len)
 {
     int iRet                = 0;
@@ -214,7 +188,7 @@ int list_createlist(char *fname,unsigned long fname_len)
     double* pdblDataPtr     = NULL;
     
     
-    iRet = createList(1, 8, &amp;piAddr);
+    iRet = createList(1, 8, &piAddr);
     if(iRet)
     {
         return 1;
@@ -263,7 +237,7 @@ int list_createlist(char *fname,unsigned long fname_len)
     }
 
     //add list in list
-    iRet = createListInList(Rhs + 1, piAddr, 8, 3, &amp;piChild);
+    iRet = createListInList(Rhs + 1, piAddr, 8, 3, &piChild);
     if(iRet)
     {
         return 1;
@@ -296,23 +270,26 @@ int list_createlist(char *fname,unsigned long fname_len)
     LhsVar(1) = 1;
     return 0;
 }
-                </programlisting>
-  </refsection>
+        ]]>
+        </programlisting>
+    </refsection>
 
-  <refsection>
-    <title>Scilab test script</title>
-
-    <programlisting role="code_scilab">            
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
 
 l = list_createlist();
-if size(l) &lt;&gt; size_ref then error("failed"), end
+if size(l) <> size_ref then error("failed"), end
 for i = 1 : size_ref
-    if typeof(l(i)) &lt;&gt; type_ref(i) then error("failed"), end
-    if size(l(i)) &lt;&gt; dim_ref(i) then error("failed"), end
+    if typeof(l(i)) <> type_ref(i) then error("failed"), end
+    if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
-                    </programlisting>
-  </refsection>
+
+            ]]>
+        </programlisting>
+    </refsection>
 </refentry>
