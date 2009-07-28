@@ -77,7 +77,7 @@
  <inlinemediaobject>
  <imageobject>
  <imagedata>
- <math:math>
+ <math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
  <math:semantics>
   <math:mrow>
    <math:msub>
