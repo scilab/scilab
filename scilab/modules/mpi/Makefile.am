@@ -55,7 +55,11 @@ src/c/s_mpi_send.c
 # Includes need for the compilation
 # MPI code needs to be compile with the openmpi 'compiler' (it is a wrapper)
 CC = $(OPENMPI_CC)
-libscimpi_la_CFLAGS=  -Iincludes/ -Isrc/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -DDEBUG
+libscimpi_la_CFLAGS=  -Iincludes/ \
+	-Isrc/c/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-DDEBUG
 libscimpi_la_LDFLAGS = $(OPENMPI_LIBS)
 # $(LAMPI_LDFLAGS)
 
@@ -70,6 +74,7 @@ libscimpi_la_SOURCES =   $(GATEWAY_C_SOURCES)
 
 ## Libraries necessary
 libscimpi_la_LIBADD = \
+	$(top_builddir)/modules/localization/libscilocalization.la \
 	$(top_builddir)/modules/core/libscicore.la
 #	$(top_builddir)/libs/MALLOC/libscimalloc.la
 
