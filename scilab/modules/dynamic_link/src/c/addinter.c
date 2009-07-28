@@ -208,7 +208,10 @@ void C2F(userlk)(int *k)
 	int imes = 9999;
 	if ( k1 >= LastInterf || k1 < 0 ) 
 	{
-		if (getWarningMode()) sciprint(_(" results may be inaccurate. rcond = %s\n"),k1);
+		if (getWarningMode()) 
+		{
+			Scierror(999,_("Error: Not a valid internal routine number %d.\n"), *k);
+		}
 		C2F(error)(&imes);
 		return;
 	}
