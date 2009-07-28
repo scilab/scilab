@@ -13,7 +13,7 @@
  * SCILAB function : mpi_send, fin = 1
  ******************************************/
 #define TAG 0
-int C2F(sci_mpi_send) (char *fname,unsigned long fname_len)
+int sci_mpi_send(char *fname,unsigned long fname_len)
 {
 	int nopt,iopos,m1,n1,l1,m2,n2,l2,m3,n3,m4,n4,l4,un=1,l5;
 	static rhs_opts opts[]={
