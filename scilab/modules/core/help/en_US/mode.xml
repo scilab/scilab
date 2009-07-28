@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
@@ -115,7 +115,7 @@ k = mode()</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 // copy - paste in scilab
 
 function example_mode( level_mode )
@@ -134,6 +134,7 @@ example_mode(3)
 example_mode(7)
 
 mode(2)
+
   </programlisting>
   </refsection>
 

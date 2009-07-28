@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1251"?>
 <refentry version="5.0-subset Scilab" xml:id="format" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -57,9 +57,9 @@ format(m)</synopsis>
         <term>m</term>
 
         <listitem>
-          <para>a vector to set new format</para>
+          <para>a vector to set new format </para>
 
-          <para>m(1) number of digits</para>
+          <para>m(1) number of digits </para>
 
           <para>m(2) type format : 0 for 'e' and 1 for 'v'</para>
         </listitem>
@@ -105,7 +105,8 @@ format(m)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 x=rand(1,5);
 format('v',10);x
 format(20);x
@@ -117,7 +118,8 @@ format('e',10);x
 format('v',10);x
 
 format("v")
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
