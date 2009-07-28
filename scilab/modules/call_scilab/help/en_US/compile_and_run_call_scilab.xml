@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 # A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
 PATH_SCILAB = /path/to/scilab/sources.
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
@@ -111,7 +111,7 @@ PATH_TO_LIB_CALL_SCILAB = $(PATH_SCILAB)/modules/call_scilab/.libs/
 all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
 	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -223,7 +223,7 @@ all: simple_call_scilab.c
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 # Serie of declarations to execute my binary
 $ export LD_LIBRARY_PATH=/home/sylvestre/dev/git/scilab.5.1/scilab/modules/.libs/:/home/sylvestre/dev/git/scilab.5.1/scilab/modules/call_scilab/.libs/
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/server/
@@ -233,7 +233,7 @@ $ ./myExample
 !sample  for the help  !
  
   - 42.    42.  
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -59,14 +59,15 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>iscell(x)</literal> returns true if x is a cell array and
-    false otherwise.</para>
+    <para><literal>iscell(x)</literal> returns true if x is a cell array
+    and false otherwise.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 iscell(1)
 
 iscell(cell())
@@ -75,6 +76,7 @@ c = cell(1,2);
 c(1).entries="Scilab";
 c(2).entries=datenum();
 iscell(c)
+
   </programlisting>
   </refsection>
 

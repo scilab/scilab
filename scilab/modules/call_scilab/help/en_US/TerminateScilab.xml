@@ -73,13 +73,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple TerminateScilab example
 if ( TerminateScilab(NULL) == FALSE ) {
  fprintf(stderr,"Error while calling TerminateScilab\n");
  return -2;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

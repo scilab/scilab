@@ -66,11 +66,9 @@ end</synopsis>
     <para>Note also that <literal>try-catch</literal> is more or less similar
     to:</para>
 
-    <programlisting> 
-if execstr("&lt;try instructions&gt;","errcatch")&lt;&gt;0 then
+    <programlisting>if execstr("&lt;try instructions&gt;","errcatch")&lt;&gt;0 then
   &lt;catch instructions&gt;
-end
- </programlisting>
+end</programlisting>
 
     <para>It uses the same internal mechanism as <link
     linkend="errcatch">errcatch</link>. It is the reason why <link
@@ -88,8 +86,7 @@ end
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-// example 1
+    <programlisting role="example">// example 1
 file_path=TMPDIR+'/wrong'
 try
   u=mopen(file_path,'r')
@@ -124,7 +121,7 @@ nestedtry(1,1)
 nestedtry("a string",1)
 nestedtry(1,"a string")
 nestedtry("a string","a string")
- </programlisting>
+</programlisting>
   </refsection>
 
   <refsection>

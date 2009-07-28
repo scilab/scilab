@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>a==b
 a~=b ou a&lt;&gt;b
@@ -28,7 +28,7 @@ a&gt;=b</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
@@ -62,7 +62,7 @@ a&gt;=b</synopsis>
   <refsection>
     <title>Descrição</title>
 
-    <para>Duas classes de operadores devem ser distinguidas:</para>
+    <para> Duas classes de operadores devem ser distinguidas:</para>
 
     <variablelist>
       <varlistentry>
@@ -71,7 +71,7 @@ a&gt;=b</synopsis>
         <listitem>
           <para><literal>a==b</literal>, <literal>a~=b</literal> (ou de modo
           equivalente <literal>a&lt;&gt;b</literal>). Estes operadores se
-          aplicam a quaisquer tipos de operandos.</para>
+          aplicam a quaisquer tipos de operandos. </para>
         </listitem>
       </varlistentry>
 
@@ -104,7 +104,7 @@ a&gt;=b</synopsis>
               <para>Se <literal> a</literal> e <literal> b</literal> são
               avaliados como arrays do mesmo tipo e dimensões idênticas, a
               comparação é realizada elemento a elemento e o resultado é um
-              array de booleanos da comparação.</para>
+              array de booleanos da comparação. </para>
             </listitem>
 
             <listitem>
@@ -112,7 +112,8 @@ a&gt;=b</synopsis>
               avaliados como arrays do mesmo tipo, mas <literal> a</literal>
               ou <literal> b</literal> é um array 1 por 1, o elemento é
               comparado com cada elemento do outro array. O resultado é um
-              array de booleanos com o tamanho do operando não-escalar.</para>
+              array de booleanos com o tamanho do operando não-escalar.
+              </para>
             </listitem>
 
             <listitem>
@@ -148,35 +149,39 @@ a&gt;=b</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">     
-//comparações elemento a elemento
-(1:5)==3
-(1:5)&lt;=4 
-(1:5)&lt;=[1 4 2 3 0]
-1&lt;[]
-list(1,2,3)~=list(1,3,3)
- 
-//comparações objeto a objeto
-(1:10)==[4,3]
-'foo'==3
-1==[]
-list(1,2,3)==1
+    <programlisting role="example">
+    
+    //comparações elemento a elemento
+    (1:5)==3
+    (1:5)&lt;=4 
+    (1:5)&lt;=[1 4 2 3 0]
+    1&lt;[]
+    list(1,2,3)~=list(1,3,3)
 
-isequal(list(1,2,3),1)
-isequal(1:10,1)
 
-//comparação com conversão de tipo
-int32(1)==1
-int32(1)&lt;1.5
-int32(1:5)&lt;int8(3)
-p=poly(0,'s','c')
-p==0
-p/poly(1,'s','c')==0
-      </programlisting>
+    //comparações objeto a objeto
+    (1:10)==[4,3]
+    'foo'==3
+    1==[]
+    list(1,2,3)==1
+
+    isequal(list(1,2,3),1)
+    isequal(1:10,1)
+
+    //comparação com conversão de tipo
+    int32(1)==1
+    int32(1)&lt;1.5
+    int32(1:5)&lt;int8(3)
+    p=poly(0,'s','c')
+    p==0
+    p/poly(1,'s','c')==0
+
+    
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="less">less</link></member>

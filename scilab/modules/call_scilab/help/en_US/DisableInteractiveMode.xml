@@ -41,7 +41,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple DisableInteractiveMode example
  
 DisableInteractiveMode();
@@ -53,7 +53,7 @@ if (code!=0){
   printf("Failed command: %s\n",lastjob);
  }
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

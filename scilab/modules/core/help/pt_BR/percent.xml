@@ -41,16 +41,18 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 x1=tlist('x',1,2);
 x2=tlist('x',2,3);
 deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
 x1*x2
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="overloading">overloading</link></member>

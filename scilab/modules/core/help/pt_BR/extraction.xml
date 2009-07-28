@@ -349,7 +349,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 // CASO DE MATRIZES
 a=[1 2 3;4 5 6]
 a(1,2)
@@ -364,27 +365,28 @@ a([%t %f],[2 3])
 a(1:2,$-1)
 a($:-1:1,2)
 a($)
-
+//
 x='teste'
 x([1 1;1 1;1 1])
-
+//
 b=[1/%s,(%s+1)/(%s-1)]
 b(1,1)
 b(1,$)
 b(2) // o numerador
-
 // CASO DE LISTAS OU TLISTS
 l=list(1,'qwerw',%s)
 l(1)
 [a,b]=l([3 2])
 l($)
 x=tlist(l(2:3)) //forma um tlist com os últimos dois componentes de l
-
+//
 dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2)('a')
 dts(2)('b')(1,2)
 [a,b]=dts(2)(['a','b'])
-   </programlisting>
+
+ 
+  </programlisting>
   </refsection>
 
   <refsection>

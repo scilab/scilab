@@ -10,106 +10,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="lqg_ltr" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="lqg_ltr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>lqg_ltr</refname>
-
-    <refpurpose>LQG with loop transform recovery</refpurpose>
+    <refpurpose> LQG with loop transform recovery</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>[kf,kc]=lqg_ltr(sl,mu,ro)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>sl</term>
-
         <listitem>
-          <para>linear system in state-space form (<literal>syslin</literal>
-          list)</para>
+          <para>linear system in state-space form (<literal>syslin</literal> list)</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>mu,ro</term>
-
         <listitem>
-          <para>real positive numbers chosen ``small enough''</para>
+          <para> real positive numbers chosen ``small enough''</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>kf,kc</term>
-
         <listitem>
           <para>controller and observer Kalman gains.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
+    <para>
+    returns the Kalman gains for:</para>
+    <programlisting><![CDATA[
 
-    <para>returns the Kalman gains for:</para>
-
-    <programlisting> 
            x = a*x + b*u + l*w1   
   (sl)
            y = c*x + mu*I*w2
 
            z = h*x
-       </programlisting>
-
-    <para>Cost function:</para>
-
-    <programlisting>  
-                    /+oo
+   
+    ]]></programlisting>
+    <para>
+    Cost function:</para>
+    <programlisting><![CDATA[
+      /+oo
                    |
           J    = E(| [z(t)'*z(t) + ro^2*u(t)'*u(t)]dt)
            lqg     |
                    / 0
-    </programlisting>
+    ]]></programlisting>
+    <para>
+    The lqg/ltr approach looks for <literal>L,mu,H,ro</literal> such that:
+    J(lqg) = J(freq) where</para>
+    <programlisting><![CDATA[
 
-    <para>The lqg/ltr approach looks for <literal>L,mu,H,ro</literal> such
-    that: J(lqg) = J(freq) where</para>
-
-    <programlisting> 
                   /+oo        *  *           *
           J    =  | tr[S  W  W  S ] + tr[T  T]dw
            freq   |
                   /0
-    </programlisting>
+    ]]></programlisting>
+    <para>
+    and</para>
+    <programlisting><![CDATA[
 
-    <para>and</para>
-
-    <programlisting> 
  S = (I + G*K)^(-1)  
  T = G*K*(I+G*K)^(-1)
-       </programlisting>
+   
+    ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="syslin">syslin</link></member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

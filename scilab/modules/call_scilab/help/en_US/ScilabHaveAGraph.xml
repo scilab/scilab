@@ -40,7 +40,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple ScilabHaveAGraph example
 int code=SendScilabJob("plot3d()"); /* This will failed since plot3d is
                                        among the disable features*/
@@ -49,7 +49,7 @@ if (ScilabHaveAGraph()){
 }else{
  printf("NO Graphics\n");
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

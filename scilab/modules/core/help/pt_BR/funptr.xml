@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>funptr</refname>
 
-    <refpurpose>codificação de primitivas</refpurpose>
+    <refpurpose>codificação de primitivas </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -30,7 +30,7 @@
         <term>name</term>
 
         <listitem>
-          <para>string, nome de uma primitiva</para>
+          <para>string, nome de uma primitiva </para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 // Suponha que você queira carregar alguns códigos através
 // das facilidades de carregamento dinâmico oferecidas por addinter. Por padrão
 // os argumentos são passados por valores, mas se você quiser
@@ -78,11 +79,12 @@
 // intppty()                
 //
 // você verá todas as interfaces funcionando por referência
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="clearfun">clearfun</link></member>

@@ -102,7 +102,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
@@ -112,11 +112,11 @@ char *myString = "my Message";   /* Declare the string */
 char variableName[] = "A"; / * The name of the future variable in Scilab */
 int sizeOfMyString=strlen(myString);
 
-C2F(cwritechain)(variableName, &amp;sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
+C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
 
 printf("Display from Scilab of A:\n");
 SendScilabJob("disp(A);"); /* Display A */
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

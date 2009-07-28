@@ -50,7 +50,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple call_scilab example 
 
 #include &lt;stdio.h&gt; /* stderr */
@@ -86,7 +86,7 @@ int main(void)
  }
  return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

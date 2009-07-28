@@ -10,98 +10,71 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="atomsIsLoaded" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsIsLoaded">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>atomsIsLoaded</refname>
-
     <refpurpose>Check if an external module is loaded or not</refpurpose>
   </refnamediv>
-
   <!-- ===================================================================== -->
-
   <!-- Calling Sequence -->
-
   <!-- ===================================================================== -->
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>
 	  result = atomsIsLoaded(name[,version])
 	</synopsis>
   </refsynopsisdiv>
-
   <!-- ===================================================================== -->
-
   <!-- Parameters -->
-
   <!-- ===================================================================== -->
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>name</term>
-
         <listitem>
-          <para>Matrix of strings : External module name</para>
+          <para>
+			Matrix of strings : External module name
+		  </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>version</term>
-
         <listitem>
-          <para>Matrix of strings : External module version. This is an
-          optional parameter. If it's not defined, the most recent version of
-          the module is used.</para>
+          <para>
+			Matrix of strings : External module version. This is an optional parameter.
+			If it's not defined, the most recent version of the module is used.
+		  </para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>result</term>
-
         <listitem>
-          <para>Matrix of Booleans</para>
+          <para>
+			Matrix of Booleans
+		  </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <!-- ===================================================================== -->
-
   <!-- Description -->
-
   <!-- ===================================================================== -->
-
   <refsection>
     <title>Description</title>
-
-    <para><literal>atomsIsLoaded</literal> return TRUE if the external module
-    is loaded or not.</para>
+    <para><literal>atomsIsLoaded</literal> return TRUE if the external module is
+		loaded or not.
+	</para>
   </refsection>
-
   <!-- ===================================================================== -->
-
   <!-- Examples -->
-
   <!-- ===================================================================== -->
-
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 atomsSetConfig("Verbose","True");
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsInstall("toolbox_2");
@@ -110,34 +83,27 @@ atomsLoad("toolbox_2");
 atomsIsLoaded(["toolbox_2" "toolbox_4";"toolbox_3" "toolbox_1"])
 
 atomsRemove("toolbox_2");
- </programlisting>
+]]></programlisting>
   </refsection>
-
   <!-- ===================================================================== -->
-
   <!-- See also -->
-
   <!-- ===================================================================== -->
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="atomsLoad">atomsLoad</link></member>
-
-      <member><link linkend="atomsGetLoaded">atomsGetLoaded</link></member>
+      <member>
+        <link linkend="atomsLoad">atomsLoad</link>
+      </member>
+      <member>
+        <link linkend="atomsGetLoaded">atomsGetLoaded</link>
+      </member>
     </simplelist>
   </refsection>
-
   <!-- ===================================================================== -->
-
   <!-- Authors -->
-
   <!-- ===================================================================== -->
-
   <refsection>
     <title>Authors</title>
-
     <simplelist type="vert">
       <member>Pierre MARECHAL - DIGITEO</member>
     </simplelist>

@@ -100,10 +100,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 ierr=execstr('a=zzzzzzz','errcatch')
 if ierr&gt;0 then disp(lasterror()),end
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>

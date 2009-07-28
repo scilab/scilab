@@ -40,9 +40,9 @@
 
         <listitem>
           <para>an optional character with possible values:
-          <literal>'l'</literal> (local), <literal>'n'</literal> (nolocal) and
-          <literal>'a'</literal> (all). The default value is
-          <literal>'all'.</literal></para>
+          <literal>'l'</literal> (local), <literal>'n'</literal>
+          (nolocal) and <literal>'a'</literal> (all). The default
+          value is <literal>'all'.</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -64,8 +64,8 @@
 
     <para><literal>exists(name,'nolocal')</literal> returns
     <literal>1</literal> if the variable named <literal>name</literal> exists
-    in any level of the calling environment (including the Scilab shell main
-    level) of the current function and <literal>0</literal> otherwise.</para>
+    in any level of the calling environment (including the Scilab shell main level) of the current function and
+    <literal>0</literal> otherwise.</para>
 
     <para>Warning: the exists function does not check if a variable exists in
     the <link linkend="global">global</link> namespace.</para>
@@ -74,7 +74,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''local'')])'
  'disp([exists(''x''),exists(''x'',''local'')])'])
@@ -94,7 +95,8 @@ function go()
   level1()
 endfunction
 go()
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>
