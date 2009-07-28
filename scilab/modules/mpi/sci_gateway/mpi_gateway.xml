@@ -24,11 +24,11 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="55" primitiveId="1" primitiveName="MPI_Init" />
-<PRIMITIVE gatewayId="55" primitiveId="2" primitiveName="MPI_Finalize" />
-<PRIMITIVE gatewayId="55" primitiveId="3" primitiveName="MPI_Comm_size" />
-<PRIMITIVE gatewayId="55" primitiveId="4" primitiveName="MPI_Comm_rank" />
+<PRIMITIVE gatewayId="63" primitiveId="1" primitiveName="MPI_Init" />
+<PRIMITIVE gatewayId="63" primitiveId="2" primitiveName="MPI_Finalize" />
+<PRIMITIVE gatewayId="63" primitiveId="3" primitiveName="MPI_Comm_size" />
+<PRIMITIVE gatewayId="63" primitiveId="4" primitiveName="MPI_Comm_rank" />
 
-<PRIMITIVE gatewayId="55" primitiveId="5" primitiveName="MPI_Recv" />
-<PRIMITIVE gatewayId="55" primitiveId="6" primitiveName="MPI_Send" />
+<PRIMITIVE gatewayId="63" primitiveId="5" primitiveName="MPI_Recv" />
+<PRIMITIVE gatewayId="63" primitiveId="6" primitiveName="MPI_Send" />
 </GATEWAY>
