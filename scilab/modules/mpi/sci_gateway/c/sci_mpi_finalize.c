@@ -17,6 +17,8 @@ int C2F(sci_mpi_finalize) (char *fname,unsigned long fname_len)
  MPI_Finalize();
  // TODO: catch les erreurs
  LhsVar(1)= 0;
+ C2F(putlhsvar)();
+
  return 0;
 
 }
