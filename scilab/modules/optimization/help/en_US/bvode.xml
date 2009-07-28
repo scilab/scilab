@@ -25,10 +25,10 @@
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)</synopsis>
-
-    <synopsis>zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)</synopsis>
+    <synopsis>
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -403,7 +403,8 @@
           component of <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math><mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
+                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
                   <mml:mo mml:stretchy="false">)</mml:mo>
                   </mml:mrow></mml:semantics></mml:math>
@@ -426,7 +427,8 @@
           <literal>ltol(j)</literal> -th component of <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math><mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
+                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
                   <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
                   </mml:semantics></mml:math>
@@ -434,10 +436,9 @@
               </imageobject>
             </inlinemediaobject>. Thus, the code attempts to satisfy
           <inlinemediaobject>
-              <mediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math>
+                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mrow>
@@ -579,13 +580,13 @@
                     </mml:math>
                   </imagedata>
                 </imageobject>
-              </mediaobject>
             </inlinemediaobject> on each subinterval</para>
 
           <para>if <inlinemediaobject>
               <imageobject>
                 <imagedata>
-                  <mml:math><mml:semantics> <mml:mi>v</mml:mi>
+                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:semantics> <mml:mi>v</mml:mi>
                   </mml:semantics></mml:math>
                 </imagedata>
               </imageobject>
@@ -614,10 +615,9 @@
         <listitem>
           <para>an <link linkend="external">external</link> used to evaluate
           the column vector <literal>f=</literal> <inlinemediaobject>
-              <mediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math>
+                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mo mml:stretchy="false">[</mml:mo>
@@ -757,7 +757,6 @@
                     </mml:math>
                   </imagedata>
                 </imageobject>
-              </mediaobject>
             </inlinemediaobject> for any x such as x_low &lt;= x &lt;= x_up
           and for any z=z(u(x)) (see description below)</para>
 
@@ -778,7 +777,7 @@
             </listitem>
 
             <listitem>
-               And in Scilab 
+              <para>And in Scilab</para>
 
               <programlisting>  function f=fsub(x,zu,parameters) </programlisting>
 
@@ -802,7 +801,8 @@
             <mediaobject>
               <imageobject>
                 <imagedata align="center">
-                  <mml:math><mml:semantics> <mml:mrow> <mml:mi
+                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:semantics> <mml:mrow> <mml:mi
                   mml:fontstyle="italic">df</mml:mi> <mml:mrow> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
                   <mml:mi>i</mml:mi> <mml:mi>,</mml:mi> <mml:mi>j</mml:mi>
@@ -852,7 +852,7 @@
             </listitem>
 
             <listitem>
-               And in Scilab 
+              <para>And in Scilab</para>
 
               <programlisting>  function df=dfsub(x,zu,parameters) </programlisting>
 
@@ -868,10 +868,9 @@
         <listitem>
           <para>an <link linkend="external">external</link> used to evaluate
           <inlinemediaobject>
-              <mediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math>
+                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                       <mml:semantics>
                         <mml:mrow>
                           <mml:msub>
@@ -927,12 +926,10 @@
                     </mml:math>
                   </imagedata>
                 </imageobject>
-              </mediaobject>
             </inlinemediaobject> given z=<inlinemediaobject>
-              <mediaobject>
                 <imageobject>
                   <imagedata>
-                    <mml:math>
+                    <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                       <mml:semantics>
                         <mml:mrow>
                           <mml:mi>z</mml:mi>
@@ -966,7 +963,6 @@
                     </mml:math>
                   </imagedata>
                 </imageobject>
-              </mediaobject>
             </inlinemediaobject> <literal>z = zeta(i)</literal> for
           <literal>1&lt;=i&lt;=M.</literal></para>
 
@@ -993,21 +989,9 @@
 
              
 
-            <listitem>And in Scilab <programlisting>  function g=gsub(i,zu,parameters) </programlisting></listitem>
-
-             Note that in contrast to 
-
-            <literal>f</literal>
-
-             in 
-
-            <literal>fsub</literal>
-
-             , here only one value per call is returned in 
-
-            <literal>g</literal>
-
-             . 
+            <listitem><para>And in Scilab</para><programlisting>  function g=gsub(i,zu,parameters) </programlisting>
+            <para>Note that in contrast to <literal>f</literal> in <literal>fsub</literal>, here only one value per call is returned in <literal>g</literal>.</para>
+            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -1026,7 +1010,8 @@
             <mediaobject>
               <imageobject>
                 <imagedata align="center">
-                  <mml:math><mml:semantics> <mml:mrow> <mml:mi
+                  <mml:math xmlns:mml="http://www.w3.org/2000/svg">
+                  <mml:semantics> <mml:mrow> <mml:mi
                   mml:fontstyle="italic">dg</mml:mi> <mml:mrow> <mml:mrow>
                   <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
                   <mml:mi>i</mml:mi> <mml:mi>,</mml:mi> <mml:mi>j</mml:mi>
@@ -1076,7 +1061,7 @@
             </listitem>
 
             <listitem>
-               And in Scilab 
+              <para>And in Scilab </para>
 
               <programlisting>  function dg=dgsub(i,zu,parameters) </programlisting>
 
@@ -1115,28 +1100,30 @@
             </listitem>
 
             <listitem>
-               And in Scilab 
+              <para>And in Scilab </para>
 
               <programlisting>  function [dmval,zu]=fsub(x,parameters) </programlisting>
 
                
             </listitem>
           </itemizedlist>
+
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>&lt;optional_args&gt;</term>
 
-        <para>It should be either:</para>
 
+        <listitem>
+         <para>It should be either:</para>
         <itemizedlist>
-          <listitem>any left part of the ordered sequence of values: <para>
+         <listitem><para>any left part of the ordered sequence of values:
               <literal>guess, dfsub, dgsub, fixpnt, ndimf, ndimi, ltol, tol,
               ntol,nonlin, collpnt, subint, iprint, ireg, ifail</literal>
             </para></listitem>
 
-          <listitem>or any sequence of <literal>arg_name=argvalue</literal>
+          <listitem><para>or any sequence of <literal>arg_name=argvalue</literal>
           with <literal>arg_name</literal> in: <literal>guess</literal>,
           <literal>dfsub</literal>, <literal>dgsub</literal>,
           <literal>fixpnt</literal>, <literal>ndimf</literal>,
@@ -1144,7 +1131,7 @@
           <literal>tol</literal>, <literal>ntol</literal>,
           <literal>nonlin</literal>, <literal>collpnt</literal>,
           <literal>subint</literal>, <literal>iprint</literal>,
-          <literal>ireg</literal>, <literal>ifail</literal></listitem>
+          <literal>ireg</literal>, <literal>ifail</literal></para></listitem>
         </itemizedlist>
 
         <para>Where all these arguments excepted <literal>ifail</literal> are
@@ -1152,6 +1139,7 @@
         bvode call corresonding to the selected optional arguments. If
         <literal>guess</literal> is given <literal>iguess</literal> is set to
         1</para>
+        </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
@@ -1166,7 +1154,7 @@
       <mediaobject>
         <imageobject>
           <imagedata align="left">
-            <mml:math>
+            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
               <mml:semantics>
                 <mml:mrow>
                   <mml:mo mml:stretchy="true">{</mml:mo>
@@ -1378,11 +1366,10 @@
 
     <para>Where</para>
 
-    <inlinemediaobject>
-      <mediaobject>
+    <mediaobject>
         <imageobject>
           <imagedata align="left">
-            <mml:math>
+            <mml:math xmlns:mml="http://www.w3.org/2000/svg">
               <mml:semantics>
                 <mml:mrow>
                   <mml:mo mml:stretchy="true">{</mml:mo>
@@ -1666,8 +1653,7 @@
             </mml:math>
           </imagedata>
         </imageobject>
-      </mediaobject>
-    </inlinemediaobject>
+    </mediaobject>
 
     <para>The argument <literal>zu</literal> used by the external functions
     and returned by <literal>bvode</literal> is the column vector formed by
@@ -1696,11 +1682,10 @@
 
         <para>Solve the fourth order differential equation:</para>
 
-        <inlinemediaobject>
-          <mediaobject>
+        <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math>
+                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mfrac>
@@ -1847,16 +1832,14 @@
                 </mml:math>
               </imagedata>
             </imageobject>
-          </mediaobject>
-        </inlinemediaobject>
+        </mediaobject>
 
         <para>Subjected to the boundary conditions:</para>
 
-        <inlinemediaobject>
-          <mediaobject>
+        <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math>
+                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -2004,16 +1987,14 @@
                 </mml:math>
               </imagedata>
             </imageobject>
-          </mediaobject>
-        </inlinemediaobject>
+        </mediaobject>
 
         <para>The exact solution of this problem is known to be:</para>
 
-        <inlinemediaobject>
-          <mediaobject>
+        <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math>
+                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mi>u</mml:mi>
@@ -2148,8 +2129,7 @@
                 </mml:math>
               </imagedata>
             </imageobject>
-          </mediaobject>
-        </inlinemediaobject>
+        </mediaobject>
 
         <programlisting role="example"> 
 N=1;// just one differential equation
@@ -2231,12 +2211,7 @@ norm(zu-zu1)
       </listitem>
 
       <listitem>
-         Same problem using 
-
-        <literal>bvodeS</literal>
-
-         and an initial guess 
-
+        <para>Same problem using <literal>bvodeS</literal> and an initial guess </para>
         <programlisting role="example"> 
 function [z,lhS]=zstart(x)
   z=zeros(5,1);z(5)=1;
@@ -2256,11 +2231,10 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
         deformed shell and psi is a stress function. For eps=mu=1e-3 two
         different solutions may found depending on the starting point</para>
 
-        <inlinemediaobject>
-          <mediaobject>
+        <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math>
+                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -2494,16 +2468,14 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                 </mml:math>
               </imagedata>
             </imageobject>
-          </mediaobject>
-        </inlinemediaobject>
+        </mediaobject>
 
         <para>Subject to the boundary conditions</para>
 
-        <inlinemediaobject>
-          <mediaobject>
+        <mediaobject>
             <imageobject>
               <imagedata align="left">
-                <mml:math>
+                <mml:math xmlns:mml="http://www.w3.org/2000/svg">
                   <mml:semantics>
                     <mml:mrow>
                       <mml:mo mml:stretchy="true">{</mml:mo>
@@ -2560,8 +2532,7 @@ zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
                 </mml:math>
               </imagedata>
             </imageobject>
-          </mediaobject>
-        </inlinemediaobject>
+        </mediaobject>
 
         <para>for <literal>x=0</literal> and <literal>x=1</literal></para>
 
@@ -2715,7 +2686,7 @@ legend(['y(x)';'y''(x)'])
       </listitem>
 
       <listitem>
-         A boundary value problem with more than one solution. 
+         <para>A boundary value problem with more than one solution.</para>
 
         <programlisting role="example">
 // DE: y''(x)=-exp(y(x))

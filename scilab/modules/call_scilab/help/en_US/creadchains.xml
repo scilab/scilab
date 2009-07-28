@@ -29,8 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadchain) (char *name, int *itslen, char *myString,
-    unsigned long name_len, unsigned long myString_len);</para>
+    <synopsis>int C2F(creadchain)(char *name, int *itslen, char *myString, unsigned long name_len, unsigned long myString_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
