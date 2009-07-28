@@ -16,6 +16,8 @@
 ;
 Source: bin\xcos.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
+Source: thirdparty\jgraphx.jar;DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB}
+;
 Source: modules\{#XCOS}\jar\org.scilab.modules.xcos.jar; DestDir: {app}\modules\{#XCOS}\jar; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\VERSION.xml; DestDir: {app}\modules\{#XCOS}; Components: {#COMPN_XCOS}
