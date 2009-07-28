@@ -104,7 +104,7 @@
     <para>computes : <subscript><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg" display="block">
+            <mml:math display="block">
             <mml:mi mathvariant="normal">x</mml:mi>
             <mml:mrow> <mml:mrow> <mml:mo>(</mml:mo> <mml:mi
             mathvariant="normal">i</mml:mi> <mml:mo>)</mml:mo> </mml:mrow>
@@ -129,7 +129,7 @@
     <para>Where <inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math xmlns:mml="http://www.w3.org/2000/svg" display="block">
+            <mml:math display="block">
             <mml:mi mathvariant="normal">f</mml:mi>
             <mml:mo>(</mml:mo> <mml:mi mathvariant="normal">v</mml:mi>
             <mml:mo>)</mml:mo></mml:math>
