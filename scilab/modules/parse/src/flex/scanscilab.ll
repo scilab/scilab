@@ -107,12 +107,17 @@ assign			"="
 
 %%
 
-"if"		return scan_throw(IF);
+"if"		{
+  Parser::getInstance()->pushControlStatus(Parser::WithinIf);
+  return scan_throw(IF);
+}
 "then"		return scan_throw(THEN);
 "else"		return scan_throw(ELSE);
 "elseif"	return scan_throw(ELSEIF);
-"end"		return scan_throw(END);
-
+"end"		{
+  Parser::getInstance()->popControlStatus();
+  return scan_throw(END);
+}
 
 "select"	return scan_throw(SELECT);
 "case"		return scan_throw(CASE);
@@ -122,8 +127,10 @@ assign			"="
 "endfunction"	return scan_throw(ENDFUNCTION);
 
 
-"for"		return scan_throw(FOR);
-
+"for"		{
+  Parser::getInstance()->pushControlStatus(Parser::WithinFor);
+  return scan_throw(FOR);
+}
 
 "while"		return scan_throw(WHILE);
 "do"		return scan_throw(DO);

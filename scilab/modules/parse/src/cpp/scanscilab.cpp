@@ -962,7 +962,10 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-return scan_throw(IF);
+{
+  Parser::getInstance()->pushControlStatus(Parser::WithinIf);
+  return scan_throw(IF);
+}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
@@ -978,7 +981,10 @@ return scan_throw(ELSEIF);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-return scan_throw(END);
+{
+  Parser::getInstance()->popControlStatus();
+  return scan_throw(END);
+}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
@@ -998,7 +1004,10 @@ return scan_throw(ENDFUNCTION);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-return scan_throw(FOR);
+{
+  Parser::getInstance()->pushControlStatus(Parser::WithinFor);
+  return scan_throw(FOR);
+}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
