@@ -16,7 +16,7 @@
 #include "machine.h"
 #include "stack-c.h"
 
-int C2F(gw_mpi)(void);
+int gw_mpi(void);
 
 typedef int (*MPI_Interf) (char *fname,unsigned long l);
 
