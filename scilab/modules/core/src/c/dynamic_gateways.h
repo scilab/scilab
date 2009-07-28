@@ -12,6 +12,12 @@
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
+/**
+* xcos gateway
+* xcos is loaded dynamically at runtime
+* load gw_xcos in SCI/modules/xcos/sci_gateway/gw_xcos.c
+*/
+int gw_dynamic_xcos(void);
 
 /**
 * functions gateway

@@ -1,0 +1,10 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+callFunctionFromGateway
+putlhsvar_
+intersci_
+getScilabMode
+com_

@@ -254,3 +254,19 @@ int gw_dynamic_functions(void)
 		&ptr_gw_functions);
 }
 /*--------------------------------------------------------------------------*/
+/* xcos module */
+#define XCOS_MODULE_NAME "xcos"
+static DynLibHandle hXcosLib = NULL;
+static PROC_GATEWAY ptr_gw_xcos = NULL;
+static char* dynlibname_xcos = NULL;
+static char* gatewayname_xcos = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_xcos(void)
+{
+	return gw_dynamic_generic(XCOS_MODULE_NAME,
+		&dynlibname_xcos,
+		&gatewayname_xcos,
+		&hXcosLib,
+		&ptr_gw_xcos);
+}
+/*--------------------------------------------------------------------------*/

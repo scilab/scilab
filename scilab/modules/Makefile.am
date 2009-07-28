@@ -82,7 +82,8 @@ simulated_annealing \
 parameters \
 matio \
 atoms \
-hdf5
+hdf5 \
+xcos
 
 #umfpack
 
@@ -127,14 +128,16 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/xcos/libscixcos.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
-	$(top_builddir)/modules/jvm/libscijvm-disable.la
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xcos/libscixcos-disable.la
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \

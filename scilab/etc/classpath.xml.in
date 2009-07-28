@@ -35,6 +35,7 @@ The option is "disableUnderMode" and can be:
 <path value="@LOOKS@"/>
 <path value="@COMMONS_LOGGING@"/>
 <path value="@JHALL@"/>
+<path value="@JGRAPHX@"/>
 
 <!-- Load when needed -->
 <path value="@JOGL@" load="onUse">
@@ -52,6 +53,10 @@ The option is "disableUnderMode" and can be:
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
+
+<path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
+	<load on="XCos"/>
+</path>
 
 <!-- Documentation (not mandatory) -->
 <path value="@JEUCLID_CORE@" load="onUse">
