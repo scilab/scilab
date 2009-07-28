@@ -1,162 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int3d">
+<refentry version="5.0-subset Scilab" xml:id="int3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>int3d</refname>
-    <refpurpose> definite 3D integral by quadrature and cubature method</refpurpose>
+
+    <refpurpose>definite 3D integral by quadrature and cubature
+    method</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>X</term>
+
         <listitem>
-          <para>a 4 by <literal>NUMTET</literal> array containing the abscissae of the vertices   of the <literal>NUMTET</literal> tetrahedrons.</para>
+          <para>a 4 by <literal>NUMTET</literal> array containing the
+          abscissae of the vertices of the <literal>NUMTET</literal>
+          tetrahedrons.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Y</term>
+
         <listitem>
-          <para>a 4 by <literal>NUMTET</literal> array containing the ordinates of the vertices   of the <literal>NUMTET</literal> tetrahedrons.</para>
+          <para>a 4 by <literal>NUMTET</literal> array containing the
+          ordinates of the vertices of the <literal>NUMTET</literal>
+          tetrahedrons.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Z</term>
+
         <listitem>
-          <para>a 4 by <literal>NUMTET</literal> array containing the third coordinates of the vertices   of the <literal>NUMTET</literal> tetrahedrons.</para>
+          <para>a 4 by <literal>NUMTET</literal> array containing the third
+          coordinates of the vertices of the <literal>NUMTET</literal>
+          tetrahedrons.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
-          <para>external (function or list or string) defining the integrand <literal>f(xyz,nf)</literal>, where <literal>xyz</literal> is the vector of a point coordinates and nf the number functions</para>
+          <para>external (function or list or string) defining the integrand
+          <literal>f(xyz,nf)</literal>, where <literal>xyz</literal> is the
+          vector of a point coordinates and nf the number functions</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>nf</term>
+
         <listitem>
           <para>the number of function to integate (default is 1)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>params</term>
+
         <listitem>
-          <para>real vector <literal>[minpts, maxpts, epsabs, epsrel]</literal>. default value is <literal>[0, 1000, 0.0, 1.d-5]</literal>.</para>
+          <para>real vector <literal>[minpts, maxpts, epsabs,
+          epsrel]</literal>. default value is <literal>[0, 1000, 0.0,
+          1.d-5]</literal>.</para>
+
           <variablelist>
             <varlistentry>
               <term>epsabs</term>
+
               <listitem>
                 <para>Desired bound on the absolute error.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>epsrel</term>
+
               <listitem>
                 <para>Desired bound on the relative error.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>minpts</term>
+
               <listitem>
                 <para>Minimum number of function evaluations.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>maxpts</term>
+
               <listitem>
-                <para>Maximum number of function evaluations.  The number of function evaluations over each subregion is 43</para>
+                <para>Maximum number of function evaluations. The number of
+                function evaluations over each subregion is 43</para>
               </listitem>
             </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>result</term>
+
         <listitem>
           <para>the integral value,or vector of the integral values.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>err</term>
+
         <listitem>
           <para>Estimates of absolute errors.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    The function calculates an approximation to a given
-    vector of definite integrals</para>
-    <programlisting><![CDATA[
 
+    <para>The function calculates an approximation to a given vector of
+    definite integrals</para>
+
+    <programlisting> 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
-   
-    ]]></programlisting>
-    <para>
-    where the region of integration is a collection of
-    NUMTET tetrahedrons and where</para>
-    <programlisting><![CDATA[
+     </programlisting>
 
+    <para>where the region of integration is a collection of NUMTET
+    tetrahedrons and where</para>
+
+    <programlisting> 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
-   
-    ]]></programlisting>
-    <para>
-    A globally adaptive strategy is applied in order to
-    compute approximations <literal>result(k)</literal>
-    hopefully satisfying, for each component of I, the
-    following claim for accuracy:
+     </programlisting>
+
+    <para>A globally adaptive strategy is applied in order to compute
+    approximations <literal>result(k)</literal> hopefully satisfying, for each
+    component of I, the following claim for accuracy:
     <literal>ABS(I(K)-RESULT(K))&lt;=MAX(EPSABS,EPSREL*ABS(I(K)))</literal></para>
-    <para><literal>int3d</literal> repeatedly subdivides the tetrahedrons with greatest
-    estimated errors and estimates the integrals and the errors over the
-    new subtetrahedrons until the error request is met or <literal>MAXPTS</literal>
-    function evaluations have been used.</para>
-    <para>
-    A 43 point integration rule with all evaluation points inside the
+
+    <para><literal>int3d</literal> repeatedly subdivides the tetrahedrons with
+    greatest estimated errors and estimates the integrals and the errors over
+    the new subtetrahedrons until the error request is met or
+    <literal>MAXPTS</literal> function evaluations have been used.</para>
+
+    <para>A 43 point integration rule with all evaluation points inside the
     tetrahedron is applied. The rule has polynomial degree 8.</para>
-    <para>
-    If the values of the input parameters <literal>EPSABS</literal> or <literal>EPSREL</literal> are
-    selected great enough, an integration rule is applied over each
-    tetrahedron and the results are added up to give the approximations
-    <literal>RESULT(K)</literal>. No further subdivision of the tetrahedrons will then
-    be applied.</para>
-    <para>
-    When <literal>int3d</literal> computes estimates to a vector of
-    integrals, all components of the vector are given
-    the same treatment. That is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for</para>
-    <para><literal>j</literal> not equal to <literal>k</literal>, are estimated with the same
-    subdivision of the region of integration.
-    For integrals with enough similarity, we may save
-    time by applying <literal>int3d</literal> to all integrands in one call.
-    For integrals that varies continuously as functions of
-    some parameter, the estimates produced by <literal>int3d</literal>  will
-    also vary continuously when the same subdivision is
-    applied to all components. This will generally not be
-    the case when the different components are given
-    separate treatment.</para>
-    <para>
-    On the other hand this feature should be used with
-    caution when the different components of the integrals
-    require clearly different subdivisions.</para>
+
+    <para>If the values of the input parameters <literal>EPSABS</literal> or
+    <literal>EPSREL</literal> are selected great enough, an integration rule
+    is applied over each tetrahedron and the results are added up to give the
+    approximations <literal>RESULT(K)</literal>. No further subdivision of the
+    tetrahedrons will then be applied.</para>
+
+    <para>When <literal>int3d</literal> computes estimates to a vector of
+    integrals, all components of the vector are given the same treatment. That
+    is, <literal>I(Fj)</literal> and <literal>I(Fk)</literal> for</para>
+
+    <para><literal>j</literal> not equal to <literal>k</literal>, are
+    estimated with the same subdivision of the region of integration. For
+    integrals with enough similarity, we may save time by applying
+    <literal>int3d</literal> to all integrands in one call. For integrals that
+    varies continuously as functions of some parameter, the estimates produced
+    by <literal>int3d</literal> will also vary continuously when the same
+    subdivision is applied to all components. This will generally not be the
+    case when the different components are given separate treatment.</para>
+
+    <para>On the other hand this feature should be used with caution when the
+    different components of the integrals require clearly different
+    subdivisions.</para>
   </refsection>
+
   <refsection>
     <title>References</title>
-    <para>
-    Fortran routine dcutet.f</para>
+
+    <para>Fortran routine dcutet.f</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
@@ -164,8 +211,7 @@ Z=[0;0;0;1];
 // computes the integrand exp(x*x+y*y+z*z) over the 
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-
-//integration over a cube  -1<=x<=1;-1<=y<=1;-1<=z<=1
+//integration over a cube  -1&lt;=x&lt;=1;-1&lt;=y&lt;=1;-1&lt;=z&lt;=1
 
 //  bottom  -top-     right    -left-   front   -rear- 
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
@@ -186,58 +232,52 @@ function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
 
 function v=f(xyz,numfun),v=1,endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
-
-   
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="intc">intc</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-      <member>
-        <link linkend="int2d">int2d</link>
-      </member>
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="int2d">int2d</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <variablelist>
       <varlistentry>
         <term>Jarle Berntsen</term>
+
         <listitem>
-          <para> The Computing Centre,
-University of Bergen, Thormohlens gt. 55,
-N-5008 Bergen, Norway
-Phone..  47-5-544055
-Email..  jarle@eik.ii.uib.no, 
-</para>
+          <para>The Computing Centre, University of Bergen, Thormohlens gt.
+          55, N-5008 Bergen, Norway Phone.. 47-5-544055 Email..
+          jarle@eik.ii.uib.no,</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Ronald Cools</term>
+
         <listitem>
-          <para> Dept. of Computer Science,
-Katholieke Universiteit Leuven, Celestijnenlaan 200A,
-B-3030 Heverlee, Belgium
-Phone..  32-16-201015 (3562)
-Email..  ronald@cs.kuleuven.ac.be,
-</para>
+          <para>Dept. of Computer Science, Katholieke Universiteit Leuven,
+          Celestijnenlaan 200A, B-3030 Heverlee, Belgium Phone.. 32-16-201015
+          (3562) Email.. ronald@cs.kuleuven.ac.be,</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Terje O. Espelid</term>
+
         <listitem>
-          <para> Department of Informatics,
-University of Bergen, Thormohlens gt. 55,
-N-5008 Bergen, Norway
-Phone..  47-5-544180
-Email..  terje@eik.ii.uib.no
-</para>
+          <para>Department of Informatics, University of Bergen, Thormohlens
+          gt. 55, N-5008 Bergen, Norway Phone.. 47-5-544180 Email..
+          terje@eik.ii.uib.no</para>
         </listitem>
       </varlistentry>
     </variablelist>

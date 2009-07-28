@@ -11,84 +11,110 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ode_discrete">
+<refentry version="5.0-subset Scilab" xml:id="ode_discrete" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>ode_discrete</refname>
-    <refpurpose> ordinary differential equation solver, discrete time simulation</refpurpose>
+
+    <refpurpose>ordinary differential equation solver, discrete time
+    simulation</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>y=ode("discrete",y0,k0,kvect,f)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>y0</term>
+
         <listitem>
           <para>real vector or matrix (initial conditions).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t0</term>
+
         <listitem>
           <para>real scalar (initial time).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
           <para>external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>k0</term>
+
         <listitem>
           <para>integer (initial time).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>kvect</term>
+
         <listitem>
           <para>integer vector.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    With this syntax (first argument equal to <literal>"discrete"</literal>)
-    <literal>ode</literal> computes recursively <literal>y(k+1)=f(k,y(k))</literal>
-    from an initial state
-    <literal>y(k0)</literal> and returns <literal>y(k)</literal> for <literal>k</literal> in <literal>kvect</literal>.
-    <literal>kvect(1)</literal> must be greater than or equal to <literal>k0</literal>.</para>
-    <para>
-    Other arguments and other options are the same as for <literal>ode</literal>, see the
-    ode help.</para>
+
+    <para>With this syntax (first argument equal to
+    <literal>"discrete"</literal>) <literal>ode</literal> computes recursively
+    <literal>y(k+1)=f(k,y(k))</literal> from an initial state
+    <literal>y(k0)</literal> and returns <literal>y(k)</literal> for
+    <literal>k</literal> in <literal>kvect</literal>.
+    <literal>kvect(1)</literal> must be greater than or equal to
+    <literal>k0</literal>.</para>
+
+    <para>Other arguments and other options are the same as for
+    <literal>ode</literal>, see the ode help.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 y1=[1;2;3]; deff("yp=a_function(k,y)","yp=A*y+B*u(k)")
 A=diag([0.2,0.5,0.9]); B=[1;1;1];u=1:10;n=5;
 y=ode("discrete",y1,1,1:n,a_function);
 y(:,2)-(A*y1+B*u(1))
+
 // Now y evaluates  at [y3,y5,y7,y9]
 y=ode("discrete",y1,1,3:2:9,a_function)
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
+      <member><link linkend="ode">ode</link></member>
     </simplelist>
   </refsection>
 </refentry>
