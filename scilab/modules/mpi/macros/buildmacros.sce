@@ -1,6 +1,6 @@
-//------------------------------------
-// Sylvestre LEDRU INRIA 2007
-//------------------------------------
-// no macros yet
-genlib('mpilib','SCI/modules/mpi/macros');
-//------------------------------------
+if (isdef('genlib') == %f) then
+   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+end
+
+genlib('mpilib','SCI/modules/mpi/macros',%f,%t); 
+
