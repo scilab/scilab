@@ -80,7 +80,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // A simple SendScilabJobs example
 
 char* jobs[3];
@@ -89,7 +89,7 @@ jobs[1]="b = 3";
 jobs[2]="c = a + b;";
 SendScilabJobs(jobs,3);
 SendScilabJob("disp(c);"); // Will display   4.
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

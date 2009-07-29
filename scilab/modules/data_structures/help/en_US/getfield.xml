@@ -10,85 +10,67 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="getfield" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="getfield">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>getfield</refname>
-
-    <refpurpose>list field extraction</refpurpose>
+    <refpurpose>  list field extraction</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>[x,...]=getfield(i,l)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
-          <para>matrix of any possible types</para>
+          <para>matrix  of any  possible types</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>l</term>
-
         <listitem>
           <para>list, tlist or mlist variable</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>i</term>
-
         <listitem>
           <para>field index, see extraction for more details.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
-    <para>This function is an equivalent of <literal>[x,...]=l(i)</literal>
-    syntax for field extraction with the only difference that it also applies
-    to <literal>mlist</literal> objects.</para>
+    <para>
+    This function is an equivalent of <literal>[x,...]=l(i)</literal> syntax for field
+    extraction with the only difference that it also applies to
+    <literal>mlist</literal> objects.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
+    <programlisting role="example"><![CDATA[
 
-    <programlisting role="example"> 
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
 
 a=hypermat([2,2,2],rand(1:2^3));// hypermatrices are coded using mlists
 a(1) // the a(1,1,1) entry
 getfield(1,a) // the mlist first field
-   </programlisting>
+ 
+  ]]></programlisting>
   </refsection>
-
   <refsection>
     <title>See Also</title>
-
     <simplelist type="inline">
-      <member><link linkend="extraction">extraction</link></member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>global('nam1',...,'namn')
 global nam1 ... namn</synopsis>
@@ -56,14 +56,14 @@ global nam1 ... namn</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 //primeiro: o ambiente de chamamento e uma função compartilham uma variável
 global a
 a=1
 deff('y=f1(x)','global a,a=x^2,y=a^2')
 f1(2)
 a
-
 //segundo: três funções compartilham variáveis
 deff('initdata()','global A C ;A=10,C=30')
 deff('letsgo()','global A C ;disp(A) ;C=70')
@@ -71,11 +71,13 @@ deff('letsgo1()','global C ;disp(C)')
 initdata()
 letsgo()
 letsgo1()
+
+ 
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="who">who</link></member>

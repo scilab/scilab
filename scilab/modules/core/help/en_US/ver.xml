@@ -10,62 +10,41 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="ver" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ver">
   <info>
     <pubdate>$LastChangedDate: 2007-05-10 09:26:08 +0200$</pubdate>
   </info>
-
   <refnamediv>
     <refname>ver</refname>
-
     <refpurpose>Version information for Scilab</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
     <synopsis>r = ver()</synopsis>
   </refsynopsisdiv>
-
   <refsection>
     <title>Parameters</title>
-
     <variablelist>
       <varlistentry>
         <term>r</term>
-
         <listitem>
           <para>a matrix of strings</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
     <title>Description</title>
-
     <para>Version information for Scilab.</para>
-
     <para>returns a matrix of string with information about Scilab.</para>
   </refsection>
-
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example"> 
-ver
- </programlisting>
+    <programlisting role="example"><![CDATA[ver
+]]></programlisting>
   </refsection>
-
   <refsection>
     <title>Authors</title>
-
     <para>A.C</para>
   </refsection>
 </refentry>

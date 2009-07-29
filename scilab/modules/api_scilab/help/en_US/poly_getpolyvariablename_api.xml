@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -17,62 +17,59 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv>
-    <refname>Polynomial Symbolic Variable (Scilab gateway)</refname>
 
-    <refpurpose>How to get the symbolic variable name.</refpurpose>
-  </refnamediv>
+    <refnamediv>
+        <refname>Polynomial Symbolic Variable (Scilab gateway)</refname>
 
-  <refsection>
-    <title>Description</title>
-
-    <para>This help describes how to get the symbolic variable name.</para>
-
-    <synopsis>int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_piAddress</term>
-
-        <listitem>
-          <para>Address of the variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_pstVarName</term>
-
-        <listitem>
-          <para>Return the symbolic varaible name</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piVarNameLen</term>
-
-        <listitem>
-          <para>Return the length of _pstVarName</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <!--File_gateway: SCI/modules/core/tests/unit_tests/poly_reading_api.c-->
-
-    <!--File_scilab: SCI/modules/core/tests/unit_tests/poly_reading_api.tst-->
-
-    <!--Lib_name: poly_reading-->
-
-    <!--Func_list: read_poly-->
-
-    <title>Gateway Source</title>
-
-    <programlisting role="code_gateway">            
+        <refpurpose>
+            How to get the symbolic variable name.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstVarName</term>
+                <listitem>
+                    <para>
+                        Return the symbolic varaible name
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piVarNameLen</term>
+                <listitem>
+                    <para>
+                        Return the length of _pstVarName
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get the symbolic variable name.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/poly_reading_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/poly_reading_api.tst-->
+        <!--Lib_name: poly_reading-->
+        <!--Func_list: read_poly-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
 int read_poly(char *fname,unsigned long fname_len)
 {
     int i,j;
@@ -92,7 +89,7 @@ int read_poly(char *fname,unsigned long fname_len)
     CheckRhs(1,1);
     CheckLhs(1,1);
 
-    iRet = getVarAddressFromPosition(1, &amp;piAddr);
+    iRet = getVarAddressFromPosition(1, &piAddr);
     if(iRet)
     {
         return 1;
@@ -104,7 +101,7 @@ int read_poly(char *fname,unsigned long fname_len)
     }
 
     //get variable name length
-    iRet = getPolyVariableName(piAddr, NULL, &amp;iVarLen);
+    iRet = getPolyVariableName(piAddr, NULL, &iVarLen);
     if(iRet)
     {
         return 1;
@@ -113,14 +110,14 @@ int read_poly(char *fname,unsigned long fname_len)
     //alloc buff to receive variable name
     pstVarname = (char*)malloc(sizeof(char) * (iVarLen + 1));//1 for null termination
     //get variable name
-    iRet = getPolyVariableName(piAddr, pstVarname, &amp;iVarLen);
+    iRet = getPolyVariableName(piAddr, pstVarname, &iVarLen);
     if(iRet)
     {
         return 1;
     }
 
     //First call: retrieve dimmension
-    iRet = getComplexMatrixOfPoly(piAddr, &amp;iRows, &amp;iCols, NULL, NULL, NULL);
+    iRet = getComplexMatrixOfPoly(piAddr, &iRows, &iCols, NULL, NULL, NULL);
     if(iRet)
     {
         return 1;
@@ -129,7 +126,7 @@ int read_poly(char *fname,unsigned long fname_len)
     //alloc array of coefficient
     piNbCoef = (int*)malloc(sizeof(int) * iRows * iCols);
     //Second call: retrieve coefficient
-    iRet = getComplexMatrixOfPoly(piAddr, &amp;iRows, &amp;iCols, piNbCoef, NULL, NULL);
+    iRet = getComplexMatrixOfPoly(piAddr, &iRows, &iCols, piNbCoef, NULL, NULL);
     if(iRet)
     {
         return 1;
@@ -138,14 +135,14 @@ int read_poly(char *fname,unsigned long fname_len)
     //alloc arrays of data
     pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
     pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
-    for(i = 0 ; i &lt; iRows * iCols ; i++)
+    for(i = 0 ; i < iRows * iCols ; i++)
     {
         pdblReal[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
         pdblImg[i] = (double*)malloc(sizeof(double) * piNbCoef[i]);
     }
 
     //Third call: retrieve data
-    iRet = getComplexMatrixOfPoly(piAddr, &amp;iRows, &amp;iCols, piNbCoef, pdblReal, pdblImg);
+    iRet = getComplexMatrixOfPoly(piAddr, &iRows, &iCols, piNbCoef, pdblReal, pdblImg);
     if(iRet)
     {
         return 1;
@@ -156,7 +153,7 @@ int read_poly(char *fname,unsigned long fname_len)
 
     //Invert polynomials in the matrix and invert coefficients
 
-    for(i = 0 ; i &lt; (iRows * iCols) / 2 ; i++)
+    for(i = 0 ; i < (iRows * iCols) / 2 ; i++)
     {
         int iPos1           = iRows * iCols - 1 - i;
         double* pdblSave    = NULL;
@@ -178,9 +175,9 @@ int read_poly(char *fname,unsigned long fname_len)
     }
 
     //switch coefficient
-    for(i = 0 ; i &lt; iRows * iCols ; i++)
+    for(i = 0 ; i < iRows * iCols ; i++)
     {
-        for(j = 0 ; j &lt; piNbCoef[i] /2 ; j++)
+        for(j = 0 ; j < piNbCoef[i] /2 ; j++)
         {
             int iPos2           = piNbCoef[i] - 1 - j;
             double dblVal       = pdblReal[i][j];
@@ -199,7 +196,7 @@ int read_poly(char *fname,unsigned long fname_len)
     free(pstVarname);
     free(piNbCoef);
 
-    for(i = 0 ; i &lt; iRows * iCols ; i++)
+    for(i = 0 ; i < iRows * iCols ; i++)
     {
         free(pdblReal[i]);
         free(pdblImg[i]);
@@ -212,13 +209,14 @@ int read_poly(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     return 0;
 }
-                    </programlisting>
-  </refsection>
+            ]]>
+        </programlisting>
+    </refsection>
 
-  <refsection>
-    <title>Scilab test script</title>
-
-    <programlisting role="code_scilab">            
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
 coeff1 = [ ..
 29*%i,22*%i,16*%i,11*%i,7*%i,30,23,17,12,8,-31*%i,-24*%i,-18*%i,-13*%i,-9*%i,32,25,19,14,10,-33*%i,-26*%i,-20*%i,-15*%i,0,34,27,21,0,0,0,-28*%i,0,0,0,36-35*%i,0,0,0,0; ..
 4*%i,2*%i,%i,22,16,5,-3,0,-23*%i,-17*%i,-6*%i,0,0,24,18,0,0,0,-25*%i,-19*%i,0,0,0,26,20,0,0,0,-27*%i,-21*%i,0,0,0,28,0,0,0,0,0,0; ..
@@ -244,7 +242,8 @@ p = [p1, p2, p3, p4, p5 ; p6, p7, p8, p9 ,p10 ; p11, p12, p13, p14, p15];
 
 p1 = read_poly(p);
 coeff2 = coeff(p1);
-if or(coeff2 &lt;&gt; coeff1) then error("failed"), end
-                    </programlisting>
-  </refsection>
+if or(coeff2 <> coeff1) then error("failed"), end
+            ]]>
+        </programlisting>
+    </refsection>
 </refentry>

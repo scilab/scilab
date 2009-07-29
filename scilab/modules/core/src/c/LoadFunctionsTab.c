@@ -54,7 +54,13 @@ static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
 	int id[nsiz];
 	int zero=0;
 	C2F(cvname)(id,str,&zero,(unsigned long)strlen(str));
-	ldata= (*dataI)*100+*data; /* @TODO: what is 100 ? */
+	/* fptr returned by funptr are coded by this algo :( */
+	/* example: funptr('clc') return 53001*/
+	/* 53 gateway ID */
+	/* 1  function ID */
+	/* we can have 999 functions in a gateway */
+	/* Limitation to remove with scilab 6 */
+	ldata = (*dataI) * 1000 + *data;
 	return( action_hashtable_scilab_functions(id,str,&ldata,SCI_HFUNCTIONS_ENTER));
 }
 /*--------------------------------------------------------------------------*/

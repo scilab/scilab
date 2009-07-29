@@ -33,7 +33,7 @@
 
         <listitem>
           <para>vetor de strings ou matriz vazia: a última mensagem de erro
-          registrada</para>
+          registrada </para>
         </listitem>
       </varlistentry>
 
@@ -49,8 +49,8 @@
         <term>line</term>
 
         <listitem>
-          <para>inteiro, 0 ou o último número de linha da função
-          registrado</para>
+          <para>inteiro, 0 ou o último número de linha da função registrado
+          </para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>func</term>
 
         <listitem>
-          <para>string, o último nome da função registrado</para>
+          <para>string, o último nome da função registrado </para>
         </listitem>
       </varlistentry>
 
@@ -100,10 +100,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
+
 ierr=execstr('a=zzzzzzz','errcatch')
 if ierr&gt;0 then disp(lasterror()),end
-   </programlisting>
+ 
+  </programlisting>
   </refsection>
 
   <refsection>

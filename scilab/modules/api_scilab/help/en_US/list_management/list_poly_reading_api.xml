@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
@@ -17,124 +17,114 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv>
-    <refname>Polynomial reading (Scilab gateway)</refname>
 
-    <refpurpose>How to read matrix of polynomial in a list.</refpurpose>
-  </refnamediv>
+    <refnamediv>
+        <refname>Polynomial reading (Scilab gateway)</refname>
 
-  <refsection>
-    <title>Description</title>
-
-    <para>This help describes how to read matrix of polynomial in a
-    list.</para>
-  </refsection>
-
-  <refsection>
-    <title>Description</title>
-
-    <synopsis>int getMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)</synopsis>
-
-    <synopsis>int getComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)</synopsis>
-  </refsection>
-
-  <refsection>
-    <title>Parameters</title>
-
-    <variablelist>
-      <varlistentry>
-        <term>_iVar</term>
-
-        <listitem>
-          <para>Position in the Scilab memory where you want to put the
-          variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piParent</term>
-
-        <listitem>
-          <para>Address of the parent of the new item.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_iItemPos</term>
-
-        <listitem>
-          <para>Position of the new item in the list.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piRows</term>
-
-        <listitem>
-          <para>Return number of rows of the variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piCols</term>
-
-        <listitem>
-          <para>Return number of columns of the variable.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_piNbCoef</term>
-
-        <listitem>
-          <para>Return number of coefficient for each polynomial. (must be
-          allocated)</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_pdblReal</term>
-
-        <listitem>
-          <para>Address of array of double* with imaginary part of coefficient
-          (size: _iCols * _iRows, must be allocated)</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>_pdblImg</term>
-
-        <listitem>
-          <para>Address of array of double* with imaginary part of coefficient
-          (size: _iCols * _iRows, must be allocated)</para>
-        </listitem>
-      </varlistentry>
-    </variablelist>
-  </refsection>
-
-  <refsection>
-    <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_read_api.c-->
-
-    <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_read_api.tst-->
-
-    <!--Lib_name: commom_read-->
-
-    <!--Func_list: commom_read-->
-
-    <title>Gateway Source</title>
-
-    <programlisting role="code_gateway">            
+        <refpurpose>
+            How to read matrix of polynomial in a list.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+int getMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+int getComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piParent</term>
+                <listitem>
+                    <para>
+                        Address of the parent of the new item.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iItemPos</term>
+                <listitem>
+                    <para>
+                        Position of the new item in the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns of the variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbCoef</term>
+                <listitem>
+                    <para>
+                        Return number of coefficient for each polynomial. (must be allocated)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        Address of array of double* with imaginary part of coefficient (size: _iCols * _iRows, must be allocated)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        Address of array of double* with imaginary part of coefficient (size: _iCols * _iRows, must be allocated)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to read matrix of polynomial in a list.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_read_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_read_api.tst-->
+        <!--Lib_name: commom_read-->
+        <!--Func_list: commom_read-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
 int iTab = 0;
 
 void insert_indent(void)
 {
     int i = 0;
-    for(i = 0 ; i &lt; iTab ; i++)
+    for(i = 0 ; i < iTab ; i++)
     {
         sciprint("\t");
     }
 }
- 
+
+
 int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
@@ -155,7 +145,7 @@ int commom_read(char *fname,unsigned long fname_len)
 
     CheckRhs(1,1);
 
-    iRet = getVarAddressFromPosition(1, &amp;piAddr);
+    iRet = getVarAddressFromPosition(1, &piAddr);
     if(iRet)
     {
         return 1;
@@ -236,16 +226,16 @@ int get_list_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     int iItem       = 0;
     int* piChild    = NULL;
 
-    iRet = getListItemNumber(_piAddr, &amp;iItem);
+    iRet = getListItemNumber(_piAddr, &iItem);
     if(iRet)
     {
         return 1;
     }
 
     sciprint("(%d)\n", iItem);
-    for(i = 0 ; i &lt; iItem ; i++)
+    for(i = 0 ; i < iItem ; i++)
     {
-        iRet = getListItemAddress(_piAddr, i + 1, &amp;piChild);
+        iRet = getListItemAddress(_piAddr, i + 1, &piChild);
         if(iRet)
         {
             return 1;
@@ -272,22 +262,22 @@ int get_double_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     {//not in list
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexMatrixOfDouble(_piAddr, &amp;iRows, &amp;iCols, &amp;pdblReal, &amp;pdblImg);
+            iRet = getComplexMatrixOfDouble(_piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
         }
         else
         {
-            iRet = getMatrixOfDouble(_piAddr, &amp;iRows, &amp;iCols, &amp;pdblReal);
+            iRet = getMatrixOfDouble(_piAddr, &iRows, &iCols, &pdblReal);
         }
     }
     else
     {
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexMatrixOfDoubleInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;pdblReal, &amp;pdblImg);
+            iRet = getComplexMatrixOfDoubleInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &pdblReal, &pdblImg);
         }
         else
         {
-            iRet = getMatrixOfDoubleInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;pdblReal);
+            iRet = getMatrixOfDoubleInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &pdblReal);
         }
     }
 
@@ -315,18 +305,18 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     double** pdblReal   = NULL;
     double** pdblImg    = NULL;
 
-    getPolyVariableName(_piAddr, pstVar, &amp;iLen);
+    getPolyVariableName(_piAddr, pstVar, &iLen);
 
     if(_iItemPos == 0)
     {//not in list
-        iRet = getMatrixOfPoly(_piAddr, &amp;iRows, &amp;iCols, NULL, NULL);
+        iRet = getMatrixOfPoly(_piAddr, &iRows, &iCols, NULL, NULL);
         if(iRet)
         {
             return 1;
         }
 
         piCoeff     = (int*)malloc(sizeof(int) * iRows * iCols);
-        iRet = getMatrixOfPoly(_piAddr, &amp;iRows, &amp;iCols, piCoeff, NULL);
+        iRet = getMatrixOfPoly(_piAddr, &iRows, &iCols, piCoeff, NULL);
         if(iRet)
         {
             return 1;
@@ -334,7 +324,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
         pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
         pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
-        for(i = 0 ; i &lt; iRows * iCols ; i++)
+        for(i = 0 ; i < iRows * iCols ; i++)
         {
             pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
             pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -342,7 +332,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexMatrixOfPoly(_piAddr, &amp;iRows, &amp;iCols, piCoeff, pdblReal, pdblImg);
+            iRet = getComplexMatrixOfPoly(_piAddr, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
             if(iRet)
             {
             return 1;
@@ -350,7 +340,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
         }
         else
         {
-            iRet = getMatrixOfPoly(_piAddr, &amp;iRows, &amp;iCols, piCoeff, pdblReal);
+            iRet = getMatrixOfPoly(_piAddr, &iRows, &iCols, piCoeff, pdblReal);
             if(iRet)
             {
                 return 1;
@@ -359,14 +349,14 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     }
     else
     {
-        iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, NULL, NULL);
+        iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
         if(iRet)
         {
             return 1;
         }
 
         piCoeff = (int*)malloc(sizeof(int) * iRows * iCols);
-        iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, piCoeff, NULL);
+        iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, piCoeff, NULL);
         if(iRet)
         {
             return 1;
@@ -374,7 +364,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
         pdblReal    = (double**)malloc(sizeof(double*) * iRows * iCols);
         pdblImg     = (double**)malloc(sizeof(double*) * iRows * iCols);
-        for(i = 0 ; i &lt; iRows * iCols ; i++)
+        for(i = 0 ; i < iRows * iCols ; i++)
         {
             pdblReal[i] = (double*)malloc(sizeof(double) * piCoeff[i]);
             pdblImg[i]  = (double*)malloc(sizeof(double) * piCoeff[i]);
@@ -382,11 +372,11 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, piCoeff, pdblReal, pdblImg);
+            iRet = getComplexMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
         }
         else
         {
-            iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, piCoeff, pdblReal);
+            iRet = getMatrixOfPolyInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, piCoeff, pdblReal);
         }
     }
 
@@ -398,7 +388,7 @@ int get_poly_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     insert_indent();
     sciprint("Poly  (%d x %d), varname : \'%s\'\n", iRows, iCols, pstVar);
 
-    for(i = 0 ; i &lt; iRows * iCols ; i++)
+    for(i = 0 ; i < iRows * iCols ; i++)
     {
         free(pdblReal[i]);
         free(pdblImg[i]);
@@ -419,11 +409,11 @@ int get_boolean_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     if(_iItemPos == 0)
     {
-        iRet = getMatrixOfBoolean(_piAddr, &amp;iRows, &amp;iCols, &amp;piBool);
+        iRet = getMatrixOfBoolean(_piAddr, &iRows, &iCols, &piBool);
     }
     else
     {
-        iRet = getMatrixOfBooleanInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;piBool);
+        iRet = getMatrixOfBooleanInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &piBool);
     }
 
     if(iRet)
@@ -453,22 +443,22 @@ int get_sparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     {//Not in list
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexSparseMatrix(_piAddr, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos, &amp;pdblReal, &amp;pdblImg);
+            iRet = getComplexSparseMatrix(_piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
         }
         else
         {
-            iRet = getSparseMatrix(_piAddr, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos, &amp;pdblReal);
+            iRet = getSparseMatrix(_piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
         }
     }
     else
     {
         if(isVarComplex(_piAddr))
         {
-            iRet = getComplexSparseMatrixInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos, &amp;pdblReal, &amp;pdblImg);
+            iRet = getComplexSparseMatrixInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal, &pdblImg);
         }
         else
         {
-            iRet = getSparseMatrixInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos, &amp;pdblReal);
+            iRet = getSparseMatrixInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos, &pdblReal);
         }
     }
 
@@ -489,11 +479,11 @@ int get_bsparse_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     if(_iItemPos == 0)
     {//Not in list
-        iRet = getBooleanSparseMatrix(_piAddr, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos);
+        iRet = getBooleanSparseMatrix(_piAddr, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
     }
     else
     {
-        iRet = getBooleanSparseMatrixInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;iItem, &amp;piNbRow, &amp;piColPos);
+        iRet = getBooleanSparseMatrixInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &iItem, &piNbRow, &piColPos);
     }
 
     if(iRet)
@@ -522,7 +512,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     if(_iItemPos == 0)
     {//Not in list
-        iRet = getMatrixOfIntegerPrecision(_piAddr, &amp;iPrec);
+        iRet = getMatrixOfIntegerPrecision(_piAddr, &iPrec);
         if(iRet)
         {
             return 1;
@@ -531,22 +521,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
         switch(iPrec)
         {
         case SCI_INT8 : 
-            iRet = getMatrixOfInteger8(_piAddr, &amp;iRows, &amp;iCols, &amp;pcData);
+            iRet = getMatrixOfInteger8(_piAddr, &iRows, &iCols, &pcData);
             break;
         case SCI_INT16 : 
-            iRet = getMatrixOfInteger16(_piAddr, &amp;iRows, &amp;iCols, &amp;psData);
+            iRet = getMatrixOfInteger16(_piAddr, &iRows, &iCols, &psData);
             break;
         case SCI_INT32 : 
-            iRet = getMatrixOfInteger32(_piAddr, &amp;iRows, &amp;iCols, &amp;piData);
+            iRet = getMatrixOfInteger32(_piAddr, &iRows, &iCols, &piData);
             break;
         case SCI_UINT8 : 
-            iRet = getMatrixOfUnsignedInteger8(_piAddr, &amp;iRows, &amp;iCols, &amp;pucData);
+            iRet = getMatrixOfUnsignedInteger8(_piAddr, &iRows, &iCols, &pucData);
             break;
         case SCI_UINT16 : 
-            iRet = getMatrixOfUnsignedInteger16(_piAddr, &amp;iRows, &amp;iCols, &amp;pusData);
+            iRet = getMatrixOfUnsignedInteger16(_piAddr, &iRows, &iCols, &pusData);
             break;
         case SCI_UINT32 : 
-            iRet = getMatrixOfUnsignedInteger32(_piAddr, &amp;iRows, &amp;iCols, &amp;puiData);
+            iRet = getMatrixOfUnsignedInteger32(_piAddr, &iRows, &iCols, &puiData);
             break;
         default :
             return 1;
@@ -554,7 +544,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     }
     else
     {
-        iRet = getMatrixOfIntegerPrecision(_piAddr, &amp;iPrec);
+        iRet = getMatrixOfIntegerPrecision(_piAddr, &iPrec);
         if(iRet)
         {
             return 1;
@@ -563,22 +553,22 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
         switch(iPrec)
         {
         case SCI_INT8 : 
-            iRet = getMatrixOfInteger8InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;pcData);
+            iRet = getMatrixOfInteger8InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &pcData);
             break;
         case SCI_INT16 : 
-            iRet = getMatrixOfInteger16InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;psData);
+            iRet = getMatrixOfInteger16InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &psData);
             break;
         case SCI_INT32 : 
-            iRet = getMatrixOfInteger32InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;piData);
+            iRet = getMatrixOfInteger32InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &piData);
             break;
         case SCI_UINT8 : 
-            iRet = getMatrixOfUnsignedInteger8InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;pucData);
+            iRet = getMatrixOfUnsignedInteger8InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &pucData);
             break;
         case SCI_UINT16 : 
-            iRet = getMatrixOfUnsignedInteger16InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;pusData);
+            iRet = getMatrixOfUnsignedInteger16InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &pusData);
             break;
         case SCI_UINT32 : 
-            iRet = getMatrixOfUnsignedInteger32InList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, &amp;puiData);
+            iRet = getMatrixOfUnsignedInteger32InList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, &puiData);
             break;
         default :
             return 1;
@@ -591,7 +581,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     }
 
     insert_indent();
-    if(iPrec &gt; 10)
+    if(iPrec > 10)
     {
         sciprint("Unsigned ");
     }
@@ -613,26 +603,26 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     if(_iItemPos == 0)
     {//Not in list
-        iRet = getMatrixOfString(_piAddr, &amp;iRows, &amp;iCols, NULL, NULL);
+        iRet = getMatrixOfString(_piAddr, &iRows, &iCols, NULL, NULL);
         if(iRet)
         {
             return 1;
         }
 
         piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-        iRet = getMatrixOfString(_piAddr, &amp;iRows, &amp;iCols, piLen, NULL);
+        iRet = getMatrixOfString(_piAddr, &iRows, &iCols, piLen, NULL);
         if(iRet)
         {
             return 1;
         }
 
         pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
-        for(i = 0 ; i &lt; iRows * iCols ; i++)
+        for(i = 0 ; i < iRows * iCols ; i++)
         {
             pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
-        iRet = getMatrixOfString(_piAddr, &amp;iRows, &amp;iCols, piLen, pstData);
+        iRet = getMatrixOfString(_piAddr, &iRows, &iCols, piLen, pstData);
         if(iRet)
         {
             return 1;
@@ -640,26 +630,26 @@ int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
     }
     else
     {
-        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, NULL, NULL);
+        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, NULL, NULL);
         if(iRet)
         {
             return 1;
         }
 
         piLen = (int*)malloc(sizeof(int) * iRows * iCols);
-        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, piLen, NULL);
+        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, piLen, NULL);
         if(iRet)
         {
             return 1;
         }
 
         pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
-        for(i = 0 ; i &lt; iRows * iCols ; i++)
+        for(i = 0 ; i < iRows * iCols ; i++)
         {
             pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
         }
 
-        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &amp;iRows, &amp;iCols, piLen, pstData);
+        iRet = getMatrixOfStringInList(_iRhs, _piParent, _iItemPos, &iRows, &iCols, piLen, pstData);
         if(iRet)
         {
             return 1;
@@ -685,11 +675,11 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     if(_iItemPos == 0)
     {
-        iRet = getPointer(_piAddr, &amp;pvPtr);
+        iRet = getPointer(_piAddr, &pvPtr);
     }
     else
     {
-        iRet = getPointerInList(_iRhs, _piParent, _iItemPos, &amp;pvPtr);
+        iRet = getPointerInList(_iRhs, _piParent, _iItemPos, &pvPtr);
     }
 
     if(iRet)
@@ -708,13 +698,14 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     return 0;
 }
-                </programlisting>
-  </refsection>
+        ]]>
+        </programlisting>
+    </refsection>
 
-  <refsection>
-    <title>Scilab test script</title>
-
-    <programlisting role="code_scilab">            
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];commom_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];commom_read(p);
@@ -733,6 +724,7 @@ end
 commom_read(l)
 endfunction
 read_all;
-                    </programlisting>
-  </refsection>
+            ]]>
+        </programlisting>
+    </refsection>
 </refentry>

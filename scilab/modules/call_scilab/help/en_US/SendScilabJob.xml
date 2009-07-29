@@ -73,14 +73,14 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // A simple SendScilabJob example
 
 if (SendScilabJob("disp('unfinished quote)")!=0){ // This will fail
  printf("An error occured\n");
 }
 SendScilabJob("myMatrix=['sample','for the help']");
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

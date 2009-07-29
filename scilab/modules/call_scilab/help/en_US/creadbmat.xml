@@ -29,8 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadbmat)(char *name, int *m, int *n, int *scimat, unsigned
-    long name_len);</para>
+    <synopsis>int C2F(creadbmat)(char *name, int *m, int *n, int *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -103,7 +102,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 /* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwriteboolean.c
 int rowB_ = 0, colB_ = 0, lp_ = 0;
@@ -113,19 +112,19 @@ int *matrixOfBooleanB = NULL; /* Int instead of double */
 char variableToBeRetrievedB[] = "B";
 
 /* First, retrieve the size of the matrix */
-C2F(cmatbptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
 /* Alloc the memory */
 matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
 /* Load the matrix */
-C2F(creadbmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
 
 printf("\n");
 printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-for(j = 0 ; j &lt; rowB_ ; j++)
+for(j = 0 ; j < rowB_ ; j++)
 {
- for(i = 0 ; i &lt; colB_ ; i++)
+ for(i = 0 ; i < colB_ ; i++)
  {
   /* Display the formated matrix ... the way the user
    * expect */
@@ -133,7 +132,7 @@ for(j = 0 ; j &lt; rowB_ ; j++)
  }
  printf("\n"); /* New row of the matrix */
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

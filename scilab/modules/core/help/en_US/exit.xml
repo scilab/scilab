@@ -54,11 +54,9 @@ exit(n)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting> 
-exit
+    <programlisting>exit
 i = 4;
-exit(i);  
- </programlisting>
+exit(i);  </programlisting>
   </refsection>
 
   <refsection>

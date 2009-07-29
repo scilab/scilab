@@ -16,7 +16,10 @@ package org.scilab.modules.gui.bridge.menu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JMenu;
+
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.SimpleMenu;
@@ -50,6 +53,28 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	 */
 	public SwingScilabMenu() {
 		super();
+		this.setFocusable(true);
+	}
+	
+	/**
+	 * Append a CheckBoxMenuItem to a Scilab Menu
+	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.CheckBoxMenuItem)
+	 */
+	public void add(CheckBoxMenuItem newCheckBoxMenuItem) {
+		/* Back to Java Mouse Listeners */
+		if (customedMouseListener != null) {
+			removeMouseListener(customedMouseListener);
+		}
+		if (nativeMouseListeners != null) {
+			for (int i = 0; i < nativeMouseListeners.length; i++) {
+				addMouseListener(nativeMouseListeners[i]);
+			}
+			nativeMouseListeners = null;
+		}
+
+		super.add((SwingScilabCheckBoxMenuItem) newCheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
+		super.repaint();
 	}
 	
 	/**
@@ -68,6 +93,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 			}
 			nativeMouseListeners = null;
 		}
+
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 		super.repaint();
 	}

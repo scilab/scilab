@@ -30,8 +30,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(cwritemat)(char *name, int *m, int *n, int *mat, unsigned
-    long name_len);</para>
+    <synopsis>int C2F(cwritemat)(char *name, int *m, int *n, int *mat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -103,7 +102,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[
 // This example shows how to write a Scilab matrix of double in Scilab engine
 // * Write a matrix into Scilab
 // * B=[1 4 2 3; 
@@ -116,12 +115,12 @@ double B[] = {1,3,4,9,2,8,3,2};   /* Declare the matrix */
 int rowB = 2, colB = 4; /* Size of the matrix */
 char variableNameB[] = "B";
 
-C2F(cwritemat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+C2F(cwritemat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 
 printf("\n");
 printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display A */
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

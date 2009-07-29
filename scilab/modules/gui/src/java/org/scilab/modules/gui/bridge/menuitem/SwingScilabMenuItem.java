@@ -53,6 +53,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 */
 	public SwingScilabMenuItem() {
 		super();
+		this.setFocusable(true);
 		addActionListener(new ActionListener() {
 			/**
 			 * Action performed ? What do I have to do ?
@@ -271,5 +272,4 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	public CallBack getCallback() {
 		return callback;
 	}
-
 }

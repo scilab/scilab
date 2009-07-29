@@ -14,6 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include "stack-def.h"
 #include "existfunction.h"
+#include "addinter.h"
 /*--------------------------------------------------------------------------*/
 #ifdef FAILED
 	#undef FAILED
@@ -45,8 +46,11 @@ typedef enum
  * prime > MAXELEMENTFUNCTIONLIST 
  * WARNING : MAXELEMENTFUNCTIONLIST must be chosen > 2* the number of scilab
  * functions 
- * for good efficiency of the hash code */
-#define MAXELEMENTFUNCTIONLIST 1536
+ * for good efficiency of the hash code 
+ * this limitation should be removed with scilab 6
+ */
+#define MAXELEMENTFUNCTIONLIST (DynInterfStart + MAXDYNINTERF) * NumberMaxFunctionsByGateway * 2
+/* scilab 5 can manage 550000 primitives (max) */
 /*--------------------------------------------------------------------------*/
 /** 
  * Create the hashtable of Scilab functions
