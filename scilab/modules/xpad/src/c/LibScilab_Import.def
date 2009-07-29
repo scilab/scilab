@@ -8,3 +8,7 @@ putlhsvar_
 intersci_
 getScilabMode
 com_
+stack_
+getrhsvar_
+vartype_
+checkrhs_ 
