@@ -25,7 +25,7 @@
 #include "CurrentObjectsManagement.h"
 
 #include "GetHashTable.h"
-
+#include "BuildObjects.h"
 #include "localization.h"
 #include "Scierror.h"
 

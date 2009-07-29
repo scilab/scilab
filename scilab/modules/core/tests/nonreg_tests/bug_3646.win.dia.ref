@@ -15,16 +15,11 @@ if MSDOS then
   cd(TMPDIR);
   mkdir('Lukáš Bùôl');
   path_directory = cd('Lukáš Bùôl');
-  // backup previous SCIHOME
-  prv_SCIHOME = getenv('SCIHOME');
   prv_APPDATA = getenv('APPDATA');
-  // undefine previous SCIHOME
-  setenv('SCIHOME', '');
   // set APPDATA to find another SCIHOME
   setenv('APPDATA', path_directory);
   res = unix('wscilex -e quit');
   if res <> 0 then bugmes();quit;end
   // restore previous env. variables
-  setenv('SCIHOME',prv_SCIHOME);
   setenv('APPDATA',prv_APPDATA);
 end
