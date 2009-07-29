@@ -27,9 +27,9 @@ include $(top_srcdir)/Makefile.incl.am
 
 XPAD_C_SOURCES = 
 
-XPAD_CPP_SOURCES = 
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = Xpad.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -38,7 +38,7 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
 
 libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -51,6 +51,7 @@ libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
@@ -93,7 +94,8 @@ libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 #### xpad : include files ####
 libscixpad_la_includedir=$(pkgincludedir)/xpad
 libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h
+includes/dynlib_xpad.h \
+src/jni/Xpad.hxx
 
 if GUI
 USEANT=1

@@ -16,7 +16,7 @@
 #include "dynlib_xpad.h"
 /*--------------------------------------------------------------------------*/
 XPAD_IMPEXP int gw_xpad(void);
-XPAD_IMPEXP int sci_Xpad(char* fname, unsigned long l);
+XPAD_IMPEXP int sci_xpad(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_XPAD__ */
 /*--------------------------------------------------------------------------*/

@@ -111,9 +111,10 @@ libscixpad_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
 am__objects_3 = libscixpad_la-gw_xpad.lo
-am__objects_4 = libscixpad_la-sci_Xpad.lo
+am__objects_4 = libscixpad_la-sci_xpad.lo
+am__objects_5 = libscixpad_la-Xpad.lo
 am_libscixpad_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_2)
+	$(am__objects_4) $(am__objects_5)
 libscixpad_la_OBJECTS = $(am_libscixpad_la_OBJECTS)
 libscixpad_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -451,11 +452,11 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XPAD_C_SOURCES = 
-XPAD_CPP_SOURCES = 
-GIWS_WRAPPERS = 
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp
+GIWS_WRAPPERS = Xpad.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xpad.c
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xpad.cpp
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_xpad.cpp
 libscixpad_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
@@ -467,6 +468,7 @@ libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
@@ -499,7 +501,8 @@ libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 #### xpad : include files ####
 libscixpad_la_includedir = $(pkgincludedir)/xpad
 libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h
+includes/dynlib_xpad.h \
+src/jni/Xpad.hxx
 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
@@ -575,8 +578,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_disable_la-noxpad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-Xpad.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-gw_xpad.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-sci_Xpad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixpad_la-sci_xpad.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -634,12 +638,19 @@ libscixpad_la-gw_xpad.lo: sci_gateway/c/gw_xpad.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscixpad_la-sci_Xpad.lo: sci_gateway/cpp/sci_Xpad.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-sci_Xpad.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-sci_Xpad.Tpo -c -o libscixpad_la-sci_Xpad.lo `test -f 'sci_gateway/cpp/sci_Xpad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xpad.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscixpad_la-sci_Xpad.Tpo $(DEPDIR)/libscixpad_la-sci_Xpad.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_Xpad.cpp' object='libscixpad_la-sci_Xpad.lo' libtool=yes @AMDEPBACKSLASH@
+libscixpad_la-sci_xpad.lo: sci_gateway/cpp/sci_xpad.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-sci_xpad.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-sci_xpad.Tpo -c -o libscixpad_la-sci_xpad.lo `test -f 'sci_gateway/cpp/sci_xpad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xpad.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscixpad_la-sci_xpad.Tpo $(DEPDIR)/libscixpad_la-sci_xpad.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xpad.cpp' object='libscixpad_la-sci_xpad.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-sci_Xpad.lo `test -f 'sci_gateway/cpp/sci_Xpad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xpad.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-sci_xpad.lo `test -f 'sci_gateway/cpp/sci_xpad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xpad.cpp
+
+libscixpad_la-Xpad.lo: src/jni/Xpad.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixpad_la-Xpad.lo -MD -MP -MF $(DEPDIR)/libscixpad_la-Xpad.Tpo -c -o libscixpad_la-Xpad.lo `test -f 'src/jni/Xpad.cpp' || echo '$(srcdir)/'`src/jni/Xpad.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscixpad_la-Xpad.Tpo $(DEPDIR)/libscixpad_la-Xpad.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Xpad.cpp' object='libscixpad_la-Xpad.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixpad_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixpad_la-Xpad.lo `test -f 'src/jni/Xpad.cpp' || echo '$(srcdir)/'`src/jni/Xpad.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

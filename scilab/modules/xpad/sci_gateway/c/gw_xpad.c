@@ -24,7 +24,7 @@ static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 #define XPAD_TAB_SIZE 1
 static gw_generic_table Tab[XPAD_TAB_SIZE]={
-  {sci_Xpad, "Xpad"}
+  {sci_xpad, "xpad"}
 };
 
 /*--------------------------------------------------------------------------*/
