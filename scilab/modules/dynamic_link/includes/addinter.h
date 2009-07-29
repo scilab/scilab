@@ -18,6 +18,16 @@
 */
 #define DynInterfStart 500
 
+#define NumberMaxFunctionsByGateway 1000
+
+#define MAXDYNINTERF 50 /* default value compatibility scilab 4.x */
+/* !!! WARNING !!! */
+/* On Windows , AddInterfaceToScilab based on LoadLibrary C function */
+/* you cannot load more than 80 dynamic libraries at the same time. */
+/* Scilab will return a error (code Windows 1114) in this case.*/
+/* A dynamic link library (DLL) initialization routine failed. */
+
+
 /**
 * Remove interface in scilab
 * @param[in] id of interface

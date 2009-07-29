@@ -34,8 +34,8 @@
     Utility function (for experts only) to get the internal routine number <literal>numptr</literal>
     of the primitive <literal>'name'</literal>. <literal>numptr</literal> is formed from the interface
     number <literal>fun</literal> and the routine number <literal>fin</literal> of the primitive in its interface
-    by <literal>numptr = 100*fun + fin</literal> (fin &lt; 100). From  <literal>numptr</literal> you can get 
-    the interface number <literal>fun = floor(numptr/100)</literal> which may be useful to link a 
+    by <literal>numptr = 1000*fun + fin</literal> (fin &lt; 1000). From  <literal>numptr</literal> you can get 
+    the interface number <literal>fun = floor(numptr/1000)</literal> which may be useful to link a 
     dynamical interface with arguments passed by reference (see example section).</para>
   </refsection>
   <refsection>
@@ -50,7 +50,7 @@
 // routines) :
 //
 // addinter(files,spnames,fcts)  // args passed by values
-// num_interface = floor(funptr(name)/100)
+// num_interface = floor(funptr(name)/1000)
 // intppty(num_interface)  // args now passed by reference
 //
 // Note that if you enter the following
