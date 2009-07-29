@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Vincent Couvert
- * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2009 - DIGITEO - Vincent Couvert
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,22 +10,22 @@
  *
  */
 
-package org.scilab.modules.gui.bridge.menuitem;
+package org.scilab.modules.gui.bridge.checkboxmenuitem;
 
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JMenuItem;
+import javax.swing.JCheckBoxMenuItem;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
 import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.Position;
@@ -38,9 +37,8 @@ import org.scilab.modules.gui.utils.Size;
 /**
  * Swing implementation for Scilab MenuBars in GUIs
  * @author Vincent COUVERT
- * @author Marouane BEN JELLOUL
  */
-public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
+public class SwingScilabCheckBoxMenuItem extends JCheckBoxMenuItem implements SimpleCheckBoxMenuItem {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -51,7 +49,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	/**
 	 * Constructor
 	 */
-	public SwingScilabMenuItem() {
+	public SwingScilabCheckBoxMenuItem() {
 		super();
 		this.setFocusable(true);
 		addActionListener(new ActionListener() {
@@ -60,7 +58,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			 * @param arg0 the action
 			 */
 			public void actionPerformed(ActionEvent arg0) {
-				BlockingResult.getInstance().setResult(((SwingScilabMenuItem) arg0.getSource()).getText());
+				BlockingResult.getInstance().setResult(((SwingScilabCheckBoxMenuItem) arg0.getSource()).getText());
 			}
 		});
 	}
@@ -271,5 +269,20 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 */
 	public CallBack getCallback() {
 		return callback;
+	}
+	/**
+	 * Set if the menu item is checked or not
+	 * @param status true if the menu item is checked
+	 */
+	public void setChecked(boolean status) {
+		setState(status);
+	}
+	
+	/**
+	 * Get if the menu item is checked or not
+	 * @return true if the menu item is checked
+	 */
+	public boolean isChecked() {
+		return getState();
 	}
 }
