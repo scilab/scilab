@@ -25,17 +25,5 @@ public interface CheckBoxMenuItem extends MenuItem {
 	 * @return this Bridge component object
 	 */
 	SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem();
-	
-	/**
-	 * Set if the menu item is checked or not
-	 * @param status true if the menu item is checked
-	 */
-	void setChecked(boolean status);
-	
-	/**
-	 * Get if the menu item is checked or not
-	 * @return true if the menu item is checked
-	 */
-	boolean isChecked();
 
 }

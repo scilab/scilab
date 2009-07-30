@@ -203,6 +203,7 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
   { "verticalalignment"   , SetUicontrolVerticalAlignment     },
   { "fontname"            , SetUicontrolFontName              },
   { "sliderstep"          , SetUicontrolSliderStep            },
+  { "checked"             , SetUimenuChecked                  },
   { "arc_drawing_method"  , set_arc_drawing_method_property   },
   { "fractional_font"     , set_fractional_font_property      },
   { "links"               , set_links_property                },

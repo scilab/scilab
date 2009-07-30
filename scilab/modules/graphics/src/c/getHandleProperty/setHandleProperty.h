@@ -50,6 +50,7 @@
 #include "SetUicontrolVerticalAlignment.h"
 #include "SetUicontrolFontName.h"
 #include "SetUicontrolSliderStep.h"
+#include "SetUimenuChecked.h"
 
 
 int set_color_map_property(            sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;

@@ -277,4 +277,30 @@ public class ScilabMenuBridge {
 		menu.getAsSimpleMenu().requestFocus();
 	}
 
+	/**
+	 * Retrieve the CallBack associated to this Menu
+	 * @param menuItem the Menu
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(Menu menu) {
+		return menu.getAsSimpleMenu().getCallback();
+	}
+
+	/**
+	 * Set if the Menu is checked or not
+	 * @param menu the Menu
+	 * @param status true if the Menu is checked
+	 */
+	public static void setChecked(Menu menu, boolean status) {
+		menu.getAsSimpleMenu().setChecked(status);
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public static boolean isChecked(Menu menu) {
+		return menu.getAsSimpleMenu().isChecked();
+	}
+
 }

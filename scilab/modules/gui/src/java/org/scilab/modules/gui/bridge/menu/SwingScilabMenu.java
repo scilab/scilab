@@ -48,6 +48,8 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 	
 	private MouseListener customedMouseListener;
 	
+	private boolean checkedState = false;
+	
 	/**
 	 * Constructor
 	 */
@@ -322,4 +324,27 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	public void setChecked(boolean status) {
+		checkedState = status;
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public boolean isChecked() {
+		return checkedState;
+	}
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	public CallBack getCallback() {
+		return callback;
+	}
 }
