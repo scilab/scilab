@@ -19,11 +19,12 @@
 
 #include "MALLOC.h"
 #include "stack-c.h"
+static int fillPointer(int *_piAddress, void** _pvPtr);
 
 int getPointer(int* _piAddress, void** _pvPtr)
 {
 	int *piTmp = NULL;
-	double vVal	= 0;
+
 	if(	_piAddress == NULL || getVarType(_piAddress) != sci_lufact_pointer)
 	{
 		return 1;
@@ -35,7 +36,7 @@ int getPointer(int* _piAddress, void** _pvPtr)
 	return 0;
 }
 
-int fillPointer(int *_piAddress, void** _pvPtr)
+static int fillPointer(int *_piAddress, void** _pvPtr)
 {
 	if(_piAddress == NULL)
 	{

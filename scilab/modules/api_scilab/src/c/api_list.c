@@ -62,6 +62,9 @@ static int getCommonxMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos
 static int createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static int fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen);
 static int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
+static int readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static int createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static int createCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 int getListItemNumber(int* _piAddress, int* _piNbItem)
 {
@@ -904,10 +907,6 @@ int readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos,
 	int* piAddr				= NULL;
 	int* piRoot				= NULL;
 	int iNbItem				= NULL;
-	int* piNbCoef			= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
-
 
 	if(_piParent == NULL)
 	{
@@ -1316,10 +1315,6 @@ int readCommonMatrixOfPolyInNamedList(char* _pstName, int* _piParent, int _iItem
 	int* piAddr				= NULL;
 	int* piRoot				= NULL;
 	int iNbItem				= NULL;
-	int* piNbCoef			= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
-
 
 	if(_piParent == NULL)
 	{
@@ -1546,7 +1541,7 @@ int getMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _p
 	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, _piData);
 }
 
-int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+static int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -1755,7 +1750,7 @@ static int fillCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos
 	return 0;
 }
 
-int createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static int createCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iRet						= 0;
 	int* piAddr					= NULL;
@@ -1887,7 +1882,7 @@ int getComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* 
 	return getCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-int readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static int readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iRet					= 0;
 	int iNbItem				= 0;
@@ -1967,13 +1962,10 @@ static int fillBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPo
 {
 	int iRet					= 0;
 	int iNbItem				= 0;
-	int iTotalLen			= 0;
 	int* piOffset			= NULL;
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
 	int* piChildAddr	= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
 
 	int iItemLen			= 0;
 
@@ -2013,7 +2005,6 @@ int createBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, in
 	int* piAddr					= NULL;
 	int *piEnd					= NULL;
 	int iItemLen				= 0;
-	int iTotalLen				= 0;
 
 	iRet = getListItemAddress(_piParent, _iItemPos, &piAddr);
 	if(iRet)
@@ -2231,8 +2222,6 @@ int readPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void**
 	int iNbItem				= 0;
 	int* piAddr				= NULL;
 	int* piRoot				= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
 
 	if(_piParent == NULL)
 	{
