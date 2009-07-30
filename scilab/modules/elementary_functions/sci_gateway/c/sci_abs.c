@@ -12,224 +12,274 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "api_scilab.h"
 #include "basic_functions.h"
 
-int abs_double();
-int abs_poly();
-int abs_sparse();
+int abs_double(int* _piAddress);
+int abs_poly(int* _piAddress);
+int abs_sparse(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intabs) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_abs) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
+	int iRet			= 0;
+	int* piAddr		= NULL;
+
 	CheckRhs(1,1);
 	CheckLhs(1,1);
-	switch(GetType(1))
+
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	switch(getVarType(piAddr))
 	{
 	case sci_matrix:
-		abs_double();
+		iRet = abs_double(piAddr);
 		break;
 	case sci_poly:
-		abs_poly();
+		iRet = abs_poly(piAddr);
 		break;
 	case sci_sparse:
-		abs_sparse();
+		iRet = abs_sparse(piAddr);
 		break;
 	default:
 		OverLoad(1);
 		break;
 	}
+
+	if(iRet)
+	{
+		return 1;
+	}
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 
 /*Absolute value for a double*/
-int abs_double()
+int abs_double(int* _piAddress)
 {
-	int iRows = 0;
-	int iCols = 0;
-	int iRealData = 0;
-	int iImgData = 0;
-	int iIndex = 0;
+	int i;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	double *pdblReal		= NULL;
+	double* pdblImg			= NULL;
 
-	if(iIsComplex(1))
+	double* pdblRealRet	= NULL;
+
+	if(isVarComplex(_piAddress))
 	{
-		double *pdblRealData	= 0;
-		double *pdblImgData		= 0;
-		double *pReturnRealData	= NULL;
-		int		iComplex		= 1;
+		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
-		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblRealRet[i] = dabsz(pdblReal[i], pdblImg[i]);
+		}
 	}
 	else
 	{
-		double *pdblRealData	= 0;
-		double *pReturnRealData = NULL;
-	
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblRealData		= stk(iRealData);
-		//pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-
-		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblRealRet[i] = dabss(pdblReal[i]);
+		}
 	}
-
 	return 0;
 }
 
 /*Absolute value for a polynomial ( absolute value of each coefficient )*/
-int abs_poly()
+int abs_poly(int* _piAddress)
 {
-	int iRows = 0;
-	int iCols = 0;
-	int iRealData = 0;
-	int iImgData = 0;
-	int iIndex = 0;
-	int *piPow = NULL;
-	int *piVarName = NULL;
-	int iMaxData = 0;
+	int i,j;
+	int iLen							= 0;
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
+	int *piCoeff					= NULL;
+	char pstVarName[16];
 
-	double *pdblRealData	= 0;
-	double *pdblImgData		= 0;
-	double *pReturnRealData	= NULL;
-	double *pReturnImgData	= NULL;
+	double** pdblReal			= NULL;
+	double** pdblImg			= NULL;
+	double** pdblRealRet	= NULL;
 
-	if(iIsComplex(1))
+	iRet = getPolyVariableName(_piAddress, pstVarName, &iLen);
+	if(iRet)
 	{
-		GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, NULL, &iRealData, &iImgData);
-		piPow				= (int*)malloc(iRows * iCols * sizeof(int));
-		GetRhsCPolyVar(1, &piVarName, &iRows, &iCols, piPow, &iRealData, &iImgData);
-		iMaxData			= iArraySum(piPow, 0, iRows * iCols);
+		return 1;
+	}
 
-		pdblRealData		= stk(iRealData);
-		pdblImgData			= stk(iImgData);
-		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
-		//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+	if(isVarComplex(_piAddress))
+	{
+		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL, NULL);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
-			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex], pdblImgData[iIndex]);
+		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
+		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL, NULL);
+		if(iRet)
+		{
+			return 1;
+		}
 
+		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblImg			= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblImg[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
+		}
+
+		iRet = getComplexMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal, pdblImg);
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			for(j = 0 ; i < piCoeff[i] ; j++)
+			{
+				pdblRealRet[i][j] = dabsz(pdblReal[i][j], pdblImg[i][j]);
+			}
+		}
+
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
 	}
 	else
 	{
-		GetRhsPolyVar(1, &piVarName, &iRows, &iCols, NULL, &iRealData);
-		piPow	= (int*)malloc(iRows * iCols * sizeof(int));
-		GetRhsPolyVar(1, &piVarName, &iRows, &iCols, piPow, &iRealData);
-		iMaxData = iArraySum(piPow, 0, iRows * iCols);
+		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, NULL, NULL);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		pdblRealData	= stk(iRealData);
-		iAllocMatrixOfPoly(Rhs + 1, &piVarName, iRows, iCols, piPow, &pReturnRealData);
-		//pReturnRealData		= (double*)malloc(iMaxData * sizeof(double));
+		piCoeff	= (int*)malloc(iRows * iCols * sizeof(int));
+		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, NULL);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		for(iIndex = 0 ; iIndex < iMaxData ; iIndex++)
-			pReturnRealData[iIndex] = dabss(pdblRealData[iIndex]);
+		pdblReal		= (double**)malloc(sizeof(double*) * iRows * iCols);
+		pdblRealRet	= (double**)malloc(sizeof(double*) * iRows * iCols);
+
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblReal[i]			= (double*)malloc(sizeof(double) * piCoeff[i]);
+			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
+		}
+
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			for(j = 0 ; i < piCoeff[i] ; j++)
+			{
+				pdblRealRet[i][j] = dabss(pdblReal[i][j]);
+			}
+		}
+
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
 	}
-	
-	//CreatePolyVarFromPtr(Rhs + 1, &piVarName, iRows, iCols, piPow, pReturnRealData);
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-	//free(pReturnRealData);
-	free(piPow);
 
+	if(iRet)
+	{
+		return 1;
+	}
+
+	free(piCoeff);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pdblReal[i]);
+		free(pdblRealRet[i]);
+	}
+	free(pdblReal);
+	free(pdblRealRet);
+
+	if(isVarComplex(_piAddress))
+	{
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			free(pdblImg[i]);
+		}
+		free(pdblImg);
+	}
 	return 0;
 }
 
 /*Absolute value for a sparse ( absolute value of each element )*/
-int abs_sparse()
+int abs_sparse(int* _piAddress)
 {
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	int iImgData		= 0;
-	int iTotalElem		= 0;
-	int *piElemByRow	= NULL;
-	int *piColByRow		= NULL;
+	int i;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int iNbItem					= 0;
+	int *piNbItemRow		= NULL;
+	int *piColPos				= NULL;
 
-	int iIndex			= 0;
-	int iIndex2			= 0;
-	int iIndex3			= 0;
+	int iIndex					= 0;
+	int iIndex2					= 0;
+	int iIndex3					= 0;
 
-	double *pdblRealData	= 0;
-	double *pdblImgData		= 0;
-	double *pReturnRealData	= NULL;
-	double *pReturnImgData	= NULL;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	double *pdblRealRet	= NULL;
 
-	if(iIsComplex(1))
+	if(isVarComplex(_piAddress))
 	{
-		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData, &iImgData);
-		//piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		//piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		
-		//Warning, tips to use same variable in out and in !!!
-		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piElemByRow, &piColByRow, &pReturnRealData);
-		GetRhsCSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData, &iImgData);
+		iRet = getComplexSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
-		//pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
+		pdblRealRet = (double*)malloc(sizeof(double) * iNbItem);
 
-		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
-			pReturnRealData[iIndex] = dabsz(pdblRealData[iIndex],pdblImgData[iIndex]);
+		for(i = 0 ; i < iNbItem ; i++)
+		{
+			pdblRealRet[i] = dabsz(pdblReal[i], pdblImg[i]);
+		}
+
+		iRet = createSparseMatrix(Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
 	}
 	else
 	{
-		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, NULL, NULL, &iRealData);
-		//piElemByRow	= (int*)malloc(iTotalElem * sizeof(int));
-		//piColByRow	= (int*)malloc(iTotalElem * sizeof(int));
-
-		//Warning, tips to use same variable in out and in !!!
-		iAllocSparseMatrix(Rhs + 1, iRows, iCols, iTotalElem, &piElemByRow, &piColByRow, &pReturnRealData);
-
-		GetRhsSparseVar(1, &iRows, &iCols, &iTotalElem, piElemByRow, piColByRow, &iRealData);
-
-		pdblRealData	= stk(iRealData);
-		//pReturnRealData	= (double*)malloc(iTotalElem * sizeof(double));
-
-		/*This is the "elegante" version, parse two arrays and compute abs(Data)*/
-		/*
-		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
+		iRet = getSparseMatrix(_piAddress, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		if(iRet)
 		{
-			for(iIndex2 = 0 ; iIndex2 < piElemByRow[iIndex] ; iIndex2++)
-			{
-				pReturnRealData[iIndex3] = fabs(pdblRealData[iIndex3]);
-				iIndex3++;
-			}
+			return 1;
 		}
-		*/
 
-		/*This is the faster version, don't care about position in the matrix, juste compute de value*/
-		for(iIndex = 0 ; iIndex < iTotalElem ; iIndex++)
-			pReturnRealData[iIndex] = fabs(pdblRealData[iIndex]);
+		pdblRealRet = (double*)malloc(sizeof(double) * iNbItem);
+
+		for(i = 0 ; i < iNbItem ; i++)
+		{
+			pdblRealRet[i] = dabss(pdblReal[i]);
+		}
+
+		iRet = createSparseMatrix(Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblRealRet);
 	}
 
-	//CreateSparseVarFromPtr(Rhs + 1, iRows, iCols, iTotalElem, piElemByRow, piColByRow, pReturnRealData);
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-	//free(piElemByRow);
-	//free(piColByRow);
-	//free(pReturnRealData);
-
+	if(iRet)
+	{
+		return 1;
+	}
 	return 0;
 }
 

@@ -21,7 +21,7 @@
 #ifndef STACK3_H
 #define STACK3_H
 #include "machine.h"
-#include "doublecomplex.h"
+//#include "doublecomplex.h"
 
 /*Constants*/
 #define ROW_LETTER		'r'
@@ -42,7 +42,7 @@ int C2F(putvar) (int *number, char *namex, unsigned long name_len );
  * @param _iVar the matrix
  * @return 1 if is complex 0 otherwise
  */
-/* int iIsComplex(int _iVar); */
+int iIsComplex(int _iVar);
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal);
@@ -179,7 +179,7 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 *  @param _iSize the number of elements to set
 *  @param _pdblReal, _pdblImg the target array (real and imaginary parts)
 */
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+//void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
 
 /**
 *  Returns a target doublecomplex array constructed from the source real and imaginary parts.
@@ -193,7 +193,7 @@ void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double 
 *  @param _iSize the size of the source array
 *  @return a target doublecomplex array constructed from the source real and imaginary parts.
 */
-doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+//doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
 /**
 *  Free the given pointer of double complex.
 *  Note
@@ -202,7 +202,7 @@ doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg,
 *  in oGetDoubleComplexFromPointer.
 *  @param _poComplex the array to free
 */
-void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
+//void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 
 /**
 * Returns a pointer on the data of a matrix of double

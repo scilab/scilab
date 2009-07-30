@@ -13,8 +13,8 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-
-#define _NEW_TONIO_
+#include "api_scilab.h"
+#include "Scierror.h"
 
 void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 				double* _pdblDataIn2, int _iIncIn2, int _iRowsIn2, int _iColsIn2,
@@ -23,6 +23,8 @@ void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRows
 				double* _pdblRealIn2, double* _pdblImgIn2, int _iIncIn2, int _iRowsIn2, int _iColsIn2,
 				double* _pdblRealOut, double* _pdblImgOut, int _iIncOut);
 
+int conv_real_input(double* _pdblData, int _iSize);
+int conv_img_input(double* _pdblReal, double* _pdblImg, int _iSize);
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(intkron) (int *id);
@@ -32,154 +34,169 @@ extern int C2F(dscal)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_kron) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
+	int iRet						= 0;
+
 	int iRows1					= 0;
 	int iCols1					= 0;
-	int iRealData1				= 0;
-	int iImgData1				= 0;
-	double *pdblRealData1		= NULL;
-	double *pdblImgData1		= NULL;
+	double *pdblReal1		= NULL;
+	double *pdblImg1		= NULL;
+	int iComplex1				= 0;
+
 	int iRows2					= 0;
 	int iCols2					= 0;
-	int iRealData2				= 0;
-	int iImgData2				= 0;
-	double *pdblRealData2		= NULL;
-	double *pdblImgData2		= NULL;
-	int iType					= 0;
-
-	double* pReturnRealData1	= NULL;
-	double* pReturnImgData1		= NULL;
-	int iComplex1				= 0;
+	double *pdblReal2		= NULL;
+	double *pdblImg2		= NULL;
 	int iComplex2				= 0;
 
+	int iRowsRet				= 0;
+	int iColsRet				= 0;
+	double* pdblRealRet	= NULL;
+	double* pdblImgRet	= NULL;
+	int iComplexRet			= 0;
+
+	int* piAddr1				= NULL;
+	int* piAddr2				= NULL;
+
+	//static int id[6];
+	//C2F(intkron)(id);
+	//return 0;
 	CheckRhs(2,2);
 	CheckLhs(1,1);
+
+	iRet = getVarAddressFromPosition(1, &piAddr1);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getVarAddressFromPosition(2, &piAddr2);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iComplex1 = isVarComplex(piAddr1);
+	iComplex2 = isVarComplex(piAddr2);
+	iComplexRet = iComplex1 | iComplex2;
+
+	/*get first parameter*/
+	if(isVarComplex(piAddr1))
+	{
+		iRet = getComplexMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg1);
+	}
+	else
+	{
+		iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
+	}
+	
+	if(iRet)
+	{
+		return 1;
+	}
+	/*get second parameter*/
+	if(isVarComplex(piAddr2))
+	{
+		iRet = getComplexMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2, &pdblImg2);
+	}
+	else
+	{
+		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+	}
+
+	if(iRet)
+	{
+		return 1;
+	}
+	if(iComplexRet)
+	{
+		iRowsRet = iRows1 * iRows2;
+		iColsRet = iCols1 * iCols2;
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+	}
+	else
+	{
+		iRowsRet = iRows1 * iRows2;
+		iColsRet = iCols1 * iCols2;
+		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+	}
+
+	if(iRet)
+	{
+		return 1;
+	}
 
 	/*Specials cases ./. and .\. */
 	if(Fin == 20) // operator is ./.
 	{
-//		char *pszSave = (char*)malloc(strlen(fname) + 1);
-//		strcpy(pszSave, fname);
-//		sprintf(fname, "y");
-//		fname_len = strlen(fname);
-		OverLoad(1);
-//		strcpy(fname, pszSave);
-//		fname_len = strlen(fname);
-//		free(pszSave);
-		return 0;
+		if(iComplex2)
+		{
+			iRet = conv_img_input(pdblReal2, pdblImg2, iRows2 * iCols2);
+		}
+		else
+		{
+			iRet = conv_real_input(pdblReal2, iRows2 * iCols2);
+		}
+
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 	else if(Fin == 21) // operator is .\.
 	{
-		OverLoad(1);
-		return 0;
-	}
+		if(iComplex1)
+		{
+			iRet = conv_img_input(pdblReal1, pdblImg1, iRows1 * iCols1);
+		}
+		else
+		{
+			iRet = conv_real_input(pdblReal1, iRows1 * iCols1);
+		}
 
-	/*get first parameter*/
-	if(iIsComplex(1))
-	{
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex1, &iRows1, &iCols1, &iRealData1, &iImgData1);
-		pdblRealData1 = stk(iRealData1);
-		pdblImgData1 = stk(iImgData1);
-	}
-	else
-	{
-		iComplex1 = 0;
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &iRealData1);
-		pdblRealData1 = stk(iRealData1);
-	}
-	/*get second parameter*/
-	if(iIsComplex(2))
-	{
-		GetRhsCVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iComplex2, &iRows2, &iCols2, &iRealData2, &iImgData2);
-		pdblRealData2 = stk(iRealData2);
-		pdblImgData2 = stk(iImgData2);
-	}
-	else
-	{
-		iComplex2 = 0;
-		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows2, &iCols2, &iRealData2);
-		pdblRealData2 = stk(iRealData2);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 
 	if(iComplex1 == 0 && iComplex2 == 0)
-	{//A rela and B real
-		int iReturnRows = iRows1 * iRows2;
-		int iReturnCols = iCols1 * iCols2;
-		iAllocMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1);
-		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
-		vKronR(	pdblRealData1, iRows1, iRows1, iCols1, 
-				pdblRealData2, iRows2, iRows2, iCols2,
-				pReturnRealData1, iRows1 * iRows2);
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iReturnRows, &iReturnCols, &pReturnRealData1);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData1);
+	{//A real and B real
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+						pdblReal2, iRows2, iRows2, iCols2,
+						pdblRealRet, iRows1 * iRows2);
 	}
 	else if(iComplex1 == 1 && iComplex2 == 0)
 	{//A complex and B real
-		int iReturnRows = iRows1 * iRows2;
-		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
-		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/
-		vKronR(	pdblRealData1, iRows1, iRows1, iCols1, 
-				pdblRealData2, iRows2, iRows2, iCols2,
-				pReturnRealData1, iRows1 * iRows2);
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+						pdblReal2, iRows2, iRows2, iCols2,
+						pdblRealRet, iRows1 * iRows2);
 		/*Img part*/
-		vKronR(	pdblImgData1, iRows1, iRows1, iCols1, 
-				pdblRealData2, iRows2, iRows2, iCols2,
-				pReturnImgData1, iRows1 * iRows2);
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex1, &iReturnRows, &iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData1);
-		//free(pReturnImgData1);
+		vKronR(	pdblImg1, iRows1, iRows1, iCols1, 
+						pdblReal2, iRows2, iRows2, iCols2,
+						pdblImgRet, iRows1 * iRows2);
 	}
 	else if(iComplex1 == 0 && iComplex2 == 1)
 	{//A real and B complex
-		int iReturnRows = iRows1 * iRows2;
-		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
-		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/
-		vKronR(	pdblRealData1, iRows1, iRows1, iCols1, 
-				pdblRealData2, iRows2, iRows2, iCols2,
-				pReturnRealData1, iRows1 * iRows2);
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+						pdblReal2, iRows2, iRows2, iCols2,
+						pdblRealRet, iRows1 * iRows2);
 		/*Img part*/
-		vKronR(	pdblRealData1, iRows1, iRows1, iCols1, 
-				pdblImgData2, iRows2, iRows2, iCols2,
-				pReturnImgData1, iRows1 * iRows2);
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex2, &iReturnRows, &iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData1);
-		//free(pReturnImgData1);
+		vKronR(	pdblReal1, iRows1, iRows1, iCols1, 
+						pdblImg2, iRows2, iRows2, iCols2,
+						pdblImgRet, iRows1 * iRows2);
 	}
 	else
 	{//A complex and B complex
-		int iReturnRows = iRows1 * iRows2;
-		int iReturnCols = iCols1 * iCols2;
-		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		//pReturnRealData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
-		//pReturnImgData1 = (double*)malloc(iReturnRows * iReturnCols * sizeof(double));
 		/*Real part*/
-		vKronC(	pdblRealData1, pdblImgData1, iRows1, iRows1, iCols1, 
-				pdblRealData2, pdblImgData2, iRows2, iRows2, iCols2,
-				pReturnRealData1, pReturnImgData1, iRows1 * iRows2);
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex2, &iReturnRows, &iReturnCols, &pReturnRealData1, &pReturnImgData1);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData1);
-		//free(pReturnImgData1);
+		vKronC(	pdblReal1, pdblImg1, iRows1, iRows1, iCols1, 
+						pdblReal2, pdblImg2, iRows2, iRows2, iCols2,
+						pdblRealRet, pdblImgRet, iRows1 * iRows2);
 	}
 
-
-#else //_NEW_TONIO_
-	C2F(intkron)(id);
-#endif
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 
@@ -251,5 +268,47 @@ void vKronC(	double* _pdblRealIn1, double* _pdblImgIn1, int _iIncIn1, int _iRows
 			iIndex3 += _iIncIn2;
 		}
 	}
+}
+
+int conv_real_input(double* _pdblData, int _iSize)
+{
+	int i;
+	for(i = 0 ; i < _iSize ; i++)
+	{
+		if(_pdblData[i] != 0)
+		{
+			_pdblData[i] = 1.0 / _pdblData[i];
+		}
+		else
+		{
+			Error(27);
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
+int conv_img_input(double* _pdblReal, double* _pdblImg, int _iSize)
+{
+	int i;
+	for(i = 0 ; i < _iSize ; i++)
+	{
+		double dblR			= _pdblReal[i];
+		double dblI			= _pdblImg[i];
+
+		double dblTemp	= dblR * dblR + dblI + dblI;
+		if(dblTemp != 0)
+		{
+			_pdblReal[i]	= _pdblReal[i]	/ dblTemp;
+			_pdblImg[i]	= - _pdblImg[i] / dblTemp;
+		}
+		else
+		{
+			Error(27);
+			return 1;
+		}
+	}
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

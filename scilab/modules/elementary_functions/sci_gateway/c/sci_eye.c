@@ -13,70 +13,66 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(inteye) (int *id);
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_eye) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows = 0;
-	int iCols = 0;
-	int iRealData = 0;
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
 	
-	double *pReturnRealData;
+	int* piAddr1					= NULL;
+	int* piAddr2					= NULL;
 
-	CheckRhs(-1,2);
+	double *pdblRealRet		= NULL;
+
+	Rhs = Max(Rhs,0);
+
+	CheckRhs(0,2);
 	CheckLhs(1,1);
 
-	if(Rhs == 0 || Rhs == -1)//eye or eye()
+
+	if(Rhs == 0)
 	{
-		Rhs = Max(Rhs,0);
 		iRows = -1;
 		iCols = -1;
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(sizeof(double));
-		pReturnRealData[0] = 1;
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		iRet = allocMatrixOfDouble(Rhs + 1, -1, -1, &pdblRealRet);
+		if(iRet)
+		{
+			return 1;
+		}
+		pdblRealRet[0] = 1;
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		//free(pReturnRealData);
 		return 0;
 	}
 	else if(Rhs == 1)
 	{
-		int iType = GetType(1);
-
-		if(iType != sci_matrix && iType != sci_ints && iType != sci_poly)
+		iRet = getVarAddressFromPosition(1, &piAddr1);
+		if(iRet)
 		{
-			OverLoad(1);
-			return 0;
+			return 1;
 		}
 
-		switch(iType)
+		switch(getVarType(piAddr1))
 		{
-		case sci_poly :
-			{
-				int *piVarName = NULL;
-				int *piPow = NULL;
-				GetRhsPolyVar(1, &piVarName, &iRows, &iCols, NULL, &iRealData);
-				piPow = (int*)malloc(iRows * iCols * sizeof(int));
-				GetRhsPolyVar(1, &piVarName, &iRows, &iCols, piPow, &iRealData);
-				free(piPow);
-				break;
-			}
-		default:
-			GetVarDimension(1, &iRows, &iCols);
-			CheckVarUsed(1);
+		case sci_matrix : 
+		case sci_poly : 
+		case sci_boolean : 
+		case sci_ints : 
+		case sci_handles : 
+		case sci_strings : 
+			getVarDimension(piAddr1, &iRows, &iCols);
 			break;
+		default :
+			OverLoad(1);
+			return 0;
 		}
 	}
 	else if(Rhs == 2)
 	{
-		GetDimFromVar(1, 1, &iRows);
-		GetDimFromVar(2, 2, &iCols);
+		getDimFromVar(piAddr1, &iRows);
+		getDimFromVar(piAddr2, &iCols);
 	}
 
 	if(iRows == 0 || iCols == 0)
@@ -84,34 +80,22 @@ int C2F(sci_eye) (char *fname,unsigned long fname_len)
 		iRows = 0;
 		iCols = 0;
 	}
-
-	if(iRows * iCols != 0)
+	else
 	{
 		iRows = (int)dabss(iRows);
 		iCols = (int)dabss(iCols);
-
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
-		deyes(pReturnRealData, iRows, iCols);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
 	}
-	else
+
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+
+
+	if(iRows * iCols != 0)
 	{
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(sizeof(double));
-		//pReturnRealData[0] = 0;
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		deyes(pdblRealRet, iRows, iCols);
 	}
-#else
-	C2F(inteye)(id);
-#endif
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

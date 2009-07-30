@@ -1,226 +1,267 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+
+int getStartPosition(int _iPos, int* _piStartPos);
+
+int diag_double(int* _piAddress, int _iStartPos);
+int diag_poly(int* _piAddress, int _iStartPos);
 
 extern int C2F(sci_pdiag) (char *fname,unsigned long fname_len);
 
-#define _NEW_TONIO_
-
 int C2F(sci_diag) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
 
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	int iImgData		= 0;
-	int iIndex			= 0;
-	int iStartPos		= 0;
-	int iMatrixSize		= 0;
+	int _iStartPos				= 0;
+	int iMatrixSize			= 0;
+
+	int* piAddr					= NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
 	if(Rhs == 2)
 	{
-		if(iIsComplex(2) == 1)
+		iRet = getStartPosition(2, &_iStartPos);
+		if(iRet)
 		{
-			Error(52);
-			return 0;
+			return 1;
 		}
-		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-
-		if(iRows * iCols != 1)
-		{
-			Error(89);
-			return 0;
-		}
-		iStartPos = (int)stk(iRealData)[0];
 	}
 
-
-	if(GetType(1) != sci_matrix && GetType(1) != sci_poly)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
 	{
+		return 1;
+	}
+
+	switch(getVarType(piAddr))
+	{
+	case sci_matrix :
+		iRet = diag_double(piAddr, _iStartPos);
+		break;
+	case sci_poly :
+		iRet = diag_poly(piAddr, _iStartPos);
+		break;
+	default :
 		OverLoad(1);
 		return 0;
 	}
 
-	if(GetType(1) == sci_matrix)
+	if(iRet)
 	{
-		double *pdblRealData = 0;
-		double *pdblImgData = 0;
-		double *pReturnRealData = NULL;
-		double *pReturnImgData = NULL;
+		return 1;
+	}
 
-		int iComplex = iIsComplex(1);
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
+	return 0;
+}
 
-		if(iComplex)
+int diag_double(int* _piAddress, int _iStartPos)
+{
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int iMatrixSize			= 0;
+
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	double *pdblRealRet = NULL;
+	double *pdblImgRet	= NULL;
+
+	if(isVarComplex(_piAddress))
+	{
+		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
 		{
-			GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-			pdblRealData = stk(iRealData);
-			pdblImgData = stk(iImgData);
-		}
-		else
-		{
-			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-			pdblRealData = stk(iRealData);
-		}
-
-		if(iRows != 1 && iCols != 1)
-		{
-			if(iStartPos >= 0)
-				iMatrixSize = Max(0, Min(iRows, iCols - iStartPos));
-			else
-				iMatrixSize = Max(0, Min(iRows + iStartPos, iCols));
-
-/*			pReturnRealData = (double*)malloc(iMatrixSize * sizeof(double));
-			if(iComplex)
-				pReturnImgData = (double*)malloc(iMatrixSize * sizeof(double));
-*/
-			if(iMatrixSize == 0)
-			{
-				iRows = 0;
-				iCols = 0;
-
-				iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-				//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
-				//free(pReturnRealData);
-				return 0;
-			}
-			else
-			{
-				int iIncIn	= iRows + 1;
-				int iIncOut = 1;
-				if(iComplex)
-					iAllocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pReturnRealData, &pReturnImgData);
-				else
-					iAllocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pReturnRealData);
-
-				if(iStartPos >= 0)
-				{
-					double *pdblStatAddr = pdblRealData + iStartPos * iRows;
-					C2F(unsfdcopy)(&iMatrixSize, pdblStatAddr, &iIncIn, pReturnRealData, &iIncOut);
-	
-					if(iComplex)
-					{
-						pdblStatAddr = pdblImgData + iStartPos * iRows;
-						C2F(unsfdcopy)(&iMatrixSize, pdblStatAddr, &iIncIn, pReturnImgData, &iIncOut);
-					}
-				}
-				else
-				{
-					double *pdblStatAddr = pdblRealData - iStartPos;
-					C2F(unsfdcopy)(&iMatrixSize, pdblStatAddr, &iIncIn, pReturnRealData, &iIncOut);
-
-					if(iComplex)
-					{
-						pdblStatAddr = pdblImgData - iStartPos;
-						C2F(unsfdcopy)(&iMatrixSize, pdblStatAddr, &iIncIn, pReturnImgData, &iIncOut);
-					}
-					iRows = iMatrixSize;
-					iCols = 1;
-				}
-
-/*				if(iComplex)
-				{
-					CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-					free(pReturnImgData);
-				}
-				else
-				{
-					CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-				}
-*/				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
-				//free(pReturnRealData);
-				return 0;
-			}
-		}
-		else
-		{//iRows == 1 || iCols == 1
-			int iIncIn			= 1;
-			int iIncOut			= 0;
-			int iOriginalSize	= iRows * iCols;
-			iMatrixSize = Max(iRows, iCols) + (int)dabss(iStartPos);
-
-			iIncOut = iMatrixSize + 1;
-
-
-			//pReturnRealData = (double*)malloc(iMatrixSize * iMatrixSize * sizeof(double));
-			//memset(pReturnRealData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
-			if(iComplex)
-			{
-				iAllocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pReturnRealData, &pReturnImgData);
-				//pReturnImgData = (double*)malloc(iMatrixSize * iMatrixSize * sizeof(double));
-				memset(pReturnImgData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
-			}
-			else
-				iAllocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pReturnRealData);
-
-			memset(pReturnRealData, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
-
-			if(iStartPos >= 0)
-			{
-				double *pdblStatAddr = pReturnRealData + iMatrixSize * iStartPos;
-				C2F(unsfdcopy)(&iOriginalSize, pdblRealData, &iIncIn, pdblStatAddr, &iIncOut);
-
-				if(iComplex)
-				{
-					pdblStatAddr = pReturnImgData + iMatrixSize * iStartPos;
-					C2F(unsfdcopy)(&iOriginalSize, pdblImgData, &iIncIn, pdblStatAddr, &iIncOut);
-				}
-			}
-			else
-			{
-				double *pdblStatAddr = pReturnRealData - iStartPos;
-				C2F(unsfdcopy)(&iOriginalSize, pdblRealData, &iIncIn, pdblStatAddr, &iIncOut);
-
-				if(iComplex)
-				{
-					pdblStatAddr = pReturnImgData - iStartPos;
-					C2F(unsfdcopy)(&iOriginalSize, pdblImgData, &iIncIn, pdblStatAddr, &iIncOut);
-				}
-			}
-
-			iRows = iMatrixSize;
-			iCols = iMatrixSize;
-
-/*			if(iComplex)
-			{
-				CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-				free(pReturnImgData);
-			}
-			else
-			{
-				CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-			}
-*/			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-//			free(pReturnRealData);
+			return 1;
 		}
 	}
 	else
-	{//sci_poly
-		C2F(sci_pdiag)(fname, fname_len);
+	{
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
-#else
-	C2F(intdiag)(id);
-#endif
+
+	if(iRows != 1 && iCols != 1)
+	{
+		if(_iStartPos >= 0)
+			iMatrixSize = Max(0, Min(iRows, iCols - _iStartPos));
+		else
+			iMatrixSize = Max(0, Min(iRows + _iStartPos, iCols));
+
+		if(iMatrixSize == 0)
+		{
+			iRows = 0;
+			iCols = 0;
+
+			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+			if(iRet)
+			{
+				return 1;
+			}
+			return 0;
+		}
+		else
+		{
+			int iIncIn	= iRows + 1;
+			int iIncOut = 1;
+			if(isVarComplex(_piAddress))
+			{
+				iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet, &pdblImgRet);
+			}
+			else
+			{
+				iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet);
+			}
+
+			if(iRet)
+			{
+				return 1;
+			}
+
+			if(_iStartPos >= 0)
+			{
+				double *pdblStartAddr = pdblReal + _iStartPos * iRows;
+				C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblRealRet, &iIncOut);
+
+				if(isVarComplex(_piAddress))
+				{
+					pdblStartAddr = pdblImg + _iStartPos * iRows;
+					C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblImgRet, &iIncOut);
+				}
+			}
+			else
+			{
+				double *pdblStartAddr = pdblReal - _iStartPos;
+				C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblRealRet, &iIncOut);
+
+				if(isVarComplex(_piAddress))
+				{
+					pdblStartAddr = pdblImg - _iStartPos;
+					C2F(unsfdcopy)(&iMatrixSize, pdblStartAddr, &iIncIn, pdblImgRet, &iIncOut);
+				}
+				iRows = iMatrixSize;
+				iCols = 1;
+			}
+			return 0;
+		}
+	}
+	else
+	{//iRows == 1 || iCols == 1
+		int iIncIn			= 1;
+		int iIncOut			= 0;
+		int iOriginalSize	= iRows * iCols;
+
+		iMatrixSize = Max(iRows, iCols) + (int)dabss(_iStartPos);
+		iIncOut = iMatrixSize + 1;
+
+		if(isVarComplex(_piAddress))
+		{
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, &pdblImgRet);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memset(pdblImgRet, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
+		}
+		else
+		{
+			iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet);
+			if(iRet)
+			{
+				return 1;
+			}
+		}
+
+		memset(pdblRealRet, 0x00, iMatrixSize * iMatrixSize * sizeof(double));
+
+		if(_iStartPos >= 0)
+		{
+			double *pdblStartAddr = pdblRealRet + iMatrixSize * _iStartPos;
+			C2F(unsfdcopy)(&iOriginalSize, pdblReal, &iIncIn, pdblStartAddr, &iIncOut);
+
+			if(isVarComplex(_piAddress))
+			{
+				pdblStartAddr = pdblImgRet + iMatrixSize * _iStartPos;
+				C2F(unsfdcopy)(&iOriginalSize, pdblImg, &iIncIn, pdblStartAddr, &iIncOut);
+			}
+		}
+		else
+		{
+			double *pdblStartAddr = pdblRealRet - _iStartPos;
+			C2F(unsfdcopy)(&iOriginalSize, pdblReal, &iIncIn, pdblStartAddr, &iIncOut);
+
+			if(isVarComplex(_piAddress))
+			{
+				pdblStartAddr = pdblImgRet - _iStartPos;
+				C2F(unsfdcopy)(&iOriginalSize, pdblImg, &iIncIn, pdblStartAddr, &iIncOut);
+			}
+		}
+	}
+	return 0;
+}
+
+int diag_poly(int* _piAddress, int _iStartPos)
+{
+	C2F(sci_pdiag)("diag", 4);
+	return 0;
+}
+
+int getStartPosition(int _iPos, int* _piStartPos)
+{
+	int iRet					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+	int* piAddr				= NULL;
+	double* pdblReal	= NULL;
+
+	iRet = getVarAddressFromPosition(_iPos, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(isVarComplex(piAddr))
+	{
+		Error(52);
+		return 0;
+	}
+
+	iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(iRows != 1 || iCols != 1)
+	{
+		Error(89);
+		return 0;
+	}
+	*_piStartPos = (int)pdblReal[0];
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
