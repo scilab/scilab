@@ -36,6 +36,8 @@ static int iBalanc1(double* pData, int iCols, int complexArgs, double* lhsData, 
 static int iBalanc2(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2
 		    , double* pLScale, double* pRScale, double* pWork);
 
+int iBalancM(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2);
+
 static int iBalanc1(double* pData, int iCols, int complexArgs, double* lhsData, double* pScale)
 {
   int iLo, iHi;

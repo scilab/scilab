@@ -6,6 +6,7 @@
 	ProjectGUID="{BC462A57-C5B3-4F93-8067-80363827DCDA}"
 	RootNamespace="linear_algebra"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../elementary_functions/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

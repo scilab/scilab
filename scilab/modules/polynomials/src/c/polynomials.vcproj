@@ -6,6 +6,7 @@
 	ProjectGUID="{620D8FA7-3704-438E-BB1E-391C84401A2E}"
 	RootNamespace="polynomials"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

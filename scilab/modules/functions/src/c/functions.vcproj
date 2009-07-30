@@ -6,6 +6,7 @@
 	ProjectGUID="{53A01263-92BE-4C87-AA9A-79297F882310}"
 	RootNamespace="functions"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

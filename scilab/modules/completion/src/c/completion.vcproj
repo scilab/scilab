@@ -6,6 +6,7 @@
 	ProjectGUID="{CCCE1EAD-8E62-4DC0-AB17-972C06EF0C89}"
 	RootNamespace="completion"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;STATIC_LINKED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;STATIC_LINKED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/intl;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../graphics/includes;../../../../libs/MALLOC/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
 				RuntimeLibrary="2"

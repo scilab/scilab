@@ -6,6 +6,7 @@
 	ProjectGUID="{8D45767A-9B03-4905-97F6-D2F3F79141EA}"
 	RootNamespace="string"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -128,7 +129,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -215,7 +216,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -306,7 +307,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/pcre;../../../core/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

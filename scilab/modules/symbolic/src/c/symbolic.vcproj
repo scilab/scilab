@@ -6,6 +6,7 @@
 	ProjectGUID="{A2207388-FB55-46B2-A24D-D76C0FE796F8}"
 	RootNamespace="symbolic"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SYMBOLIC_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SYMBOLIC_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SYMBOLIC_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/hashtable;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SYMBOLIC_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

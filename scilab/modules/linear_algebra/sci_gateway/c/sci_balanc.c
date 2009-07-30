@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "doublecomplex.h"
 #include "localization.h"
-
+#include "balanc.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int const *num);
 /*--------------------------------------------------------------------------*/

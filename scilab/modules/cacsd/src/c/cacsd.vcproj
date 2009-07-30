@@ -4,6 +4,7 @@
 	Version="9,00"
 	Name="cacsd"
 	ProjectGUID="{D5DD1407-3926-4F6C-AD7B-3A6B2DE56049}"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -119,7 +120,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_LIB;_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -196,7 +197,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -275,7 +276,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../operations/includes"
+				AdditionalIncludeDirectories="../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../../libs/MALLOC/includes;../../../../libs/intl"
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"

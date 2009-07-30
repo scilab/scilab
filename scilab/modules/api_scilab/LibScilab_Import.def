@@ -9,8 +9,6 @@ stack_
 iop_
 stackg_
 stackp_
-vGetPointerFromDoubleComplex
-oGetDoubleComplexFromPointer
 iArraySum
 str2name_
 cvnamel_
