@@ -78,7 +78,8 @@ am_libsciabstractSyntaxTree_la_OBJECTS =  \
 	libsciabstractSyntaxTree_la-execvisitor.lo \
 	libsciabstractSyntaxTree_la-exec_OpExp.lo \
 	libsciabstractSyntaxTree_la-exec_MatrixExp.lo \
-	libsciabstractSyntaxTree_la-exec_AssignExp.lo
+	libsciabstractSyntaxTree_la-exec_AssignExp.lo \
+	libsciabstractSyntaxTree_la-yaspio.lo
 libsciabstractSyntaxTree_la_OBJECTS =  \
 	$(am_libsciabstractSyntaxTree_la_OBJECTS)
 libsciabstractSyntaxTree_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -368,7 +369,8 @@ libsciabstractSyntaxTree_la_SOURCES = src/cpp/libAst.cpp \
 				src/cpp/exec/execvisitor.cpp \
 				src/cpp/exec/exec_OpExp.cpp \
 				src/cpp/exec/exec_MatrixExp.cpp \
-				src/cpp/exec/exec_AssignExp.cpp
+				src/cpp/exec/exec_AssignExp.cpp \
+				$(top_builddir)/modules/core/src/cpp/yaspio.cpp
 
 libsciabstractSyntaxTree_la_CXXFLAGS = -I$(top_srcdir)/modules/symbol/includes \
 			-I $(top_srcdir)/modules/types/includes \
@@ -492,6 +494,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-execvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-libAst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-printvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciabstractSyntaxTree_la-yaspio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testConstExp-testConstExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testControlExp-testControlExp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testVarExp-testVarExp.Po@am__quote@
@@ -565,6 +568,13 @@ libsciabstractSyntaxTree_la-exec_AssignExp.lo: src/cpp/exec/exec_AssignExp.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/exec/exec_AssignExp.cpp' object='libsciabstractSyntaxTree_la-exec_AssignExp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-exec_AssignExp.lo `test -f 'src/cpp/exec/exec_AssignExp.cpp' || echo '$(srcdir)/'`src/cpp/exec/exec_AssignExp.cpp
+
+libsciabstractSyntaxTree_la-yaspio.lo: $(top_builddir)/modules/core/src/cpp/yaspio.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -MT libsciabstractSyntaxTree_la-yaspio.lo -MD -MP -MF $(DEPDIR)/libsciabstractSyntaxTree_la-yaspio.Tpo -c -o libsciabstractSyntaxTree_la-yaspio.lo `test -f '$(top_builddir)/modules/core/src/cpp/yaspio.cpp' || echo '$(srcdir)/'`$(top_builddir)/modules/core/src/cpp/yaspio.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libsciabstractSyntaxTree_la-yaspio.Tpo $(DEPDIR)/libsciabstractSyntaxTree_la-yaspio.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$(top_builddir)/modules/core/src/cpp/yaspio.cpp' object='libsciabstractSyntaxTree_la-yaspio.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciabstractSyntaxTree_la_CXXFLAGS) $(CXXFLAGS) -c -o libsciabstractSyntaxTree_la-yaspio.lo `test -f '$(top_builddir)/modules/core/src/cpp/yaspio.cpp' || echo '$(srcdir)/'`$(top_builddir)/modules/core/src/cpp/yaspio.cpp
 
 testConstExp-testConstExp.o: src/cpp/testConstExp.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(testConstExp_CXXFLAGS) $(CXXFLAGS) -MT testConstExp-testConstExp.o -MD -MP -MF $(DEPDIR)/testConstExp-testConstExp.Tpo -c -o testConstExp-testConstExp.o `test -f 'src/cpp/testConstExp.cpp' || echo '$(srcdir)/'`src/cpp/testConstExp.cpp

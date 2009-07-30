@@ -51,6 +51,8 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
   Parser::getInstance()->setProgName(progName);
 
   Parser::getInstance()->setExitStatus(Succeded);
+  Parser::getInstance()->resetControlStatus();
+  Parser::getInstance()->resetErrorMessage();
   yyparse();
   fclose(yyin);
 }
@@ -76,6 +78,8 @@ void Parser::parse(char *command)
   Parser::getInstance()->disableStrictMode();
   Parser::getInstance()->setFileName(*new std::string("prompt"));
   Parser::getInstance()->setExitStatus(Succeded);
+  Parser::getInstance()->resetControlStatus();
+  Parser::getInstance()->resetErrorMessage();
 
   yyparse();
 
@@ -105,6 +109,15 @@ char *Parser::getCodeLine(int line, char **codeLine) {
    return *codeLine;
 }
 
+char *Parser::getErrorMessage(void)
+{
+  return (char *)_error_message->c_str();
+}
+
+void Parser::appendErrorMessage(std::string message)
+{
+  *_error_message += message;
+}
 
 /** \brief enable Bison trace mode */
 void Parser::enableParseTrace(void)

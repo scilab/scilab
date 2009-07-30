@@ -308,9 +308,11 @@ namespace ast
 
 						if(e.is_verbose())
 						{
-							std::cout << Var->name_get() << " = " << std::endl;
-							std::cout << std::endl;
-							std::cout << pOut->toString(10,75) << std::endl;
+							std::ostringstream ostr;
+							ostr << Var->name_get() << " = " << std::endl;
+							ostr << std::endl;
+							ostr << pOut->toString(10,75) << std::endl;
+							YaspWrite((char *)ostr.str().c_str());
 						}
 					}
 					else
@@ -346,9 +348,11 @@ namespace ast
 
 				if(e.is_verbose())
 				{
-					std::cout << Var->name_get() << " = " << std::endl;
-					std::cout << std::endl;
-					std::cout << pVar->toString(10,75) << std::endl;
+					std::ostringstream ostr;
+					ostr << Var->name_get() << " = " << std::endl;
+					ostr << std::endl;
+					ostr << pVar->toString(10,75) << std::endl;
+					YaspWrite((char *)ostr.str().c_str());
 				}
 			}
 		}

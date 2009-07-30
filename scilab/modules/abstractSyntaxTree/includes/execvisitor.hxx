@@ -25,6 +25,8 @@
 #include "alltypes.hxx"
 #include "context.hxx"
 
+#include "yaspio.hxx"
+
 using namespace types;
 
 int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize);
