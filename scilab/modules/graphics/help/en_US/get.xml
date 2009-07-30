@@ -63,7 +63,7 @@ val=h.prop</synopsis>
 	
 	<para>
 	<literal>get</literal> function can be also called with only a property as argument. In this case,
-	the property must be one of the following:
+	the property must be one of the following:</para>
 	<variablelist>
       <varlistentry>
         <term>current_entity or hdl</term>
@@ -115,8 +115,6 @@ val=h.prop</synopsis>
         </listitem>
       </varlistentry>
 	</variablelist>
-	</para>
-	
   </refsection>
   <refsection>
     <title>Examples</title>

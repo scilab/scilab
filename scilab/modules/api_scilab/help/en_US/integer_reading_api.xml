@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Integer management reading_API"
+<refentry version="5.0-subset Scilab" xml:id="Integer_management_reading_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -24,16 +24,17 @@
             How to read matrices of integers in a gateway.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
-        <synopsis>int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8)</synopsis>
-        <synopsis>int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16)</synopsis>
-        <synopsis>int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32)</synopsis>
-        <synopsis>int getMatrixOfUnsignedInteger8(int* _piAddress, int* _piRows, int* _piCols, unsigned char** _pucData8)</synopsis>
-        <synopsis>int getMatrixOfUnsignedInteger16(int* _piAddress, int* _piRows, int* _piCols, unsigned short** _pusData16)</synopsis>
-        <synopsis>int getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, unsigned int** _puiData32)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+        <synopsis>
+int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8)
+int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _psData16)
+int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32)
+int getMatrixOfUnsignedInteger8(int* _piAddress, int* _piRows, int* _piCols, unsigned char** _pucData8)
+int getMatrixOfUnsignedInteger16(int* _piAddress, int* _piRows, int* _piCols, unsigned short** _pusData16)
+int getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, unsigned int** _puiData32)
+</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -70,6 +71,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/integer_reading_api.c-->

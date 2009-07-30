@@ -17,7 +17,7 @@
     Utility function (for experts only). Adds the name <literal>"function-name"</literal>
     in the table
     of functions known to the interpreter. <literal>"nameptr"</literal> is an integer
-    <literal>100*fun+fin</literal> where <literal>fun</literal> and <literal>fin</literal> is the internal coding of
+    <literal>1000*fun+fin</literal> where <literal>fun</literal> and <literal>fin</literal> is the internal coding of
     the primitive <literal>"function-name"</literal>.
     This function is useful to associate a primitive to a routine
     interfaced in <literal>"matusr.f"</literal> (<literal>fun=14</literal>).

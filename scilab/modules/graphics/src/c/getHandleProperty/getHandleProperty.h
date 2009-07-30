@@ -45,6 +45,7 @@
 #include "GetUicontrolVerticalAlignment.h"
 #include "GetUicontrolFontName.h"
 #include "GetUicontrolSliderStep.h"
+#include "GetUimenuChecked.h"
 
 int get_figures_id_property(           sciPointObj * pobj ) ;
 int get_visible_property(              sciPointObj * pobj ) ;

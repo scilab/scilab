@@ -25,15 +25,13 @@
   <refnamediv>
     <refname>overloading</refname>
 
-    <refpurpose>display, functions and operators overloading
-    capabilities</refpurpose>
+    <refpurpose>display, functions and operators overloading capabilities</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>In scilab, variable display, functions and operators may be defined
-    for new objects using functions (scilab coded or primitives).</para>
+    <para>In scilab, variable display, functions and operators may be defined for new objects using functions (scilab coded or primitives).</para>
 
     <variablelist>
       <varlistentry>
@@ -78,105 +76,184 @@
     associated with each data type as described in the following table:</para>
 
     <informaltable border="1">
-      <tr>
-        <td>data type</td>
-
-        <td>char code</td>
-
-        <td>data type</td>
-
-        <td>char code</td>
-      </tr>
-
-      <tr>
-        <td>constant</td>
-
-        <td><literal>s</literal></td>
-
-        <td>boolean</td>
-
-        <td><literal>b</literal></td>
-      </tr>
-
-      <tr>
-        <td>string</td>
-
-        <td><literal>c</literal></td>
-
-        <td>library</td>
-
-        <td><literal>f</literal></td>
-      </tr>
-
-      <tr>
-        <td>function pointer</td>
-
-        <td><literal>fptr</literal></td>
-
-        <td>handle</td>
-
-        <td><literal>h</literal></td>
-      </tr>
-
-      <tr>
-        <td>integer</td>
-
-        <td><literal>i</literal></td>
-
-        <td>list</td>
-
-        <td><literal>l</literal></td>
-      </tr>
-
-      <tr>
-        <td>function</td>
-
-        <td><literal>m</literal></td>
-
-        <td>compiled function</td>
-
-        <td><literal>mc</literal></td>
-      </tr>
-
-      <tr>
-        <td>polynomial</td>
-
-        <td><literal>p</literal></td>
-
-        <td>sparse</td>
-
-        <td><literal>sp</literal></td>
-      </tr>
-
-      <tr>
-        <td>boolean sparse</td>
-
-        <td><literal>spb</literal></td>
-
-        <td>tlist</td>
-
-        <td><literal>tlist_type</literal></td>
-      </tr>
-
-      <tr>
-        <td>size implicit polynomial</td>
-
-        <td><literal>ip</literal></td>
-
-        <td>Matlab sparse matrix</td>
-
-        <td><literal>msp</literal></td>
-      </tr>
-
-      <tr>
-        <td>mlist</td>
-
-        <td><literal>mlist_type</literal></td>
-
-        <td>pointer</td>
-
-        <td><literal>ptr</literal></td>
-      </tr>
+        <tr>
+            <td>
+                data type
+            </td>
+            <td>char code</td>
+            <td>typeof</td>
+            <td>comments</td>
+        </tr>
+        <tr>
+            <td>double matrix</td>
+            <td>
+                <literal>s</literal>
+            </td>
+            <td>
+                <literal>constant</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>polynomial matrix</td>
+            <td>
+                <literal>p</literal>
+            </td>
+            <td>
+                <literal>polynomial</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>boolean matrix</td>
+            <td>
+                <literal>b</literal>
+            </td>
+            <td>
+                <literal>boolean</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>sparse matrix</td>
+            <td>
+                <literal>sp</literal>
+            </td>
+            <td>
+                <literal>sparse</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>boolean sparse matrix</td>
+            <td>
+                <literal>spb</literal>
+            </td>
+            <td>
+                <literal>boolean sparse</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Matlab sparse matrix</td>
+            <td>
+                <literal>msp</literal>
+            </td>
+            <td>
+                <literal>Matlab sparse</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>integer matrix</td>
+            <td>
+                <literal>i</literal>
+            </td>
+            <td>
+                <literal>int8, int16,int32, uint8, uint16, uint32</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>string matrix</td>
+            <td>
+                <literal>s</literal>
+            </td>
+            <td>
+                <literal>string</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>handle</td>
+            <td>
+                <literal>h</literal>
+            </td>
+            <td>
+                <literal>handle</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>compiled function</td>
+            <td>
+                <literal>fptr</literal>
+            </td>
+            <td>
+                <literal>fptr</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>script function</td>
+            <td>
+                <literal>function</literal>
+            </td>
+            <td>
+                <literal>mc</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>library</td>
+            <td>
+                <literal>library</literal>
+            </td>
+            <td>
+                <literal>f</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>list</td>
+            <td>
+                <literal>list</literal>
+            </td>
+            <td>
+                <literal>l</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>tlist</td>
+            <td>
+                <literal>tlist type</literal>
+            </td>
+            <td>
+                <literal>tlist type</literal>
+            </td>
+            <td>the first string in the first tlist entry</td>
+        </tr>
+        <tr>
+            <td>mlist</td>
+            <td>
+                <literal>mlist type</literal>
+            </td>
+            <td>
+                <literal>mlist type</literal>
+            </td>
+            <td>the first string in the first mlist entry</td>
+        </tr>
+        <tr>
+            <td>hypermatrix</td>
+            <td>
+                <literal>hypermat</literal>
+            </td>
+            <td>
+                <literal>hm</literal>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>pointer</td>
+            <td>
+                <literal>pointer</literal>
+            </td>
+            <td>
+                <literal>ptr</literal>
+            </td>
+            <td></td>
+        </tr>
     </informaltable>
 
     <para><literal>&lt;op_code&gt;</literal> is a single character associated

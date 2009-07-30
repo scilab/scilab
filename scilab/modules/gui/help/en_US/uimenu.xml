@@ -103,6 +103,20 @@ h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis>
       </varlistentry>
 
       <varlistentry>
+        <term>Checked</term>
+
+        <listitem>
+          <para>{on} | off</para>
+
+          <para>Menu check indicator. Setting this property to "on" (respectively "off") places (respectively removes) a check mark next to the corresponding menu item. This option can be used to create menus that indicate the state of a particular option. </para>
+
+          <para>Please note that a standard menu (without the option "Checked" set) has no mechanism to become a menu which will be checked by a user action and conversely.</para>
+          <para>This property is ignored for parent menus.</para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>ForegroundColor</term>
 
         <listitem>

@@ -16,14 +16,9 @@
 if MSDOS then
 
   cd(TMPDIR);
-  mkdir('Luk� B��l');
-  path_directory = cd('Luk� B��l');
-  // backup previous SCIHOME
-  prv_SCIHOME = getenv('SCIHOME');
+  mkdir('Lukáš Bùôl');
+  path_directory = cd('Lukáš Bùôl');
   prv_APPDATA = getenv('APPDATA');
-  
-  // undefine previous SCIHOME
-  setenv('SCIHOME', '');
   
   // set APPDATA to find another SCIHOME
   setenv('APPDATA', path_directory);
@@ -32,7 +27,6 @@ if MSDOS then
   if res <> 0 then pause,end
   
   // restore previous env. variables
-  setenv('SCIHOME',prv_SCIHOME);
   setenv('APPDATA',prv_APPDATA);
 
 end

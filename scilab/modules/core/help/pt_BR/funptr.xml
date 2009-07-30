@@ -52,8 +52,8 @@
     <literal>'name'</literal>. <literal>numptr</literal> é formado a partir do
     número de interface <literal>fun</literal> e do número de rotina
     <literal>fin</literal> da primitiva em sua interface por <literal>numptr =
-    100*fun + fin</literal> (fin &lt; 100). De <literal>numptr</literal>
-    pode-se obter o número de interface <literal>fun = floor(numptr/100)
+    1000*fun + fin</literal> (fin &lt; 1000). De <literal>numptr</literal>
+    pode-se obter o número de interface <literal>fun = floor(numptr/1000)
     </literal>que pode ser útil para ligar uma interface dinâmica com seus
     argumentos passados por referência (ver seção de exemplos).</para>
   </refsection>
@@ -71,7 +71,7 @@
 // interface) :
 //
 // addinter(files,spnames,fcts)  // argumentos passados por valores
-// num_interface = floor(funptr(nome)/100)
+// num_interface = floor(funptr(nome)/1000)
 // intppty(num_interface)  // argumentos agora passados por referência
 //
 // Note que se você digitar o seguinte

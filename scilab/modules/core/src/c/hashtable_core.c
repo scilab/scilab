@@ -24,38 +24,38 @@ static unsigned   hashtableSize;
 static unsigned   filled;
 /*--------------------------------------------------------------------------*/
 static int Equal_id(int *x, int *y);
-
 /**
- * Check if a number is prime (or not)
- * @param number the number
- */
+* Check if a number is prime (or not)
+* @param number the number
+*/
 static int isprime(unsigned int number);
 /*--------------------------------------------------------------------------*/
-int create_hashtable_scilab_functions(unsigned int nel)
+int create_hashtable_scilab_functions(unsigned int nelmax)
 {
-    unsigned int i;
+	unsigned int i = 0;
+
 	if (htable == NULL)
 	{
-		nel |= 1;      /* make odd */
-		while (!isprime(nel)) nel += 2;
+		nelmax |= 1;      /* make odd */
+		while (!isprime(nelmax)) nelmax += 2;
 
-		hashtableSize  = nel;
+		hashtableSize  = nelmax;
 		filled = 0;
 
-		if ((htable = (_ENTRY *)MALLOC((hashtableSize+1)*sizeof(_ENTRY))) == NULL)	
+		htable = (_ENTRY *) CALLOC((hashtableSize + 1), sizeof(_ENTRY));
+
+		if (htable)	
 		{
-			return 0;
-		}
-		else
-		{
-		  for(i=0;i<hashtableSize;i++)
-		    {
-		      htable[i].used = 0;
-		      strcpy(htable[i].entry.namefunction,"");
-		      htable[i].entry.key[0] = 0;
-		      htable[i].entry.data = 0;
-		    }
-		  return 1;
+			htable[0].used = 0;
+			strcpy(htable[0].entry.namefunction, "");
+			htable[0].entry.key[0] = 0;
+			htable[0].entry.data = 0;
+
+			for(i = 1; i < hashtableSize; i++)
+			{
+				memcpy(&htable[i], &htable[0], sizeof(htable[0]));
+			}
+			return 1;
 		}
 	}
 	return 0;
@@ -70,27 +70,29 @@ void destroy_hashtable_scilab_functions()
 	}
 }
 /*--------------------------------------------------------------------------*/
-int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action)
+int action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action)
 {
-
 	if (action == SCI_HFUNCTIONS_BACKSEARCH)
 	{
-		unsigned int i=0;
-		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used && htable[i].entry.data == *data ) 
+		unsigned int i = 0;
+		for ( i = 0 ; i < hashtableSize ; i++ ) 
 		{
-			int j=0;
-			for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
-			return OK;
+			if ( htable[i].used && htable[i].entry.data == *scilab_funptr ) 
+			{
+				int j = 0;
+				for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
+				return OK;
+			}
 		}
 	}
 	else
 	{
 		register unsigned len = nsiz;
-		register unsigned hval=0;
-		register unsigned hval2=0;
-		register unsigned count=0;
+		register unsigned hval = 0;
+		register unsigned hval2 = 0;
+		register unsigned count = 0;
 
-		register unsigned idx=0;
+		register unsigned idx = 0;
 
 		if (action == SCI_HFUNCTIONS_ENTER && filled == hashtableSize) return FAILED;
 
@@ -117,9 +119,9 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 					switch (action) 
 					{
 					case SCI_HFUNCTIONS_ENTER :
-						htable[idx].entry.data = *data;
-						if (name) strcpy(htable[idx].entry.namefunction,name);
-						else strcpy(htable[idx].entry.namefunction,"");
+						htable[idx].entry.data = *scilab_funptr;
+						if (name) strcpy(htable[idx].entry.namefunction, name);
+						else strcpy(htable[idx].entry.namefunction, "");
 						return OK;
 						break;
 					case SCI_HFUNCTIONS_DELETE :
@@ -129,7 +131,7 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						break;
 
 					case SCI_HFUNCTIONS_FIND :
-						*data = htable[idx].entry.data;
+						*scilab_funptr = htable[idx].entry.data;
 						return OK;
 						break;
 
@@ -154,21 +156,22 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 						switch (action) 
 						{
 						case SCI_HFUNCTIONS_ENTER :
-							htable[idx].entry.data = *data; 
-							if (name) strcpy(htable[idx].entry.namefunction,name);
-							else strcpy(htable[idx].entry.namefunction,"");
+							htable[idx].entry.data = *scilab_funptr; 
+							if (name) strcpy(htable[idx].entry.namefunction, name);
+							else strcpy(htable[idx].entry.namefunction, "");
 							return OK;
+
 						case SCI_HFUNCTIONS_DELETE :
 							htable[idx].used = 0;
 							filled--;
 							return OK;
-							break;
+
 						case SCI_HFUNCTIONS_FIND :
-							*data = htable[idx].entry.data; 
+							*scilab_funptr = htable[idx].entry.data; 
 							return OK;
+
 						case SCI_HFUNCTIONS_BACKSEARCH :
 							return FAILED;
-							break;
 						}
 					}
 				}
@@ -180,8 +183,8 @@ int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCT
 			int i=0;
 			htable[idx].used  = hval;
 			for ( i=0 ; i < nsiz ; i++ ) htable[idx].entry.key[i] = key[i];
-			htable[idx].entry.data = *data;
-			if (name) strcpy(htable[idx].entry.namefunction,name);
+			htable[idx].entry.data = *scilab_funptr;
+			if (name) strcpy(htable[idx].entry.namefunction, name);
 			filled++;
 			return OK ;
 		}
@@ -209,11 +212,11 @@ static int isprime(unsigned int number)
 /*--------------------------------------------------------------------------*/  
 char **GetFunctionsList(int *sizeList)
 {
-	char **ListFunctions=NULL;
-	unsigned int i=0;
-	int j=0;
+	char **ListFunctions = NULL;
+	unsigned int i = 0;
+	int j = 0;
 
-	*sizeList=0;
+	*sizeList = 0;
 
 	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
 	{
@@ -222,20 +225,21 @@ char **GetFunctionsList(int *sizeList)
 			if (strlen(htable[i].entry.namefunction) > 0) j++;
 		}
 	}
-	*sizeList=j;
+	*sizeList = j;
 
-	ListFunctions=(char**)MALLOC(sizeof(char*)*(*sizeList));
-
-	j=0;
-
-	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+	ListFunctions = (char**)MALLOC(sizeof(char*)*(*sizeList));
+	j = 0;
+	if (ListFunctions)
 	{
-		if (htable[i].entry.namefunction)
+		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
 		{
-			if (strlen(htable[i].entry.namefunction) > 0)
+			if (htable[i].entry.namefunction)
 			{
-				ListFunctions[j] = strdup(htable[i].entry.namefunction);
-				j++;
+				if (strlen(htable[i].entry.namefunction) > 0)
+				{
+					ListFunctions[j] = strdup(htable[i].entry.namefunction);
+					j++;
+				}
 			}
 		}
 	}
@@ -244,18 +248,18 @@ char **GetFunctionsList(int *sizeList)
 /*--------------------------------------------------------------------------*/  
 BOOL ExistFunction(char *name)
 {
-	int i=0;
+	int i = 0;
 
-	for ( i = 0 ; i < (int)hashtableSize ; i++ ) {
-		if ( htable[i].used) 
+	for ( i = 0 ; i < (int)hashtableSize ; i++ ) 
+	{
+		if (htable[i].used) 
+		{
+			if (strcmp(htable[i].entry.namefunction, name) == 0)
 			{
-				if (strcmp(htable[i].entry.namefunction,name) == 0)
-					{
-						return TRUE;
-					}
+				return TRUE;
 			}
+		}
 	}
-
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/  

@@ -25,11 +25,10 @@
             How to get the number of items in a list (list, mlist, tlist).
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get the number of items in a list (list, mlist, tlist).</para>
-        <synopsis>int getListItemNumber(int* _piAddress, int* _piNbItem)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int getListItemNumber(int* _piAddress, int* _piNbItem)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -50,6 +49,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get the number of items in a list (list, mlist, tlist).</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/common_list_api.c-->
