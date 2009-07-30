@@ -49,27 +49,27 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
 	if ( getVarType(piAddressVarTwo) != sci_strings )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A string expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,2);
 		return 0;
 	}
 
 	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
 	getMatrixOfString(piAddressVarTwo,&m2,&n2,&lenStVarTwo,&pStVarTwo);
 	if ( (m2 != n2) && (n2 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A string expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 		return 0;
 	}
 
@@ -80,7 +80,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,"%s : Memory allocation error.\n",fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
@@ -92,7 +92,7 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 	else
 	{
 		FREE(pStVarOne);
-		Scierror(999,"%s : Memory allocation error.\n",fname);
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
 		return 0;
 	}
 
