@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -212,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -302,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../call_scilab/includes;../string/includes;../../libs/MALLOC/includes;../output_stream/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;API_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -491,15 +491,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\api_scilab.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\api_sparse.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\api_string.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\api_variable.h"
 				>
 			</File>
 			<File

@@ -19,16 +19,16 @@ import java.awt.Font;
 import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.widget.ScilabWidget;
 
 /**
  * Class for Scilab MenuItem in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class ScilabMenuItem extends ScilabWidget implements MenuItem {
+public class ScilabMenuItem extends ScilabMenu implements MenuItem {
 
 	private SimpleMenuItem component;
 	
@@ -280,4 +280,19 @@ public class ScilabMenuItem extends ScilabWidget implements MenuItem {
 		return ScilabBridge.getCallback(this);
 	}
 
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	public void setChecked(boolean status) {
+		ScilabBridge.setChecked(this, status);
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public boolean isChecked() {
+		return ScilabBridge.isChecked(this);
+	}
 }
