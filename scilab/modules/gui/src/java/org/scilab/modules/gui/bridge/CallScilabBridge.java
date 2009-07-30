@@ -691,6 +691,7 @@ public class CallScilabBridge {
 			menuToAdd.setCallback(menuItem.getCallback());
 			menuToAdd.setForeground(menuItem.getForeground());
 			menuToAdd.setVisible(menuItem.isVisible());
+			menuToAdd.setEnabled(menuItem.isEnabled());
 			// End of properties copy
 
 			// Add the menu to the tab
