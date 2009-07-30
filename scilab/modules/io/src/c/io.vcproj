@@ -6,6 +6,7 @@
 	ProjectGUID="{80C0F142-184B-4E08-A8EE-5E71437CF904}"
 	RootNamespace="io"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;IO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;IO_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;IO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../../libs/hashtable;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;IO_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -386,10 +387,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\gw_io.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\intsetenv.c"
 				>
 			</File>
 			<File
@@ -491,10 +488,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_io.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\intsetenv.h"
 				>
 			</File>
 			<File
