@@ -933,7 +933,15 @@ public class CallScilabBridge {
 	 */
 	public static void setMenuAsParent(int menuID, int objID) {
 
-		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
+		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof CheckBoxMenuItem) {
+			CheckBoxMenuItem parentMenu = (CheckBoxMenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
+
+			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
+				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
+			}
+		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
 			MenuItem parentMenu = (MenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
 
 			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
