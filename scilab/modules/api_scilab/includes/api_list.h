@@ -13,6 +13,7 @@
 #define __LIST_API__
 
 #include "dynlib_api_scilab.h"
+#include "doublecomplex.h"
 
 /**********************/
 /*   list functions   */
