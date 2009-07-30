@@ -17,6 +17,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 
@@ -95,6 +96,15 @@ public class ScilabMenuBridge {
 	 */
 	public static void add(Menu menu, MenuItem newMenuItem) {
 		menu.getAsSimpleMenu().add(newMenuItem);
+	}
+	
+	/**
+	 * Append a CheckBoxMenuItem to a Scilab Menu
+	 * @param menu the Menu which we want to add the CheckBoxMenuItem to
+	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+	 */
+	public static void add(Menu menu, CheckBoxMenuItem newCheckBoxMenuItem) {
+		menu.getAsSimpleMenu().add(newCheckBoxMenuItem);
 	}
 	
 	/**
