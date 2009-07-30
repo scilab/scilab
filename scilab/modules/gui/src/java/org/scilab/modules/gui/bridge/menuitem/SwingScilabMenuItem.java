@@ -203,10 +203,15 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsAMenu = ScilabMenu.createMenu();
 			meAsAMenu.setText(getText());
 			meAsAMenu.add(childMenuItem);
-			Container parent = getParent();
-			if (parent != null) { 
+			if (meAsACheckBoxMenuItem == null) {
+				Container parent = getParent();
 				int index = parent.getComponentZOrder(this);
 				parent.remove(this.getComponent());
+				parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+			} else {
+				Container parent = ((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getParent();
+				int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
+				parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
 				parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
 			}
 		} else {
