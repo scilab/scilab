@@ -20,6 +20,7 @@ import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuIte
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
@@ -73,6 +74,10 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 
     public void doAction() {
 	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public SimpleMenu getAsSimpleMenu() {
+	return null;
     }
 
 }

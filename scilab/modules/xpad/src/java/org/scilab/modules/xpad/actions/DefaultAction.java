@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -66,6 +67,10 @@ public class DefaultAction extends SwingScilabMenuItem implements MenuItem {
 
     public void doAction() {
 	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public SimpleMenu getAsSimpleMenu() {
+	return null;
     }
 
 }
