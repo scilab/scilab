@@ -169,7 +169,8 @@ namespace ast
 			result_set(poResult);
 			if(e.is_verbose())
 			{
-				std::cout << poResult->toString(10,75) << std::endl;
+			  YaspWrite((char *) poResult->toString(10,75).c_str());
+			  YaspWrite("\n");
 			}
 /*
 			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
