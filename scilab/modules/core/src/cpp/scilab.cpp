@@ -27,7 +27,7 @@ extern "C"
 	#include "localization.h"
 	#include "InitializeLocalization.h"
 	#include "MALLOC.h"
-	//#include "setgetSCIpath.h"
+	#include "setgetSCIpath.h"
 	#include "inisci-c.h"
 	#include "scilabmode.h"
 	#ifdef _MSC_VER
