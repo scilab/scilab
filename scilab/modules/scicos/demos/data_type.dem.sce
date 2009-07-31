@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("data_type.dem.sce");
-scicos_demostration(thispath+"/demo_Datatype.cosf");
+scicos_demonstration(thispath+"/demo_Datatype.cosf");
 clear thispath;

@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("lorentz.dem.sce");
-scicos_demostration(thispath+"/Lorentz.cosf");
+scicos_demonstration(thispath+"/Lorentz.cosf");
 clear thispath;

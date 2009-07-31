@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("temp_controller.dem.sce");
-scicos_demostration(thispath+"/Temperature_Controller.cosf");
+scicos_demonstration(thispath+"/Temperature_Controller.cosf");
 clear thispath;

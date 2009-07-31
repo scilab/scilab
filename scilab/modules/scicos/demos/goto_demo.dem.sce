@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("goto_demo.dem.sce");
-scicos_demostration(thispath+"/goto_demo.cos");
+scicos_demonstration(thispath+"/goto_demo.cos");
 clear thispath;

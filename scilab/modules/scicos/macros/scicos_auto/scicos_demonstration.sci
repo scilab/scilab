@@ -5,7 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-function scicos_demostration(scs_m)
+function scicos_demonstration(scs_m)
 
   //** -------------------- Check the recurring calling level of scicos ----------------------
   [%ljunk, %mac] = where() ; //** where I am ?
@@ -14,8 +14,8 @@ function scicos_demostration(scs_m)
 
    if Scicos_is_active then
 
-      message(["You can run ONLY one Scicos demo at time.";...
-               "Please close any previous Scicos diagram";...
+      message(["You can run ONLY one Scicos demo at time.";..
+               "Please close any previous Scicos diagram";..
                "before choose a new demo. "]);
       return
    else
