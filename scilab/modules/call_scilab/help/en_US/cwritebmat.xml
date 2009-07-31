@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="cwritebmat"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="cwritebmat" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns5="http://www.w3.org/1999/xhtml"
@@ -24,68 +24,69 @@
   <refnamediv>
     <refname>cwritebmat</refname>
 
-    <refpurpose>Write a single boolean or a matrix of boolean into Scilab memory using
-    call_scilab</refpurpose>
+    <refpurpose>Write a single boolean or a matrix of boolean into Scilab
+    memory using call_scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(cwritebmat)(char *name, int *m, int *n, int *mat, unsigned long name_len);</para>
+    <synopsis>int C2F(cwritebmat)(char *name, int *m, int *n, int *mat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
 
     <variablelist>
-        <varlistentry>
-          <term>name</term>
+      <varlistentry>
+        <term>name</term>
 
-          <listitem>
-            <para>The name of the future Scilab variable</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The name of the future Scilab variable</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>m</term>
+      <varlistentry>
+        <term>m</term>
 
-          <listitem>
-            <para>Number of rows</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>Number of rows</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>n</term>
+      <varlistentry>
+        <term>n</term>
 
-          <listitem>
-            <para>Number of columns</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>Number of columns</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>mat</term>
+      <varlistentry>
+        <term>mat</term>
 
-          <listitem>
-            <para>The actual matrix of boolean (array of int). Note that it is going to be stored in Scilab columnwise.</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The actual matrix of boolean (array of int). Note that it is
+          going to be stored in Scilab columnwise.</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>name_len</term>
+      <varlistentry>
+        <term>name_len</term>
 
-          <listitem>
-            <para>The length of the variable <emphasis>name</emphasis>
-            (fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The length of the variable <emphasis>name</emphasis> (fortran
+          compatibility)</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>C2F</term>
+      <varlistentry>
+        <term>C2F</term>
 
-          <listitem>
-            <para>C2F is just a macro which provides to this function the
-            ability to be called from fortran</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 
   <refsection>
@@ -93,26 +94,29 @@
 
     <para>This help describes how to use the function cwritebmat.</para>
 
-    <para>Using this function will basically do the same as <emphasis>A=[ T F F T ];</emphasis> but straight into Scilab memory with call_scilab.</para>
+    <para>Using this function will basically do the same as <emphasis>A=[ T F
+    F T ];</emphasis> but straight into Scilab memory with call_scilab.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// This example shows how to write a Scilab matrix of boolean in Scilab engine
-// It is the equivalent to B=[F F T F;
-// 	  	 	 			   	  F F F T ] in Scilab interpretor
+    <programlisting role="example"><![CDATA[
+// This example shows how to write a Scilab matrix of boolean in Scilab engine
+// It is the equivalent to 
+// B=[F F T F;
+//    F F F T ] in Scilab interpretor
 // See: modules/call_scilab/examples/basicExamples/readwriteboolean.c
 
 // StartScilab
-			int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
-			int rowB=2, colB=4; /* Size of the matrix */
-			char variableNameB[] = "B";
-			C2F(cwritebmat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
-			printf("\n");
-			printf("Display from Scilab of B:\n");
-			SendScilabJob("disp(B);"); /* Display B */
-</programlisting>
+int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
+int rowB=2, colB=4; /* Size of the matrix */
+char variableNameB[] = "B";
+C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+printf("\n");
+printf("Display from Scilab of B:\n");
+SendScilabJob("disp(B);"); /* Display B */
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -120,7 +124,10 @@
 
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link linkend="creadbmat">creadbmat</link>, <link linkend="BooleanManagement_callscilab">Boolean Management</link></member>
+      linkend="StartScilab">StartScilab</link>, <link
+      linkend="creadbmat">creadbmat</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean
+      Management</link></member>
     </simplelist>
   </refsection>
 

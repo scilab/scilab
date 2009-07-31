@@ -8,13 +8,13 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //------------------------------------------------------------------------------
-function [HomeDirectory,ScilabHomeDirectory]=sethomedirectory(varargin)
-  nv=size(varargin);
-	ScilabHomeDirectory=SCIHOME;
-	HomeDirectory=getenv('HOME',SCI);
+function [HomeDirectory,ScilabHomeDirectory] = sethomedirectory(varargin)
+  nv = size(varargin);
+	ScilabHomeDirectory = SCIHOME;
+	HomeDirectory = home;
 
-  if nv==1 then // to set Scilab home with a path
-    warning(gettext("Obsolete: Define SCIHOME and HOME before to launch Scilab."));
+  if nv == 1 then // to set Scilab home with a path
+    warnobsolete("SCIHOME","5.3");
   end
 endfunction
 //------------------------------------------------------------------------------

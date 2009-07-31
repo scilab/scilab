@@ -25,14 +25,10 @@
             How to read pointer in a list.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to read pointer in a list.</para>
-    </refsection>
-    <refsection>
-        <title>Description</title>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
         <synopsis>int getPointerInList(int _iVar, int* _piParent, int _iItemPos, void** _pvPtr)</synopsis>
-</refsection>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -69,6 +65,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to read pointer in a list.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_read_api.c-->

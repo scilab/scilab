@@ -1034,7 +1034,7 @@ c      write(6,'(a10,5i5)') 'fin sel',pt,lcf,ilr,lr,l-lr
       goto 10
 c   
  80   continue
-      fptr=op+istk(lc+3)
+      fptr = op * 10 + istk(lc+3)
 c     SCI_HFUNCTIONS_BACKSEARCH = 2  
       call funtab(id,fptr,2,'NULL_NAME',0)
 

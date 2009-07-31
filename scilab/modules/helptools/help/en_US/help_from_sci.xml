@@ -26,11 +26,13 @@
 
 <refsynopsisdiv>
    <title>Calling Sequence</title>
-   <synopsis>help_from_sci() // generate an empty function template</synopsis>
-   <synopsis>help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci</synopsis>
-   <synopsis>help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.</synopsis>
-   <synopsis>help_from_sci(dirname,helpdir,helpdir) // as above but also creating helpdir/*.dem.sce demo files.</synopsis>
-   <synopsis>[helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.</synopsis>
+   <synopsis>
+help_from_sci() // generate an empty function template
+help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci
+help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
+help_from_sci(dirname,helpdir,helpdir) // as above but also creating helpdir/*.dem.sce demo files.
+[helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
+   </synopsis>
 </refsynopsisdiv>
 
 <refsection>
@@ -74,24 +76,22 @@ The remaining comments are formatted according to the following (optional) headl
    </para>
    <para>
 The following guidelines should be used when writing the source code comments:
+</para>
 <itemizedlist>
-<listitem><literal>Calling Sequence</literal> - one example pr. line.</listitem>
-<listitem><literal>Parameters</literal> - separate parameter name and
-description by a ":". Keep the description of each parameter on the same line.</listitem>
-<listitem><literal>Description</literal> - formatting of the text can be done
+<listitem><para><literal>Calling Sequence</literal> - one example pr. line.</para></listitem>
+<listitem><para><literal>Parameters</literal> - separate parameter name and
+description by a ":". Keep the description of each parameter on the same line.</para></listitem>
+<listitem><para><literal>Description</literal> - formatting of the text can be done
 using XML commands.
 Adding an empty comment line in the Description section is interpreted as the
-start of a new paragraph.</listitem>
-<listitem><literal>See also</literal> - list one function name pr line.</listitem>
-<listitem><literal>Authors</literal> - write one author on each line following
+start of a new paragraph.</para></listitem>
+<listitem><para><literal>See also</literal> - list one function name pr line.</para></listitem>
+<listitem><para><literal>Authors</literal> - write one author on each line following
 the Authors headline. Use ";" to separate the authors name
-from any add additional information.</listitem>
-<listitem><literal>Bibliography</literal> - write one reference pr line
-following the References headline.</listitem>
+from any add additional information.</para></listitem>
+<listitem><para><literal>Bibliography</literal> - write one reference pr line
+following the References headline.</para></listitem>
 </itemizedlist>
-   </para>
-   <para>
-</para>
 </refsection>
 
 <refsection>

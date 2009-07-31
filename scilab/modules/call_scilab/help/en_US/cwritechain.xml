@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="cwritechain"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="cwritechain" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns5="http://www.w3.org/1999/xhtml"
@@ -29,65 +29,64 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(cwritechain) (char *name, int *myStringSize, char *myString,
-    unsigned long name_len, unsigned long myString_len);</para>
+    <synopsis>int C2F(cwritechain)(char *name, int *myStringSize, char *myString, unsigned long name_len, unsigned long myString_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
 
-<variablelist>
-        <varlistentry>
-          <term>name</term>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
 
-          <listitem>
-            <para>The name of the future Scilab variable</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The name of the future Scilab variable</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>myStringSize</term>
+      <varlistentry>
+        <term>myStringSize</term>
 
-          <listitem>
-            <para>The length of the string which is going to be write into
-            Scilab memory</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The length of the string which is going to be write into
+          Scilab memory</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>myString</term>
+      <varlistentry>
+        <term>myString</term>
 
-          <listitem>
-            <para>The actual String (char *)</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The actual String (char *)</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>name_len</term>
+      <varlistentry>
+        <term>name_len</term>
 
-          <listitem>
-            <para>The length of the variable <emphasis>name</emphasis>
-            (fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The length of the variable <emphasis>name</emphasis> (fortran
+          compatibility)</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>myString_len</term>
+      <varlistentry>
+        <term>myString_len</term>
 
-          <listitem>
-            <para>The length of the string (fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The length of the string (fortran compatibility)</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>C2F</term>
+      <varlistentry>
+        <term>C2F</term>
 
-          <listitem>
-            <para>C2F is just a macro which provides to this function the
-            ability to be called from fortran</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 
   <refsection>
@@ -103,31 +102,33 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// This example shows how to write a Scilab string in Scilab engine
+    <programlisting role="example"><![CDATA[
+// This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
 // See: modules/call_scilab/examples/basicExamples/readwritestring.c
 
 // StartScilab
-		char *myString = "my Message";   /* Declare the string */
-		char variableName[] = "A"; / * The name of the future variable in Scilab */
-		int sizeOfMyString=strlen(myString);
+char *myString = "my Message";   /* Declare the string */
+char variableName[] = "A"; / * The name of the future variable in Scilab */
+int sizeOfMyString=strlen(myString);
 
-		C2F(cwritechain)(variableName, &amp;sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
+C2F(cwritechain)(variableName, &sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
 
-		printf("Display from Scilab of A:\n");
-		SendScilabJob("disp(A);"); /* Display A */</programlisting>
+printf("Display from Scilab of A:\n");
+SendScilabJob("disp(A);"); /* Display A */
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link linkend="creadchains"
-      os="">creadchains</link>,      
-      <link linkend="StringManagement_callscilab">String Management</link>
-
-</member>
+      <member>
+        <link linkend="SendScilabJob">SendScilabJob</link>
+        <link linkend="StartScilab">StartScilab</link>
+        <link linkend="creadchains">creadchains</link>
+        <link linkend="StringManagement_callscilab">String Management</link>
+      </member>
     </simplelist>
   </refsection>
 

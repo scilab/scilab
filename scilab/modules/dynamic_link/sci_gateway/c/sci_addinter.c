@@ -77,6 +77,15 @@ int sci_addinter(char *fname,unsigned long fname_len)
 			nbfcts = m3;
 		}
 
+		if (nbfcts >= NumberMaxFunctionsByGateway)
+		{
+			freeArrayOfString(sharedlibname, m1*n1);
+			freeArrayOfString(spname, m2*n2);
+			freeArrayOfString(fcts, m3*n3);
+			Scierror(999,_("%s: Wrong size for input argument #%d: String vector < %d expected.\n"),fname,3,NumberMaxFunctionsByGateway);
+			return 0;
+		}
+
 		ierr = AddInterfaceToScilab(sharedlibname[0],spname[0],fcts,nbfcts);
 		if (ierr == 0)
 		{

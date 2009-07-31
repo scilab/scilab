@@ -411,6 +411,7 @@ includes/api_common.h \
 includes/api_double.h \
 includes/api_int.h \
 includes/api_list.h \
+includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \

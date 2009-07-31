@@ -44,8 +44,6 @@ knowledge of the CeCILL-B license and that you accept its terms.
 #include <stdlib.h>
 #include <jni.h>
 
-#include "GiwsException.hxx"
-
 namespace org_scilab_modules_gui_bridge {
 
 class CallScilabBridge {
@@ -160,6 +158,8 @@ jmethodID voidsetWidgetEnablejintjbooleanID; // cache method id
 jmethodID voidsetFrameEnablejintjbooleanID; // cache method id
 jmethodID jbooleanisWidgetEnablejintID; // cache method id
 jmethodID jbooleanisFrameEnablejintID; // cache method id
+jmethodID voidsetMenuCheckedjintjbooleanID; // cache method id
+jmethodID jbooleanisMenuCheckedjintID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
 jmethodID voidremoveFigureMenujintjstringID; // cache method id
 jmethodID jstringdisplayAndWaitContextMenujintID; // cache method id
@@ -483,6 +483,10 @@ static void setFrameEnable(JavaVM * jvm_, int objID, bool status);
 static bool isWidgetEnable(JavaVM * jvm_, int objID);
 
 static bool isFrameEnable(JavaVM * jvm_, int objID);
+
+static void setMenuChecked(JavaVM * jvm_, int objID, bool status);
+
+static bool isMenuChecked(JavaVM * jvm_, int objID);
 
 static void removeRootMenu(JavaVM * jvm_, char * menuName);
 
