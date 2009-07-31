@@ -256,4 +256,14 @@ namespace types
 			return false;
 		}
 	}
+	string ImplicitList::toString(int _iPrecision, int _iLineLen)
+	{
+		Double dbl(1, size_get());
+		for(int i = 0 ; i < dbl.size_get() ; i++)
+		{
+			dbl.val_set(0, i, extract_value(i));
+		}
+		return dbl.toString(_iPrecision, _iLineLen);
+	}
+
 }

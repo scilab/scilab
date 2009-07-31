@@ -10,17 +10,18 @@
  * 
  */
 
+
 #include "yaspio.hxx"
 
-static OUTPUT _writer;
-static INPUT _reader;
+static YASP_OUTPUT _writer;
+static YASP_INPUT _reader;
 
-void setYaspOutputMethod(OUTPUT writer)
+void setYaspOutputMethod(YASP_OUTPUT writer)
 {
   _writer = writer;
 }
 
-void setYaspInputMethod(INPUT reader)
+void setYaspInputMethod(YASP_INPUT reader)
 {
   _reader = reader;
 }

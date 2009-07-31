@@ -13,15 +13,17 @@
 #ifndef __YASPIO_HXX__
 #define __YASPIO_HXX__
 
-typedef void (*OUTPUT)(char *text);
-typedef char *(*INPUT)(void);
+#include "ast.hxx"
 
-void setYaspOutputMethod(OUTPUT writer);
+typedef void (*YASP_OUTPUT)(char *text);
+typedef char *(*YASP_INPUT)(void);
 
-void setYaspInputMethod(INPUT reader);
+EXTERN_AST void setYaspOutputMethod(YASP_OUTPUT writer);
 
-char *YaspRead();
+EXTERN_AST void setYaspInputMethod(YASP_INPUT reader);
 
-void YaspWrite(char* text);
+EXTERN_AST char *YaspRead();
+
+EXTERN_AST void YaspWrite(char* text);
 
 #endif /* __YASPIO_HXX__ */

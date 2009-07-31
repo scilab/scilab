@@ -368,6 +368,30 @@
 				RelativePath=".\src\cpp\operations.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\src\cpp\types_addition.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_divide.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_finite.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_multiplication.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_power.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_substraction.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

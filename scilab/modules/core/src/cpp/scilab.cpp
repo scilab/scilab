@@ -22,12 +22,12 @@ extern "C"
 		#include <unistd.h>
 	#endif
 
-	#include "SetScilabEnvironment.h"
+	//#include "SetScilabEnvironment.h"
 	#include "prompt.h"
 	#include "localization.h"
 	#include "InitializeLocalization.h"
 	#include "MALLOC.h"
-	#include "setgetSCIpath.h"
+	//#include "setgetSCIpath.h"
 	#include "inisci-c.h"
 	#include "scilabmode.h"
 	#ifdef _MSC_VER
@@ -232,10 +232,9 @@ static int batchMain (void)
 	return WELL_DONE;
 }
 
-#define SCI_VERSION_STRING "scilab-6.0 (aka YaSp)"
-
 static void banner()
 {
+#define SCI_VERSION_STRING "scilab-branch-YaSp"
   int i;
   char *line = "        ___________________________________________        ";
   int startVersion = (int)(floor((double)(strlen(line)/2)) - floor((double)(strlen(SCI_VERSION_STRING)/2)));
@@ -382,22 +381,23 @@ int main(int argc, char *argv[])
 
 	InitializeLocalization();
 
-	#ifdef _MSC_VER
+#ifdef _MSC_VER
 	InitializeWindows_tools();
-	#endif
+#endif
 
 	InitializeCore();
 
 	InitializeShell();
 
-	if ( getScilabMode() != SCILAB_NWNI ) 
+	if ( 
+		!consoleMode ) 
 	{
 		/* bug 3702 */
 		/* tclsci creates a TK window on Windows */
 		/* it changes focus on previous windows */
 		/* we put InitializeTclTk before InitializeGUI */
 
-		InitializeTclTk();
+		//InitializeTclTk();
 		InitializeJVM();
 		InitializeGUI();
 		
@@ -405,7 +405,7 @@ int main(int argc, char *argv[])
 		loadGraphicModule() ;
                 
 		/* Standard mode -> init Java Console */
-		if ( getScilabMode() == SCILAB_STD ) 
+		//if ( !consoleMode ) 
 		{
 			/* Initialize console: lines... */
 			InitializeConsole();

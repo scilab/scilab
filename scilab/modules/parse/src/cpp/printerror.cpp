@@ -19,9 +19,9 @@ void Parser::PrintError(std::string msg) {
 
  // FIXME : Should work under Windows
  // Need to have getline !!!
+ std::ostringstream ostr;
 #ifndef _MSC_VER
  char *codeLine = NULL;
- std::ostringstream ostr;
 
  /** First print where in the script the error is located */
  ostr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";

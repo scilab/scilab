@@ -492,11 +492,11 @@ namespace types
 						bool bFP = false; // FloatingPoint
 						int iLen = 0;
 						GetFormat(ZeroIsZero(m_pdblReal[i]), _iPrecision, &iWidth, &iPrec, &bFP);
-						iLen = iWidth + bFP + ostemp.str().size();
+						iLen = iWidth + bFP + (int)ostemp.str().size();
 						if(iLen > _iLineLen)
 						{//Max length, new line
-							cout << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
-							cout << ostemp.str() << endl;
+							ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+							ostr << ostemp.str() << endl;
 							ostemp.str("\x00");
 							iLastVal = i;
 						}
@@ -525,7 +525,7 @@ namespace types
 						GetFormat(ZeroIsZero(m_pdblReal[i]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
 						GetFormat(ZeroIsZero(m_pdblImg[i]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
 
-						iLen = ostemp.str().size();
+						iLen = (int)ostemp.str().size();
 						if(isZero(m_pdblImg[i]))
 						{
 							if(isZero(m_pdblReal[i]))
