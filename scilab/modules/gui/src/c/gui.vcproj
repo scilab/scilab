@@ -562,6 +562,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\GetUimenuChecked.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUimenuLabel.cpp"
 				>
 			</File>
@@ -867,6 +871,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolVerticalAlignment.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUimenuChecked.cpp"
 				>
 			</File>
 			<File
@@ -1247,6 +1255,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUimenuChecked.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\GetUimenuChecked.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\GetUimenuLabel.h"
 				>
 			</File>
@@ -1560,6 +1576,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUicontrolVerticalAlignment.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUimenuChecked.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUimenuChecked.hxx"
 				>
 			</File>
 			<File

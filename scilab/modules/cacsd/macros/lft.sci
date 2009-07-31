@@ -75,7 +75,7 @@ function [p1,r1]=lft(p,r,p#,r#)
 	p1=dd;
       else
 	// p# is not a gain
-	p#1=p#1(1)
+	p#1=p#(1)
 	if p#1(1)=='lss' then
 	  [ak,bk,ck,dk]=p#(2:5);
 	  id=inv(eye(d22*dk)-d22*dk),

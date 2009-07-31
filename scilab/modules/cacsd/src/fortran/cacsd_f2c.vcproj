@@ -6,7 +6,6 @@
 	ProjectGUID="{0BB16C71-0FCD-4FB9-B7C0-F2601330C980}"
 	RootNamespace="cacsd_f2c"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

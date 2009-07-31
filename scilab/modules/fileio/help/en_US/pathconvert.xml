@@ -33,9 +33,15 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>flagtrail,flagexpand</term>
+        <term>flagtrail</term>
         <listitem>
-          <para>boolean optional parameters (default value depends on  the MSDOS variable).</para>
+          <para>boolean optional parameters. Its default value is TRUE.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flagexpand</term>
+        <listitem>
+          <para>boolean optional parameter. Its default value depends on the MSDOS variable.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -54,31 +60,34 @@
     is given by the optional string <literal>type</literal> which can be 
     <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
     style is set according to the value of <literal>MSDOS</literal>. 
-    If <literal>MSDOS</literal> is true (resp. false ) then default type is <literal>'w'</literal>
+    If <literal>MSDOS</literal> is TRUE (resp. FALSE ) then default type is <literal>'w'</literal>
     (resp.  <literal>'u'</literal>).</para>
     <para>
     Windows pathnames starting with <literal>name:</literal> are converted to 
     pathnames starting with <literal>/cygdrive/name/</literal> using the cygwin 
     convention.</para>
-    <para><literal>flagtrail</literal> is an optional boolean parameter. When its value 
-    is true a trailing separator (<literal>'\'</literal> or <literal>'/'</literal>) is added 
-    at the end of the path.</para>
+    <para>
+      <literal>flagtrail</literal> is an optional boolean parameter. When its value 
+      is TRUE (default value) a trailing separator (<literal>'\'</literal> or <literal>'/'</literal>) is added 
+      at the end of the path if it was missing.  If <literal>flagtrail</literal> is
+      set to FALSE, the trailing separator is removed.
+    </para>
     <para><literal>flagexpand</literal> is an optional boolean parameter. When its value 
-    is true leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
+    is TRUE leading strings like  <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are 
     expanded using environment variables.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-pathconvert('SCI/modules/fileio\macros/foo.sci',%f,%f,'u')
-pathconvert('SCI/modules/fileio\macros/foo.sci',%f,%f,'w')
-pathconvert('SCI/modules/fileio/macros/foo.sci',%f,%t,'w')
-pathconvert('HOME/modules/fileio/macros/foo.sci',%t,%t,'w')
-pathconvert('c:/tmp',%f,%t,'u')
-pathconvert('/cygdrive/c/tmp',%f,%f,'w')
- 
-  ]]></programlisting>
+    <programlisting role="example">
+<![CDATA[
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"u")
+pathconvert("SCI/modules/fileio\macros/foo.sci",%f,%f,"w")
+pathconvert("SCI/modules/fileio/macros/foo.sci",%f,%t,"w")
+pathconvert("HOME/modules/fileio/macros/foo.sci",%t,%t,"w")
+pathconvert("c:/tmp",%f,%t,"u")
+pathconvert("/cygdrive/c/tmp",%f,%f,"w")
+]]>
+    </programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

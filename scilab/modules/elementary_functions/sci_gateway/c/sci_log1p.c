@@ -14,50 +14,55 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "../../core/src/c/parse.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intlog1p) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
+	int i;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
 
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	int iImgData		= 0;
-	int iIndex			= 0;
+	int* piAddr					= NULL;
 
-	double *pdblRealData	= NULL;
-	double *pdblImgData		= NULL;
-	double* pReturnRealData	= NULL;
-	double* pReturnImgData	= NULL;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	double* pdblRealRet	= NULL;
+	double* pdblImgRet	= NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
 		Error(43);
 		return 0;
 	}
 	else
 	{
-		int iLessZero	= 0;
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblRealData	= stk(iRealData);
-
-		for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
+		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
 		{
-			if(pdblRealData[iIndex] <= -1)
+			return 1;
+		}
+
+		for(i = 0; i < iRows * iCols ; i++)
+		{
+			if(pdblReal[i] <= -1)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
@@ -71,20 +76,20 @@ int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 			}
 		}
 
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
-			pReturnRealData[iIndex] = dlog1ps(pdblRealData[iIndex]);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		for(i = 0; i < iRows * iCols ; i++)
+		{
+			pdblRealRet[i] = dlog1ps(pdblReal[i]);
+		}
 	}
-#else // _NEW_TONIO_
-	C2F(intlog1p)(id);
-#endif
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

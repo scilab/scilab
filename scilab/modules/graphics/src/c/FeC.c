@@ -1,19 +1,24 @@
-/*------------------------------------------------------------------------
- *    Graphic library
- *    Copyright (C) 1998-2001 Enpc
- *    Copyright INRIA 2006
- *    Jean-Philippe Chancelier - jpc@cermics.enpc.fr
- *    Jean-Baptiste Silvy
- *
- *    modified by Bruno Pincon 01/02/2001 for gain in speed and added 
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1998 - 2001 - ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2005-2008 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2001 -  Bruno Pincon (for gain in speed and added 
  *    possibilities to set zmin, zmax by the user and also to set the 
- *    first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr
+ *    first and last color of the colormap)
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
-for entities handling
- --------------------------------------------------------------------------*/
+ */
+
+/**
+ * for entities handling
+ */
 
 #include "machine.h"
-
 #include "math_graphics.h" 
 #include "Axes.h"
 
@@ -35,7 +40,7 @@ for entities handling
  * However, to be more coherent with other fec object properties
  * (which were interfaced from Scilab in version 5.1),
  * the default value is now [0,0].
- * However, to keep backward compatibilty, we made a patch for
+ * However, to keep backward compatibility, we made a patch for
  * the fec function.
  * In other word, this function converts colout from fec function
  * colout argument to fec handle outside_colors properties.

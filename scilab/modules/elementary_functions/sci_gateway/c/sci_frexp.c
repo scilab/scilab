@@ -15,63 +15,71 @@
 #include "basic_functions.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intfrexp) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_frexp) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows		= 0;
-	int iCols		= 0;
-	int iRealData	= 0;
-	int iImgData	= 0;
-	int iIndex		= 0;
+	int i;
+	int iRet					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+
+	int* piAddr				= NULL;
 
 
-	double *pdblRealData	= 0;
-	double *pReturnCoefData = NULL;
-	double *pReturnExpData	= NULL;
+	double *pdblReal	= NULL;
+	double *pdblCoef	= NULL;
+	double *pdblExp		= NULL;
 	
 	CheckRhs(1,1);
 	CheckLhs(2,2);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
 		Error(9999);
 		sciprint(_("%s: real data only.\n"), fname);
 	}
 
-	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-	pdblRealData		= stk(iRealData);
-	iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnCoefData);
-	iAllocMatrixOfDouble(Rhs + 2, iRows, iCols, &pReturnExpData);
-	//pReturnCoefData		= (double*)malloc(iRows * iCols * sizeof(double));
-	//pReturnExpData		= (double*)malloc(iRows * iCols * sizeof(double));
+	iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+	if(iRet)
+	{
+		return 1;
+	}
 
-	for(iIndex = 0 ; iIndex < iRows * iCols; iIndex++)
-		pReturnCoefData[iIndex] = dfrexps(pdblRealData[iIndex], &pReturnExpData[iIndex]);
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblCoef);
+	if(iRet)
+	{
+		return 1;
+	}
 
-	//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnCoefData);
+	iRet = allocMatrixOfDouble(Rhs + 2, iRows, iCols, &pdblExp);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	for(i = 0 ; i < iRows * iCols; i++)
+	{
+		pdblCoef[i] = dfrexps(pdblReal[i], &pdblExp[i]);
+	}
+
 	LhsVar(1) = Rhs + 1;
-
-	//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnExpData);
 	LhsVar(2) = Rhs + 2;
-
 	PutLhsVar();
-	//free(pReturnCoefData);
-	//free(pReturnExpData);
-#else
-	C2F(intfrexp)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

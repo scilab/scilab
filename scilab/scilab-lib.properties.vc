@@ -6,6 +6,8 @@ flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
 
 jogl.jar=${thirdparty.dir}/jogl.jar
 
+jhdf5.jar=${thirdparty.dir}/jhdf5.jar
+
 jhall.jar=${thirdparty.dir}/jhall.jar
 
 gluegen.jar=${thirdparty.dir}/gluegen-rt.jar
@@ -51,3 +53,6 @@ library.javasci.name=javasci.jar
 
 library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
+
+library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
+library.hdf5.name=org.scilab.modules.hdf5.jar

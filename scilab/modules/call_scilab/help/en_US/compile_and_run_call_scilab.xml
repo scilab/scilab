@@ -100,7 +100,8 @@
       </listitem>
     </itemizedlist>
 
-    <programlisting role="example"># A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
+    <programlisting role="example"><![CDATA[
+# A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
 PATH_SCILAB = /path/to/scilab/sources.
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
 SCILAB_LDFLAGS = -lscilab
@@ -109,7 +110,8 @@ PATH_TO_LIB_CALL_SCILAB = $(PATH_SCILAB)/modules/call_scilab/.libs/
 
 all: simple_call_scilab.c
 	export LD_LIBRARY_PATH=$(PATH_TO_LIB_SCILAB):$(PATH_TO_LIB_CALL_SCILAB)
-	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c</programlisting>
+	gcc -o myExample $(SCILAB_LDFLAGS) -L$(PATH_TO_LIB_SCILAB) -L$(PATH_TO_LIB_CALL_SCILAB) $(SCILAB_CFLAGS) simple_call_scilab.c
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -221,7 +223,8 @@ all: simple_call_scilab.c
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"># Serie of declarations to execute my binary
+    <programlisting role="example"><![CDATA[
+# Serie of declarations to execute my binary
 $ export LD_LIBRARY_PATH=/home/sylvestre/dev/git/scilab.5.1/scilab/modules/.libs/:/home/sylvestre/dev/git/scilab.5.1/scilab/modules/call_scilab/.libs/
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/server/
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/native_threads/
@@ -230,30 +233,21 @@ $ ./myExample
 !sample  for the help  !
  
   - 42.    42.  
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-
-      <member><link linkend="call_scilab">call_scilab</link>, 
-
-      <link linkend="StartScilab">StartScilab</link>, 
-
-      <link linkend="SendScilabJob">SendScilabJob</link>,
-
-      <link linkend="SendScilabJobs">SendScilabJobs</link>,
-
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link>
-</member>
-
+      <member><link linkend="call_scilab">call_scilab</link>, <link
+      linkend="StartScilab">StartScilab</link>, <link
+      linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="SendScilabJobs">SendScilabJobs</link>, <link
+      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
+      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
+      linkend="StringManagement_callscilab">String Management</link></member>
     </simplelist>
   </refsection>
 

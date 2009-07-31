@@ -13,12 +13,13 @@
 package org.scilab.modules.gui.bridge.contextmenu;
 
 import java.awt.MouseInfo;
-import java.awt.event.MouseListener;
 
 import javax.swing.JPopupMenu;
 
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.contextmenu.SimpleContextMenu;
 import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CallBack;
@@ -38,6 +39,8 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextMenu {
 
 	private static final long serialVersionUID = 1L;
+	
+	private boolean checkedState = false;
 
 	/**
 	 * Constructor
@@ -56,6 +59,15 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		super.add((SwingScilabMenuItem) newMenuItem.getAsSimpleMenuItem());
 	}
 	
+	/**
+	 * Append a CheckBoxMenuItem to a Scilab Menu
+	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.CheckBoxMenuItem)
+	 */
+	public void add(CheckBoxMenuItem newCheckBoxMenuItem) {
+		super.add((SwingScilabCheckBoxMenuItem) newCheckBoxMenuItem.getAsSimpleCheckBoxMenuItem());
+	}
+
 	/**
 	 * Display the ContextMenu
 	 * @return the label of the menu selected
@@ -268,5 +280,22 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 	public CallBack getCallback() {
 		throw new UnsupportedOperationException();
 	}
+	
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	public void setChecked(boolean status) {
+		checkedState = status;
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public boolean isChecked() {
+		return checkedState;
+	}
+
 
 }

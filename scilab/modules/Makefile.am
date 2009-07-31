@@ -24,6 +24,7 @@ arnoldi \
 functions_manager \
 elementary_functions \
 string \
+api_scilab \
 dynamic_link \
 fileio \
 history_manager \
@@ -72,7 +73,6 @@ maple2scilab \
 m2sci \
 texmacs \
 scipad \
-scilab2fortran \
 development_tools \
 compatibility_functions \
 helptools \
@@ -83,6 +83,8 @@ genetic_algorithms \
 simulated_annealing \
 parameters \
 matio \
+atoms \
+hdf5 \
 system_env \
 abstractSyntaxTree \
 symbol \
@@ -149,6 +151,7 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
@@ -190,8 +193,9 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/system_env/libscisystem_env.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-	$(top_builddir)/modules/string/libscistring.la
-	$(top_builddir)/modules/functions/libscifunctions.la 
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/functions/libscifunctions.la \
+	$(top_builddir)/modules/hdf5/libscihdf5.la
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 $(top_builddir)/modules/umfpack/libsciumfpack.la \

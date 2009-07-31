@@ -1,0 +1,14 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+com_
+vstk_
+intersci_
+stack_
+iop_
+stackg_
+stackp_
+iArraySum
+str2name_
+cvnamel_

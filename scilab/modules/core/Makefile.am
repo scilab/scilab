@@ -82,15 +82,6 @@ src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
-src/c/api_common.c \
-src/c/api_double.c \
-src/c/api_int.c \
-src/c/api_poly.c \
-src/c/api_sparse.c \
-src/c/api_boolean_sparse.c \
-src/c/api_boolean.c \
-src/c/api_string.c \
-src/c/api_list.c \
 src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c
@@ -291,22 +282,23 @@ sci_gateway/fortran/sci_isglobal.f
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-        -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-        -I$(top_srcdir)/modules/intersci/includes \
-        -I$(top_srcdir)/modules/call_scilab/includes \
-        -I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/intersci/includes \
+	-I$(top_srcdir)/modules/call_scilab/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
-        -I$(top_srcdir)/modules/dynamic_link/includes \
-        -I$(top_srcdir)/modules/pvm/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/pvm/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
         -I$(top_srcdir)/modules/string/includes \
         -I$(top_srcdir)/modules/fileio/includes \
         -I$(top_srcdir)/modules/shell/includes \
 	-I$(top_srcdir)/modules/operations/includes \
-			$(XML_FLAGS)
+	$(XML_FLAGS)
 
 
 
@@ -425,16 +417,6 @@ includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
 includes/transposeMatrix.h \
-includes/api_boolean.h \
-includes/api_double.h \
-includes/api_sparse.h \
-includes/api_boolean_sparse.h \
-includes/api_int.h \
-includes/api_string.h \
-includes/api_common.h \
-includes/api_poly.h \
-includes/api_variable.h \
-includes/api_list.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

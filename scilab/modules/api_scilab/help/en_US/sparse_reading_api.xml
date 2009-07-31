@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Sparse_management_reading_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>Sparse matrix reading (Scilab gateway)</refname>
+
+        <refpurpose>
+            How to read sparse matric in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>
+int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+      </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItem</term>
+                <listitem>
+                    <para>
+                        Return number of non zero value.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItemRow</term>
+                <listitem>
+                    <para>
+                        Return number of item in each rows (size: _iRows).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piColPos</term>
+                <listitem>
+                    <para>
+                        Return column position for each item (size: _iNbItem).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblReal</term>
+                <listitem>
+                    <para>
+                        Return address of real data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pdblImg</term>
+                <listitem>
+                    <para>
+                        Return address of imaginary data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how sparse matrix can be handled through the Scilab API.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/sparse_reading_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/sparse_reading_api.tst-->
+        <!--Lib_name: sparse_reading-->
+        <!--Func_list: read_sparse-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int read_sparse(char *fname,unsigned long fname_len)
+{
+    int i,j,k;
+    int iRet            = 0;
+    int* piAddr         = NULL;
+
+    int iRows           = 0;
+    int iCols           = 0;
+    int iNbItem         = 0;
+    int* piNbItemRow    = NULL;
+    int* piColPos       = NULL;
+
+    double* pdblReal    = NULL;
+    double* pdblImg     = NULL;
+
+    CheckRhs(1,1);
+
+    iRet = getVarAddressFromPosition(1, &piAddr);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    if(getVarType(piAddr) != sci_sparse)
+    {
+        return 1;
+    }
+
+    if(isVarComplex(piAddr))
+    {
+        iRet = getComplexSparseMatrix(piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+    }
+    else
+    {
+        iRet = getSparseMatrix(piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+    }
+
+    if(iRet)
+    {
+    return 1;
+    }
+    
+    sciprint("Sparse %d item(s)\n", iNbItem);
+
+    k = 0;
+    for(i = 0 ; i < iRows ; i++)
+    {
+        for(j = 0 ; j < piNbItemRow[i] ; j++)
+        {
+            sciprint("(%d,%d) = %f", i+1, piColPos[k], pdblReal[k]);
+            if(isVarComplex(piAddr))
+            {
+                sciprint(" %+fi", pdblImg[k]);
+            }
+            sciprint("\n");
+            k++;
+        }
+    }
+    //assign allocated variables to Lhs position
+    LhsVar(1) = 0;
+    return 0;
+}
+        ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+sp=sparse([1,2;4,5;3,10],[1 + 2*%i,2 - 3*%i,-3 + 4*%i]);
+read_sparse(sp);
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

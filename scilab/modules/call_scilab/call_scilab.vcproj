@@ -44,8 +44,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../operations/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
-				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -127,8 +127,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../operations/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
-				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
@@ -212,8 +212,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../operations/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
-				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -302,8 +302,8 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../operations/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
-				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -374,6 +374,10 @@
 			>
 			<File
 				RelativePath=".\src\c\CallScilab.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\DllmainCall_scilab.c"
 				>
 			</File>
 			<File

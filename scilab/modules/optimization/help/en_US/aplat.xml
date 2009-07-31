@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="aplat">
+  <info>
+    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>aplat</refname>
+    <refpurpose>Flattens a list. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[lf,ind] = aplat(l,r)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>l</term>
+        <listitem>
+          <para>
+            a list
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>
+            an optional flat list
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lf</term>
+        <listitem>
+          <para>
+            a flat list (a single hierachical level)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+        <listitem>
+          <para>
+           a list, each entry give the path of the corresponding lf entry in the original list
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+     Creates a flat list, built with the initial l list leaves and if given prepended by the r list entries
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+        [lf,ind]=aplat(list(1,2,list([3,1],'xxx',list([3,2,1]))))
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="recons" >recons</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>F.D. and S.S., INRIA</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

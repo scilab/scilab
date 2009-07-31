@@ -57,7 +57,7 @@ int *transposeMatrixInt(int C,int L,int *MatrixInt)
 	return buffer;
 }
 /*--------------------------------------------------------------------------*/
-char **transposeMatrixStrings(int C,int L,char **MatrixStr)
+/*char **transposeMatrixStrings(int C,int L,char **MatrixStr)
 {
 	char **buffer = NULL;
 	if (MatrixStr)
@@ -76,4 +76,5 @@ char **transposeMatrixStrings(int C,int L,char **MatrixStr)
 	}
 	return buffer;
 }
+*/
 /*--------------------------------------------------------------------------*/

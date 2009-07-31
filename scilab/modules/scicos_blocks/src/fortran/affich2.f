@@ -25,7 +25,7 @@ c     Copyright INRIA
 
 c     Scicos block simulator
 c     Displays the value of the input in a graphic window
-c
+c     
 c     ipar(1) = font
 c     ipar(2) = fontsize
 c     ipar(3) = color
@@ -34,7 +34,7 @@ c     ipar(5) = nt : total number of output digits
 c     ipar(6) = nd number of rationnal part digits
 c     ipar(7) = rows/columns 
 
-c
+c     
 c     z(1)=window
 c     z(2)=x
 c     z(3)=y
@@ -49,57 +49,51 @@ c     z(7:7+nu*nu2)=value
       integer wid,nu2
 
       double precision sciround,ur
-
+      
       nu2 = int(nu/ipar(7))
 
-c ----------- State Update -------------------------------
+c     ----------- State Update -------------------------------
       if(flag.eq.2) then
 c     state evolution
-
          ok = 1
 
          do 1 i=1,nu
-          ur = 10.0d0**ipar(6)
-          ur = sciround(u(i)*ur)/ur
-          if (ur.ne.z(6+i)) then
-            goto 2
-          endif
+            ur = 10.0d0**ipar(6)
+            ur = sciround(u(i)*ur)/ur
+            if (ur.ne.z(6+i)) then
+               goto 2
+            endif
  1       continue
- 
+         
          if (ok.eq.1) then
-           return
+            return
          endif
- 
+         
  2       wid = z(1)
          if(wid.lt.0) return
 
-        do 3 i=1,nu
- 
-	   ur = 10.0d0**ipar(6)
-           ur = sciround(u(i)*ur)/ur
-           z(6+i) = ur
- 
+         do 3 i=1,nu
+            
+            ur = 10.0d0**ipar(6)
+            ur = sciround(u(i)*ur)/ur
+            z(6+i) = ur
+            
  3       continue
- 
+         
          call affdraw2(ipar(5),z(7),z(2),ipar(7),nu2,z(1),z(6))
 
 
-c ----------- Initializiation ------------------------------
+c     ----------- Initializiation ------------------------------
       elseif(flag.eq.4) then
 c     init
 c     .  reset initial value         
-        do 4 i=1,nu
-          z(6+i)=0.0d0
- 4      continue
- 
-c     .  get geometry of the block
+         do 4 i=1,nu
+            z(6+i)=0.0d0
+ 4       continue
+c     .  get graphic window where the block is
          call getgeom(z(1))
 
          if(z(1).lt.0.0d0) return
-
-        call affin2(ipar(1), ipar(2), ipar(3),
-     &  ipar(7), nu2, z(1), z(2),z(3),z(4),z(5),z(6) )
-           
       endif
       end
 
@@ -111,18 +105,17 @@ c     .  get geometry of the block
       double precision textind
       double precision C
       write(fmt,'(''(f'',i3,''.'',i3,'')'')') form(1),form(2)
-
       do 20 j=1,nu
-        value=''
-        ln2=0
-        do 15 i=1,nu2
-          C = val((i-1)*nu+j)
-          write(value,fmt) C
-          ln=lnblnk(value)
-          value(ln+1:ln+1)= char(0)
-c         update element of the string
-          call settxtel(j, i, winnum, textind, value)         
- 15     continue
+         value=''
+         ln2=0
+         do 15 i=1,nu2
+            C = val((i-1)*nu+j)
+            write(value,fmt) C
+            ln=lnblnk(value)
+            value(ln+1:ln+1)= char(0)
+c     update element of the string
+            call settxtel(j, i, winnum, textind, value)         
+ 15      continue
  20   continue
 
 c     display the updated text
@@ -131,6 +124,6 @@ c     display the updated text
       return
       end
       
-c ---------------------------------------------
+c     ---------------------------------------------
 
 

@@ -15,6 +15,7 @@
 #include "stack-c.h"
 #include "gw_arnoldi.h"
 #include "core_math.h"
+#include "doublecomplex.h"
 /*--------------------------------------------------------------------------*/
 #define CHAR(x)         (cstk(x))
 #define INT(x)  	(istk(x))

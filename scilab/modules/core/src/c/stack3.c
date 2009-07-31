@@ -1981,7 +1981,7 @@ int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen,
 	return 0;
 }
 
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+/*void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 	int iIndex = 0;
 
@@ -2043,7 +2043,7 @@ void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
 	if(_poComplex != NULL)
 		FREE(_poComplex);
 }
-
+*/
 /*
 Create a list in scilab stack
 This function only "reserves" VarNum

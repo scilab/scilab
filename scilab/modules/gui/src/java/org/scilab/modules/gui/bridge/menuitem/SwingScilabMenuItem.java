@@ -19,7 +19,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
 
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.events.BlockingResult;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menu.Menu;
@@ -47,12 +50,17 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	private CallBack callback;
 	
 	private Menu meAsAMenu;
+	
+	private CheckBoxMenuItem meAsACheckBoxMenuItem;
+
+	private boolean checkedState = false;
 
 	/**
 	 * Constructor
 	 */
 	public SwingScilabMenuItem() {
 		super();
+		this.setFocusable(true);
 		addActionListener(new ActionListener() {
 			/**
 			 * Action performed ? What do I have to do ?
@@ -195,10 +203,17 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 			meAsAMenu = ScilabMenu.createMenu();
 			meAsAMenu.setText(getText());
 			meAsAMenu.add(childMenuItem);
-			Container parent = getParent();
-			int index = parent.getComponentZOrder(this);
-			parent.remove(this.getComponent());
-			parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+			if (meAsACheckBoxMenuItem == null) {
+				Container parent = getParent();
+				int index = parent.getComponentZOrder(this);
+				parent.remove(this.getComponent());
+				parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+			} else {
+				Container parent = ((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getParent();
+				int index = parent.getComponentZOrder(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()));
+				parent.remove(((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem()).getComponent());
+				parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+			}
 		} else {
 			meAsAMenu.add(childMenuItem);
 		}
@@ -270,6 +285,60 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 	 */
 	public CallBack getCallback() {
 		return callback;
+	}
+	
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	public void setChecked(boolean status) {
+		checkedState = status;
+		if (meAsACheckBoxMenuItem == null) {
+			meAsACheckBoxMenuItem = ScilabCheckBoxMenuItem.createCheckBoxMenuItem();
+			meAsACheckBoxMenuItem.setText(getText());
+			meAsACheckBoxMenuItem.setChecked(status);
+			Container parent = getParent();
+			int index = parent.getComponentZOrder(this);
+			parent.remove(this.getComponent());
+			parent.add((SwingScilabCheckBoxMenuItem) meAsACheckBoxMenuItem.getAsSimpleCheckBoxMenuItem(), index);
+		} else {
+			meAsACheckBoxMenuItem.setChecked(status);
+		}
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public boolean isChecked() {
+		return checkedState;
+	}
+
+	/**
+	 * Append a CheckBoxMenuItem to a Scilab Menu
+	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+	 * @see org.scilab.modules.gui.menu.Menu#add(org.scilab.modules.gui.CheckBoxMenuItem)
+	 */
+	public void add(CheckBoxMenuItem newCheckBoxMenuItem) {
+		if (meAsAMenu == null) {
+			meAsAMenu = ScilabMenu.createMenu();
+			meAsAMenu.setText(getText());
+			meAsAMenu.add(newCheckBoxMenuItem);
+			Container parent = getParent();
+			int index = parent.getComponentZOrder(this);
+			parent.remove(this.getComponent());
+			parent.add((SwingScilabMenu) meAsAMenu.getAsSimpleMenu(), index);
+		} else {
+			meAsAMenu.add(newCheckBoxMenuItem);
+		}
+	}
+
+	/**
+	 * Add a separator
+	 * @see org.scilab.modules.gui.menu.SimpleMenu#addSeparator()
+	 */
+	public void addSeparator() {
+		throw new UnsupportedOperationException();
 	}
 
 }

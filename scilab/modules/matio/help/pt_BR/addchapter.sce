@@ -7,6 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/matio/help/"+getdefaultlanguage();
-add_help_chapter("Entrada/Saída de Arquivos Matlab Binários",path,%T);
-clear path add_help_chapter;
+add_help_chapter("Entrada/Saída de Arquivos Matlab Binários",SCI+"/modules/matio/help/pt_BR",%T);
+

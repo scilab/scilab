@@ -15,24 +15,20 @@
 #include "basic_functions.h"
 #include "elementary_functions.h"
 #include "double.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-
 /* BUG 3863 */
 /* forces to define C2F(dcoeff) only once */
-
 typedef struct {
 	double c[41];
 	int ndng;
 } DCOEFF_struct;
-
 DCOEFF_struct C2F(dcoeff);
-
 #endif
 
+/*--------------------------------------------------------------------------*/
 void vSwitchVal(double *_pdblVal, int _iPos1, int _iPos2);
 
 void vExchangeVal(double *_pdblScale, double *_pdblVal,
@@ -99,52 +95,57 @@ extern int C2F(dexpm1)();
 extern int C2F(wexpm1)();
 extern int C2F(drot)();
 
-extern int C2F(intexpm) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_expm) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iIndex			= 0;
-	int iRows			= 0;
-	int iCols			= 0;
-	int	iReal			= 0;
-	int iImg			= 0;
-	int iErr			= 0;
-	int *piWS			= NULL;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
 
-	double *pdblWS		= NULL;
-	double *pReal		= NULL;
-	double *pImg		= NULL;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
 
-	double *pReturnReal	= 0;
-	double *pReturnImg	= 0;
+	int* piAddr					= NULL;
+
+	double *pdblRealRet	= NULL;
+	double *pdblImgRet	= NULL;
 
 	CheckLhs(1,1);
 	CheckRhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
-		int iComplex	= 1;
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iReal, &iImg);
-		pReal			= stk(iReal);
-		pImg			= stk(iImg);
+		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
 	}
 	else
 	{
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
-		pReal			= stk(iReal);
+		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+	}
+
+	if(iRet)
+	{
+		return 1;
 	}
 
 	if(iRows * iCols == 0)
 	{
-		iAllocMatrixOfDouble(Rhs + 1, 0, 0, &pReturnReal);
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet);
+		if(iRet)
+		{
+			return 1;
+		}
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
 		return 0;
@@ -156,37 +157,35 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
-		//wexpm1 need a workspace array provide by callers Oo
-		// pdblWS	: work space array of size: n*(4*ia+4*n+7)
-		// piWS		: integer work space array of size 2*n
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
-/*		piWS = (int*)malloc(iRows * iCols * sizeof(int));
-		pdblWS = (double*)malloc(sizeof(double) * (iCols * (8 * iCols + 7)));
-		C2F(wexpm1)(&iCols, pReal, pImg, &iCols, pReturnReal, pReturnImg, &iCols, pdblWS, piWS, &iErr);
-		free(piWS);
-		free(pdblWS);
-*/		zexpms2(pReal, pImg, pReturnReal, pReturnImg, iCols);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(iRet)
+		{
+			return 1;
+		}
+		iRet = zexpms2(pdblReal, pdblImg, pdblRealRet, pdblImgRet, iCols);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 	else
 	{
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal);
-//		dexpms(iCols, iCols, pReal, pReturnReal);
-		dexpms2(pReal, pReturnReal, iCols);
-	}
-
-	if(iErr != 0)
-	{
-		Error(24);
-		return 0;
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		if(iRet)
+		{
+			return 1;
+		}
+		iRet = dexpms2(pdblReal, pdblRealRet, iCols);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-#else
-	C2F(intexpm)(id);
-#endif
 	return 0;
 }
 
@@ -2577,8 +2576,8 @@ if(iComplex2 == 1)
 
 int dexpms2(double *_pdblReal, double *_pdblReturnReal, int _iLeadDim)
 {
-	zexpms2(_pdblReal, NULL, _pdblReturnReal, NULL, _iLeadDim);
-	return 0;
+	int iRet = zexpms2(_pdblReal, NULL, _pdblReturnReal, NULL, _iLeadDim);
+	return iRet;
 }
 
 int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double *_pdblReturnImg, int _iLeadDim)

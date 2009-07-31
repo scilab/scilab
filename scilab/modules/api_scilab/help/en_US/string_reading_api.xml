@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="String_management_reading_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>String reading (Scilab gateway)</refname>
+        <refpurpose>
+            How to read matrices of strings in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+        <synopsis>int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the Scilab variable.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piRows</term>
+                <listitem>
+                    <para>
+                        Return number of rows.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piCols</term>
+                <listitem>
+                    <para>
+                        Return number of columns.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piLength</term>
+                <listitem>
+                    <para>
+                        Address of array of strings length (must be allocated size: _piRows * _piCols)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        Address of array of char* (must be allocated size: _piRows * _piCols)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/string_reading_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/string_reading_api.tst-->
+        <!--Lib_name: string_reading-->
+        <!--Func_list: read_string-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int read_string(char *fname,unsigned long fname_len)
+{
+    int i,j;
+    int iLen        = 0;
+    int iRet        = 0;
+    //variable info
+    int iRows       = 0;
+    int iCols       = 0;
+    int* piAddr     = NULL;
+    int* piLen      = NULL;
+    char** pstData  = NULL;
+
+    //output variable
+    int iRowsOut    = 1;
+    int iColsOut    = 1;
+    char* pstOut    = NULL;
+
+    //check input and output arguments
+    CheckRhs(1,1);
+    CheckLhs(1,1);
+
+    //get variable address
+    iRet = getVarAddressFromPosition(1, &piAddr);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //check variable type
+    if(getVarType(piAddr) != sci_strings)
+    {
+        return 1;
+    }
+
+    //fisrt call to retrieve dimensions
+    iRet = getMatrixOfString(piAddr, &iRows, &iCols, NULL, NULL);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+    //second call to retrieve length of each string
+    iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, NULL);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+    for(i = 0 ; i < iRows * iCols ; i++)
+    {
+        pstData[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1));//+ 1 for null termination
+    }
+    //third call to retrieve data
+    iRet = getMatrixOfString(piAddr, &iRows, &iCols, piLen, pstData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //computer length of all strings
+    for(i = 0 ; i < iRows * iCols ; i++)
+    {
+        iLen += piLen[i];
+    }
+
+    //alloc output variable
+    pstOut = (char*)malloc(sizeof(char) * (iLen + iRows * iCols));
+    //initialize string to 0x00
+    memset(pstOut, 0x00, sizeof(char) * (iLen + iRows * iCols));
+
+    //concat input strings in output string
+    for(i = 0 ; i < iRows ; i++)
+    {
+        for(j = 0 ; j < iCols ; j++)
+        {
+            int iCurLen = strlen(pstOut);
+            if(iCurLen)
+            {
+                strcat(pstOut, " ");
+            }
+            strcpy(pstOut + strlen(pstOut), pstData[j * iRows + i]);
+        }
+    }
+
+    //create new variable
+    iRet = createMatrixOfString(Rhs + 1, iRowsOut, iColsOut, &pstOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //free memory
+    free(piLen);
+    for(i = 0 ; i < iRows * iCols ; i++)
+    {
+        free(pstData[i]);
+    }
+    free(pstData);
+    free(pstOut);
+
+    LhsVar(1) = Rhs + 1;
+    return 0;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+a_ref = ["may the puffin be with you"];
+a_ref = ["sample strings manipulation with gateway API"];
+a = ["may", "the", "puffin"; "be","with","you"];
+b = read_string(a);
+if a_ref <> b then error("failed"), end
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>
