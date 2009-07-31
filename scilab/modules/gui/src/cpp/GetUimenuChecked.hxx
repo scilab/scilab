@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,14 +10,17 @@
  *
  */
 
-#ifndef __INTSETENV_H__
-#define __INTSETENV_H__
-/**
- * TODO
- * @param[in]
- * @param[in]
- */
+#ifndef __GET_UIMENU_CHECKED_HXX__
+#define __GET_UIMENU_CHECKED_HXX__
 
-int	C2F(intsetenv)(char *fname, unsigned long len);
+#include "CallScilabBridge.hxx"
+extern "C"
+{
+#include "getScilabJavaVM.h"
+#include "GetProperty.h"
+#include "localization.h"
+#include "GetUimenuChecked.h"
+#include "Scierror.h"
+}
 
-#endif /* __INTSETENV_H__ */
+#endif /* __GET_UIMENU_CHECKED_HXX__ */

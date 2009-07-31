@@ -23,6 +23,12 @@
 
 function atomsDepTreeShow(name,version)
 	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atoms_internalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	lhs = argn(1);
 	rhs = argn(2);
 	

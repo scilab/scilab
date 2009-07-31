@@ -32,8 +32,10 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <synopsis>int createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)</synopsis>
-        <synopsis>int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)</synopsis>
+        <programlisting><![CDATA[
+int createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
+int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -98,8 +100,10 @@
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <synopsis>int allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal)</synopsis>
-        <synopsis>int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)</synopsis>
+        <programlisting><![CDATA[
+int allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal)
+int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>

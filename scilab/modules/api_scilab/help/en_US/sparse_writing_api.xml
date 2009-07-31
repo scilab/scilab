@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Sparse_writing_API"
+<refentry version="5.0-subset Scilab" xml:id="Sparse_management_writing_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -32,8 +32,10 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <synopsis>int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-        <synopsis>int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+        <programlisting><![CDATA[
+int createSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)
+int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -106,8 +108,10 @@
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <synopsis>int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
-        <synopsis>int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
+        <programlisting><![CDATA[
+int allocSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>

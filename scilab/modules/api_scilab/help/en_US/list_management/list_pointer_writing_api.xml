@@ -25,14 +25,10 @@
             How to add pointer in a list.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to add pointer in a list.</para>
-    </refsection>
-    <refsection>
-        <title>Create from existing data</title>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
         <synopsis>int createPointerInList(int _iVar, int* _piParent, int _iItemPos, void* _pvPtr)</synopsis>
-    </refsection>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -69,6 +65,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to add pointer in a list.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/list_createlist_api.c-->

@@ -60,27 +60,27 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
 	if ( getVarType(piAddressVarTwo) != sci_matrix )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,2);
 		return 0;
 	}
 
 	getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
 	if ( (m2 != n2) && (n2 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,2);
 		return 0;
 	}
 
 	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 	

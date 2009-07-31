@@ -31,6 +31,7 @@ GetUicontrolStyle
 GetUicontrolString
 GetUimenuLabel
 GetUiobjectEnable
+GetUimenuChecked
 DestroyWaitBar
 GetScreenProperty
 getJxclickMenuCallback
@@ -70,6 +71,7 @@ SetUicontrolBackgroundColor
 SetUicontrolString
 SetUimenuLabel
 SetUiobjectEnable
+SetUimenuChecked
 setFigureEventHandler
 setFigureEventHandlerEnabled
 deleteMenuCallBack

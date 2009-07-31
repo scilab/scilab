@@ -13,13 +13,18 @@
 #define __HASHTABLE_CORE_H__
 /*--------------------------------------------------------------------------*/
 #include "stack-def.h"
-#include "existfunction.h"
+#include "addinter.h"
 /*--------------------------------------------------------------------------*/
 #ifdef FAILED
 	#undef FAILED
 #endif
+
+#ifdef OK
+	#undef OK
+#endif
 #define FAILED 0
 #define OK 1
+
 #define MAXLENGHTFUNCTIONNAME 256 /* 24 in fact in scilab */
 /*--------------------------------------------------------------------------*/
 typedef struct entry 
@@ -37,22 +42,25 @@ typedef struct
 /*--------------------------------------------------------------------------*/
 typedef enum 
 {
-	SCI_HFUNCTIONS_FIND = 1,SCI_HFUNCTIONS_BACKSEARCH = 2, SCI_HFUNCTIONS_ENTER = 3,SCI_HFUNCTIONS_DELETE = 4
+	SCI_HFUNCTIONS_FIND = 1,
+	SCI_HFUNCTIONS_BACKSEARCH = 2,
+	SCI_HFUNCTIONS_ENTER = 3,
+	SCI_HFUNCTIONS_DELETE = 4
 } SCI_HFUNCTIONS_ACTION;
 /*--------------------------------------------------------------------------*/
 /* maximum number of entries in the htable 
  * in fact create_hashtable_scilab_functions used a 
  * prime > MAXELEMENTFUNCTIONLIST 
- * WARNING : MAXELEMENTFUNCTIONLIST must be chosen > 2* the number of scilab
- * functions 
- * for good efficiency of the hash code */
-#define MAXELEMENTFUNCTIONLIST 1536
+ * this limitation should be removed with scilab 6
+ */
+#define MAXELEMENTFUNCTIONLIST (DynInterfStart + MAXDYNINTERF) * NumberMaxFunctionsByGateway
+/* scilab 5 can manage 550000 primitives (max) */
 /*--------------------------------------------------------------------------*/
 /** 
  * Create the hashtable of Scilab functions
- * @param nel TODO
+ * @param nelmax size max of the hashtable
  */
-int	create_hashtable_scilab_functions(unsigned int nel);
+int	create_hashtable_scilab_functions(unsigned int nelmax);
 
 /** 
  * Destroy the hashtable of Scilab functions
@@ -61,13 +69,13 @@ void destroy_hashtable_scilab_functions(void);
 
 /** 
  * Perform an action on the hashtable of Scilab functions
- * @param key 
- * @param name
- * @param data
- * @param action SCI_HFUNCTIONS_ACTION 
+ * @param[in,out] key hash key
+ * @param[in,out] name function name
+ * @param[in,out] scilab_funptr coded by GATEWAY_ID * 1000 + PRIMITIVE_ID
+ * @param[in] action SCI_HFUNCTIONS_ACTION 
  * @return result of the operation
  */
-int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action);
+int action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __HASHTABLE_CORE_H__ */
