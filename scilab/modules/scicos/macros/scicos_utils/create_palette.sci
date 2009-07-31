@@ -62,7 +62,7 @@ function [routines,IntFunc]=create_palette(Path)
      %scicos_gif,%scicos_contrib,%scicos_libs] = initial_scicos_tables()
     clear %scicos_menu  %scicos_short %scicos_help %scicos_display_mode modelica_libs
     exec(loadpallibs,-1)
-    path = "SCI/modules/scicos/macros/scicos_scicos/" ; //** ... for the moment, the palettes stay here (for compatibility). 
+    path = "SCI/modules/scicos/palettes/" ;
 
     routines=[];IntFunc=[];
     for txt=scicos_pal(:,1)'

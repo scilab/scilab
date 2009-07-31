@@ -60,7 +60,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                'Modelica'   ;'Lookup_Tables' ;'Threshold' ;'Others'   ;
                'DemoBlocks' ;'OldBlocks'];
   
-  scicos_pal = [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
+  scicos_pal = [pal_names  'SCI/modules/scicos/palettes/'+pal_names+'.cosf']
 
   %scicos_gif = SCI+"/modules/scicos/help/scicos_doc/man/gif_icons/";
 
