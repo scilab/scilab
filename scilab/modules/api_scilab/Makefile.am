@@ -64,7 +64,7 @@ includes/api_list.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
-includes/api_variable.h \
+includes/api_scilab.h \
 includes/dynlib_api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am
