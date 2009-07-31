@@ -41,8 +41,8 @@ c     look for name in primitive functions
          fin=0
          fun=0
       else
-         fun = fptr/100
-         fin = mod(fptr,100)
+         fun = fptr/1000
+         fin = mod(fptr,1000)
       endif
       return
 c     

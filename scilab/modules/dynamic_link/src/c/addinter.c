@@ -34,13 +34,6 @@
 #include "ExceptionMessage.h"
 #endif
 
-#define MAXINTERF 50 /* default value compatibility scilab 4.x */
-/* !!! WARNING !!! */
-/* On Windows , AddInterfaceToScilab based on LoadLibrary C function */
-/* you cannot load more than 80 dynamic libraries at the same time. */
-/* Scilab will return a error (code Windows 1114) in this case.*/
-/* A dynamic link library (DLL) initialization routine failed. */
-
 /* size of interface name */
 /* scilab limitation to nlgh characters (24)*/
 #define INTERFSIZE nlgh + 1 
@@ -54,7 +47,7 @@ typedef struct
 } InterfaceElement;
 /*-----------------------------------------------------------------------------------*/
 InterfaceElement *DynInterf = NULL;
-static int MaxInterfaces = MAXINTERF;
+static int MaxInterfaces = MAXDYNINTERF;
 /*-----------------------------------------------------------------------------------*/
 static int LastInterf = 0;
 static void initializeInterfaces(void);
@@ -145,7 +138,7 @@ int AddInterfaceToScilab(char *filenamelib,char *spname,char **fcts,int sizefcts
 
 		/* find a previous functions with same name */
 		C2F(cvname)(id,fcts[i],&zero,(unsigned long)strlen(fcts[i]));
-		fptr1 = fptr = (DynInterfStart+k1)*100 +(i+1);
+		fptr1 = fptr = (DynInterfStart+k1)*1000 +(i+1);
 		/* clear previous def set fptr1 to 0*/
 		C2F(funtab)(id,&fptr1,&four,"NULL_NAME",0); 
 		/* reinstall */
@@ -205,6 +198,7 @@ void RemoveInterf(int id)
 void C2F(userlk)(int *k)
 {
 	int k1 = *k - (DynInterfStart+1) ;
+
 	int imes = 9999;
 	if ( k1 >= LastInterf || k1 < 0 ) 
 	{

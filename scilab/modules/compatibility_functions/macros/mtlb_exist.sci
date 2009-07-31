@@ -15,7 +15,7 @@ fptr=funptr(nam)
 r=0
 if rhs==1 then
   if fptr<>0 then 
-    fptr=int(fptr/100)
+    fptr=int(fptr/1000)
     if fptr<=500 then
       r=5
     else
@@ -34,7 +34,7 @@ else
     if exists(nam)==1 then r=1,end
   case "builtin" then
     if fptr<>0 then 
-      fptr=int(fptr/100)
+      fptr=int(fptr/1000)
       if fptr<=500 then
 	r=5
       else

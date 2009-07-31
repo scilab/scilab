@@ -25,7 +25,7 @@
 #include "CurrentObjectsManagement.h"
 
 #include "GetHashTable.h"
-
+#include "BuildObjects.h"
 #include "localization.h"
 #include "Scierror.h"
 
@@ -121,7 +121,7 @@ int sci_get(char *fname,unsigned long fname_len)
 		GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
                 if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
                   {
-                    if ( strcmp(cstk(l2),"current_figure") == 0)
+                    if ( strcmp(cstk(l2),"current_figure") == 0 ||  strcmp(cstk(l2),"current_axes") == 0 ||  strcmp(cstk(l2),"current_entity") == 0 ||  strcmp(cstk(l2),"hdl") == 0)
                       {
                         hdl = 0;
                       }

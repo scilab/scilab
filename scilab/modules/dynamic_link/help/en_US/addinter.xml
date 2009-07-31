@@ -88,6 +88,8 @@
     <para>Number of 'addinter' in a scilab session can be limited by the
     operating system. On Windows, you cannot load more than 80 dynamic
     libraries at the same time.</para>
+    
+    <para>Number of functions implemented in a interface is limited to 1000.</para>
   </refsection>
 
   <refsection>

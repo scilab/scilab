@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Pointer reading_API"
+<refentry version="5.0-subset Scilab" xml:id="Pointer_writing_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -31,7 +31,9 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <synopsis>int createPointer(int* _piAddress, void* _pvPtr)</synopsis>
+        <programlisting><![CDATA[
+int createPointer(int* _piAddress, void* _pvPtr)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -56,7 +58,9 @@
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <synopsis>int allocPointer(int* _piAddress, void** _pvPtr)</synopsis>
+        <programlisting><![CDATA[
+int allocPointer(int* _piAddress, void** _pvPtr)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
