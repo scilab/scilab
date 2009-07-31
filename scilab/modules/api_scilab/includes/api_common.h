@@ -69,5 +69,21 @@ API_SCILAB_IMPEXP int getVarDimension(int* _piAddress, int* _piRows, int* _piCol
  */
 API_SCILAB_IMPEXP int isVarMatrixType(int* _piAddress);
 
+/**
+ * get process mode from input variable
+ * @param[in] _iPos variable position in function call
+ * @param[in] _piAddRef variable address
+ * @param[out] _piMode return process mode ( 0 -> All, 1 -> Row, 2 -> Col )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+API_SCILAB_IMPEXP int getProcessMode(int _iPos, int* _piAddRef, int *_piMode);
+
+/**
+ * get dimension for variable, extract value from a single value
+ * @param[in] _piAddress variable address ( double ou int variable )
+ * @param[out] _piVal return value
+ * @return if the operation successed (0) or not ( !0 )
+ */
+API_SCILAB_IMPEXP int getDimFromVar(int* _piAddress, int* _piVal);
 
 #endif /* __COMMON_API__ */
