@@ -324,6 +324,10 @@
 				RelativePath=".\src\cpp\printvisitor.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\core\src\cpp\yaspio.cpp"
+				>
+			</File>
 			<Filter
 				Name="exec"
 				>

@@ -83,6 +83,7 @@ es_ES_scilab.isl
 # VS solution files (windows)
 #
 Scilab.sln_old
+*.aps
 *.lib
 *.exp
 *.vcdef

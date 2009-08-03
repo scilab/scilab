@@ -78,11 +78,8 @@ int sci_part(char *fname,unsigned long fname_len)
 	if ( (m2 == n2) && (n2 == 0) )
     {
 		/* part('something',[]) */
-		int l = 0;
-		int m = 0, n = 0;
-
 		freeArrayOfString(Input_StringMatrix,m1n1);
-		CreateVar(Rhs+1,STRING_DATATYPE,  &m, &n, &l);
+		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, NULL);
 		LhsVar(1)=Rhs+1;
 		C2F(putlhsvar)();
 		return 0;

@@ -96,8 +96,9 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscifunctions_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la
 am__objects_1 =
 am__objects_2 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
@@ -219,6 +220,7 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
+JHDF5 = @JHDF5@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -396,6 +398,7 @@ libscifunctions_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes \
@@ -408,7 +411,13 @@ libscifunctions_la_SOURCES = $(FUNCTIONS__C_SOURCES) $(FUNCTIONS__FORTRAN_SOURCE
 # For the code check (splint)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS)
-libscifunctions_la_LIBADD = $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscifunctions_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+$(top_builddir)/modules/string/libscistring.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la
+
+
 #### Target ######
 modulename = functions
 

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="list_getlistitemnumber_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>Item Number (Scilab gateway)</refname>
+
+        <refpurpose>
+            How to get the number of items in a list (list, mlist, tlist).
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int getListItemNumber(int* _piAddress, int* _piNbItem)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the list.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_piNbItem</term>
+                <listitem>
+                    <para>
+                        Return the number of items.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get the number of items in a list (list, mlist, tlist).</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/common_list_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/common_list_api.tst-->
+        <!--Lib_name: common_list-->
+        <!--Func_list: common_list-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int get_list_info(int* _piAddress);
+void insert_indent(void);
+
+int iLocalTab = 0;
+
+int common_list(char *fname,unsigned long fname_len)
+{
+    int iRet        = 0;
+    int iItem       = 0;
+
+    int *piAddr     = NULL;
+
+    CheckRhs(1,1);
+
+
+    iRet = getVarAddressFromPosition(1, &piAddr);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    iRet = get_list_info(piAddr);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    LhsVar(1) = 0;
+    return 0;
+}
+
+int get_list_info(int* _piAddress)
+{
+    int i       = 0;
+    int iRet    = 0;
+    int iItem   = 0;
+    
+    //get list item number, failed if variable is not a kind of list
+    iRet = getListItemNumber(_piAddress, &iItem);
+    if(iRet)
+    {
+        sciprint("This variable is not a list");
+        return 1;
+    }
+
+    sciprint("List (%d items) -> address : 0x%08X) : \n", iItem, _piAddress);
+    for(i = 0 ; i < iItem ; i++)
+    {
+        int iType           = 0;
+        int* piAddrChild    = NULL;
+        iRet = getListItemAddress(_piAddress, i + 1, &piAddrChild);
+        iType = getVarType(piAddrChild);
+
+        if(iType == sci_list || iType == sci_tlist || iType == sci_mlist)
+        {
+            insert_indent();
+            sciprint("Child %d -> ", i + 1);
+            iLocalTab++;
+            iRet = get_list_info(piAddrChild);
+            iLocalTab--;
+            if(iRet)
+            {
+              return 1;
+            }
+        }
+        else
+        {
+            insert_indent();
+            sciprint("Child %d -> address : 0x%08X\n", i + 1, piAddrChild);
+        }
+    }
+    return 0;
+}
+
+void insert_indent(void)
+{
+    int i = 0;
+    for(i = 0 ; i < iLocalTab ; i++)
+    {
+        sciprint("\t");
+    }
+}
+        ]]>
+        </programlisting>
+    </refsection>
+
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+l1 = [1,2*%i,3;%i,2,3*%i];
+l2 = ["may","the";"puffin","be";"with","you"];
+l3 = int8([1,2,3]);
+l5 = list(l1,l2,l3);
+l4 = list(l5, list(l5,l5));
+l6 = uint16([1000,2000,3000]);
+l = list(l1,l2,l3,l6,l4,l5);
+common_list(l)
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

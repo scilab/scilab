@@ -13,6 +13,7 @@
 <!-- =================== -->
 <modules>
 <module name="core" activate="yes"/>
+<module name="api_scilab" activate="yes"/>
 <module name="helptools" activate="@HELP_ENABLE@"/>
 <module name="differential_equations" activate="yes"/>
 <module name="double" activate="yes"/>
@@ -62,7 +63,6 @@
 <module name="sound" activate="yes"/>
 <module name="scipad" activate="@SCIPAD_ENABLE@"/>
 <module name="randlib" activate="yes"/>
-<module name="scilab2fortran" activate="yes"/>
 <module name="development_tools" activate="yes"/>
 <module name="demo_tools" activate="@DEMOTOOLS_ENABLE@"/>
 <module name="spreadsheet" activate="yes"/>
@@ -80,5 +80,7 @@
 <module name="genetic_algorithms" activate="yes"/>
 <module name="simulated_annealing" activate="yes"/>
 <module name="parameters" activate="yes"/>
+<module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
+<module name="hdf5" activate="yes"/>
 </modules>

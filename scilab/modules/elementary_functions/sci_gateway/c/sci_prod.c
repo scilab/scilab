@@ -13,55 +13,72 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intprod) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_prod) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows		= 0;
-	int iCols		= 0;
-	int iRowsRet	= 0;
-	int iColsRet	= 0;
-	int iRealData	= 0;
-	int iImgData	= 0;
-	int iIndex		= 0;
-	int iMode		= 0;
+	int iRet						= 0;
+
+	int iRows						= 0;
+	int iCols						= 0;
+	int*piAddr					= NULL;
+	double* pdblReal		= NULL;
+	double* pdblImg			= NULL;
+
+	int iRowsRet				= 0;
+	int iColsRet				= 0;
+	double* pdblRealRet	= NULL;
+	double* pdblImgRet	= NULL;
+	int iMode						= 0;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	if(Rhs == 2)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
 	{
-		iMode = iGetOrient(2);
+		return 1;
 	}
 
-	GetVarDimension(1, &iRows, &iCols);
+	if(Rhs == 2)
+	{
+		iRet = getProcessMode(2, piAddr, &iMode);
+		if(iRet)
+		{
+			return 1;
+		}
+	}
+
+	iRet = getVarDimension(piAddr, &iRows, &iCols);
+	if(iRet)
+	{
+		return 1;
+	}
 
 	if(iRows * iCols == 0)
 	{
-		double *pReturnRealData	= NULL;
-		iAllocMatrixOfDouble(Rhs + 1, 1, 1, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(sizeof(double));
-
+		double dblVal	= 0;
 		if(iMode == 0)
 		{
 			iRows = 1;
 			iCols = 1;
-			pReturnRealData[0] = 1;
+			dblVal = 1;
 		}
 		else
 		{
 			iRows = 0;
 			iCols = 0;
 		}
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
+		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblVal);
+		if(iRet)
+		{
+			return 1;
+		}
+
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		//free(pReturnRealData);
 		return 0;
 	}
 
@@ -82,52 +99,41 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 	}
 	
 	
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
-		double *pdblRealData	= 0;
-		double *pdblImgData		= 0;
-		double *pReturnRealData	= NULL;
-		double *pReturnImgData	= NULL;
-		int		iComplex		= 1;
+		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
-
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pReturnRealData, &pReturnImgData);
-		//pReturnRealData	= (double*)malloc(iRowsRet * iColsRet * sizeof(double));
-		//pReturnImgData	= (double*)malloc(iRowsRet * iColsRet * sizeof(double));
-
-		vWDmProd(iMode, pdblRealData, pdblImgData, iRows, iRows, iCols, pReturnRealData, pReturnImgData, 1);
-
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRowsRet, &iColsRet, &pReturnRealData, &pReturnImgData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		vWDmProd(iMode, pdblReal, pdblImg, iRows, iRows, iCols, pdblRealRet, pdblImgRet, 1);
 	}
 	else
 	{
-		double *pdblRealData	= 0;
-		double *pReturnRealData = NULL;
-		int		itr				= 0;
+		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblRealData		= stk(iRealData);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		iAllocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pReturnRealData);
-		//pReturnRealData		= (double*)malloc(iRowsRet * iColsRet * sizeof(double));
-
-		vDmProd(iMode, pdblRealData, iRows, iRows, iCols, pReturnRealData, 1);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRowsRet, &iColsRet, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
+		vDmProd(iMode, pdblReal, iRows, iRows, iCols, pdblRealRet, 1);
 	}
-#else
-	C2F(intprod)(id);
-#endif
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

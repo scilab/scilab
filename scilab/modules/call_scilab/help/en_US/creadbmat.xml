@@ -24,66 +24,69 @@
   <refnamediv>
     <refname>creadbmat</refname>
 
-    <refpurpose>Read a single boolean or a matrix of boolean from Scilab memory using
-    call_scilab</refpurpose>
+    <refpurpose>Read a single boolean or a matrix of boolean from Scilab
+    memory using call_scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadbmat)(char *name, int *m, int *n, int *scimat, unsigned long name_len);</para>
+    <synopsis>int C2F(creadbmat)(char *name, int *m, int *n, int *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
-<variablelist>
-        <varlistentry>
-          <term>name</term>
 
-          <listitem>
-            <para>The name of the future Scilab variable</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term>m</term>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
 
-          <listitem>
-            <para>Number of rows</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The name of the future Scilab variable</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>n</term>
+      <varlistentry>
+        <term>m</term>
 
-          <listitem>
-            <para>Number of columns</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>Number of rows</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>scimat</term>
+      <varlistentry>
+        <term>n</term>
 
-          <listitem>
-				 <para>The actual matrix of boolean (array of int). Note that it is going to be stored in Scilab columnwise.</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>Number of columns</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>name_len</term>
+      <varlistentry>
+        <term>scimat</term>
 
-          <listitem>
-            <para>The length of the variable <emphasis>name
-            </emphasis>(fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+        <listitem>
+          <para>The actual matrix of boolean (array of int). Note that it is
+          going to be stored in Scilab columnwise.</para>
+        </listitem>
+      </varlistentry>
 
-        <varlistentry>
-          <term>C2F</term>
+      <varlistentry>
+        <term>name_len</term>
 
-          <listitem>
-            <para>C2F is just a macro which provides to this function the
-            ability to be called from fortran</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+        <listitem>
+          <para>The length of the variable <emphasis>name </emphasis>(fortran
+          compatibility)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C2F</term>
+
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 
   <refsection>
@@ -99,37 +102,37 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">		/* Load the previously set variable B */
+    <programlisting role="example"><![CDATA[ 
+/* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwriteboolean.c
-			int rowB_ = 0, colB_ = 0, lp_ = 0;
-			int i = 0, j = 0;
-			int *matrixOfBooleanB = NULL; /* Int instead of double */
+int rowB_ = 0, colB_ = 0, lp_ = 0;
+int i = 0, j = 0;
+int *matrixOfBooleanB = NULL; /* Int instead of double */
 
-			char variableToBeRetrievedB[] = "B";
+char variableToBeRetrievedB[] = "B";
 
-			/* First, retrieve the size of the matrix */
-			C2F(cmatbptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+/* First, retrieve the size of the matrix */
+C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
-			/* Alloc the memory */
-			matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
+/* Alloc the memory */
+matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
-			/* Load the matrix */
-			C2F(creadbmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+/* Load the matrix */
+C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
 
-			printf("\n");
-			printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-			for(j = 0 ; j &lt; rowB_ ; j++)
-			{
-				for(i = 0 ; i &lt; colB_ ; i++)
-				{
-					/* Display the formated matrix ... the way the user
-					* expect */
-					printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
-				}
-				printf("\n"); /* New row of the matrix */
-			}
-
-</programlisting>
+printf("\n");
+printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+for(j = 0 ; j < rowB_ ; j++)
+{
+ for(i = 0 ; i < colB_ ; i++)
+ {
+  /* Display the formated matrix ... the way the user
+   * expect */
+  printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
+ }
+ printf("\n"); /* New row of the matrix */
+}
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -139,7 +142,8 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritebmat">cwritebmat</link>, <link
-      linkend="BooleanManagement_callscilab">Boolean Management</link></member>
+      linkend="BooleanManagement_callscilab">Boolean
+      Management</link></member>
     </simplelist>
   </refsection>
 

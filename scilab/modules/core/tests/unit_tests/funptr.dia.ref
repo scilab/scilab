@@ -8,7 +8,7 @@
 // test funptr
 //================================================
 ptr = funptr('pwd');
-if ptr <> 3431 then bugmes();quit;end
+if ptr <> 34031 then bugmes();quit;end
 ierr = execstr('ptr = funptr(1)','errcatch');
 if ierr <> 999 then bugmes();quit;end
 ptr = funptr('FCT_NOT_IN_SCILAB');

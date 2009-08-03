@@ -25,14 +25,18 @@ complexrows=0
 
 for k=1:rownb
   ck=tree.operands(k)
-  col(k)=ck
-  rowsize=[rowsize tree.operands(k).dims(1)]
-  colsize=[colsize tree.operands(k).dims(2)]
-  if ck.property==Complex then
-    complexrows=complexrows+1
-  end
-  if ck.property==Real then
-    realrows=realrows+1
+  if ck==list("EOL") | typeof(ck)=="comment" then
+    rowsize=[rowsize 0]
+    colsize=[colsize 0]
+  else
+    rowsize=[rowsize tree.operands(k).dims(1)]
+    colsize=[colsize tree.operands(k).dims(2)]
+    if ck.property==Complex then
+      complexrows=complexrows+1
+    end
+    if ck.property==Real then
+      realrows=realrows+1
+    end
   end
 end
 

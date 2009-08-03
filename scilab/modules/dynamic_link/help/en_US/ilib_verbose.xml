@@ -32,9 +32,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>level = ilib_verbose()</synopsis>
-
-    <synopsis>ilib_verbose(level)</synopsis>
+    <synopsis>
+level = ilib_verbose()
+ilib_verbose(level)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>

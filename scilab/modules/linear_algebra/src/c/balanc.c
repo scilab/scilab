@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - INRIA Bernard Hugueney
+ * Copyright (C) 2009 - DIGITEO - Bernard HUGUENEY 
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,6 +35,8 @@ extern void C2F(dlaset)(char const uplo[1] /* "U"pper, "L"ower, or full*/, int c
 static int iBalanc1(double* pData, int iCols, int complexArgs, double* lhsData, double* pScale);
 static int iBalanc2(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2
 		    , double* pLScale, double* pRScale, double* pWork);
+
+int iBalancM(double* pData1, double* pData2, int iCols, int complexArgs, double* lhsData1, double* lhsData2);
 
 static int iBalanc1(double* pData, int iCols, int complexArgs, double* lhsData, double* pScale)
 {

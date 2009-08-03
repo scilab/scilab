@@ -11,6 +11,8 @@ jhall.jar=@JHALL@
 
 gluegen.jar=@GLUEGEN_RT@
 
+jhdf5.jar=@JHDF5@
+
 jrosetta-API.jar=@JROSETTA_API@
 
 jrosetta-engine.jar=@JROSETTA_ENGINE@
@@ -50,3 +52,5 @@ library.graphic_export.name=org.scilab.modules.graphic_export.jar
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
 library.javasci.name=javasci.jar
 
+library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
+library.hdf5.name=org.scilab.modules.hdf5.jar

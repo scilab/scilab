@@ -361,12 +361,6 @@
     <title>Miscellaneous</title>
     <variablelist>
       <varlistentry>
-        <term>lgfft</term>
-        <listitem>
-          <para>computes p = ceil (log_2(x))</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>sinc</term>
         <listitem>
           <para>calculate the function sin(2*pi*fl*t)/(pi*t)</para>

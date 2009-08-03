@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="String_management_writing_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>String writing (Scilab gateway)</refname>
+        <refpurpose>
+            How to write matrices of string in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+        <synopsis>int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+
+            <varlistentry>
+                <term>_pstStrings</term>
+                <listitem>
+                    <para>
+                        Address of array of char* (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/core/tests/unit_tests/string_writing_api.c-->
+        <!--File_scilab: SCI/modules/core/tests/unit_tests/string_writing_api.tst-->
+        <!--Lib_name: string_writing-->
+        <!--Func_list: write_string-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int write_string(char *fname,unsigned long fname_len)
+{
+    int iRet        = 0;
+
+    //variable info : matrix of string 2 x 3
+    int iRows       = 2;
+    int iCols       = 3;
+    char** pstData  = NULL;
+
+    //data to put in the new variable
+    char string0[]  = "may";
+    char string1[]  = "be";
+    char string2[]  = "the";
+    char string3[]  = "with";
+    char string4[]  = "puffin";
+    char string5[]  = "you";
+
+    //alloc new array
+    pstData         = (char**)malloc(sizeof(char*) * iRows * iCols);
+
+    //copy data address to the "main" array
+    pstData[0]      = string0;
+    pstData[1]      = string1;
+    pstData[2]      = string2;
+    pstData[3]      = string3;
+    pstData[4]      = string4;
+    pstData[5]      = string5;
+
+    //create the variable
+    createMatrixOfString(Rhs + 1, iRows, iCols, pstData);
+
+    //free container
+    free(pstData);
+    
+    //assign allocated variables to Lhs position
+    LhsVar(1)       = Rhs + 1;
+    return 0;
+}
+        ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+a_ref = "may the puffin be with you ";
+b = [];
+a = write_string();
+for i=1:size(a,"r")
+    for j=1:size(a,"c")
+        b = b + a(i,j);
+        b = b + " ";
+    end
+end
+if b <> a_ref then error("failed"), end
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

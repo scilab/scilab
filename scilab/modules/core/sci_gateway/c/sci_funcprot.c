@@ -58,7 +58,8 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
 
 		//if ((m1 > 0) && (n1>0))
-		if ( (m1 != n1) && (n1 != 1) ) 
+		//if ( (m1 != n1) && (n1 != 1) ) 
+		if( n1 != 1 || m1 != 1)
 		{
 			Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,1);
 			return 0;

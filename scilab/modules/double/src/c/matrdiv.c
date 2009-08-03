@@ -12,6 +12,9 @@
 
 #include <stdio.h>
 #include "double.h"
+#include "stack-c.h"
+
+extern int C2F(error)(int *n);
 
 int matrdiv()
 {

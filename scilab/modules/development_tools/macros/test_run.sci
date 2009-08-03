@@ -366,11 +366,24 @@ function test_run(varargin)
 		printf("   TMPDIR = %s\n",TMPDIR);
 		printf("\n");
 		
+		start_date = getdate();
+		
 		for i=1:test_count
 			
+			test_list_1 = test_list(i,1);
+			
+			// Improve the display of the module
+			if isdir(test_list_1) then
+				if part(test_list(i,1),1:length(SCI)) == SCI then
+					test_list_1 = "SCI" + part(test_list_1,length(SCI)+1:length(test_list_1));
+				elseif part(test_list(i,1),1:length(SCIHOME)) == SCIHOME then
+					test_list_1 = "SCIHOME" + part(test_list_1,length(SCIHOME)+1:length(test_list_1));
+				end
+			end
+			
 			printf("   %03d/%03d - ",i,test_count);
-			printf("[%s] %s",test_list(i,1),test_list(i,2));
-			for j = length(test_list(i,2) + test_list(i,1)):50
+			printf("[%s] %s",test_list_1,test_list(i,2));
+			for j = length(test_list(i,2) + test_list_1):50
 				printf(".");
 			end
 			
@@ -397,6 +410,8 @@ function test_run(varargin)
 			end
 		end
 		
+		end_date = getdate();
+		
 		// Summary
 		
 		if test_count<>0 then
@@ -416,6 +431,7 @@ function test_run(varargin)
 		printf("   passed                    %4d - %3d %% \n",test_passed_count ,test_passed_percent);
 		printf("   failed                    %4d - %3d %% \n",test_failed_count ,test_failed_percent);
 		printf("   skipped                   %4d - %3d %% \n",test_skipped_count,test_skipped_percent);
+		printf("   length                          %4.2f sec \n" ,etime(end_date,start_date));
 		printf("   --------------------------------------------------------------------------\n");
 		
 		if test_failed_count > 0 then
@@ -711,6 +727,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		"mode(3);" ;                                                            ...
 		"lines(28,72);";                                                        ...
 		"lines(0);" ;                                                           ...
+		"function %onprompt" ;                                                           ...
+		"quit;" ;                                                           ...
+		"endfunction" ;                                                           ...
 		"deff(''[]=bugmes()'',''write(%io(2),''''error on test'''')'');" ;      ...
 		"predef(''all'');" ;                                                    ...
 		"tmpdirToPrint = msprintf(''TMPDIR1=''''%s''''\n'',TMPDIR);"            ...
@@ -744,7 +763,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	tail = [ tail; "diary(0);" ];
 	
 	if this_use_graphics then
-		tail = [ tail; "xdel(winsid());" ];
+		tail = [ tail; "xdel(winsid());sleep(1000);" ];
 	end
 	
 	tail = [ tail; "exit;" ; "// <-- FOOTER END -->" ];

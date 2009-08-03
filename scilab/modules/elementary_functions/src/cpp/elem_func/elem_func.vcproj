@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\operations\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;__ELEM_FUNC__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -66,7 +66,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				IgnoreDefaultLibraryNames="MSVCRT.lib"
+				IgnoreDefaultLibraryNames=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -116,7 +116,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\operations\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;__ELEM_FUNC__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -138,7 +138,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				IgnoreDefaultLibraryNames="MSVCRT.lib"
+				IgnoreDefaultLibraryNames=""
 				TargetMachine="17"
 			/>
 			<Tool
@@ -191,7 +191,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				WholeProgramOptimization="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\operations\includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;__ELEM_FUNC__"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -211,6 +211,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				IgnoreDefaultLibraryNames=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -263,7 +264,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				WholeProgramOptimization="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\operations\includes;..\..\..\..\core\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\..\functions_manager\includes;..\..\..\..\symbol\includes;..\..\..\..\types\includes;..\..\..\..\core\includes;..\..\..\..\operations\includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;__ELEM_FUNC__"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -283,6 +284,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				IgnoreDefaultLibraryNames=""
 				TargetMachine="17"
 			/>
 			<Tool

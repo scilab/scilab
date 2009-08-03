@@ -15,29 +15,34 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "../../core/src/c/parse.h"
+#include "Scierror.h"
+#include "api_scilab.h"
 
-/*--------------------------------------------------------------------------*/
-extern int C2F(intatan) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_atan) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-	int iRows1 = 0;
-	int iCols1 = 0;
-	int iRows2 = 0;
-	int iCols2 = 0;
-	int iRealData1 = 0;
-	int iRealData2 = 0;
-	int iImgData1 = 0;
-	int iIndex;
+	int i;
+	int iRet								= 0;
+	int iRows1							= 0;
+	int iCols1							= 0;
+	int iRows2 							= 0;
+	int iCols2 							= 0;
 	
-//	C2F(intatan)(id);
-//	return 0;
+	int* piAddr1					= NULL;
+	int* piAddr2					= NULL;
+
+	double *pdblReal1			= NULL;
+	double *pdblImg1			= NULL;
+	double *pdblReal2			= NULL;
+	double *pdblImg2			= NULL;
+	double *pdblRealRet		= NULL;
+	double *pdblImgRet		= NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr1);
+	if(getVarType(piAddr1) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -45,26 +50,24 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 1)
 	{
-		if(iIsComplex(1))
+		if(isVarComplex(piAddr1))
 		{// case complex
-			double *pdblRealData	= 0;
-			double *pdblImgData		= 0;
-			double *pReturnRealData = NULL;
-			double *pReturnImgData	= NULL;
-			int iComplex			= 1;
-
-			GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &iRealData1, &iImgData1);
-			pdblRealData	= stk(iRealData1);
-			pdblImgData		= stk(iImgData1);
-
-			iAllocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData, &pReturnImgData);
-			//pReturnRealData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-			//pReturnImgData	= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-
-			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
+			iRet = getComplexMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1, &pdblImg2);
+			if(iRet)
 			{
-				if(pdblRealData[iIndex] == 0 && dabss(pdblImgData[iIndex]) == 1)
-				{//voir ce qu'est ieee !!!
+				return 1;
+			}
+			
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			for(i = 0 ; i < iRows1 * iCols1 ; i++)
+			{
+				if(pdblReal1[i] == 0 && dabss(pdblImg1[i]) == 1)
+				{
 					if(C2F(errgst).ieee==0)
 						Error(32);
 					else if(C2F(errgst).ieee==1)
@@ -72,59 +75,54 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					watan(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
-
-					//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows1, &iCols1, &pReturnRealData, &pReturnImgData);
-					LhsVar(1) = Rhs + 1;
-					PutLhsVar();
-					//free(pReturnRealData);
-					//free(pReturnImgData);
+					watan(pdblReal1[i], pdblImg1[i], &pdblRealRet[i], &pdblImgRet[i]);
 				}
 			}
-
 		}
 		else
 		{// case real
-			double *pdblRealData	= 0;
-			double *pReturnRealData = NULL;
+			iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
+			if(iRet)
+			{
+				return 1;
+			}
 
-			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &iRealData1);
-			pdblRealData		= stk(iRealData1);
-
-			iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData);
-			//pReturnRealData		= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-			for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-				pReturnRealData[iIndex] = datans(pdblRealData[iIndex]);
-
-			//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-			//free(pReturnRealData);
+			allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet);
+			for(i = 0 ; i < iRows1 * iCols1 ; i++)
+			{
+				pdblRealRet[i] = datans(pdblReal1[i]);
+			}
 		}
 	}
 	else
-	{
-		if(iIsComplex(1) == FALSE && iIsComplex(2) == FALSE)
+	{//Rhs == 2
+		iRet = getVarAddressFromPosition(2, &piAddr2);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(isVarComplex(piAddr1) == FALSE && isVarComplex(piAddr2) == FALSE)
 		{//Only works with real matrix
-			double *pReturnRealData = NULL;
-			double *pdblRealData1	= 0;
-			double *pdblRealData2	= 0;
-			GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &iRealData1);
-			GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows2, &iCols2, &iRealData2);
-			pdblRealData1		= stk(iRealData1);
-			pdblRealData2		= stk(iRealData2);
-			
+			iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+			if(iRet)
+			{
+				return 1;
+			}
+
 			if(iRows1 * iCols1 == iRows2 * iCols2)
 			{
-				iAllocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pReturnRealData);
-				//pReturnRealData		= (double*)malloc(iRows1 * iCols1 * sizeof(double));
-				for(iIndex = 0 ; iIndex < iRows1 * iCols1 ; iIndex++)
-					pReturnRealData[iIndex] = datan2s(pdblRealData1[iIndex], pdblRealData2[iIndex]);
-
-				//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows1, &iCols1, &pReturnRealData);
-				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
-				//free(pReturnRealData);
+				allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet);
+				for(i = 0 ; i < iRows1 * iCols1 ; i++)
+				{
+					pdblRealRet[i] = datan2s(pdblReal1[i], pdblReal2[i]);
+				}
 			}
 			else
 				Error(60);
@@ -132,6 +130,9 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 		else
 			Error(43);
 	}
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

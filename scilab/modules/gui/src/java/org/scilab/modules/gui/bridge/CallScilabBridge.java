@@ -51,6 +51,8 @@ import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooser;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -675,7 +677,7 @@ public class CallScilabBridge {
 	public static void setFigureAsParent(int figureID, int objID) {
 		Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
 
-		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+		if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
 			// Add the menu to the tab
 			parentTab.getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 		} else {
@@ -691,6 +693,8 @@ public class CallScilabBridge {
 			menuToAdd.setCallback(menuItem.getCallback());
 			menuToAdd.setForeground(menuItem.getForeground());
 			menuToAdd.setVisible(menuItem.isVisible());
+			menuToAdd.setEnabled(menuItem.isEnabled());
+			menuToAdd.setChecked(menuItem.isChecked());
 			// End of properties copy
 
 			// Add the menu to the tab
@@ -901,7 +905,7 @@ public class CallScilabBridge {
 	 * @param objID the id of the menu
 	 */
 	public static void setRootAsParent(int objID) {
-		if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+		if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
 			// Add the menu to the tab
 			ScilabConsole.getConsole().getMenuBar().add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 		} else {
@@ -929,10 +933,10 @@ public class CallScilabBridge {
 	 */
 	public static void setMenuAsParent(int menuID, int objID) {
 
-		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof Menu) {
-			Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
+		if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof CheckBoxMenuItem) {
+			CheckBoxMenuItem parentMenu = (CheckBoxMenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
 
-			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
 				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
@@ -940,7 +944,7 @@ public class CallScilabBridge {
 		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof MenuItem) {
 			MenuItem parentMenu = (MenuItem) UIElementMapper.getCorrespondingUIElement(menuID);
 
-			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
 				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
@@ -948,12 +952,20 @@ public class CallScilabBridge {
 		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof ContextMenu) {
 			ContextMenu parentMenu = (ContextMenu) UIElementMapper.getCorrespondingUIElement(menuID);
 
-			if (UIElementMapper.getCorrespondingUIElement(objID) instanceof Menu) {
+			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
 				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
 			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
 				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
 			}
-		}
+		} else if (UIElementMapper.getCorrespondingUIElement(menuID) instanceof Menu) {
+			Menu parentMenu = (Menu) UIElementMapper.getCorrespondingUIElement(menuID);
+
+			if (!(UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem)) {
+				parentMenu.add((Menu) UIElementMapper.getCorrespondingUIElement(objID));
+			} else if (UIElementMapper.getCorrespondingUIElement(objID) instanceof MenuItem) {
+				parentMenu.add((MenuItem) UIElementMapper.getCorrespondingUIElement(objID));
+			}
+		} 
 	}
 
 	/*******************/
@@ -2579,6 +2591,36 @@ public class CallScilabBridge {
 	 */
 	public static boolean isFrameEnable(int id) {
 		return ((Frame) UIElementMapper.getCorrespondingUIElement(id)).isEnabled();
+	}
+
+	/****************/
+	/*              */
+	/* MENU CHECKED */
+	/*              */
+	/****************/
+
+	/**
+	 * Set the Checked status of the Menu
+	 * @param id the id of the Menu
+	 * @param status the new status
+	 */
+	public static void setMenuChecked(int id, boolean status) {
+		if (UIElementMapper.getCorrespondingUIElement(id) instanceof CheckBoxMenuItem) {
+			((CheckBoxMenuItem) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
+		} else if (UIElementMapper.getCorrespondingUIElement(id) instanceof MenuItem) {
+			((MenuItem) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
+		} else {
+			((Menu) UIElementMapper.getCorrespondingUIElement(id)).setChecked(status);
+		}
+	}
+
+	/**
+	 * Get the Checked status of the Menu
+	 * @param id the id of the Menu
+	 * @return the status
+	 */
+	public static boolean isMenuChecked(int id) {
+		return ((Menu) UIElementMapper.getCorrespondingUIElement(id)).isChecked();
 	}
 
 	/************************/

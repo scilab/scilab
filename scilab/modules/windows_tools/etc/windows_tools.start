@@ -1,5 +1,3 @@
-// ====================================================================
-// windows_tools module initialisation file 
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
 // 
@@ -9,20 +7,18 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-//Load  functions libraries
-load('SCI/modules/windows_tools/macros/lib');
-// ====================================================================
-// Add SCI/bin directory to PATH environment variable
-PATH_env = getenv('PATH');
-setenv('PATH', WSCI + filesep() + 'bin' +pathsep() + PATH_env);
-clear PATH_env;
-// ====================================================================
+// =============================================================================
+// Load  functions libraries
+// =============================================================================
+load("SCI/modules/windows_tools/macros/lib");
+// =============================================================================
 if (getscilabmode() == 'STD') then 
   consolebox('off');
 end
-// ====================================================================
-//add help chapter
-add_module_help_chapter('windows_tools');
-clear add_module_help_chapter;
-// ====================================================================
+// =============================================================================
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("windows_tools");
+end
+// =============================================================================

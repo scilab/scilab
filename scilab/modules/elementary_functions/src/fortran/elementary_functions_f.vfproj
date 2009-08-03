@@ -134,7 +134,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="magic.f"/>
 		<File RelativePath="mtran.f"/>
 		<File RelativePath="nearfloat.f"/>
-		<File RelativePath="old_pythag.f"/>
+		<File RelativePath=".\old_pythag.f"/>
 		<File RelativePath="orthes.f"/>
 		<File RelativePath="ortran.f"/>
 		<File RelativePath="psi.f"/>
@@ -182,6 +182,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sign.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sin.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_size.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sort.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spones.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sqrt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tan.f"/>

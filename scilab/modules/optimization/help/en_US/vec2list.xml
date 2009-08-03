@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="vec2list" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>vec2list</refname>
+
+    <refpurpose>list2vec reciprocal function</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>li=vec2list(bigVector,varsizes,ind)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+     
+      <varlistentry>
+        <term>bigVector</term>
+
+        <listitem>
+          <para>An m by n matrix. Each column is used to generate the
+          corresponding list entry.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>varsizes</term>
+
+        <listitem>
+          <para>An n by 2 matrix. Each row give the dimensions of the
+          matrix to be built with the correponding column of
+          bigVector.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>a list with n entries. Each entry is a vector of
+          positive integers which gives the hierchical path where the
+          corresponding matrix has to be put.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>li</term>
+
+        <listitem>
+          <para>a list or a recursive list with n leaves. The list
+          entries (or leaves) are 2D matrices built with the
+          corresponding column of bigVector and size given by the
+          corresponding row of varsizes.</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>If the ind argument is not given, this function creates a
+    list.  The list entries (or leaves) are 2D matrices built with the
+    corresponding column of bigVector and size given by the
+    corresponding row of varsizes.</para>
+
+    <para>If the ind argument is given, this function creates a
+    hierachical list with n leaves. The leaves are 2D matrices built
+    with the corresponding column of bigVector and size given by the
+    corresponding row of varsizes. The hierachical path for each leaf
+    if given by the corresponding entry of ind.</para>
+    <para>This function is a subsidiary for <link
+    linkend="lmisolver">lmisolver</link></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+        vec2list(1:4,ones(4,2))
+        vec2list(1:4,[2 1;1 2])
+        vec2list(1:4,ones(4,2),list(1,2,[3,1],[3,2,1]))
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="list2vec">list2vec</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>F.D., INRIA</member>
+      <member>S.S., INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

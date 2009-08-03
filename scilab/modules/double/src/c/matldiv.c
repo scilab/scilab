@@ -11,6 +11,7 @@
 */
 
 #include "double.h"
+#include "Scierror.h"
 
 int matldiv()
 {

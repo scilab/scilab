@@ -12,6 +12,7 @@
 
 #include "stdio.h"
 #include "PATH_MAX.h"
+#include "configvariable.hxx"
 
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_SHORT
@@ -28,7 +29,7 @@
 #else
 	#define DIR_SEPARATOR "/"
 #endif
-#define SCI_VERSION_STRING "scilab-trunk-SVN"
+#define SCI_VERSION_STRING "scilab-branch-YaSp"
 #define UNIX_SEPATATOR '/'
 #define WINDOWS_SEPATATOR '\\'
 
@@ -39,7 +40,7 @@ bool Set_Shell(void);
 bool Set_YASP_PATH(char *DefaultPath);
 bool Set_HOME_PATH(char *DefaultPath);
 bool Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
-char *getScilabDirectory(bool UnixStyle);
+EXTERN_SYSTEM_ENV char *getScilabDirectory(bool UnixStyle);
 void SciEnvForWindows(void);
 void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
 bool setYASPHOME(void);
@@ -53,6 +54,6 @@ char *getshortpathname(char *longpathname,bool *convertok);
 bool isdir(const char * path);
 bool createdirectory(const char *path);
 bool isDrive(const char *strname);
-void SetScilabEnvironment(void);
+EXTERN_SYSTEM_ENV void SetScilabEnvironment(void);
 int SciEnvForOthers(void);
 

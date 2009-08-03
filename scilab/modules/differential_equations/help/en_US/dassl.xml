@@ -129,12 +129,16 @@
               <para>This form allows to pass parameters other than t,y,ydot to
               the function. It must be as follows:</para>
 
-              <programlisting>list(res,x1,x2,...)            </programlisting>
+              <programlisting> 
+list(res,x1,x2,...)
+ </programlisting>
 
               <para>where the calling sequence of the function
               <literal>res</literal> is now</para>
 
-              <programlisting>r=res(t,y,ydot,x1,x2,...)             </programlisting>
+              <programlisting> 
+r=res(t,y,ydot,x1,x2,...)
+ </programlisting>
 
               <para><literal>res</literal> still returns
               <literal>r=g(t,y,ydot)</literal> as a function of
@@ -149,14 +153,18 @@
 
               <para>In C The calling sequence must be:</para>
 
-              <programlisting>void res(double *t, double y[], double yd[], double r[],
-                                          int *ires, double rpar[], int ipar[])     </programlisting>
+              <programlisting> 
+void res(double *t, double y[], double yd[], double r[],
+         int *ires, double rpar[], int ipar[])
+ </programlisting>
 
               <para>In Fortran it must be:</para>
 
-              <programlisting>subroutine res(t,y,yd,r,ires,rpar,ipar)
+              <programlisting> 
+subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
-integer ires,ipar(*)  </programlisting>
+integer ires,ipar(*)  
+ </programlisting>
 
               <para>The rpar and ipar arrays must be present but cannot be
               used.</para>
@@ -189,12 +197,16 @@ integer ires,ipar(*)  </programlisting>
 
               <para>it must be as follows</para>
 
-              <programlisting>list(jac,x1,x2,...)              </programlisting>
+              <programlisting> 
+list(jac,x1,x2,...)
+ </programlisting>
 
               <para>where the calling sequence of the function
               <literal>jac</literal> is now</para>
 
-              <programlisting>r=jac(t,y,ydot,cj,x1,x2,...)    </programlisting>
+              <programlisting> 
+r=jac(t,y,ydot,cj,x1,x2,...)
+ </programlisting>
 
               <para><literal>jac</literal> still returns
               <literal>dg/dy+cj*dg/dydot</literal> as a function of
@@ -209,15 +221,17 @@ integer ires,ipar(*)  </programlisting>
 
               <para>In C The calling sequence must be:</para>
 
-              <programlisting>  void jac(double *t, double y[], double yd[], double
-              pd[], double *cj, double rpar[], int ipar[])
-</programlisting>
+              <programlisting>void jac(double *t, double y[], double yd[], double pd[],
+         double *cj, double rpar[], int ipar[])
+ </programlisting>
 
               <para>In Fortran it must be:</para>
 
-              <programlisting>  subroutine jac(t,y,yd,pd,cj,rpar,ipar)
-  double precision t, y(*),yd(*),pd(*),cj,rpar(*)
-  integer ipar(*)</programlisting>
+              <programlisting> 
+subroutine jac(t,y,yd,pd,cj,rpar,ipar)
+double precision t, y(*),yd(*),pd(*),cj,rpar(*)
+integer ipar(*)
+ </programlisting>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -257,7 +271,7 @@ integer ires,ipar(*)  </programlisting>
               <term>info(3)</term>
 
               <listitem>
-                <para>: <literal>2</literal> components vector which give the
+                <para><literal>2</literal> components vector which give the
                 definition <literal>[ml,mu]</literal> of band matrix computed
                 by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
                 "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>. If
@@ -333,29 +347,32 @@ integer ires,ipar(*)  </programlisting>
     <para>The dassl function integrate the algebro-differencial equation and
     returns the evolution of<literal> y </literal>a given time points</para>
 
-    <programlisting>    g(t,y,ydot)=0
-    y(t0)=y0  and   ydot(t0)=ydot0</programlisting>
+    <programlisting>
+g(t,y,ydot)=0
+y(t0)=y0  and   ydot(t0)=ydot0
+ </programlisting>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">  function [r,ires]=chemres(t,y,yd)
-     r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
-         0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
-         y(1)+y(2)+y(3)-1];
-     ires=0
-  endfunction
-  function pd=chemjac(x,y,yd,cj)
-      pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
-           0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
-           1       , 1                      , 1       ]
-  endfunction
+    <programlisting role="example"> 
+function [r,ires]=chemres(t,y,yd)
+   r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
+       0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
+       y(1)+y(2)+y(3)-1];
+   ires=0
+endfunction
+
+function pd=chemjac(x,y,yd,cj)
+    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+         1       , 1                      , 1       ]
+endfunction
 
 y0=[1;0;0];
 yd0=[-0.04;0.04;0];
 t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
-
 
 y=dassl([y0,yd0],0,t,chemres);
 
@@ -366,17 +383,19 @@ y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
  
 //Using extra argument for parameters
 //-----------------------------------
-  function [r,ires]=chemres(t,y,yd ,a,b,c)
-     r=[-a*y(1)+b*y(2)*y(3)-yd(1)
-         a*y(1)-b*y(2)*y(3)-c*y(2)*y(2)-yd(2)
-         y(1)+y(2)+y(3)-1];
-     ires=0
-  endfunction
-  function pd=chemjac(x,y,yd,cj, a,b,c)
-      pd=[-a-cj , b*y(3)             , b*y(2);
-           a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
-           1    , 1                  , 1       ]
-  endfunction
+function [r,ires]=chemres(t,y,yd ,a,b,c)
+   r=[-a*y(1)+b*y(2)*y(3)-yd(1)
+       a*y(1)-b*y(2)*y(3)-c*y(2)*y(2)-yd(2)
+       y(1)+y(2)+y(3)-1];
+   ires=0
+endfunction
+
+function pd=chemjac(x,y,yd,cj, a,b,c)
+    pd=[-a-cj , b*y(3)             , b*y(2);
+         a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
+         1    , 1                  , 1       ]
+endfunction
+
 y=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
 
 //using C code
@@ -406,13 +425,16 @@ jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *
          '   pd[8] =  1.0;'
          ' }'];
 mputl([rescode;jaccode],TMPDIR+'/mycode.c') //create the C file
+
 // - compile it
 ilib_for_link(['chemres','chemjac'],'mycode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+
 // - link it with Scilab
 exec(TMPDIR+'/loader.sce') //incremental linking
+
 // - call dassl
 y=dassl([y0,yd0],0,t,'chemres','chemjac');
-</programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>

@@ -14,53 +14,58 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "../../core/src/c/parse.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-#define _NEW_TONIO_
 
-/*--------------------------------------------------------------------------*/
-extern int C2F(intlog) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_log) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	int iImgData		= 0;
-	int iIndex			= 0;
+	int i;
+	int iAlert					= 1; // to print only one warning message
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
 
-	double *pdblRealData	= NULL;
-	double *pdblImgData		= NULL;
-	double* pReturnRealData	= NULL;
-	double* pReturnImgData	= NULL;
+	int* piAddr					= NULL;
+
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	double* pdblRealRet	= NULL;
+	double* pdblImgRet	= NULL;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr))
 	{
-		BOOL bAlert = FALSE; // to print only one warning message
-		int iComplex = 1;
-
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
-
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
-		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
-
-
-		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
+		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
 		{
-			if(bAlert == FALSE && pdblRealData[iIndex] == 0 && pdblImgData[iIndex] == 0)
+			return 1;
+		}
+
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			if(iAlert && pdblReal[i] == 0 && pdblImg[i] == 0)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
@@ -70,32 +75,29 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 				else if(C2F(errgst).ieee == 1)
 				{
 					Msgs(64,0);
-					bAlert = TRUE;
+					iAlert = 0;
 				}
 			}
 
-			wlog(pdblRealData[iIndex], pdblImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
+			wlog(pdblReal[i], pdblImg[i], &pdblRealRet[i], &pdblImgRet[i]);
 		}
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
-		//free(pReturnImgData);
 	}
 	else
 	{
-		BOOL bAlert = FALSE; // to print only one warning message
 		int iLessZero	= 0;
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblRealData	= stk(iRealData);
-
-		for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
+		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+		if(iRet)
 		{
-			if(pdblRealData[iIndex] < 0)
+			return 1;
+		}
+
+		for(i = 0; i < iRows * iCols ; i++)
+		{
+			if(pdblReal[i] < 0)
 			{
 				iLessZero = 1;
 			}
-			else if(bAlert == FALSE && pdblRealData[iIndex] == 0)
+			else if(iAlert && pdblReal[i] == 0)
 			{
 				if(C2F(errgst).ieee == 0)
 				{
@@ -105,45 +107,41 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 				else if(C2F(errgst).ieee == 1)
 				{
 					Msgs(64,0);
-					bAlert = TRUE; 
+					iAlert = 0; 
 				}
 			}
 		}
 
 		if(iLessZero == 0)
 		{//All values > 0
-			iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-			//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+			if(iRet)
+			{
+				return 1;
+			}
 
-			for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
-				pReturnRealData[iIndex] = dlogs(pdblRealData[iIndex]);
-
-			//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-			//free(pReturnRealData);
+			for(i = 0; i < iRows * iCols ; i++)
+			{
+				pdblRealRet[i] = dlogs(pdblReal[i]);
+			}
 		}
 		else
 		{
-			int iComplex = 1;
-			iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
-			//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-			//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+			if(iRet)
+			{
+				return 1;
+			}
 
-			for(iIndex = 0; iIndex < iRows * iCols ; iIndex++)
-				wlog(pdblRealData[iIndex], 0, &pReturnRealData[iIndex], &pReturnImgData[iIndex]);
-
-			//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-			//free(pReturnRealData);
-			//free(pReturnImgData);
+			for(i = 0; i < iRows * iCols ; i++)
+			{
+				wlog(pdblReal[i], 0, &pdblRealRet[i], &pdblImgRet[i]);
+			}
 		}
 	}
 
-#else //_NEW_TONIO_
-	C2F(intlog)(id);
-#endif
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

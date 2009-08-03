@@ -67,6 +67,7 @@ h.prop=val</synopsis>
 	<para>
 	<literal>set</literal> function can be also called with only a property and a value as argument. In this case,
 	the property must be one of the following:
+        </para>
 	<variablelist>
       <varlistentry>
         <term>current_entity or hdl</term>
@@ -92,7 +93,6 @@ h.prop=val</synopsis>
         </listitem>
       </varlistentry>
 	</variablelist>
-	</para>
 	
 	<para>
 	<literal>set</literal> can also be called with a graphic handle and property as arguments.

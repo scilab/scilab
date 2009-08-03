@@ -72,6 +72,7 @@ namespace types
 		void					compute();
 		bool					computable();
 
+		string				toString(int _iPrecision, int _iLineLen);
 
 
 		InternalType::RealType 

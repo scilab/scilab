@@ -10,6 +10,9 @@
  *
  */
 
+#ifndef __CONFIGVARIABLE_HXX__
+#define __CONFIGVARIABLE_HXX__
+
 #include <map>
 #include <string>
 
@@ -41,3 +44,4 @@ public :
 
 };
 
+#endif /* __CONFIGVARIABLE_HXX__ */
