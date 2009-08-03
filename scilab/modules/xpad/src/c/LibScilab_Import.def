@@ -12,3 +12,5 @@ stack_
 getrhsvar_
 vartype_
 checkrhs_ 
+checklhs_
+freeArrayOfString

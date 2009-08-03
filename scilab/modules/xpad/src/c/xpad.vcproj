@@ -370,6 +370,10 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath="..\cpp\callxpad.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainXPAD.c"
 				>
 			</File>
@@ -390,6 +394,10 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath="..\..\includes\callxpad.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_xpad.h"
 				>

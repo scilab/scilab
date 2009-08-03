@@ -27,7 +27,7 @@ include $(top_srcdir)/Makefile.incl.am
 
 XPAD_C_SOURCES = 
 
-XPAD_CPP_SOURCES = src/jni/Xpad.cpp
+XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
 
 GIWS_WRAPPERS = Xpad.giws.xml
 
@@ -95,7 +95,7 @@ libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 libscixpad_la_includedir=$(pkgincludedir)/xpad
 libscixpad_la_include_HEADERS = includes/gw_xpad.h \
 includes/dynlib_xpad.h \
-src/jni/Xpad.hxx
+includes/callxpad.h
 
 if GUI
 USEANT=1
