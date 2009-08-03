@@ -14,6 +14,7 @@
  */
 
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "CallScilab.h"
 #include "api_common.h"
@@ -124,6 +125,18 @@ int getVarType(int* _piAddress)
 		return 0;
 	}
 	return _piAddress[0];
+}
+
+int getVarTypeFromName(char* _pstName)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet)
+	{
+		return 0;
+	}
+	return getVarType(piAddr);
 }
 
 int isVarComplex(int* _piAddress)
