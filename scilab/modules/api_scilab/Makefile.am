@@ -21,7 +21,7 @@ libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(top_srcdir)/modules/call_scilab/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
--I$(top_srcdir)/modules/localization/includes
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/string/includes
 
