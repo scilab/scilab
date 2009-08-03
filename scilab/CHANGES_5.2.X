@@ -1,3 +1,7 @@
+Scicos:
+=======
+* bug 4156 fixed - scicos defines some temp. variables on stack without remove.
+               
                Changes between version 5.1.X and 5.2.0 of Scilab
                =================================================
 

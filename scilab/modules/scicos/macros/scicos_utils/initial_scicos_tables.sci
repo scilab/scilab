@@ -41,7 +41,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
           %scicos_lhb_list, %CmenuTypeOneVector,%scicos_gif, ...
           %scicos_contrib,%scicos_libs] = initial_scicos_tables()
 
-//**        This function is called from "scilab/scilab.star" at Scilab's startup
+//**        This function is called from "scicos" "scicos_simulate" "lincos" "steadycos"
 
   %scicos_display_mode = 0 ; //** obsolete: with the new graphics the display mode
                              //** is fixed

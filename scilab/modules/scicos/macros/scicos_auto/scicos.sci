@@ -62,6 +62,21 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   clear noguimode
   //**-----------------------------------------------------------------------------------------
 
+  // Define Scicos data tables ===========================================
+  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
+     ~isdef("%scicos_contrib") | ~isdef("%scicos_libs") ) then
+
+    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
+     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif, ...
+     %scicos_contrib,%scicos_libs] = initial_scicos_tables();
+     clear initial_scicos_tables
+   end
+  // =====================================================================
+
 
   //** -------------------- Check the recurring calling level of scicos ----------------------
   [%ljunk, %mac] = where() ; //** where I am ?
