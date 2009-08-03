@@ -47,6 +47,14 @@ API_SCILAB_IMPEXP int getVarAddressFromName(char* _pstName, int** _piAddress);
 API_SCILAB_IMPEXP int getVarType(int* _piAddress);
 
 /**
+* Get variable type  from the variable name
+* @param[in] _piAddress variable address
+* @return scilab variable type ( sci_matrix, sci_strings, ... )
+*/
+
+API_SCILAB_IMPEXP int getVarTypeFromName(char* _pstName);
+
+/**
  * Get complex information
  * @param[in] _piAddress variable address
  * @return if complex 1 otherwise 0

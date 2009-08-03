@@ -15,3 +15,7 @@ examples/*/*/Makelib.mak
 examples/*/*/loader.sce
 examples/gateway/libtutorial.c
 examples/*/*/gw_ex*.c
+#
+# generated linux files
+#
+src/scripts/Makefile.orig
