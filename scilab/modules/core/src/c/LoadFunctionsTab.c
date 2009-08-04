@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "machine.h"
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "hashtable_core.h"
 #include "getmodules.h"

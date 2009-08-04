@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="and_op" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>&amp;</refname>
+
+    <refpurpose>opérateur et logique</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>A&amp;B</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+   
+
+    <para><literal>A&amp;B</literal> renvoie la conjonction logique élément
+    par élément des matrices booléennes <literal>A</literal> et
+    <literal>B</literal> .<literal>A</literal> et <literal>B</literal> doivent
+    être des matrices de même dimensions ou l'une d'elle doit être un simple
+    booléen.</para>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">  
+      <member><link linkend="not">not</link></member>
+
+      <member><link linkend="and">and</link></member>
+
+      <member><link linkend="or_op">opérateur ou (|)</link></member>
+
+    </simplelist>
+  </refsection>
+</refentry>
