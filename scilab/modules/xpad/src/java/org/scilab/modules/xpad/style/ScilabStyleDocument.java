@@ -47,6 +47,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     };
 
     private boolean autoIndent = false;
+    private boolean autoColorize = true;
     private boolean colorizeInprogress = false;
     private boolean indentInprogress = false;
 
@@ -150,7 +151,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		int[] interval = new int[2];
 		interval = readText(start, end);
 		//Here start the text indentation
-		applyIndent2(interval[0], interval[1]);
+		applyIndent(interval[0], interval[1]);
 	    } catch (BadLocationException e) {
 		e.printStackTrace();
 	    }
@@ -158,7 +159,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	indentInprogress = false;
     }
 
-    public void applyIndent2(int start, int end) throws BadLocationException {
+    public void applyIndent(int start, int end) throws BadLocationException {
 
 	int startOffset;
 	int endOffset;
@@ -314,7 +315,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		if (autoIndent) {
 		    //indent();
 		}
-		colorize();
+		if (autoColorize) {
+		    colorize();
+		}
 	    }
 	});  
     }
@@ -327,7 +330,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		if (autoIndent) {
 		    //indent();
 		}
-		colorize(); 
+		if (autoColorize) {
+		    colorize(); 
+		}
 	    }
 	});      
     }
@@ -335,6 +340,21 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     public void setAutoIndent(boolean b) {
 	DEBUG("setAutoIndent("+b+")");
 	autoIndent = b;
+    }
+  
+    public boolean getAutoIndent() {
+	DEBUG("getAutoIndent("+autoIndent+")");
+	return autoIndent;
+    }
+    
+    public void setColorize(boolean b) {
+	DEBUG("setColorize("+b+")");
+	autoColorize = b;
+    }
+    
+    public boolean getColorize() {
+	DEBUG("setColorize("+autoColorize+")");
+	return autoColorize;
     }
 
     public UndoManager getUndoManager() {

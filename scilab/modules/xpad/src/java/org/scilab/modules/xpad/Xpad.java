@@ -79,6 +79,8 @@ import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
 public class Xpad extends SwingScilabTab implements Tab { 
 
     private final Window parentWindow;
@@ -262,6 +264,8 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     public void readFile(File f) {
+	boolean colorize = ((ScilabStyleDocument) textPane.getStyledDocument()).getColorize();
+	((ScilabStyleDocument) textPane.getStyledDocument()).setColorize(false);
 	try {
 	    Scanner scanner = new Scanner(f);
 	    StringBuilder contents = new StringBuilder();
@@ -272,6 +276,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    getTextPane().setText(contents.toString());
 	} catch (IOException ioex) {
 	    JOptionPane.showMessageDialog(this, ioex.getMessage());
+	}
+	finally {
+	    ((ScilabStyleDocument) textPane.getStyledDocument()).setColorize(colorize);
+	    if (colorize) {
+		((ScilabStyleDocument) textPane.getStyledDocument()).colorize();
+	    }
 	}
     }
 
