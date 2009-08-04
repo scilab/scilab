@@ -192,6 +192,31 @@ namespace ast
 		/*
 		a.b
 		*/
+		ExecVisitor *execL = new ast::ExecVisitor();
+		e.head_get()->accept(*execL);
+		types::InternalType *head = execL->result_get();
+		const symbol::Symbol &tail = dynamic_cast<const SimpleVar*>(e.tail_get())->name_get();
+		
+		types::ObjectMatrix *obj = dynamic_cast<types::ObjectMatrix*>(head);
+		if(obj != NULL)
+		{
+			types::InternalType *res = obj->get(tail.name_get());
+			if(res != NULL)
+			{
+				result_set(res);
+				res->DenyDelete();
+				if(e.is_verbose())
+				{
+					std::ostringstream ostr;
+					ostr << " = " << std::endl;
+					ostr << std::endl;
+					ostr << res->toString(75,10) << std::endl;
+					YaspWrite((char *) ostr.str().c_str());
+				}
+			}
+		}
+		
+		delete execL;
 	}
 
 	void ExecVisitor::visit(const CallExp &e)
@@ -224,14 +249,10 @@ namespace ast
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
 
-			//get symbol of variable
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
-			if(Var != NULL)
-			{
 				Double *pResult = NULL;
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
+				InternalType *pIT = execFunc->result_get();
 				int iArgDim				= (int)e.args_get().size();
 				bool bSeeAsVector	= iArgDim == 1;
 
@@ -332,12 +353,6 @@ namespace ast
 				  ostr <<  pResult->toString(10,75) << std::endl;
 				  YaspWrite((char *) ostr.str().c_str());
 				}
-
-			}
-			else
-			{
-				std::cout << "error Var == NULL\x0d\x0a";
-			}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
@@ -599,7 +614,108 @@ namespace ast
   
 	void ExecVisitor::visit (const ClassDec &e)
 	{
-		// TODO
+		types::Class *super = NULL;
+		types::Class *kls = NULL;
+		slots_t::const_iterator it;
+		const slots_t &slots = e.slots_get();
+		
+		if(e.super_get() != NULL)
+		{
+			types::ObjectMatrix *super_mat = dynamic_cast<types::ObjectMatrix*>(symbol::Context::getInstance()->get(*e.super_get()));
+			if(super_mat)
+				super = dynamic_cast<types::Class*>(super_mat->object_ref_get());
+		}
+		
+		kls = types::Class::create(e.name_get()->name_get(), super);
+		for(it = slots.begin(); it != slots.end(); ++it)
+		{
+			SlotDec *sdec = *it;
+			types::Slot::Visibility vis = types::Slot::PUBLIC;
+			std::list<Var*>::iterator vars_it;
+			std::list<Var*> vars = sdec->attributes_get().vars_get();
+			bool class_slot = false;
+			
+			PropertyDec *pdec = dynamic_cast<PropertyDec*>(sdec);
+			if(pdec != NULL)
+			{
+				Function *setter = NULL;
+				InternalType *def = NULL;
+				if(pdec->default_get())
+				{
+					ExecVisitor execMe;
+					pdec->default_get()->accept(execMe);
+					def = execMe.result_get();
+					def->DenyDelete();
+				}
+				
+				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
+				{
+					std::string attr = dynamic_cast<SimpleVar*>(*vars_it)->name_get().name_get();
+					if(attr == "public")
+						vis = types::Slot::PUBLIC;
+					else if(attr == "protected")
+						vis = types::Slot::PROTECTED;
+					else if(attr == "private")
+						vis = types::Slot::PRIVATE;
+					else if(attr == "ro")
+						setter = ro_setter;
+					else if(attr == "klass")
+						class_slot = true;
+				}
+				
+				if(class_slot)
+					kls->install_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+				else
+					kls->install_instance_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+			}
+			else
+			{
+				MethodDec *mdec = dynamic_cast<MethodDec*>(sdec);
+				bool getter = false;
+				bool setter = false;
+				
+				ExecVisitor execMe;
+				mdec->body_get().accept(execMe);
+				Function *code = dynamic_cast<Function*>(execMe.result_get());
+				
+				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
+				{
+					std::string attr = dynamic_cast<SimpleVar*>(*vars_it)->name_get().name_get();
+					if(attr == "public")
+						vis = types::Slot::PUBLIC;
+					else if(attr == "protected")
+						vis = types::Slot::PROTECTED;
+					else if(attr == "private")
+						vis = types::Slot::PRIVATE;
+					else if(attr == "getter")
+						getter = true;
+					else if(attr == "setter")
+						setter = true;
+					else if(attr == "klass")
+						class_slot = true;
+				}
+				
+				if(getter || setter)
+				{
+					PropertySlot *slot = dynamic_cast<PropertySlot*>(kls->resolv_instance_slot(sdec->name_get().name_get()));
+					if(getter)
+						slot->getter = code;
+					else
+						slot->setter = code;
+				}
+				else
+				{
+					if(class_slot)
+						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
+					else
+						kls->install_method(sdec->name_get().name_get(), vis, code);
+				}
+			}
+		}
+		
+		ObjectMatrix *res = types::ObjectMatrix::create_standard_ref(kls);
+		result_set(res);
+		symbol::Context::getInstance()->put(symbol::Symbol(*e.name_get()), *res);
 	}
   
 	void ExecVisitor::visit (const PropertyDec &e)

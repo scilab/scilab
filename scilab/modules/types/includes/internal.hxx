@@ -47,7 +47,8 @@ namespace types
 			RealImplicitList,
 			RealInternal,
 			RealFunction,
-			RealPoly
+			RealPoly,
+			RealObject
     };
 
     virtual void whoAmI(void) { std::cout << "types::Inernal"; }
@@ -81,6 +82,10 @@ namespace types
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
     virtual Function* getAsFunction(void) { return NULL; }
+    
+    /* Object */
+    bool isObject(void) { return (getType() == RealObject); }
+    virtual ObjectMatrix* getAsObject(void) { return NULL; }
 
     /* ImplicitList */
 		bool isList(void) { return (getType() == RealImplicitList); }

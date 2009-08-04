@@ -24,6 +24,7 @@
 #include "function.hxx"
 #include "poly.hxx"
 #include "matrixpoly.hxx"
+#include "object.hxx"
 
 
 #endif /* !ALL_TYPES_HH */
