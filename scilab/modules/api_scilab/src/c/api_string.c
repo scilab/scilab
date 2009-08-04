@@ -228,8 +228,6 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piw
 
 	if (ierr == 0)
 	{
-		int i = 0;
-
 		if (_pwstStrings == NULL)
 		{
 			for(i = 0; i < (*_piRows * *_piCols); i++)
