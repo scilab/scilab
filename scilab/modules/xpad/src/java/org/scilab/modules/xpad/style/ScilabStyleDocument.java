@@ -53,11 +53,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
     private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\"};
     private final String[] controls = {"if ", "while ", "for ", " then", "else", "do", "end", "function", "endfunction"};
-    private final String[] strings = {"\".*\"", "'.*'", "'.*\"", "\".*'"};
+    private final String[] strings = {"(\"|')[^{\n}]*?(\"|')"};
     private final String[] bools = {"%T", "%F", "%t", "%f"};
     private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
-    private final String[] ifControl = {"(if|while) .*?(\n|,|;).*?end"};
-    private final String[] whileControl = {"(if|while) .*?(\n|,|;).*\nend"};
 
     //Warning operators should be define in this order!
     private final String inInstruction = "elseif|else|if|while|for|do|function";
@@ -101,16 +99,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	Style commentStyle = this.addStyle("Comment", defaultStyle);
 	StyleConstants.setBold(commentStyle, true);
 	StyleConstants.setForeground(commentStyle, Color.GREEN);
-
-	Style ifControlStyle = this.addStyle("IfControl", controlStyle);
-	StyleConstants.setBackground(ifControlStyle, Color.PINK);
-	//StyleConstants.setLeftIndent(ifControlStyle, 20);
-
-	Style whileControlStyle = this.addStyle("WhileControl", controlStyle);
-	StyleConstants.setBackground(whileControlStyle, Color.ORANGE);
-	StyleConstants.setLeftIndent(whileControlStyle, 40);
-
-	Style indentStyle = this.addStyle("Indent", defaultStyle);
     }
 
     private void resetStyle() {
@@ -132,9 +120,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	    while(matcher.find())
 	    {
-		//DEBUG("Apply Style : "+style.getName());
-		//DEBUG("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start()));
-		//DEBUG("Text : "+this.getText(matcher.start(), matcher.end()-matcher.start()));
+		DEBUG("Apply Style : "+style.getName());
+		DEBUG("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start()));
+		DEBUG("Text : "+this.getText(matcher.start(), matcher.end()-matcher.start()));
 		this.setCharacterAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
 		this.setParagraphAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
 
@@ -260,8 +248,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		applyStyle(strings, getStyle("String"));
 		applyStyle(bools, getStyle("Bool"));
 		applyStyle(comments, getStyle("Comment"));
-		//applyStyle(ifControl, getStyle("IfControl"));
-		//applyStyle(whileControl, getStyle("WhileControl"));
 	    } catch (BadLocationException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
