@@ -27,7 +27,7 @@ function SaveasPalette_()
     pal_mode = %t
     ierr=execstr('blk_tmp=PAL_f(''define'')','errcatch')
     if ierr<>0 then
-      message('Block palette not found.')
+      messagebox('Block palette not found.','modal')
       clear numk
       return
     end

@@ -1088,9 +1088,9 @@ for k=2:nx
   end
 end
 if obsolete then
-  message(['Diagram contains obsolete signed blocks sum'
+  messagebox(['Diagram contains obsolete signed blocks sum'
       'They are drawn in brown, they work as before but,'
-      'please replace them with the new block sum'])
+      'please replace them with the new block sum'],'modal')
 end  
 
 endfunction

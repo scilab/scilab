@@ -31,7 +31,7 @@ function fname=do_saveblockgui(o)
   [u,err]=file('open',fname,'unknown')
 
   if err<>0 then
-    message(path+': Directory or file write access denied')
+    messagebox(path+': Directory or file write access denied','modal')
     return
   end
 
@@ -79,7 +79,7 @@ function fname=do_saveblockgui(o)
 	  '          break'
 	  '	  end'
 	  '     else'
-	  '       message(lasterror())'
+	  '       messagebox(lasterror(),''modal'')'
 	  '	  ok=%f'
 	  '     end'
 	  '  end']
@@ -106,7 +106,7 @@ function fname=do_saveblockgui(o)
 
   ierr=execstr('write(u,txt,''(a)'')','errcatch','n')
   if ierr<>0 then 
-    message('Impossible to write in this file; possibly locked.')
+    messagebox('Impossible to write in this file; possibly locked.','modal')
     file('close',u)
   fname=emptystr()
   end

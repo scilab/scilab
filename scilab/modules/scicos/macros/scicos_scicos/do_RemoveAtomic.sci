@@ -37,10 +37,10 @@ if typeof(o)=='Block' then
     needcompile=4;
    // needcompile=resume(needcompile)
   else
-    message('Remove Atomic can only be affected to Atomic Super Blocks.');ok=%f; return
+    messagebox('Remove Atomic can only be affected to Atomic Super Blocks.','modal');ok=%f; return
   end
 else
-  message('Remove Atomic can only be affected to Atomic Super Blocks.');ok=%f; return 
+  messagebox('Remove Atomic can only be affected to Atomic Super Blocks.','modal');ok=%f; return 
 end
 endfunction 
  

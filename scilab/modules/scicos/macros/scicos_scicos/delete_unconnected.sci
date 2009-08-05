@@ -105,8 +105,8 @@ function scs_m=delete_unconnected(scs_m);
     //** hilite entities k
      hilite_obj(k)
     //** display an error message
-    message(['Hilited block(s) or link(s) are ignored because of'
-            'undefined input(s)'])
+    messagebox(['Hilited block(s) or link(s) are ignored because of'
+            'undefined input(s)'],'modal')
     //** unhilite entities k
     unhilite_obj(k)
    end

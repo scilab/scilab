@@ -34,7 +34,7 @@ function scs_m = do_ident(scs_m)
 
   //** Filter out the "mutiple object selected" case
   if size(k,'*')>1 | %win<>Select(1,2) then
-    message("Only one block can be selected in current window for this operation.")
+    messagebox("Only one block can be selected in current window for this operation.","modal")
     Cmenu=[]; %pt=[]; return
   end
 
@@ -103,7 +103,7 @@ function scs_m = do_ident(scs_m)
     end
   else
   //** It is NOT a Block AND it is NOT a Link: for any other object type
-    message("It is impossible to set ID for this type of object")
+    messagebox("It is impossible to set ID for this type of object",'modal')
   end
   //
 

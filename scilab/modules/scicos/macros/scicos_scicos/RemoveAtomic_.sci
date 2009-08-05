@@ -31,7 +31,7 @@ end
 i=Select(1)
 o=scs_m.objs(i)
 [o,needcompile,ok]=do_RemoveAtomic(o)
-if ~ok then message('Error in removing atomic');return; end
+if ~ok then messagebox('Error in removing atomic','modal');return; end
 scs_m = update_redraw_obj(scs_m,list('objs',i),o)
 end
 endfunction

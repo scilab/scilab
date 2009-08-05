@@ -90,8 +90,8 @@ if size(unique(offset1),'*')==1 then  // case of one offset
   v=freq1;
   v=v(find(v<>0));
   min_v=min(v);max_v=max(v);
-  if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..
-	  'the clocks could not be synchronized']);
+  if (max_v/min_v)>1e5 then messagebox(['The difference between the frequencies is very large';..
+	  'the clocks could not be synchronized'],'modal');
     ok=%f;Ts=[];bllst=[];corinv=list();indout=[];
     return; 
   end
@@ -101,8 +101,8 @@ else // case of multiple offset
   v=[freq1;offset1]
   v=v(find(v<>0));
   min_v=min(v);max_v=max(v);
-  if (max_v/min_v)>1e5 then message(['The difference between the frequencies is very large';..
-	  'the clocks could not be synchronized']);
+  if (max_v/min_v)>1e5 then messagebox(['The difference between the frequencies is very large';..
+	  'the clocks could not be synchronized'],'modal');
     ok=%f;Ts=[];bllst=[];corinv=list();indout=[];
     return; 
   end

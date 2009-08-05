@@ -54,7 +54,7 @@ while %t
       n=strindex(txtnew(i),'.cosf')
       if n==[] then n=strindex(txtnew(i),'.cos');end
       if n==[] then
-        message('All files must end with .cos or .cosf')
+        messagebox('All files must end with .cos or .cosf','modal')
         scicos_palnew=[]
         break
       end

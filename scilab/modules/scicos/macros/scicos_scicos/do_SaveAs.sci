@@ -55,7 +55,7 @@ function [scs_m, edited] = do_SaveAs()
     ok = %t
     frmt = 'xmlformatted'
   else
-    message("Only *.cos binary or cosf ascii files allowed");
+    messagebox("Only *.cos binary or cosf ascii files allowed",'modal');
     return //** EXIT Point 
   end
 
@@ -81,7 +81,7 @@ function [scs_m, edited] = do_SaveAs()
     [u,err] = mopen(fname,'wb')
   end
   if err<>0 then
-    message("File or directory write access denied")
+    messagebox("File or directory write access denied",'modal')
     return
   end
 
@@ -99,7 +99,7 @@ function [scs_m, edited] = do_SaveAs()
   elseif ext=="xml" then
     [ok,t]=cos2xml(scs_m,'',%f)
     if ~ok then 
-      message("Error in xml format")
+      messagebox("Error in xml format",'modal')
       file('close',u)
       return
     end
@@ -108,7 +108,7 @@ function [scs_m, edited] = do_SaveAs()
   
     ierr = cos2cosf(u,do_purge(scs_m));
     if ierr<>0 then
-      message("Directory write access denied")
+      messagebox("Directory write access denied",'modal')
       file('close',u) ;
       return 
     end

@@ -14,9 +14,9 @@ function scicos_demonstration(scs_m)
 
    if Scicos_is_active then
 
-      message(["You can run ONLY one Scicos demo at time.";..
+      messagebox(["You can run ONLY one Scicos demo at time.";..
                "Please close any previous Scicos diagram";..
-               "before choose a new demo. "]);
+               "before choose a new demo. "],"modal");
       return
    else
       //** with no Scicos previous active, you can start Scicos 

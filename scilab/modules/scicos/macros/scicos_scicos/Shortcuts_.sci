@@ -48,13 +48,13 @@ if Cmenu<>'Quit' then
       if txt<>[] then 
 	if txt<>emptystr() then txt=part(txt(1),1);end
 	if find(txt==%scicos_short(:,1))<>[] then
-	  message(txt+_(' is already in use for ')+..
-	      %scicos_short( find(txt==%scicos_short(:,1)),2))
+	  messagebox(txt+_(' is already in use for ')+ ..
+	      %scicos_short( find(txt==%scicos_short(:,1)),2), 'modal')
 	elseif txt==emptystr() then
 	  %scicos_short=[%scicos_short(1:%koko-1,:);
 	      %scicos_short(%koko+1:$,:)];%okay=%t;
 	elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) then
-	  message(txt+_(' is not a letter'))
+	  messagebox(txt+_(' is not a letter'), 'modal')
 	else
 	  %scicos_short(%koko,1)=txt;%okay=%t;
 	end
@@ -67,10 +67,10 @@ if Cmenu<>'Quit' then
 	if txt<>[] then 
 	  txt=part(txt(1),1)
 	  if find(txt==%scicos_short(:,1))<>[] then
-	    message(txt+_(' is already in use for ')+..
-		%scicos_short( find(txt==%scicos_short(:,1)),2))
+	    messagebox(txt+_(' is already in use for ')+..
+		%scicos_short( find(txt==%scicos_short(:,1)),2) ,'modal')
 	  elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) then
-	    message(txt+_(' is not a letter'))
+	    messagebox(txt+_(' is not a letter'),'modal')
 	  else
 	    %scicos_short=[%scicos_short;..
 		[part(txt(1),1),%cor_item_exec(%koko,1)]];
@@ -81,7 +81,7 @@ if Cmenu<>'Quit' then
     end 
     if %okay then 
       if execstr('save(''.scicos_short'',%scicos_short)','errcatch') <>0 then
-	message(msprintf(_('Cannot save ""%s"" in current directory'),'.scicos_short'))
+	messagebox(msprintf(_('Cannot save ""%s"" in current directory'),'.scicos_short'),'modal')
       end
       %tableau=emptystr([1:100]);
       for %Y=1:size(%scicos_short,1)

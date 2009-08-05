@@ -273,14 +273,14 @@ while %t do
     clear %vv
   end
   if %noooo>0 then 
-    message(['answer given for  '+%lables(%noooo);
+    messagebox(['answer given for  '+%lables(%noooo);
              'has invalid dimension: ';
-             'waiting for dimension  '+%ssss])
+             'waiting for dimension  '+%ssss],'modal')
     %ini=%str
     %ok=%f;break
   elseif %noooo<0 then
-    message(['answer given for  '+%lables(-%noooo);
-             'has incorrect type :'+ %typ(-2*%noooo-1)])
+    messagebox(['answer given for  '+%lables(-%noooo);
+             'has incorrect type :'+ %typ(-2*%noooo-1)],'modal')
     %ini=%str
     %ok=%f;break
   else

@@ -142,8 +142,8 @@ function gh_blk = drawobj(o, gh_window)
     //** Block rotation end 
 
     if ierr<>0 then 
-      message(['Problem loading block '+o.gui'; lasterror();
-	       'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
+      messagebox(['Problem loading block '+o.gui'; lasterror();
+	       'Use Activate_Scilab_Window and redefine it in Scilab.'],'modal' ) ;
       gh_blk = [];
     end
     

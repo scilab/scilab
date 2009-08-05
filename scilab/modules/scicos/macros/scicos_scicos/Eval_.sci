@@ -44,7 +44,7 @@ function Eval_()
       if needcompile<>4&size(%cpr)>0 then %state0=%cpr.state,end
       alreadyran=%f
     else
-      message(['Incorrect context definition, ';lasterror()] )
+      messagebox(['Incorrect context definition, ';lasterror()],'modal' )
     end
 
 endfunction

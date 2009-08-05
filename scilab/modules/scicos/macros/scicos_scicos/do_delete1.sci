@@ -257,7 +257,7 @@ while K<>[] do
 //** ---------------------------  in all the other possibles cases -----------------------
     else
 
-      message("This object can''t be deleted");
+      messagebox("This object can''t be deleted","modal");
 
     end //** link / Block / Text / Deleted / other...
 

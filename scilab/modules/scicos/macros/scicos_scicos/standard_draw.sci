@@ -177,7 +177,7 @@ function standard_draw (o, frame, draw_ports, up)
   deff('ierr=exec_gr_i(gr_i)','ierr=execstr(gr_i,''errcatch'',''n'');') ; //** on line function definition
   //** Check of the graphics object has generated any error
   if exec_gr_i(gr_i)<>0 then
-    message(['Error in Icon defintion'; lasterror()])
+    messagebox(['Error in Icon defintion'; lasterror()],'modal')
   end
 //** -----------------------------------------------------------------------------
 

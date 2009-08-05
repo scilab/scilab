@@ -96,7 +96,7 @@ function path=save_super(scs_m,fpath,gr_i,sz)
        '      %exit=resume(%f)'
        '    else'
        '      %r=2'
-       '      %r=message([''SUPER BLOCK needs to be edited;'';''Edit or exit by removing all edition''],[''Edit'';''Exit''])'
+       '      %r=messagebox([''SUPER BLOCK needs to be edited;'';''Edit or exit by removing all edition''],''modal'',[''Edit'';''Exit''])'
        '      if %r==2 then typ=list(),%exit=resume(%t),end'
        '    end'
        '  end']
@@ -107,7 +107,7 @@ function path=save_super(scs_m,fpath,gr_i,sz)
   path=stripblanks(fpath)+'/'+nam+'.sci'
   [u,err]=file('open',path,'unknown')
   if err<>0 then
-    message(path+': Directory or file write access denied')
+    messagebox(path+': Directory or file write access denied','modal')
     return
   end
   write(u,txt,'(a)')

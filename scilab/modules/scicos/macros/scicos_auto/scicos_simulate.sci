@@ -190,7 +190,7 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   if scicos_ver <> current_version then
     ierr = execstr('scs_m = do_version(scs_m, scicos_ver)','errcatch')
     if ierr <> 0 then
-      message("Can''t convert old diagram (problem in version)")
+      messagebox("Can''t convert old diagram (problem in version)","modal")
       return
     end
   end

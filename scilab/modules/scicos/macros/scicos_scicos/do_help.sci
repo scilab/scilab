@@ -151,7 +151,7 @@ end //** of the No Selection / Selection case
       end
     end
   
-    message(mess); //** show the message   
+    messagebox(mess,'modal'); //** show the message   
   
   end 
   

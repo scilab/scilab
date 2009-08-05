@@ -34,7 +34,7 @@ function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
    if strindex(libss,'''')<>[] | strindex(libss,'""')<>[] then
      ierr=execstr('libss=evstr(libss)','errcatch')
      if ierr<>0  then
-        message(['Can''t solve other files to link'])
+        messagebox(['Can''t solve other files to link'],"modal")
 	chdir(cur_wd);
         ok=%f;
       end
@@ -44,7 +44,7 @@ function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
     for i=1:size(libss,'*')
        lib_dll=libss(i) + getdynlibext();
        ifexst=fileinfo(lib_dll)
-       if ifexst==[] then message ('the library '+lib_dll+' doesn''t exists');ok=%f;end
+       if ifexst==[] then messagebox ('the library '+lib_dll+' doesn''t exists','modal');ok=%f;end
     end
   end
   chdir(cur_wd);

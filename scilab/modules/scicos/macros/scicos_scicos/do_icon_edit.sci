@@ -31,7 +31,7 @@ function scs_m = do_icon_edit(%pt,scs_m)
     K=Select(:,1)';%pt=[];
   end
   if size(K,'*')>1|%win<>Select(1,2) then
-    message(_("Only one block can be selected in current window for this operation."))
+    messagebox(_("Only one block can be selected in current window for this operation."),'modal')
     Cmenu=[];%pt=[];return
   end    
   
@@ -64,9 +64,9 @@ function scs_m = do_icon_edit(%pt,scs_m)
   //instr=strsubst(gr_i(1),'xstringb','xstringb3')
   instr=gr_i(1)
   if execstr(instr,"errcatch")<>0 then
-    message(msprintf(_("The current icon depends on block parameter\n"+..
+    messagebox(msprintf(_("The current icon depends on block parameter\n"+..
 	     "part of the icon cannot be imported here\n"+..
-	     "Use icon menu to check the content")))
+	     "Use icon menu to check the content")),'modal')
   end
   clearfun('xstringb3')
   ///remove unused default menus
