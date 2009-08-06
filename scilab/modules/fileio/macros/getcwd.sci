@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,16 +7,9 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function x = fftshift(x,job)
-  if argn(2)<2 then job='all',end
-  deff('sel=fun(sk)','c=ceil(sk/2);sel=[c+1:sk,1:c]')
-  if job=='r' then job=1,elseif job=='c' then job=2,end
-  ind=list()
-  if job=='all' then
-    for sk=size(x),ind($+1)=fun(sk),end
-  else
-    for sk=size(x),ind($+1)=:,end;
-    ind(job)=fun(size(x,job))
-  end
-  x=x(ind(:))
+//------------------------------------------------------------------------------
+function path_getcwd = getcwd()
+  warnobsolete("pwd","5.4");
+  path_getcwd = pwd();
 endfunction
+//------------------------------------------------------------------------------

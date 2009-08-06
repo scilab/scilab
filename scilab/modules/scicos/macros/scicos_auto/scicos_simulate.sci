@@ -196,7 +196,7 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   end
 
   //prepare from and to workspace stuff
-  curdir = getcwd()
+  curdir = pwd()
   chdir(TMPDIR)
   mkdir('Workspace')
   chdir('Workspace')

@@ -1869,18 +1869,13 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   //***********************************
   okk=%f;
   rdnom='foo';
-  rpat=getcwd();
+  rpat=pwd();
   if %scicos_libs<>[] then
     libs=sci2exp(%scicos_libs(:)',0);
   else
     libs=''
   end
-  //## disable the 'ugly' / in windaube world
-  if MSDOS then
-    label1=[hname;getcwd()+'\'+hname;libs];
-  else
-    label1=[hname;getcwd()+'/'+hname;libs];
-  end
+  label1=[hname;pwd()+filesep()+hname;libs];
 
   while %t do //loop while the user answer are not ok
     ok=%t  // to avoid infinite loop

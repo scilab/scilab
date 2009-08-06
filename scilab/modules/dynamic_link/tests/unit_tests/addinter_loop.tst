@@ -25,7 +25,7 @@ lines(0);
 loop_max = 77; // may be more on linux
 //================================================
 ulink();
-curPath = getcwd();
+curPath = pwd();
 chdir(TMPDIR); 
 //================================================
 // creates C functions

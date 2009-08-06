@@ -9,14 +9,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "gw_core.h"
+#include "gw_fileio.h"
 #include "stack-c.h"
 #include "scicurdir.h"
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcwd(char *fname,unsigned long fname_len)
+int sci_pwd(char *fname,unsigned long fname_len)
 {
 	int ierr = 0;
 	int lpath = 0;

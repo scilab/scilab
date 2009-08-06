@@ -115,7 +115,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			{
 				if ( htable[idx].used)
 				{
-					if (Equal_id(key, htable[idx].entry.key) == 0)
+					if (Equal_id(keyToSearch, htable[idx].entry.key) == TRUE)
 					{
 						*scilab_funptr = htable[idx].entry.data;
 						return TRUE;
@@ -173,7 +173,9 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			unsigned int idx = 0;
 			for (idx = 0; idx < hashtableSize; idx++)
 			{
-				if ( htable[idx].used && htable[idx].entry.data == *scilab_funptr ) 
+				if ( (htable[idx].used) &&
+					 (htable[idx].entry.data == *scilab_funptr) &&
+					 (Equal_id(key, htable[idx].entry.key) == TRUE) )
 				{
 					int i = 0;
 					htable[idx].used = 0;
@@ -196,9 +198,12 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 /*--------------------------------------------------------------------------*/  
 static BOOL Equal_id(int *x, int *y)
 {
-	int i;
-	for (i = 0; i < nsiz ; i++ ) if ( x[i] != y[i] ) return TRUE;
-	return FALSE;
+	int i = 0;
+	for (i = 0; i < nsiz ; i++ )
+	{
+		if ( x[i] != y[i] ) return FALSE;
+	}
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/  
 char **GetFunctionsList(int *sizeList)

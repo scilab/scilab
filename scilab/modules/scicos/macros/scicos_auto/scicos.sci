@@ -99,7 +99,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
     //**---- prepare from and to workspace stuff
-    curdir = getcwd() ;
+    curdir = pwd() ;
     chdir(TMPDIR)     ;
     mkdir("Workspace");
     chdir("Workspace");

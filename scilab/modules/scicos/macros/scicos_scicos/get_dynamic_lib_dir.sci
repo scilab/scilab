@@ -21,7 +21,7 @@
 function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
 // Copyright INRIA
   cancel=%f
-  cur_wd=getcwd();
+  cur_wd = pwd();
   chdir(TMPDIR);
   mputl(tt,funam+'.'+flag);
   libss='';

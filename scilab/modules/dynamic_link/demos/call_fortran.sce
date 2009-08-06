@@ -22,7 +22,7 @@ foof = ['      subroutine foof(a,b,c)';
 // we use TMPDIR for compilation 
 	
 if ~c_link('foof') then
-  path = getcwd(); 
+  path = pwd(); 
   chdir(TMPDIR); 
   mputl(foof,'foof.f');
   

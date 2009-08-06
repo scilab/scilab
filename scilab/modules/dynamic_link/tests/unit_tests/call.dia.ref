@@ -15,7 +15,7 @@ foo=['void foo(double *a,double *b,double *c)';
 // we use TMPDIR for compilation
 	
 if ~c_link('foo') then
-  curPath = getcwd();
+  curPath = pwd();
   chdir(TMPDIR);
   mputl(foo,'foo.c');
   ilib_for_link(['foo'],'foo.o',[],"c");

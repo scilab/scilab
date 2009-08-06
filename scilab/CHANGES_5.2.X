@@ -69,7 +69,7 @@ Core functions:
      + type
      + typename
      
- - sethomedirectory is obsolete. 
+ - sethomedirectory is obsolete (see home). 
 
 fileio functions:
 =================
@@ -82,7 +82,8 @@ fileio functions:
   
   - pathconvert : If the flagtrail argument is set to FALSE and the trailing separator
                   of the path is removed (if present of course). See Bug 4468.
-
+                  
+  - getcwd is obsolete (see pwd). 
 Dynamic link:
 =============
 

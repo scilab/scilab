@@ -83,7 +83,7 @@ function ok = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cfl
  
   //** Building the dynamic library for the generated block simulation function
   //** save path 
-  oldpath = getcwd();
+  oldpath = pwd();
   chdir(rpat)
   cflags = strcat("-I"+scicos_include_paths(),' ')+' '+cflags
   mprintf(_('Creating dynamic lib for the block simulation function.\n'))
