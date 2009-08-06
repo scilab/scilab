@@ -112,8 +112,9 @@ libscixcos_la_DEPENDENCIES =  \
 am__objects_2 =
 am__objects_3 = libscixcos_la-gw_xcos.lo
 am__objects_4 = libscixcos_la-sci_Xcos.lo
+am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_2)
+	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 libscixcos_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -452,8 +453,11 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 XCOS_C_SOURCES = 
-XCOS_CPP_SOURCES = 
-GIWS_WRAPPERS = 
+XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
+			src/jni/Xcos.cpp \
+			src/jni/Xcos.hxx
+
+GIWS_WRAPPERS = Xcos.giws.xml
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_Xcos.cpp
@@ -466,6 +470,7 @@ libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
@@ -500,7 +505,8 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : include files ####
 libscixcos_la_includedir = $(pkgincludedir)/xcos
 libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h
+includes/dynlib_xcos.h \
+includes/callxcos.h
 
 @GUI_TRUE@USEANT = 1
 all: $(BUILT_SOURCES)
@@ -576,6 +582,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Xcos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-callxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 
@@ -641,6 +649,20 @@ libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_Xcos.cpp' object='libscixcos_la-sci_Xcos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
+
+libscixcos_la-callxcos.lo: src/cpp/callxcos.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-callxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-callxcos.Tpo -c -o libscixcos_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscixcos_la-callxcos.Tpo $(DEPDIR)/libscixcos_la-callxcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/callxcos.cpp' object='libscixcos_la-callxcos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
+
+libscixcos_la-Xcos.lo: src/jni/Xcos.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-Xcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-Xcos.Tpo -c -o libscixcos_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscixcos_la-Xcos.Tpo $(DEPDIR)/libscixcos_la-Xcos.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Xcos.cpp' object='libscixcos_la-Xcos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

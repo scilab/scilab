@@ -27,9 +27,11 @@ include $(top_srcdir)/Makefile.incl.am
 
 XCOS_C_SOURCES = 
 
-XCOS_CPP_SOURCES = 
+XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
+			src/jni/Xcos.cpp \
+			src/jni/Xcos.hxx
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = Xcos.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -49,6 +51,7 @@ libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/jni/ \
 			-I$(srcdir)/src/cpp/ \
 			-I$(srcdir)/src/c/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
@@ -93,7 +96,8 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : include files ####
 libscixcos_la_includedir=$(pkgincludedir)/xcos
 libscixcos_la_include_HEADERS = includes/gw_xcos.h \
-includes/dynlib_xcos.h
+includes/dynlib_xcos.h \
+includes/callxcos.h
 
 if GUI
 USEANT=1
