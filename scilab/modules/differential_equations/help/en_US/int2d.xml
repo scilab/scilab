@@ -11,151 +11,207 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="int2d">
+<refentry version="5.0-subset Scilab" xml:id="int2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>int2d</refname>
-    <refpurpose> definite 2D integral by quadrature and cubature method</refpurpose>
+
+    <refpurpose>definite 2D integral by quadrature and cubature
+    method</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>X</term>
+
         <listitem>
-          <para>a 3 by N array containing the abscissae of the vertices   of the N triangles.</para>
+          <para>a 3 by N array containing the abscissae of the vertices of the
+          N triangles.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Y</term>
+
         <listitem>
-          <para>a 3 by N array containing the ordinates of the vertices   of the N triangles.</para>
+          <para>a 3 by N array containing the ordinates of the vertices of the
+          N triangles.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
-          <para>external (function or list or string) defining the integrand <literal>f(u,v)</literal>;</para>
+          <para>external (function or list or string) defining the integrand
+          <literal>f(u,v)</literal>;</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>params</term>
+
         <listitem>
-          <para>real vector <literal>[tol, iclose, maxtri, mevals, iflag]</literal>. default value is <literal>[1.d-10, 1, 50, 4000, 1]</literal>.</para>
+          <para>real vector <literal>[tol, iclose, maxtri, mevals,
+          iflag]</literal>. default value is <literal>[1.d-10, 1, 50, 4000,
+          1]</literal>.</para>
+
           <variablelist>
             <varlistentry>
               <term>tol</term>
+
               <listitem>
-                <para>:the desired bound on the error.  If <literal>iflag=0</literal>, <literal>tol</literal> is interpreted as a bound on the relative error; if <literal>iflag=</literal>1, the bound is on the absolute error.</para>
+                <para>the desired bound on the error. If
+                <literal>iflag=0</literal>, <literal>tol</literal> is
+                interpreted as a bound on the relative error; if
+                <literal>iflag=</literal>1, the bound is on the absolute
+                error.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>iclose</term>
+
               <listitem>
-                <para>:an integer parameter that determines the selection of LQM0 or LQM1 methods.  If <literal>iclose=1</literal> then LQM1 is used. Any other value of <literal>iclose</literal> causes LQM0 to be used. LQM0 uses function values only at interior points of the triangle.  LQM1 is usually more accurate than LQM0 but involves evaluating the integrand at more points including some on the boundary of the triangle.  It will usually be better to use LQM1 unless the integrand has singularities on the boundary of the triangle.</para>
+                <para>an integer parameter that determines the selection of
+                LQM0 or LQM1 methods. If <literal>iclose=1</literal> then LQM1
+                is used. Any other value of <literal>iclose</literal> causes
+                LQM0 to be used. LQM0 uses function values only at interior
+                points of the triangle. LQM1 is usually more accurate than
+                LQM0 but involves evaluating the integrand at more points
+                including some on the boundary of the triangle. It will
+                usually be better to use LQM1 unless the integrand has
+                singularities on the boundary of the triangle.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>maxtri</term>
+
               <listitem>
-                <para>:the maximum number of triangles in the final triangulation of the region</para>
+                <para>the maximum number of triangles in the final
+                triangulation of the region</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>mevals</term>
+
               <listitem>
-                <para>the maximum number of function evaluations to be allowed.  This number will be effective in limiting the computation only if it is less than 94*<literal>maxtri</literal>  when LQM1 is specified or 56*<literal>maxtri</literal> when LQM0 is specified.</para>
+                <para>the maximum number of function evaluations to be
+                allowed. This number will be effective in limiting the
+                computation only if it is less than
+                94*<literal>maxtri</literal> when LQM1 is specified or
+                56*<literal>maxtri</literal> when LQM0 is specified.</para>
               </listitem>
             </varlistentry>
+
             <varlistentry>
               <term>iflag</term>
+
               <listitem>
-                <para>:</para>
+                <para></para>
               </listitem>
             </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>I</term>
+
         <listitem>
           <para>the integral value</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>err</term>
+
         <listitem>
           <para>the estimated error</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
+
     <para><literal>int2d</literal> computes the two-dimensional integral of a
-    function <literal>f</literal> over a region consisting of <literal>n</literal> triangles.
-    A total error estimate is obtained and compared with a
-    tolerance - <literal>tol</literal> - that is provided as input to the subroutine.
-    The error tolerance is treated as either relative or absolute
-    depending on the input value of <literal>iflag</literal>.  A 'Local Quadrature
-    Module' is applied to each input triangle and estimates of the
-    total integral and the total error are computed.  The local
-    quadrature module is either subroutine LQM0 or subroutine
-    LQM1 and the choice between them is determined by the
-    value of the input variable <literal>iclose</literal>.</para>
-    <para>
-    If the total error estimate exceeds the tolerance, the triangle
-    with the largest absolute error is divided into two triangles
-    by a median to its longest side.  The local quadrature module
-    is then applied to each of the subtriangles to obtain new
-    estimates of the integral and the error.  This process is
-    repeated until either (1) the error tolerance is satisfied,
-    (2) the number of triangles generated exceeds the input
-    parameter <literal>maxtri</literal>, (3) the number of integrand evaluations
-    exceeds the input parameter <literal>mevals</literal>, or (4) the function
-    senses that roundoff error is beginning to contaminate
-    the result.</para>
+    function <literal>f</literal> over a region consisting of
+    <literal>n</literal> triangles. A total error estimate is obtained and
+    compared with a tolerance - <literal>tol</literal> - that is provided as
+    input to the subroutine. The error tolerance is treated as either relative
+    or absolute depending on the input value of <literal>iflag</literal>. A
+    'Local Quadrature Module' is applied to each input triangle and estimates
+    of the total integral and the total error are computed. The local
+    quadrature module is either subroutine LQM0 or subroutine LQM1 and the
+    choice between them is determined by the value of the input variable
+    <literal>iclose</literal>.</para>
+
+    <para>If the total error estimate exceeds the tolerance, the triangle with
+    the largest absolute error is divided into two triangles by a median to
+    its longest side. The local quadrature module is then applied to each of
+    the subtriangles to obtain new estimates of the integral and the error.
+    This process is repeated until either (1) the error tolerance is
+    satisfied, (2) the number of triangles generated exceeds the input
+    parameter <literal>maxtri</literal>, (3) the number of integrand
+    evaluations exceeds the input parameter <literal>mevals</literal>, or (4)
+    the function senses that roundoff error is beginning to contaminate the
+    result.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')
 [I,e]=int2d(X,Y,f)
 // computes the integrand over the square [0 1]x[0 1]
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="intc">intc</link>
-      </member>
-      <member>
-        <link linkend="intl">intl</link>
-      </member>
-      <member>
-        <link linkend="int3d">int3d</link>
-      </member>
-      <member>
-        <link linkend="intg">intg</link>
-      </member>
-      <member>
-        <link linkend="mesh2d">mesh2d</link>
-      </member>
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="int3d">int3d</link></member>
+
+      <member><link linkend="intg">intg</link></member>
+
+      <member><link linkend="mesh2d">mesh2d</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
-    <para>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S., Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</para>
+
+    <para>Fortran routine twodq Authors: Kahaner,D.K.,N.B.S.,
+    Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. of UTAH</para>
   </refsection>
 </refentry>

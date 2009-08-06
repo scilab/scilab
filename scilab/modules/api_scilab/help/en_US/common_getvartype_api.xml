@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common getvartype_API"
+<refentry version="5.0-subset Scilab" xml:id="Common_getvartype_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,17 +19,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>getVarType</refname>
+        <refname>Variable Type (Scilab gateway)</refname>
 
         <refpurpose>
             How to get type of a variable.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to retrieve the scilab type of a variable.</para>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
         <synopsis>int getVarType(int* _piAddress)</synopsis>
-    </refsection>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -41,9 +40,19 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Returned value</term>
+                <listitem>
+                    <para>
+                        Scilab type of the variable (sci_matrix, sci_strings, sci_ints, ...)
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        <title>Return value</title>
-        <para>This function returns the Scilab type of the variable ( sci_matrix, sci_strings, sci_ints, ... )</para>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to retrieve the Scilab type of a variable in a gateway.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->

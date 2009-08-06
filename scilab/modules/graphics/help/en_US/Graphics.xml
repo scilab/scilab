@@ -419,7 +419,7 @@
     <title>Frames and axes</title>
     <variablelist>
       <varlistentry>
-        <term><link linkend="xaxis">xaxis</link></term>
+        <term><link linkend="drawaxis">drawaxis</link></term>
         <listitem>
           <para>Draw an axis</para>
         </listitem>
@@ -697,12 +697,6 @@
         <term><link linkend="edit_curv">edit_curv</link></term>
         <listitem>
           <para>Interactive graphics curve editor</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term><link linkend="gr_menu">gr_menu</link></term>
-        <listitem>
-          <para>Simple interactives graphic editor</para>
         </listitem>
       </varlistentry>
       <varlistentry>

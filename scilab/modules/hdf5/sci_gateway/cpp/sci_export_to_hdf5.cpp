@@ -20,10 +20,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
+#include "api_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+ #include "strdup_windows.h"
+#endif
 }
 
 //#define PRINT_DEBUG
@@ -47,10 +50,6 @@ bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
-
-#ifdef _MSC_VER
-#define strdup _strdup
-#endif
 
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)

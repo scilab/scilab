@@ -29,6 +29,9 @@
 #include <stdio.h>
 #include "gw_string.h"
 #include "stack-c.h"
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
 #include "core_math.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -112,49 +115,69 @@ int sci_length(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static int lengthStrings(int RhsPosition)
 {
-	char **Input_StringMatrix = NULL;
-	int Row_Num = 0,Col_Num = 0,mn = 0;
+	int m1 = 0, n1 = 0;
+	int *piAddressVarOne = NULL;
+	wchar_t **pStVarOne = NULL;
+	int *lenStVarOne = NULL;
 
-	/* When input character string or matrix of strings. */
-	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-	mn = Row_Num*Col_Num;
+	int m_out = 0, n_out = 0;
+	int *piAddressOut = NULL;
+	double *pdOut = NULL;
+	int i = 0;
 
-	if (Input_StringMatrix)
+	int ierr = 0;
+	
+	/* get Address of inputs */
+	getVarAddressFromPosition(RhsPosition, &piAddressVarOne);
+
+	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
-		int outIndex = 0 ;
-		int x = 0;
-
-		CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
-		for  ( x = 0; x < mn; x++ )
-		{
-			if (Input_StringMatrix[x])
-			{
-				wchar_t *wcLine = to_wide_string(Input_StringMatrix[x]);
-				if (wcLine)
-				{
-					stk(outIndex)[x] = (int) wcslen(wcLine);
-					FREE(wcLine); wcLine = NULL;
-				}
-				else
-				{
-					stk(outIndex)[x] = -1;
-				}
-			}
-			else
-			{
-				stk(outIndex)[x] = 0;
-			}
-		}
-
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),"length",1);
+		return 0;
 	}
-	else
+
+	ierr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if (ierr)
 	{
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+		return 0;
+	}
+
+	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1*n1));
+	if (lenStVarOne == NULL)
+	{
 		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
 	}
+
+	ierr = getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+	if (ierr)
+	{
+		Scierror(999,_("%s: impossible to get lengths of this matrix.\n"),"length");
+		return 0;
+	}
+
+	m_out = m1;  n_out = n1;
+	pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
+	if (pdOut == NULL)
+	{
+		FREE(lenStVarOne); lenStVarOne = NULL;
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
+
+	/* Convert to double for compatibility :'( */
+	for (i = 0; i < m_out * n_out; i++)
+	{
+		pdOut[i] = (double)lenStVarOne[i];
+	}
+	FREE(lenStVarOne); lenStVarOne = NULL;
+
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	LhsVar(1) = Rhs + 1; 
+	C2F(putlhsvar)();
+
+	FREE(pdOut); pdOut = NULL;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

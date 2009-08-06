@@ -19,12 +19,12 @@
   <refsynopsisdiv>
     <title>Seqüência de Chamamento</title>
 
-    <synopsis>[home,scilabhome]=sethomedirectory()</synopsis>
+    <synopsis>[home,scilabhome] = sethomedirectory()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Descrição</title>
-
+    <para>DEPRECATED : You need to use "SCIHOME" and "home" scilab variables.</para>
     <para>Ajusta o endereço hom do Scilab : variável "SCIHOME".</para>
 
     <para>No Windows 2k e XP , C:\Documents and

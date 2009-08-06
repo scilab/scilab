@@ -28,6 +28,9 @@ import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBoxBridge;
 import org.scilab.modules.gui.checkbox.SimpleCheckBox;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItemBridge;
+import org.scilab.modules.gui.checkboxmenuitem.SimpleCheckBoxMenuItem;
 import org.scilab.modules.gui.colorchooser.ColorChooser;
 import org.scilab.modules.gui.colorchooser.ScilabColorChooserBridge;
 import org.scilab.modules.gui.colorchooser.SimpleColorChooser;
@@ -98,7 +101,6 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
-import org.scilab.modules.gui.tree.ScilabTree;
 import org.scilab.modules.gui.tree.ScilabTreeBridge;
 import org.scilab.modules.gui.tree.SimpleTree;
 import org.scilab.modules.gui.tree.Tree;
@@ -1725,6 +1727,270 @@ public class ScilabBridge {
 		return ScilabMenuItemBridge.getCallback(menuItem);
 	}
 	
+	/**
+	 * Set if the MenuItem is checked or not
+	 * @param menuItem the MenuItem
+	 * @param status true if the MenuItem is checked
+	 */
+	public static void setChecked(MenuItem menuItem, boolean status) {
+		ScilabMenuItemBridge.setChecked(menuItem, status);
+	}
+	
+	/**
+	 * Get if the MenuItem is checked or not
+	 * @param menuItem the MenuItem
+	 * @return true if the MenuItem is checked
+	 */
+	public static boolean isChecked(MenuItem menuItem) {
+		return ScilabMenuItemBridge.isChecked(menuItem);
+	}
+
+	/****************************/
+	/* CheckBox MenuItem Bridge */
+	/****************************/
+
+	/**
+	 * Creates a new CheckBoxMenuItem
+	 * @return the created CheckBoxMenuItem
+	 */
+	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem() {
+		return ScilabCheckBoxMenuItemBridge.createCheckBoxMenuItem();
+	}
+	
+	/**
+	 * Add a MenuItem to the CheckBoxMenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a CheckBoxMenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public static void add(CheckBoxMenuItem parentMenuItem, MenuItem childMenuItem) {
+		ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
+	}
+	
+	/**
+	 * Sets the Text of a CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the Text of
+	 * @param newText the Text to set for the CheckBoxMenuItem
+	 */
+	public static void setText(CheckBoxMenuItem checkBoxMenuItem, String newText) {
+		ScilabCheckBoxMenuItemBridge.setText(checkBoxMenuItem, newText);
+	}
+	
+	/**
+	 * set a mnemonic to a CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to add the mnemonic to
+	 * @param mnemonic the mnemonic to add to the CheckBoxMenuItem
+	 */
+	public static void setMnemonic(CheckBoxMenuItem checkBoxMenuItem, char mnemonic) {
+		ScilabCheckBoxMenuItemBridge.setMnemonic(checkBoxMenuItem, mnemonic);
+	}
+	
+	/**
+	 * Add a callback to the menu, this callback is a Scilab command
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to add the mnemonic to
+	 * @param callback the CallBack to set.
+	 */
+	public static void setCallback(CheckBoxMenuItem checkBoxMenuItem, CallBack callback) {
+		ScilabCheckBoxMenuItemBridge.setCallback(checkBoxMenuItem, callback);
+	}
+
+	/**
+	 * Set if the menu item is enabled or not
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to set the status of
+	 * @param status true if the menu item is enabled
+	 */
+	public static void setEnabled(CheckBoxMenuItem checkBoxMenuItem, boolean status) {
+		ScilabCheckBoxMenuItemBridge.setEnabled(checkBoxMenuItem, status);
+	}
+	
+	/**
+	 * Get the enable status of a CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to get the status of
+	 * @return the enable status of the CheckBoxMenuItem (true if the CheckBoxMenuItem is enabled, false if not)
+	 */
+	public static boolean isEnabled(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.isEnabled(checkBoxMenuItem);
+	}
+	
+	/**
+	 * Get the text to a CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to get the text of
+	 * @return the text of the CheckBoxMenuItem
+	 */
+	public static String getText(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.getText(checkBoxMenuItem);
+	}
+	
+	/**
+	 * set a mnemonic to a CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to set the mnemonic to
+	 * @param mnemonic the new mnemonic to set to the CheckBoxMenuItem
+	 */
+	public static void setMnemonic(CheckBoxMenuItem checkBoxMenuItem, int mnemonic) {
+		ScilabCheckBoxMenuItemBridge.setMnemonic(checkBoxMenuItem, mnemonic);
+	}
+
+	/**
+	 * Sets the visibility status of a Scilab CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the visiblity status of
+	 * @param newVisibleState the visibility status we want to set to the CheckBoxMenuItem (true to set the CheckBoxMenuItem visible, false else)
+	 * @see org.scilab.modules.ihm.UIElement#setVisible(boolean)
+	 */
+	public static void setVisible(CheckBoxMenuItem checkBoxMenuItem, boolean newVisibleState) {
+		ScilabCheckBoxMenuItemBridge.setVisible(checkBoxMenuItem, newVisibleState);
+	}
+
+	/**
+	 * Gets the visibility status of a Scilab CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to get the visiblity status of
+	 * @return the visibility status of the CheckBoxMenuItem (true if the CheckBoxMenuItem is visible, false if not)
+	 * @see org.scilab.modules.ihm.UIElement#isVisible()
+	 */
+	public static boolean isVisible(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.isVisible(checkBoxMenuItem);
+	}
+
+	/**
+	 * Set the Background color of the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the background of
+	 * @param color the Color
+	 */
+	public static void setBackground(CheckBoxMenuItem checkBoxMenuItem, Color color) {
+		ScilabCheckBoxMenuItemBridge.setBackground(checkBoxMenuItem, color);
+	}
+	
+	/**
+	 * Get the Background color of the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to get the background of
+	 * @return the Color
+	 */
+	public static Color getBackground(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.getBackground(checkBoxMenuItem);
+	}
+
+	/**
+	 * Set the Foreground color of the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the foreground of
+	 * @param color the Color
+	 */
+	public static void setForeground(CheckBoxMenuItem checkBoxMenuItem, Color color) {
+		ScilabCheckBoxMenuItemBridge.setForeground(checkBoxMenuItem, color);
+	}
+	
+	/**
+	 * Get the Foreground color of the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to get the foreground of
+	 * @return the Color
+	 */
+	public static Color getForeground(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.getForeground(checkBoxMenuItem);
+	}
+
+	/**
+	 * Set the font of the CheckBoxMenuItem.
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the font of
+	 * @param font the font
+	 */
+	public static void setFont(CheckBoxMenuItem checkBoxMenuItem, Font font) {
+		ScilabCheckBoxMenuItemBridge.setFont(checkBoxMenuItem, font);
+	}
+	
+	/**
+	 * Get the font of the CheckBoxMenuItem.
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to get the font of
+	 * @return the font
+	 */
+	public static Font getFont(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.getFont(checkBoxMenuItem);
+	}
+
+	/**
+	 * Set the horizontal alignment for the CheckBoxMenuItem text
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setHorizontalAlignment(CheckBoxMenuItem checkBoxMenuItem, String alignment) {
+		ScilabCheckBoxMenuItemBridge.setHorizontalAlignment(checkBoxMenuItem, alignment);
+	}
+
+	/**
+	 * Set the vertical alignment for the CheckBoxMenuItem text
+	 * @param checkBoxMenuItem the CheckBoxMenuItem we want to set the alignment of
+	 * @param alignment the value for the alignment (See ScilabAlignment.java)
+	 */
+	public static void setVerticalAlignment(CheckBoxMenuItem checkBoxMenuItem, String alignment) {
+		ScilabCheckBoxMenuItemBridge.setVerticalAlignment(checkBoxMenuItem, alignment);
+	}
+
+	/**
+	 * Set the Relief of the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem which we want to set the Relief of
+	 * @param reliefType the type of the relief to set (See ScilabRelief.java)
+	 */
+	public static void setRelief(CheckBoxMenuItem checkBoxMenuItem, String reliefType) {
+		ScilabCheckBoxMenuItemBridge.setRelief(checkBoxMenuItem, reliefType);
+	}
+
+	/**
+	 * Add a CheckBoxMenuItem to the CheckBoxMenuItem
+	 * @param parentCheckBoxMenuItem the CheckBoxMenuItem where we want to add a CheckBoxMenuItem
+	 * @param childCheckBoxMenuItem the CheckBoxMenuItem we want to add
+	 */
+	public static void add(CheckBoxMenuItem parentCheckBoxMenuItem, CheckBoxMenuItem childCheckBoxMenuItem) {
+		ScilabCheckBoxMenuItemBridge.add(parentCheckBoxMenuItem, childCheckBoxMenuItem);
+	}
+
+	/**
+	 * Add a Menu to the CheckBoxMenuItem
+	 * @param parentCheckBoxMenuItem the CheckBoxMenuItem where we want to add a CheckBoxMenuItem
+	 * @param childMenu the Menu we want to add
+	 */
+	public static void add(CheckBoxMenuItem parentCheckBoxMenuItem, Menu childMenu) {
+		ScilabCheckBoxMenuItemBridge.add(parentCheckBoxMenuItem, childMenu);
+	}
+
+	/**
+	 * Destroy the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem to be destroyed
+	 */
+	public static void destroy(CheckBoxMenuItem checkBoxMenuItem) {
+		ScilabCheckBoxMenuItemBridge.destroy(checkBoxMenuItem);
+	}
+
+	/**
+	 * Give the focus to the CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem
+	 */
+	public static void requestFocus(CheckBoxMenuItem checkBoxMenuItem) {
+		ScilabCheckBoxMenuItemBridge.requestFocus(checkBoxMenuItem);
+	}
+
+	/**
+	 * Retrieve the CallBack associated to this CheckBoxMenuItem
+	 * @param checkBoxMenuItem the CheckBoxMenuItem
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.getCallback(checkBoxMenuItem);
+	}
+
+	/**
+	 * Set if the CheckBoxMenuItem is checked or not
+	 * @param checkBoxMenuItem the CheckBoxMenuItem
+	 * @param status true if the CheckBoxMenuItem is checked
+	 */
+	public static void setChecked(CheckBoxMenuItem checkBoxMenuItem, boolean status) {
+		ScilabCheckBoxMenuItemBridge.setChecked(checkBoxMenuItem, status);
+	}
+	
+	/**
+	 * Get if the CheckBoxMenuItem is checked or not
+	 * @param checkBoxMenuItem the CheckBoxMenuItem
+	 * @return true if the CheckBoxMenuItem is checked
+	 */
+	public static boolean isChecked(CheckBoxMenuItem checkBoxMenuItem) {
+		return ScilabCheckBoxMenuItemBridge.isChecked(checkBoxMenuItem);
+	}
+	
 	/*****************/
 	/* Menu Bridge */
 	/*****************/
@@ -1738,12 +2004,30 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Retrieve the CallBack associated to this Menu
+	 * @param menuItem the Menu
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(Menu menu) {
+		return ScilabMenuBridge.getCallback(menu);
+	}
+	
+	/**
 	 * Append a MenuItem to a Menu
 	 * @param menu the Menu which we want to add the MenuItem to
 	 * @param newMenuItem the MenuItem to add to the Menu
 	 */
 	public static void add(Menu menu, MenuItem newMenuItem) {
 		ScilabMenuBridge.add(menu, newMenuItem);
+	}
+	
+	/**
+	 * Append a CheckBoxMenuItem to a Menu
+	 * @param menu the Menu which we want to add the CheckBoxMenuItem to
+	 * @param newCheckBoxMenuItem the MenuItem to add to the Menu
+	 */
+	public static void add(Menu menu, CheckBoxMenuItem newCheckBoxMenuItem) {
+		ScilabMenuBridge.add(menu, newCheckBoxMenuItem);
 	}
 	
 	/**
@@ -1932,6 +2216,24 @@ public class ScilabBridge {
 	 */
 	public static void requestFocus(Menu menu) {
 		ScilabMenuBridge.requestFocus(menu);
+	}
+
+	/**
+	 * Set if the Menu is checked or not
+	 * @param menu the Menu
+	 * @param status true if the Menu is checked
+	 */
+	public static void setChecked(Menu menu, boolean status) {
+		ScilabMenuBridge.setChecked(menu, status);
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @param menu the Menu
+	 * @return true if the Menu is checked
+	 */
+	public static boolean isChecked(Menu menu) {
+		return ScilabMenuBridge.isChecked(menu);
 	}
 
 	/**********************/

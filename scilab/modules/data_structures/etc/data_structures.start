@@ -7,13 +7,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// data_structures module initialisation file
-// ====================================================================
 //Load  functions libraries
-load('SCI/modules/data_structures/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('data_structures');
-// ====================================================================
+// =============================================================================
+load("SCI/modules/data_structures/macros/lib");
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("data_structures");
+end

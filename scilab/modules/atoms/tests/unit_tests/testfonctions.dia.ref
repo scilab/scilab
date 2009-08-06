@@ -1,0 +1,125 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA -
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//===============================
+// unit tests Toolboxes functions
+//===============================
+predef(0);
+funcprot(0);
+// on modifie la position du dossier contenant les toolboxes pour les tests
+function rep = atomsToolboxDirectory()
+  rep = "SCI/modules/atoms/tests/unit_tests/toolboxes/"
+endfunction
+// lecture DESCRIPTION en local (/!\ l'ordre des champs importe pour la comparaison verif <> test)
+verif("Toolbox") = "testA";
+verif("Version") = "1.0.0";
+verif("Title") = "TestA";
+verif("Author") = "Delphine";
+verif("Maintainer") = "Delphine";
+verif("Description") = "Test de code scilab pour lire les DESCRIPTION. Avec une ligne de description qui est plus longue que la longueur d''une ligne, pour tester les lignes multiples.";
+verif("License") = "Aucune";
+verif("Category") = "essai";
+verif("ScilabVersion") = ">= 5.0";
+verif("Date") = "2008-03-31";
+verif("Depends") = "testB, testC, testH";
+verif("ExternalDepends") = "";
+verif("URL") = "";
+verif("Entity") = "";
+verif("Function")("1") = "mafonction1 - ma super fonction fait le cafe";
+verif("Function")("2") = "mafonction2 - ma super fonction 2 fait le menage";
+verif("Function")("3") = "mafonction3 - ma super fonction 3 fait la vaisselle, lave le linge, repasse, lave la cuisine et la salle de bain, il ne lui manque rien de rien.";
+verif("Function")("4") = "mafonction4 - ne sert a rien";
+test = atomsReadDesc("testA"); if verif <> test then bugmes();quit;end;
+// chargement de toutes les toolbox sur un mirror
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/src/contrib"]
+endfunction
+test = atomsReadDesc("");
+[n, m] = size(test("Toolbox")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Version")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Title")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Author")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Maintainer")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Description")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("License")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Category")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("ScilabVersion")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Date")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Depends")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("ExternalDepends")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("URL")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Entity")); if n <> 22 then bugmes();quit;end;
+[n, m] = size(test("Function")); if n <> 22 then bugmes();quit;end;
+// on choisi un Mirror non conforme
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/bin/linux/contrib"];
+endfunction
+// chargement de toutes les toolbox sur le web
+test = atomsReadDesc(""); if size(test("Toolbox")) <> 0 then bugmes();quit;end;
+ 
+ Please check the validity of the repository   
+// on remet les bon Mirrors
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/windows/contrib"];
+endfunction
+// installation avec la dernière dependance non présente sur le web ni en local
+if atomsInstall("testA") <> %f then bugmes();quit;end;
+ 
+ Toolbox testH not find   
+ 
+ The Toolbox version testC locally present doesn't match. Update it.   
+// installation avec conflit versions
+if atomsInstall("conflitA") <> %f then bugmes();quit;end;
+ 
+ The Toolbox version conflitB locally present doesn't match. Update it. 
+// installation avec la dépendance locale ne vérifiant pas la condition
+if atomsInstall("local1") <> %f then bugmes();quit;end;
+ 
+ The Toolbox version local1 locally present doesn't match. Update it.   
+// supression de toolbox non présente
+if atomsRemove("non") <> %f then bugmes();quit;end;
+ 
+ The toolbox non is not installed   
+// update d'une toolbox non présente
+if atomsUpdate("non") <> %f then bugmes();quit;end;
+ 
+ The toolbox non is not installed   
+// update d'une toolbox non présente sur le net
+if atomsUpdate("truc") <> %f then bugmes();quit;end;
+ 
+ Toolbox not available on the net   
+// update d'une toolbox dependance d'une autre
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/src/contrib"];
+endfunction
+if atomsInstall("updateA") <> %t then bugmes();quit;end;
+ 
+ Is going to be install : updateA   
+ 
+ Is going to be install : updateB   
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/macosX/contrib"];
+endfunction
+// Mauvaise version
+if atomsUpdate("updateB") <> %f then bugmes();quit;end;
+ 
+ Dependancie problem   
+function listMirror = atomsToolboxMirror()
+  listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/windows/contrib"];
+endfunction
+// Bonne version
+if atomsUpdate("updateB") <> %t then bugmes();quit;end;
+ 
+ The toolbox updateB is going to be update in version 1.2.2   
+ 
+ Is going to be install : updateB   
+// Suppression des toolboxes
+if atomsRemove("updateA") <> %t then bugmes();quit;end;
+ 
+ updateA delete   
+if atomsRemove("updateB") <> %t then bugmes();quit;end;
+ 
+ updateB delete   

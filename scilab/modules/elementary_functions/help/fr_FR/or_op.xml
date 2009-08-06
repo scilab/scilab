@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="or_op" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>|</refname>
+
+    <refpurpose>opérateur de disjonction logique</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>A|B</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>A|B</literal> renvoie la disjonction logique élément par
+    élément des matrices booléennes <literal>A</literal> et
+    <literal>B</literal>. <literal>A</literal> et <literal>B</literal> doivent
+    être des matrices de mêmes dimensions ou l'une d'elles doit être un simple
+    booléen.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"> 
+[%t %t %f]|[%f %t %t]
+[%t %t %f]|%f
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Voir Aussi</title>
+
+    <simplelist type="inline">      
+      <member><link linkend="or">or</link></member>
+
+      <member><link linkend="and">and</link></member>
+      <member><link linkend="and_op">opérateur logique et (&amp;)</link></member>
+
+      <member><link linkend="not">not</link></member>
+
+      <member><link linkend="find">find</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

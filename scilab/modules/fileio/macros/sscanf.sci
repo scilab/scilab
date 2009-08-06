@@ -123,6 +123,7 @@ function [v,lb,err]=next_scanf_value(buf,str,flags,width,typemod,conv)
 		end
 		if lb>lbuf then
 			err=1
+			v=[];
 			return;
 		end
 	end

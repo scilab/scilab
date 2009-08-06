@@ -24,18 +24,19 @@
   <refnamediv>
     <refname>GetLastJob</refname>
 
-    <refpurpose>Returns the latest job sent to Scilab engine </refpurpose>
+    <refpurpose>Returns the latest job sent to Scilab engine</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <synopsis>BOOL GetLastJob(char *JOB,int nbcharsJOB);
-	</synopsis>
+    <synopsis>BOOL GetLastJob(char *JOB,int nbcharsJOB);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Description</title>
 
-    <para>This fonction returns the latest job sent to Scilab engine with the command SendScilabJob or SendScilabJobs. This can be used to display a command which failed.</para>
+    <para>This fonction returns the latest job sent to Scilab engine with the
+    command SendScilabJob or SendScilabJobs. This can be used to display a
+    command which failed.</para>
 
     <para>BOOL is just a simple typedef on int (<literal>typedef int
     BOOL</literal>). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
@@ -50,7 +51,8 @@
         <term>JOB</term>
 
         <listitem>
-          <para>a standard C char* which will be filled with the latest job</para>
+          <para>a standard C char* which will be filled with the latest
+          job</para>
         </listitem>
       </varlistentry>
 
@@ -77,32 +79,32 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple GetLastJob example
-	// See SCI/modules/call_scilab/examples/basicExamples/GetLastJob.c for 
-	// the full code
-	int code=SendScilabJob("failedMyCurrentJob=%pi*3/0");
-	if (code!=0){
-		char lastjob[4096];
-		if (GetLastJob(lastjob,4096))  {
-			printf("Failed command: %s\n",lastjob);
-		}
-	}
-</programlisting>
+    <programlisting role="example"><![CDATA[
+// A simple GetLastJob example
+// See SCI/modules/call_scilab/examples/basicExamples/GetLastJob.c for 
+// the full code
+int code=SendScilabJob("failedMyCurrentJob=%pi*3/0");
+if (code!=0){
+ char lastjob[4096];
+ if (GetLastJob(lastjob,4096))  {
+  printf("Failed command: %s\n",lastjob);
+ }
+}
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link>,
-<link linkend="compile_and_run_call_scilab">Compile and run with
-      call_scilab</link>,
-<link linkend="SendScilabJob">SendScilabJob</link>,
-<link linkend="TerminateScilab">TerminateScilab</link>,
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link></member>
+      <member><link linkend="Scilab">Scilab</link>, <link
+      linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link>, <link linkend="SendScilabJob">SendScilabJob</link>,
+      <link linkend="TerminateScilab">TerminateScilab</link>, <link
+      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
+      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
+      linkend="StringManagement_callscilab">String Management</link></member>
     </simplelist>
   </refsection>
 

@@ -50,5 +50,5 @@ CallbackType = -1
 Userdata = []
 Tag = 
 if get(h,"string") <> "\Q\q" then bugmes();quit;end
-set(h,"string",["\Q","\q"])
+set(h,"string",["\Q","\q"]) 
 if or(get(h,"string") <> ["\Q","\q"]) then bugmes();quit;end

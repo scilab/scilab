@@ -581,10 +581,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_getcwd.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_getdrives.c"
 				>
 			</File>
@@ -674,6 +670,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_pwd.c"
 				>
 			</File>
 			<File

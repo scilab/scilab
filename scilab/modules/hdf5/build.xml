@@ -14,7 +14,7 @@
 <project name="hdf5" default="jar">
   <import file="../../build.incl.xml"/>
 
-  <property name="library.name" value="${library.action_binding.name}" />
+  <property name="library.name" value="${library.hdf5.name}" />
 
   <description>
 	Build the hdf5 Scilab module

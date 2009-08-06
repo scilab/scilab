@@ -49,7 +49,7 @@ static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 	{sci_isdir,"isdir"},
 	{sci_removedir,"removedir"},
 	{sci_createdir,"createdir"},
-	{sci_getcwd,"getcwd"},
+	{sci_pwd,"pwd"},
 	{sci_chdir,"chdir"},
 	{sci_fileinfo,"fileinfo"},
 	{sci_newest,"newest"},

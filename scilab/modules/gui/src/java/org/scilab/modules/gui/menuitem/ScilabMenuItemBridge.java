@@ -277,4 +277,21 @@ public class ScilabMenuItemBridge {
 		return menuItem.getAsSimpleMenuItem().getCallback();
 	}
 
+	/**
+	 * Set if the MenuItem is checked or not
+	 * @param menu the MenuItem
+	 * @param status true if the MenuItem is checked
+	 */
+	public static void setChecked(MenuItem menuItem, boolean status) {
+		menuItem.getAsSimpleMenuItem().setChecked(status);
+	}
+	
+	/**
+	 * Get if the MenuItem is checked or not
+	 * @return true if the MenuItem is checked
+	 */
+	public static boolean isChecked(MenuItem menuItem) {
+		return menuItem.getAsSimpleMenuItem().isChecked();
+	}
+
 }

@@ -820,7 +820,8 @@ function %h_p(h)
                 "Visible = "+sci2exp(h.visible)
                 "Callback = "+h.callback
                 "CallbackType = "+sci2exp(h.callback_type,0)
-                "Tag = "+h.tag
+		"Checked: "+sci2exp(h.checked)
+		"Tag = "+h.tag
             ]
         
         // uicontrol

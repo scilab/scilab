@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common iscomplex_API"
+<refentry version="5.0-subset Scilab" xml:id="Common_iscomplex_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -19,17 +19,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
     <refnamediv>
-        <refname>isVarComplex</refname>
+        <refname>Variable Complexity (Scilab gateway)</refname>
 
         <refpurpose>
             How to get variable complexity.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to retrieve variable complexity.</para>
-        <synopsis>int isVarComplex(int* _piAddress)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int isVarComplex(int* _piAddress)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -41,9 +40,19 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Returned value</term>
+                <listitem>
+                    <para>
+                        0 for real variables and 1 for complex variables.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        <title>Return value</title>
-        <para>This function returns the variable complexity (0 for real variable and 1 for complex)</para>
+    </refsection>
+    <refsection>
+      <title>Description</title>
+      <para>This help describes how to retrieve variable complexity.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->

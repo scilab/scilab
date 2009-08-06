@@ -29,6 +29,8 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
   int * returnValues = NULL;
 
   sciPointObj *parent = NULL;
+
+  int status = 0;
   
   if (stackPointer == -1) /* Default values setting */
     {
@@ -104,7 +106,12 @@ int SetUicontrolPosition(sciPointObj* sciObj, size_t stackPointer, int valueType
     }
   else if( sciGetEntityType(sciObj) == SCI_FIGURE ) /* Uicontrol figure */
   {
-    return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & sciSetWindowDim(sciObj, widthInt, heightInt));
+    /* disable protection since this function will call Java */
+    disableFigureSynchronization(sciObj);
+    status = sciSetDimension(sciObj, widthInt, heightInt) ;
+    enableFigureSynchronization(sciObj);
+    return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & status);
+    //return (int)(sciInitScreenPosition(sciObj, xInt, yInt) & sciSetWindowDim(sciObj, widthInt, heightInt));
   }
   else /* All other uicontrol styles */
     {

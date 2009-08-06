@@ -12,7 +12,8 @@ src/c/api_int.c \
 src/c/api_list.c \
 src/c/api_poly.c \
 src/c/api_sparse.c \
-src/c/api_string.c
+src/c/api_string.c \
+src/c/api_pointer.c
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -20,6 +21,7 @@ libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(top_srcdir)/modules/call_scilab/includes \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/string/includes
 
@@ -59,10 +61,11 @@ includes/api_common.h \
 includes/api_double.h \
 includes/api_int.h \
 includes/api_list.h \
+includes/api_pointer.h \
 includes/api_poly.h \
 includes/api_sparse.h \
 includes/api_string.h \
-includes/api_variable.h \
+includes/api_scilab.h \
 includes/dynlib_api_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

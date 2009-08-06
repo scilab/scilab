@@ -7,13 +7,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// api_scilab module initialisation file
-// ====================================================================
-//Load  functions libraries
-//load('SCI/modules/api_scilab/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('api_scilab');
-// ====================================================================
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("api_scilab");
+end
