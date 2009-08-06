@@ -55,7 +55,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       //** conventional Open from current working dir  
       if rhs<=0 then
         file_mask = "*.cos*" ;  //** put a filter 
-	path      =  getcwd() ; //** use the current working directory as default 
+	path      =  pwd() ; //** use the current working directory as default 
 	fname     = getfile(file_mask, path, title="Open a Scicos diagram") ;
       end
   end 

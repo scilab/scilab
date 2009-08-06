@@ -39,7 +39,7 @@ function ok = scicos_block_link(funam, txt, flag)
     return; 
   end
 
-  cur_wd = getcwd(); //** get and save current working directory 
+  cur_wd = pwd(); //** get and save current working directory 
 
   chdir(TMPDIR); //** change to TMPDIR 
 
