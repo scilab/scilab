@@ -32,16 +32,54 @@ namespace ast
 			e.right_exp_get().accept(*execMeR);
 
 			/*get symbol*/
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
-			if(Var == NULL)
-			{//dynamic_cast failed : left operand is not a SimpleVar ;)
-				bool bNew								= false;
-				CallExp *CallVar				= (CallExp *)(&e.left_exp_get());
+			const CallExp *CallVar		= dynamic_cast<const CallExp*>(&e.left_exp_get());
+			InternalType *dataOld, *dataNew	= NULL;
+			bool bNew			= false;
+			const SimpleVar *Var, *propName;
+			ObjectMatrix *object;
+			{
+				// To sum up, 4 possibilities for the left expression:
+				//  (1) The modified object is a variable or (2) an object/structure property
+				//  (3) The modified object is fully modified or (3) only a subscript of the matrix is modified
+				//  (1) => Var != NULL, object = NULL, propName = NULL; (2) => the opposite
+				//  (3) => CallVar = NULL; (4) => CallVar != NULL
+				const Exp *ref;
+				if(CallVar != NULL)
+				{ // e = foo(...) => CallVar = e, ref = foo
+					ref = &CallVar->name_get();
+				}
+				else
+				{ // e = var => CallVar = NULL, ref = e
+					ref = &e.left_exp_get();
+				}
+				
+				Var = dynamic_cast<const SimpleVar*>(ref);
+				if(Var != NULL)
+				{ // ref = foo => Var = Foo, object & propName = NULL
+					object = NULL;
+					propName = NULL;
+					dataOld = symbol::Context::getInstance()->get(Var->name_get());
+				}
+				else
+				{ // ref = foo.bar => Var = NULL, object = foo, propName = bar
+					ExecVisitor execMeF;
+					
+					const FieldExp *field = dynamic_cast<const FieldExp*>(ref);
+					field->head_get()->accept(execMeF);
+					
+					object = dynamic_cast<ObjectMatrix*>(execMeF.result_get());
+					propName = dynamic_cast<const SimpleVar*>(field->tail_get());
+					
+					dataOld = object->get(propName->name_get().name_get());
+				}
+			}
+			
+			if(CallVar != NULL)
+			{//dynamic_cast successed : left operand is not a SimpleVar ;)
 				int iProductElem				= CallVar->args_get().size();
-				Var											= (SimpleVar*)&CallVar->name_get();
-				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
+				InternalType *pIT				= dataOld;
 				bool bSeeAsVector				= iProductElem == 1;
-
+				
 				if(pIT == NULL)
 				{//Var doesn't exist, create it with good dimensions
 					bNew = true;
@@ -301,19 +339,7 @@ namespace ast
 							}
 						}
 
-						if(bNew)
-						{
-							symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pOut));
-						}
-
-						if(e.is_verbose())
-						{
-							std::ostringstream ostr;
-							ostr << Var->name_get() << " = " << std::endl;
-							ostr << std::endl;
-							ostr << pOut->toString(10,75) << std::endl;
-							YaspWrite((char *)ostr.str().c_str());
-						}
+						dataNew = pOut;
 					}
 					else
 					{//manage error
@@ -333,7 +359,7 @@ namespace ast
 				delete[] piDimSize;
 			}
 			else
-			{//Var != NULL
+			{//CallVar != NULL
 				InternalType *pVar	=	execMeR->result_get();
 				if(pVar->isList())
 				{
@@ -343,17 +369,36 @@ namespace ast
 					delete pVar;
 					pVar = pTemp;
 				}
-
-				symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
-
-				if(e.is_verbose())
+				dataNew = pVar;
+				bNew = true;
+			}
+			
+			if(bNew)
+			{
+				if(Var != NULL)
 				{
-					std::ostringstream ostr;
-					ostr << Var->name_get() << " = " << std::endl;
-					ostr << std::endl;
-					ostr << pVar->toString(10,75) << std::endl;
-					YaspWrite((char *)ostr.str().c_str());
+					symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)dataNew));
 				}
+				else
+				{
+					object->set(propName->name_get().name_get(), dataNew);
+				}
+			}
+
+			if(e.is_verbose())
+			{
+				std::ostringstream ostr;
+				if(Var != NULL)
+				{
+					ostr << Var->name_get() << " = " << std::endl;
+				}
+				else
+				{
+					ostr << object->toString(10,75) << "." << propName->name_get() << " = " << std::endl;
+				}
+				ostr << std::endl;
+				ostr << dataNew->toString(10,75) << std::endl;
+				YaspWrite((char *)ostr.str().c_str());
 			}
 		}
 		catch(string sz)
