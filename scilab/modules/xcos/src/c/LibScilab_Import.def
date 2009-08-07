@@ -8,3 +8,6 @@ putlhsvar_
 intersci_
 getScilabMode
 com_
+freeArrayOfString
+checklhs_
+checkrhs_
