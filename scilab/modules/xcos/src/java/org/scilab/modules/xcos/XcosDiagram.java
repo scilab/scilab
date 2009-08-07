@@ -33,7 +33,7 @@ public class XcosDiagram extends ScilabGraph {
 	super();
 	keyboardHandler = new XcosShortCut(getAsComponent());
 	mxCodec codec = new mxCodec();
-	Document doc = mxUtils.loadDocument(getClass().getResource("/org/scilab/modules/xcos/resources/Xcos-style.xml").toString());
+	Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 	codec.decode(doc.getDocumentElement(), getStylesheet());
 	Object parent = getDefaultParent();
 
