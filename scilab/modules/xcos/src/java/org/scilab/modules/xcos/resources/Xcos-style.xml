@@ -1,0 +1,63 @@
+<mxStylesheet>
+	<include name="/org/scilab/modules/graph/resources/basic-style.xml"/>
+	
+	<!-- BLOCK DEFINITION -->
+	<add as="block" extend="defaultVertex">
+		<add as="shape" value="rectangle"/>
+		<add as="perimeter" value="rectanglePerimeter"/>
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="white"/>
+	</add>
+	<add as="Clock" extend="block">
+	</add>
+	<add as="Sinusoid" extend="block">
+	</add>
+	<add as="Scope" extend="block">
+	</add>
+	<add as="Generic" extend="block">
+		<add as="strokeColor" value="red" />
+		<add as="strokeWidth" value="10" />
+		<add as="fillColor" value="red" />
+		<add as="opacity" value="25" />
+	</add>
+
+	
+	<!-- PORT DEFINITION -->
+	<add as="port" extend="defaultVertex">
+		<add as="shape" value="triangle"/>
+		<add as="perimeter" value="trianglePerimeter"/>
+	</add>
+	<add as="commandPort" extend="port">
+		<!--
+		<add as="shape" value="ellipse"/>
+		<add as="perimeter" value="ellipsePerimeter"/>
+		-->
+		<add as="strokeColor" value="red"/>
+		<add as="fillColor" value="red"/>
+		<add as="direction" value="south"/>
+		<add as="type" value="Command"/>
+	</add>
+	<add as="controlPort" extend="port">
+		<add as="strokeColor" value="red"/>
+		<add as="fillColor" value="red"/>
+		<add as="direction" value="south"/>
+		<add as="type" value="Control"/>
+	</add>
+	<add as="inputPort" extend="port">
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="black"/>
+		<add as="direction" value="east"/>
+	</add>
+	<add as="outputPort" extend="port">
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="black"/>
+		<add as="direction" value="east"/>
+	</add>
+	
+	<!-- LINK definition -->
+	<add as="defaultEdge" extend="entity">
+		<add as="endArrow" value="none"/>
+		<add as="strokeColor" value="red"/>
+	</add>
+	
+</mxStylesheet>
