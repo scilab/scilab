@@ -21,7 +21,8 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/poly.cpp \
 			src/cpp/matrixpoly.cpp \
 			src/cpp/tostring_common.cpp \
-			src/cpp/function.cpp
+			src/cpp/function.cpp \
+			src/cpp/macro.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
 
@@ -30,6 +31,8 @@ libscitypes_la_SOURCES 	= $(TYPES_CPP_SOURCES)
 libscitypes_la_CXXFLAGS	=	-Iincludes/ \
 				-I../elementary_functions/includes \
 				-I../operations/includes \
+				-I../symbol/includes \
+				-I../abstractSyntaxTree/includes \
 				-Isrc/cpp
 
 libscitypes_la_includedir=$(pkgincludedir)/Types
