@@ -1,5 +1,4 @@
 <mxStylesheet>
-	<include name="/org/scilab/modules/graph/resources/basic-style.xml"/>
 	
 	<!-- BLOCK DEFINITION -->
 	<add as="block" extend="defaultVertex">

@@ -104,10 +104,10 @@ public class Xcos extends SwingScilabTab implements Tab {
 	ScopeBlock scopeTemplate = new ScopeBlock();
 	SinusoidBlock sinusoidTemplate = new SinusoidBlock();
 
-	sources.addTemplate("Clock", new ImageIcon(Xcos.class.getResource("/org/scilab/modules/xcos/resources/CLOCK_c_blk.gif")),clockTemplate);
+	sources.addTemplate("Clock", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLOCK_c_blk.gif"),clockTemplate);
 	sources.addTemplate("Generic", null ,genericTemplate);
-	sources.addTemplate("Scope", new ImageIcon(Xcos.class.getResource("/org/scilab/modules/xcos/resources/CSCOPE_blk.gif")),scopeTemplate);
-	sources.addTemplate("Sinusoid", new ImageIcon(Xcos.class.getResource("/org/scilab/modules/xcos/resources/GENSIN_f_blk.gif")),sinusoidTemplate);
+	sources.addTemplate("Scope", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CSCOPE_blk.gif"),scopeTemplate);
+	sources.addTemplate("Sinusoid", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GENSIN_f_blk.gif"),sinusoidTemplate);
     }
 
     public static JMenuBar createMenuBar(ScilabGraph scilabGraph) {
