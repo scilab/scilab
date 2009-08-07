@@ -69,6 +69,7 @@ public class XcosPalette extends SwingScilabTab implements Tab
     public XcosPalette()
     {
 	super("Palette");
+	setCallback(null);
 	setBackground(Color.WHITE);
 	setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 

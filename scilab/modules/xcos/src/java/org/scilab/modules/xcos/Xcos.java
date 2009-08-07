@@ -12,13 +12,11 @@
 
 package org.scilab.modules.xcos;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -36,11 +34,17 @@ import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.menu.Menu;
+import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.menubar.ScilabMenuBar;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
@@ -73,7 +77,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     public static void createViewPort(ScilabGraph xcosDiagramm) {
 	Window outline = ScilabWindow.createWindow();
 	Tab outlineTab = ScilabTab.createTab("ViewPort");
-
+	outlineTab.setCallback(null);
+	
 	// Creates the graph outline component
 	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
 	
@@ -110,30 +115,27 @@ public class Xcos extends SwingScilabTab implements Tab {
 	sources.addTemplate("Sinusoid", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GENSIN_f_blk.gif"),sinusoidTemplate);
     }
 
-    public static JMenuBar createMenuBar(ScilabGraph scilabGraph) {
+    public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
 	/*
 	 * MENU BAR
 	 */
 	// FILE
-	JMenuBar menuBar = new JMenuBar();
-	JMenu file = new JMenu("File");
-	JMenu newItem = new JMenu("New");
-	JMenuItem newBlock = new JMenuItem("Block");
-	//newBlock.addActionListener(XcosGlobalAction.addBlockInDiagram());
-	JMenuItem newLink = new JMenuItem("Link");
-	//newLink.addActionListener(XcosGlobalAction.addLinkInDiagram());
-	newItem.add(newBlock);
-	newItem.add(newLink);
+	MenuBar menuBar = ScilabMenuBar.createMenuBar();
+	Menu file = ScilabMenu.createMenu();
+	file.setText("File");
+	MenuItem newItem = ScilabMenuItem.createMenuItem();
+	newItem.setText("New");
 	JMenuItem quit = new JMenuItem("Quit");
 	quit.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) { System.exit(0); }
 	});
 	file.add(newItem);
-	file.add(quit);
+	//file.add(quit);
 	menuBar.add(file);
 
 	// EDIT
-	JMenu edit = new JMenu("Edit");
+	Menu edit = ScilabMenu.createMenu();
+	edit.setText("Edit");
 	edit.add(UndoAction.undoMenu(scilabGraph));
 	edit.add(RedoAction.redoMenu(scilabGraph));
 	edit.addSeparator();
@@ -143,13 +145,15 @@ public class Xcos extends SwingScilabTab implements Tab {
 	menuBar.add(edit);
 
 	// VIEW
-	JMenu view = new JMenu("View");
+	Menu view = ScilabMenu.createMenu();
+	view.setText("View");
 	view.add(ZoomInAction.zoominMenu(scilabGraph));
 	view.add(ZoomOutAction.zoomoutMenu(scilabGraph));
 	menuBar.add(view);
 
 	// SHAPE
-	JMenu shape = new JMenu("Shape");
+	Menu shape = ScilabMenu.createMenu();
+	shape.setText("Shape");
 	shape.add(GroupAction.groupMenu(scilabGraph));
 	shape.add(UnGroupAction.ungroupMenu(scilabGraph));
 	menuBar.add(shape);
@@ -157,12 +161,11 @@ public class Xcos extends SwingScilabTab implements Tab {
 	return menuBar;
     }
 
-    public static JToolBar createToolBar(ScilabGraph scilabGraph) {
+    public static ToolBar createToolBar(ScilabGraph scilabGraph) {
 	/*
 	 * TOOL BAR
 	 */
-	JToolBar toolBar = new JToolBar();
-	toolBar.setFloatable(false);
+	ToolBar toolBar = ScilabToolBar.createToolBar();
 
 	// UNDO / REDO
 	toolBar.add(UndoAction.undoButton(scilabGraph));
@@ -191,6 +194,8 @@ public class Xcos extends SwingScilabTab implements Tab {
     public Xcos(XcosDiagram diagram) {
 	super("Xcos");
 	this.diagram = diagram;
+	// TODO : Must check if Diagramm has been modified etc etc etc ...
+	this.setCallback(null);
 	this.setContentPane(new JScrollPane(diagram.getAsComponent()));
     }
     
@@ -206,12 +211,12 @@ public class Xcos extends SwingScilabTab implements Tab {
 	/*
 	 * MENU BAR
 	 */
-//	MenuBar menuBar = createMenuBar(xcosDiagramm);
+	MenuBar menuBar = createMenuBar(xcosDiagramm);
 
 	/*
 	 * TOOL BAR
 	 */
-//	ToolBar toolBar = createToolBar(xcosDiagramm);
+	ToolBar toolBar = createToolBar(xcosDiagramm);
 
 	/*
 	 * VIEW PORT
@@ -220,8 +225,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 
 	createPalette();
 
-//	tab.addMenuBar(menuBar);
-//	tab.addToolBar(toolBar);
+	tab.addMenuBar(menuBar);
+	tab.addToolBar(toolBar);
     }
 
     public SimpleTab getAsSimpleTab() {
@@ -238,13 +243,11 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public void addMenuBar(MenuBar menuBarToAdd) {
-	// TODO Auto-generated method stub
-	
+	((SwingScilabTab) this).setMenuBar(menuBarToAdd);
     }
 
     public void addToolBar(ToolBar toolBarToAdd) {
-	// TODO Auto-generated method stub
-	
+	((SwingScilabTab) this).setToolBar(toolBarToAdd);
     }
 
 }
