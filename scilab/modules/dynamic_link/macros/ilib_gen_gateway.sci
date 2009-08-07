@@ -16,6 +16,7 @@
 // if name is a full path just extract the filename 
 
 function gateway_filename = ilib_gen_gateway(name,tables)
+
   gateway_filename = '';
   k = strindex(name,['/','\']);
   if k~=[] then
@@ -61,18 +62,23 @@ function gateway_filename = ilib_gen_gateway(name,tables)
     [gate,names] = new_names(table); 
     t = [ '#include <mex.h> ';
           '#include <sci_gateway.h>';
-	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
+	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
 	        'extern Gatefunc ' + names(:) + ';';
 	        'static GenericTable Tab[]={';
 	        '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
-	        '};'
-	        ' '
-	        'int C2F('+tname+')()'
-	        '{'
-	        '  Rhs = Max(0, Rhs);'
-	        '  (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);'
-	        '  return 0;'
-	        '}'];
+	        '};';
+	        ' ';
+	        'int C2F('+tname+')()';
+	        '{';
+	        '  Rhs = Max(0, Rhs);';
+	        '  if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);'];
+	        
+    if isdef('WITH_ADD_PUTLHSVAR') then
+      if (WITH_ADD_PUTLHSVAR == %t) then
+        t = [t;'PutLhsVar();'];
+      end
+	  end
+	  t = [t ; '  return 0;'; '}'];
 
 	  gateway_filename = path + tname + '.c';
     // first chek if we already have a gateway 
