@@ -53,11 +53,12 @@
 		<add as="fillColor" value="black"/>
 		<add as="direction" value="east"/>
 	</add>
+
 	
 	<!-- LINK definition -->
-	<add as="defaultEdge" extend="entity">
+	<add as="defaultEdge" extend="straight">
 		<add as="endArrow" value="none"/>
-		<add as="strokeColor" value="red"/>
+		<add as="strokeColor" value="black"/>
 	</add>
 	
 </mxStylesheet>
