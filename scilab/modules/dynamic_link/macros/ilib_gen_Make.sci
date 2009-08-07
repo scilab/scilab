@@ -130,11 +130,18 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
       mexfflags = " -Dmexfunction=mex$* ";
     end
   end
+  
+  cflags = strsubst(cflags, filesep(), '\\');
   mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   mexcflags + cflags +" \n"); 
+	   
+	fflags = strsubst(fflags, filesep(), '\\');
   mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
 	   mexfflags + fflags +"\n"); 
-  mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
+	   
+	ldflags = strsubst(ldflags, filesep(), '\\');
+  mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags + "\n");
+  
   mfprintf(fd,"!include $(SCIDIR1)\\modules\\dynamic_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);
 endfunction
