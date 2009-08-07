@@ -2,7 +2,7 @@
 	<add as="defaultVertex">
 		<add as="shape" value="label"/>
 		<add as="perimeter" value="rectanglePerimeter"/>
-		<add as="fontSize" value="11"/>
+		<add as="fontSize" value="10"/>
 		<add as="align" value="center"/>
 		<add as="verticalAlign" value="middle"/>
 		<add as="strokeColor" value="black"/>
