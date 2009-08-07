@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="xpad">
+<GATEWAY name="xcos">
 <!-- =================== -->
 <!--
  Scilab
@@ -23,5 +23,5 @@
 -->
 <!-- =================== -->
 
-<PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="Xcos" />
+<PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos" />
 </GATEWAY>
