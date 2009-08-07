@@ -14,21 +14,20 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
 public class GroupAction extends DefaultAction {
     
-    public static JButton groupButton(ScilabGraph scilabGraph) {
-	return createButton("Group", "/org/scilab/modules/graph/resources/group.gif", new GroupAction(scilabGraph));
+    public static PushButton groupButton(ScilabGraph scilabGraph) {
+	return createButton("Group", null, new GroupAction(scilabGraph));
     }
     
-    public static JMenuItem groupMenu(ScilabGraph scilabGraph) {
-	return createMenu("Group", "/org/scilab/modules/graph/resources/group.gif", new GroupAction(scilabGraph));
+    public static MenuItem groupMenu(ScilabGraph scilabGraph) {
+	return createMenu("Group", null, new GroupAction(scilabGraph));
     }
     
     public GroupAction() {

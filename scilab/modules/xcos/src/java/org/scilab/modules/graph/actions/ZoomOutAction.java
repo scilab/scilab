@@ -15,21 +15,22 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
 public class ZoomOutAction extends DefaultAction implements ActionListener {
-    public static JButton zoomoutButton(ScilabGraph scilabGraph) {
-	return createButton("Zoom Out", "/org/scilab/modules/graph/resources/zoomout.gif", new ZoomOutAction(scilabGraph));
+    
+    public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
+	return createButton("Zoom Out", null, new ZoomOutAction(scilabGraph));
     }
     
-    public static JMenuItem zoomoutMenu(ScilabGraph scilabGraph) {
-	return createMenu("Zoom Out", "/org/scilab/modules/graph/resources/zoomout.gif", new ZoomOutAction(scilabGraph));
+    public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
+	return createMenu("Zoom Out", null, new ZoomOutAction(scilabGraph));
     }
+    
     public ZoomOutAction() {
 	super();
     }

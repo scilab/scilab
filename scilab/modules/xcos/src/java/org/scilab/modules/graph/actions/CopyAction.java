@@ -14,20 +14,20 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class CopyAction extends DefaultAction {
 
-    public static JButton copyButton(ScilabGraph scilabGraph) {
-	return createButton("Copy", "/org/scilab/modules/graph/resources/edit-copy.png", new CopyAction(scilabGraph));
+    public static PushButton copyButton(ScilabGraph scilabGraph) {
+	return createButton("Copy", "edit-copy.png", new CopyAction(scilabGraph));
     }
     
-    public static JMenuItem copyMenu(ScilabGraph scilabGraph) {
-	return createMenu("Copy", "/org/scilab/modules/graph/resources/edit-copy.png", new CopyAction(scilabGraph));
+    public static MenuItem copyMenu(ScilabGraph scilabGraph) {
+	return createMenu("Copy", "edit-copy.png", new CopyAction(scilabGraph));
     }
     
     public CopyAction() {

@@ -15,21 +15,20 @@ package org.scilab.modules.graph.actions;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
 public class ZoomInAction extends DefaultAction implements ActionListener {
     
-    public static JButton zoominButton(ScilabGraph scilabGraph) {
-	return createButton("Zoom In", "/org/scilab/modules/graph/resources/zoomin.gif", new ZoomInAction(scilabGraph));
+    public static PushButton zoominButton(ScilabGraph scilabGraph) {
+	return createButton("Zoom In", null, new ZoomInAction(scilabGraph));
     }
     
-    public static JMenuItem zoominMenu(ScilabGraph scilabGraph) {
-	return createMenu("Zoom In", "/org/scilab/modules/graph/resources/zoomin.gif", new ZoomInAction(scilabGraph));
+    public static MenuItem zoominMenu(ScilabGraph scilabGraph) {
+	return createMenu("Zoom In", null, new ZoomInAction(scilabGraph));
     }
     
     public ZoomInAction() {

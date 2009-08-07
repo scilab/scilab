@@ -14,20 +14,18 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class UndoAction extends DefaultAction {
 
-    public static JButton undoButton(ScilabGraph scilabGraph) {
-	return createButton("Undo", "/org/scilab/modules/graph/resources/undo.png", new UndoAction(scilabGraph));
+    public static PushButton undoButton(ScilabGraph scilabGraph) {
+	return createButton("Undo", "edit-undo.png", new UndoAction(scilabGraph));
     }
     
-    public static JMenuItem undoMenu(ScilabGraph scilabGraph) {
-	return createMenu("Undo", "/org/scilab/modules/graph/resources/undo.png", new UndoAction(scilabGraph));
+    public static MenuItem undoMenu(ScilabGraph scilabGraph) {
+	return createMenu("Undo", "edit-undo.png", new UndoAction(scilabGraph));
     }
     
     public UndoAction() {

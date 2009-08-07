@@ -18,26 +18,30 @@ import java.awt.event.ActionListener;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 import com.mxgraph.swing.mxGraphComponent;
 
 public class DefaultAction extends AbstractAction {
 
     private ScilabGraph _scilabGraph = null;
-    
+
     public DefaultAction() { }
-    
+
     public DefaultAction(ScilabGraph scilabGraph) {
 	_scilabGraph = scilabGraph;
     }
-      
+
     public void actionPerformed(ActionEvent e) {
-	  JOptionPane.showMessageDialog(null, "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
+	JOptionPane.showMessageDialog(null, "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -50,7 +54,7 @@ public class DefaultAction extends AbstractAction {
 	if (_scilabGraph != null) {
 	    return _scilabGraph;
 	}
-	
+
 	if (e.getSource() instanceof Component)
 	{
 	    Component component = (Component) e.getSource();
@@ -67,23 +71,24 @@ public class DefaultAction extends AbstractAction {
 	return null;
     }
 
-    protected static JButton createButton(String title, String icon, ActionListener listener) {
-	JButton button = new JButton(); 
-	button.addActionListener(listener);
-	button.setText(title);
-	button.setToolTipText(title);
-	button.setIcon(new ImageIcon(ScilabGraph.class.getResource(icon)));
-	
+    protected static PushButton createButton(String title, String icon, ActionListener listener) {
+	PushButton button = ScilabPushButton.createPushButton(); 
+	((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
+	if (icon == null) {
+	    button.setText(title);
+	    button.setToolTipText(title);
+	}
+	else {
+	    ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(System.getenv("SCI")+"/modules/xcos/images/icons/"+icon));
+	}
 	return button;
     }
-    
-    protected static JMenuItem createMenu(String title, String icon, ActionListener listener) {
-	JMenuItem menu = new JMenuItem();
-	menu.addActionListener(listener);
+
+    protected static MenuItem createMenu(String title, String icon, ActionListener listener) {
+	MenuItem menu = ScilabMenuItem.createMenuItem();
+	((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(listener);
 	menu.setText(title);
-	menu.setToolTipText(title);
-	menu.setIcon(new ImageIcon(ScilabGraph.class.getResource(icon)));
-	
+
 	return menu;
     }
 }

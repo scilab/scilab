@@ -14,20 +14,20 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class CutAction extends DefaultAction {
     
-    public static JButton cutButton(ScilabGraph scilabGraph) {
-	return createButton("Cut", "/org/scilab/modules/graph/resources/edit-cut.png", new CutAction(scilabGraph));
+    public static PushButton cutButton(ScilabGraph scilabGraph) {
+	return createButton("Cut", "edit-cut.png", new CutAction(scilabGraph));
     }
     
-    public static JMenuItem cutMenu(ScilabGraph scilabGraph) {
-	return createMenu("Cut", "/org/scilab/modules/graph/resources/edit-cut.png", new CutAction(scilabGraph));
+    public static MenuItem cutMenu(ScilabGraph scilabGraph) {
+	return createMenu("Cut", "edit-cut.png", new CutAction(scilabGraph));
     }
     
     public CutAction() {

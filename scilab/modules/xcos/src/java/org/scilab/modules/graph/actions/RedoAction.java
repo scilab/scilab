@@ -14,19 +14,18 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class RedoAction extends DefaultAction {
     
-    public static JButton redoButton(ScilabGraph scilabGraph) {
-	return createButton("Redo", "/org/scilab/modules/graph/resources/redo.png", new RedoAction(scilabGraph));
+    public static PushButton redoButton(ScilabGraph scilabGraph) {
+	return createButton("Redo", "edit-redo.png", new RedoAction(scilabGraph));
     }
     
-    public static JMenuItem redoMenu(ScilabGraph scilabGraph) {
-	return createMenu("Redo", "/org/scilab/modules/graph/resources/redo.png", new RedoAction(scilabGraph));
+    public static MenuItem redoMenu(ScilabGraph scilabGraph) {
+	return createMenu("Redo", "edit-redo.png", new RedoAction(scilabGraph));
     }
     
     public RedoAction() {

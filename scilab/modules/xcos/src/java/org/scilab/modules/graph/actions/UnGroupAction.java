@@ -14,21 +14,20 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
-
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.swing.util.mxGraphActions;
 
 public class UnGroupAction extends DefaultAction {
 
-    public static JButton ungroupButton(ScilabGraph scilabGraph) {
-	return createButton("UnGroup", "/org/scilab/modules/graph/resources/ungroup.gif", new UnGroupAction(scilabGraph));
+    public static PushButton ungroupButton(ScilabGraph scilabGraph) {
+	return createButton("UnGroup", null, new UnGroupAction(scilabGraph));
     }
     
-    public static JMenuItem ungroupMenu(ScilabGraph scilabGraph) {
-	return createMenu("Group", "/org/scilab/modules/graph/resources/ungroup.gif", new UnGroupAction(scilabGraph));
+    public static MenuItem ungroupMenu(ScilabGraph scilabGraph) {
+	return createMenu("UnGroup", null, new UnGroupAction(scilabGraph));
     }
     
     public UnGroupAction() {

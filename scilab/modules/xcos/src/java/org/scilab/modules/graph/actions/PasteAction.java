@@ -14,20 +14,20 @@ package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
 
-import javax.swing.JButton;
-import javax.swing.JMenuItem;
 import javax.swing.TransferHandler;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class PasteAction extends DefaultAction {
     
-    public static JButton pasteButton(ScilabGraph scilabGraph) {
-	return createButton("Paste", "/org/scilab/modules/graph/resources/edit-paste.png", new PasteAction(scilabGraph));
+    public static PushButton pasteButton(ScilabGraph scilabGraph) {
+	return createButton("Paste", "edit-paste.png", new PasteAction(scilabGraph));
     }
     
-    public static JMenuItem pasteMenu(ScilabGraph scilabGraph) {
-	return createMenu("Paste", "/org/scilab/modules/graph/resources/edit-paste.png", new PasteAction(scilabGraph));
+    public static MenuItem pasteMenu(ScilabGraph scilabGraph) {
+	return createMenu("Paste", "edit-paste.png", new PasteAction(scilabGraph));
     }
     
     public PasteAction() {
