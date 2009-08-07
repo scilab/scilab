@@ -9,8 +9,7 @@
 #include "api_double.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-/* ==================================================================== */
-extern int csum(double *a,double *b,double *c);
+#include "csum.h"
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
