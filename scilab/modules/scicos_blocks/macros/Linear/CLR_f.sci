@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ] = CLR_f(job,arg1,arg2)
+function [x,y,typ]=CLR_f(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -37,8 +37,9 @@ case 'set' then
   x0=model.state
   rpar=model.rpar
   ns=prod(size(x0));nin=1;nout=1
-  %scicos_context;
-  %scicos_context.s=%s
+  %scicos_context=%scicos_context; //copy the semi-global variable locally
+  %scicos_context.s=%s //add s definition to the context
+
   while %t do
     [ok,num,den,exprs]=getvalue('Set continuous SISO transfer parameters',..
 	['Numerator (s)';

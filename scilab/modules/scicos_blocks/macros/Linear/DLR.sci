@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ] = DLR(job,arg1,arg2)
+function [x,y,typ]=DLR(job,arg1,arg2)
 x=[];y=[];typ=[]
 select job
 case 'plot' then
@@ -35,8 +35,8 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   x0=model.dstate;ns=prod(size(x0));
-  %scicos_context;
-  %scicos_context.z=%z
+  %scicos_context=%scicos_context; //copy the semi-global variable locally
+  %scicos_context.z=%z //add z definition to the context
   while %t do
     [ok,num,den,exprs]=getvalue('Set discrete SISO transfer parameters',..
 	['Numerator (z)';
