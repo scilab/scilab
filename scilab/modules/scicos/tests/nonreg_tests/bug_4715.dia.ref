@@ -21,23 +21,5 @@ load(SCI+'/modules/scicos/tests/nonreg_tests/bug_4715.cos');
 %scicos_context.b=0.1;
 global AA
 Info=scicos_simulate(scs_m,list(),%scicos_context,'nw');
-STEP:0
-OUT_f:0
-CLKOUT_f:0
-EVTDLY_f:0
-CLKSPLIT_f:0
-CSCOPE:0
-MUX:0
-CLR:0
-SUMMATION:0
-CLR:0
-SPLIT_f:0
-SPLIT_f:0
-SUMMATION:0
-SPLIT_f:0
-SPLIT_f:0
-INTEGRAL:0
-POWBLK_f:0
-scifunc_block:0
 res=AA;clearglobal AA
 if abs(res-1.56012845688924151)>1d-10 then bugmes();quit;end

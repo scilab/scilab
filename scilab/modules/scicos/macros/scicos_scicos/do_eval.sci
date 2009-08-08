@@ -93,7 +93,6 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
 	model = o.model
 	// should we generate a message here ?
 	ier = execstr('o = ' + o.gui + '(''set'',o)', 'errcatch')
-	mprintf('%s:%d\n',o.gui,ier)
 	if ier == 0 then //++ no error
 	  needcompile1 = max(needcompile1, needcompile) // for scifunc_block
 	  model_n = o.model
