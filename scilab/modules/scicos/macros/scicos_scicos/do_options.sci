@@ -69,7 +69,7 @@ function [edited,options] = do_options(opt,flag)
       with3d = With3D
     end
     if with3d then tt = "Yes", else tt = "No", end
-    rep1 = message(["Use 3D aspect?" ; "current choice is " + tt], ["Yes" ; "No"])
+    rep1 = messagebox(["Use 3D aspect?" ; "current choice is " + tt], 'modal', ["Yes" ; "No"])
     
     if rep1 <> 1 then rep1 = 0, end
     if rep1 then

@@ -10,6 +10,6 @@
 
 function ge_do_circuit(GraphList)
   [p,r] = circuit(GraphList)
-  if p==[] then message('The graph has no circuit"),return,end
+  if p==[] then messagebox('The graph has no circuit","modal"),return,end
   show_arcs(p,'sup')
 endfunction

@@ -123,11 +123,11 @@
           <literal>mark_foreground</literal> and
           <literal>mark_background</literal> properties.</para>
 	<para>
-	  <mediaobject>
+	  <inlinemediaobject>
 	    <imageobject>
 	      <imagedata fileref="../images/marks.svg"/>
 	    </imageobject>
-	  </mediaobject>
+	  </inlinemediaobject>
 	</para>
         </listitem>
       </varlistentry>

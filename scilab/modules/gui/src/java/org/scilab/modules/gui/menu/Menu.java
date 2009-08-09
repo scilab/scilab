@@ -13,6 +13,8 @@
 
 package org.scilab.modules.gui.menu;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.widget.Widget;
 
@@ -36,6 +38,12 @@ public interface Menu extends Widget {
 	void add(MenuItem newMenuItem);
 	
 	/**
+	 * Append a CheckBoxMenuItem to the Menu
+	 * @param newCheckBoxMenuItem the CheckBoxMenuItem to add to the Menu
+	 */
+	void add(CheckBoxMenuItem newCheckBoxMenuItem);
+	
+	/**
 	 * Append a subMenu to the Menu
 	 * @param newSubMenu the subMenu to append to the Menu
 	 */
@@ -51,4 +59,22 @@ public interface Menu extends Widget {
 	 * Add a Separator to a Menu
 	 */
 	void addSeparator();
+	
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	void setChecked(boolean status);
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	boolean isChecked();
+	
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	CallBack getCallback();
 }

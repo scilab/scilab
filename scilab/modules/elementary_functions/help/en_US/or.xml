@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>or</refname>
 
-    <refpurpose>(|) logical or</refpurpose>
+    <refpurpose>logical or of the elements of an array</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -33,8 +33,7 @@
     <synopsis>or(A), or(A,'*')
 or(A,'r'), or(A,1)
 
-or(A,'c'), or(A,2)
-A|B</synopsis>
+or(A,'c'), or(A,2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -55,13 +54,9 @@ A|B</synopsis>
     <literal>y=or(A,2)</literal>) is the columnwise or. It returns in each
     entry of the column vector <literal>y</literal> the or of the columns of
     <literal>x</literal> (The or is performed on the column index:
-    <literal>y(i)= or(A(i,j),j=1,n)</literal>)).</para>
+    <literal>y(i)= or(A(i,j),j=1,n)</literal>)). </para>
 
-    <para><literal>A|B</literal> gives the element-wise logical
-    <literal>or</literal> of the booleans matrices <literal>A</literal> and
-    <literal>B</literal> .<literal>A</literal> and <literal>B</literal> must
-    be matrices with the same dimensions or one from them must be a single
-    boolean.</para>
+    <para></para>
   </refsection>
 
   <refsection>
@@ -69,8 +64,6 @@ A|B</synopsis>
 
     <programlisting role="example"> 
 or([%t %t %f])
-[%t %t %f] | [%f %t %t]
-[%t %t %f] | %f
    </programlisting>
   </refsection>
 
@@ -78,6 +71,8 @@ or([%t %t %f])
     <title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="or_op">or operator (|)</link></member>
+
       <member><link linkend="and">and</link></member>
 
       <member><link linkend="not">not</link></member>

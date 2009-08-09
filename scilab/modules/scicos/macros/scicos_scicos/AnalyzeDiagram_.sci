@@ -21,7 +21,7 @@
 function AnalyzeDiagram_()
   Cmenu = [] ; 
   if needcompile>0 then 
-    message("You must first compile the diagram.")
+    messagebox("You must first compile the diagram.","modal")
   else
     do_analyze_diagram(%cpr)
   end

@@ -27,7 +27,7 @@ function CtrlSelect_()
   end
   kc=find(%win==windows(:,2))
   if kc==[] then
-    message('This window is not an active scicos window')
+    messagebox('This window is not an active scicos window','modal')
     %pt=[];return
   elseif windows(kc,1)<0 then //click dans une palette
     kpal=-windows(kc,1)
@@ -38,7 +38,7 @@ function CtrlSelect_()
   elseif slevel>1 then
     execstr('k=getobj(scs_m_'+string(windows(kc,1))+',%pt)')
    else
-    message('This window is not an active scicos window')
+    messagebox('This window is not an active scicos window','modal')
     %pt=[];return
   end   
  

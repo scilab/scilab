@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "hashtable_core.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
@@ -1288,6 +1289,7 @@ static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
   // Free memory
   freeArrayOfString(str, nCols*nRows);
   FREE(int_str);
+  return 0;
 }
 
 /****************************************************************
@@ -1443,7 +1445,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 
   /* Used when fromwhat=="funptr" */
   int interf_num,interf_index2,funptr;
-  int job1 = 1,job2 = 2;
+  int job1 = 1,job2 = (int)SCI_HFUNCTIONS_BACKSEARCH;
   int id[nsiz];
 
   double nblhs = 0;
@@ -2216,7 +2218,7 @@ int complexity(int *data,int *index2,int *lgth)
 
       if (codeSave==15)
         {
-          if (begin>0 & data[cur_ind]!=29) /* Inside a list of inputs or operands */
+          if ( (begin>0) && (data[cur_ind]!=29) ) /* Inside a list of inputs or operands */
             {
               count--; /* No new instruction created */
             }

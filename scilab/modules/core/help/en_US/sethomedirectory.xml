@@ -9,10 +9,11 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[home,scilabhome]=sethomedirectory()</synopsis>
+    <synopsis>[home,scilabhome] = sethomedirectory()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
+    <para>DEPRECATED : You need to use "SCIHOME" and "home" scilab variables.</para>
     <para>Set Scilab home path : "SCIHOME" variable.</para>
     <para>On Windows 2k and XP , C:\Documents and
     Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>

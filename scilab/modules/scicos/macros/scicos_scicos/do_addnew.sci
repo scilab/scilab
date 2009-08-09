@@ -35,7 +35,7 @@ function [scs_m, fct] = do_addnew(scs_m)
   name = stripblanks(name);
 
   if name==emptystr() then
-      message("No block name specified");
+      messagebox("No block name specified",'modal');
       return
   end ; //** --> Exit point
 
@@ -50,8 +50,8 @@ function [scs_m, fct] = do_addnew(scs_m)
 
   if to_get then // try to get it
 
-    message(['Problem loading block '+name+'.';
-             'Use Activate_Scilab_Window and redefine it in Scilab.'] ) ;
+    messagebox(['Problem loading block '+name+'.';
+             'Use Activate_Scilab_Window and redefine it in Scilab.'], 'modal' ) ;
     return;
 
     //path = name+'.sci'
@@ -59,12 +59,12 @@ function [scs_m, fct] = do_addnew(scs_m)
     //if length(path)<=0 then return,end
     //[u,err]=file('open',path,'old','formatted')
     //if err<>0 then
-    //  message(path+' file, Not found')
+    //  messagebox(path+' file, Not found','modal')
     //  return
     //end
     //if execstr('getf(u)','errcatch')<>0 then
     //  file('close',u)
-    //  message([name + " erroneous function:"; lasterror()])
+    //  messagebox([name + " erroneous function:"; lasterror()],'modal')
     //  return
     //end
     //file('close',u)
@@ -83,15 +83,15 @@ function [scs_m, fct] = do_addnew(scs_m)
   //define the block
   ierror = execstr('blk='+name+'(''define'')','errcatch')
   if ierror <>0 & ierror <>4 then
-    message([ "Error in GUI function"; lasterror() ])
+    messagebox([ "Error in GUI function"; lasterror() ],'modal')
     fct = [] ;
     return
   end
 
   if ierror == 4 then
-    irr=message(['Error in GUI function--The error was:';
+    irr = messagebox(['Error in GUI function--The error was:';
 		            lasterror();'It could be an old GUI';
-	              'Should I try to translate (no guarantee)?'],['yes','no'])
+	              'Should I try to translate (no guarantee)?'],'modal',['yes','no'])
 
     if irr==2 then
 
@@ -106,7 +106,7 @@ function [scs_m, fct] = do_addnew(scs_m)
       ierror=execstr('blk='+name+'(''define'')','errcatch')
 
       if ierror <>0 then
-	         message("Translation did not work, sorry")
+	         messagebox("Translation did not work, sorry","modal")
 	         fct=[]
 	         return
       end
@@ -116,7 +116,7 @@ function [scs_m, fct] = do_addnew(scs_m)
       ierror = execstr('blk=up_to_date(blk)','errcatch');
 
       if ierror <>0 then
-        message("Translation did not work, sorry")
+        messagebox("Translation did not work, sorry","modal")
         fct=[]
         return
       end
@@ -202,7 +202,7 @@ function [scs_m, fct] = do_addnew(scs_m)
     [ierr,scicos_ver,scs_m_super]=update_version(scs_m_super)
 
     if ierr<>0 then
-      message("Can''t import block in scicos, sorry (problem in version)")
+      messagebox("Can''t import block in scicos, sorry (problem in version)","modal")
       fct=[]
       return
     end
@@ -226,7 +226,7 @@ function [scs_m, fct] = do_addnew(scs_m)
         //**------ R@min's update ---------/////////////
          [u,err]=file('open',TMPDIR+'/'+name+'.sci','unknown')
          if err<>0 then
-           message('The file '+TMPDIR+'/'+name+'.sci'+' cannot be opened.')
+           messagebox('The file '+TMPDIR+'/'+name+'.sci'+' cannot be opened.',"modal")
            return
          end
 
@@ -239,7 +239,7 @@ function [scs_m, fct] = do_addnew(scs_m)
                ];
          ierr=execstr('write(u,Txte,''(a)'')','errcatch','n')
          if ierr<>0 then 
-               message('Impossible to write in '+TMPDIR+'/'+name+'.sci'+'; possibly locked.')
+               messagebox('Impossible to write in '+TMPDIR+'/'+name+'.sci'+'; possibly locked.','modal')
                file('close',u)
                return
          end
@@ -289,11 +289,11 @@ function [scs_m, fct] = do_addnew(scs_m)
         //**-------------------------------/////////////
       end
       nam_file=strcat([name,name+'_new']+'.sci',' ')
-      message(["Old csuper/super block have been detected !";
+      messagebox(["Old csuper/super block have been detected !";
                "New interfacing functions "+nam_file;
                " have been re-generated in "+TMPDIR+".";
                "Please save and edit the generated file at your convenience";
-               "to have an updated interfacing function of that block."])
+               "to have an updated interfacing function of that block."],"modal")
     end
   end
   //**------------------------------------/////////////

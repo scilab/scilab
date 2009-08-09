@@ -27,6 +27,6 @@ function UpToMainDiagram_()
 		       'xselect()'
 		      ]
   else
-      message('This is already the main diagram;')
+      messagebox('This is already the main diagram;','modal')
   end
 endfunction

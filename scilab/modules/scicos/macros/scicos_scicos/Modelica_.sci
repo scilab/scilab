@@ -48,7 +48,7 @@ function Modelica_()
 	compile_modelica(scs_m.props.title(2)+name+'.mo')
 	Cmenu=[] 
       else
-	message('Generation Code only work for a Superblock ! ')
+	messagebox('Generation Code only work for a Superblock ! ','modal')
 	break
       end
     end

@@ -30,7 +30,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
   
   if kc==[] then
     //** -----> It is NOT a Scicos window
-    message("This window is not an active palette"); 
+    messagebox("This window is not an active palette","modal"); 
     k=[]; //** this means that not valid objet was found; used as flag for the rest of the code
 
     //** -----> It is a PALETTE window
@@ -64,7 +64,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
     end
 
   else // in all the other cases 
-    message("This window is not an active palette")
+    messagebox("This window is not an active palette","modal")
     k=[]; 
     
   end //** end of the filter on windows  

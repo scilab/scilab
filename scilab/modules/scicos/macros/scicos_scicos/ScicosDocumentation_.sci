@@ -22,7 +22,7 @@
 function ScicosDocumentation_()
 
   if execstr('help(''scicos'');' , 'errcatch') <>0 then
-     message("No help available.");
+     messagebox("No help available.",'modal');
   end
 
   //** Clear state machine variables

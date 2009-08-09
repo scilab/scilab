@@ -26,7 +26,7 @@ function Backgroundcolor_()
     if curwin==%win then
       scf(%win);
     else
-      message("Only current window can be edited.")
+      messagebox("Only current window can be edited.","modal")
     end
 
     [edited,options] = do_options(scs_m.props.options,"Background"); 

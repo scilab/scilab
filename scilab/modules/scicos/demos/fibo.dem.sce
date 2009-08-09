@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("fibo.dem.sce");
-scicos_demostration(thispath+"/fibo.cos");
+scicos_demonstration(thispath+"/fibo.cos");
 clear thispath;

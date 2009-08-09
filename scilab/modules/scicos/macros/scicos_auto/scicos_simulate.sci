@@ -63,19 +63,20 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   end
   clear noguimode
 
-  //** define Scicos data tables
-  if (~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-      ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-      ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-      ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
-      ~isdef("%scicos_contrib") ) then
-         [scicos_pal, %scicos_menu,...
-          %scicos_short, %scicos_help,..
-          %scicos_display_mode, modelica_libs,..
-          scicos_pal_libs, %scicos_gif,..
-          %scicos_contrib] = initial_scicos_tables()
-         clear initial_scicos_tables
-  end
+  // Define Scicos data tables ===========================================
+  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
+     ~isdef("%scicos_contrib") | ~isdef("%scicos_libs") ) then
+
+    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
+     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif, ...
+     %scicos_contrib,%scicos_libs] = initial_scicos_tables();
+     clear initial_scicos_tables
+   end
+  // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
@@ -189,13 +190,13 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
   if scicos_ver <> current_version then
     ierr = execstr('scs_m = do_version(scs_m, scicos_ver)','errcatch')
     if ierr <> 0 then
-      message("Can''t convert old diagram (problem in version)")
+      messagebox("Can''t convert old diagram (problem in version)","modal")
       return
     end
   end
 
   //prepare from and to workspace stuff
-  curdir = getcwd()
+  curdir = pwd()
   chdir(TMPDIR)
   mkdir('Workspace')
   chdir('Workspace')

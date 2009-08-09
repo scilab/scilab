@@ -62,7 +62,7 @@ function [routines,IntFunc]=create_palette(Path)
      %scicos_gif,%scicos_contrib,%scicos_libs] = initial_scicos_tables()
     clear %scicos_menu  %scicos_short %scicos_help %scicos_display_mode modelica_libs
     exec(loadpallibs,-1)
-    path = "SCI/modules/scicos/macros/scicos_scicos/" ; //** ... for the moment, the palettes stay here (for compatibility). 
+    path = "SCI/modules/scicos/palettes/" ;
 
     routines=[];IntFunc=[];
     for txt=scicos_pal(:,1)'
@@ -285,7 +285,7 @@ function [routines]=build_palette(lisf,path,fname,gr_i,id)
   //## blk of PAL_f
   ierr=execstr('blk=PAL_f(''define'')','errcatch')
   if ierr<>0 then
-    message('Block palette not found.')
+    messagebox('Block palette not found.','modal')
     return
   end
   //## set size graphics of PAL_f block
@@ -313,14 +313,14 @@ function [routines]=build_palette(lisf,path,fname,gr_i,id)
   //## open file
   [u,err]=file('open',path(1)+fname(1)+'.cosf','unknown','formatted')
   if err<>0 then
-    message('File or directory write access denied')
+    messagebox('File or directory write access denied','modal')
     routines=[]
     return
   end
   //## write scs_m in file with cos2cosf
   ierr=cos2cosf(u,do_purge(scs_m))
   if ierr<>0 then
-    message('Directory write access denied')
+    messagebox('Directory write access denied','modal')
     routines=[]
     file('close',u)
     return
@@ -341,7 +341,7 @@ function [routines,scs_m]=get_flatpal(lisf,path,fname,gr_i,id)
   //## blk of PAL_f
   ierr=execstr('blk=PAL_f(''define'')','errcatch')
   if ierr<>0 then
-    message('Block palette not found.')
+    messagebox('Block palette not found.','modal')
     return
   end
   //## set size graphics of PAL_f block
@@ -381,7 +381,7 @@ function [routines,scs_m]=get_flatpal(lisf,path,fname,gr_i,id)
           name=basename(fil)
           ierror=execstr('blk_j='+name+'(''define'')','errcatch')
           if ierror <>0 then
-            message(['Error in GUI function';lasterror()] )
+            messagebox(['Error in GUI function';lasterror()],'modal' )
             return
           end
           routines=[routines;blk_j.model.sim(1)]
@@ -402,7 +402,7 @@ function [routines,scs_m]=get_flatpal(lisf,path,fname,gr_i,id)
       name=basename(fil)
       ierror=execstr('blk_j='+name+'(''define'')','errcatch')
       if ierror <>0 then
-        message(['Error in GUI function';lasterror()] )
+        messagebox(['Error in GUI function';lasterror()],'modal' )
         return
       end
       routines=[routines;blk_j.model.sim(1)]

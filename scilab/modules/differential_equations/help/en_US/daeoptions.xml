@@ -55,11 +55,15 @@
     <para>The variable <literal>%DAEOPTIONS</literal> is a <link
     linkend="list">list</link> with the following elements:</para>
 
-    <programlisting>list(tstop,imode,band,maxstep,stepin,nonneg,isest)</programlisting>
+    <programlisting> 
+list(tstop,imode,band,maxstep,stepin,nonneg,isest)
+ </programlisting>
 
     <para>The default value is:</para>
 
-    <programlisting>list([],0,[],[],[],0,0)</programlisting>
+    <programlisting> 
+list([],0,[],[],[],0,0)
+ </programlisting>
 
     <para>The meaning of the elements is described below.</para>
 

@@ -82,14 +82,14 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
 
   //** switch appropriate solver
   if %cpr.sim.xptr($)-1<size(%cpr.state.x,'*') & solver<100 then
-    message(['Diagram has been compiled for implicit solver'
-             'switching to implicit Solver'])
+    messagebox(['Diagram has been compiled for implicit solver'
+             'switching to implicit Solver'],'modal')
     solver=100
     tolerances(6)=solver
   elseif (%cpr.sim.xptr($)-1==size(%cpr.state.x,'*')) & ..
         (solver==100 & size(%cpr.state.x,'*')<>0) then
-    message(['Diagram has been compiled for explicit solver'
-             'switching to explicit Solver'])
+    messagebox(['Diagram has been compiled for explicit solver'
+             'switching to explicit Solver'],'modal')
     solver=0
     tolerances(6)=solver
   end
@@ -146,7 +146,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
             global Scicos_commands
             Scicos_commands=cmd;
           else //** simulator error
-            message(['End problem:';str_err])
+            messagebox(['End problem:';str_err],'modal')
             scf(curwin);
           end
           ok=%f
@@ -278,7 +278,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
           global Scicos_commands
           Scicos_commands=cmd;
         else //** simulator error
-          message(['End problem:';str_err])
+          messagebox(['End problem:';str_err],'modal')
           scf(curwin);
         end
       end
@@ -302,7 +302,7 @@ function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
       Scicos_commands=cmd;
 
     else //** simulateur error
-      message(['Simulation problem:';str_err])
+      messagebox(['Simulation problem:';str_err],'modal')
       scf(curwin);
     end
     ok=%f

@@ -35,13 +35,13 @@ else
   if typeof(o)=='Block' then
     if o.model.sim=='super' then
       [o,needcompile,ok]=do_CreateAtomic(o,i,scs_m)
-      if ~ok then message('Error in Creating Atomic');return ;end
+      if ~ok then messagebox('Error in Creating Atomic','modal');return ;end
       scs_m = update_redraw_obj(scs_m,list('objs',i),o)
     else
-      message('Atomic can only be affected to Non Atomic Super Blocks.');
+      messagebox('Atomic can only be affected to Non Atomic Super Blocks.','modal');
     end
   else
-    message('Atomic can only be affected to Non Atomic Super Blocks.');
+    messagebox('Atomic can only be affected to Non Atomic Super Blocks.','modal');
   end
 end
 endfunction

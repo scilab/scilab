@@ -42,7 +42,7 @@ function Context_()
     if ~or(winsid()==%now_win) then 
       Cmenu="Quit",
       txtedit.clos=1
-      message('Diagram has been closed. That context is no more valid.')
+      messagebox('Diagram has been closed. That context is no more valid.','modal')
       [rep,Quit] = scstxtedit(context,txtedit);
       return,
     end
@@ -82,8 +82,7 @@ function Context_()
     //end of for backward compatibility for scifunc
 
     if ierr <>0 then
-      message(['Error occur when evaluating context:'
-               lasterror() ]);
+      messagebox(['Error occur when evaluating context:';lasterror() ],'modal');
 
     else //** if the first check is ok
       scs_m_save = scs_m
@@ -98,8 +97,8 @@ function Context_()
       if ok then
         if needcompile<>4 & size(%cpr)>0 then %state0=%cpr.state, end
       else
-        message(['Error during Eval operation.';
-                 'Please re-examine the content of the context.'])
+        messagebox(['Error during Eval operation.';
+                 'Please re-examine the content of the context.'],'modal')
         scs_m=scs_m_save
         scs_m.props.context = context;
 	enable_undo=%f

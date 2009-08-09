@@ -9,7 +9,7 @@
 // test funptr
 //================================================
 ptr = funptr('pwd');
-if ptr <> 3431 then pause,end
+if ptr <> 34031 then pause,end
 
 ierr = execstr('ptr = funptr(1)','errcatch');
 if ierr <> 999 then pause,end

@@ -25,11 +25,10 @@
             How to get the symbolic variable name.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get the symbolic variable name.</para>
-        <synopsis>int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -58,6 +57,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to get the symbolic variable name.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/poly_reading_api.c-->

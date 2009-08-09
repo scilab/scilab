@@ -27,7 +27,6 @@
     <refname>dae</refname>
 
     <refpurpose>Differential algebraic equations solver</refpurpose>
-
   </refnamediv>
 
   <refsynopsisdiv>
@@ -131,12 +130,16 @@
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting>list(res,p1,p2,...)</programlisting>
+                <programlisting> 
+list(res,p1,p2,...)
+ </programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>res</literal> is now</para>
 
-                <programlisting>r=res(t,y,ydot,p1,p2,...)</programlisting>
+                <programlisting> 
+r=res(t,y,ydot,p1,p2,...)
+ </programlisting>
 
                 <para><literal>res</literal> still returns the residual value
                 as a function of <literal>(t,x,xdot,x1,x2,...)</literal>, and
@@ -246,12 +249,16 @@
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting>list(jac,p1,p2,...)               </programlisting>
+                <programlisting> 
+list(jac,p1,p2,...)               
+ </programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>jac</literal> is now</para>
 
-                <programlisting>r=jac(t,x,xdot,p1,p2,...)      </programlisting>
+                <programlisting> 
+r=jac(t,x,xdot,p1,p2,...)      
+ </programlisting>
 
                 <para><literal>jac</literal> still returns
                 <literal>dg/dx+cj*dg/dxdot</literal> as a function of
@@ -305,8 +312,8 @@
         <listitem>
           <para>an <link linkend="external" role=""
           version="">external</link>. Computes the value of the column vector
-          <literal>surface(t,x)</literal> with <literal>ng</literal> components.
-          Each component defines a surface.</para>
+          <literal>surface(t,x)</literal> with <literal>ng</literal>
+          components. Each component defines a surface.</para>
 
           <variablelist>
             <varlistentry>
@@ -326,12 +333,16 @@
                 <para>This form of external is used to pass parameters to the
                 function. It must be as follows:</para>
 
-                <programlisting>list(surface,p1,p2,...)</programlisting>
+                <programlisting> 
+list(surface,p1,p2,...)
+ </programlisting>
 
                 <para>where the calling sequence of the function
                 <literal>surface</literal> is now</para>
 
-                <programlisting>r=surface(t,x,p1,p2,...)</programlisting>
+                <programlisting> 
+r=surface(t,x,p1,p2,...)
+ </programlisting>
               </listitem>
             </varlistentry>
 
@@ -402,8 +413,8 @@
 
         <listitem>
           <para>real matrix . If <literal><link
-          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>, each column is the
-          vector <literal>[t;x(t);xdot(t)]</literal> where
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>, each column
+          is the vector <literal>[t;x(t);xdot(t)]</literal> where
           <literal>t</literal> is time index for which the solution had been
           computed. Else <literal>y</literal> is the vector
           <literal>[x(t);xdot(t)]</literal>.</para>
@@ -419,9 +430,9 @@
     <link linkend="dassl">dassl</link> and <link linkend="dasrt">dasrt</link>
     function designed for implicit differential equations integration.</para>
 
-    <programlisting>
-    g(t,x,xdot)=0
-    x(t0)=x0  and   xdot(t0)=xdot0
+    <programlisting> 
+g(t,x,xdot)=0
+x(t0)=x0  and   xdot(t0)=xdot0
  </programlisting>
 
     <para>If <literal>xdot0</literal> is not given in the<literal>
@@ -441,18 +452,19 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">//Example with Scilab  code
- function [r,ires]=chemres(t,y,yd)
-     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
-     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
-     r(3) =       y(1) +     y(2)      + y(3)-1;
-     ires =  0;
- endfunction
- function pd=chemjac(x,y,yd,cj)
-     pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
-          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
-          1       , 1                      , 1       ]
- endfunction
+    <programlisting role="example"> 
+//Example with Scilab  code
+function [r,ires]=chemres(t,y,yd)
+    r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
+    r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
+    r(3) =       y(1) +     y(2)      + y(3)-1;
+    ires =  0;
+endfunction
+function pd=chemjac(x,y,yd,cj)
+    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+         1       , 1                      , 1       ]
+endfunction
 
 x0=[1; 0; 0];
 xd0=[-0.04; 0.04; 0];
@@ -500,9 +512,6 @@ t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
 plot(yy(1,1),yy(2,1),'r+')
 xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
-
-
-
   </programlisting>
   </refsection>
 

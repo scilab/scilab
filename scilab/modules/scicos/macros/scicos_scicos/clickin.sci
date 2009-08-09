@@ -170,8 +170,8 @@ if typeof(o)=="Block" then
     end
   //**-------------------- atomic superblock (asuper) -----------------------------  
   elseif (o.model.sim(1)=="asuper") then
-  	 message(['This is an atomic superblock';..
-	 	   'To edite it, you must first remove the atomicity']);
+  	 messagebox(['This is an atomic superblock';..
+	 	   'To edite it, you must first remove the atomicity'],'modal');
   //**--------------------- Standard block -------------------------------
   else
 

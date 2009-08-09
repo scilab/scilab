@@ -45,7 +45,7 @@ function SelectLink_()
   //** case 0 : is not an active SCICOS window
   if kc==[] then
     //** This message has been suppressed : have a good day :)
-    //** message("1 - This window is not an active scicos window");
+    //** messagebox("1 - This window is not an active scicos window","modal");
     Cmenu=[]; %pt=[]; return
 
   //** case : kc index a "negative" windows id  --> the user has clicked in a palette window
@@ -97,7 +97,7 @@ function SelectLink_()
     
     //** case : This window is not an active scicos window
     else 
-     message('2 - This window is not an active scicos window')
+     messagebox('2 - This window is not an active scicos window','modal')
      Cmenu=[];%pt=[];return
 
   end

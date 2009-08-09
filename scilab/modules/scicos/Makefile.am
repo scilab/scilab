@@ -170,20 +170,18 @@ includes/scicos_math.h
 
 #### scicos : cosf files ####
 libsciscicos_la_cosfdir=$(mydatadir)
-nobase_libsciscicos_la_cosf_DATA = macros/scicos_scicos/Branching.cosf \
-macros/scicos_scicos/DemoBlocks.cosf \
-macros/scicos_scicos/Events.cosf \
-macros/scicos_scicos/Integer.cosf \
-macros/scicos_scicos/Linear.cosf \
-macros/scicos_scicos/Matrix.cosf \
-macros/scicos_scicos/Non_linear.cosf \
-macros/scicos_scicos/OldBlocks.cosf \
-macros/scicos_scicos/Others.cosf \
-macros/scicos_scicos/Sinks.cosf \
-macros/scicos_scicos/Sources.cosf \
-macros/scicos_scicos/Threshold.cosf
-#macros/scicos_scicos/Electrical.cosf \
-#macros/scicos_scicos/ThermoHydraulics.cosf
+nobase_libsciscicos_la_cosf_DATA = palettes/Branching.cosf \
+palettes/DemoBlocks.cosf \
+palettes/Events.cosf \
+palettes/Integer.cosf \
+palettes/Linear.cosf \
+palettes/Matrix.cosf \
+palettes/Non_linear.cosf \
+palettes/OldBlocks.cosf \
+palettes/Others.cosf \
+palettes/Sinks.cosf \
+palettes/Sources.cosf \
+palettes/Threshold.cosf
 
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \

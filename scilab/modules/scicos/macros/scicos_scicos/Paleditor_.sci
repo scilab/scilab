@@ -30,7 +30,7 @@ function Paleditor_()
       scicos_pal = scicos_palnew
       
       if execstr('save(''.scicos_pal'',scicos_pal)','errcatch')<>0 then
-	message('Cannot save .scicos_pal in current directory')
+	messagebox('Cannot save .scicos_pal in current directory','modal')
       end
     
     end

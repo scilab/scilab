@@ -28,7 +28,7 @@ Cmenu=[];%pt=[];
 K=find(Select(:,2)==curwin)
 if K==[] then return,end
 if size(K,'*')>1 then
-  message("Create Mask applies to a single selected SuperBlock")
+  messagebox("Create Mask applies to a single selected SuperBlock",'modal')
   return
 end
 gh_axes=gca()
@@ -61,9 +61,9 @@ if typeof(o)=="Block" then
       update_gr(gh_k,o)
       drawnow(); 
    else
-      message("Mask can only be created for Super Blocks.")
+      messagebox("Mask can only be created for Super Blocks.",'modal')
    end
 else
-  message("Mask can only be created for Super Blocks.")
+  messagebox("Mask can only be created for Super Blocks.",'modal')
 end
 endfunction

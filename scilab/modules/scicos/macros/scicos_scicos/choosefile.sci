@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - 2009 - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -29,29 +30,35 @@ function fname=choosefile(path,comm,errmess)
 // fname  :  character string : selected file name or empty matrix if none
 //!
 
-
-[lhs,rhs]=argn(0)
-select rhs
-case 0 then
-  path='./*'
-  comm='Choose a file'
-  errmess=%t
-case 1 then
-  comm='Choose a file'
-  errmess=%t
-case 2 then
-  errmess=%t
-end
-lst=lstfiles(path)
-if lst==[]&errmess then message('No such file exists'),end
-if prod(size(lst))>0 then
-  n=choose(lst,comm,'Cancel')
-  if n<>0 then
-    fname=lst(n)
-  else
-    fname=[]
+  [lhs,rhs] = argn(0);
+  select rhs
+    case 0 then
+      path='./*'
+      comm = 'Choose a file';
+      errmess = %t;
+    case 1 then
+      comm = 'Choose a file';
+      errmess = %t;
+    case 2 then
+      errmess = %t;
   end
-else
-  fname=[]
-end
+
+  dir_result = dir(path);
+  // get only files 
+  name_result = dir_result(2);
+  lst = name_result(dir_result(5) == %f);
+
+  if ( (lst==[]) & errmess) then
+    messagebox('No such file exists','modal');
+  end
+  if prod(size(lst))>0 then
+    n = x_choose(lst,comm,'Cancel');
+    if n<>0 then
+      fname = lst(n);
+    else
+      fname = [];
+    end
+  else
+    fname = [];
+  end
 endfunction

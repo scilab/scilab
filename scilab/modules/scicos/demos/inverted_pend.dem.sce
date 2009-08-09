@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("inverted_pend.dem.sce");
-scicos_demostration(thispath+"/Inverted_pendulum.cosf");
+scicos_demonstration(thispath+"/Inverted_pendulum.cosf");
 clear thispath;

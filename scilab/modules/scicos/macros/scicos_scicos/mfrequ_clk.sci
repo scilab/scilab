@@ -54,10 +54,10 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
      mat=mat(k,:);  // sorting the mat matrix (increasingly).
      // if two outputs are called at the same time they are replaced by an other output; the intersection of the two.
      if size(mat,1)>10000 then
-        num=message(['Warning: Your system is too hard to synchronize it will take some time';
+        num=messagebox(['Warning: Your system is too hard to synchronize it will take some time';
 			 'And the stacksize has to be increase';
 			  ' A scilab crash may occur';
-	 		  'Do You want me to continue?'],['No','Yes'])
+	 		  'Do You want me to continue?'],'modal',['No','Yes'])
 	if num==1 then 
 	   ok=%f;
 	   return

@@ -32,7 +32,7 @@ else
 		       '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
                        'Cmenu='"Place in Browser'";%scicos_navig=[]'
 		      ]  // not really needed to return anymore, may remove last line
-//  message("Browser can only be launched from main diagram.") ;
+//  messagebox("Browser can only be launched from main diagram.","modal") ;
 end
 
 endfunction

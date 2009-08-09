@@ -39,11 +39,11 @@ function [scs_m] = do_block(%pt,scs_m)
     K=find(Select(:,2)==%win)
     if K==[] then return, end //** if no selected object in current window--> EXIT
     if size(K,'*')>1 then  
-      message("Only one block can be selected in current window for this operation.") ;
+      messagebox("Only one block can be selected in current window for this operation.","modal") ;
       return ; //** EXIT
     end
     if typeof(scs_m.objs(K))<>'Block' then 
-      message("Icon menu applies only to blocks.") ;
+      messagebox("Icon menu applies only to blocks.","modal") ;
       return, 
     end
     %pt=[]

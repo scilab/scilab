@@ -60,12 +60,12 @@ if MSDOS then
 	getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
 	getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
 	getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
-	getrelativefilename(getcwd(),WSCI+'\bin\Wscilex')
+	getrelativefilename(pwd(),WSCI+'\bin\Wscilex')
 else
 	getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
 	getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
 	getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
-	getrelativefilename(getcwd(),SCI+'/bin/scilex')
+	getrelativefilename(pwd(),SCI+'/bin/scilex')
 end
 
 	]]></programlisting>
@@ -80,7 +80,7 @@ end
         <link linkend="getlongpathname">getlongpathname</link>
       </member>
       <member>
-        <link linkend="getcwd">getcwd</link>
+        <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
   </refsection>

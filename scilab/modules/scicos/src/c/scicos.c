@@ -274,7 +274,6 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 #if defined(linux) && defined(__i386__)
   setFPUToExtended();
 #endif
-  sciprint("entering scicos %d\n",*flag__);
   /*     Copyright INRIA */
   /* iz,izptr are used to pass block labels */
   TCritWarning = 0;
