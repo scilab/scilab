@@ -35,7 +35,8 @@ src/c/javasci_SciComplexArray.c \
 src/c/fix.c \
 src/c/javasci_SciDoubleArray.c \
 src/c/javasci_Scilab.c \
-src/c/javasci_SciBooleanArray.c
+src/c/javasci_SciBooleanArray.c \
+src/c/javasci_SciIntegerArray.c
 
 pkglib_LTLIBRARIES = libjavasci.la
 
@@ -54,11 +55,13 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
 			-I$(top_srcdir)/modules/call_scilab/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/libsciapi_scilab.la \
 	$(top_builddir)/modules/libscilab.la
 
 #### javasci : include files ####
@@ -70,6 +73,7 @@ includes/javasci_SciStringArray.h \
 includes/javasci_SciComplexArray.h \
 includes/javasci_SciDoubleArray.h \
 includes/javasci_SciBooleanArray.h \
+includes/javasci_SciIntegerArray.h \
 includes/javasci_SciAbstractArray.h
 
 ### javasci :  images ###

@@ -43,17 +43,18 @@ public class Strings2
         }
         s[i]=new String(ch);
     }
+    // to allocate more memory for strings (1000 strings of 3100 characters)
+    Scilab.Exec("stacksize('max');");
     
-    SciStringArray sSA=new SciStringArray("A",s.length,1,s);
+    SciStringArray sSA=new SciStringArray("A",1,s.length,s);
     Scilab.Exec("Sa=size(A);");
     Scilab.Exec("disp(Sa);");
-    
-    SciStringArray ssB = new SciStringArray("B",s.length,1);
+
+    SciStringArray ssB = new SciStringArray("B",1,s.length);
     Scilab.Exec("B=A+string([1:"+s.length+"]);");
-        
+
   	ssB.Get();
-	
-  	
+
   	Scilab.Exec("Sb=size(B);");
     Scilab.Exec("disp(Sb);");
     // 1 1000 taille matrice de chaines
