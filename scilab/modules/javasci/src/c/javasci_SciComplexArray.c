@@ -45,7 +45,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetRealPartElement(JNIEnv
 
 	int cm = 0, cn = 0;
 
-	if (getNamedVarDimensions((char*)cname, dimension))
+	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
 	{
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciComplexArray_GetRealPartElement (1).\n");
@@ -137,7 +137,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
 
 	int cm = 0, cn = 0;
 
-	if (getNamedVarDimensions((char*)cname, dimension))
+	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
 	{
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciComplexArray_GetRealPartElement (1).\n");

@@ -125,20 +125,4 @@ API_SCILAB_IMPEXP int getDimFromVar(int* _piAddress, int* _piVal);
 */
 API_SCILAB_IMPEXP int getDimFromNamedVar(char* _pstName, int* _piVal);
 
-/**
-* Get Dimensions for a variable
-* @param[in] _piAddress variable address
-* @param[out] _piDims [rows,cols]
-* @return if the operation successed (0) or not ( !0 )
-*/
-API_SCILAB_IMPEXP int getVarDimensions(int* _piAddress, int* _piDims);
-
-/**
-* Get Dimensions for a named variable
-* @param[in] _piAddress variable address
-* @param[out] _piDims [rows,cols]
-* @return if the operation successed (0) or not ( !0 )
-*/
-API_SCILAB_IMPEXP int getNamedVarDimensions(char* _pstName, int* _piDims);
-
 #endif /* __COMMON_API__ */

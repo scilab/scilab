@@ -44,7 +44,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 
 	int dimension[2];
 
-	if (getNamedVarDimensions((char*)cname, dimension))
+	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
 	{
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error in Java_javasci_SciStringArray_GetElement (1).\n");

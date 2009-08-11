@@ -43,7 +43,7 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
   int i = 0;
   int cm = 0, cn = 0;
 
-  if (getNamedVarDimensions((char*)cname, dimension))
+  if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
   {
 	  (*env)->ReleaseStringUTFChars(env, jname , cname);
 	  fprintf(stderr,"Error in Java_javasci_SciBooleanArray_GetElement (1).\n");

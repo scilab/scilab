@@ -52,6 +52,18 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 	}
 }
 /*--------------------------------------------------------------------------*/
+int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet)
+	{
+		return 0;
+	}
+	return getVarDimension(piAddr, _piRows, _piCols);
+}
+/*--------------------------------------------------------------------------*/
 int getVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
@@ -470,55 +482,5 @@ int getDimFromNamedVar(char* _pstName, int* _piVal)
 	iRet = getVarAddressFromName(_pstName, &piAddr);
 	if(iRet) return iRet;
 	return getDimFromVar(piAddr, _piVal);
-}
-/*--------------------------------------------------------------------------*/
-int getVarDimensions(int* _piAddress, int* _piDims)
-{
-	int iType					= 0;
-
-	if(_piAddress == NULL)
-	{
-		return 1;
-	}
-
-	iType = getVarType(_piAddress);
-
-	switch(iType)
-	{
-	
-	case sci_matrix:
-	case sci_poly:
-	case sci_boolean:
-	case sci_sparse:
-	case sci_boolean_sparse:
-	case sci_matlab_sparse:
-	case sci_ints:
-	case sci_handles:
-	case sci_strings:
-	case sci_u_function:
-	case sci_c_function:
-	case sci_lib:
-	case sci_list:
-	case sci_tlist:
-	case sci_mlist:
-	case sci_lufact_pointer:
-	case sci_implicit_poly:
-	case sci_intrinsic_function:
-		_piDims[0] = _piAddress[1];
-		_piDims[1] = _piAddress[2];
-		break;
-	default:
-		return 1; 
-	}
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
-int getNamedVarDimensions(char* _pstName, int* _piDims)
-{
-	int iRet				= 0;
-	int* piAddr				= NULL;
-	iRet = getVarAddressFromName(_pstName, &piAddr);
-	if(iRet) return iRet;
-	return getVarDimensions(piAddr, _piDims);
 }
 /*--------------------------------------------------------------------------*/

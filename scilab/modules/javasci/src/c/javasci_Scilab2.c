@@ -400,7 +400,7 @@ JNIEXPORT jobject JNICALL Java_javasci_Scilab_receiveDataByName (JNIEnv *env, jc
 	(*env)->ReleaseStringUTFChars(env, name , cname);
 
 	type = getNamedVarType((char*)cname); /* give type */
-	getNamedVarDimensions((char*)cname, Dimensions);
+	if (getNamedVarDimension((char*)cname, &Dimensions[0], &Dimensions[1]));
 
 	switch(type)
 	{
