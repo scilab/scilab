@@ -22,7 +22,7 @@
         <refname>Double reading (Scilab gateway)</refname>
 
         <refpurpose>
-            How to read matrices of doubles in a gateway.
+            How to read matrices of double in a gateway.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -76,8 +76,11 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
                 <term>_pdblImg</term>
                 <listitem>
                     <para>
-                        Return address of imaginary data array (size: _iCols * _iRows)
+                        Return address of imaginary data array (size: _iCols * _iRows).
                     </para>
+			<para>
+				This argument does not exist with getMatrixOfDouble.
+			</para>
                 </listitem>
             </varlistentry>
 
@@ -115,7 +118,7 @@ int read_double(char *fname,unsigned long fname_len)
     *    First variable    *
     ************************/
 
-    //get variable address
+    //get variable address of the first input argument
     getVarAddressFromPosition(1, &piAddr);
 
     //check type
@@ -147,7 +150,8 @@ int read_double(char *fname,unsigned long fname_len)
     }
 
     //Do something with data
-    //if variable is complex, invert real part and imaginary part otherwise multiply by -1
+    //if variable is complex, switch real part and imaginary part otherwise multiply by -1
+
     if(iComplex)
     {
         createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg, pdblReal);
@@ -156,7 +160,7 @@ int read_double(char *fname,unsigned long fname_len)
     {
         for(i = 0 ; i < iRows * iCols ; i++)
         {
-            pdblReal[i] *= -1;
+            pdblReal[i] = pdblReal[i] * -1;
         }
         createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal);
     }

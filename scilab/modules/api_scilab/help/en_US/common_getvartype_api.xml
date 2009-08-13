@@ -22,7 +22,7 @@
         <refname>Variable Type (Scilab gateway)</refname>
 
         <refpurpose>
-            How to get type of a variable.
+            How to get the type of a variable within a gateway.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -36,7 +36,7 @@
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Address of the variable
+                        The address of the variable
                     </para>
                 </listitem>
             </varlistentry>
@@ -44,8 +44,11 @@
                 <term>Returned value</term>
                 <listitem>
                     <para>
-                        Scilab type of the variable (sci_matrix, sci_strings, sci_ints, ...)
+                        Scilab type of the variable (sci_matrix, sci_strings, sci_ints, ...). 
                     </para>
+		    <para>
+			Note that the list of the different variable types is available as an enum in stack-c.h.
+		    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
