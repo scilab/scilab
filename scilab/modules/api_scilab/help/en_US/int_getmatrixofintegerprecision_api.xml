@@ -163,7 +163,7 @@ int printf_info(int _iVar)
             sciprint("mlist\n");
             break;
         default :
-            sciprint("Not manage by this function\n");
+            sciprint("Not managed by this function\n");
             return 0;
     }
 

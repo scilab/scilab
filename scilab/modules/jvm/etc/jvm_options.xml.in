@@ -33,10 +33,7 @@ $SCILAB : scilab path (SCI in Scilab)
 -->
 
 <!-- enable-debug-java enables some more checks
-<option value='-verbose:jni'/>
-	   <option value='-Xcheck:jni'/>
--->
 @JAVA_DEBUG_OPTIONS@
-
+-->
 <!-- comments -->
 </jvm_options>
