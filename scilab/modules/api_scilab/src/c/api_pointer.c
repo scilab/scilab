@@ -19,7 +19,6 @@
 
 #include "MALLOC.h"
 #include "stack-c.h"
-static int fillPointer(int *_piAddress, void** _pvPtr);
 
 int getPointer(int* _piAddress, void** _pvPtr)
 {
@@ -36,7 +35,7 @@ int getPointer(int* _piAddress, void** _pvPtr)
 	return 0;
 }
 
-static int fillPointer(int *_piAddress, void** _pvPtr)
+int fillPointer(int *_piAddress, void** _pvPtr)
 {
 	if(_piAddress == NULL)
 	{

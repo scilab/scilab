@@ -28,7 +28,7 @@
     <refsection>
         <title>Description</title>
         <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
-        <para>There are 2 types of functions which can be used to write in the memory of Scilab.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
     </refsection>
     <refsection>
         <title>Create from existing data</title>

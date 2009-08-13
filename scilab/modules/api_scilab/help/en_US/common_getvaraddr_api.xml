@@ -22,7 +22,7 @@
         <refname>Variable Reference (Scilab gateway)</refname>
 
         <refpurpose>
-            How to get address of an argument in a gateway.
+            How to get the address of an argument in a gateway.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -36,7 +36,7 @@
                 <term>_iVar</term>
                 <listitem>
                     <para>
-                        Position of the argument in the function call
+                        Position of the argument in the function call.
                     </para>
                 </listitem>
             </varlistentry>
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This function retrieves address of an argument in a gateway.</para>
+        <para>This function retrieves the address of an argument in a gateway.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->

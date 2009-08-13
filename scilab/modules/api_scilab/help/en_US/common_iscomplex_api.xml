@@ -22,7 +22,7 @@
         <refname>Variable Complexity (Scilab gateway)</refname>
 
         <refpurpose>
-            How to get variable complexity.
+            How to get the variable complexity.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -52,7 +52,7 @@
     </refsection>
     <refsection>
       <title>Description</title>
-      <para>This help describes how to retrieve variable complexity.</para>
+      <para>This help describes how to retrieve the variable complexity.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->

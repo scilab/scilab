@@ -53,6 +53,7 @@
     <refsection>
         <title>Description</title>
         <para>This help describes how to know if a variable is stored as a matrix.</para>
+        <para>In some cases (exemple: list), a variable is not stored as a standard Scilab matrix. This function provides a way to handle both cases.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
