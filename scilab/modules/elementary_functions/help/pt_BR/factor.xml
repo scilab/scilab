@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>factor</refname>
 
-    <refpurpose>fatoraÃ§Ã£o</refpurpose>
+    <refpurpose>fatoração</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=factor(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,17 +49,17 @@
         <term>y</term>
 
         <listitem>
-          <para>vetor de nÃºmeros primos</para>
+          <para>vetor de números primos</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado um real <literal>x</literal>, <literal>factor(x)</literal>
-    retorna em um vetor <literal>y</literal> a decomposiÃ§Ã£o em nÃºmeros primos
+    retorna em um vetor <literal>y</literal> a decomposição em números primos
     de <literal>x</literal>. Caso particular: <literal>factor(0)</literal>
     retorna <literal>0</literal>, e <literal>factor(1)</literal> retorna
     <literal>1</literal>.</para>
@@ -76,7 +76,7 @@ y=factor(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="primes">primes</link></member>

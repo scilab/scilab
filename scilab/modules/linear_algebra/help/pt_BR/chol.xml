@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[R]=chol(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X</term>
 
         <listitem>
-          <para>uma matriz simÃ©trica e positiva definida de reais ou
+          <para>uma matriz simétrica e positiva definida de reais ou
           complexos.</para>
         </listitem>
       </varlistentry>
@@ -49,21 +49,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>X</literal> Ã© positiva definida, entÃ£o <literal>R =
+    <para>Se <literal>X</literal> é positiva definida, então <literal>R =
     chol(X)</literal> produz uma matriz triangular superior
     <literal>R</literal> tal que <literal>R'*R = X</literal>.</para>
 
-    <para><literal>chol(X)</literal> usa apenas a diagonal e o triÃ¢ngulo
-    superior de <literal>X</literal>. O triÃ¢ngulo inferior Ã© assumido como
+    <para><literal>chol(X)</literal> usa apenas a diagonal e o triângulo
+    superior de <literal>X</literal>. O triângulo inferior é assumido como
     sendo a transposta (ou complexo conjugado) da superior.</para>
   </refsection>
 
   <refsection>
-    <title>ReferÃªncias</title>
+    <title>Referências</title>
 
-    <para>A decomposiÃ§Ã£o de Cholesky Ã© baseada nas rotinas de Lapack DPOTRF
+    <para>A decomposição de Cholesky é baseada nas rotinas de Lapack DPOTRF
     para matrizes de reais e ZPOTRF no caso de matrizes de complexos.</para>
   </refsection>
 
@@ -81,7 +81,7 @@ norm(R'*R-X)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="spchol">spchol</link></member>

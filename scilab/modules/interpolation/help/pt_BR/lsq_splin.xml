@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="lsq_splin" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>lsq_splin</refname>
 
-    <refpurpose>ajuste ponderado por spline cÃºbico de mÃ­nimos
+    <refpurpose>ajuste ponderado por spline cúbico de mínimos
     quadrados</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -32,7 +32,7 @@
 
         <listitem>
           <para>vetores de mesmo tamanho, dados a serem ajustados por um
-          spline cÃºbico </para>
+          spline cúbico </para>
         </listitem>
       </varlistentry>
 
@@ -41,7 +41,7 @@
 
         <listitem>
           <para>(opcional) um vetor de mesmo formato que <literal>xd</literal>
-          e <literal>yd</literal>, pesos dos ajustes de mÃ­nimos quadrados.
+          e <literal>yd</literal>, pesos dos ajustes de mínimos quadrados.
           </para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
 
         <listitem>
           <para>vetor (linha ou coluna) estritamente crescente, pontos de
-          interrupÃ§Ã£o do spline cÃºbico </para>
+          interrupção do spline cúbico </para>
         </listitem>
       </varlistentry>
 
@@ -60,25 +60,25 @@
 
         <listitem>
           <para>vetores de mesmo formato que <literal>x</literal>, a
-          tripla(x,y,d) define o spline cÃºbico aproximado.</para>
+          tripla(x,y,d) define o spline cúbico aproximado.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o computa um spline cÃºbico aproximado
+    <para>Esta função computa um spline cúbico aproximado
     <emphasis>s</emphasis> para os dados <literal>xd, yd, wd</literal> (a
-    partir daqui <emphasis>m</emphasis> Ã© suposto como o comprimento desses
-    vetores) e, de uma escolha dos pontos de interrupÃ§Ã£o do spline, o vetor
-    <literal>x</literal> (por exemplo, se vocÃª deseja n pontos de interrupÃ§Ã£o
-    uniformemente escolhidos vocÃª pode usar
+    partir daqui <emphasis>m</emphasis> é suposto como o comprimento desses
+    vetores) e, de uma escolha dos pontos de interrupção do spline, o vetor
+    <literal>x</literal> (por exemplo, se você deseja n pontos de interrupção
+    uniformemente escolhidos você pode usar
     <literal>x=linspace(min(xd),max(xd),n))</literal>). Se
-    <emphasis>S</emphasis> Ã© o espaÃ§o de todas as funÃ§Ãµes spline cÃºbicas com
-    pontos de interrupÃ§Ã£o <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>
-    entÃ£o, o spline resultante s Ã© tal que:</para>
+    <emphasis>S</emphasis> é o espaço de todas as funções spline cúbicas com
+    pontos de interrupção <emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>
+    então, o spline resultante s é tal que:</para>
 
     <programlisting>
      _m_                               _m_                       
@@ -88,40 +88,40 @@
      k=1                               k=1
           </programlisting>
 
-    <para>para todo <emphasis>f em S</emphasis>, i.e., realiza o mÃ­nimo da
-    soma de todos os erros quadrados sobre todas as funÃ§Ãµes de
+    <para>para todo <emphasis>f em S</emphasis>, i.e., realiza o mínimo da
+    soma de todos os erros quadrados sobre todas as funções de
     <emphasis>S</emphasis>.</para>
 
-    <para>O spline <emphasis>s</emphasis> Ã© completamente definido pela tripla
+    <para>O spline <emphasis>s</emphasis> é completamente definido pela tripla
     <literal>(x,y,d)</literal> (<literal>y</literal> e <literal>d</literal>
-    sÃ£o os vetores das ordenadas dos splines e das derivadas primeiras nos xi
+    são os vetores das ordenadas dos splines e das derivadas primeiras nos xi
     's : <emphasis>yi=s(xi)</emphasis> e <emphasis>di=s'(xi)</emphasis>) e sua
-    avaliaÃ§Ã£o em alguns pontos deve ser feita pela funÃ§Ã£o <link
+    avaliação em alguns pontos deve ser feita pela função <link
     linkend="interp">interp</link>.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes </title>
+    <title>Observações </title>
 
-    <para>Quando <literal>wd</literal> nÃ£o Ã© dado, todos os pontos tÃªm o mesmo
+    <para>Quando <literal>wd</literal> não é dado, todos os pontos têm o mesmo
     peso 1</para>
 
-    <para>Um ponto <emphasis>(xd(k),yd(k))</emphasis> Ã© considerado no ajuste
+    <para>Um ponto <emphasis>(xd(k),yd(k))</emphasis> é considerado no ajuste
     se <emphasis>xd(k) em [x1,xn] e wd(k) &gt; 0</emphasis>. Em particular,
-    vocÃª pode colocar um peso nulo (ou mesmo negativo) a todos os pontos que
-    vocÃª deseja que sejam ignorados no ajuste. Quando o nÃºmero total de pontos
-    levados em conta no "procedure" de ajuste Ã© (estritamente) menor que 4,
+    você pode colocar um peso nulo (ou mesmo negativo) a todos os pontos que
+    você deseja que sejam ignorados no ajuste. Quando o número total de pontos
+    levados em conta no "procedure" de ajuste é (estritamente) menor que 4,
     ocorre um erro. </para>
 
-    <para>O vetor <literal>xd</literal> nÃ£o necessita estar em ordem
+    <para>O vetor <literal>xd</literal> não necessita estar em ordem
     crescente</para>
 
-    <para>Dependendo do nÃºmero e das posiÃ§Ãµes dos <emphasis>xd(k)</emphasis>
-    's e da escolha dos <emphasis>x(i)</emphasis> 's podem haver vÃ¡rias
-    soluÃ§Ãµes, mas apenas uma Ã© selecionada. Quando isso ocorre, um aviso Ã©
-    exibido na janela de comando do Scilab. Esta funÃ§Ã£o foi feita para ser
-    usada quando <emphasis>m</emphasis> Ã© muito maior que
-    <emphasis>n</emphasis> e neste caso, tal tipo de problema nÃ£o ocorre.
+    <para>Dependendo do número e das posições dos <emphasis>xd(k)</emphasis>
+    's e da escolha dos <emphasis>x(i)</emphasis> 's podem haver várias
+    soluções, mas apenas uma é selecionada. Quando isso ocorre, um aviso é
+    exibido na janela de comando do Scilab. Esta função foi feita para ser
+    usada quando <emphasis>m</emphasis> é muito maior que
+    <emphasis>n</emphasis> e neste caso, tal tipo de problema não ocorre.
     </para>
   </refsection>
 
@@ -129,15 +129,15 @@
     <title>Exemplos</title>
 
     <programlisting role="example">
-// este Ã© um exemplo artificial, onde os dados xd e yd
-// sÃ£o contruÃ­dos a partir de uma funÃ§Ã£o seno perturbada
+// este é um exemplo artificial, onde os dados xd e yd
+// são contruídos a partir de uma função seno perturbada
 a = 0; b = 2*%pi;
-sigma = 0.1;  // desvio padrÃ£o do ruÃ­do gaussiano
-m = 200;       // nÃºmero de pontos experimentais
+sigma = 0.1;  // desvio padrão do ruído gaussiano
+m = 200;       // número de pontos experimentais
 xd = linspace(a,b,m)';
 yd = sin(xd) + grand(xd,"nor",0,sigma);
 
-n = 6; // nÃºmero de pontos de interrupÃ§Ã£o
+n = 6; // número de pontos de interrupção
 x = linspace(a,b,n)';
 
 // computando o spline
@@ -148,14 +148,14 @@ ye = sin(xd);
 ys = interp(xd, x, y, d);
 xbasc()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
-       leg="funÃ§Ã£o exata@medidas experimentais (perturbaÃ§Ã£o gaussiana)@spline ajustado")
-xtitle("Um spline de mÃ­nimos quadrados")
+       leg="função exata@medidas experimentais (perturbação gaussiana)@spline ajustado")
+xtitle("Um spline de mínimos quadrados")
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="interp">interp</link></member>
@@ -168,10 +168,10 @@ xselect()
     <title>Autores</title>
 
     <simplelist type="vert">
-      <member>C. De Boor, A.H. Morris (cÃ³digo da biblioteca FORTRAN NSWC)
+      <member>C. De Boor, A.H. Morris (código da biblioteca FORTRAN NSWC)
       </member>
 
-      <member>B. Pincon (interface Scilab e ligeiras modificaÃ§Ãµes)</member>
+      <member>B. Pincon (interface Scilab e ligeiras modificações)</member>
     </simplelist>
   </refsection>
 </refentry>

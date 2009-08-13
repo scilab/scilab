@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="errcatch" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,14 +17,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>errcatch(n [,'action'] [,'option'])
 errcatch()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -46,28 +46,28 @@ errcatch()</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>errcatch</literal> fornece uma "aÃ§Ã£o" (manipulador de
+    <para><literal>errcatch</literal> fornece uma "ação" (manipulador de
     erros) quando um erro do tipo <literal>n</literal> ocorre.
     <literal>n</literal> tem o seguinte significado: </para>
 
-    <para>Se <literal>n&gt;0</literal>, <literal>n</literal> Ã© o nÃºmero do
+    <para>Se <literal>n&gt;0</literal>, <literal>n</literal> é o número do
     erro a ser apanhado </para>
 
     <para>Se <literal>n&lt;0</literal> todos os erros devem ser
     apanhados</para>
 
-    <para><literal>action</literal> Ã© um dos seguintes strings: </para>
+    <para><literal>action</literal> é um dos seguintes strings: </para>
 
     <variablelist>
       <varlistentry>
         <term>"pause"</term>
 
         <listitem>
-          <para>uma pausa Ã© executada quando se apanha o erro. Esta opÃ§Ã£o Ã©
-          Ãºtil para propÃ³sitos de depuramento. Use
-          <literal>whereami()</literal> para obter informaÃ§Ãµes sobre o
+          <para>uma pausa é executada quando se apanha o erro. Esta opção é
+          útil para propósitos de depuramento. Use
+          <literal>whereami()</literal> para obter informações sobre o
           contexto corrente. </para>
         </listitem>
       </varlistentry>
@@ -76,14 +76,14 @@ errcatch()</synopsis>
         <term>"continue"</term>
 
         <listitem>
-          <para>a prÃ³xima instruÃ§Ã£o na funÃ§Ã£o ou em arquivos executÃ¡veis Ã©
-          executada, a instruÃ§Ã£o corrente Ã© ignorada. Ã‰ possÃ­vel verificar se
-          um erro ocorreu utilizando a funÃ§Ã£o <literal>iserror</literal>
-          function . NÃ£o se esqueÃ§a de apagar o erro utilizando a funÃ§Ã£o
-          <literal>errclear</literal> o quanto antes. Esta funÃ§Ã£o Ã© Ãºtil para
-          recuperaÃ§Ã£o de erros. Em muitos casos, o uso de <literal>
-          errcatch(n,"continue",..)</literal> pode ser substituÃ­do pelo uso da
-          funÃ§Ã£o <link linkend="execstr">execstr</link> ou da estrutura de
+          <para>a próxima instrução na função ou em arquivos executáveis é
+          executada, a instrução corrente é ignorada. É possível verificar se
+          um erro ocorreu utilizando a função <literal>iserror</literal>
+          function . Não se esqueça de apagar o erro utilizando a função
+          <literal>errclear</literal> o quanto antes. Esta função é útil para
+          recuperação de erros. Em muitos casos, o uso de <literal>
+          errcatch(n,"continue",..)</literal> pode ser substituído pelo uso da
+          função <link linkend="execstr">execstr</link> ou da estrutura de
           controle <link linkend="try">try</link> control structure.</para>
         </listitem>
       </varlistentry>
@@ -92,8 +92,8 @@ errcatch()</synopsis>
         <term>"kill"</term>
 
         <listitem>
-          <para>modo padrÃ£o, todas as funÃ§Ãµes intermediÃ¡rias sÃ£o canceladas e
-          o Scilab retorna ao prompt de nÃ­vel 0. </para>
+          <para>modo padrão, todas as funções intermediárias são canceladas e
+          o Scilab retorna ao prompt de nível 0. </para>
         </listitem>
       </varlistentry>
 
@@ -101,36 +101,36 @@ errcatch()</synopsis>
         <term>"stop"</term>
 
         <listitem>
-          <para>interrompe a sessÃ£o do Scilab corrente (Ãºtil quando o Scilab Ã©
+          <para>interrompe a sessão do Scilab corrente (útil quando o Scilab é
           chamado por um programa externo).</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para><literal>option</literal> Ã© o string <literal>'nomessage'</literal>
+    <para><literal>option</literal> é o string <literal>'nomessage'</literal>
     para cancelar mensagens de erro.</para>
 
-    <para>Para retornar ao modo padrÃ£o, entre
+    <para>Para retornar ao modo padrão, entre
     <literal>errcatch(-1,"kill")</literal> ou, de modo semelhante,
-    <literal>errcatch(-1)</literal>.<literal>errcatch()</literal> Ã© um
+    <literal>errcatch(-1)</literal>.<literal>errcatch()</literal> é um
     equivalente obsoleto a <literal>errcatch(-1)</literal>.</para>
 
     <para></para>
 
-    <para>As aÃ§Ãµes de <literal>errcatch</literal> se aplicm ao contexto
-    corrente de avaliaÃ§Ã£o (function, exec, pause ) e a todos os subnÃ­veis. Uma
-    segunda chamada a <literal>errcatch</literal> em um sub-nÃ­vel esconde a
-    inicial para este sub-nÃ­vel. Se uma segunda chamada a
-    <literal>errcatch</literal> Ã© feita no mesmo nÃ­vel o efeito da primeira Ã©
+    <para>As ações de <literal>errcatch</literal> se aplicm ao contexto
+    corrente de avaliação (function, exec, pause ) e a todos os subníveis. Uma
+    segunda chamada a <literal>errcatch</literal> em um sub-nível esconde a
+    inicial para este sub-nível. Se uma segunda chamada a
+    <literal>errcatch</literal> é feita no mesmo nível o efeito da primeira é
     removido.</para>
 
-    <para>Quando chamado no contexto de uma funÃ§Ã£o do Scilab ou em exec o
-    <literal>errcatch</literal> Ã© automaticamente reiniciado quando a funÃ§Ã£o
+    <para>Quando chamado no contexto de uma função do Scilab ou em exec o
+    <literal>errcatch</literal> é automaticamente reiniciado quando a função
     retorna</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="try">try</link></member>

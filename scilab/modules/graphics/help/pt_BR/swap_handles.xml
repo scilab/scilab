@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="swap_handles" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>swap_handles</refname>
+
+    <refpurpose>Permuta dois manipuladores em uma hierarquia
+    gráfica</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>swap_handle( handle1, handle2 )</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>handle1</term>
+
+        <listitem>
+          <para>primeiro manipulador da permutação</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>handle2</term>
+
+        <listitem>
+          <para>segundo manipulador da permutação</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função <emphasis role="bold">swap_handles</emphasis> permite
+    permutar dois manipuladores em uma hierarquia gráfica. O primeiro
+    manipulador tomará a posição do segundo e vice-versa.</para>
+
+    <para>Desde que nem todos os manipuladores são compatíveis com cada um dos
+    outros, existem algumas restrições ao se trocar manipuladores. Por
+    exemplo, não é permitido trocar um manipulador Polyline com um manipulador
+    Axes, já que não seriam compatíveis com suas novas raízes. Mais informação
+    sobre compatibilidade pode ser encontrada na página <link
+    linkend="graphics_entities">graphics_entities</link>.</para>
+
+    <para>Esta rotina pode ser utilizada em galhos com uma mesma raiz para se
+    trocar os seus índices.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">//-----------------//
+// Primeiro Exemplo//
+//-----------------//
+
+// criando um retângulo
+xrect( 0.5, 0.5,0.5,0.5) ;
+rect = gce() ;
+
+// criando um círculo
+xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
+circle = gce() ;
+
+// criando uma seta
+xpoly([0,1],[0,1]) ;
+arrow = gce() ;
+arrow.polyline_style = 4 ;
+arrow.arrow_size_factor = 4 ;
+
+// obtendo a lista de galhos
+axes = gca()  ;
+axes.children
+
+// mudando a ordem
+swap_handles( rect, arrow ) ;
+swap_handles( arrow, circle ) ;
+
+// obtendo a nova ordem
+axes.children
+
+//-----------------//
+//  Segundo Exemplo//
+//-----------------//
+
+// criando duas janelas
+plot2d ;
+axes1 = gca() ;
+
+scf() ;
+fec ;
+axes2 = gca() ;
+
+// trocando os seus eixos
+// note que o mapa de cores não muda.
+swap_handles( axes1, axes2 ) ;
+
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link linkend="copy">copy</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="relocate_handle">relocate_handle</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

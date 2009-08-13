@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dragrect" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dragrect</refname>
+
+    <refpurpose>Arrasta retângulos com o mouse</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[final_rect,btn]=dragrect(initial_rect)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>initial_rect</term>
+
+        <listitem>
+          <para>matrtiz 4xn contendo as definições iniciais do retângulo. Cada
+          coluna contém [x_esquerdo; y_topo; largura; altura]. Se apenas um
+          retângulo estiver presente, initial_rect pode ser também um vetor.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>final_rect</term>
+
+        <listitem>
+          <para>um retângulo [x_esquerdo, y_topo, largura, altura] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>btn</term>
+
+        <listitem>
+          <para>um inteiro o número do botão do mouse clicado </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>dragrect</literal> arrasta um ou mais retângulos para
+    qualquer lugar da tela. A matriz rect 4xn define os retângulos. Cada
+    coluna de <literal>initial_rect</literal> deve conter a posição inicial do
+    retângulo como valores [x_esquerdo;y_topo;largura;altura]. Quando um botão
+    é clicado, <literal>dragrect</literal> retorna as definições dos
+    retângulos finais em <literal>final_Rect</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+xsetech(frect=[0,0,100,100])
+r=dragrect([10;10;30;10])
+xrect(r)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xrect">xrect</link></member>
+
+      <member><link linkend="xrects">xrects</link></member>
+
+      <member><link linkend="xclick">xclick</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

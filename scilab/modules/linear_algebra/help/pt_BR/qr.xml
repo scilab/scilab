@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>qr</refname>
 
-    <refpurpose>QR decomposi√ß√£o</refpurpose>
+    <refpurpose>QR decomposiÁ„o</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Q,R]=qr(X [,"e"])
 [Q,R,E]=qr(X [,"e"])
@@ -36,7 +36,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros </title>
+    <title>Par‚metros </title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>n√∫mero real n√£o-negativo</para>
+          <para>n˙mero real n„o-negativo</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@
         <term>Q</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unit√°ria</para>
+          <para>matriz quadrada ortogonal ou unit·ria</para>
         </listitem>
       </varlistentry>
 
@@ -67,7 +67,7 @@
         <term>R</term>
 
         <listitem>
-          <para>matriz com as mesmas dimens√µes de <literal>X</literal></para>
+          <para>matriz com as mesmas dimensıes de <literal>X</literal></para>
         </listitem>
       </varlistentry>
 
@@ -75,7 +75,7 @@
         <term>E</term>
 
         <listitem>
-          <para>matriz de permuta√ß√£o </para>
+          <para>matriz de permutaÁ„o </para>
         </listitem>
       </varlistentry>
 
@@ -90,7 +90,7 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
@@ -98,27 +98,27 @@
 
         <listitem>
           <para>pproduz uma matriz triangular superior <literal>R</literal> de
-          mesma dimens√£o que <literal>X</literal> e uma matriz ortogonal
-          (unit√°ria no caso de matriz de complexos) <literal>Q</literal> tais
+          mesma dimens„o que <literal>X</literal> e uma matriz ortogonal
+          (unit·ria no caso de matriz de complexos) <literal>Q</literal> tais
           que <literal>X = Q*R</literal>. <literal>[Q,R] = qr(X,"e")</literal>
-          produz um "economia de tamanho": Se <literal>X</literal> √© m-por-n
-          com m &gt; n, ent√£o, apenas as primeiras n colunas de
-          <literal>Q</literal> s√£o computadas assim como as primeiras n linhas
+          produz um "economia de tamanho": Se <literal>X</literal> È m-por-n
+          com m &gt; n, ent„o, apenas as primeiras n colunas de
+          <literal>Q</literal> s„o computadas assim como as primeiras n linhas
           de <literal>R</literal>.</para>
 
-          <para>De <literal>Q*R = X</literal> , segue que a k-√©sima coluna da
-          matriz <literal>X</literal>, √© expressa como combina√ß√£o linear das k
+          <para>De <literal>Q*R = X</literal> , segue que a k-Èsima coluna da
+          matriz <literal>X</literal>, È expressa como combinaÁ„o linear das k
           primeiras colunas de <literal>Q</literal> (com coeficientes
           <literal> R(1,k), ..., R(k,k) </literal>). As k primeiras colunas de
-          <literal>Q</literal> formam uma base ortogonal para o subespa√ßo
+          <literal>Q</literal> formam uma base ortogonal para o subespaÁo
           gerado pelas k priemiras colunas de <literal>X</literal>. Se a
           coluna <literal>k</literal> de <literal>X</literal> (i.e.
-          <literal>X(:,k)</literal> ) √© uma combina√ß√£o linear das
+          <literal>X(:,k)</literal> ) È uma combinaÁ„o linear das
           <literal>p</literal> primeiras colunas de <literal>X</literal>,
-          ent√£o, as entradas de <literal>R(p+1,k), ..., R(k,k)</literal> s√£o
-          zeros. Neste caso, <literal>R</literal> √© trapezoidal superior. Se
+          ent„o, as entradas de <literal>R(p+1,k), ..., R(k,k)</literal> s„o
+          zeros. Neste caso, <literal>R</literal> È trapezoidal superior. Se
           <literal>X</literal> tem posto <literal>rk</literal>, as linhas
-          <literal>R(rk+1,:), R(rk+2,:), ...</literal> s√£o zeros.</para>
+          <literal>R(rk+1,:), R(rk+2,:), ...</literal> s„o zeros.</para>
         </listitem>
       </varlistentry>
 
@@ -126,17 +126,17 @@
         <term>[Q,R,E] = qr(X)</term>
 
         <listitem>
-          <para>produz uma matriz de permuta√ß√£o (de colunas)
+          <para>produz uma matriz de permutaÁ„o (de colunas)
           <literal>E</literal>, uma matriz triangular superior
           <literal>R</literal> com elementos na diagonal decrescentes e uma
           matriz ortogonal (ou unitaria) <literal>Q</literal> tais que
-          <literal>X*E = Q*R</literal>. Se <literal>rk</literal> √© o posto de
+          <literal>X*E = Q*R</literal>. Se <literal>rk</literal> È o posto de
           <literal>X</literal>, as <literal>rk</literal> primeiras entradas ao
           longo da diagonal de <literal>R</literal>, i.e. <literal>R(1,1),
-          R(2,2), ..., R(rk,rk)</literal> s√£o todas diferentes de zero.
+          R(2,2), ..., R(rk,rk)</literal> s„o todas diferentes de zero.
           <literal>[Q,R,E] = qr(X,"e")</literal> produz uma "economia de
-          tamanho": Se <literal>X</literal> i√© m-por-n com m &gt; n, ent√£o,
-          apenas as n primeiras colunas de <literal>Q</literal> s√£o computadas
+          tamanho": Se <literal>X</literal> iÈ m-por-n com m &gt; n, ent„o,
+          apenas as n primeiras colunas de <literal>Q</literal> s„o computadas
           tanto quanto as n priemiras linhas de <literal>R</literal>.</para>
         </listitem>
       </varlistentry>
@@ -146,8 +146,8 @@
 
         <listitem>
           <para>retorna <literal>rk</literal> = estimativa do posto de
-          <literal>X</literal> i.e. <literal>rk</literal> √© o n√∫mero elementos
-          da diagonal de <literal>R</literal> que s√£o maiores que um dado
+          <literal>X</literal> i.e. <literal>rk</literal> È o n˙mero elementos
+          da diagonal de <literal>R</literal> que s„o maiores que um dado
           limiar <literal>tol</literal>.</para>
         </listitem>
       </varlistentry>
@@ -157,11 +157,11 @@
 
         <listitem>
           <para>retorna <literal>rk</literal> = estimativa do posto de
-          <literal>X</literal> i.e. <literal>rk</literal> √© o n√∫mero de
-          elementos da diagonal de <literal>R</literal> que s√£o maiores que
+          <literal>X</literal> i.e. <literal>rk</literal> È o n˙mero de
+          elementos da diagonal de <literal>R</literal> que s„o maiores que
           <literal>tol=R(1,1)*%eps*max(size(R))</literal>. Veja
-          <literal>rankqr</literal> para uma fatora√ß√£o QR que revela o posto
-          usando o n√∫mero de condicionamento de <literal>R</literal>.</para>
+          <literal>rankqr</literal> para uma fatoraÁ„o QR que revela o posto
+          usando o n˙mero de condicionamento de <literal>R</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -172,17 +172,17 @@
 
     <programlisting role="example">
 
-// fatora√ß√£o QR, caso gen√©rico
-// X √© alta (posto cheio)
+// fatoraÁ„o QR, caso genÈrico
+// X È alta (posto cheio)
 X=rand(5,2);[Q,R]=qr(X); [Q'*X R]
-//X √© gorda (posto cheio)
+//X È gorda (posto cheio)
 X=rand(2,3);[Q,R]=qr(X); [Q'*X R]
-//coluna 4 de X √© uma combina√ß√£o linear das colunas 1 e 2:
+//coluna 4 de X È uma combinaÁ„o linear das colunas 1 e 2:
 X=rand(8,5);X(:,4)=X(:,1)+X(:,2); [Q,R]=qr(X); R, R(:,4)
-//X tem posto 2, linhas 3 a $ de R s√£o zero:
+//X tem posto 2, linhas 3 a $ de R s„o zero:
 X=rand(8,2)*rand(2,5);[Q,R]=qr(X); R
-//Avaliando o posto rk: pivota√ß√£o por colunas ==&gt; rk primeiras
-//As entradas diagonais de R s√£o n√£o-nulas:
+//Avaliando o posto rk: pivotaÁ„o por colunas ==&gt; rk primeiras
+//As entradas diagonais de R s„o n„o-nulas:
 A=rand(5,2)*rand(2,5);
 [Q,R,rk,E] = qr(A,1.d-10);
 norm(Q'*A-R)
@@ -192,7 +192,7 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk)) (span="gerado")
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="rankqr">rankqr</link></member>
@@ -208,9 +208,9 @@ svd([A,Q(:,1:rk)])    //span(A) =span(Q(:,1:rk)) (span="gerado")
   </refsection>
 
   <refsection>
-    <title> Fun√ß√µes Usadas</title>
+    <title> FunÁıes Usadas</title>
 
-    <para>A decomposi√ß√£o qr √© baseada nas rotinas de Lapack DGEQRF, DGEQPF,
+    <para>A decomposiÁ„o qr È baseada nas rotinas de Lapack DGEQRF, DGEQPF,
     DORGQR para as matrizes de reais ZGEQRF, ZGEQPF, ZORGQR para as matrizes
     de complexos.</para>
   </refsection>

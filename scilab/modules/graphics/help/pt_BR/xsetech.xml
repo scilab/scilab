@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>xsetech</refname>
 
-    <refpurpose>ajusta a sub-janela de uma janela de gr√°ficos para
-    esbo√ßo</refpurpose>
+    <refpurpose>ajusta a sub-janela de uma janela de gr·ficos para
+    esboÁo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xsetech(wrect,[frect,logflag])
 xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
@@ -37,7 +37,7 @@ xsetech()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -62,7 +62,7 @@ xsetech()</synopsis>
 
         <listitem>
           <para>string de tamanho 2 "xy", onde x e y podem ser "n" ou "l". "n"
-          escala normal e "l" significa escala logar√≠tmica. x refere-se ao
+          escala normal e "l" significa escala logarÌtmica. x refere-se ao
           eixo x e y ao eixo y. </para>
         </listitem>
       </varlistentry>
@@ -78,40 +78,40 @@ xsetech()</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o </title>
+    <title>DescriÁ„o </title>
 
-    <para><literal>xsetech</literal> √© principalmente utilizado para ajustar a
-    sub-janela da janela de gr√°ficos que ser√° utilizada para esbo√ßo. A
-    sub-janela √© especificada atrav√©s do par√¢metro
+    <para><literal>xsetech</literal> È principalmente utilizado para ajustar a
+    sub-janela da janela de gr·ficos que ser· utilizada para esboÁo. A
+    sub-janela È especificada atravÈs do par‚metro
     <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-    altura). Os valores em <literal>wrect</literal> a s√£o especificados
-    utilizando-se a propor√ß√£o de largura ou altura da janela de gr√°ficos
+    altura). Os valores em <literal>wrect</literal> a s„o especificados
+    utilizando-se a proporÁ„o de largura ou altura da janela de gr·ficos
     corrente. Por exemplo, <literal>wrect=[0,0,1,1]</literal> significa que
-    toda a janela ser√° utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
-    significa que a regi√£o gr√°fica ser√° a metade direita da janela de
-    gr√°ficos.</para>
+    toda a janela ser· utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
+    significa que a regi„o gr·fica ser· a metade direita da janela de
+    gr·ficos.</para>
 
-    <para><literal>xsetech</literal> tamb√©m ajusta as escalas gr√°ficas
-    correntes para esbo√ßo 2d e pode ser utilizada juntamente a rotinas
-    gr√°ficas que requerem a escala de gr√°ficos corrente (por exemplo
+    <para><literal>xsetech</literal> tambÈm ajusta as escalas gr·ficas
+    correntes para esboÁo 2d e pode ser utilizada juntamente a rotinas
+    gr·ficas que requerem a escala de gr·ficos corrente (por exemplo
     <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> em
     <literal>plot2d</literal>).</para>
 
-    <para><literal>frect=[xmin,ymin,xmax,ymax]</literal> √© utilizado para
-    ajustar a escala gr√°fica e √© igual ao argumento <literal>rect</literal> de
-    <literal>plot2d</literal>. Se <literal>frect</literal> n√£o for fornecido,
-    o valor corrente da escala de gr√°ficos permanece inalterado. O valor
-    padr√£o de <literal>rect</literal> √© <literal>[0,0,1,1]</literal> (na
-    cria√ß√£o de janelas, quando se volta para o valor padr√£o com
-    <literal>xset('default')</literal> ou quando se limpa eventos gr√°ficos
+    <para><literal>frect=[xmin,ymin,xmax,ymax]</literal> È utilizado para
+    ajustar a escala gr·fica e È igual ao argumento <literal>rect</literal> de
+    <literal>plot2d</literal>. Se <literal>frect</literal> n„o for fornecido,
+    o valor corrente da escala de gr·ficos permanece inalterado. O valor
+    padr„o de <literal>rect</literal> È <literal>[0,0,1,1]</literal> (na
+    criaÁ„o de janelas, quando se volta para o valor padr„o com
+    <literal>xset('default')</literal> ou quando se limpa eventos gr·ficos
     gravados <literal>xbasc()</literal>).</para>
 
-    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> √© utilizado
-    para ajustar a moldura gr√°fica dentro da sub-janela. A moldura gr√°fica √©
-    especificada (como <literal>wrect</literal>) utilizando-se a propor√ß√£o de
-    largura ou altura da sub-janela de gr√°ficos corrente. O valor padr√£o √©
-    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n√£o for
-    fornecido, o valor padr√£o permanece inalterado.</para>
+    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> È utilizado
+    para ajustar a moldura gr·fica dentro da sub-janela. A moldura gr·fica È
+    especificada (como <literal>wrect</literal>) utilizando-se a proporÁ„o de
+    largura ou altura da sub-janela de gr·ficos corrente. O valor padr„o È
+    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n„o for
+    fornecido, o valor padr„o permanece inalterado.</para>
   </refsection>
 
   <refsection>
@@ -119,32 +119,32 @@ xsetech()</synopsis>
 
     <programlisting role="example">
 
-// para obter uma explana√ß√£o gr√°fica dos par√¢metros de xsetech entre com:
+// para obter uma explanaÁ„o gr·fica dos par‚metros de xsetech entre com:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
 
 
-// aqui xsetech √© usado para dividir a janela de gr√°ficos em duas partes
-// o primeiro xsetech √© usado para se ajustar a primeira sub-janela 
-// e a escala de gr√°ficos corrente
+// aqui xsetech È usado para dividir a janela de gr·ficos em duas partes
+// o primeiro xsetech È usado para se ajustar a primeira sub-janela 
+// e a escala de gr·ficos corrente
 xsetech([0,0,1.0,0.5],[-5,-3,5,3])
-// chamamos plot2d com a op√ß√£o "001" para utilizar a escala de gr√°ficos
+// chamamos plot2d com a opÁ„o "001" para utilizar a escala de gr·ficos
 // ajustada por xsetech 
 plot2d([1:10]',[1:10]',1,"001"," ")
-// ent√£o xsetech √© usado para ajustar a segunda sub-janela
+// ent„o xsetech È usado para ajustar a segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
-// a escala de gr√°ficos √© ajustada por xsetech para [0,0,1,1] por padr√£o
-// e n√≥s a modificamos utilizando o argumento rect em plot2d 
+// a escala de gr·ficos È ajustada por xsetech para [0,0,1,1] por padr„o
+// e nÛs a modificamos utilizando o argumento rect em plot2d 
 plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
-// quatro esbo√ßos em uma √∫nica janela de gr√°ficos
+// quatro esboÁos em uma ˙nica janela de gr·ficos
 xbasc()
 xset("font",2,0)
 xsetech([0,0,0.5,0.5]); plot3d()
 xsetech([0.5,0,0.5,0.5]); plot2d()
 xsetech([0.5,0.5,0.5,0.5]); grayplot()
 xsetech([0,0.5,0.5,0.5]); histplot()
-// de volta aos valores padr√µes para a sub-janela
+// de volta aos valores padrıes para a sub-janela
 xsetech([0,0,1,1])
-// um esbo√ßo com arect modificado 
+// um esboÁo com arect modificado 
 xbasc()
 xset("default")
 xsetech(arect=[0,0,0,0]) 
@@ -159,7 +159,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m </title>
+    <title>Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="xgetech">xgetech</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>lstsize</refname>
 
-    <refpurpose>nÃºmeros de entradas de uma lista, tlist ou mlist</refpurpose>
+    <refpurpose>números de entradas de uma lista, tlist ou mlist</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>n=lstsize(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,19 +49,19 @@
         <term>n</term>
 
         <listitem>
-          <para>um inteiro, nÃºmero de entradas</para>
+          <para>um inteiro, número de entradas</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>lstsize(x)</literal> retorna o nÃºmero de entradas de uma
-    lista, tlist ou mlist. Esta funÃ§Ã£o Ã© mais eficiente que a funÃ§Ã£o
+    <para><literal>lstsize(x)</literal> retorna o número de entradas de uma
+    lista, tlist ou mlist. Esta função é mais eficiente que a função
     <literal>size</literal> e opera de modo semelhante para todos os tipos de
-    listas, enquanto a funÃ§Ã£o <literal>size</literal> fica sobrecarregada para
+    listas, enquanto a função <literal>size</literal> fica sobrecarregada para
     <literal>mlist</literal>'s.</para>
   </refsection>
 
@@ -79,7 +79,7 @@ lstsize(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="length">length</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="with_tk" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>with_tk</refname>
 
-    <refpurpose>checa se o Scilab foi construÃ­do com TCL/TK</refpurpose>
+    <refpurpose>checa se o Scilab foi construído com TCL/TK</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r=with_tk()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -37,9 +37,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna <literal>%t</literal> se o Scilab tiver sido construÃ­do com
-    a interface TCL/TK ou <literal>%f</literal> se nÃ£o.</para>
+    <para>Retorna <literal>%t</literal> se o Scilab tiver sido construído com
+    a interface TCL/TK ou <literal>%f</literal> se não.</para>
   </refsection>
 </refentry>

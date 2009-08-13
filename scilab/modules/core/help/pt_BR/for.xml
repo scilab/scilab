@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="for" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,34 +13,34 @@
   <refnamediv>
     <refname>for</refname>
 
-    <refpurpose>palavra-chave de linguagem para la√ßos ("loops") (significa
+    <refpurpose>palavra-chave de linguagem para laÁos ("loops") (significa
     "para...")</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Usado para definir la√ßos ("loops"). sua sintaxe √©: <literal> for
-    vari√°vel=express√£o ,instru√ß√£o, ... ,instru√ß√£o,end</literal></para>
+    <para>Usado para definir laÁos ("loops"). sua sintaxe È: <literal> for
+    vari·vel=express„o ,instruÁ„o, ... ,instruÁ„o,end</literal></para>
 
-    <para><literal> for vari√°vel= express√£o do instru√ß√£o, ...
-    ,instru√ß√£o,end</literal></para>
+    <para><literal> for vari·vel= express„o do instruÁ„o, ...
+    ,instruÁ„o,end</literal></para>
 
-    <para>Se <literal>express√£o</literal> √© uma matriz ou um vetor linha,
-    <literal>vari√°vel</literal> toma como valores os valores de cada coluna da
+    <para>Se <literal>express„o</literal> È uma matriz ou um vetor linha,
+    <literal>vari·vel</literal> toma como valores os valores de cada coluna da
     matriz.</para>
 
     <para>Um caso particular utiliza o operador <link
     linkend="colon">colon</link> para criar vetores linhas regularmente
-    espa√ßados, e remonta a formas de la√ßo "for" tradicionais : <literal>for
+    espaÁados, e remonta a formas de laÁo "for" tradicionais : <literal>for
     variable=n1:step:n2, ...,end</literal></para>
 
-    <para>Se <literal>express√£o </literal>√© uma lista,
-    <literal>vari√°vel</literal> toma como valores as entradas sucessivas da
+    <para>Se <literal>express„o </literal>È uma lista,
+    <literal>vari·vel</literal> toma como valores as entradas sucessivas da
     lista.</para>
 
-    <para>Aviso: o n√∫mero de caracteres usados para definir o corpo de
-    qualquer instru√ß√£o condicional (if, while, for ou select/case) deve ser
+    <para>Aviso: o n˙mero de caracteres usados para definir o corpo de
+    qualquer instruÁ„o condicional (if, while, for ou select/case) deve ser
     limitado a 16k.</para>
   </refsection>
 
@@ -49,25 +49,25 @@
 
     <programlisting role="example">
 
-// la√ßos "for" tradicionais
+// laÁos "for" tradicionais
 n=5;
 for i = 1:n, for j = 1:n, a(i,j) = 1/(i+j-1);end;end
 for j = 2:n-1, a(j,j) = j; end; a
-for j= 4:-1:1, disp(j),end // la√ßo decrescente
+for j= 4:-1:1, disp(j),end // laÁo decrescente
 
-//la√ßo em colunas de matrizes
+//laÁo em colunas de matrizes
 for  e=eye(3,3),e,end  
 for v=a, write(6,v),end        
 for j=1:n,v=a(:,j), write(6,v),end 
 
-//la√ßo em listas de entradas
+//laÁo em listas de entradas
 for l=list(1,2,'example'); l,end 
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="while">while</link></member>

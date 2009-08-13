@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strspn" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strspn</refname>
+
+    <refpurpose>retorna a extensão do conjunto de caracteres no
+    string</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>res = strspn(str1,str2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str1</term>
+
+        <listitem>
+          <para>string ou matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str2</term>
+
+        <listitem>
+          <para>string ou matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>matriz</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>res = strspn(str1,str2)</literal> retorna o comprimento da
+    porção inicial de str1 que consiste apenas de caracteres que fazem parte
+    de str2.</para>
+
+    <para>str2 deve ter as mesmas dimensões que str2, ou str2 pode ser um
+    string.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+i = strspn("129o","1234567890");
+printf ("O comprimento do numero inicial e %d.\n",i);
+i = strspn(["129o","130o"],["1234567890","130o"])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strcspn">strcspn</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

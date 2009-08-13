@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=intc(a,b,f)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a,b</term>
 
         <listitem>
-          <para>dois nÃºmeros complexos</para>
+          <para>dois números complexos</para>
         </listitem>
       </varlistentry>
 
@@ -49,23 +49,23 @@
         <term>f</term>
 
         <listitem>
-          <para>funÃ§Ã£o externa</para>
+          <para>função externa</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>f</literal> Ã© uma funÃ§Ã£o com valores complexos,<literal>
+    <para>Se <literal>f</literal> é uma função com valores complexos,<literal>
     intc(a,b,f) </literal> computa o valor da integral de <literal>a</literal>
     a <literal>b</literal> de <literal>f(z)dz</literal> ao longo da reta
     <literal>a b</literal> do plano complexo.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="intg">intg</link></member>

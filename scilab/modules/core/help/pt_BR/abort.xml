@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="abort" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,19 +13,19 @@
   <refnamediv>
     <refname>abort</refname>
 
-    <refpurpose>InterrupÃ§Ã£o de avaliaÃ§Ã£o</refpurpose>
+    <refpurpose>Interrupção de avaliação</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>abort</literal> interrompe a avaliaÃ§Ã£o corrente e retrona
-    ao prompt de comando. Dentro de um nÃ­vel de <literal>pause</literal> ,
-    <literal>abort</literal> retorna ao prompt de nÃ­vel 0.</para>
+    <para><literal>abort</literal> interrompe a avaliação corrente e retrona
+    ao prompt de comando. Dentro de um nível de <literal>pause</literal> ,
+    <literal>abort</literal> retorna ao prompt de nível 0.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="quit">quit</link></member>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="graypolarplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>graypolarplot</refname>
+
+    <refpurpose>Esboço polar 2d de uma superfície utilizando-se
+    cores</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>graypolarplot(theta,rho,z,[strf,rect])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>theta</term>
+
+        <listitem>
+          <para>vetor de tamanho n1, a discretização do ângulo em radianos.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rho</term>
+
+        <listitem>
+          <para>vetor de tamanho n2, a discretização do raio </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
+          é o valor da superfície no ponto (theta(i),rho(j)). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf</term>
+
+        <listitem>
+          <para>string de comprimento 3 <literal>"xy0"</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>default</term>
+
+              <listitem>
+                <para>o padrão é <literal>"030"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>controla a exibição de legendas.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+
+                    <listitem>
+                      <para>sem legendas. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>x=1</term>
+
+                    <listitem>
+                      <para>com legendas. Elas são fornecidas pelo argumento
+                      opcional <literal>leg</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y</term>
+
+              <listitem>
+                <para>controla a computação da moldura.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+
+                    <listitem>
+                      <para>as molduras correntes (definidas por uma chamada
+                      anterior a uma função de esboço de alto-nível) são
+                      utilizadas. Útil ao se superpor esboços múltiplos.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=1</term>
+
+                    <listitem>
+                      <para>o argumento opcional <literal>rect</literal> é
+                      utilizado para se especificar as fronteiras do esboço.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=2</term>
+
+                    <listitem>
+                      <para>as fronteiras do esboço são computadas
+                      utilizando-se os valores mínimo e máximo de
+                      <literal>x</literal> e <literal>y</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=3</term>
+
+                    <listitem>
+                      <para>como <literal>y=1</literal> mas produz escala de
+                      isovisualização. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=4</term>
+
+                    <listitem>
+                      <para>como <literal>y=2</literal> mas produz escala de
+                      isovisualização. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=5</term>
+
+                    <listitem>
+                      <para>como <literal>y=1</literal> mas
+                      <literal>plot2d</literal> pode mudar as fronteiras do
+                      esboço e os tiques dos eixos para se obter boas
+                      graduações. Quando o botão de zoom é ativado, este modo
+                      é usado. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=6</term>
+
+                    <listitem>
+                      <para>como <literal>y=2</literal> mas
+                      <literal>plot2d</literal> pode mudar as fronteiras do
+                      esboço e os tiques dos eixos para se obter boas
+                      graduações. Quando o botão de zoom é ativado, este modo
+                      é usado. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=7</term>
+
+                    <listitem>
+                      <para>como <literal>y=5</literal> mas a escala do novo
+                      esboço é misturada à escala corrente. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=8</term>
+
+                    <listitem>
+                      <para>como <literal>y=6</literal> mas a escala do novo
+                      esboço é misturada à escala corrente.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>leg</term>
+
+        <listitem>
+          <para>string. É usado quando o primeiro caractere x do argumento
+          <literal>strf</literal> é 1. <literal>leg</literal> possui a forma
+          <literal>"leg1@leg2@...."</literal> onde <literal>leg1</literal>,
+          <literal>leg2</literal>, etc. são respectivamente as legendas das
+          primeira, segunda, etc. curvas. O padrão é " ". </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>É usado quando o segundo caractere y do argumento
+          <literal>strf</literal> é 1, 3 ou 5. É um vetor linha de tamanho 4 e
+          fornece as dimensões da moldura:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Toma um esboço 2d de uma superfície dada por z em um grid de
+    coordenadas polares definido por <literal>rho</literal> e
+    <literal>theta</literal>. Cada região é preenchida com um nível de cinza
+    ou de cor dependendo do valor médio de <literal>z</literal> nas quinas do
+    grid.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+
+  rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+  z=30+round(theta'*(1+rho^2));
+  f=gcf();
+  f.color_map= hotcolormap(128);
+  clf();graypolarplot(theta,rho,z)
+ 
+  </programlisting>
+  </refsection>
+</refentry>

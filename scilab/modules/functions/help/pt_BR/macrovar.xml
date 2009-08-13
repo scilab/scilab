@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="macrovar" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>macrovar</refname>
+
+    <refpurpose>variáveis de uma função</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>vars=macrovar(function)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>vars</term>
+
+        <listitem>
+          <para>list
+          <literal>list(in,out,globals,called,locals)</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>function</term>
+
+        <listitem>
+          <para>nome de uma função</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna em uma lista o conjunto de variáveis utilizadas por uma
+    função. <literal>vars</literal> é uma lista feita de cinco vetores colunas
+    de strings</para>
+
+    <para><literal>in</literal> variáveis de entrada
+    (<literal>vars(1)</literal>)</para>
+
+    <para><literal>out</literal> variáveis de saída
+    (<literal>vars(2)</literal>)</para>
+
+    <para><literal>globals</literal> variáveis globais
+    (<literal>vars(3)</literal>)</para>
+
+    <para><literal>called</literal> nomes de funções chamadas
+    (<literal>vars(4)</literal>)</para>
+
+    <para><literal>locals</literal> variáveis locais
+    (<literal>vars(5)</literal>)</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
+vars=macrovar(f)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="macr2lst">macr2lst</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

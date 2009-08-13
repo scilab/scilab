@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="exec" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,12 +13,12 @@
   <refnamediv>
     <refname>exec</refname>
 
-    <refpurpose>execu√ß√£o de arquivo script ("script" significa
+    <refpurpose>execuÁ„o de arquivo script ("script" significa
     roteiro)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>exec(path [,mode])
 exec(fun [,mode])
@@ -27,14 +27,14 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>path</term>
 
         <listitem>
-          <para>string, o endere√ßo do arquivo script </para>
+          <para>string, o endereÁo do arquivo script </para>
         </listitem>
       </varlistentry>
 
@@ -42,7 +42,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
         <term>mode</term>
 
         <listitem>
-          <para>escalar inteiro, o modo de execu√ß√£o (ver abaixo) </para>
+          <para>escalar inteiro, o modo de execuÁ„o (ver abaixo) </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
         <term>fun</term>
 
         <listitem>
-          <para>uma fun√ß√£o do Scilab </para>
+          <para>uma funÁ„o do Scilab </para>
         </listitem>
       </varlistentry>
 
@@ -58,55 +58,55 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
         <term>ierr</term>
 
         <listitem>
-          <para>inteiro, 0 ou n√∫mero de erro</para>
+          <para>inteiro, 0 ou n˙mero de erro</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>exec(path [,mode])</literal> executa seq√ºencialmente as
-    instru√ß√µes contidas no arquivo fornecido por <literal>path</literal> com
-    um modo de execu√ß√£o opcional <literal>mode</literal> .</para>
+    <para><literal>exec(path [,mode])</literal> executa seq¸encialmente as
+    instruÁıes contidas no arquivo fornecido por <literal>path</literal> com
+    um modo de execuÁ„o opcional <literal>mode</literal> .</para>
 
-    <para>Os casos diferentes para <literal>mode</literal> s√£o :</para>
+    <para>Os casos diferentes para <literal>mode</literal> s„o :</para>
 
-    <para>0 : o valor padr√£o</para>
+    <para>0 : o valor padr„o</para>
 
-    <para>-1 : nada √© impresso</para>
+    <para>-1 : nada È impresso</para>
 
     <para>1 : eco de cada linha de comando</para>
 
-    <para>2 : prompt --&gt; √© impresso</para>
+    <para>2 : prompt --&gt; È impresso</para>
 
     <para>3 : ecos + prompts</para>
 
-    <para>4 : p√°ra antes de cada prompt. A execu√ß√£o retorna ap√≥s cada retorno
+    <para>4 : p·ra antes de cada prompt. A execuÁ„o retorna apÛs cada retorno
     de carro.</para>
 
-    <para>7 : paradas + prompts + ecos : √∫til para demos.</para>
+    <para>7 : paradas + prompts + ecos : ˙til para demos.</para>
 
-    <para><literal>exec(fun [,mode])</literal> executa a fun√ß√£o
-    <literal>fun</literal> como um script: sem argumentos de entrada ou sa√≠da
-    nem ambientes de vari√°veis espec√≠ficos. Esta forma √© mais eficiente,
-    porque o c√≥digo script pode se pr√©-compilado (ver getf, comp). Este m√©todo
-    para avalia√ß√£o de scripts permite armazenar scripts como fun√ß√µes em
+    <para><literal>exec(fun [,mode])</literal> executa a funÁ„o
+    <literal>fun</literal> como um script: sem argumentos de entrada ou saÌda
+    nem ambientes de vari·veis especÌficos. Esta forma È mais eficiente,
+    porque o cÛdigo script pode se prÈ-compilado (ver getf, comp). Este mÈtodo
+    para avaliaÁ„o de scripts permite armazenar scripts como funÁıes em
     bibliotecas.</para>
 
-    <para>Se um erro √© encontrado durante a execu√ß√£o, se o flag 'errcatch'
-    estiver presente <literal>exec</literal> n√£o imprime mensagem de erro,
-    aborta execu√ß√£o de instru√ß√µes e retorna com <literal>ierr</literal> e
-    igual ao n√∫mero de erro. Se o flag 'errcatch' n√£o estiver presente, a
-    manipula√ß√£o de erros padr√£o √© utilizada.</para>
+    <para>Se um erro È encontrado durante a execuÁ„o, se o flag 'errcatch'
+    estiver presente <literal>exec</literal> n„o imprime mensagem de erro,
+    aborta execuÁ„o de instruÁıes e retorna com <literal>ierr</literal> e
+    igual ao n˙mero de erro. Se o flag 'errcatch' n„o estiver presente, a
+    manipulaÁ„o de erros padr„o È utilizada.</para>
   </refsection>
 
   <refsection>
-    <title>Observa√ß√£o </title>
+    <title>ObservaÁ„o </title>
 
-    <para>Arquivos execut√°veis (exec files) podem agora ser usados para
-    definir fun√ß√µes "inline" utilizando a sintaxe de defini√ß√£o (ver
+    <para>Arquivos execut·veis (exec files) podem agora ser usados para
+    definir funÁıes "inline" utilizando a sintaxe de definiÁ„o (ver
     function).</para>
   </refsection>
 
@@ -121,19 +121,19 @@ mputl('a=1;b=2',TMPDIR+'/meuscript')
 exec(TMPDIR+'/meuscript')
 whos -name "a "
 
-// criando uma fun√ß√£o
+// criando uma funÁ„o
 deff('y=foo(x)','a=x+1;y=a^2')
 clear a b
-// chamando a fun√ß√£o
+// chamando a funÁ„o
 foo(1)
-// a √© uma vari√°vel criada no ambiente da fun√ß√£o foo
-//    ela √© destru√≠da quando foo retorna
+// a È uma vari·vel criada no ambiente da funÁ„o foo
+//    ela È destruÌda quando foo retorna
 whos -name "a "
 
 
-x=1 //criando x para torn√°-la conhecida pelo script foo
+x=1 //criando x para torn·-la conhecida pelo script foo
 exec(foo)
-// a e y s√£o criadas no ambiente corrente
+// a e y s„o criadas no ambiente corrente
 whos -name "a "
 
  
@@ -141,7 +141,7 @@ whos -name "a "
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="getf">getf</link></member>

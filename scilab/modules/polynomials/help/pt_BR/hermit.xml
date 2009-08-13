@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Ar,U]=hermit(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>Ar</term>
 
         <listitem>
-          <para>matriz de polin√¥mios triangular </para>
+          <para>matriz de polinÙmios triangular </para>
         </listitem>
       </varlistentry>
 
@@ -57,21 +57,21 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz de polin√¥mios unimodular</para>
+          <para>matriz de polinÙmios unimodular</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Forma hermitiana: <literal>U</literal> √© uma matriz unimodular tal
-    que <literal>A*U</literal> est√° na forma triangular de Hermite:</para>
+    <para>Forma hermitiana: <literal>U</literal> È uma matriz unimodular tal
+    que <literal>A*U</literal> est· na forma triangular de Hermite:</para>
 
-    <para>A vari√°vel de sa√≠da √© <literal>Ar=A*U</literal>.</para>
+    <para>A vari·vel de saÌda È <literal>Ar=A*U</literal>.</para>
 
-    <para>Aviso: vers√£o experimental</para>
+    <para>Aviso: vers„o experimental</para>
   </refsection>
 
   <refsection>
@@ -88,7 +88,7 @@ clean(p'*p*U), det(U)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="hrmt">hrmt</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="equal" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,67 +13,67 @@
   <refnamediv>
     <refname>equal</refname>
 
-    <refpurpose>(=) atribui√ß√£o ou compara√ß√£o, sinal de igualdade</refpurpose>
+    <refpurpose>(=) atribuiÁ„o ou comparaÁ„o, sinal de igualdade</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
-        <term>Atribui√ß√£o:</term>
+        <term>AtribuiÁ„o:</term>
 
         <listitem>
-          <para>o sinal de igualdade ( = ) √© usado para denotar a atribui√ß√£o
-          de valor(es) a vari√°vel(eis). A sintaxe pode ser :</para>
+          <para>o sinal de igualdade ( = ) È usado para denotar a atribuiÁ„o
+          de valor(es) a vari·vel(eis). A sintaxe pode ser :</para>
 
           <itemizedlist>
             <listitem>
-              <para><literal>a=expr</literal> onde <literal>a</literal> √© um
-              nome de vari√°vel e <literal>expr</literal> uma express√£o do
-              Scilab cuja avalia√ß√£o conduz a um √∫nico resultado. </para>
+              <para><literal>a=expr</literal> onde <literal>a</literal> È um
+              nome de vari·vel e <literal>expr</literal> uma express„o do
+              Scilab cuja avaliaÁ„o conduz a um ˙nico resultado. </para>
             </listitem>
 
             <listitem>
               <para><literal>[a,b,...]=expr</literal> onde
               <literal>a</literal>,<literal>b</literal>,<literal>...</literal>
-              s√£o nomes de vari√°veis e <literal>expr</literal> uma express√£o
-              do Scilab cuja avalia√ß√£o conduz a tantos resultados quanto o
-              n√∫mero de vari√°veis dadas.</para>
+              s„o nomes de vari·veis e <literal>expr</literal> uma express„o
+              do Scilab cuja avaliaÁ„o conduz a tantos resultados quanto o
+              n˙mero de vari·veis dadas.</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Compara√ß√£o:</term>
+        <term>ComparaÁ„o:</term>
 
         <listitem>
-          <para>o sinal de igualdade ( = ) tamb√©m √© usado em operadores de
-          compara√ß√£o:</para>
+          <para>o sinal de igualdade ( = ) tambÈm È usado em operadores de
+          comparaÁ„o:</para>
 
           <itemizedlist>
             <listitem>
-              <para><literal>a==b</literal>, denota compara√ß√£o de igualdade
-              entre os valores das express√µes <literal> a</literal> e
+              <para><literal>a==b</literal>, denota comparaÁ„o de igualdade
+              entre os valores das expressıes <literal> a</literal> e
               <literal>b</literal>.</para>
             </listitem>
 
             <listitem>
-              <para><literal>a~=b</literal>, denota compara√ß√£o de desigualdade
-              entre os valores das express√µes <literal>a</literal> e <literal>
+              <para><literal>a~=b</literal>, denota comparaÁ„o de desigualdade
+              entre os valores das expressıes <literal>a</literal> e <literal>
               b</literal>:</para>
             </listitem>
 
             <listitem>
               <para><literal>a&lt;=b</literal> e <literal>a&gt;=b</literal>
-              denotam compara√ß√µes de ordem entre os valores de <literal>
+              denotam comparaÁıes de ordem entre os valores de <literal>
               a</literal> e <literal> b</literal>:</para>
             </listitem>
           </itemizedlist>
 
           <para>Ver <link linkend="comparison">comparison</link> para detalhes
-          sem√¢nticos.</para>
+          sem‚nticos.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -94,7 +94,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="less">less</link></member>

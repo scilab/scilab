@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,13 +29,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento</title>
+    <title> Seq¸Íncia de Chamamento</title>
 
     <synopsis>[M,Q]=eigenmarkov(P)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,17 +66,17 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Retorna os autovetores esquerdo e direito normalizados associados ao
-    autovalor 1 da matriz P de transi√ß√£o de Markov. Se a multiplicidade deste
-    autovalor √© m e P √© N x N, M √© uma matriz m x N e Q √© uma matriz N x m.
-    M(k,:) √© o vetor de distribui√ß√£o de probabilidade associado ao k-√©simo
-    conjunto erg√≥dico (classe recorrente). M(k,x) √© zero se x n√£o est√° na
-    k-√©sima classe recorrente. Q(x,k) √© a probabilidade de se terminar na
-    k-√©sima classe recorrente come√ßando de x. Se <literal>P^k</literal>
-    converge para <literal>k</literal> (sem autovalores no c√≠rculo unit√°rio,
-    exceto 1), ent√£o o limite √© <literal>Q*M</literal> (auto-proje√ß√£o).</para>
+    autovalor 1 da matriz P de transiÁ„o de Markov. Se a multiplicidade deste
+    autovalor È m e P È N x N, M È uma matriz m x N e Q È uma matriz N x m.
+    M(k,:) È o vetor de distribuiÁ„o de probabilidade associado ao k-Èsimo
+    conjunto ergÛdico (classe recorrente). M(k,x) È zero se x n„o est· na
+    k-Èsima classe recorrente. Q(x,k) È a probabilidade de se terminar na
+    k-Èsima classe recorrente comeÁando de x. Se <literal>P^k</literal>
+    converge para <literal>k</literal> (sem autovalores no cÌrculo unit·rio,
+    exceto 1), ent„o o limite È <literal>Q*M</literal> (auto-projeÁ„o).</para>
   </refsection>
 
   <refsection>
@@ -94,7 +94,7 @@ Q*M-P^20
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="genmarkov">genmarkov</link></member>

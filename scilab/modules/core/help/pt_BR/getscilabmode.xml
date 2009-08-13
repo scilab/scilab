@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="getscilabmode" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,25 +18,25 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>mode = getscilabmode()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna o modo do Scilab. Quatro s√£o os poss√≠veis modos : STD , API
+    <para>Retorna o modo do Scilab. Quatro s„o os possÌveis modos : STD , API
     , NW , NWNI .</para>
 
-    <para><literal>API </literal>o Scilab √© lan√ßado como um API.</para>
+    <para><literal>API </literal>o Scilab È lanÁado como um API.</para>
 
-    <para><literal>STD</literal> o Scilab padr√£o (gui, plot ...)</para>
+    <para><literal>STD</literal> o Scilab padr„o (gui, plot ...)</para>
 
-    <para><literal>NW</literal> Scilab em linha de comando com esbo√ßos.</para>
+    <para><literal>NW</literal> Scilab em linha de comando com esboÁos.</para>
 
     <para><literal>NWNI </literal>Scilab em linha de comando sem quaisquer
-    gr√°ficos.</para>
+    gr·ficos.</para>
   </refsection>
 
   <refsection>
@@ -46,7 +46,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="scilab">scilab</link></member>

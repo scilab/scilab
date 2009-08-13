@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>diag</refname>
 
-    <refpurpose>inclus√£o ou extra√ß√£o diagonal</refpurpose>
+    <refpurpose>inclus„o ou extraÁ„o diagonal</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[y]=diag(vm, [k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>k</term>
 
         <listitem>
-          <para>inteiro (o valor padr√£o √© 0)</para>
+          <para>inteiro (o valor padr„o È 0)</para>
         </listitem>
       </varlistentry>
 
@@ -64,34 +64,34 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Para um n-vetor (linha ou coluna) <literal>vm</literal> ,
     <literal>diag(vm)</literal> retorna uma matriz diagonal com entradas de
     <literal>vm</literal> ao longo da diagonal principal.</para>
 
-    <para><literal>diag(vm,k)</literal> √© uma matriz
+    <para><literal>diag(vm,k)</literal> È uma matriz
     <literal>(n+abs(k))x(n+abs(k))</literal> com entradas de
-    <literal>vm</literal> ao longo da k-√©sima diagonal. <literal>k=0</literal>
-    √© a diagonal principal, <literal>k&gt;0</literal> s√£o as diagonais
-    superiores e <literal>k&lt;0</literal> s√£o as diagonais inferiores.</para>
+    <literal>vm</literal> ao longo da k-Èsima diagonal. <literal>k=0</literal>
+    È a diagonal principal, <literal>k&gt;0</literal> s„o as diagonais
+    superiores e <literal>k&lt;0</literal> s„o as diagonais inferiores.</para>
 
     <para>Para uma matriz <literal>vm</literal>, <literal>diag(vm,k)</literal>
-    √© o vetor coluna feito das entradas da k-√©sima diagonal de
-    <literal>vm</literal>. <literal>diag(vm)</literal> √© a diagonal principal
-    de <literal>vm</literal>. <literal>diag(diag(x))</literal> √© a matriz
+    È o vetor coluna feito das entradas da k-Èsima diagonal de
+    <literal>vm</literal>. <literal>diag(vm)</literal> È a diagonal principal
+    de <literal>vm</literal>. <literal>diag(diag(x))</literal> È a matriz
     diagonal.</para>
 
-    <para>Se <literal>vm</literal> √© uma matriz esparsa,
+    <para>Se <literal>vm</literal> È uma matriz esparsa,
     <literal>diag(vm,k)</literal> retorna uma matriz esparsa.</para>
 
     <para>Para construir um sistema linear diagonal, use
     <literal>sysdiag</literal>.</para>
 
     <para>Perceba que <literal>eye(A).*A</literal> retorna uma matriz diagonal
-    feita das entradas diagonais de <literal>A</literal>. Isto √© v√°lido para
-    qualquer matriz (constante, de polin√¥mios, de raz√µes de polin√¥mios,
-    sistema linear em espa√ßo de estados,...).</para>
+    feita das entradas diagonais de <literal>A</literal>. Isto È v·lido para
+    qualquer matriz (constante, de polinÙmios, de razıes de polinÙmios,
+    sistema linear em espaÁo de estados,...).</para>
   </refsection>
 
   <refsection>
@@ -114,7 +114,7 @@ m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="sysdiag">sysdiag</link></member>

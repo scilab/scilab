@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="mtlb_mode" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>mtlb_mode</refname>
 
-    <refpurpose>alterna para modo de operaÃ§Ãµes do Matlab</refpurpose>
+    <refpurpose>alterna para modo de operações do Matlab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>mmode=mtlb_mode()
 mtlb_mode(mmode)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros </title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
@@ -38,9 +38,9 @@ mtlb_mode(mmode)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>AdiÃ§Ãµes e subtraÃ§Ãµes do Scilab e do Matlab funcionam de modo
+    <para>Adições e subtrações do Scilab e do Matlab funcionam de modo
     diferente quando usadas com matrizes vazias: </para>
 
     <variablelist>
@@ -77,16 +77,16 @@ a-[] --&gt;[]
       </varlistentry>
     </variablelist>
 
-    <para><literal> mtlb_mode(%t)</literal> alterna para o modo de operaÃ§Ãµes
-    para adiÃ§Ã£o e subtraÃ§Ã£o do Matlab. <literal> mtlb_mode(%f)</literal> volta
-    para o modo de operaÃ§Ãµes do Scilab.</para>
+    <para><literal> mtlb_mode(%t)</literal> alterna para o modo de operações
+    para adição e subtração do Matlab. <literal> mtlb_mode(%f)</literal> volta
+    para o modo de operações do Scilab.</para>
 
     <para><literal> mtlb_mode()</literal> retorna o valor 'mmode'
     corrente.</para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="empty">empty</link></member>

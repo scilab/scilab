@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>edit_curv</refname>
 
-    <refpurpose>editor interativo de curvas gr√°ficas</refpurpose>
+    <refpurpose>editor interativo de curvas gr·ficas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[x,y,ok,gc] = edit_curv(y)
 [x,y,ok,gc] = edit_curv(x,y)
@@ -38,7 +38,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -61,7 +61,7 @@
         <term>job</term>
 
         <listitem>
-          <para>um string formado por um a tr√™s dos caracteres
+          <para>um string formado por um a trÍs dos caracteres
           'a','x','y'</para>
 
           <variablelist>
@@ -69,7 +69,7 @@
               <term>'a'</term>
 
               <listitem>
-                <para>adicionar pontos √† curva editada </para>
+                <para>adicionar pontos ‡ curva editada </para>
               </listitem>
             </varlistentry>
 
@@ -98,7 +98,7 @@
         <term>tit</term>
 
         <listitem>
-          <para>um vetor de tr√™s strings que fornecem a legenda da curva
+          <para>um vetor de trÍs strings que fornecem a legenda da curva
           </para>
         </listitem>
       </varlistentry>
@@ -107,7 +107,7 @@
         <term>gc</term>
 
         <listitem>
-          <para>uma lista de par√¢metros de janela de gr√°ficos:
+          <para>uma lista de par‚metros de janela de gr·ficos:
           <literal>gc=list(rect,nax)</literal></para>
 
           <variablelist>
@@ -115,7 +115,7 @@
               <term>rect</term>
 
               <listitem>
-                <para>bordas dos gr√°ficos (ver plot2d para detalhes) </para>
+                <para>bordas dos gr·ficos (ver plot2d para detalhes) </para>
               </listitem>
             </varlistentry>
 
@@ -123,7 +123,7 @@
               <term>nax</term>
 
               <listitem>
-                <para>par√¢metros de gradua√ß√£o (ver plot2d para
+                <para>par‚metros de graduaÁ„o (ver plot2d para
                 detalhes)</para>
               </listitem>
             </varlistentry>
@@ -135,8 +135,8 @@
         <term>ok</term>
 
         <listitem>
-          <para>indicador. Se ok== %t retorna com menu 'ok' sen√£o, retorna com
-          menu 'abort': lista (objetos gr√°ficos criados sob
+          <para>indicador. Se ok== %t retorna com menu 'ok' sen„o, retorna com
+          menu 'abort': lista (objetos gr·ficos criados sob
           <literal>edit_curv</literal></para>
         </listitem>
       </varlistentry>
@@ -144,13 +144,13 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>edit_curv</literal> √© um editor de curvas gr√°ficas
-    interativo. Para adicionar um ponto novo, apenas clique na localiza√ß√£o
-    desejada, o ponto adicionado ser√° conectado √† extremidade mais pr√≥xima.
-    Para mover um ponto, clique nele, arraste o mouse para a nova posi√ß√£o e
-    clique para ajustar a nova posi√ß√£o.</para>
+    <para><literal>edit_curv</literal> È um editor de curvas gr·ficas
+    interativo. Para adicionar um ponto novo, apenas clique na localizaÁ„o
+    desejada, o ponto adicionado ser· conectado ‡ extremidade mais prÛxima.
+    Para mover um ponto, clique nele, arraste o mouse para a nova posiÁ„o e
+    clique para ajustar a nova posiÁ„o.</para>
   </refsection>
 
   <refsection>

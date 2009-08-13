@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="regexp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-16 16:57:13 +0200 (The, 16 Jan
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>regexp</refname>
+
+    <refpurpose>acha um string que corresponde ao string de expressão
+    regular</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[start]=regexp(input,pattern,[flag])
+[start,end,match]=regexp(input,pattern,[flag])
+[start,end]=regexp(input,pattern,[flag])
+[start,end,match]=regexp(input,pattern,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>input</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pattern</term>
+
+        <listitem>
+          <para>string (sob regras de expressão regular)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>start</term>
+
+        <listitem>
+          <para>o índice de início de cada substring de str que corresponde ao
+          padrão do string de expressão regular</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>end</term>
+
+        <listitem>
+          <para>o índice de fim de cada substring de str que corresponde ao
+          padrão do string de expressão regular</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>match</term>
+
+        <listitem>
+          <para>o texto de cada substring de que corresponde a
+          <literal>pattern</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[flag]</term>
+
+        <listitem>
+          <para>'o' para correspondência com padrão uma vez</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>As regras de expressão regular são similares às da linguagem Perl.
+    Para uma introdução rápido , veja <ulink
+    url="http://perldoc.perl.org/perlrequick.html">http://perldoc.perl.org/perlrequick.html</ulink>.
+    Para um tutorial mais profundo, veja <ulink
+    url="http://perldoc.perl.org/perlretut.html">http://perldoc.perl.org/perlretut.html</ulink>
+    e para página de referência, veja <ulink
+    url="http://perldoc.perl.org/perlre.html">http://perldoc.perl.org/perlre.html</ulink></para>
+
+    <para>Uma diferença para Perl é que correspondência entre posições, mas
+    não entre caracteres (por exemplo, com /^/ ou /(?=o)/) é uma
+    correspondência válida em Perl, mas não em Scilab.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+regexp('xabyabbbz','/ab*/','o')
+regexp('a!','/((((((((((a))))))))))\041/')
+regexp('ABCC','/^abc$/i')
+regexp('ABC','/ab|cd/i')
+[a b c]=regexp('XABYABBBZ','/ab*/i')
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strindex">strindex</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

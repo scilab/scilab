@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>asinh</refname>
 
-    <refpurpose>arco-seno hiperbÃ³lico</refpurpose>
+    <refpurpose>arco-seno hiperbólico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[t]=asinh(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>As entradas de <literal>t</literal> sÃ£o os arcos-senos hiperbÃ³licos
-    das entradas correspondentes de <literal>x</literal>. O domÃ­nio de
-    definiÃ§Ã£o Ã©]-1,infinito[. A funÃ§Ã£o toma valores em conjuntos.</para>
+    <para>As entradas de <literal>t</literal> são os arcos-senos hiperbólicos
+    das entradas correspondentes de <literal>x</literal>. O domínio de
+    definição é]-1,infinito[. A função toma valores em conjuntos.</para>
   </refsection>
 
   <refsection>

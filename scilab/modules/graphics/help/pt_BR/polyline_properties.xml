@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="polyline_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>polyline_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Polyline
+    (poligonal)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Polyline uma folha na hierarquia de entidades gráficas.
+    Esta entidade define parâmetros para poligonais.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador para a raiz. A raiz de
+          uma entidade Polyline deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          Contudo, manipuladores poligonais não possuem galhos correntemente.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, a poligonal é
+          visível, o valor da propriedade é <literal>"on" </literal>. Se
+          <literal>"off"</literal> a poligonal não é impressa na tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>esta propriedade contém o valor os valores para as coordenadas
+          x e y. O componente z deve ser adicionado no caso de eixos 3d. é uma
+          matriz de duas (três) colunas <literal>[x,y,[z]]</literal>
+          determinando os pontos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>closed:</term>
+
+        <listitem>
+          <para>este valor determina se a poligonal é fechada ou não: o valor
+          pode ser <literal>"on"</literal> ou <literal>"off"</literal> (o
+          valor padrão depende da primitiva utilizada para criar a poligonal).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>line_mode</literal> para a poligonal. O valor pode ser
+          <literal>"on" </literal>(linha desenhada) ou
+          <literal>"off"</literal> (nenhuma linha desenhada). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode:</term>
+
+        <listitem>
+          <para>se o campo <literal>polyline_style</literal> é diferente de 5,
+          preenche o plano de fundo da curva com a cor definida pela
+          propriedade <literal>background</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style:</term>
+
+        <listitem>
+          <para>o valor da propriedade <literal>line_style</literal> deve ser
+          um inteiro em [1 6]. 1 significa linha sólida e os demais valores
+          tipos diferentes de tracejados. (ver <link
+          linkend="getlinestyle">getlinestyle</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém a propriedade de linha
+          <literal>thickness</literal> (espessura). Deve ser um inteiro
+          positivo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arrow_size_factor:</term>
+
+        <listitem>
+          <para>este inteiro permite ajustar o tamanho das flechas desenhadas
+          na poligonal. O tamanho real das flechas é o produto entre a
+          propriedade <literal>thickness</literal> e o fator de tamanho (size
+          factor). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>polyline_style:</term>
+
+        <listitem>
+          <para>esta propriedade ajusta vários modos de desenho de
+          poligonais:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Se o valor é 0 ou 1 linhas são desenhadas utilizando-se
+              dois pontos consecutivos. </para>
+            </listitem>
+
+            <listitem>
+              <para>Se o valor é 2 a poligonal produz um esboço escada. Dois
+              pontos consecutivos são ligados por uma linha horizontal seguida
+              de uma vertical. </para>
+            </listitem>
+
+            <listitem>
+              <para>Se o valor é 3 a poligonal produz um esboço de barras.
+              Para cada ponto (x,y) dado, uma linha vertical é desenhada de
+              (x,y) a (x,0). </para>
+            </listitem>
+
+            <listitem>
+              <para>Se o valor é 4 flechas são desenhadas entre dois pontos
+              consecutivos. </para>
+            </listitem>
+
+            <listitem>
+              <para>Se o valor é 5 a poligonal é preenchida (remendos).
+              </para>
+            </listitem>
+
+            <listitem>
+              <para>Se o valor é 6 a poligonal é um objeto barra como no
+              Matlab. As propriedades <literal>bar_shift</literal> e
+              <literal>bar_width</literal> comandam sua aparência.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>foreground</literal> (primeiro plano) utilizada para
+          desenhar a poligonal. O valor deve ser um índice de cor (realtivo ao
+          mapa de cores corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background:</term>
+
+        <listitem>
+          <para>este campo contém a cor usada para preencher o plano de fundo
+          da poligonal. Deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>interp_color_vector:</term>
+
+        <listitem>
+          <para>este campo contém os índices das cores utilizadas para
+          preencher a poligonal quando a propriedade
+          <literal>interp_color_mode</literal> é ajustada para
+          <literal>"on"</literal>. Define os intervalos dos índices do mapa de
+          cores a serem utilizados para preencher cada segmento. Por exemplo,
+          o primeiro segmento será preenchido por todas as cores cujo índice
+          está entre os dois primeiros elementos do vetor. Só é aplicável se a
+          poligonal é definida por 3 ou 4 pontos. Logo, o tamanho do vetor
+          deve coincidir com esta dimensão. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>interp_color_mode:</term>
+
+        <listitem>
+          <para> este modo determina se é utilizada gradação interpolada par
+          preencher a poligonal: o valor pode ser <literal>"on"</literal> ou
+          <literal>"off"</literal>. Note que
+          <literal>interp_color_vector</literal> deve ser definido antes e
+          ajustar esta propriedade para "on" (ver acima). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_mode</literal>. Deve ser <literal>"on"</literal>
+          (marcas desenhadas) ou <literal>"off"</literal> (nenhuma marca
+          desenhada). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_style:</term>
+
+        <listitem>
+          <para>A propriedade <literal>mark_style</literal> é utilizada para
+          selecionar o tipo de marca utilizada quando a propriedade
+          <literal>mark_mode</literal> é <literal>"on"</literal>. O valor é um
+          inteiro em [0 14] que significa: ponto, sinal de mais, cruz,
+          estrela, rombo preenchido, rombo, triângulo para cima, triângulo
+          para baixo, rombo mais, círculo, asterísco, quadrado, triângulo para
+          direita, triângulo para esquerda e pentagrama. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size_unit:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_size_unit</literal> property value. Se
+          <literal>mark_size_unit</literal> for ajustado para
+          <literal>"point"</literal>, então o valor de
+          <literal>mark_size</literal> é diretamente dado em pontos. Quando
+          <literal>mark_size_unit</literal> é ajustado para
+          <literal>"tabulated"</literal>, <literal>mark_size</literal> é
+          computado em relação ao array de tamanho de fonte: logo, seu valor
+          deve ser um inteiro em [0 5] que significa 8pt, 10pt, 12pt, 14pt,
+          18pt e 24pt. Note que <link linkend="plot2d">plot2d</link> e funções
+          puras do Scilab utilizam o modo <literal>tabulated</literal> como
+          padrão; quando se utiliza a função <link linkend="plot">plot</link>,
+          o modo <literal>point</literal> é automaticamente habilitado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size:</term>
+
+        <listitem>
+          <para>a propriedade <literal>mark_size</literal> é utilizada para
+          selecionar o tipo de tamanho das marcas quando a propriedade
+          <literal>mark_mode</literal> é <literal>"on"</literal>. O valor deve
+          ser um inteiro entre 0 e 5 signficando 8pt, 10pt, 12pt, 14pt, 18pt e
+          24pt. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_foreground</literal> que é a cor da borda das marcas.
+          O valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_background:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_background</literal> que é a cor da face das marcas. O
+          valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x_shift:</term>
+
+        <listitem>
+          <para>este campo contém a compensação computada por uma chamada à
+          função <link linkend="bar">bar</link> (ou recomputada por uma
+          chamada à função <link linkend="barhomogenize">barhomogenize</link>)
+          e é usada para realizar uma boa representação de barras verticais.
+          Note que esta compensação é levada em conta para todos os outros
+          <literal>polyline_style</literal>. A unidade é expressa nas
+          coordenadas do usuário. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y_shift:</term>
+
+        <listitem>
+          <para>este campo contém a compensação computada por uma chamada à
+          função <link linkend="bar">bar</link> (ou recomputada por uma
+          chamada à função <link linkend="barhomogenize">barhomogenize</link>)
+          e é usada para realizar uma boa representação de barras verticais.
+          Note que esta compensação é levada em conta para todos os outros
+          <literal>polyline_style</literal>. TA unidade é expressa nas
+          coordenadas do usuário.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z_shift:</term>
+
+        <listitem>
+          <para>este campo contém a compensação que o usuário pode
+          especificar. Note que esta compensação é levada em conta para todos
+          os <literal>polyline_style</literal>. A unidade é expressa nas
+          coordenadas do usuário. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bar_width:</term>
+
+        <listitem>
+          <para>este campo determina a largura da poligonal selecionada quando
+          sua propriedade <literal>polyline_style</literal> é ajustada para
+          modo de barra (caso 6) : a unidade é expressa nas coordenadas do
+          usuário. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para a poligonal. O valor de
+          clip_state pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que a poligonal não é
+              recortada. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que a poligonal é
+              recortada fora da caixa dos eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que a poligonal é
+              recortada fora do retângulo dado pela propriedade
+              clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade
+          <literal>clip_box</literal>. Por padrão seu valor é uma matriz vazia
+          se a propriedade clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções da poligonal a serem exibidas, contudo o
+          valor da propriedade <literal>clip_state</literal> será alterado.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade poligonal e
+          recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">  
+
+   a=get("current_axes")//obtendo o manipulador dos novos eixos criados
+   a.data_bounds=[-2,-2;2,2];
+
+   xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+   p=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade poligonal)
+   p.foreground=2;
+   p.thickness=3;
+   p.mark_style=9;
+   d=p.data;d(1,:)=[0 0];p.data=d;
+   a.rotation_angles=[0 45];
+   
+   p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+   p.mark_mode="off";
+   p.polyline_style=3;
+   p.line_style=4;
+
+
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="xpoly">xpoly</link></member>
+
+      <member><link linkend="xfpoly">xfpoly</link></member>
+
+      <member><link linkend="xpolys">xpolys</link></member>
+
+      <member><link linkend="xfpolys">xfpolys</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

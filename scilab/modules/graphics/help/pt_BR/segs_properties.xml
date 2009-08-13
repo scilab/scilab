@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="segs_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu, 03 aoû
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>segs_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Segments (de
+    segmentos)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Segments é uma folha na hierarquia de entidades gráficas.
+    Esta entidade define parâmetros para um conjunto de segmentos ou setas
+    coloridas.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade de Segments deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          Contudo, manipuladores Segs não possuem galhos correntemente.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, o os segmentos
+          são visíveis, a propriedade é <literal>"on"</literal>. Se
+          <literal>"off"</literal> os segmentos não são exibidos na tela.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo é uma matriz de duas (três)
+          <literal>[x,y,[z]]</literal> que fornece as coordenadas das
+          extremidades dos segmentos. Se <literal>xv=matrix(x,2,-1)</literal>
+          e <literal>yv=matrix(y,2,-1)</literal> então
+          <literal>xv(:,k)</literal> e <literal>yv(:,k)</literal> são as
+          extremidades dos segmentos de número <literal>k</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>line_mode</literal> para os segmentos. O valor pode ser
+          <literal>"on" </literal>(linha desenhada) ou
+          <literal>"off"</literal> (nenhuma linha desenhada). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style:</term>
+
+        <listitem>
+          <para>O valor da propriedade <literal>line_style</literal> deve ser
+          um inteiro em [0 6]. 0 significa linha sólida, o restante seleciona
+          tracejados. Esta propriedade se aplica a todos os segmentos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>thickness</literal> (espessura) para todos os segmentos.
+          Seu valor deve ser um inteiro não-negativo. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arrow_size:</term>
+
+        <listitem>
+          <para>fator que especifica o tamanho das cabeças das setas. Com um
+          valor negativo, o tamanho também depende do comprimento da seta.
+          Para desenhar um segmento, o valor deve ser ajustado para 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>segs_color:</term>
+
+        <listitem>
+          <para>este campo especifica a cor a ser utilizada para desenhar cada
+          segmento. Cada elemento é um índice de cor relativo ao mapa de cores
+          corrente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_mode</literal> para a poligonal. Deve ser
+          <literal>"on"</literal> (marcas desenhadas) ou
+          <literal>"off"</literal> (nenhuma marca desenhada) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_style:</term>
+
+        <listitem>
+          <para> a propriedade <literal>mark_style</literal> é utilizada para
+          selecionar o tipo de marca utilizada quando a propriedade
+          <literal>mark_mode</literal> é <literal>"on"</literal>. O valor é um
+          inteiro em [0 14] que significa: ponto, sinal de mais, cruz,
+          estrela, rombo preenchido, rombo, triângulo para cima, triângulo
+          para baixo, rombo mais, círculo, asterísco, quadrado, triângulo para
+          direita, triângulo para esquerda e pentagrama. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size_unit:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_size_unit</literal>. Se
+          <literal>mark_size_unit</literal> for ajustado para
+          <literal>"point"</literal>, então o valor de
+          <literal>mark_size</literal> é diretamente dado em pontos. Quando
+          <literal>mark_size_unit</literal> é ajustado para
+          <literal>"tabulated"</literal>, <literal>mark_size</literal> é
+          computado em relação ao array de tamanho de fonte: logo, seu valor
+          deve ser um inteiro em [0 5] que significa 8pt, 10pt, 12pt, 14pt,
+          18pt e 24pt. Note que <link linkend="plot2d">plot2d</link> e funções
+          puras do Scilab utilizam o modo <literal>tabulated</literal> como
+          padrão; quando se utiliza a função <link linkend="plot">plot</link>,
+          o modo <literal>point</literal> é automaticamente habilitado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size:</term>
+
+        <listitem>
+          <para>a propriedade <literal>mark_size</literal> é utilizada para
+          selecionar o tipo de tamanho das marcas quando a propriedade
+          <literal>mark_mode</literal> é <literal>"on"</literal>. O valor deve
+          ser um inteiro entre 0 e 5 signficando 8pt, 10pt, 12pt, 14pt, 18pt e
+          24pt. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_foreground</literal> que é a cor da borda das marcas.
+          O valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_background:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_background</literal> que é a cor da face das marcas. O
+          valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para os segmentos. O valor de
+          clip_state pode ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que os segmentos não
+              são recortados. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que os segmentos
+              são recortados fora da caixa dos eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que os sementos são
+              recortada fora do retângulo dado pela propriedade
+              <literal>clip_box</literal>.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade
+          <literal>clip_box</literal>. Por padrão seu valor é uma matriz vazia
+          se a propriedade clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções dos segmentos a serem exibidas, contudo o
+          valor da propriedade <literal>clip_state</literal> será alterado.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade de segmentos e
+          recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+   a.data_bounds=[-10,-10;10,10];
+   x=2*%pi*(0:7)/8;
+   xv=[2*sin(x);9*sin(x)];
+   yv=[2*cos(x);9*cos(x)];
+   xsegs(xv,yv,1:8)
+
+   s=a.children
+   s.arrow_size=1;
+    s.segs_color=15:22;
+    for j=1:2
+      for i=1:8
+        h=s.data(i*2,j);
+        s.data(i*2,j)=s.data(i*2-1,j);
+        s.data(i*2-1,j)=  h;
+       end
+    end
+
+   s.segs_color=5; //ajustando todas as cores para 5
+
+   s.clip_box=[-4,4,8,8];
+   a.thickness=4;
+   xrect(s.clip_box);
+
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="xsegs">xsegs</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDMOUCHE</para>
+  </refsection>
+</refentry>

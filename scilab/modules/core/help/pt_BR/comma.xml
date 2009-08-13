@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="comma" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,20 +13,20 @@
   <refnamediv>
     <refname>comma</refname>
 
-    <refpurpose>(,) separador de colunas, instruÃ§Ãµes e argumentos</refpurpose>
+    <refpurpose>(,) separador de colunas, instruções e argumentos</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>VÃ­rgulas sÃ£o usadas para separar parÃ¢metros em funÃ§Ãµes, ou para
+    <para>Vírgulas são usadas para separar parâmetros em funções, ou para
     separar entradas em vetores linhas.</para>
 
-    <para>EspaÃ§os vazios podem ser usados para separar entradas em um vetor
-    linha, mas Ã© preferÃ­vel que se use vÃ­rgulas.</para>
+    <para>Espaços vazios podem ser usados para separar entradas em um vetor
+    linha, mas é preferível que se use vírgulas.</para>
 
-    <para>TambÃ©m Ã© usada para separar instruÃ§Ãµes do Scilab. (Use ; para que o
-    resultado nÃ£o seja exibido na tela).</para>
+    <para>Também é usada para separar instruções do Scilab. (Use ; para que o
+    resultado não seja exibido na tela).</para>
   </refsection>
 
   <refsection>
@@ -41,7 +41,7 @@ a=1,b=1;c=2
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="semicolon">semicolon</link></member>

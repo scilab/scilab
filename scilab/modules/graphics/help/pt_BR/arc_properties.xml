@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="arc_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-05-16 10:56:07 +0200 (ven, 16 mai 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>arc_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Arc (arco)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Arc é uma folha na hierarquia de entidades gráficas. Esta
+    entidade define parâmetros para elipses e partes de elipses preenchidas ou
+    não.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade Arc deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          Contudo, manipuladores arc não possuem galhos correntemente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém a propriedade de linha
+          <literal>thickness</literal> (espessura). Deve ser um inteiro
+          positivo. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style:</term>
+
+        <listitem>
+          <para>o valor da propriedade <literal>line_style</literal> deve ser
+          um inteiro em [1 6]. 1 significa linha sólida e os demais valores
+          significam tipos diferentes de tracejados.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+          <para>esta propriedade permite que se exiba ou não a linha
+          representando o arco. O valor pode ser <literal>"on"</literal> ou
+          <literal>"off"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode:</term>
+
+        <listitem>
+          <para>se o valor da propriedade <literal>fill_mode</literal> é
+          <literal>"on" </literal>, o arco é preenchido com a cor
+          <literal>background</literal> (de plano de fundo). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>foreground</literal> (primeiro plano) para desenhar ou
+          preencher o arco. Deve ser um índice de cor (relativo ao mapa de
+          cores corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background:</term>
+
+        <listitem>
+          <para>este campo contém a cor usada para preencher o arco. Deve ser
+          um índice de cor (relativo ao mapa de cores corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>esta propriedade retorna as coordenadas do ponto superior
+          esquerdo, a largura e a altura do retângulo envolvente bem como os
+          ângulos de froenteira do setor. É a matriz
+          <literal>[xleft,yup,[zup],width,height,a1,a2]</literal> onde
+          <literal>a1</literal> e <literal>a2</literal> são os ângulos de
+          fronteira dados em graus. </para>
+
+          <para><emphasis role="bold">Aviso:</emphasis> nas versões do Scilab
+          até a 4.1.2 <literal>a1</literal> e <literal>a2</literal> são dados
+          em degree/64.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal>. Se <literal>"on"</literal> o
+          arco é desenhado, se <literal>"off"</literal> o arco não é exibido
+          na tela. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arc_drawing_method:</term>
+
+        <listitem>
+          <para>Este campo controla o tipo de discretização utilizado para
+          renderizar o arco. Seu valor deve ser <literal>"nurbs"</literal> ou
+          <literal>"lines"</literal>. Se <literal>"nurbs"</literal> for
+          selecionado, o arco é renderizado utilizando-se superfícies e curvas
+          nurbs. Isto resulta na exibição de uma superfície perfeita, não
+          importa qual o ponto de vista seja. Se <literal>"lines"</literal> é
+          selecionado, então o arco é aproximado com um número constante de
+          linhas. Isto reduz o tempo de desenho, mas pontas agudas podem
+          aparecer em uma ampliação. O uso do valor <literal>"lines"</literal>
+          é desencorajado e só deve ser utilizado se for notada alguma perda
+          na velocidade dos quadros ao se utilizar o valor
+          <literal>"nurbs"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para o arco. O valor de clip_state
+          pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que o arco não é
+              recortado </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que o arco é
+              recortado fora da caixa dos eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que o arco é recortado
+              fora do arco dado pela propriedade clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade <literal>clip_box</literal>
+          property. Por padrão seu valor é uma matriz vazia se a propriedade
+          clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura e
+          altura) define as porções do arco a serem exibidas, contudo o valor
+          da propriedade <literal>clip_state</literal> será alterado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade arco e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+   a.data_bounds=[-2,-2;2,2];
+
+   xarc(-1.5,1.5,3,3,0,360*64)
+
+   arc=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade Arc)
+   arc.fill_mode="on";
+   arc.foreground=5;
+   arc.data(:,[3 6])=[2 270*64];  
+   xfarc(-.5,1,.4,.6,0,360*64);
+   arc.visible="off";
+
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="xarc">xarc</link></member>
+
+      <member><link linkend="xarcs">xarcs</link></member>
+
+      <member><link linkend="xfarc">xfarc</link></member>
+
+      <member><link linkend="xfarcs">xfarcs</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+
+    <para>Jean-Baptiste SILVY</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,24 +25,24 @@
   <refnamediv>
     <refname>dec2hex</refname>
 
-    <refpurpose>representaÃ§Ã£o hexadecimal de inteiros</refpurpose>
+    <refpurpose>representação hexadecimal de inteiros</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>h=dec2hex(d)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>d</term>
 
         <listitem>
-          <para>matriz de inteiros nÃ£o-negativos</para>
+          <para>matriz de inteiros não-negativos</para>
         </listitem>
       </varlistentry>
 
@@ -57,9 +57,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>dec2hex(x)</literal> retorna a representaÃ§Ã£o hexadecimal de
+    <para><literal>dec2hex(x)</literal> retorna a representação hexadecimal de
     uma matriz de inteiros.</para>
   </refsection>
 
@@ -74,7 +74,7 @@ dec2hex([2748 10;11 3])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

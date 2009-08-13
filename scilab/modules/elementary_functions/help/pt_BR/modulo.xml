@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>modulo</refname>
 
-    <refpurpose>Resto aritm√©tico sim√©trico da divis√£o de n por m</refpurpose>
+    <refpurpose>Resto aritmÈtico simÈtrico da divis„o de n por m</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="pmodulo">
     <refname>pmodulo</refname>
 
-    <refpurpose>Resto aritm√©tico positivo da divis√£o de n por m</refpurpose>
+    <refpurpose>Resto aritmÈtico positivo da divis„o de n por m</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>i=modulo(n,m)
 i=pmodulo(n,m)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,17 +56,17 @@ i=pmodulo(n,m)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>modulo</literal> computa <literal>i= n (modulo m)</literal>
-    i.e. resto da divis√£o de <literal>m</literal> (<literal>n</literal> e
+    i.e. resto da divis„o de <literal>m</literal> (<literal>n</literal> e
     <literal>m</literal> inteiros).</para>
 
     <para>i = n - m .* int (n ./ m). Aqui, a resposta pode ser negativa se
-    <literal>n</literal> ou <literal>m</literal> s√£o negativos.</para>
+    <literal>n</literal> ou <literal>m</literal> s„o negativos.</para>
 
     <para><literal>pmodulo</literal> computa <literal>i = n - m .* floor (n ./
-    m)</literal>, a resposta √© positiva ou zero.</para>
+    m)</literal>, a resposta È positiva ou zero.</para>
   </refsection>
 
   <refsection>

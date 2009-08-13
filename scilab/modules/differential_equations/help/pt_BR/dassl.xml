@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dassl" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dassl</refname>
+
+    <refpurpose>Equação diferencial algébrica</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[r [,hd]]=dassl(x0,t0,t [,atol,[rtol]],res [,jac] [,info] [,hd])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>pode ser tanto <literal>y0</literal> (<literal>ydot0</literal>
+          é estimado por <literal>dassl</literal> com a primeira estimativa
+          sendo 0) ou a matriz <literal>[y0 ydot0]</literal>.
+          <literal>g(t,y0,ydot0)</literal> deve ser igual a zero. Se você
+          conhece apenas uma estimativa de <literal>ydot0</literal> faça
+          <literal>info(7)=1</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>y0</term>
+
+              <listitem>
+                <para>vetor coluna de reais de condições iniciais</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ydot0</term>
+
+              <listitem>
+                <para>vetor coluna de reais da derivada do tempo de
+                <literal>y</literal> em <literal>t0</literal> (pode ser uma
+                estimativa).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>número real, é o instante inicial</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>escalar real ou vetor. Fornece instantes para os quais você
+          deseja uma solução. Note que você pode obter soluções para cada
+          ponto de passo de dassl fazendo <literal>info(2)=1</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol,rtol</term>
+
+        <listitem>
+          <para>escalares reais ou vetores colunas com o mesmo tamanho que
+          <literal>y</literal>. <literal>atol,rtol</literal> fornecem
+          respectivamente as tolerâncias de erros absolutos e relativos da
+          solução. Se forem vetores, as tolerâncias são especificadas para
+          cada elemento de <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>função, lista ou string externos. Computa o valor de
+          <literal>g(t,y,ydot)</literal>. Pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Uma função do Scilab</para>
+
+              <para>Sua seqüência de chamamento pode ser
+              <literal>[r,ires]=res(t,y,ydot)</literal> e
+              <literal>res</literal> deve retornar o resíduo
+              <literal>r=g(t,y,ydot)</literal> e o indicador de erro
+              <literal>ires</literal>. <literal>ires = 0</literal> se
+              <literal>res</literal> obtiver sucesso ao computar
+              <literal>r</literal>, <literal>=-1</literal> se o resíduo é
+              indefinido localmente para <literal>(t,y,ydot)</literal>,
+              <literal>=-2</literal> se os parâmetros estão fora do intervalo
+              admissível.</para>
+            </listitem>
+
+            <listitem>
+              <para>Uma lista</para>
+
+              <para>Esta forma permite passar outros parâmetros além de
+              t,y,ydot à função. Deve ser como segue:</para>
+
+              <programlisting>list(res,x1,x2,...)            </programlisting>
+
+              <para>Onde a seqüência de chamamento da função
+              <literal>res</literal> é agora</para>
+
+              <programlisting>r=res(t,y,ydot,x1,x2,...)             </programlisting>
+
+              <para><literal>res</literal> ainda retorna
+              <literal>r=g(t,y,ydot)</literal> como função de
+              <literal>(t,y,ydot,x1,x2,...)</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Um string</para>
+
+              <para>Deve se referir ao nome subrotina C ou Fortran ligada ao
+              Scilab.</para>
+
+              <para>Em C a seqüência de chamamento:</para>
+
+              <programlisting>void res(double *t, double y[], double yd[], double r[],
+                                          int *ires, double rpar[], int ipar[])     </programlisting>
+
+              <para>Em Fortran deve ser:</para>
+
+              <programlisting>subroutine res(t,y,yd,r,ires,rpar,ipar)
+double precision t, y(*),yd(*),r(*),rpar(*)
+integer ires,ipar(*)  </programlisting>
+
+              <para>Os arrays rpar e ipar devem estar presentes, mas não podem
+              ser utilizados.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>função, lista ou string externos. Computa o valor de
+          <literal>dg/dy+cj*dg/dydot</literal> para um dado valor do parâmetro
+          <literal>cj</literal></para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Uma função do Scilab</para>
+
+              <para>Sua seqüência de chamamento deve ser
+              <literal>r=jac(t,y,ydot,cj)</literal> e a função
+              <literal>jac</literal> deve retornar
+              <literal>r=dg(t,y,ydot)/dy+cj*dg(t,y,ydot)/dydot</literal> onde
+              <literal>cj</literal> é um escalar real.</para>
+            </listitem>
+
+            <listitem>
+              <para>Uma lista</para>
+
+              <para>Deve ser como segue</para>
+
+              <programlisting>list(jac,x1,x2,...)              </programlisting>
+
+              <para>Onde a seqüência de chamamento da função
+              <literal>jac</literal> é agora</para>
+
+              <programlisting>r=jac(t,y,ydot,cj,x1,x2,...)    </programlisting>
+
+              <para><literal>jac</literal> ainda retorna
+              <literal>dg/dy+cj*dg/dydot</literal> como uma função de
+              <literal>(t,y,ydot,cj,x1,x2,...)</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para>Um string</para>
+
+              <para>Deve se referir ao nome de uma subrotina C ou Fortran
+              ligada ao Scilab</para>
+
+              <para>Em C, a seqüência de chamamento deve ser</para>
+
+              <programlisting>  void jac(double *t, double y[], double yd[], double
+              pd[], double *cj, double rpar[], int ipar[])
+</programlisting>
+
+              <para>Em Fortran deve ser</para>
+
+              <programlisting>  subroutine jac(t,y,yd,pd,cj,rpar,ipar)
+  double precision t, y(*),yd(*),pd(*),cj,rpar(*)
+  integer ipar(*)</programlisting>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>lista opcional que contém <literal>7</literal> elementos. O
+          valor padrão é list([],0,[],[],[],0,0);</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>info(1)</term>
+
+              <listitem>
+                <para>escalar real que fornece o tempo máximo para o qual se
+                permite avaliar <literal>g</literal> , ou uma matriz vazia
+                <literal>[]</literal> se não houver limites impostos sobre o
+                tempo.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(2)</term>
+
+              <listitem>
+                <para>indica se <literal>dassl</literal> retorna seus valores
+                intermediários computados (<literal>flag=1</literal>) ou
+                apenas os valores de pontos tempo especificados pelo usuário
+                (<literal>flag=0</literal>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(3)</term>
+
+              <listitem>
+                <para>vetor de dois componentes que fornece a definição
+                <literal>[ml,mu]</literal> de matriz de bandas computada por
+                <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) =
+                "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>. Se
+                <literal>jac</literal> retorna uma matriz cheia, faça
+                <literal>info(3)=[]</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(4)</term>
+
+              <listitem>
+                <para>escalar real que fornece o tamanho de passo máximo. Faça
+                <literal>info(4)=[]</literal> se não houver limitação.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(5)</term>
+
+              <listitem>
+                <para>escalar real que fornece o passo inicial. Faça
+                <literal>info(5)=[]</literal> se não for especificado.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(6)</term>
+
+              <listitem>
+                <para>faça <literal>info(6)=1</literal> caso se saiba que a
+                soulução não é negativa, em outro caso, ajuste
+                <literal>info(6)=0</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info(7)</term>
+
+              <listitem>
+                <para>faça <literal>info(7)=1</literal> se
+                <literal>ydot0</literal> é apenas uma estimativa,
+                <literal>info(7)=0</literal> se
+                <literal>g(t0,y0,ydot0)=0</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hd</term>
+
+        <listitem>
+          <para>vetor de reais que permite armazenar o contexto de
+          <literal>dassl</literal> e retomar integração</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>matriz de reais . Cada coluna é o vetor [t;x(t);xdot(t)] onde
+          t é o índice do tempo para o qual a solução foi computada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função dassl integra a equação alegébrica-diferencial e retorna a
+    evolução de<literal> y </literal>em pontos de tempo dados.</para>
+
+    <programlisting>    g(t,y,ydot)=0
+    y(t0)=y0  e   ydot(t0)=ydot0</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">  function [r,ires]=chemres(t,y,yd)
+     r=[-0.04*y(1)+1d4*y(2)*y(3)-yd(1)
+         0.04*y(1)-1d4*y(2)*y(3)-3d7*y(2)*y(2)-yd(2)
+         y(1)+y(2)+y(3)-1];
+     ires=0
+  endfunction
+  function pd=chemjac(x,y,yd,cj)
+      pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+           0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+           1       , 1                      , 1       ]
+  endfunction
+
+y0=[1;0;0];
+yd0=[-0.04;0.04;0];
+t=[1.d-5:0.02:.4,0.41:.1:4,40,400,4000,40000,4d5,4d6,4d7,4d8,4d9,4d10];
+
+
+y=dassl([y0,yd0],0,t,chemres);
+
+info=list([],0,[],[],[],0,0);
+info(2)=1;
+y=dassl([y0,yd0],0,4d10,chemres,info);
+y=dassl([y0,yd0],0,4d10,chemres,chemjac,info);
+ 
+//utilizando um argumento extra para parâmetros
+//-----------------------------------
+  function [r,ires]=chemres(t,y,yd ,a,b,c)
+     r=[-a*y(1)+b*y(2)*y(3)-yd(1)
+         a*y(1)-b*y(2)*y(3)-c*y(2)*y(2)-yd(2)
+         y(1)+y(2)+y(3)-1];
+     ires=0
+  endfunction
+  function pd=chemjac(x,y,yd,cj, a,b,c)
+      pd=[-a-cj , b*y(3)             , b*y(2);
+           a    ,-b*y(3)-2*c*y(2)-cj ,-b*y(2);
+           1    , 1                  , 1       ]
+  endfunction
+y=dassl([y0,yd0],0,t,list(chemres,0.04,1d4,3d7),list(chemjac,0.04,1d4,3d7));
+
+//utilizando código c
+//------------
+// - criando o código C
+rescode=['void chemres(double *t, double y[], double yd[], double r[], int *ires, double rpar[], int ipar[])'
+         ' {'
+         '   r[0] = -0.04*y[0]+1.0e4*y[1]*y[2]                -yd[0];'
+         '   r[1] =  0.04*y[0]-1.0e4*y[1]*y[2]-3.0e7*y[1]*y[1]-yd[1];'
+         '   r[2] =       y[0]+y[1]+y[2]-1;'
+         '   *ires = 0;'
+         ' }'];
+
+jaccode=['void chemjac(double *t, double y[], double yd[], double pd[], double *cj, double rpar[], int ipar[])'
+         ' {'
+         '   /* primeira coluna*/'
+         '   pd[0] = -0.04-*cj;'
+         '   pd[1] =  0.04;'
+         '   pd[2] =  1.0;'
+         '    /* segunda coluna*/'
+         '   pd[3] =  1.0e4*y[2];'
+         '   pd[4] = -1.0e4*y[2]-2*3.0e7*y[1]-*cj;'
+         '   pd[5] =  1.0;'
+         '    /* terceira coluna*/'
+         '   pd[6] =  1.0e4*y[1];'
+         '   pd[7] = -1.0e4*y[1];'
+         '   pd[8] =  1.0;'
+         ' }'];
+mputl([rescode;jaccode],TMPDIR+'/mycode.c') //create the C file
+// - compilando-o
+ilib_for_link(['chemres','chemjac'],'mycode.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compilando
+// - ligando-o com o Scilab
+exec(TMPDIR+'/loader.sce') //linking incremental
+// - chamada a dassl
+y=dassl([y0,yd0],0,t,'chemres','chemjac');
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="dasrt">dasrt</link></member>
+
+      <member><link linkend="impl">impl</link></member>
+
+      <member><link linkend="fort">fort</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

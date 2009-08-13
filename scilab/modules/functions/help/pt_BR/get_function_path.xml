@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="get_function_path" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>get_function_path</refname>
+
+    <refpurpose>retorna o endereço do arquivo fonte de uma função de
+    biblioteca</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>path=get_function_path(fun_name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fun_name</term>
+
+        <listitem>
+          <para>string, o nome da função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>path</term>
+
+        <listitem>
+          <para>string, o nome absoluto do endereço do arquivo fonte da função
+          (.sci) ou [].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dadi o nome de uma uma função, get_function_path o nome absoluto do
+    endereço do arquivo fonte da função se a função estiver definida em uma
+    biblioteca Scilab (ver lib) ou [] se nenhum nome corresponde a uma função
+    de biblioteca.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+get_function_path('median')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="lib">lib</link></member>
+
+      <member><link linkend="string">string</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

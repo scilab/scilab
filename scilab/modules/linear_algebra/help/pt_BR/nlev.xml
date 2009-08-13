@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> Par√¢metros</title>
+    <title> Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,23 +57,23 @@
         <term>rmax</term>
 
         <listitem>
-          <para>par√¢metro opcional (ver <literal>bdiag</literal>)</para>
+          <para>par‚metro opcional (ver <literal>bdiag</literal>)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>[num,den]=nlev(A,z [,rmax])</literal> computa
     <literal>(z*eye()-A)^(-1)</literal></para>
 
-    <para>por diagonaliza√ß√£o por blocos de A seguido pelo algoritmo de
+    <para>por diagonalizaÁ„o por blocos de A seguido pelo algoritmo de
     Leverrier em cada bloco.</para>
 
-    <para>Este algoritmo √© melhor que o algoritmo usual de Leverrier, mas
-    ainda n√£o est√° perfeito!</para>
+    <para>Este algoritmo È melhor que o algoritmo usual de Leverrier, mas
+    ainda n„o est· perfeito!</para>
   </refsection>
 
   <refsection>
@@ -90,7 +90,7 @@ clean(NUM/den-inv(x*eye()-A))
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="coff">coff</link></member>

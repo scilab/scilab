@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="debug" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>debug</refname>
 
-    <refpurpose>nivel de depuraÃ§Ã£o ("debugging") debugging level</refpurpose>
+    <refpurpose>nivel de depuração ("debugging") debugging level</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>debug(level-int)
 level-int=debug()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,23 +38,23 @@ level-int=debug()</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Para os valores 0, 1, 2, 3 ou 4 de <literal>level-int</literal> ,
-    define vÃ¡rios nÃ­veis de depuraÃ§Ã£o. Isto Ã© voltado para o analisador
-    sintÃ¡tico, nÃ£o para scripts Scilab. Para usuÃ¡rios mais experientes do
+    define vários níveis de depuração. Isto é voltado para o analisador
+    sintático, não para scripts Scilab. Para usuários mais experientes do
     Scilab.</para>
 
     <para>Para o valor -1 de <literal>level-int</literal> ,
-    <literal>debug</literal> define um nÃ­vel especial de depuraÃ§Ã£o dedicado Ã 
-    instrulÃ§ao ScilabEval Tcl.</para>
+    <literal>debug</literal> define um nível especial de depuração dedicado à
+    instrulçao ScilabEval Tcl.</para>
 
-    <para>Ver tambÃ©m o depurador do <literal>Scipad</literal>,que Ã© voltado
-    para depuraÃ§Ã£o de scripts Scilab.</para>
+    <para>Ver também o depurador do <literal>Scipad</literal>,que é voltado
+    para depuração de scripts Scilab.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="ScilabEval">ScilabEval</link></member>
