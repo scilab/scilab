@@ -119,7 +119,7 @@ int read_string(char *fname,unsigned long fname_len)
         return 1;
     }
 
-    //fisrt call to retrieve dimensions
+    //first call to retrieve dimensions
     iRet = getMatrixOfString(piAddr, &iRows, &iCols, NULL, NULL);
     if(iRet)
     {
