@@ -169,7 +169,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 				bitmapExport(extensionCombo);				
 			}
 		} else ; // no file chosen		
-			
+		
 	}
 	
  

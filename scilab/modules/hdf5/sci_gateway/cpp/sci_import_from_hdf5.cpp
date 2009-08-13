@@ -35,15 +35,15 @@ int iTab = 0;
 
 void print_tree(char* _pstMsg);
 
-static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool	import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
@@ -70,7 +70,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
 	if(getVarType(piAddr) != sci_strings)
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname, 2);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
 		return 0;
 	}
 
@@ -131,7 +131,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	return 0;
 }
 
-static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	bool bRet = false;
 	//get var type
@@ -183,14 +183,14 @@ static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 	default : 
 		{
 			char pstMsg[512];
-			sprintf(pstMsg, "Unknown type : %d", iVarType);
+			sprintf(pstMsg, "Unknow type : %d", iVarType);
 			print_tree(pstMsg);
 		}
 	}
 	return bRet;
 }
 
-static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	double *pdblReal		= NULL;
@@ -270,7 +270,7 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	return true;
 }
 
-static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int i								= 0;
@@ -318,7 +318,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	return true;
 }
 
-static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int	iRows						= 0;
@@ -430,7 +430,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	return true;
 }
 
-static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int* piData					= NULL;
@@ -479,7 +479,7 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	return true;
 }
 
-static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int i								= 0;
@@ -562,7 +562,7 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 	return true;
 }
 
-static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int i								= 0;
@@ -649,7 +649,7 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	return true;
 }
 
-static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
 	int i								= 0;
@@ -699,7 +699,7 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddres
 	return true;
 }
 
-static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname)
+bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet								= 0;
 	int i										= 0;

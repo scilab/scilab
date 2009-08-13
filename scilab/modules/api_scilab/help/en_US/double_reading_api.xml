@@ -146,9 +146,7 @@ int read_double(char *fname,unsigned long fname_len)
         return 1;
     }
 
-    // Do something with data
-
-
+    //Do something with data
     //if variable is complex, invert real part and imaginary part otherwise multiply by -1
     if(iComplex)
     {

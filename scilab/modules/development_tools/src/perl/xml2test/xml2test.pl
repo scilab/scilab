@@ -35,7 +35,6 @@ if( dirname($0) =~ m/^\// )
 my $SCI =  $directory;
 $SCI    =~ s/\/modules\/development_tools\/src\/perl\/xml2test//g;
 
-#print "\t".'ERROR : Tag "'.$tag.'" has not been found in the file "'.$xmlfile.'"'."\n";
 my $sci_modules_dir = $SCI.'/modules';
 
 
