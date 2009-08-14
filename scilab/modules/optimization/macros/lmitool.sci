@@ -80,7 +80,7 @@ messagebox([gettext('Welcome to LMITOOL');'      ';'   ';
     DNAME=stripblanks(DNAME);
 
 
-      pathname=getcwd();
+      pathname=pwd();
 
       fname = pathname+filesep()+PROBNAME+'.sci';
           

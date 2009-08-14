@@ -1727,6 +1727,24 @@ public class ScilabBridge {
 		return ScilabMenuItemBridge.getCallback(menuItem);
 	}
 	
+	/**
+	 * Set if the MenuItem is checked or not
+	 * @param menuItem the MenuItem
+	 * @param status true if the MenuItem is checked
+	 */
+	public static void setChecked(MenuItem menuItem, boolean status) {
+		ScilabMenuItemBridge.setChecked(menuItem, status);
+	}
+	
+	/**
+	 * Get if the MenuItem is checked or not
+	 * @param menuItem the MenuItem
+	 * @return true if the MenuItem is checked
+	 */
+	public static boolean isChecked(MenuItem menuItem) {
+		return ScilabMenuItemBridge.isChecked(menuItem);
+	}
+
 	/****************************/
 	/* CheckBox MenuItem Bridge */
 	/****************************/
@@ -1737,6 +1755,15 @@ public class ScilabBridge {
 	 */
 	public static SimpleCheckBoxMenuItem createCheckBoxMenuItem() {
 		return ScilabCheckBoxMenuItemBridge.createCheckBoxMenuItem();
+	}
+	
+	/**
+	 * Add a MenuItem to the CheckBoxMenuItem
+	 * @param parentMenuItem the MenuItem where we want to add a CheckBoxMenuItem
+	 * @param childMenuItem the MenuItem we want to add
+	 */
+	public static void add(CheckBoxMenuItem parentMenuItem, MenuItem childMenuItem) {
+		ScilabMenuItemBridge.add(parentMenuItem, childMenuItem);
 	}
 	
 	/**
@@ -1945,19 +1972,20 @@ public class ScilabBridge {
 	public static CallBack getCallback(CheckBoxMenuItem checkBoxMenuItem) {
 		return ScilabCheckBoxMenuItemBridge.getCallback(checkBoxMenuItem);
 	}
+
 	/**
-	 * Set if the menu item is checked or not
+	 * Set if the CheckBoxMenuItem is checked or not
 	 * @param checkBoxMenuItem the CheckBoxMenuItem
-	 * @param status true if the menu item is checked
+	 * @param status true if the CheckBoxMenuItem is checked
 	 */
 	public static void setChecked(CheckBoxMenuItem checkBoxMenuItem, boolean status) {
 		ScilabCheckBoxMenuItemBridge.setChecked(checkBoxMenuItem, status);
 	}
 	
 	/**
-	 * Get if the menu item is checked or not
+	 * Get if the CheckBoxMenuItem is checked or not
 	 * @param checkBoxMenuItem the CheckBoxMenuItem
-	 * @return true if the menu item is checked
+	 * @return true if the CheckBoxMenuItem is checked
 	 */
 	public static boolean isChecked(CheckBoxMenuItem checkBoxMenuItem) {
 		return ScilabCheckBoxMenuItemBridge.isChecked(checkBoxMenuItem);
@@ -1973,6 +2001,15 @@ public class ScilabBridge {
 	 */
 	public static SimpleMenu createMenu() {
 		return ScilabMenuBridge.createMenu();
+	}
+	
+	/**
+	 * Retrieve the CallBack associated to this Menu
+	 * @param menuItem the Menu
+	 * @return the CallBack
+	 */
+	public static CallBack getCallback(Menu menu) {
+		return ScilabMenuBridge.getCallback(menu);
 	}
 	
 	/**
@@ -2179,6 +2216,24 @@ public class ScilabBridge {
 	 */
 	public static void requestFocus(Menu menu) {
 		ScilabMenuBridge.requestFocus(menu);
+	}
+
+	/**
+	 * Set if the Menu is checked or not
+	 * @param menu the Menu
+	 * @param status true if the Menu is checked
+	 */
+	public static void setChecked(Menu menu, boolean status) {
+		ScilabMenuBridge.setChecked(menu, status);
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @param menu the Menu
+	 * @return true if the Menu is checked
+	 */
+	public static boolean isChecked(Menu menu) {
+		return ScilabMenuBridge.isChecked(menu);
 	}
 
 	/**********************/

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>vars</term>
         <listitem>
-          <para>list  <literal>list(in,out,globals,called,locals)</literal></para>
+          <para>list  <literal>list(in,out,nolocal,called,locals)</literal></para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -46,7 +46,7 @@
     <literal>vars</literal> is a list made of five column vectors of character strings</para>
     <para><literal>in</literal> input variables (<literal>vars(1)</literal>)</para>
     <para><literal>out</literal> output variables (<literal>vars(2)</literal>)</para>
-    <para><literal>globals</literal> global variables (<literal>vars(3)</literal>)</para>
+    <para><literal>nolocal</literal>referenced variables which are not defined inside the function and which are not functions (<literal>vars(3)</literal>)</para>
     <para><literal>called</literal> names of functions called (<literal>vars(4)</literal>)</para>
     <para><literal>locals</literal> local variables (<literal>vars(5)</literal>)</para>
   </refsection>

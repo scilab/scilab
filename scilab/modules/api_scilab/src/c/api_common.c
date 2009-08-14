@@ -14,13 +14,17 @@
  */
 
 #include <string.h>
-
+#include <stdlib.h>
 #include "machine.h"
 #include "CallScilab.h"
 #include "api_common.h"
 #include "api_internal_common.h"
+#include "api_double.h"
+#include "api_int.h"
+#include "api_string.h"
 #include "stack-c.h"
 #include "stackinfo.h"
+#include "Scierror.h"
 
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
@@ -123,6 +127,18 @@ int getVarType(int* _piAddress)
 	return _piAddress[0];
 }
 
+int getVarTypeFromName(char* _pstName)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet)
+	{
+		return 0;
+	}
+	return getVarType(piAddr);
+}
+
 int isVarComplex(int* _piAddress)
 {
 	int iType			= 0;
@@ -199,5 +215,232 @@ int isVarMatrixType(int* _piAddress)
 		return 0;
 	}
 	return 1;
+}
+
+int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
+{
+	int iRet				= 0;
+	int iRows1			= 0;
+	int iCols1			= 0;
+	int iRows2			= 0;
+	int iCols2			= 0;
+	int iMode				= 0;
+	int* piAddr2		= NULL;
+
+	iRet = getVarDimension(_piAddRef, &iRows1, &iCols1);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getVarAddressFromPosition(_iPos, &piAddr2);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr2) == sci_matrix && !isVarComplex(piAddr2))
+	{
+		double *pdblReal2 = NULL;
+		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(iRows2 != 1 || iCols2 != 1)
+		{
+			Error(89);
+			return 1;
+		}
+
+		iMode = (int)pdblReal2[0];
+	}
+	else if(getVarType(piAddr2) == sci_strings)
+	{
+		int iLen					= 0;
+		char *pstMode[1]	= {""};
+
+		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(iRows2 != 1 || iCols2 != 1)
+		{
+			Error(89);
+			return 1;
+		}
+
+		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, NULL);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
+		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, pstMode);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iMode = (int)pstMode[0][0];
+	}
+	else
+	{
+		Error(44);
+		return 2;
+	}
+
+	if(iMode == ROW_LETTER || iMode == BY_ROWS)
+		*_piMode = BY_ROWS;
+	else if(iMode == COL_LETTER || iMode == BY_COLS)
+		*_piMode = BY_COLS;
+	else if(iMode == STAR_LETTER || iMode == BY_ALL)
+		*_piMode = BY_ALL;
+	else if(iMode == MTLB_LETTER || iMode == BY_MTLB)
+	{
+		*_piMode = 0;
+		if(iRows1 > 1)
+			*_piMode = 1;
+		else if(iCols1 > 1)
+			*_piMode = 2;
+	}
+	else
+	{
+		Error(44);
+		return 2;
+	}
+	return 0;
+}
+
+int getDimFromVar(int* _piAddress, int* _piVal)
+{
+	int iRet					= 0;
+	int iType					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+	double *pdblReal	= NULL;
+	int *piRealData		= NULL;
+
+	iType = getVarType(_piAddress);
+
+	if(iType == sci_matrix)
+	{
+		if(isVarComplex(_piAddress))
+		{
+			Error(89);
+			return 1;
+		}
+
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
+		*_piVal = (int)Max(pdblReal[0], 0);
+	}
+	else if(iType == sci_ints)
+	{
+		int iPrec			= 0;
+		int iYType		= 4;
+		int iXInc			= 1;
+		int iYInc			= 1;
+
+		iRet = getVarDimension(_piAddress, &iRows, &iCols);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(iRows != 1 || iCols != 1)
+		{
+			return 1;
+		}
+
+		iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		switch(iPrec)
+		{
+		case SCI_INT8 :
+			{
+				char* pcData		= NULL;
+				iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = pcData[0];
+			}
+			break;
+		case SCI_UINT8 :
+			{
+				unsigned char* pucData		= NULL;
+				iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pucData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = pucData[0];
+			}
+			break;
+		case SCI_INT16 :
+			{
+				short* psData		= NULL;
+				iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = psData[0];
+			}
+			break;
+		case SCI_UINT16 :
+			{
+				unsigned short* pusData		= NULL;
+				iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &pusData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = pusData[0];
+			}
+			break;
+		case SCI_INT32 :
+			{
+				int* piData		= NULL;
+				iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = piData[0];
+			}
+			break;
+		case SCI_UINT32 :
+			{
+				unsigned int* puiData		= NULL;
+				iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &puiData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = puiData[0];
+			}
+			break;
+		}
+	}
+	else
+	{
+		Error(89);
+		return 1;
+	}
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

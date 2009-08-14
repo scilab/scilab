@@ -512,7 +512,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		// Save the current directory
-		cur_dir = getcwd();
+		cur_dir = pwd();
 		
 		// Change Scilab current directory so that Java Indexer works
 		if ~chdir(buildDoc_dir) then
@@ -615,7 +615,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			end
 			
 			// Save the current directory
-			cur_dir = getcwd();
+			cur_dir = pwd();
 			
 			// Change Scilab current directory so that Java Indexer works
 			if ~chdir(buildDoc_dir) then
@@ -670,7 +670,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		for k=1:nb_dir
 			
 			// Save the current directory
-			cur_dir = getcwd();
+			cur_dir = pwd();
 			
 			this_tree  = contrib_tree(dirs(k));
 			

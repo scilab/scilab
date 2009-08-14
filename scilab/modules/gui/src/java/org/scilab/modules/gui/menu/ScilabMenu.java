@@ -281,5 +281,29 @@ public class ScilabMenu extends ScilabWidget implements Menu {
 	public void requestFocus() {
 		ScilabBridge.requestFocus(this);
 	}
+	
+	/**
+	 * Set if the Menu is checked or not
+	 * @param status true if the Menu is checked
+	 */
+	public void setChecked(boolean status) {
+		ScilabBridge.setChecked(this, status);
+	}
+	
+	/**
+	 * Get if the Menu is checked or not
+	 * @return true if the Menu is checked
+	 */
+	public boolean isChecked() {
+		return ScilabBridge.isChecked(this);
+	}
+
+	/**
+	 * Retrieve the CallBack associated to this MenuItem
+	 * @return the CallBack
+	 */
+	public CallBack getCallback() {
+		return ScilabBridge.getCallback(this);
+	}
 
 }

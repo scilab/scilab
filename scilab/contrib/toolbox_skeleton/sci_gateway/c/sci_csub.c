@@ -9,8 +9,7 @@
 #include "api_double.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-/* ==================================================================== */
-extern int csub(double *a,double *b,double *c);
+#include "csub.h"
 /* ==================================================================== */
 int sci_csub(char *fname)
 {

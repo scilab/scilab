@@ -22,7 +22,7 @@
 function [scs_m, edited] = do_SaveAs()
 
   msg = ["Use .cos extension for binary and .cosf for ASCII file"];
-  fname = savefile('*.cos*', getcwd(), msg) //** alias of uigetfile
+  fname = savefile('*.cos*', pwd(), msg) //** alias of uigetfile
 
   if fname==emptystr() then
     return ; //** EXIT point 
