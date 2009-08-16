@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xrects</refname>
 
-    <refpurpose>desenha ou preenche um conjunto de ret√¢ngulos</refpurpose>
+    <refpurpose>desenha ou preenche um conjunto de ret‚ngulos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xrects(rects,[fill])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,28 +56,28 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xrects</literal> desenha ou preenche ret√¢ngulos. Cada
-    coluna de <literal>rects</literal> descreve um ret√¢ngulo (ponto superior
+    <para><literal>xrects</literal> desenha ou preenche ret‚ngulos. Cada
+    coluna de <literal>rects</literal> descreve um ret‚ngulo (ponto superior
     esquerdo, largura, altura): <literal>rects=[x1 y1 w1 h1;x2 y2 w2
     h2;...]'</literal>.</para>
 
-    <para><literal>fill(i)</literal> fornece o padr√£o para preenchimento ou
-    desenho do ret√¢ngulo i:</para>
+    <para><literal>fill(i)</literal> fornece o padr„o para preenchimento ou
+    desenho do ret‚ngulo i:</para>
 
-    <para>Se <literal>fill(i)&lt;0</literal>, o ret√¢ngulo <literal>i</literal>
-    √© desenhado utilizando-se o estilo de linha (ou cor)
+    <para>Se <literal>fill(i)&lt;0</literal>, o ret‚ngulo <literal>i</literal>
+    È desenhado utilizando-se o estilo de linha (ou cor)
     <literal>-fill(i)</literal></para>
 
-    <para>Se <literal>fill(i)&gt;0</literal>, o ret√¢ngulo <literal>i</literal>
-    √© preenchido utilizando-se o padr√£o (ou cor)
+    <para>Se <literal>fill(i)&gt;0</literal>, o ret‚ngulo <literal>i</literal>
+    È preenchido utilizando-se o padr„o (ou cor)
     <literal>fill(i)</literal></para>
 
-    <para>Se <literal>fill(i)=0</literal>, o ret√¢ngulo <literal>i</literal> √©
+    <para>Se <literal>fill(i)=0</literal>, o ret‚ngulo <literal>i</literal> È
     desenhado utilizando-se o estilo de linha corrente (ou cor).</para>
 
-    <para>AVISO: por favor, note que a altura √© positiva indo para
+    <para>AVISO: por favor, note que a altura È positiva indo para
     baixo.</para>
   </refsection>
 
@@ -97,7 +97,7 @@ xnumb(x,15*ones(x),cols)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfrect">xfrect</link></member>

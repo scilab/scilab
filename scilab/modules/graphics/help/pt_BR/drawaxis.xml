@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="drawaxis" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>drawaxis</refname>
+
+    <refpurpose>Desenha um eixo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>drawaxis([options])
+// opções:  x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dir=string</term>
+
+        <listitem>
+          <para>é utilizado para se especificar a direção dos tiques.
+          <literal>string</literal> can pode ser escolhido entre
+          'u','r','d','l' e 'l' é o valor padrão. Os valores 'u','r','d','l'
+          correspondem respectivamente a "para cima", "para direita", "para
+          baixo" e "para esquerda".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tics=string</term>
+
+        <listitem>
+          <para>um flag definindo como os tiques são fornecidos.
+          <literal>string</literal> pode ser escolhido entre 'v','r' e 'i', e
+          , 'v' é o valor padrão.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores que fornecem as posições dos tiques.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val= string matrix</term>
+
+        <listitem>
+          <para>uma matriz de strings que, quando dada, fornece os strings a
+          serem impressos ao longo dos eixos nas posições dos tiques. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fontsize=int</term>
+
+        <listitem>
+          <para>especifica o tamanho de fonte a ser utilizado para se exibir
+          os valores ao longo dos eixos. O valor padrão é
+          <literal>-1</literal> que corresponde ao tamanho de fonte
+          atual</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format_n=string</term>
+
+        <listitem>
+          <para>formato a ser utilizado para se exibir os números ao longo dos
+          eixos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>seg= 1 ou 0</term>
+
+        <listitem>
+          <para>um flag que controla a exibição do segmento base do eixo (o
+          valor padrão é 1). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sub_int=integer</term>
+
+        <listitem>
+          <para>um inteiro que fornece o número de subintervalos entre dois
+          tiques maiores. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>textcolor=integer</term>
+
+        <listitem>
+          <para>especifica a cor a ser utilizada para a exibição de valores ao
+          longo dos eixos. O valor padrão é <literal>-1</literal>, que
+          corresponde a cor corrente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ticscolor=integer</term>
+
+        <listitem>
+          <para>especifica a cor a ser utilizada para o desenho dos tiques. O
+          valor padrão é <literal>-1</literal>, que corresponde à cor
+          corrente.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>drawaxis</literal> é utilizado para desenhar um eixo na
+    direção horizontal ou vertical. A direção do eixo é dada por dir.
+    <literal>dir = 'u'</literal> ou <literal>'d'</literal> fornece a direção
+    com os tiques indo para cima (<literal>'u'</literal>) ou para baixo
+    (<literal>'d'</literal>). <literal>dir = 'r'</literal> ou
+    <literal>'l'</literal> fornece um eixo vertical com os tiques indo para a
+    direita (<literal>'r'</literal>) ou esquerda
+    (<literal>'l'</literal>).</para>
+
+    <para><literal>x</literal> e <literal>y</literal> fornecem as posições dos
+    tiques dos eixos. Se o eixo é horizontal, então <literal>y</literal> deve
+    ser um escalar, ou pode ser omitido, e <literal>x</literal> é um vetor
+    Scilab. O significado de <literal>x</literal> é controlado por
+    <literal>tics</literal>.</para>
+
+    <para>Se <literal>tics='v'</literal> então <literal>x</literal> fornece as
+    posições dos tiques ao longo do eixo x.</para>
+
+    <para>Se <literal>tics='r'</literal> então <literal>x</literal> deve ter
+    tamanho 3. <literal>x=[xmin,xmax,n]</literal> e <literal>n</literal>
+    fornece o número de intervalos.</para>
+
+    <para>Se <literal>tics='i'</literal> então <literal>x</literal> deve ser
+    de tamanho 4, <literal>x=[k1,k2,a,n]</literal>. Então
+    <literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal> e
+    <literal>n</literal> fornece o número de intervalos.</para>
+
+    <para>Se <literal>y</literal> for omitido, então o eixo será posicionado
+    ao topo da moldura se <literal>dir='u'</literal> ou ao fundo se
+    <literal>dir='d'</literal></para>
+
+    <para>Por padrão, os números são impressos ao longo do eixo. Eles são
+    impressos utilizando-se um formato padrão que pode ser alterado através de
+    <literal>format_n</literal>. ITambém é possível exibir strings dados, e
+    não números, isto é feito se <literal>val</literal> é fornecido. O tamanho
+    de <literal>val</literal> deve corresponder ao número de tiques.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+plot2d(1:10,1:10,1,"020")
+// eixo horizontal
+drawaxis(x=2:7,y=4,dir='u',tics='v')
+// eixo horizontal na parte superior da moldura
+drawaxis(x=2:7,dir='u',tics='v') 
+// eixo horizontal na parte inferior da moldura
+drawaxis(x=2:7,dir='d',tics='v') 
+
+// eixo horizontal dado por um intervalo 
+drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+
+// eixo vertical
+drawaxis(x=4,y=2:7,dir='r',tics='v')
+drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+drawaxis(y=2:7,dir='r',tics='v')
+drawaxis(y=2:7,dir='l',tics='v')
+
+// eixo horizontal com strings exibidos nas posições dos tiques
+drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
+// eixo vertical com strings exibidos nas posições dos tiques
+drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
+
+// eixo horizontal dado com um intervalo 'i'.  
+drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+
+// eixo horizontal de novo
+drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

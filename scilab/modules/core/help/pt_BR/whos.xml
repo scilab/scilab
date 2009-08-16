@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="whos" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>whos()
 whos -type typ
@@ -25,14 +25,14 @@ whos -name nam</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>typ</term>
 
         <listitem>
-          <para>nome do tipo da vari√°vel selecionada (ver typeof)</para>
+          <para>nome do tipo da vari·vel selecionada (ver typeof)</para>
         </listitem>
       </varlistentry>
 
@@ -47,18 +47,18 @@ whos -name nam</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>whos()</literal> exibe todos os nomes de vari√°veis
-    correntes, bem como seus tipos e mem√≥ria utilizada.</para>
+    <para><literal>whos()</literal> exibe todos os nomes de vari·veis
+    correntes, bem como seus tipos e memÛria utilizada.</para>
 
-    <para><literal>whos -type typ</literal> exibe todas as vari√°veis correntes
+    <para><literal>whos -type typ</literal> exibe todas as vari·veis correntes
     com o tipo especificado.</para>
 
-    <para><literal>whos -name nam</literal> exibe todas as vari√°veis cujos
-    nomes come√ßam com <literal>nam</literal>.</para>
+    <para><literal>whos -name nam</literal> exibe todas as vari·veis cujos
+    nomes comeÁam com <literal>nam</literal>.</para>
 
-    <para>Nota : se uma vari√°vel √© global, um "*" aparece em frente ao seu
+    <para>Nota : se uma vari·vel È global, um "*" aparece em frente ao seu
     tipo.</para>
   </refsection>
 
@@ -74,7 +74,7 @@ whos -name %
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="who">who</link></member>

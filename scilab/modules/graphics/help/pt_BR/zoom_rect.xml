@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="zoom_rect" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>zoom_rect</refname>
+
+    <refpurpose>Amplia uma seleção da figura gráfica corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>zoom_rect()
+zoom_rect(rect)
+zooom_rect(h)
+zoom_rect(h,rect)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>vetor de tamanho 4 <literal>[xmin,ymin,xmax,ymax]</literal>
+          fornece o retângulo a ser ampliado </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador gráfico do tipo Figure ou Axes. Especifica sobre
+          que eixos se realizará a ampliação.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>zoom_rect</literal> é a função utilizada para realizar
+    ampliações dentro de um conjunto de objetos Axes.</para>
+
+    <para>O argumento de entrada <literal>h</literal> especifica sobre que
+    eixos se realizará a ampliação. Se <literal>h</literal> for um manipulador
+    do tipo Figure, então a ampliação ocorrerá sobre seus galhos Axes. Se
+    <literal>h</literal> for um manipulador Axes, a ampliação será aplicada
+    apenas sobre este objeto. Se <literal>h</literal> não for especificado,
+    então a ampliação será aplicada sobre a entidade Figure corrente.</para>
+
+    <para>Se o argumento de entrada <literal>rect</literal> for especificada,
+    então a propriedade <literal>zoom_box</literal> dos eixos ampliados será
+    modificada por este argumento (ver <link
+    linkend="axes_properties">axes_properties</link>). Seus limites ao longo
+    dos eixos X e Y serão substituídos por <literal>rect</literal>. Se
+    <literal>rect</literal> não for especificado zoom_rect será uma ampliação
+    interativa. Requer-se que o usuário selecione um retângulo utilizando o
+    mouse. A nova propriedade <literal>zoom_box</literal> dos eixos ampliados
+    é então computada encontrando-se as interseções do retângulo com suas
+    caixas de eixos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    clf()
+    x=0:0.01:6*%pi;
+    plot2d(x,sin(x^2))
+    zoom_rect([16,-1,18,1])
+    //mais zoom
+    zoom_rect([16,0,16.2,1])
+    //de volta ao original
+    unzoom()
+    // ajustando o zoom através de axes_properties
+    a=gca();
+    a.zoom_box=[16,0,16.2,1];
+    a.zoom_box=[];
+
+    //ajustando zoom de sub-esboços
+    clf()
+    x=0:0.01:6*%pi;
+    subplot(211)
+    plot2d(x,cos(x))
+    subplot(212)
+    plot2d(x,cos(2*x))
+    rect=[3 -2 7 10]; //um retângulo especificado nas coordenadas dos eixos correntes (os últimos)
+    zoom_rect(rect) 
+    unzoom()
+    //ajustando os eixos subjascentes globais como sendo os correntes
+    f=gcf();set('current_axes',f.children($)) 
+    rect=[0.4 0 0.6 1] //um retângulo especificado em razão do tamanho da janela
+    zoom_rect(rect) 
+    rect=[0.4 0.2 0.6 0.8]; //um retângulo especificado em razão do tamanho da janela
+    zoom_rect(rect)
+
+    // ampliação interativa sob a figura corrente
+    zoom_rect();
+    // ou
+    zoom_rect(gcf());
+ 
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unzoom">unzoom</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer INRIA</para>
+
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>

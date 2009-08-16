@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>schur</refname>
 
-    <refpurpose>decomposi√ß√£o (ordenada) de Schur de matrizes e
+    <refpurpose>decomposiÁ„o (ordenada) de Schur de matrizes e
     feixes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[U,T] = schur(A)
 [U,dim [,T] ]=schur(A,flag)
@@ -43,7 +43,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,7 +58,7 @@
         <term>E</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos com as mesmas dimens√µes
+          <para>matriz quadrada de reais ou complexos com as mesmas dimensıes
           de<literal> A</literal>.</para>
         </listitem>
       </varlistentry>
@@ -76,7 +76,7 @@
         <term>extern1</term>
 
         <listitem>
-          <para>uma ``external'' (fun√ß√£o externa), veja abaixo</para>
+          <para>uma ``external'' (funÁ„o externa), veja abaixo</para>
         </listitem>
       </varlistentry>
 
@@ -92,7 +92,7 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unit√°ria </para>
+          <para>matriz quadrada ortogonal ou unit·ria </para>
         </listitem>
       </varlistentry>
 
@@ -100,7 +100,7 @@
         <term>Q</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unit√°ria </para>
+          <para>matriz quadrada ortogonal ou unit·ria </para>
         </listitem>
       </varlistentry>
 
@@ -108,7 +108,7 @@
         <term>Z</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unit√°ria </para>
+          <para>matriz quadrada ortogonal ou unit·ria </para>
         </listitem>
       </varlistentry>
 
@@ -149,7 +149,7 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Formas de Schur, formas ordenadas de Schur de matrizes e feixes
     </para>
@@ -165,15 +165,15 @@
 
               <listitem>
                 <para><literal>[U,T] = schur(A)</literal> produz uma matriz de
-                Schur <literal>T</literal> e uma matriz unit√°ria
+                Schur <literal>T</literal> e uma matriz unit·ria
                 <literal>U</literal> tais que <literal>A = U*T*U'</literal> e
                 <literal>U'*U = eye(U)</literal>. Por si mesmo,
                 schur(<literal>A</literal>) retorna <literal>T</literal>. Se
-                <literal>A</literal> √© de complexos, a Forma de Schur Complexa
-                √© retornada na matriz <literal>T</literal>. A Forma de Schur
-                Complexa √© triangular superior com os autovalores de
-                <literal>A</literal> na diagonal. Se <literal>A</literal> √© de
-                reais, a Forma de Schur Real √© retornada. A Forma de Schur
+                <literal>A</literal> È de complexos, a Forma de Schur Complexa
+                È retornada na matriz <literal>T</literal>. A Forma de Schur
+                Complexa È triangular superior com os autovalores de
+                <literal>A</literal> na diagonal. Se <literal>A</literal> È de
+                reais, a Forma de Schur Real È retornada. A Forma de Schur
                 Real tem autovalores reais na diagonal e os autovalores
                 complexos em blocos 2-por-2 na diagonal.</para>
               </listitem>
@@ -184,41 +184,41 @@
 
               <listitem>
                 <para><literal>[U,dim]=schur(A,'c')</literal> rretorna uma
-                matriz unit√°ria <literal>U</literal> que transforma
+                matriz unit·ria <literal>U</literal> que transforma
                 <literal>A</literal> em uma forma de Schur. Ainda, as
                 primeiras dim colunas de <literal>U</literal> formam uma base
-                para o autoespa√ßo de <literal>A</literal> associado aos
-                autovalores com partes reais negativas (autoespa√ßo de "tempo
-                cont√≠nuo" est√°vel).</para>
+                para o autoespaÁo de <literal>A</literal> associado aos
+                autovalores com partes reais negativas (autoespaÁo de "tempo
+                contÌnuo" est·vel).</para>
 
                 <para><literal>[U,dim]=schur(A,'d')</literal> retorna uma
-                matriz unit√°ria <literal>U</literal> que transforma
+                matriz unit·ria <literal>U</literal> que transforma
                 <literal>A</literal> em uma forma de Schur. Ainda, as
                 primeiras <literal>dim</literal> colunas de
-                <literal>U</literal> geram uma base do autoespa√ßo de
+                <literal>U</literal> geram uma base do autoespaÁo de
                 <literal>A</literal> associado aos autovalores de magnitude
-                menor que 1 (autoespa√ßo de "tempo discreto" est√°vel).</para>
+                menor que 1 (autoespaÁo de "tempo discreto" est·vel).</para>
 
                 <para><literal>[U,dim]=schur(A,extern1)</literal> retorna uma
-                matriz unit√°ria <literal>U</literal> que transforma
+                matriz unit·ria <literal>U</literal> que transforma
                 <literal>A</literal> em uma forma de Schur. Ainda, as
                 <literal>dim</literal> primeiras colunas de
-                <literal>U</literal> geram uma base para o autoespa√ßo de
-                <literal>A</literal> associado aos autovalores que s√£o
+                <literal>U</literal> geram uma base para o autoespaÁo de
+                <literal>A</literal> associado aos autovalores que s„o
                 selecionados pela "external" <literal>extern1</literal> (veja
                 "external" para detalhes). Esta "external" pode ser descrita
-                por uma fun√ß√£o do Scilab ou por um "procedure" de C ou
+                por uma funÁ„o do Scilab ou por um "procedure" de C ou
                 FORTRAN: </para>
 
                 <variablelist>
                   <varlistentry>
-                    <term>Uma Fun√ß√£o do Scilab</term>
+                    <term>Uma FunÁ„o do Scilab</term>
 
                     <listitem>
-                      <para>Se <literal>extern1</literal> √© descrita por uma
-                      fun√ß√£o do Scilab, deve ter a seguinte seq√º√™ncia de
+                      <para>Se <literal>extern1</literal> È descrita por uma
+                      funÁ„o do Scilab, deve ter a seguinte seq¸Íncia de
                       chamamento: <literal>s=extern1(Ev)</literal>, onde
-                      <literal>Ev</literal> √© um autovalor e
+                      <literal>Ev</literal> È um autovalor e
                       <literal>s</literal> um booleano.</para>
                     </listitem>
                   </varlistentry>
@@ -227,11 +227,11 @@
                     <term>Um "Procedure" C ou FORTRAN</term>
 
                     <listitem>
-                      <para>Se <literal>extern1</literal> √© descrita por uma
-                      fun√ß√£o de C ou FORTRAN, deve ter a seguinte seq√º√™ncia de
+                      <para>Se <literal>extern1</literal> È descrita por uma
+                      funÁ„o de C ou FORTRAN, deve ter a seguinte seq¸Íncia de
                       chamamento: <literal>int extern1(double *EvR, double
                       *EvI)</literal> onde <literal>EvR</literal> e
-                      <literal>EvI</literal> s√£o partes real e complexa de
+                      <literal>EvI</literal> s„o partes real e complexa de
                       autovalor. Valor verdadeiro ou diferente de zero
                       retornado significa autovalor selecionado.</para>
                     </listitem>
@@ -254,11 +254,11 @@
               <listitem>
                 <para><literal>[As,Es] = schur(A,E)</literal> produz uma
                 matriz <literal>As</literal> quasi-triangular e uma matriz
-                triangular <literal>Es</literal> que s√£o a forma generalizada
+                triangular <literal>Es</literal> que s„o a forma generalizada
                 de Schur do par <literal>A, E</literal>.</para>
 
                 <para><literal>[As,Es,Q,Z] = schur(A,E)</literal> retorna,
-                ainda, duas matrizes unit√°rias <literal>Q</literal> e
+                ainda, duas matrizes unit·rias <literal>Q</literal> e
                 <literal>Z</literal> tais que <literal>As=Q'*A*Z</literal> e
                 <literal>Es=Q'*E*Z</literal>.</para>
               </listitem>
@@ -271,16 +271,16 @@
                 <para><literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>
                 retorna a forma real generalizada de Schur do feixe
                 <literal>s*E-A</literal>. Ainda, as primeiras dim colunas de
-                <literal>Z</literal> geram uma base para o autoespa√ßo direito
+                <literal>Z</literal> geram uma base para o autoespaÁo direito
                 associado aos autovalores com partes reais negativas
-                (autoespa√ßo de "tempo cont√≠nuo" generalizado).</para>
+                (autoespaÁo de "tempo contÌnuo" generalizado).</para>
 
                 <para><literal>[As,Es,Z,dim] = schur(A,E,'d')</literal></para>
 
                 <para>retorna a forma real generalizada de Schur do feixe
                 <literal>s*E-A</literal>. Ainda, as dim primeiras colunas de
-                <literal>Z</literal> formam uma base para o autoespa√ßo direito
-                associado aos autovalores de magnitude menor que 1 (autoespa√ßo
+                <literal>Z</literal> formam uma base para o autoespaÁo direito
+                associado aos autovalores de magnitude menor que 1 (autoespaÁo
                 de "tempo discreto" generalizado).</para>
 
                 <para><literal>[As,Es,Z,dim] =
@@ -288,20 +288,20 @@
 
                 <para>retorna a forma real generalizada de Schur do feixe
                 <literal>s*E-A</literal>. Ainda, as dim primeiras colunas de
-                <literal>Z</literal> formam uma base para o autoespa√ßo direito
-                associado aos autovalores do feixe que s√£o selecionados de
-                acordo com a regra que √© dada pela "external"
+                <literal>Z</literal> formam uma base para o autoespaÁo direito
+                associado aos autovalores do feixe que s„o selecionados de
+                acordo com a regra que È dada pela "external"
                 <literal>extern2</literal>. (veja "external" para detalhes).
-                Esta external pode ser descrita por uma fun√ß√£o do Scilab ou
+                Esta external pode ser descrita por uma funÁ„o do Scilab ou
                 por um "procedure" de C ou FORTRAN. </para>
 
                 <variablelist>
                   <varlistentry>
-                    <term>Fun√ß√£o do Scilab</term>
+                    <term>FunÁ„o do Scilab</term>
 
                     <listitem>
-                      <para>Se <literal>extern2</literal> √© descrita por uma
-                      fun√ß√£o do Scilab, deve ter a seq√º√™ncia de chamamento:
+                      <para>Se <literal>extern2</literal> È descrita por uma
+                      funÁ„o do Scilab, deve ter a seq¸Íncia de chamamento:
                       <literal>s=extern2(Alpha,Beta)</literal>, onde
                       <literal>Alpha</literal> e <literal>Beta</literal>
                       definem um autovalor generalizado e <literal>s</literal>
@@ -313,20 +313,20 @@
                     <term>Um "Procedure" C ou FORTRAN</term>
 
                     <listitem>
-                      <para>Se a "external" <literal>extern2</literal> √©
+                      <para>Se a "external" <literal>extern2</literal> È
                       descrita por um "procedure" C ou FORTRAN, deve ter a
-                      seq√º√™ncia de chamamento:</para>
+                      seq¸Íncia de chamamento:</para>
 
                       <para><literal>int extern2(double *AlphaR, double
                       *AlphaI, double *Beta)</literal></para>
 
-                      <para>se <literal>A</literal> e <literal>E</literal> s√£o
+                      <para>se <literal>A</literal> e <literal>E</literal> s„o
                       matrizes de reais e</para>
 
                       <para><literal>int extern2(double *AlphaR, double
                       *AlphaI, double *BetaR, double *BetaI)</literal></para>
 
-                      <para>se <literal>A</literal> ou <literal>E</literal> √©
+                      <para>se <literal>A</literal> ou <literal>E</literal> È
                       matriz de complexos. <literal>Alpha</literal>, e
                       <literal>Beta</literal> definem o autovalor
                       generalizado. Um valor verdadeiro ou diferente de zero
@@ -343,12 +343,12 @@
   </refsection>
 
   <refsection>
-    <title>Refer√™ncias</title>
+    <title>ReferÍncias</title>
 
-    <para>As computa√ß√µes da forma de Schur matricial s√£o baseadas nas rotinas
+    <para>As computaÁıes da forma de Schur matricial s„o baseadas nas rotinas
     de Lapack DGEES e ZGEES.</para>
 
-    <para>As computa√ß√µes da forma de Schur de feixes s√£o baseadas nas rotinas
+    <para>As computaÁıes da forma de Schur de feixes s„o baseadas nas rotinas
     de Lapack DGGES e ZGGES.</para>
   </refsection>
 
@@ -363,13 +363,13 @@ A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
 [U,T]=schur(A);T
 
 [U,dim,T]=schur(A,'c');
-T(1:dim,1:dim)      //autovalores est√°veis cont√≠nuos
+T(1:dim,1:dim)      //autovalores est·veis contÌnuos
 
 function t=mytest(Ev),t=abs(Ev)&lt;0.95,endfunction
 [U,dim,T]=schur(A,mytest);
 T(1:dim,1:dim)  
 
-// A mesma fun√ß√£o em C (um compilador √© requerido)
+// A mesma funÁ„o em C (um compilador È requerido)
 C=['int mytest(double *EvR, double *EvI) {' //o codigo C
    'if (*EvR * *EvR + *EvI * *EvI &lt; 0.9025) return 1;'
    'else return 0; }';]
@@ -390,14 +390,14 @@ F=[-1,%s, 0,   1;
     1, 0, 0, -2+%s];
 A=coeff(F,0);E=coeff(F,1);
 [As,Es,Q,Z]=schur(A,E);
-Q'*F*Z //isto √© As+%s*Es
+Q'*F*Z //isto È As+%s*Es
 
 
 [As,Es,Z,dim] = schur(A,E,'c')
 function t=mytest(Alpha,Beta),t=real(Alpha)&lt;0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
 
-//a mesma fun√ß√£o em FORTRAN (um compilador √© requerido)
+//a mesma funÁ„o em FORTRAN (um compilador È requerido)
 ftn=['funcao inteira mytestf(ar,ai,b)' //codigo FORTRAN
       'double precision ar,ai,b'
       'mytestf=0'
@@ -405,7 +405,7 @@ ftn=['funcao inteira mytestf(ar,ai,b)' //codigo FORTRAN
       'end']
 mputl('      '+ftn,TMPDIR+'/mytestf.f')
 
-//constru√≠ndo e ligando
+//construÌndo e ligando
 lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
 link(lp,'mytestf','f'); 
 
@@ -417,7 +417,7 @@ link(lp,'mytestf','f');
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="spec">spec</link></member>

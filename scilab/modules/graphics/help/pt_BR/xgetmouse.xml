@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xgetmouse" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xgetmouse</refname>
+
+    <refpurpose>retorna os eventos de mouse e posição corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[rep [,win]]=xgetmouse([sel])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sel</term>
+
+        <listitem>
+          <para>vetor de booleanos <literal>[getmotion, getrelease]</literal>.
+          O valor padrão é <literal>[%t, %f]</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rep</term>
+
+        <listitem>
+          <para>vetor de tamanho 3, [x,y,ibutton].</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>win</term>
+
+        <listitem>
+          <para>número da figura onde o evento ocorreu</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Se o cursor do mouse estiver localizado na janela de gráficos
+    corrente, <literal>xgetmouse</literal> retorna em <literal>rep</literal> a
+    posição corrente do cursor (x,y) e o valor <literal>ibutton</literal>. O
+    valor de <literal>ibutton</literal> indica o tipo de evento:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton==0</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==1</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==2</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi pressionado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==3</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==4</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==5</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==10</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==11</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==12</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado duas vezes</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-5</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi liberado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-4</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi liberado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-3</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi liberado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-1</term>
+
+        <listitem>
+          <para>o cursor foi movido</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt; =32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII ascii(ibutton) foi
+          pressionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &lt; =-32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII ascii(-ibutton) foi liberada</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt; =1000+32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII ascii(ibutton-1000) foi pressionada
+          enquanto o botão CTRL estava sendo pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-1000</term>
+
+        <listitem>
+          <para>a janela de gráficos foi fechada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>AVISO: Em versões anteriores do Scilab (&lt;5.0), o usuário podia
+    fornecer um flag (indicador) para precisar se a fila de eventos do mouse
+    deveria ser limpa ao se entrar xgetmouse. Está opção está obsoleta agora e
+    será removida no Scilab 5.1.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//  seleção de retângulo
+clf();  // apagando/criando janela
+a=gca();a.data_bounds=[0 0;100 100];//ajustando cooredenadas do usuário
+xtitle(" drawing a rectangle ") //adicionando um título
+xselect(); //pondo a janela no topo
+
+[b,xc,yc]=xclick(); //retornando um ponto
+xrect(xc,yc,0,0) //desenhando a entidade Rectangle
+r=gce();// o manipulador do retângulo
+rep=[xc,yc,-1];first=%f;
+
+while rep(3)==-1 do // movimentação do mouse...
+  rep=xgetmouse();
+  xc1=rep(1);yc1=rep(2);
+  ox=mini(xc,xc1);
+  oy=maxi(yc,yc1);
+  w=abs(xc-xc1);h=abs(yc-yc1);
+  r.data=[ox,oy,w,h]; //mudando a origem, largura e altura do retângulo
+  first=%f;
+end
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="locate">locate</link></member>
+
+      <member><link linkend="xclick">xclick</link></member>
+
+      <member><link linkend="seteventhandler">seteventhandler</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>S. Steer</para>
+  </refsection>
+</refentry>

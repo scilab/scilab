@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="name2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>name2rgb</refname>
+
+    <refpurpose>Retorna valores RGB correspondentes ao nome da
+    cor</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rgb=name2rgb(name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>nome da cor </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rgb</term>
+
+        <listitem>
+          <para>vetor de valores RGB inteiros de uma cor </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>name2rgb</literal> retorna os valores RGB (vermelho, verde,
+    azul) inteiros de uma cor dado o seu nome. O resultado é um vetor
+    <literal>[r,g,b]</literal> onde <literal>r</literal>, <literal>g</literal>
+    e <literal>b</literal> são inteiros entre 0 e 255 correspondentes aos
+    componentes de cor vermelho, verde e azul. Como de uso, 0 significa
+    nenhuma intensidade e 255 significa intensidade total da cor. </para>
+
+    <para>Se uma cor não for encontrada, é retornado
+    <literal>[]</literal>.</para>
+
+    <para>A lista de todas as cores conhecidas é dada por <link
+    linkend="color_list">color_list</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+rgb=name2rgb("gold")
+rgb2name(rgb)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="color">color</link></member>
+
+      <member><link linkend="color_list">color_list</link></member>
+
+      <member><link linkend="rgb2name">rgb2name</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -54,7 +54,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>uma matriz ou vetor de reais </para>
+          <para>uma matriz ou vetor de reais</para>
         </listitem>
       </varlistentry>
 
@@ -65,7 +65,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
           <para>representa uma seqüência de sentenças
           <literal>key1=value1,key2=value2</literal>,... onde
           <literal>key1</literal>, <literal>key2,...</literal> podem ser um
-          dos seguintes: </para>
+          dos seguintes:</para>
 
           <variablelist>
             <varlistentry>
@@ -73,8 +73,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>ajusta o estilo da curva. O valor associado deve ser um
-                vetor de reais com valores inteiros (positivos ou negativos)
-                </para>
+                vetor de reais com valores inteiros (positivos ou
+                negativos)</para>
               </listitem>
             </varlistentry>
 
@@ -106,7 +106,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>controla a computação dos intervalos de coordenadas
                 reais a partir dos valores mínimos requeridos. O valor
-                associado deve ser um inteiro entre 0 e 8 </para>
+                associado deve ser um inteiro entre 0 e 8</para>
               </listitem>
             </varlistentry>
 
@@ -115,7 +115,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>especifica como os eixos são desenhados. O valor
-                associado deve ser um inteiro entre 0 e 5 </para>
+                associado deve ser um inteiro entre 0 e 5</para>
               </listitem>
             </varlistentry>
 
@@ -133,8 +133,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <term>leg</term>
 
               <listitem>
-                <para> ajusta a legenda das curvas. O valor associado deve ser
-                um string </para>
+                <para>ajusta a legenda das curvas. O valor associado deve ser
+                um string</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -200,7 +200,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               linkend="polyline_properties">polyline_properties</link>).</para>
 
               <para>Interpolação linear é feita entre os dados pontos da
-              curva. </para>
+              curva.</para>
             </listitem>
 
             <listitem>
@@ -225,8 +225,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
           dos seguintes valores: <literal>"nn"</literal>,
           <literal>"nl"</literal> , <literal>"ln"</literal> e
           <literal>"ll"</literal>. <literal>"l"</literal> significa escala e
-          graduação logarítimica e <literal>"n"</literal> escala normal.
-          </para>
+          graduação logarítimica e <literal>"n"</literal> escala
+          normal.</para>
         </listitem>
       </varlistentry>
 
@@ -270,7 +270,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>não há computação, o esboço usa a escala anterior (ou
-                padrão). </para>
+                padrão).</para>
               </listitem>
             </varlistentry>
 
@@ -299,7 +299,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>os intevalo reais são os intervalos fornecidos pela
                 opção <literal>rect</literal> e aumentados para se obter uma
-                escala isométrica. </para>
+                escala isométrica.</para>
               </listitem>
             </varlistentry>
 
@@ -310,7 +310,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
                 <para>os intervalos reais são computados a partir dos valores
                 máximos e mínimos de <literal>x</literal> e
                 <literal>y</literal> e aumentados para se obter uma escala
-                isométrica. </para>
+                isométrica.</para>
               </listitem>
             </varlistentry>
 
@@ -320,7 +320,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>os intervalos reais são os intervalos fornecidos pela
                 opção <literal>rect</literal> e aumentados para se obter
-                rótulos de eixos embelezados. </para>
+                rótulos de eixos embelezados.</para>
               </listitem>
             </varlistentry>
 
@@ -330,8 +330,8 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>os intervalos reais são computados a partir dos valores
                 mínimos dos dados <literal>x</literal> e <literal>y</literal>
-                e então aumentados para se obter rótulos de eixos embelezados.
-                </para>
+                e então aumentados para se obter rótulos de eixos
+                embelezados.</para>
               </listitem>
             </varlistentry>
 
@@ -341,7 +341,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
               <listitem>
                 <para>é como <literal>frameflag=1</literal> , mas os esboços
                 anteriores são redesenhados em uma nova escala. É utilizado
-                para adicionar o gráfico corrente a um anterior. </para>
+                para adicionar o gráfico corrente a um anterior.</para>
               </listitem>
             </varlistentry>
 
@@ -475,7 +475,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
 
           <para>Se a opção <literal>axesflag</literal> não for ajustada, a
           opção <literal>nax</literal> supõe que a opção
-          <literal>axesflag</literal> foi ajustada para 1. </para>
+          <literal>axesflag</literal> foi ajustada para 1.</para>
         </listitem>
       </varlistentry>
 
@@ -500,7 +500,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Mais Informações </title>
+    <title>Mais Informações</title>
 
     <para>Para obter mais informações sobre a sintaxe antiga de plot 2d, veja
     a documentação <link
@@ -517,12 +517,12 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
     <itemizedlist>
       <listitem>
         <para>plot2d2 é o mesmo que <literal>plot2d</literal> mas as curvas
-        são supostas seccionalmente constantes. </para>
+        são supostas seccionalmente constantes.</para>
       </listitem>
 
       <listitem>
         <para>plot2d3 é o mesmo que <literal>plot2d</literal> mas a curva é
-        esboçada com barras verticais. </para>
+        esboçada com barras verticais.</para>
       </listitem>
 
       <listitem>

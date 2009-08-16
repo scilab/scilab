@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>ver</refname>
 
-    <refpurpose>informaÃ§Ã£o de versÃ£o sobre Scilab</refpurpose>
+    <refpurpose>informação de versão sobre Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r = ver()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,11 +48,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>InformaÃ§Ã£o de versÃ£o sobre o Scilab.</para>
+    <para>Informação de versão sobre o Scilab.</para>
 
-    <para>Retorna uma matriz de strings com informaÃ§Ãµes de versÃ£o sobre o
+    <para>Retorna uma matriz de strings com informações de versão sobre o
     Scilab.</para>
   </refsection>
 

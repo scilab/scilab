@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>simp</refname>
 
-    <refpurpose>simplifica√ß√£o racional</refpurpose>
+    <refpurpose>simplificaÁ„o racional</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[N1,D1]=simp(N,D)
 H1=simp(H)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>N,D</term>
 
         <listitem>
-          <para>polin√¥mios reais ou matrizes de polin√¥mios reais</para>
+          <para>polinÙmios reais ou matrizes de polinÙmios reais</para>
         </listitem>
       </varlistentry>
 
@@ -50,42 +50,42 @@ H1=simp(H)</synopsis>
         <term>H</term>
 
         <listitem>
-          <para>matriz de raz√µes de polin√¥mios (i.e matriz com entradas
+          <para>matriz de razıes de polinÙmios (i.e matriz com entradas
           <literal>n/d</literal> ,<literal>n</literal> e <literal>d</literal>
-          polin√¥mios reais)</para>
+          polinÙmios reais)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>[n1,d1]=simp(n,d)</literal> calcula dois polin√¥mios
+    <para><literal>[n1,d1]=simp(n,d)</literal> calcula dois polinÙmios
     <literal>n1</literal> e <literal>d1</literal> tais que <literal>n1/d1 =
     n/d</literal>.</para>
 
-    <para>Se <literal>N</literal> e <literal>D</literal> s√£o matrizes de
-    polin√¥mios, os c√°lculos s√£o feitos elemento a elemento.</para>
+    <para>Se <literal>N</literal> e <literal>D</literal> s„o matrizes de
+    polinÙmios, os c·lculos s„o feitos elemento a elemento.</para>
 
-    <para><literal>H1=simp(H)</literal> tamb√©m √© v√°lido (cada entrada de
-    <literal>H</literal> √© simplificada em <literal>H1</literal>).</para>
+    <para><literal>H1=simp(H)</literal> tambÈm È v·lido (cada entrada de
+    <literal>H</literal> È simplificada em <literal>H1</literal>).</para>
 
     <para>Cuidado:</para>
 
-    <para>-Nenhum limiar √© dado i.e. <literal>simp</literal> n√£o pode for√ßar
-    uma simplifica√ß√£o.</para>
+    <para>-Nenhum limiar È dado i.e. <literal>simp</literal> n„o pode forÁar
+    uma simplificaÁ„o.</para>
 
-    <para>-Para sistemas lineares din√¢micos que incluem integrador(es), a
-    simplifica√ß√£o modifica o ganho est√°tico. (<literal>H(0)</literal> para
-    sistemas cont√≠nuos <literal>H(1)</literal> para sistemas discretos)</para>
+    <para>-Para sistemas lineares din‚micos que incluem integrador(es), a
+    simplificaÁ„o modifica o ganho est·tico. (<literal>H(0)</literal> para
+    sistemas contÌnuos <literal>H(1)</literal> para sistemas discretos)</para>
 
     <para>-Para dados complexos, <literal>simp</literal> retorna sua(s)
     entrada(s).</para>
 
-    <para>-Uma simplifica√ß√£o racional √© chamada ap√≥s aproximadamente cada
-    opera√ß√£o sobre raz√µes de polin√¥mios. √â poss√≠vel alternar o modo de
-    simplifica√ß√£o entre "on" e "off" (ligado e desligado) utilizando a fun√ß√£o
+    <para>-Uma simplificaÁ„o racional È chamada apÛs aproximadamente cada
+    operaÁ„o sobre razıes de polinÙmios. … possÌvel alternar o modo de
+    simplificaÁ„o entre "on" e "off" (ligado e desligado) utilizando a funÁ„o
     <literal>simp_mode</literal>.</para>
   </refsection>
 
@@ -105,7 +105,7 @@ simp_mode(%T);hns=s/s
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="roots">roots</link></member>

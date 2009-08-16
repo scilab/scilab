@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>definedfields</refname>
 
-    <refpurpose>retorna o Ã­ndice dos campos definidos de uma
+    <refpurpose>retorna o índice dos campos definidos de uma
     lista</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>k=definedfields(l)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,20 +50,20 @@
         <term>k</term>
 
         <listitem>
-          <para>um vetor de Ã­ndices .</para>
+          <para>um vetor de índices .</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>l</literal> Ã© do tipo <literal>list</literal>
+    <para>Se <literal>l</literal> é do tipo <literal>list</literal>
     <literal>tlist</literal> <literal>mlist</literal>
     <literal>k=definedfields(l)</literal> retorna em <literal>k</literal> os
-    Ã­ndices dos campos definidos da lista. Esta funÃ§Ã£o Ã© Ãºtil porque a
-    indexaÃ§Ã£o de campos indefinidos acarreta erros.</para>
+    índices dos campos definidos da lista. Esta função é útil porque a
+    indexação de campos indefinidos acarreta erros.</para>
   </refsection>
 
   <refsection>
@@ -84,7 +84,7 @@ definedfields(m)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="list">list</link></member>

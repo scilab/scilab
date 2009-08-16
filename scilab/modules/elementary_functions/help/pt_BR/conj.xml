@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=conj(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,9 +48,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>conj(x)</literal> Ã© a matriz conjugada complexa de
+    <para><literal>conj(x)</literal> é a matriz conjugada complexa de
     <literal>x</literal>.</para>
   </refsection>
 
@@ -61,7 +61,7 @@
 
 x=[1+%i,-%i;%i,2*%i];
 conj(x)
-x'-conj(x)  //x'  Ã© a matriz transposta conjugada
+x'-conj(x)  //x'  é a matriz transposta conjugada
  
   </programlisting>
   </refsection>

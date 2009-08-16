@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>cos</refname>
 
-    <refpurpose>funÃ§Ã£o co-seno</refpurpose>
+    <refpurpose>função co-seno</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=cos(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,10 +48,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Para uma matriz ou vetor, <literal>cos(x)</literal> Ã© o co-seno de
-    seus elementos . Para o co-seno da matriz (matriz co-seno), use a funÃ§Ã£o
+    <para>Para uma matriz ou vetor, <literal>cos(x)</literal> é o co-seno de
+    seus elementos . Para o co-seno da matriz (matriz co-seno), use a função
     <literal>cosm(X)</literal> .</para>
   </refsection>
 
@@ -67,7 +67,7 @@ acos(cos(x))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cosm">cosm</link></member>

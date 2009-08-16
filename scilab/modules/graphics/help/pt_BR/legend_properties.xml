@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legend_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Legend
+    (legenda)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Legend é uma folha na hierarquia de entidade gráficas.
+    Esta entidade define parâmetros para legendas impressas abaixo de gráficos
+    <literal>plot2dx</literal> ou criadas pela função <link
+    linkend="captions">captions</link>. Para cada linha esboçada, a legenda
+    exibe uma amostra do tipo da linha, de sua marca e de sua cor.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade Legends deve ser do tipo <literal>"Compound"</literal>.
+          Este Compound contém também o restante das entidade gráficas.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          contudo, manipuladores <literal>legend</literal> não possuem galhos
+          correntemente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade . Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Se <literal>"on"</literal>
+          a legenda é impressa, se <literal>"off"</literal>, a legenda não é
+          exibida na tela. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text:</term>
+
+        <listitem>
+          <para>este campo é um vetor de strings que contém as legendas para
+          cada objeto anotado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_size:</term>
+
+        <listitem>
+          <para>um escalar especificando o tamanho da fonte. Se a propriedade
+          <literal>fractional_font</literal> for <literal>"off"</literal>,
+          apenas a parte inteira é utilizada. Para mais informações veja <link
+          linkend="graphics_fonts">graphics_fonts</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_style:</term>
+
+        <listitem>
+          <para>especifica a fonte utilizada para exibir os rótulos da
+          legenda. É um inteiro positivo fazendo referência a uma das fontes
+          carregadas. Seu valor deve estar entre 0, fazendo referência à
+          primeira fonte, e o número de fontes caregadas menos um, fazendo
+          referência à última fonte. Para mais informações veja <link
+          linkend="graphics_fonts">graphics_fonts</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_color</term>
+
+        <listitem>
+          <para>um índice de cor, esta propriedade determina a cor do
+          texto.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fractional_font:</term>
+
+        <listitem>
+          <para>esta propriedade especifica se os textos são exibidos
+          utilizando-se tamanhos de fonte fracionários. Seu valor deve ser
+          <literal>"on"</literal> ou <literal>"off"</literal>. Se
+          <literal>"on"</literal>, o valor em ponto flutuante de
+          <literal>font_size</literal> é utilizado para a exibição e evita-se
+          o serrilhamento da fonte. Se <literal>"off"</literal>, apenas a
+          parte inteira é utilizada e a fonte não é suavizada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>links:</term>
+
+        <listitem>
+          <para>um array linha de manipuladores. Eles se referem às poligonais
+          associadas.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>legend_location</term>
+
+        <listitem>
+          <para>um string, especifica a localização da legenda</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>: as legendas são
+              exibidas no canto superior direito da caixa de eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: as legendas são
+              exibidas no canto superior esquerdo da caixa de eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>: as legendas são
+              exibidas no canto inferior direito da caixa de eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: as legendas são
+              exibidas no canto inferior esquerdo da caixa de eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: as legendas são
+              exibidas à direita do canto superior direito da caixa de
+              eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: as legendas são
+              exibidas à esquerda do canto superior esquerdo da caixa de
+              eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: as legendas são
+              exibidas à direita do canto inferior direito da caixa de
+              eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: as legendas são
+              exibidas à esquerda do canto inferior esquerdo da caixa de
+              eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: as legendas são
+              exibidas acima do canto superior esquerdo da caixa de
+              eixos.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: as legendas são
+              exibidas abaixo do canto inferior esquerdo da caixa de eixos.
+              Esta opção corresponde ao argumento <literal>leg</literal> de
+              <link linkend="plot2d">plot2d</link></para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: o canto superior
+              esquerdo da caixa de legendas é fornecido pelo campo "position"
+              da estrutura de dados associada. As posições
+              <literal>x</literal> e <literal>y</literal> são fornecidas como
+              frações dos <literal>axes_bounds</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>position</term>
+
+        <listitem>
+          <para>as coordenadas do canto superior esquerdo da legenda. As
+          posições <literal>x</literal> e <literal>y</literal> são dadas como
+          frações dos tamanhos <literal>axes_bounds</literal>. Este campo pode
+          ser ajustado se <literal>legend_location=="by_coordinates" ou obtido
+          de outros ajustes de legend_location.</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode</term>
+
+        <listitem>
+          <para>este campo especifica se um retângulo é desenhado ao redor da
+          legenda ou não. Deve ser <literal>"on"</literal> ou
+          <literal>"off"</literal>. Se <literal>"on"</literal> , o retângulo é
+          desenhado utilizando-se as seguintes propriedades.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness</term>
+
+        <listitem>
+          <para>este campo fornece a espessura da linha utilizada para
+          desenhar o retângulo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground</term>
+
+        <listitem>
+          <para>este campo contém o índice de cor da linha utilizada para
+          desenhar o contorno do retângulo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode</term>
+
+        <listitem>
+          <para>este campo especifica se o plano de fundo da legenda será
+          pintado ou não. Deve ser <literal>"on"</literal> ou
+          <literal>"off"</literal>. Se <literal>"on"</literal> , o plano de
+          fundo é pintado utilizando-se a cor definida no campo
+          <literal>background</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background</term>
+
+        <listitem>
+          <para>este campo contém o índice de cor da linha utilizada para
+          pintar a área do retângulo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para todos os objetos. O valor de
+          clip_state pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que todos os objetos
+              criados posteriormente não são recortados. (valor
+              padrão).</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que todos os
+              objetos criados posteriormente são recortados fora da caixa dos
+              eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que todos os objetos
+              criados posteriormente são recortados fora do retângulo dado
+              pela propriedade clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>clip_box</literal> para todos os objetos. O seu valor é uma
+          matriz vazia se clip_state é <literal>"off"</literal>. Em outros
+          casos, o recorte é dado por <literal>[x,y,w,h]</literal> (ponto
+          superior esquerdo, largura, altura).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados do texto e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   
+// inicialização de x
+x=[0:0.1:2*%pi]';
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],leg="L1@L2@L3")
+a=get("current_axes");
+l=a.children(2);
+l.links
+l.text=["sin(x)";"sin(2*x)";"sin(3*x)"];
+l.visible="off"; // invisível
+l.font_size = 2;
+l.font_style = 5;
+l.visible='on';
+
+    
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+
+    <para></para>
+  </refsection>
+</refentry>

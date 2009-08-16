@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -25,19 +25,19 @@
   <refnamediv>
     <refname>bloc2exp</refname>
 
-    <refpurpose>retorna a avaliaÃ§Ã£o simbÃ³lica de um diagrama de
+    <refpurpose>retorna a avaliação simbólica de um diagrama de
     blocos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[str]=bloc2exp(blocd)
 [str,names]=bloc2exp(blocd)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -67,13 +67,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Dada uma representaÃ§Ã£o em diagrama de blocos de um sistema linear
-    <literal>bloc2exp</literal> retorna sua avaliaÃ§Ã£o simbÃ³lica. O primeiro
+    <para>Dada uma representação em diagrama de blocos de um sistema linear
+    <literal>bloc2exp</literal> retorna sua avaliação simbólica. O primeiro
     elemento da lista <literal>blocd</literal> deve ser o string (cadeia de
     caracteres) <literal>'blocd'</literal>. Cada outro elemento desta lista
-    <literal>(blocd(2),blocd(3),...)</literal> Ã©, por si mesmo, uma lista de
+    <literal>(blocd(2),blocd(3),...)</literal> é, por si mesmo, uma lista de
     um dos seguintes tipos :</para>
 
     <programlisting>
@@ -84,64 +84,64 @@ list('transfer','nome_do_sistema_linear')
 
     <programlisting>
 
-list('link','nome_da_ligaÃ§Ã£o',
-               [nÃºmero_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior],
-               [caixa_de_fluxo_inferior_1,nÃºmero_de_porta_da_caixa_inferior_1],
-               [caixa_de_fluxo_inferior_2,nÃºmero_de_porta_da_caixa_inferior_2],
+list('link','nome_da_ligação',
+               [número_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior],
+               [caixa_de_fluxo_inferior_1,número_de_porta_da_caixa_inferior_1],
+               [caixa_de_fluxo_inferior_2,número_de_porta_da_caixa_inferior_2],
                ...)
    
     </programlisting>
 
     <para>Os strings <literal>'transfer'</literal> e
-    <literal>'links'</literal> sÃ£o palavras-chaves as quais indicam o tipo de
-    elemento no diagrama de blocos ("transfer"=transferÃªncia, "link"=
-    ligaÃ§Ã£o).</para>
+    <literal>'links'</literal> são palavras-chaves as quais indicam o tipo de
+    elemento no diagrama de blocos ("transfer"=transferência, "link"=
+    ligação).</para>
 
-    <para>Caso 1: o segundo parÃ¢metro da lista Ã© um string que pode se referir
-    (para uma possÃ­vel avaliaÃ§Ã£o posterior) ao nome Scilab de um sistema
-    linear dado em representaÃ§Ã£o de estado-espaÃ§o (lista<literal>
-    syslin</literal> ) ou em forma de trasnferÃªncia (matriz de razÃµes de
-    polinÃ´mios).</para>
+    <para>Caso 1: o segundo parâmetro da lista é um string que pode se referir
+    (para uma possível avaliação posterior) ao nome Scilab de um sistema
+    linear dado em representação de estado-espaço (lista<literal>
+    syslin</literal> ) ou em forma de trasnferência (matriz de razões de
+    polinômios).</para>
 
-    <para>A cada bloco de transferÃªncia Ã© associado um inteiro. A cada entrada
-    e saÃ­da de um bloco de transferÃªncia, tambÃ©m Ã© associado seu nÃºmero, um
+    <para>A cada bloco de transferência é associado um inteiro. A cada entrada
+    e saída de um bloco de transferência, também é associado seu número, um
     inteiro (ver exemplos).</para>
 
-    <para>Caso 2: O segundo tipo de elemento em uma representaÃ§Ã£o de diagrama
-    de blocos Ã© um link. Um link liga uma saÃ­da de um bloco representado pelo
+    <para>Caso 2: O segundo tipo de elemento em uma representação de diagrama
+    de blocos é um link. Um link liga uma saída de um bloco representado pelo
     par <literal>[
-    nÃºmero_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior]</literal>,
-    a diferentes entradas de outros blocos. Cada tal entrada Ã© representada
-    pelo par [caixa_de_fluxo_inferior_i,nÃºmero_de_porta_da_caixa_inferior_i]
+    número_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior]</literal>,
+    a diferentes entradas de outros blocos. Cada tal entrada é representada
+    pelo par [caixa_de_fluxo_inferior_i,número_de_porta_da_caixa_inferior_i]
     .</para>
 
     <para>Os diferentes elementos de um diagrama de blocos podem ser definidos
-    em ordem arbitrÃ¡ria.</para>
+    em ordem arbitrária.</para>
 
     <para>Por exemplo:</para>
 
     <para>[1] <literal>S1*S2</literal> com feedback (resposta) de
     unidade.</para>
 
-    <para>HÃ¡ 3 transferÃªncias <literal>S1</literal> (nÃºmero
-    <literal>n_s1=2</literal>) , <literal>S2</literal> (nÃºmero
-    <literal>n_s2=3</literal>) e um adicionador ("adder") (nÃºmero
-    <literal>n_add=4</literal>) com funÃ§Ã£o de transferÃªncia simbÃ³lica
+    <para>Há 3 transferências <literal>S1</literal> (número
+    <literal>n_s1=2</literal>) , <literal>S2</literal> (número
+    <literal>n_s2=3</literal>) e um adicionador ("adder") (número
+    <literal>n_add=4</literal>) com função de transferência simbólica
     <literal>['1','1']</literal>.</para>
 
-    <para>HÃ¡ 4 ligaÃ§Ãµes. O primeiro (de nome <literal>'U'</literal>) liga a
-    entrada (porta 0 de bloco fictÃ­cio -1, omitido) Ã  porta 1 do adicionador.
-    Os segundo e terceiro ligam respectivamente a porta (de saÃ­da) 1 do
-    adicionador Ã  porta (de entrada) 1 do sistema <literal>S1</literal>, e a
-    porta (de saÃ­da) 1 de <literal>S1</literal> Ã  porta (de entrada) 1 de
-    <literal>S2</literal>. A quarta ligaÃ§Ã£o (de nome <literal>'Y'</literal>)
-    liga a porta (de saÃ­da) 1 de <literal>S2</literal> Ã  saÃ­da (porta 0 do
-    bloco fictÃ­cio -1, omitido) e Ã  porta (de entrada) 2 do
+    <para>Há 4 ligações. O primeiro (de nome <literal>'U'</literal>) liga a
+    entrada (porta 0 de bloco fictício -1, omitido) à porta 1 do adicionador.
+    Os segundo e terceiro ligam respectivamente a porta (de saída) 1 do
+    adicionador à porta (de entrada) 1 do sistema <literal>S1</literal>, e a
+    porta (de saída) 1 de <literal>S1</literal> à porta (de entrada) 1 de
+    <literal>S2</literal>. A quarta ligação (de nome <literal>'Y'</literal>)
+    liga a porta (de saída) 1 de <literal>S2</literal> à saída (porta 0 do
+    bloco fictício -1, omitido) e à porta (de entrada) 2 do
     adicionador.</para>
 
     <programlisting>
 
-//InicializaÃ§Ã£o
+//Inicialização
 syst=list('blocd'); l=1;
 //
 //Sistemas
@@ -155,26 +155,26 @@ l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
 // Internal 
 l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
-// SaÃ­das // -1 -&gt; saÃ­da 1
+// Saídas // -1 -&gt; saída 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
-//Chamada de avaliaÃ§Ã£o
+//Chamada de avaliação
 w=bloc2exp(syst);
    
     </programlisting>
 
-    <para>O resultado Ã© o string:
+    <para>O resultado é o string:
     <literal>w=-(s2*s1-eye())\s2*s1</literal>.</para>
 
-    <para>Perceba que, chamado com dois agumentos de saÃ­da,
+    <para>Perceba que, chamado com dois agumentos de saída,
     <literal>[str,names]= blocd(syst)</literal> retorna em
-    <literal>names</literal> a lista de nomes simbÃ³licos dos links nomeados.
-    Isto Ã© Ãºtil para definir nomes de entradas e saÃ­das.</para>
+    <literal>names</literal> a lista de nomes simbólicos dos links nomeados.
+    Isto é útil para definir nomes de entradas e saídas.</para>
 
     <para>[2] segundo exemplo</para>
 
     <programlisting>
 
-//InicializaÃ§Ã£o
+//Inicialização
 syst=list('blocd'); l=1;
 //
 //Sistema (planta de blocos 2x2)
@@ -188,18 +188,18 @@ l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
 l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
 l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
-//Chamada de avaliaÃ§Ã£o
+//Chamada de avaliação
 w=bloc2exp(syst);
    
     </programlisting>
 
-    <para>Neste caso, o resultado Ã© uma fÃ³rmula equivalente Ã  usual:</para>
+    <para>Neste caso, o resultado é uma fórmula equivalente à usual:</para>
 
     <para><literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal></para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="bloc2ss">bloc2ss</link></member>

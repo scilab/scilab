@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>adj2sp</refname>
 
-    <refpurpose>converte forma de adjacÃªncia para matriz esparsa </refpurpose>
+    <refpurpose>converte forma de adjacência para matriz esparsa </refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -43,7 +43,7 @@
         <term>adjncy</term>
 
         <listitem>
-          <para>vetor de inteiros de comprimento nz contendo os Ã­ndices de
+          <para>vetor de inteiros de comprimento nz contendo os índices de
           linha para os elementos correspondentes em anz</para>
         </listitem>
       </varlistentry>
@@ -52,7 +52,7 @@
         <term>anz</term>
 
         <listitem>
-          <para>vetor coluna de comprimento nz contendo os elementos nÃ£o-nulos
+          <para>vetor coluna de comprimento nz contendo os elementos não-nulos
           de A </para>
         </listitem>
       </varlistentry>
@@ -71,30 +71,30 @@
 
         <listitem>
           <para>matriz quadrada esparsa de reais ou complexos (nz entradas
-          nÃ£o-nulas)</para>
+          não-nulas)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <programlisting>
 
-adj2sp converte uma representaÃ§Ã£o em forma de adjacÃªncia de uma matriz
-em sua representaÃ§Ã£o padrÃ£o do Scilab (funÃ§Ã£o utilitÃ¡ria).
-xadj, adjncy, anz = representaÃ§Ã£o  de adjacÃªncia de A i.e:
+adj2sp converte uma representação em forma de adjacência de uma matriz
+em sua representação padrão do Scilab (função utilitária).
+xadj, adjncy, anz = representação  de adjacência de A i.e:
    
     </programlisting>
 
-    <para><literal>xadj(j+1)-xadj(j)</literal> = nÃºmero de entradas nÃ£o-nulas
-    na linha j. <literal>adjncy</literal> = Ã­ndice de coluna das entradas
-    nÃ£o-nulas nas linha 1, linha 2..., linha n.<literal> anz</literal> =
-    valores das entradas nÃ£o-nulas nas linha 1, linha 2,..., linha n.
-    <literal>xadj</literal> Ã© um vetor (coluna) de tamanho n+1 e
-    <literal>adjncy</literal> Ã© um vetor (coluna) de inteiros de tamanho
-    <literal>nz=nnz(A)</literal>. <literal>anz</literal> Ã© um vetor de reais
+    <para><literal>xadj(j+1)-xadj(j)</literal> = número de entradas não-nulas
+    na linha j. <literal>adjncy</literal> = índice de coluna das entradas
+    não-nulas nas linha 1, linha 2..., linha n.<literal> anz</literal> =
+    valores das entradas não-nulas nas linha 1, linha 2,..., linha n.
+    <literal>xadj</literal> é um vetor (coluna) de tamanho n+1 e
+    <literal>adjncy</literal> é um vetor (coluna) de inteiros de tamanho
+    <literal>nz=nnz(A)</literal>. <literal>anz</literal> é um vetor de reais
     de tamanho <literal>nz=nnz(A)</literal>.</para>
   </refsection>
 
@@ -113,7 +113,7 @@ A-p,
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sp2adj">sp2adj</link></member>

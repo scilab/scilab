@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>tanhm</refname>
 
-    <refpurpose>tangente hiperbÃ³lica da matriz (matriz tangente
-    hiperbÃ³lica)</refpurpose>
+    <refpurpose>tangente hiperbólica da matriz (matriz tangente
+    hiperbólica)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=tanhm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,10 +49,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>tanhm Ã© a tangente hiperbÃ³lica da matriz x (matriz tangente
-    hiperbÃ³lica de x).</para>
+    <para>tanhm é a tangente hiperbólica da matriz x (matriz tangente
+    hiperbólica de x).</para>
   </refsection>
 
   <refsection>
@@ -67,7 +67,7 @@ tanhm(A)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tan">tan</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>rat</refname>
 
-    <refpurpose>aproximaÃ§Ã£o racional de ponto-flutuante</refpurpose>
+    <refpurpose>aproximação racional de ponto-flutuante</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[N,D]=rat(x [,tol])
 y=rat(x [,tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -73,13 +73,13 @@ y=rat(x [,tol])</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>[N,D] = rat(x,tol)</literal> retorna duas matrizes de
-    inteiros tais que <literal>N./D</literal> Ã© prÃ³xima a <literal>x</literal>
+    inteiros tais que <literal>N./D</literal> é próxima a <literal>x</literal>
     no sentido de que <literal>abs(N./D - X) &lt;= tol*abs(x)</literal>. As
-    aproximaÃ§Ãµes racionais sÃ£o geradas truncando-se expansÃµes de fraÃ§Ãµes
-    contÃ­nuas. <literal>tol = 1.e-6*norm(X,1)</literal> Ã© o padrÃ£o. <literal>y
+    aproximações racionais são geradas truncando-se expansões de frações
+    contínuas. <literal>tol = 1.e-6*norm(X,1)</literal> é o padrão. <literal>y
     = rat(x,tol)</literal> retorna o quociente <literal>N./D</literal></para>
   </refsection>
 
@@ -96,7 +96,7 @@ n/d-%pi
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="int">int</link></member>

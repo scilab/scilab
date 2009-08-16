@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>isequal</refname>
 
-    <refpurpose>compara√ß√£o de objetos</refpurpose>
+    <refpurpose>comparaÁ„o de objetos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>t=isequal(a,b)
 t=isequal(a,b,..)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>a, b , ...</term>
 
         <listitem>
-          <para>vari√°veis de quaisquer tipos </para>
+          <para>vari·veis de quaisquer tipos </para>
         </listitem>
       </varlistentry>
 
@@ -57,18 +57,18 @@ t=isequal(a,b,..)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal> isequal</literal> compara seus argumentos. Se todos eles
-    forem iguais, a fun√ß√£o retorna <literal> %t</literal> e em caso contr√°rio,
+    forem iguais, a funÁ„o retorna <literal> %t</literal> e em caso contr·rio,
     retorna <literal> %f</literal> .</para>
 
-    <para>Na compara√ß√£o de listas, estruturas, etc., a o processo √© feito
+    <para>Na comparaÁ„o de listas, estruturas, etc., a o processo È feito
     recursivamente e a ordem dos campos importa.</para>
 
-    <para>Dados de ponto flutuante s√£o comparados de acordo com a regra IEEE,
-    i.e., valores NaN ("n√£o √© um n√∫mero") n√£o s√£o iguais. Ver <link
-    linkend="isequalbitwise">isequalbitwise</link> para compara√ß√µes bit a
+    <para>Dados de ponto flutuante s„o comparados de acordo com a regra IEEE,
+    i.e., valores NaN ("n„o È um n˙mero") n„o s„o iguais. Ver <link
+    linkend="isequalbitwise">isequalbitwise</link> para comparaÁıes bit a
     bit.</para>
   </refsection>
 
@@ -85,7 +85,7 @@ isequal(a,1)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="isequalbitwise">isequalbitwise</link></member>

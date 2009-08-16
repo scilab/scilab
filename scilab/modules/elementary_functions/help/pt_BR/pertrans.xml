@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[Y]=pertrans(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>Y=pertrans(X)</literal> retorna a matriz pertransposta de
-    <literal>X</literal>, i.e. a matriz simÃ©trica a <literal>X</literal> em
-    relaÃ§Ã£o Ã  segunda diagonal (funÃ§Ã£o utilitÃ¡ria).</para>
+    <literal>X</literal>, i.e. a matriz simétrica a <literal>X</literal> em
+    relação à segunda diagonal (função utilitária).</para>
   </refsection>
 
   <refsection>

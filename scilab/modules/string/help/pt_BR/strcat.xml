@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strcat" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strcat</refname>
+
+    <refpurpose>concatena strings</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>txt=strcat(vector_of_strings [,string_added])
+txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>vector_of_strings</term>
+
+        <listitem>
+          <para>vetor de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string_added</term>
+
+        <listitem>
+          <para>string adicionado, o valor padrão é emptystr
+          <literal>""</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>txt</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"flag"</term>
+
+        <listitem>
+          <para>string ( "r" para retornar uma matriz coluna, "c" para
+          retornar uma matriz linha)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>txt=strcat(vector_of_strings)</literal> concatena strings :
+    <literal>txt=vector_of_strings(1)+...+vector_of_strings(n)</literal></para>
+
+    <para><literal>txt=strcat(vector_of_strings,string_added)</literal>
+    retorna
+    <literal>txt=vector_of_strings(1)+string_added+...+string_added+vector_of_strings(n)</literal>.</para>
+
+    <para>O símbolo de mais faz o mesmo: <literal>"a"+"b"</literal> é o mesmo
+    que <literal>strcat(["a","b"]).</literal></para>
+
+    <para><literal>Se o tamanho de vector_of_strings for um, retorna
+    txt=vector_of_strings(1); </literal></para>
+
+    <para><literal>strcat('A','B') retorna 'A' , não 'AB' como
+    strcat(['A','B'])</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+strcat(string(1:10),',')
+strcat(["a","b"])
+strcat(["a","b"],'|')
+strcat('A')
+strcat('A','B')
+strcat(['A','B'])
+strcat(['A','B'],'')
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="strings">strings</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

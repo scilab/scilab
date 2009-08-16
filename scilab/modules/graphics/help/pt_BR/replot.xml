@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="replot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>replot</refname>
+
+    <refpurpose>redesenha a janela de gráficos corrente com novas
+    fronteiras</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>replot(rect,[handle])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>vetor linha de tamanho 4.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>handle</term>
+
+        <listitem>
+          <para>argumento opcional. Manipulador(es) do tipo Axes para
+          selecionar uma ou várias entidades Axes válidas. Disponível apenas
+          no novo modo de gráficos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>replot</literal> é utilizado para redesenhar o conteúdo da
+    janela de gráficos atual com novas fronteiras definidas por
+    <literal>rect=[xmin,ymin,xmax,ymax]</literal>. Sob a sintaxe de gráficos
+    antiga, funciona apenas com o driver <literal>"Rec"</literal>.</para>
+
+    <para>Sob o novo modo de gráficos, esta transformação pode ser aplicada a
+    eixos específicos fornecidos por manipuladores gráficos Axes via o
+    argumento handle. Se handle não for especificado, as novas fronteiras são
+    aplicadas aos eixos correntes da figura corrente. A transformação muda os
+    valores de <literal>data_bounds</literal> para estes eixos. Note que a
+    propriedade de eixos <literal>tight_limits</literal> também deve ser
+    ajustada para "on" para selecionar estritamente estas fronteiras (ver
+    <link linkend="axes_properties">axes_properties</link>).<literal>
+    </literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">backupstyle='?'
+
+// primeiro exemplo
+x=[0:0.1:2*%pi]';
+plot2d(x,sin(x)) 
+replot([-1,-1,10,2]) 
+
+// segundo exemplo
+xdel(winsid());
+plot() // esboçando demonstração
+f=gcf();
+replot([-1,-1,10,2],f.children(1)) // especificando o valor do manipulador dos eixos
+replot([-3,-2,8,4],f.children(2)) 
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xbasr">xbasr</link></member>
+
+      <member><link linkend="xbasc">xbasc</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

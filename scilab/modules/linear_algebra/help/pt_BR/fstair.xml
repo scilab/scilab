@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>fstair</refname>
 
-    <refpurpose>computa a forma escada de feixe de colunas por transforma√ß√µes
+    <refpurpose>computa a forma escada de feixe de colunas por transformaÁıes
     qz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,7 +66,7 @@
         <term>Q</term>
 
         <listitem>
-          <para>matriz unit√°ria m x m </para>
+          <para>matriz unit·ria m x m </para>
         </listitem>
       </varlistentry>
 
@@ -74,7 +74,7 @@
         <term>Z</term>
 
         <listitem>
-          <para>matriz unit√°ria n x n </para>
+          <para>matriz unit·ria n x n </para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +82,7 @@
         <term>stair</term>
 
         <listitem>
-          <para>vetor de √≠ndices (ver ereduc)</para>
+          <para>vetor de Ìndices (ver ereduc)</para>
         </listitem>
       </varlistentry>
 
@@ -114,7 +114,7 @@
         <term>QE</term>
 
         <listitem>
-          <para>matriz unit√°ria m x m </para>
+          <para>matriz unit·ria m x m </para>
         </listitem>
       </varlistentry>
 
@@ -122,7 +122,7 @@
         <term>ZE</term>
 
         <listitem>
-          <para>matriz unit√°ria n x n </para>
+          <para>matriz unit·ria n x n </para>
         </listitem>
       </varlistentry>
 
@@ -130,7 +130,7 @@
         <term>nblcks</term>
 
         <listitem>
-          <para>√© o n√∫mero de submatrizes com posto linha completo &gt;= 0
+          <para>È o n˙mero de submatrizes com posto linha completo &gt;= 0
           detectado na matriz <literal>A</literal></para>
         </listitem>
       </varlistentry>
@@ -139,8 +139,8 @@
         <term>muk:</term>
 
         <listitem>
-          <para> array (vetor ou matriz) de inteiros de dimens√£o (n). Cont√©m
-          as dimens√µes de coluna mu(k) (k=1,...,nblcks) das submatrizes com
+          <para> array (vetor ou matriz) de inteiros de dimens„o (n). ContÈm
+          as dimensıes de coluna mu(k) (k=1,...,nblcks) das submatrizes com
           posto coluna cheio no feixe sE(eps)-A(eps) </para>
         </listitem>
       </varlistentry>
@@ -149,7 +149,7 @@
         <term>nuk:</term>
 
         <listitem>
-          <para>array de inteiros de dimens√£o (m+1). Cont√©m as dimens√µes de
+          <para>array de inteiros de dimens„o (m+1). ContÈm as dimensıes de
           linha nu(k) (k=1,...,nblcks) das submatrizes com posto linha cheio
           no feixe sE(eps)-A(eps) </para>
         </listitem>
@@ -159,7 +159,7 @@
         <term>muk0:</term>
 
         <listitem>
-          <para>array de inteiros de dimens√£o (n). Cont√©m as dimens√µes de
+          <para>array de inteiros de dimens„o (n). ContÈm as dimensıes de
           coluna mu(k) (k=1,...,nblcks) das submatrizes com o posto-coluna
           cheio no feixe sE(eps,inf)-A(eps,inf) </para>
         </listitem>
@@ -169,7 +169,7 @@
         <term>nuk:</term>
 
         <listitem>
-          <para> array de inteiros de dimens√£o (m+1). Cont√©m as dimens√µes de
+          <para> array de inteiros de dimens„o (m+1). ContÈm as dimensıes de
           linha nu(k) (k=1,...,nblcks) das submatrizes com posto-linha cheio
           no feixe sE(eps,inf)-A(eps,inf) </para>
         </listitem>
@@ -179,7 +179,7 @@
         <term>mnei:</term>
 
         <listitem>
-          <para> array de inteiros dimens√£o (4). mnei(1) = dimens√£o de linha
+          <para> array de inteiros dimens„o (4). mnei(1) = dimens„o de linha
           de sE(eps)-A(eps)</para>
         </listitem>
       </varlistentry>
@@ -187,23 +187,23 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dado o feixe <literal>sE-A</literal> onde a matriz
-    <literal>E</literal> est√° na forma escada de colunas, a fun√ß√£o
+    <literal>E</literal> est· na forma escada de colunas, a funÁ„o
     <literal>fstair</literal> computa, de acordo com as necessidades do
-    usu√°rio, um feixe unit√°rio transformado <literal>QE(sEE-AE)ZE</literal>
-    que √© mais ou menos similar √† forma generalizada de Schur do feixe
-    <literal>sE-A</literal>. A fun√ß√£o tamb√©m produz parte da estrutura de
+    usu·rio, um feixe unit·rio transformado <literal>QE(sEE-AE)ZE</literal>
+    que È mais ou menos similar ‡ forma generalizada de Schur do feixe
+    <literal>sE-A</literal>. A funÁ„o tambÈm produz parte da estrutura de
     Kronecker para um dado feixe.</para>
 
-    <para><literal>Q,Z</literal> s√£o as matrizes unit√°rias usadas para
-    computar o feixe onde E est√° na forma escada de colunas (ver
+    <para><literal>Q,Z</literal> s„o as matrizes unit·rias usadas para
+    computar o feixe onde E est· na forma escada de colunas (ver
     ereduc)</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="quaskro">quaskro</link></member>

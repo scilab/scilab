@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="set_posfig_dim" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>set_posfig_dim</refname>
+
+    <refpurpose>Muda a transformação padrão para exportação em
+    postcript</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>set_posfig_dim(w,h)
+set_posfig_dim(0,0)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>w</term>
+
+        <listitem>
+          <para>largura da figura gráfica, número de pixeis </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>altura da figura gráfica, número de pixeis</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>set_posfig_dim(w,h)</literal> ajusta a transformação de
+    coordenadas a ser utlizada ao se exportar uma janela de gráficos em
+    postscript. A figura gráfica é ampliada ou diminuida nas razões
+    <literal>w/&lt;largura da figura gráfica&gt;</literal> horizontalmente e
+    <literal>h/&lt;altura da figura gráfica&gt;</literal>
+    verticalmente.</para>
+
+    <para>Esta função é particularmente útil quando se quer exportar uma
+    figura gráfica exatamente como ela é exibida na tela. Para isto
+    <literal>w</literal> e <literal>h</literal> devem ser respectivamente
+    ajustados para <literal>&lt;largura da figura gráfica&gt;</literal> e
+    <literal>&lt;altura da figura gráfica&gt;</literal></para>
+
+    <para><literal>set_posfig_dim(0,0)</literal> reajusta os valores padrões:
+    <literal>w=600</literal>, <literal>h=424</literal>.</para>
+
+    <para>A função <literal>set_posfig_dim</literal> está obsoleta e será
+    permanentemente removida no Scilab 5.2. Na versão corrente, set_posfig_dim
+    não tem influência sobre arquivos exportados. Suas larguras e alturas
+    devem, ao invés, corresponderem à propriedade <literal>axes_size</literal>
+    da figura exportada.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"> 
+// criando uma figura com um formato específico
+f=scf(0);f.figure_size=[800,300];
+plot2d();
+set_posfig_dim(f.figure_size(1),f.figure_size(2));
+filename='foo.ps';
+xs2ps(0,filename);
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xs2ps">xs2ps</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer INRIA</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>polfact</refname>
 
-    <refpurpose>fatores mÃ­nimos</refpurpose>
+    <refpurpose>fatores mínimos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[f]=polfact(p)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>polinÃ´mio </para>
+          <para>polinômio </para>
         </listitem>
       </varlistentry>
 
@@ -65,7 +65,7 @@
               <term>fi</term>
 
               <listitem>
-                <para>polinÃ´mio</para>
+                <para>polinômio</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -75,15 +75,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>f=polfact(p)</literal> retorna os valores mÃ­nimos de p,
+    <para><literal>f=polfact(p)</literal> retorna os valores mínimos de p,
     i.e., <literal>f=[f0 f1 ... fn]</literal> tal que
     <literal>p=prod(f)</literal></para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="lcm">lcm</link></member>

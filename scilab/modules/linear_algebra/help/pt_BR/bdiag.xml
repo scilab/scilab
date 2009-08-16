@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>bdiag</refname>
 
-    <refpurpose>diagonaliza√ß√£o em blocos, autovetores
+    <refpurpose>diagonalizaÁ„o em blocos, autovetores
     generalizados</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>rmax</term>
 
         <listitem>
-          <para>n√∫mero real</para>
+          <para>n˙mero real</para>
         </listitem>
       </varlistentry>
 
@@ -66,7 +66,7 @@
         <term>X</term>
 
         <listitem>
-          <para>matriz de reais ou complexos n√£o-singular</para>
+          <para>matriz de reais ou complexos n„o-singular</para>
         </listitem>
       </varlistentry>
 
@@ -81,7 +81,7 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <programlisting>
 
@@ -89,20 +89,20 @@
    
     </programlisting>
 
-    <para>realiza a diagonaliza√ß√£o em blocos da matriz <literal>A</literal>.
+    <para>realiza a diagonalizaÁ„o em blocos da matriz <literal>A</literal>.
     bs fornece a estrutura dos blocos (respectivos tamanhos dos blocos).
-    <literal>X</literal> √© a matriz mudan√ßa de base i.e <literal>Ab =
-    inv(X)*A*X </literal>√© diagonal em blocos.</para>
+    <literal>X</literal> È a matriz mudanÁa de base i.e <literal>Ab =
+    inv(X)*A*X </literal>È diagonal em blocos.</para>
 
     <para><literal>rmax</literal> controla o condicionamento de
-    <literal>X</literal>; o valor padr√£o √© a norma L1 de
+    <literal>X</literal>; o valor padr„o È a norma L1 de
     <literal>A</literal>.</para>
 
     <para>Para encontrar a forma diagonal (se existir) escolha um valor
     suficientemente grande para <literal>rmax</literal>
     (<literal>rmax=1/%eps</literal> , por exemplo). Genericamente, (para uma
-    matriz A de reais aleat√≥ria) os blocos s√£o (1x1) e (2x2) e
-    <literal>X</literal> √© a matriz de autovetores.</para>
+    matriz A de reais aleatÛria) os blocos s„o (1x1) e (2x2) e
+    <literal>X</literal> È a matriz de autovetores.</para>
   </refsection>
 
   <refsection>
@@ -119,7 +119,7 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="schur">schur</link></member>

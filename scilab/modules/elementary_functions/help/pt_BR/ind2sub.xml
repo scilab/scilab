@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -24,26 +24,26 @@
   <refnamediv>
     <refname>ind2sub</refname>
 
-    <refpurpose>conversÃ£o de Ã­ndice linear para matriz de valores
+    <refpurpose>conversão de índice linear para matriz de valores
     subescritos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[i1,i2,..] =ind2sub(dims,I)
 Mi = ind2sub(dims,I)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>dims</term>
 
         <listitem>
-          <para>vetor com as dimensÃµes da matriz </para>
+          <para>vetor com as dimensões da matriz </para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ Mi = ind2sub(dims,I)</synopsis>
         <term>I</term>
 
         <listitem>
-          <para>vetor com os dados Ã­ndices lineares </para>
+          <para>vetor com os dados índices lineares </para>
         </listitem>
       </varlistentry>
 
@@ -68,23 +68,23 @@ Mi = ind2sub(dims,I)</synopsis>
         <term>Mi</term>
 
         <listitem>
-          <para>matriz cujas colunas contÃ©m os valores subescritos.</para>
+          <para>matriz cujas colunas contém os valores subescritos.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>ind2sub</literal> Ã© usado para determinar os valores
-    subescritos equivalentes que correspondem a um Ã­ndice Ãºnico num "array".
+    <para><literal>ind2sub</literal> é usado para determinar os valores
+    subescritos equivalentes que correspondem a um índice único num "array".
     <literal>[i1,i2,..] = ind2sub(dims,I)</literal> retorna os "arrays"
     <literal>i1</literal>, <literal>i2</literal>, ... contendo os subescritos
-    das linha, coluna, ... equivalentes correspondente Ã  matriz de Ã­ndices
+    das linha, coluna, ... equivalentes correspondente à matriz de índices
     <literal>I</literal> para uma matriz de tamanho <literal>dims</literal>.
     <literal>Mi=ind2sub(dims,I)</literal> retorna uma matriz
-    <literal>Mi</literal> cujas colunas sÃ£o os "arrays"
+    <literal>Mi</literal> cujas colunas são os "arrays"
     <literal>i1(:)</literal>, <literal>i2(:)</literal>, ...</para>
   </refsection>
 
@@ -100,7 +100,7 @@ Mi = ind2sub(dims,I)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sub2ind">sub2ind</link></member>

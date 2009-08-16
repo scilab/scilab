@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>champ</refname>
 
-    <refpurpose>esboÃ§o de campo vetorial 2d</refpurpose>
+    <refpurpose>esboço de campo vetorial 2d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
 champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>x,y</term>
 
         <listitem>
-          <para>dois vetores que definem o grid </para>
+          <para>dois vetores que definem o grid</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>uma matriz que descreve o componente x do campo vetorial.
-          <literal>fx(i,j)</literal> Ã© o componente x do campo vetorial no
+          <literal>fx(i,j)</literal> é o componente x do campo vetorial no
           ponto <literal>(x(i),y(j))</literal>.</para>
         </listitem>
       </varlistentry>
@@ -61,7 +61,7 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>uma matriz que descreve o componente y do campo vetorial.
-          <literal>fy(i,j)</literal>Ã© o componente y do campo vetorial no
+          <literal>fy(i,j)</literal>é o componente y do campo vetorial no
           ponto <literal>(x(i),y(j))</literal>.</para>
         </listitem>
       </varlistentry>
@@ -70,10 +70,10 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>representa a seqÃ¼Ãªncia de declaraÃ§Ãµes
+          <para>representa a seqüência de declarações
           <literal>key1=value1,key2=value2</literal>,... onde
           <literal>key1</literal>, <literal>key2,...</literal> podem ser um
-          dos seguintes: arfact, rect, strf (ver abaixo). </para>
+          dos seguintes: arfact, rect, strf (ver abaixo).</para>
         </listitem>
       </varlistentry>
 
@@ -82,8 +82,8 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>um argumento opcional do tipo real que fornece um fator de
-          escala para a exibiÃ§Ã£o das cabeÃ§as das setas no esboÃ§o (o valor
-          padrÃ£o Ã© 1.0). </para>
+          escala para a exibição das cabeças das setas no esboço (o valor
+          padrão é 1.0).</para>
         </listitem>
       </varlistentry>
 
@@ -92,7 +92,7 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>um vetor <literal>rect=[xmin,ymin,xmax,ymax]</literal> que
-          fornece as fronteiras da moldura grÃ¡fica Ã  ser utilizada. </para>
+          fornece as fronteiras da moldura gráfica à ser utilizada.</para>
         </listitem>
       </varlistentry>
 
@@ -101,8 +101,8 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>um string de comprimento 3 "xyz" que possui o mesmo
-          significado do parÃ¢metro <literal>strf</literal> de
-          <literal>plot2d</literal>. O primeiro caractere nÃ£o tem efeito com
+          significado do parâmetro <literal>strf</literal> de
+          <literal>plot2d</literal>. O primeiro caractere não tem efeito com
           <literal>champ</literal>.</para>
         </listitem>
       </varlistentry>
@@ -110,16 +110,16 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>champ</literal> desenha um campo vetorial 2d. O comprimento
-    das setas Ã© proporcional Ã© proporcional Ã  intensidade do campo.</para>
+    das setas é proporcional é proporcional à intensidade do campo.</para>
 
-    <para>Se vocÃª quiser setas coloridas com a cor das setas dependendo da
+    <para>Se você quiser setas coloridas com a cor das setas dependendo da
     intensidade do campo, use <literal>champ1</literal>.</para>
 
     <para>Entre com o comando <literal>champ()</literal> para visualizar uma
-    demonstraÃ§Ã£o.</para>
+    demonstração.</para>
   </refsection>
 
   <refsection>
@@ -127,7 +127,7 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
 
     <programlisting role="example">
 
-// usando rect como fronteiras do esboÃ§o
+// usando rect como fronteiras do esboço
 champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
 // usando (x,y) para conseguir obter
 clf()
@@ -137,7 +137,7 @@ champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="champ1">champ1</link></member>

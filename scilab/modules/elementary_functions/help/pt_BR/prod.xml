@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,7 +28,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=prod(x)
 y=prod(x,'r') ou y=prod(x,1)
@@ -37,7 +37,7 @@ y=prod(x,'m')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -59,28 +59,28 @@ y=prod(x,'m')</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o </title>
+    <title>DescriÁ„o </title>
 
     <para>Para um vetor ou uma matriz <literal>x</literal>,
     <literal>y=prod(x)</literal> retorna no escalar <literal>y</literal> o
-    produt√≥rio de todas as entradas de <literal>x</literal>, , ex.
-    <literal>prod(1:n)</literal> √© n!</para>
+    produtÛrio de todas as entradas de <literal>x</literal>, , ex.
+    <literal>prod(1:n)</literal> È n!</para>
 
     <para><literal>y=prod(x,'r')</literal> (ou, equivalentemente,
-    <literal>y=prod(x,1)</literal>) computa os produt√≥rios dos elementos das
-    linhas de <literal>x</literal>. <literal>y</literal> √© o vetor linha:
+    <literal>y=prod(x,1)</literal>) computa os produtÛrios dos elementos das
+    linhas de <literal>x</literal>. <literal>y</literal> È o vetor linha:
     <literal>y(1,j)=prod(x(:,j))</literal>.</para>
 
     <para><literal>y=prod(x,'c')</literal> (ou, equivalentemente,
-    <literal>y=prod(x,2)</literal>) computa os produt√≥rios dos elementos das
-    colunas de <literal>x</literal>. <literal>y</literal> √© o vetor coluna:
+    <literal>y=prod(x,2)</literal>) computa os produtÛrios dos elementos das
+    colunas de <literal>x</literal>. <literal>y</literal> È o vetor coluna:
     <literal>y(i,1)=prod(x(i,:))</literal>.</para>
 
-    <para><literal>y=prod(x,'m')</literal> √© o produt√≥rio ao longo da primeira
-    dimens√£o "n√£o-singleton" de <literal>x</literal> (para compatibilidade com
+    <para><literal>y=prod(x,'m')</literal> È o produtÛrio ao longo da primeira
+    dimens„o "n„o-singleton" de <literal>x</literal> (para compatibilidade com
     o Matlab).</para>
 
-    <para><literal>prod</literal> n√£o √© implementado para matrizes
+    <para><literal>prod</literal> n„o È implementado para matrizes
     esparsas.</para>
   </refsection>
 
@@ -98,7 +98,7 @@ prod(A,'r')
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="sum">sum</link></member>

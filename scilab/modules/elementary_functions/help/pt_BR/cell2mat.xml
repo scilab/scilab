@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>cell2mat</refname>
 
-    <refpurpose>converte um cell array (array de c√©lulas) em uma
+    <refpurpose>converte um cell array (array de cÈlulas) em uma
     matriz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>x=cell2mat(c)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,10 +58,10 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna uma matriz que √© a concatena√ß√£o de todos os componentes do
-    cell (c√©lula) c.</para>
+    <para>Retorna uma matriz que È a concatenaÁ„o de todos os componentes do
+    cell (cÈlula) c.</para>
 
     <variablelist>
       <varlistentry>
@@ -71,15 +71,15 @@
           <para>todos os componentes de c devem ter o mesmo tipo de dado
           (string, doubles, inteiros ou booleanos). Para cada linha <literal>i
           </literal>de <literal>c,</literal> <literal>cell2mat</literal>
-          concatena todos os componentes da i-√©sima linha do cell
+          concatena todos os componentes da i-Èsima linha do cell
           <literal>c</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Perceba que se os componentes da entrada do cell c s√£o s√£o strings,
-    ent√£o <literal>cell2mat(c)</literal> retorna um vetor-coluna de
-    concatena√ß√£o de strings.</para>
+    <para>Perceba que se os componentes da entrada do cell c s„o s„o strings,
+    ent„o <literal>cell2mat(c)</literal> retorna um vetor-coluna de
+    concatenaÁ„o de strings.</para>
   </refsection>
 
   <refsection>
@@ -94,7 +94,7 @@ cell2mat(c)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="cell">cell</link></member>

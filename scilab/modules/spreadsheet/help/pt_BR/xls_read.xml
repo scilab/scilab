@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xls_read" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xls_read</refname>
+
+    <refpurpose>lê uma folha em um arquivo Excel</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>um número, a unidade lógica do fluxo de dados do Excel
+          retornado por <link linkend="xls_open">xls_open</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sheetpos</term>
+
+        <listitem>
+          <para>um número: a posição do início da folha no fluxo de dados
+          Excel. Esta posição é uma daquelas retornadas por <link
+          linkend="xls_open">xls_open</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Value</term>
+
+        <listitem>
+          <para>matriz de números, os dados numéricos encontrados na folha. A
+          célula sem valores numéricos é representada por valores
+          <literal>NaN</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>TextInd</term>
+
+        <listitem>
+          <para>uma matriz de índices com o mesmo tamanho que
+          <literal>Value</literal>. Os índices zeros indicam que não existem
+          strings na celula Excel correspondente. Um índice positivo
+          <literal>i </literal> aponta para o string <literal>SST(i)</literal>
+          onde <literal>SST</literal> é dado por <link
+          linkend="xls_open">xls_open</link>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função lê uma folha do Excel, dada uma unidade lógica, em um
+    fluxo de dados do Excel e a posição do início da folha neste fluxo de
+    dados. Ela retorna os dados numéricos e os strings contidos nas células do
+    Excel.</para>
+
+    <para>A função <link linkend="readxls">readxls</link> pode ser utilizada
+    para ler todo um arquivo Excel em uma função utilizando apenas uma chamada
+    a função.</para>
+
+    <para>AVISO: apenas arquivos Excel BIFF8 (última versão do Excel) são
+    manipulados.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   //decodificando um arquivo ole, extraindo e abrindo um fluxo de dados do Excel
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+    //lendo a primeira folha de dados
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //fechando o fluxo de dados da planilha
+    mclose(fd)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xls_open">xls_open</link></member>
+
+      <member><link linkend="readxls">readxls</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Serge Steer</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliografia</title>
+
+    <para>Esta função é baseada na descrição do OpenOffice sobre fluxo de
+    dados (<ulink
+    url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Funções Utilizadas</title>
+
+    <para>Esta função utiliza o arquivo xls.c que pode ser encontrado em uma
+    versão-fonte do Scilab no diretório directory
+    SCIDIR/modules/spreadsheet/src/c</para>
+  </refsection>
+</refentry>

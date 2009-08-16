@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="evstr" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>evstr</refname>
 
-    <refpurpose>avaliaÃ§Ã£o de expressÃµes</refpurpose>
+    <refpurpose>avaliação de expressões</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>H=evstr(Z)
 [H,ierr]=evstr(Z)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -73,27 +73,27 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna o resultado da avaliaÃ§Ã£o da matriz de strings
-    <literal>M</literal>. Cada elemento da matriz deve definir uma expressÃ£o
-    Scilab vÃ¡lida.</para>
+    <para>Retorna o resultado da avaliação da matriz de strings
+    <literal>M</literal>. Cada elemento da matriz deve definir uma expressão
+    Scilab válida.</para>
 
-    <para>Se a avaliaÃ§Ã£o de <literal>M</literal> levar a um erro, a versÃ£o de
-    valor de Ãºnico retorno, <literal>H=evstr(M)</literal>, levanta erro de
-    modo usual. A versÃ£o de dois valores de retorno,
-    <literal>[H,ierr]=evstr(M)</literal> , por outro lado, nÃ£o produz erro,
-    mas retorna o nÃºmero de erro em <literal>ierr</literal>.</para>
+    <para>Se a avaliação de <literal>M</literal> levar a um erro, a versão de
+    valor de único retorno, <literal>H=evstr(M)</literal>, levanta erro de
+    modo usual. A versão de dois valores de retorno,
+    <literal>[H,ierr]=evstr(M)</literal> , por outro lado, não produz erro,
+    mas retorna o número de erro em <literal>ierr</literal>.</para>
 
-    <para>Se <literal>Z</literal> Ã© uma lista, <literal>Subexp </literal>Ã© um
-    vetor de strings, que define subexpressÃµes que sÃ£o avaliadas antes da
-    avaliaÃ§Ã£o de <literal>M</literal>. Estas subexpressÃµes devem ser referidas
+    <para>Se <literal>Z</literal> é uma lista, <literal>Subexp </literal>é um
+    vetor de strings, que define subexpressões que são avaliadas antes da
+    avaliação de <literal>M</literal>. Estas subexpressões devem ser referidas
     como <literal>%(k)</literal> em <literal>M</literal>, onde
-    <literal>k</literal> Ã© o Ã­ndice da subexpressÃ£o em
+    <literal>k</literal> é o índice da subexpressão em
     <literal>Subexp</literal>.</para>
 
-    <para>evstr('a=1') nÃ£o Ã© vÃ¡lido (use <literal>execstr</literal> ao
-    invÃ©s).</para>
+    <para>evstr('a=1') não é válido (use <literal>execstr</literal> ao
+    invés).</para>
   </refsection>
 
   <refsection>
@@ -110,7 +110,7 @@ evstr(Z)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="execstr">execstr</link></member>

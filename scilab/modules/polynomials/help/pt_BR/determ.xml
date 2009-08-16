@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>determ</refname>
 
-    <refpurpose>determinante de matrizes de polinÃ´mios</refpurpose>
+    <refpurpose>determinante de matrizes de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>res=determ(W [,k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>W</term>
 
         <listitem>
-          <para>matriz quadrada de polinÃ´mios reais </para>
+          <para>matriz quadrada de polinômios reais </para>
         </listitem>
       </varlistentry>
 
@@ -57,21 +57,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna o determinante de uma matriz de polinÃ´mios reais (computaÃ§Ã£o
-    feita por Transformada RÃ¡pida de Fourier (TRF) se W possuir tamanho maior
+    <para>Retorna o determinante de uma matriz de polinômios reais (computação
+    feita por Transformada Rápida de Fourier (TRF) se W possuir tamanho maior
     do que 2*2).</para>
 
-    <para><literal>res=determ(W [,k])</literal><literal>k</literal> Ã© um
+    <para><literal>res=determ(W [,k])</literal><literal>k</literal> é um
     inteiro maior do que o grau verdadeiro do determinante de
     <literal>W</literal>.</para>
 
-    <para>O valor padrÃ£o de <literal>k</literal> Ã© a menor potÃªncia de 2 que Ã©
+    <para>O valor padrão de <literal>k</literal> é a menor potência de 2 que é
     maior que <literal>n*maxi(degree(W))</literal>.</para>
 
-    <para>MÃ©todo (apenas se o tamanho de W for maior que 2*2) : avalia o
-    determinante de W para as freqÃ¼Ãªncias de Fourier e aplica a TRF inversa
+    <para>Método (apenas se o tamanho de W for maior que 2*2) : avalia o
+    determinante de W para as freqüências de Fourier e aplica a TRF inversa
     para os coeficientes do determinante.</para>
   </refsection>
 
@@ -89,7 +89,7 @@ det(coeff(w,1))*s^10
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="det">det</link></member>

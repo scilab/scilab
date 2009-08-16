@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unzoom" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unzoom</refname>
+
+    <refpurpose>Diminui a ampliação</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>unzoom()
+unzoom(H)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>H</term>
+
+        <listitem>
+          <para>um vetor de manipuladores Figure ou Axes</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>unzoom()</literal> é usado para remover o efeito de
+    ampliação em todos os eixos da figura gráfica corrente: </para>
+
+    <para><literal>unzoom(H)</literal> é usado para remover o efeito de
+    ampliação em todos os Figures e Axes dados pelo vetor de manipuladores
+    <literal>H</literal>. A remoção do efeito de ampliação para uma entidade
+    Figure é o mesmo que remover o efeito de ampliação para todos os seus Axes
+    galhos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    clf()
+    x=0:0.01:6*%pi;
+    plot2d(x,sin(x^2))
+    zoom_rect([16,-1,18,1])
+    unzoom()
+
+
+    //aplicação a subesboços
+    clf()
+    x=0:0.01:6*%pi;
+    subplot(211)
+    plot2d(x,cos(x))
+    a1=gca();
+    subplot(212)
+    plot2d(x,cos(2*x))
+    a2=gca();
+    rect=[3 -2 7 10]; // um retângulo especificado nos eixos correntes (os últimos)
+    zoom_rect(rect) 
+    unzoom(a1) // diminuição de ampliação aplicado ao primeiro esboço apenas
+    unzoom(a2) // diminuição de ampliação aplicado ao segundo esboço apenas
+    zoom_rect(rect) // aplicando ampliação de novo
+    unzoom(gcf()) // diminuição de ampliação aplicada a todos os eixos, equivalente a unzoom()
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="zoom_rect">zoom_rect</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer INRIA</para>
+
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>

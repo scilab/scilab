@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="isglobal" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>isglobal</refname>
 
-    <refpurpose>verifica se uma vari√°vel √© global</refpurpose>
+    <refpurpose>verifica se uma vari·vel È global</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>t=isglobal(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>qualquer vari√°vel</para>
+          <para>qualquer vari·vel</para>
         </listitem>
       </varlistentry>
 
@@ -45,11 +45,11 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>isglobal(x)</literal> retorna "true" ("verdadeiro"), se x
-    tiver sido declarada como vari√°vel global e "false" ("falso"), em caso
-    contr√°rio.</para>
+    tiver sido declarada como vari·vel global e "false" ("falso"), em caso
+    contr·rio.</para>
   </refsection>
 
   <refsection>
@@ -65,7 +65,7 @@ isglobal(a)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="global">global</link></member>

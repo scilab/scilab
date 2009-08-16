@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="macr2lst" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,30 +13,30 @@
   <refnamediv>
     <refname>macr2lst</refname>
 
-    <refpurpose>conversÃ£o de funÃ§Ã£o para lista</refpurpose>
+    <refpurpose>conversão de função para lista</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[txt]=macr2lst(function-name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta primitiva converte uma versÃ£o compilada do Scilab
-    <literal>function-name</literal> em uma lista que codifica a representaÃ§Ã£o
-    interna da funÃ§Ã£o (notaÃ§Ã£o polonesa inversa).</para>
+    <para>Esta primitiva converte uma versão compilada do Scilab
+    <literal>function-name</literal> em uma lista que codifica a representação
+    interna da função (notação polonesa inversa).</para>
 
-    <para>A primeira entrada da lista Ã© o nome da funÃ§Ã£o, as segunda e
-    terceira sÃ£o, respectivamente, os vetores das variÃ¡veis de lado esquerdo e
-    direito (lhs e rhs). As entradas seguintes sÃ£o registros de operaÃ§Ã£o
-    bÃ¡sica ou listas que contÃ©m as estruturas de controle hierÃ¡rquicas como if
+    <para>A primeira entrada da lista é o nome da função, as segunda e
+    terceira são, respectivamente, os vetores das variáveis de lado esquerdo e
+    direito (lhs e rhs). As entradas seguintes são registros de operação
+    básica ou listas que contém as estruturas de controle hierárquicas como if
     , for, ...</para>
 
-    <para>Registros de operaÃ§Ã£o bÃ¡sica sÃ£o descritos por um vetor de strings
-    cujo primeiro elemento representa cÃ³digo do operador (op code).</para>
+    <para>Registros de operação básica são descritos por um vetor de strings
+    cujo primeiro elemento representa código do operador (op code).</para>
 
     <informaltable border="1">
       <tr>
@@ -44,7 +44,7 @@
 
         <td>significado</td>
 
-        <td>parÃ¢metros</td>
+        <td>parâmetros</td>
       </tr>
 
       <tr>
@@ -58,7 +58,7 @@
       <tr>
         <td>"1"</td>
 
-        <td>nÃ£o mais usado</td>
+        <td>não mais usado</td>
 
         <td></td>
       </tr>
@@ -66,9 +66,9 @@
       <tr>
         <td>"2"</td>
 
-        <td>referÃªncia Ã  funÃ§Ã£o ou variÃ¡vel</td>
+        <td>referência à função ou variável</td>
 
-        <td>nome da variÃ¡vel, #rhs, #lhs</td>
+        <td>nome da variável, #rhs, #lhs</td>
       </tr>
 
       <tr>
@@ -90,17 +90,17 @@
       <tr>
         <td>"5"</td>
 
-        <td>aplica uma operaÃ§Ã£o</td>
+        <td>aplica uma operação</td>
 
-        <td>cÃ³digo de operaÃ§Ã£o, #rhs,#lhs</td>
+        <td>código de operação, #rhs,#lhs</td>
       </tr>
 
       <tr>
         <td>"6"</td>
 
-        <td>coloca um nÃºmero na pilha</td>
+        <td>coloca um número na pilha</td>
 
-        <td>o nÃºmero</td>
+        <td>o número</td>
       </tr>
 
       <tr>
@@ -146,39 +146,39 @@
       <tr>
         <td>"18"</td>
 
-        <td>variÃ¡vel nomeada</td>
+        <td>variável nomeada</td>
 
-        <td>nome da variÃ¡vel</td>
+        <td>nome da variável</td>
       </tr>
 
       <tr>
         <td>"19"</td>
 
-        <td>cria estrutura de Ã­ndice recursiva</td>
+        <td>cria estrutura de índice recursiva</td>
 
-        <td>comprimento do endereÃ§o, nÃºmero de Ã­ndices finais</td>
+        <td>comprimento do endereço, número de índices finais</td>
       </tr>
 
       <tr>
         <td>"20"</td>
 
-        <td>chamada a funÃ§Ã£o</td>
+        <td>chamada a função</td>
 
-        <td>nome da funÃ§Ã£o, #rhs, #lhs</td>
+        <td>nome da função, #rhs, #lhs</td>
       </tr>
 
       <tr>
         <td>"23"</td>
 
-        <td>cria variÃ¡vel a partir do nome</td>
+        <td>cria variável a partir do nome</td>
 
-        <td>nome da variÃ¡vel</td>
+        <td>nome da variável</td>
       </tr>
 
       <tr>
         <td>"24"</td>
 
-        <td>coloca uma variÃ¡vel de tipo 0 na pilha</td>
+        <td>coloca uma variável de tipo 0 na pilha</td>
 
         <td>nenhum</td>
       </tr>
@@ -188,7 +188,7 @@
 
         <td>registro de perfil</td>
 
-        <td>nÃºmero da chamada, gasto de tempo</td>
+        <td>número da chamada, gasto de tempo</td>
       </tr>
 
       <tr>
@@ -196,15 +196,15 @@
 
         <td>coloca um vetor de strings na pilha</td>
 
-        <td>#linhas, #colunas, seqÃ¼Ãªncia de elementos</td>
+        <td>#linhas, #colunas, seqüência de elementos</td>
       </tr>
 
       <tr>
         <td>"27"</td>
 
-        <td>coloca uma referÃªncia a um builtin na pilha</td>
+        <td>coloca uma referência a um builtin na pilha</td>
 
-        <td>nÃºmero da interface, posiÃ§Ã£o da interface, nome da funÃ§Ã£o</td>
+        <td>número da interface, posição da interface, nome da função</td>
       </tr>
 
       <tr>
@@ -218,15 +218,15 @@
       <tr>
         <td>"29"</td>
 
-        <td>atribuiÃ§Ã£o</td>
+        <td>atribuição</td>
 
-        <td>#lhs, modo de exibiÃ§Ã£o, (nome da variÃ¡vel, #rhs)*</td>
+        <td>#lhs, modo de exibição, (nome da variável, #rhs)*</td>
       </tr>
 
       <tr>
         <td>"30"</td>
 
-        <td>curto circuito de expressÃ£o lÃ³gica</td>
+        <td>curto circuito de expressão lógica</td>
 
         <td>tipo, tamanho do salto (jump)</td>
       </tr>
@@ -234,9 +234,9 @@
       <tr>
         <td>"31"</td>
 
-        <td>comentÃ¡rio</td>
+        <td>comentário</td>
 
-        <td>o comentÃ¡rio</td>
+        <td>o comentário</td>
       </tr>
 
       <tr>
@@ -256,8 +256,8 @@
       </tr>
     </informaltable>
 
-    <para>A funÃ§Ã£o <link linkend="fun2string">fun2string</link> pode ser usada
-    para se gerar o cÃ³digo inicial</para>
+    <para>A função <link linkend="fun2string">fun2string</link> pode ser usada
+    para se gerar o código inicial</para>
   </refsection>
 
   <refsection>
@@ -265,7 +265,7 @@
 
     <programlisting role="example">
 
-//EXIBIÃ‡ÃƒO
+//EXIBIÇÃO
 function y=foo(x,flag)
   if flag then 
     y=sin(x)
@@ -281,7 +281,7 @@ fun2string(L)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="macrovar">macrovar</link></member>
