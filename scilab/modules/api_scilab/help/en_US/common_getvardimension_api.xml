@@ -63,8 +63,8 @@
       <para>This help describes how to get the dimensions of a variable in a gateway.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
         <!--Lib_name: commom_function-->
         <!--Func_list: commom_function-->
         <title>Gateway Source</title>
