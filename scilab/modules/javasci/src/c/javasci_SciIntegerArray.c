@@ -1,7 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2005 - INRIA - Allan CORNET
- * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
@@ -12,16 +10,17 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "javasci_SciDoubleArray.h"
+#include "javasci_SciIntegerArray.h"
 #include "api_common.h"
-#include "api_double.h"
+#include "api_int.h"
 /*--------------------------------------------------------------------------*/
-JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
+JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
 /*--------------------------------------------------------------------------*/
-/*! public native double GetElement(int indr, int indc); */
-JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
+/*! public native int GetElement(int indr, int indc); */
+JNIEXPORT jint JNICALL Java_javasci_SciIntegerArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 {
-	double Value = 0.0;
+	int Value = 0;
+	int j = 0;
 
 	jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
 	jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
@@ -34,8 +33,9 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 	const char *cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
 	jfieldID id_x;
-	jdoubleArray jx;
-	double *cx = NULL;
+	jintArray jx;
+	jint *cx = NULL;
+	int *icx = NULL;
 
 	int dimension[2];
 
@@ -44,39 +44,53 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 	if (getNamedVarDimension((char*)cname, &dimension[0], &dimension[1]))
 	{
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
-		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (1).\n");
+		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (1).\n");
 		return Value;
 	}
 
 	if (dimension[0] != jm)
 	{
-		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (2).\n");
+		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (2).\n");
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		return Value;
 	}
 
 	if (dimension[1] != jn)
 	{
-		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (3).\n");
+		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (3).\n");
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		return Value;
 	}
 
 	id_x = (*env)->GetFieldID(env, class_Mine, "x", "[D");
 	jx = (*env)->GetObjectField(env, obj_this, id_x);
-	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
+	cx = (*env)->GetIntArrayElements(env, jx, NULL);
 
-	if (readNamedMatrixOfDouble((char*)cname, &cm, &cn, cx))
+	icx = (int*)MALLOC(sizeof(int) * (cm * cn));
+	if (icx == NULL)
 	{
-		fprintf(stderr,"Error in Java_javasci_SciDoubleArray_GetElement (4).\n");
-		(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);
+		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (4).\n");
+		(*env)->ReleaseIntArrayElements(env, jx, cx, 0);
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		return Value;
 	}
 
+	for (j = 0; j < cm * cn; j++) icx[j] = (int)cx[j];
+
+	if (readNamedMatrixOfInteger32((char*)cname, &cm, &cn, icx))
+	{
+		FREE(icx); icx = NULL;
+		fprintf(stderr,"Error in Java_javasci_SciIntegerArray_GetElement (5).\n");
+		(*env)->ReleaseIntArrayElements(env, jx, cx, 0);
+		(*env)->ReleaseStringUTFChars(env, jname , cname);
+		return Value;
+	}
+
+	FREE(icx); icx = NULL;
+
 	if ( (indrarg <= 0) || (indcarg <= 0) )
 	{
-		(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);
+		(*env)->ReleaseIntArrayElements(env, jx, cx, 0);
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error with int indr & int indc must be >0.\n");
 		return Value;
@@ -84,7 +98,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 
 	if ( (indrarg > jm) || (indcarg > jn) )
 	{
-		(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);
+		(*env)->ReleaseIntArrayElements(env, jx, cx, 0);
 		(*env)->ReleaseStringUTFChars(env, jname , cname);
 		fprintf(stderr,"Error with int indr & int indc.\n");
 		return Value;
@@ -92,7 +106,7 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciDoubleArray_GetElement(JNIEnv *env , j
 
 	Value = cx[(indcarg - 1) * cm + (indrarg - 1)];
 
-	(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);
+	(*env)->ReleaseIntArrayElements(env, jx, cx, 0);
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 
 	return Value;

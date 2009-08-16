@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2007 - INRIA
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,10 +12,10 @@
 
 import javasci.* ; 
 /*****************************************************************************/
-class Real3 
+class Integer3 
 {
 /*****************************************************************************/
-	private static void DisplayResult(String name,double []mat,int r,int c)
+	private static void DisplayResult(String name,int []mat,int r,int c)
 	{
 		int i=0;
 		
@@ -32,20 +32,21 @@ class Real3
 /*****************************************************************************/
   public static void main(String[] args) 
     {
-			SciDoubleArray A = new SciDoubleArray("A",4,1, new double [] {1.1,2.2,3.3,4.4} );
-      SciDoubleArray B = new SciDoubleArray("B",4,1, new double [] {4.4,3.3,2.2,1.1} );
-  		SciDoubleArray C = new SciDoubleArray("C",4,1, new double [] {1. ,1. ,1. ,1.} );
-  		SciDoubleArray D = new SciDoubleArray("Dim",1,2);
-  		SciDoubleArray E = new SciDoubleArray("E",C);
+			SciIntegerArray A = new SciIntegerArray("A",4,1, new int [] {1,2,3,4} );
+      SciIntegerArray B = new SciIntegerArray("B",4,1, new int [] {4,3,2,1} );
+  		SciIntegerArray C = new SciIntegerArray("C",4,1, new int [] {1 ,1 ,1 ,1} );
+  		SciIntegerArray D = new SciIntegerArray("Dim",1,2);
+  		SciIntegerArray E = new SciIntegerArray("E",C);
   		
   		Scilab.Exec("C=A+B;");
   		Scilab.Exec("Dim=size(C);");
 			
-			DisplayResult(A.getName(),A.getData(),A.getRow(),A.getCol());
-			DisplayResult(B.getName(),B.getData(),B.getRow(),B.getCol());
-			DisplayResult(C.getName(),C.getData(),C.getRow(),C.getCol());
-			DisplayResult(E.getName(),E.getData(),E.getRow(),E.getCol());
-
+			DisplayResult(A.getName(),A.getData(),A.getNumberOfRows(),A.getNumberOfCols());
+			DisplayResult(B.getName(),B.getData(),B.getNumberOfRows(),B.getNumberOfCols());
+			DisplayResult(C.getName(),C.getData(),C.getNumberOfRows(),C.getNumberOfCols());
+			DisplayResult(E.getName(),E.getData(),E.getNumberOfRows(),E.getNumberOfCols());
+			
+      Scilab.Finish();
     }
 /*****************************************************************************/
 }

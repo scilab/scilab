@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2007 - INRIA
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,16 +12,16 @@
 
 import javasci.* ; 
 /*****************************************************************************/
-class Real1 
+class Integer1 
 {
 /*****************************************************************************/
   public static void main(String[] args) 
     {
-			SciDoubleArray A = new SciDoubleArray("A",4,1, new double [] {1.1,2.2,3.3,4.4} );
-      SciDoubleArray B = new SciDoubleArray("B",4,1, new double [] {4.4,3.3,2.2,1.1} );
-  		SciDoubleArray C = new SciDoubleArray("C",4,1, new double [] {1. ,1. ,1. ,1.} );
-  		SciDoubleArray D = new SciDoubleArray("Dim",1,2);
-  		SciDoubleArray E = new SciDoubleArray("E",C);
+			SciIntegerArray A = new SciIntegerArray("A",4,1, new int [] {1,2,3,4} );
+      SciIntegerArray B = new SciIntegerArray("B",4,1, new int [] {4,3,2,1} );
+  		SciIntegerArray C = new SciIntegerArray("C",4,1, new int [] {1 ,1 ,1 ,1} );
+  		SciIntegerArray D = new SciIntegerArray("Dim",1,2);
+  		SciIntegerArray E = new SciIntegerArray("E",C);
   		
   		
   		Scilab.Exec("disp('A=');disp(A);");
@@ -37,6 +37,8 @@ class Real1
 			Scilab.Exec("disp('C=');disp(C);");
 			Scilab.Exec("disp('Dim=');disp(Dim);");
 			Scilab.Exec("disp('E=');disp(E);");
+			
+			Scilab.Finish();
 
     }
 /*****************************************************************************/

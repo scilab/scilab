@@ -150,6 +150,12 @@ manage this format but ISO-8859.
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+Java/Scilab API:
+================
+ - uses new C API functions to write & read datas (internal for javasci)
+ - SciInteger class added  
+ 
+ 
 Bug fixes:
 ==========
 

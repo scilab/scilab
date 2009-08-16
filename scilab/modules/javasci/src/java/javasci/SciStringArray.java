@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,12 +19,11 @@ package javasci;
  * See SCI/modules/javasci/examples/others for some simple examples
  * @author Allan CORNET - INRIA 2006
  * @author Sylvestre LEDRU - INRIA 2007
+ * @author Allan CORNET - DIGITEO 2009
  */
 public class SciStringArray extends javasci.SciAbstractArray implements java.io.Serializable {
 	/********************************************************************************************************/
 	private String [] x;
-
-
 
 	/**
 	 * Constructs a Scilab String Array from a other SciStringArray
@@ -92,50 +92,12 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 	public native String GetElement(int indr, int indc);
 
 	/**
-	 * @param str The String
-	 * @param indr Row index
-	 * @param indc Column index
-	 */
-	private native void SendString(String str, int indr, int indc);
-	
-	/**
 	 * Return the data
 	 * @return the data
 	 */
 	public String[] getData() {
 		Get();
 		return x;
-	}
-
-	
-	/**
-	 * Get Matrix from Scilab
-	 */
-	public void Get() {
-		int indr;
-		int indc;
-  	
-		for (indr = 1; indr <= m; indr++) {
-				for (indc = 1; indc <= n; indc++) {
-						int index = (indc - 1) * m + (indr - 1);
-						x[index] = GetElement(indr, indc);
-					}
-     
-			}
-	}
-	/**
-	 * Send Matrix to Scilab
-	 */
-	public void Send() {
-		int indx;
-		int indy;
-
-		for (indx = 0; indx < m; indx++) {
-				for (indy = 0; indy < n; indy++) {
-						int index = indx + indy * m;
-						SendString(x[index], indx, indy);
-					}
-			}
 	}
 }
 /********************************************************************************************************/

@@ -71,6 +71,13 @@ int sci_csum(char *fname)
   createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
   LhsVar(1) = Rhs + 1; 
   
+  /* This function put on scilab stack, the lhs variable
+  which are at the position lhs(i) on calling stack */
+  /* You need to add PutLhsVar here because WITHOUT_ADD_PUTLHSVAR 
+  was defined and equal to %t */
+  /* without this, you do not need to add PutLhsVar here */
+  PutLhsVar();
+  
   return 0;
 }
 /* ==================================================================== */

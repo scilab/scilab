@@ -6,7 +6,7 @@
 #include "hashtable_private.h" /* needed to enable inlining */
 
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* This struct is only concrete here to allow the inlining of two of the
  * accessor functions. */
 struct hashtable_itr
@@ -18,32 +18,32 @@ struct hashtable_itr
 };
 
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* hashtable_iterator
  */
 
 struct hashtable_itr *
 hashtable_iterator(struct hashtable *h);
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* hashtable_iterator_key
  * - return the value of the (key,value) pair at the current position */
 
 extern void * hashtable_iterator_key(struct hashtable_itr *i);
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* value - return the value of the (key,value) pair at the current position */
 
 extern void * hashtable_iterator_value(struct hashtable_itr *i);
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* advance - advance the iterator to the next element
  *           returns zero if advanced to end of table */
 
 int
 hashtable_iterator_advance(struct hashtable_itr *itr);
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* remove - remove current element and advance the iterator to the next element
  *          NB: if you need the value to free it, read it before
  *          removing. ie: beware memory leaks!
@@ -52,7 +52,7 @@ hashtable_iterator_advance(struct hashtable_itr *itr);
 int
 hashtable_iterator_remove(struct hashtable_itr *itr);
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* search - overwrite the supplied iterator, to point to the entry
  *          matching the supplied key.
             h points to the hashtable to be searched.

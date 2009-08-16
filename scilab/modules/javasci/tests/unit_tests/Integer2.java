@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006-2007 - INRIA
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,14 +12,14 @@
 
 import javasci.* ; 
 /*****************************************************************************/
-class Real2 
+class Integer2 
 {
 /*****************************************************************************/
 public static void main(String[] args) 
 {
-  SciDoubleArray F = new SciDoubleArray("F",2,2, new double [] {1,2,3,4} );
-  SciDoubleArray G = new SciDoubleArray("G",2,2, new double [] {5,6,7,8} );
-  SciDoubleArray DimH = new SciDoubleArray("DimH",1,2);
+  SciIntegerArray F = new SciIntegerArray("F",2,2, new int [] {1,2,3,4} );
+  SciIntegerArray G = new SciIntegerArray("G",2,2, new int [] {5,6,7,8} );
+  SciIntegerArray DimH = new SciIntegerArray("DimH",1,2);
 
 	Scilab.Exec("disp('F=');disp(F);");
 	Scilab.Exec("disp('G=');disp(G);");
@@ -27,15 +27,15 @@ public static void main(String[] args)
   Scilab.Exec("H=F*G;");
   Scilab.Exec("DimH=size(H);");
       
-  double DxDy[]=DimH.getData();
+  int DxDy[]=DimH.getData();
   
-  SciDoubleArray H = new SciDoubleArray("H",(int)DxDy[0],(int)DxDy[1]);
+  SciIntegerArray H = new SciIntegerArray("H",(int)DxDy[0],(int)DxDy[1]);
   Scilab.Exec("H=F*G;");
   
   H.Get();
   
   Scilab.Exec("disp('H=');disp(H);");
-
+  Scilab.Finish();
 }
 /*****************************************************************************/
 }
