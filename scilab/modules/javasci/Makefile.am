@@ -61,7 +61,7 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 
 libjavasci_la_LIBADD = \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/libsciapi_scilab.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/libscilab.la
 
 #### javasci : include files ####
@@ -92,31 +92,28 @@ help/images/SciBooleanClass.gif
 
 ### javasci : special tests ###
 libsciscipad_la_specialtestdir = $(mydatadir)/tests
-libsciscipad_la_specialtest_DATA = tests/Boolean.java \
-tests/Boolean.dia.ref \
-tests/BooleanArray.java \
-tests/BooleanArray.dia.ref \
-tests/Clf.java \
-tests/Clf.dia.ref \
-tests/Disp.java \
-tests/Disp.dia.ref \
-tests/Exec.java  \
-tests/Exec.dia.ref \
-tests/Real1.java \
-tests/Real1.dia.ref \
-tests/Real2.java \
-tests/Real2.dia.ref \
-tests/Real3.dia.ref \
-tests/Real3.java \
-tests/String1.java \
-tests/String1.dia.ref \
-tests/Strings1.dia.ref \
-tests/Strings1.java \
-tests/Strings2.java \
-tests/Strings2.dia.ref \
-tests/JavaTests.sce \
-tests/Makefile.mak \
-tests/Makefile
+libsciscipad_la_specialtest_DATA = tests/unit_tests/Boolean.java \
+tests/unit_tests/Boolean.dia.ref \
+tests/unit_tests/BooleanArray.java \
+tests/unit_tests/BooleanArray.dia.ref \
+tests/unit_tests/Clf.java \
+tests/unit_tests/Clf.dia.ref \
+tests/unit_tests/Disp.java \
+tests/unit_tests/Disp.dia.ref \
+tests/unit_tests/Exec.java  \
+tests/unit_tests/Exec.dia.ref \
+tests/unit_tests/Real1.java \
+tests/unit_tests/Real1.dia.ref \
+tests/unit_tests/Real2.java \
+tests/unit_tests/Real2.dia.ref \
+tests/unit_tests/Real3.dia.ref \
+tests/unit_tests/Real3.java \
+tests/unit_tests/String1.java \
+tests/unit_tests/String1.dia.ref \
+tests/unit_tests/Strings1.dia.ref \
+tests/unit_tests/Strings1.java \
+tests/unit_tests/Strings2.java \
+tests/unit_tests/Strings2.dia.ref
 
 USEANT=1
 
