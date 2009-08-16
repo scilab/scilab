@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mesh" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mesh</refname>
+
+    <refpurpose>Esboço 3d de uma malha</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>mesh(Z)
+mesh(X,Y,Z)
+mesh(...,&lt;GlobalProperty&gt;)
+mesh(...,&lt;color&gt;,&lt;GlobalProperty&gt;)
+mesh(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matriz de reais definindo a altura da superfície. Não pode ser
+          omitida. O dado Z é uma matriz<literal>
+          m</literal>x<literal>n</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X,Y</term>
+
+        <listitem>
+          <para>duas matrizes de reais: sempre ajustadas juntas, esses dados
+          definem um novo grid padrão. Estes novos componentes
+          <literal>X</literal> e <literal>Y</literal> do grid devem coincidir
+          com as dimensões de <literal>Z</literal> (ver descrição abaixo).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color</term>
+
+        <listitem>
+          <para>uma matriz de reais opcional definindo a cor para cada ponto
+          <literal>(X(j),Y(i))</literal> do grid (ver descrição abaixo).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional representa uma seqüência de pares de
+          declarações <literal>{PropertyName,PropertyValue}</literal> que
+          definem propriedades globais dos objetos aplicadas a todas as curvas
+          criadas neste esboço. Para uma completa visualização das
+          propriedades disponíveis veja <link
+          linkend="GlobalProperty">GlobalProperty</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional força o esboço a aparecer dentro dos
+          eixos selecionados por <literal>axes_handle</literal> ao invés dos
+          eixos correntes (ver <link linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>mesh</literal> desenha uma superfície parametrizada
+    utilizando um grid retangular definido pelas coordenadas
+    <literal>X</literal> e <literal>Y</literal> (se <literal>{X,Y}</literal>
+    não são especificados, este grid é determinado utilizando-se as dimensões
+    da matriz <literal>Z</literal> ) ; em cada ponto deste grid, uma
+    coordenada Z é dada utilizando-se a matriz <literal>Z</literal>.
+    <literal>mesh</literal> é baseado no comando <literal>surf</literal> com a
+    opção padrão <literal>color_mode</literal> = índice de branco (dentro do
+    mapa de cores corrente) e <literal>color_flag</literal> = 0.</para>
+
+    <para>Especificação de dados de entrada:</para>
+
+    <para>Neste parágrafo, para sermos mais claros, não mencionaremos os
+    argumentos opcionais <literal>GlobalProperty</literal> já que eles não
+    interferem na entrada de dados (exceto pelas propriedades
+    <literal>"Xdata"</literal>, <literal>"Ydata"</literal> e
+    <literal>"Zdata"</literal>, ver <link
+    linkend="GlobalProperty">GlobalProperty</link>). Assume-se que todos estes
+    argumentos opcionais poderiam estar presentes também.</para>
+
+    <para>Se <literal>Z</literal> é a única matriz especificada, (Z) esboça a
+    matriz <literal>Z</literal> versus o grid definido por
+    <literal>1:size(Z,2)</literal> ao longo do eixo x e
+    <literal>1:size(Z,1)</literal> ao longo do eixo y.</para>
+  </refsection>
+
+  <refsection>
+    <title>Observação </title>
+
+    <para>Para habilitar-se o modo de transparência, você deve ajustar a opção
+    <literal>color_mode</literal> para 0.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplo</title>
+
+    <programlisting role="example">
+[X,Y]=meshgrid(-1:.1:1,-1:.1:1);
+Z=X.^2-Y.^2;
+xtitle('z=x2-y ^2');
+mesh(X,Y,Z);
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="surf">surf</link></member>
+
+      <member><link linkend="meshgrid">meshgrid</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="LineSpec">LineSpec</link></member>
+
+      <member><link linkend="GlobalProperty">GlobalProperty</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Belahcene</para>
+  </refsection>
+</refentry>

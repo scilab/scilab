@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="contourf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>contourf</refname>
+
+    <refpurpose>Curvas de nível preenchidas de uma superfície em um esboço
+    2d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>contourf(x,y,z,nz,[style,strf,leg,rect,nax])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetrtos</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores de reais de tamanhos n1 e n2 definindo o grid.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>matriz de reais de tamanho (n1,n2), os valores da função.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nz</term>
+
+        <listitem>
+          <para>os valores de nível ou o número de níveis.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>Se <literal>nz</literal> for um inteiro, seu valor
+                fornece o número de níveis igualmente espaçados de zmin a zmax
+                como segue:</para>
+
+                <programlisting>
+
+ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+   
+                </programlisting>
+
+                <para>Note que os níveis <literal>zmin</literal> e
+                <literal>zmax</literal> não são desenhados (genericamente eles
+                são reduzidos a pontos) mas podem ser adicionados através de
+                </para>
+
+                <programlisting>
+
+ [im,jm] = find(z == zmin);     // ou zmax 
+ plot2d(x(im)',y(jm)',-9,"000")
+   
+                </programlisting>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>Se <literal>nz</literal> for um vetor,
+                <literal>nz(i)</literal> fornece o valor da i-ésima curva de
+                nível.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style,strf,leg,rect,nax</term>
+
+        <listitem>
+          <para>ver <literal>plot2d</literal>. O argumento
+          <literal>style</literal> fornece as cores a serem utilizadas pelas
+          curvas de nível. Deve ter o mesmo tamanho que o número de
+          níveis.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>contourf</literal> pinta a superfície entre duas curvas de
+    nível consecutivas <literal>z=f(x,y)</literal> em um esboço 2d. Os valores
+    de <literal>f(x,y)</literal> são fornecidos pela matriz
+    <literal>z</literal> nos pontos de grid definidos por <literal>x</literal>
+    e <literal>y</literal>.</para>
+
+    <para>Você pode mudar o formato dos pontos flutuantes impressos sobre os
+    níveis utilizando <literal>xset("fpf",string)</literal> onde
+    <literal>string</literal> fornece o formato em sintaxe de formato C ( por
+    exemplo <literal>string="%.3f"</literal>). Use
+    <literal>string=""</literal> para voltar ao formato padrão.</para>
+
+    <para>Entre com o comando <literal>contourf()</literal> para visualizar
+    uma demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+contourf(1:10,1:10,rand(10,10),5,1:5,"011"," ",[0,0,11,11])
+
+function z=peaks(x,y)
+x1=x(:).*.ones(1,size(y,'*'));
+y1=y(:)'.*.ones(size(x,'*'),1);
+z =  (3*(1-x1).^2).*exp(-(x1.^2) - (y1+1).^2) ... 
+   - 10*(x1/5 - x1.^3 - y1.^5).*exp(-x1.^2-y1.^2) ... 
+   - 1/3*exp(-(x1+1).^2 - y1.^2) 
+endfunction
+
+function z=peakit()
+x=-4:0.1:4;y=x;z=peaks(x,y);
+endfunction
+
+z=peakit();
+
+levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
+m=size(levels,'*');
+n = fix(3/8*m);
+r = [(1:n)'/n; ones(m-n,1)];
+g = [zeros(n,1); (1:n)'/n; ones(m-2*n,1)];
+b = [zeros(2*n,1); (1:m-2*n)'/(m-2*n)];
+h = [r g b];
+xset('colormap',h);
+xset('fpf',' ');
+xbasc();
+contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
+
+xset('fpf','');
+xbasc();
+contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="contour">contour</link></member>
+
+      <member><link linkend="fcontour">fcontour</link></member>
+
+      <member><link linkend="fcontour2d">fcontour2d</link></member>
+
+      <member><link linkend="contour2di">contour2di</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="xset">xset</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

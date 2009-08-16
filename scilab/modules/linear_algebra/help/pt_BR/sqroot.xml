@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>sqroot</refname>
 
-    <refpurpose>fatoraÃ§Ã£o hermitiana W*W'</refpurpose>
+    <refpurpose>fatoração hermitiana W*W'</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>sqroot(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X</term>
 
         <listitem>
-          <para>matriz simÃ©trica, nÃ£o-negativa definida de reais ou
+          <para>matriz simétrica, não-negativa definida de reais ou
           complexos</para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Retorna W tal que <literal>X=W*W'</literal> (usa SVD).</para>
   </refsection>
@@ -71,7 +71,7 @@ norm(W*W'-X,1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="chol">chol</link></member>

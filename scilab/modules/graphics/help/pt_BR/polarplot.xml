@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="polarplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>polarplot</refname>
+
+    <refpurpose>Esboço de coordenadas polares</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>polarplot(theta,rho,[style,strf,leg,rect])
+polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rho</term>
+
+        <listitem>
+          <para>vetor, valores dos raio </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>theta</term>
+
+        <listitem>
+          <para>vetor de mesmo tamanho que rho, valores dos ângulos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>uma seqüência de declarações <literal>key1=value1,
+          key2=value2</literal>, ... onde keys podem ser
+          <literal>style</literal>,<literal>leg</literal>,<literal>rect</literal>,<literal>strf</literal>
+          ou <literal>frameflag</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style</term>
+
+        <listitem>
+          <para>vetor de reais de tamanho nc. O estilo a ser usado pela curva
+          <literal>i</literal> é definido por <literal>style(i)</literal>. O
+          valor padrão é <literal>1:nc</literal> (1 para a primeira curva, 2
+          para a segunda, etc.).</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para> Se <literal>style(i)</literal> for negativo, a curva é
+                esboçada utilizando-se a marca com idenfiticador
+                <literal>abs(style(i))+1</literal>; use
+                <literal>xset()</literal> para ver os identificadores das
+                marcas. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>Se <literal>style(i)</literal> for estritamente
+                positivo, uma linha simples com identificador de cor
+                <literal>style(i)</literal> ou linha tracejada com
+                identificador de estilo de tracejado
+                <literal>style(i)</literal> é usada; use
+                <literal>xset()</literal> para ver os identificadores de cor.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>Quando apenas uma curva é desenhada,
+                <literal>style</literal> pode ser um vetor linha de tamanho 2
+                <literal>[sty,pos]</literal> onde <literal>sty</literal> é
+                utilizado para se especificar o estilo e
+                <literal>pos</literal> é um inteiro entre 1 e 6 que especifica
+                a posição para a legenda. Isto pode ser útil quando o usuário
+                deseja desenhar curvas múltiplas em um esboço chamando a
+                função <literal>plot2d</literal> várias vezes e quer fornecer
+                uma legenda para cada curva.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf</term>
+
+        <listitem>
+          <para>istring de comprimento 3 <literal>"xy0"</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>default</term>
+
+              <listitem>
+                <para>o padrão é <literal>"030"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>controla a exibição de legendas.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+
+                    <listitem>
+                      <para>sem legendas. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>x=1</term>
+
+                    <listitem>
+                      <para>com legendas. Elas são fornecidas pelo argumento
+                      opcional <literal>leg</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y</term>
+
+              <listitem>
+                <para>controla a computação da moldura. É o mesmo que
+                frameflag</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+
+                    <listitem>
+                      <para>as fronteiras correntes (definidas por uma chamada
+                      anterior a uma função de esboço de alto-nível) são
+                      utilizadas. Útil ao se superpor esboços
+                      múltiplos.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=1</term>
+
+                    <listitem>
+                      <para>o argumento opcional <literal>rect</literal> é
+                      utilizado para se especificar as fronteiras do
+                      esboço.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=2</term>
+
+                    <listitem>
+                      <para>as fronteiras do esboço são computadas
+                      utilizando-se os valores mínimo e máximo de
+                      <literal>x</literal> e <literal>y</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=3</term>
+
+                    <listitem>
+                      <para>como <literal>y=1</literal> mas produz escala de
+                      isovisualização. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=4</term>
+
+                    <listitem>
+                      <para>como <literal>y=2</literal> mas produz escala de
+                      isovisualização. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=5</term>
+
+                    <listitem>
+                      <para>como <literal>y=1</literal> mas
+                      <literal>plot2d</literal> pode mudar as fronteiras do
+                      esboço e os tiques dos eixos para se obter boas
+                      graduações. Quando o botão de zoom é ativado, este modo
+                      é usado. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=6</term>
+
+                    <listitem>
+                      <para>como <literal>y=2</literal> mas
+                      <literal>plot2d</literal> pode mudar as fronteiras do
+                      esboço e os tiques dos eixos para se obter boas
+                      graduações. Quando o botão de zoom é ativado, este modo
+                      é usado. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=7</term>
+
+                    <listitem>
+                      <para>como <literal>y=5</literal> mas a escala do novo
+                      esboço é misturada à escala corrente. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=8</term>
+
+                    <listitem>
+                      <para>como <literal>y=6</literal> mas a escala do novo
+                      esboço é misturada à escala corrente.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>leg</term>
+
+        <listitem>
+          <para>string. É usado quando o primeiro caractere x do argumento
+          <literal>strf</literal> é 1. <literal>leg</literal> possui a forma
+          <literal>"leg1@leg2@...."</literal> onde <literal>leg1</literal>,
+          <literal>leg2</literal>, etc. são respectivamente as legendas das
+          primeira, segunda, etc. curvas. O padrão é " " .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>é usado quando o segundo caractere y do argumento
+          <literal>strf</literal> é 1, 3 ou 5. É um vetor linha de tamanho 4 e
+          fornece as dimensões da moldura:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>polarplot cria um esboço de coordenadas polares do ângulo theta
+    versus o raio rho. theta é o ângulo do eixo x ao vetor raio especificado
+    em radianos; rho é o comprimento do vetor raio especificado em unidades de
+    espaço-de-dados.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+t= 0:.01:2*%pi;
+clf();polarplot(sin(7*t),cos(8*t))
+
+clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+
+ 
+  </programlisting>
+  </refsection>
+</refentry>

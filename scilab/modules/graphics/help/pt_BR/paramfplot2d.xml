@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="paramfplot2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>paramfplot2d</refname>
+
+    <refpurpose>Esboço animado 2d, curva definida por uma função</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>paramfplot2d(f,x,theta)
+paramfplot2d(f,x,theta,flag)
+paramfplot2d(f,x,theta,flagrect)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor de reais. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função <literal>y=f(x,t)</literal> . f é uma função Scilab ou
+          rotina dinamicamente ligada (referida através de um string).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>theta</term>
+
+        <listitem>
+          <para>vetor de reais (conjunto de parâmetros). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string <literal>'no'</literal> ou <literal>'yes'</literal>: Se
+          "yes" a janela é limpa entre dois esboços consecutivos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>"retângulo" [xmin, xmax, ymin, ymax] (1 x 4 vetor de
+          reais)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esboço animado da função x--&gt;f(x,t) para t= theta(1) ,theta(2),
+    etc. f pode ser uma função do Scilab ou uma rotina dinamicamente ligada
+    desde que y=f(x,t) seja avaliado como y=feval(x(:),t,f). Ver feval. A
+    função f tal que x,t -&gt; f(x,t) = <literal>R^N</literal> é avaliada em
+    x= vetor de <literal>R^N</literal> e t=número real. x é um N-vetor de
+    valores x e para cada t em theta, f(x,t)=N-vetor de valores y.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+deff('y=f(x,t)','y=t*sin(x)')
+x=linspace(0,2*%pi,50);theta=0:0.05:1;
+paramfplot2d(f,x,theta);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="feval">feval</link></member>
+
+      <member><link linkend="fplot2d">fplot2d</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

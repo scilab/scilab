@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="struct" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>struct</refname>
+
+    <refpurpose>criando um struct (estrutura)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>st=struct(field1,value1,field2,value2...)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>field1, field2, ..</term>
+
+        <listitem>
+          <para>strings, representam os nomes dos campos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value1, value2, ..</term>
+
+        <listitem>
+          <para>todos os tipos de dados (double, char, int, ...), representam
+          os valores dos campos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função retorna uma estrutura com campos de nomes
+    <literal>fields1</literal>, <literal>field2</literal>, ..., e valores
+    correspondentes <literal>value1</literal>, <literal>value2</literal>,
+    ...</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">// criando um dado struct
+date=struct('dia',25,'mes' ,'DEZ','ano',2006)
+//mudando o mes
+date.mes='AGO';
+// mudando o ano
+date.ano=1973;
+//mudando o dia
+date.dia=19;
+// adicionando um novo campo
+date.semana=32
+
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cell">cell</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

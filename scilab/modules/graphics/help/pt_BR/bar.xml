@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bar" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bar</refname>
+
+    <refpurpose>Histograma de barras</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>bar(y)
+bar(x,y)
+bar([h],x,y [,width [,color [,style]]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros </title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador de eixos, (padrão: h=gca() ). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>escalar real, vetor de tamanho N ou uma matriz NxM.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>escalar real ou um vetor de tamanho N, (padrão: se y é um
+          vetor, então x is é um vetor e o comprimento de x é igual ao
+          comprimento de y. Se y é uma matriz, então x é um vetor e o
+          comprimento de x é igual ao número de linhas de y) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>width</term>
+
+        <listitem>
+          <para>(opcional), escalar real, define a largura (uma porcentagem do
+          espaço disponível) para a barra (padrão: 0.8, i.e 80%). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color</term>
+
+        <listitem>
+          <para>(opcional), um string (padrão: 'blue'), especificando a cor da
+          barra. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style:</term>
+
+        <listitem>
+          <para>string, 'grouped' ou 'stacked' (padrão: 'grouped').</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>bar(y,...) :</literal> se y é um vetor então a função bar
+    desenha uma poligonal que tem <literal>polyline_style</literal> tipo 6. Se
+    y for um vetor, desenha o vetor y versus o vetor 1:size(y,'*') . Se y for
+    uma matriz N*M, bar desenha M poligonais (tipo 6), cada poligonal
+    corresponde a uma coluna de y versus o vetor x=1:size(y,1).</para>
+
+    <para><literal>bar(x,y,...) :</literal> se y for um vetor, então a função
+    bar desenha uma poligonal que tem <literal>polyline_style</literal> tipo
+    6, onde comprimento de x = comprimento de y. Se y é uma matriz NxM então a
+    função bar desenha M poligonais que possuem tipo 6. Cada poligonal
+    corresponde a uma coluna de y versus o vetor x.</para>
+
+    <para><literal>bar(h,...) :</literal> define os eixos correntes onde o
+    desenho é feito.</para>
+
+    <para><literal>bar(...,width,...) :</literal> define a largura da(s)
+    barra(s) em porcentagem (geralmente: 0&lt;width&lt;=1).</para>
+
+    <para><literal>bar(...,style,...) :</literal> define como as barras serão
+    desenhadas. Se y é uma matriz NxM (então temos M poligonais de tipo 6),
+    então há dois modos de se desenhar as M barras. A opção style= 'grouped'
+    permite centrar as M poligonais versus cada componente de x, e a opção
+    style = 'stacked' permite empilhá-las.</para>
+
+    <para><literal>bar(...,color,...) : </literal>define a cor da barra.
+    Funções de barra utilizam o mesmo mapa de cores que na função</para>
+
+    <para>Se há várias chamadas a bar, a função
+    <literal>barhomogenize</literal> permite homogeneizar a largura e estilo
+    de todas as barras (i.e poligonais do tipo 6) inclusas nos eixos
+    correntes.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// primeiro exemplo: desenhando uma barra (i.e uma poligonal com polyline_style =6) com
+// width=0.5 e color='yellow' e style='grouped', x=1:length(y).
+scf(0);
+y=[1 -3 5];
+bar(y,0.5,'yellow');
+
+// segundo exemplo: desenhando 3 barras (i.e três poligonais com polyline_style =6), style='grouped'
+scf(1);
+x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
+bar(x,y);
+
+// terceiro exemplo: style='stacked'.
+scf(2);
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
+bar(x,y,'stacked');
+
+// quarto exemplo: width=0.2;color='green', style='grouped'
+scf(3);
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
+bar(x,y,0.2,'green');
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="barh">barh</link></member>
+
+      <member><link linkend="barhomogenize">barhomogenize</link></member>
+
+      <member><link linkend="plot">plot</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Farid Belahcene</para>
+  </refsection>
+</refentry>

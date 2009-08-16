@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="isoview" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>isoview</refname>
+
+    <refpurpose>ajusta escalas para esboço isométrico (não muda o tamanho da
+    janela)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>isoview(xmin,xmax,ymin,ymax)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xmin,xmax,ymin,ymax</term>
+
+        <listitem>
+          <para>quatro valores reais</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função está obsoleta, use a opção de plot2d
+    <literal>frameflag=4</literal> que permite redimensionamento da janela, ao
+    invés.</para>
+
+    <para><literal>isoview</literal> é usado para obter escalas isométricas
+    nos eixos x e y. O tamanho da janela de gráficos não é alterado. O
+    retângulo <literal>xmin, xmax, ymin, ymax</literal> será contido no quadro
+    computado da janela de gráficos. <literal>isoview</literal> ajusta as
+    escalas gráficas correntes e pode ser usado em conjunção com rotinas que
+    requerem escalas gráficas correntes (por exemplo
+    <literal>strf="x0z"</literal> em <literal>plot2d</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+t=[0:0.1:2*%pi]';
+plot2d(sin(t),cos(t))
+xbasc()
+isoview(-1,1,-1,1)
+plot2d(sin(t),cos(t),1,"001")
+xset("default")
+
+plot2d(sin(t),cos(t),frameflag=4)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="square">square</link></member>
+
+      <member><link linkend="xsetech">xsetech</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Steer S.</para>
+  </refsection>
+</refentry>

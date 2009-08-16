@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="dot" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>dot</refname>
 
-    <refpurpose>(.) sÃ­mbolo de ponto</refpurpose>
+    <refpurpose>(.) símbolo de ponto</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>123.33
 a.*b
@@ -26,14 +26,14 @@ a.*b
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <variablelist>
       <varlistentry>
         <term>.</term>
 
         <listitem>
-          <para>Ã‰ usado para marcar pontos (vÃ­rgulas) decimais em nÃºmeros:
+          <para>É usado para marcar pontos (vírgulas) decimais em números:
           3.25 e 0.001</para>
         </listitem>
       </varlistentry>
@@ -42,13 +42,13 @@ a.*b
         <term>.&lt;op&gt;</term>
 
         <listitem>
-          <para>usado em conjunto com outros sÃ­mbolos de operadores ( *, /, \,
-          ^, ' ), forma outros operadores. OperaÃ§Ãµes multiplicativas elemento
-          a elemento sÃ£o obtidas utilizando-se .* , .^ , ./ , .\ ou .' . Por
-          exemplo, C = A ./ B Ã© a matriz com elementos c(i,j) = a(i,j)/b(i,j).
-          O produto de Kronecker Ã© notado por.*. . Note que quando o ponto
-          segue um nÃºmero, Ã© sempre parte deste 2.*x Ã© avaliado como 2.0*x e 2
-          .*x (hÃ¡ um espaÃ§o entre 2 e .) Ã© avaliado como (2).*x</para>
+          <para>usado em conjunto com outros símbolos de operadores ( *, /, \,
+          ^, ' ), forma outros operadores. Operações multiplicativas elemento
+          a elemento são obtidas utilizando-se .* , .^ , ./ , .\ ou .' . Por
+          exemplo, C = A ./ B é a matriz com elementos c(i,j) = a(i,j)/b(i,j).
+          O produto de Kronecker é notado por.*. . Note que quando o ponto
+          segue um número, é sempre parte deste 2.*x é avaliado como 2.0*x e 2
+          .*x (há um espaço entre 2 e .) é avaliado como (2).*x</para>
         </listitem>
       </varlistentry>
 
@@ -56,13 +56,13 @@ a.*b
         <term>..</term>
 
         <listitem>
-          <para>Marca de continuaÃ§Ã£o. Dois ou mais pontos ao fim de uma linha
-          (ou seguidos por um comentÃ¡rio) indicam que a prÃ³xima linha serÃ¡ uma
-          continuaÃ§Ã£o.</para>
+          <para>Marca de continuação. Dois ou mais pontos ao fim de uma linha
+          (ou seguidos por um comentário) indicam que a próxima linha será uma
+          continuação.</para>
 
-          <para>Linhas de continuaÃ§Ã£o sÃ£o manipuladas por um processador que
-          constrÃ³i uma linha lÃ³gica longa de uma dada seqÃ¼Ãªncia de linhas de
-          continuaÃ§Ã£o. EntÃ£o, marcas de continuaÃ§Ã£o podem ser usadas para
+          <para>Linhas de continuação são manipuladas por um processador que
+          constrói uma linha lógica longa de uma dada seqüência de linhas de
+          continuação. Então, marcas de continuação podem ser usadas para
           cortar uma linha em qualquer ponto.</para>
         </listitem>
       </varlistentry>
@@ -78,13 +78,13 @@ a.*b
 1.345
 
 //usado como parte de um operador
-x=[1 2 3];x.^2 .*x // um espaÃ§o Ã© requerido entre 2 e o ponto
+x=[1 2 3];x.^2 .*x // um espaço é requerido entre 2 e o ponto
 
-// usado como marcas de continuaÃ§Ã£o
+// usado como marcas de continuação
 T=[123,..//primeiro elemento
    456] //segundo elemento
 
-a=  "aqui, eu comeÃ§o um  grande string... //mas nÃ£o quero continuar aqui
+a=  "aqui, eu começo um  grande string... //mas não quero continuar aqui
      - e aqui eu continuo."
 y=12..
 45
@@ -93,7 +93,7 @@ y=12..
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="star">star</link></member>

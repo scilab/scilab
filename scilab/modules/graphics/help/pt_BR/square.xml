@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>square</refname>
 
-    <refpurpose>ajusta escalas para esbo√ßo isom√©trico (muda o tamanho da
+    <refpurpose>ajusta escalas para esboÁo isomÈtrico (muda o tamanho da
     janela) </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>square(xmin,ymin,xmax,ymax)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,15 +49,15 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>square</literal> √© usado para definir escalas isom√©tricas
+    <para><literal>square</literal> È usado para definir escalas isomÈtricas
     nos eixos x e y. Os valores requeridos <literal>xmin, xmax, ymin,
-    ymax</literal> s√£o os limites da moldura de gr√°ficos e
-    <literal>square</literal> muda as dimens√µes da janela de gr√°ficos para se
-    obter um esbo√ßo isom√©trico. <literal>square</literal> ajusta as escalas
-    gr√°ficas correntes e pode ser usado em conjun√ß√£o com rotinas de gr√°fico
-    que requerem a escala de gr√°ficos corrente (por exemplo
+    ymax</literal> s„o os limites da moldura de gr·ficos e
+    <literal>square</literal> muda as dimensıes da janela de gr·ficos para se
+    obter um esboÁo isomÈtrico. <literal>square</literal> ajusta as escalas
+    gr·ficas correntes e pode ser usado em conjunÁ„o com rotinas de gr·fico
+    que requerem a escala de gr·ficos corrente (por exemplo
     <literal>fstrf="x0z"</literal> em <literal>plot2d</literal>).</para>
   </refsection>
 
@@ -77,7 +77,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="isoview">isoview</link></member>

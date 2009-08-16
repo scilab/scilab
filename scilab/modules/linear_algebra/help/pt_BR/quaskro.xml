@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,7 +28,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
 [Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
@@ -37,7 +37,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -53,7 +53,7 @@
         <term>E,A</term>
 
         <listitem>
-          <para>duas matrizes reais de iguais dimens√µes </para>
+          <para>duas matrizes reais de iguais dimensıes </para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,7 @@
         <term>tol</term>
 
         <listitem>
-          <para> n√∫mero real (toler√¢ncia, valor padr√£o=1.d-10) </para>
+          <para> n˙mero real (toler‚ncia, valor padr„o=1.d-10) </para>
         </listitem>
       </varlistentry>
 
@@ -92,11 +92,11 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Forma quasi-Kronecker de um feixe de matrizes:
     <literal>quaskro</literal> computa duas matrizes ortogonais <literal>Q,
-    Z</literal> que p√µem o feixe <literal>F=s*E -A</literal> na forma
+    Z</literal> que pıem o feixe <literal>F=s*E -A</literal> na forma
     triangular superior:</para>
 
     <programlisting>
@@ -112,17 +112,17 @@ Q(sE-A)Z = |=================================|============|
    
     </programlisting>
 
-    <para>As dimens√µes dos blocos s√£o dadas por:</para>
+    <para>As dimensıes dos blocos s„o dadas por:</para>
 
     <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x
     Zd(2)</literal>, <literal>r = Qd(3) x Zd(3)</literal></para>
 
-    <para>O bloco <literal>inf</literal> cont√©m os modos infinitos do
+    <para>O bloco <literal>inf</literal> contÈm os modos infinitos do
     feixe.</para>
 
-    <para>O bloco <literal>f</literal> cont√©m os modos finitos do feixe</para>
+    <para>O bloco <literal>f</literal> contÈm os modos finitos do feixe</para>
 
-    <para>A estrutura dos blocos epsilon √© dada por:</para>
+    <para>A estrutura dos blocos epsilon È dada por:</para>
 
     <para><literal>numbeps(1)</literal> = <literal>#</literal> de blocos eps
     de tamanho 0 x 1</para>
@@ -133,15 +133,15 @@ Q(sE-A)Z = |=================================|============|
     <para><literal>numbeps(3)</literal> = <literal>#</literal> de blocos eps
     de tamanho 2 x 3 etc...</para>
 
-    <para>A forma completa (de quatro blocos) de Kronecker √© dada pela fun√ß√£o
-    <literal>kroneck</literal> que chama a fun√ß√£o <literal>quaskro</literal>
+    <para>A forma completa (de quatro blocos) de Kronecker È dada pela funÁ„o
+    <literal>kroneck</literal> que chama a funÁ„o <literal>quaskro</literal>
     sobre o feixe (pertransposto) <literal>sE(r)-A(r)</literal>.</para>
 
-    <para>O c√≥digo √© retirado de T. Beelen.</para>
+    <para>O cÛdigo È retirado de T. Beelen.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="kroneck">kroneck</link></member>

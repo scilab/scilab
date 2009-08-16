@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="intsplin" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,25 +13,25 @@
   <refnamediv>
     <refname>intsplin</refname>
 
-    <refpurpose>integraÃ§Ã£o de dados experimentais por interpolaÃ§Ã£o por
+    <refpurpose>integração de dados experimentais por interpolação por
     spline</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>v = intsplin([x,] s)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vetor de dados de coordenadas x crescentes. O valor padrÃ£o Ã©
+          <para>vetor de dados de coordenadas x crescentes. O valor padrão é
           <literal>1:size(y,'*')</literal></para>
         </listitem>
       </varlistentry>
@@ -55,17 +55,17 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Computa :</para>
 
-    <para>Onde f Ã© uma funÃ§Ã£o descrita por um conjunto de valores
+    <para>Onde f é uma função descrita por um conjunto de valores
     experimentais:</para>
 
     <para><literal>s(i)=f(x(i))</literal> e <literal>x0=x(1)</literal>,
     <literal>x1=x(n)</literal></para>
 
-    <para>Entre os pontos da malha a funÃ§Ã£o Ã© interpolada usando-se
+    <para>Entre os pontos da malha a função é interpolada usando-se
     splines.</para>
   </refsection>
 
@@ -81,7 +81,7 @@ intsplin(t,sin(t))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="intg">intg</link></member>

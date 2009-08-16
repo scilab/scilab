@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="with_gtk" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>with_gtk</refname>
 
-    <refpurpose>Checa se o Scilab foi contstru√≠do com a biblioteca "GIMP
+    <refpurpose>Checa se o Scilab foi contstruÌdo com a biblioteca "GIMP
     Toolkit"</refpurpose>
   </refnamediv>
 
@@ -40,7 +40,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>Sempre retorna <literal>%f</literal> , a biblioteca gtk n√£o √© mais
-    suportada pelas vers√µes 5 em diante.</para>
+    <para>Sempre retorna <literal>%f</literal> , a biblioteca gtk n„o È mais
+    suportada pelas versıes 5 em diante.</para>
   </refsection>
 </refentry>

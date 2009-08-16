@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,21 +28,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=size(x [,sel])
 [nr,nc]=size(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matrix (incluindo matriz de transferÃªncia), lista, ou sistema
+          <para>matrix (incluindo matriz de transferência), lista, ou sistema
           linear (<literal>syslin</literal>)</para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
         <term>y</term>
 
         <listitem>
-          <para>: <literal> 1x2</literal> vetor de inteiros ou nÃºmero inteiro
+          <para>: <literal> 1x2</literal> vetor de inteiros ou número inteiro
           </para>
         </listitem>
       </varlistentry>
@@ -75,21 +75,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <variablelist>
       <varlistentry>
         <term>Aplicado a :</term>
 
         <listitem>
-          <para> uma matriz (de constantes, de polinÃ´mios, de "strings", de
-          booleanos ou de razÃµes de polinÃ´mios) <literal>x</literal>, com
+          <para> uma matriz (de constantes, de polinômios, de "strings", de
+          booleanos ou de razões de polinômios) <literal>x</literal>, com
           apenas um argumento LHS ("Left Hand Side" ou "do lado esquerdo")
           <literal>size</literal> retorna um vetor
-          <literal>1</literal>x<literal>2</literal> [nÃºmero de linhas, nÃºmero
+          <literal>1</literal>x<literal>2</literal> [número de linhas, número
           de colunas]. Chamado com LHS= 2, retorna <literal>nr,nc</literal> =
-          [nÃºmero de linhas, nÃºmero de colunas]. <literal>sel</literal> pode
-          ser usado para especficar a dimensÃ£o a ser recebida: </para>
+          [número de linhas, número de colunas]. <literal>sel</literal> pode
+          ser usado para especficar a dimensão a ser recebida: </para>
         </listitem>
       </varlistentry>
 
@@ -97,7 +97,7 @@
         <term>1 ou 'r'</term>
 
         <listitem>
-          <para>para receber o nÃºmero de linhas. </para>
+          <para>para receber o número de linhas. </para>
         </listitem>
       </varlistentry>
 
@@ -105,7 +105,7 @@
         <term>2 ou 'c'</term>
 
         <listitem>
-          <para>para receber o nÃºmero de colunas</para>
+          <para>para receber o número de colunas</para>
         </listitem>
       </varlistentry>
 
@@ -113,7 +113,7 @@
         <term>'*'</term>
 
         <listitem>
-          <para>para receber o produto de linhas e nÃºmeros de colunas </para>
+          <para>para receber o produto de linhas e números de colunas </para>
         </listitem>
       </varlistentry>
 
@@ -121,7 +121,7 @@
         <term>Aplicado a:</term>
 
         <listitem>
-          <para>uma lista retorna o nÃºmero de elementos. Neste caso, apenas a
+          <para>uma lista retorna o número de elementos. Neste caso, apenas a
           sintaxe <literal>y=size(x)</literal> pode ser usada.</para>
         </listitem>
       </varlistentry>
@@ -131,12 +131,12 @@
 
         <listitem>
           <para>um sistema linear, <literal>y=size(x)</literal> retorna em
-          <literal>y</literal> o vetor (linha) [nÃºmero de saÃ­das, nÃºmero de
-          entradas] i.e. a dimensÃ£o da matriz de transferÃªncia correspondente.
-          A sintaxe <literal>[nr,nc]=size(x)</literal> tambÃ©m Ã© vÃ¡lida (com
-          <literal>(nr,nc)=(y(1),y(2)</literal>). Se <literal>x</literal> Ã© um
-          sistema linear em forma de estado-espaÃ§o, entÃ£o
-          <literal>[nr,nc,nx]=size(x)</literal> retorna ainda a dimensÃ£o
+          <literal>y</literal> o vetor (linha) [número de saídas, número de
+          entradas] i.e. a dimensão da matriz de transferência correspondente.
+          A sintaxe <literal>[nr,nc]=size(x)</literal> também é válida (com
+          <literal>(nr,nc)=(y(1),y(2)</literal>). Se <literal>x</literal> é um
+          sistema linear em forma de estado-espaço, então
+          <literal>[nr,nc,nx]=size(x)</literal> retorna ainda a dimensão
           <literal>nx</literal> da matriz <literal>A</literal> de
           <literal>x</literal>.</para>
         </listitem>
@@ -147,11 +147,11 @@
 
         <listitem>
           <para>uma hipermatriz <literal> y=size(x) </literal> retorna o vetor
-          de dimensÃµes da hipermatriz. <literal> [n1,n2,...nn]=size(x)
-          </literal> retorna as dimensÃµes da hipermatriz. <literal>
-          ni=size(x,i) </literal> retorna a i-Ã©sima dimensÃ£o e
+          de dimensões da hipermatriz. <literal> [n1,n2,...nn]=size(x)
+          </literal> retorna as dimensões da hipermatriz. <literal>
+          ni=size(x,i) </literal> retorna a i-ésima dimensão e
           <literal>size(x,'*') </literal> retorna o produto de
-          dimensÃµes.</para>
+          dimensões.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -172,7 +172,7 @@ x=ssrand(3,2,4);[ny,nu]=size(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="length">length</link></member>

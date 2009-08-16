@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legends" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legends</refname>
+
+    <refpurpose>Imprime uma legenda para o gráfico</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>legends(strings,style,&lt;opt_args&gt;)
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>vetor de strings de dimensão n, strings(i) é a legenda da
+          i-ésima curva </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style</term>
+
+        <listitem>
+          <para>vetor linha de inteiros de dimensão n (os estilos de esboço,
+          terceiro parâmetro de plot2d) ou uma matriz 2 x n, style(1,k) contém
+          o estilo de esboço para a k-ésima curva e style(2,k) contém o estilo
+          de linha (se style(1,k)&gt;0) ou cor da marca (se style(1,k)&lt;0).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>representa uma seqüência de declarações
+          <literal>key1=value1,key2=value2</literal>,... onde
+          <literal>key1</literal>, <literal>key2,...</literal> podem ser um
+          dos seguintes:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>opt</term>
+
+              <listitem>
+                <para>(opcional) especifica onde imprimir as legendas; este
+                parâmetro pode ser um flag inteiro (ou, de modo equivalente,
+                um string) ou um vetor [x,y] que fornece as coordenadas da
+                quina superior esquerda da caixa de legenda. No primeiro caso,
+                os valores possíveis são:</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>1 ou "ur"</term>
+
+                    <listitem>
+                      <para>as legendas são impressas no canto superior
+                      direito. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>2 ou "ul"</term>
+
+                    <listitem>
+                      <para>as legendas são impressas no canto superior
+                      esquerdo. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>3 ou "ll"</term>
+
+                    <listitem>
+                      <para>as legendas são impressas no canto inferior
+                      esquerdo. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>4 ou "lr"</term>
+
+                    <listitem>
+                      <para>as legendas são impressas no canto inferior
+                      direito. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>5 ou "?"</term>
+
+                    <listitem>
+                      <para> localização interativa com o mouse
+                      (padrão).</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>6 ou "below"</term>
+
+                    <listitem>
+                      <para>as legendas são impressas abaixo do gráfico (que é
+                      redimensionado de acordo).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>with_box</term>
+
+              <listitem>
+                <para>um booleano (valor padrão %t) que ajusta se a caixa será
+                desenhada ou não.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>font_size</term>
+
+              <listitem>
+                <para>um inteiro (valor padrão 1) que ajusta o tamanho da
+                fonte para os nomes na legenda.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Põe uma legenda no esboço corrente utilizando strings especificados
+    como rótulos.</para>
+
+    <para>Na localização interativa (opt=5 ou opt="?") move-se a caixa de
+    legenda com o mouse e aperta-se o botão esquerdo para liberá-la.</para>
+
+    <para>Esta função permite uma localização mais flexível de legendas que o
+    argumento de plot2d leg.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+  
+
+// Exemplo 1
+t=0:0.1:2*%pi;
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3],opt="lr")
+
+scf() ;
+xset("line style",2);plot2d(t,cos(t),style=5);
+xset("line style",4);plot2d(t,sin(t),style=3);
+legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
+
+
+// Exemplo 2
+scf() ;
+subplot(221)
+t=0:0.1:2*%pi;
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=3 )
+
+subplot(222)
+xset("line style",2);plot2d(t,cos(t),style=5);
+xset("line style",4);plot2d(t,sin(t),style=3);
+legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=6 )
+
+subplot(223)
+xset("line style",2);plot2d(t,cos(t),style=5);
+xset("line style",4);plot2d(t,sin(t),style=3);
+legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt=1, font_size=2 )
+
+subplot(224)
+t=0:0.1:2*%pi;
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
+legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
+
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="xstring">xstring</link></member>
+
+      <member><link linkend="xtitle">xtitle</link></member>
+
+      <member><link linkend="legend">legend</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

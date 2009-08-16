@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>bin2dec</refname>
 
-    <refpurpose>conversÃ£o de representaÃ§Ã£o binÃ¡ria para inteira</refpurpose>
+    <refpurpose>conversão de representação binária para inteira</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=bin2dec(str)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,10 +57,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Dado <literal>str</literal> um string binÃ¡rio, estÃ¡ funÃ§Ã£o retorna
-    <literal>y</literal>, o nÃºmero decimal cuja representaÃ§Ã£o binÃ¡ria Ã© dada
+    <para>Dado <literal>str</literal> um string binário, está função retorna
+    <literal>y</literal>, o número decimal cuja representação binária é dada
     por <literal>str</literal> ( <literal>y</literal> e <literal>str</literal>
     possuem o mesmo tamanho)</para>
   </refsection>
@@ -69,20 +69,20 @@
     <title>Exemplos</title>
 
     <programlisting role="example">// example 1 :
-// '1010110' : Ã© a representaÃ§Ã£o binÃ¡ria de 86 
+// '1010110' : é a representação binária de 86 
 str='1010110';
 y=bin2dec(str)
 
 // example 2 :
-// '1011011' : Ã© a representaÃ§Ã£o binÃ¡ria de 91 
-// '1010010' : Ã© a representaÃ§Ã£o binÃ¡ria de 82
+// '1011011' : é a representação binária de 91 
+// '1010010' : é a representação binária de 82
 str=['1011011'; '1010010']
 y=bin2dec(str)
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

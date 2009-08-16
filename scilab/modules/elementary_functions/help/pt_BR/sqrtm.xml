@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=sqrtm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,12 +48,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>y=sqrt(x)</literal> Ã© a raiz quadrada da matriz
+    <para><literal>y=sqrt(x)</literal> é a raiz quadrada da matriz
     <literal>x</literal> (matriz raiz quadrada de x)
     (<literal>x=y^2</literal>) . O resultado pode ser inacurado se
-    <literal>x</literal> nÃ£o Ã© simÃ©trica.</para>
+    <literal>x</literal> não é simétrica.</para>
   </refsection>
 
   <refsection>
@@ -71,7 +71,7 @@ w=sqrtm(x);norm(w*w-x,1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="expm">expm</link></member>

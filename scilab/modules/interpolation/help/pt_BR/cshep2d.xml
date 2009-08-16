@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="cshep2d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,22 +18,22 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>tl_coef = cshep2d(xyz)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>xyz</term>
 
         <listitem>
-          <para>uma matriz n x 3 dos pontos de interpolaÃ§Ã£o interpolaÃ§Ã£o (sem
-          grid), a i-Ã©sima linha dadas as coordenadas (x,y) e entÃ£o a altitude
-          z do i-Ã©simo ponto de interpolaÃ§Ã£o</para>
+          <para>uma matriz n x 3 dos pontos de interpolação interpolação (sem
+          grid), a i-ésima linha dadas as coordenadas (x,y) e então a altitude
+          z do i-ésimo ponto de interpolação</para>
         </listitem>
       </varlistentry>
 
@@ -48,44 +48,44 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o Ã© Ãºtil para definir uma funÃ§Ã£o de interpolaÃ§Ã£o 2d quando
-    os pontos nÃ£o estÃ£o em um grid (vocÃª pode usÃ¡-la para este caso, mas <link
-    linkend="splin2d">splin2d</link> Ã© melhor para este propÃ³sito). O
-    interpolante Ã© do tipo cÃºbico de Shepard e Ã© uma funÃ§Ã£o de duas variÃ¡veis
-    de classe C2 (duas vezes continuamente diferenciÃ¡vel)
+    <para>Esta função é útil para definir uma função de interpolação 2d quando
+    os pontos não estão em um grid (você pode usá-la para este caso, mas <link
+    linkend="splin2d">splin2d</link> é melhor para este propósito). O
+    interpolante é do tipo cúbico de Shepard e é uma função de duas variáveis
+    de classe C2 (duas vezes continuamente diferenciável)
     <emphasis>s(x,y)</emphasis> tal que : <emphasis>s(xi,yi)=zi</emphasis>
     para todo <emphasis>i=1,..,n</emphasis> ( <emphasis>(xi,yi,zi)</emphasis>
-    sendo a i-Ã©sima linha de <literal>xyz</literal>).</para>
+    sendo a i-ésima linha de <literal>xyz</literal>).</para>
 
-    <para>A avaliaÃ§Ã£o de s em alguns pontos deve ser feita pela funÃ§Ã£o <link
+    <para>A avaliação de s em alguns pontos deve ser feita pela função <link
     linkend="eval_cshep2d">eval_cshep2d</link>.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
-    <para>A funÃ§Ã£o operea se <emphasis role="bold">n &gt;= 10</emphasis>, se
-    os nÃ³s nÃ£o sÃ£o todos colineares (i.e. as coordenadas
-    <emphasis>(x,y)</emphasis> dos pontos de interpolaÃ§Ã£o nÃ£o estÃ£o na mesma
-    reta) e se nÃ£o hÃ¡ nÃ³s duplicados (i.e. dois ou mais pontos de interpolaÃ§Ã£o
-    com as mesmas coordenadas <emphasis>(x,y)</emphasis> ). HÃ¡ erro se essas
-    condiÃ§Ãµes nÃ£o sÃ£o respeitadas. </para>
+    <para>A função operea se <emphasis role="bold">n &gt;= 10</emphasis>, se
+    os nós não são todos colineares (i.e. as coordenadas
+    <emphasis>(x,y)</emphasis> dos pontos de interpolação não estão na mesma
+    reta) e se não há nós duplicados (i.e. dois ou mais pontos de interpolação
+    com as mesmas coordenadas <emphasis>(x,y)</emphasis> ). Há erro se essas
+    condições não são respeitadas. </para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
     <programlisting role="example">
-// interpolaÃ§Ã£o de cos(x)cos(y) com pontos de interpolaÃ§Ã£o escolhidos aleatoriamente
-n = 150; // nÃºmero de pontos de interpolaÃ§Ã£o
+// interpolação de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente
+n = 150; // número de pontos de interpolação
 xy = grand(n,2,"unf",0,2*%pi);
 z = cos(xy(:,1)).*cos(xy(:,2));
 xyz = [xy z];
 tl_coef = cshep2d(xyz);
 
-// avaliaÃ§Ã£o em um grid
+// avaliação em um grid
 m = 30;
 xx = linspace(0,2*%pi,m);
 [X,Y] = ndgrid(xx,xx);
@@ -93,14 +93,14 @@ Z = eval_cshep2d(X,Y, tl_coef);
 xbasc()
 plot3d(xx,xx,Z,flag=[2 6 4])
 param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
-xtitle("InterpolaÃ§Ã£o cÃºbica de Shepard de cos(x)cos(y) com pontos de interpolaÃ§Ã£o escolhidos aleatoriamente")
-legends("pontos de interpolaÃ§Ã£o",-9,1)
+xtitle("Interpolação cúbica de Shepard de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente")
+legends("pontos de interpolação",-9,1)
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin2d">splin2d</link></member>

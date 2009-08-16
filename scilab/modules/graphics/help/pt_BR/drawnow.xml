@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="drawnow" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>drawnow</refname>
+
+    <refpurpose>Desenha entidades gráficas escondidas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>drawnow()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Considerando a figura corrente, esta função pode ser usada para
+    desenhar as entidades gráficas escondidas e todos os seus galhos, que
+    podem ter sido adiados por uma chamada anterior à função
+    <literal>drawlater</literal>. A propriedade
+    <literal>immediate_drawing</literal> da figura corrente é ajustada para
+    <literal>"on" </literal>.</para>
+
+    <para>Pode ser usado especialmente com a função
+    <literal>drawlater</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+  f=get("current_figure") // manipulador da figura corrente
+  
+  drawlater()
+  subplot(221);
+  t=1:10;plot2d(t,t.^2)
+  subplot(222);
+  x=0:1:7;plot2d(x,cos(x),2) 
+  subplot(234);
+  plot2d(t,cos(t),3);
+  subplot(235);
+  plot2d(x,sin(2*x),5); 
+  subplot(236);
+  plot2d(t,tan(2*t));  
+ 
+  draw(gca()); //desenhando os eixos correntes e seus galhos
+  draw(f.children([3 4])); // desenhando os eixos especificados e seus galhos
+  drawnow(); // desenhando a figura corrente
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="drawlater">drawlater</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
+</refentry>

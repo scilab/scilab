@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>givens</refname>
 
-    <refpurpose>transforma√ß√£o de Givens</refpurpose>
+    <refpurpose>transformaÁ„o de Givens</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>U=givens(xy)
 U=givens(x,y)
@@ -37,14 +37,14 @@ U=givens(x,y)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x,y</term>
 
         <listitem>
-          <para>dois n√∫meros reais ou complexos</para>
+          <para>dois n˙meros reais ou complexos</para>
         </listitem>
       </varlistentry>
 
@@ -60,7 +60,7 @@ U=givens(x,y)
         <term>U</term>
 
         <listitem>
-          <para>matriz 2x2 unit√°ria</para>
+          <para>matriz 2x2 unit·ria</para>
         </listitem>
       </varlistentry>
 
@@ -75,17 +75,17 @@ U=givens(x,y)
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>U = givens(x, y)</literal> ou <literal>U =
     givens(xy)</literal> com <literal>xy = [x;y]</literal> retorna uma matriz
-    unit√°ria <literal>2</literal>x<literal>2</literal> <literal>U</literal>
+    unit·ria <literal>2</literal>x<literal>2</literal> <literal>U</literal>
     tal que:</para>
 
     <para><literal>U*xy=[r;0]=c</literal>.</para>
 
     <para>Note que <literal>givens(x,y)</literal> e
-    <literal>givens([x;y])</literal> s√£o equivalentes.</para>
+    <literal>givens([x;y])</literal> s„o equivalentes.</para>
   </refsection>
 
   <refsection>
@@ -101,7 +101,7 @@ U*A
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="qr">qr</link></member>

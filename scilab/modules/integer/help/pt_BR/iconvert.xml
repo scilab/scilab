@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>iconvert</refname>
 
-    <refpurpose>conversÃ£o para representaÃ§Ã£o inteira de 1 a 4
+    <refpurpose>conversão para representação inteira de 1 a 4
     bytes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=iconvert(X,itype)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Converte e armazena dados para inteiros de 1, 2 ou 4 bytes.</para>
 
@@ -66,7 +66,7 @@
         <term>itype=0</term>
 
         <listitem>
-          <para>retorna nÃºmeros em ponto flutuante </para>
+          <para>retorna números em ponto flutuante </para>
         </listitem>
       </varlistentry>
 
@@ -74,7 +74,7 @@
         <term>itype=1</term>
 
         <listitem>
-          <para>retorna nÃºmeros int8 no intervalo [-128,127] </para>
+          <para>retorna números int8 no intervalo [-128,127] </para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +82,7 @@
         <term>itype=11</term>
 
         <listitem>
-          <para>retorna nÃºmeros uint8 no intervalo [0,255]</para>
+          <para>retorna números uint8 no intervalo [0,255]</para>
         </listitem>
       </varlistentry>
 
@@ -90,7 +90,7 @@
         <term>itype=2</term>
 
         <listitem>
-          <para>retorna nÃºmeros int16 no intervalo [-32768,32767] </para>
+          <para>retorna números int16 no intervalo [-32768,32767] </para>
         </listitem>
       </varlistentry>
 
@@ -98,7 +98,7 @@
         <term>itype=12</term>
 
         <listitem>
-          <para>retorna nÃºmeros uint16 no intervalo [0, 65535] </para>
+          <para>retorna números uint16 no intervalo [0, 65535] </para>
         </listitem>
       </varlistentry>
 
@@ -106,7 +106,7 @@
         <term>itype=4</term>
 
         <listitem>
-          <para>retorna nÃºmeros int32 no intervalo [-2147483648,2147483647]
+          <para>retorna números int32 no intervalo [-2147483648,2147483647]
           </para>
         </listitem>
       </varlistentry>
@@ -115,7 +115,7 @@
         <term>itype=14</term>
 
         <listitem>
-          <para>retorna nÃºmeros uint32 no intervalo [0, 4294967295]</para>
+          <para>retorna números uint32 no intervalo [0, 4294967295]</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -134,7 +134,7 @@ y=iconvert(b,1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="double">double</link></member>

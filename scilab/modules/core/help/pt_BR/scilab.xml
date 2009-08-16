@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="scilab" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,27 +14,27 @@
     <refname>scilab</refname>
 
     <refpurpose>principal script unix para executar o Scilab e ferramentas de
-    miscel√¢nea</refpurpose>
+    miscel‚nea</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Sqe√º√™ncia de Chamamento</title>
+    <title>Sqe¸Íncia de Chamamento</title>
 
     <synopsis>scilab &lt;Options&gt;</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
         <term>-args Arguments</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, os argumentos s√£o passados ao
-          Scilab. Eles podem ser recebidos pela fun√ß√£o <link
-          linkend="sciargs">sciargs</link>. para passagem de m√∫ltiplos
-          argumentos use, seq√º√™ncias de palavras separadas por espa√ßos entre
+          <para>Se esta opÁ„o estiver presente, os argumentos s„o passados ao
+          Scilab. Eles podem ser recebidos pela funÁ„o <link
+          linkend="sciargs">sciargs</link>. para passagem de m˙ltiplos
+          argumentos use, seq¸Íncias de palavras separadas por espaÁos entre
           aspas simples: <literal>scilab -args 'foo1 foo2'</literal></para>
         </listitem>
       </varlistentry>
@@ -44,7 +44,7 @@
 
         <listitem>
           <para>Para uso apenas em sistemas Xwindow para ajustar um display de
-          servidor X. O display padr√£o √© unix:0.0</para>
+          servidor X. O display padr„o È unix:0.0</para>
 
           <para><literal>-display</literal> pode ser abreviado por
           <literal>-d</literal></para>
@@ -61,13 +61,13 @@
       </varlistentry>
 
       <varlistentry>
-        <term>-e Instru√ß√£o</term>
+        <term>-e InstruÁ„o</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, ent√£o a instru√ß√£o Scilab
-          <literal>Instru√ß√£o</literal> √© executada primeiro (logo ap√≥s a
-          execu√ß√£o do arquivo de inicializa√ß√£o) no Scilab. As op√ß√µes
-          <literal>-e</literal> e <literal>-f</literal> s√£o mutuamente
+          <para>Se esta opÁ„o estiver presente, ent„o a instruÁ„o Scilab
+          <literal>InstruÁ„o</literal> È executada primeiro (logo apÛs a
+          execuÁ„o do arquivo de inicializaÁ„o) no Scilab. As opÁıes
+          <literal>-e</literal> e <literal>-f</literal> s„o mutuamente
           exclusivas</para>
         </listitem>
       </varlistentry>
@@ -76,10 +76,10 @@
         <term>-f arquivo</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, ent√£o o script Scilab
-          <literal>arquivo</literal> √© executado primeiro (logo ap√≥s a
-          execu√ß√£o do arquivo de inicializa√ß√£o) no Scilab. As op√ß√µes
-          <literal>-e</literal> e <literal>-f</literal> s√£o mutuamente
+          <para>Se esta opÁ„o estiver presente, ent„o o script Scilab
+          <literal>arquivo</literal> È executado primeiro (logo apÛs a
+          execuÁ„o do arquivo de inicializaÁ„o) no Scilab. As opÁıes
+          <literal>-e</literal> e <literal>-f</literal> s„o mutuamente
           exclusivas.</para>
         </listitem>
       </varlistentry>
@@ -88,11 +88,11 @@
         <term>-l idioma</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, ela fica o idioma do usu√°rio.
-          Os poss√≠veis valores para <literal>idioma</literal> s√£o
-          <literal>'fr'</literal> para franc√™s, <literal>'en'</literal> para
-          ingl√™s e 'br' para portugu√™s brasileiro. O idioma padr√£o √© ingl√™s. O
-          valor padr√£o √© fixado no arquivo
+          <para>Se esta opÁ„o estiver presente, ela fica o idioma do usu·rio.
+          Os possÌveis valores para <literal>idioma</literal> s„o
+          <literal>'fr'</literal> para francÍs, <literal>'en'</literal> para
+          inglÍs e 'br' para portuguÍs brasileiro. O idioma padr„o È inglÍs. O
+          valor padr„o È fixado no arquivo
           <literal>scilab.start</literal>.</para>
         </listitem>
       </varlistentry>
@@ -101,8 +101,8 @@
         <term>-mem N</term>
 
         <listitem>
-          <para>Ajusta o tamanho de pilha inicial, para uso com a op√ß√£o -ns.
-          Sem a op√ß√£o -ns, a pilha inicial √© ajustada pelo script
+          <para>Ajusta o tamanho de pilha inicial, para uso com a opÁ„o -ns.
+          Sem a opÁ„o -ns, a pilha inicial È ajustada pelo script
           scilab.start.</para>
         </listitem>
       </varlistentry>
@@ -111,8 +111,8 @@
         <term>-nb</term>
 
         <listitem>
-          <para>Se esta op√ß√£o est√° presente, ent√£o o cart√£o de boas-vindas n√£o
-          √© impresso.</para>
+          <para>Se esta opÁ„o est· presente, ent„o o cart„o de boas-vindas n„o
+          È impresso.</para>
         </listitem>
       </varlistentry>
 
@@ -120,10 +120,10 @@
         <term>-ns</term>
 
         <listitem>
-          <para>Se esta op√ß√£o est√° presente, o arquivo de inicializa√ß√£o
+          <para>Se esta opÁ„o est· presente, o arquivo de inicializaÁ„o
           <literal>SCI/etc/scilab.start</literal> e os arquivos de
-          inicializa√ß√£o do usu√°rio <literal>SCIHOME/.scilab</literal>,
-          <literal>SCIHOME/scilab.ini</literal> n√£o s√£o executados.</para>
+          inicializaÁ„o do usu·rio <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> n„o s„o executados.</para>
         </listitem>
       </varlistentry>
 
@@ -131,9 +131,9 @@
         <term>-nouserstartup</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, os arquivos de inicializa√ß√£o
-          do usu√°rio <literal>SCIHOME/.scilab</literal>,
-          <literal>SCIHOME/scilab.ini</literal> n√£o s√£o executados.</para>
+          <para>Se esta opÁ„o estiver presente, os arquivos de inicializaÁ„o
+          do usu·rio <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> n„o s„o executados.</para>
         </listitem>
       </varlistentry>
 
@@ -141,8 +141,8 @@
         <term>-nw</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, ent√£o o Scilab n√£o √© executado
-          em uma janela espec√≠fica.</para>
+          <para>Se esta opÁ„o estiver presente, ent„o o Scilab n„o È executado
+          em uma janela especÌfica.</para>
         </listitem>
       </varlistentry>
 
@@ -150,9 +150,9 @@
         <term>-nwni</term>
 
         <listitem>
-          <para>Se esta op√ß√£o estiver presente, ent√£o o Scilab n√£o √© executado
-          em uma janela espec√≠fica e n√£o aceita intera√ß√£o do usu√°rio. Esta
-          op√ß√£o pode ser utilizada com as op√ß√µes -f ou -e .</para>
+          <para>Se esta opÁ„o estiver presente, ent„o o Scilab n„o È executado
+          em uma janela especÌfica e n„o aceita interaÁ„o do usu·rio. Esta
+          opÁ„o pode ser utilizada com as opÁıes -f ou -e .</para>
         </listitem>
       </varlistentry>
 
@@ -160,7 +160,7 @@
         <term>--texmacs</term>
 
         <listitem>
-          <para>Esta op√ß√£o √© reservada para TexMacs.</para>
+          <para>Esta opÁ„o È reservada para TexMacs.</para>
         </listitem>
       </varlistentry>
 
@@ -168,7 +168,7 @@
         <term>-version</term>
 
         <listitem>
-          <para>Esta op√ß√£o imprime a vers√£o do produto e sai.</para>
+          <para>Esta opÁ„o imprime a vers„o do produto e sai.</para>
         </listitem>
       </varlistentry>
     </variablelist>

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="acoth" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -16,17 +16,17 @@
   <refnamediv>
     <refname>acoth</refname>
 
-    <refpurpose>arco-cotangente hiperbÃ³lico elemento a elemento</refpurpose>
+    <refpurpose>arco-cotangente hiperbólico elemento a elemento</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = acoth(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,9 +48,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa o arco-cotangente hiperbÃ³lico do argumento elemento a
+    <para>Computa o arco-cotangente hiperbólico do argumento elemento a
     elemento.</para>
   </refsection>
 
@@ -65,7 +65,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="atanh">atanh</link></member>
@@ -83,8 +83,8 @@
   </refsection>
 
   <refsection>
-    <title>FunÃ§Ãµes Usadas</title>
+    <title>Funções Usadas</title>
 
-    <para>Esta rotina Ã© baseada na funÃ§Ã£o <literal>atanh</literal>.</para>
+    <para>Esta rotina é baseada na função <literal>atanh</literal>.</para>
   </refsection>
 </refentry>

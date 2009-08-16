@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xarrows(nx,ny,[arsize,style])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>arsize</term>
 
         <listitem>
-          <para>escalar real, o tamanho da cabe√ßa da seta. O tamanho padr√£o
+          <para>escalar real, o tamanho da cabeÁa da seta. O tamanho padr„o
           pode ser obtido ajustando arsize para -1. </para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@
         <listitem>
           <para>matriz ou escalar. Se <literal>style</literal> for um escalar
           positivo, fornece a cor a ser usada em todas as setas. Se for
-          negativo, a cor corrente √© utilizada. Se for um vetor
+          negativo, a cor corrente È utilizada. Se for um vetor
           <literal>style(i)</literal> fornece a cor a ser utilizada no vetor
           <literal>i</literal>.</para>
         </listitem>
@@ -69,13 +69,13 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xarrows</literal> desenha um conjunto de setas dadas por
     <literal>nx</literal> e <literal>ny</literal>. Se <literal>nx</literal> e
-    <literal>ny</literal> forem vetores, a i-√©sima seta √© definida por
+    <literal>ny</literal> forem vetores, a i-Èsima seta È definida por
     <literal>(nx(i),ny(i))--&gt;(nx(i+1),ny(i+1))</literal>. Se
-    <literal>nx</literal> e <literal>ny</literal> s√£o matrizes:</para>
+    <literal>nx</literal> e <literal>ny</literal> s„o matrizes:</para>
 
     <programlisting>
 
@@ -84,12 +84,12 @@ ny=[yi_1 y1_2 ...; yf_1 yf_2 ...]
    
     </programlisting>
 
-    <para>a <literal>k</literal>-√©sima seta √© definida por
+    <para>a <literal>k</literal>-Èsima seta È definida por
     <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
 
-    <para><literal>xarrows</literal> utiliza a escala de gr√°ficos corrente que
-    pode ser ajustada atrav√©s de uma chamada a uma fun√ß√£o de esbo√ßo de
-    alto-n√≠vel como <literal>plot2d</literal>.</para>
+    <para><literal>xarrows</literal> utiliza a escala de gr·ficos corrente que
+    pode ser ajustada atravÈs de uma chamada a uma funÁ„o de esboÁo de
+    alto-nÌvel como <literal>plot2d</literal>.</para>
   </refsection>
 
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>amell</refname>
 
-    <refpurpose>funÃ§Ã£o "am" de Jacobi</refpurpose>
+    <refpurpose>função "am" de Jacobi</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[sn]=amell(u,k)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,17 +64,17 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa a funÃ§Ã£o elÃ­ptica de Jacobi <literal>am(u,k)</literal> onde
-    <literal>k</literal> Ã© o parÃ¢metro e <literal>u</literal> Ã© o argumento.
-    Se <literal>u</literal> Ã© um vetor <literal>sn</literal> Ã© o vetor dos
-    valores computados (elemento a elemento) . Usado na funÃ§Ã£o
+    <para>Computa a função elíptica de Jacobi <literal>am(u,k)</literal> onde
+    <literal>k</literal> é o parâmetro e <literal>u</literal> é o argumento.
+    Se <literal>u</literal> é um vetor <literal>sn</literal> é o vetor dos
+    valores computados (elemento a elemento) . Usado na função
     <literal>%sn</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="delip">delip</link></member>

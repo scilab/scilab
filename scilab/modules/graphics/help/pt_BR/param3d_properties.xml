@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="param3d_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>param3d_properties</refname>
+
+    <refpurpose>description of the 3D curves entities properties</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Param3d é uma folha na hierarquia de entidades
+    gráficas.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, as curvas são
+          visíveis, a propriedade é <literal>"on" </literal>. Se
+          <literal>"off"</literal> as curvas não são desenhadas na
+          tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo contém as coordenadas de curvas 3d. É a matriz
+          <literal>[X,Y,Z]</literal> tal que <literal>X(:,i)</literal>,
+          <literal>Y(:,i)</literal>, <literal>Z(:,i)</literal> contém as
+          coordenadas 3d da i-ésima curva. Este campo contém o valor padrão da
+          propriedade <literal>line_style</literal> para objetos segmentos,
+          arcos, retângulos e poligonais.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>line_mode</literal> para a poligonal. O valor pode ser
+          <literal>"on" </literal> (linha desenhada) ou
+          <literal>"off"</literal> (nenhuma linha desenhada). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style:</term>
+
+        <listitem>
+          <para> este campo seleciona o tipo de linha a ser utilizada para
+          desenhar linhas. O valor deve ser um inteiro em [0 6]. 0 significa
+          linha sólida, o restante seleciona tracejados (ver <link
+          linkend="getlinestyle">getlinestyle</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>polyline_style:</term>
+
+        <listitem>
+          <para>este campo seleciona o modo como as curvas são desenhadas:
+          modos interpolado (padrão), escada, esboço de barras, em setas e
+          preenchido estão disponíveis por índices inteiros em [1:5]. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_mode</literal>. Deve ser <literal>"on"</literal> ou
+          <literal>"off"</literal> (valor padrão).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_style:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_style</literal>. A propriedade
+          <literal>mark_style</literal> seleciona o tipo de marca a ser
+          exibida. o valor deve ser um inteiro em [0 9] que significa: ponto,
+          sinal de mais, cruz, estrela, rombo preenchido, rombo, triângulo
+          para cima, triângulo para baixo, trevo e círculo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size_unit:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_size_unit</literal>. Se
+          <literal>mark_size_unit</literal> for ajustado para
+          <literal>"point"</literal>, então o valor de
+          <literal>mark_size</literal> é diretamente dado em pontos. Quando
+          <literal>mark_size_unit</literal> é ajustado para
+          <literal>"tabulated"</literal>, <literal>mark_size</literal> é
+          computado em relação ao array de tamanho de fonte: logo, seu valor
+          deve ser um inteiro em [0 5] que significa 8pt, 10pt, 12pt, 14pt,
+          18pt e 24pt. Note que <link linkend="param3d">param3d</link> e
+          funções puras do Scilab utilizam o modo <literal>tabulated</literal>
+          como padrão; quando se utiliza a função <link
+          linkend="plot">plot</link> , o modo <literal>point</literal> é
+          automaticamente habilitado. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_size</literal>. A propriedade
+          <literal>mark_size</literal> seleciona o tamanho de fonte da marca a
+          ser exibida. Deve ser um valor inteiro em [0 5] que significa 8pt,
+          10pt, 12pt, 14pt, 18pt e 24pt (ver <link
+          linkend="getmark">getmark</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_foreground</literal> que é a cor da borda das marcas.
+          O valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_background:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>mark_background</literal> que é a cor da face das marcas. O
+          valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>thickness</literal> (espessura) das linhas utilizadas para
+          desenhar os eixos e curvas. Deve ser um inteiro positivo. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>este campo contém o índice de cor utilizado para desenhar as
+          curvas. O valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>clip_state</literal>. O valor pode ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que todas as curvas
+              criadas posteriormente não serão recortadas(valor padrão).
+              </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que todas as cruvas
+              criadas posteriormente serão recortadas fora do fora das
+              fronteiras da entidade Axes. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que todas as curvas
+              criadas posteriormente serão recortadas fora do retângulo dado
+              pela propriedade clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>clip_box</literal>. É uma matriz vazia se clip_state é
+          <literal>"off"</literal>. Em outros casos, o recorte é dado pelo
+          vetor <literal>[x,y,w,h]</literal> (ponto superior esquerdo,
+          largura, altura). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade Param3d e recuperá-la.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador para a raiz. A raiz de
+          uma entidade curvas 3d deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   
+   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+   t=[0:0.1:5*%pi]';
+   param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
+  
+   a.rotation_angles=[65,75]; 
+   a.data_bounds=[-1,-1,-1;1,1,2]; //limites dados por data_bounds
+   a.thickness = 2;
+   h=a.children //obtendo o manipulador da entidade param3d: um Compound composto de duas curvas
+   h.children(1).foreground = 3 // primeira curva
+   curve2 = h.children(2);
+   curve2.foreground = 6;
+   curve2.mark_style = 2;
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="param3d">param3d</link></member>
+
+      <member><link linkend="param3d1">param3d1</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="getmd5" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>getmd5</refname>
 
-    <refpurpose>retorna soma de verificaÃ§Ã£o md5</refpurpose>
+    <refpurpose>retorna soma de verificação md5</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>res=getmd5(filename)
 res=getmd5(ParamString,'string')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -54,9 +54,9 @@ res=getmd5(ParamString,'string')</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>getmd5(...)</literal> retorna a soma de verificaÃ§Ã£o md5 de
+    <para><literal>getmd5(...)</literal> retorna a soma de verificação md5 de
     um arquivo ou um string.</para>
   </refsection>
 

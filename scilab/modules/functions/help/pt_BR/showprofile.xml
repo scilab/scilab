@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="showprofile" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>showprofile</refname>
+
+    <refpurpose>extrai e exibe profiles (dossiês) de execução de uma função
+    Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>showprofile(fun)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+
+        <listitem>
+          <para>função Scilab</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para utilizar <literal>showprofile</literal> a função Scilab deve
+    ter sido preparada para profiling (análise de performance) (ver
+    getf).</para>
+
+    <para>Para tal função,Quando tal função é executada, o sistema conta
+    quantas número de vezes que cada linha é executada e quanto tempo de cpu é
+    gasto para execução de cada linha. Estes dados são armazenados dentro da
+    estrutura de dados da função. A função <literal>showprofile</literal>
+    retorna resultados de profiling (ver <literal>profile</literal>) com o
+    texto das linhas da função.</para>
+
+    <para>O texto da função é reconstruído com
+    <literal>fun2string</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//definindo função e preparando-a para profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//chamada à função
+foo(30)
+//obtendo profiles
+showprofile(foo)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="profile">profile</link></member>
+
+      <member><link linkend="plotprofile">plotprofile</link></member>
+
+      <member><link linkend="fun2string">fun2string</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

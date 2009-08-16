@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>sprand</refname>
 
-    <refpurpose>matriz esparsa rand√¥mica</refpurpose>
+    <refpurpose>matriz esparsa randÙmica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>sp=sprand(nrows,ncols,fill [,typ])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>nrows</term>
 
         <listitem>
-          <para>inteiro (n√∫mero de linhas) </para>
+          <para>inteiro (n˙mero de linhas) </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>ncols</term>
 
         <listitem>
-          <para>inteiro (n√∫mero de colunas)</para>
+          <para>inteiro (n˙mero de colunas)</para>
         </listitem>
       </varlistentry>
 
@@ -65,7 +65,7 @@
         <term>typ</term>
 
         <listitem>
-          <para>string (<literal>'uniform'</literal> (padr√£o) ou
+          <para>string (<literal>'uniform'</literal> (padr„o) ou
           <literal>'normal'</literal>)</para>
         </listitem>
       </varlistentry>
@@ -81,17 +81,17 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>sp=sprand(nrows,ncols,fill)</literal> retorna uma matriz
     esparsa <literal>sp</literal> com <literal>nrows</literal> linhas e
     <literal>ncols</literal> colunas e aproximadamente
-    <literal>fill*nrows*ncols</literal> entradas n√£o-nulas.</para>
+    <literal>fill*nrows*ncols</literal> entradas n„o-nulas.</para>
 
     <para>Se <literal>typ='uniform'</literal> valores uniformemente
-    distribu√≠dos em [0,1] s√£o gerados. Se <literal>typ='normal'</literal>
-    valores normalmente distribu√≠dos s√£o gerados (m√©dia=0 e desvio
-    padr√£o=1).</para>
+    distribuÌdos em [0,1] s„o gerados. Se <literal>typ='normal'</literal>
+    valores normalmente distribuÌdos s„o gerados (mÈdia=0 e desvio
+    padr„o=1).</para>
   </refsection>
 
   <refsection>
@@ -105,7 +105,7 @@ W=sprand(100,1000,0.001);
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="parents" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,13 +13,13 @@
   <refnamediv>
     <refname>parents</refname>
 
-    <refpurpose>( ) par√™nteses esquerdo e direito</refpurpose>
+    <refpurpose>( ) parÍnteses esquerdo e direito</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
-    <synopsis>(express√£o)
+    <synopsis>(express„o)
 [...]=func(e1,e2,...)
 [x1,x2,...]=(e1,e2,...)
 x(i,j)
@@ -28,14 +28,14 @@ v(i)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros </title>
+    <title>Par‚metros </title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matriz de qualquer tipo poss√≠vel </para>
+          <para>matriz de qualquer tipo possÌvel </para>
         </listitem>
       </varlistentry>
 
@@ -43,7 +43,7 @@ v(i)
         <term>v</term>
 
         <listitem>
-          <para>vetor linha ou coluna de qualquer tipo poss√≠vel </para>
+          <para>vetor linha ou coluna de qualquer tipo possÌvel </para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ v(i)
         <term>l</term>
 
         <listitem>
-          <para>vari√°vel tipo lista </para>
+          <para>vari·vel tipo lista </para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@ v(i)
         <term>func</term>
 
         <listitem>
-          <para>qualquer nome de fun√ß√£o </para>
+          <para>qualquer nome de funÁ„o </para>
         </listitem>
       </varlistentry>
 
@@ -67,29 +67,29 @@ v(i)
         <term>e1,e2,...</term>
 
         <listitem>
-          <para>qualquer tipo poss√≠vel de express√£o</para>
+          <para>qualquer tipo possÌvel de express„o</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Par√™nteses esquerdo e direito s√£o usados para</para>
+    <para>ParÍnteses esquerdo e direito s„o usados para</para>
 
-    <para>* Especificar ordem de avalia√ß√£o dentro de express√µes,</para>
+    <para>* Especificar ordem de avaliaÁ„o dentro de expressıes,</para>
 
-    <para>* Formar listas de argumentos do lado direito de uma fun√ß√£o. Dentro
-    de lados direitos m√∫ltiplos, os argumentos devem ser separados por
-    v√≠rgula.</para>
+    <para>* Formar listas de argumentos do lado direito de uma funÁ„o. Dentro
+    de lados direitos m˙ltiplos, os argumentos devem ser separados por
+    vÌrgula.</para>
 
     <para>* Selecionar elementos dentro de vetores, matrizes e listas.Ver
-    ajuda em insertion e extraction para maiores informa√ß√µes.</para>
+    ajuda em insertion e extraction para maiores informaÁıes.</para>
 
-    <para> * [x1,x2,...]=(e1,e2,...) √© equivalente a realizar primeiro %t_1 =
-    e1, %t_2 = e2, ..., e ent√£o x1 = %t_1, x2 = %t_2, ..., onde as vari√°veis
-    %t_i, i = 1, 2, ... s√£o vis√≠veis ao usu√°rio.</para>
+    <para> * [x1,x2,...]=(e1,e2,...) È equivalente a realizar primeiro %t_1 =
+    e1, %t_2 = e2, ..., e ent„o x1 = %t_1, x2 = %t_2, ..., onde as vari·veis
+    %t_i, i = 1, 2, ... s„o visÌveis ao usu·rio.</para>
   </refsection>
 
   <refsection>
@@ -125,7 +125,7 @@ v=%t([1 1 1 1 1])
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="colon">colon</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>axes_properties</refname>
 
-    <refpurpose>descri√ß√£o das propriedades de entidades Axes (de
+    <refpurpose>descriÁ„o das propriedades de entidades Axes (de
     eixos)</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>A entidade Axes √© o segundo n√≠vel da hierarquia das entidades de
-    gr√°fico. Esta entidade define os par√¢metros que permitem a mudan√ßa de
-    coordenadas e o esbo√ßo dos eixos tanto quanto os valores padr√µes dos
-    par√¢metros para cria√ß√£o de entidades galhos</para>
+    <para>A entidade Axes È o segundo nÌvel da hierarquia das entidades de
+    gr·fico. Esta entidade define os par‚metros que permitem a mudanÁa de
+    coordenadas e o esboÁo dos eixos tanto quanto os valores padrıes dos
+    par‚metros para criaÁ„o de entidades galhos</para>
 
     <variablelist>
       <varlistentry>
@@ -46,7 +46,7 @@
               <term>parent:</term>
 
               <listitem>
-                <para>este campo cont√©m o manipulador da figura raiz</para>
+                <para>este campo contÈm o manipulador da figura raiz</para>
               </listitem>
             </varlistentry>
 
@@ -55,7 +55,7 @@
 
               <listitem>
                 <para>Fvetor FA contendo os manipuladores de todos os objetos
-                gr√°ficos galhos dos eixos. Estes objetos gr√°ficos s√£o do tipo
+                gr·ficos galhos dos eixos. Estes objetos gr·ficos s„o do tipo
                 <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
                 <literal>"Polyline"</literal>, <literal>"Segs"</literal>,
                 <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,..
@@ -80,13 +80,13 @@
               <term>visible:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor da propriedade
-                <literal>visible</literal> (vis√≠vel) para os eixos. O valor
+                <para>este campo contÈm o valor da propriedade
+                <literal>visible</literal> (visÌvel) para os eixos. O valor
                 pode ser <literal>"on" </literal> (ligado) ou
-                <literal>"off"</literal> . (desligado). Por padr√£o, os eixos
-                s√£o vis√≠veis, <literal>"on"</literal> , caso todos os galhos
-                vis√≠veis sejam exibidos na tela. Se <literal>"off"</literal> ,
-                os eixos e seus galhos n√£o s√£o esbo√ßados. </para>
+                <literal>"off"</literal> . (desligado). Por padr„o, os eixos
+                s„o visÌveis, <literal>"on"</literal> , caso todos os galhos
+                visÌveis sejam exibidos na tela. Se <literal>"off"</literal> ,
+                os eixos e seus galhos n„o s„o esboÁados. </para>
               </listitem>
             </varlistentry>
 
@@ -96,20 +96,20 @@
               <listitem>
                 <para>um vetor de strings <literal>1x3</literal> string
                 vector. Esta propriedade especifica se o eixo deve ser
-                desenhado ou n√£o. Seu valor pode ser <literal>"on"</literal>
+                desenhado ou n„o. Seu valor pode ser <literal>"on"</literal>
                 ou <literal>"off"</literal> para um ajuste global. Para agir
-                em um √∫nico eixo, a sintaxe √©
-                <literal>axes_visible(N)</literal> onde <literal>N</literal> √©
+                em um ˙nico eixo, a sintaxe È
+                <literal>axes_visible(N)</literal> onde <literal>N</literal> È
                 <literal>1,2</literal> ou <literal>3</literal> correspondentes
                 aos eixos <literal> x,y</literal> ou <literal>z</literal>.O
-                dado de escala e, se requerido, os grides s√£o desenhados se o
+                dado de escala e, se requerido, os grides s„o desenhados se o
                 valor for <literal>"on"</literal>. Note que ao criar uma
                 simples entidade de eixo usando os comandos
                 <literal>gca()</literal> (atalho para
                 <literal>get"current_axes")</literal>) ou
                 <literal>gcf()</literal> (atalho para
                 <literal>get(current_figure)</literal>), a visibilidade dos
-                eixos √© ajustada para <literal>"off"</literal>.</para>
+                eixos È ajustada para <literal>"off"</literal>.</para>
               </listitem>
             </varlistentry>
 
@@ -118,12 +118,12 @@
 
               <listitem>
                 <para>um vetor de strings <literal>1x3</literal>
-                correspondentes aos tr√™s eixos (X,Y,Z). Para cada eixo, a
-                propriedade especifica a dire√ß√£o dos valores crescentes. Se
-                <literal>"off"</literal>, a dire√ß√£o padr√£o √© usada. Se
-                <literal>"on"</literal>, a dire√ß√£o √© invertida. Tamb√©m √©
-                poss√≠vel utilizar apenas um string, <literal>"on"</literal> ou
-                <literal>"off"</literal>, para ajustar simultaneamente os tr√™s
+                correspondentes aos trÍs eixos (X,Y,Z). Para cada eixo, a
+                propriedade especifica a direÁ„o dos valores crescentes. Se
+                <literal>"off"</literal>, a direÁ„o padr„o È usada. Se
+                <literal>"on"</literal>, a direÁ„o È invertida. TambÈm È
+                possÌvel utilizar apenas um string, <literal>"on"</literal> ou
+                <literal>"off"</literal>, para ajustar simultaneamente os trÍs
                 dados. </para>
               </listitem>
             </varlistentry>
@@ -132,12 +132,12 @@
               <term>grid:</term>
 
               <listitem>
-                <para>o valor do campo √© um vetor
+                <para>o valor do campo È um vetor
                 <literal>[x-grid,y-grid,z-grid]</literal> onde
-                <literal>x-grid</literal> controla o esbo√ßo para o eixo x, e
+                <literal>x-grid</literal> controla o esboÁo para o eixo x, e
                 <literal>y-grid, z-grid</literal> respectivamente para os
-                eixos y e z. O valor padr√£o √© <literal>-1</literal>, os grides
-                n√£o s√£o desenhados, caso contr√°rio, os grides s√£o desenhados
+                eixos y e z. O valor padr„o È <literal>-1</literal>, os grides
+                n„o s„o desenhados, caso contr·rio, os grides s„o desenhados
                 utilizando a cor dada indexada pelo valor do grid. </para>
               </listitem>
             </varlistentry>
@@ -146,11 +146,11 @@
               <term>grid_position:</term>
 
               <listitem>
-                <para>Este string determina a posi√ß√£o do grido comparada √†s
-                outras entidades gr√°ficas. Seu valor pode ser
-                <literal>"foreground"</literal> para desenhar o grid √† frente
+                <para>Este string determina a posiÁ„o do grido comparada ‡s
+                outras entidades gr·ficas. Seu valor pode ser
+                <literal>"foreground"</literal> para desenhar o grid ‡ frente
                 das outras entidades ou <literal>"background"</literal> para
-                desenhar o grid atr√°s.</para>
+                desenhar o grid atr·s.</para>
               </listitem>
             </varlistentry>
 
@@ -158,23 +158,23 @@
               <term>x_location:</term>
 
               <listitem>
-                <para>especifica a localiza√ß√£o do eixo y. Os valores poss√≠veis
-                s√£o:</para>
+                <para>especifica a localizaÁ„o do eixo y. Os valores possÌveis
+                s„o:</para>
 
                 <itemizedlist>
                   <listitem>
-                    <para><literal>"bottom"</literal>. Neste caso, o eixo y √©
-                    desenhado na parte direita do ret√¢ngulo de eixos. </para>
+                    <para><literal>"bottom"</literal>. Neste caso, o eixo y È
+                    desenhado na parte direita do ret‚ngulo de eixos. </para>
                   </listitem>
 
                   <listitem>
-                    <para><literal>"top"</literal>. Neste caso, o eixo y √©
-                    desenhado na parte esquerda do ret√¢ngulo de eixos. </para>
+                    <para><literal>"top"</literal>. Neste caso, o eixo y È
+                    desenhado na parte esquerda do ret‚ngulo de eixos. </para>
                   </listitem>
 
                   <listitem>
-                    <para><literal>"middle"</literal> . Neste caso, o eixo y √©
-                    desenhado na posi√ß√£o mais pr√≥xima da coordenada 0 do eixo
+                    <para><literal>"middle"</literal> . Neste caso, o eixo y È
+                    desenhado na posiÁ„o mais prÛxima da coordenada 0 do eixo
                     x. </para>
                   </listitem>
                 </itemizedlist>
@@ -185,23 +185,23 @@
               <term>y_location:</term>
 
               <listitem>
-                <para>especifica a localiza√ß√£o do eixo y. Os valores poss√≠veis
-                s√£o:</para>
+                <para>especifica a localizaÁ„o do eixo y. Os valores possÌveis
+                s„o:</para>
 
                 <itemizedlist>
                   <listitem>
-                    <para><literal>"left"</literal>. Neste caso, o eixo y √©
-                    desenhado na parte direita do ret√¢ngulo de eixos.</para>
+                    <para><literal>"left"</literal>. Neste caso, o eixo y È
+                    desenhado na parte direita do ret‚ngulo de eixos.</para>
                   </listitem>
 
                   <listitem>
-                    <para><literal>"right"</literal>. Neste caso, o eixo y √©
-                    desenhado na parte esquerda do ret√¢ngulo de eixos.</para>
+                    <para><literal>"right"</literal>. Neste caso, o eixo y È
+                    desenhado na parte esquerda do ret‚ngulo de eixos.</para>
                   </listitem>
 
                   <listitem>
-                    <para><literal>"middle"</literal>. Neste caso, o eixo y √©
-                    desenhado na posi√ß√£o mais pr√≥xima da coordenada 0 do eixo
+                    <para><literal>"middle"</literal>. Neste caso, o eixo y È
+                    desenhado na posiÁ„o mais prÛxima da coordenada 0 do eixo
                     x. </para>
                   </listitem>
                 </itemizedlist>
@@ -212,10 +212,10 @@
               <term>title:</term>
 
               <listitem>
-                <para>um objeto anexado √† entidade de eixos que retorna um
-                manipulador gr√°fico de uma estrutura label (r√≥tulo) (ver <link
+                <para>um objeto anexado ‡ entidade de eixos que retorna um
+                manipulador gr·fico de uma estrutura label (rÛtulo) (ver <link
                 linkend="label_properties">label_properties</link>). Este
-                campo define um t√≠tulo com op√ß√µes sobre este label. </para>
+                campo define um tÌtulo com opÁıes sobre este label. </para>
               </listitem>
             </varlistentry>
 
@@ -223,10 +223,10 @@
               <term>x_label:</term>
 
               <listitem>
-                <para> um objeto anexado √† entidade de eixos que retorna um
-                manipulador gr√°fico de uma estrutura label (ver <link
+                <para> um objeto anexado ‡ entidade de eixos que retorna um
+                manipulador gr·fico de uma estrutura label (ver <link
                 linkend="label_properties">label_properties</link>). Este
-                campo define um label sobre o eixo x com op√ß√µes sobre este
+                campo define um label sobre o eixo x com opÁıes sobre este
                 label. </para>
               </listitem>
             </varlistentry>
@@ -235,10 +235,10 @@
               <term>y_label:</term>
 
               <listitem>
-                <para> um objeto anexado √† entidade de eixos que retorna um
-                manipulador gr√°fico de uma estrutura label (ver <link
+                <para> um objeto anexado ‡ entidade de eixos que retorna um
+                manipulador gr·fico de uma estrutura label (ver <link
                 linkend="label_properties">label_properties</link>). Este
-                campo define um label sobre o eixo y com op√ß√µes sobre este
+                campo define um label sobre o eixo y com opÁıes sobre este
                 label. </para>
               </listitem>
             </varlistentry>
@@ -247,10 +247,10 @@
               <term>z_label:</term>
 
               <listitem>
-                <para>um objeto anexado √† entidade de eixos que retorna um
-                manipulador gr√°fico de uma estrutura label (ver <link
+                <para>um objeto anexado ‡ entidade de eixos que retorna um
+                manipulador gr·fico de uma estrutura label (ver <link
                 linkend="label_properties">label_properties</link>). Este
-                campo define um label sobre o eixo z com op√ß√µes sobre este
+                campo define um label sobre o eixo z com opÁıes sobre este
                 label. </para>
               </listitem>
             </varlistentry>
@@ -261,15 +261,15 @@
               <listitem>
                 <para>um vetor de strings <literal>1x3</literal> fornecendo o
                 status auto_ticks para cada eixo. Esta propriedade especifica
-                se cada eixo √© graduado utilizando-se um algoritmo
-                computacional ou n√£o (gradua√ß√µes feitas pelo usu√°rio). Os
+                se cada eixo È graduado utilizando-se um algoritmo
+                computacional ou n„o (graduaÁıes feitas pelo usu·rio). Os
                 valores podem ser <literal>"on"</literal> ou
                 <literal>"off"</literal> para ajuste global. Para agir em um
-                √∫nico eixo, a sintaxe √© <literal>auto_ticks(N)</literal> onde
-                <literal>N</literal> √© <literal>1,2</literal> ou
+                ˙nico eixo, a sintaxe È <literal>auto_ticks(N)</literal> onde
+                <literal>N</literal> È <literal>1,2</literal> ou
                 <literal>3</literal> correspondentes aos eixos
                 <literal>x,y</literal> ou <literal>z</literal>. Note que a
-                edi√ß√£o de tiques (textos e/ou localiza√ß√µes) via
+                ediÁ„o de tiques (textos e/ou localizaÁıes) via
                 <literal>x_ticks, y_ticks</literal> ou
                 <literal>z_ticks</literal> ajusta automaticamente
                 <literal>auto_ticks</literal> para <literal>"off"</literal>
@@ -281,11 +281,11 @@
               <term>x_ticks.locations:</term>
 
               <listitem>
-                <para>um vetor de reais contendo a localiza√ß√£o das gradua√ß√µes
+                <para>um vetor de reais contendo a localizaÁ„o das graduaÁıes
                 sobre o eixo x. Esta propriedade pode ser editada
                 especificando-se um novo vetor de reais (de mesmo tamanho).
-                Para especificar gradua√ß√µes maiores ou menores, pode-se agir
-                no tlist <literal>x_ticks</literal> definindo tamb√©m um vetor
+                Para especificar graduaÁıes maiores ou menores, pode-se agir
+                no tlist <literal>x_ticks</literal> definindo tambÈm um vetor
                 de strings <literal>x_ticks.labels</literal>.</para>
               </listitem>
             </varlistentry>
@@ -294,11 +294,11 @@
               <term>y_ticks.locations:</term>
 
               <listitem>
-                <para>um vetor de reais contendo a localiza√ß√£o das gradua√ß√µes
+                <para>um vetor de reais contendo a localizaÁ„o das graduaÁıes
                 sobre o eixo y. Esta propriedade pode ser editada
                 especificando-se um novo vetor de reais (de mesmo tamanho).
-                Para especificar gradua√ß√µes maiores ou menores, pode-se agir
-                no tlist <literal>y_ticks</literal> definindo tamb√©m um vetor
+                Para especificar graduaÁıes maiores ou menores, pode-se agir
+                no tlist <literal>y_ticks</literal> definindo tambÈm um vetor
                 de strings <literal>y_ticks.labels</literal>.</para>
               </listitem>
             </varlistentry>
@@ -307,11 +307,11 @@
               <term>z_ticks.locations:</term>
 
               <listitem>
-                <para>um vetor de reais contendo a localiza√ß√£o das gradua√ß√µes
+                <para>um vetor de reais contendo a localizaÁ„o das graduaÁıes
                 sobre o eixo z. Esta propriedade pode ser editada
                 especificando-se um novo vetor de reais (de mesmo tamanho).
-                Para especificar gradua√ß√µes maiores ou menores, pode-se agir
-                no tlist <literal>z_ticks</literal> definindo tamb√©m um vetor
+                Para especificar graduaÁıes maiores ou menores, pode-se agir
+                no tlist <literal>z_ticks</literal> definindo tambÈm um vetor
                 de strings <literal>z_ticks.labels</literal>.</para>
               </listitem>
             </varlistentry>
@@ -320,11 +320,11 @@
               <term>x_ticks.labels:</term>
 
               <listitem>
-                <para>um vetor de strings contendo r√≥tulos para as gradua√ß√µes
+                <para>um vetor de strings contendo rÛtulos para as graduaÁıes
                 no eixo x. Esta propriedade pode ser editada especificando-se
-                um novo vetor (de mesmo tamanho). Para especificar gradua√ß√µes
+                um novo vetor (de mesmo tamanho). Para especificar graduaÁıes
                 menores ou maiores, pode se agir no tlist
-                <literal>x_ticks</literal> definindo tamb√©m um vetor de reais
+                <literal>x_ticks</literal> definindo tambÈm um vetor de reais
                 <literal>x_ticks.locations</literal> .</para>
               </listitem>
             </varlistentry>
@@ -333,11 +333,11 @@
               <term>y_ticks.labels:</term>
 
               <listitem>
-                <para>um vetor de strings contendo r√≥tulos para as gradua√ß√µes
+                <para>um vetor de strings contendo rÛtulos para as graduaÁıes
                 no eixo y. Esta propriedade pode ser editada especificando-se
-                um novo vetor (de mesmo tamanho). Para especificar gradua√ß√µes
+                um novo vetor (de mesmo tamanho). Para especificar graduaÁıes
                 menores ou maiores, pode se agir no tlist
-                <literal>y_ticks</literal> definindo tamb√©m um vetor de reais
+                <literal>y_ticks</literal> definindo tambÈm um vetor de reais
                 <literal>y_ticks.locations</literal> .</para>
               </listitem>
             </varlistentry>
@@ -346,11 +346,11 @@
               <term>z_ticks.labels:</term>
 
               <listitem>
-                <para>um vetor de strings contendo r√≥tulos para as gradua√ß√µes
+                <para>um vetor de strings contendo rÛtulos para as graduaÁıes
                 no eixo z. Esta propriedade pode ser editada especificando-se
-                um novo vetor (de mesmo tamanho). Para especificar gradua√ß√µes
+                um novo vetor (de mesmo tamanho). Para especificar graduaÁıes
                 menores ou maiores, pode se agir no tlist
-                <literal>z_ticks</literal> definindo tamb√©m um vetor de reais
+                <literal>z_ticks</literal> definindo tambÈm um vetor de reais
                 <literal>z_ticks.locations</literal> .</para>
               </listitem>
             </varlistentry>
@@ -363,12 +363,12 @@
                 encerrados por uma caixa. Seu valor pode ser
                 <literal>"off"</literal>, <literal>"hidden_axes"</literal>,
                 <literal>"back_half"</literal> ou <literal>"on".</literal> Se
-                o valor for <literal>"off"</literal>, a caixa n√£o √© desenhada.
+                o valor for <literal>"off"</literal>, a caixa n„o È desenhada.
                 Se a propriedade for <literal>"hidden_axes"</literal>, apenas
-                a moldura de tr√°s √© desenhada. Se o valor for
-                <literal>"back_half"</literal>, os eixos X, Y e Z s√£o
-                desenhados tamb√©m. Se a propriedade for
-                <literal>"on"</literal> , a caixa toda √© desenhada.</para>
+                a moldura de tr·s È desenhada. Se o valor for
+                <literal>"back_half"</literal>, os eixos X, Y e Z s„o
+                desenhados tambÈm. Se a propriedade for
+                <literal>"on"</literal> , a caixa toda È desenhada.</para>
               </listitem>
             </varlistentry>
 
@@ -377,11 +377,11 @@
 
               <listitem>
                 <para>Esta propriedade especifica se o plano de fundo dos
-                eixos devem ser desenhados ou n√£o. Seu valor pode ser
+                eixos devem ser desenhados ou n„o. Seu valor pode ser
                 <literal>"off"</literal> ou <literal>"on".</literal> Se o
-                valor for <literal>"off"</literal>, o plano de fundo n√£o √©
-                desenhado e a caixa de eixos √© transparente. Se a propriedade
-                for <literal>"on"</literal> , o plano de fundo √© desenhado
+                valor for <literal>"off"</literal>, o plano de fundo n„o È
+                desenhado e a caixa de eixos È transparente. Se a propriedade
+                for <literal>"on"</literal> , o plano de fundo È desenhado
                 utilizando-se a cor especificada pela propriedade
                 <literal>background</literal>.</para>
               </listitem>
@@ -391,10 +391,10 @@
               <term>sub_ticks:</term>
 
               <listitem>
-                <para>esta propriedade determina o n√∫mero de subtiques a serem
-                desenhados entre dois tiques principais. O valor de campo √© o
-                vetor <literal>[nx,ny]</literal> onde <literal>nx</literal> √©
-                o n√∫mero de subtiques para o eixo x e <literal>ny</literal> √©
+                <para>esta propriedade determina o n˙mero de subtiques a serem
+                desenhados entre dois tiques principais. O valor de campo È o
+                vetor <literal>[nx,ny]</literal> onde <literal>nx</literal> È
+                o n˙mero de subtiques para o eixo x e <literal>ny</literal> È
                 o correspondente para o eixo y.</para>
               </listitem>
             </varlistentry>
@@ -404,10 +404,10 @@
 
               <listitem>
                 <para>especifica a fonte a ser utilizada para exibir os
-                r√≥tulos. √â um inteiro positivo que faz refer√™ncia a uma das
+                rÛtulos. … um inteiro positivo que faz referÍncia a uma das
                 fontes carregadas. Seu valor deve estar entre 0, referenciando
-                a primeira fonte e o n√∫mero de fontes carregadas menos um,
-                referenciando a √∫ltima fonte carregada. Para mais informa√ß√µes,
+                a primeira fonte e o n˙mero de fontes carregadas menos um,
+                referenciando a ˙ltima fonte carregada. Para mais informaÁıes,
                 ver <link
                 linkend="graphics_fonts">graphics_fonts</link>.</para>
               </listitem>
@@ -418,10 +418,10 @@
 
               <listitem>
                 <para>um inteiro especificando o tamanho da fonte usada para
-                para os r√≥tulos dos tiques. Se a propriedade
+                para os rÛtulos dos tiques. Se a propriedade
                 <literal>fractional_font</literal> for
-                <literal>"off"</literal> , apenas a parte inteira do valor √©
-                utilizada. Para mais informa√ß√µes, ver <link
+                <literal>"off"</literal> , apenas a parte inteira do valor È
+                utilizada. Para mais informaÁıes, ver <link
                 linkend="graphics_fonts">graphics_fonts</link>.</para>
               </listitem>
             </varlistentry>
@@ -430,7 +430,7 @@
               <term>font_color:</term>
 
               <listitem>
-                <para>esta propriedade determina a cor dos r√≥tulos dos tiques.
+                <para>esta propriedade determina a cor dos rÛtulos dos tiques.
                 </para>
               </listitem>
             </varlistentry>
@@ -439,13 +439,13 @@
               <term>fractional_font:</term>
 
               <listitem>
-                <para>esta propriedade especifica se os r√≥tulos dos tiques
-                ser√£o exibidos com tamanhos de fonte fracion√°rios. Seu valor
+                <para>esta propriedade especifica se os rÛtulos dos tiques
+                ser„o exibidos com tamanhos de fonte fracion·rios. Seu valor
                 pode ser <literal>"on"</literal> ou <literal>"off"</literal>.
                 Se <literal>"on"</literal> , o valor em ponto flutuante de
-                <literal>font_size</literal> √© usado para exibi√ß√£o e a fonte
-                n√£o possui outro nome. Se <literal>"off"</literal> apenas a
-                parte inteira √© utilizada e a fonte n√£o √© suavizada.</para>
+                <literal>font_size</literal> È usado para exibiÁ„o e a fonte
+                n„o possui outro nome. Se <literal>"off"</literal> apenas a
+                parte inteira È utilizada e a fonte n„o È suavizada.</para>
               </listitem>
             </varlistentry>
 
@@ -453,10 +453,10 @@
               <term>isoview:</term>
 
               <listitem>
-                <para>esta propriedade √© utilizada para se obter escalas
-                isom√©tricas para os eixos x, y e z (por exemplo, para fazer
-                com que a exibi√ß√£o da curva sin(x) versus cos(x) seja um
-                c√≠rculo, n√£o uma elipse). Os valores podem ser
+                <para>esta propriedade È utilizada para se obter escalas
+                isomÈtricas para os eixos x, y e z (por exemplo, para fazer
+                com que a exibiÁ„o da curva sin(x) versus cos(x) seja um
+                cÌrculo, n„o uma elipse). Os valores podem ser
                 <literal>"on"</literal> ou <literal>"off"</literal>. Se o
                 valor for <literal>"on"</literal>, os
                 <literal>data_bounds</literal> dos eixos mudam automaticamente
@@ -469,14 +469,14 @@
               <term>cube_scaling:</term>
 
               <listitem>
-                <para>esta propriedade √© utilizada no modo <literal>3d
+                <para>esta propriedade È utilizada no modo <literal>3d
                 mode</literal> para se obter uma nova escala para os eixos x,
                 y e z. De fato, permite que os dados se encaixem em um cubo
-                1x1x1; o objetivo √© uma melhor visualiza√ß√£o de gr√°ficos 3d
+                1x1x1; o objetivo È uma melhor visualizaÁ„o de gr·ficos 3d
                 caso as escalas dos eixos se diferenciem muito umas das
                 outras. Os valores podem ser <literal>"on" </literal> ou
-                <literal>"off"</literal> (que √© o valor padr√£o). Na maior
-                parte dos casos, ajuda a gerar uma visualiza√ß√£o 3d semelhante
+                <literal>"off"</literal> (que È o valor padr„o). Na maior
+                parte dos casos, ajuda a gerar uma visualizaÁ„o 3d semelhante
                 a do Matlab. </para>
               </listitem>
             </varlistentry>
@@ -485,11 +485,11 @@
               <term>view:</term>
 
               <listitem>
-                <para> este campo √© relacionado ao universo gr√°fico. Toma
+                <para> este campo È relacionado ao universo gr·fico. Toma
                 <literal>"3d"</literal> como valor correspondente a
-                visualiza√ß√µes em tr√™s dimens√µes. Em outros casos, pode ser
-                <literal>"2d"</literal> para esbo√ßo inicial 2d (valor padr√£o).
-                Este flag tamb√©m depende dos esbo√ßos com os quais o usu√°rio
+                visualizaÁıes em trÍs dimensıes. Em outros casos, pode ser
+                <literal>"2d"</literal> para esboÁo inicial 2d (valor padr„o).
+                Este flag tambÈm depende dos esboÁos com os quais o usu·rio
                 entra: um comando <literal>plot3d </literal>por exemplo, vai
                 alternar o flag <literal>view</literal> de
                 <literal>"2d"</literal> para <literal>"3d"</literal>.</para>
@@ -500,9 +500,9 @@
               <term>rotation_angles:</term>
 
               <listitem>
-                <para>este campo √© o vetor <literal>[alpha,theta]</literal>.
-                Estes dois valores fornecem as coordenadas esf√©ricas de
-                obseva√ß√£o (em graus). </para>
+                <para>este campo È o vetor <literal>[alpha,theta]</literal>.
+                Estes dois valores fornecem as coordenadas esfÈricas de
+                obsevaÁ„o (em graus). </para>
               </listitem>
             </varlistentry>
 
@@ -510,11 +510,11 @@
               <term>log_flags:</term>
 
               <listitem>
-                <para>string de tr√™s caracteres que ajusta a escala (linear ou
-                logar√≠tmica) o longo dos eixos. Cada caractere especifica a
+                <para>string de trÍs caracteres que ajusta a escala (linear ou
+                logarÌtmica) o longo dos eixos. Cada caractere especifica a
                 escala para os eixos x, y e z respectivamente. Os valores
                 podem ser <literal>'n'</literal> para escala linear ou
-                <literal>'l'</literal> para escala logar√≠tmica. </para>
+                <literal>'l'</literal> para escala logarÌtmica. </para>
               </listitem>
             </varlistentry>
 
@@ -522,11 +522,11 @@
               <term>tight_limits:</term>
 
               <listitem>
-                <para>se est√° propriedade for <literal>"on"</literal> os eixos
-                se adaptam para se encaixarem dentro dos valores m√°ximos e
-                m√≠nimos de <literal>data_bounds</literal>. Se o campo for
+                <para>se est· propriedade for <literal>"on"</literal> os eixos
+                se adaptam para se encaixarem dentro dos valores m·ximos e
+                mÌnimos de <literal>data_bounds</literal>. Se o campo for
                 <literal>"off"</literal>, os eixos podem aumentar os limites
-                de modo a produzir r√≥tulos de tiques convenientes. </para>
+                de modo a produzir rÛtulos de tiques convenientes. </para>
               </listitem>
             </varlistentry>
 
@@ -534,8 +534,8 @@
               <term>data_bounds:</term>
 
               <listitem>
-                <para> este campo cont√©m os valores de limite para as
-                coordenadas x,y e z. √â a matriz
+                <para> este campo contÈm os valores de limite para as
+                coordenadas x,y e z. … a matriz
                 <literal>[xmin,ymin,zmin;xmax,ymax,zmax]</literal> ou
                 <literal>[xmin,ymin;xmax,ymax]</literal>. Note que, para ter
                 estritamente os limites de dados especificados,
@@ -548,11 +548,11 @@
               <term>zoom_box:</term>
 
               <listitem>
-                <para>este campo cont√©m a caixa de zoom corrente, se forem
-                fornecidas quaisquer coordenadas. √â uma matriz vazia (sem
+                <para>este campo contÈm a caixa de zoom corrente, se forem
+                fornecidas quaisquer coordenadas. … uma matriz vazia (sem
                 zoom) ou vetor
                 <literal>[xmin,ymin,xmax,ymax,zmin,zmax]</literal> (define um
-                ret√¢ngulo dado por dois v√©rtices opostos ).</para>
+                ret‚ngulo dado por dois vÈrtices opostos ).</para>
               </listitem>
             </varlistentry>
 
@@ -562,9 +562,9 @@
               <listitem>
                 <para>um vetor
                 <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
-                especificando a por√ß√£o das margens para estes eixos. Este
-                vetor √© composto de n√∫meros em [0 1] com valores padr√µes:
-                [0.125 0.125 0.125 0.125] (estes n√∫meros s√£o raz√µes relativas
+                especificando a porÁ„o das margens para estes eixos. Este
+                vetor È composto de n˙meros em [0 1] com valores padrıes:
+                [0.125 0.125 0.125 0.125] (estes n˙meros s„o razıes relativas
                 aos valores correspondentes da propriedade de figura
                 <literal>figure_size</literal>).</para>
               </listitem>
@@ -575,12 +575,12 @@
 
               <listitem>
                 <para>um vetor <literal>[x_left,y_up,width,height]</literal>
-                especificando a por√ß√£o da figura usada por estes eixos, onde
+                especificando a porÁ„o da figura usada por estes eixos, onde
                 <literal>x_left</literal>, <literal>y_up</literal>,
-                <literal>width</literal> e <literal>height</literal> s√£o
-                n√∫meros em [0 1] fornecendo respectivamente a posi√ß√£o do canto
-                superior esquerdo e a dimens√£o dos eixos (testes n√∫meros s√£o
-                raz√µes relativas aos valores correspondentes da propriedade de
+                <literal>width</literal> e <literal>height</literal> s„o
+                n˙meros em [0 1] fornecendo respectivamente a posiÁ„o do canto
+                superior esquerdo e a dimens„o dos eixos (testes n˙meros s„o
+                razıes relativas aos valores correspondentes da propriedade de
                 figura <literal>figure_size</literal>).</para>
               </listitem>
             </varlistentry>
@@ -589,8 +589,8 @@
               <term>hidden_axis_color:</term>
 
               <listitem>
-                <para>esta propriedade define a cor do eixo escondido. √â um
-                √≠ndice relativo ao mapa de cores corrente.</para>
+                <para>esta propriedade define a cor do eixo escondido. … um
+                Ìndice relativo ao mapa de cores corrente.</para>
               </listitem>
             </varlistentry>
 
@@ -598,8 +598,8 @@
               <term>user_data:</term>
 
               <listitem>
-                <para>este campo pode armazenar qualquer vari√°vel Scilab na
-                estrutura de dados de eixos e recuper√°-la.</para>
+                <para>este campo pode armazenar qualquer vari·vel Scilab na
+                estrutura de dados de eixos e recuper·-la.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -607,15 +607,15 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Propriedades para fun√ß√µes de alto-n√≠vel</term>
+        <term>Propriedades para funÁıes de alto-nÌvel</term>
 
         <listitem>
-          <para>As fun√ß√µes <literal>plot</literal>,
+          <para>As funÁıes <literal>plot</literal>,
           <literal>plot2dx</literal>, <literal>grayplot</literal> e
           <literal>matplot</literal> utilizam as propriedades seguintes para
-          decidir como misturar esbo√ßos consecutivos se isto n√£o for declarado
+          decidir como misturar esboÁos consecutivos se isto n„o for declarado
           pelo argumento de chamada <literal>frameflag</literal> calling
-          argument. O resultado da mistura √© decidido atrav√©s destas duas
+          argument. O resultado da mistura È decidido atravÈs destas duas
           propriedades:</para>
 
           <variablelist>
@@ -624,9 +624,9 @@
 
               <listitem>
                 <para> se esta propriedade for <literal>"on"</literal>, uma
-                chamada a um gr√°fico de alto-n√≠vel reinicializa os eixos
+                chamada a um gr·fico de alto-nÌvel reinicializa os eixos
                 correntes e apaga todos os seus galhos antes de realizar o
-                esbo√ßo. Se for <literal>"off"</literal> os esbo√ßos ser√£o
+                esboÁo. Se for <literal>"off"</literal> os esboÁos ser„o
                 adicionados aos eixos correntes de acordo com a propriedade
                 <literal>"auto_scale"</literal>.</para>
               </listitem>
@@ -637,10 +637,10 @@
 
               <listitem>
                 <para>uma propriedade para atualizar os limites de dados dos
-                eixos. Se o valor for <literal>"on"</literal>, um novo esbo√ßo
-                adaptar√° as propriedades de eixos correntes para se adequar
-                aos esbo√ßos anteriores e correntes. Se o valor for
-                <literal>"off"</literal> o novo esbo√ßo ser√° esbo√ßado nos
+                eixos. Se o valor for <literal>"on"</literal>, um novo esboÁo
+                adaptar· as propriedades de eixos correntes para se adequar
+                aos esboÁos anteriores e correntes. Se o valor for
+                <literal>"off"</literal> o novo esboÁo ser· esboÁado nos
                 limites de dados correntes.</para>
               </listitem>
             </varlistentry>
@@ -649,7 +649,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Valores padr√µes dos galhos: </term>
+        <term>Valores padrıes dos galhos: </term>
 
         <listitem>
           <variablelist>
@@ -658,9 +658,9 @@
 
               <listitem>
                 <para>esta propriedade controla as cores das partes
-                escondidas. Toma como valor um √≠ndice relativo ao mapa de
+                escondidas. Toma como valor um Ìndice relativo ao mapa de
                 cores corrente. Em outro caso, se for um valor negativo, as
-                partes escondidas tomam a mesma cor que a superf√≠cie. </para>
+                partes escondidas tomam a mesma cor que a superfÌcie. </para>
               </listitem>
             </varlistentry>
 
@@ -668,10 +668,10 @@
               <term>line_mode:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 line_mode para objetos Segs, Rectangle, Legend, Axis, Plot3d,
                 Fac3d, e Polyline. Seus valores podem ser <literal>"on"
-                </literal>(padr√£o) ou <literal>"off"</literal>.</para>
+                </literal>(padr„o) ou <literal>"off"</literal>.</para>
               </listitem>
             </varlistentry>
 
@@ -679,12 +679,12 @@
               <term>line_style:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>line_style</literal> para objetos Segs, Arcs,
                 Rectangle e Polyline. <literal>line_style</literal> seleciona
-                o tipo de linha que ser√° utilizado nos desenhos de linhas. Seu
+                o tipo de linha que ser· utilizado nos desenhos de linhas. Seu
                 valor deve ser um inteiro no intervalo [0 6]. 0 e 1 significam
-                linhas s√≥lidas, os outros selecionam linhas tracejadas (ver
+                linhas sÛlidas, os outros selecionam linhas tracejadas (ver
                 <link linkend="getlinestyle">getlinestyle</link>).</para>
               </listitem>
             </varlistentry>
@@ -693,7 +693,7 @@
               <term>thickness:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>thickness</literal> para todos os objetos que
                 utilizam linhas. Seu valor deve ser um inteiro
                 positivo.</para>
@@ -704,11 +704,11 @@
               <term>mark_mode:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_mode</literal> para os objetos Segs, Rectangle,
                 Legend, Axis, Plot3d, Fac3d e Polyline. Seu valor pode ser
                 <literal>"on" </literal> ou <literal>"off"</literal>
-                (padr√£o).</para>
+                (padr„o).</para>
               </listitem>
             </varlistentry>
 
@@ -716,14 +716,14 @@
               <term>mark_style:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_style</literal> para objetos Segs, Rectangle,
                 Legend, Axis, Plot3d, Fac3d e Polyline.
                 <literal>mark_style</literal> seleciona o tipo de marca a ser
                 exibida. Seu valor deve ser um inteiro no intervalo [0 9] que
                 significa: ponto, sinal de mais, cruz, estrela, diamante
-                preenchido, diamante, tri√¢ngulo para cima, tri√¢ngulo para
-                baixo, trevo ou c√≠rculo. </para>
+                preenchido, diamante, tri‚ngulo para cima, tri‚ngulo para
+                baixo, trevo ou cÌrculo. </para>
               </listitem>
             </varlistentry>
 
@@ -731,21 +731,21 @@
               <term>mark_size_unit:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_size_unit</literal> para objetos Segs,
                 Rectangle, Legend, Axis, Plot3d, Fac3d e Polyline. Se
-                <literal>mark_size_unit</literal> √© ajustado para
-                <literal>"point"</literal>, ent√£o o valor de
-                <literal>mark_size</literal> √© diretamente fornecido em
-                pontos. Quando <literal>mark_size_unit</literal> √© ajustado
+                <literal>mark_size_unit</literal> È ajustado para
+                <literal>"point"</literal>, ent„o o valor de
+                <literal>mark_size</literal> È diretamente fornecido em
+                pontos. Quando <literal>mark_size_unit</literal> È ajustado
                 para <literal>"tabulated"</literal>,
-                <literal>mark_size</literal> √© computado de acordo com o array
+                <literal>mark_size</literal> È computado de acordo com o array
                 de tamanho de fonte: logo seu valor deve ser um inteiro no
                 intervalo [0 5] que significa 8pt, 10pt, 12pt, 14pt, 18pt e
-                24pt. Note que <link linkend="plot2d">plot2d</link> e fun√ß√µes
+                24pt. Note que <link linkend="plot2d">plot2d</link> e funÁıes
                 puras do Scilab utilizam o modo <literal>tabulated</literal>
-                como padr√£o; ao utilizar-se a fun√ß√£o <link
-                linkend="plot">plot</link> o modo <literal>point</literal> √©
+                como padr„o; ao utilizar-se a funÁ„o <link
+                linkend="plot">plot</link> o modo <literal>point</literal> È
                 automaticamente habilitado.</para>
               </listitem>
             </varlistentry>
@@ -754,7 +754,7 @@
               <term>mark_size:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_size</literal> para objetos Segs, Rectangle,
                 Legend, Axis, Plot3d, Fac3d, e Polyline.
                 <literal>mark_size</literal> seleciona o tamanho de fonte da
@@ -768,15 +768,15 @@
               <term>mark_foreground:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_foreground</literal> criados sob os eixos.
                 Objetos Polyline, Rectangle, Legend, Surface, Segment e Axis
                 utilizam esta propriedade para especificar uma cor de primeiro
-                plano (borda) para suas marcas. O valor deve ser um √≠ndice de
+                plano (borda) para suas marcas. O valor deve ser um Ìndice de
                 cor relativo ao mapa de cores corrente. Note que o valor
-                padr√£o √© <literal>-1</literal> (preto padr√£o) e, mesmo que
-                voc√™ mude o <literal>color_map</literal>, este valor
-                <literal>-1</literal> sempre apontar√° para a cor preta padr√£o.
+                padr„o È <literal>-1</literal> (preto padr„o) e, mesmo que
+                vocÍ mude o <literal>color_map</literal>, este valor
+                <literal>-1</literal> sempre apontar· para a cor preta padr„o.
                 </para>
               </listitem>
             </varlistentry>
@@ -785,16 +785,16 @@
               <term>mark_background:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>mark_background</literal> para todos os objetos
                 criados sob os eixos. objetos Polyline, Rectangle, Legend,
                 Surface, Segment e Axis utilizam esta propriedade para
                 especificar uma cor de plano de fundo (face) para suas marcas.
-                O valor deve ser um √≠ndice de cor relativo ao mapa de cores
-                corrente. Note que o valor padr√£o √© <literal>-2</literal>
-                (branco padr√£o) e, mesmo que voc√™ mude o
+                O valor deve ser um Ìndice de cor relativo ao mapa de cores
+                corrente. Note que o valor padr„o È <literal>-2</literal>
+                (branco padr„o) e, mesmo que vocÍ mude o
                 <literal>color_map</literal>, este valor <literal>-2</literal>
-                sempre apontar√° para a cor branca padr√£o. </para>
+                sempre apontar· para a cor branca padr„o. </para>
               </listitem>
             </varlistentry>
 
@@ -802,13 +802,13 @@
               <term>foreground:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>foreground</literal> para eixos e para todos os
-                objetos criados sob os eixos. O valor deve ser um √≠ndice de
+                objetos criados sob os eixos. O valor deve ser um Ìndice de
                 cor relativo ao mapa de cores corrente. Note que o valor
-                padr√£o √© <literal>-1</literal> (preto padr√£o) e, mesmo que
-                voc√™ mude o <literal>color_map</literal>, este valor
-                <literal>-1</literal> sempre apontar√° para a cor preta padr√£o.
+                padr„o È <literal>-1</literal> (preto padr„o) e, mesmo que
+                vocÍ mude o <literal>color_map</literal>, este valor
+                <literal>-1</literal> sempre apontar· para a cor preta padr„o.
                 </para>
               </listitem>
             </varlistentry>
@@ -817,13 +817,13 @@
               <term>background:</term>
 
               <listitem>
-                <para>este campo controla o valor padr√£o da propriedade
+                <para>este campo controla o valor padr„o da propriedade
                 <literal>background</literal> para os eixos e para objetos
-                criados sob os eixos. O valor deve ser um √≠ndice de cor
-                relativo ao mapa de cores corrente. Note que o valor padr√£o √©
-                <literal>-2</literal> branco padr√£o) e mesmo que voc√™ mude o
+                criados sob os eixos. O valor deve ser um Ìndice de cor
+                relativo ao mapa de cores corrente. Note que o valor padr„o È
+                <literal>-2</literal> branco padr„o) e mesmo que vocÍ mude o
                 <literal>color_map</literal>, este valor <literal>-2</literal>
-                sempre apontar√° para a cor branca padr√£o. </para>
+                sempre apontar· para a cor branca padr„o. </para>
               </listitem>
             </varlistentry>
 
@@ -831,7 +831,7 @@
               <term>arc_drawing_mode:</term>
 
               <listitem>
-                <para>este campo controla o valor padr√£o da propriedade
+                <para>este campo controla o valor padr„o da propriedade
                 default <literal>arc_drawing_mode</literal> para todos os
                 objetos Arc criados sob este objeto Axes. Seu valor pode ser
                 <literal>"nurbs"</literal> ou
@@ -843,27 +843,27 @@
               <term>clip_state:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>clip_state</literal> para todos os objetos. Seu valor
                 pode ser:</para>
 
                 <itemizedlist>
                   <listitem>
                     <para><literal>"off"</literal> isto indica todos os
-                    objetos criados depois que n√£o est√£o recortados (valor
-                    padr√£o). </para>
+                    objetos criados depois que n„o est„o recortados (valor
+                    padr„o). </para>
                   </listitem>
 
                   <listitem>
                     <para><literal>"clipgrf"</literal> isto indica todos os
-                    objetos criados depois que est√£o recortados fora das
+                    objetos criados depois que est„o recortados fora das
                     fronteiras dos eixos. </para>
                   </listitem>
 
                   <listitem>
                     <para><literal>"on"</literal> isto indica todos os objetos
-                    criados depois que est√£o recortados fora do ret√¢ngulo
-                    atrav√©s da propriedade clip_box.</para>
+                    criados depois que est„o recortados fora do ret‚ngulo
+                    atravÈs da propriedade clip_box.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>
@@ -873,17 +873,17 @@
               <term>clip_box:</term>
 
               <listitem>
-                <para>este campo cont√©m o valor padr√£o da propriedade
+                <para>este campo contÈm o valor padr„o da propriedade
                 <literal>clip_box</literal> para todos os objetos. Deve ser
                 uma matriz vazia se clip_state for <literal>"off"</literal>.
-                Em outro caso, o recorte √© dado por
+                Em outro caso, o recorte È dado por
                 <literal>[x,y,w,h]</literal> (ponto superior esquerdo,
                 largura, altura). </para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term>Nota sobre valores padr√µes:</term>
+              <term>Nota sobre valores padrıes:</term>
 
               <listitem>
                 <variablelist>
@@ -892,13 +892,13 @@
 
                     <listitem>
                       <para>Todas essas propriedades e campos listados herdam
-                      de valores padr√µes armazenados em um modelo de eixos.
+                      de valores padrıes armazenados em um modelo de eixos.
                       Estes valores podem ser visualizados e modificados. Para
                       isto, utilize o comando
                       <literal>get("default_axes")</literal> command : ele
-                      retorna o manipulador gr√°fico do modelo de eixos. Note
-                      que nenhuma janela de gr√°ficos √© criada por este
-                      comando. Note que os pr√≥ximos eixos criados herdar√£o
+                      retorna o manipulador gr·fico do modelo de eixos. Note
+                      que nenhuma janela de gr·ficos È criada por este
+                      comando. Note que os prÛximos eixos criados herdar„o
                       deste modelo (ver "exemplo sobre modelo de eixos"
                       abaixo)</para>
                     </listitem>
@@ -918,9 +918,9 @@
     <programlisting role="example">  
    lines(0) // desabilitando o paginamento vertical
    a=get("current_axes")//obtendo o manipulador dos novos eixos criados
-   a.axes_visible="on"; // tornando os eixos vis√≠veis
-   a.font_size=3; //ajustando o tamanho da fonte dos r√≥tulos dos tiques
-   a.x_location="top"; //ajustando a posi√ß√£o do eixo x
+   a.axes_visible="on"; // tornando os eixos visÌveis
+   a.font_size=3; //ajustando o tamanho da fonte dos rÛtulos dos tiques
+   a.x_location="top"; //ajustando a posiÁ„o do eixo x
    a.data_bounds=[-100,-2,-1;100,2,1]; //ajustando os valores limites para as coordenadas x,y e z
    a.sub_tics=[5,0];
    a.labels_font_color=5;
@@ -928,11 +928,11 @@
    a.box="off";
    
    // exemplo com eixos 3d
-   clf(); //limpando a janela de gr√°ficos
+   clf(); //limpando a janela de gr·ficos
    x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
    a=gca(); // obtendo o manipulador dos eixos correntes
    a.grid=[1 -1 -1]; //make x-grid
-   a.rotation_angles=[70 250]; //girando eixos com √¢ngulos dados
+   a.rotation_angles=[70 250]; //girando eixos com ‚ngulos dados
    a.grid=[1 6 -1]; //criando y-grid
    a.view="2d"; //retornando a vista 2d
    a.box="back_half"; 
@@ -966,7 +966,7 @@
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
 
    a.data_bounds(:,1) = [1;15] ; // ajustando limites positivos para o eixo x
-   a.log_flags = "lnn" ; // ajustando o eixo X para escala logar√≠tmica
+   a.log_flags = "lnn" ; // ajustando o eixo X para escala logarÌtmica
    a.log_flags = "nnn" ; // voltando para escala linear
 
    a=gca(); 
@@ -974,7 +974,7 @@
    a.data_bounds=[-20,-3,-2;20 3 ,2];
    xrect([-4 0.5 8 1]);
    a.auto_clear = "off" ;
-   a.isoview="on"; // modo de isovisualiza√ß√£o
+   a.isoview="on"; // modo de isovisualizaÁ„o
    xrect([-2 0.25 4 0.5]);
    a.children(1).fill_mode="on";
    a.axes_visible="off";
@@ -992,17 +992,17 @@
    
    // exemplo com eixos modelos
    da=gda() // obtendo manipulador dos eixo modelos para ver e editar campos
-   // t√≠tulo padr√£o
+   // tÌtulo padr„o
    da.title.text="My Default@Title"
    da.title.foreground = 12;
    da.title.font_size = 4;
-   // r√≥tulos x padr√µes
+   // rÛtulos x padrıes
    da.x_label.text="x";
    da.x_label.font_style = 8;
    da.x_label.font_size = 2;
    da.x_label.foreground = 5;
    da.x_location = "middle";
-   // r√≥tulos y padr√µes
+   // rÛtulos y padrıes
    da.y_label.text="y";
    da.y_label.font_style = 3;
    da.y_label.font_size = 5;
@@ -1010,15 +1010,15 @@
    da.y_location = "right";
    da.thickness = 2;
    da.foreground = 7;
-   // o esbo√ßo
+   // o esboÁo
    x=(0:0.1:2*%pi)';
    plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
-   sda() // de volta aos eixos modelos padr√µes
+   sda() // de volta aos eixos modelos padrıes
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m </title>
+    <title>Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="lines">lines</link></member>

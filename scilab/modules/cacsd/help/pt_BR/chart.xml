@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="chart" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-06-19 18:44:44 +0200 (jeu, 19 jun 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>chart</refname>
+
+    <refpurpose>carta de Nichols</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>chart([flags])
+chart(gain [,flags])
+chart(gain,phase [,flags])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>gain</term>
+
+        <listitem>
+          <para>vetor de reais ( ganhos (em DB, decibel)) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phase</term>
+
+        <listitem>
+          <para>vetor de reais (fases (em graus)) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flags</term>
+
+        <listitem>
+          <para>uma lista de no máximo quatro flags (sup [,leg [,cm
+          [,cphi]]])</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>sup</term>
+
+              <listitem>
+                <para>1 indica superposição sobre o esboço anterior e 0 indica
+                que nenhuma superposição é feita </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>leg</term>
+
+              <listitem>
+                <para>1 indica que as legendas são impressas, 0 indica sem
+                legendas </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>cm</term>
+
+              <listitem>
+                <para>número da cor para curvas de ganho </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>cphi</term>
+
+              <listitem>
+                <para>número da cor para curvas de fase</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esboça a carta de Nichols: curvas de nível de iso-ganho e iso-fase
+    dey/(1+y) no plano de fase/ganho.</para>
+
+    <para><literal>chart</literal> pode ser utilizado em conjunção a <link
+    linkend="black">black</link>.</para>
+
+    <para>Os valore padrões para <literal>gain</literal> e
+    <literal>phase</literal> são respectivamente:</para>
+
+    <para><literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3
+    3 4 5 6 8 12]</literal></para>
+
+    <para><literal>[-(1:10) , -(20:10:160)]</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+black(h,0.01,100)
+chart(list(1,0,2,3));
+
+clf()
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+black([h1;h],0.01,100,['h1';'h'])
+set(gca(),'data_bounds',[-180 -30;180 30]) //aumentando a moldura
+chart(list(1,0));
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="nyquist">nyquist</link></member>
+
+      <member><link linkend="black">black</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

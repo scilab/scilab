@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,14 +29,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[Ab,X]=balanc(A)
 [Eb,Ab,X,Y]=balanc(E,A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@
         <term>X:</term>
 
         <listitem>
-          <para>matriz quadrada de reais invertÃ­vel</para>
+          <para>matriz quadrada de reais invertível</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@
         <term>E:</term>
 
         <listitem>
-          <para>matriz quadrada de reais (com mesma dimensÃ£o que
+          <para>matriz quadrada de reais (com mesma dimensão que
           <literal>A</literal>)</para>
         </listitem>
       </varlistentry>
@@ -68,36 +68,36 @@
         <term>Y:</term>
 
         <listitem>
-          <para>uma matriz quadrada de reais invertÃ­vel</para>
+          <para>uma matriz quadrada de reais invertível</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Balanceia uma matriz quadrada para melhorar seu nÃºmero de
+    <para>Balanceia uma matriz quadrada para melhorar seu número de
     condicionamento.</para>
 
-    <para><literal>[Ab,X] = balanc(A)</literal> acha uma transformaÃ§Ã£o de
+    <para><literal>[Ab,X] = balanc(A)</literal> acha uma transformação de
     similaridade <literal>X</literal> tal que</para>
 
     <para><literal>Ab = inv(X)*A*X</literal> tem aproximadamente normas iguais
     de linha e de coluna.</para>
 
-    <para>Para feixes de matrizes, o balancemento Ã© feito para melhorar o
+    <para>Para feixes de matrizes, o balancemento é feito para melhorar o
     problema do autovalor generalizado.</para>
 
-    <para><literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> retorna transformaÃ§Ãµes
+    <para><literal>[Eb,Ab,X,Y] = balanc(E,A)</literal> retorna transformações
     esquerda e direita <literal>X</literal> e <literal>Y</literal> tais que
     <literal>Eb=inv(X)*E*Y, Ab=inv(X)*A*Y</literal></para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
-    <para>O balanceamento Ã© feito nas funÃ§Ãµes <literal>bdiag</literal> e
+    <para>O balanceamento é feito nas funções <literal>bdiag</literal> e
     <literal>spec</literal>.</para>
   </refsection>
 
@@ -115,7 +115,7 @@ norm(Ab(1,:))/norm(Ab(2,:))
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="bdiag">bdiag</link></member>

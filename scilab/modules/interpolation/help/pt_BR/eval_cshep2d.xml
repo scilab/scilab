@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="eval_cshep2d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>eval_cshep2d</refname>
 
-    <refpurpose>avalia√ß√£o por interpola√ß√£o c√∫bica bidimensional de
+    <refpurpose>avaliaÁ„o por interpolaÁ„o c˙bica bidimensional de
     Shepard</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -40,7 +40,7 @@
 
         <listitem>
           <para>uma estrutura Scilab tlist (de tipo cshep2d) definindo uma
-          fun√ß√£o de interpola√ß√£o c√∫bica de Shepard (chamada
+          funÁ„o de interpolaÁ„o c˙bica de Shepard (chamada
           <literal>S</literal> a partir daqui) </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
 
         <listitem>
           <para>vetor (ou matrizes) de mesmo tamanho que <literal>xp</literal>
-          e <literal>yp</literal>, avalia√ß√£o do interpolante
+          e <literal>yp</literal>, avaliaÁ„o do interpolante
           <literal>S</literal> nesses pontos </para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@
 
         <listitem>
           <para>vetores (ou matrizes) de mesmo tamanho que
-          <literal>xp</literal> e <literal>yp</literal>, avalia√ß√£o das
+          <literal>xp</literal> e <literal>yp</literal>, avaliaÁ„o das
           derivadas primeiras de <literal>S</literal> nestes pontos</para>
         </listitem>
       </varlistentry>
@@ -70,7 +70,7 @@
 
         <listitem>
           <para>vetores (ou matrizes) de mesmo tamanho que
-          <literal>xp</literal> e <literal>yp</literal>, avalia√ß√£o das
+          <literal>xp</literal> e <literal>yp</literal>, avaliaÁ„o das
           derivadas segundas de <literal>S</literal> nestes pontos </para>
         </listitem>
       </varlistentry>
@@ -78,10 +78,10 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Esta √© a rotina de avalia√ß√£o para a fun√ß√£o de interpola√ß√£o c√∫bica de
-    Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto √© :</para>
+    <para>Esta È a rotina de avaliaÁ„o para a funÁ„o de interpolaÁ„o c˙bica de
+    Shepard obtida com <link linkend="cshep2d">cshep2d</link>, isto È :</para>
 
     <programlisting>
       zp(i) = S(xp(i),yp(i))   
@@ -94,50 +94,50 @@
   </refsection>
 
   <refsection>
-    <title>Observa√ß√£o </title>
+    <title>ObservaÁ„o </title>
 
-    <para>O interpolante S √© C2 (duas vezes continuamente diferenci√°vel) mas
-    tamb√©m √© estendido por zero para <emphasis>(x,y)</emphasis>
-    suficientemente longe dos pontos de interpola√ß√£o. Isto leva a uma
-    descontinuidade em regi√µes exteriores muito longe dos pontos de
-    interpola√ß√£o e, assim, a avalia√ß√£o n√£o se torna incoveniente na pr√°tica
-    (de um modo geral, avalia√ß√£o fora dos pontos de interpola√ß√£o (i.e.
-    extrapola√ß√£o) leva a resultados muito inacurados).</para>
+    <para>O interpolante S È C2 (duas vezes continuamente diferenci·vel) mas
+    tambÈm È estendido por zero para <emphasis>(x,y)</emphasis>
+    suficientemente longe dos pontos de interpolaÁ„o. Isto leva a uma
+    descontinuidade em regiıes exteriores muito longe dos pontos de
+    interpolaÁ„o e, assim, a avaliaÁ„o n„o se torna incoveniente na pr·tica
+    (de um modo geral, avaliaÁ„o fora dos pontos de interpolaÁ„o (i.e.
+    extrapolaÁ„o) leva a resultados muito inacurados).</para>
   </refsection>
 
   <refsection>
     <title>Exemplos </title>
 
     <programlisting role="example">
-// ver se√ß√£o de exemplos em cshep2d
+// ver seÁ„o de exemplos em cshep2d
 
-// este exemplo mostra o comportamento longe dos pontos de interpola√ß√£o...
+// este exemplo mostra o comportamento longe dos pontos de interpolaÁ„o...
 deff("z=f(x,y)","z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2")
 x = linspace(0,1,10);
 [X,Y] = ndgrid(x,x);
 X = X(:); Y = Y(:); Z = f(X,Y);
 S = cshep2d([X Y Z]);
-// avalia√ß√£o dentro e fora do quadrado [0,1]x[0,1]
+// avaliaÁ„o dentro e fora do quadrado [0,1]x[0,1]
 m = 40;
 xx = linspace(-1.5,0.5,m);
 [xp,yp] = ndgrid(xx,xx);
 zp = eval_cshep2d(xp,yp,S);
-// computando faceta (para definir uma cor para a regi√£o de extrapola√ß√£o
-// e outra para a regi√£o de interpola√ß√£o)
+// computando faceta (para definir uma cor para a regi„o de extrapolaÁ„o
+// e outra para a regi„o de interpolaÁ„o)
 [xf,yf,zf] = genfac3d(xx,xx,zp);
 color = 2*ones(1,size(zf,2));
-// √≠ndices correspondentes √† faceta na regi√£o de interpola√ß√£o
+// Ìndices correspondentes ‡ faceta na regi„o de interpolaÁ„o
 ind=find( mean(xf,"r")&gt;0 &amp; mean(xf,"r")&lt;1 &amp; mean(yf,"r")&gt;0 &amp; mean(yf,"r")&lt;1 );
 color(ind)=3;
 xbasc();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
-legends(["regi√£o de extrapola√ß√£o","regi√£o de interpola√ß√£o"],[2 3],1)
+legends(["regi„o de extrapolaÁ„o","regi„o de interpolaÁ„o"],[2 3],1)
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="cshep2d">cshep2d</link></member>

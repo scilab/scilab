@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="resume" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,19 +13,19 @@
   <refnamediv>
     <refname>resume</refname>
 
-    <refpurpose>retorna ou p√°ra a execu√ß√£o de uma fun√ß√£o e copia algumas de
-    suas vari√°veis locais</refpurpose>
+    <refpurpose>retorna ou p·ra a execuÁ„o de uma funÁ„o e copia algumas de
+    suas vari·veis locais</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>resume
 [x1,..,xn]=resume(a1,..,an)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros </title>
+    <title>Par‚metros </title>
 
     <variablelist>
       <varlistentry>
@@ -39,29 +39,29 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Em uma fun√ß√£o, <literal>resume</literal> p√°ra a execu√ß√£o da mesma,
-    <literal>[..]=resume(..)</literal> p√°ra a execu√ß√£o de uma fun√ß√£o e p√µe as
-    vari√°veis locais <literal>ai</literal> no ambiente de chamamento sob os
+    <para>Em uma funÁ„o, <literal>resume</literal> p·ra a execuÁ„o da mesma,
+    <literal>[..]=resume(..)</literal> p·ra a execuÁ„o de uma funÁ„o e pıe as
+    vari·veis locais <literal>ai</literal> no ambiente de chamamento sob os
     nomes de <literal>xi</literal>.</para>
 
-    <para>No modo <literal>pause</literal> , permite retornar a um n√≠vel
-    inferior <literal>[..]=resume(..)</literal> retorna ao n√≠vel inferior e
-    p√µe as vari√°veis locais <literal>ai</literal> no ambiente de chamamento
+    <para>No modo <literal>pause</literal> , permite retornar a um nÌvel
+    inferior <literal>[..]=resume(..)</literal> retorna ao nÌvel inferior e
+    pıe as vari·veis locais <literal>ai</literal> no ambiente de chamamento
     sob os nomes de <literal>xi</literal>.</para>
 
-    <para>Em um<literal> execstr</literal> chamado por uma fun√ß√£o,
-    <literal>[..]=resume(..)</literal> p√°ra a execu√ß√£o da fun√ß√£o e p√µe as
-    vari√°veis locais <literal>ai</literal> no ambiente de chamamento sob os
+    <para>Em um<literal> execstr</literal> chamado por uma funÁ„o,
+    <literal>[..]=resume(..)</literal> p·ra a execuÁ„o da funÁ„o e pıe as
+    vari·veis locais <literal>ai</literal> no ambiente de chamamento sob os
     nomes de <literal>xi</literal>.</para>
 
-    <para><literal>resume</literal> √© equivalente a
+    <para><literal>resume</literal> È equivalente a
     <literal>return</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="abort">abort</link></member>

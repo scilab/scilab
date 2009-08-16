@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>inttrap</refname>
 
-    <refpurpose>integraÃ§Ã£o de dados experimentais por interpolaÃ§Ã£o
+    <refpurpose>integração de dados experimentais por interpolação
     trapezoidal</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>v = inttrap([x,] s)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vetor de dados de coordenadas x crescentes. O valor padrÃ£o Ã©
+          <para>vetor de dados de coordenadas x crescentes. O valor padrão é
           <literal>1:size(y,'*')</literal></para>
         </listitem>
       </varlistentry>
@@ -66,17 +66,17 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Computa :</para>
 
-    <para>Onde f Ã© uma funÃ§Ã£o descrita por um conjuto de valores
+    <para>Onde f é uma função descrita por um conjuto de valores
     experimentais:</para>
 
     <para><literal>s(i)=f(x(i))</literal> e <literal>x0=x(1)</literal>,
     <literal>x1=x(n)</literal></para>
 
-    <para>Entre os pontos da malha, a funÃ§Ã£o Ã© interpolada linearmente.</para>
+    <para>Entre os pontos da malha, a função é interpolada linearmente.</para>
   </refsection>
 
   <refsection>
@@ -91,7 +91,7 @@ inttrap(t,sin(t))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="intg">intg</link></member>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="save" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>save</refname>
+
+    <refpurpose>salvando variáveis em arquivos binários</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>save(filename [,x1,x2,...,xn])
+save(fd [,x1,x2,...,xn])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>string contendo o endereço do arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>descritor do arquivo fornecido por uma chamada a mopen</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>variável(is) Scilab arbitrárias</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O comando <literal>save</literal> pode ser usado para salvar as
+    variáveis Scilab correntes em um arquivo. Se uma variável é um manipulador
+    gráfico, a função <literal>save</literal> salva todas as definições de
+    <link linkend="graphics_entities">graphics_entities</link> (entidades
+    gráficas) correspondentes.</para>
+
+    <para>Desde o Scilab 5.0, todos os manipuladores de <link
+    linkend="uimenu">uimenu</link> ou <link
+    linkend="uicontrol">uicontrol</link> também são gravados por esta
+    função.</para>
+
+    <para>O arquivo pode ser fornecido tanto pelo seu endereço quanto por seu
+    descritor dado previamente por <literal>mopen</literal>.</para>
+
+    <para><literal>save(filename)</literal> salva todas as variáveis correntes
+    definidas por <literal>filename</literal>.</para>
+
+    <para><literal>save(fd)</literal> salva todas as variáveis correntes
+    definidas pelo descritor <literal>fd</literal>.</para>
+
+    <para><literal>save(filename,x,y)</literal> ou
+    <literal>save(fd,x,y)</literal> salva apenas as variáveis chamadas
+    <literal>x</literal> e <literal>y</literal>.</para>
+
+    <para>Variáveis salvas podem ser recarregadas através do comando
+    <literal>load</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+a=eye(2,2);b=ones(a);
+save('val.dat',a,b);
+clear a
+clear b
+load('val.dat','a','b');
+
+// gravação seqüêncial em um arquivo
+fd=mopen('TMPDIR/foo','wb')
+for k=1:4, x=k^2;save(fd,x,k),end
+mclose(fd)
+fd=mopen('TMPDIR/foo','rb')
+for i=1:4, load(fd,'x','k');x,k,end
+mclose(fd)
+
+// anexando variáveis a um arquivo gravado antigo
+fd=mopen('TMPDIR/foo','r+')
+mseek(0,fd,'end') 
+lst=list(1,2,3)
+save(fd,lst)
+mclose(fd)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="save_format">save_format</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

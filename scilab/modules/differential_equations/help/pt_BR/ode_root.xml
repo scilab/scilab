@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ode_root" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ode_root</refname>
+
+    <refpurpose>solucionador de EDOs com busca de raízes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y,rd[,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmemtros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0</term>
+
+        <listitem>
+          <para>vetor de reais ou matriz (condições iniciais)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>escalar real (tempo inicial)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>vetor de reais (tempos nos quais a solução é
+          computada).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função externa i.e. função, string ou lista.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rtol,atol</term>
+
+        <listitem>
+          <para>constantes reais ou vetores reais com o mesmo tamanho que
+          <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>função externa i.e. função, string ou lista.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w,iw</term>
+
+        <listitem>
+          <para>vetores de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ng</term>
+
+        <listitem>
+          <para>inteiros.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>g</term>
+
+        <listitem>
+          <para>função externa i.e. função, string ou lista.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Com esta sintaxe (primeiro argumento igual a
+    <literal>"root"</literal>) <literal>ode</literal> computa a solução da EDO
+    <literal>dy/dt=f(t,y)</literal> até que o estado <literal>y(t)</literal>
+    cruze a superfície <literal>g(t,y)=0</literal>.</para>
+
+    <para><literal>g</literal> deve fornecer a equação da superfície. É uma
+    função externa, i.e. uma função com sintaxe especificada, ou o nome de uma
+    subrotina FORTRAN ou função C (string) com seqüência de chamamento
+    especificada ou uma lista.</para>
+
+    <para>Se <literal>g</literal> é uma função, a sintaxe deve ser como
+    segue:</para>
+
+    <programlisting>
+
+z=g(t,y)
+   
+    </programlisting>
+
+    <para>onde <literal>t</literal> é um escalar real (tempo) e
+    <literal>y</literal> um vetor de reais (estado). Ela retorna um vetor de
+    tamanho <literal>ng</literal> que corresponde às <literal>ng</literal>
+    restrições. Se <literal>g</literal> é um string, ele se refere a uma
+    subrotina FORTRAN ou uma função C, com a seguinte seqüência de chamamento:
+    <literal>g(n,t,y,ng,gout)</literal> onde <literal>ng</literal> é o número
+    de restrições e <literal>gout</literal> é o valor de <literal>g</literal>
+    (saída do programa). Se <literal>g</literal> é uma lista, as mesmas
+    convenções para <literal>f</literal> se aplicam (ver ajuda de ode).</para>
+
+    <para>A saída <literal>rd</literal> é um vetor <literal>1 x k</literal> .
+    A primeira entrada contém o tempo de parada. Outras entradas indicam que
+    componentes de <literal>g</literal> possuem sinal trocado.
+    <literal>k</literal> maior que 2 indica que mais de uma superfície
+    (<literal>(k-1)</literal> superfícies) foram simultaneamente
+    atravessadas.</para>
+
+    <para>Outros argumentos e opções são os mesmos que para
+    <literal>ode</literal>, ver a página de ajuda de ode.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// Integração da equação diferencial
+// dy/dt=y , y(0)=1, e acha o tempo mínimo t tal que y(t)=2
+deff("[ydot]=f(t,y)","ydot=y")
+deff("[z]=g(t,y)","z=y-2")
+y0=1;ng=1;
+[y,rd]=ode("roots",y0,0,2,f,ng,g)
+
+
+deff("[z]=g(t,y)","z=y-[2;2;33]")
+[y,rd]=ode("roots",1,0,2,f,3,g)
+
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dasrt">dasrt</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

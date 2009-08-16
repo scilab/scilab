@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>pdiv</refname>
 
-    <refpurpose>divis√£o polinomial</refpurpose>
+    <refpurpose>divis„o polinomial</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[R,Q]=pdiv(P1,P2)
 [Q]=pdiv(P1,P2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>P1</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>P2</term>
 
         <listitem>
-          <para>polin√¥mio ou matriz de polin√¥mios</para>
+          <para>polinÙmio ou matriz de polinÙmios</para>
         </listitem>
       </varlistentry>
 
@@ -58,19 +58,19 @@
         <term>R,Q</term>
 
         <listitem>
-          <para>duas matrizes de polin√¥mios</para>
+          <para>duas matrizes de polinÙmios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Divis√£o euclidiana elemento a elemento da matriz de polin√¥mios
-    <literal>P1</literal> pelo polin√¥mio <literal>P2</literal> ou pela matriz
-    de polin√¥mios <literal>P2</literal>. <literal>Rij</literal> √© a matriz de
-    restos, <literal>Qij</literal> √© a matriz de quocientes e <literal>P1ij =
+    <para>Divis„o euclidiana elemento a elemento da matriz de polinÙmios
+    <literal>P1</literal> pelo polinÙmio <literal>P2</literal> ou pela matriz
+    de polinÙmios <literal>P2</literal>. <literal>Rij</literal> È a matriz de
+    restos, <literal>Qij</literal> È a matriz de quocientes e <literal>P1ij =
     Qij*P2 + Qij</literal> ou <literal>P1ij = Qij*P2ij + Qij</literal>.</para>
   </refsection>
 
@@ -91,7 +91,7 @@ p2*q+r-p1
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="ldiv">ldiv</link></member>

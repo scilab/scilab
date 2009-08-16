@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ode_optional_output"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ode_optional_output</refname>
+
+    <refpurpose>descrição de saídas opcionais de solucionadores de
+    EDOs</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta página descreve os valores mais importantes retornados nos
+    argumento opcionais do lado esquerdo da função <link
+    linkend="ode">ode</link> <literal>w</literal> e <literal>iw</literal>. São
+    válidos apenas para os solucionadores de EDOs <literal>lsode</literal>,
+    <literal>lsoda</literal> e <literal>lsodar</literal>. Para mais detalhes,
+    pode se consultar os comentários dos códigos das subrotinas FORTRAN
+    <literal>routines/integ/lsod*.f</literal>.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>w(11)</term>
+
+        <listitem>
+          <para>último tamanho do passo em t utilizado
+          (sucessivamente).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w(12)</term>
+
+        <listitem>
+          <para>o tamanho do passo a ser tentado no próximo passo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w(13)</term>
+
+        <listitem>
+          <para>o valor corrente da variável independente alcançado pelo
+          solucionador, i.e. o ponto de malha interno t corrente. Ná saída,
+          tcur sempre estará pelo menos tão longe quanto o argumento t, mas
+          pode estar mais longe (se foi realizada interpolação).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w(14)</term>
+
+        <listitem>
+          <para>um fator de escala de tolerância, maior que 1.0, computado
+          quando se detecta requerer muita precisão (istate = -3 se detectado
+          no início do problema, istate = -2, em caso contrário). Se itol for
+          inalterado, mas rtol e atol forem uniformemente escalados por um
+          fator de <literal>tolsf=w(14)</literal> para a próxima chamada,
+          emtão supõe-se que o solucionador pode continuar. (o usuário também
+          pode ignorar <literal>tolsf</literal> e alterar os parâmetros de
+          tolerância de qualquer outro modo apropriado.)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w(15)</term>
+
+        <listitem>
+          <para>o valor de t no tempo da última alternação de método, se
+          houver. Este valor não é significante com o solucionador
+          <literal>lsode</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(10)</term>
+
+        <listitem>
+          <para>o número de avaliações de <literal>g</literal> para problema
+          até então. Este valor é significante apenas para o solucionador
+          <literal>lsodar</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(11)</term>
+
+        <listitem>
+          <para>o número de passos tomados para o problema até então</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(12)</term>
+
+        <listitem>
+          <para>o número de avaliações de f até então</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(13)</term>
+
+        <listitem>
+          <para>o número de avaliações do jacobiano (e de decomposições lu da
+          matriz) para o problema até então.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(14)</term>
+
+        <listitem>
+          <para>a última ordem do método utilizada (sucessivamente).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(15)</term>
+
+        <listitem>
+          <para>a ordem a ser tentada no próximo passo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(16)</term>
+
+        <listitem>
+          <para>o índice do componente de maior magnitude no vetor de erro
+          local ponderado ( e(i)/ewt(i) ), sobre um erro, retorna istate = -4
+          or -5.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(17)</term>
+
+        <listitem>
+          <para>o comprimento de <literal>w</literal> realmente requerido,
+          supondo que o comprimento de rwork deve ser fixado para o resto do
+          problema, e que a alternância pode ocorrer. Isto é definido sobre
+          retornos normais e sobre um retorno de entrada ilegal para
+          armazenamento insuficiente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(18)</term>
+
+        <listitem>
+          <para>o comprimento de <literal>iw</literal> realmente requerido,
+          supondo que o comprimento de <literal>iw</literal> deve ser fixado
+          pelo resto do problema, e que a alternância pode ocorrer. Isto é
+          definido sobre retornos normais e sobre um retorno de entrada ilegal
+          para armazenamento insuficiente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(19)</term>
+
+        <listitem>
+          <para>o indicador do método para o último passo realizado com
+          sucesso. 1 significa adams (nonstiff), 2 significa bdf (stiff). Este
+          valor não é significante com o solucionador
+          <literal>lsode</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iw(20)</term>
+
+        <listitem>
+          <para>o indicador do método corrente. 1 significa adams (nonstiff),
+          2 significa bdf (stiff). Este é o método a ser tentado no próximo
+          passo. Logo, difere de <literal>iw(19)</literal> apenas se uma
+          alternância de métodos foi realizada. Este valor não é significante
+          com o solucionador <literal>lsode</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

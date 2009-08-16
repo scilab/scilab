@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="color" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>color</refname>
+
+    <refpurpose>Retorna o identificador de uma cor</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>id=color(name)
+id=color(r,g,b)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>nome de uma cor. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r,g,b</term>
+
+        <listitem>
+          <para>valores RGB inteiros de uma cor. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>id</term>
+
+        <listitem>
+          <para>identificador da cor.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>color</literal> retorna o identificador de cor
+    correspondente ao seu argumento:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>name</literal> deve ser um nome de cor conhecido (ver
+        <link linkend="color_list">color_list</link>).</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>r</literal>, <literal>g</literal> e
+        <literal>b</literal> devem ser inteiros entre 0 e 255 correspondentes
+        aos componentes de cor vermelho, verde e azul. Como de uso, 0
+        significa nenhuma intensidade e 255 significa total idensidade para a
+        cor. </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Se a cor requisitada não existe no mapa de cores corrente, então ela
+    é adicionada ao mapa de cores.</para>
+
+    <para>Esta função pode ser utilizada para se especificar as cores de plano
+    de fundo e de primeiro plano em esboços. </para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=linspace(-2*%pi,2*%pi,100)';
+// utilizando cores existentes
+plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
+// novas cores adicionadas ao mapa de core
+e=gce(); p1=e.children(1); p2=e.children(2);
+p1.foreground=color("purple"); p2.foreground=color("navy blue");
+// utilizando valores RGB
+p1.foreground=color(255,128,128);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="colormap">colormap</link></member>
+
+      <member><link linkend="color_list">color_list</link></member>
+
+      <member><link linkend="getcolor">getcolor</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

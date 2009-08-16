@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,14 +28,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>kron(A,B)
 A.*.B</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>kron(A,B)</literal> ou <literal>A.*.B</literal> retorna o
     produto tensorial de Kronecker entre duas matrizes <literal>A</literal> e
@@ -50,9 +50,9 @@ A.*.B</synopsis>
               | A(m,1) B ..... A(m,n) B |
     </programlisting>
 
-    <para>Se <literal>A</literal> Ã© uma matriz <literal>m x n</literal> e
-    <literal>B</literal> Ã© uma matriz <literal>p x q</literal> , entÃ£o
-    <literal>A.*.B</literal> Ã© uma matriz <literal>(m*p) x
+    <para>Se <literal>A</literal> é uma matriz <literal>m x n</literal> e
+    <literal>B</literal> é uma matriz <literal>p x q</literal> , então
+    <literal>A.*.B</literal> é uma matriz <literal>(m*p) x
     (n*q)</literal>.</para>
 
     <para><literal>A</literal> e <literal>B</literal> podem ser matrizes

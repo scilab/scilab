@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lib" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lib</refname>
+
+    <refpurpose>definição de biblioteca</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xlib = lib('lib-dir')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>lib-dir</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>lib-dir</literal> é um string definindo um diretório que
+    contém arquivos de funções compiladas do Scilab
+    (<literal>.bin</literal>).</para>
+
+    <para>Em adição a esses arquivos <literal>lib-dir</literal> deve conter um
+    arquivo chamado <literal>names</literal>, que contém os nomes das funções
+    definidas em <literal>lib-dir</literal>. Com sucesso, todas as funções em
+    <literal>lib-dir</literal> estarão disponíveis dentro do Scilab. Elas são
+    carregadas em demanda quando são chamadas pela primeira vez.</para>
+
+    <para>Arquivos binários podem ser criados de dentro do Scilab com o
+    comando <literal>save</literal>.</para>
+
+    <para>As bibliotecas padrões do Scilab são definidas utilizando-se
+    <literal>lib</literal> nos subdiretórios
+    <literal>SCIDIR/macros/*</literal>.</para>
+
+    <para>Uma variável biblioteca geralmente é salva para carregamento
+    posterior, tanto on-line quanto do arquivo de inicialização específico do
+    usuário (ver startup).</para>
+  </refsection>
+
+  <refsection>
+    <title>Restrições</title>
+
+    <para>O Scilab assume tacitamente que cada arquivo xxxx.bin define uma
+    variável chamada <literal>xxxx</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//define some variables
+function z = myplus(x, y), z = x + y,endfunction
+function z = yourplus(x, y), x = x - y,endfunction
+A=1:10;
+
+//create the *.bin files in libdir
+libdir=TMPDIR
+save(libdir + '/myplus.bin', myplus);
+save(libdir + '/yourplus.bin', yourplus);
+save(libdir + '/A.bin', A);
+
+//create the name file
+mputl(['myplus';'yourplus';'A'],TMPDIR+'/names');
+
+//build the library containing myplus and yourplus
+xlib = lib(libdir+'/')
+
+//erase the variables
+clear myplus yourplus A
+
+//Automatic loading and execution
+myplus(1,2)
+
+A
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="library">library</link></member>
+
+      <member><link linkend="genlib">genlib</link></member>
+
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="whereis">whereis</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

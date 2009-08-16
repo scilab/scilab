@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="pause" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,24 +17,24 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Alterna para o modo <literal>pause</literal> ; inserido no cÃ³digo de
-    uma funÃ§Ã£o, <literal>pause</literal> interrompe a execuÃ§Ã£o da mesma:
-    recebe-se um sÃ­mbolo de prompt para indicar o nÃ­vel de
-    <literal>pause</literal> (exemplo: <literal>-1-&gt;</literal>). O usuÃ¡rio
-    estÃ¡ agora num novo espaÃ§o de trabalho em que todas as variÃ¡veis de nÃ­vel
-    infeiror (em particular todas as variÃ¡veis da funÃ§Ã£o) estÃ£o disponÃ­veis.
-    Para retornar ao espaÃ§o de trabalho de chamamento, entre
+    <para>Alterna para o modo <literal>pause</literal> ; inserido no código de
+    uma função, <literal>pause</literal> interrompe a execução da mesma:
+    recebe-se um símbolo de prompt para indicar o nível de
+    <literal>pause</literal> (exemplo: <literal>-1-&gt;</literal>). O usuário
+    está agora num novo espaço de trabalho em que todas as variáveis de nível
+    infeiror (em particular todas as variáveis da função) estão disponíveis.
+    Para retornar ao espaço de trabalho de chamamento, entre
     <literal>"return"</literal></para>
 
     <para>Neste modo, <literal>[...]=return(...) </literal> retorna as
-    variÃ¡veis dos argumentos <literal>(...)</literal> ao espaÃ§o de trabalho de
-    chamamento com nomes na saÃ­da<literal> [...]</literal>. Em caso contrÃ¡rio,
-    as variÃ¡veis de nÃ­vel infeiror sÃ£o protegidas e nÃ£o podem ser
+    variáveis dos argumentos <literal>(...)</literal> ao espaço de trabalho de
+    chamamento com nomes na saída<literal> [...]</literal>. Em caso contrário,
+    as variáveis de nível infeiror são protegidas e não podem ser
     modificadas.</para>
 
-    <para><literal>pause</literal> Ã© extremamente Ãºtil para propÃ³sitos de
+    <para><literal>pause</literal> é extremamente útil para propósitos de
     depuramento.</para>
 
     <para>Este modo pode ser cancelado pelo comando
@@ -42,7 +42,7 @@
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="halt">halt</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="with_macros_source"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>with_macros_source</refname>
 
-    <refpurpose>Verifica se a fonte de macros est√° instalada</refpurpose>
+    <refpurpose>Verifica se a fonte de macros est· instalada</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>r=with_macros_source()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -37,9 +37,9 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna <literal>%t</literal> se a fonte de macros est√° instalada,
-    ou <literal>%f</literal> sen√£o.</para>
+    <para>Retorna <literal>%t</literal> se a fonte de macros est· instalada,
+    ou <literal>%f</literal> sen„o.</para>
   </refsection>
 </refentry>

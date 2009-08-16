@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,21 +28,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>tril(x [,k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matriz (de reais, complexos, polin√¥mios ou raz√µes de
-          polin√¥mios) </para>
+          <para>matriz (de reais, complexos, polinÙmios ou razıes de
+          polinÙmios) </para>
         </listitem>
       </varlistentry>
 
@@ -50,17 +50,17 @@
         <term>k</term>
 
         <listitem>
-          <para>inteiro (valor padr√£o 0)</para>
+          <para>inteiro (valor padr„o 0)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Parte triangular inferior de uma matriz.
-    <literal>tril(x,k)</literal> √© formada pelas entradas abaixo da k-√©sima
+    <literal>tril(x,k)</literal> È formada pelas entradas abaixo da k-Èsima
     diagonal : k&gt;0 (acima da diagonal superior) e k&lt;0 (diagonais abaixo
     da diagonal principal).</para>
   </refsection>
@@ -78,7 +78,7 @@ tril([1/s,1/s;1/s,1])
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="triu">triu</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>hrmt</refname>
 
-    <refpurpose>m谩ximo divisor comum de polin么mios</refpurpose>
+    <refpurpose>m醲imo divisor comum de polin鬽ios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq眉锚ncia de Chamamento </title>
+    <title> Seqncia de Chamamento </title>
 
     <synopsis>[pg,U]=hrmt(v)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par芒metros</title>
+    <title>Par鈓etros</title>
 
     <variablelist>
       <varlistentry>
         <term>v</term>
 
         <listitem>
-          <para>vetor linha de polin么mios, i.e. matriz de polin么mios
+          <para>vetor linha de polin鬽ios, i.e. matriz de polin鬽ios
           <literal>1</literal>x<literal>k</literal> </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
         <term>pg</term>
 
         <listitem>
-          <para>polin么mio</para>
+          <para>polin鬽io</para>
         </listitem>
       </varlistentry>
 
@@ -58,18 +58,18 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz de polin么mios unimodular</para>
+          <para>matriz de polin鬽ios unimodular</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri莽茫o</title>
+    <title>Descri玢o</title>
 
     <para><literal>[pg,U]=hrmt(v)</literal> retorna uma matriz unimodular
     <literal>U</literal> e <literal>pg</literal> = MDC do vetor linha de
-    polin么mios <literal>v</literal> tais que <literal>v*U =
+    polin鬽ios <literal>v</literal> tais que <literal>v*U =
     [pg,0]</literal>.</para>
   </refsection>
 
@@ -87,7 +87,7 @@ det(U)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb茅m </title>
+    <title> Ver Tamb閙 </title>
 
     <simplelist type="inline">
       <member><link linkend="gcd">gcd</link></member>

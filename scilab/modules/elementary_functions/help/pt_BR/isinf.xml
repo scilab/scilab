@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>isinf</refname>
 
-    <refpurpose>verifica se hÃ¡ entradas infinitas</refpurpose>
+    <refpurpose>verifica se há entradas infinitas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r=isinf(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,11 +49,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>isinf(x)</literal> retorna um vetor ou matriz de valores
-    booleanos que contÃ©m entradas verdadeiras correspondentes Ã s entradas de
-    <literal>x</literal> infinitas e entradas falsas correspondentes Ã s
+    booleanos que contém entradas verdadeiras correspondentes às entradas de
+    <literal>x</literal> infinitas e entradas falsas correspondentes às
     entradas de <literal>x</literal> finitas.</para>
   </refsection>
 
@@ -68,7 +68,7 @@ isinf([1 0.01 -%inf %inf])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="isnan">isnan</link></member>

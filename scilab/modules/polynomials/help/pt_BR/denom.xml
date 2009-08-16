@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>den=denom(r)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>r</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios, de razÃµes de polinÃ´mios ou de
+          <para>matriz de polinômios, de razões de polinômios ou de
           constantes. </para>
         </listitem>
       </varlistentry>
@@ -50,26 +50,26 @@
         <term>den</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios</para>
+          <para>matriz de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>den=denom(r)</literal> retorna o denominador de uma matriz
-    de razÃµes de polinÃ´mios.</para>
+    de razões de polinômios.</para>
 
-    <para>Desde que razÃµes de polinÃ´mios sÃ£o representadas internamente como
+    <para>Desde que razões de polinômios são representadas internamente como
     <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-    <literal>denom(r</literal>) Ã© o mesmo que <literal>r(3)</literal>,
+    <literal>denom(r</literal>) é o mesmo que <literal>r(3)</literal>,
     <literal>r('den')</literal> ou <literal>r.den</literal></para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="numer">numer</link></member>

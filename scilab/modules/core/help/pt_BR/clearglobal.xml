@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="clearglobal" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>clearglobal</refname>
 
-    <refpurpose>cancela vari√°veis globais</refpurpose>
+    <refpurpose>cancela vari·veis globais</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>clearglobal()
 clearglobal nam1 .. namn
@@ -25,30 +25,30 @@ clearglobal('nam1', ..,'namn')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>nam1,..., namn</term>
 
         <listitem>
-          <para>nomes de vari√°veis v√°lidos </para>
+          <para>nomes de vari·veis v·lidos </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>clearglobal() </literal> cancela todas as vari√°veis
+    <para><literal>clearglobal() </literal> cancela todas as vari·veis
     globais.</para>
 
-    <para><literal>clearglobal nam1 .. namn</literal> cancela as vari√°veis
+    <para><literal>clearglobal nam1 .. namn</literal> cancela as vari·veis
     globais dadas por seus nomes.</para>
 
-    <para>Note que <literal>clearglobal() </literal> limpa apenas as vari√°veis
-    globais; as c√≥pias locais destas vari√°veis n√£o s√£o destru√≠das.</para>
+    <para>Note que <literal>clearglobal() </literal> limpa apenas as vari·veis
+    globais; as cÛpias locais destas vari·veis n„o s„o destruÌdas.</para>
   </refsection>
 
   <refsection>
@@ -66,7 +66,7 @@ who('global')
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="global">global</link></member>
