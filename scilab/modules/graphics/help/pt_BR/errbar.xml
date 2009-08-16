@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>errbar</refname>
 
-    <refpurpose>adiciona barras de erro veriticais a um esboÃ§o 2d</refpurpose>
+    <refpurpose>adiciona barras de erro veriticais a um esboço 2d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>errbar(x,y,em,ep)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,17 +48,17 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>errbar</literal> adiciona barras de erro verticais a um
-    esboÃ§o 2d. <literal>x</literal> e <literal>y</literal> tÃªm o mesmo
+    esboço 2d. <literal>x</literal> e <literal>y</literal> têm o mesmo
     significado que em <literal>plot2d</literal>. <literal>em(i,j)</literal> e
-    <literal>ep(i,j)</literal> sÃ£o os intervalos de erro sobre os valores
+    <literal>ep(i,j)</literal> são os intervalos de erro sobre os valores
     <literal>y(i,j)</literal>:
     <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.</para>
 
     <para>Entre com o comando <literal>errbar()</literal> para visualizar uma
-    demonstraÃ§Ã£o.</para>
+    demonstração.</para>
   </refsection>
 
   <refsection>
@@ -75,7 +75,7 @@ errbar(x,y,0.05*ones(x),0.03*ones(x))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot2d">plot2d</link></member>

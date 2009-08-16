@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[Ro,Theta]=polar(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,11 +64,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>[Ro,Theta]=polar(A)</literal> retorna a forma polar de
     <literal>A</literal> i.e.
-    <literal>A=Ro*expm(%i*Theta)</literal><literal>Ro</literal> simÃ©trico
+    <literal>A=Ro*expm(%i*Theta)</literal><literal>Ro</literal> simétrico
     &gt;= 0 e <literal>Theta</literal> hermitiano &gt;=0.</para>
   </refsection>
 
@@ -85,7 +85,7 @@ norm(A-Ro*expm(%i*Theta),1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="expm">expm</link></member>

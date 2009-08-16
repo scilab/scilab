@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="add_help_chapter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>add_help_chapter</refname>
+
+    <refpurpose>adiciona uma entrada na lista de ajudas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>add_help_chapter(title,path[,mode])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+
+        <listitem>
+          <para>string, o título da ajuda</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>path</term>
+
+        <listitem>
+          <para>string, o endereço do diretório contendo os arquivos de
+          ajuda</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mode</term>
+
+        <listitem>
+          <para>booleano, %T se o diretório pertence à lista de módulos do
+          Scilab, %F em caso contrário (toolboxes). O valor padrão é
+          %F.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função adiciona uma nova entrada na lista de ajudas. Os
+    arquivos do capítulo de ajuda devem estar localizados em um único
+    diretório. Se o dado título <literal>title</literal> já existir na lista
+    de ajudas associado com o mesmo endereço, nada é feito. A função verifica
+    se o diretório existe.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+
+      <member><link linkend="add_demo">add_demo</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer , INRIA</para>
+  </refsection>
+</refentry>

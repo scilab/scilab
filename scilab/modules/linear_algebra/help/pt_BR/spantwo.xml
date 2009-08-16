@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>spantwo</refname>
 
-    <refpurpose>soma e interse√ß√£o de subespa√ßos</refpurpose>
+    <refpurpose>soma e interseÁ„o de subespaÁos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Xp,dima,dimb,dim]=spantwo(A,B, [tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A, B</term>
 
         <listitem>
-          <para>duas matrizes de reais ou complexos com igual n√∫mero de linhas
+          <para>duas matrizes de reais ou complexos com igual n˙mero de linhas
           </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
         <term>Xp</term>
 
         <listitem>
-          <para>matriz quadrada n√£o-singular </para>
+          <para>matriz quadrada n„o-singular </para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>dima, dimb, dim</term>
 
         <listitem>
-          <para>inteiros, dimens√µes dos subespa√ßos </para>
+          <para>inteiros, dimensıes dos subespaÁos </para>
         </listitem>
       </varlistentry>
 
@@ -66,18 +66,18 @@
         <term>tol</term>
 
         <listitem>
-          <para>n√∫mero real n√£o-negativo</para>
+          <para>n˙mero real n„o-negativo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dadas duas matrizes <literal>A</literal> e <literal>B</literal> com
-    o mesmo n√∫mero de linhas, retorna uma matriz quadrada
-    <literal>Xp</literal> (n√£o-singular, mas n√£o necessariamente ortogonal)
+    o mesmo n˙mero de linhas, retorna uma matriz quadrada
+    <literal>Xp</literal> (n„o-singular, mas n„o necessariamente ortogonal)
     tal que :</para>
 
     <programlisting>
@@ -92,15 +92,15 @@ Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
     <para>As primeiras <literal>dima</literal> colunas de
     <literal>inv(Xp)</literal> geram Im(<literal>A</literal>).</para>
 
-    <para>As colunas de <literal>dim-dimb+1</literal> at√©
-    <literal>dima</literal> de <literal>inv(Xp)</literal> geram a interse√ß√£o
+    <para>As colunas de <literal>dim-dimb+1</literal> atÈ
+    <literal>dima</literal> de <literal>inv(Xp)</literal> geram a interseÁ„o
     de Im(A) e Im(B).</para>
 
     <para>As primeiras <literal>dim</literal> colunas de
     <literal>inv(Xp)</literal> geram
     Im(<literal>A</literal>)+Im(<literal>B</literal>).</para>
 
-    <para>As colunas de <literal>dim-dimb+1</literal> at√©
+    <para>As colunas de <literal>dim-dimb+1</literal> atÈ
     <literal>dim</literal> de <literal>inv(Xp)</literal> geram
     Im(<literal>B</literal>).</para>
 
@@ -122,16 +122,16 @@ A=[1,0,0,4;
    0,0,0,16];
 B=[1,2,0,0]';C=[4,0,0,1]; 
 Sl=ss2ss(syslin('c',A,B,C),rand(A));
-[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Parte control√°vel
-[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobserv√°vel
-[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Decomposi√ß√£o de Kalman
+[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Parte control·vel
+[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobserv·vel
+[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //DecomposiÁ„o de Kalman
 Slcan=ss2ss(Sl,inv(Xp));
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="spanplus">spanplus</link></member>

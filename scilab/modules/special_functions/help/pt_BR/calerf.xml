@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>calerf</refname>
 
-    <refpurpose>computa funÃ§Ãµes de erro</refpurpose>
+    <refpurpose>computa funções de erro</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,15 +58,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>calerf(x,0)</literal> computa a funÃ§Ã£o de erro
+    <para><literal>calerf(x,0)</literal> computa a função de erro
     <literal>erf(x)</literal></para>
 
-    <para><literal>calerf(x,1)</literal> computa a funÃ§Ã£o de erro complementar
+    <para><literal>calerf(x,1)</literal> computa a função de erro complementar
     <literal>erfc(x)</literal></para>
 
-    <para><literal>calerf(x,2)</literal> computa a funÃ§Ã£o de erro complementar
+    <para><literal>calerf(x,2)</literal> computa a função de erro complementar
     escalada <literal>erfcx(x)</literal></para>
   </refsection>
 
@@ -83,7 +83,7 @@ calerf(1,0)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="erf">erf</link></member>
@@ -97,6 +97,6 @@ calerf(1,0)
   <refsection>
     <title>Autor</title>
 
-    <para>W. J. Cody (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

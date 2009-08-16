@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,7 +28,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>evals=spec(A)
 [R,diagevals]=spec(A)
@@ -41,7 +41,7 @@ evals=spec(A,B)
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,7 +56,7 @@ evals=spec(A,B)
         <term>B</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos com as mesmas dimens√µes
+          <para>matriz quadrada de reais ou complexos com as mesmas dimensıes
           que<literal> A</literal></para>
         </listitem>
       </varlistentry>
@@ -99,7 +99,7 @@ evals=spec(A,B)
         <term>R</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos invert√≠vel, autovetores
+          <para>matriz quadrada de reais ou complexos invertÌvel, autovetores
           direitos da matriz </para>
         </listitem>
       </varlistentry>
@@ -108,7 +108,7 @@ evals=spec(A,B)
         <term>Q</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos invert√≠vel, autovetores
+          <para>matriz quadrada de reais ou complexos invertÌvel, autovetores
           esquerdos do feixe </para>
         </listitem>
       </varlistentry>
@@ -117,7 +117,7 @@ evals=spec(A,B)
         <term>Z</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos invert√≠vel, autovetores
+          <para>matriz quadrada de reais ou complexos invertÌvel, autovetores
           direitos do feixe</para>
         </listitem>
       </varlistentry>
@@ -125,7 +125,7 @@ evals=spec(A,B)
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
@@ -152,7 +152,7 @@ evals=spec(A,B)
 
         <listitem>
           <para> retorna o espectro do feixe de matrizes A - s B, i.e. as
-          ra√≠zes da matriz de polin√¥mios s B - A.</para>
+          raÌzes da matriz de polinÙmios s B - A.</para>
         </listitem>
       </varlistentry>
 
@@ -161,15 +161,15 @@ evals=spec(A,B)
 
         <listitem>
           <para>retorna o espectro do feixe de matrizes <literal>A - s
-          B</literal>, i.e. as ra√≠zes da matriz de polin√¥mios <literal>A - s
-          B</literal>. Auto valores generalizados alpha e beta s√£o tais que a
-          matriz <literal>A - alpha./beta B</literal> √© uma matriz singular.
-          Os autovalores s√£o dados por <literal>al./be</literal> e se
-          <literal>beta(i) = 0</literal> o i-√©simo autovalor est√° no infinito.
-          (Para <literal>B = eye(A), alpha./beta</literal> √©
-          <literal>spec(A)</literal>). √â usualmente representado pelo par
-          (alpha,beta), j√° que h√° uma interpreta√ß√£o razo√°vel para beta=0, e
-          at√© mesmo para os dois sendo zero.</para>
+          B</literal>, i.e. as raÌzes da matriz de polinÙmios <literal>A - s
+          B</literal>. Auto valores generalizados alpha e beta s„o tais que a
+          matriz <literal>A - alpha./beta B</literal> È uma matriz singular.
+          Os autovalores s„o dados por <literal>al./be</literal> e se
+          <literal>beta(i) = 0</literal> o i-Èsimo autovalor est· no infinito.
+          (Para <literal>B = eye(A), alpha./beta</literal> È
+          <literal>spec(A)</literal>). … usualmente representado pelo par
+          (alpha,beta), j· que h· uma interpretaÁ„o razo·vel para beta=0, e
+          atÈ mesmo para os dois sendo zero.</para>
         </listitem>
       </varlistentry>
 
@@ -195,36 +195,36 @@ evals=spec(A,B)
   </refsection>
 
   <refsection>
-    <title>Refer√™ncias</title>
+    <title>ReferÍncias</title>
 
-    <para>As computa√ß√µes de autovalores de matrizes s√£o baseadas nas rotinas
+    <para>As computaÁıes de autovalores de matrizes s„o baseadas nas rotinas
     Lapack</para>
 
     <itemizedlist>
       <listitem>
-        <para>DGEEV e ZGEEV quando as matrizes n√£o s√£o sim√©tricas,</para>
+        <para>DGEEV e ZGEEV quando as matrizes n„o s„o simÈtricas,</para>
       </listitem>
 
       <listitem>
-        <para>DSYEV e ZHEEV quando as matrizes s√£o sim√©tricas.</para>
+        <para>DSYEV e ZHEEV quando as matrizes s„o simÈtricas.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Uma matriz de complexos sim√©trica tem termos fora da diagonal
+    <para>Uma matriz de complexos simÈtrica tem termos fora da diagonal
     conjugados e termos diagonais reais.</para>
 
-    <para>As computa√ß√µes de autovalores de feixes s√£o baseadas nas rotinas
+    <para>As computaÁıes de autovalores de feixes s„o baseadas nas rotinas
     Lapack DGGEV e ZGGEV.</para>
   </refsection>
 
   <refsection>
     <title>Matrizes de reais e de complexos</title>
 
-    <para>Deve-se notar que o tipo das vari√°veis de sa√≠da, tais como evals ou
-    R por exemplo, n√£o √© necessariamente o mesmo das que das matrizes de
-    entrada A e B. No par√°grafo seguinte, an√°lisamos o tipo das vari√°veis de
-    sa√≠da no caso onde nos casos onde se computa os autovalores e autovetores
-    de uma √∫nica matriz A.</para>
+    <para>Deve-se notar que o tipo das vari·veis de saÌda, tais como evals ou
+    R por exemplo, n„o È necessariamente o mesmo das que das matrizes de
+    entrada A e B. No par·grafo seguinte, an·lisamos o tipo das vari·veis de
+    saÌda no caso onde nos casos onde se computa os autovalores e autovetores
+    de uma ˙nica matriz A.</para>
 
     <itemizedlist>
       <listitem>
@@ -232,15 +232,15 @@ evals=spec(A,B)
 
         <itemizedlist>
           <listitem>
-            <para>Sim√©trica</para>
+            <para>SimÈtrica</para>
 
-            <para>Os autovetores e autovalores s√£o reais.</para>
+            <para>Os autovetores e autovalores s„o reais.</para>
           </listitem>
 
           <listitem>
-            <para>N√£o sim√©trica</para>
+            <para>N„o simÈtrica</para>
 
-            <para>Os autovetores e autovalores s√£o complexos.</para>
+            <para>Os autovetores e autovalores s„o complexos.</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -250,16 +250,16 @@ evals=spec(A,B)
 
         <itemizedlist>
           <listitem>
-            <para>Sim√©trica</para>
+            <para>SimÈtrica</para>
 
-            <para>Os autovalores s√£o reais, mas os autovetores s√£o
+            <para>Os autovalores s„o reais, mas os autovetores s„o
             complexos.</para>
           </listitem>
 
           <listitem>
-            <para>N√£o sim√©trica</para>
+            <para>N„o simÈtrica</para>
 
-            <para>Os autovetores e autovalores s√£o complexos.</para>
+            <para>Os autovetores e autovalores s„o complexos.</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -287,7 +287,7 @@ clean(inv(X)*A*X)
 A=rand(3,3);
 [al,be,R] = spec(A,eye(A));
 al./be
-clean(inv(R)*A*R)  //exibindo os autovalores (matriz gen√©rica)
+clean(inv(R)*A*R)  //exibindo os autovalores (matriz genÈrica)
 A=A+%i*rand(A);
 E=rand(A);
 roots(det(A-%s*E))   //caso de complexos
@@ -296,7 +296,7 @@ roots(det(A-%s*E))   //caso de complexos
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

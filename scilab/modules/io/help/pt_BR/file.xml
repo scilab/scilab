@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="file" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>file</refname>
+
+    <refpurpose>Gerenciamento de arquivos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[unit [,err]]=file('open', file-name [,status] [,access [,recl]] [,format])
+file(action,unit)
+[units [,typ [,nams [,mod [,swap]]]]] = file([unit])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+
+        <listitem>
+          <para>string, nome o arquivo a ser aberto</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>status</term>
+
+        <listitem>
+          <para>string, o status do arquivo a ser aberto</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"new"</term>
+
+              <listitem>
+                <para>o arquivo não deve existir, novo arquivo (padrão)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"old"</term>
+
+              <listitem>
+                <para>o arquivo já deve existir</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"unknown"</term>
+
+              <listitem>
+                <para>status desconhecido</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"scratch"</term>
+
+              <listitem>
+                <para>o arquivo deve ser deletado ao fim da sessão</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>access</term>
+
+        <listitem>
+          <para>string, o tipo de acesso ao arquivo</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"sequential"</term>
+
+              <listitem>
+                <para>acesso seqüencial (padrão)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"direct"</term>
+
+              <listitem>
+                <para>acesso direto</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>string,</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"formatted"</term>
+
+              <listitem>
+                <para>para um arquivo formatado (padrão)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"unformatted"</term>
+
+              <listitem>
+                <para>registro binário</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>recl</term>
+
+        <listitem>
+          <para>inteiro, é o tamanho de registros quando
+          <literal>access="direct"</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>unit</term>
+
+        <listitem>
+          <para>inteiro, descritor de unidade lógica do arquivo aberto</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>units</term>
+
+        <listitem>
+          <para>vetor de inteiros, descritores de unidades lógicas dos
+          arquivos abertos. As unidades 5 e 6 são reservadas pelo sistema para
+          dispositivos de entrada e saída.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>typs</term>
+
+        <listitem>
+          <para>vetor de strings, tipo (C ou Fortran) dos arquivos
+          abertos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nams</term>
+
+        <listitem>
+          <para>vetor de strings, endereços dos arquivos abertos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mod</term>
+
+        <listitem>
+          <para>modo de abertura de arquivo. Formado por três dígitos
+          abc</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Arquivos Fortran</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>a</term>
+
+                    <listitem>
+                      <para>0 significa formatado e 1 não formatado
+                      (binário)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>b</term>
+
+                    <listitem>
+                      <para>0 significa acesso sequencial e 1 acesso
+                      direto</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>c</term>
+
+                    <listitem>
+                      <para>0 significa "new", 1 significa "old", 2 significa
+                      "scratch" e 3 significa "unknown"</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Arquivos C</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>a</term>
+
+                    <listitem>
+                      <para>é 1 se o arquivo foi aberto pelo modo "b"
+                      (binário)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>b</term>
+
+                    <listitem>
+                      <para>é 1 se o arquivo foi aberto pelo modo "+"
+                      (atualização)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>c</term>
+
+                    <listitem>
+                      <para>1 significa "r" (leitura), 2 significa "w"
+                      (escrita) e 3 significa "a" (anexação)</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>swap</term>
+
+        <listitem>
+          <para>alavanca de troca automática. swap=1 se a troca automática
+          estiver ativada. swap é sempre 0 para arquivos Fortran.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>inteiro, número de mensagem de erro (ver error), se a abertura
+          falha. Se err for omitido, uma mensagem de erro aparece.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>action</term>
+
+        <listitem>
+          <para>é um dos seguintes strings:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"close"</term>
+
+              <listitem>
+                <para>fecha os arquivos fornecidos pelos descritores de
+                unidades lógicas fornecidos em <literal>units</literal></para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"rewind"</term>
+
+              <listitem>
+                <para>coloca o ponteiro no início do arquivo</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"backspace"</term>
+
+              <listitem>
+                <para>coloca o ponteiro no início do último registro.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"last"</term>
+
+              <listitem>
+                <para>coloca o ponteiro após o último registro.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Seleciona uma unidade lógica <literal>unit</literal> e gerencia o
+    arquivo <literal>file-name</literal>.</para>
+
+    <para><literal>[unit [,err]]=file('open', file-name [,status] [,access
+    [,recl]][,format])</literal> permite abrir um arquivo com propriedades
+    especificadas e obter o número de unidade associado
+    <literal>unit</literal>. Este número de unidade pode ser utilizado para
+    ações futuras no arquivo, ou como descritor de arquivo em chamadas às
+    funções <literal>read</literal>, <literal>write</literal>,
+    <literal>readb</literal>,
+    <literal>writb</literal>,<literal>save</literal>,
+    <literal>load</literal>.</para>
+
+    <para><literal>file(action,unit)</literal> permite fechar o arquivo, ou
+    mover o ponteiro do arquivo corrente.</para>
+
+    <para><literal>file()</literal> retorna os descritores de unidades lógicas
+    dos arquivos abertos. So <literal>file('close',file() )</literal> fecha
+    todos os arquivos do usuário abertos (tipo C ou Fortran).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+u=file('open',TMPDIR+'/foo','unknown')
+for k=1:4
+  a=rand(1,4)
+  write(u,a)
+end
+file('rewind',u)
+x=read(u,2,4)
+file('close',u)
+//
+u1=file('open',TMPDIR+'/foo','unknown')
+u2=mopen(TMPDIR+'/foo1','wb')
+[units,typs,nams]=file()
+file('close',u1);
+mclose(u2);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="read">read</link></member>
+
+      <member><link linkend="writb">writb</link></member>
+
+      <member><link linkend="readb">readb</link></member>
+
+      <member><link linkend="uigetfile">uigetfile</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mclose">mclose</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

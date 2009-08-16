@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>lsq</refname>
 
-    <refpurpose>problemas de mÃ­nimos quadrados lineares</refpurpose>
+    <refpurpose>problemas de mínimos quadrados lineares</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>X=lsq(A,B [,tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -59,8 +59,8 @@
         <listitem>
           <para>escalar positivo, usado para determinar o posto efetivo de A
           (definido como sendo a ordem da maior submatriz triangular R11
-          regente na fatoraÃ§Ã£o QR com pivoteamento de A, cujo nÃºmero de
-          condicionamento estimado &lt;= 1/tol. O valor padrÃ£o de tol Ã©
+          regente na fatoração QR com pivoteamento de A, cujo número de
+          condicionamento estimado &lt;= 1/tol. O valor padrão de tol é
           <literal>sqrt(%eps)</literal>.</para>
         </listitem>
       </varlistentry>
@@ -76,18 +76,18 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>X=lsq(A,B)</literal> computa a soluÃ§Ã£o de mÃ­nimo quadrado
-    de menor norma da equaÃ§Ã£o <literal>A*X=B</literal>, enquanto <literal>X=A
-    \ B</literal> computa uma soluÃ§Ã£o de mÃ­nimo quadrado com no mÃ¡ximo
-    <literal>posto(A)</literal> componentes nÃ£o-nulos por coluna.</para>
+    <para><literal>X=lsq(A,B)</literal> computa a solução de mínimo quadrado
+    de menor norma da equação <literal>A*X=B</literal>, enquanto <literal>X=A
+    \ B</literal> computa uma solução de mínimo quadrado com no máximo
+    <literal>posto(A)</literal> componentes não-nulos por coluna.</para>
   </refsection>
 
   <refsection>
-    <title>ReferÃªncias</title>
+    <title>Referências</title>
 
-    <para><literal>lsq</literal> Ã© baseado nas funÃ§Ãµes Lapack DGELSY para
+    <para><literal>lsq</literal> é baseado nas funções Lapack DGELSY para
     matrizes de reais e ZGELSY para matrizes de complexos. </para>
   </refsection>
 
@@ -102,7 +102,7 @@ x=(1:10)';
 y1=3*x+4.5+3*rand(x,'normal');
 y2=1.8*x+0.5+2*rand(x,'normal');
 plot2d(x,[y1,y2],[-2,-3])
-//Achando a regressÃ£o linear 
+//Achando a regressão linear 
 A=[x,ones(x)];B=[y1,y2];
 X=lsq(A,B);
 
@@ -110,19 +110,19 @@ y1e=X(1,1)*x+X(2,1);
 y2e=X(1,2)*x+X(2,2);
 plot2d(x,[y1e,y2e],[2,3])
 
-//DiferenÃ§a entre lsq(A,b) e A\b
+//Diferença entre lsq(A,b) e A\b
 A=rand(4,2)*rand(2,3);//uma matriz de posto 2
 b=rand(4,1);
 X1=lsq(A,b)
 X2=A\b
-[A*X1-b, A*X2-b] //os resÃ­duos sÃ£o os mesmos
+[A*X1-b, A*X2-b] //os resíduos são os mesmos
 
    
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="backslash">backslash</link></member>

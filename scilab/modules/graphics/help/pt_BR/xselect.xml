@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
@@ -26,27 +26,27 @@
   <refnamediv>
     <refname>xselect</refname>
 
-    <refpurpose>restaura a janela de gr√°ficos corrente</refpurpose>
+    <refpurpose>restaura a janela de gr·ficos corrente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xselect()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xselect</literal> restaura a janela de gr√°ficos corrente.
-    Se tal janela n√£o existir, uma √© criada.</para>
+    <para><literal>xselect</literal> restaura a janela de gr·ficos corrente.
+    Se tal janela n„o existir, uma È criada.</para>
 
-    <para>Aviso: est√° fun√ß√£o est√° obsoleta e ser√° removida no Scilab 5.1. Ela
-    foi substitu√≠da pela fun√ß√£o show_window.</para>
+    <para>Aviso: est· funÁ„o est· obsoleta e ser· removida no Scilab 5.1. Ela
+    foi substituÌda pela funÁ„o show_window.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="show_window">show_window</link></member>

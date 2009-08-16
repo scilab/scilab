@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="intppty" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,21 +18,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>funs=intppty()
 intppty(fun)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>fun</term>
 
         <listitem>
-          <para>inteiro, um nÃºmero de interface (ver funptr)</para>
+          <para>inteiro, um número de interface (ver funptr)</para>
         </listitem>
       </varlistentry>
 
@@ -40,7 +40,7 @@ intppty(fun)</synopsis>
         <term>funs</term>
 
         <listitem>
-          <para>vetor de inteiros, vetor de nÃºmeros de interface (ver
+          <para>vetor de inteiros, vetor de números de interface (ver
           funptr)</para>
         </listitem>
       </varlistentry>
@@ -48,13 +48,13 @@ intppty(fun)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para> Os programas de interface pode ser escritos de duas formas
-    diferentes para o modo de passagem de argumento de funÃ§Ãµes.</para>
+    diferentes para o modo de passagem de argumento de funções.</para>
 
-    <para> No primeiro modo, que Ã© o padrÃ£o, os argumentos sÃ£o passados por
-    valor. A sintaxe Ã© a seguinte:</para>
+    <para> No primeiro modo, que é o padrão, os argumentos são passados por
+    valor. A sintaxe é a seguinte:</para>
 
     <programlisting>
 
@@ -62,16 +62,16 @@ foo(A,1+2)
    
     </programlisting>
 
-    <para>o argumento associado a <literal>A</literal> serÃ¡ passado por
-    valores (uma cÃ³pia de <literal>A</literal> Ã© feita antes de
+    <para>o argumento associado a <literal>A</literal> será passado por
+    valores (uma cópia de <literal>A</literal> é feita antes de
     <literal>foo</literal> i ser chamada, e o argumento associado a
-    <literal>1+2</literal> serÃ¡ passado por valor.</para>
+    <literal>1+2</literal> será passado por valor.</para>
 
-    <para>No segundo modo, os argumentos podem ser passados por referÃªncia, se
-    houver "argumentos nomeados" (nenhuma cÃ³pia do valor da variÃ¡vel Ã© feita).
+    <para>No segundo modo, os argumentos podem ser passados por referência, se
+    houver "argumentos nomeados" (nenhuma cópia do valor da variável é feita).
     <literal>intppty(fun)</literal> com <literal>fun&gt;0</literal> diz ao
-    Scilab que a interface com o nÃºmero <literal>fun</literal> pode manipular
-    argumentos passados por referÃªncia. A sintaxe Ã© a seguinte:</para>
+    Scilab que a interface com o número <literal>fun</literal> pode manipular
+    argumentos passados por referência. A sintaxe é a seguinte:</para>
 
     <programlisting>
 
@@ -79,27 +79,27 @@ foo(A,1+2)
    
     </programlisting>
 
-    <para>O argumento associado a <literal>A</literal> serÃ¡ passado por
-    referÃªncia e o argumento associado a <literal>1+2</literal> serÃ¡ passado
+    <para>O argumento associado a <literal>A</literal> será passado por
+    referência e o argumento associado a <literal>1+2</literal> será passado
     por valor.</para>
 
-    <para>Aviso: a declaraÃ§Ã£o de interface com nÃºmero <literal>fun</literal>
-    pode manipular argumentos passados por referÃªncia se nÃ£o for o caso de
-    produzir resultados imprevisÃ­veis.</para>
+    <para>Aviso: a declaração de interface com número <literal>fun</literal>
+    pode manipular argumentos passados por referência se não for o caso de
+    produzir resultados imprevisíveis.</para>
 
     <para><literal>intppty(fun)</literal> com <literal>fun&lt;0</literal>
     suprime esta propriedade para para a interface
     <literal>-fun</literal>.</para>
 
     <para><literal>intppty()</literal> retorna o vetor de interfaces que
-    manipulam argumentos passados por referÃªncia.</para>
+    manipulam argumentos passados por referência.</para>
 
-    <para>Esta funÃ§Ã£o pode ser Ãºtil para interfaces dinamicamente carregadas
+    <para>Esta função pode ser útil para interfaces dinamicamente carregadas
     (ver addinter).</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="funptr">funptr</link></member>

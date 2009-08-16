@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="locate" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>locate</refname>
+
+    <refpurpose>seleção pelo mouse de um conjunto de pontos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>x=locate([n,flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>matriz de tamanho (2,n1). n1=n se o parâmetro n for
+          dado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n,flag</term>
+
+        <listitem>
+          <para>valores inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>locate</literal> é usado para obter as coordenadas de um ou
+    mais pontos selecionados com o mouse em uma janela de gráficos. As
+    coordenadas são fornecidas usando-se a escala de gráficos corrente.</para>
+
+    <para>Se n&gt;0, n pontos são selecionados e suas coordenadas são
+    retornadas na matriz <literal>x</literal>.</para>
+
+    <para>Se n&lt;=0, os pontos são selecionados até que o usuário clique com
+    o botão esquerdo do mouse, que significa "parar". O último ponto (clicado
+    com o botão esquerdo) não é retornado.</para>
+
+    <para>x=locate() é o mesmo que <literal>x=locate(-1)</literal>.</para>
+
+    <para>Se <literal>flag=1</literal> uma cruz é desenhada nos pontos onde o
+    mouse foi clicado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xclick">xclick</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>S.S. &amp; J.Ph.C</para>
+  </refsection>
+</refentry>

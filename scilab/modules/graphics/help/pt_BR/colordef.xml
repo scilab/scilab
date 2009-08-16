@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="colordef" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>colordef</refname>
+
+    <refpurpose>Ajusta os valores de cor padrões para exibição de diferentes
+    esquemas de cores</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>colordef(color_scheme)
+colordef(f,color_scheme)
+colordef('new',color_scheme)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>color_scheme</term>
+
+        <listitem>
+          <para>string com valores possíveis: 'white', 'black','none' </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>manipulador para uma figura gráfica </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>colordef('white')</literal> ajusta o mapa de cores
+        padrão da figura (ver <link linkend="gdf">gdf</link>) para
+        <literal>jetcolormap(64)</literal>, a cor de plano de fundo padrão da
+        figura para cinza claro, a cor de plano de fundo dos eixos (ver <link
+        linkend="gda">gda</link>) para branco e as cores de primeiro plano da
+        fonte e das linhas dos eixos para preto.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>colordef('black')</literal> ajusta o mapa de cores
+        padrão da figura (ver <link linkend="gdf">gdf</link>) para
+        <literal>jetcolormap(64)</literal>, a cor de plano de fundo padrão da
+        figura para cinza escuro, a cor de plano de fundo dos eixos (ver <link
+        linkend="gda">gda</link>) para preto e as cores de primeiro plano da
+        fonte e das linhas dos eixos para branco. </para>
+      </listitem>
+
+      <listitem>
+        <para><literal>colordef('none')</literal> ajusta o mapa de cores
+        padrão da figura (ver <link linkend="gdf">gdf</link>) para
+        <literal>hsvcolormap(64)</literal>, a cor de plano de fundo padrão da
+        figura para cinza escuro a cor de plano de fundo dos eixos (ver <link
+        linkend="gda">gda</link>) para preto e as cores de primeiro plano da
+        fonte e das linhas dos eixos para branco. </para>
+      </listitem>
+
+      <listitem>
+        <para><literal>colordef(f,color_scheme)</literal> ajusta as
+        propriedades de cor da figura fornecida pelo manipulador
+        <literal>f</literal> tanto quanto as propriedades de cor de seus eixos
+        correntes. </para>
+      </listitem>
+
+      <listitem>
+        <para><literal>colordef('new',color_scheme)</literal> cria uma nova
+        janela de gráficos e ajusta suas propriedades de cor bem como as
+        propriedades de seus eixos.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   // Adicionar aqui instruções Scilab e comentários
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gdf"> gdf</link></member>
+
+      <member><link linkend="gda"> gda</link></member>
+
+      <member><link linkend="figure_properties">
+      figure_properties</link></member>
+
+      <member><link linkend="axes_properties"> axes_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>S. Steer</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

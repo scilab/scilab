@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>xchange</refname>
 
-    <refpurpose>convers√£o de coordenadas reais para coordenadas
+    <refpurpose>convers„o de coordenadas reais para coordenadas
     pixeis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@
         <term>dir</term>
 
         <listitem>
-          <para>par√¢metro utilizado para especificar o tipo de convers√£o (ver
+          <para>par‚metro utilizado para especificar o tipo de convers„o (ver
           "Description" para detalhes)</para>
         </listitem>
       </varlistentry>
@@ -76,18 +76,18 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Ap√≥s o uso de uma fun√ß√£o de gr√°ficos, <literal>xchange</literal>
+    <para>ApÛs o uso de uma funÁ„o de gr·ficos, <literal>xchange</literal>
     computa coordenadas pixel a partir de coordenadas reais e vice-versa de
-    acordo com o valor de par√¢metro <literal>dir</literal>:"f2i" (float para
+    acordo com o valor de par‚metro <literal>dir</literal>:"f2i" (float para
     int) significa real para pixel e "i2f" (int para float) significa pixel
-    para real. <literal>x1</literal> e <literal>y1</literal> s√£o as
+    para real. <literal>x1</literal> e <literal>y1</literal> s„o as
     coordenadas de um conjunto de pontos definidos pelas antigas coordenadas
     <literal>x</literal> e <literal>y</literal>.</para>
 
-    <para><literal>rect</literal> s√£o as coordenadas em pixel do ret√¢ngulo no
-    qual o esbo√ßo foi feito: [ponto superior esquerdo, largura,
+    <para><literal>rect</literal> s„o as coordenadas em pixel do ret‚ngulo no
+    qual o esboÁo foi feito: [ponto superior esquerdo, largura,
     altura].</para>
   </refsection>
 

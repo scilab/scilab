@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>xrect</refname>
 
-    <refpurpose>desenha um ret√¢ngulo</refpurpose>
+    <refpurpose>desenha um ret‚ngulo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xrect(x,y,w,h)
 xrect(rect) // rect =[x,y,w,h]</synopsis>
@@ -42,20 +42,20 @@ xrect(rect) // rect =[x,y,w,h]</synopsis>
         <term>x,y,w,h</term>
 
         <listitem>
-          <para>quatro valores reais definindo o ret√¢ngulo</para>
+          <para>quatro valores reais definindo o ret‚ngulo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xrect</literal> desenha um ret√¢ngulo definido por
+    <para><literal>xrect</literal> desenha um ret‚ngulo definido por
     <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura, altura)
     usando a escala e o estilo correntes.</para>
 
-    <para>AVISO: por favor, note que a altura √© positiva indo para
+    <para>AVISO: por favor, note que a altura È positiva indo para
     baixo.</para>
   </refsection>
 
@@ -73,7 +73,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfrect">xfrect</link></member>

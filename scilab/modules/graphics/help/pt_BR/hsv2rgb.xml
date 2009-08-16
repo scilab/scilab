@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="hsv2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>hsv2rgb</refname>
+
+    <refpurpose>Converte cores HSV para RGB</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[r,g,b] = hsv2rgb(h,s,v)
+rgb = hsv2rgb(h,s,v)
+[r,g,b] = hsv2rgb(hsv)
+rgb = hsv2rgb(hsv)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>um vetor de tamanho n. Os valores "hue" (de matiz) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>s</term>
+
+        <listitem>
+          <para>um vetor de tamanho n. Os valores "saturation" (de saturação)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>um vetor de tamanho n. Os valores "value" (de valor). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hsv</term>
+
+        <listitem>
+          <para>uma matriz n x 3. Cada linha contém uma tripla [hue saturation
+          value]. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>um vetor coluna de tamanho n. Os valores "red" (de vermelho).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>g</term>
+
+        <listitem>
+          <para>um vetor coluna de tamanho n. Os valores "green" (de verde).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>um vetor coluna de tamanho n. Os valores "blue" (de azul).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rgb</term>
+
+        <listitem>
+          <para>uma matriz n x 3. Cada linha contém uma tripla [red green
+          blue]. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função hsv2rgb converte mapas de cores entre os espaços de cores
+    RGB e HSV. Como a matiz varia de 0 a 1.0 , as cores correspondentes podem
+    variar partindo do vermelho entre amarelo, verde, ciano, azul, magenta, e
+    preto, até vermelho novamente, de modo que há na verdade valores de
+    vermelho tanto em 0 quanto em 1.0 . À medida em que a saturação varia de 0
+    a 1.0, as cores correspondentes (matizes) variam de insaturadas (gradações
+    de cinza) a completamente saturadas (nenhum componente branco). à medida
+    em que o valor, ou brilho, varia de 0 a 1.0, as cores correspondentes vão
+    se tornando mais brilhantes. </para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+    plot3d1(t,t,z) 
+    f=gcf();f.pixmap='on';
+    for h=0:0.1:1
+      hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+    end
+    for v=0:0.1:1
+      hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+      f.color_map=hsv2rgb(hsv);
+      show_pixmap()
+      xpause(10000)
+    end
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

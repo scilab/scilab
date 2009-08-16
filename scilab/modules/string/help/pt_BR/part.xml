@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="part" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>part</refname>
+
+    <refpurpose>extração de strings</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>strings_in, strings_out</term>
+
+        <listitem>
+          <para>matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>vetor linha de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Seja <literal>s[k]</literal> o caractere <literal>k</literal> do
+    string <literal>s</literal> (ou o espaço em branco se <literal>k
+    &gt;length(s)</literal>).</para>
+
+    <para><literal>part</literal> retorna <literal>strings_out</literal>, uma
+    matriz de strings, tal que <literal>strings_out(i,j)</literal> é o string
+    <literal>"s[v(1)]...s[v(n)]"</literal> (
+    <literal>s=strings_in(i,j)</literal> ).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// retorna caracteres da posição 8 a 11
+part("Como usar ""part"" ?",8:11)
+
+// retorna caracteres da posição 2 a 4 para cada elemento
+// caractere inexistente substituído por ''
+c = part(['a','abc','abcd'],2:4)
+
+// retorna o caractere da posição 1 para cada elemento e adiciona caracteres da posição 4 a 7 de cada elemento
+c = part(['abcdefg','hijklmn','opqrstu'],[1,4:7]);
+
+// retorna o caractere 4 para cada elemento, adiciona caracteres da posição 1 a 7 e adiciona o caractere da posição 4 para cada elemento
+c = part(['abcdefg','hijklmn','opqrstu'],[4,1:7,4]);
+
+// retorna o caractere da posição 1, adiciona de novo o caractere da posição 1 e o caractere da posição 2
+c=part(['a','abc','abcd'],[1,1,2])
+
+// a a a  
+part(['a','abc','abcd'],[1])
+
+// aa aa aa 
+part(['a','abc','abcd'],[1,1])
+
+// aa aab aab 
+part(['a','abc','abcd'],[1,1,2])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="length">length</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

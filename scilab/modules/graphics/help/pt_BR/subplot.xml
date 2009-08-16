@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>subplot</refname>
 
-    <refpurpose>divide uma janela de grÃ¡ficos em uma matriz de
+    <refpurpose>divide uma janela de gráficos em uma matriz de
     sub-janelas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>subplot(m,n,p)
 subplot(mnp)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,20 +51,20 @@ subplot(mnp)</synopsis>
         <term>mnp</term>
 
         <listitem>
-          <para>um inteiro com notaÃ§Ã£o decimal <literal>mnp</literal></para>
+          <para>um inteiro com notação decimal <literal>mnp</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>subplot(m,n,p) ou subplot(mnp) parte a janela de grÃ¡ficos em uma
-    matriz m-por-n de sub-janelas e seleciona a p-Ã©sima sub-janela para
-    esboÃ§ar o grÃ¡fico corrente. O nÃºmero uma sub-janela nas matrizes Ã© contado
+    <para>subplot(m,n,p) ou subplot(mnp) parte a janela de gráficos em uma
+    matriz m-por-n de sub-janelas e seleciona a p-ésima sub-janela para
+    esboçar o gráfico corrente. O número uma sub-janela nas matrizes é contado
     linha por linha, i.e. a sub-janela correspondente ao elemento (i,j) da
-    matriz tem nÃºmero (i-1)*n + j.</para>
+    matriz tem número (i-1)*n + j.</para>
   </refsection>
 
   <refsection>
@@ -85,7 +85,7 @@ hist3d()
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot2d">plot2d</link></member>

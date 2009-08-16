@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>Matplot</refname>
 
-    <refpurpose>esbo√ßo 2d de uma matriz utilizando-se cores</refpurpose>
+    <refpurpose>esboÁo 2d de uma matriz utilizando-se cores</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>Matplot(a,[strf,rect,nax])
 Matplot(a,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>representa uma seq√º√™ncia de declara√ß√µes <literal>key1=value1,
+          <para>representa uma seq¸Íncia de declaraÁıes <literal>key1=value1,
           key2=value2</literal>,... onde <literal>key1</literal>,
           <literal>key2,...</literal> podem ser um dos seguintes:</para>
 
@@ -59,10 +59,10 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>rect</term>
 
               <listitem>
-                <para>ajusta as fronteiras do esbo√ßo. Se esta chave √©
+                <para>ajusta as fronteiras do esboÁo. Se esta chave È
                 fornecida, nem <literal>frameflag</literal> ou
-                <literal>strf</literal> √© fornecido, ent√£o o caractere
-                <literal>y</literal> de <literal>strf</literal> √© suposto como
+                <literal>strf</literal> È fornecido, ent„o o caractere
+                <literal>y</literal> de <literal>strf</literal> È suposto como
                 <literal>7</literal>. Ver valores abaixo.</para>
               </listitem>
             </varlistentry>
@@ -71,10 +71,10 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>nax</term>
 
               <listitem>
-                <para>ajusta a defini√ß√£o dos grides. Se esta chave √©
+                <para>ajusta a definiÁ„o dos grides. Se esta chave È
                 fornecida, nem <literal>axesflag</literal> ou
-                <literal>strf</literal> √© fornecido, ent√£o o caractere
-                <literal>z</literal> cd <literal>strf</literal> √© suposto como
+                <literal>strf</literal> È fornecido, ent„o o caractere
+                <literal>z</literal> cd <literal>strf</literal> È suposto como
                 <literal>1</literal>. Ver valores abaixo.</para>
               </listitem>
             </varlistentry>
@@ -83,8 +83,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>frameflag</term>
 
               <listitem>
-                <para>especifica como a moldura do esbo√ßo √© computado. O valor
-                √© um inteiro entre 0 e 8. Corresponde ao caractere
+                <para>especifica como a moldura do esboÁo È computado. O valor
+                È um inteiro entre 0 e 8. Corresponde ao caractere
                 <literal>y</literal> de <literal>strf</literal>. Ver
                 abaixo.</para>
               </listitem>
@@ -94,8 +94,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>axesflag</term>
 
               <listitem>
-                <para>especifica que tipo de eixos s√£o desenhados ao redor do
-                esbo√ßo. O valor √© um inteiro entre 0 e 5. Corresponde ao
+                <para>especifica que tipo de eixos s„o desenhados ao redor do
+                esboÁo. O valor È um inteiro entre 0 e 5. Corresponde ao
                 caractere <literal>z</literal> de <literal>strf</literal>. Ver
                 abaixo.</para>
               </listitem>
@@ -108,14 +108,14 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
         <term>strf</term>
 
         <listitem>
-          <para>√© um string de comprimento 3 <literal>"xyz"</literal>.</para>
+          <para>È um string de comprimento 3 <literal>"xyz"</literal>.</para>
 
           <variablelist>
             <varlistentry>
               <term>default</term>
 
               <listitem>
-                <para>o padr√£o √© <literal>"081"</literal>.</para>
+                <para>o padr„o È <literal>"081"</literal>.</para>
               </listitem>
             </varlistentry>
 
@@ -138,7 +138,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>x=1</term>
 
                     <listitem>
-                      <para>legendas s√£o exibidas. Elas s√£o dadas pelo
+                      <para>legendas s„o exibidas. Elas s„o dadas pelo
                       argumento opcional <literal>leg</literal>.</para>
                     </listitem>
                   </varlistentry>
@@ -150,17 +150,17 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>y</term>
 
               <listitem>
-                <para>controla a computa√ß√£o dos intervalos de coordenadas
-                reais a partir dos valores m√≠nimos requeridos. Intervalos
-                reais podem ser maiores que os requerimentos m√≠nimos.</para>
+                <para>controla a computaÁ„o dos intervalos de coordenadas
+                reais a partir dos valores mÌnimos requeridos. Intervalos
+                reais podem ser maiores que os requerimentos mÌnimos.</para>
 
                 <variablelist>
                   <varlistentry>
                     <term>y=0</term>
 
                     <listitem>
-                      <para>sem computa√ß√£o, o esbo√ßo utiliza a escala anterior
-                      (ou padr√£o)</para>
+                      <para>sem computaÁ„o, o esboÁo utiliza a escala anterior
+                      (ou padr„o)</para>
                     </listitem>
                   </varlistentry>
 
@@ -176,7 +176,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=2</term>
 
                     <listitem>
-                      <para>a partir dos valores m√≠nimo/m√°ximo dos dados x e
+                      <para>a partir dos valores mÌnimo/m·ximo dos dados x e
                       y</para>
                     </listitem>
                   </varlistentry>
@@ -185,7 +185,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=3</term>
 
                     <listitem>
-                      <para>constr√≥i uma escala isom√©trica a partir do
+                      <para>constrÛi uma escala isomÈtrica a partir do
                       argumento rect</para>
                     </listitem>
                   </varlistentry>
@@ -194,8 +194,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=4</term>
 
                     <listitem>
-                      <para>constr√≥i um esbo√ßo em escala isom√©trica a partir
-                      dos valores m√≠nimo/m√°ximo dos dados x e y</para>
+                      <para>constrÛi um esboÁo em escala isomÈtrica a partir
+                      dos valores mÌnimo/m·ximo dos dados x e y</para>
                     </listitem>
                   </varlistentry>
 
@@ -203,7 +203,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=5</term>
 
                     <listitem>
-                      <para>aumentados para obten√ß√£o de bons eixos a partir do
+                      <para>aumentados para obtenÁ„o de bons eixos a partir do
                       argumento rect</para>
                     </listitem>
                   </varlistentry>
@@ -212,8 +212,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=6</term>
 
                     <listitem>
-                      <para>aumentados para obten√ß√£o de bons eixos a partir
-                      dos valores m√≠nimo/m√°ximo dos dados x e y</para>
+                      <para>aumentados para obtenÁ„o de bons eixos a partir
+                      dos valores mÌnimo/m·ximo dos dados x e y</para>
                     </listitem>
                   </varlistentry>
 
@@ -221,7 +221,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=7</term>
 
                     <listitem>
-                      <para>como y= 1 mas os anteriores s√£o redesenhados para
+                      <para>como y= 1 mas os anteriores s„o redesenhados para
                       se utilizar a nova escala</para>
                     </listitem>
                   </varlistentry>
@@ -230,7 +230,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>y=8</term>
 
                     <listitem>
-                      <para>como y= 2 mas os anteriores s√£o redesenhados para
+                      <para>como y= 2 mas os anteriores s„o redesenhados para
                       se utilizar a nova escala</para>
                     </listitem>
                   </varlistentry>
@@ -242,8 +242,8 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
               <term>z</term>
 
               <listitem>
-                <para>controla a exibi√ß√£o de informa√ß√£o na moldura ao redor do
-                esbo√ßo. Se eixos s√£o requeridos, o n√∫mero de tiques pode ser
+                <para>controla a exibiÁ„o de informaÁ„o na moldura ao redor do
+                esboÁo. Se eixos s„o requeridos, o n˙mero de tiques pode ser
                 especificado pelo argumento opcional
                 <literal>nax</literal>.</para>
 
@@ -252,7 +252,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=0</term>
 
                     <listitem>
-                      <para>nada √© desenhado ao redor do esbo√ßo.</para>
+                      <para>nada È desenhado ao redor do esboÁo.</para>
                     </listitem>
                   </varlistentry>
 
@@ -260,7 +260,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=1</term>
 
                     <listitem>
-                      <para>eixos s√£o desenhados, o eixo y √© exibido √†
+                      <para>eixos s„o desenhados, o eixo y È exibido ‡
                       esquerda.</para>
                     </listitem>
                   </varlistentry>
@@ -269,7 +269,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=2</term>
 
                     <listitem>
-                      <para>o esbo√ßo √© cercado por uma caixa sem
+                      <para>o esboÁo È cercado por uma caixa sem
                       tiques.</para>
                     </listitem>
                   </varlistentry>
@@ -278,7 +278,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=3</term>
 
                     <listitem>
-                      <para>eixos s√£o desenhados, o eixo y √© exibido √†
+                      <para>eixos s„o desenhados, o eixo y È exibido ‡
                       direita.</para>
                     </listitem>
                   </varlistentry>
@@ -287,7 +287,7 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=4</term>
 
                     <listitem>
-                      <para>eixos s√£o desenhados centrados no meio da caixa de
+                      <para>eixos s„o desenhados centrados no meio da caixa de
                       moldura.</para>
                     </listitem>
                   </varlistentry>
@@ -296,10 +296,10 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
                     <term>z=5</term>
 
                     <listitem>
-                      <para>eixos s√£o desenhados cruzando-se no ponto
+                      <para>eixos s„o desenhados cruzando-se no ponto
                       <literal>(0,0)</literal>. Se o ponto
-                      <literal>(0,0)</literal> n√£o estiver dentro da moldura,
-                      os eixos n√£o aparecer√£o no gr√°fico.</para>
+                      <literal>(0,0)</literal> n„o estiver dentro da moldura,
+                      os eixos n„o aparecer„o no gr·fico.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -313,9 +313,9 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
         <term>rect</term>
 
         <listitem>
-          <para>este argumento √© utilizado quando o segundo caractere y do
-          argumento <literal>strf</literal> √© 1, 3 ou 5. √â um vetor linha de
-          tamanho quatro e fornece a dimens√£o da moldura:
+          <para>este argumento È utilizado quando o segundo caractere y do
+          argumento <literal>strf</literal> È 1, 3 ou 5. … um vetor linha de
+          tamanho quatro e fornece a dimens„o da moldura:
           <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
         </listitem>
       </varlistentry>
@@ -324,12 +324,12 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
         <term>nax</term>
 
         <listitem>
-          <para>este argumento opcional √© utilizado quando o terceiro
-          caractere z do argumento <literal>strf</literal> √© 1. √â um vetor
+          <para>este argumento opcional È utilizado quando o terceiro
+          caractere z do argumento <literal>strf</literal> È 1. … um vetor
           linha de quatro entradas <literal>[nx,Nx,ny,Ny]</literal> onde
-          <literal>nx</literal> (<literal>ny</literal>) √© o n√∫mero de
-          sub-gradua√ß√µes no eixo x (y) axis e <literal>Nx</literal>
-          (<literal>Ny</literal>) √© o n√∫mero de gradua√ß√µes no eixo x
+          <literal>nx</literal> (<literal>ny</literal>) È o n˙mero de
+          sub-graduaÁıes no eixo x (y) axis e <literal>Nx</literal>
+          (<literal>Ny</literal>) È o n˙mero de graduaÁıes no eixo x
           (y).</para>
         </listitem>
       </varlistentry>
@@ -337,16 +337,16 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>As entradas da matriz <literal>int(a)</literal> s√£o utilizadas como
+    <para>As entradas da matriz <literal>int(a)</literal> s„o utilizadas como
     entradas do mapa de cor no mapa de cores corrente. A cor associada a
-    <literal>a(i,j)</literal> √© utilizada para desenhar um pequeno quadrado de
+    <literal>a(i,j)</literal> È utilizada para desenhar um pequeno quadrado de
     lado 1 com centro localizado em
     <literal>(x=j,y=(n1-i+1))</literal>.</para>
 
     <para>Entre com o comando <literal>Matplot()</literal> para visualizar uma
-    demonstra√ß√£o.</para>
+    demonstraÁ„o.</para>
   </refsection>
 
   <refsection>
@@ -363,7 +363,7 @@ Matplot((1:xget("lastpattern")))
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="colormap">colormap</link></member>

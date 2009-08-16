@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gda" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gda</refname>
+
+    <refpurpose>Retorna o manipulador dos eixos padrões.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>a = gda()
+a = get("default_axes")</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>o manipulador dos eixos padrões.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Os eixos padrões são uma entidade gráfica (entidade Axes) que nunca
+    é desenhada. Ela usada como referência para os valores de propriedades
+    padrões dos eixos. Estes valores de propriedades padrões são usados para
+    inicializar novos eixos dentro de figuras.</para>
+
+    <para>A função <literal>gda</literal> retorna o manipulador dos eixos
+    padrões. O usuário pode utilizar este manipulador para ajustar ou obter os
+    valores padrões de propriedades dos eixos.</para>
+
+    <para>Note que uma entidade gráfica padrão equivalente também existe para
+    entidades Figure (ver <literal>gdf</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+     
+    a=gda() // obtendo o manipulador dos eixos modelos
+    // ajustando suas propriedades
+    a.box="off";
+    a.foreground=2;
+    a.labels_font_size=3;
+    a.labels_font_color=5;
+    a.sub_tics=[5 5 3];
+    a.x_location="top";
+
+    //os eixos modelos são agora usados
+    subplot(211) //criando uma nova entidade Axes
+    plot2d() 
+
+   // veja outros modelos de propriedades
+    a.background=color('gray')
+    a.grid=[5 5 5];
+    subplot(212)
+    t=0:0.1:5*%pi; 
+    plot2d(sin(t),cos(t)) 
+
+ 
+    set(a,"default_values",1); // retornando para os valores padrões do modelo
+                               // ver a função sda()
+    clf()
+    plot2d(sin(t),cos(t))
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gdf">gdf</link></member>
+
+      <member><link linkend="sda">sda</link></member>
+
+      <member><link linkend="sdf">sdf</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="gca">gca</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

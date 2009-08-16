@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>dec2bin</refname>
 
-    <refpurpose>representa√ß√£o bin√°ria</refpurpose>
+    <refpurpose>representaÁ„o bin·ria</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[str]=dec2bin(x[,n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,18 +64,18 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dado <literal>x</literal>, um inteiro (ou um vetor/matriz de
-    inteiros) positivo, esta fun√ß√£o retorna um string (ou um vetor coluna de
-    strings) que √© a representa√ß√£o bin√°ria de <literal>x. </literal>Se a
-    dimens√£o de <literal>x</literal> √© superior a 1, ent√£o cada componente do
-    vetor coluna <literal>str</literal> √© a representa√ß√£o bin√°ria dos
-    componentes de <literal>x</literal> (i.e <literal>str(i)</literal> √© a
-    representa√ß√£o bin√°ria de <literal>x(i)</literal>). Se o comprimento dos
-    componentes de <literal>str</literal> √© menor que <literal>n</literal> (
-    i.e length str(i) &lt; n ), ent√£o, adicione aos componentes de
-    <literal>str</literal> os caracteres '0' √† esquerda, para se obter o
+    inteiros) positivo, esta funÁ„o retorna um string (ou um vetor coluna de
+    strings) que È a representaÁ„o bin·ria de <literal>x. </literal>Se a
+    dimens„o de <literal>x</literal> È superior a 1, ent„o cada componente do
+    vetor coluna <literal>str</literal> È a representaÁ„o bin·ria dos
+    componentes de <literal>x</literal> (i.e <literal>str(i)</literal> È a
+    representaÁ„o bin·ria de <literal>x(i)</literal>). Se o comprimento dos
+    componentes de <literal>str</literal> È menor que <literal>n</literal> (
+    i.e length str(i) &lt; n ), ent„o, adicione aos componentes de
+    <literal>str</literal> os caracteres '0' ‡ esquerda, para se obter o
     comprimento dos componentes igual a <literal>n</literal></para>
   </refsection>
 
@@ -87,9 +87,9 @@ x=86;
 str=dec2bin(x)
 
 // exemplo 2 :
-// a representa√ß√£o bin√°ria de 86 √©: '1010110'
-// seu comprimento √© 7(menor que n), ent√£o, temos adicionamos a str, 
-//8 vezes o caracteres '0'  (√† esquerda)
+// a representaÁ„o bin·ria de 86 È: '1010110'
+// seu comprimento È 7(menor que n), ent„o, temos adicionamos a str, 
+//8 vezes o caracteres '0'  (‡ esquerda)
 x=86;n=15;
 str=dec2bin(x,n)
 
@@ -100,7 +100,7 @@ z=dec2bin(x)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

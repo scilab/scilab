@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>pbig</refname>
 
-    <refpurpose>autoprojeÃ§Ã£o</refpurpose>
+    <refpurpose>autoprojeção</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros </title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>thres</term>
 
         <listitem>
-          <para>nÃºmero real </para>
+          <para>número real </para>
         </listitem>
       </varlistentry>
 
@@ -73,14 +73,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>ProjeÃ§Ã£o sobre um auto-subespaÃ§o associado aos autovalores de parte
+    <para>Projeção sobre um auto-subespaço associado aos autovalores de parte
     real&gt;= <literal>thres</literal> (<literal>flag='c'</literal>) ou com
     magnitude &gt;= <literal>thres</literal>
     (<literal>flag='d'</literal>).</para>
 
-    <para>A projeÃ§Ã£o Ã© definida por <literal>Q*M</literal>,
+    <para>A projeção é definida por <literal>Q*M</literal>,
     <literal>Q</literal> tem posto-coluna cheio, <literal>M</literal> tem
     posto-linha cheio e <literal>M*Q=eye</literal>.</para>
 
@@ -93,14 +93,14 @@
     magnitude &gt;= <literal>thres</literal>.</para>
 
     <para>Se <literal>flag='c'</literal> e se <literal>[Q1,M1]</literal> =
-    fatoraÃ§Ã£o em posto cheio (<literal>fullrf</literal>) de
-    <literal>eye()-Q*M</literal> entÃ£o os autovalores de
+    fatoração em posto cheio (<literal>fullrf</literal>) de
+    <literal>eye()-Q*M</literal> então os autovalores de
     <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com parte
     real &lt; <literal>thres</literal>.</para>
 
     <para>Se <literal>flag='d'</literal> e se <literal>[Q1,M1]</literal>
-    =fatoraÃ§Ã£o em posto cheio (<literal>fullrf</literal>) de
-    <literal>eye()-Q*M</literal> entÃ£o os autovalores de
+    =fatoração em posto cheio (<literal>fullrf</literal>) de
+    <literal>eye()-Q*M</literal> então os autovalores de
     <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com
     magnitude &lt; <literal>thres</literal>.</para>
   </refsection>
@@ -120,7 +120,7 @@ spec(M1*A*Q1)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="psmall">psmall</link></member>
@@ -140,9 +140,9 @@ spec(M1*A*Q1)
   </refsection>
 
   <refsection>
-    <title> FunÃ§Ã£o Usada </title>
+    <title> Função Usada </title>
 
-    <para><literal>pbig</literal> Ã© baseada na forma ordenada de Schur (funÃ§Ã£o
+    <para><literal>pbig</literal> é baseada na forma ordenada de Schur (função
     do Scilab <literal>schur</literal>).</para>
   </refsection>
 </refentry>

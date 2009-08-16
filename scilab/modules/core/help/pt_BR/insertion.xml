@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="insertion" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>insertion</refname>
 
-    <refpurpose>atribui√ß√£o ou modifica√ß√£o parcial de vari√°veis</refpurpose>
+    <refpurpose>atribuiÁ„o ou modificaÁ„o parcial de vari·veis</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="assignation">
     <refname>assignation</refname>
 
-    <refpurpose>atribui√ß√£o parcial de vari√°veis</refpurpose>
+    <refpurpose>atribuiÁ„o parcial de vari·veis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>x(i,j)=a
 x(i)=a
@@ -33,7 +33,7 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,7 +56,7 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
         <term>i,j</term>
 
         <listitem>
-          <para>√≠ndices</para>
+          <para>Ìndices</para>
         </listitem>
       </varlistentry>
 
@@ -64,7 +64,7 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
         <term>k1,...kn</term>
 
         <listitem>
-          <para>√≠ndices com valores inteiros</para>
+          <para>Ìndices com valores inteiros</para>
         </listitem>
       </varlistentry>
 
@@ -79,14 +79,14 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
         <term>CASO DE MATRIZES</term>
 
         <listitem>
-          <para>Se <literal>x</literal> √© uma matriz, os √≠ndices
+          <para>Se <literal>x</literal> È uma matriz, os Ìndices
           <literal>i</literal> e <literal>j</literal>, podem ser:</para>
 
           <variablelist>
@@ -94,13 +94,13 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
               <term>Escalares reais, vetores ou matrizes</term>
 
               <listitem>
-                <para>neste caso, os valores fornecidos como √≠ndices devem ser
-                inteiros e apenas suas partes inteiras s√£o levadas em
-                considera√ß√£o.</para>
+                <para>neste caso, os valores fornecidos como Ìndices devem ser
+                inteiros e apenas suas partes inteiras s„o levadas em
+                consideraÁ„o.</para>
 
                 <itemizedlist>
                   <listitem>
-                    <para>Se <literal>a</literal> √© uma matriz com dimens√µes
+                    <para>Se <literal>a</literal> È uma matriz com dimensıes
                     <literal>(size(i,'*'),size(j,'*'))</literal>,
                     <literal>x(i,j)=a</literal> retorna uma nova matriz
                     <literal>x</literal> tal que
@@ -108,28 +108,28 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
                     e <literal>k</literal> de 1 a
                     <literal>size(j,'*')</literal>, as outras entradas
-                    iniciais de <literal>x</literal> n√£o s√£o
+                    iniciais de <literal>x</literal> n„o s„o
                     modificadas.</para>
                   </listitem>
 
                   <listitem>
-                    <para>Se <literal>a</literal> √© um escalar,
+                    <para>Se <literal>a</literal> È um escalar,
                     <literal>x(i,j)=a</literal> retorna uma nova matriz
                     <literal>x</literal> tal que
                     <literal>x(int(i(l)),int(j(k)))=a</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
                     e <literal>k</literal> de 1 a
                     <literal>size(j,'*')</literal>, as outras entradas
-                    iniciais de <literal>x</literal> n√£o s√£o
+                    iniciais de <literal>x</literal> n„o s„o
                     modificadas.</para>
                   </listitem>
 
                   <listitem>
-                    <para>Se o valor m√°ximo de <literal>i</literal> ou
-                    <literal>j</literal> exceder a dimens√£o correspondente da
+                    <para>Se o valor m·ximo de <literal>i</literal> ou
+                    <literal>j</literal> exceder a dimens„o correspondente da
                     matriz <literal>x</literal> , o array <literal>x</literal>
-                    √© previamente estendido para as dimens√µes requeridas com
-                    entradas 0 para matrizes padr√µes, strings de comprimento 0
+                    È previamente estendido para as dimensıes requeridas com
+                    entradas 0 para matrizes padrıes, strings de comprimento 0
                     para matrizes de strings e valores falsos para matrizes de
                     booleanos.</para>
                   </listitem>
@@ -149,7 +149,7 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                     um vetor retorna a nova matriz <literal>x</literal> tal
                     que <literal>x(int(i(l)))=a(l)</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
-                    , outras entradas iniciais de <literal>x</literal> n√£o s√£o
+                    , outras entradas iniciais de <literal>x</literal> n„o s„o
                     modificadas.</para>
                   </listitem>
 
@@ -158,13 +158,13 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                     um escalar retorna uma nova matriz <literal>x</literal>
                     tal que <literal>x(int(i(l)))=a</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
-                    , outras entradas iniciais de <literal>x</literal> n√£o s√£o
+                    , outras entradas iniciais de <literal>x</literal> n„o s„o
                     modificadas.</para>
 
-                    <para>Se o valor m√°ximo de <literal>i</literal> exceder
-                    <literal>size(x,1)</literal>, <literal>x</literal> √©
-                    previamente estendida para a dimens√£o requerida com
-                    entradas 0 para matrizes padr√µes, strings de comprimento 0
+                    <para>Se o valor m·ximo de <literal>i</literal> exceder
+                    <literal>size(x,1)</literal>, <literal>x</literal> È
+                    previamente estendida para a dimens„o requerida com
+                    entradas 0 para matrizes padrıes, strings de comprimento 0
                     para matrizes de strings e valores falsos para matrizes de
                     booleanos.</para>
 
@@ -173,12 +173,12 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                         <term>Se</term>
 
                         <listitem>
-                          <para><literal>x</literal> √© uma matriz 1x1</para>
+                          <para><literal>x</literal> È uma matriz 1x1</para>
 
                           <para><literal>a</literal> pode ser um vetor linha
-                          (respectivamente coluna) com dimens√£o
+                          (respectivamente coluna) com dimens„o
                           <literal>size(i,'*')</literal>. A matriz
-                          <literal>x</literal> resultante √© um vetor linha
+                          <literal>x</literal> resultante È um vetor linha
                           (respectivamente coluna).</para>
                         </listitem>
                       </varlistentry>
@@ -187,10 +187,10 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                         <term>Se</term>
 
                         <listitem>
-                          <para><literal>x</literal> √© um vetor linha</para>
+                          <para><literal>x</literal> È um vetor linha</para>
 
                           <para><literal>a</literal> deve ser um vetor linha
-                          de dimens√£o <literal>size(i,'*')</literal></para>
+                          de dimens„o <literal>size(i,'*')</literal></para>
                         </listitem>
                       </varlistentry>
 
@@ -198,10 +198,10 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                         <term>Se</term>
 
                         <listitem>
-                          <para><literal>x</literal> √© um vetor coluna</para>
+                          <para><literal>x</literal> È um vetor coluna</para>
 
                           <para><literal>a</literal> deve ser um vetor coluna
-                          de dimens√£o <literal>size(i,'*')</literal></para>
+                          de dimens„o <literal>size(i,'*')</literal></para>
                         </listitem>
                       </varlistentry>
 
@@ -209,11 +209,11 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                         <term>Se</term>
 
                         <listitem>
-                          <para><literal>x</literal> √© uma matriz geral</para>
+                          <para><literal>x</literal> È uma matriz geral</para>
 
                           <para><literal>a</literal> deve ser um vetor linha
-                          ou coluna de dimens√£o <literal>size(i,'*')</literal>
-                          e o valor m√°ximo de <literal>i</literal> n√£o pode
+                          ou coluna de dimens„o <literal>size(i,'*')</literal>
+                          e o valor m·ximo de <literal>i</literal> n„o pode
                           exceder <literal>size(x,'*')</literal>,</para>
                         </listitem>
                       </varlistentry>
@@ -229,27 +229,27 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
             </varlistentry>
 
             <varlistentry>
-              <term>O s√≠mbolo :</term>
+              <term>O sÌmbolo :</term>
 
               <listitem>
-                <para>O s√≠mbolo <literal>':'</literal> significa "todos os
+                <para>O sÌmbolo <literal>':'</literal> significa "todos os
                 elementos".</para>
 
                 <itemizedlist>
                   <listitem>
-                    <para><literal>x(i,:)=a</literal> √© interpretado como
+                    <para><literal>x(i,:)=a</literal> È interpretado como
                     <literal>x(i,1:size(x,2))=a</literal></para>
                   </listitem>
 
                   <listitem>
-                    <para><literal>x(:,j)=a</literal> √© interpretado como
+                    <para><literal>x(:,j)=a</literal> È interpretado como
                     <literal>x(1:size(x,1),j)=a</literal></para>
                   </listitem>
 
                   <listitem>
                     <para><literal>x(:)=a</literal> retorna em
                     <literal>x</literal> a matriz <literal>a</literal> de
-                    forma redefinida de acordo com as dimens√µes de x.
+                    forma redefinida de acordo com as dimensıes de x.
                     <literal>size(x,'*')</literal> deve ser igual a
                     <literal>size(a,'*')</literal></para>
                   </listitem>
@@ -261,25 +261,25 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
               <term>Vetores de booleanos</term>
 
               <listitem>
-                <para>se um √≠ndice (<literal>i</literal> ou
-                <literal>j</literal> ) √© um vetor de booleanos, √© interpretado
+                <para>se um Ìndice (<literal>i</literal> ou
+                <literal>j</literal> ) È um vetor de booleanos, È interpretado
                 como <literal>find(i)</literal> ou, respectivamente,
                 <literal>find(j)</literal></para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term>Polin√¥mios</term>
+              <term>PolinÙmios</term>
 
               <listitem>
-                <para>se um √≠ndice (<literal>i</literal> ou
-                <literal>j</literal> ) √© um vetor de polin√¥mios ou um vetor de
-                polin√¥mios impl√≠cito, √© interpretado como
+                <para>se um Ìndice (<literal>i</literal> ou
+                <literal>j</literal> ) È um vetor de polinÙmios ou um vetor de
+                polinÙmios implÌcito, È interpretado como
                 <literal>horner(i,m)</literal> ou respectivamente
                 <literal>horner(j,n)</literal> onde <literal>m</literal> e
-                <literal>n</literal> s√£o as dimens√µes associadas de
+                <literal>n</literal> s„o as dimensıes associadas de
                 <literal>x</literal>. Mesmo se esse recurso funcionar para
-                todos os polin√¥mios, √© recomendado utilizar polin√¥mios em
+                todos os polinÙmios, È recomendado utilizar polinÙmios em
                 <literal>$</literal> para legibilidade.</para>
               </listitem>
             </varlistentry>
@@ -294,11 +294,11 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
           <itemizedlist>
             <listitem>
               <para>Se estiverem presentes, os <literal>ki</literal> fornecem
-              o endere√ßo para uma entrada de sub-lista da estrutura de dados
-              <literal>l</literal> data structure. Eles permitem uma extra√ß√£o
-              recursiva sem c√≥pias intermedi√°rias. As instru√ß√µes
+              o endereÁo para uma entrada de sub-lista da estrutura de dados
+              <literal>l</literal> data structure. Eles permitem uma extraÁ„o
+              recursiva sem cÛpias intermedi·rias. As instruÁıes
               <literal>l(k1)...(kn)(i)=a</literal> e
-              <literal>l(list(k1,...,kn,i)=a)</literal> s√£o interpretadas
+              <literal>l(list(k1,...,kn,i)=a)</literal> s„o interpretadas
               como:</para>
 
               <para><literal>lk1 = l(k1)</literal> <literal> .. = ..
@@ -310,8 +310,8 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
               <para><literal>lkn-1(kn) = lkn</literal> <literal> .. = ..
               </literal> <literal>l(k1) = lk1</literal></para>
 
-              <para>E as instru√ß√µes <literal>l(k1)...(kn)(i,j)=a</literal> e
-              <literal>l(list(k1,...,kn,list(i,j))=a</literal> s√£o
+              <para>E as instruÁıes <literal>l(k1)...(kn)(i,j)=a</literal> e
+              <literal>l(list(k1,...,kn,list(i,j))=a</literal> s„o
               interpretadas como:</para>
 
               <para><literal>lk1 = l(k1)</literal> <literal> .. = ..
@@ -329,23 +329,23 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
 
               <itemizedlist>
                 <listitem>
-                  <para>Um escalar real n√£o-negativo.
-                  <literal>l(0)=a</literal> adiciona uma entrada √† "esquerda"
+                  <para>Um escalar real n„o-negativo.
+                  <literal>l(0)=a</literal> adiciona uma entrada ‡ "esquerda"
                   da lista, <literal>l(i)=a</literal> configura a entrada
                   <literal>i</literal> da lista <literal>l</literal> como
                   <literal>a</literal>. Se <literal>i&gt;size(l)</literal>,
-                  <literal>l</literal> √© previamente estendido com entradas de
+                  <literal>l</literal> È previamente estendido com entradas de
                   comprimento 0 (indefinidas). <literal>l(i)=null()</literal>
-                  suprime a <literal>i</literal>-√©sima entrada da
+                  suprime a <literal>i</literal>-Èsima entrada da
                   lista.</para>
                 </listitem>
 
                 <listitem>
-                  <para>Um polin√¥mio. Se <literal>i</literal> √© um polin√¥mio,
-                  √© interpretado como <literal>horner(i,m)</literal> onde
+                  <para>Um polinÙmio. Se <literal>i</literal> È um polinÙmio,
+                  È interpretado como <literal>horner(i,m)</literal> onde
                   <literal>m=size(l)</literal>. Mesmo se este recurso
-                  funcionar para todos os polin√¥mios, √© recomendado utilizar
-                  polin√¥mios em <literal>$</literal> para legibilidade.</para>
+                  funcionar para todos os polinÙmios, È recomendado utilizar
+                  polinÙmios em <literal>$</literal> para legibilidade.</para>
                 </listitem>
               </itemizedlist>
             </listitem>
@@ -359,8 +359,8 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
                 </listitem>
 
                 <listitem>
-                  <para>Polin√¥mios, interpretados como
-                  <literal>horner(ki,m)</literal> onde <literal>m</literal> √©
+                  <para>PolinÙmios, interpretados como
+                  <literal>horner(ki,m)</literal> onde <literal>m</literal> È
                   o tamanho da sub-lista correspondente.</para>
                 </listitem>
 
@@ -377,12 +377,12 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   </refsection>
 
   <refsection>
-    <title>Observa√ß√µes</title>
+    <title>ObservaÁıes</title>
 
-    <para>Para tipos de matrizes "soft-coded" como fun√ß√µes racionais e
-    sistemas lineares de espa√ßos de estados, a sintaxe <literal>x(i)</literal>
-    n√£o pode ser usada para inser√ß√£o de entradas em vetores devido a confus√µes
-    com inser√ß√£o de entradas em listas. A sintaxe <literal>x(1,j)</literal> ou
+    <para>Para tipos de matrizes "soft-coded" como funÁıes racionais e
+    sistemas lineares de espaÁos de estados, a sintaxe <literal>x(i)</literal>
+    n„o pode ser usada para inserÁ„o de entradas em vetores devido a confusıes
+    com inserÁ„o de entradas em listas. A sintaxe <literal>x(1,j)</literal> ou
     <literal>x(i,1)</literal> deve ser usada.</para>
   </refsection>
 
@@ -427,7 +427,7 @@ dts(2)('b')(1,2)=-100
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>

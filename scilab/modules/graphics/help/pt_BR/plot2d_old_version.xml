@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plot2d_old_version"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plot2d_old_version</refname>
+
+    <refpurpose><emphasis role="bold">As sintaxes descritas abaixo estão
+    obsoletas</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>plot2d([logflag],x,y,[style,strf,leg,rect,nax]) </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>duas matrizes (ou vetores colunas).</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>De maneira usual, <literal>x</literal> é uma matriz de
+              mesmo tamanho que <literal>y</literal> (a coluna j de
+              <literal>y</literal> é esboçada em relação à coluna j de
+              <literal>x</literal>)</para>
+            </listitem>
+
+            <listitem>
+              <para>Se todas as colunas de <literal>x</literal> são iguais
+              (ie, as abscissas de todas as curvas são as mesmas),
+              <literal>x</literal> pode ser simplesmente o vetor coluna destas
+              abscissas (<literal>x</literal> é então um vetor coluna de
+              comprimento igual a dimensão de linha de
+              <literal>y</literal>).</para>
+            </listitem>
+
+            <listitem>
+              <para>Quando <literal>x</literal> não é fornecido, é suposto
+              como sendo o vetor [1; 2; ...; dimensão de linha de y].</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>style</term>
+
+        <listitem>
+          <para>é um vetor real de tamanho nc. O estilo a ser utilizado na
+          curva <literal>i</literal> é definido por
+          <literal>style(i)</literal>. O estilo padrão é
+          <literal>1:nc</literal> (1 para a primeira curva, 2 para a segunda,
+          etc.).</para>
+
+          <itemizedlist>
+            <listitem>
+              <para> Se <literal>style(i)</literal> é negativo ou zero, a
+              curva é esboçada com marca de identificador
+              <literal>abs(style(i))</literal>; use <literal>xset()</literal>
+              para ajustar o identificador de marca e xget('mark') para obter
+              o identificador de marca corrente. </para>
+            </listitem>
+
+            <listitem>
+              <para>Se <literal>style(i)</literal> for estritamente positivo,
+              uma linha simples de identificador de cor
+              <literal>style(i)</literal> ou uma linha tracejada com
+              identificador de tracejado <literal>style(i)</literal> é
+              utilizada; use <literal>xset()</literal> para vizualizar os
+              identificadores de cor. </para>
+            </listitem>
+
+            <listitem>
+              <para>Quando apenas uma curva é desenhada,
+              <literal>style</literal> pode ser um vetor linha de tamanho
+              <literal>[sty,pos]</literal> onde <literal>sty</literal> é
+              utilizado para especificar o estilo e <literal>pos</literal> é
+              um inteiro entre 1 e 6 que especifica uma posição a ser
+              utilizada para a legenda. Pode ser útil quando o usuário deseja
+              desenhar múltiplas curvas em um esboço chamando a função
+              <literal>plot2d</literal> várias vezes e quer fornecer uma
+              legenda para cada curva. <emphasis role="bold">Esta opção não
+              possui mais efeito no modo gráfico novo. Utilize a função <link
+              linkend="captions">captions</link> para ajustar as legendas
+              quando todas as curvas forem desenhadas. </emphasis></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf</term>
+
+        <listitem>
+          <para>string de comprimento 3 <literal>"xyz"</literal> (por padrão
+          <literal>strf= "081"</literal>)</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>controla a exibição de legendas.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+
+                    <listitem>
+                      <para>sem legendas.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>x=1</term>
+
+                    <listitem>
+                      <para>legendas são exibidas. Elas são dadas pelo
+                      argumento opcional <literal>leg</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y</term>
+
+              <listitem>
+                <para>controla a computação dos intervalos de coordenadas
+                reais a partir dos valores mínimos requeridos. Intervalos
+                reais podem ser maiores que os requerimentos mínimos. </para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+
+                    <listitem>
+                      <para>sem computação, o esboço utiliza a escala anterior
+                      (ou padrão) </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=1</term>
+
+                    <listitem>
+                      <para>a partir do argumento rect </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=2</term>
+
+                    <listitem>
+                      <para>a partir dos valores mínimo/máximo dos dados x e
+                      y</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=3</term>
+
+                    <listitem>
+                      <para>constrói uma escala isométrica a partir do
+                      argumento rect </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=4</term>
+
+                    <listitem>
+                      <para>constrói um esboço isométrico a partir dos valores
+                      mínimo/máximo dos dados x e y </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=5</term>
+
+                    <listitem>
+                      <para>aumentados para obtenção de bons eixos a partir do
+                      argumento rect </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=6</term>
+
+                    <listitem>
+                      <para>aumentados para obtenção de bons eixos a partir
+                      dos valores mínimo/máximo dos dados x e y </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=7</term>
+
+                    <listitem>
+                      <para>como y= 1 mas os anteriores são redesenhados para
+                      se utilizar a nova escala </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>y=8</term>
+
+                    <listitem>
+                      <para>como y= 2 mas os anteriores são redesenhados para
+                      se utilizar a nova escala</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>z</term>
+
+              <listitem>
+                <para>controla a exibição de informação na moldura ao redor do
+                esboço. Se eixos são requeridos, o número de tiques pode ser
+                especificado pelo argumento opcional
+                <literal>nax</literal>.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>z=0</term>
+
+                    <listitem>
+                      <para>nada é desenhado ao redor do esboço. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>z=1</term>
+
+                    <listitem>
+                      <para>eixos são desenhados, o eixo y é exibido à
+                      esquerda. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>z=2</term>
+
+                    <listitem>
+                      <para>o esboço é cercado por uma caixa sem tiques.
+                      </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>z=3</term>
+
+                    <listitem>
+                      <para>eixos são desenhados, o eixo y é exibido à
+                      direita. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>z=4</term>
+
+                    <listitem>
+                      <para>eixos são desenhados centrados no meio da caixa de
+                      moldura. </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>z=5</term>
+
+                    <listitem>
+                      <para>eixos são desenhados cruzando-se no ponto
+                      <literal>(0,0)</literal>. Se o ponto
+                      <literal>(0,0)</literal> não estiver dentro da moldura,
+                      os eixos não aparecerão no gráfico.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>leg</term>
+
+        <listitem>
+          <para>um string. É utilizado quando o primeiro caractere x do
+          argumento <literal>strf</literal> é 1. <literal>leg</literal> tem a
+          forma <literal>"leg1@leg2@...."</literal> onde
+          <literal>leg1</literal>, <literal>leg2</literal>, etc. são
+          respectivamente as legendas para a primeira, segunda, etc. curvas. O
+          padrão é " " . </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>este argumento é utilizado quando o segundo caractere y do
+          argumento <literal>strf</literal> is 1, 3 ou 5. é 1, 3 ou 5. É um
+          vetor linha de tamanho quatro e fornece a dimensão da moldura:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nax</term>
+
+        <listitem>
+          <para>este argumento opcional é utilizado quando o terceiro
+          caractere z do argumento <literal>strf</literal> é 1. É um vetor
+          linha de quatro entradas <literal>[nx,Nx,ny,Ny]</literal> onde
+          <literal>nx</literal> (<literal>ny</literal>) é o número de
+          sub-graduações no eixo x (y) axis e <literal>Nx</literal>
+          (<literal>Ny</literal>) é o número de graduações no eixo x (y).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>logflag</term>
+
+        <listitem>
+          <para>um string formado por dois caracteres h (para eixo horizontal)
+          e v (for para eixo vertical) cada um desses caracteres pode assumir
+          valores "n" ou "l". "l" corresponde à graduação logarítmica e "n" à
+          graduação normal. Por exemplo "ll" corresponde a um esboço com ambos
+          os eixos x e y em graduação logarítmica. O valor padrão é
+          "nn".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>plot2d</literal> esboça um conjunto de curvas 2d. Esboço
+    linear seccional é utilizado.</para>
+
+    <para>Por padrão, esboços sucessivos são superpostos. Para limpar o esboço
+    anterior use <literal>xbasc()</literal>.</para>
+
+    <para>Veja o significado dos parâmetros acima para uma completa
+    descrição.</para>
+
+    <para>Entre com o comando <literal>plot2d()</literal> para uma
+    demonstração.</para>
+
+    <para>Outras funções plot2d de alto-nível existem:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="plot2d2">plot2d2</link>: é o mesmo que
+        <literal>plot2d</literal> mas as curvas são supostas seccionalmente
+        constantes. </para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="plot2d3">plot2d3</link>: é o mesmo que
+        <literal>plot2d</literal> mas a curva é esboçada com barras verticais.
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="plot2d4">plot2d4</link>: é o mesmo que
+        <literal>plot2d</literal> mas a curva é esboçada com flechas.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//esboço simples
+x=[0:0.1:2*%pi]';
+plot2d(sin(x))
+xbasc()
+plot2d(x,sin(x))
+//esboços múltiplos
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+// esboços múltiplos fornecendo as dimensões da moldura
+// sintaxe antiga e sintaxe nova
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],1:3,"011","",[0,0,6,0.5])
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5])
+//esboços múltiplos com legendas e tiques dados// velha sintaxe e nova sintaxe
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],"111","L1@L2@L3",[0,-2,2*%pi,2],[2,10,2,10]);
+xbasc()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2])
+// isovisualização
+xbasc()
+plot2d(x,sin(x),1,"041")
+// escala
+xbasc()
+plot2d(x,sin(x),1,"061")
+// auto-escala com esboços anteriores
+xbasc()
+plot2d(x,sin(x),1)
+plot2d(x,2*sin(x),2) 
+plot2d(2*x,cos(x),3)
+// eixo à direita 
+xbasc()
+plot2d(x,sin(x),1,"183","sin(x)")
+// eixo centrado 
+xbasc()
+plot2d(x,sin(x),1,"184","sin(x)")
+// eixo centrado em(0,0
+xbasc()
+plot2d(x-4,sin(x),1,"185","sin(x)")
+ 
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d1">plot2d1</link></member>
+
+      <member><link linkend="plot2d2">plot2d2</link></member>
+
+      <member><link linkend="plot2d3">plot2d3</link></member>
+
+      <member><link linkend="plot2d4">plot2d4</link></member>
+
+      <member><link linkend="xbasc">xbasc</link></member>
+
+      <member><link linkend="xset">xset</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

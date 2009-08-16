@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>sysconv</refname>
 
-    <refpurpose>convers√£o de sistema</refpurpose>
+    <refpurpose>convers„o de sistema</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[s1,s2]=sysconv(s1,s2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,19 +48,19 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Converte <literal>s1</literal> e <literal>s2</literal> para
-    representa√ß√£o comum a fim de que opera√ß√µes de interconex√£o de sistemas
-    possam ser aplicadas. Fun√ß√£o utilit√°ria para peritos. A regra de convers√£o
-    √© dada na seguinte tabela. </para>
+    representaÁ„o comum a fim de que operaÁıes de interconex„o de sistemas
+    possam ser aplicadas. FunÁ„o utilit·ria para peritos. A regra de convers„o
+    È dada na seguinte tabela. </para>
 
     <variablelist>
       <varlistentry>
         <term>"c"</term>
 
         <listitem>
-          <para>sistema de tempo cont√≠nuo</para>
+          <para>sistema de tempo contÌnuo</para>
         </listitem>
       </varlistentry>
 
@@ -76,7 +76,7 @@
         <term>n</term>
 
         <listitem>
-          <para>sistema amostrado com per√≠odo de amostragem n </para>
+          <para>sistema amostrado com perÌodo de amostragem n </para>
         </listitem>
       </varlistentry>
 
@@ -84,8 +84,8 @@
         <term>[]</term>
 
         <listitem>
-          <para>sistema com dom√≠nio de tempo indefinido. Para sistemas mistos,
-          s1 e s2 s√£o postos em representa√ß√£o de estado-espa√ßo.</para>
+          <para>sistema com domÌnio de tempo indefinido. Para sistemas mistos,
+          s1 e s2 s„o postos em representaÁ„o de estado-espaÁo.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -94,9 +94,9 @@
 
  s1\s2  |   "c"     |     "d"     |      n2        |     []     |
  ---------------------------------------------------------------
- "c"   | nada       |incompat√≠vel | c2e(s1,n2)     |  c(s2)     |
+ "c"   | nada       |incompatÌvel | c2e(s1,n2)     |  c(s2)     |
  ---------------------------------------------------------------
- "d"   |incompat√≠vel| nada        | e(s1,n2)       |  d(s2)     |
+ "d"   |incompatÌvel| nada        | e(s1,n2)       |  d(s2)     |
  ---------------------------------------------------------------
  n1    | c2e(s2,n1) | e(s2,n1)    | n1&lt;&gt;n2 incomp  |  e(s2,n1)  |
        |            |             | n1=n2  nada    |            |
@@ -113,7 +113,7 @@
         <term>n1,n2</term>
 
         <listitem>
-          <para>per√≠odo de amostragem </para>
+          <para>perÌodo de amostragem </para>
         </listitem>
       </varlistentry>
 
@@ -121,8 +121,8 @@
         <term>c2e(s,n)</term>
 
         <listitem>
-          <para>o sistema de tempo cont√≠nuo s √© transformado em um sistema
-          amostrado com per√≠odo de amostragem n. </para>
+          <para>o sistema de tempo contÌnuo s È transformado em um sistema
+          amostrado com perÌodo de amostragem n. </para>
         </listitem>
       </varlistentry>
 
@@ -130,7 +130,7 @@
         <term>c(s)</term>
 
         <listitem>
-          <para>convers√£o para tempo cont√≠nuo (dom√≠nio de tempo √©
+          <para>convers„o para tempo contÌnuo (domÌnio de tempo È
           <literal>"c"</literal>)</para>
         </listitem>
       </varlistentry>
@@ -139,7 +139,7 @@
         <term>d(s)</term>
 
         <listitem>
-          <para>convers√£o para tempo discreto (dom√≠nio de tempo √©
+          <para>convers„o para tempo discreto (domÌnio de tempo È
           <literal>"d"</literal>)</para>
         </listitem>
       </varlistentry>
@@ -148,7 +148,7 @@
         <term>e(s,n)</term>
 
         <listitem>
-          <para>convers√£o para sistema amostrado com per√≠odo
+          <para>convers„o para sistema amostrado com perÌodo
           <literal>n</literal></para>
         </listitem>
       </varlistentry>
@@ -168,7 +168,7 @@ s2=ss2tf(s1);
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="syslin">syslin</link></member>

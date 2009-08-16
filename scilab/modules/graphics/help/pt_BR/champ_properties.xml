@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="champ_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>champ_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade campo vetorial
+    2d</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Champ é uma folha na hierarquia de entidade gráficas.
+    Esta entidade define parâmetros para um campo vetorial 2d .</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Se <literal>"on" </literal>
+          o campo vetorial é desenhado, se <literal>"off"</literal> o campo
+          vetorial não aparece na tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo define uma estrutura de dados
+          <literal>tlist</literal> de tipo <literal>"champdata"</literal>
+          composto de uma linha e índices de colunas de cada elemento: as
+          coordenadas do grid x e y contidas respectivamente em
+          <literal>data.x </literal>e <literal>data.y</literal>. Os campos
+          complementares chamados <literal>data.fx</literal> e
+          <literal>data.fy</literal> são matrizes que descrevem
+          respectivamente os componentes <literal>x</literal> e
+          <literal>y</literal> do campo vetorial no ponto
+          <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade Champ e recuperá-la.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style:</term>
+
+        <listitem>
+          <para>o valor da propriedade <literal>line_style</literal> deve ser
+          um valor inteiro no intervalo [0 9]. 0 significa linha sólida e os
+          outros valores significam estilos de tracejados. Esta propriedade
+          aplica-se a todas as linhas usadas para desenhar o campo vetorial.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>thickness</literal> (espessura) para todas as linhas
+          utilizadas no desenho. Seu valor deve ser um inteiro não-negativo.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>colored:</term>
+
+        <listitem>
+          <para>se o valor desta propriedade for <literal>"on"</literal>, os
+          vetores são coloridos utilizando-se uma cor porporcional à
+          intensidade do campo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para a entidade Champ. Pode ser
+          :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que o campo vetorial
+              não é recortado</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> siginifica que o campo
+              vetorial é recortado fora da caixa da entidade Axes.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que o campo vetorial é
+              recortado fora do retângulo dado pela propriedade
+              clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_box</literal>. Seu valor pode ser uma matriz vazia se
+          a propriedade clip_state é "off" .em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções do campo a serem exibidas, contudo, o
+          valor da propriedade <literal>clip_state</literal> será
+          modificado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade campo vetorial 2d deve ser do tipo
+          <literal>"Axes"</literal> ou <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+   a.data_bounds=[-10,-10;10,10];
+   champ(-5:5,-5:5,rand(11,11),rand(11,11))
+
+   c=a.children
+
+   c.colored="on";
+   c.thickness=2;
+   c.data // exibindo um tlist do tipo "scichampdata"
+   a.data_bounds=[-5,-5;5,5];
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="champ">champ</link></member>
+
+      <member><link linkend="champ1">champ1</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

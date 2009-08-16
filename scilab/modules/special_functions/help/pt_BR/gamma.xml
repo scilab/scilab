@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>gamma</refname>
 
-    <refpurpose>funÃ§Ã£o gama </refpurpose>
+    <refpurpose>função gama </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = gamma(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,10 +57,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>gamma(x)</literal> avalia a funÃ§Ã£o gama em todos os
-    elementos de <literal>x</literal>. A funÃ§Ã£o gama Ã© defininda por :</para>
+    <para><literal>gamma(x)</literal> avalia a função gama em todos os
+    elementos de <literal>x</literal>. A função gama é defininda por :</para>
 
     <programlisting>
 
@@ -71,7 +71,7 @@
      
     </programlisting>
 
-    <para>e generaliza a funÃ§Ã£o fatorial para os nÃºmeros reais
+    <para>e generaliza a função fatorial para os números reais
     (<literal>gamma(n+1) = n!</literal>).</para>
   </refsection>
 
@@ -84,7 +84,7 @@
 gamma(0.5)
 gamma(6)-prod(1:5)
 
-// o grÃ¡fico da funÃ§Ã£o gama em [a,b]
+// o gráfico da função gama em [a,b]
 a = -3; b = 5;
 x = linspace(a,b,40000)';
 y = gamma(x);
@@ -93,14 +93,14 @@ c=xget("color")
 xset("color",2)
 plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
 xset("color",c)
-xtitle("A funÃ§Ã£o gama em ["+string(a)+","+string(b)+"]")
+xtitle("A função gama em ["+string(a)+","+string(b)+"]")
 xselect()
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gammaln">gammaln</link></member>
@@ -112,6 +112,6 @@ xselect()
   <refsection>
     <title>Autores</title>
 
-    <para>W. J. Cody e L. Stoltz (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody e L. Stoltz (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

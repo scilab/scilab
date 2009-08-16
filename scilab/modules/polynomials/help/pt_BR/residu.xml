@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>residu</refname>
 
-    <refpurpose>resÃ­duo</refpurpose>
+    <refpurpose>resíduo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>P, Q1, Q2</term>
 
         <listitem>
-          <para>polinÃ´mios ou matrizes de polinÃ´mios de coeficientes reais ou
+          <para>polinômios ou matrizes de polinômios de coeficientes reais ou
           complexos.</para>
         </listitem>
       </varlistentry>
@@ -49,15 +49,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>V=residu(P,Q1,Q2)</literal> retorna a matriz
-    <literal>V</literal> tal que <literal>V(i,j)</literal> Ã© a soma dos
-    resÃ­duos da fraÃ§Ã£o racional <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
+    <literal>V</literal> tal que <literal>V(i,j)</literal> é a soma dos
+    resíduos da fração racional <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
     calculada nos zeros de <literal>Q1(i,j)</literal>.</para>
 
-    <para><literal>Q1(i,j)</literal> e <literal>Q2(i,j)</literal> nÃ£o devem
-    possuir raÃ­zes em comum.</para>
+    <para><literal>Q1(i,j)</literal> e <literal>Q2(i,j)</literal> não devem
+    possuir raízes em comum.</para>
   </refsection>
 
   <refsection>
@@ -84,7 +84,7 @@ real(residu(b*btild,z*a,atild)-2.9488038) //Caso complexo
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="pfss">pfss</link></member>

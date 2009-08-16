@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="quit" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,28 +13,28 @@
   <refnamediv>
     <refname>quit</refname>
 
-    <refpurpose>Decresce o nÃ­vel de pausa ou termina o Scilab</refpurpose>
+    <refpurpose>Decresce o nível de pausa ou termina o Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>quit</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>O comando <literal>quit</literal> tem dois significados diferentes
     dependendo do contexto de chamamento:</para>
 
     <variablelist>
       <varlistentry>
-        <term>Se nÃ£o houver <literal>pause</literal> ativo,</term>
+        <term>Se não houver <literal>pause</literal> ativo,</term>
 
         <listitem>
-          <para>EntÃ£o o comando <literal>quit</literal> faz o Scilab terminar,
-          mesmo que o comando seja chamado dentro de uma funÃ§Ã£o.</para>
+          <para>Então o comando <literal>quit</literal> faz o Scilab terminar,
+          mesmo que o comando seja chamado dentro de uma função.</para>
         </listitem>
       </varlistentry>
 
@@ -42,8 +42,8 @@
         <term>Se houver <literal>pause</literal> ativo,</term>
 
         <listitem>
-          <para>EntÃ£o o comando <literal>quit</literal> aborta instruÃ§Ãµes
-          iniciadas neste nÃ­vel de pausa e termina o nÃ­vel de pausa
+          <para>Então o comando <literal>quit</literal> aborta instruções
+          iniciadas neste nível de pausa e termina o nível de pausa
           corrente.</para>
         </listitem>
       </varlistentry>
@@ -58,10 +58,10 @@
       function foo(x),if x then quit,end,endfunction
       foo(%t) //quits scilab
 
-      //terminando instruÃ§Ã£o iniciada num contexto de pausa
+      //terminando instrução iniciada num contexto de pausa
       function foo(x),if x then quit,end,endfunction
       pause
-      foo(%t) //retorna ao nÃ­vel de prompt principal
+      foo(%t) //retorna ao nível de prompt principal
 
       function foo1(x),
         mprintf('P1\n')
@@ -75,7 +75,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="pause">pause</link></member>

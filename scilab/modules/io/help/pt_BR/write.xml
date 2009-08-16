@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="write" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>write</refname>
+
+    <refpurpose>Escrita em arquivo formatado</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>write(file-desc,a,[format])
+write(file-desc,a,k,format)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-desc</term>
+
+        <listitem>
+          <para>string especificando o nome do arquivo ou valor inteiro
+          especificando a unidade lógica (ver file).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>matriz de reais ou vetor coluna de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>string, especifica um formato "Fortran". Este string deve
+          começar com um parêntese direito e terminar com um parêntese
+          esquerdo. Formatos não podem misturar pontos flutuantes, inteiros ou
+          modo de edição de caractere.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>integer vector</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Escreve linha por linha uma matriz de reais ou um vetor coluna de
+    strings em um arquivo formatado. Cada linha do argumento
+    <literal>a</literal> começa em uma nova linha do arquivo
+    <literal>file-desc</literal>. Dependendo de <literal>format</literal> uma
+    dada linha do argumento <literal>a</literal> pode ser escrita em mais de
+    uma linha do arquivo <literal>file-desc</literal>.</para>
+
+    <para>Exemplos de formatos : <literal>(1x,e10.3,5x,3(f3.0))</literal> ,
+    <literal>(10x,a20)</literal> ;</para>
+
+    <para>Veja um livro de Fortran para maior precisão.</para>
+
+    <para>Arquivos de acesso direto :
+    <literal>x=write(file_desc,a,k,format)</literal>. Aqui
+    <literal>k</literal> é o vetor de gravações (uma gravação por linha, i.e.
+    <literal>m=prod(size(k)</literal>)</para>
+
+    <para><literal>write(%io(2),....)</literal> escreve em uma janela do
+    Scilab. Note que neste caso <literal>format</literal> deve produzir uma
+    linha de saída por linha da matriz. Se esta restrição não for respeitada,
+    um erro imprevisível acontece.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+if MSDOS then unix('del asave');
+else unix('rm -f asave'); end
+A=rand(5,3); write('asave',A); A=read('asave',5,3);
+write(%io(2),A,'('' | '',3(f10.3,'' | ''))')
+write(%io(2),string(1:10))
+write(%io(2),strcat(string(1:10),','))
+write(%io(2),1:10,'(10(i2,3x))')
+
+if MSDOS then unix('del foo');
+else unix('rm -f foo'); end
+write('foo',A)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="fileinfo">fileinfo</link></member>
+
+      <member><link linkend="writb">writb</link></member>
+
+      <member><link linkend="read">read</link></member>
+
+      <member><link linkend="print">print</link></member>
+
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="msprintf">msprintf</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

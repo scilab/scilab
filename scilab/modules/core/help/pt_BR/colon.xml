@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="colon" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Colon symbol <literal>:</literal> can be used to form implicit
     vectors. (see also <link linkend="linspace">linspace</link>, <link
@@ -28,7 +28,7 @@
         <term>j:k</term>
 
         <listitem>
-          <para>Ã© o vetor <literal>[j, j+1,...,k]</literal> (vazio se
+          <para>é o vetor <literal>[j, j+1,...,k]</literal> (vazio se
           <literal>j&gt;k</literal>).</para>
         </listitem>
       </varlistentry>
@@ -37,13 +37,13 @@
         <term>j:d:k</term>
 
         <listitem>
-          <para>Ã© o vetor <literal>[j, j+d, ..., j+m*d] </literal></para>
+          <para>é o vetor <literal>[j, j+d, ..., j+m*d] </literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>A notaÃ§Ã£o de dois pontos tambÃ©m pode ser usada para retirar linhas,
-    colunas e elementos selecionados de vetores e matrizes (ver tambÃ©m <link
+    <para>A notação de dois pontos também pode ser usada para retirar linhas,
+    colunas e elementos selecionados de vetores e matrizes (ver também <link
     linkend="extraction">extraction</link>,<link
     linkend="insertion">insertion</link>)</para>
 
@@ -52,8 +52,8 @@
         <term>A(:)</term>
 
         <listitem>
-          <para>Ã© o vetor de todos os elementos de <literal>A</literal>
-          considerados como uma Ãºnica coluna. </para>
+          <para>é o vetor de todos os elementos de <literal>A</literal>
+          considerados como uma única coluna. </para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,7 @@
         <term>A(:,j)</term>
 
         <listitem>
-          <para>Ã© a j-Ã©sima coluna de <literal>A</literal></para>
+          <para>é a j-ésima coluna de <literal>A</literal></para>
         </listitem>
       </varlistentry>
 
@@ -69,7 +69,7 @@
         <term>A(j:k)</term>
 
         <listitem>
-          <para>Ã© <literal>[A(j),A(j+1),...,A(k)]</literal></para>
+          <para>é <literal>[A(j),A(j+1),...,A(k)]</literal></para>
         </listitem>
       </varlistentry>
 
@@ -77,7 +77,7 @@
         <term>A(:,j:k)</term>
 
         <listitem>
-          <para>Ã© <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal></para>
+          <para>é <literal>[A(:,j),A(:,j+1),...,A(:,k)] </literal></para>
         </listitem>
       </varlistentry>
 
@@ -87,14 +87,14 @@
         <listitem>
           <para>preenche a matriz <literal>A</literal> com entradas de
           <literal>w</literal> (tomados coluna a coluna se
-          <literal>w</literal> Ã© uma matriz).</para>
+          <literal>w</literal> é uma matriz).</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

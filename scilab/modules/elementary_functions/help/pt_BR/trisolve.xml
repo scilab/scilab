@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -25,17 +25,17 @@
   <refnamediv>
     <refname>trisolve</refname>
 
-    <refpurpose>solucionador simbÃ³lico de sistemas lineares</refpurpose>
+    <refpurpose>solucionador simbólico de sistemas lineares</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[x [,sexp]] = trisolve(A,b [,sexp])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,12 +49,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Resolve simbolicamente <literal>A*x =b</literal> ,
     <literal>A</literal> sendo assumida como triangular superior.</para>
 
-    <para><literal>sexp</literal> Ã© um vetor de subexpressÃµes comuns em
+    <para><literal>sexp</literal> é um vetor de subexpressões comuns em
     <literal>A, b, x</literal>.</para>
   </refsection>
 
@@ -73,7 +73,7 @@ inv(evstr(A))*evstr(b)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="trianfml">trianfml</link></member>

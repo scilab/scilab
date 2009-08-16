@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>nextpow2</refname>
 
-    <refpurpose>prÃ³xima potÃªncia de 2 mais alta </refpurpose>
+    <refpurpose>próxima potência de 2 mais alta </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>x</literal> Ã© escalar, <literal>nextpow2(x)</literal>
+    <para>Se <literal>x</literal> é escalar, <literal>nextpow2(x)</literal>
     retorna o primeiro <literal>p</literal> tal que <literal>2^p &gt;=
-    abs(x)</literal> . Se <literal>x</literal> Ã© um vetor ou uma matriz
+    abs(x)</literal> . Se <literal>x</literal> é um vetor ou uma matriz
     <literal>nextpow2(x)</literal> se aplica elemento a elemento.</para>
   </refsection>
 
@@ -77,7 +77,7 @@ nextpow2(0:10)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="frexp">frexp</link></member>

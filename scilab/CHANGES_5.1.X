@@ -6,11 +6,16 @@
 Improvements:
 =============
 
+* Portugues do Brazil Localization added (Thanks Daniel de Souza Grilo and others)
+
+* More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
+
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
 Functions removed:
 ==================
-* lgfft (http://bugzilla.scilab.org/show_bug.cgi?id=4600)
+
+* lgfft (See bug #4600)
 
 Compilation:
 ============

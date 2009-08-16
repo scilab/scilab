@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>eval3d</refname>
 
-    <refpurpose>valores de uma fun√ß√£o em um grid</refpurpose>
+    <refpurpose>valores de uma funÁ„o em um grid</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[z]=eval3d(fun,x,[y])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>fun</term>
 
         <listitem>
-          <para>fun√ß√£o que aceita vetores como argumentos </para>
+          <para>funÁ„o que aceita vetores como argumentos </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>x,y</term>
 
         <listitem>
-          <para>2 vetores de tamanhos (1,n1) e (1,n2). (valor padr√£o para
+          <para>2 vetores de tamanhos (1,n1) e (1,n2). (valor padr„o para
           <literal>y</literal> : <literal>y=x</literal>).</para>
         </listitem>
       </varlistentry>
@@ -65,11 +65,11 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Esta fun√ß√£o retorna uma matriz <literal>z(n1,n2)</literal>.
-    <literal>z(i,j)=fun(x(i),y(j))</literal>. Se a fun√ß√£o
-    <literal>fun</literal> n√£o aceitar argumentos do tipo vetor, use a
+    <para>Esta funÁ„o retorna uma matriz <literal>z(n1,n2)</literal>.
+    <literal>z(i,j)=fun(x(i),y(j))</literal>. Se a funÁ„o
+    <literal>fun</literal> n„o aceitar argumentos do tipo vetor, use a
     primitiva <literal>feval</literal>.</para>
   </refsection>
 
@@ -91,7 +91,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="feval">feval</link></member>

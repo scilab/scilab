@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>setenv</refname>
 
-    <refpurpose>ajusta o valor de uma vari√°vel de ambiente</refpurpose>
+    <refpurpose>ajusta o valor de uma vari·vel de ambiente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>rep=setenv(name, value )</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>name</term>
 
         <listitem>
-          <para>aponta para o nome de uma vari√°vel de ambiente. (name √© um
+          <para>aponta para o nome de uma vari·vel de ambiente. (name È um
           string) </para>
         </listitem>
       </varlistentry>
@@ -50,8 +50,8 @@
         <term>value</term>
 
         <listitem>
-          <para>aponta para o valor a ser atribu√≠do √† vari√°vel de ambiente
-          (value √© um string) </para>
+          <para>aponta para o valor a ser atribuÌdo ‡ vari·vel de ambiente
+          (value È um string) </para>
         </listitem>
       </varlistentry>
 
@@ -60,16 +60,16 @@
 
         <listitem>
           <para>Retorna %T, se estiver tudo correto ou %F, em caso
-          contr√°rio</para>
+          contr·rio</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Ajusta o valor de uma vari√°vel de ambiente.</para>
+    <para>Ajusta o valor de uma vari·vel de ambiente.</para>
   </refsection>
 
   <refsection>
@@ -82,7 +82,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="getenv">getenv</link></member>
