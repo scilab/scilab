@@ -100,6 +100,12 @@ Bug fixes:
 
  * bug 2042 fixed - copy function altered axes properties.
 
+ * bug 2347 fixed - "fun2string" indentation problem with select/case 
+                    instruction.
+
+ * bug 2446 fixed - "while" documentation help page improved to explain 
+                    that the key words do or then can be ommited .
+
  * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
                     Debian Etch, Centos 4.X and some other old operating 
                     systems)
