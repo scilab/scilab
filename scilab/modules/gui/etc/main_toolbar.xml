@@ -8,7 +8,7 @@
     <button icon="document-open.png" tooltiptext="Open a file">
         <callback 
         instruction='
-          %fileToOpen = uigetfile("*.sc*", getcwd(), gettext("Select a file to open with Scipad"));
+          %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scipad"));
           if ~isempty(%fileToOpen) then 
             scipad(%fileToOpen);
           end
@@ -36,7 +36,7 @@
     <button icon="folder.png" tooltiptext="Change Current Directory">
         <callback 
         instruction='
-          %newDir = uigetdir(getcwd(), gettext("Select a directory"));
+          %newDir = uigetdir(pwd(), gettext("Select a directory"));
           if ~isempty(%newDir) then 
             cd(%newDir);
           end

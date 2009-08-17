@@ -7,20 +7,19 @@
     <refname>pwd</refname>
     <refpurpose> affiche le répertoire courant de Scilab  </refpurpose>
   </refnamediv>
-  <refnamediv xml:id="getcwd">
-    <refname>getcwd</refname>
+  <refnamediv xml:id="pwd">
+    <refname>pwd</refname>
     <refpurpose> renvoie le répertoire courant de Scilab  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>pwd
-x=pwd()
-x=getcwd()</synopsis>
+x=pwd()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para><literal>pwd</literal> renvoie dans <literal>ans</literal> le répertoire courant de Scilab.
-      <literal>x=pwd()</literal> ou <literal>x=getcwd()</literal> renvoie dans <literal>x</literal> le répertoire courant de Scilab.
+      <literal>x=pwd()</literal> renvoie dans <literal>x</literal> le répertoire courant de Scilab.
     </para>
   </refsection>
   <refsection>

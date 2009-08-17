@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>linspace</refname>
 
-    <refpurpose>vetor linearmente espaÃ§ado</refpurpose>
+    <refpurpose>vetor linearmente espaçado</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>n</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de valores). O valor padrÃ£o Ã© 100 </para>
+          <para>inteiro (número de valores). O valor padrão é 100 </para>
         </listitem>
       </varlistentry>
 
@@ -64,16 +64,16 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Vetor linearmente espaÃ§ado. <literal>linspace(x1, x2)</literal> era
-    um vetor linha de n (valor padrÃ£o = 100) pontos linearmente espaÃ§ados de
+    <para>Vetor linearmente espaçado. <literal>linspace(x1, x2)</literal> era
+    um vetor linha de n (valor padrão = 100) pontos linearmente espaçados de
     modo igual entre <literal>x1</literal> e <literal>x2</literal>. Se
-    <literal>x1</literal> ou <literal>x2</literal> sÃ£o complexos, entÃ£o
+    <literal>x1</literal> ou <literal>x2</literal> são complexos, então
     <literal>linspace(x1,x2)</literal> retorna um vetor-linha de n complexos
-    cujas partes reais (e respectivamente as imaginÃ¡rias) dos n complexos sÃ£o
-    linearmente espaÃ§adas de modo igual entre a partes reais (e
-    respectivamente as imaginÃ¡rias) de <literal>x1</literal> e
+    cujas partes reais (e respectivamente as imaginárias) dos n complexos são
+    linearmente espaçadas de modo igual entre a partes reais (e
+    respectivamente as imaginárias) de <literal>x1</literal> e
     <literal>x2</literal></para>
   </refsection>
 
@@ -88,7 +88,7 @@ linspace(1+%i,2+2*%i,10)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="logspace">logspace</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="if" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,44 +13,44 @@
   <refnamediv>
     <refname>if then else</refname>
 
-    <refpurpose>ExecuÃ§Ã£o condicional (significa "se entÃ£o senÃ£o")</refpurpose>
+    <refpurpose>Execução condicional (significa "se então senão")</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
-    <synopsis>    if expressÃ£o1 then sentenÃ§as 
-    elseif expressÃ£oi then sentenÃ§as 
+    <synopsis>    if expressão1 then sentenças 
+    elseif expressãoi then sentenças 
     .... 
-    else sentenÃ§as 
+    else sentenças 
     end </synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>A sentenÃ§a <literal>if</literal> avalia sentenÃ§as lÃ³gicas e executa
-    um grupo de sentenÃ§as se a expressÃ£o Ã© verdadeira.</para>
+    <para>A sentença <literal>if</literal> avalia sentenças lógicas e executa
+    um grupo de sentenças se a expressão é verdadeira.</para>
 
-    <para>As <literal>expressÃµesi</literal> sÃ£o expressÃµes com valores
-    numÃ©ricos ou booleanos. Se as <literal>expressÃµesi</literal> sÃ£o matrizes,
-    a condiÃ§Ã£o Ã© verdadeira somente se todas as entradas da matriz sÃ£o "true"
+    <para>As <literal>expressõesi</literal> são expressões com valores
+    numéricos ou booleanos. Se as <literal>expressõesi</literal> são matrizes,
+    a condição é verdadeira somente se todas as entradas da matriz são "true"
     (verdadeiro) ou diferentes de 0.</para>
 
     <para>Os opcionais <literal>elseif</literal> e <literal>else</literal>
-    propiciam execuÃ§Ã£o de grupos de sentenÃ§as alternativas. A palavra-chave
+    propiciam execução de grupos de sentenças alternativas. A palavra-chave
     <literal>end</literal> keyword, que corresponde ao
-    <literal>if</literal>termina o Ãºltimo grupo de sentenÃ§as. A estrutura de
-    linhas dada acima nÃ£o Ã© importante, a Ãºnica restriÃ§Ã£o Ã© que cada
+    <literal>if</literal>termina o último grupo de sentenças. A estrutura de
+    linhas dada acima não é importante, a única restrição é que cada
     palavra-chave <literal>then</literal>deve estar na mesma linha de sua
     palavra-chave <literal>if</literal> ou <literal>elseif</literal>
     correspondente.</para>
 
-    <para>A palavra-chave <literal>then </literal>pode ser substituÃ­da por um
-    retorno de carro ou uma vÃ­rgula.</para>
+    <para>A palavra-chave <literal>then </literal>pode ser substituída por um
+    retorno de carro ou uma vírgula.</para>
 
-    <para> Aviso: o nÃºmero de caracteres utilizados para definir o corpo de
-    qualquer instruÃ§Ã£o condicional (if while for or select/case) deve ser
+    <para> Aviso: o número de caracteres utilizados para definir o corpo de
+    qualquer instrução condicional (if while for or select/case) deve ser
     limitado a 16k.</para>
   </refsection>
 
@@ -73,7 +73,7 @@
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="try">try</link></member>

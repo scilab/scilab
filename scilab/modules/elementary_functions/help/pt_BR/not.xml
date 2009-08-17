@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>not</refname>
 
-    <refpurpose>(~) nÃ£o lÃ³gico</refpurpose>
+    <refpurpose>(~) não lógico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>~A</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>~A</literal> fornece a negaÃ§Ã£o dos elementos da matriz de
+    <para><literal>~A</literal> fornece a negação dos elementos da matriz de
     valores booleanos <literal>A</literal> elemento a elemento.</para>
   </refsection>
 
@@ -51,7 +51,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="and">and</link></member>

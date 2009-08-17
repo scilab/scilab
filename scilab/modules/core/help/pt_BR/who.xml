@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="who" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>who</refname>
 
-    <refpurpose>listagem de vari√°veis</refpurpose>
+    <refpurpose>listagem de vari·veis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento </title>
+    <title>Seq¸Íncia de Chamamento </title>
 
     <synopsis>who
 who()
@@ -33,23 +33,23 @@ names=who('global','sorted')
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>who</literal> exibe os nome de vari√°veis correntes.</para>
+    <para><literal>who</literal> exibe os nome de vari·veis correntes.</para>
 
     <para><literal>who('local')</literal> ou <literal>who('get')</literal>
-    retorna os nomes de vari√°veis correntes e a mem√≥ria utilizada em palavras
-    de dupla precis√£o.</para>
+    retorna os nomes de vari·veis correntes e a memÛria utilizada em palavras
+    de dupla precis„o.</para>
 
-    <para><literal>who('global')</literal> retorna os nomes de vari√°veis
-    globais e a mem√≥ria utilizada em palavras de dupla precis√£o.</para>
+    <para><literal>who('global')</literal> retorna os nomes de vari·veis
+    globais e a memÛria utilizada em palavras de dupla precis„o.</para>
 
-    <para><literal>who('sorted')</literal> exibe todas as vari√°veis em ordem
-    alfab√©tica.</para>
+    <para><literal>who('sorted')</literal> exibe todas as vari·veis em ordem
+    alfabÈtica.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="whos">whos</link></member>

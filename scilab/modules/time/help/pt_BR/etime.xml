@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>e = etime(t2,t1)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
         <term>e</term>
 
         <listitem>
-          <para>nÃºmero de segundos entre <literal>t2</literal> e
+          <para>número de segundos entre <literal>t2</literal> e
           <literal>t1</literal>.</para>
         </listitem>
       </varlistentry>
@@ -65,7 +65,7 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <variablelist>
       <varlistentry>
@@ -74,7 +74,7 @@
         <listitem>
           <para>: <literal>t2</literal> e <literal>t1</literal> devem ter o
           mesmo formato retornado por <literal>getdate</literal>. Neste caso,
-          seus terceiro, quarto e quinto valores serÃ£o ignorados. </para>
+          seus terceiro, quarto e quinto valores serão ignorados. </para>
         </listitem>
       </varlistentry>
 
@@ -83,8 +83,8 @@
 
         <listitem>
           <para>: <literal>t2</literal> e <literal>t1</literal> devem ter o
-          mesmo formato: T = [Ano MÃªs Dia Hora Minuto Segundo] com Segundo o
-          nÃºmero de segundos com milisegundos (ex.: 12.345).</para>
+          mesmo formato: T = [Ano Mês Dia Hora Minuto Segundo] com Segundo o
+          número de segundos com milisegundos (ex.: 12.345).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -111,7 +111,7 @@ E2=etime(t2,t1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tic">tic</link></member>

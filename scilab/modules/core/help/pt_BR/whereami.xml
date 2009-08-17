@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="whereami" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,21 +13,21 @@
   <refnamediv>
     <refname>whereami</refname>
 
-    <refpurpose>exibe a Ã¡rvore de chamamento de instruÃ§Ãµes
+    <refpurpose>exibe a árvore de chamamento de instruções
     corrente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>whereami()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Exibe a Ã¡rvore de chamamento para a instruÃ§Ã£o que contÃ©m whereami().
-    Pode ser usado dentro de nÃ­veis de pause (pausa).</para>
+    <para>Exibe a árvore de chamamento para a instrução que contém whereami().
+    Pode ser usado dentro de níveis de pause (pausa).</para>
   </refsection>
 
   <refsection>
@@ -45,7 +45,7 @@ test(1)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="where">where</link></member>

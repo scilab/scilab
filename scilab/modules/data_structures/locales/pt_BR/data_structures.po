@@ -1,0 +1,52 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2008-07-18 19:45+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Quantidade errada de argumentos de entrada: Esperava-se %d"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s)."
+msgstr "%s: Quantidade errada de argumento(s) de entrada."
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " Uma extração de hipermatriz deve ter pelo menos 2 argumentos. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " O argumento não é uma hipermatriz. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " Extração incompatível de hipermatriz. "
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "Índice inválido (%d) na extração da hipermatriz. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments "
+msgstr " Uma inserção de hipermatriz deve ter pelo menos 3 argumentos "
+
+msgid " Argument is not an hypermatrix "
+msgstr " O argumento não é uma hipermatriz "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " Inserção inválida de hipermatriz. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Muitos argumentos na pilha. Edite stack.h e aumente o valor de intersiz.\n"

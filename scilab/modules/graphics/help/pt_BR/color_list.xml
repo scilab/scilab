@@ -1,0 +1,8077 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="color_list" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>color_list</refname>
+
+    <refpurpose>Lista dos nomes das cores</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Abaixo você encontrará os nomes das cores conhecidas pelo Scilab. Os
+    valores RGB (vermelho, verde, azul) são dados após os nomes. Note que,
+    algumas vezes, as cores possuem mais de um nome:</para>
+
+    <informaltable border="1">
+      <tr>
+        <td>scilab blue4 (azul)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilabblue4</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilab blue3</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilabblue3</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilab blue2</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilabblue2</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilab green4 (verde)</td>
+
+        <td>0</td>
+
+        <td>144</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabgreen4</td>
+
+        <td>0</td>
+
+        <td>144</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab green3</td>
+
+        <td>0</td>
+
+        <td>176</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabgreen3</td>
+
+        <td>0</td>
+
+        <td>176</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab green2</td>
+
+        <td>0</td>
+
+        <td>208</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabgreen2</td>
+
+        <td>0</td>
+
+        <td>208</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab cyan4 (ciano)</td>
+
+        <td>0</td>
+
+        <td>144</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilabcyan4</td>
+
+        <td>0</td>
+
+        <td>144</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilab cyan3</td>
+
+        <td>0</td>
+
+        <td>176</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilabcyan3</td>
+
+        <td>0</td>
+
+        <td>176</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilab cyan2</td>
+
+        <td>0</td>
+
+        <td>208</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilabcyan2</td>
+
+        <td>0</td>
+
+        <td>208</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilab red4 (vermelho)</td>
+
+        <td>144</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabred4</td>
+
+        <td>144</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab red3</td>
+
+        <td>176</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabred3</td>
+
+        <td>176</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab red2</td>
+
+        <td>208</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabred2</td>
+
+        <td>208</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab magenta4 (magenta)</td>
+
+        <td>144</td>
+
+        <td>0</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilabmagenta4</td>
+
+        <td>144</td>
+
+        <td>0</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>scilab magenta3</td>
+
+        <td>176</td>
+
+        <td>0</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilabmagenta3</td>
+
+        <td>176</td>
+
+        <td>0</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>scilab magenta2</td>
+
+        <td>208</td>
+
+        <td>0</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilabmagenta2</td>
+
+        <td>208</td>
+
+        <td>0</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>scilab brown4 (marrom)</td>
+
+        <td>128</td>
+
+        <td>48</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabbrown4</td>
+
+        <td>128</td>
+
+        <td>48</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab brown3</td>
+
+        <td>160</td>
+
+        <td>64</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabbrown3</td>
+
+        <td>160</td>
+
+        <td>64</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab brown2</td>
+
+        <td>192</td>
+
+        <td>96</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilabbrown2</td>
+
+        <td>192</td>
+
+        <td>96</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>scilab pink4 (rosa)</td>
+
+        <td>255</td>
+
+        <td>128</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>scilabpink4</td>
+
+        <td>255</td>
+
+        <td>128</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>scilab pink3</td>
+
+        <td>255</td>
+
+        <td>160</td>
+
+        <td>160</td>
+      </tr>
+
+      <tr>
+        <td>scilabpink3</td>
+
+        <td>255</td>
+
+        <td>160</td>
+
+        <td>160</td>
+      </tr>
+
+      <tr>
+        <td>scilab pink2</td>
+
+        <td>255</td>
+
+        <td>192</td>
+
+        <td>192</td>
+      </tr>
+
+      <tr>
+        <td>scilabpink2</td>
+
+        <td>255</td>
+
+        <td>192</td>
+
+        <td>192</td>
+      </tr>
+
+      <tr>
+        <td>scilab pink</td>
+
+        <td>255</td>
+
+        <td>224</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>scilabpink</td>
+
+        <td>255</td>
+
+        <td>224</td>
+
+        <td>224</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>snow (branco)</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>ghost white (branco)</td>
+
+        <td>248</td>
+
+        <td>248</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>ghostwhite</td>
+
+        <td>248</td>
+
+        <td>248</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>white smoke (branco)</td>
+
+        <td>245</td>
+
+        <td>245</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>whitesmoke</td>
+
+        <td>245</td>
+
+        <td>245</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>gainsboro (cinza)</td>
+
+        <td>220</td>
+
+        <td>220</td>
+
+        <td>220</td>
+      </tr>
+
+      <tr>
+        <td>floral white (branco)</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>floralwhite</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>old lace (creme)</td>
+
+        <td>253</td>
+
+        <td>245</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>oldlace</td>
+
+        <td>253</td>
+
+        <td>245</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>linen (creme)</td>
+
+        <td>250</td>
+
+        <td>240</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>antique white (creme)</td>
+
+        <td>250</td>
+
+        <td>235</td>
+
+        <td>215</td>
+      </tr>
+
+      <tr>
+        <td>antiquewhite</td>
+
+        <td>250</td>
+
+        <td>235</td>
+
+        <td>215</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>papaya whip (creme alaranjado)</td>
+
+        <td>255</td>
+
+        <td>239</td>
+
+        <td>213</td>
+      </tr>
+
+      <tr>
+        <td>papayawhip</td>
+
+        <td>255</td>
+
+        <td>239</td>
+
+        <td>213</td>
+      </tr>
+
+      <tr>
+        <td>blanched almond (creme alaranjado)</td>
+
+        <td>255</td>
+
+        <td>235</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>blanchedalmond</td>
+
+        <td>255</td>
+
+        <td>235</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>bisque (creme alaranjado)</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>196</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>peach puff (pêssego claro)</td>
+
+        <td>255</td>
+
+        <td>218</td>
+
+        <td>185</td>
+      </tr>
+
+      <tr>
+        <td>peachpuff</td>
+
+        <td>255</td>
+
+        <td>218</td>
+
+        <td>185</td>
+      </tr>
+
+      <tr>
+        <td>navajo white (pêssego)</td>
+
+        <td>255</td>
+
+        <td>222</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>navajowhite</td>
+
+        <td>255</td>
+
+        <td>222</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>moccasin (pêssego)</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>181</td>
+      </tr>
+
+      <tr>
+        <td>cornsilk (branco creme)</td>
+
+        <td>255</td>
+
+        <td>248</td>
+
+        <td>220</td>
+      </tr>
+
+      <tr>
+        <td>ivory (marfim)</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>lemon chiffon (branco rosa)</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lemonchiffon</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>seashell (branco-rosa)</td>
+
+        <td>255</td>
+
+        <td>245</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>honeydew (branco menta)</td>
+
+        <td>240</td>
+
+        <td>255</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>mint cream (creme de menta)</td>
+
+        <td>245</td>
+
+        <td>255</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>mintcream</td>
+
+        <td>245</td>
+
+        <td>255</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>azure (azul-bebê)</td>
+
+        <td>240</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>alice blue (azul-bebê)</td>
+
+        <td>240</td>
+
+        <td>248</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>aliceblue</td>
+
+        <td>240</td>
+
+        <td>248</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lavender (lavanda)</td>
+
+        <td>230</td>
+
+        <td>230</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>lavender blush (lavanda claro)</td>
+
+        <td>255</td>
+
+        <td>240</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>lavenderblush</td>
+
+        <td>255</td>
+
+        <td>240</td>
+
+        <td>245</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>misty rose (rosa)</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>225</td>
+      </tr>
+
+      <tr>
+        <td>mistyrose</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>225</td>
+      </tr>
+
+      <tr>
+        <td>white (branco)</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>black (preto)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>dark slate gray (cinza azulado escuro)</td>
+
+        <td>47</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>darkslategray</td>
+
+        <td>47</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>dark slate grey</td>
+
+        <td>47</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>darkslategrey</td>
+
+        <td>47</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>dim gray (cinza escuro)</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>dimgray</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>dim grey</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>dimgrey</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>slate gray (cinza azulado)</td>
+
+        <td>112</td>
+
+        <td>128</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>slategray</td>
+
+        <td>112</td>
+
+        <td>128</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>slate grey</td>
+
+        <td>112</td>
+
+        <td>128</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>slategrey</td>
+
+        <td>112</td>
+
+        <td>128</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>light slate gray (cinza azulado claro)</td>
+
+        <td>119</td>
+
+        <td>136</td>
+
+        <td>153</td>
+      </tr>
+
+      <tr>
+        <td>lightslategray</td>
+
+        <td>119</td>
+
+        <td>136</td>
+
+        <td>153</td>
+      </tr>
+
+      <tr>
+        <td>light slate grey</td>
+
+        <td>119</td>
+
+        <td>136</td>
+
+        <td>153</td>
+      </tr>
+
+      <tr>
+        <td>lightslategrey</td>
+
+        <td>119</td>
+
+        <td>136</td>
+
+        <td>153</td>
+      </tr>
+
+      <tr>
+        <td>gray (cinza)</td>
+
+        <td>190</td>
+
+        <td>190</td>
+
+        <td>190</td>
+      </tr>
+
+      <tr>
+        <td>grey</td>
+
+        <td>190</td>
+
+        <td>190</td>
+
+        <td>190</td>
+      </tr>
+
+      <tr>
+        <td>light grey (cinza claro)</td>
+
+        <td>211</td>
+
+        <td>211</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>lightgrey</td>
+
+        <td>211</td>
+
+        <td>211</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>light gray</td>
+
+        <td>211</td>
+
+        <td>211</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>lightgray</td>
+
+        <td>211</td>
+
+        <td>211</td>
+
+        <td>211</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>midnight blue (azul meia-noite)</td>
+
+        <td>25</td>
+
+        <td>25</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>midnightblue</td>
+
+        <td>25</td>
+
+        <td>25</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>navy (azul marinho)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>navy blue</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>navyblue</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>cornflower blue (azul meio claro)</td>
+
+        <td>100</td>
+
+        <td>149</td>
+
+        <td>237</td>
+      </tr>
+
+      <tr>
+        <td>cornflowerblue</td>
+
+        <td>100</td>
+
+        <td>149</td>
+
+        <td>237</td>
+      </tr>
+
+      <tr>
+        <td>dark slate blue (púrpura azulado escuro)</td>
+
+        <td>72</td>
+
+        <td>61</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>darkslateblue</td>
+
+        <td>72</td>
+
+        <td>61</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>slate blue (púrpura azulado)</td>
+
+        <td>106</td>
+
+        <td>90</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>slateblue</td>
+
+        <td>106</td>
+
+        <td>90</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>medium slate blue (púrpura azulado médio)</td>
+
+        <td>123</td>
+
+        <td>104</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>mediumslateblue</td>
+
+        <td>123</td>
+
+        <td>104</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>light slate blue (púrpura azulado claro)</td>
+
+        <td>132</td>
+
+        <td>112</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightslateblue</td>
+
+        <td>132</td>
+
+        <td>112</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>medium blue (azul médio)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>mediumblue</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>royal blue (azul real)</td>
+
+        <td>65</td>
+
+        <td>105</td>
+
+        <td>225</td>
+      </tr>
+
+      <tr>
+        <td>royalblue</td>
+
+        <td>65</td>
+
+        <td>105</td>
+
+        <td>225</td>
+      </tr>
+
+      <tr>
+        <td>blue (azul)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>dodger blue (azul meio claro)</td>
+
+        <td>30</td>
+
+        <td>144</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>dodgerblue</td>
+
+        <td>30</td>
+
+        <td>144</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>deep sky blue (azul claro)</td>
+
+        <td>0</td>
+
+        <td>191</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>deepskyblue</td>
+
+        <td>0</td>
+
+        <td>191</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>sky blue (azul levemente esverdiado)</td>
+
+        <td>135</td>
+
+        <td>206</td>
+
+        <td>235</td>
+      </tr>
+
+      <tr>
+        <td>skyblue</td>
+
+        <td>135</td>
+
+        <td>206</td>
+
+        <td>235</td>
+      </tr>
+
+      <tr>
+        <td>light sky blue (azul levemente esverdiado)</td>
+
+        <td>135</td>
+
+        <td>206</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>lightskyblue</td>
+
+        <td>135</td>
+
+        <td>206</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>steel blue (azul metálico)</td>
+
+        <td>70</td>
+
+        <td>130</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>steelblue</td>
+
+        <td>70</td>
+
+        <td>130</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>light steel blue (cinza levemente azulado)</td>
+
+        <td>176</td>
+
+        <td>196</td>
+
+        <td>222</td>
+      </tr>
+
+      <tr>
+        <td>lightsteelblue</td>
+
+        <td>176</td>
+
+        <td>196</td>
+
+        <td>222</td>
+      </tr>
+
+      <tr>
+        <td>light blue</td>
+
+        <td>173</td>
+
+        <td>216</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>lightblue</td>
+
+        <td>173</td>
+
+        <td>216</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>powder blue (turquesa clara)</td>
+
+        <td>176</td>
+
+        <td>224</td>
+
+        <td>230</td>
+      </tr>
+
+      <tr>
+        <td>powderblue</td>
+
+        <td>176</td>
+
+        <td>224</td>
+
+        <td>230</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>pale turquoise (turquesa clara)</td>
+
+        <td>175</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>paleturquoise</td>
+
+        <td>175</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>dark turquoise (turquesa escura)</td>
+
+        <td>0</td>
+
+        <td>206</td>
+
+        <td>209</td>
+      </tr>
+
+      <tr>
+        <td>darkturquoise</td>
+
+        <td>0</td>
+
+        <td>206</td>
+
+        <td>209</td>
+      </tr>
+
+      <tr>
+        <td>medium turquoise (turquesa média)</td>
+
+        <td>72</td>
+
+        <td>209</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>mediumturquoise</td>
+
+        <td>72</td>
+
+        <td>209</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>turquoise (turquesa)</td>
+
+        <td>64</td>
+
+        <td>224</td>
+
+        <td>208</td>
+      </tr>
+
+      <tr>
+        <td>cyan (ciano)</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>light cyan (branco ciano)</td>
+
+        <td>224</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightcyan</td>
+
+        <td>224</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>cadet blue (azul cinza-esverdeado)</td>
+
+        <td>95</td>
+
+        <td>158</td>
+
+        <td>160</td>
+      </tr>
+
+      <tr>
+        <td>cadetblue</td>
+
+        <td>95</td>
+
+        <td>158</td>
+
+        <td>160</td>
+      </tr>
+
+      <tr>
+        <td>medium aquamarine (aquamarine média)</td>
+
+        <td>102</td>
+
+        <td>205</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>mediumaquamarine</td>
+
+        <td>102</td>
+
+        <td>205</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>aquamarine (aquamarine)</td>
+
+        <td>127</td>
+
+        <td>255</td>
+
+        <td>212</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>dark green (verde escuro)</td>
+
+        <td>0</td>
+
+        <td>100</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkgreen</td>
+
+        <td>0</td>
+
+        <td>100</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>dark olive green (verde-oliva escuro)</td>
+
+        <td>85</td>
+
+        <td>107</td>
+
+        <td>47</td>
+      </tr>
+
+      <tr>
+        <td>darkolivegreen</td>
+
+        <td>85</td>
+
+        <td>107</td>
+
+        <td>47</td>
+      </tr>
+
+      <tr>
+        <td>dark sea green (verde-mar claro)</td>
+
+        <td>143</td>
+
+        <td>188</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>darkseagreen</td>
+
+        <td>143</td>
+
+        <td>188</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>sea green (verde-mar)</td>
+
+        <td>46</td>
+
+        <td>139</td>
+
+        <td>87</td>
+      </tr>
+
+      <tr>
+        <td>seagreen</td>
+
+        <td>46</td>
+
+        <td>139</td>
+
+        <td>87</td>
+      </tr>
+
+      <tr>
+        <td>medium sea green (verde-mar médio)</td>
+
+        <td>60</td>
+
+        <td>179</td>
+
+        <td>113</td>
+      </tr>
+
+      <tr>
+        <td>mediumseagreen</td>
+
+        <td>60</td>
+
+        <td>179</td>
+
+        <td>113</td>
+      </tr>
+
+      <tr>
+        <td>light sea green (verde-mar claro)</td>
+
+        <td>32</td>
+
+        <td>178</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>lightseagreen</td>
+
+        <td>32</td>
+
+        <td>178</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>pale green (verde pálido)</td>
+
+        <td>152</td>
+
+        <td>251</td>
+
+        <td>152</td>
+      </tr>
+
+      <tr>
+        <td>palegreen</td>
+
+        <td>152</td>
+
+        <td>251</td>
+
+        <td>152</td>
+      </tr>
+
+      <tr>
+        <td>spring green (verde primavera)</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>127</td>
+      </tr>
+
+      <tr>
+        <td>springgreen</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>127</td>
+      </tr>
+
+      <tr>
+        <td>lawn green (verde grama)</td>
+
+        <td>124</td>
+
+        <td>252</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>lawngreen</td>
+
+        <td>124</td>
+
+        <td>252</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>green (verde)</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>chartreuse (verde claro)</td>
+
+        <td>127</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>medium spring green (verde azulado)</td>
+
+        <td>0</td>
+
+        <td>250</td>
+
+        <td>154</td>
+      </tr>
+
+      <tr>
+        <td>mediumspringgreen</td>
+
+        <td>0</td>
+
+        <td>250</td>
+
+        <td>154</td>
+      </tr>
+
+      <tr>
+        <td>green yellow (verde amarelado)</td>
+
+        <td>173</td>
+
+        <td>255</td>
+
+        <td>47</td>
+      </tr>
+
+      <tr>
+        <td>greenyellow</td>
+
+        <td>173</td>
+
+        <td>255</td>
+
+        <td>47</td>
+      </tr>
+
+      <tr>
+        <td>lime green (verde-lodo)</td>
+
+        <td>50</td>
+
+        <td>205</td>
+
+        <td>50</td>
+      </tr>
+
+      <tr>
+        <td>limegreen</td>
+
+        <td>50</td>
+
+        <td>205</td>
+
+        <td>50</td>
+      </tr>
+
+      <tr>
+        <td>yellow green (amarelo esverdeado)</td>
+
+        <td>154</td>
+
+        <td>205</td>
+
+        <td>50</td>
+      </tr>
+
+      <tr>
+        <td>yellowgreen</td>
+
+        <td>154</td>
+
+        <td>205</td>
+
+        <td>50</td>
+      </tr>
+
+      <tr>
+        <td>forest green (verde-floresta)</td>
+
+        <td>34</td>
+
+        <td>139</td>
+
+        <td>34</td>
+      </tr>
+
+      <tr>
+        <td>forestgreen</td>
+
+        <td>34</td>
+
+        <td>139</td>
+
+        <td>34</td>
+      </tr>
+
+      <tr>
+        <td>olive drab (verde-azeitona)</td>
+
+        <td>107</td>
+
+        <td>142</td>
+
+        <td>35</td>
+      </tr>
+
+      <tr>
+        <td>olivedrab</td>
+
+        <td>107</td>
+
+        <td>142</td>
+
+        <td>35</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>dark khaki (cáqui escuro)</td>
+
+        <td>189</td>
+
+        <td>183</td>
+
+        <td>107</td>
+      </tr>
+
+      <tr>
+        <td>darkkhaki</td>
+
+        <td>189</td>
+
+        <td>183</td>
+
+        <td>107</td>
+      </tr>
+
+      <tr>
+        <td>khaki</td>
+
+        <td>240</td>
+
+        <td>230</td>
+
+        <td>140</td>
+      </tr>
+
+      <tr>
+        <td>pale goldenrod (amarelo queimado pálido)</td>
+
+        <td>238</td>
+
+        <td>232</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>palegoldenrod</td>
+
+        <td>238</td>
+
+        <td>232</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>light goldenrod yellow (bege claro)</td>
+
+        <td>250</td>
+
+        <td>250</td>
+
+        <td>210</td>
+      </tr>
+
+      <tr>
+        <td>lightgoldenrodyellow</td>
+
+        <td>250</td>
+
+        <td>250</td>
+
+        <td>210</td>
+      </tr>
+
+      <tr>
+        <td>light yellow (amarelo claro)</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>lightyellow</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>yellow (amarelo)</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gold (ouro)</td>
+
+        <td>255</td>
+
+        <td>215</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>light goldenrod (amarelo queimado claro)</td>
+
+        <td>238</td>
+
+        <td>221</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>lightgoldenrod</td>
+
+        <td>238</td>
+
+        <td>221</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>goldenrod (amarelo queimado)</td>
+
+        <td>218</td>
+
+        <td>165</td>
+
+        <td>32</td>
+      </tr>
+
+      <tr>
+        <td>dark goldenrod (amarelo queimado escuro) </td>
+
+        <td>184</td>
+
+        <td>134</td>
+
+        <td>11</td>
+      </tr>
+
+      <tr>
+        <td>darkgoldenrod</td>
+
+        <td>184</td>
+
+        <td>134</td>
+
+        <td>11</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>rosy brown (rosa com tonalidade marrom)</td>
+
+        <td>188</td>
+
+        <td>143</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>rosybrown</td>
+
+        <td>188</td>
+
+        <td>143</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>indian red (vermelho índio)</td>
+
+        <td>205</td>
+
+        <td>92</td>
+
+        <td>92</td>
+      </tr>
+
+      <tr>
+        <td>indianred</td>
+
+        <td>205</td>
+
+        <td>92</td>
+
+        <td>92</td>
+      </tr>
+
+      <tr>
+        <td>saddle brown (marrom sela)</td>
+
+        <td>139</td>
+
+        <td>69</td>
+
+        <td>19</td>
+      </tr>
+
+      <tr>
+        <td>saddlebrown</td>
+
+        <td>139</td>
+
+        <td>69</td>
+
+        <td>19</td>
+      </tr>
+
+      <tr>
+        <td>sienna (marrom)</td>
+
+        <td>160</td>
+
+        <td>82</td>
+
+        <td>45</td>
+      </tr>
+
+      <tr>
+        <td>peru (marrom)</td>
+
+        <td>205</td>
+
+        <td>133</td>
+
+        <td>63</td>
+      </tr>
+
+      <tr>
+        <td>burlywood (marrom claro)</td>
+
+        <td>222</td>
+
+        <td>184</td>
+
+        <td>135</td>
+      </tr>
+
+      <tr>
+        <td>beige (bege)</td>
+
+        <td>245</td>
+
+        <td>245</td>
+
+        <td>220</td>
+      </tr>
+
+      <tr>
+        <td>wheat (trigo)</td>
+
+        <td>245</td>
+
+        <td>222</td>
+
+        <td>179</td>
+      </tr>
+
+      <tr>
+        <td>sandy brown (marrom arenoso)</td>
+
+        <td>244</td>
+
+        <td>164</td>
+
+        <td>96</td>
+      </tr>
+
+      <tr>
+        <td>sandybrown</td>
+
+        <td>244</td>
+
+        <td>164</td>
+
+        <td>96</td>
+      </tr>
+
+      <tr>
+        <td>tan (marrom bronzeado)</td>
+
+        <td>210</td>
+
+        <td>180</td>
+
+        <td>140</td>
+      </tr>
+
+      <tr>
+        <td>chocolate (chocolate)</td>
+
+        <td>210</td>
+
+        <td>105</td>
+
+        <td>30</td>
+      </tr>
+
+      <tr>
+        <td>firebrick (vermelho sangue)</td>
+
+        <td>178</td>
+
+        <td>34</td>
+
+        <td>34</td>
+      </tr>
+
+      <tr>
+        <td>brown (marrom)</td>
+
+        <td>165</td>
+
+        <td>42</td>
+
+        <td>42</td>
+      </tr>
+
+      <tr>
+        <td>dark salmon (salmão escuro)</td>
+
+        <td>233</td>
+
+        <td>150</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>darksalmon</td>
+
+        <td>233</td>
+
+        <td>150</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>salmon (salmão)</td>
+
+        <td>250</td>
+
+        <td>128</td>
+
+        <td>114</td>
+      </tr>
+
+      <tr>
+        <td>light salmon (salmão claro)</td>
+
+        <td>255</td>
+
+        <td>160</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>lightsalmon</td>
+
+        <td>255</td>
+
+        <td>160</td>
+
+        <td>122</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>orange (laranja)</td>
+
+        <td>255</td>
+
+        <td>165</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>dark orange (laranja escuro)</td>
+
+        <td>255</td>
+
+        <td>140</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkorange</td>
+
+        <td>255</td>
+
+        <td>140</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>coral (laranja salmon)</td>
+
+        <td>255</td>
+
+        <td>127</td>
+
+        <td>80</td>
+      </tr>
+
+      <tr>
+        <td>light coral (salmon rosado)</td>
+
+        <td>240</td>
+
+        <td>128</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>lightcoral</td>
+
+        <td>240</td>
+
+        <td>128</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>tomato (tomate)</td>
+
+        <td>255</td>
+
+        <td>99</td>
+
+        <td>71</td>
+      </tr>
+
+      <tr>
+        <td>orange red (laranja avermelhado)</td>
+
+        <td>255</td>
+
+        <td>69</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orangered</td>
+
+        <td>255</td>
+
+        <td>69</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>red (vermelho)</td>
+
+        <td>255</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>hot pink (rosa quente)</td>
+
+        <td>255</td>
+
+        <td>105</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>hotpink</td>
+
+        <td>255</td>
+
+        <td>105</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>deep pink (rosa vivo)</td>
+
+        <td>255</td>
+
+        <td>20</td>
+
+        <td>147</td>
+      </tr>
+
+      <tr>
+        <td>deeppink</td>
+
+        <td>255</td>
+
+        <td>20</td>
+
+        <td>147</td>
+      </tr>
+
+      <tr>
+        <td>pink (rosa claro)</td>
+
+        <td>255</td>
+
+        <td>192</td>
+
+        <td>203</td>
+      </tr>
+
+      <tr>
+        <td>light pink (rosa)</td>
+
+        <td>255</td>
+
+        <td>182</td>
+
+        <td>193</td>
+      </tr>
+
+      <tr>
+        <td>lightpink</td>
+
+        <td>255</td>
+
+        <td>182</td>
+
+        <td>193</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>pale violet red (violeta avermelhado claro)</td>
+
+        <td>219</td>
+
+        <td>112</td>
+
+        <td>147</td>
+      </tr>
+
+      <tr>
+        <td>palevioletred</td>
+
+        <td>219</td>
+
+        <td>112</td>
+
+        <td>147</td>
+      </tr>
+
+      <tr>
+        <td>maroon (vinho rosado)</td>
+
+        <td>176</td>
+
+        <td>48</td>
+
+        <td>96</td>
+      </tr>
+
+      <tr>
+        <td>medium violet red (violeta avermelhado médio)</td>
+
+        <td>199</td>
+
+        <td>21</td>
+
+        <td>133</td>
+      </tr>
+
+      <tr>
+        <td>mediumvioletred</td>
+
+        <td>199</td>
+
+        <td>21</td>
+
+        <td>133</td>
+      </tr>
+
+      <tr>
+        <td>violet red (violeta avermelhado)</td>
+
+        <td>208</td>
+
+        <td>32</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>violetred</td>
+
+        <td>208</td>
+
+        <td>32</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>magenta (magenta)</td>
+
+        <td>255</td>
+
+        <td>0</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>violet (violeta)</td>
+
+        <td>238</td>
+
+        <td>130</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>plum (ameixa)</td>
+
+        <td>221</td>
+
+        <td>160</td>
+
+        <td>221</td>
+      </tr>
+
+      <tr>
+        <td>orchid (orquídea)</td>
+
+        <td>218</td>
+
+        <td>112</td>
+
+        <td>214</td>
+      </tr>
+
+      <tr>
+        <td>medium orchid (orquídea médio)</td>
+
+        <td>186</td>
+
+        <td>85</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>mediumorchid</td>
+
+        <td>186</td>
+
+        <td>85</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>dark orchid (orquídea escuro)</td>
+
+        <td>153</td>
+
+        <td>50</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>darkorchid</td>
+
+        <td>153</td>
+
+        <td>50</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>dark violet (violeta escuro)</td>
+
+        <td>148</td>
+
+        <td>0</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>darkviolet</td>
+
+        <td>148</td>
+
+        <td>0</td>
+
+        <td>211</td>
+      </tr>
+
+      <tr>
+        <td>blue violet (violeta azulado)</td>
+
+        <td>138</td>
+
+        <td>43</td>
+
+        <td>226</td>
+      </tr>
+
+      <tr>
+        <td>blueviolet</td>
+
+        <td>138</td>
+
+        <td>43</td>
+
+        <td>226</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>purple (púrpura)</td>
+
+        <td>160</td>
+
+        <td>32</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>medium purple (púrpura claro)</td>
+
+        <td>147</td>
+
+        <td>112</td>
+
+        <td>219</td>
+      </tr>
+
+      <tr>
+        <td>mediumpurple</td>
+
+        <td>147</td>
+
+        <td>112</td>
+
+        <td>219</td>
+      </tr>
+
+      <tr>
+        <td>thistle (roxo acinzentado)</td>
+
+        <td>216</td>
+
+        <td>191</td>
+
+        <td>216</td>
+      </tr>
+
+      <tr>
+        <td>(daqui em diante são séries de gradações de cores) snow1</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>snow2</td>
+
+        <td>238</td>
+
+        <td>233</td>
+
+        <td>233</td>
+      </tr>
+
+      <tr>
+        <td>snow3</td>
+
+        <td>205</td>
+
+        <td>201</td>
+
+        <td>201</td>
+      </tr>
+
+      <tr>
+        <td>snow4</td>
+
+        <td>139</td>
+
+        <td>137</td>
+
+        <td>137</td>
+      </tr>
+
+      <tr>
+        <td>seashell1</td>
+
+        <td>255</td>
+
+        <td>245</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>seashell2</td>
+
+        <td>238</td>
+
+        <td>229</td>
+
+        <td>222</td>
+      </tr>
+
+      <tr>
+        <td>seashell3</td>
+
+        <td>205</td>
+
+        <td>197</td>
+
+        <td>191</td>
+      </tr>
+
+      <tr>
+        <td>seashell4</td>
+
+        <td>139</td>
+
+        <td>134</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>antiquewhite1</td>
+
+        <td>255</td>
+
+        <td>239</td>
+
+        <td>219</td>
+      </tr>
+
+      <tr>
+        <td>antiquewhite2</td>
+
+        <td>238</td>
+
+        <td>223</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>antiquewhite3</td>
+
+        <td>205</td>
+
+        <td>192</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>antiquewhite4</td>
+
+        <td>139</td>
+
+        <td>131</td>
+
+        <td>120</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>bisque1</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>196</td>
+      </tr>
+
+      <tr>
+        <td>bisque2</td>
+
+        <td>238</td>
+
+        <td>213</td>
+
+        <td>183</td>
+      </tr>
+
+      <tr>
+        <td>bisque3</td>
+
+        <td>205</td>
+
+        <td>183</td>
+
+        <td>158</td>
+      </tr>
+
+      <tr>
+        <td>bisque4</td>
+
+        <td>139</td>
+
+        <td>125</td>
+
+        <td>107</td>
+      </tr>
+
+      <tr>
+        <td>peachpuff1</td>
+
+        <td>255</td>
+
+        <td>218</td>
+
+        <td>185</td>
+      </tr>
+
+      <tr>
+        <td>peachpuff2</td>
+
+        <td>238</td>
+
+        <td>203</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>peachpuff3</td>
+
+        <td>205</td>
+
+        <td>175</td>
+
+        <td>149</td>
+      </tr>
+
+      <tr>
+        <td>peachpuff4</td>
+
+        <td>139</td>
+
+        <td>119</td>
+
+        <td>101</td>
+      </tr>
+
+      <tr>
+        <td>navajowhite1</td>
+
+        <td>255</td>
+
+        <td>222</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>navajowhite2</td>
+
+        <td>238</td>
+
+        <td>207</td>
+
+        <td>161</td>
+      </tr>
+
+      <tr>
+        <td>navajowhite3</td>
+
+        <td>205</td>
+
+        <td>179</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>navajowhite4</td>
+
+        <td>139</td>
+
+        <td>121</td>
+
+        <td>94</td>
+      </tr>
+
+      <tr>
+        <td>lemonchiffon1</td>
+
+        <td>255</td>
+
+        <td>250</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lemonchiffon2</td>
+
+        <td>238</td>
+
+        <td>233</td>
+
+        <td>191</td>
+      </tr>
+
+      <tr>
+        <td>lemonchiffon3</td>
+
+        <td>205</td>
+
+        <td>201</td>
+
+        <td>165</td>
+      </tr>
+
+      <tr>
+        <td>lemonchiffon4</td>
+
+        <td>139</td>
+
+        <td>137</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>cornsilk1</td>
+
+        <td>255</td>
+
+        <td>248</td>
+
+        <td>220</td>
+      </tr>
+
+      <tr>
+        <td>cornsilk2</td>
+
+        <td>238</td>
+
+        <td>232</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>cornsilk3</td>
+
+        <td>205</td>
+
+        <td>200</td>
+
+        <td>177</td>
+      </tr>
+
+      <tr>
+        <td>cornsilk4</td>
+
+        <td>139</td>
+
+        <td>136</td>
+
+        <td>120</td>
+      </tr>
+
+      <tr>
+        <td>ivory1</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>ivory2</td>
+
+        <td>238</td>
+
+        <td>238</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>ivory3</td>
+
+        <td>205</td>
+
+        <td>205</td>
+
+        <td>193</td>
+      </tr>
+
+      <tr>
+        <td>ivory4</td>
+
+        <td>139</td>
+
+        <td>139</td>
+
+        <td>131</td>
+      </tr>
+
+      <tr>
+        <td>honeydew1</td>
+
+        <td>240</td>
+
+        <td>255</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>honeydew2</td>
+
+        <td>224</td>
+
+        <td>238</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>honeydew3</td>
+
+        <td>193</td>
+
+        <td>205</td>
+
+        <td>193</td>
+      </tr>
+
+      <tr>
+        <td>honeydew4</td>
+
+        <td>131</td>
+
+        <td>139</td>
+
+        <td>131</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>lavenderblush1</td>
+
+        <td>255</td>
+
+        <td>240</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>lavenderblush2</td>
+
+        <td>238</td>
+
+        <td>224</td>
+
+        <td>229</td>
+      </tr>
+
+      <tr>
+        <td>lavenderblush3</td>
+
+        <td>205</td>
+
+        <td>193</td>
+
+        <td>197</td>
+      </tr>
+
+      <tr>
+        <td>lavenderblush4</td>
+
+        <td>139</td>
+
+        <td>131</td>
+
+        <td>134</td>
+      </tr>
+
+      <tr>
+        <td>mistyrose1</td>
+
+        <td>255</td>
+
+        <td>228</td>
+
+        <td>225</td>
+      </tr>
+
+      <tr>
+        <td>mistyrose2</td>
+
+        <td>238</td>
+
+        <td>213</td>
+
+        <td>210</td>
+      </tr>
+
+      <tr>
+        <td>mistyrose3</td>
+
+        <td>205</td>
+
+        <td>183</td>
+
+        <td>181</td>
+      </tr>
+
+      <tr>
+        <td>mistyrose4</td>
+
+        <td>139</td>
+
+        <td>125</td>
+
+        <td>123</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>azure1</td>
+
+        <td>240</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>azure2</td>
+
+        <td>224</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>azure3</td>
+
+        <td>193</td>
+
+        <td>205</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>azure4</td>
+
+        <td>131</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>slateblue1</td>
+
+        <td>131</td>
+
+        <td>111</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>slateblue2</td>
+
+        <td>122</td>
+
+        <td>103</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>slateblue3</td>
+
+        <td>105</td>
+
+        <td>89</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>slateblue4</td>
+
+        <td>71</td>
+
+        <td>60</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>royalblue1</td>
+
+        <td>72</td>
+
+        <td>118</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>royalblue2</td>
+
+        <td>67</td>
+
+        <td>110</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>royalblue3</td>
+
+        <td>58</td>
+
+        <td>95</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>royalblue4</td>
+
+        <td>39</td>
+
+        <td>64</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>blue1</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>blue2</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>blue3</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>blue4</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>dodgerblue1</td>
+
+        <td>30</td>
+
+        <td>144</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>dodgerblue2</td>
+
+        <td>28</td>
+
+        <td>134</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>dodgerblue3</td>
+
+        <td>24</td>
+
+        <td>116</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>dodgerblue4</td>
+
+        <td>16</td>
+
+        <td>78</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>steelblue1</td>
+
+        <td>99</td>
+
+        <td>184</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>steelblue2</td>
+
+        <td>92</td>
+
+        <td>172</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>steelblue3</td>
+
+        <td>79</td>
+
+        <td>148</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>steelblue4</td>
+
+        <td>54</td>
+
+        <td>100</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>deepskyblue1</td>
+
+        <td>0</td>
+
+        <td>191</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>deepskyblue2</td>
+
+        <td>0</td>
+
+        <td>178</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>deepskyblue3</td>
+
+        <td>0</td>
+
+        <td>154</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>deepskyblue4</td>
+
+        <td>0</td>
+
+        <td>104</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>skyblue1</td>
+
+        <td>135</td>
+
+        <td>206</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>skyblue2</td>
+
+        <td>126</td>
+
+        <td>192</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>skyblue3</td>
+
+        <td>108</td>
+
+        <td>166</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>skyblue4</td>
+
+        <td>74</td>
+
+        <td>112</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>lightskyblue1</td>
+
+        <td>176</td>
+
+        <td>226</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightskyblue2</td>
+
+        <td>164</td>
+
+        <td>211</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>lightskyblue3</td>
+
+        <td>141</td>
+
+        <td>182</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lightskyblue4</td>
+
+        <td>96</td>
+
+        <td>123</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>slategray1</td>
+
+        <td>198</td>
+
+        <td>226</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>slategray2</td>
+
+        <td>185</td>
+
+        <td>211</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>slategray3</td>
+
+        <td>159</td>
+
+        <td>182</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>slategray4</td>
+
+        <td>108</td>
+
+        <td>123</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>lightsteelblue1</td>
+
+        <td>202</td>
+
+        <td>225</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightsteelblue2</td>
+
+        <td>188</td>
+
+        <td>210</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>lightsteelblue3</td>
+
+        <td>162</td>
+
+        <td>181</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lightsteelblue4</td>
+
+        <td>110</td>
+
+        <td>123</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>lightblue1</td>
+
+        <td>191</td>
+
+        <td>239</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightblue2</td>
+
+        <td>178</td>
+
+        <td>223</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>lightblue3</td>
+
+        <td>154</td>
+
+        <td>192</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lightblue4</td>
+
+        <td>104</td>
+
+        <td>131</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>lightcyan1</td>
+
+        <td>224</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>lightcyan2</td>
+
+        <td>209</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>lightcyan3</td>
+
+        <td>180</td>
+
+        <td>205</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>lightcyan4</td>
+
+        <td>122</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>paleturquoise1</td>
+
+        <td>187</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>paleturquoise2</td>
+
+        <td>174</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>paleturquoise3</td>
+
+        <td>150</td>
+
+        <td>205</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>paleturquoise4</td>
+
+        <td>102</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>cadetblue1</td>
+
+        <td>152</td>
+
+        <td>245</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>cadetblue2</td>
+
+        <td>142</td>
+
+        <td>229</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>cadetblue3</td>
+
+        <td>122</td>
+
+        <td>197</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>cadetblue4</td>
+
+        <td>83</td>
+
+        <td>134</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>turquoise1</td>
+
+        <td>0</td>
+
+        <td>245</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>turquoise2</td>
+
+        <td>0</td>
+
+        <td>229</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>turquoise3</td>
+
+        <td>0</td>
+
+        <td>197</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>turquoise4</td>
+
+        <td>0</td>
+
+        <td>134</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>cyan1</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>cyan2</td>
+
+        <td>0</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>cyan3</td>
+
+        <td>0</td>
+
+        <td>205</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>cyan4</td>
+
+        <td>0</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>darkslategray1</td>
+
+        <td>151</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>darkslategray2</td>
+
+        <td>141</td>
+
+        <td>238</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>darkslategray3</td>
+
+        <td>121</td>
+
+        <td>205</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>darkslategray4</td>
+
+        <td>82</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>aquamarine1</td>
+
+        <td>127</td>
+
+        <td>255</td>
+
+        <td>212</td>
+      </tr>
+
+      <tr>
+        <td>aquamarine2</td>
+
+        <td>118</td>
+
+        <td>238</td>
+
+        <td>198</td>
+      </tr>
+
+      <tr>
+        <td>aquamarine3</td>
+
+        <td>102</td>
+
+        <td>205</td>
+
+        <td>170</td>
+      </tr>
+
+      <tr>
+        <td>aquamarine4</td>
+
+        <td>69</td>
+
+        <td>139</td>
+
+        <td>116</td>
+      </tr>
+
+      <tr>
+        <td>darkseagreen1</td>
+
+        <td>193</td>
+
+        <td>255</td>
+
+        <td>193</td>
+      </tr>
+
+      <tr>
+        <td>darkseagreen2</td>
+
+        <td>180</td>
+
+        <td>238</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>darkseagreen3</td>
+
+        <td>155</td>
+
+        <td>205</td>
+
+        <td>155</td>
+      </tr>
+
+      <tr>
+        <td>darkseagreen4</td>
+
+        <td>105</td>
+
+        <td>139</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>seagreen1</td>
+
+        <td>84</td>
+
+        <td>255</td>
+
+        <td>159</td>
+      </tr>
+
+      <tr>
+        <td>seagreen2</td>
+
+        <td>78</td>
+
+        <td>238</td>
+
+        <td>148</td>
+      </tr>
+
+      <tr>
+        <td>seagreen3</td>
+
+        <td>67</td>
+
+        <td>205</td>
+
+        <td>128</td>
+      </tr>
+
+      <tr>
+        <td>seagreen4</td>
+
+        <td>46</td>
+
+        <td>139</td>
+
+        <td>87</td>
+      </tr>
+
+      <tr>
+        <td>palegreen1</td>
+
+        <td>154</td>
+
+        <td>255</td>
+
+        <td>154</td>
+      </tr>
+
+      <tr>
+        <td>palegreen2</td>
+
+        <td>144</td>
+
+        <td>238</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>palegreen3</td>
+
+        <td>124</td>
+
+        <td>205</td>
+
+        <td>124</td>
+      </tr>
+
+      <tr>
+        <td>palegreen4</td>
+
+        <td>84</td>
+
+        <td>139</td>
+
+        <td>84</td>
+      </tr>
+
+      <tr>
+        <td>springgreen1</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>127</td>
+      </tr>
+
+      <tr>
+        <td>springgreen2</td>
+
+        <td>0</td>
+
+        <td>238</td>
+
+        <td>118</td>
+      </tr>
+
+      <tr>
+        <td>springgreen3</td>
+
+        <td>0</td>
+
+        <td>205</td>
+
+        <td>102</td>
+      </tr>
+
+      <tr>
+        <td>springgreen4</td>
+
+        <td>0</td>
+
+        <td>139</td>
+
+        <td>69</td>
+      </tr>
+
+      <tr>
+        <td>green1</td>
+
+        <td>0</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>green2</td>
+
+        <td>0</td>
+
+        <td>238</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>green3</td>
+
+        <td>0</td>
+
+        <td>205</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>green4</td>
+
+        <td>0</td>
+
+        <td>139</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>chartreuse1</td>
+
+        <td>127</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>chartreuse2</td>
+
+        <td>118</td>
+
+        <td>238</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>chartreuse3</td>
+
+        <td>102</td>
+
+        <td>205</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>chartreuse4</td>
+
+        <td>69</td>
+
+        <td>139</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>olivedrab1</td>
+
+        <td>192</td>
+
+        <td>255</td>
+
+        <td>62</td>
+      </tr>
+
+      <tr>
+        <td>olivedrab2</td>
+
+        <td>179</td>
+
+        <td>238</td>
+
+        <td>58</td>
+      </tr>
+
+      <tr>
+        <td>olivedrab3</td>
+
+        <td>154</td>
+
+        <td>205</td>
+
+        <td>50</td>
+      </tr>
+
+      <tr>
+        <td>olivedrab4</td>
+
+        <td>105</td>
+
+        <td>139</td>
+
+        <td>34</td>
+      </tr>
+
+      <tr>
+        <td>darkolivegreen1</td>
+
+        <td>202</td>
+
+        <td>255</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>darkolivegreen2</td>
+
+        <td>188</td>
+
+        <td>238</td>
+
+        <td>104</td>
+      </tr>
+
+      <tr>
+        <td>darkolivegreen3</td>
+
+        <td>162</td>
+
+        <td>205</td>
+
+        <td>90</td>
+      </tr>
+
+      <tr>
+        <td>darkolivegreen4</td>
+
+        <td>110</td>
+
+        <td>139</td>
+
+        <td>61</td>
+      </tr>
+
+      <tr>
+        <td>khaki1</td>
+
+        <td>255</td>
+
+        <td>246</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>khaki2</td>
+
+        <td>238</td>
+
+        <td>230</td>
+
+        <td>133</td>
+      </tr>
+
+      <tr>
+        <td>khaki3</td>
+
+        <td>205</td>
+
+        <td>198</td>
+
+        <td>115</td>
+      </tr>
+
+      <tr>
+        <td>khaki4</td>
+
+        <td>139</td>
+
+        <td>134</td>
+
+        <td>78</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>lightgoldenrod1</td>
+
+        <td>255</td>
+
+        <td>236</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>lightgoldenrod2</td>
+
+        <td>238</td>
+
+        <td>220</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>lightgoldenrod3</td>
+
+        <td>205</td>
+
+        <td>190</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>lightgoldenrod4</td>
+
+        <td>139</td>
+
+        <td>129</td>
+
+        <td>76</td>
+      </tr>
+
+      <tr>
+        <td>lightyellow1</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>lightyellow2</td>
+
+        <td>238</td>
+
+        <td>238</td>
+
+        <td>209</td>
+      </tr>
+
+      <tr>
+        <td>lightyellow3</td>
+
+        <td>205</td>
+
+        <td>205</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>lightyellow4</td>
+
+        <td>139</td>
+
+        <td>139</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>yellow1</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>yellow2</td>
+
+        <td>238</td>
+
+        <td>238</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>yellow3</td>
+
+        <td>205</td>
+
+        <td>205</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>yellow4</td>
+
+        <td>139</td>
+
+        <td>139</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gold1</td>
+
+        <td>255</td>
+
+        <td>215</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gold2</td>
+
+        <td>238</td>
+
+        <td>201</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gold3</td>
+
+        <td>205</td>
+
+        <td>173</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gold4</td>
+
+        <td>139</td>
+
+        <td>117</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>goldenrod1</td>
+
+        <td>255</td>
+
+        <td>193</td>
+
+        <td>37</td>
+      </tr>
+
+      <tr>
+        <td>goldenrod2</td>
+
+        <td>238</td>
+
+        <td>180</td>
+
+        <td>34</td>
+      </tr>
+
+      <tr>
+        <td>goldenrod3</td>
+
+        <td>205</td>
+
+        <td>155</td>
+
+        <td>29</td>
+      </tr>
+
+      <tr>
+        <td>goldenrod4</td>
+
+        <td>139</td>
+
+        <td>105</td>
+
+        <td>20</td>
+      </tr>
+
+      <tr>
+        <td>darkgoldenrod1</td>
+
+        <td>255</td>
+
+        <td>185</td>
+
+        <td>15</td>
+      </tr>
+
+      <tr>
+        <td>darkgoldenrod2</td>
+
+        <td>238</td>
+
+        <td>173</td>
+
+        <td>14</td>
+      </tr>
+
+      <tr>
+        <td>darkgoldenrod3</td>
+
+        <td>205</td>
+
+        <td>149</td>
+
+        <td>12</td>
+      </tr>
+
+      <tr>
+        <td>darkgoldenrod4</td>
+
+        <td>139</td>
+
+        <td>101</td>
+
+        <td>8</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>rosybrown1</td>
+
+        <td>255</td>
+
+        <td>193</td>
+
+        <td>193</td>
+      </tr>
+
+      <tr>
+        <td>rosybrown2</td>
+
+        <td>238</td>
+
+        <td>180</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>rosybrown3</td>
+
+        <td>205</td>
+
+        <td>155</td>
+
+        <td>155</td>
+      </tr>
+
+      <tr>
+        <td>rosybrown4</td>
+
+        <td>139</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>indianred1</td>
+
+        <td>255</td>
+
+        <td>106</td>
+
+        <td>106</td>
+      </tr>
+
+      <tr>
+        <td>indianred2</td>
+
+        <td>238</td>
+
+        <td>99</td>
+
+        <td>99</td>
+      </tr>
+
+      <tr>
+        <td>indianred3</td>
+
+        <td>205</td>
+
+        <td>85</td>
+
+        <td>85</td>
+      </tr>
+
+      <tr>
+        <td>indianred4</td>
+
+        <td>139</td>
+
+        <td>58</td>
+
+        <td>58</td>
+      </tr>
+
+      <tr>
+        <td>sienna1</td>
+
+        <td>255</td>
+
+        <td>130</td>
+
+        <td>71</td>
+      </tr>
+
+      <tr>
+        <td>sienna2</td>
+
+        <td>238</td>
+
+        <td>121</td>
+
+        <td>66</td>
+      </tr>
+
+      <tr>
+        <td>sienna3</td>
+
+        <td>205</td>
+
+        <td>104</td>
+
+        <td>57</td>
+      </tr>
+
+      <tr>
+        <td>sienna4</td>
+
+        <td>139</td>
+
+        <td>71</td>
+
+        <td>38</td>
+      </tr>
+
+      <tr>
+        <td>burlywood1</td>
+
+        <td>255</td>
+
+        <td>211</td>
+
+        <td>155</td>
+      </tr>
+
+      <tr>
+        <td>burlywood2</td>
+
+        <td>238</td>
+
+        <td>197</td>
+
+        <td>145</td>
+      </tr>
+
+      <tr>
+        <td>burlywood3</td>
+
+        <td>205</td>
+
+        <td>170</td>
+
+        <td>125</td>
+      </tr>
+
+      <tr>
+        <td>burlywood4</td>
+
+        <td>139</td>
+
+        <td>115</td>
+
+        <td>85</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>wheat1</td>
+
+        <td>255</td>
+
+        <td>231</td>
+
+        <td>186</td>
+      </tr>
+
+      <tr>
+        <td>wheat2</td>
+
+        <td>238</td>
+
+        <td>216</td>
+
+        <td>174</td>
+      </tr>
+
+      <tr>
+        <td>wheat3</td>
+
+        <td>205</td>
+
+        <td>186</td>
+
+        <td>150</td>
+      </tr>
+
+      <tr>
+        <td>wheat4</td>
+
+        <td>139</td>
+
+        <td>126</td>
+
+        <td>102</td>
+      </tr>
+
+      <tr>
+        <td>tan1</td>
+
+        <td>255</td>
+
+        <td>165</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>tan2</td>
+
+        <td>238</td>
+
+        <td>154</td>
+
+        <td>73</td>
+      </tr>
+
+      <tr>
+        <td>tan3</td>
+
+        <td>205</td>
+
+        <td>133</td>
+
+        <td>63</td>
+      </tr>
+
+      <tr>
+        <td>tan4</td>
+
+        <td>139</td>
+
+        <td>90</td>
+
+        <td>43</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>chocolate1</td>
+
+        <td>255</td>
+
+        <td>127</td>
+
+        <td>36</td>
+      </tr>
+
+      <tr>
+        <td>chocolate2</td>
+
+        <td>238</td>
+
+        <td>118</td>
+
+        <td>33</td>
+      </tr>
+
+      <tr>
+        <td>chocolate3</td>
+
+        <td>205</td>
+
+        <td>102</td>
+
+        <td>29</td>
+      </tr>
+
+      <tr>
+        <td>chocolate4</td>
+
+        <td>139</td>
+
+        <td>69</td>
+
+        <td>19</td>
+      </tr>
+
+      <tr>
+        <td>firebrick1</td>
+
+        <td>255</td>
+
+        <td>48</td>
+
+        <td>48</td>
+      </tr>
+
+      <tr>
+        <td>firebrick2</td>
+
+        <td>238</td>
+
+        <td>44</td>
+
+        <td>44</td>
+      </tr>
+
+      <tr>
+        <td>firebrick3</td>
+
+        <td>205</td>
+
+        <td>38</td>
+
+        <td>38</td>
+      </tr>
+
+      <tr>
+        <td>firebrick4</td>
+
+        <td>139</td>
+
+        <td>26</td>
+
+        <td>26</td>
+      </tr>
+
+      <tr>
+        <td>brown1</td>
+
+        <td>255</td>
+
+        <td>64</td>
+
+        <td>64</td>
+      </tr>
+
+      <tr>
+        <td>brown2</td>
+
+        <td>238</td>
+
+        <td>59</td>
+
+        <td>59</td>
+      </tr>
+
+      <tr>
+        <td>brown3</td>
+
+        <td>205</td>
+
+        <td>51</td>
+
+        <td>51</td>
+      </tr>
+
+      <tr>
+        <td>brown4</td>
+
+        <td>139</td>
+
+        <td>35</td>
+
+        <td>35</td>
+      </tr>
+
+      <tr>
+        <td>salmon1</td>
+
+        <td>255</td>
+
+        <td>140</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>salmon2</td>
+
+        <td>238</td>
+
+        <td>130</td>
+
+        <td>98</td>
+      </tr>
+
+      <tr>
+        <td>salmon3</td>
+
+        <td>205</td>
+
+        <td>112</td>
+
+        <td>84</td>
+      </tr>
+
+      <tr>
+        <td>salmon4</td>
+
+        <td>139</td>
+
+        <td>76</td>
+
+        <td>57</td>
+      </tr>
+
+      <tr>
+        <td>lightsalmon1</td>
+
+        <td>255</td>
+
+        <td>160</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>lightsalmon2</td>
+
+        <td>238</td>
+
+        <td>149</td>
+
+        <td>114</td>
+      </tr>
+
+      <tr>
+        <td>lightsalmon3</td>
+
+        <td>205</td>
+
+        <td>129</td>
+
+        <td>98</td>
+      </tr>
+
+      <tr>
+        <td>lightsalmon4</td>
+
+        <td>139</td>
+
+        <td>87</td>
+
+        <td>66</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>orange1</td>
+
+        <td>255</td>
+
+        <td>165</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orange2</td>
+
+        <td>238</td>
+
+        <td>154</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orange3</td>
+
+        <td>205</td>
+
+        <td>133</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orange4</td>
+
+        <td>139</td>
+
+        <td>90</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkorange1</td>
+
+        <td>255</td>
+
+        <td>127</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkorange2</td>
+
+        <td>238</td>
+
+        <td>118</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkorange3</td>
+
+        <td>205</td>
+
+        <td>102</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkorange4</td>
+
+        <td>139</td>
+
+        <td>69</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>coral1</td>
+
+        <td>255</td>
+
+        <td>114</td>
+
+        <td>86</td>
+      </tr>
+
+      <tr>
+        <td>coral2</td>
+
+        <td>238</td>
+
+        <td>106</td>
+
+        <td>80</td>
+      </tr>
+
+      <tr>
+        <td>coral3</td>
+
+        <td>205</td>
+
+        <td>91</td>
+
+        <td>69</td>
+      </tr>
+
+      <tr>
+        <td>coral4</td>
+
+        <td>139</td>
+
+        <td>62</td>
+
+        <td>47</td>
+      </tr>
+
+      <tr>
+        <td>tomato1</td>
+
+        <td>255</td>
+
+        <td>99</td>
+
+        <td>71</td>
+      </tr>
+
+      <tr>
+        <td>tomato2</td>
+
+        <td>238</td>
+
+        <td>92</td>
+
+        <td>66</td>
+      </tr>
+
+      <tr>
+        <td>tomato3</td>
+
+        <td>205</td>
+
+        <td>79</td>
+
+        <td>57</td>
+      </tr>
+
+      <tr>
+        <td>tomato4</td>
+
+        <td>139</td>
+
+        <td>54</td>
+
+        <td>38</td>
+      </tr>
+
+      <tr>
+        <td>orangered1</td>
+
+        <td>255</td>
+
+        <td>69</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orangered2</td>
+
+        <td>238</td>
+
+        <td>64</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orangered3</td>
+
+        <td>205</td>
+
+        <td>55</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>orangered4</td>
+
+        <td>139</td>
+
+        <td>37</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>red1</td>
+
+        <td>255</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>red2</td>
+
+        <td>238</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>red3</td>
+
+        <td>205</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>red4</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>deeppink1</td>
+
+        <td>255</td>
+
+        <td>20</td>
+
+        <td>147</td>
+      </tr>
+
+      <tr>
+        <td>deeppink2</td>
+
+        <td>238</td>
+
+        <td>18</td>
+
+        <td>137</td>
+      </tr>
+
+      <tr>
+        <td>deeppink3</td>
+
+        <td>205</td>
+
+        <td>16</td>
+
+        <td>118</td>
+      </tr>
+
+      <tr>
+        <td>deeppink4</td>
+
+        <td>139</td>
+
+        <td>10</td>
+
+        <td>80</td>
+      </tr>
+
+      <tr>
+        <td>hotpink1</td>
+
+        <td>255</td>
+
+        <td>110</td>
+
+        <td>180</td>
+      </tr>
+
+      <tr>
+        <td>hotpink2</td>
+
+        <td>238</td>
+
+        <td>106</td>
+
+        <td>167</td>
+      </tr>
+
+      <tr>
+        <td>hotpink3</td>
+
+        <td>205</td>
+
+        <td>96</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>hotpink4</td>
+
+        <td>139</td>
+
+        <td>58</td>
+
+        <td>98</td>
+      </tr>
+
+      <tr>
+        <td>pink1</td>
+
+        <td>255</td>
+
+        <td>181</td>
+
+        <td>197</td>
+      </tr>
+
+      <tr>
+        <td>pink2</td>
+
+        <td>238</td>
+
+        <td>169</td>
+
+        <td>184</td>
+      </tr>
+
+      <tr>
+        <td>pink3</td>
+
+        <td>205</td>
+
+        <td>145</td>
+
+        <td>158</td>
+      </tr>
+
+      <tr>
+        <td>pink4</td>
+
+        <td>139</td>
+
+        <td>99</td>
+
+        <td>108</td>
+      </tr>
+
+      <tr>
+        <td>lightpink1</td>
+
+        <td>255</td>
+
+        <td>174</td>
+
+        <td>185</td>
+      </tr>
+
+      <tr>
+        <td>lightpink2</td>
+
+        <td>238</td>
+
+        <td>162</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>lightpink3</td>
+
+        <td>205</td>
+
+        <td>140</td>
+
+        <td>149</td>
+      </tr>
+
+      <tr>
+        <td>lightpink4</td>
+
+        <td>139</td>
+
+        <td>95</td>
+
+        <td>101</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>palevioletred1</td>
+
+        <td>255</td>
+
+        <td>130</td>
+
+        <td>171</td>
+      </tr>
+
+      <tr>
+        <td>palevioletred2</td>
+
+        <td>238</td>
+
+        <td>121</td>
+
+        <td>159</td>
+      </tr>
+
+      <tr>
+        <td>palevioletred3</td>
+
+        <td>205</td>
+
+        <td>104</td>
+
+        <td>137</td>
+      </tr>
+
+      <tr>
+        <td>palevioletred4</td>
+
+        <td>139</td>
+
+        <td>71</td>
+
+        <td>93</td>
+      </tr>
+
+      <tr>
+        <td>maroon1</td>
+
+        <td>255</td>
+
+        <td>52</td>
+
+        <td>179</td>
+      </tr>
+
+      <tr>
+        <td>maroon2</td>
+
+        <td>238</td>
+
+        <td>48</td>
+
+        <td>167</td>
+      </tr>
+
+      <tr>
+        <td>maroon3</td>
+
+        <td>205</td>
+
+        <td>41</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>maroon4</td>
+
+        <td>139</td>
+
+        <td>28</td>
+
+        <td>98</td>
+      </tr>
+
+      <tr>
+        <td>violetred1</td>
+
+        <td>255</td>
+
+        <td>62</td>
+
+        <td>150</td>
+      </tr>
+
+      <tr>
+        <td>violetred2</td>
+
+        <td>238</td>
+
+        <td>58</td>
+
+        <td>140</td>
+      </tr>
+
+      <tr>
+        <td>violetred3</td>
+
+        <td>205</td>
+
+        <td>50</td>
+
+        <td>120</td>
+      </tr>
+
+      <tr>
+        <td>violetred4</td>
+
+        <td>139</td>
+
+        <td>34</td>
+
+        <td>82</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>magenta1</td>
+
+        <td>255</td>
+
+        <td>0</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>magenta2</td>
+
+        <td>238</td>
+
+        <td>0</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>magenta3</td>
+
+        <td>205</td>
+
+        <td>0</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>magenta4</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>orchid1</td>
+
+        <td>255</td>
+
+        <td>131</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>orchid2</td>
+
+        <td>238</td>
+
+        <td>122</td>
+
+        <td>233</td>
+      </tr>
+
+      <tr>
+        <td>orchid3</td>
+
+        <td>205</td>
+
+        <td>105</td>
+
+        <td>201</td>
+      </tr>
+
+      <tr>
+        <td>orchid4</td>
+
+        <td>139</td>
+
+        <td>71</td>
+
+        <td>137</td>
+      </tr>
+
+      <tr>
+        <td>plum1</td>
+
+        <td>255</td>
+
+        <td>187</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>plum2</td>
+
+        <td>238</td>
+
+        <td>174</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>plum3</td>
+
+        <td>205</td>
+
+        <td>150</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>plum4</td>
+
+        <td>139</td>
+
+        <td>102</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>mediumorchid1</td>
+
+        <td>224</td>
+
+        <td>102</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>mediumorchid2</td>
+
+        <td>209</td>
+
+        <td>95</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>mediumorchid3</td>
+
+        <td>180</td>
+
+        <td>82</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>mediumorchid4</td>
+
+        <td>122</td>
+
+        <td>55</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>darkorchid1</td>
+
+        <td>191</td>
+
+        <td>62</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>darkorchid2</td>
+
+        <td>178</td>
+
+        <td>58</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>darkorchid3</td>
+
+        <td>154</td>
+
+        <td>50</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>darkorchid4</td>
+
+        <td>104</td>
+
+        <td>34</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>purple1</td>
+
+        <td>155</td>
+
+        <td>48</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>purple2</td>
+
+        <td>145</td>
+
+        <td>44</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>purple3</td>
+
+        <td>125</td>
+
+        <td>38</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>purple4</td>
+
+        <td>85</td>
+
+        <td>26</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>mediumpurple1</td>
+
+        <td>171</td>
+
+        <td>130</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>mediumpurple2</td>
+
+        <td>159</td>
+
+        <td>121</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>mediumpurple3</td>
+
+        <td>137</td>
+
+        <td>104</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>mediumpurple4</td>
+
+        <td>93</td>
+
+        <td>71</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>thistle1</td>
+
+        <td>255</td>
+
+        <td>225</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>thistle2</td>
+
+        <td>238</td>
+
+        <td>210</td>
+
+        <td>238</td>
+      </tr>
+
+      <tr>
+        <td>thistle3</td>
+
+        <td>205</td>
+
+        <td>181</td>
+
+        <td>205</td>
+      </tr>
+
+      <tr>
+        <td>thistle4</td>
+
+        <td>139</td>
+
+        <td>123</td>
+
+        <td>139</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>gray0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>grey0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>gray1</td>
+
+        <td>3</td>
+
+        <td>3</td>
+
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>grey1</td>
+
+        <td>3</td>
+
+        <td>3</td>
+
+        <td>3</td>
+      </tr>
+
+      <tr>
+        <td>gray2</td>
+
+        <td>5</td>
+
+        <td>5</td>
+
+        <td>5</td>
+      </tr>
+
+      <tr>
+        <td>grey2</td>
+
+        <td>5</td>
+
+        <td>5</td>
+
+        <td>5</td>
+      </tr>
+
+      <tr>
+        <td>gray3</td>
+
+        <td>8</td>
+
+        <td>8</td>
+
+        <td>8</td>
+      </tr>
+
+      <tr>
+        <td>grey3</td>
+
+        <td>8</td>
+
+        <td>8</td>
+
+        <td>8</td>
+      </tr>
+
+      <tr>
+        <td>gray4</td>
+
+        <td>10</td>
+
+        <td>10</td>
+
+        <td>10</td>
+      </tr>
+
+      <tr>
+        <td>grey4</td>
+
+        <td>10</td>
+
+        <td>10</td>
+
+        <td>10</td>
+      </tr>
+
+      <tr>
+        <td>gray5</td>
+
+        <td>13</td>
+
+        <td>13</td>
+
+        <td>13</td>
+      </tr>
+
+      <tr>
+        <td>grey5</td>
+
+        <td>13</td>
+
+        <td>13</td>
+
+        <td>13</td>
+      </tr>
+
+      <tr>
+        <td>gray6</td>
+
+        <td>15</td>
+
+        <td>15</td>
+
+        <td>15</td>
+      </tr>
+
+      <tr>
+        <td>grey6</td>
+
+        <td>15</td>
+
+        <td>15</td>
+
+        <td>15</td>
+      </tr>
+
+      <tr>
+        <td>gray7</td>
+
+        <td>18</td>
+
+        <td>18</td>
+
+        <td>18</td>
+      </tr>
+
+      <tr>
+        <td>grey7</td>
+
+        <td>18</td>
+
+        <td>18</td>
+
+        <td>18</td>
+      </tr>
+
+      <tr>
+        <td>gray8</td>
+
+        <td>20</td>
+
+        <td>20</td>
+
+        <td>20</td>
+      </tr>
+
+      <tr>
+        <td>grey8</td>
+
+        <td>20</td>
+
+        <td>20</td>
+
+        <td>20</td>
+      </tr>
+
+      <tr>
+        <td>gray9</td>
+
+        <td>23</td>
+
+        <td>23</td>
+
+        <td>23</td>
+      </tr>
+
+      <tr>
+        <td>grey9</td>
+
+        <td>23</td>
+
+        <td>23</td>
+
+        <td>23</td>
+      </tr>
+
+      <tr>
+        <td>gray10</td>
+
+        <td>26</td>
+
+        <td>26</td>
+
+        <td>26</td>
+      </tr>
+
+      <tr>
+        <td>grey10</td>
+
+        <td>26</td>
+
+        <td>26</td>
+
+        <td>26</td>
+      </tr>
+
+      <tr>
+        <td>gray11</td>
+
+        <td>28</td>
+
+        <td>28</td>
+
+        <td>28</td>
+      </tr>
+
+      <tr>
+        <td>grey11</td>
+
+        <td>28</td>
+
+        <td>28</td>
+
+        <td>28</td>
+      </tr>
+
+      <tr>
+        <td>gray12</td>
+
+        <td>31</td>
+
+        <td>31</td>
+
+        <td>31</td>
+      </tr>
+
+      <tr>
+        <td>grey12</td>
+
+        <td>31</td>
+
+        <td>31</td>
+
+        <td>31</td>
+      </tr>
+
+      <tr>
+        <td>gray13</td>
+
+        <td>33</td>
+
+        <td>33</td>
+
+        <td>33</td>
+      </tr>
+
+      <tr>
+        <td>grey13</td>
+
+        <td>33</td>
+
+        <td>33</td>
+
+        <td>33</td>
+      </tr>
+
+      <tr>
+        <td>gray14</td>
+
+        <td>36</td>
+
+        <td>36</td>
+
+        <td>36</td>
+      </tr>
+
+      <tr>
+        <td>grey14</td>
+
+        <td>36</td>
+
+        <td>36</td>
+
+        <td>36</td>
+      </tr>
+
+      <tr>
+        <td>gray15</td>
+
+        <td>38</td>
+
+        <td>38</td>
+
+        <td>38</td>
+      </tr>
+
+      <tr>
+        <td>grey15</td>
+
+        <td>38</td>
+
+        <td>38</td>
+
+        <td>38</td>
+      </tr>
+
+      <tr>
+        <td>gray16</td>
+
+        <td>41</td>
+
+        <td>41</td>
+
+        <td>41</td>
+      </tr>
+
+      <tr>
+        <td>grey16</td>
+
+        <td>41</td>
+
+        <td>41</td>
+
+        <td>41</td>
+      </tr>
+
+      <tr>
+        <td>gray17</td>
+
+        <td>43</td>
+
+        <td>43</td>
+
+        <td>43</td>
+      </tr>
+
+      <tr>
+        <td>grey17</td>
+
+        <td>43</td>
+
+        <td>43</td>
+
+        <td>43</td>
+      </tr>
+
+      <tr>
+        <td>gray18</td>
+
+        <td>46</td>
+
+        <td>46</td>
+
+        <td>46</td>
+      </tr>
+
+      <tr>
+        <td>grey18</td>
+
+        <td>46</td>
+
+        <td>46</td>
+
+        <td>46</td>
+      </tr>
+
+      <tr>
+        <td>gray19</td>
+
+        <td>48</td>
+
+        <td>48</td>
+
+        <td>48</td>
+      </tr>
+
+      <tr>
+        <td>grey19</td>
+
+        <td>48</td>
+
+        <td>48</td>
+
+        <td>48</td>
+      </tr>
+
+      <tr>
+        <td>gray20</td>
+
+        <td>51</td>
+
+        <td>51</td>
+
+        <td>51</td>
+      </tr>
+
+      <tr>
+        <td>grey20</td>
+
+        <td>51</td>
+
+        <td>51</td>
+
+        <td>51</td>
+      </tr>
+
+      <tr>
+        <td>gray21</td>
+
+        <td>54</td>
+
+        <td>54</td>
+
+        <td>54</td>
+      </tr>
+
+      <tr>
+        <td>grey21</td>
+
+        <td>54</td>
+
+        <td>54</td>
+
+        <td>54</td>
+      </tr>
+
+      <tr>
+        <td>gray22</td>
+
+        <td>56</td>
+
+        <td>56</td>
+
+        <td>56</td>
+      </tr>
+
+      <tr>
+        <td>grey22</td>
+
+        <td>56</td>
+
+        <td>56</td>
+
+        <td>56</td>
+      </tr>
+
+      <tr>
+        <td>gray23</td>
+
+        <td>59</td>
+
+        <td>59</td>
+
+        <td>59</td>
+      </tr>
+
+      <tr>
+        <td>grey23</td>
+
+        <td>59</td>
+
+        <td>59</td>
+
+        <td>59</td>
+      </tr>
+
+      <tr>
+        <td>gray24</td>
+
+        <td>61</td>
+
+        <td>61</td>
+
+        <td>61</td>
+      </tr>
+
+      <tr>
+        <td>grey24</td>
+
+        <td>61</td>
+
+        <td>61</td>
+
+        <td>61</td>
+      </tr>
+
+      <tr>
+        <td>gray25</td>
+
+        <td>64</td>
+
+        <td>64</td>
+
+        <td>64</td>
+      </tr>
+
+      <tr>
+        <td>grey25</td>
+
+        <td>64</td>
+
+        <td>64</td>
+
+        <td>64</td>
+      </tr>
+
+      <tr>
+        <td>gray26</td>
+
+        <td>66</td>
+
+        <td>66</td>
+
+        <td>66</td>
+      </tr>
+
+      <tr>
+        <td>grey26</td>
+
+        <td>66</td>
+
+        <td>66</td>
+
+        <td>66</td>
+      </tr>
+
+      <tr>
+        <td>gray27</td>
+
+        <td>69</td>
+
+        <td>69</td>
+
+        <td>69</td>
+      </tr>
+
+      <tr>
+        <td>grey27</td>
+
+        <td>69</td>
+
+        <td>69</td>
+
+        <td>69</td>
+      </tr>
+
+      <tr>
+        <td>gray28</td>
+
+        <td>71</td>
+
+        <td>71</td>
+
+        <td>71</td>
+      </tr>
+
+      <tr>
+        <td>grey28</td>
+
+        <td>71</td>
+
+        <td>71</td>
+
+        <td>71</td>
+      </tr>
+
+      <tr>
+        <td>gray29</td>
+
+        <td>74</td>
+
+        <td>74</td>
+
+        <td>74</td>
+      </tr>
+
+      <tr>
+        <td>grey29</td>
+
+        <td>74</td>
+
+        <td>74</td>
+
+        <td>74</td>
+      </tr>
+
+      <tr>
+        <td>gray30</td>
+
+        <td>77</td>
+
+        <td>77</td>
+
+        <td>77</td>
+      </tr>
+
+      <tr>
+        <td>grey30</td>
+
+        <td>77</td>
+
+        <td>77</td>
+
+        <td>77</td>
+      </tr>
+
+      <tr>
+        <td>gray31</td>
+
+        <td>79</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>grey31</td>
+
+        <td>79</td>
+
+        <td>79</td>
+
+        <td>79</td>
+      </tr>
+
+      <tr>
+        <td>gray32</td>
+
+        <td>82</td>
+
+        <td>82</td>
+
+        <td>82</td>
+      </tr>
+
+      <tr>
+        <td>grey32</td>
+
+        <td>82</td>
+
+        <td>82</td>
+
+        <td>82</td>
+      </tr>
+
+      <tr>
+        <td>gray33</td>
+
+        <td>84</td>
+
+        <td>84</td>
+
+        <td>84</td>
+      </tr>
+
+      <tr>
+        <td>grey33</td>
+
+        <td>84</td>
+
+        <td>84</td>
+
+        <td>84</td>
+      </tr>
+
+      <tr>
+        <td>gray34</td>
+
+        <td>87</td>
+
+        <td>87</td>
+
+        <td>87</td>
+      </tr>
+
+      <tr>
+        <td>grey34</td>
+
+        <td>87</td>
+
+        <td>87</td>
+
+        <td>87</td>
+      </tr>
+
+      <tr>
+        <td>gray35</td>
+
+        <td>89</td>
+
+        <td>89</td>
+
+        <td>89</td>
+      </tr>
+
+      <tr>
+        <td>grey35</td>
+
+        <td>89</td>
+
+        <td>89</td>
+
+        <td>89</td>
+      </tr>
+
+      <tr>
+        <td>gray36</td>
+
+        <td>92</td>
+
+        <td>92</td>
+
+        <td>92</td>
+      </tr>
+
+      <tr>
+        <td>grey36</td>
+
+        <td>92</td>
+
+        <td>92</td>
+
+        <td>92</td>
+      </tr>
+
+      <tr>
+        <td>gray37</td>
+
+        <td>94</td>
+
+        <td>94</td>
+
+        <td>94</td>
+      </tr>
+
+      <tr>
+        <td>grey37</td>
+
+        <td>94</td>
+
+        <td>94</td>
+
+        <td>94</td>
+      </tr>
+
+      <tr>
+        <td>gray38</td>
+
+        <td>97</td>
+
+        <td>97</td>
+
+        <td>97</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>grey38</td>
+
+        <td>97</td>
+
+        <td>97</td>
+
+        <td>97</td>
+      </tr>
+
+      <tr>
+        <td>gray39</td>
+
+        <td>99</td>
+
+        <td>99</td>
+
+        <td>99</td>
+      </tr>
+
+      <tr>
+        <td>grey39</td>
+
+        <td>99</td>
+
+        <td>99</td>
+
+        <td>99</td>
+      </tr>
+
+      <tr>
+        <td>gray40</td>
+
+        <td>102</td>
+
+        <td>102</td>
+
+        <td>102</td>
+      </tr>
+
+      <tr>
+        <td>grey40</td>
+
+        <td>102</td>
+
+        <td>102</td>
+
+        <td>102</td>
+      </tr>
+
+      <tr>
+        <td>gray41</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>grey41</td>
+
+        <td>105</td>
+
+        <td>105</td>
+
+        <td>105</td>
+      </tr>
+
+      <tr>
+        <td>gray42</td>
+
+        <td>107</td>
+
+        <td>107</td>
+
+        <td>107</td>
+      </tr>
+
+      <tr>
+        <td>grey42</td>
+
+        <td>107</td>
+
+        <td>107</td>
+
+        <td>107</td>
+      </tr>
+
+      <tr>
+        <td>gray43</td>
+
+        <td>110</td>
+
+        <td>110</td>
+
+        <td>110</td>
+      </tr>
+
+      <tr>
+        <td>grey43</td>
+
+        <td>110</td>
+
+        <td>110</td>
+
+        <td>110</td>
+      </tr>
+
+      <tr>
+        <td>gray44</td>
+
+        <td>112</td>
+
+        <td>112</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>grey44</td>
+
+        <td>112</td>
+
+        <td>112</td>
+
+        <td>112</td>
+      </tr>
+
+      <tr>
+        <td>gray45</td>
+
+        <td>115</td>
+
+        <td>115</td>
+
+        <td>115</td>
+      </tr>
+
+      <tr>
+        <td>grey45</td>
+
+        <td>115</td>
+
+        <td>115</td>
+
+        <td>115</td>
+      </tr>
+
+      <tr>
+        <td>gray46</td>
+
+        <td>117</td>
+
+        <td>117</td>
+
+        <td>117</td>
+      </tr>
+
+      <tr>
+        <td>grey46</td>
+
+        <td>117</td>
+
+        <td>117</td>
+
+        <td>117</td>
+      </tr>
+
+      <tr>
+        <td>gray47</td>
+
+        <td>120</td>
+
+        <td>120</td>
+
+        <td>120</td>
+      </tr>
+
+      <tr>
+        <td>grey47</td>
+
+        <td>120</td>
+
+        <td>120</td>
+
+        <td>120</td>
+      </tr>
+
+      <tr>
+        <td>gray48</td>
+
+        <td>122</td>
+
+        <td>122</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>grey48</td>
+
+        <td>122</td>
+
+        <td>122</td>
+
+        <td>122</td>
+      </tr>
+
+      <tr>
+        <td>gray49</td>
+
+        <td>125</td>
+
+        <td>125</td>
+
+        <td>125</td>
+      </tr>
+
+      <tr>
+        <td>grey49</td>
+
+        <td>125</td>
+
+        <td>125</td>
+
+        <td>125</td>
+      </tr>
+
+      <tr>
+        <td>gray50</td>
+
+        <td>127</td>
+
+        <td>127</td>
+
+        <td>127</td>
+      </tr>
+
+      <tr>
+        <td>grey50</td>
+
+        <td>127</td>
+
+        <td>127</td>
+
+        <td>127</td>
+      </tr>
+
+      <tr>
+        <td>gray51</td>
+
+        <td>130</td>
+
+        <td>130</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>grey51</td>
+
+        <td>130</td>
+
+        <td>130</td>
+
+        <td>130</td>
+      </tr>
+
+      <tr>
+        <td>gray52</td>
+
+        <td>133</td>
+
+        <td>133</td>
+
+        <td>133</td>
+      </tr>
+
+      <tr>
+        <td>grey52</td>
+
+        <td>133</td>
+
+        <td>133</td>
+
+        <td>133</td>
+      </tr>
+
+      <tr>
+        <td>gray53</td>
+
+        <td>135</td>
+
+        <td>135</td>
+
+        <td>135</td>
+      </tr>
+
+      <tr>
+        <td>grey53</td>
+
+        <td>135</td>
+
+        <td>135</td>
+
+        <td>135</td>
+      </tr>
+
+      <tr>
+        <td>gray54</td>
+
+        <td>138</td>
+
+        <td>138</td>
+
+        <td>138</td>
+      </tr>
+
+      <tr>
+        <td>grey54</td>
+
+        <td>138</td>
+
+        <td>138</td>
+
+        <td>138</td>
+      </tr>
+
+      <tr>
+        <td>gray55</td>
+
+        <td>140</td>
+
+        <td>140</td>
+
+        <td>140</td>
+      </tr>
+
+      <tr>
+        <td>grey55</td>
+
+        <td>140</td>
+
+        <td>140</td>
+
+        <td>140</td>
+      </tr>
+
+      <tr>
+        <td>gray56</td>
+
+        <td>143</td>
+
+        <td>143</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>grey56</td>
+
+        <td>143</td>
+
+        <td>143</td>
+
+        <td>143</td>
+      </tr>
+
+      <tr>
+        <td>gray57</td>
+
+        <td>145</td>
+
+        <td>145</td>
+
+        <td>145</td>
+      </tr>
+
+      <tr>
+        <td>grey57</td>
+
+        <td>145</td>
+
+        <td>145</td>
+
+        <td>145</td>
+      </tr>
+
+      <tr>
+        <td>gray58</td>
+
+        <td>148</td>
+
+        <td>148</td>
+
+        <td>148</td>
+      </tr>
+
+      <tr>
+        <td>grey58</td>
+
+        <td>148</td>
+
+        <td>148</td>
+
+        <td>148</td>
+      </tr>
+
+      <tr>
+        <td>gray59</td>
+
+        <td>150</td>
+
+        <td>150</td>
+
+        <td>150</td>
+      </tr>
+
+      <tr>
+        <td>grey59</td>
+
+        <td>150</td>
+
+        <td>150</td>
+
+        <td>150</td>
+      </tr>
+
+      <tr>
+        <td>gray60</td>
+
+        <td>153</td>
+
+        <td>153</td>
+
+        <td>153</td>
+      </tr>
+
+      <tr>
+        <td>grey60</td>
+
+        <td>153</td>
+
+        <td>153</td>
+
+        <td>153</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>gray61</td>
+
+        <td>156</td>
+
+        <td>156</td>
+
+        <td>156</td>
+      </tr>
+
+      <tr>
+        <td>grey61</td>
+
+        <td>156</td>
+
+        <td>156</td>
+
+        <td>156</td>
+      </tr>
+
+      <tr>
+        <td>gray62</td>
+
+        <td>158</td>
+
+        <td>158</td>
+
+        <td>158</td>
+      </tr>
+
+      <tr>
+        <td>grey62</td>
+
+        <td>158</td>
+
+        <td>158</td>
+
+        <td>158</td>
+      </tr>
+
+      <tr>
+        <td>gray63</td>
+
+        <td>161</td>
+
+        <td>161</td>
+
+        <td>161</td>
+      </tr>
+
+      <tr>
+        <td>grey63</td>
+
+        <td>161</td>
+
+        <td>161</td>
+
+        <td>161</td>
+      </tr>
+
+      <tr>
+        <td>gray64</td>
+
+        <td>163</td>
+
+        <td>163</td>
+
+        <td>163</td>
+      </tr>
+
+      <tr>
+        <td>grey64</td>
+
+        <td>163</td>
+
+        <td>163</td>
+
+        <td>163</td>
+      </tr>
+
+      <tr>
+        <td>gray65</td>
+
+        <td>166</td>
+
+        <td>166</td>
+
+        <td>166</td>
+      </tr>
+
+      <tr>
+        <td>grey65</td>
+
+        <td>166</td>
+
+        <td>166</td>
+
+        <td>166</td>
+      </tr>
+
+      <tr>
+        <td>gray66</td>
+
+        <td>168</td>
+
+        <td>168</td>
+
+        <td>168</td>
+      </tr>
+
+      <tr>
+        <td>grey66</td>
+
+        <td>168</td>
+
+        <td>168</td>
+
+        <td>168</td>
+      </tr>
+
+      <tr>
+        <td>gray67</td>
+
+        <td>171</td>
+
+        <td>171</td>
+
+        <td>171</td>
+      </tr>
+
+      <tr>
+        <td>grey67</td>
+
+        <td>171</td>
+
+        <td>171</td>
+
+        <td>171</td>
+      </tr>
+
+      <tr>
+        <td>gray68</td>
+
+        <td>173</td>
+
+        <td>173</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>grey68</td>
+
+        <td>173</td>
+
+        <td>173</td>
+
+        <td>173</td>
+      </tr>
+
+      <tr>
+        <td>gray69</td>
+
+        <td>176</td>
+
+        <td>176</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>grey69</td>
+
+        <td>176</td>
+
+        <td>176</td>
+
+        <td>176</td>
+      </tr>
+
+      <tr>
+        <td>gray70</td>
+
+        <td>179</td>
+
+        <td>179</td>
+
+        <td>179</td>
+      </tr>
+
+      <tr>
+        <td>grey70</td>
+
+        <td>179</td>
+
+        <td>179</td>
+
+        <td>179</td>
+      </tr>
+
+      <tr>
+        <td>gray71</td>
+
+        <td>181</td>
+
+        <td>181</td>
+
+        <td>181</td>
+      </tr>
+
+      <tr>
+        <td>grey71</td>
+
+        <td>181</td>
+
+        <td>181</td>
+
+        <td>181</td>
+      </tr>
+
+      <tr>
+        <td>gray72</td>
+
+        <td>184</td>
+
+        <td>184</td>
+
+        <td>184</td>
+      </tr>
+
+      <tr>
+        <td>grey72</td>
+
+        <td>184</td>
+
+        <td>184</td>
+
+        <td>184</td>
+      </tr>
+
+      <tr>
+        <td>gray73</td>
+
+        <td>186</td>
+
+        <td>186</td>
+
+        <td>186</td>
+      </tr>
+
+      <tr>
+        <td>grey73</td>
+
+        <td>186</td>
+
+        <td>186</td>
+
+        <td>186</td>
+      </tr>
+
+      <tr>
+        <td>gray74</td>
+
+        <td>189</td>
+
+        <td>189</td>
+
+        <td>189</td>
+      </tr>
+
+      <tr>
+        <td>grey74</td>
+
+        <td>189</td>
+
+        <td>189</td>
+
+        <td>189</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>gray75</td>
+
+        <td>191</td>
+
+        <td>191</td>
+
+        <td>191</td>
+      </tr>
+
+      <tr>
+        <td>grey75</td>
+
+        <td>191</td>
+
+        <td>191</td>
+
+        <td>191</td>
+      </tr>
+
+      <tr>
+        <td>gray76</td>
+
+        <td>194</td>
+
+        <td>194</td>
+
+        <td>194</td>
+      </tr>
+
+      <tr>
+        <td>grey76</td>
+
+        <td>194</td>
+
+        <td>194</td>
+
+        <td>194</td>
+      </tr>
+
+      <tr>
+        <td>gray77</td>
+
+        <td>196</td>
+
+        <td>196</td>
+
+        <td>196</td>
+      </tr>
+
+      <tr>
+        <td>grey77</td>
+
+        <td>196</td>
+
+        <td>196</td>
+
+        <td>196</td>
+      </tr>
+
+      <tr>
+        <td>gray78</td>
+
+        <td>199</td>
+
+        <td>199</td>
+
+        <td>199</td>
+      </tr>
+
+      <tr>
+        <td>grey78</td>
+
+        <td>199</td>
+
+        <td>199</td>
+
+        <td>199</td>
+      </tr>
+
+      <tr>
+        <td>gray79</td>
+
+        <td>201</td>
+
+        <td>201</td>
+
+        <td>201</td>
+      </tr>
+
+      <tr>
+        <td>grey79</td>
+
+        <td>201</td>
+
+        <td>201</td>
+
+        <td>201</td>
+      </tr>
+
+      <tr>
+        <td>gray80</td>
+
+        <td>204</td>
+
+        <td>204</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>grey80</td>
+
+        <td>204</td>
+
+        <td>204</td>
+
+        <td>204</td>
+      </tr>
+
+      <tr>
+        <td>gray81</td>
+
+        <td>207</td>
+
+        <td>207</td>
+
+        <td>207</td>
+      </tr>
+
+      <tr>
+        <td>grey81</td>
+
+        <td>207</td>
+
+        <td>207</td>
+
+        <td>207</td>
+      </tr>
+
+      <tr>
+        <td>gray82</td>
+
+        <td>209</td>
+
+        <td>209</td>
+
+        <td>209</td>
+      </tr>
+
+      <tr>
+        <td>grey82</td>
+
+        <td>209</td>
+
+        <td>209</td>
+
+        <td>209</td>
+      </tr>
+
+      <tr>
+        <td>gray83</td>
+
+        <td>212</td>
+
+        <td>212</td>
+
+        <td>212</td>
+      </tr>
+
+      <tr>
+        <td>grey83</td>
+
+        <td>212</td>
+
+        <td>212</td>
+
+        <td>212</td>
+      </tr>
+
+      <tr>
+        <td>gray84</td>
+
+        <td>214</td>
+
+        <td>214</td>
+
+        <td>214</td>
+      </tr>
+
+      <tr>
+        <td>grey84</td>
+
+        <td>214</td>
+
+        <td>214</td>
+
+        <td>214</td>
+      </tr>
+
+      <tr>
+        <td>gray85</td>
+
+        <td>217</td>
+
+        <td>217</td>
+
+        <td>217</td>
+      </tr>
+
+      <tr>
+        <td>grey85</td>
+
+        <td>217</td>
+
+        <td>217</td>
+
+        <td>217</td>
+      </tr>
+
+      <tr>
+        <td>gray86</td>
+
+        <td>219</td>
+
+        <td>219</td>
+
+        <td>219</td>
+      </tr>
+
+      <tr>
+        <td>grey86</td>
+
+        <td>219</td>
+
+        <td>219</td>
+
+        <td>219</td>
+      </tr>
+
+      <tr>
+        <td>gray87</td>
+
+        <td>222</td>
+
+        <td>222</td>
+
+        <td>222</td>
+      </tr>
+
+      <tr>
+        <td>grey87</td>
+
+        <td>222</td>
+
+        <td>222</td>
+
+        <td>222</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>gray88</td>
+
+        <td>224</td>
+
+        <td>224</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>grey88</td>
+
+        <td>224</td>
+
+        <td>224</td>
+
+        <td>224</td>
+      </tr>
+
+      <tr>
+        <td>gray89</td>
+
+        <td>227</td>
+
+        <td>227</td>
+
+        <td>227</td>
+      </tr>
+
+      <tr>
+        <td>grey89</td>
+
+        <td>227</td>
+
+        <td>227</td>
+
+        <td>227</td>
+      </tr>
+
+      <tr>
+        <td>gray90</td>
+
+        <td>229</td>
+
+        <td>229</td>
+
+        <td>229</td>
+      </tr>
+
+      <tr>
+        <td>grey90</td>
+
+        <td>229</td>
+
+        <td>229</td>
+
+        <td>229</td>
+      </tr>
+
+      <tr>
+        <td>gray91</td>
+
+        <td>232</td>
+
+        <td>232</td>
+
+        <td>232</td>
+      </tr>
+
+      <tr>
+        <td>grey91</td>
+
+        <td>232</td>
+
+        <td>232</td>
+
+        <td>232</td>
+      </tr>
+
+      <tr>
+        <td>gray92</td>
+
+        <td>235</td>
+
+        <td>235</td>
+
+        <td>235</td>
+      </tr>
+
+      <tr>
+        <td>grey92</td>
+
+        <td>235</td>
+
+        <td>235</td>
+
+        <td>235</td>
+      </tr>
+
+      <tr>
+        <td>gray93</td>
+
+        <td>237</td>
+
+        <td>237</td>
+
+        <td>237</td>
+      </tr>
+
+      <tr>
+        <td>grey93</td>
+
+        <td>237</td>
+
+        <td>237</td>
+
+        <td>237</td>
+      </tr>
+
+      <tr>
+        <td>gray94</td>
+
+        <td>240</td>
+
+        <td>240</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>grey94</td>
+
+        <td>240</td>
+
+        <td>240</td>
+
+        <td>240</td>
+      </tr>
+
+      <tr>
+        <td>gray95</td>
+
+        <td>242</td>
+
+        <td>242</td>
+
+        <td>242</td>
+      </tr>
+
+      <tr>
+        <td>grey95</td>
+
+        <td>242</td>
+
+        <td>242</td>
+
+        <td>242</td>
+      </tr>
+
+      <tr>
+        <td>gray96</td>
+
+        <td>245</td>
+
+        <td>245</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>grey96</td>
+
+        <td>245</td>
+
+        <td>245</td>
+
+        <td>245</td>
+      </tr>
+
+      <tr>
+        <td>gray97</td>
+
+        <td>247</td>
+
+        <td>247</td>
+
+        <td>247</td>
+      </tr>
+
+      <tr>
+        <td>grey97</td>
+
+        <td>247</td>
+
+        <td>247</td>
+
+        <td>247</td>
+      </tr>
+
+      <tr>
+        <td>gray98</td>
+
+        <td>250</td>
+
+        <td>250</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>grey98</td>
+
+        <td>250</td>
+
+        <td>250</td>
+
+        <td>250</td>
+      </tr>
+
+      <tr>
+        <td>gray99</td>
+
+        <td>252</td>
+
+        <td>252</td>
+
+        <td>252</td>
+      </tr>
+
+      <tr>
+        <td>grey99</td>
+
+        <td>252</td>
+
+        <td>252</td>
+
+        <td>252</td>
+      </tr>
+
+      <tr>
+        <td>gray100</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+
+      <tr>
+        <td>grey100</td>
+
+        <td>255</td>
+
+        <td>255</td>
+
+        <td>255</td>
+      </tr>
+    </informaltable>
+
+    <informaltable border="1">
+      <tr>
+        <td>dark grey (cinza escuro)</td>
+
+        <td>169</td>
+
+        <td>169</td>
+
+        <td>169</td>
+      </tr>
+
+      <tr>
+        <td>darkgrey</td>
+
+        <td>169</td>
+
+        <td>169</td>
+
+        <td>169</td>
+      </tr>
+
+      <tr>
+        <td>dark gray</td>
+
+        <td>169</td>
+
+        <td>169</td>
+
+        <td>169</td>
+      </tr>
+
+      <tr>
+        <td>darkgray</td>
+
+        <td>169</td>
+
+        <td>169</td>
+
+        <td>169</td>
+      </tr>
+
+      <tr>
+        <td>dark blue (azul escuro)</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>darkblue</td>
+
+        <td>0</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>dark cyan (ciano escuro)</td>
+
+        <td>0</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>darkcyan</td>
+
+        <td>0</td>
+
+        <td>139</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>dark magenta (magenta escuro)</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>darkmagenta</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>139</td>
+      </tr>
+
+      <tr>
+        <td>dark red (vermelho escuro)</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>darkred</td>
+
+        <td>139</td>
+
+        <td>0</td>
+
+        <td>0</td>
+      </tr>
+
+      <tr>
+        <td>light green (verde claro)</td>
+
+        <td>144</td>
+
+        <td>238</td>
+
+        <td>144</td>
+      </tr>
+
+      <tr>
+        <td>lightgreen</td>
+
+        <td>144</td>
+
+        <td>238</td>
+
+        <td>144</td>
+      </tr>
+    </informaltable>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="color">color</link></member>
+
+      <member><link linkend="name2rgb">name2rgb</link></member>
+
+      <member><link linkend="rgb2name">rgb2name</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

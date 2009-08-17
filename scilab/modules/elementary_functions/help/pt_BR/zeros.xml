@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,7 +28,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=zeros()
 y=zeros(x)
@@ -36,7 +36,7 @@ y=zeros(m1,m2,..)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,9 +58,9 @@ y=zeros(m1,m2,..)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Cria uma matriz de zeros (Ã© o mesmo que
+    <para>Cria uma matriz de zeros (é o mesmo que
     <literal>0*ones</literal>).</para>
 
     <variablelist>
@@ -94,7 +94,7 @@ y=zeros(m1,m2,..)</synopsis>
         <term>zeros(3)</term>
 
         <listitem>
-          <para>Ã© <literal>zeros(a)</literal> com <literal>a=3</literal> Ã© uma
+          <para>é <literal>zeros(a)</literal> com <literal>a=3</literal> é uma
           matriz 3x3!</para>
         </listitem>
       </varlistentry>
@@ -103,14 +103,14 @@ y=zeros(m1,m2,..)</synopsis>
         <term>zeros()</term>
 
         <listitem>
-          <para>retorna um Ãºnico zero</para>
+          <para>retorna um único zero</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Se <literal>x</literal> Ã© uma lista <literal>syslin</literal>
-    (sistema linear em forma de espaÃ§o de estados ou transferÃªncia),
-    <literal>zeros(x)</literal> tambÃ©m Ã© vÃ¡lido e retorna uma matriz
+    <para>Se <literal>x</literal> é uma lista <literal>syslin</literal>
+    (sistema linear em forma de espaço de estados ou transferência),
+    <literal>zeros(x)</literal> também é válido e retorna uma matriz
     nula.</para>
   </refsection>
 
@@ -127,7 +127,7 @@ zeros(2,3,2)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="eye">eye</link></member>

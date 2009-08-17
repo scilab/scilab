@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="set" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>set</refname>
+
+    <refpurpose>Ajusta um valor de propriedade de uma objeto entidade gráfica
+    ou de um objeto Interface do Usuário (User Interface)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>set(prop,val)
+set(h,prop)
+set(h,prop,val)
+h.prop=val</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador da entidade da qual a propriedade nomeada se
+          deseja ajustar, <literal>h</literal> pode ser um vetor de
+          manipuladores, em tal caso, serão ajustados valores de propriedades
+          para todos os objetos identificados por h</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop</term>
+
+        <listitem>
+          <para>string, nome da propriedade a ser ajustada. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val</term>
+
+        <listitem>
+          <para>valor a ser dado à propriedade</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta rotina pode ser utilizada para se recuperar o valor de uma
+    propriedade especificada de uma entidade de gráficos ou objeto GUI. Neste
+    caso, é equivalente a se usar o operador ponto ('.') em um manipulador.
+    Por exemplo, <literal>set(h,"background",5)</literal> é equivalente a
+    <literal>h.background = 5</literal>.</para>
+
+    <para>Nomes de propriedades são strings. O tipo do valor ajustado dependo
+    do tipo do manipulador e da propriedade.</para>
+
+    <para>Para obter a lista de todas as propriedade existentes ver <link
+    linkend="graphics_entities">graphics_entities</link> ou <link
+    linkend="uicontrol">uicontrol</link> para objetos de Interface do
+    Usuário</para>
+
+    <para><literal>set</literal> também pode ser chamado com apenas uma
+    propriedade como argumento. Neste caso, a propriedade deve ser uma das
+    seguintes: <variablelist>
+        <varlistentry>
+          <term>current_entity or hdl</term>
+
+          <listitem>
+            <para><literal>set('current_entity',h)</literal> ou
+            <literal>set('hdl',h)</literal> ajusta uma nova entidade como a
+            corrente. Neste caso, o valor deve ser um manipulador
+            gráfico.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>current_figure</term>
+
+          <listitem>
+            <para><literal>set('current_figure',fig)</literal> ajusta uma nova
+            figura como a corrente. É equivalente a <link
+            linkend="scf">scf</link>. Neste caso, o valor deve ser um
+            manipulador FIgure.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>current_axes</term>
+
+          <listitem>
+            <para><literal>set('current_axes',axes)</literal> ajusta novos
+            eixos como os correntes. É equivalente a <link
+            linkend="sca">sca</link>. Neste caso, o valor deve ser um
+            manipulador Axes.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+
+    <para><literal>set</literal> também pode ser chamado com manipuladores
+    gráficos e com propriedades como argumentos. O manipulador deve ser de uma
+    figura padrão ou de eixos padrões. A propriedade deve ser
+    <literal>"default_values"</literal>. Neste caso, a entidade padrão é
+    reajustada para os valores que possuía na inicialização do Scilab.
+    <literal>set("default_values",h)</literal> equivale a <link
+    linkend="sda">sda</link> ou <link linkend="sdf">sdf</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   clf()
+   set("auto_clear","off") ;
+   // Exemple of a Plot 2D
+   x=[-.2:0.1:2*%pi]';
+   plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
+   a=get("current_axes");
+   p1=a.children.children(1);
+   p2=a.children.children(2);
+   // ajustando as propriedades nomeadas para os valores especificados nos objetos
+   set(p2,"foreground",13);
+   set(p2,"polyline_style",2);
+   set(a,'tight_limits',"on");
+   set(a,"box","off");
+   set(a,"sub_tics",[ 7 0 ]);
+   set(a,"y_location","middle")
+   set(p2,'thickness',2);
+   set(p1,'mark_mode',"on");
+   set(p1,'mark_style',3);
+   plot2d(x-2,x.^2/20);
+   p3= a.children(1).children;
+   set([a p1 p2 p3],"foreground",5)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="copy">copy</link></member>
+
+      <member><link linkend="move">move</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link linkend="uicontrol">uicontrol</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

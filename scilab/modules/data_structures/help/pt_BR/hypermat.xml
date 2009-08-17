@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>M=hypermat(dims [,v])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>dims</term>
 
         <listitem>
-          <para>vetor de dimens√µes da hipermatriz </para>
+          <para>vetor de dimensıes da hipermatriz </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vetor de entradas da hipermatriz (valor padr√£o
+          <para>vetor de entradas da hipermatriz (valor padr„o
           <literal>zeros(prod(dims),1)</literal>)</para>
         </listitem>
       </varlistentry>
@@ -57,15 +57,15 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Incializa uma hipermatriz cujas dimens√µes s√£o dadas pelo vetor dims
-    e as entradas s√£o dadas pelo argumento opcional
+    <para>Incializa uma hipermatriz cujas dimensıes s„o dadas pelo vetor dims
+    e as entradas s„o dadas pelo argumento opcional
     <literal>v</literal></para>
 
-    <para>A estrutura de dados de M cont√©m o vetor de dimens√µes da matriz
+    <para>A estrutura de dados de M contÈm o vetor de dimensıes da matriz
     <literal>M('dims')</literal> e o vetor de entradas
-    <literal>M('entries')</literal> tais que os √≠ndices subescritos mais √†
+    <literal>M('entries')</literal> tais que os Ìndices subescritos mais ‡
     esquerda variam primeiro:
     <literal>[M(1,1,..);..;M(n1,1,..);...;M(1,n2,..);..;M(n1,n2,..);...]</literal></para>
   </refsection>

@@ -21,6 +21,9 @@
  *         unsigned arithmetic modulo 2^32 (ie all is exact
  *         modulo 2^32) 
  *
+ * 	License: This code is released under public domain.
+ * 	(Compatible with CeCILL)
+
  */
 #include <math.h>             /* to use floor    */
 

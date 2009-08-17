@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>cmb_lin</refname>
 
-    <refpurpose>combinaÃ§Ã£o linear simbÃ³lica</refpurpose>
+    <refpurpose>combinação linear simbólica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Avalia <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x,
-    y</literal> sÃ£o strings. (rotina de baixo-nÃ­vel).</para>
+    y</literal> são strings. (rotina de baixo-nível).</para>
   </refsection>
 
   <refsection>
-    <title>Ver tambÃ©m</title>
+    <title>Ver também</title>
 
     <simplelist type="inline">
       <member><link linkend="mulf">mulf</link></member>

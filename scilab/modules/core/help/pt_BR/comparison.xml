@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="comparison" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>comparison</refname>
 
-    <refpurpose>comparaÃ§Ã£o, operadores relacionais</refpurpose>
+    <refpurpose>comparação, operadores relacionais</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>a==b
 a~=b ou a&lt;&gt;b
@@ -28,17 +28,17 @@ a&gt;=b</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros </title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>qualquer tipo de variÃ¡vel para comparaÃ§Ãµes de igualdade
+          <para>qualquer tipo de variável para comparações de igualdade
           <literal>a==b</literal>, <literal>a~=b</literal>
           <literal>a&lt;&gt;b</literal> e restrita a arrays de pontos
-          flutuantes reais e inteiros para comparaÃ§Ãµes relacionadas Ã  ordem
+          flutuantes reais e inteiros para comparações relacionadas à ordem
           <literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
           <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>.</para>
         </listitem>
@@ -48,10 +48,10 @@ a&gt;=b</synopsis>
         <term>b</term>
 
         <listitem>
-          <para>qualquer tipo de variÃ¡vel para comparaÃ§Ãµes de igualdade
+          <para>qualquer tipo de variável para comparações de igualdade
           <literal>a==b</literal>, <literal>a~=b</literal> <literal>a&lt; &gt;
           b</literal> e restrita a arrays de ponto flutuantes reais e inteiros
-          para comparaÃ§Ãµes relacionadas Ã  ordem <literal>a&lt;b</literal>,
+          para comparações relacionadas à ordem <literal>a&lt;b</literal>,
           <literal>a&lt;=b</literal>,
           <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>.</para>
         </listitem>
@@ -60,13 +60,13 @@ a&gt;=b</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para> Duas classes de operadores devem ser distinguidas:</para>
 
     <variablelist>
       <varlistentry>
-        <term>ComparaÃ§Ãµes de igualdade e desigualdade:</term>
+        <term>Comparações de igualdade e desigualdade:</term>
 
         <listitem>
           <para><literal>a==b</literal>, <literal>a~=b</literal> (ou de modo
@@ -76,7 +76,7 @@ a&gt;=b</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>ComparaÃ§Ãµes de ordem:</term>
+        <term>Comparações de ordem:</term>
 
         <listitem>
           <para><literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
@@ -87,44 +87,44 @@ a&gt;=b</synopsis>
       </varlistentry>
     </variablelist>
 
-    <para>A semÃ¢ntica dos operadores de comparaÃ§Ã£o tambÃ©m depende dos tipos de
+    <para>A semântica dos operadores de comparação também depende dos tipos de
     operandos:</para>
 
     <variablelist>
       <varlistentry>
-        <term>Com variÃ¡veis arrays</term>
+        <term>Com variáveis arrays</term>
 
         <listitem>
-          <para>como arrays de pontos flutuantes ou inteiros, arrays lÃ³gicos,
-          arrays de strings, arrays de polinÃ´mios ou razÃµes de polinÃ´mios,
+          <para>como arrays de pontos flutuantes ou inteiros, arrays lógicos,
+          arrays de strings, arrays de polinômios ou razões de polinômios,
           arrays de manipuladores, listas,... o seguinte se aplica:</para>
 
           <itemizedlist>
             <listitem>
-              <para>Se <literal> a</literal> e <literal> b</literal> sÃ£o
-              avaliados como arrays do mesmo tipo e dimensÃµes idÃªnticas, a
-              comparaÃ§Ã£o Ã© realizada elemento a elemento e o resultado Ã© um
-              array de booleanos da comparaÃ§Ã£o. </para>
+              <para>Se <literal> a</literal> e <literal> b</literal> são
+              avaliados como arrays do mesmo tipo e dimensões idênticas, a
+              comparação é realizada elemento a elemento e o resultado é um
+              array de booleanos da comparação. </para>
             </listitem>
 
             <listitem>
-              <para>Se <literal> a</literal> e <literal> b</literal> sÃ£o
+              <para>Se <literal> a</literal> e <literal> b</literal> são
               avaliados como arrays do mesmo tipo, mas <literal> a</literal>
-              ou <literal> b</literal> Ã© um array 1 por 1, o elemento Ã©
-              comparado com cada elemento do outro array. O resultado Ã© um
-              array de booleanos com o tamanho do operando nÃ£o-escalar.
+              ou <literal> b</literal> é um array 1 por 1, o elemento é
+              comparado com cada elemento do outro array. O resultado é um
+              array de booleanos com o tamanho do operando não-escalar.
               </para>
             </listitem>
 
             <listitem>
-              <para>Em outros casos, o resultado Ã© o booleano <literal>
+              <para>Em outros casos, o resultado é o booleano <literal>
               %f</literal></para>
             </listitem>
 
             <listitem>
-              <para>Se os tipos de dados dos operandos sÃ£o diferentes, mas
-              "compatÃ­veis", como pontos flutuantes e inteiros, uma conversÃ£o
-              de tipo Ã© realizada antes da comparaÃ§Ã£o.</para>
+              <para>Se os tipos de dados dos operandos são diferentes, mas
+              "compatíveis", como pontos flutuantes e inteiros, uma conversão
+              de tipo é realizada antes da comparação.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -135,12 +135,12 @@ a&gt;=b</synopsis>
 
         <listitem>
           <para>como <literal>function</literal>,
-          <literal>libraries</literal>, o resultado Ã© <literal> %t</literal>
-          se os objetos sÃ£o idÃªnticos e <literal> %f</literal> em outros
+          <literal>libraries</literal>, o resultado é <literal> %t</literal>
+          se os objetos são idênticos e <literal> %f</literal> em outros
           casos.</para>
 
-          <para>ComparaÃ§Ã£o de igualdade entre operandos com tipos de dados
-          incompatÃ­veis retorna <literal>%f</literal>.</para>
+          <para>Comparação de igualdade entre operandos com tipos de dados
+          incompatíveis retorna <literal>%f</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -151,7 +151,7 @@ a&gt;=b</synopsis>
 
     <programlisting role="example">
     
-    //comparaÃ§Ãµes elemento a elemento
+    //comparações elemento a elemento
     (1:5)==3
     (1:5)&lt;=4 
     (1:5)&lt;=[1 4 2 3 0]
@@ -159,7 +159,7 @@ a&gt;=b</synopsis>
     list(1,2,3)~=list(1,3,3)
 
 
-    //comparaÃ§Ãµes objeto a objeto
+    //comparações objeto a objeto
     (1:10)==[4,3]
     'foo'==3
     1==[]
@@ -168,7 +168,7 @@ a&gt;=b</synopsis>
     isequal(list(1,2,3),1)
     isequal(1:10,1)
 
-    //comparaÃ§Ã£o com conversÃ£o de tipo
+    //comparação com conversão de tipo
     int32(1)==1
     int32(1)&lt;1.5
     int32(1:5)&lt;int8(3)
@@ -181,7 +181,7 @@ a&gt;=b</synopsis>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="less">less</link></member>

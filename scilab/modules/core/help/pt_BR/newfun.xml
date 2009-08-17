@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="newfun" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,32 +13,32 @@
   <refnamediv>
     <refname>newfun</refname>
 
-    <refpurpose>adiciona um nome Ã  tabela de funÃ§Ãµes</refpurpose>
+    <refpurpose>adiciona um nome à tabela de funções</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>newfun("function-name",nameptr)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FunÃ§Ã£o utilitÃ¡ria (apenas para peritos). Adiciona o nome
-    <literal>"function-name"</literal> Ã  tabela de funÃ§Ãµes conhecidas pelo
-    interpretador. <literal>"nameptr"</literal> Ã© um inteiro
+    <para>Função utilitária (apenas para peritos). Adiciona o nome
+    <literal>"function-name"</literal> à tabela de funções conhecidas pelo
+    interpretador. <literal>"nameptr"</literal> é um inteiro
     <literal>100*fun+fin</literal> onde <literal>fun</literal> e
-    <literal>fin</literal> Ã© a codficaÃ§Ã£o interna da primitiva
-    <literal>"function-name"</literal>. Esta funÃ§Ã£o Ã© Ãºtil para associar uma
+    <literal>fin</literal> é a codficação interna da primitiva
+    <literal>"function-name"</literal>. Esta função é útil para associar uma
     primitiva a uma rotina com interface em <literal>"matusr.f"</literal>
     (<literal>fun=14</literal>). Usado com <literal>funptr</literal> e
-    <literal>clearfun</literal> pode-se redefinir uma primitiva por uma funÃ§Ã£o
+    <literal>clearfun</literal> pode-se redefinir uma primitiva por uma função
     com o mesmo nome.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="clearfun">clearfun</link></member>

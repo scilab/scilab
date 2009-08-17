@@ -153,7 +153,7 @@ code=[ '#include ""machine.h""'
  '    sciprint(""menu %s(%i) in window %i selected\r\n"",name,*entry+1,*win);'
  '}'];
 //creating foo.c file
-dir=getcwd(); chdir(TMPDIR)
+dir=pwd(); chdir(TMPDIR)
 mputl(code,TMPDIR+'/foo.c');
 //reating Makefile
 ilib_for_link('foo','foo.o',[],'c');

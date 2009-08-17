@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>add_demo</refname>
 
-    <refpurpose>adiciona uma entrada na lista de demonstraÃ§Ãµes</refpurpose>
+    <refpurpose>adiciona uma entrada na lista de demonstrações</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>add_demo(title,path)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>title</term>
 
         <listitem>
-          <para>string, o tÃ­tulo da demonstraÃ§Ã£o</para>
+          <para>string, o título da demonstração</para>
         </listitem>
       </varlistentry>
 
@@ -49,20 +49,20 @@
         <term>path</term>
 
         <listitem>
-          <para>string, o endereÃ§o do script scilab associado Ã 
-          demonstraÃ§Ã£o</para>
+          <para>string, o endereço do script scilab associado à
+          demonstração</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o adiciona uma nova entrada na lista de demonstraÃ§Ãµes. A
-    demonstraÃ§Ã£o deve ser executada por um arquivo script do Scilab. Se o dado
-    tÃ­tulo jÃ¡ existir <literal>title</literal> na lista de demonstraÃ§Ãµes
-    associada ao mesmo arquivo, nada Ã© feito. Esta funÃ§Ã£o checa se o arquivo
+    <para>Esta função adiciona uma nova entrada na lista de demonstrações. A
+    demonstração deve ser executada por um arquivo script do Scilab. Se o dado
+    título já existir <literal>title</literal> na lista de demonstrações
+    associada ao mesmo arquivo, nada é feito. Esta função checa se o arquivo
     existe.</para>
   </refsection>
 
@@ -71,17 +71,17 @@
 
     <programlisting role="example">
 
-  //criando um simples script de demonstraÃ§Ã£o
+  //criando um simples script de demonstração
   path=TMPDIR+'/foo.sce';
   mputl('disp Hello',path)
   add_demo('My first demo',path)
-  //a demonstraÃ§Ã£o pode agora ser executada atravÃ©s do menu "Demos".
+  //a demonstração pode agora ser executada através do menu "Demos".
   
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver tambÃ©m</title>
+    <title>Ver também</title>
 
     <simplelist type="inline">
       <member><link

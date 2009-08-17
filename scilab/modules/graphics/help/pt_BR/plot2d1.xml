@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plot2d1" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plot2d1</refname>
+
+    <refpurpose>Esboço 2d em escala logarítmica (obsoleto)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>plot2d1(str,x,y,[style,strf,leg,rect,nax])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>string de comprimento 3 <literal>"abc"</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>a</term>
+
+              <listitem>
+                <para>pode ter um dos seguintes valores: <literal>e</literal>,
+                <literal>o</literal> ou <literal>g</literal>.</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>e</term>
+
+                    <listitem>
+                      <para>significa "vazio". Especifica que o valor de
+                      <literal>x</literal> não é utilizado (os valores de
+                      <literal>x</literal> são supostos regularmente
+                      espaçados, ie 1:&lt;número de linhas de
+                      <literal>y</literal>&gt;). De qualquer forma, o usuário
+                      deve fornecer o valor de <literal>x</literal>, 1 por
+                      exemplo: <literal>plot2d1("enn",1,y)</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>o</term>
+
+                    <listitem>
+                      <para>significa "um". Se há várias curvas, todas possuem
+                      o mesmo valor x: <literal>x</literal> é um vetor coluna
+                      de tamanho n1 e <literal>y</literal> é uma matriz de
+                      tamanho(nl,nc). Por exemplo:
+                      <literal>x=[0:0.1:2*%pi]';plot2d1("onn",x,[sin(x)
+                      cos(x)])</literal>.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>g</term>
+
+                    <listitem>
+                      <para>significa"geral". <literal>x</literal> e
+                      <literal>y</literal> devem ter o mesmo tamanho (nl,nc).
+                      Cada coluna de <literal>y</literal> é esboçada em
+                      relação à coluna correspondente de <literal>x</literal>.
+                      <literal>nc</literal> curvas são esboçadas utilizando-se
+                      <literal>nl</literal> pontos.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>b, c</term>
+
+              <listitem>
+                <para>pode possuir valores <literal>n</literal> (normal) ou
+                <literal>l</literal> (logarítmico).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>b=l</term>
+
+                    <listitem>
+                      <para>um eixo logarítmico é utilizado em x </para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>c=l</term>
+
+                    <listitem>
+                      <para>um eixo logarítmico é utilizado em y</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y,[style,strf,leg,rect,nax]</term>
+
+        <listitem>
+          <para>estes argumentos possuem o mesmo significado que na função
+          <literal>plot2d</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>opt_args</term>
+
+        <listitem>
+          <para>estes argumentos possuem o mesmo significado que na função
+          <literal>plot2d</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função está obsoleta. Utilize <literal>plot2d</literal> ao
+    invés.</para>
+
+    <para><literal>plot2d1</literal> esboça um conjunto de curvas 2d. É o
+    mesmo que <literal>plot2d</literal> mas com mais um argumento
+    <literal>str</literal> que habilita escala logarítmica. Ainda, permite
+    especificar apenas um vetor coluna para <literal>x</literal> quando é o
+    mesmo para todas as curvas.</para>
+
+    <para>Por padrão, esboços sucessivos são superpostos. Para limpar o esboço
+    anterior, use <literal>clf</literal>.</para>
+
+    <para>Entre com o comando <literal>plot2d1()</literal> para visualizar uma
+    demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// esboços múltiplos sem fornecer x
+x=[0:0.1:2*%pi]';
+plot2d1("enn",1,[sin(x) sin(2*x) sin(3*x)])
+// esboços múltiplos fornecendo apenas x
+clf()
+plot2d1("onn",x,[sin(x) sin(2*x) sin(3*x)])
+// esboço logarítmico
+x=[0.1:0.1:3]'; clf()
+plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="plot2d2">plot2d2</link></member>
+
+      <member><link linkend="plot2d3">plot2d3</link></member>
+
+      <member><link linkend="plot2d4">plot2d4</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

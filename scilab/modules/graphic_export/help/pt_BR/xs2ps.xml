@@ -85,7 +85,7 @@
 scf(0);
 plot2d();
 // exportando para Postscript
-filename='foo.ps';
+filename=foo.ps;
 xs2ps(0,filename);
     </programlisting>
   </refsection>

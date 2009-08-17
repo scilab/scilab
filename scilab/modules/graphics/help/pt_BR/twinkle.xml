@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="twinkle" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>twinkle</refname>
+
+    <refpurpose>Faz uma entidade gráfica piscar</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>twinkle(h,[n])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador de uma entidade gráfica </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>twinkle</literal> faz com que a entidade gráfica dada pelo
+    seu manipulador h pisque. Pode ser usado para encontrar o objeto gráfico
+    correspondente a um manipulador gráfico em uma janela de gráficos. Por
+    padrão, a entidade gráfica pisca 5 vezes, mas você pode mudar este número
+    através do argumento opcional <literal>n</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=linspace(-2*%pi,2*%pi,100)';
+plot2d(x,[sin(x),cos(x)]);
+e=gce(); p1=e.children(1); p2=e.children(2);
+// fazendo piscar o esboço de cos
+twinkle(p1)
+// fazendo piscar o esboço de sin piscar
+twinkle(p2,10)
+// eixos piscando
+twinkle(gca())
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

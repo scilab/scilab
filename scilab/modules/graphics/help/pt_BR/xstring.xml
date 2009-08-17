@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xstring(x,y,str,[angle,box])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,7 +58,7 @@
         <term>angle</term>
 
         <listitem>
-          <para>real, √¢ngulo hor√°rio em graus; O valor padr√£o √© 0.</para>
+          <para>real, ‚ngulo hor·rio em graus; O valor padr„o È 0.</para>
         </listitem>
       </varlistentry>
 
@@ -66,22 +66,22 @@
         <term>box</term>
 
         <listitem>
-          <para>inteio, o valor padr√£o √© 0</para>
+          <para>inteio, o valor padr„o È 0</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xstring</literal> imprime a matriz de strings
-    <literal>str</literal> na localiza√ß√£o <literal>x,y</literal> (ponto
-    inferior esquerdo) na escala de gr√°ficos corrente: cada linha da matriz
-    significa uma linha de texto e os elementos das linhas s√£o palavras
-    separadas por espa√ßos em branco. Se <literal>angle</literal> for dado,
-    fornece a inclina√ß√£o em graus para escrever os strings. Se
-    <literal>box</literal> for 1 e <literal>angle</literal> for 0, uma caixa √©
+    <literal>str</literal> na localizaÁ„o <literal>x,y</literal> (ponto
+    inferior esquerdo) na escala de gr·ficos corrente: cada linha da matriz
+    significa uma linha de texto e os elementos das linhas s„o palavras
+    separadas por espaÁos em branco. Se <literal>angle</literal> for dado,
+    fornece a inclinaÁ„o em graus para escrever os strings. Se
+    <literal>box</literal> for 1 e <literal>angle</literal> for 0, uma caixa È
     desenhada ao redor dos strings.</para>
   </refsection>
 
@@ -91,7 +91,7 @@
     <programlisting role="example">
 
 plot2d([0;1],[0;1],0)
-xstring(0.5,0.5,["Scilab" "n√£o"; "√©" "esilaB"])
+xstring(0.5,0.5,["Scilab" "n„o"; "È" "esilaB"])
 //outro exemplo
 alphabet=["a" "b" "c" "d" "e" "f" "g" ..
           "h" "i" "j" "k" "l" "m" "n" ..
@@ -101,7 +101,7 @@ xbasc()
 plot2d([0;1],[0;2],0)
 xstring(0.1,1.8,alphabet)     // alfabeto
 xstring(0.1,1.6,alphabet,0,1) // alfabeto em uma caixa
-xstring(0.1,1.4,alphabet,20)  // √¢ngulo
+xstring(0.1,1.4,alphabet,20)  // ‚ngulo
 xset("font",1,1)              // usando fontes symbol
 xstring(0.1,0.1,alphabet)
 xset("font",1,3)              // mudando tamanho da fonte
@@ -113,7 +113,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="titlepage">titlepage</link></member>

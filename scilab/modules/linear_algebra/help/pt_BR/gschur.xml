@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>gschur</refname>
 
-    <refpurpose>forma de Schur generalizada (funÃ§Ã£o obsoleta) </refpurpose>
+    <refpurpose>forma de Schur generalizada (função obsoleta) </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[As,Es]=gschur(A,E)
 [As,Es,Q,Z]=gschur(A,E)
@@ -37,31 +37,31 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o Ã© obsoleta e agora estÃ¡ inclusa na funÃ§Ã£o
-    <literal>schur</literal> function. Na maior parte dos casos, a funÃ§Ã£o
-    <literal>gschur</literal> irÃ¡ ainda trabalhar como antes, mas serÃ¡
-    removida em um lanÃ§amento futuro do Scilab.</para>
+    <para>Esta função é obsoleta e agora está inclusa na função
+    <literal>schur</literal> function. Na maior parte dos casos, a função
+    <literal>gschur</literal> irá ainda trabalhar como antes, mas será
+    removida em um lançamento futuro do Scilab.</para>
 
-    <para>As trÃªs sintaxes podem ser substituÃ­das por</para>
+    <para>As três sintaxes podem ser substituídas por</para>
 
     <programlisting>
 
 [As,Es]=schur(A,E)
-[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE A TRANSPOSIÃ‡ÃƒO AQUI
+[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE A TRANSPOSIÇÃO AQUI
 [As,Es,Z,dim] = schur(A,E,flag) 
    
     </programlisting>
 
-    <para>A Ãºltima sintaxe requer algumas adaptaÃ§Ãµes a mais: </para>
+    <para>A última sintaxe requer algumas adaptações a mais: </para>
 
     <variablelist>
       <varlistentry>
         <term>if</term>
 
         <listitem>
-          <para>Ã© uma funÃ§Ã£o do Scilab, a nova seqÃ¼Ãªncia de chamamento deve
+          <para>é uma função do Scilab, a nova seqüência de chamamento deve
           ser <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal> com Nextern
           definido como segue:</para>
 
@@ -84,8 +84,8 @@ endfunction
         <term>if</term>
 
         <listitem>
-          <para>Ã© o nome de uma funÃ§Ã£o externa codificada em FORTRAN ou C, a
-          nova seqÃ¼Ãªncia de chamamento deve ser <literal>[As,Es,Z,dim]=
+          <para>é o nome de uma função externa codificada em FORTRAN ou C, a
+          nova seqüência de chamamento deve ser <literal>[As,Es,Z,dim]=
           schur(A,E,'nextern')</literal> com nextern definido como
           segue:</para>
         </listitem>
@@ -109,7 +109,7 @@ endfunction
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="external">external</link></member>

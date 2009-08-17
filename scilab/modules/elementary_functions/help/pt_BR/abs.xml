@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=abs(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>abs(x)</literal> Ã© o valor absoluto dos elementos de
-    <literal>x</literal>. Quando <literal>x</literal> Ã© de complexos,
-    <literal>abs(x)</literal> Ã© o mÃ³dulo complexo (magnitude) dos elementos de
+    <para><literal>abs(x)</literal> é o valor absoluto dos elementos de
+    <literal>x</literal>. Quando <literal>x</literal> é de complexos,
+    <literal>abs(x)</literal> é o módulo complexo (magnitude) dos elementos de
     <literal>x</literal>.</para>
   </refsection>
 

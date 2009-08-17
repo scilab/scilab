@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gdf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gdf</refname>
+
+    <refpurpose>Retorna o manipulador da figura corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>f = gdf()
+f = get("default_figure")</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>manipulador da figura corrente</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A figura padrão é uma entidade gráfica (entidade Figure) que nunca é
+    desenhada. É usada como referência para os valores padrões das
+    propriedades da figura. Estes valores padrões são utilizados para iniciar
+    novas figuras.</para>
+
+    <para>A função <literal>gdf</literal> retorna o manipulador da figura
+    corrente. O usuário pode utilizar este manipulador para ajustar ou obter
+    os valores padrões das propriedades da figura.</para>
+
+    <para>Note que uma entidade gráfica padrão equivalente também existe para
+    entidades Axes (de eixos) (ver <literal>gda</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   
+   f=gdf() // obtendo o manipulador da figura modelo
+   // ajustando suas propriedades
+   f.background=7;
+   f.figure_name="Function gdf()";
+   f.figure_position=[-1 100];
+   f.auto_resize="off";
+   f.figure_size=[300 461];
+   f.axes_size=[600 400];
+   plot2d() //criando uma figura
+   scf(1);
+   plot3d() //criando uma segunda figura
+   set(f,"default_values",1); // retornando para os valores padrões do modelo da figura
+                              // ver a função sdf()
+   scf(2);
+   plot2d() 
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gda">gda</link></member>
+
+      <member><link linkend="sdf">sdf</link></member>
+
+      <member><link linkend="sda">sda</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="scf">scf</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

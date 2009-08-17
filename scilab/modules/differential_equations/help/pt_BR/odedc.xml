@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="odedc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>odedc</refname>
+
+    <refpurpose>solucionador de EDOs contínuas/discretas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0</term>
+
+        <listitem>
+          <para>vetor coluna de reais (condições iniciais),
+          <literal>y0=[y0c;y0d]</literal> onde <literal>y0d</literal> tem
+          <literal>nd</literal> componentes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nd</term>
+
+        <listitem>
+          <para>inteiro, dimensão de <literal>y0d</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stdel</term>
+
+        <listitem>
+          <para>vetor de reais com uma ou duas entradas, <literal>stdel=[h,
+          delta]</literal> (com <literal>delta=0</literal> como valor
+          padrão).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>escalar real (tempo inicial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>vetor (linha de reais), instantes onde <literal>yt</literal> é
+          calculado .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função externa i.e. função, string ou lista com seqüência de
+          chamamento: <literal>yp=f(t,yc,yd,flag)</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> computa a
+    solução de um sistema misto contínuo/discreto. O estado de sistema
+    discreto <literal>yd_k</literal> é embutido em uma função de tempo
+    seccional constante <literal>yd(t)</literal> como segue:</para>
+
+    <programlisting>
+
+yd(t)=yd_k para t em 
+[t_k=atraso+k*h,t_(k+1)=delay+(k+1)*h[ (com atraso=h*delta).
+   
+    </programlisting>
+
+    <para>As equações simuladas são agora:</para>
+
+    <programlisting>
+
+dyc/dt=f(t,yc(t),yd(t),0),  para t em [t_k,t_(k+1)[
+yc(t0)=y0c
+   
+    </programlisting>
+
+    <para>e nos instantes <literal>t_k</literal> a variável discreta
+    <literal>yd</literal> é atualizada por:</para>
+
+    <programlisting>
+
+yd(t_k+)=f(yc(t_k-),yd(t_k-),1)
+   
+    </programlisting>
+
+    <para>Note que, utilizando a definição de <literal>yd(t)</literal>, a
+    última equação fornece</para>
+
+    <programlisting>
+
+yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc é de tempo contínuo: yc(t_k-)=yc(tk))
+   
+    </programlisting>
+
+    <para>Os parâmetros de chamada de <literal>f</literal> são fixados:
+    <literal>ycd=f(t,yc,yd,flag)</literal>; esta função deve retornar a
+    derivada do vetor <literal>yc</literal> se <literal>flag=0</literal> ou a
+    atualização de <literal>yd</literal> se <literal>flag=1</literal>.</para>
+
+    <para><literal>ycd=dot(yc)</literal> deve ser um vetor de mesma dimensão
+    que <literal>yc</literal> se <literal>flag=0</literal> e
+    <literal>ycd=update(yd)</literal> deve ser um vetor com a mesma dimensão
+    que <literal>yd</literal> se <literal>flag=1</literal>.</para>
+
+    <para><literal>t</literal> é um vetor de constantes onde a solução
+    <literal>y</literal> é computada.</para>
+
+    <para><literal>y</literal> é o vetor
+    <literal>y=[y(t(1)),y(t(2)),...]</literal>. Esta função pode ser chamada
+    com os mesmo parâmetro opcionais da função <literal>ode</literal> (desde
+    que <literal>nd</literal> e <literal>stdel</literal> sejam dados na
+    seqüência de chamamento como segundo e terceiro parâmetros). Em
+    particular, flags de integração e tolerâncias podem ser ajustadas.
+    Parâmetros opcionais podem ser ajustados pela função
+    <literal>odeoptions</literal>.</para>
+
+    <para>Um exemplo para chamada de rotina externa é encontrado em
+    <literal>SCIDIR/default/fydot2.f</literal></para>
+
+    <para>Rotinas externas podem ser ligadas dinamicamente (ver
+    <literal>link</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//sistema linear com entrada alternante
+deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
+x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
+xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
+nx=2;
+plot2d1('onn',t',x',[1:nx],'161');
+plot2d2('onn',t',u',[nx+1:nx+nu],'000');
+//função externa FORTRAN( ver fydot2.f): 
+norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
+
+//feedback (resposta) amostrado
+//
+//        |     xcdot=fc(t,xc,u)
+//  (sistema)   |
+//        |     y=hc(t,xc)
+//
+//
+//        |     xd+=fd(xd,y)
+//  (feedback) |
+//        |     u=hd(t,xd)
+//
+deff('xcd=f(t,xc,xd,iflag)',...
+  ['if iflag==0 then '
+   '  xcd=fc(t,xc,e(t)-hd(t,xd));'
+   'else '
+   '  xcd=fd(xd,hc(t,xc));'
+   'end']);
+A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1];C=[1,1,1];
+Ad=[1/2,1;0,1/20];Bd=[1;1];Cd=[1,1];
+deff('st=e(t)','st=sin(3*t)')
+deff('xdot=fc(t,x,u)','xdot=A*x+B*u')
+deff('y=hc(t,x)','y=C*x')
+deff('xp=fd(x,y)','xp=Ad*x + Bd*y')
+deff('u=hd(t,x)','u=Cd*x')
+h=0.1;t0=0;t=0:0.1:2;
+x0c=[0;0;0];x0d=[0;0];nd=2;
+xcd=odedc([x0c;x0d],nd,h,t0,t,f);
+norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // cálculo rápido (ver fydot2.f)
+plot2d([t',t',t'],xcd(1:3,:)');
+xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
+xset("window",0);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="odeoptions">odeoptions</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

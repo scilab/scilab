@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[S]=sylm(a,b)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a,b</term>
 
         <listitem>
-          <para>duas matrizes de polinÃ´mios </para>
+          <para>duas matrizes de polinômios </para>
         </listitem>
       </varlistentry>
 
@@ -56,23 +56,23 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>sylm(a,b)</literal> fornece a matriz de Sylvester associada
-    aos polinÃ´mios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
+    aos polinômios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
     <literal>S</literal> tal que:</para>
 
     <para><literal>coeff( a*x + b*y )' = S *
     [coeff(x)';coeff(y)']</literal>.</para>
 
-    <para>A dimensÃ£o de <literal>S</literal> Ã© igual a
+    <para>A dimensão de <literal>S</literal> é igual a
     <literal>degree(a)+degree(b)</literal>.</para>
 
-    <para>Se <literal>a</literal> e <literal>b</literal> sÃ£o polinÃ´mios primos
-    entre si, entÃ£o</para>
+    <para>Se <literal>a</literal> e <literal>b</literal> são polinômios primos
+    entre si, então</para>
 
     <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
-    instruÃ§Ãµes</para>
+    instruções</para>
 
     <programlisting>
 
@@ -83,7 +83,7 @@
     </programlisting>
 
     <para>computam os fatores de Bezout <literal>x</literal> e
-    <literal>y</literal> de graus mÃ­nimos tais que <literal>a*x+b*y =
+    <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y =
     1</literal></para>
   </refsection>
 </refentry>

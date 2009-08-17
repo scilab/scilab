@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>simp_mode</refname>
 
-    <refpurpose>modifica o modo de simplificaÃ§Ã£o racional</refpurpose>
+    <refpurpose>modifica o modo de simplificação racional</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>mod=simp_mode()
 simp_mode(mod)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,21 +49,21 @@ simp_mode(mod)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>A simplificaÃ§Ã£o racional Ã© chamada apÃ³s quase cada operaÃ§Ã£o sobre
-    razÃµes de polinÃ´mios. Ã‰ possÃ­vel alternar o modo de simplificaÃ§Ã£o entre
-    "on" e "off" (ligado e desligado) utilizando a funÃ§Ã£o
+    <para>A simplificação racional é chamada após quase cada operação sobre
+    razões de polinômios. É possível alternar o modo de simplificação entre
+    "on" e "off" (ligado e desligado) utilizando a função
     <literal>simp_mode</literal>.</para>
 
-    <para><literal>simp_mod(%t)</literal> ajusta o modo de simplificaÃ§Ã£o
+    <para><literal>simp_mod(%t)</literal> ajusta o modo de simplificação
     racional para "on"</para>
 
-    <para><literal>simp_mod(%f)</literal> ajusta o modo de simplificaÃ§Ã£o
+    <para><literal>simp_mod(%f)</literal> ajusta o modo de simplificação
     racional para "off"</para>
 
     <para><literal>mod=simp_mod()</literal> retorna em mod o modo de
-    simplificaÃ§Ã£o racional corrente</para>
+    simplificação racional corrente</para>
   </refsection>
 
   <refsection>
@@ -82,7 +82,7 @@ simp_mode(mod);
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="simp">simp</link></member>

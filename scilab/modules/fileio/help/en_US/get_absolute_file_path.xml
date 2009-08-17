@@ -99,7 +99,7 @@ mclose(a);
 
       <member><link linkend="getlongpathname">getlongpathname</link></member>
 
-      <member><link linkend="getcwd">getcwd</link></member>
+      <member><link linkend="pwd">pwd</link></member>
     </simplelist>
   </refsection>
 

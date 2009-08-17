@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xstringb(x,y,str,w,h,[option])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,19 +64,19 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xstringb</literal> desenha a matriz de strings
-    <literal>str</literal> centrada dentro do ret√¢ngulo
+    <literal>str</literal> centrada dentro do ret‚ngulo
     <literal>rect=[x,y,w,h]</literal> (ponto inferior esquerdo, largura,
-    altura) na escala gr√°fica corrente.</para>
+    altura) na escala gr·fica corrente.</para>
 
     <para>Se <literal>option</literal> for fornecido com o valor
-    <literal>"fill"</literal>, o tamanho do caractere √© computado de modo a
-    preencher o ret√¢ngulo o m√°ximo poss√≠vel.</para>
+    <literal>"fill"</literal>, o tamanho do caractere È computado de modo a
+    preencher o ret‚ngulo o m·ximo possÌvel.</para>
 
     <para>Entre com o comando <literal>xstringb()</literal> para uma
-    demonstra√ß√£o.</para>
+    demonstraÁ„o.</para>
   </refsection>
 
   <refsection>
@@ -84,7 +84,7 @@
 
     <programlisting role="example">
 
-str=["Scilab" "n√£o";"√©" "elisaB"];
+str=["Scilab" "n„o";"È" "elisaB"];
 plot2d(0,0,[-1,1],"010"," ",[0,0,1,1]);
 r=[0,0,1,0.5];
 xstringb(r(1),r(2),str,r(3),r(4),"fill");
@@ -100,7 +100,7 @@ xstringb(r(1),r(2),str,r(3),r(4),"fill");
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="titlepage">titlepage</link></member>

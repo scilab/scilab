@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="profile" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>profile</refname>
+
+    <refpurpose>extrai profiles (dossiês) de execução de uma função do
+    Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>c=profile(fun)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetro</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+
+        <listitem>
+          <para>função Scilab</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c</term>
+
+        <listitem>
+          <para>uma matriz nx3 contendo os profiles de execução</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para utilizar <literal>profile</literal> a função Scilab deve ter
+    sido preparada para profiling (análise de desempenho) (ver getf).</para>
+
+    <para>Pata tal função, quando tal função é executada, o sistema conta
+    quantas vezes cada linha foi executada e quanto tempo de cpu foi gasto
+    para cada execução da linha. Estes dados são armazenados na estrutura de
+    dados da função. A função profile permite extrair esses dados e
+    retorná-los nas duas primeiras colunas de <literal>c</literal>. A terceira
+    coluna de <literal>c</literal> fornece a medida do esforço do
+    interpretador para a execução da linha correspondente. A i-ésima linha de
+    <literal>c</literal> corresponde à i-ésima linha da função (inclusa
+    primeiro)</para>
+
+    <para>Note que, devido à precisão do clock do processador (tipicamente, um
+    microssegundo), algumas linhas executadas aparecem com tempo de execução
+    0, mesmo que o tempo de execução de cpu total realmente gasto seja
+    grande.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//definindo a função e preparando-a para profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//chamando a função
+foo(10)
+//obtendo profiles de execução
+profile(foo)
+//chamando a função
+foo(20)
+profile(foo) //a execução de profiles é acumulada
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="plotprofile">plotprofile</link></member>
+
+      <member><link linkend="showprofile">showprofile</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

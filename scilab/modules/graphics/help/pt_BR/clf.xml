@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="clf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>clf</refname>
+
+    <refpurpose>Limpa ou reajusta a (janela da) figura gráfica corrente para
+    valores padrões</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>clf(&lt;opt_job_arg&gt;)
+clf(h,&lt;opt_job_arg&gt;)
+clf(num,&lt;opt_job_arg&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>o manipulador da figura </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>num</term>
+
+        <listitem>
+          <para>identificador da figura (figure_id) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_job_arg&gt;</term>
+
+        <listitem>
+          <para>um string ( <literal>'clear' </literal>ou
+          <literal>'reset'</literal> ) especificando o trabalho de
+          <literal>clf</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O comando <literal>clf</literal> é utilizado para reajustar uma
+    figura para seus valores padrões e/ou deletar todos os seus galhos.</para>
+
+    <para>Se o valor do string <literal>opt_job_arg</literal> for
+    <literal>'clear'</literal> então todos os galhos da figura especificada
+    são deletados.</para>
+
+    <para>Se o valor do string <literal>opt_job_arg</literal> for
+    <literal>'reset'</literal>, então não só todos os galhos da figura são
+    deletados, mas os valores das propriedades da figura são reajustados para
+    seus valores padrões utilizando-se a figura modelo padrão (ver <link
+    linkend="gdf">gdf</link>). As únicas exceções são as propriedades
+    <literal>axes_size</literal> e <literal>figure_size</literal> que não
+    podem ser reajustadas se a figura está "aportada" com outros
+    elementos.</para>
+
+    <para><literal>clf(num)</literal> limpa, ou reajusta e limpa, a figura com
+    <literal>figure_id==num</literal>.</para>
+
+    <para><literal>clf(h)</literal> limpa, ou reajusta e limpa, a figura
+    apontada pelo manipulador <literal>h</literal>.</para>
+
+    <para><literal>clf()</literal> limpa, ou reajusta e limpa, a figura
+    existente corrente.</para>
+
+    <para><literal>clf</literal> deleta todos os galhos de janelas
+    especificadas, incluindo menus e uicontrols adicionados pelo usuário. Para
+    evitar que menus e uicontrols sejam deletados, o comando
+    <literal>delete(gca())</literal> deve ser utilizado ao invés.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   f4=scf(4);  //criando figura com id==4 e tornando-a a figura corrente
+   f4.color_map = jetcolormap(64);
+   f4.figure_size = [400, 200];
+   plot2d()
+   clf(f4,'reset')
+   
+   f0=scf(0); //criando figura com id==0 e tornando-a a figura corrente
+   f0.color_map=hotcolormap(128); // mudando o mapa de cores
+   t=-%pi:0.3:%pi;
+   plot3d1(t,t,sin(t)'*cos(t));
+
+   clf() // equivalent to clf(gcf(),'clear')
+   plot3d1(t,t,sin(t)'*cos(t));  // color_map inalterado
+   
+   clf(gcf(),'reset')
+   plot3d1(t,t,sin(t)'*cos(t));  // color_map alterado (de volta ao padrão com 32 cores)
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="gdf">gdf</link></member>
+
+      <member><link linkend="scf">scf</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>S. Steer &amp; F.Leray INRIA</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,47 +24,47 @@
   <refnamediv>
     <refname>list</refname>
 
-    <refpurpose>objeto do Scilab e definiÃ§Ã£o de lists ("listas")</refpurpose>
+    <refpurpose>objeto do Scilab e definição de lists ("listas")</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>list(a1,....an)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Cria um <literal>list</literal> com elementos
-    <literal>ai</literal>'s que sÃ£o elementos Scilab arbitrÃ¡rios
+    <literal>ai</literal>'s que são elementos Scilab arbitrários
     (<literal>matrix, list,...</literal>). O tipo de objetos
-    <literal>list</literal> Ã© 15. <literal>list()</literal> cria o
+    <literal>list</literal> é 15. <literal>list()</literal> cria o
     <literal>list</literal> vazio (0 elementos). </para>
   </refsection>
 
   <refsection>
-    <title>OperaÃ§Ãµes em Listas</title>
+    <title>Operações em Listas</title>
 
     <variablelist>
       <varlistentry>
-        <term>extraÃ§Ã£o</term>
+        <term>extração</term>
 
         <listitem>
           <para>: <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
-          Ã© um vetor de Ã­ndices; <literal>[x,y,z]=L(:)</literal> extrai todos
+          é um vetor de índices; <literal>[x,y,z]=L(:)</literal> extrai todos
           os elementos. </para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>inserÃ§Ã£o no Ã­ndice i</term>
+        <term>inserção no índice i</term>
 
         <listitem>
-          <para>: <literal>L(i)=a</literal> (note que nÃ£o Ã© errado usar
+          <para>: <literal>L(i)=a</literal> (note que não é errado usar
           <literal>L(i)=a</literal> com <emphasis>i &gt; 1 +
-          size(L)</emphasis> mas algumas entradas de lista estÃ£o entÃ£o
-          indefinidas e sua extraÃ§Ã£o levanta um erro). </para>
+          size(L)</emphasis> mas algumas entradas de lista estão então
+          indefinidas e sua extração levanta um erro). </para>
         </listitem>
       </varlistentry>
 
@@ -77,26 +77,26 @@
       </varlistentry>
 
       <varlistentry>
-        <term>anexar elementos no inÃ­cio da lista</term>
+        <term>anexar elementos no início da lista</term>
 
         <listitem>
-          <para>: <literal>L(0)=e</literal>. (note que apÃ³s esta operaÃ§Ã£o e
-          estÃ¡ no Ã­ndice 1, os elementos iniciais foram movidos para a
+          <para>: <literal>L(0)=e</literal>. (note que após esta operação e
+          está no índice 1, os elementos iniciais foram movidos para a
           direita). </para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>deleÃ§Ã£o</term>
+        <term>deleção</term>
 
         <listitem>
-          <para>: <literal>L(i)=null()</literal> remove o i-Ã©simo elemento da
+          <para>: <literal>L(i)=null()</literal> remove o i-ésimo elemento da
           lista <literal>L</literal>.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>concatenaÃ§Ã£o de duas listas</term>
+        <term>concatenação de duas listas</term>
 
         <listitem>
           <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
@@ -104,41 +104,41 @@
       </varlistentry>
 
       <varlistentry>
-        <term>nÃºmero de elementos de uma lista</term>
+        <term>número de elementos de uma lista</term>
 
         <listitem>
-          <para>vocÃª pode usar tanto <literal>nb_elm = size(L)</literal> ou
+          <para>você pode usar tanto <literal>nb_elm = size(L)</literal> ou
           <literal>nb_elm = length(L)</literal>.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>iteraÃ§Ãµes com uma lista</term>
+        <term>iterações com uma lista</term>
 
         <listitem>
-          <para>Ã© possÃ­vel usar uma lista <literal>L</literal> com um laÃ§o
+          <para>é possível usar uma lista <literal>L</literal> com um laço
           ("loop") <link linkend="for">for</link>: <literal>for
-          e=L,...,end</literal> Ã© um laÃ§o com <literal>length(L)</literal>
-          iteraÃ§Ãµes, a variÃ¡vel de laÃ§o <literal>e</literal> sendo igual a
-          <literal>L(i)</literal> na i-Ã©sima iteraÃ§Ã£o.</para>
+          e=L,...,end</literal> é um laço com <literal>length(L)</literal>
+          iterações, a variável de laço <literal>e</literal> sendo igual a
+          <literal>L(i)</literal> na i-ésima iteração.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes </title>
+    <title>Observações </title>
 
-    <para>O Scilab tambÃ©m possui outros tipos de listas, o tipo <link
+    <para>O Scilab também possui outros tipos de listas, o tipo <link
     linkend="tlist">tlist</link> (lista com tipo) e o tipo <link
-    linkend="mlist">mlist</link> que sÃ£o Ãºteis para definir um novo tipo de
+    linkend="mlist">mlist</link> que são úteis para definir um novo tipo de
     dado com o operador <link linkend="overloading">overloading</link>
     facilities (<link linkend="hypermatrices">hypermatrices</link>
-    (hipermatrizes), que sÃ£o arrays multi-dimensionais no Scilab, sÃ£o, na
+    (hipermatrizes), que são arrays multi-dimensionais no Scilab, são, na
     verdade, <emphasis>mlist</emphasis>).</para>
 
-    <para><emphasis>struct</emphasis> do Matlab tambÃ©m estÃ£o
-    disponÃ­veis.</para>
+    <para><emphasis>struct</emphasis> do Matlab também estão
+    disponíveis.</para>
   </refsection>
 
   <refsection>
@@ -147,7 +147,7 @@
     <programlisting role="example">
 l = list(1,["a" "b"])
 l(0) = "foo"
-l($+1) = "olÃ¡"
+l($+1) = "olá"
 l(2) = "toto"
 l(3) = rand(1,2)
 l(3) = null()
@@ -158,7 +158,7 @@ size(lter) - size(lbis) - size(l)  // deve ser zero
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="null">null</link></member>

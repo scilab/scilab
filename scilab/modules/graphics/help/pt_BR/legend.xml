@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legend" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legend</refname>
+
+    <refpurpose>Imprime uma legenda para o gráfico</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>hl=legend([h,] string1,string2, ... [,pos] [,boxed])
+hl=legend([h,] strings [,pos] [,boxed])
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador gráfico de uma entidade de eixos ou vetor de
+          manipuladores de entidades poligonais. O valor padrão é o
+          manipulador dos eixos correntes. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string1,string2, ...</term>
+
+        <listitem>
+          <para>strings, stringsi é a legenda da i-ésima curva </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>vetor de strings de dimensão n, strings(i) é a legenda da
+          i-ésima curva </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pos</term>
+
+        <listitem>
+          <para>(opcional) especifica onde imprimir as legendas; este
+          parâmetro pode ser um flag inteiro (ou, de modo equivalente, um
+          string) ou um vetor [x,y] que fornece as coordenadas da quina
+          superior esquerda da caixa de legenda. No primeiro caso, os valores
+          possíveis são:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>1</term>
+
+              <listitem>
+                <para>as legendas são impressas no canto superior direito
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>2</term>
+
+              <listitem>
+                <para>as legendas são impressas no canto superior esquerdo
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>3</term>
+
+              <listitem>
+                <para>as legendas são impressas no canto inferior esquerdo
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>4</term>
+
+              <listitem>
+                <para>as legendas são impressas no canto inferior direito
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>5</term>
+
+              <listitem>
+                <para>localização interativa com o mouse</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-1</term>
+
+              <listitem>
+                <para>as legendas são impressas à direita do canto superior
+                direito </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-2</term>
+
+              <listitem>
+                <para>as legendas são impressas à esquerda do canto superior
+                esquerdo </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-3</term>
+
+              <listitem>
+                <para>as legendas são impressas à esquerda do canto inferior
+                esquerdo </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-4</term>
+
+              <listitem>
+                <para>as legendas são impressas à direita do canto inferior
+                direito </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-5</term>
+
+              <listitem>
+                <para>as legendas são impressas acima do canto superior
+                esquerdo </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-6</term>
+
+              <listitem>
+                <para>as legendas são impressas abaixo do canto inferior
+                esquerdo </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>boxed</term>
+
+        <listitem>
+          <para>um booleano (valor padrão %t) que ajusta se a caixa será
+          desenhada ou não </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>um manipulador, pontos no Compound contendo todas as
+          legendas.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Põe uma legenda no esboço corrente utilizando os strings
+    especificados como rótulos. legend pre-anexa rótulos por uma re-chamada à
+    linha correspondente ou remendo. A re-chamada é de tipo e propriedades são
+    recobradas dos dados manipuladores: </para>
+
+    <para>Quando chamada sem o argumento manipulador (ou com manipulador de
+    uma entidade Axes) a função procura vetores de manipuladores de entidades
+    poligonais construídos primeiro que são galhos dos eixos dados. </para>
+
+    <para>Na localização interativa (opt= 5) move-se a caixa de legenda com o
+    mouse e aperta-se o botão esquerdo para liberá-la.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+t=linspace(0,%pi,20);
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
+e=gce();
+e1=e.children(1);e1.thickness=2;e1.polyline_style=4;e1.arrow_size_factor = 1/2;
+e.children(2).line_style=4;
+e3=e.children(3);e3.line_mode='on';e3.mark_background=5;
+
+hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="xstring">xstring</link></member>
+
+      <member><link linkend="captions">captions</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
