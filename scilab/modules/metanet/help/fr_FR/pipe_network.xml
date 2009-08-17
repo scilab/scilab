@@ -62,19 +62,28 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
-ta=[ta, 15 8 9 10 11 12 13 14];
-he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
-he=[he, 5 6 7 16 16 16 16 16 16 16];
-n=16;
-g=make_graph('foo',1,n,ta,he);
-g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
-g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
+g=make_graph('foo',1,16,ta,he);
+g.nodes.graphics.x=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
+g.nodes.graphics.y=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+g.nodes.graphics.diam(15:16)=30;
+g=add_node_data(g,'demand',[0 0 0 0 0 0 0 0 0 0 0 0 0 0 -100 100]);
+w = [1 3 2 6 4 7 8 1 2 2 2 4 7 8 9 2 3 5 7 3 2 5 8 2 5 8  6 4 3 5 6];
+g=add_edge_data(g,'weight',w);
+g.nodes.graphics.display='demand';
+g.edges.graphics.display='weight';
 show_graph(g);
-g('node_demand')=[0 0 0 0 0 0 0 0 0 0 0 0 0 0 -100 100];
-w = [1 3 2 6 4 7 8 1 2 2 2 4 7 8 9 2 3 5 7 3 2 5 8 2 5 8];
-g('edge_weight')=[w, 6 4 3 5 6];
+
 [x,pi] = pipe_network(g)
- ]]></programlisting>
+g=add_edge_data(g,'flow',round(100*x)/100);
+g.edges.graphics.display='flow';
+
+show_graph(g);
+
+
+ 
+  ]]></programlisting>
   </refsection>
 </refentry>
