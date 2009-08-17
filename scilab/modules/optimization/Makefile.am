@@ -48,7 +48,6 @@ src/fortran/fmani1.f \
 src/fortran/fmc11e.f \
 src/fortran/zqnbd.f \
 src/fortran/ajour.f \
-src/fortran/dpmpar.f \
 src/fortran/fretc1.f \
 src/fortran/qnbd.f \
 src/fortran/nlis0.f \
@@ -85,6 +84,7 @@ src/fortran/minpack/hybrj1.f \
 src/fortran/minpack/dogleg.f \
 src/fortran/minpack/lmder.f \
 src/fortran/minpack/hybrd.f \
+src/fortran/minpack/dpmpar.f \
 src/fortran/minpack/lmpar.f \
 src/fortran/minpack/hybrj.f \
 src/fortran/minpack/r1updt.f \

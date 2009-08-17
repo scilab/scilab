@@ -456,7 +456,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dpmpar.c"
+				RelativePath=".\minpack\dpmpar.c"
 				>
 			</File>
 			<File
@@ -864,7 +864,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dpmpar.f"
+				RelativePath=".\minpack\dpmpar.f"
 				>
 			</File>
 			<File
