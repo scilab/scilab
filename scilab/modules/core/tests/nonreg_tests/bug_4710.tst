@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Error with C++ interface which uses the function CreateVar.
 // 
-warning('off');
+ilib_verbose(0);
 cd(TMPDIR);
 
 i=['#include <string>'

@@ -13,8 +13,8 @@
 //
 // <-- Short Description -->
 // Error with C++ interface which uses the function CreateVar.
-//
-warning('off');
+// 
+ilib_verbose(0);
 cd(TMPDIR);
 i=['#include <string>'
 'extern ""C"" {'
@@ -29,6 +29,4 @@ i=['#include <string>'
 mputl(i,'sci_bug4710.cxx');
 files=['sci_bug4710.cxx'];
 ilib_build('bug4710',['bug4710','sci_bug4710'],files,[]);
-   Compilation of sci_bug4710.cxx
-   Building shared library (be patient)
 if bug4710() <> [] then bugmes();quit;end
