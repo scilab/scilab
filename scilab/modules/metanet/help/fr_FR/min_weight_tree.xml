@@ -82,8 +82,7 @@
 
     <para>La structure du graphe peut ne pas contenir de champs weight. dans
     ce cas tous les poids sont supposés nuls. Pour ajouter un champs weight il
-    faut utiliser la fonction <link xlink:href="add_edge_data">add_edge_data
-    .</link></para>
+    faut utiliser la fonction <link linkend="add_edge_data">add_edge_data</link>.</para>
 
     <para><literal>min_weight_tree</literal> renvoie l'arbre
     <literal>t</literal> sous forme d'un vecteur ligne des numéros d'arcs (cas
