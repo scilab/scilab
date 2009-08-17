@@ -47,6 +47,7 @@ namespace types
 			RealImplicitList,
 			RealInternal,
 			RealFunction,
+			RealMacro,
 			RealPoly,
 			RealObject
     };
@@ -86,6 +87,10 @@ namespace types
     /* Object */
     bool isObject(void) { return (getType() == RealObject); }
     virtual ObjectMatrix* getAsObject(void) { return NULL; }
+
+    /* Macro */
+    bool isMacro(void) { return (getType() == RealMacro); }
+    virtual Macro* getAsMacro(void) { return NULL; }
 
     /* ImplicitList */
 		bool isList(void) { return (getType() == RealImplicitList); }

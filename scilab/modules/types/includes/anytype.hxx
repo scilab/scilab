@@ -25,6 +25,7 @@ namespace types
 	class GenericType;
 	class ImplicitList;
 	class Function;
+	class Macro;
 	class Dollar;
 	class Poly;
 	class MatrixPoly;
