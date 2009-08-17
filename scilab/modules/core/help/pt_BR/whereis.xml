@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="whereis" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,25 +13,25 @@
   <refnamediv>
     <refname>whereis</refname>
 
-    <refpurpose>ome da biblioteca contendo a funÃ§Ã£o</refpurpose>
+    <refpurpose>ome da biblioteca contendo a função</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[librname]=whereis(function-name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna um string correspondente ao nome da biblioteca onde a funÃ§Ã£o
-    <literal>function-name</literal>. se encontra. O endereÃ§o da biblioteca Ã©
+    <para>Retorna um string correspondente ao nome da biblioteca onde a função
+    <literal>function-name</literal>. se encontra. O endereço da biblioteca é
     retornado digitando-se <literal>"librname"</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="lib">lib</link></member>

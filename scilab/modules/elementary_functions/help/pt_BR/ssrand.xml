@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>ssrand</refname>
 
-    <refpurpose>gerador de sistema randÃ´mico</refpurpose>
+    <refpurpose>gerador de sistema randômico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>sl=ssrand(nout,nin,nstate)
 [sl,U]=ssrand(nout,nin,nstate,flag)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>nout</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de saÃ­das)</para>
+          <para>inteiro (número de saídas)</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>nin</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de entradas)</para>
+          <para>inteiro (número de entradas)</para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>nstate</term>
 
         <listitem>
-          <para>inteiro (dimensÃ£o de espaÃ§o de estados)</para>
+          <para>inteiro (dimensão de espaço de estados)</para>
         </listitem>
       </varlistentry>
 
@@ -66,7 +66,7 @@
         <term>flag</term>
 
         <listitem>
-          <para>lista feita de um string ou vÃ¡rios inteiros</para>
+          <para>lista feita de um string ou vários inteiros</para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +82,7 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz quadrada nÃ£o-singular <literal>(nstate x
+          <para>matriz quadrada não-singular <literal>(nstate x
           nstate)</literal></para>
         </listitem>
       </varlistentry>
@@ -90,12 +90,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>sl=ssrand(nout,nin,nstate)</literal> retorna um sistema em
-    espaÃ§o de estado randÃ´mico estritamente prÃ³prio (<literal>D=0</literal>)
+    espaço de estado randômico estritamente próprio (<literal>D=0</literal>)
     de tamanho <literal>[nout,nint]</literal> representado por uma lista
-    <literal>syslin</literal> e com <literal>nstate</literal> variÃ¡veis de
+    <literal>syslin</literal> e com <literal>nstate</literal> variáveis de
     estado.</para>
 
     <para><literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> retorna um
@@ -115,16 +115,16 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
    
     </programlisting>
 
-    <para>A completa descriÃ§Ã£o dos <literal>Sys</literal> Ã© dada no cÃ³digo da
-    funÃ§Ã£o <literal>ssrand</literal> (em
+    <para>A completa descrição dos <literal>Sys</literal> é dada no código da
+    função <literal>ssrand</literal> (em
     <literal>SCIDIR/macros/util</literal>). Por exemplo, com
     <literal>flag=list('co',dim_cont_subs)</literal> um sistema
-    nÃ£o-controlÃ¡vel Ã© retornado e <literal>dim_cont_subs</literal> Ã© a
-    dimensÃ£o do subespaÃ§o controlÃ¡vel de <literal>Sys</literal>. Os strings
+    não-controlável é retornado e <literal>dim_cont_subs</literal> é a
+    dimensão do subespaço controlável de <literal>Sys</literal>. Os strings
     <literal>'co','uo','ncno','st','dt','on','ui'</literal> significam
-    "controlÃ¡vel", "inobservÃ¡vel", "nÃ£o-controlÃ¡vel-nÃ£o-observÃ¡vel",
-    "estabilizÃ¡vel", "detectÃ¡vel", "anulador-de-saÃ­da",
-    "saÃ­da-desconhecida".</para>
+    "controlável", "inobservável", "não-controlável-não-observável",
+    "estabilizável", "detectável", "anulador-de-saída",
+    "saída-desconhecida".</para>
   </refsection>
 
   <refsection>
@@ -140,16 +140,16 @@ flag=list('ui',nw,nwu,nwui,nwuis,rk)
 //A=  [0,0,i,*;   B=[0;
 //    [0,0,0,u]     [0]
 //     
-// (A11,B1) controlÃ¡vel  s=matriz estÃ¡vel i=matriz neutra u=matriz instÃ¡vel
+// (A11,B1) controlável  s=matriz estável i=matriz neutra u=matriz instável
 [Sl,U]=ssrand(2,3,8,list('st',2,5,5));
-w=ss2ss(Sl,inv(U)); //desfaz a mudanÃ§a aleatÃ³ria de base=&gt; forma como acima
+w=ss2ss(Sl,inv(U)); //desfaz a mudança aleatória de base=&gt; forma como acima
 [n,nc,u,sl]=st_ility(Sl);n,nc
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="syslin">syslin</link></member>

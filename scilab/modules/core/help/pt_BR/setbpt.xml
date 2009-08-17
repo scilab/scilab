@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="setbpt" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,13 +17,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>setbpt(macroname [,linenumb])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -45,25 +45,25 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>setbpt</literal> insere interativamente um ponto de parada
-    na linha de nÃºmero <literal>linenumb</literal> (valor padrÃ£o Ã© 1) da
-    funÃ§Ã£o <literal>macroname</literal></para>
+    na linha de número <literal>linenumb</literal> (valor padrão é 1) da
+    função <literal>macroname</literal></para>
 
     <para><literal>linenumb</literal> pode ser um vetor linha ou coluna dos
-    nÃºmeros das linhas, ou um Ãºnico nÃºmero de linha escalar.</para>
+    números das linhas, ou um único número de linha escalar.</para>
 
-    <para>Quando alcanÃ§a o ponto de parada, o Scilab avalia a linha
-    especificada, imprime o nÃºmero da linha e da funÃ§Ã£o. Se a funÃ§Ã£o nÃ£o for
-    compilada (see <literal>comp</literal>) , a linha Ã© exibida na tela.
-    EntÃ£o, o Scilab entra em modo <literal>pause</literal> no qual o usuÃ¡rio
-    pode verificar os valores correntes. O <literal>pause</literal> Ã©
+    <para>Quando alcança o ponto de parada, o Scilab avalia a linha
+    especificada, imprime o número da linha e da função. Se a função não for
+    compilada (see <literal>comp</literal>) , a linha é exibida na tela.
+    Então, o Scilab entra em modo <literal>pause</literal> no qual o usuário
+    pode verificar os valores correntes. O <literal>pause</literal> é
     cancelado com <literal>resume</literal> ou <literal>abort</literal>.
-    Redefinir a funÃ§Ã£o nÃ£o limpa pontos de parada, o usuÃ¡rio deve deletar os
-    pontos de parada explicitamente usando <literal>delbpt</literal>. O nÃºmero
-    mÃ¡ximo de funÃ§Ãµes com pontos de parada habilitados deve ser menor que 100
-    e o nÃºmero mÃ¡ximo de pontos de parada Ã© 1000.</para>
+    Redefinir a função não limpa pontos de parada, o usuário deve deletar os
+    pontos de parada explicitamente usando <literal>delbpt</literal>. O número
+    máximo de funções com pontos de parada habilitados deve ser menor que 100
+    e o número máximo de pontos de parada é 1000.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ setbpt('foo',[1,2,5,6]),dispbpt()</programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="delbpt">delbpt</link></member>

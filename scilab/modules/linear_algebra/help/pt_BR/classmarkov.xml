@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,13 +29,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@
         <term>perm</term>
 
         <listitem>
-          <para>vetor de permutaÃ§Ã£o de inteiros</para>
+          <para>vetor de permutação de inteiros</para>
         </listitem>
       </varlistentry>
 
@@ -59,8 +59,8 @@
         <term>rec, tr</term>
 
         <listitem>
-          <para>vetor de inteiros, nÃºmero (nÃºmero de estados em cada classe
-          recorrente, nÃºmero de estados transientes) </para>
+          <para>vetor de inteiros, número (número de estados em cada classe
+          recorrente, número de estados transientes) </para>
         </listitem>
       </varlistentry>
 
@@ -68,7 +68,7 @@
         <term>indsRec,indsT</term>
 
         <listitem>
-          <para>vetor de inteiros (Ã­ndices dos estados recorrentes e
+          <para>vetor de inteiros (índices dos estados recorrentes e
           transientes)</para>
         </listitem>
       </varlistentry>
@@ -76,9 +76,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna um vetor de permutaÃ§Ã£o <literal>perm</literal> tal
+    <para>Retorna um vetor de permutação <literal>perm</literal> tal
     que</para>
 
     <programlisting>
@@ -92,12 +92,12 @@ M(perm,perm) = [M11 0 0 0 0   0]
    
     </programlisting>
 
-    <para>Cada <literal>Mii</literal> Ã© uma matriz de Markov de dimensÃ£o
-    <literal>rec(i) i=1,..,r</literal>. <literal>Q</literal> Ã© uma submatriz
-    de Markov de dimensÃ£o <literal>tr</literal>. Estados de 1 a sum(rec) sÃ£o
-    recorrentes e estados de r+1 a n sÃ£o transientes. Tem-se
-    <literal>perm=[indsRec,indsT]</literal> onde indsRec Ã© um vetor de tamanho
-    sum(rec) e indsT Ã© um vetor de tamanho tr.</para>
+    <para>Cada <literal>Mii</literal> é uma matriz de Markov de dimensão
+    <literal>rec(i) i=1,..,r</literal>. <literal>Q</literal> é uma submatriz
+    de Markov de dimensão <literal>tr</literal>. Estados de 1 a sum(rec) são
+    recorrentes e estados de r+1 a n são transientes. Tem-se
+    <literal>perm=[indsRec,indsT]</literal> onde indsRec é um vetor de tamanho
+    sum(rec) e indsT é um vetor de tamanho tr.</para>
   </refsection>
 
   <refsection>
@@ -114,7 +114,7 @@ P(perm,perm)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="genmarkov">genmarkov</link></member>

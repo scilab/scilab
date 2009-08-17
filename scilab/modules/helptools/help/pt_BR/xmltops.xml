@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xmltops" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xmltops</refname>
+
+    <refpurpose>converte arquivos de ajuda xml do Scilab para formato
+    Postscript</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xmltops(dirs [,titles [,dir_language [default_language]]]]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dirs</term>
+
+        <listitem>
+          <para>vetor de strings: um conjunto de endereços de diretórios para
+          os quais os manuais postscript devem ser gerados ou <literal>[]
+          </literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>titles</term>
+
+        <listitem>
+          <para>vetor de strings: títulos associados a endereços de diretórios
+          ou []</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dir_language</term>
+
+        <listitem>
+          <para>vetor de strings: idiomas associados a endereços de diretórios
+          ou []</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>default_language</term>
+
+        <listitem>
+          <para>vetor de strings: idiomas padrões associados aos endereços de
+          diretórios ou []. Se um arquivo XML estiver faltando em
+          dir_language, ele é copiado de default_language.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Converte arquivos de ajuda Scilab contidos em um conjunto de
+    diretórios para formato PS.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+
+// example_1/
+// `-- help
+//     |-- en_US
+//     |   |-- example_1_function_1.xml
+//     |   |-- example_1_function_2.xml
+//     |   `-- example_1_function_3.xml
+//     `-- fr_FR
+//         |-- example_1_function_1.xml
+//         |-- example_1_function_2.xml
+//         `-- example_1_function_3.xml
+//     `-- zh_TW
+//         |-- example_1_function_1.xml
+//         |-- example_1_function_2.xml
+//         `-- example_1_function_3.xml
+
+
+
+my_module_path = pathconvert(SCI+'/modules/helptools/examples/example_1',%f,%f)
+
+// Construindo a ajuda em francês
+// =============================================================================
+my_french_help_dir    = my_module_path+'/help/fr_FR';
+my_french_help_title  = 'Example 1 [fr_FR]';
+my_french_ps          = xmltops(my_french_help_dir,my_french_help_title,'fr_FR')
+
+
+// Construindo a ajuda em inglês
+// =============================================================================
+my_english_help_dir   = my_module_path+'/help/en_US';
+my_english_help_title = 'Example 1 [EN_US]';
+my_english_ps         = xmltops(my_english_help_dir,my_english_help_title,'en_US')
+
+
+// Construindo a ajuda em chinês
+// =============================================================================
+my_chinese_help_dir   = my_module_path+'/help/zh_TW';
+my_chinese_help_title = 'Example 1 [zh_TW]';
+my_chinese_ps         = xmltops(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
+
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+
+      <member><link
+      linkend="add_help_chapter">add_help_chapter</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

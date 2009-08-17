@@ -70,6 +70,7 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 	-I$(srcdir)/src/c \
 	-I$(srcdir)/includes/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscistring.la

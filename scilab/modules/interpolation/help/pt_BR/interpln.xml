@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="interpln" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>interpln</refname>
 
-    <refpurpose>interpolaÃ§Ã£o linear</refpurpose>
+    <refpurpose>interpolação linear</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=interpln(xyd,x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -53,12 +53,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado <literal>xyd</literal> um conjunto de pontos no plano xy de
     abscissas crescentes e <literal>x</literal> aum conjunto de abscissas,
-    esta funÃ§Ã£o computa <literal>y</literal> , os valores correspondentes Ã s
-    ordenadas, por interpolaÃ§Ã£o linear.</para>
+    esta função computa <literal>y</literal> , os valores correspondentes às
+    ordenadas, por interpolação linear.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ plot2d((-4:45)',yi',[3],"000");
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin">splin</link></member>

@@ -454,11 +454,9 @@ namespace DotNetScilab
         /// </summary>
         /// <param name="matrixName"> variable name</param>
         /// <returns>scilab type (see enum ScilabType)</returns>
-        public unsafe int getNamedMatrixType(string matrixName)
+        public int getNamedMatrixType(string matrixName)
         {
-            int* piAdress = null;
-            getVarAddressFromName(matrixName, &piAdress);
-            return getVarType(piAdress);
+            return getNamedVarType(matrixName);
         }
         //=============================================================================
         /// <summary>
@@ -642,6 +640,14 @@ namespace DotNetScilab
         [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
         private unsafe static extern int getVarAddressFromName([In] String _pstName,
                                                                [Out] Int32** _piAddress);
+        //=============================================================================
+        /// <summary>
+        /// get Variable type in scilab stack from name
+        /// </summary>
+        /// <param name="_pstName">variable name</param>
+        /// <returns>type or -1</returns>
+        [DllImport(API_SCILAB_DLL, CharSet = CharSet.Ansi)]
+        private unsafe static extern int getNamedVarType([In] String _pstName);
         //=============================================================================
         /// <summary>
         /// get variable type with adress in scilab stack

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="seteventhandler" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>seteventhandler</refname>
+
+    <refpurpose>Define um gerenciador de eventos para uma janela
+    gráfica</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>seteventhandler(sfun_name)
+seteventhandler('')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sfun_name</term>
+
+        <listitem>
+          <para>string. O nome da função do Scilab com a qual se pretende
+          gerenciar os eventos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função permite que o usuário defina um gerenciador de eventos
+    particular para janela gráfica corrente. <literal>seteventhandler('')
+    </literal> remove o gerenciador.</para>
+
+    <para>Para mais informações sobre o gerenciador de eventos, veja a página
+    <link linkend="eventhandlerfunctions">event handler
+    functions</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   function my_eventhandler(win,x,y,ibut)
+      if ibut==-1000 then return,end
+      [x,y]=xchange(x,y,'i2f')
+       xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
+   endfunction
+   plot2d()
+   seteventhandler('my_eventhandler')
+   //agora:
+   //   -  mova o mouse sobre a janela gráfica
+   //   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
+   //   -  pressione um botão, espere um pouco e libere
+   //   -  pressione e libere um botão
+   //   -  clique duas vezes em um botão
+
+
+   seteventhandler('') //suprimindo o gerenciador de eventos
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="addmenu">addmenu</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="xclick">xclick</link></member>
+
+      <member><link linkend="xchange">xchange</link></member>
+
+      <member><link linkend="eventhandlerfunctions">event handler
+      functions</link></member>
+
+      <member><link
+      linkend="figure_properties">figure_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

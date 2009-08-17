@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="left" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,43 +17,43 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[a11,a12,...;a21,a22,...;...]
 [s1,s2,...]=func(...)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a11,a12,...</term>
 
         <listitem>
-          <para>matriz de qualquer tipo compatÃ­vel com dimensÃµes compatÃ­veis.
-          s1,s2,... : qualquer nome de variÃ¡vel possÃ­vel</para>
+          <para>matriz de qualquer tipo compatível com dimensões compatíveis.
+          s1,s2,... : qualquer nome de variável possível</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Colchetes esquerdo e direito sÃ£o usados para concatenaÃ§Ã£o de vetores
-    e matrizes. Estes sÃ­mbolos tambÃ©m sÃ£o utilizados para denotar um lado
-    esquerdo mÃºltiplo para uma chamada de funÃ§Ã£o.</para>
+    <para>Colchetes esquerdo e direito são usados para concatenação de vetores
+    e matrizes. Estes símbolos também são utilizados para denotar um lado
+    esquerdo múltiplo para uma chamada de função.</para>
 
-    <para>Dentro de colchetes de concatenaÃ§Ã£o, espaÃ§os em branco ou vÃ­rgulas
-    significam "concatenaÃ§Ã£o de colunas"; pontos-e-vÃ­rgulas e retornos de
-    carro significam "concatenaÃ§Ã£o de linhas".</para>
+    <para>Dentro de colchetes de concatenação, espaços em branco ou vírgulas
+    significam "concatenação de colunas"; pontos-e-vírgulas e retornos de
+    carro significam "concatenação de linhas".</para>
 
-    <para>Nota : para evitar confusÃµes, Ã© preferÃ­vel que se use vÃ­rgula no
-    lugar de espaÃ§os em branco para separar colunas.</para>
+    <para>Nota : para evitar confusões, é preferível que se use vírgula no
+    lugar de espaços em branco para separar colunas.</para>
 
-    <para>Dentro de colchetes de lado esquerdo mÃºltiplo, nomes de variÃ¡veis
-    devem ser separados por vÃ­rgula.</para>
+    <para>Dentro de colchetes de lado esquerdo múltiplo, nomes de variáveis
+    devem ser separados por vírgula.</para>
   </refsection>
 
   <refsection>
@@ -74,7 +74,7 @@ s=poly(0,'s');[1/s,2/s]
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="comma">comma</link></member>

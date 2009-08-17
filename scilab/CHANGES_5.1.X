@@ -6,11 +6,16 @@
 Improvements:
 =============
 
+* Portugues do Brazil Localization added (Thanks Daniel de Souza Grilo and others)
+
+* More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
+
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
 Functions removed:
 ==================
-* lgfft (http://bugzilla.scilab.org/show_bug.cgi?id=4600)
+
+* lgfft (See bug #4600)
 
 Compilation:
 ============
@@ -95,6 +100,12 @@ Bug fixes:
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
  * bug 2042 fixed - copy function altered axes properties.
+
+ * bug 2347 fixed - "fun2string" indentation problem with select/case 
+                    instruction.
+
+ * bug 2446 fixed - "while" documentation help page improved to explain 
+                    that the key words do or then can be ommited .
 
  * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
                     Debian Etch, Centos 4.X and some other old operating 
@@ -214,6 +225,7 @@ Bug fixes:
 
  * bug 4683 fixed - There is no example of the use of tlist in the dedicated page.
 
+ * bug 4710 fixed - Error with C++ interface which uses the function CreateVar.
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

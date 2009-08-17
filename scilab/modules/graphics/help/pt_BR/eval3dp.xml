@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>eval3dp</refname>
 
-    <refpurpose>computa facetas 3d de uma superfÃ­cie
+    <refpurpose>computa facetas 3d de uma superfície
     parametrizada</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -43,9 +43,9 @@
 
         <listitem>
           <para>matrizes de tamanho (4,n-1*m-1). <literal>Xf(:,i)</literal>
-          ,<literal>Yf(:,i)</literal> e <literal>Zf(:,i)</literal> sÃ£o
+          ,<literal>Yf(:,i)</literal> e <literal>Zf(:,i)</literal> são
           respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
-          i-Ã©sima faceta de quatro lados. </para>
+          i-ésima faceta de quatro lados. </para>
         </listitem>
       </varlistentry>
 
@@ -53,7 +53,7 @@
         <term>fun</term>
 
         <listitem>
-          <para>uma funÃ§Ã£o do Scilab. </para>
+          <para>uma função do Scilab. </para>
         </listitem>
       </varlistentry>
 
@@ -76,14 +76,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>eval3dp</literal> computa uma representaÃ§Ã£o de uma faceta
-    de quatro lados de uma superfÃ­cie 3d parametrizada definida pela funÃ§Ã£o
+    <para><literal>eval3dp</literal> computa uma representação de uma faceta
+    de quatro lados de uma superfície 3d parametrizada definida pela função
     <literal>fun</literal>. <literal>fun(p1,p2)</literal> computa as
-    coordenadas nos eixos x, y e z dos pontos correspondentes da superfÃ­cie
-    como [x(i),y(i),z(i)]=fun(p1(i),p2(i)). Isto Ã© usado para
-    eficiÃªncia.</para>
+    coordenadas nos eixos x, y e z dos pontos correspondentes da superfície
+    como [x(i),y(i),z(i)]=fun(p1(i),p2(i)). Isto é usado para
+    eficiência.</para>
   </refsection>
 
   <refsection>
@@ -103,7 +103,7 @@ plot3d(Xf,Yf,Zf)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="genfac3d">genfac3d</link></member>

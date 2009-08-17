@@ -65,7 +65,7 @@ Core functions:
      + type
      + typename
      
- - sethomedirectory is obsolete. 
+ - sethomedirectory is obsolete (see home). 
 
 fileio functions:
 =================
@@ -78,7 +78,8 @@ fileio functions:
   
   - pathconvert : If the flagtrail argument is set to FALSE and the trailing separator
                   of the path is removed (if present of course). See Bug 4468.
-
+                  
+  - getcwd is obsolete (see pwd). 
 Dynamic link:
 =============
 
@@ -149,6 +150,12 @@ manage this format but ISO-8859.
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+Java/Scilab API:
+================
+ - uses new C API functions to write & read datas (internal for javasci)
+ - SciInteger class added  
+ 
+ 
 Bug fixes:
 ==========
 

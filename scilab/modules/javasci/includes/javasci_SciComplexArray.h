@@ -46,4 +46,4 @@ JNIEXPORT jdouble JNICALL Java_javasci_SciComplexArray_GetImaginaryPartElement(J
 }
 #endif
 #endif
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/

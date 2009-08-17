@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xarcs(arcs,[style])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,18 +57,18 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xarcs</literal> desenha parte de um conjunto de elipses
     descritas por <literal>arcs</literal>: <literal>arcs=[x y w h a1 a2;x y w
-    h a1 a2;...]'</literal> onde cada elipse √© definida por 6 par√¢metros
+    h a1 a2;...]'</literal> onde cada elipse È definida por 6 par‚metros
     <literal>(x,y,w,h,a1,a2)</literal> (ver <literal>xarc</literal>).</para>
 
-    <para><literal>x, y, w, h</literal> s√£o especificados nas coordenadas do
-    usu√°rio.</para>
+    <para><literal>x, y, w, h</literal> s„o especificados nas coordenadas do
+    usu·rio.</para>
 
     <para><literal>style(i)</literal> fornece a cor utilizada para desenhar a
-    elipse n√∫mero <literal>i</literal>.</para>
+    elipse n˙mero <literal>i</literal>.</para>
   </refsection>
 
   <refsection>
@@ -81,15 +81,15 @@ arcs=[-1.0 0.0 0.5; // x superior esquerdo
        1.0 0.0 0.5; // y superior esquerdo
        0.5 1.0 0.5; // largura
        0.5 0.5 1.0; // altura
-       0.0 0.0 0.0; // √¢ngulo 1
-       180*64 360*64 90*64]; // √¢ngulo 2
+       0.0 0.0 0.0; // ‚ngulo 1
+       180*64 360*64 90*64]; // ‚ngulo 2
 xarcs(arcs,[1,2,3])
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xarc">xarc</link></member>

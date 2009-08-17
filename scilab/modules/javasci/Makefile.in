@@ -101,12 +101,14 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @JAVASCI_TRUE@libjavasci_la_DEPENDENCIES =  \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 am__libjavasci_la_SOURCES_DIST = src/c/javasci_Scilab2.c \
 	src/c/javasci_globals.c src/c/javasci_SciAbstractArray.c \
 	src/c/javasci_SciStringArray.c src/c/javasci_SciComplexArray.c \
 	src/c/fix.c src/c/javasci_SciDoubleArray.c \
-	src/c/javasci_Scilab.c src/c/javasci_SciBooleanArray.c
+	src/c/javasci_Scilab.c src/c/javasci_SciBooleanArray.c \
+	src/c/javasci_SciIntegerArray.c
 @JAVASCI_TRUE@am__objects_1 = libjavasci_la-javasci_Scilab2.lo \
 @JAVASCI_TRUE@	libjavasci_la-javasci_globals.lo \
 @JAVASCI_TRUE@	libjavasci_la-javasci_SciAbstractArray.lo \
@@ -115,7 +117,8 @@ am__libjavasci_la_SOURCES_DIST = src/c/javasci_Scilab2.c \
 @JAVASCI_TRUE@	libjavasci_la-fix.lo \
 @JAVASCI_TRUE@	libjavasci_la-javasci_SciDoubleArray.lo \
 @JAVASCI_TRUE@	libjavasci_la-javasci_Scilab.lo \
-@JAVASCI_TRUE@	libjavasci_la-javasci_SciBooleanArray.lo
+@JAVASCI_TRUE@	libjavasci_la-javasci_SciBooleanArray.lo \
+@JAVASCI_TRUE@	libjavasci_la-javasci_SciIntegerArray.lo
 @JAVASCI_TRUE@am_libjavasci_la_OBJECTS = $(am__objects_1)
 libjavasci_la_OBJECTS = $(am_libjavasci_la_OBJECTS)
 libjavasci_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -149,6 +152,7 @@ am__libjavasci_la_include_HEADERS_DIST = includes/javasci_Scilab.h \
 	includes/javasci_SciComplexArray.h \
 	includes/javasci_SciDoubleArray.h \
 	includes/javasci_SciBooleanArray.h \
+	includes/javasci_SciIntegerArray.h \
 	includes/javasci_SciAbstractArray.h
 libjavasci_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libjavasci_la_include_HEADERS)
@@ -400,7 +404,8 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@src/c/fix.c \
 @JAVASCI_TRUE@src/c/javasci_SciDoubleArray.c \
 @JAVASCI_TRUE@src/c/javasci_Scilab.c \
-@JAVASCI_TRUE@src/c/javasci_SciBooleanArray.c
+@JAVASCI_TRUE@src/c/javasci_SciBooleanArray.c \
+@JAVASCI_TRUE@src/c/javasci_SciIntegerArray.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci.la
 @JAVASCI_TRUE@libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -416,11 +421,13 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+@JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
 
@@ -433,6 +440,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 @JAVASCI_TRUE@includes/javasci_SciComplexArray.h \
 @JAVASCI_TRUE@includes/javasci_SciDoubleArray.h \
 @JAVASCI_TRUE@includes/javasci_SciBooleanArray.h \
+@JAVASCI_TRUE@includes/javasci_SciIntegerArray.h \
 @JAVASCI_TRUE@includes/javasci_SciAbstractArray.h
 
 
@@ -453,31 +461,28 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 ### javasci : special tests ###
 @JAVASCI_TRUE@libsciscipad_la_specialtestdir = $(mydatadir)/tests
-@JAVASCI_TRUE@libsciscipad_la_specialtest_DATA = tests/Boolean.java \
-@JAVASCI_TRUE@tests/Boolean.dia.ref \
-@JAVASCI_TRUE@tests/BooleanArray.java \
-@JAVASCI_TRUE@tests/BooleanArray.dia.ref \
-@JAVASCI_TRUE@tests/Clf.java \
-@JAVASCI_TRUE@tests/Clf.dia.ref \
-@JAVASCI_TRUE@tests/Disp.java \
-@JAVASCI_TRUE@tests/Disp.dia.ref \
-@JAVASCI_TRUE@tests/Exec.java  \
-@JAVASCI_TRUE@tests/Exec.dia.ref \
-@JAVASCI_TRUE@tests/Real1.java \
-@JAVASCI_TRUE@tests/Real1.dia.ref \
-@JAVASCI_TRUE@tests/Real2.java \
-@JAVASCI_TRUE@tests/Real2.dia.ref \
-@JAVASCI_TRUE@tests/Real3.dia.ref \
-@JAVASCI_TRUE@tests/Real3.java \
-@JAVASCI_TRUE@tests/String1.java \
-@JAVASCI_TRUE@tests/String1.dia.ref \
-@JAVASCI_TRUE@tests/Strings1.dia.ref \
-@JAVASCI_TRUE@tests/Strings1.java \
-@JAVASCI_TRUE@tests/Strings2.java \
-@JAVASCI_TRUE@tests/Strings2.dia.ref \
-@JAVASCI_TRUE@tests/JavaTests.sce \
-@JAVASCI_TRUE@tests/Makefile.mak \
-@JAVASCI_TRUE@tests/Makefile
+@JAVASCI_TRUE@libsciscipad_la_specialtest_DATA = tests/unit_tests/Boolean.java \
+@JAVASCI_TRUE@tests/unit_tests/Boolean.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/BooleanArray.java \
+@JAVASCI_TRUE@tests/unit_tests/BooleanArray.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Clf.java \
+@JAVASCI_TRUE@tests/unit_tests/Clf.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Disp.java \
+@JAVASCI_TRUE@tests/unit_tests/Disp.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Exec.java  \
+@JAVASCI_TRUE@tests/unit_tests/Exec.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Real1.java \
+@JAVASCI_TRUE@tests/unit_tests/Real1.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Real2.java \
+@JAVASCI_TRUE@tests/unit_tests/Real2.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Real3.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Real3.java \
+@JAVASCI_TRUE@tests/unit_tests/String1.java \
+@JAVASCI_TRUE@tests/unit_tests/String1.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Strings1.dia.ref \
+@JAVASCI_TRUE@tests/unit_tests/Strings1.java \
+@JAVASCI_TRUE@tests/unit_tests/Strings2.java \
+@JAVASCI_TRUE@tests/unit_tests/Strings2.dia.ref
 
 @JAVASCI_TRUE@USEANT = 1
 
@@ -617,6 +622,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciBooleanArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciComplexArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciDoubleArray.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_SciStringArray.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_Scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libjavasci_la-javasci_Scilab2.Plo@am__quote@
@@ -705,6 +711,13 @@ libjavasci_la-javasci_SciBooleanArray.lo: src/c/javasci_SciBooleanArray.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciBooleanArray.c' object='libjavasci_la-javasci_SciBooleanArray.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciBooleanArray.lo `test -f 'src/c/javasci_SciBooleanArray.c' || echo '$(srcdir)/'`src/c/javasci_SciBooleanArray.c
+
+libjavasci_la-javasci_SciIntegerArray.lo: src/c/javasci_SciIntegerArray.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -MT libjavasci_la-javasci_SciIntegerArray.lo -MD -MP -MF $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Tpo -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Tpo $(DEPDIR)/libjavasci_la-javasci_SciIntegerArray.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/javasci_SciIntegerArray.c' object='libjavasci_la-javasci_SciIntegerArray.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libjavasci_la_CFLAGS) $(CFLAGS) -c -o libjavasci_la-javasci_SciIntegerArray.lo `test -f 'src/c/javasci_SciIntegerArray.c' || echo '$(srcdir)/'`src/c/javasci_SciIntegerArray.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

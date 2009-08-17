@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,34 +24,34 @@
   <refnamediv>
     <refname>derivat</refname>
 
-    <refpurpose>derivada de matriz de razÃµes de polinÃ´mios</refpurpose>
+    <refpurpose>derivada de matriz de razões de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>pd=derivat(p)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios ou de razÃµes de polinÃ´mios</para>
+          <para>matriz de polinômios ou de razões de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa a derivada da matriz de polinÃ´mios ou de funÃ§Ãµes racionais
-    em relaÃ§Ã£o Ã  variÃ¡vel livre.</para>
+    <para>Computa a derivada da matriz de polinômios ou de funções racionais
+    em relação à variável livre.</para>
   </refsection>
 
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>setfield</refname>
 
-    <refpurpose>inserÃ§Ã£o de campos de listas</refpurpose>
+    <refpurpose>inserção de campos de listas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>setfield(i,x,l)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,17 +57,17 @@
         <term>i</term>
 
         <listitem>
-          <para>Ã­ndice de campo, ver "insertion" para mais detalhes.</para>
+          <para>índice de campo, ver "insertion" para mais detalhes.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o Ã© equivalente Ã  sintaxe <literal>l(i)=x</literal> spara
-    inserÃ§Ã£o de campos, com a Ãºnica diferenÃ§a de que tambÃ©m se aplica a
+    <para>Esta função é equivalente à sintaxe <literal>l(i)=x</literal> spara
+    inserção de campos, com a única diferença de que também se aplica a
     objetos <literal>mlist</literal>.</para>
   </refsection>
 
@@ -82,14 +82,14 @@ l(0)='Adicionado'
 l(6)=['mais um';'adicionado']
 //
 
-a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes sÃ£o codificadas usando-se mlists
+a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes são codificadas usando-se mlists
 setfield(3,1:8,a);a // ajusta o valor de campo para 1:8
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="insertion">insertion</link></member>

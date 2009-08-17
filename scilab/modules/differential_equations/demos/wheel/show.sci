@@ -147,7 +147,7 @@ function []=wheel_build_and_load()
 	// we use TMPDIR
 	
 	if ~c_link("wheel") then
-		my_cur_path = getcwd();
+		my_cur_path = pwd();
 		chdir(TMPDIR);
 		path  = SCI+"/modules/differential_equations/demos/wheel/Maple";
 		fcode = mgetl(path+"/dlslv.f");  mputl(fcode,"dlslv.f");

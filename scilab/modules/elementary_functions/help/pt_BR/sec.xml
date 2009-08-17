@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="sec" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -21,13 +21,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = sec(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,10 +49,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa a secante elemento a elemento do argumento. A secante Ã© uma
-    funÃ§Ã£o periÃ³dica definida como 1/cos. Para dados reais, os resultados sÃ£o
+    <para>Computa a secante elemento a elemento do argumento. A secante é uma
+    função periódica definida como 1/cos. Para dados reais, os resultados são
     reais em <literal>]-%inf -1] U [1 %inf[</literal>.</para>
   </refsection>
 
@@ -68,7 +68,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cos">cos</link></member>
@@ -86,8 +86,8 @@
   </refsection>
 
   <refsection>
-    <title>FunÃ§Ã£o Usada</title>
+    <title>Função Usada</title>
 
-    <para>Esta funÃ§Ã£o usa a funÃ§Ã£o <literal>cos</literal>.</para>
+    <para>Esta função usa a função <literal>cos</literal>.</para>
   </refsection>
 </refentry>

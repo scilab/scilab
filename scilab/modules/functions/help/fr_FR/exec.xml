@@ -170,7 +170,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
         <link linkend="chdir">chdir</link>
       </member>
       <member>
-        <link linkend="getcwd">getcwd</link>
+        <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
   </refsection>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) Digiteo - 2009 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="get" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>get</refname>
+
+    <refpurpose>Recupera um valor de propriedade de uma entidade de gráficos
+    ou um objeto Interface do Usuário.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>h=get(prop)
+val=get(h,prop)
+val=h.prop</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador da entidade da qual se deseja recuperar uma
+          propriedade. <literal>h</literal> pode ser um vetor de manipuladores
+          e, neste caso, get retorna os valores da propriedade definidos para
+          todos os objetos identificados por h. <literal>h</literal> também
+          pode ser <emphasis>0</emphasis> para se retornar as propriedades do
+          objeto raiz.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop</term>
+
+        <listitem>
+          <para>string com o nome da propriedade. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val</term>
+
+        <listitem>
+          <para>objeto Scilab, o valor da propriedade.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta rotina pode ser utilizada para se recuperar o valor de uma
+    propriedade especificada de uma entidade de gráficos ou objeto GUI. Neste
+    caso, é equivalente a se usar o operador ponto ('.') em um manipulador.
+    Por exemplo, <literal>get(h,"background")</literal> é equivalente a
+    <literal>h.background</literal>.</para>
+
+    <para>Nomes de propriedades são strings. Para obter a lista de todas as
+    propriedade existentes ver <link
+    linkend="graphics_entities">graphics_entities</link> ou <link
+    linkend="uicontrol">uicontrol</link> para objetos de Interface do
+    Usuário</para>
+
+    <para><literal>get</literal> também pode ser chamado com apenas uma
+    propriedade como argumento. Neste caso, a propriedade deve ser uma das
+    seguintes: <variablelist>
+        <varlistentry>
+          <term>current_entity or hdl</term>
+
+          <listitem>
+            <para>retorna o manipulador da última (e ainda existente) entidade
+            criada. <literal>get('current_entity')</literal> e
+            <literal>get('hdl')</literal> equivalem a <link
+            linkend="gce">gce</link>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>current_figure</term>
+
+          <listitem>
+            <para>retorna o manipulador da figura (Figure) corrente.
+            <literal>get('current_figure')</literal> equivale a <link
+            linkend="gcf">gcf</link>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>current_axes</term>
+
+          <listitem>
+            <para>retorna o manipulador da entidade de eixos (Axes) corrente.
+            <literal>get('current_axes')</literal> equivale a <link
+            linkend="gca">gca</link>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>default_figure</term>
+
+          <listitem>
+            <para>retorna o manipulador da figura padrão.
+            <literal>get('default_figure')</literal> equivale a <link
+            linkend="gdf">gdf</link>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>default_axes</term>
+
+          <listitem>
+            <para>retorna o manipulador dos eixos padrões.
+            <literal>get('default_axes')</literal>equivale a <link
+            linkend="gda">gda</link>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>figures_id</term>
+
+          <listitem>
+            <para>retorna um vetor contendo os ids de todas as figuras
+            gráficas abertas. <literal>get('figures_id')</literal> equivale a
+            <link linkend="winsid">winsid</link>.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+  // para entidades gráficas
+    clf()
+    
+    // objetos gráficos simples
+    subplot(121);
+    x=[-.2:0.1:2*%pi]';
+    plot2d(x-2,x.^2);
+    subplot(122);
+    xrect(.2,.7,.5,.2);     
+    xrect(.3,.8,.3,.2);
+    xfarc(.25,.55,.1,.15,0,64*360);
+    xfarc(.55,.55,.1,.15,0,64*360);
+    xstring(0.2,.9,"Exemplo &lt;&lt;UM CARRO&gt;&gt;");
+ 
+    h=get("current_entity") //obtendo o novo objeto criado
+    h.font_size=3;
+ 
+    f=get("current_figure") //obtendo a figura corrente 
+    f.figure_size
+    f.figure_size=[700 500];
+    f.children
+    f.children(2).type
+    f.children(2).children
+    f.children(2).children.children.thickness=4; 
+ 
+    a=get("current_axes") //obtendo os eixos correntes
+    a.children.type
+    a.children.foreground //obtendo a cor de primeiro plano de um conjunto de objetos gráficos
+    a.children.foreground=9;
+
+  // para objetos de Interface do Usuário
+   h=uicontrol('string', 'Button'); // Abrindo uma janela com um botão.
+   p=get(h,'position'); // obtendo o aspecto geométrico do botão
+   disp('Largura do botão: ' + string(p(3))); // imprimindo a largura do botão
+   close(); // fechando a figura
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="uicontrol">uicontrol</link></member>
+
+      <member><link linkend="root_properties">root_properties</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link linkend="set">set</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

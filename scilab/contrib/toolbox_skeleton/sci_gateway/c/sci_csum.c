@@ -9,8 +9,7 @@
 #include "api_double.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-/* ==================================================================== */
-extern int csum(double *a,double *b,double *c);
+#include "csum.h"
 /* ==================================================================== */
 int sci_csum(char *fname)
 {
@@ -71,6 +70,13 @@ int sci_csum(char *fname)
   m_out = 1;  n_out = 1;
   createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
   LhsVar(1) = Rhs + 1; 
+  
+  /* This function put on scilab stack, the lhs variable
+  which are at the position lhs(i) on calling stack */
+  /* You need to add PutLhsVar here because WITHOUT_ADD_PUTLHSVAR 
+  was defined and equal to %t */
+  /* without this, you do not need to add PutLhsVar here */
+  PutLhsVar();
   
   return 0;
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[t]=typeof(object)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,7 +56,7 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>t=typeof(object)</literal> retorna um dos seguintes
     strings:</para>
@@ -66,7 +66,7 @@
         <term>"constant"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz constante de reais ou
+          <para>se o objeto é uma matriz constante de reais ou
           complexos</para>
         </listitem>
       </varlistentry>
@@ -75,7 +75,7 @@
         <term>"polynomial"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz de polinÃ´mios</para>
+          <para>se o objeto é uma matriz de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -83,7 +83,7 @@
         <term>"function"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma funÃ§Ã£o (cÃ³digo Scilab).</para>
+          <para>se o objeto é uma função (código Scilab).</para>
         </listitem>
       </varlistentry>
 
@@ -91,7 +91,7 @@
         <term>"handle"</term>
 
         <listitem>
-          <para>se o objeto Ã© um manipulador ("alÃ§a")</para>
+          <para>se o objeto é um manipulador ("alça")</para>
         </listitem>
       </varlistentry>
 
@@ -99,7 +99,7 @@
         <term>"string"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz de strings</para>
+          <para>se o objeto é uma matriz de strings</para>
         </listitem>
       </varlistentry>
 
@@ -107,7 +107,7 @@
         <term>"boolean"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz de valores booleanos</para>
+          <para>se o objeto é uma matriz de valores booleanos</para>
         </listitem>
       </varlistentry>
 
@@ -115,7 +115,7 @@
         <term>"list"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma lista</para>
+          <para>se o objeto é uma lista</para>
         </listitem>
       </varlistentry>
 
@@ -123,8 +123,8 @@
         <term>"rational"</term>
 
         <listitem>
-          <para>se o objeto Ã© a Ã© uma martriz de razÃµes de polinÃ´mios (matriz
-          de transferÃªncia)</para>
+          <para>se o objeto é a é uma martriz de razões de polinômios (matriz
+          de transferência)</para>
         </listitem>
       </varlistentry>
 
@@ -132,7 +132,7 @@
         <term>"state-space"</term>
 
         <listitem>
-          <para>se o objeto Ã© um modelo de espaÃ§o de estados (ver <link
+          <para>se o objeto é um modelo de espaço de estados (ver <link
           linkend="syslin">syslin</link>).</para>
         </listitem>
       </varlistentry>
@@ -141,7 +141,7 @@
         <term>"sparse"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz (de reais) esparsa.</para>
+          <para>se o objeto é uma matriz (de reais) esparsa.</para>
         </listitem>
       </varlistentry>
 
@@ -149,7 +149,7 @@
         <term>"boolean sparse"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma matriz de valores booleanos esparsa.</para>
+          <para>se o objeto é uma matriz de valores booleanos esparsa.</para>
         </listitem>
       </varlistentry>
 
@@ -157,7 +157,7 @@
         <term>"hypermat"</term>
 
         <listitem>
-          <para>se o objeto Ã© uma hipermatriz (array N-dimensional N
+          <para>se o objeto é uma hipermatriz (array N-dimensional N
           &gt;=3).</para>
         </listitem>
       </varlistentry>
@@ -166,7 +166,7 @@
         <term>"st"</term>
 
         <listitem>
-          <para>se o objeto Ã© um array de estrutura</para>
+          <para>se o objeto é um array de estrutura</para>
         </listitem>
       </varlistentry>
 
@@ -174,7 +174,7 @@
         <term>"ce"</term>
 
         <listitem>
-          <para>se o objeto Ã© um array de cÃ©lulas</para>
+          <para>se o objeto é um array de células</para>
         </listitem>
       </varlistentry>
 
@@ -182,7 +182,7 @@
         <term>the first string in the first list entry</term>
 
         <listitem>
-          <para>se o objeto Ã© um tlist ou mlist</para>
+          <para>se o objeto é um tlist ou mlist</para>
         </listitem>
       </varlistentry>
 
@@ -190,7 +190,7 @@
         <term>"fptr"</term>
 
         <listitem>
-          <para>se o objeto Ã© intrÃ­nseco ao Scilab (cÃ³digo C ou
+          <para>se o objeto é intrínseco ao Scilab (código C ou
           Fortran).</para>
         </listitem>
       </varlistentry>
@@ -199,7 +199,7 @@
         <term>"pointer"</term>
 
         <listitem>
-          <para>se o objeto Ã© um ponteiro (ver <link
+          <para>se o objeto é um ponteiro (ver <link
           linkend="lufact">lufact</link>).</para>
         </listitem>
       </varlistentry>
@@ -208,8 +208,8 @@
         <term>"size implicit"</term>
 
         <listitem>
-          <para>se o objeto Ã© um polinÃ´mio de tamanho implÃ­cito para
-          indexaÃ§Ã£o.</para>
+          <para>se o objeto é um polinômio de tamanho implícito para
+          indexação.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -240,7 +240,7 @@ typeof(L)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="type">type</link></member>

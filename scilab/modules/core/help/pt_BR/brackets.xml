@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="brackets" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,22 +17,22 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[a11,a12,...;a21,a22,...;...]
 [s1,s2,...]=func(...)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a11,a12,...</term>
 
         <listitem>
-          <para>qualquer matriz (de reais, polinÃ´mios, razÃµes de polinÃ´mios,
-          lista <literal>syslin</literal>...) com dimensÃµes apropriadas</para>
+          <para>qualquer matriz (de reais, polinômios, razões de polinômios,
+          lista <literal>syslin</literal>...) com dimensões apropriadas</para>
         </listitem>
       </varlistentry>
 
@@ -40,28 +40,28 @@
         <term>s1,s2,...</term>
 
         <listitem>
-          <para>qualquer nome de variÃ¡vel possÃ­vel </para>
+          <para>qualquer nome de variável possível </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Colchetes esquerdo e direito sÃ£o usados para notar concatenaÃ§Ã£o de
-    vetores e matrizes. Estes sÃ­mbolos tambÃ©m sÃ£o usados para denotar lado
-    esquerdo mÃºltiplo para a chamada de uma funÃ§Ã£o.</para>
+    <para>Colchetes esquerdo e direito são usados para notar concatenação de
+    vetores e matrizes. Estes símbolos também são usados para denotar lado
+    esquerdo múltiplo para a chamada de uma função.</para>
 
-    <para>Dentro de colchetes de concatenaÃ§Ã£o, espaÃ§os vazios ou vÃ­rgulas
-    significam "concatenaÃ§Ã£o de colunas" e pontos-e-vÃ­rgulas ou retronos de
-    carro significa "concatenaÃ§Ã£o de linhas".</para>
+    <para>Dentro de colchetes de concatenação, espaços vazios ou vírgulas
+    significam "concatenação de colunas" e pontos-e-vírgulas ou retronos de
+    carro significa "concatenação de linhas".</para>
 
-    <para>Nota : para evitar confusÃµes, Ã© melhor utilizar vÃ­rgulas, ao invÃ©s
-    de espaÃ§os vazios para separar colunas.</para>
+    <para>Nota : para evitar confusões, é melhor utilizar vírgulas, ao invés
+    de espaços vazios para separar colunas.</para>
 
-    <para>Dentro de lados esquerdos mÃºltiplos, os nomes das variÃ¡veis de vem
-    ser separados por vÃ­rgulas.</para>
+    <para>Dentro de lados esquerdos múltiplos, os nomes das variáveis de vem
+    ser separados por vírgulas.</para>
   </refsection>
 
   <refsection>
@@ -82,7 +82,7 @@ s=poly(0,'s');[1/s,2/s]
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="comma">comma</link></member>

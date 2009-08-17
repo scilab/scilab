@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="sech" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -16,18 +16,18 @@
   <refnamediv>
     <refname>sech</refname>
 
-    <refpurpose>computa a secante hipertbÃ³lica do argumento elemento a
+    <refpurpose>computa a secante hipertbólica do argumento elemento a
     elemento</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = sech(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,11 +49,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa a secante hipertbÃ³lica do argumento elemento a elemento. A
-    secante hiperbÃ³lica Ã© definida como 1/cosh. Para dados reais, os
-    resultados sÃ£o reais em <literal> [0 1]</literal>.</para>
+    <para>Computa a secante hipertbólica do argumento elemento a elemento. A
+    secante hiperbólica é definida como 1/cosh. Para dados reais, os
+    resultados são reais em <literal> [0 1]</literal>.</para>
   </refsection>
 
   <refsection>
@@ -66,7 +66,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cosh">cosh</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="atan" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,14 +17,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>phi=atan(x)
 phi=atan(y,x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,26 +65,26 @@ phi=atan(y,x)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>A primeira forma computa o arco-tangente 2-quadrantes, que Ã© o
+    <para>A primeira forma computa o arco-tangente 2-quadrantes, que é o
     inverso de <literal>tan(phi)</literal>. Para um real <literal>x</literal>,
-    <literal>phi</literal> estÃ¡ no intervalo (-pi/2, pi/2).. Para um complexo
+    <literal>phi</literal> está no intervalo (-pi/2, pi/2).. Para um complexo
     <literal>x</literal>, <literal>atan</literal> tem dois pontos de
-    ramificaÃ§Ã£o singulares <literal>+%i</literal>,<literal>-%i</literal> e os
-    ramos escolhidos sÃ£o as duas semi-retas imaginÃ¡rias [i, i*oo) e (-i*oo,
+    ramificação singulares <literal>+%i</literal>,<literal>-%i</literal> e os
+    ramos escolhidos são as duas semi-retas imaginárias [i, i*oo) e (-i*oo,
     -i].</para>
 
     <para>A segunda forma computa o arco-tangente 4-quadrantes (atan2 em
-    FORTRAN), isto Ã©, retorna o argumento (Ã¢ngulo) do nÃºmero complexo
-    <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> Ã© (-pi,
+    FORTRAN), isto é, retorna o argumento (ângulo) do número complexo
+    <literal>x+i*y</literal>. A imagem de <literal>atan(y,x)</literal> é (-pi,
     pi].</para>
 
-    <para>Para argumentos reais, ambas as formas produzem valores idÃªnticos se
+    <para>Para argumentos reais, ambas as formas produzem valores idênticos se
     <literal>x&gt;0</literal>.</para>
 
-    <para>No caso de os argumentos serem vetores ou matrizes, a avaliaÃ§Ã£o Ã©
-    feita elemento a elemento, de modo que <literal>phi</literal> Ã© um vetor
+    <para>No caso de os argumentos serem vetores ou matrizes, a avaliação é
+    feita elemento a elemento, de modo que <literal>phi</literal> é um vetor
     ou matriz com o mesmo tamanho de <literal>phi(i,j)=atan(x(i,j))</literal>
     ou <literal>phi(i,j)=tan(y(i,j),x(i,j))</literal>.</para>
   </refsection>
@@ -106,7 +106,7 @@ atan(+%eps + 2*%i)
 atan(-%eps - 2*%i)
 atan(+%eps - 2*%i)
 
-// valores nos pontos de ramificaÃ§Ã£o
+// valores nos pontos de ramificação
 ieee(2)
 atan(%i)
 atan(-%i)
@@ -115,7 +115,7 @@ atan(-%i)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tan">tan</link></member>
@@ -130,7 +130,7 @@ atan(-%i)
     <simplelist type="vert">
       <member>B.P.</member>
 
-      <member>L.V.D. (autores da funÃ§Ã£o atan para complexos).</member>
+      <member>L.V.D. (autores da função atan para complexos).</member>
     </simplelist>
   </refsection>
 </refentry>

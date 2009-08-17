@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,7 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>
       [v [,ka,kb]]=intersect(a,b)
@@ -38,14 +38,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>vetor de nÃºmeros ou strings </para>
+          <para>vetor de números ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -53,7 +53,7 @@
         <term>b</term>
 
         <listitem>
-          <para>vetor de nÃºmeros ou strings </para>
+          <para>vetor de números ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,7 @@
         <term>orient</term>
 
         <listitem>
-          <para>flag com possÃ­veis valores : 1 ou "r", 2 ou "c"</para>
+          <para>flag com possíveis valores : 1 ou "r", 2 ou "c"</para>
         </listitem>
       </varlistentry>
 
@@ -69,7 +69,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vetor linha de nÃºmeros ou strings </para>
+          <para>vetor linha de números ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -92,42 +92,42 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>intersect(a,b)</literal> retorna um vetor-linha ordenado
     dos valores comuns a dois vetores <literal>a</literal> e
     <literal>b</literal>.</para>
 
-    <para><literal>[v,ka,kb]=intersect(a,b)</literal> retorna tambÃ©m dois
-    vetores de Ã­ndices <literal>ka</literal> e <literal>kb</literal> tais que
+    <para><literal>[v,ka,kb]=intersect(a,b)</literal> retorna também dois
+    vetores de índices <literal>ka</literal> e <literal>kb</literal> tais que
     <literal>v=a(ka)</literal> e <literal>v=b(kb)</literal>.</para>
 
     <para><literal>intersect(a,b,"r")</literal> ou
-    <literal>intersect(a,b,1)</literal>retorna a matriz formada interseÃ§Ã£o das
-    linhas Ãºnicas de <literal>a</literal> e <literal>b</literal> ordenadas em
-    ordem lexicogrÃ¡fica ascendente. Neste caso, <literal>a</literal> e
-    <literal>b</literal> devem ter o mesmo nÃºmero de colunas.</para>
+    <literal>intersect(a,b,1)</literal>retorna a matriz formada interseção das
+    linhas únicas de <literal>a</literal> e <literal>b</literal> ordenadas em
+    ordem lexicográfica ascendente. Neste caso, <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de colunas.</para>
 
-    <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retorna tambÃ©m dois
-    vetores de Ã­ndices <literal>ka</literal> e <literal>kb</literal> tais que
+    <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retorna também dois
+    vetores de índices <literal>ka</literal> e <literal>kb</literal> tais que
     <literal>v=a(ka,:)</literal> e <literal>v=b(kb,:)</literal>.</para>
 
     <para><literal>intersect(a,b,"c")</literal> ou
-    <literal>intersect(a,b,2)</literal>retorna a matriz formada interseÃ§Ã£o das
-    colunas Ãºnicas de <literal>a</literal> e <literal>b</literal> ordenadas em
-    ordem lexicogrÃ¡fica ascendente. Neste caso, <literal>a</literal> e
-    <literal>b</literal> devem ter o mesmo nÃºmero de linhas.</para>
+    <literal>intersect(a,b,2)</literal>retorna a matriz formada interseção das
+    colunas únicas de <literal>a</literal> e <literal>b</literal> ordenadas em
+    ordem lexicográfica ascendente. Neste caso, <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de linhas.</para>
 
-    <para><literal>[v,ka,kb]=intersect(a,b,"c")</literal> retorna tambÃ©m dois
-    vetores de Ã­ndices <literal>ka</literal> e <literal>kb</literal> tais que
+    <para><literal>[v,ka,kb]=intersect(a,b,"c")</literal> retorna também dois
+    vetores de índices <literal>ka</literal> e <literal>kb</literal> tais que
     <literal>v=a(:,ka)</literal> e <literal>v=b(:,kb)</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
-    <para>NaN sÃ£o considerados diferentes deles mesmos , entÃ£o sÃ£o excluÃ­dos
-    da interseÃ§Ã£o em caso de interseÃ§Ã£o de vetores.</para>
+    <para>NaN são considerados diferentes deles mesmos , então são excluídos
+    da interseção em caso de interseção de vetores.</para>
   </refsection>
 
   <refsection>
@@ -166,7 +166,7 @@ A(:,ka)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>

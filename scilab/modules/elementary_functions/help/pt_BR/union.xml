@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>union</refname>
 
-    <refpurpose>extrai componentes da uniÃ£o de um vetor</refpurpose>
+    <refpurpose>extrai componentes da união de um vetor</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>
       [v [,ka, kb] ] = union(a,b)
@@ -37,14 +37,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>vetor ou matriz de nÃºmeros ou strings</para>
+          <para>vetor ou matriz de números ou strings</para>
         </listitem>
       </varlistentry>
 
@@ -52,7 +52,7 @@
         <term>b</term>
 
         <listitem>
-          <para>vetor ou matriz de nÃºmeros ou strings</para>
+          <para>vetor ou matriz de números ou strings</para>
         </listitem>
       </varlistentry>
 
@@ -60,7 +60,7 @@
         <term>orient</term>
 
         <listitem>
-          <para>flag com valores possÃ­veis : 1 ou "r", 2 ou "c".</para>
+          <para>flag com valores possíveis : 1 ou "r", 2 ou "c".</para>
         </listitem>
       </varlistentry>
 
@@ -68,7 +68,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vetor linha ou matriz de nÃºmeros ou strings</para>
+          <para>vetor linha ou matriz de números ou strings</para>
         </listitem>
       </varlistentry>
 
@@ -91,26 +91,26 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>union(a,b)</literal> retorna um vetor linha ordenado que
-    retÃ©m as entradas Ãºnicas de <literal>[a(:);b(:)]</literal>.</para>
+    retém as entradas únicas de <literal>[a(:);b(:)]</literal>.</para>
 
     <para><literal>union(a,b,"r")</literal> ou
-    <literal>union(a,b,1)</literal>retorna a matriz formada pela uniÃ£o das
-    linhas Ãºnicas de <literal>a</literal> e <literal>b</literal> em ordem
-    lexicogrÃ¡fica ascendente. Neste caso, as matrizes <literal>a</literal> e
-    <literal>b</literal> devem ter o mesmo nÃºmero de colunas.</para>
+    <literal>union(a,b,1)</literal>retorna a matriz formada pela união das
+    linhas únicas de <literal>a</literal> e <literal>b</literal> em ordem
+    lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de colunas.</para>
 
     <para><literal>union(a,b,"c")</literal> ou
-    <literal>union(a,b,2)</literal>retorna a matriz formada pela uniÃ£o das
-    colunas Ãºnicas de <literal>a</literal> e <literal>b</literal> em ordem
-    lexicogrÃ¡fica ascendente. Neste caso, as matrizes <literal>a</literal> e
-    <literal>b</literal> devem ter o mesmo nÃºmero de colunas.</para>
+    <literal>union(a,b,2)</literal>retorna a matriz formada pela união das
+    colunas únicas de <literal>a</literal> e <literal>b</literal> em ordem
+    lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de colunas.</para>
 
-    <para><literal>[v,ka,kb]=union(a,b)</literal> tambÃ©m retorna vetores de
-    Ã­ndices <literal>ka</literal> e <literal>kb</literal> tais que
-    <literal>v</literal> Ã© uma combinaÃ§Ã£o ordenada das entradas
+    <para><literal>[v,ka,kb]=union(a,b)</literal> também retorna vetores de
+    índices <literal>ka</literal> e <literal>kb</literal> tais que
+    <literal>v</literal> é uma combinação ordenada das entradas
     <literal>a(ka)</literal> e <literal>b(kb)</literal>.</para>
   </refsection>
 
@@ -132,7 +132,7 @@ union('a'+string(A),'b'+string(B))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>

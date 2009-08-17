@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="nf3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>nf3d</refname>
+
+    <refpurpose>Facetas retangulares para parâmetros da função
+    plot3d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[xx,yy,zz]=nf3d(x,y,z)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y,x,xx,yy,zz</term>
+
+        <listitem>
+          <para>6 matrizes de reais</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Função utilitária. Usada para transformar facetas retangulares
+    codificadas em três matrizes x,y e z para o código Scilab para facetas,
+    aceito por plot3d.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//Uma esfera...
+u = linspace(-%pi/2,%pi/2,40);
+v = linspace(0,2*%pi,20);
+x= cos(u)'*cos(v);
+y= cos(u)'*sin(v);
+z= sin(u)'*ones(v);
+//plot3d2(x,y,z) é equivalente a...
+[xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot3d">plot3d</link></member>
+
+      <member><link linkend="plot3d2">plot3d2</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,315 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-07-06 15:57+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: A pasta %s não existe ou seu acesso esta proibido."
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr ""
+"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: Número de argumento(s) de entrada errado: Pelo menos %d esperados.\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document for %s.\n"
+msgstr ""
+"\n"
+"Construindo o documento principal para %s\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document in %s\n"
+msgstr ""
+"\n"
+"Construindo o documento principal em %s\n"
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s não foi gerado"
+
+msgid "Scilab manual"
+msgstr "Manual do Scilab"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "O módulo '%s' do Scilab não está instalado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Excluindo arquivos de ajuda --\n"
+
+#, c-format
+msgid "Processing %s to %s"
+msgstr "Processando de %s a %s"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma string.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: O navegador de ajuda está desabilitado no modo %s.\n"
+
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr "%s: O módulo de ajuda não está instalado.\n"
+
+msgid "Scilab 5.0 or more is required."
+msgstr "É necessário Scilab 5.0 ou superior."
+
+msgid "...demodir must be a directory."
+msgstr "...demodir deve ser um diretório."
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Esta função só está disponível em plataformas Windows.\n"
+
+msgid "Help chapter"
+msgstr "Capítulo de ajuda"
+
+#, c-format
+msgid "%s: The %s files are up-to-date."
+msgstr "%s: Os arquivos %s estão atualizados"
+
+msgid ""
+"\n"
+"Copying missing help files copied from the default language\n"
+msgstr ""
+"\n"
+"Copiando arquivos de ajuda faltantes copiados do idioma padrão\n"
+
+msgid ""
+"\n"
+"Copying missing files copied from\n"
+msgstr ""
+"\n"
+"Copiando arquivos faltantes de\n"
+
+#, c-format
+msgid ""
+"\n"
+"Copying missing from %s\n"
+msgstr ""
+"\n"
+"Copiando faltantes de %s\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"Construindo o arquivo-mestre do manual do Scilab %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document: %s\n"
+msgstr ""
+"\n"
+"Criando o documento mestre: %s\n"
+
+msgid ""
+"\n"
+"Building the scilab manual file ["
+msgstr ""
+"\n"
+"Criando o arquivo de manual do Scilab ["
+
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: O arquivo %s não foi movido no diretório %s."
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"a while)\n"
+msgstr ""
+"\n"
+"Criando o arquivo de manual [%s] em %s. (Por favor espere ... isso pode "
+"levar algum tempo)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take a "
+"while)\n"
+msgstr ""
+"\n"
+"Criando o arquivo de manual [%s]. (Por favor espere ... isso pode levar "
+"algum tempo)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from\n"
+msgstr ""
+"\n"
+"Excluindo os arquivos copiados de\n"
+
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from %s\n"
+msgstr ""
+"\n"
+"Excluindo os arquivos copiados de %s\n"
+
+msgid "About Scicos"
+msgstr "Sobre Scicos"
+
+msgid "Scicos Manual"
+msgstr "Manual de Scicos"
+
+msgid "Batch functions"
+msgstr "Funções de batch"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "Sources Palette"
+msgstr "Paleta de Fontes"
+
+msgid "Linear Palette"
+msgstr "Paleta Linear"
+
+msgid "Non-linear Palette"
+msgstr "Paleta não-linear"
+
+msgid "Branching Palette"
+msgstr "Paleta de Ramificação"
+
+msgid "Others Palettes"
+msgstr "Outras Paletas"
+
+msgid "Threshold Palette"
+msgstr "Paleta de Limiar"
+
+msgid "Sinks Palette"
+msgstr "Paleta de escoamentos"
+
+msgid "Events Palette"
+msgstr "Paleta de Eventos"
+
+msgid "Electrical Palette"
+msgstr "Paleta Elétrica"
+
+msgid "Thermohydraulics Palette"
+msgstr "Paleta de Termo-hidráulica"
+
+msgid "Matrix Palette"
+msgstr "Paleta de Matrizes"
+
+msgid "Integer Palette"
+msgstr "Paleta de Inteiros"
+
+msgid "Demoblocks Palette"
+msgstr "Paletra de Blocos de Demonstração"
+
+msgid "ABCD Blocks"
+msgstr "Blocos ABCD"
+
+msgid "C Computational Functions"
+msgstr "Funções Computacionais de C"
+
+msgid "Scilab Computational Functions"
+msgstr "Funções Computacionais do Scilab"
+
+msgid "Utilities Functions"
+msgstr "Funções de Utilidades"
+
+msgid "Programming Scicos Blocks"
+msgstr "Blocos de Programação Scicos"
+
+msgid "Scilab Utilities Functions"
+msgstr "Funções de Utilidades do Scilab"
+
+msgid "Diagram"
+msgstr "Diagrama"
+
+msgid "Blocks"
+msgstr "Blocos"
+
+msgid "Links"
+msgstr "Links"
+
+msgid "Compilation/Simulation"
+msgstr "Compilação/Simulação"
+
+msgid "Scilab Data Structures"
+msgstr "Estruturas de Dados do Scilab"
+
+msgid "Palettes"
+msgstr "Paletas"
+
+msgid "Old Blocks Palette"
+msgstr "Paleta de Blocos Antigos"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tProcessando arquivo %s.xml\n"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Alerta %s não segue a definição de tipo de documento"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "O modulo '%s' do Scilab está desabilitado no modo -nogui ou -nwni."
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr ""
+"%s: Não foi possível encontrar ou criar o diretório de trabalho %s.\n"
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: Erro ao construir a documentação: %s.\n"

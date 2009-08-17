@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="length" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>length</refname>
+
+    <refpurpose>comprimento de um objeto</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>n=length(M)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>matriz (usual ou de polinômios ou de strings) ou lista</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiro ou matriz de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para uma matriz usual ou de polinômios, <literal>n</literal> é o
+    inteiro igual ao número de linhas vezes o número de colunas de
+    <literal>M</literal>. (Também válido para <literal>M</literal> uma matriz
+    de booleanos)</para>
+
+    <para>Para matrizes de strings (e, em particular, para um string)
+    <literal>length</literal> retorna em <literal>n</literal> os comprimentos
+    das entradas da matriz de strings <literal>M</literal>.</para>
+
+    <para>O comprimento de uma lista é o número de elementos da lista (também
+    dado por <literal>size</literal>).</para>
+
+    <para><literal>length('123')</literal> é <literal>3</literal>.
+    <literal>length([1,2;3,4])</literal> is <literal>4</literal>.</para>
+
+    <para>AVISO : length para matrizes esparsas retorna o máximo das
+    dimensões, não o produto das dimensões. (exemplo :
+    length(sparse(eye(12,2))) retorna max(12,2), não 24)</para>
+
+    <para>Utilize size(...,'*') para matrizes esparsas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+length([123 ; 456 ])
+length(['olá mundo',SCI])
+	</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="size">size</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

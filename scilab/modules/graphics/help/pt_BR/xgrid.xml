@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xgrid</refname>
 
-    <refpurpose>adiciona um grid em um esboÃ§o 2d</refpurpose>
+    <refpurpose>adiciona um grid em um esboço 2d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>xgrid([style])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,11 +48,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>xgrid</literal> adiciona um grid em um esboÃ§o 2d.
-    <literal>style</literal> Ã© o identificador de tipo de tracejado ou de cor
-    utilizado para o esboÃ§o do grid. Use <literal>xset()</literal> para o
+    <para><literal>xgrid</literal> adiciona um grid em um esboço 2d.
+    <literal>style</literal> é o identificador de tipo de tracejado ou de cor
+    utilizado para o esboço do grid. Use <literal>xset()</literal> para o
     significado do identificador.</para>
   </refsection>
 
@@ -69,7 +69,7 @@ xgrid(2)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xset">xset</link></member>

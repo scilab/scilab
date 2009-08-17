@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="readb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>readb</refname>
+
+    <refpurpose>leitura de arquivo FORTRAN binário</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamemento</title>
+
+    <synopsis>x=readb(file-name,m,n [,rec])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+
+        <listitem>
+          <para>string ou inteiro</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m, n</term>
+
+        <listitem>
+          <para>inteiros (dimensões da matriz x). Ajuste m=-1 se o número de
+          linhas não for conhecido, então todo arquivo será lido</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rec</term>
+
+        <listitem>
+          <para>vetor de inteiros positivos, os registros selecionados para
+          acesso direto. O tamanho deste vetor deve ser igual ao número de
+          linhas de <literal>x</literal> desejado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Leitura binária da matriz <literal>x</literal> no arquivo
+    <literal>file-name</literal>. Supõe-se que as entradas da matriz tenham
+    sido armazenadas em palavras de 8 bytes.</para>
+
+    <para>Para acesso direto a registros, o arquivo deve ter sido aberto
+    previamente com a função <literal>file</literal> para ajustar o
+    comprimento de registro. <literal>file-name</literal> deve ser o resultado
+    da função <literal>file</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="writb">writb</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="read4b">read4b</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

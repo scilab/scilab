@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,17 +25,17 @@
     <refname>rref</refname>
 
     <refpurpose>computa a matriz-linha reduzida a forma escada por
-    transformaÃ§Ãµes de LU</refpurpose>
+    transformações de LU</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>R=rref(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,14 +57,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>rref</literal> computa a forma escada de linhas reduzidas
-    da matriz dada pela decomposiÃ§Ã£o esquerda LU. Se for necessÃ¡ria a
-    transformaÃ§Ã£o usada, basta chamar <literal>X=rref([A,eye(m,m)])</literal>
-    A forma escada de linhas reduzidas <literal>R</literal> Ã©
-    <literal>X(:,1:n)</literal> e a transformaÃ§Ã£o esquerda
-    <literal>L</literal> iÃ© dada por <literal>X(:,n+1:n+m)</literal> tal como
+    da matriz dada pela decomposição esquerda LU. Se for necessária a
+    transformação usada, basta chamar <literal>X=rref([A,eye(m,m)])</literal>
+    A forma escada de linhas reduzidas <literal>R</literal> é
+    <literal>X(:,1:n)</literal> e a transformação esquerda
+    <literal>L</literal> ié dada por <literal>X(:,n+1:n+m)</literal> tal como
     <literal>L*A=R</literal></para>
   </refsection>
 
@@ -82,7 +82,7 @@ L=X(:,3:5);L*A
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="lu">lu</link></member>

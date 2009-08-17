@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>host</refname>
 
-    <refpurpose>execu√ß√£o de comandos do Unix ou DOS</refpurpose>
+    <refpurpose>execuÁ„o de comandos do Unix ou DOS</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>stat=host(command-name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>command-name</term>
 
         <listitem>
-          <para>um string contendo uma instru√ß√£o sh Unix </para>
+          <para>um string contendo uma instruÁ„o sh Unix </para>
         </listitem>
       </varlistentry>
 
@@ -56,14 +56,14 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Envia um string <literal>command-name</literal> para o Unix para
-    execu√ß√£o pelo interpretador de comando (sh em Unix, ou command.com em
-    DOS). As sa√≠das e os erros padr√µes do comando do shell s√£o escritos no
+    execuÁ„o pelo interpretador de comando (sh em Unix, ou command.com em
+    DOS). As saÌdas e os erros padrıes do comando do shell s„o escritos no
     shell chamado. <literal>stat</literal> fornece -1 se o "host" (significa
-    "anfitri√£o") n√£o pode ser chamado (mem√≥ria dispon√≠vel do sistema
-    insuficiente) ou se o interpretador de comando retorna o c√≥digo.</para>
+    "anfitri„o") n„o pode ser chamado (memÛria disponÌvel do sistema
+    insuficiente) ou se o interpretador de comando retorna o cÛdigo.</para>
   </refsection>
 
   <refsection>
@@ -71,7 +71,7 @@
 
     <programlisting role="example">
 
-    //criando uma fun√ß√£o getdir baseda no host
+    //criando uma funÁ„o getdir baseda no host
     function wd=getdir()
       if MSDOS then 
         host('cd&gt;'+TMPDIR+'\path');
@@ -87,7 +87,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="edit">edit</link></member>

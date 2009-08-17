@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>sol=chsolve(spcho,rhs)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,13 +57,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>sol=chsolve(spcho,rhs)</literal> computa a soluÃ§Ã£o de
+    <para><literal>sol=chsolve(spcho,rhs)</literal> computa a solução de
     <literal>rhs=A*sol</literal>, com <literal>A</literal> uma matriz
-    simÃ©trica e positiva definida. Esta funÃ§Ã£o Ã© baseada nos programas
-    Ng-Peyton (ORNL). Veja os programas FORTRAN para uma descriÃ§Ã£o completa
-    das variÃ¡veis em <literal>spcho</literal>.</para>
+    simétrica e positiva definida. Esta função é baseada nos programas
+    Ng-Peyton (ORNL). Veja os programas FORTRAN para uma descrição completa
+    das variáveis em <literal>spcho</literal>.</para>
   </refsection>
 
   <refsection>
@@ -82,7 +82,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="chfact">chfact</link></member>

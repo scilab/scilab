@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="slash" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,43 +13,43 @@
   <refnamediv>
     <refname>slash</refname>
 
-    <refpurpose>(/) divis√£o esquerda-direita e feedback
+    <refpurpose>(/) divis„o esquerda-direita e feedback
     ("resposta")</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Divis√£o esquerda-direita. <literal>x=A / b</literal> √© a solu√ß√£o de
+    <para>Divis„o esquerda-direita. <literal>x=A / b</literal> È a soluÁ„o de
     <literal>x*b=A</literal> .</para>
 
     <para><literal>b/a = (a' \ b')'</literal> .</para>
 
-    <para><literal>a ./ b</literal> √© a matriz com entradas <literal>a(i,j)/
-    b(i,j)</literal>. Se <literal>b</literal> √© escalar (matriz 1x1) esta
-    opera√ß√£o √© o mesmo que <literal> a./b*ones(a)</literal>. (mesma conven√ß√£o
-    se <literal>a</literal> √© um escalar).</para>
+    <para><literal>a ./ b</literal> È a matriz com entradas <literal>a(i,j)/
+    b(i,j)</literal>. Se <literal>b</literal> È escalar (matriz 1x1) esta
+    operaÁ„o È o mesmo que <literal> a./b*ones(a)</literal>. (mesma convenÁ„o
+    se <literal>a</literal> È um escalar).</para>
 
-    <para>Observe que<literal> 123./b</literal> √© interpretado como
-    <literal>(123.)/b</literal>. Nestes casos, o ponto √© parte do n√∫mero, n√£o
+    <para>Observe que<literal> 123./b</literal> È interpretado como
+    <literal>(123.)/b</literal>. Nestes casos, o ponto È parte do n˙mero, n„o
     do operador.</para>
 
-    <para>(\) significa divis√£o direita-esquerda.</para>
+    <para>(\) significa divis„o direita-esquerda.</para>
 
     <para>Feedback de sistema.<literal> S=G/.K</literal> avalia
     <literal>S=G*(eye()+K*G)^(-1)</literal> . Este operador evita o problema
-    de simplifica√ß√£o.</para>
+    de simplificaÁ„o.</para>
 
-    <para>Observe que<literal> G/.5</literal> √© interpretado como
-    <literal>G/(.5)</literal>. Em tais casos, o ponto √© parte do n√∫mero, n√£o
+    <para>Observe que<literal> G/.5</literal> È interpretado como
+    <literal>G/(.5)</literal>. Em tais casos, o ponto È parte do n˙mero, n„o
     do operador.</para>
 
-    <para>Coment√°rio. <literal>//</literal> comenta uma linha, i.e. linhas que
-    come√ßam por <literal>//</literal> s√£o ignoradas pelo interpretador.</para>
+    <para>Coment·rio. <literal>//</literal> comenta uma linha, i.e. linhas que
+    comeÁam por <literal>//</literal> s„o ignoradas pelo interpretador.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="inv">inv</link></member>

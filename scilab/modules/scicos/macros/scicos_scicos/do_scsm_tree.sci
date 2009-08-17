@@ -21,7 +21,7 @@
 
 function scs_m = do_scsm_tree(scs_m)
   tt = scs_m_TreeView(scs_m);
-  cur_wd = getcwd();
+  cur_wd = pwd();
   chdir(TMPDIR);
   mputl(tt,scs_m.props.title(1)+'.tcl');
   chdir(cur_wd)

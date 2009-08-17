@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="secto3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>secto3d</refname>
+
+    <refpurpose>Conversão de superfícies 3d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[m[,x]]=secto3d(seclist,npas)
+[m]=secto3d(seclist ,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>seclist</term>
+
+        <listitem>
+          <para>uma lista cujos elementos são matrizes (2,.) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>npas</term>
+
+        <listitem>
+          <para>um inteiro </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>uma matriz </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>um vetor</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Considerando uma superfície dada através de uma lista
+    <literal>seclist</literal> de secções no plano <literal>(x,z)</literal>,
+    <literal>[m [,x]]=secto3d(seclist [,npas])</literal> retorna uma matriz
+    <literal>m</literal> que contém a discretização regular da superfície.
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>A i-ésima linha da matriz m corresponde à i-ésima secção </para>
+      </listitem>
+
+      <listitem>
+        <para>A j-ésima coluna da matriz m corresponde ao x(j)</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Cada secção <literal>seclist(i)</literal> é descrita por uma matriz
+    (2,.) que fornece respectivamente as coordenadas x e z de pontos.</para>
+
+    <para><literal>[m]=secto3d(seclist ,x)</literal>neste caso o vetor x
+    fornece a discretização do eixo x para todas as secções.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot3d">plot3d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Steer S.; ;</para>
+  </refsection>
+</refentry>

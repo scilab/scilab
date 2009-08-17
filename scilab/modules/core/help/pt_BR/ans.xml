@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="ans" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,11 +17,11 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>ans</literal> significa "resposta". A variÃ¡vel
-    <literal>ans</literal> Ã© criada automaticamente quando expressÃµes nÃ£o sÃ£o
-    atribuÃ­das. <literal>ans</literal> contÃ©m a Ãºltima expressÃ£o
-    nÃ£o-atribuÃ­da.</para>
+    <para><literal>ans</literal> significa "resposta". A variável
+    <literal>ans</literal> é criada automaticamente quando expressões não são
+    atribuídas. <literal>ans</literal> contém a última expressão
+    não-atribuída.</para>
   </refsection>
 </refentry>

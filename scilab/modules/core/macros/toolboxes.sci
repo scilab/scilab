@@ -22,7 +22,7 @@ function [y]=toolboxes(path,flag,force)
 function y = build(i)
   global %toolboxes
   global %toolboxes_dir
-  y = 'p=getcwd();chdir("""+%toolboxes_dir+%toolboxes(i)+""");exec(""builder.sce"");chdir(p)';
+  y = 'p=pwd();chdir("""+%toolboxes_dir+%toolboxes(i)+""");exec(""builder.sce"");chdir(p)';
 endfunction
 //===========================================================
 function distrib_clean ()
@@ -100,7 +100,7 @@ endfunction
     force = %f 
   end
   
-  cur_wd = getcwd();
+  cur_wd = pwd();
   chdir(path);
   files = listfiles('.');
   contribs = [];

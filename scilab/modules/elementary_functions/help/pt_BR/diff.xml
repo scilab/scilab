@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>diff</refname>
 
-    <refpurpose>diferen√ßa e derivada discreta</refpurpose>
+    <refpurpose>diferenÁa e derivada discreta</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=diff(x)
 y=diff(x [,n [,dim]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -43,7 +43,7 @@ y=diff(x [,n [,dim]])</synopsis>
 
         <listitem>
           <para>vetor ou matriz (de reais, complexos, esparso(a) ou de
-          polin√¥mios) </para>
+          polinÙmios) </para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ y=diff(x [,n [,dim]])</synopsis>
         <term>n</term>
 
         <listitem>
-          <para>inteiro, ordem da diferencia√ß√£o</para>
+          <para>inteiro, ordem da diferenciaÁ„o</para>
         </listitem>
       </varlistentry>
 
@@ -75,22 +75,22 @@ y=diff(x [,n [,dim]])</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>y=diff(x)</literal> computa a fun√ß√£o de diferen√ßa
+    <para><literal>y=diff(x)</literal> computa a funÁ„o de diferenÁa
     y=x(2:$)-x(1:$-1)</para>
 
-    <para><literal>diff(x,n,dim)</literal> √© a n-√©sima fun√ß√£o de diferen√ßa ao
-    longo da dimens√£o <literal>dim</literal>.</para>
+    <para><literal>diff(x,n,dim)</literal> È a n-Èsima funÁ„o de diferenÁa ao
+    longo da dimens„o <literal>dim</literal>.</para>
 
-    <para><literal>diff(x,n,"*")</literal> √© equivalente a
+    <para><literal>diff(x,n,"*")</literal> È equivalente a
     diff(x(:),n).</para>
 
-    <para>O valor padr√£o para <literal>n</literal> √© 1. O valor padr√£o para
-    <literal>dim</literal> √© <literal>"*"</literal>.</para>
+    <para>O valor padr„o para <literal>n</literal> È 1. O valor padr„o para
+    <literal>dim</literal> È <literal>"*"</literal>.</para>
 
-    <para><literal>dim='r'</literal> √© equivalente a <literal>dim=1</literal>
-    e <literal>dim='c'</literal> √© equivalente a
+    <para><literal>dim='r'</literal> È equivalente a <literal>dim=1</literal>
+    e <literal>dim='c'</literal> È equivalente a
     <literal>dim=2</literal>.</para>
   </refsection>
 
@@ -109,11 +109,11 @@ A=[(1:8)^2
 
 diff(A,3,2)
 
-//diferencia√ß√£o aproximada
+//diferenciaÁ„o aproximada
 step=0.001
 t=0:step:10;
 y=sin(t);
-dy=diff(sin(t))/step; //diferencia√ß√£o aproximada da fun√ß√£o seno
+dy=diff(sin(t))/step; //diferenciaÁ„o aproximada da funÁ„o seno
 norm(dy-cos(t(1:$-1)),%inf)
  
   </programlisting>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getfont" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getfont</refname>
+
+    <refpurpose>Diálogo para selecionar fonte da letra <emphasis role="bold">.
+    Função obsoleta.</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[fId,fSize]=getfont()
+[fId,fSize]=getfont(str)
+fnt=getfont()
+fnt=getfont(str)
+fnt=getfont(S=str,font=[fId,fSize])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>caractere (por exemplo: "a") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fId</term>
+
+        <listitem>
+          <para>inteiro, o número da fonte selecionada </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fSize</term>
+
+        <listitem>
+          <para>inteiro, o tamanho da fonte selecionada </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fnt</term>
+
+        <listitem>
+          <para>vetor [fId,fSize]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função, que foi projetada para trabalhar com a função <link
+    linkend="xset">xset</link>, também está obsoleta. Utilize o editor de
+    propriedade <link linkend="ged">ged</link> ao invés.</para>
+
+    <para><literal>getfont</literal> abre uma janela gráfica para seleção de
+    uma fonte. O usuário deve escolher uma fonte e um tamanho clicando no
+    caractere exibido correspondente. Apertar uma tecla faz com que o
+    caractere exibido mude.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+[fId,fSize]=getfont();
+xset("font",fId,fSize)
+plot2d(0,0,rect=[0 0 10 10],axesflag=0)
+xstring(5,5,"string")
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="text_properties">text_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

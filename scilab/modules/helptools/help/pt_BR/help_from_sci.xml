@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * 
+ * This help file was generated from help_from_sci.sci using help_from_sci().
+ * 
+ -->
+<refentry version="5.0-subset Scilab" xml:id="help_from_sci" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 19-Oct-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>help_from_sci</refname>
+
+    <refpurpose>Geração de arquivos de ajuda e de arquivos de demonstração a
+    partir da seção de comentários de cabeçalho de um arquivo-fonte
+    .sci</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>help_from_sci() // gera um modelo de função vazio</synopsis>
+
+    <synopsis>help_from_sci(funname,helpdir) // gera helpdir/funname.xml a partir de funname.sci</synopsis>
+
+    <synopsis>help_from_sci(dirname,helpdir) // processa dirname/*.sci e cria helpdir/*.xml.</synopsis>
+
+    <synopsis>help_from_sci(dirname,helpdir,helpdir) // como acima, mas também cria o arquivo de demonstração helpdir/*.dem.sce.</synopsis>
+
+    <synopsis>[helptxt,demotxt]=help_from_sci(funname) // retorna funname.xml e funname.dem.sce como duas matrizes de texto.</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>funname:</term>
+
+        <listitem>
+          <para>o nome de um único arquivo .sci a ser processado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dirname:</term>
+
+        <listitem>
+          <para>nome do diretório onde todos os arquivos .sci serão
+          processados</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>helpdir:</term>
+
+        <listitem>
+          <para>endereço opcional onde o arquivo de ajuda .xml será
+          criado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>demodir:</term>
+
+        <listitem>
+          <para>endereço opcional onde os arquivos de demonstração .dem.sce
+          serão criados baseados nos códigos da seção Examples</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>helptxt:</term>
+
+        <listitem>
+          <para>retorna o código da ajuda XML se helpdir for vazio, ou o
+          endereço para o novo arquivo .xml</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>demotxt:</term>
+
+        <listitem>
+          <para>retorna o código de demonstração se demodir for vazio, ou o
+          endereço para o novo arquivo .dem.sc</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>help_from_sci é uma versão revisada da função help_skeleton. Seu
+    objetivo é gerar arquivos de ajuda .xml baseados na seção de comentários
+    de cabeçalho dos arquivos-fontes .sci. Opcionalmente, os arquivos de
+    demonstração .dem.sce podem ser gerados baseados nos códigos da seção
+    Examples na seção de cometários de cabeçalho dos arquivos .sci.</para>
+
+    <para>Para que help_from_sci formate o arquivo .xml propriamente, os a
+    seção de comentários de cabeçalho deve concordar com algumas regras
+    simples de formatação.</para>
+
+    <para>A primeira linha de comentário seguinte à definição de função deve
+    conter uma descrição breve da função.</para>
+
+    <para>Os comentários restantes são formatados de acordo com os seguintes
+    cabeçalhos (opcionais): "Calling Sequence", "Parameters", "Description",
+    "Examples", "See also", "Used functions", "Authors" e
+    "Bibliography".</para>
+
+    <para>As seguintes diretrizes devem ser seguidas ao se escrever os
+    comentários de código fonte: <itemizedlist>
+        <listitem>
+           
+
+          <literal>Calling Sequence</literal>
+
+           - um exemplo por linha. 
+        </listitem>
+
+        <listitem>
+           
+
+          <literal>Parameters</literal>
+
+           - separe o nome do parâmetro e a descrição por um ":". Mantenha a descrição de cada parâmetro na mesma linha. 
+        </listitem>
+
+        <listitem>
+           
+
+          <literal>Description</literal>
+
+           - a formatação do texto pode ser feita utilizando comandos XML. Adicionar uma linha de comentário vazia na seção Description é interpretado como começo de um novo parágrafo. 
+        </listitem>
+
+        <listitem>
+           
+
+          <literal>See also</literal>
+
+           - liste um nome de função por linha.
+        </listitem>
+
+        <listitem>
+           
+
+          <literal>Authors</literal>
+
+           - escreva um autor em cada linha após o cabeçalho Authors. Use ";" para separar os autores de qualquer informação adicional. 
+        </listitem>
+
+        <listitem>
+           
+
+          <literal>Bibliography</literal>
+
+           - escreva uma referência por linha seguindo o cabeçalho References. 
+        </listitem>
+      </itemizedlist></para>
+
+    <para></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+help_from_sci()   // abrindo um modelo de código-fonte vazio no editor Scipad.
+// salve este modelo como test_fun.sci no diretório corrente antes de executar
+// os próximos comandos do exemplo
+
+help_from_sci('test_fun')        // retornando o esqueleto xml como um string de texto.
+
+help_from_sci('test_fun','.')    // criando o arquivo de ajuda xml no diretório corrente.
+
+// criando ambos os arquivos de ajuda e demonstração no diretório corrente.
+help_from_sci('test_fun','.','.')
+
+// de um diretório raiz de um toolbox, uma seqüência de chamamento típica seria:
+// help_from_sci('macros','help\pt_BR','demos')
+// este comando processaria todos os arquivos .sci no diretório de macros
+// e utilizaria a seção de comentários de cabeçalho para atualizar as ajudas .xml no
+// diretório help\en_US e reconstruiria os arquivos .dem.sce no diretório demos\.
+
+   </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+
+      <member><link linkend="help_skeleton">help_skeleton</link></member>
+
+      <member><link linkend="xmltohtml">xmltohtml</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>T. Pettersen</term>
+
+        <listitem>
+          <para>torbjorn.pettersen@broadpark.no</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

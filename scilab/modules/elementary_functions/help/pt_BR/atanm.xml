@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,13 +29,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[t]=atanm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,11 +57,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>atanm(x)</literal> Ã© o arco-tangente da matriz x (matrtiz
+    <para><literal>atanm(x)</literal> é o arco-tangente da matriz x (matrtiz
     arco-tangente de x). O resultado pode ser impreciso se
-    <literal>x</literal> nÃ£o Ã© simÃ©trica.</para>
+    <literal>x</literal> não é simétrica.</para>
   </refsection>
 
   <refsection>
@@ -75,7 +75,7 @@ tanm(atanm([1,2;3,4]))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="atan">atan</link></member>

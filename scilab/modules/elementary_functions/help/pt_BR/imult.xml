@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="imult" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>imult</refname>
 
-    <refpurpose>multiplicaÃ§Ã£o pela parte imaginÃ¡ria i</refpurpose>
+    <refpurpose>multiplicação pela parte imaginária i</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=imult(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -46,11 +46,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>imult(x)</literal> Ã© um modo mais eficiente de se
+    <para><literal>imult(x)</literal> é um modo mais eficiente de se
     multiplicar x por i que y = %i*x, sem os problemas que ocorrem quando x
-    inclui nÃºmeros "especiais" em ponto flutuante como %inf e %nan.</para>
+    inclui números "especiais" em ponto flutuante como %inf e %nan.</para>
   </refsection>
 
   <refsection>
