@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="manedit" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>manedit</refname>
+
+    <refpurpose>editando item do manual</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>manedit(manitem)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>manitem</term>
+
+        <listitem>
+          <para>string (geralmente, o nome de uma função)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>edit(manitem)</literal> abre o arquivo xml associado a
+    <literal>manitem</literal> no editor Scipad.</para>
+
+    <para>Se não há arquivo xml associado a <literal>manitem</literal> e
+    <literal>manitem</literal> é o nome de uma função Scilab, o Scipad abre
+    com o esqueleto do arquivo xml produzido por <link
+    linkend="help_skeleton">help_skeleton</link>. Este arquivo está localizado
+    em TMPDIR.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+manedit('manedit')
+
+function [x,y,z]=foo123(a,b),
+x=a+b,y=a-b,z=a==b
+endfunction
+manedit foo123
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+
+      <member><link linkend="help_skeleton">help_skeleton</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

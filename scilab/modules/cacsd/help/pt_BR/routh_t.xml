@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,35 +28,35 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r=routh_t(h [,k]).</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>h</term>
 
         <listitem>
-          <para>matriz quadrada de razÃµes de polinÃ´mios</para>
+          <para>matriz quadrada de razões de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>r=routh_t(h,k)</literal> computa a tabela de Routh do
-    denominador do sistema descrito pela matriz de transferÃªncia SISO
+    denominador do sistema descrito pela matriz de transferência SISO
     <literal>h</literal> com a resposta pelo ganho
     <literal>k</literal>.</para>
 
-    <para>se <literal>k=poly(0,'k')</literal> teremos uma matriz de polinÃ´mios
-    com variÃ¡vel livre <literal>k</literal>, expressÃ£o formal da tabela de
+    <para>se <literal>k=poly(0,'k')</literal> teremos uma matriz de polinômios
+    com variável livre <literal>k</literal>, expressão formal da tabela de
     Routh.</para>
   </refsection>
 </refentry>

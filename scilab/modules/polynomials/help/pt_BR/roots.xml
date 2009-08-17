@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -25,26 +25,26 @@
   <refnamediv>
     <refname>roots</refname>
 
-    <refpurpose>raÃ­zes de polinÃ´mios</refpurpose>
+    <refpurpose>raízes de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[x]=roots(p)
 [x]=roots(p,'e')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>polinÃ´mio com coeficientes reais ou complexos ou vetor dos
-          coeficientes do polinÃ´mio em ordem de graus decrescentes (para
+          <para>polinômio com coeficientes reais ou complexos ou vetor dos
+          coeficientes do polinômio em ordem de graus decrescentes (para
           compatibilidade com o Matlab).</para>
         </listitem>
       </varlistentry>
@@ -52,13 +52,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>x=roots(p)</literal> retorna no vetor de complexos
-    <literal>x</literal> as raÃ­zes do polinÃ´mio <literal>p</literal>. Para
-    polinÃ´mios reais de grau&lt;= 100 o algoritmo rÃ¡pido RPOLY Ã© utilizado. Em
-    outros casos, as raÃ­zes sÃ£o computadas como os autovalores da matriz
-    companheira associada. Use <literal>x=roots(p,'e')</literal> para forÃ§ar
+    <literal>x</literal> as raízes do polinômio <literal>p</literal>. Para
+    polinômios reais de grau&lt;= 100 o algoritmo rápido RPOLY é utilizado. Em
+    outros casos, as raízes são computadas como os autovalores da matriz
+    companheira associada. Use <literal>x=roots(p,'e')</literal> para forçar
     este algoritmo em qualquer caso.</para>
   </refsection>
 
@@ -69,14 +69,14 @@
 
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
-A=rand(3,3);roots(poly(A,'x'))    // avaliaÃ§Ãµes por polinÃ´mios caracterÃ­sticos
+A=rand(3,3);roots(poly(A,'x'))    // avaliações por polinômios característicos
 spec(A)
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>
@@ -98,24 +98,24 @@ spec(A)
   <refsection>
     <title>References</title>
 
-    <para>O algoritmo RPOLY Ã© descrito em "Algorithm 493: Zeros of a Real
-    Polynomial", ACM TOMS Volume 1, ediÃ§Ã£o 2 (Junho 1975), pp. 178-189</para>
+    <para>O algoritmo RPOLY é descrito em "Algorithm 493: Zeros of a Real
+    Polynomial", ACM TOMS Volume 1, edição 2 (Junho 1975), pp. 178-189</para>
 
     <para>Jenkins, M. A. e Traub, J. F. (1970), A Three-Stage Algorithm for
     Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970),
     545-566.</para>
 
     <para>Jenkins, M. A. e Traub, J. F. (1970), Principles for Testing
-    Polynomial Zerofinding Programs. ACM TOMS 1, 1 (MarÃ§o1975), pp.
+    Polynomial Zerofinding Programs. ACM TOMS 1, 1 (Março1975), pp.
     26-34</para>
   </refsection>
 
   <refsection>
-    <title> FunÃ§Ãµes Utilizadas </title>
+    <title> Funções Utilizadas </title>
 
-    <para>O cÃ³digo fonte de rpoly.f pode ser achado no diretÃ³rio
-    routines/control de uma distribuiÃ§Ã£o fonte do Scilab. A computaÃ§Ã£o de
-    autovalores Ã© feita utilizando-se os cÃ³digos do LAPACK DGEEV e ZGEEV.
+    <para>O código fonte de rpoly.f pode ser achado no diretório
+    routines/control de uma distribuição fonte do Scilab. A computação de
+    autovalores é feita utilizando-se os códigos do LAPACK DGEEV e ZGEEV.
     </para>
   </refsection>
 </refentry>

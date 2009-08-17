@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="funptr" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>funptr</refname>
 
-    <refpurpose>codificaÃ§Ã£o de primitivas </refpurpose>
+    <refpurpose>codificação de primitivas </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[numptr] = funptr(name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,24 +38,24 @@
         <term>numptr</term>
 
         <listitem>
-          <para>o nÃºmero de rotina interno da primitiva</para>
+          <para>o número de rotina interno da primitiva</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FuÃ§Ã£o utilitÃ¡ria (para usuÃ¡rios mais experientes apenas) para
-    retornar o nÃºmero de rotina interno <literal>numptr</literal> da primitiva
-    <literal>'name'</literal>. <literal>numptr</literal> Ã© formado a partir do
-    nÃºmero de interface <literal>fun</literal> e do nÃºmero de rotina
+    <para>Fução utilitária (para usuários mais experientes apenas) para
+    retornar o número de rotina interno <literal>numptr</literal> da primitiva
+    <literal>'name'</literal>. <literal>numptr</literal> é formado a partir do
+    número de interface <literal>fun</literal> e do número de rotina
     <literal>fin</literal> da primitiva em sua interface por <literal>numptr =
     100*fun + fin</literal> (fin &lt; 100). De <literal>numptr</literal>
-    pode-se obter o nÃºmero de interface <literal>fun = floor(numptr/100)
-    </literal>que pode ser Ãºtil para ligar uma interface dinÃ¢mica com seus
-    argumentos passados por referÃªncia (ver seÃ§Ã£o de exemplos).</para>
+    pode-se obter o número de interface <literal>fun = floor(numptr/100)
+    </literal>que pode ser útil para ligar uma interface dinâmica com seus
+    argumentos passados por referência (ver seção de exemplos).</para>
   </refsection>
 
   <refsection>
@@ -63,28 +63,28 @@
 
     <programlisting role="example">
 
-// Suponha que vocÃª queira carregar alguns cÃ³digos atravÃ©s
-// das facilidades de carregamento dinÃ¢mico oferecidas por addinter. Por padrÃ£o
-// os argumentos sÃ£o passados por valores, mas se vocÃª quiser
-// passÃ¡-los por referÃªncia, vocÃª pode fazer o seguinte
+// Suponha que você queira carregar alguns códigos através
+// das facilidades de carregamento dinâmico oferecidas por addinter. Por padrão
+// os argumentos são passados por valores, mas se você quiser
+// passá-los por referência, você pode fazer o seguinte
 // (nome sendo o nome scilab de uma das rotinas com
 // interface) :
 //
 // addinter(files,spnames,fcts)  // argumentos passados por valores
 // num_interface = floor(funptr(nome)/100)
-// intppty(num_interface)  // argumentos agora passados por referÃªncia
+// intppty(num_interface)  // argumentos agora passados por referência
 //
-// Note que se vocÃª digitar o seguinte
+// Note que se você digitar o seguinte
 //
 // intppty()                
 //
-// vocÃª verÃ¡ todas as interfaces funcionando por referÃªncia
+// você verá todas as interfaces funcionando por referência
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="clearfun">clearfun</link></member>

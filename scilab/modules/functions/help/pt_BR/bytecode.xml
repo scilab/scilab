@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *-->
+<refentry version="5.0-subset Scilab" xml:id="bytecode" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bytecode</refname>
+
+    <refpurpose>dada uma função, retorna "bytecode" (código de bytes) da
+    função em um array Scilab e vice-versa.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>
+      x = bytecode(f)
+      f= bytecode(X)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função Scilab</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor linha int32</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>x = bytecode(f) </literal>retorna o "bytecode" da função
+    <literal>f</literal> no array Scilab de inteiros
+    <literal>x</literal>.</para>
+
+    <para><literal>f = bytecode(x) </literal>retorna em <literal>f</literal> a
+    função associada ao "bytecode" dado no array Scilab de inteiros
+    <literal>x</literal>. AVISO: a validade de <literal>x</literal> não é
+    verificada.</para>
+  </refsection>
+
+  <refsection>
+    <title>Observação</title>
+
+    <para>O bytecode da função Scilab evoluirá drasticamente no futuro, então
+    o uso dessa função deve se restringir à manipulação de instruções de
+    profiling.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    function a=foo(),a=sin(3),endfunction
+    bytecode(foo)
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="add_profiling">add_profiling</link></member>
+
+      <member><link linkend="bytecodewalk">bytecodewalk</link></member>
+
+      <member><link linkend="macr2lst">macr2lst</link></member>
+
+      <member><link linkend="macr2tree">macr2tree</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

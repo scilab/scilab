@@ -21,23 +21,16 @@
 /*--------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "HandleManagement.h"
-#include "InitObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "CurrentObjectsManagement.h"
 #include "CurrentObjectsManagement.h"
 
-#include "../src/c/getHandleProperty/GetHashTable.h"
-#include "../src/c/getHandleProperty/getHandleProperty.h"
+#include "GetHashTable.h"
 
 #include "localization.h"
 #include "Scierror.h"
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
-#include "getPropertyAssignedValue.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
@@ -126,10 +119,30 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_strings:/* string argument (string) */
 		CheckRhs(1,1);
 		GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
-
-		/* no handle there */
-		hdl = 0;
-
+                if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
+                  {
+                    if ( strcmp(cstk(l2),"current_figure") == 0 ||  strcmp(cstk(l2),"current_axes") == 0 ||  strcmp(cstk(l2),"current_entity") == 0 ||  strcmp(cstk(l2),"hdl") == 0)
+                      {
+                        hdl = 0;
+                      }
+                    else
+                      {
+                        /* Test debug F.Leray 13.04.04 */
+                        if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0)) 
+                          {
+                            SciWin();
+                            hdl = sciGetHandle(sciGetCurrentObj());
+                          }
+                        else
+                          {
+                            hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
+                          }
+                      }/* DJ.A 08/01/04 */
+                  }
+                else
+                  {
+                    hdl = 0;
+                  }
 		break;
 	default:
 		lw = 1 + Top - Rhs;

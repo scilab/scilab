@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>bitor</refname>
 
-    <refpurpose>OR ("ou") aplicado Ã s representaÃ§Ãµes binÃ¡rias dos argumentos
+    <refpurpose>OR ("ou") aplicado às representações binárias dos argumentos
     de entrada</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[z]=bitor(x,y)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,14 +65,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado <literal>x</literal> e <literal>y</literal> dois inteiros
-    positivos, esta funÃ§Ã£o retorna <literal>z</literal> o nÃºmero decimal cuja
-    forma binÃ¡ria Ã© o OR das representaÃ§Ãµes binÃ¡rias de <literal>x</literal> e
+    positivos, esta função retorna <literal>z</literal> o número decimal cuja
+    forma binária é o OR das representações binárias de <literal>x</literal> e
     <literal>y</literal> (<literal>x</literal>, <literal>y</literal> e
-    <literal>z</literal> devem ter o mesmo tamanho). Se a dimensÃ£o de
-    <literal>x</literal> Ã© superior a 1, entÃ£o <literal>z(i)</literal> Ã© igual
+    <literal>z</literal> devem ter o mesmo tamanho). Se a dimensão de
+    <literal>x</literal> é superior a 1, então <literal>z(i)</literal> é igual
     a <literal>bitor(x(i),y(i))</literal></para>
   </refsection>
 
@@ -80,10 +80,10 @@
     <title>Exemplos</title>
 
     <programlisting role="example">// exemplo 1 :
-// '110000' : Ã© a representaÃ§Ã£o binÃ¡ria de 48 
-// '100101' : Ã© a representaÃ§Ã£o binÃ¡ria de 37   
-// '110101' : Ã© a representaÃ§Ã£o binÃ¡ria para OR aplicado Ã s formas binÃ¡rias de 48 e 37 
-// entÃ£o, o nÃºmero decimal correspondente a OR aplicado Ã s formas binÃ¡rias de 48 e 37 Ã© : 53
+// '110000' : é a representação binária de 48 
+// '100101' : é a representação binária de 37   
+// '110101' : é a representação binária para OR aplicado às formas binárias de 48 e 37 
+// então, o número decimal correspondente a OR aplicado às formas binárias de 48 e 37 é : 53
 x=48; y=37
 z=bitor(x,y)
 
@@ -96,7 +96,7 @@ z=bitor(x,y)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="bitand">bitand</link></member>

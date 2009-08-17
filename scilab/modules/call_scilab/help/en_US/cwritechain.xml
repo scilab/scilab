@@ -29,8 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(cwritechain) (char *name, int *myStringSize, char *myString,
-    unsigned long name_len, unsigned long myString_len);</para>
+    <synopsis>int C2F(cwritechain)(char *name, int *myStringSize, char *myString, unsigned long name_len, unsigned long myString_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -122,12 +121,12 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link linkend="creadchains"
-      os="">creadchains</link>,      
-      <link linkend="StringManagement_callscilab">String Management</link>
-
-</member>
+      <member>
+        <link linkend="SendScilabJob">SendScilabJob</link>
+        <link linkend="StartScilab">StartScilab</link>
+        <link linkend="creadchains">creadchains</link>
+        <link linkend="StringManagement_callscilab">String Management</link>
+      </member>
     </simplelist>
   </refsection>
 

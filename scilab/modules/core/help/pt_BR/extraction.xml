@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="extraction" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,11 +14,11 @@
   <refnamediv>
     <refname>extraction</refname>
 
-    <refpurpose>extra√ß√£o de entradas de matrizes e listas</refpurpose>
+    <refpurpose>extraÁ„o de entradas de matrizes e listas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>
       x(i)
@@ -31,14 +31,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matriz de qualquer tipo poss√≠vel</para>
+          <para>matriz de qualquer tipo possÌvel</para>
         </listitem>
       </varlistentry>
 
@@ -46,7 +46,7 @@
         <term>l</term>
 
         <listitem>
-          <para>vari√°vel do tipo lista</para>
+          <para>vari·vel do tipo lista</para>
         </listitem>
       </varlistentry>
 
@@ -54,7 +54,7 @@
         <term>i,j, k</term>
 
         <listitem>
-          <para>√≠ndices</para>
+          <para>Ìndices</para>
         </listitem>
       </varlistentry>
 
@@ -62,14 +62,14 @@
         <term>k1,...kn</term>
 
         <listitem>
-          <para>√≠ndices</para>
+          <para>Ìndices</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
@@ -87,12 +87,12 @@
               <listitem>
                 <itemizedlist>
                   <listitem>
-                    <para><literal>r=x(i,j)</literal> constr√≥i a matriz
+                    <para><literal>r=x(i,j)</literal> constrÛi a matriz
                     <literal>r</literal> tal que
                     <literal>r(l,k)=x(int(i(l)),int(j(k)))</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
                     e <literal>k</literal> de 1 a
-                    <literal>size(j,'*')</literal>. O valor m√°ximo de<literal>
+                    <literal>size(j,'*')</literal>. O valor m·ximo de<literal>
                     i</literal> (<literal>j</literal>) deve ser menor do que
                     ou igual a <literal>size(x,1)</literal>
                     (<literal>size(x,2)</literal>).</para>
@@ -100,37 +100,37 @@
 
                   <listitem>
                     <para><literal>r=x(i)</literal> com <literal>x</literal>
-                    uma matriz 1x1 contr√≥i a matriz <literal>r</literal> tal
+                    uma matriz 1x1 contrÛi a matriz <literal>r</literal> tal
                     que <literal>r(l,k)=x(int(i(l)),int(i(k)))</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,1)</literal> e
                     <literal>k</literal> para 1 a
                     <literal>size(i,2)</literal>.</para>
 
-                    <para>Note que, nesse caso, o √≠ndice <literal>i</literal>
-                    √© v√°lido apenas se todas as suas entradas s√£o iguais a
+                    <para>Note que, nesse caso, o Ìndice <literal>i</literal>
+                    È v·lido apenas se todas as suas entradas s„o iguais a
                     1.</para>
                   </listitem>
 
                   <listitem>
                     <para><literal>r=x(i)</literal> com <literal>x</literal>
-                    um vetor linha constr√≥i o vetor linha <literal>r</literal>
+                    um vetor linha constrÛi o vetor linha <literal>r</literal>
                     tal que <literal>r(l)=x(int(i(l)))</literal> para
                     <literal>l</literal> de 1 a
                     <literal>size(i,'*')</literal><literal>i</literal> deve
-                    ter valor m√°ximo menor do que ou igual a
+                    ter valor m·ximo menor do que ou igual a
                     <literal>size(x,'*')</literal>.</para>
                   </listitem>
 
                   <listitem>
                     <para><literal>r=x(i)</literal> com <literal>x</literal>
-                    uma matriz com uma ou mais colunas constr√≥i o vetor coluna
+                    uma matriz com uma ou mais colunas constrÛi o vetor coluna
                     <literal>r</literal> tal que <literal>r(l)</literal>
                     (<literal>l</literal> de 1 a
-                    <literal>size(i,'*')</literal>) cont√©m a entrada
+                    <literal>size(i,'*')</literal>) contÈm a entrada
                     <literal>int(i(l))</literal> do vetor coluna formado pela
-                    concatena√ß√£o das colunas de <literal>x</literal>.</para>
+                    concatenaÁ„o das colunas de <literal>x</literal>.</para>
 
-                    <para><literal>i</literal> deve ter valor m√°ximo menor do
+                    <para><literal>i</literal> deve ter valor m·ximo menor do
                     que ou igual a <literal>size(x,'*')</literal>.</para>
                   </listitem>
                 </itemizedlist>
@@ -138,7 +138,7 @@
             </varlistentry>
 
             <varlistentry>
-              <term>O s√≠mbolo <literal> ':'</literal></term>
+              <term>O sÌmbolo <literal> ':'</literal></term>
 
               <listitem>
                 <para><literal></literal> significa "todos os
@@ -146,7 +146,7 @@
 
                 <itemizedlist>
                   <listitem>
-                    <para><literal>r=x(i,:)</literal> constr√≥i uma matriz
+                    <para><literal>r=x(i,:)</literal> constrÛi uma matriz
                     <literal>r</literal> tal que
                     <literal>r(l,k)=x(int(i(l)),k))</literal> para
                     <literal>l</literal> de 1 a <literal>size(i,'*')</literal>
@@ -155,7 +155,7 @@
                   </listitem>
 
                   <listitem>
-                    <para><literal>r=x(:,j)</literal> constr√≥i a matriz
+                    <para><literal>r=x(:,j)</literal> constrÛi a matriz
                     <literal>r</literal> tal que
                     <literal>r(l,k)=x(l,int(j(k)))</literal> para
                     <literal>l</literal> de 1 a <literal>size(r,1)</literal> e
@@ -164,9 +164,9 @@
                   </listitem>
 
                   <listitem>
-                    <para><literal>r=x(:)</literal> constr√≥i o vetor coluna
-                    <literal>r</literal> formado pelas concatena√ß√µes das
-                    colunas de<literal> x</literal>. √â equivalente a
+                    <para><literal>r=x(:)</literal> constrÛi o vetor coluna
+                    <literal>r</literal> formado pelas concatenaÁıes das
+                    colunas de<literal> x</literal>. … equivalente a
                     <literal>matrix(x,size(x,'*'),1)</literal>.</para>
                   </listitem>
                 </itemizedlist>
@@ -177,33 +177,33 @@
               <term>vetor de booleanos</term>
 
               <listitem>
-                <para>Se um √≠ndice (<literal>i</literal> ou
-                <literal>j</literal> ) √© um vetor de booleanos, √© interpretado
+                <para>Se um Ìndice (<literal>i</literal> ou
+                <literal>j</literal> ) È um vetor de booleanos, È interpretado
                 como <literal>find(i)</literal> ou respectivamente
                 <literal>find(j)</literal></para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term>um polin√¥mio</term>
+              <term>um polinÙmio</term>
 
               <listitem>
-                <para>Se um √≠ndice (<literal>i</literal> ou
-                <literal>j</literal> ) √© um vetor de polin√¥mios ou um vetor de
-                polin√¥mios impl√≠cito, √© interpretado como
+                <para>Se um Ìndice (<literal>i</literal> ou
+                <literal>j</literal> ) È um vetor de polinÙmios ou um vetor de
+                polinÙmios implÌcito, È interpretado como
                 <literal>horner(i,m)</literal> ou respectivamente
                 <literal>horner(j,n)</literal> onde <literal>m</literal> e
-                <literal>n</literal> s√£o as dimens√µes associadas a
+                <literal>n</literal> s„o as dimensıes associadas a
                 <literal>x</literal>. Mesmo se este recurso funcionar para
-                todos os polin√¥mios, √© recomendado utilizar polin√¥mios em
+                todos os polinÙmios, È recomendado utilizar polinÙmios em
                 <literal>$</literal> para legibilidade.</para>
               </listitem>
             </varlistentry>
           </variablelist>
 
           <para>Para matrizes com mais de duas dimensoes (ver:<link
-          linkend="hypermatrices">hypermatrices</link>), a dimensionalidade √©
-          automaticamente reduzida quando as dimens√µes mais a direita s√£o
+          linkend="hypermatrices">hypermatrices</link>), a dimensionalidade È
+          automaticamente reduzida quando as dimensıes mais a direita s„o
           1.</para>
         </listitem>
       </varlistentry>
@@ -213,9 +213,9 @@
 
         <listitem>
           <para>Se estiverem presentes, os <literal>ki</literal> fornecem o
-          endere√ßo para uma entrada de sub-lista da estrutura de dados
-          <literal>l</literal> Eles permitem uma extra√ß√£o recursiva sem c√≥pias
-          intermedi√°rias. As instru√ß√µes</para>
+          endereÁo para uma entrada de sub-lista da estrutura de dados
+          <literal>l</literal> Eles permitem uma extraÁ„o recursiva sem cÛpias
+          intermedi·rias. As instruÁıes</para>
 
           <para><literal>[...]=l(k1)...(kn)(i)</literal></para>
 
@@ -223,24 +223,24 @@
 
           <para><literal>[...]=l(list(k1,...,kn,i))</literal></para>
 
-          <para>s√£o interpretadas como:</para>
+          <para>s„o interpretadas como:</para>
 
           <para><literal>lk1 = l(k1)</literal> <literal> .. = .. </literal>
           <literal>lkn = lkn-1(kn)</literal> <literal>[...] = lkn(i)</literal>
-          e as instru√ß√µes <literal>l(k1)...(kn)(i,j)</literal> e</para>
+          e as instruÁıes <literal>l(k1)...(kn)(i,j)</literal> e</para>
 
-          <para><literal>l(list(k1,...,kn,list(i,j))</literal> s√£o
+          <para><literal>l(list(k1,...,kn,list(i,j))</literal> s„o
           interpretadas como: <literal>lk1 = l(k1)</literal> <literal> .. = ..
           </literal> <literal>lkn = lkn-1(kn)</literal> <literal>
           lkn(i,j)</literal> <literal>i</literal> e <literal>j</literal>,
-          podendo ser: quando pontos de endere√ßo sobre mais de um componente
-          da lista, a instru√ß√£o deve ter tantos argumentos do lado esquerdo
-          quanto os componentes selecionados. Mas se a sintaxe de extra√ß√£o √©
-          usada dentro da seq√º√™ncia de chamamento de entrada de uma fun√ß√£o,
-          cada componente da lista retornado √© adicionado √† seq√º√™ncia de
-          chamamento da fun√ß√£o.</para>
+          podendo ser: quando pontos de endereÁo sobre mais de um componente
+          da lista, a instruÁ„o deve ter tantos argumentos do lado esquerdo
+          quanto os componentes selecionados. Mas se a sintaxe de extraÁ„o È
+          usada dentro da seq¸Íncia de chamamento de entrada de uma funÁ„o,
+          cada componente da lista retornado È adicionado ‡ seq¸Íncia de
+          chamamento da funÁ„o.</para>
 
-          <para>Note que, <literal> l(list())</literal> √© o mesmo que
+          <para>Note que, <literal> l(list())</literal> È o mesmo que
           <literal> l</literal>.</para>
 
           <variablelist>
@@ -256,14 +256,14 @@
                     <listitem>
                       <para><literal>[r1,...rn]=l(i)</literal> extrai os
                       elementos <literal>i(k)</literal> da lista l e
-                      armazena-os em vari√°veis <literal>rk</literal> para
+                      armazena-os em vari·veis <literal>rk</literal> para
                       <literal>k</literal> de 1 a
                       <literal>size(i,'*')</literal></para>
                     </listitem>
                   </varlistentry>
 
                   <varlistentry>
-                    <term>O s√≠mbolo <literal> : </literal></term>
+                    <term>O sÌmbolo <literal> : </literal></term>
 
                     <listitem>
                       <para>significa "todos os elementos".</para>
@@ -274,21 +274,21 @@
                     <term>um vetor de booleanos</term>
 
                     <listitem>
-                      <para>Se <literal>i</literal> √© um vetor de booleanos, √©
+                      <para>Se <literal>i</literal> È um vetor de booleanos, È
                       interpretado como <literal>find(i)</literal>.</para>
                     </listitem>
                   </varlistentry>
 
                   <varlistentry>
-                    <term>um polin√¥mio</term>
+                    <term>um polinÙmio</term>
 
                     <listitem>
-                      <para>Se <literal>i</literal> √© um vetor de polin√¥mios
-                      ou um vetor de polin√¥mios impl√≠cito, √© interpretado como
+                      <para>Se <literal>i</literal> È um vetor de polinÙmios
+                      ou um vetor de polinÙmios implÌcito, È interpretado como
                       <literal>horner(i,m)</literal> onde
                       <literal>m=size(l)</literal>. Mesmo que este recurso
-                      funcione para todos os polin√¥mios, √© recomendado
-                      utilizar polin√¥mios em <literal>$</literal> para
+                      funcione para todos os polinÙmios, È recomendado
+                      utilizar polinÙmios em <literal>$</literal> para
                       legibilidade.</para>
                     </listitem>
                   </varlistentry>
@@ -310,11 +310,11 @@
                   </varlistentry>
 
                   <varlistentry>
-                    <term>um polin√¥mio</term>
+                    <term>um polinÙmio</term>
 
                     <listitem>
                       <para>interpretado como <literal>horner(ki,m)</literal>
-                      onde <literal>m</literal> √© o tamanho da sub-lista
+                      onde <literal>m</literal> È o tamanho da sub-lista
                       correspondente.</para>
                     </listitem>
                   </varlistentry>
@@ -336,12 +336,12 @@
   </refsection>
 
   <refsection>
-    <title>Observa√ß√µes</title>
+    <title>ObservaÁıes</title>
 
-    <para>Para tipos de matrizes "soft-coded" como fun√ß√µes racionais e
-    sistemas lineares de espa√ßos de estados, a sintaxe <literal>x(i)</literal>
-    n√£o pode ser usada para extra√ß√£o de elementos de vetores devido a
-    confus√µes com extra√ß√£o de elementos de listas. A sintaxe
+    <para>Para tipos de matrizes "soft-coded" como funÁıes racionais e
+    sistemas lineares de espaÁos de estados, a sintaxe <literal>x(i)</literal>
+    n„o pode ser usada para extraÁ„o de elementos de vetores devido a
+    confusıes com extraÁ„o de elementos de listas. A sintaxe
     <literal>x(1,j)</literal> ou <literal>x(i,1)</literal> deve ser
     usada.</para>
   </refsection>
@@ -378,7 +378,7 @@ l=list(1,'qwerw',%s)
 l(1)
 [a,b]=l([3 2])
 l($)
-x=tlist(l(2:3)) //forma um tlist com os √∫ltimos dois componentes de l
+x=tlist(l(2:3)) //forma um tlist com os ˙ltimos dois componentes de l
 //
 dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2)('a')
@@ -390,7 +390,7 @@ dts(2)('b')(1,2)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>

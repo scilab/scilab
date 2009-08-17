@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="with_javasci" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>with_javasci</refname>
 
-    <refpurpose>Checa se o Scilab foi construÃ­do com a interface
+    <refpurpose>Checa se o Scilab foi construído com a interface
     java</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r=with_javasci()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,9 +38,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna <literal>%t</literal> se o Scilab tiver sido construÃ­do com
-    a interface java, ou <literal>%f</literal> senÃ£o.</para>
+    <para>Retorna <literal>%t</literal> se o Scilab tiver sido construído com
+    a interface java, ou <literal>%f</literal> senão.</para>
   </refsection>
 </refentry>

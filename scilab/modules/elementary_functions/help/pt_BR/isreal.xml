@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>isreal</refname>
 
-    <refpurpose>verifica se uma vari√°vel √© armazenada como real ou
+    <refpurpose>verifica se uma vari·vel È armazenada como real ou
     complexa.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>t=isreal(x)
 t=isreal(x,eps)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -59,16 +59,16 @@ t=isreal(x,eps)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>isreal(x)</literal> retorna 'true' (verdadeiro) se
-    <literal>x</literal> √© armazenado como uma vari√°vel real e falso se
-    <literal>x</literal> √© armazenado com uma parte imagin√°ria (que pode ser
+    <literal>x</literal> È armazenado como uma vari·vel real e falso se
+    <literal>x</literal> È armazenado com uma parte imagin·ria (que pode ser
     zero 0).</para>
 
     <para><literal>isreal(x,eps)</literal> retorna 'true' se
-    <literal>x</literal> √© armazenado como uma vari√°vel real ou se o valor
-    absoluto m√°ximo dos pontos flutuantes imagin√°rios √© menor que ou igual a
+    <literal>x</literal> È armazenado como uma vari·vel real ou se o valor
+    absoluto m·ximo dos pontos flutuantes imagin·rios È menor que ou igual a
     <literal>eps</literal>.</para>
   </refsection>
 

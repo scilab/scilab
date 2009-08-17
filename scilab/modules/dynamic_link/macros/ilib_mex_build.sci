@@ -26,8 +26,10 @@ function ilib_mex_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflag
   
   // These flags are important... The rename of the fly the name of the 
   // function in the C / C++ / Fortran code
-  cflags=" -DmexFunction=mex_\$* " + cflags
-  fflags=" -Dmexfunction=mex\$* " + fflags
+  if ~MSDOS then
+    cflags=" -DmexFunction=mex_\$* " + cflags
+    fflags=" -Dmexfunction=mex\$* " + fflags
+  end
 
   ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,%t,cc);
   

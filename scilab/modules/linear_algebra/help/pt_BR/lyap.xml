@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>lyap</refname>
 
-    <refpurpose>equaÃ§Ã£o de Lyapunov</refpurpose>
+    <refpurpose>equação de Lyapunov</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[X]=lyap(A,C,'c')
 [X]=lyap(A,C,'d')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -43,17 +43,17 @@
 
         <listitem>
           <para>matrizes quadradas de reais, <literal>C</literal> deve ser
-          simÃ©trica</para>
+          simétrica</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>X = lyap(A,C,flag)</literal> resolve as equaÃ§Ãµes matriciais
-    de tempo contÃ­nuo ou de tempo discreto de Lyapunov:</para>
+    <para><literal>X = lyap(A,C,flag)</literal> resolve as equações matriciais
+    de tempo contínuo ou de tempo discreto de Lyapunov:</para>
 
     <programlisting>
 
@@ -62,8 +62,8 @@
    
     </programlisting>
 
-    <para>Perceba que existe uma Ãºnica soluÃ§Ã£o se e sÃ³ se um autovalor de
-    <literal>A</literal> nÃ£o Ã© um autovalor de <literal>-A</literal>
+    <para>Perceba que existe uma única solução se e só se um autovalor de
+    <literal>A</literal> não é um autovalor de <literal>-A</literal>
     (<literal>flag='c'</literal>) ou 1 sobre um autovalor de
     <literal>A</literal> (<literal>flag='d'</literal>).</para>
   </refsection>
@@ -83,7 +83,7 @@ A'*X*A - X -C
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sylv">sylv</link></member>

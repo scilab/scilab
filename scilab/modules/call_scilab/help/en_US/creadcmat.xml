@@ -29,8 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadcmat) (char *name, int *m, int *n, double *scimat, unsigned long name_len);
-</para>
+    <synopsis>int C2F(creadcmat)(char *name, int *m, int *n, double *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>

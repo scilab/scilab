@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -28,28 +28,28 @@
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>O tipo hipermatriz ("hypermatrix") permite manipular arrays
     multidimensionais.</para>
 
-    <para>Hipermatrizes podem ser definidas por uma extens√£o das matrizes 2D
+    <para>Hipermatrizes podem ser definidas por uma extens„o das matrizes 2D
     como segue: a=[1 2;3 4];a(:,:,2)=rand(2,2)</para>
 
-    <para>ou usando a fun√ß√£o <literal>hypermat</literal> diretamente.</para>
+    <para>ou usando a funÁ„o <literal>hypermat</literal> diretamente.</para>
 
-    <para>As entradas podem ser n√∫meros reais ou complexos, polin√¥mios, raz√µes
-    de polin√¥mios, strings ou valores booleanos.</para>
+    <para>As entradas podem ser n˙meros reais ou complexos, polinÙmios, razıes
+    de polinÙmios, strings ou valores booleanos.</para>
 
-    <para>Hipermatrizes s√£o <literal>mlists</literal>:
+    <para>Hipermatrizes s„o <literal>mlists</literal>:
     <literal>mlist(['hm','dims','entries'],sz,v)</literal> onde
-    <literal>sz</literal> √© o vetor linha de dimens√µes e <literal>v</literal>
-    √© o vetor coluna de entradas (as primeiras dimens√µes s√£o armazenadas
+    <literal>sz</literal> È o vetor linha de dimensıes e <literal>v</literal>
+    È o vetor coluna de entradas (as primeiras dimensıes s„o armazenadas
     primeiro)</para>
 
-    <para>NOTAS: O n√∫mero de dimens√µes de hipermatrizes com tamanhos mais √†
-    direita iguais a 1 √© automaticamente reduzido. Uma hipermatriz com apenas
-    duas dimens√µes √© automaticamente trocada por uma matriz regular (tipo
+    <para>NOTAS: O n˙mero de dimensıes de hipermatrizes com tamanhos mais ‡
+    direita iguais a 1 È automaticamente reduzido. Uma hipermatriz com apenas
+    duas dimensıes È automaticamente trocada por uma matriz regular (tipo
     1).</para>
   </refsection>
 
@@ -64,7 +64,7 @@ a(1,1,:)
 
 size(a)
 
-a(:,:,1) //redu√ß√£o de dimensionalidade 
+a(:,:,1) //reduÁ„o de dimensionalidade 
 type(a(:,:,1))
 
 [a a]
@@ -76,7 +76,7 @@ type(a(:,:,1))
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="hypermat">hypermat</link></member>

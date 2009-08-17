@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>gcd</refname>
 
-    <refpurpose>c√°lculo de m√°ximo divisor comum</refpurpose>
+    <refpurpose>c·lculo de m·ximo divisor comum</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[pgcd,U]=gcd(p)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>vetor linha de polin√¥mios <literal>p=[p1,..,pn]</literal> ou
+          <para>vetor linha de polinÙmios <literal>p=[p1,..,pn]</literal> ou
           vetor linha de inteiros (tipo igual a 8)</para>
         </listitem>
       </varlistentry>
@@ -49,10 +49,10 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Computa o MDC dos componentes de <literal>p</literal> e uma matriz
-    unimodular (inversa de polin√¥mios) <literal>U</literal>, com grau m√≠nimo
+    unimodular (inversa de polinÙmios) <literal>U</literal>, com grau mÌnimo
     tais que</para>
 
     <para><literal>p*U=[0 ... 0 pgcd]</literal></para>
@@ -79,7 +79,7 @@ V*U
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="bezout">bezout</link></member>

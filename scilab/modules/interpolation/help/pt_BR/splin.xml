@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="splin" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>splin</refname>
 
-    <refpurpose>interpolaÃ§Ã£o por spline cÃºbico</refpurpose>
+    <refpurpose>interpolação por spline cúbico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>d = splin(x, y [,spline_type [, der]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,7 +66,7 @@
 
         <listitem>
           <para>vetor com o mesmo formato que <literal>x</literal>
-          (<literal>di</literal> Ã© a derivada do spline em
+          (<literal>di</literal> é a derivada do spline em
           <literal>xi</literal>)</para>
         </listitem>
       </varlistentry>
@@ -74,19 +74,19 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o computa o spline cÃºbico ou sub-spline
+    <para>Esta função computa o spline cúbico ou sub-spline
     <emphasis>s</emphasis> que interpola os pontos
     <emphasis>(xi,yi)</emphasis> i.e., temos <emphasis>s(xi)=yi</emphasis>
-    para todo <emphasis>i=1,..,n</emphasis>. O spline resultante s Ã©
+    para todo <emphasis>i=1,..,n</emphasis>. O spline resultante s é
     completamente definido pela tripla <literal>(x,y,d)</literal> onde
-    <literal>d</literal> Ã© o vetor com as derivadas nos <literal>xi</literal>:
-    <emphasis>s'(xi)=di</emphasis> (esta forma Ã© chamada de forma de
-    <emphasis>Hermite ou hermitiana</emphasis> ). A avaliaÃ§Ã£o do spline em
-    alguns pontos deve ser feita pela funÃ§Ã£o <link
-    linkend="interp">interp</link>. VÃ¡rios tipos de splines podem ser
-    computados selecionando o parÃ¢metro <literal>spline_type</literal>
+    <literal>d</literal> é o vetor com as derivadas nos <literal>xi</literal>:
+    <emphasis>s'(xi)=di</emphasis> (esta forma é chamada de forma de
+    <emphasis>Hermite ou hermitiana</emphasis> ). A avaliação do spline em
+    alguns pontos deve ser feita pela função <link
+    linkend="interp">interp</link>. Vários tipos de splines podem ser
+    computados selecionando o parâmetro <literal>spline_type</literal>
     apropriado: </para>
 
     <variablelist>
@@ -94,8 +94,8 @@
         <term>"not_a_knot"</term>
 
         <listitem>
-          <para>este Ã© o caso padrÃ£o, o spline cÃºbico Ã© computado sob as
-          seguintes condiÃ§Ãµes (considerando n pontos x1,...,xn):</para>
+          <para>este é o caso padrão, o spline cúbico é computado sob as
+          seguintes condições (considerando n pontos x1,...,xn):</para>
 
           <programlisting>
     s'''(x2-) = s'''(x2+)
@@ -108,8 +108,8 @@
         <term>"clamped"</term>
 
         <listitem>
-          <para>neste caso, o spline cÃºbico Ã© computado usando derivadas nas
-          extremidades do intervalo que devem ser fornecidas como Ãºltimo
+          <para>neste caso, o spline cúbico é computado usando derivadas nas
+          extremidades do intervalo que devem ser fornecidas como último
           argumento <literal>der</literal>:</para>
 
           <programlisting>
@@ -123,7 +123,7 @@
         <term>"natural"</term>
 
         <listitem>
-          <para>o spline cÃºbico Ã© computado sob as seguintes condiÃ§Ãµes:</para>
+          <para>o spline cúbico é computado sob as seguintes condições:</para>
 
           <programlisting>
     s''(x1) = 0
@@ -136,9 +136,9 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>um spline cÃºbico periÃ³dico Ã© computado (<literal>y</literal>
+          <para>um spline cúbico periódico é computado (<literal>y</literal>
           deve verificar <emphasis>y1=yn</emphasis>) sob as seguintes
-          condiÃ§Ãµes:</para>
+          condições:</para>
 
           <programlisting>
     s'(x1) = s'(xn)
@@ -151,14 +151,14 @@
         <term>"monotone"</term>
 
         <listitem>
-          <para>neste caso, um sub-spline (<emphasis>s</emphasis> Ã© apenas uma
-          vez continuamente diferenciÃ¡vel) Ã© computado usando um esquema local
-          para os <emphasis>di</emphasis> tais que s Ã© monÃ³tono em cada
+          <para>neste caso, um sub-spline (<emphasis>s</emphasis> é apenas uma
+          vez continuamente diferenciável) é computado usando um esquema local
+          para os <emphasis>di</emphasis> tais que s é monótono em cada
           intervalo:</para>
 
           <programlisting>
-    if y(i) &lt;= y(i+1)  s Ã© crescente em [x(i), x(i+1)] 
-    if y(i) &gt;= y(i+1)  s Ã© decrescente em [x(i), x(i+1)] 
+    if y(i) &lt;= y(i+1)  s é crescente em [x(i), x(i+1)] 
+    if y(i) &gt;= y(i+1)  s é decrescente em [x(i), x(i+1)] 
          </programlisting>
         </listitem>
       </varlistentry>
@@ -167,12 +167,12 @@
         <term>"fast"</term>
 
         <listitem>
-          <para>neste caso, um sub-spline tambÃ©m Ã© computado usando um esquema
-          local simples para os <emphasis>di</emphasis> : d(i) Ã© a derivada em
-          x(i) da interpolaÃ§Ã£o polinomial (x(i-1),y(i-1)),
+          <para>neste caso, um sub-spline também é computado usando um esquema
+          local simples para os <emphasis>di</emphasis> : d(i) é a derivada em
+          x(i) da interpolação polinomial (x(i-1),y(i-1)),
           (x(i),y(i)),(x(i+1),y(i+1)), exceto pelas extremidades (d1 sendo
-          computado a partir dos 3 pontos mais Ã  esquerda e dn dos 3 pontos
-          mais Ã  direita). </para>
+          computado a partir dos 3 pontos mais à esquerda e dn dos 3 pontos
+          mais à direita). </para>
         </listitem>
       </varlistentry>
 
@@ -180,9 +180,9 @@
         <term>"fast_periodic"</term>
 
         <listitem>
-          <para>Ã© o mesmo que o anterior, mas tambÃ©m usa uma fÃ³rmula centrada
-          para <emphasis>d1 = s'(x1) = dn = s'(xn)</emphasis> atravÃ©s da
-          periodicidade da funÃ§Ã£o subjacente (<literal>y</literal> deve
+          <para>é o mesmo que o anterior, mas também usa uma fórmula centrada
+          para <emphasis>d1 = s'(x1) = dn = s'(xn)</emphasis> através da
+          periodicidade da função subjacente (<literal>y</literal> deve
           verificar <emphasis>y1=yn</emphasis>).</para>
         </listitem>
       </varlistentry>
@@ -190,29 +190,29 @@
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes </title>
+    <title>Observações </title>
 
-    <para>De um ponto de vista de precisÃ£o, use essencialmente o tipo
-    <emphasis role="bold">clamped</emphasis> se vocÃª conhece as derivadas nas
+    <para>De um ponto de vista de precisão, use essencialmente o tipo
+    <emphasis role="bold">clamped</emphasis> se você conhece as derivadas nas
     extremidades, de outro modo, use <emphasis
-    role="bold">not_a_knot</emphasis>. Mas se a funÃ§Ã£o subjacente aproximada Ã©
-    periÃ³dica, use o tipo <emphasis role="bold">periodic</emphasis> Sob boas
-    suposiÃ§Ãµes, estes tipos de spline tÃªm um comportamento assintÃ³tico
-    <literal>O(h^4)</literal> do erro. NÃ£o use o tipo <emphasis
-    role="bold">natural</emphasis> a nÃ£o ser que a funÃ§Ã£o subjacente possua
+    role="bold">not_a_knot</emphasis>. Mas se a função subjacente aproximada é
+    periódica, use o tipo <emphasis role="bold">periodic</emphasis> Sob boas
+    suposições, estes tipos de spline têm um comportamento assintótico
+    <literal>O(h^4)</literal> do erro. Não use o tipo <emphasis
+    role="bold">natural</emphasis> a não ser que a função subjacente possua
     zero derivadas segundas nas extremidades. </para>
 
     <para>Os tipos <emphasis role="bold">monotone</emphasis>, <emphasis
     role="bold">fast</emphasis> (ou <emphasis
-    role="bold">fast_periodic</emphasis>) podem ser Ãºteis e alguns caso, por
-    exemplo, para limitar oscilaÃ§Ãµes (estes tipos de sub-splines tÃªm um
-    comportamento assintÃ³tico <literal>O(h^3)</literal> do erro).</para>
+    role="bold">fast_periodic</emphasis>) podem ser úteis e alguns caso, por
+    exemplo, para limitar oscilações (estes tipos de sub-splines têm um
+    comportamento assintótico <literal>O(h^3)</literal> do erro).</para>
 
-    <para>Se <emphasis>n=2</emphasis> (e <literal>spline_type</literal> nÃ£o Ã©
-    <emphasis role="bold">clamped</emphasis>) Ã© usada interpolaÃ§Ã£o linear. Se
-    <emphasis>n=3</emphasis> e <literal>spline_type</literal> Ã© <emphasis
-    role="bold">not_a_knot</emphasis>, entÃ£o, um sub-spline tipo <emphasis
-    role="bold">fast</emphasis> Ã© computado, na verdade. </para>
+    <para>Se <emphasis>n=2</emphasis> (e <literal>spline_type</literal> não é
+    <emphasis role="bold">clamped</emphasis>) é usada interpolação linear. Se
+    <emphasis>n=3</emphasis> e <literal>spline_type</literal> é <emphasis
+    role="bold">not_a_knot</emphasis>, então, um sub-spline tipo <emphasis
+    role="bold">fast</emphasis> é computado, na verdade. </para>
   </refsection>
 
   <refsection>
@@ -229,16 +229,16 @@ xx = linspace(a, b, m)';
 yyi = interp(xx, x, y, d);
 yye = runge(xx);
 xbasc()
-plot2d(xx, [yyi yye], style=[2 5], leg="interpolaÃ§Ã£o por@funÃ§Ã£o exata")
+plot2d(xx, [yyi yye], style=[2 5], leg="interpolação por@função exata")
 plot2d(x, y, -9)
-xtitle("IntepolaÃ§Ã£o da funÃ§Ã£o de Runge")
+xtitle("Intepolação da função de Runge")
 
-// exemplo 2 : mostra comportamento de splines diferentes em dados aleatÃ³rios
-a = 0; b = 1;        // intervalo de interpolaÃ§Ã£o
-n = 10;              // nÃºmero de pontos de interpolaÃ§Ã£o
-m = 800;             // discretizaÃ§Ã£o para avaliaÃ§Ã£o
-x = linspace(a,b,n)'; // abscissas dos pontos de interpolaÃ§Ã£o
-y = rand(x);          // ordenadas dos pontos de interpolaÃ§Ã£o
+// exemplo 2 : mostra comportamento de splines diferentes em dados aleatórios
+a = 0; b = 1;        // intervalo de interpolação
+n = 10;              // número de pontos de interpolação
+m = 800;             // discretização para avaliação
+x = linspace(a,b,n)'; // abscissas dos pontos de interpolação
+y = rand(x);          // ordenadas dos pontos de interpolação
 xx = linspace(a,b,m)';
 yk = interp(xx, x, y, splin(x,y,"not_a_knot"));
 yf = interp(xx, x, y, splin(x,y,"fast"));
@@ -246,14 +246,14 @@ ym = interp(xx, x, y, splin(x,y,"monotone"));
 xbasc()
 plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
        leg="fast@monotone@spline not a knot")
-plot2d(x,y,-9, strf="000")  // para mostrar pontos de interpolaÃ§Ã£o
-xtitle("VÃ¡rios splines e sub-splines em dados aleatÃ³rios")
+plot2d(x,y,-9, strf="000")  // para mostrar pontos de interpolação
+xtitle("Vários splines e sub-splines em dados aleatórios")
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="interp">interp</link></member>
@@ -268,8 +268,8 @@ xselect()
     <simplelist type="vert">
       <member>B. Pincon</member>
 
-      <member>F. N. Fritsch (rotina pchim.f Slatec Ã© usada para interpolaÃ§Ã£o
-      monÃ³tona)</member>
+      <member>F. N. Fritsch (rotina pchim.f Slatec é usada para interpolação
+      monótona)</member>
     </simplelist>
   </refsection>
 </refentry>

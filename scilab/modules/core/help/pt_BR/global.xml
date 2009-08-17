@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="global" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,43 +13,43 @@
   <refnamediv>
     <refname>global</refname>
 
-    <refpurpose>define variÃ¡vel global</refpurpose>
+    <refpurpose>define variável global</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>global('nam1',...,'namn')
 global nam1 ... namn</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>nam1,..., namn</term>
 
         <listitem>
-          <para>nomes de variÃ¡veis vÃ¡lidos</para>
+          <para>nomes de variáveis válidos</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>De um modo simples, cada funÃ§Ã£o do Scilab possui suas prÃ³prias
-    variÃ¡veis locais e pode "ler" todas as variÃ¡veis criadas no espaÃ§o de
-    trabalho base ou pelas funÃ§Ãµes de chamamento. A palavra-chave
+    <para>De um modo simples, cada função do Scilab possui suas próprias
+    variáveis locais e pode "ler" todas as variáveis criadas no espaço de
+    trabalho base ou pelas funções de chamamento. A palavra-chave
     <literal>global</literal> permite realizar leituras ou escritas de
-    variÃ¡veis atravÃ©s de funÃ§Ãµes. Qualquer atribuiÃ§Ã£o Ã quela variÃ¡vel, em
-    qualquer funÃ§Ã£o, estÃ¡ disponÃ­vel para todas as outras funÃ§Ãµes que a
-    declaram como variÃ¡vel <literal>global</literal>.</para>
+    variáveis através de funções. Qualquer atribuição àquela variável, em
+    qualquer função, está disponível para todas as outras funções que a
+    declaram como variável <literal>global</literal>.</para>
 
-    <para>Se a variÃ¡vel global nÃ£o existe (nÃ£o possui valor) na primeira vez
-    em que vocÃª escrever a declara como <literal>global </literal>, serÃ¡
+    <para>Se a variável global não existe (não possui valor) na primeira vez
+    em que você escrever a declara como <literal>global </literal>, será
     inicializada como matriz nula.</para>
   </refsection>
 
@@ -58,13 +58,13 @@ global nam1 ... namn</synopsis>
 
     <programlisting role="example">
 
-//primeiro: o ambiente de chamamento e uma funÃ§Ã£o compartilham uma variÃ¡vel
+//primeiro: o ambiente de chamamento e uma função compartilham uma variável
 global a
 a=1
 deff('y=f1(x)','global a,a=x^2,y=a^2')
 f1(2)
 a
-//segundo: trÃªs funÃ§Ãµes compartilham variÃ¡veis
+//segundo: três funções compartilham variáveis
 deff('initdata()','global A C ;A=10,C=30')
 deff('letsgo()','global A C ;disp(A) ;C=70')
 deff('letsgo1()','global C ;disp(C)')
@@ -77,7 +77,7 @@ letsgo1()
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="who">who</link></member>

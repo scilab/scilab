@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,45 +24,45 @@
   <refnamediv>
     <refname>sfact</refname>
 
-    <refpurpose>fatora√ß√£o espectral em tempo discreto</refpurpose>
+    <refpurpose>fatoraÁ„o espectral em tempo discreto</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>F=sfact(P)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>P</term>
 
         <listitem>
-          <para>matriz de polin√¥mios reais</para>
+          <para>matriz de polinÙmios reais</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Acha <literal>F</literal>, um fator espectral de
-    <literal>P</literal>. <literal>P</literal> √© uma matriz de polin√¥mios tal
-    que cada raiz de <literal>P</literal> possui uma imagem sim√©trica em
-    rela√ß√£o ao c√≠rculo unit√°rio. O problema √© singular se uma raiz estiver no
-    c√≠rculo unit√°rio.</para>
+    <literal>P</literal>. <literal>P</literal> È uma matriz de polinÙmios tal
+    que cada raiz de <literal>P</literal> possui uma imagem simÈtrica em
+    relaÁ„o ao cÌrculo unit·rio. O problema È singular se uma raiz estiver no
+    cÌrculo unit·rio.</para>
 
-    <para><literal>sfact(P)</literal> retorna uma matriz de polin√¥mios
-    <literal>F(z)</literal> que √© anti-est√°vel e tal que</para>
+    <para><literal>sfact(P)</literal> retorna uma matriz de polinÙmios
+    <literal>F(z)</literal> que È anti-est·vel e tal que</para>
 
     <para><literal>P = F(z)* F(1/z) *z^n</literal></para>
 
-    <para> Para polin√¥mios escalares um algorimto espec√≠fico √© implementado.
-    Os algoritmos s√£o implementados do livro de Kucera.</para>
+    <para> Para polinÙmios escalares um algorimto especÌfico È implementado.
+    Os algoritmos s„o implementados do livro de Kucera.</para>
   </refsection>
 
   <refsection>
@@ -77,29 +77,29 @@ w=sfact(p);
 w*numer(horner(w,1/z))
 //exemplo matricial
 F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
-P=F1*gtild(F1,'d');  //P √© sim√©trica
+P=F1*gtild(F1,'d');  //P È simÈtrica
 F=sfact(P)
 roots(det(P))
-roots(det(gtild(F,'d')))  //as ra√≠zes est√°veis
-roots(det(F))             //as ra√≠zes anti-est√°veis
+roots(det(gtild(F,'d')))  //as raÌzes est·veis
+roots(det(F))             //as raÌzes anti-est·veis
 clean(P-F*gtild(F,'d'))
-//exemplo de uso de tempo cont√≠nuo
+//exemplo de uso de tempo contÌnuo
 
 s=poly(0,'s');
 p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
-//p(s) = polin√¥mio em s^2 , procura por f est√°vel tal que p=f(s)*f(-s) 
-w=horner(p,(1-s)/(1+s));  // transforma√ß√£o bilinear w=p((1-s)/(1+s))
+//p(s) = polinÙmio em s^2 , procura por f est·vel tal que p=f(s)*f(-s) 
+w=horner(p,(1-s)/(1+s));  // transformaÁ„o bilinear w=p((1-s)/(1+s))
 wn=numer(w);              //tomando o numerador
-fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //fator e transforma√ß√£o de volta
-f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normaliza√ß√£o
-roots(f)    //f √© est√°vel
-clean(f*gtild(f,'c')-p)    //f(s)*f(-s) √© p(s)
+fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //fator e transformaÁ„o de volta
+f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalizaÁ„o
+roots(f)    //f È est·vel
+clean(f*gtild(f,'c')-p)    //f(s)*f(-s) È p(s)
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="gtild">gtild</link></member>

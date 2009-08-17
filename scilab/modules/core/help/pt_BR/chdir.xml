@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="chdir" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>chdir</refname>
 
-    <refpurpose>muda o diret√≥rio corrente do Scilab</refpurpose>
+    <refpurpose>muda o diretÛrio corrente do Scilab</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="cd">
     <refname>cd</refname>
 
-    <refpurpose>muda o diret√≥rio corrente do Scilab</refpurpose>
+    <refpurpose>muda o diretÛrio corrente do Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>b=chdir(path)
 realpath=cd(path)
@@ -31,14 +31,14 @@ cd path</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>b</term>
 
         <listitem>
-          <para>um booleano %t se a opera√ß√£o chdir estiver ok.</para>
+          <para>um booleano %t se a operaÁ„o chdir estiver ok.</para>
         </listitem>
       </varlistentry>
 
@@ -54,20 +54,20 @@ cd path</synopsis>
         <term>realpath</term>
 
         <listitem>
-          <para>um string, o nome real do endere√ßo ap√≥s a convers√£o do nome do
-          endere√ßo (ver abaixo)</para>
+          <para>um string, o nome real do endereÁo apÛs a convers„o do nome do
+          endereÁo (ver abaixo)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Muda o diret√≥rio corrente do Scilab para aquele dado por
-    <literal>path</literal>. Note que a convers√£o de endere√ßo √© realizada e.
-    por exemplo <literal>SCI/modules/core/macros</literal> √© um padr√£o v√°lido
-    tanto pra Unix quanto para Windows. Se path for vazio, muda para diret√≥rio
+    <para>Muda o diretÛrio corrente do Scilab para aquele dado por
+    <literal>path</literal>. Note que a convers„o de endereÁo È realizada e.
+    por exemplo <literal>SCI/modules/core/macros</literal> È um padr„o v·lido
+    tanto pra Unix quanto para Windows. Se path for vazio, muda para diretÛrio
     "home".</para>
   </refsection>
 
@@ -85,7 +85,7 @@ cd SCI
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="getcwd">getcwd</link></member>

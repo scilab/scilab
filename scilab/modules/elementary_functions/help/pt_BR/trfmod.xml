@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>trfmod</refname>
 
-    <refpurpose>exibiÃ§Ã£o de zeros e pÃ³los</refpurpose>
+    <refpurpose>exibição de zeros e pólos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[hm]=trfmod(h [,job])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Visualiza a estrutura pÃ³lo-zero de uma funÃ§Ã£o de transferÃªncia SISO
+    <para>Visualiza a estrutura pólo-zero de uma função de transferência SISO
     <literal>h</literal> .</para>
 
     <variablelist>
@@ -44,7 +44,7 @@
         <term>job='p'</term>
 
         <listitem>
-          <para>visualizaÃ§Ã£o de polinÃ´mios (padrÃ£o) </para>
+          <para>visualização de polinômios (padrão) </para>
         </listitem>
       </varlistentry>
 
@@ -52,17 +52,17 @@
         <term>job='f'</term>
 
         <listitem>
-          <para>visualizaÃ§Ã£o de freqÃ¼Ãªncias naturais e amortecimento </para>
+          <para>visualização de freqüências naturais e amortecimento </para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>SimplificaÃ§Ã£o interativa de <literal>h</literal>.
-    <literal>trfmod</literal> abre uma janela de diÃ¡logo.</para>
+    <para>Simplificação interativa de <literal>h</literal>.
+    <literal>trfmod</literal> abre uma janela de diálogo.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

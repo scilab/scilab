@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gainplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gainplot</refname>
+
+    <refpurpose>esboço de magnitude</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>gainplot(sl,fmin,fmax [,step] [,comments] )
+gainplot(frq,db,phi [,comments])
+gainplot(frq, repf [,comments])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+
+        <listitem>
+          <para>lista (sistema linear <literal>syslin</literal> SIMO).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fmin,fmax</term>
+
+        <listitem>
+          <para>escalares reais (intervalo de freqüência). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>step</term>
+
+        <listitem>
+          <para>real (passo de discretização (escala logarítmica)) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>comments</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frq</term>
+
+        <listitem>
+          <para>matriz (freqüências linha por linha) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>db,phi</term>
+
+        <listitem>
+          <para>matrizes (magnitudes e fases correspondentes a
+          <literal>frq</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>repf</term>
+
+        <listitem>
+          <para>matriz de complexos. Uma linha para cada resposta de
+          freqüência.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>É o mesmo que Bode, mas esboça apenas a magnitude.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+gainplot(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+clf()
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+gainplot([h1;h],0.01,100,['h1';'h'])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="black">black</link></member>
+
+      <member><link linkend="nyquist">nyquist</link></member>
+
+      <member><link linkend="freq">freq</link></member>
+
+      <member><link linkend="repfreq">repfreq</link></member>
+
+      <member><link linkend="g_margin">g_margin</link></member>
+
+      <member><link linkend="p_margin">p_margin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

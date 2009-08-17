@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="perl" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,12 +13,12 @@
   <refnamediv>
     <refname>perl</refname>
 
-    <refpurpose>chama script Perl utilizando um execut√°vel apropriado do
+    <refpurpose>chama script Perl utilizando um execut·vel apropriado do
     sistema operacional</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>perl('perlfile')
 perl('perlfile',arg1,arg2,...)
@@ -26,13 +26,13 @@ result = perl(...)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>perl('perlfile') chama o script Perl 'perlfile', utilizando o
-    execut√°vel Perl apropriado do sistema operacional.</para>
+    execut·vel Perl apropriado do sistema operacional.</para>
 
     <para>perl('perlfile',arg1,arg2,...) chama o script Perl 'perlfile',
-    utilizando o execut√°vel Perl apropriado do sistema operacional, e passa os
+    utilizando o execut·vel Perl apropriado do sistema operacional, e passa os
     argumentos arg1, arg2, e assim por diante, a 'perlfile'.</para>
 
     <para>result = perl(...) retorna os resultados de uma chamada a Perl
@@ -40,7 +40,7 @@ result = perl(...)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="unix">unix</link></member>

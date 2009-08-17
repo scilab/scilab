@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="clear" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,36 +13,36 @@
   <refnamediv>
     <refname>clear</refname>
 
-    <refpurpose>cancela vari√°veis</refpurpose>
+    <refpurpose>cancela vari·veis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>clear a</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Este comando cancela vari√°veis que n√£o est√£o protegidas. Ele remove
-    as vari√°veis nomeadas do ambiente. Por si s√≥, <literal>clear</literal>
-    cancela todas as vari√°veis, exceto as protegidas por
+    <para>Este comando cancela vari·veis que n„o est„o protegidas. Ele remove
+    as vari·veis nomeadas do ambiente. Por si sÛ, <literal>clear</literal>
+    cancela todas as vari·veis, exceto as protegidas por
     <literal>predef</literal>. Logo, os dois comandos
     <literal>predef(0)</literal> e <literal>clear</literal> removem todas as
-    vari√°veis.</para>
+    vari·veis.</para>
 
-    <para>Normalmente, vari√°veis protegidas s√£o bibliotecas padr√µes e
-    vari√°veis com o prefixo '%'</para>
+    <para>Normalmente, vari·veis protegidas s„o bibliotecas padrıes e
+    vari·veis com o prefixo '%'</para>
 
-    <para>Note a sintaxe particular <literal>clear a</literal> e n√£o
-    <literal>clear(a)</literal>. Note tamb√©m que <literal>a=[]</literal> n√£o
+    <para>Note a sintaxe particular <literal>clear a</literal> e n„o
+    <literal>clear(a)</literal>. Note tambÈm que <literal>a=[]</literal> n„o
     cancela <literal>a</literal> , mas define <literal>a</literal> como uma
     matriz vazia.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="predef">predef</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>winsid</refname>
 
-    <refpurpose>retorna a lista de janelas de grÃ¡ficos</refpurpose>
+    <refpurpose>retorna a lista de janelas de gráficos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>x=winsid()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,9 +48,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>winsid</literal> Ã© usado para retornar a lista de janelas
-    de grÃ¡ficos como um vetor de nÃºmeros das janelas.</para>
+    <para><literal>winsid</literal> é usado para retornar a lista de janelas
+    de gráficos como um vetor de números das janelas.</para>
   </refsection>
 </refentry>

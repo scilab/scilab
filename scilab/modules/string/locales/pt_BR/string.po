@@ -1,0 +1,376 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-29 14:56+0100\n"
+"PO-Revision-Date: 2009-07-07 16:56+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Era esperado um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Era esperado um número "
+"natural (inteiro não negativo).\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Este recurso não foi implementado: %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Era esperado um "
+"caractere ou um vetor de caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se \"%s\".\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Número de argumentos de entrada incorreto: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada: Esperava-se um string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"reais ou complexos, de strings, ou uma lista\n"
+
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: Expressão fornecida não possui valor.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: Esperava-se matriz de "
+"strings.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: Esperava-se "
+"''r'',''l'' ou ''c''.\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr ""
+"%s: Este recurso não foi implementado: Tradução de variável de tipo %s.\n"
+
+msgid "WARNING : \n"
+msgstr "AVISO: \n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: Deve estar entre %d e "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento #%d: Esperava-se uma matriz de strings "
+"ou de inteiros.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"números reais.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
+"expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se 'u' (Superior) "
+"ou 'l' (Inferior).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"inteiros.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: Esperava-se strings não-"
+"vazios.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
+"string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"reais de strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s: Tipo(s) errado(s) para o(s) argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: Deve ser >= 1.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+"''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
+"string.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument(s).\n"
+msgstr "%s : Tamanho(s) errado(s) para o(s) argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: Tamanho(s) errado(s) para o(s) argumento(s) de entrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
+"matrix expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"strings ou matriz vazia de reais.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um "
+"caractere.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument #%d.\n"
+msgstr "%s : Tamanho errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um caractere.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se %s ou %s.\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s : Memória esgotada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Tamanho errado para argumentos de entrada: Esperava-se tamanhos iguais\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Character expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um caractere.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"strings ou uma matriz vazia.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row vector of strings or column "
+"vector of strings expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor-linha "
+"ou coluna de strings.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se string não-"
+"vazio.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"não-vazia.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
+"não-vazia de string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s''' ou "
+"''%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A character or a vector of single "
+"characters expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um caractere ou "
+"um vetor de caracteres simples.\n"
+
+#, c-format
+msgid "%s : Memory allocation error.\n"
+msgstr "%s : Erro na alocação de memoria.\n"
+
+#, c-format
+msgid "%s: Delimiter must not be alphameric.\n"
+msgstr "%s: O delimitador não deve ser alfabético.\n"
+
+#, c-format
+msgid "%s: Capturing subpatterns error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Partial matching not supported.\n"
+msgstr "%s: Correspondência parcial não é suportada\n"
+
+#, c-format
+msgid "%s: Contains explicit CR or LF match.\n"
+msgstr "%s: Contém correspondência CR ou LF explícita.\n"
+
+#, c-format
+msgid "%s: Duplicate name status changes.\n"
+msgstr "%s: O nome de status duplicado muda.\n"
+
+#, c-format
+msgid "%s: Returned count is too big for offset size.\n"
+msgstr "%s: A contagem retornada é muito grande para o tamanho do offset.\n"
+
+#, c-format
+msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
+msgstr ""
+"%s: O limite de correspondência não é relevante para a correspondência DFA: "
+"ignorado.\n"
+
+#, c-format
+msgid "%s: Can not compile pattern.\n"
+msgstr "%s: Não se consegue compilar o padrão.\n"
+
+#, c-format
+msgid "%s: Matched text exceeds buffer limit.\n"
+msgstr "%s: O texto correspondido excede o limite de buffer.\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: Erro desconhecido.\n"

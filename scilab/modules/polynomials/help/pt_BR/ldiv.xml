@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>ldiv</refname>
 
-    <refpurpose>divis√£o longa entre matrizes de polin√¥mios</refpurpose>
+    <refpurpose>divis„o longa entre matrizes de polinÙmios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[x]=ldiv(n,d,k)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>n,d</term>
 
         <listitem>
-          <para>duas matrizes de polin√¥mios reais </para>
+          <para>duas matrizes de polinÙmios reais </para>
         </listitem>
       </varlistentry>
 
@@ -56,15 +56,15 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>x=ldiv(n,d,k)</literal> fornece os <literal>k</literal>
-    primeiros coeficientes da divis√£o longa de <literal>n</literal> por
-    <literal>d</literal> i.e. the a expans√£o de Taylor da matriz de raz√µes de
-    polin√¥mios <literal>[nij(z)/dij(z)]</literal> aproximando-se do
+    primeiros coeficientes da divis„o longa de <literal>n</literal> por
+    <literal>d</literal> i.e. the a expans„o de Taylor da matriz de razıes de
+    polinÙmios <literal>[nij(z)/dij(z)]</literal> aproximando-se do
     infinito.</para>
 
-    <para>Os coeficientes de expans√£o de <literal>nij/dij</literal> s√£o
+    <para>Os coeficientes de expans„o de <literal>nij/dij</literal> s„o
     armazenados em <literal>x((i-1)*n+k,j) k=1:n</literal></para>
   </refsection>
 
@@ -85,7 +85,7 @@ x3=ldiv(numer(wtfbis),denom(wtfbis),5)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="arl2">arl2</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>pen2ea</refname>
 
-    <refpurpose>convers√£o de feixe em matrizes E e A</refpurpose>
+    <refpurpose>convers„o de feixe em matrizes E e A</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[E,A]=pen2ea(Fs)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,9 +56,9 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Fun√ß√£o utilit√°ria. Dado o feixe <literal>Fs=s*E-A</literal>, retorna
+    <para>FunÁ„o utilit·ria. Dado o feixe <literal>Fs=s*E-A</literal>, retorna
     as matrizes <literal>E</literal> e <literal>A</literal>.</para>
   </refsection>
 

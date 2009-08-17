@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>Sfgrayplot</refname>
 
-    <refpurpose>esboÃ§o 2d suave de uma superfÃ­cie definida por uma funÃ§Ã£o
+    <refpurpose>esboço 2d suave de uma superfície definida por uma função
     utilizando cores </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
 Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
         <term>f</term>
 
         <listitem>
-          <para>funÃ§Ã£o do Scilab (z=f(x,y)) </para>
+          <para>função do Scilab (z=f(x,y)) </para>
         </listitem>
       </varlistentry>
 
@@ -59,12 +59,12 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
+          <para>representa uma seqüência de declarações <literal>key1=value1,
           key2=value2</literal>,... onde <literal>key1</literal>,
           <literal>key2,...</literal> podem ser um dos seguintes: strf, rect,
           nax, zminmax, colminmax, mesh, colout (ver <link
-          linkend="plot2d">plot2d</link> para os trÃªs primeiros e <link
-          linkend="fec">fec</link> para os quatro Ãºltimos).</para>
+          linkend="plot2d">plot2d</link> para os três primeiros e <link
+          linkend="fec">fec</link> para os quatro últimos).</para>
         </listitem>
       </varlistentry>
 
@@ -87,13 +87,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>Sfgrayplot</literal> Ã© o mesmo que
-    <literal>fgrayplot</literal> mas o esboÃ§o Ã© suavizado. A funÃ§Ã£o
-    <literal>fec</literal> Ã© utilizada para suavizaÃ§Ã£o. A superfÃ­cie Ã©
-    esboÃ§ada assumindo-se que Ã© linear em um conjunto de triÃ¢ngulos
-    construÃ­dos a partir do grid (aqui, com n1=5, n2=3):</para>
+    <para><literal>Sfgrayplot</literal> é o mesmo que
+    <literal>fgrayplot</literal> mas o esboço é suavizado. A função
+    <literal>fec</literal> é utilizada para suavização. A superfície é
+    esboçada assumindo-se que é linear em um conjunto de triângulos
+    construídos a partir do grid (aqui, com n1=5, n2=3):</para>
 
     <programlisting>
              _____________
@@ -102,23 +102,23 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
              | /| /| /| /| 
              |/_|/_|/_|/_|</programlisting>
 
-    <para>A funÃ§Ã£o <link linkend="colorbar">colorbar</link> pode ser utilizada
-    para se visualizar a escala de cores (mas vocÃª deve saber (ou computar) os
-    valores mÃ­nimo e mÃ¡ximo).</para>
+    <para>A função <link linkend="colorbar">colorbar</link> pode ser utilizada
+    para se visualizar a escala de cores (mas você deve saber (ou computar) os
+    valores mínimo e máximo).</para>
 
-    <para>Ao invÃ©s de Sfgrayplot, vocÃª pode usar <link
+    <para>Ao invés de Sfgrayplot, você pode usar <link
     linkend="Sgrayplot">Sgrayplot</link> este pode ser um pouco mais
-    rÃ¡pido.</para>
+    rápido.</para>
 
     <para>Entre com o comando <literal>Sfgrayplot()</literal> para visualizar
-    uma demonstraÃ§Ã£o.</para>
+    uma demonstração.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
     <programlisting role="example">
-// exemplo #1: esboÃ§o de 4 superfÃ­cies
+// exemplo #1: esboço de 4 superfícies
 function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
@@ -147,7 +147,7 @@ subplot(2,2,4)
 drawnow() ;
 xselect()
 
-// exemplo #2: esboÃ§o de surf3 e adiÃ§Ã£o de algumas linhas de contorno
+// exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
 function z=surf3(x,y), z=x^3+y^2, endfunction
 xbasc()
 x = linspace(-1,1,60);
@@ -161,8 +161,8 @@ xtitle("f(x,y) = x^3+y^2")
 drawnow() ;
 xselect()
 
-// exemplo #3: esboÃ§o de surf3 e uso dos argumentos opcionais zminmax e colout
-//             para restringir o esboÃ§o em -0.5&lt;= z &lt;= 1
+// exemplo #3: esboço de surf3 e uso dos argumentos opcionais zminmax e colout
+//             para restringir o esboço em -0.5&lt;= z &lt;= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
 xbasc()
 x = linspace(-1,1,60);
@@ -181,7 +181,7 @@ xselect()
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="fec">fec</link></member>

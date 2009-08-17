@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>min</refname>
 
-    <refpurpose>mÃ­nimo</refpurpose>
+    <refpurpose>mínimo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[m [,k]]=min(A)
 [m [,k]]=min(A,'c')
@@ -39,7 +39,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -62,31 +62,31 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Para <literal>A</literal>, um vetor ou matriz de reais,
-    <literal>min(A)</literal> Ã© o menor elemento de <literal>A</literal>.
-    <literal>[m,k]=min(A)</literal> fornece, ainda, o Ã­ndice do mÃ­nimo. Um
+    <literal>min(A)</literal> é o menor elemento de <literal>A</literal>.
+    <literal>[m,k]=min(A)</literal> fornece, ainda, o índice do mínimo. Um
     segundo argumento do tipo string <literal>'r'</literal> ou
-    <literal>'c'</literal> pode ser usado : <literal>'r'</literal> Ã© usado
+    <literal>'c'</literal> pode ser usado : <literal>'r'</literal> é usado
     para obter um vetor linha <literal>m</literal> tal que
-    <literal>m(j)</literal> contÃ©m o mÃ­nimo da <literal>j</literal> -Ã©sima
+    <literal>m(j)</literal> contém o mínimo da <literal>j</literal> -ésima
     coluna de A (<literal>A(:,j)</literal>), <literal>k(j)</literal> fornece o
-    Ã­ndice de linha que contÃ©m o mÃ­nimo para a coluna <literal>j</literal>.
-    <literal>'c'</literal> Ã© usado para a operaÃ§Ã£o dual de linhas de
-    <literal>A</literal>. <literal>'m'</literal> Ã© usado para compatibilidade
+    índice de linha que contém o mínimo para a coluna <literal>j</literal>.
+    <literal>'c'</literal> é usado para a operação dual de linhas de
+    <literal>A</literal>. <literal>'m'</literal> é usado para compatibilidade
     com Matlab.</para>
 
     <para><literal>m=min(A1,A2,...,An)</literal>, onde todos os
-    <literal>Aj</literal> sÃ£o matrizes de mesmo tamanho, retorna um vetor ou
+    <literal>Aj</literal> são matrizes de mesmo tamanho, retorna um vetor ou
     matriz <literal>m</literal> de tamanho <literal>size(m)=size(A1)</literal>
     tal que <literal>m(i)= min( Aj(i)), j=1,...,n</literal>.
     <literal>[m,k]=min(A1,A2,...,An)</literal> fornece, ainda, o vetor ou
     matriz <literal>k</literal>. Fixado um <literal>i</literal>,
-    <literal>k(i)</literal> Ã© o nÃºmero do primeiro <literal>Aj(i)</literal> a
-    alcanÃ§ar o mÃ­nimo.</para>
+    <literal>k(i)</literal> é o número do primeiro <literal>Aj(i)</literal> a
+    alcançar o mínimo.</para>
 
-    <para><literal>[m,k]=min(list(A1,...,An))</literal> Ã© uma outra sintaxe
+    <para><literal>[m,k]=min(list(A1,...,An))</literal> é uma outra sintaxe
     para <literal>[m,k]=min(A1,A2,...,An)</literal></para>
   </refsection>
 
@@ -105,7 +105,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sort">sort</link></member>

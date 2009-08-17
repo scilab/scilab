@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>coff</refname>
 
-    <refpurpose>resolvente (mÃ©todo do cofator) </refpurpose>
+    <refpurpose>resolvente (método do cofator) </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[N,d]=coff(M [,var])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
         <term>N</term>
 
         <listitem>
-          <para> matriz de polinÃ´mios (com o mesmo tamanho que
+          <para> matriz de polinômios (com o mesmo tamanho que
           <literal>M</literal>)</para>
         </listitem>
       </varlistentry>
@@ -66,7 +66,7 @@
         <term>d</term>
 
         <listitem>
-          <para>polinÃ´mio ( polinÃ´mio caracterÃ­stico
+          <para>polinômio ( polinômio característico
           <literal>poly(A,'s')</literal>)</para>
         </listitem>
       </varlistentry>
@@ -74,13 +74,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>coff</literal> computa R=<literal>(s*eye()-M)^-1</literal>
-    para <literal>M</literal> uma matriz de reais. R Ã© dado por
+    para <literal>M</literal> uma matriz de reais. R é dado por
     <literal>N/d</literal>.</para>
 
-    <para><literal>N</literal> = matriz de polinÃ´mios como numerador.</para>
+    <para><literal>N</literal> = matriz de polinômios como numerador.</para>
 
     <para><literal>d</literal> = denominador comum.</para>
 
@@ -102,7 +102,7 @@ inv(%s*eye()-M)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="coffg">coffg</link></member>

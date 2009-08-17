@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="log1p" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>log1p</refname>
 
-    <refpurpose>computa, com precis√£o, o logaritmo natural de seu argumento
+    <refpurpose>computa, com precis„o, o logaritmo natural de seu argumento
     acrescido de uma unidade</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=log1p(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -46,11 +46,11 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>logp1(x)</literal> √© a fun√ß√£o log(1+x) elemento a elemento.
-    <literal>y(i,j)=log(1 + x(i,j))</literal>. Esta fun√ß√£o, definida para x
-    &gt; -1, deve ser usada se quisermos computar log(1+x) com precis√£o para
+    <para><literal>logp1(x)</literal> È a funÁ„o log(1+x) elemento a elemento.
+    <literal>y(i,j)=log(1 + x(i,j))</literal>. Esta funÁ„o, definida para x
+    &gt; -1, deve ser usada se quisermos computar log(1+x) com precis„o para
     |x| &lt;&lt; 1 ("&lt;&lt;" significa "muito menor").</para>
   </refsection>
 
@@ -66,13 +66,13 @@ log(1 + 1.e-7)
 log1p(1.e-7)
 log(1 + 1.e-20)
 log1p(1.e-20)
-format("v") //retoma o formato padr√£o
+format("v") //retoma o formato padr„o
    
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="log">log</link></member>

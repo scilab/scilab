@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Compound_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Compound_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade compound</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Compound é uma entidade de terceiro nível na hierarquia
+    de entidades gráficas. Esta entidade define interdependências entre várias
+    entidades gráficas e suas propriedades de visibilidade global.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade Text deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>um vetor contendo manipuladores para os objetos gráficos
+          galhos do Compound. Estes objetos gráficos podem ser do tipo
+          <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
+          <literal>"Polyline"</literal>, <literal>"Patch"</literal>,
+          <literal>"Segs"</literal>, <literal>"Arc"</literal>,
+          <literal>"Grayplot"</literal>,..</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade visible para a
+          entidade . Pode ser <literal>"on" </literal> ou
+          <literal>"off"</literal>. Por padrão, o valor é <literal>"on"
+          </literal> onde as entidades gráficas galhos do Compound são
+          desenhadas. Se <literal>"off"</literal> nenhum dos galhos do
+          Compound é desenhado na tela. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da figura e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="glue">glue</link></member>
+
+      <member><link linkend="unglue">unglue</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

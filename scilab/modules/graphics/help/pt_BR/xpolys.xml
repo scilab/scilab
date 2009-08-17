@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,25 +24,24 @@
   <refnamediv>
     <refname>xpolys</refname>
 
-    <refpurpose>draw a set of polylines or polygons</refpurpose>
+    <refpurpose>desenha um conjunto de poligonais ou polÌgonos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xpolys(xpols,ypols,[draw])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>xpols,ypols</term>
 
         <listitem>
-          <para>matrizes de mesmo tamanho (p,n) (pontos das poligonais)
-          </para>
+          <para>matrizes de mesmo tamanho (p,n) (pontos das poligonais)</para>
         </listitem>
       </varlistentry>
 
@@ -57,29 +56,29 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xpolys</literal> desenha um conjunto de poligonais usando
-    marcas ou linhas tracejadas. As coordenadas de cada poligonal s√£o
+    marcas ou linhas tracejadas. As coordenadas de cada poligonal s„o
     armazenadas em uma coluna de <literal>xpols</literal> e
     <literal>ypols</literal>.</para>
 
-    <para>O estilo da poligonal i √© dado por
+    <para>O estilo da poligonal i È dado por
     <literal>draw(i)</literal>:</para>
 
     <itemizedlist>
       <listitem>
         <para>Se <literal>draw(i)</literal> for negativo, a marca com
-        identificador <literal>-draw(i)</literal> i √© utilizada para desenhar
-        a poligonal i (marcas s√£o desenhadas utilizando-se o padr√£o corrente).
+        identificador <literal>-draw(i)</literal> i È utilizada para desenhar
+        a poligonal i (marcas s„o desenhadas utilizando-se o padr„o corrente).
         Use <literal>xset()</literal> para ver o significado dos
-        identificadores. </para>
+        identificadores.</para>
       </listitem>
 
       <listitem>
         <para>Se <literal>draw(i)</literal> for estritamente positivo, o
         estilo de linha (ou cor) com identificador <literal>draw(i)</literal>
-        √© utilizado para desenhar a poligonal i. Use <literal>xset()</literal>
+        È utilizado para desenhar a poligonal i. Use <literal>xset()</literal>
         para ver o significado dos idenficadores.</para>
       </listitem>
     </itemizedlist>
@@ -100,7 +99,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpoly">xfpoly</link></member>

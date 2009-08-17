@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="bsplin3val" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>bsplin3val</refname>
 
-    <refpurpose>funÃ§Ã£o de avaliaÃ§Ã£o de derivada arbitrÃ¡ria de spline
+    <refpurpose>função de avaliação de derivada arbitrária de spline
     3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[dfp]=bsplin3val(xp,yp,zp,tl,der)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,7 +48,7 @@
         <term>der</term>
 
         <listitem>
-          <para>vetor com trÃªs componentes <literal>[ox,oy,oz]</literal>
+          <para>vetor com três componentes <literal>[ox,oy,oz]</literal>
           definindo qual derivada de <literal>s</literal> computar. </para>
         </listitem>
       </varlistentry>
@@ -58,7 +58,7 @@
 
         <listitem>
           <para>vetor ou matriz de mesmo formato que <literal>xp</literal>,
-          <literal>yp</literal> e <literal>zp</literal>, avaliaÃ§Ã£o elemento a
+          <literal>yp</literal> e <literal>zp</literal>, avaliação elemento a
           elemento da derivada especificada de <literal>s</literal> nesses
           pontos.</para>
         </listitem>
@@ -67,12 +67,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Enquanto a funÃ§Ã£o <link linkend="interp3d">interp3d</link> pode
+    <para>Enquanto a função <link linkend="interp3d">interp3d</link> pode
     computar apenas o spline <literal>s</literal> e suas primeiras derivadas,
     <literal>bsplin3val</literal> pode computar qualquer derivada de
-    <literal>s</literal>. A derivada a ser computada Ã© especificada pelo
+    <literal>s</literal>. A derivada a ser computada é especificada pelo
     argumento <literal>der=[ox,oy,oz]</literal> :</para>
 
     <programlisting>
@@ -83,14 +83,14 @@
              dx   dy   dz
          </programlisting>
 
-    <para>EntÃ£o, <literal>der=[0 0 0]</literal> corresponde a
+    <para>Então, <literal>der=[0 0 0]</literal> corresponde a
     <emphasis>s</emphasis>, <literal>der=[1 0 0]</literal> to
     <emphasis>ds/dx</emphasis>, <literal>der=[0 1 0]</literal> to
     <emphasis>ds/dy</emphasis>, <literal>der=[1 1 0]</literal> to
     <emphasis>d2s/dxdy</emphasis>, etc...</para>
 
     <para>Para um ponto com coordenadas
-    <emphasis>(xp(i),yp(i),zp(i))</emphasis> fora do grid, a funÃ§Ã£o retorna 0.
+    <emphasis>(xp(i),yp(i),zp(i))</emphasis> fora do grid, a função retorna 0.
     </para>
   </refsection>
 
@@ -103,8 +103,8 @@ deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
 deff("v=fxyz(x,y,z)","v=sin(x).*cos(y).*sin(z)");
 deff("v=fxxyz(x,y,z)","v=cos(x).*cos(y).*sin(z)");
-n = 20;  // n x n x n  pontos de interpolaÃ§Ã£o
-x = linspace(0,2*%pi,n); y=x; z=x; // grid de interpolaÃ§Ã£o
+n = 20;  // n x n x n  pontos de interpolação
+x = linspace(0,2*%pi,n); y=x; z=x; // grid de interpolação
 [X,Y,Z] = ndgrid(x,y,z); V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
 
@@ -133,7 +133,7 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin3d">splin3d</link></member>
@@ -146,7 +146,7 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
     <title>Autores</title>
 
     <simplelist type="vert">
-      <member>R.F. Boisvert, C. De Boor (cÃ³digo da biblioteca FORTRAN CMLIB)
+      <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
       </member>
 
       <member>B. Pincon (interface Scilab)</member>

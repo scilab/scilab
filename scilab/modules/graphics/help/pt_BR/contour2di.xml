@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="contour2di" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>contour2di</refname>
+
+    <refpurpose>Computa curvas de nível em um esboço 2d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores de reais de tamanhos n1 e n2 definindo o grid.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>matriz de reais de tamanho (n1,n2), os valores da função.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nz</term>
+
+        <listitem>
+          <para>os valores de nível ou o número de níveis.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term></term>
+
+              <listitem>
+                <para>Se <literal>nz</literal> for um inteiro, seu valor
+                fornece o número de níveis igualmente espaçados de zmin a zmax
+                como segue:</para>
+
+                <programlisting>
+
+ z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+   
+                </programlisting>
+
+                <para>Note que os níveis <literal>zmin</literal> e
+                <literal>zmax</literal> não são desenhados (genericamente eles
+                são reduzidos a pontos) mas podem ser adicionados através de
+                </para>
+
+                <programlisting>
+
+ [im,jm] = find(z == zmin);     // ou zmax 
+ plot2d(x(im)',y(jm)',-9,"000")
+   
+                </programlisting>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term></term>
+
+              <listitem>
+                <para>Se <literal>nz</literal> for um vetor,
+                <literal>nz(i)</literal> fornece o valor da i-ésima curva de
+                nível. </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xc,yc</term>
+
+        <listitem>
+          <para>vetores de tamanhos idênticos contendo as definições dos
+          contornos. Ver detalhes abaixo.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>contour2di</literal> computa as curvas de nível de uma
+    superfície <literal>z=f(x,y)</literal> em um esboço 2d. Os valores de
+    <literal>f(x,y)</literal> asão dados pela matriz <literal>z</literal> nos
+    pontos de grid definidos por <literal>x</literal> e
+    <literal>y</literal>.</para>
+
+    <para><literal>xc(1)</literal> contém o nível associado ao primeiro
+    caminho de contorno, <literal>yc(1)</literal> contém o número
+    <literal>N1</literal> de pontos definindo este caminho de contorno e
+    (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contém
+    as coordenadas dos pontos do caminho. O segundo caminho começa em
+    <literal>xc(2+N1)</literal> e <literal>yc(2+N1)</literal> e assim por
+    diante.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
+k=1;n=yc(k);c=1;
+while k+yc(k)&lt;size(xc,'*')
+  n=yc(k);
+  plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
+  c=c+1;
+  k=k+n+1;
+end
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="contour">contour</link></member>
+
+      <member><link linkend="fcontour">fcontour</link></member>
+
+      <member><link linkend="fcontour2d">fcontour2d</link></member>
+
+      <member><link linkend="contour2d">contour2d</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="xset">xset</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

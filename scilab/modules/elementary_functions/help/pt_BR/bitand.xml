@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>bitand</refname>
 
-    <refpurpose>AND ("e") aplicado Ã s representaÃ§Ãµes binÃ¡rias dos argumentos
+    <refpurpose>AND ("e") aplicado às representações binárias dos argumentos
     de entrada</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[z]=bitand(x,y)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,15 +65,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado <literal>x</literal> e <literal>y</literal> dois inteiros
-    positivos, esta funÃ§Ã£o retorna <literal>z</literal> o nÃºmero decimal cuja
-    forma binÃ¡ria Ã© o AND das representaÃ§Ãµes binÃ¡rias de <literal>x</literal>
+    positivos, esta função retorna <literal>z</literal> o número decimal cuja
+    forma binária é o AND das representações binárias de <literal>x</literal>
     e <literal>y</literal>. (<literal>x</literal>, <literal>y</literal> e
-    <literal>z</literal> devem ter o mesmo tamanho). Se a dimensÃ£o de
-    <literal>x</literal> (e <literal>y</literal>) Ã© superior a 1, entÃ£o
-    <literal>z(i)</literal> Ã© igual a
+    <literal>z</literal> devem ter o mesmo tamanho). Se a dimensão de
+    <literal>x</literal> (e <literal>y</literal>) é superior a 1, então
+    <literal>z(i)</literal> é igual a
     <literal>bitand(x(i),y(i))</literal></para>
   </refsection>
 
@@ -81,10 +81,10 @@
     <title>Exemplos</title>
 
     <programlisting role="example">// exemplo 1 :
-// '1010110' : Ã© a representaÃ§Ã£o binÃ¡ria de 86 
-// '1011011' : Ã© a representaÃ§Ã£o binÃ¡ria de 91   
-// '1010010' : Ã© a representaÃ§Ã£o binÃ¡ria para AND aplicado Ã s formas binÃ¡rias de 86 e 91 
-// entÃ£o, o nÃºmero decimal correspondente a AND aplicado Ã s formas binÃ¡rias de 86 and 91 is : 82
+// '1010110' : é a representação binária de 86 
+// '1011011' : é a representação binária de 91   
+// '1010010' : é a representação binária para AND aplicado às formas binárias de 86 e 91 
+// então, o número decimal correspondente a AND aplicado às formas binárias de 86 and 91 is : 82
 x=86; y=91
 z=bitand(x,y)
 
@@ -96,7 +96,7 @@ z=bitand(x,y)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="bitor">bitor</link></member>

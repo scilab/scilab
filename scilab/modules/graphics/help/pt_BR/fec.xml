@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fec</refname>
+
+    <refpurpose>Esboço pseudo-colorido triangular de uma função definida por
+    uma malha triangular</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>fec(x,y,triangles,func,&lt;opt_args&gt;)
+fec(x,y,triangles,func,[strf,leg,rect,nax,zminmax,colminmax,colout,mesh])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores de tamanho <literal>n</literal>,
+          <literal>(x(i),y(i))</literal> fornece as coordenadas do nó
+          <literal>i</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>func</term>
+
+        <listitem>
+          <para>vetor de tamanho <literal>n</literal> :
+          <literal>func(i)</literal> fornece o valor no nó
+          <literal>i</literal> da função para a qual queremos o esboço
+          pseudo-colorido.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>triangles</term>
+
+        <listitem>
+          <para>é uma matriz <literal>[Ntr,5]</literal>. Cada linha de
+          <literal>triangles</literal> especifica um triângulo da malha
+          <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>.
+          <literal>node1,node2,node3</literal> são os números dos nós que
+          constituem o triângulo. number é o número do triângulo e flag é um
+          inteiro que não é usado na função fec </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>representa uma seqüência de declarações <literal>key1=value1,
+          key2=value2</literal>,... onde <literal>key1</literal>,
+          <literal>key2,...</literal> podem ser um dos seguintes: strf, leg,
+          rect, nax, zminmax, colminmax, colout, mesh (ver <link
+          linkend="plot2d">plot2d</link> para os quatro primeiros). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf,leg,rect,nax</term>
+
+        <listitem>
+          <para>ver plot2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zminmax</term>
+
+        <listitem>
+          <para>vetor com dois compontentes[zmin zmax] (útil para animações em
+          particular)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>colminmax</term>
+
+        <listitem>
+          <para>vetor de dois inteiros positivos [colmin colmax] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>colout</term>
+
+        <listitem>
+          <para>vetor de dois inteiros [under_min_col upper_max_col] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mesh</term>
+
+        <listitem>
+          <para>escalar booleano, valor padrão %f (deve ser verdadeiro se você
+          também quiser exibir a malha)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função é boa para se desenhar soluções de elementos finitos
+    triangulares lineares ou simplesmente para se exibir uma função definida
+    sobre uma triangularização. A interpolação de cores é feita através de um
+    software de computação e, portanto, não é tão rápida.</para>
+
+    <para>A função <link linkend="colorbar">colorbar</link> pode se utilizada
+    para se visualizar a escala de cores (ver a seção de exemplos).</para>
+
+    <para>O argumento <literal>zminmax</literal> fornece os valores de z
+    asosicados às primeira e últimas cores (do mapa de cores corrente). Mais
+    exatamente, se o mapa de cores possue nc cores e se notarmos <emphasis>dz
+    = (zmax-zmin)/nc</emphasis>, então a parte da triangularização onde
+    <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> é preenchida
+    com a cor <emphasis>i</emphasis>). Por padrão <emphasis>zmin =
+    min(func)</emphasis> e <emphasis>zmax = max(func)</emphasis>. Se você
+    quiser uma animação com valores da função que variam no tempo, tome para
+    zmin e zmax os valores máximo e mínimo globais ou algo próximo.</para>
+
+    <para>O argumento <literal>colout</literal> permite que o usuário escolha
+    as cores para as duas regiões extremas <emphasis>{func &lt;
+    zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>,
+    <literal>under_min_col</literal> e <literal>upper_max_col</literal> podem
+    ser iguais (independentemente) a: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>-1</term>
+
+        <listitem>
+          <para>neste caso a mesma cor que a zona de vizinhança é utilizada
+          (CUIDADO: você não vê que o limite correspondente é cruzado), este é
+          o caso padrão. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>0</term>
+
+        <listitem>
+          <para>neste caso, a região de extremidade não é pintanda. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>(k sendo um índice de cor válido no mapa de cores corrente) a
+          região de extremidade é pintada com a cor k. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Se você não quiser usar o mapa de cores completo, você pode utilizar
+    o argumento <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc
+    sendo o número de cores do mapa de cores corrente) para utilizar apenas a
+    sub-parte [colmin,colmax] do mapa de cores. (por padrão, todas as cores do
+    mapa de cores são utilizadas). </para>
+
+    <para>Ver arquivos de demonstração <literal>demos/fec</literal>:</para>
+
+    <para><literal>fec.ex1</literal> é um simples arquivo de exemplo no qual
+    uma malha e uma função sobre esta malha é completamente construída em
+    sintaxe do Scilab</para>
+
+    <para><literal>fec.ex2</literal> é um exemplo no qual a malha e os valores
+    da função foram computados por um construtor de malhas externo (malha do
+    tipo amdba) e um programa externo. Um conjunto de macros ( fornecido pelo
+    arquivo <literal>macros.sci</literal>) pode ser utilizado para ler os
+    arquivos de dados no Scilab e esboçar os resultados.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// definindo uma mini-triangularização (4 vértices, 2 triângulos)
+x = [0 1 0 -1];
+y = [0 0 1  1];
+T = [1 1 2 3 1;
+     2 3 4 1 1];
+z = [0 1 0 -1];  // valores da função em cada vértice
+xbasc()
+xset("colormap",jetcolormap(64))
+subplot(1,2,1)
+   colorbar(-1,1)
+   fec(x,y,T,z,strf="040",mesh=%t)
+   xtitle("exemplo de fec (com a malha)")
+subplot(1,2,2)
+   colorbar(-1,1)
+   fec(x,y,T,z,strf="040")  // rmq: mesh=%f por padrão
+   xtitle("exemplo de fec (em a malha)")
+xselect()
+
+
+// este exemplo mostra o efeito de zminmax e usa os
+// dados de exemplos anteriores (você tem que executá-los primeiro)
+xbasc()
+xset("colormap",jetcolormap(64))
+colorbar(-0.5,0.5)  // cuidado, a barra de cores deve ser ajustada na mão!
+fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], mesh=%t)
+xtitle("exemplo de fec: utilizando o argumento zminmax")
+xselect()
+
+
+// este exemplo mostra os efeitos de zminmax e colout. Utiliza
+// também os dados de exemplos anteriores (você tem que executá-los primeiro)
+xbasc()
+xset("colormap",jetcolormap(64))
+subplot(2,2,1)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[0 0], mesh=%t)
+   xtitle("exemplo de fec: utilizando zminmax e colout =[0 0]")
+subplot(2,2,2)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[32 32], mesh=%t)
+   xtitle("exemplo de fec : utilizando zminmax e colout =[32 32]")
+subplot(2,2,3)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[-1 0], mesh=%t)
+   xtitle("exemplo de fec : utilizando zminmax e colout =[-1 0]")
+subplot(2,2,4)
+   colorbar(-0.5,0.5)
+   fec(x,y,T,z,strf="040", zminmax=[-0.5 0.5], colout=[0 -1], mesh=%t)
+   xtitle("exemplo de fec: utilizando zminmax e colout =[0 -1]")
+xselect()
+
+
+// este exemplo mostra um recurso de colminmax:
+// utilizando dois mapas de cores para dois subesboços.
+// Também utiliza dados de exemplos anteriores.
+xbasc()
+xset("colormap",[hotcolormap(64);jetcolormap(64)])
+subplot(1,2,1)
+   colorbar(-1,1,[1 64])
+   fec(x,y,T,z,strf="040", colminmax=[1 64], mesh=%t)
+   xtitle("fec utilizando mapa de cores hot ")
+subplot(1,2,2)
+   colorbar(-1,1,[65 128])
+   fec(x,y,T,z,strf="040", colminmax=[65 128], mesh=%t)
+   xtitle("fec utilizando mapa de cores jet ")
+xselect()
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="colorbar">colorbar</link></member>
+
+      <member><link linkend="Sfgrayplot">Sfgrayplot</link></member>
+
+      <member><link linkend="Sgrayplot">Sgrayplot</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

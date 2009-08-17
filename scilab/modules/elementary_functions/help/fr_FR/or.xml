@@ -11,9 +11,9 @@
   </info>
 
   <refnamediv>
-    <refname>or |</refname>
+    <refname>or</refname>
 
-    <refpurpose>disjonction logique</refpurpose>
+    <refpurpose>disjonction logique des éléments d'un tableau</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -22,8 +22,7 @@
     <synopsis>or(A), or(A,'*')
 or(A,'r'), or(A,1)
 
-or(A,'c'), or(A,2)
-A|B</synopsis>
+or(A,'c'), or(A,2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -44,11 +43,6 @@ A|B</synopsis>
     colonne <literal>y</literal> contient la disjonction de chaque ligne de
     <literal>x</literal> (<literal>y(i)= or(A(i,j),j=1,n)</literal>)).</para>
 
-    <para><literal>A|B</literal> renvoie la disjonction logique élément par
-    élément des matrices booléennes <literal>A</literal> et
-    <literal>B</literal>. <literal>A</literal> et <literal>B</literal> doivent
-    être des matrices de mêmes dimensions ou l'une d'elles doit être un simple
-    booléen.</para>
   </refsection>
 
   <refsection>
@@ -56,20 +50,20 @@ A|B</synopsis>
 
     <programlisting role="example"> 
 or([%t %t %f])
-[%t %t %f]|[%f %t %t]
-[%t %t %f]|%f
  </programlisting>
   </refsection>
 
   <refsection>
     <title>Voir Aussi</title>
 
-    <simplelist type="inline">
+    <simplelist type="inline"> 
+      <member><link linkend="or_op">opérateur logique ou (|)</link></member>
       <member><link linkend="and">and</link></member>
 
       <member><link linkend="not">not</link></member>
 
       <member><link linkend="find">find</link></member>
+
     </simplelist>
   </refsection>
 </refentry>

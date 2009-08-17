@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="listfunctions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>11-Jun-2007</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>listfunctions</refname>
+
+    <refpurpose>propriedades de todas as funções no espaço de
+    trabalho</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[flist,compiled,profilable,called] = listfunctions([scope])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>scope</term>
+
+        <listitem>
+          <para>string, "local" (padrão) ou "global"</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flist</term>
+
+        <listitem>
+          <para>array de strings, names nomes de todas as variáveis funções
+          especificadas no espaço de trabalho</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>compiled</term>
+
+        <listitem>
+          <para>array de booleanos, verdadeiro se o elemento correspondente de
+          flist for do tipo 13</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>profilable</term>
+
+        <listitem>
+          <para>array de booleanos, verdadeiro se o elemento correspondente de
+          flist for do tipo 13, e adicionalmente informações sobre profiling
+          forem encontradas no pseudo-código da função.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>called</term>
+
+        <listitem>
+          <para>array uint32, número de vezes que o elemento correspondente de
+          flist foi chamado (não-zero apenas se a função possuir
+          profiling)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Esta função verifica todas as variáveis do espaço de trabalho
+        (dadas por <link linkend="who">who</link>) e coleta aquelas de tipo 11
+        ou 13; para as últimas, lst=<link
+        linkend="macr2lst">macr2lst</link>(fun) é chamada, de modo a verificar
+        a entrada para magic profiling ao fim da primeira linha de código,
+        i.e. lst(5)(1)=="25".</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   recompilefunction("asinh","p")
+   [flist,compiled,profilable,called] = listfunctions();
+   flist(profilable)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="comp">comp</link></member>
+
+      <member><link linkend="fun2string">fun2string</link></member>
+
+      <member><link linkend="profile">profile</link></member>
+
+      <member><link
+      linkend="recompilefunction">recompilefunction</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Enrico Segre</term>
+
+        <listitem>
+          <para></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliografia</title>
+
+    <para>http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</para>
+  </refsection>
+</refentry>

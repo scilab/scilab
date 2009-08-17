@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>proj</refname>
 
-    <refpurpose>projeÃ§Ã£o</refpurpose>
+    <refpurpose>projeção</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>P = proj(X1,X2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X1,X2</term>
 
         <listitem>
-          <para>duas matrizes reais com igual nÃºmero de colunas</para>
+          <para>duas matrizes reais com igual número de colunas</para>
         </listitem>
       </varlistentry>
 
@@ -49,28 +49,28 @@
         <term>P</term>
 
         <listitem>
-          <para>matriz de projeÃ§Ã£o de real (<literal>P^2=P</literal>)</para>
+          <para>matriz de projeção de real (<literal>P^2=P</literal>)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>P</literal> Ã© a projeÃ§Ã£o sobre <literal>X2</literal>
+    <para><literal>P</literal> é a projeção sobre <literal>X2</literal>
     paralela a <literal>X1</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <programlisting role="example">
 
 X1=rand(5,2);X2=rand(5,3);
 P=proj(X1,X2);
 norm(P^2-P,1)
-trace(P)    // Este Ã© dim(X2)
+trace(P)    // Este é dim(X2)
 [Q,M]=fullrf(P);
 svd([Q,X2])   // span(Q) = span(X2)
  

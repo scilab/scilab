@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="figure_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>figure_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade gráfica Figure
+    (figura)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A figura é o topo da hierarquia de entidades gráficas. Esta entidade
+    contém um número de propriedades designadas a controlar muitos aspectos da
+    exibição de objetos gráficos do Scilab. Estas propriedades estão dividas
+    em duas categorias. Propriedades que contém informação sobre a própria
+    figura e outras relacionadas a valores padrões para criação de
+    galhos.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Figure properties:</term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>children:</term>
+
+              <listitem>
+                <para> estes manipuladores representam o vetor dos galhos da
+                figura. Note que todos os galhos de figuras são do tipo
+                <literal>"Axes"</literal>. Também tenha em mente que, ao se
+                criar uma entidade figura (utilizando o comando <link
+                linkend="scf">scf</link>), uma entidade
+                <literal>Axes</literal> (de eixos) é simultaneamente criada.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>figure_style:</term>
+
+              <listitem>
+                <para>o valor deste campo determina o estilo da figura. Desde
+                o Scilab 5.0, o modo gráfico antigo foi desabilitado. Esta
+                propriedade é mantida por compatibilidade, mas não pode ser
+                alterada.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>figure_position:</term>
+
+              <listitem>
+                <para> este campo contém a posição em pixel da janela de
+                gráficos na tela. É um vetor <literal>[x,y]</literal>
+                definindo a posição do canto superior esquerdo da janela. A
+                posição <literal>[0,0]</literal> é o canto superior esquerdo
+                da tela.</para>
+
+                <para>A posição inicial de uma janela de gráficos é tomada a
+                partir da entidade figura padrão (ver <link
+                linkend="gdf">gdf</link>). A única excessão é quando o valor
+                <literal>figure_position</literal> da figura padrão é
+                <literal>[-1,-1]</literal>. Neste caso, A posição inicial da
+                janela de gráficos é ajustada automaticamente pelo sistema de
+                janelamento.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>figure_size:</term>
+
+              <listitem>
+                <para>esta propriedade controla o tamanho em pixel da janela
+                de gráficos da tela. O tamanho é o vetor
+                <literal>[width,height]</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>axes_size:</term>
+
+              <listitem>
+                <para>usado para especificar o tamanho da janela de gráficos
+                virtual. O tamanho é o vetor <literal>[width,height]
+                </literal>. A janela de gráficos virtual deveria ser maior que
+                a parte realmente visível na tela. Esta propriedade não
+                poderia ser alterada se a figura está aportada com outros
+                elementos.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>auto_resize:</term>
+
+              <listitem>
+                <para>esta propriedade determina se a janela de gráficos é
+                redimensionada. Se o valor é <literal>"on"</literal> então a
+                propriedade <literal>axes_size</literal> é igualada a
+                <literal>figure_size</literal> e os galhos eixos são ampliados
+                de modo correspondente. Se o valor é <literal>"off"</literal>,
+                <literal>axes_size</literal> não pode ser redimensionado
+                quando <literal>figure_size</literal> é modificado. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>viewport:</term>
+
+              <listitem>
+                <para>posição da parte visível do gráfico na janela</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>figure_name:</term>
+
+              <listitem>
+                <para>este campo contém o nome da figura. O nome é um string
+                exibido no topo da janela de gráficos. Pode conter um único
+                substring <literal>%d</literal> que será substituido por
+                <literal>figure_id</literal>. Em nenhum outro caso o caractere
+                % é permitido dentro do nome.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>figure_id:</term>
+
+              <listitem>
+                <para>este campo contém o identificador da figura. É um número
+                inteiro que é ajustado na criação da figura e não pode ser
+                mudado depois. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>info_message:</term>
+
+              <listitem>
+                <para>este string ajusta o texto que será exibido na barra de
+                informações da janela.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>color_map:</term>
+
+              <listitem>
+                <para>propriedade que define o mapa de cores utilizado pela
+                figura. O mapa de cores é uma matriz <literal>m</literal> por
+                <literal>3</literal>. <literal>m</literal> é o número de
+                cores. O número da cor i é dado pela tripla 3-uple
+                <literal>R</literal>, <literal>G</literal>,
+                <literal>B</literal> correspondentes respectivamente às
+                intensidades de vermelho, verde e azul entre 0 e 1.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>pixmap:</term>
+
+              <listitem>
+                <para>esta propriedade controla o status de pixmap de uma
+                janela de gráficos. Se o valor é <literal>"off"</literal> os
+                gráficos são diretamente exibidos na tela. Se é
+                <literal>"on"</literal> os gráficos são feitos em um pixmap e
+                são enviados à janela através do comando
+                <literal>show_pixmap()</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>pixel_drawing_mode:</term>
+
+              <listitem>
+                <para>este campo define a operação bit a bit usada para
+                desenhar o pixel na tela. O modo padrão é
+                <literal>copy</literal> que significa dizer que o pixel é
+                desenhado como requerido. De modo mais geral, a operação bit a
+                bit é realizada entre a cor do pixel fonte e a cor do pixel já
+                presente na tela. As operações são:
+                <literal>"clear"</literal>, <literal>"and"</literal>,
+                <literal>"andReverse"</literal> , <literal>"copy"</literal>,
+                <literal>"andInverted"</literal> , <literal>"noop"</literal> ,
+                <literal>"xor"</literal> , <literal>"or"</literal> ,
+                <literal>"nor"</literal> , <literal>"equiv"</literal> ,
+                <literal>"invert"</literal> , <literal>"orReverse"</literal> ,
+                <literal>"copyInverted"</literal> ,
+                <literal>"orInverted"</literal> , <literal>"nand"</literal> ,
+                <literal>"set"</literal> ,</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>immediate_drawing:</term>
+
+              <listitem>
+                <para>esta propriedade controla a exibição da figura. Pode ser
+                <literal>"on"</literal> (modo padrão) ou
+                <literal>"off"</literal>. É utilizada par atrasar uma grande
+                sucessão de comandos gráficos (implicando vários esboços ou
+                re-esboços). Note que, ao se utilizar os comandos
+                <literal>drawlater</literal> ou <literal>drawnow</literal> É
+                utilizada par atrasar uma grande sucessão de comandos gráficos
+                (implicando vários esboços ou re-esboços). Note que, ao se
+                utilizar os comandos <literal>'off'</literal> ou
+                <literal>'on'</literal>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>background:</term>
+
+              <listitem>
+                <para>esta propriedade controla a cor de plano de fundo da
+                figura. O valor é um índice de cor correspondente ao mapa de
+                cores corrente. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>event_handler</term>
+
+              <listitem>
+                <para>um string. O nome da função do Scilab que deverá
+                manipular os eventos. Note que definir um string vazio
+                desabilitará o manipulador de eventos. Para mais informações
+                sobre o manipulador de eventos, veja a ajuda <link
+                linkend="eventhandlerfunctions">event handler
+                functions</link>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>event_handler_enable</term>
+
+              <listitem>
+                <para>habilita ou desabilita o manipulador de eventos. Seu
+                valor deve ser "on" ou "off".</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>user_data:</term>
+
+              <listitem>
+                <para>este campo pode ser utilizado para se armazenar qualquer
+                variável Scilab na estrutura de dados da entidade figura e
+                recuperá-la.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>tag:</term>
+
+              <listitem>
+                <para>este campo pode ser utilizado para armazenar um string
+                geralmente utilizado para identificar o controle. Ele permite
+                fornecer um "nome". Principalmente utilizado em conjunção a
+                findobj().</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Valores padrões para galhos: </term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>visible:</term>
+
+              <listitem>
+                <para>este campo determina se o conteúdo da figura deve ser
+                redesenhado. O valor pode ser <literal>"on"</literal> ou
+                <literal>"off"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>rotation_style:</term>
+
+              <listitem>
+                <para>este campo está relacionado ao botão "3D Rot". Toma
+                <literal>unary</literal> como valor (padrão) para rotacionar
+                apenas o esboço 3d selecionado. Em outros casos o valor pode
+                ser <literal>multiple</literal>: todos os esboços 3d são
+                rotacionados.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Nota sobre valores padrões:</term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <listitem>
+                <para>todas estas propriedades e campos listados herdam
+                valores de valores padrões armazenados num modelo de figura.
+                Estes valores padrões podem ser vistos e salvos. Para fazê-lo,
+                use o comando <literal>get("default_figure")</literal>: ele
+                retorna o manipulador gráfico de uma figura. Note que nenhuma
+                janela de gráficos é criada por este comando. As próximas
+                figuras criadas herdarão valores deste modelo (ver o exemplo 2
+                abaixo).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   lines(0) // desabilitando paginamento vertical
+  //Exemplo 1
+   f=get("current_figure") //obtendo o manipulador da figura corrente: 
+                                           //se nenhum existir, cria uma figura e retorna o manipulador correspondente
+   f.figure_position
+   f.figure_size=[200,200]
+   f.background=2
+   f.children  // pode-se ver que uma entidade Axes já existe
+   delete(f);
+   f=gcf(); // atalho de macro  &lt;=&gt; f=get("current_figure")
+   f.pixmap = "on" // ajusta o status de pixmap para on
+   plot2d() // nada acontece na tela...
+   show_pixmap() // ...exibe o pixmap na tela
+   //Exemplo 2 : configurações de default_figure
+   df=get("default_figure") // obtendo os valores padrões (o atalho é gdf() )
+   // vamos mudar os padrões...
+   df.color_map=hotcolormap(128)
+   df.background= 110 // ajustando o plano de fundo para um tipo de amarelo (note que estamos utilizando um índice de cor dentro do mapa de cores color_map redefinido previamente)
+   scf(122); // criando uma nova figura de número122 com o novo padrão
+   plot2d()
+   scf(214);
+   t=-%pi:0.3:%pi;
+   plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
+     </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="lines">lines</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="scf">scf</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="gdf">gdf</link></member>
+
+      <member><link linkend="gca">gca</link></member>
+
+      <member><link linkend="gda">gda</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+
+      <member><link linkend="show_pixmap">show_pixmap</link></member>
+
+      <member><link linkend="clear_pixmap">clear_pixmap</link></member>
+
+      <member><link linkend="hotcolormap">hotcolormap</link></member>
+
+      <member><link linkend="eventhandlerfunctions">event handler
+      functions</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

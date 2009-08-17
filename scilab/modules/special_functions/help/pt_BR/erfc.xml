@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>erfc</refname>
 
-    <refpurpose>funÃ§Ã£o de erro complementar </refpurpose>
+    <refpurpose>função de erro complementar </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = erfc(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,9 +56,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>erfc</literal> computa a funÃ§Ã£o de erro
+    <para><literal>erfc</literal> computa a função de erro
     complementar:</para>
 
     <programlisting>
@@ -85,7 +85,7 @@ erf([0.5,0.2])+erfc([0.5,0.2])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="erf">erf</link></member>
@@ -99,6 +99,6 @@ erf([0.5,0.2])+erfc([0.5,0.2])
   <refsection>
     <title>Autor</title>
 
-    <para>W. J. Cody (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

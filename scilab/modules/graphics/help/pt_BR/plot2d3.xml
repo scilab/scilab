@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plot2d3" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plot2d3</refname>
+
+    <refpurpose>esboço 2d (barras veticais)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>plot2d3([logflags,] x,y,[style,strf,leg,rect,nax])
+plot232(y)
+plot2d3(x,y &lt;,opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>args</term>
+
+        <listitem>
+          <para>ver <literal>plot2d</literal> para uma descrição dos
+          parâmetros.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>plot2d3</literal> é o mesmo que <literal>plot2d</literal>
+    mas as curvas são esboçadas utilizando-se barras verticais.</para>
+
+    <para>Por padrão, esboços sucessivos são superpostos. Para limpar esboços
+    anteriores, use <literal>clf()</literal>.</para>
+
+    <para>Entre com o comando <literal>plot2d3()</literal> para visualizar uma
+    demonstração. Note que todos os modos propostos por
+    <literal>plot2dxx</literal> (xx = 1 a 4) podem ser habilitados
+    utilizando-se <literal>plot2d</literal> podem ser habilitados
+    utilizando-se <literal>polyline_style</literal> para o número
+    correspondente.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// compare o seguinte com plot2d1
+x=[0:0.1:2*%pi]';
+plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+// no novo modo de gráficos apenas
+clf()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+e=gce();
+e.children(1).polyline_style=3;
+e.children(2).polyline_style=3;
+e.children(3).polyline_style=3;</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="plot2d2">plot2d2</link></member>
+
+      <member><link linkend="plot2d4">plot2d4</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

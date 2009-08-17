@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>or</refname>
 
-    <refpurpose>(|) ou lÃ³gico</refpurpose>
+    <refpurpose>(|) ou lógico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>or(A), or(A,'*')
 or(A,'r'), or(A,1)
@@ -38,30 +38,30 @@ A|B</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>or(A)</literal> fornece o <literal>or</literal> dos
     elementos da matriz de valores booleanos <literal>A</literal>.
-    <literal>or(A)</literal> Ã© verdadeira (<literal>%t</literal>) se, e sÃ³ se,
-    pelo menos uma entrada de <literal>A</literal> Ã©
+    <literal>or(A)</literal> é verdadeira (<literal>%t</literal>) se, e só se,
+    pelo menos uma entrada de <literal>A</literal> é
     <literal>%t</literal>.</para>
 
     <para><literal>y=or(A,'r')</literal> (ou, equivalentemente,
-    <literal>y=or(A,1)</literal>) Ã© o or linha a linha. Retorna em cada
+    <literal>y=or(A,1)</literal>) é o or linha a linha. Retorna em cada
     entrada do vetor linha <literal>y</literal> o "or" das linhas de
-    <literal>x</literal> (o "or" Ã© realizado no Ã­ndice de linhas :
+    <literal>x</literal> (o "or" é realizado no índice de linhas :
     <literal>y(j)= or(A(i,j),i=1,m)</literal>).</para>
 
     <para><literal>y=or(A,'c')</literal> (ou, equivalentemente,
-    <literal>y=or(A,2)</literal>) Ã© o or coluna-a-coluna. Retorna em cada
+    <literal>y=or(A,2)</literal>) é o or coluna-a-coluna. Retorna em cada
     entrada do vetor-coluna <literal>y</literal> o "or" das colunas de
-    <literal>x</literal> (o "or" Ã© realizado no Ã­ndice de colunas :
+    <literal>x</literal> (o "or" é realizado no índice de colunas :
     <literal>y(i)= or(A(i,j),j=1,n)</literal>)).</para>
 
     <para><literal>A|B</literal> fornece o <literal>or</literal> elemento a
     elemento das matrizes <literal>A</literal> e <literal>B</literal>
     .<literal>A</literal> e <literal>B</literal> devem ser matrizes de mesmas
-    dimensÃµes ou uma delas deve ser um Ãºnico booleano.</para>
+    dimensões ou uma delas deve ser um único booleano.</para>
   </refsection>
 
   <refsection>
@@ -77,7 +77,7 @@ or([%t %t %f])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="and">and</link></member>

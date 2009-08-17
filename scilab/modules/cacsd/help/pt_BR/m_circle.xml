@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="m_circle" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>m_circle</refname>
+
+    <refpurpose>esboça os contornos de iso-ganho y/(1+y) plano
+    complexo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>m_circle()
+m_circle(gain)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>gain</term>
+
+        <listitem>
+          <para>vetor de ganhos (em DB, decibel). O valor padrão é</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>gain</term>
+
+              <listitem>
+                <para>=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2
+                2.3 3 4 5 6 8 12]</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>m_circle</literal> desenha os contornos de iso-ganho
+    fornecidos pelo argumento <literal>gain</literal> no plano complexo
+    (Re,Im).</para>
+
+    <para>O valor padrão para <literal>gain</literal> é:</para>
+
+    <para><literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3
+    3 4 5 6 8 12]</literal></para>
+
+    <para><literal>m_circle</literal> é utilizado com
+    <literal>nyquist</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//Exemplo 1 :
+  s=poly(0,'s')
+  h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+  nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+  m_circle();
+//Exemplo 2:
+  xbasc();
+  h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+  nyquist([h1;h],0.01,100,['h1';'h'])
+  m_circle([-8 -6 -4]);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="nyquist">nyquist</link></member>
+
+      <member><link linkend="chart">chart</link></member>
+
+      <member><link linkend="black">black</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>S.Steer.;</para>
+  </refsection>
+</refentry>
