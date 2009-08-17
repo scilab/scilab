@@ -30,26 +30,27 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>r=routh_t(p)</synopsis>
-<synopsis>r=routh_t(h [,k])</synopsis>
+    <synopsis>r=routh_t(p)
+r=routh_t(h [,k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
 
     <variablelist>
-     <varlistentry>
+      <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>a real polynomial </para>
+          <para>a real polynomial</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>h</term>
 
         <listitem>
-          <para> a real SISO transfer system</para>
+          <para>a real SISO transfer system</para>
         </listitem>
       </varlistentry>
 
@@ -112,8 +113,9 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="roots">root</link></member>
-      <member><link linkend="roots">kpure</link></member>
+      <member><link linkend="root">root</link></member>
+
+      <member><link linkend="kpure">kpure</link></member>
     </simplelist>
   </refsection>
 
