@@ -188,10 +188,10 @@ static void initial_c1_local(void)
 #define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(int *) lx,1L))\
         { return 0;  }
 
-#define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L))\
+#define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(int *)lx, 1L))\
         { return 0;  }
 
-#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx))\
+#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(int *)lx))\
         { return 0;  }
 
 #define SetWorkSize(n,mx) if(! C2F(setworksize)((c_local=n,&c_local),mx))\
@@ -232,9 +232,9 @@ static void initial_c1_local(void)
 
 #define Createlist(m,n) C2F(createlist)((c_local=m,&c_local),(c1_local=n,&c1_local))
 
-#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *)lx,(void *) lx1,1L))  { return 0;}
+#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(int *)lx,(int *) lx1,1L))  { return 0;}
 
-#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *)lx,(void *) lc,(void *) lx1,(void *)lc1,1L))  { return 0;}
+#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(int *)lx,(int *) lc,(int *) lx1,(int *)lc1,1L))  { return 0;}
 
 #define CreateListVarFromPtr(n,m,ct,mx,nx,lx1) if (!C2F(createlistvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *) lx1,1L))  { return 0;}
 
