@@ -83,8 +83,8 @@
 
     <para>The graph structure may not have a weight field defined. In this
     case <literal>min_weight_tree supposes that all weigths are equal to zero.
-    To add the weight field to the graph structure one has to use the <link
-    xlink:href="add_edge_data">add_edge_data</link> function.</literal></para>
+    To add the weight field to the graph structure one has to use the 
+    <link linkend="add_edge_data">add_edge_data</link>function.</literal></para>
 
     <para><literal>min_weight_tree</literal> returns the tree
     <literal>t</literal> as a row vector of the arc numbers (directed graph)
