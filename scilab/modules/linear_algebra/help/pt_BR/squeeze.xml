@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,17 +25,17 @@
   <refnamediv>
     <refname>squeeze</refname>
 
-    <refpurpose>remo√ß√£o de dimens√µes singletons</refpurpose>
+    <refpurpose>remoÁ„o de dimensıes singletons</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>hypOut = squeeze(hypIn)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,15 +57,15 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Remove dimens√µes singletons de uma hipermatriz, i.e., qualquer
-    dimens√£o para a qual o tamanho √© 1. Se a entrada √© uma matriz, ela n√£o √©
+    <para>Remove dimensıes singletons de uma hipermatriz, i.e., qualquer
+    dimens„o para a qual o tamanho È 1. Se a entrada È uma matriz, ela n„o È
     afetada.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="hypermat">hypermat</link></member>

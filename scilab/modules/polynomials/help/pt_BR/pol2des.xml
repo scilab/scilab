@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>pol2des</refname>
 
-    <refpurpose>conversÃ£o de matrizes de polinÃ´mios para formas
+    <refpurpose>conversão de matrizes de polinômios para formas
     descritoras</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[N,B,C]=pol2des(Ds)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>Ds</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios</para>
+          <para>matriz de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -50,17 +50,17 @@
         <term>N, B, C</term>
 
         <listitem>
-          <para>trÃªs matrizes de reais</para>
+          <para>três matrizes de reais</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Dada a matriz de polinÃ´mios <literal>Ds=D_0 +D_1 s +D_2 s^2 +...
-    +D_k s^k</literal>, <literal>pol2des</literal> retorna trÃªs matrizes
+    <para>Dada a matriz de polinômios <literal>Ds=D_0 +D_1 s +D_2 s^2 +...
+    +D_k s^k</literal>, <literal>pol2des</literal> retorna três matrizes
     <literal>N, B, C</literal>, com sendo <literal>N</literal> nilpotente tais
     que:</para>
 
@@ -80,7 +80,7 @@ G1=clean(C*inv(s*N-eye())*B),G2=numer(G1)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="ss2des">ss2des</link></member>

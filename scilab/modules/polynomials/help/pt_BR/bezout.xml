@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>bezout</refname>
 
-    <refpurpose>equaÃ§Ã£o de Bezout para polinÃ´mios ou inteiros</refpurpose>
+    <refpurpose>equação de Bezout para polinômios ou inteiros</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[thegcd,U]=bezout(p1,p2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p1, p2</term>
 
         <listitem>
-          <para>dois polinÃ´mios reais ou dois escalares inteiros (tipo igual a
+          <para>dois polinômios reais ou dois escalares inteiros (tipo igual a
           8)</para>
         </listitem>
       </varlistentry>
@@ -49,15 +49,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>[thegcd,U]=bezout(p1,p2)</literal> computa o MDC
     <literal>thegcd</literal> de <literal>p1</literal> e <literal>p2</literal>
-    e tambÃ©m uma matriz (2x2) unimodular <literal>U</literal> tal quet:</para>
+    e também uma matriz (2x2) unimodular <literal>U</literal> tal quet:</para>
 
     <para><literal>[p1,p2]*U = [thegcd,0]</literal></para>
 
-    <para>O MMC de <literal>p1</literal> e <literal>p2</literal> Ã© dado
+    <para>O MMC de <literal>p1</literal> e <literal>p2</literal> é dado
     por:</para>
 
     <para><literal>p1*U(1,2)</literal> (or
@@ -89,7 +89,7 @@ lcm(V)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

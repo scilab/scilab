@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>pencan</refname>
 
-    <refpurpose>forma can√¥nica de feixe de matrizes</refpurpose>
+    <refpurpose>forma canÙnica de feixe de matrizes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento</title>
+    <title> Seq¸Íncia de Chamamento</title>
 
     <synopsis>[Q,M,i1]=pencan(Fs)
 [Q,M,i1]=pencan(E,A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,7 +58,7 @@
         <term>Q,M</term>
 
         <listitem>
-          <para>duas matrizes n√£o-singulares de reais</para>
+          <para>duas matrizes n„o-singulares de reais</para>
         </listitem>
       </varlistentry>
 
@@ -73,14 +73,14 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dado o feixe regular <literal>Fs=s*E-A</literal>,
     <literal>pencan</literal> retorna as matrizes <literal>Q</literal> e
-    <literal>M</literal> tais que <literal>M*(s*E-A)*Q</literal> est√° na forma
-    "can√¥nica".</para>
+    <literal>M</literal> tais que <literal>M*(s*E-A)*Q</literal> est· na forma
+    "canÙnica".</para>
 
-    <para><literal>M*E*Q</literal> √© uma matriz de blocos</para>
+    <para><literal>M*E*Q</literal> È uma matriz de blocos</para>
 
     <programlisting>
 
@@ -92,7 +92,7 @@
     <para>com <literal>N</literal> nilpotente e <literal>i1</literal> =
     tamanho da matriz acima <literal>I</literal>.</para>
 
-    <para><literal>M*A*Q</literal> √© uma matriz de blocos:</para>
+    <para><literal>M*A*Q</literal> È uma matriz de blocos:</para>
 
     <programlisting>
 
@@ -118,7 +118,7 @@ det(W($-2:$,$-2:$))
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="glever">glever</link></member>

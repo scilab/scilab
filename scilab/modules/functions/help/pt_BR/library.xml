@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="library" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>library</refname>
+
+    <refpurpose>descrição de tipo de dado bibilioteca</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis></synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Uma bibilioteca é um tipo de dado com número 14. Contém um nome de
+    endereço e um conjunto de nomes. Permite o carregamento automático de
+    variáveis utilizando o seguinte algoritmo:</para>
+
+    <para>Suponha o usuário Scilab referencie a variável de nome
+    <literal>foo</literal>. O Scilab procura primeiro se
+    <literal>foo</literal> é o nome de uma primitiva, ou de uma variável já
+    definida. Se naõ for, procura por <literal>foo</literal> seqüencialmente
+    (a mais nova) em toda a biblioteca definida .</para>
+
+    <para>Suponha que <literal>foo</literal> pertence ao conjunto de nomes da
+    biblioteca <literal>xlib</literal>. Então o Scilab tenta carregar o
+    arquivo &lt;xlib-path-name&gt;/foo.bin. &lt;xlib-path-name&gt;/foo.bin
+    deve ter sido criado utilizando-se a função
+    <literal>save</literal>.</para>
+
+    <para>Bibliotecas geralmente são utilizadas para coleções de funções, mas
+    também podem ser utilizadas para coleções de variáveis Scilab.</para>
+
+    <para>Se uma função estiver definida em mais de uma biblioteca, o
+    algoritmo de busca padrão carrega aquela contida na mais nova. É possível
+    forçar o uso de uma biblioteca específica utilizando a notação de
+    ponto:</para>
+
+    <para><literal>xlib.foo</literal> carrega a variável
+    <literal>foo</literal> contida em <literal>xlib</literal>, if
+    <literal>foo</literal> for uma função e <literal>xlib.foo(args)</literal>
+    executa as funções.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// elemlib é uma biblioteca predefinida
+elementary_functionlib //exibindo o conteúdo da biblioteca
+A=rand(3,3);
+cosm(A) //carregando cosm e executando-o
+whos -name cosm // agora, cosm é uma variável
+elementary_functionlib.sinm //carregando sinm da biblioteca
+elementary_functionlib.cosm(A) //carregando novamente cosm e executando-o
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="lib">lib</link></member>
+
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="save">save</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

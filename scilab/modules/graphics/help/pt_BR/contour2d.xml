@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>contour2d</refname>
 
-    <refpurpose>curvas de nÃ­vel de uma superfÃ­cie em um esboÃ§o 2d</refpurpose>
+    <refpurpose>curvas de nível de uma superfície em um esboço 2d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>contour2d(x,y,z,nz,[style,strf,leg,rect,nax])
 contour2d(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,8 +50,8 @@ contour2d(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>z</term>
 
         <listitem>
-          <para>matriz de reais de tamanho (n1,n2), os valores da funÃ§Ã£o sobre
-          o grid ou uma funÃ§Ã£o Scilab que define uma superfÃ­cie
+          <para>matriz de reais de tamanho (n1,n2), os valores da função sobre
+          o grid ou uma função Scilab que define uma superfície
           <literal>z=f(x,y)</literal>.</para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@ contour2d(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>nz</term>
 
         <listitem>
-          <para>os valores de nÃ­vel ou o nÃºmero de nÃ­veis.</para>
+          <para>os valores de nível ou o número de níveis.</para>
 
           <variablelist>
             <varlistentry>
@@ -68,14 +68,14 @@ contour2d(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>Se <literal>nz</literal> for um inteiro, seu valor
-                fornece o nÃºmero de nÃ­veis igualmente espaÃ§ados de zmin a zmax
+                fornece o número de níveis igualmente espaçados de zmin a zmax
                 como segue:</para>
 
                 <programlisting>z= zmin + (1:nz)*(zmax-zmin)/(nz+1)</programlisting>
 
-                <para>Note que os nÃ­veis <literal>zmin</literal> e
-                <literal>zmax</literal> nÃ£o sÃ£o desenhados (genericamente eles
-                sÃ£o reduzidos a pontos) mas podem ser adicionados atravÃ©s
+                <para>Note que os níveis <literal>zmin</literal> e
+                <literal>zmax</literal> não são desenhados (genericamente eles
+                são reduzidos a pontos) mas podem ser adicionados através
                 de</para>
 
                 <programlisting>[im,jm] = find(z == zmin); // ou zmax
@@ -88,8 +88,8 @@ plot2d(x(im)',y(jm)',-9,"000")</programlisting>
 
               <listitem>
                 <para>Se <literal>nz</literal> for um vetor,
-                <literal>nz(i)</literal> fornece o valor da i-Ã©sima curva de
-                nÃ­vel.</para>
+                <literal>nz(i)</literal> fornece o valor da i-ésima curva de
+                nível.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -100,7 +100,7 @@ plot2d(x(im)',y(jm)',-9,"000")</programlisting>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes
+          <para>representa uma seqüência de declarações
           <literal>key1=value1,key2=value2</literal>,... onde
           <literal>key1</literal>, <literal>key2,...</literal> pode ser um dos
           seguintes: style, leg, rect, nax, strf ou axesflag e frameflag (ver
@@ -114,40 +114,40 @@ plot2d(x(im)',y(jm)',-9,"000")</programlisting>
         <listitem>
           <para>ver <link linkend="plot2d">plot2d</link>. O argumento
           <literal>style</literal> fornece os estilos de tracejado ou cores
-          que serÃ£o usadas para as curvas de nÃ­vel. Deve ter o mesmo tamanho
-          que o nÃºmero de nÃ­veis.</para>
+          que serão usadas para as curvas de nível. Deve ter o mesmo tamanho
+          que o número de níveis.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>contour2d</literal> desenha curvas de nÃ­vel de uma
-    superfÃ­cie <literal>z=f(x,y)</literal> em um esboÃ§o 2d. Os valores de
-    <literal>f(x,y)</literal> sÃ£o dados pela matriz <literal>z</literal> nos
+    <para><literal>contour2d</literal> desenha curvas de nível de uma
+    superfície <literal>z=f(x,y)</literal> em um esboço 2d. Os valores de
+    <literal>f(x,y)</literal> são dados pela matriz <literal>z</literal> nos
     pontos de grid definidos por por <literal>x</literal> e
     <literal>y</literal>.</para>
 
-    <para>VocÃª pode modificar o formato dos pontos flutuantes impressos sobre
-    os nÃ­veis utilizando <literal>xset("fpf",string)</literal> onde
+    <para>Você pode modificar o formato dos pontos flutuantes impressos sobre
+    os níveis utilizando <literal>xset("fpf",string)</literal> onde
     <literal>string</literal> fornece o formato em na sintaxe de formato C
     (por exemplo <literal>string="%.3f"</literal>). Use
-    <literal>string=""</literal> para voltar ao formato padrÃ£o e use
-    <literal>string=" "</literal> para suprimir a impressÃ£o. Este Ãºltimo
-    recurso Ã© Ãºtil em conjunÃ§Ã£o com <link linkend="legends">legends</link>
-    para exibir os nÃºmeros de nÃ­vel em uma legenda e nÃ£o diretamente em curvas
-    de nÃ­vel como de uso (ver Exemplos).</para>
+    <literal>string=""</literal> para voltar ao formato padrão e use
+    <literal>string=" "</literal> para suprimir a impressão. Este último
+    recurso é útil em conjunção com <link linkend="legends">legends</link>
+    para exibir os números de nível em uma legenda e não diretamente em curvas
+    de nível como de uso (ver Exemplos).</para>
 
     <para>Os argumentos opcionais <literal>style,strf,leg,rect,nax</literal>,
-    podem ser passados atravÃ©s de uma seqÃ¼Ãªncia de declaraÃ§Ãµes
+    podem ser passados através de uma seqüência de declarações
     <literal>key1=value1, key2=value2</literal>, ... onde podem ser
     <literal>style</literal>,<literal>strf</literal>,<literal>leg</literal>,<literal>rect</literal>,<literal>nax</literal>.
-    Neste caso, a ordem nÃ£o tem significado especial.</para>
+    Neste caso, a ordem não tem significado especial.</para>
 
-    <para>Use <literal>contour</literal> para esboÃ§ar curvas de nÃ­vel em uma
-    superfÃ­cie 3d.</para>
+    <para>Use <literal>contour</literal> para esboçar curvas de nível em uma
+    superfície 3d.</para>
   </refsection>
 
   <refsection>
@@ -155,32 +155,32 @@ plot2d(x(im)',y(jm)',-9,"000")</programlisting>
 
     <programlisting role="example">
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
-// mudando o formato de impressÃ£o dos nÃ­veis
+// mudando o formato de impressão dos níveis
 xset("fpf","%.2f")
 clf()
 contour2d(1:10,1:10,rand(10,10),5,rect=[0,0,11,11])
  
-// agora, um exemplo com nÃºmeros de nÃ­veis desenhados em uma legenda
-// Cuidado, hÃ¡ alguns truques aqui...
+// agora, um exemplo com números de níveis desenhados em uma legenda
+// Cuidado, há alguns truques aqui...
 x = linspace(0,4*%pi,80);
 z = cos(x')*cos(x);
 clf(); f=gcf();
-xset("fpf"," ")  // truque 1: isto faz com que alguns nÃºmeros de nÃ­veis nÃ£o sejam 
-                 //          impressos sobre as curvas de nÃ­vel
+xset("fpf"," ")  // truque 1: isto faz com que alguns números de níveis não sejam 
+                 //          impressos sobre as curvas de nível
 f.color_map=jetcolormap(7);
-// truque 2: para fazer com que se possa colocar a legenda Ã  direita sem
-//          sem interferir com as curvas de nÃ­vel use rect com um valor xmax
+// truque 2: para fazer com que se possa colocar a legenda à direita sem
+//          sem interferir com as curvas de nível use rect com um valor xmax
 //          grande o suficiente
 contour2d(x,x,z,-0.75:0.25:0.75,frameflag=3,rect=[0,0,5*%pi,4*%pi])
-// truque 3: use legends (note que a funÃ§Ã£o mais prÃ¡tica legend
-//          nÃ£o funcionarÃ¡ quando um dos nÃ­veis for formado por duas curvas)  
+// truque 3: use legends (note que a função mais prática legend
+//          não funcionará quando um dos níveis for formado por duas curvas)  
 legends(string(-0.75:0.25:0.75),1:7,"lr");
-xtitle("Algumas curvas de nÃ­vel da funÃ§Ã£o cos(x)cos(y)")
+xtitle("Algumas curvas de nível da função cos(x)cos(y)")
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m </title>
+    <title>Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="contour">contour</link></member>

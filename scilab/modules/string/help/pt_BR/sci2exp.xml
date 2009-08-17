@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sci2exp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (Sun, 10 Sep 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sci2exp</refname>
+
+    <refpurpose>converte uma expressão para um string</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>expressão Scilab. Pode ser:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>constante,</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>polinomial</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>matriz de strings</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>lista</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>-</term>
+
+              <listitem>
+                <para>matriz de booleanos</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nam</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>vetor de strings, contém a expressão ou a instrução de
+          simulação.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>lmax</term>
+
+        <listitem>
+          <para>inteiro, contém o comprimento de linha máximo. O valor padrão
+          é 90, <literal>lmax=0</literal> indica ausência de controle de
+          comprimento de linha, um único string é retornado</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>sci2exp</literal> converte expressão para um string de
+    instrução se <literal>nam</literal> for fornecido, ou para um string de
+    expressão.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+  a=[1 2;3 4]
+  sci2exp(a,'aa')
+  sci2exp(a,'aa',0)
+  sci2exp(ssrand(2,2,2))
+  sci2exp(poly([1 0 3 4],'s'),'fi')
+ 
+  </programlisting>
+  </refsection>
+</refentry>

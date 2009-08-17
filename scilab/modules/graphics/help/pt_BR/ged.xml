@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ged" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ged</refname>
+
+    <refpurpose>Editor Gráfico do Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>ged(action, fignum)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>action</term>
+
+        <listitem>
+          <para>Real: ação a ser executada na janela gráfica dada por
+          <literal>fignum</literal>:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>1: Ajusta a janela <literal>fignum</literal> como sendo a
+              corrente.</para>
+            </listitem>
+
+            <listitem>
+              <para>2: Redesenha a janela <literal>fignum</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para>3: Limpa a janela <literal>fignum</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para>4: Pede que o usuário selecione uma entidade gráfica para
+              efetuar cópia.</para>
+            </listitem>
+
+            <listitem>
+              <para>5: Cola a última entidade gráfica copiada pela ação
+              <literal>4</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para>6: Pede ao usuário para que selecione uma entidade gráfica
+              e então a mova.</para>
+            </listitem>
+
+            <listitem>
+              <para>7: Pede ao usuário que selecione uma entidade gráfica para
+              efetuar deleção.</para>
+            </listitem>
+
+            <listitem>
+              <para>8: Inicia uma GUI para se editar propriedades da
+              janela.</para>
+            </listitem>
+
+            <listitem>
+              <para>9: Inicia uma GUI para se editar propriedade dos eixos
+              correntes.</para>
+            </listitem>
+
+            <listitem>
+              <para>10: Inicia um selecionador para selecionar um objeto e
+              editá-lo através da GUI do Editor Gráfico.</para>
+            </listitem>
+
+            <listitem>
+              <para>11: Para o selecionador de entidades</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fignum</term>
+
+        <listitem>
+          <para>Real: número da janela de gráficos, a figura a ser
+          editada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>ged</literal> inicia um Editor Gráfico do Scilab sobre a
+    figura de número <literal>fignum</literal> e executa a ação fornecida por
+    <literal>action</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>V.C.</para>
+  </refsection>
+</refentry>

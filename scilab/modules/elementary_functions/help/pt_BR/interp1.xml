@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>interp1</refname>
 
-    <refpurpose>fun√ß√£o de interpola√ß√£o 1d</refpurpose>
+    <refpurpose>funÁ„o de interpolaÁ„o 1d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[yp]=interp1(x, y,xp [, method,[extrapolation]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,7 +58,7 @@
         <term>method</term>
 
         <listitem>
-          <para>(opcional) string definindo o m√©todo de interpola√ß√£o </para>
+          <para>(opcional) string definindo o mÈtodo de interpolaÁ„o </para>
         </listitem>
       </varlistentry>
 
@@ -82,32 +82,32 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Dados <literal>(x,y,xp)</literal>, esta fun√ß√£o faz corresponder os
-    yp componentes aos xp por interpola√ß√£o (linear por padr√£o) definida por x
+    <para>Dados <literal>(x,y,xp)</literal>, esta funÁ„o faz corresponder os
+    yp componentes aos xp por interpolaÁ„o (linear por padr„o) definida por x
     e y.</para>
 
-    <para>Se <literal>yp</literal> √© um vetor, ent√£o o comprimento de xp √©
-    igual ao comprimento de <literal>yp</literal>. Se <literal>yp</literal> √©
-    uma matriz, ent√£o <literal>xp</literal> tem o mesmo comprimento que cada
-    uma das colunas de yp. Se <literal>yp</literal> √© uma hipermatriz, ent√£o o
-    comprimento de <literal>xp</literal> √© o mesmo da primeira dimens√£o de
+    <para>Se <literal>yp</literal> È um vetor, ent„o o comprimento de xp È
+    igual ao comprimento de <literal>yp</literal>. Se <literal>yp</literal> È
+    uma matriz, ent„o <literal>xp</literal> tem o mesmo comprimento que cada
+    uma das colunas de yp. Se <literal>yp</literal> È uma hipermatriz, ent„o o
+    comprimento de <literal>xp</literal> È o mesmo da primeira dimens„o de
     <literal>yp. </literal></para>
 
-    <para>Se size(y)=[C,M1,M2,M3,...,Mj] e size(xp)= [N1,N2,N3,...,Nk] ent√£o
+    <para>Se size(y)=[C,M1,M2,M3,...,Mj] e size(xp)= [N1,N2,N3,...,Nk] ent„o
     size(yp)= [N1,N2,..,Nk,M1,M2,...Mj] e o comprimento de x deve ser igual a
     size(y,1)</para>
 
-    <para>O par√¢metro <literal>method</literal> ajusta a regra avalia√ß√£o para
-    interpola√ß√£o.</para>
+    <para>O par‚metro <literal>method</literal> ajusta a regra avaliaÁ„o para
+    interpolaÁ„o.</para>
 
     <variablelist>
       <varlistentry>
         <term>"linear"</term>
 
         <listitem>
-          <para>a interpola√ß√£o √© definida pelo m√©todo linear (ver <link
+          <para>a interpolaÁ„o È definida pelo mÈtodo linear (ver <link
           linkend="interpln">interpln</link>)</para>
         </listitem>
       </varlistentry>
@@ -116,7 +116,7 @@
         <term>"spline"</term>
 
         <listitem>
-          <para>defini√ß√£o de interpola√ß√£o por spline c√∫bico (ver <link
+          <para>definiÁ„o de interpolaÁ„o por spline c˙bico (ver <link
           linkend="splin">splin</link> , <link
           linkend="interp">interp</link>)</para>
         </listitem>
@@ -127,15 +127,15 @@
 
         <listitem>
           <para>para cada valor xp(j), yp(j) toma o valor ou y(i)
-          correspondente ao x(i), o v√≠zinho mais pr√≥ximo de xp(j)</para>
+          correspondente ao x(i), o vÌzinho mais prÛximo de xp(j)</para>
 
           <para></para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>O par√¢metro <literal>extrapolation</literal> ajusta a regra de
-    avalia√ß√£o para extrapola√ß√£o, i.e para <literal>xp(i) </literal>fora do
+    <para>O par‚metro <literal>extrapolation</literal> ajusta a regra de
+    avaliaÁ„o para extrapolaÁ„o, i.e para <literal>xp(i) </literal>fora do
     intervalo [x1,xn]</para>
 
     <variablelist>
@@ -143,7 +143,7 @@
         <term>"extrap"</term>
 
         <listitem>
-          <para>a extrapola√ß√£o √© realizada pelo m√©todo definido.
+          <para>a extrapolaÁ„o È realizada pelo mÈtodo definido.
           yp=interp1(x,y,xp,method,"extrap") </para>
         </listitem>
       </varlistentry>
@@ -152,19 +152,19 @@
         <term>valor real</term>
 
         <listitem>
-          <para>voc√™ pode escolher um valor real para extrapola√ß√£o. Deste
+          <para>vocÍ pode escolher um valor real para extrapolaÁ„o. Deste
           modo, yp(i) toma este valor para xp(i) fora do intervalo [x1,xn],
-          por exemplo 0 (mas tamb√©m nan ou inf). yi=interp1(x,y,xp,method, 0)
+          por exemplo 0 (mas tambÈm nan ou inf). yi=interp1(x,y,xp,method, 0)
           </para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>por padr√£o</term>
+        <term>por padr„o</term>
 
         <listitem>
-          <para>a extrapola√ß√£o √© realizada pelo m√©todo definido (para m√©todo
-          spline), e por nan para os m√©todos "linear" e "nearest".
+          <para>a extrapolaÁ„o È realizada pelo mÈtodo definido (para mÈtodo
+          spline), e por nan para os mÈtodos "linear" e "nearest".
           yp=interp1(x,y,xp,method) </para>
         </listitem>
       </varlistentry>
@@ -188,7 +188,7 @@ legend(['linear','spline','nearest'],a=2)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="interp">interp</link></member>

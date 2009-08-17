@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unix_g" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unix_g</refname>
+
+    <refpurpose>execução de um comando shell (sh), saída redirecionada a uma
+    variável</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)
+[rep,stat,stderr]=unix_g(cmd)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>cmd</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rep</term>
+
+        <listitem>
+          <para>vetor coluna de strings (saída padrão)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stat</term>
+
+        <listitem>
+          <para>inteiro o status de erro. stat=0 se nenhum erro tiver
+          ocorrido</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>vetor coluna de strings (erro padrão)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Envia um string <literal>cmd</literal> ao Unix para execução pelo
+    comando shell (sh). A saída padrão é redirecionada para a variável Scilab
+    <literal>rep</literal>. O erro padrão é redirecionado à variável Scilab
+    err ou é exibido se você forneceu apenas dois argumentos de saída. Erros
+    de execução Unix são detectados. Note que apenas o último erro de comando
+    shell é reportado quando uma lista de comandos separados por ";" é
+    enviada. Isto não é recomentdado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+function d=DIR(path)
+  path=pathconvert(path,%t,%t)
+  if MSDOS then
+    d=unix_g('dir '+path)
+  else
+    d=unix_g('ls '+path)
+  end
+endfunction
+
+DIR('SCI/etc')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+
+      <member><link linkend="unix">unix</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

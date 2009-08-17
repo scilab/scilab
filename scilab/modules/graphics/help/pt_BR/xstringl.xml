@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>rect=xstringl(x,y,str,[fontId,fontSize])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -81,12 +81,12 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xstringl</literal> retorna em
     <literal>rect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
-    altura) o tamanho do ret√¢ngulo na escala de gr√°ficos corrente que cerca os
-    strings <literal>str</literal> escritos na localiza√ß√£o
+    altura) o tamanho do ret‚ngulo na escala de gr·ficos corrente que cerca os
+    strings <literal>str</literal> escritos na localizaÁ„o
     <literal>x,y</literal> (ponto inferior esquerdo).</para>
 
     <para>O resultado pode ser aproximado utilizando-se um driver
@@ -99,14 +99,14 @@
     <programlisting role="example">
 
 plot2d([0;1],[0;1],0)
-str=["Scilab" "n√£o";"√©" "elisaB"];
+str=["Scilab" "n„o";"È" "elisaB"];
 r=xstringl(0.5,0.5,str)
 xrects([r(1) r(2)+r(4) r(3) r(4)]')
 xstring(r(1),r(2),str)
  
 
 plot2d([0;1],[0;1],0)
-str=["Scilab" "n√£o";"√©" "Matlab"];
+str=["Scilab" "n„o";"È" "Matlab"];
 r2 = xstringl(0.5,0.5,str,2,5)
 xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]')
 xstring(r2(1),r2(2),str)
@@ -117,7 +117,7 @@ txt2.font_style = 2;  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="titlepage">titlepage</link></member>

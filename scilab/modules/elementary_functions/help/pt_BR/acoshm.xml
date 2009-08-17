@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>acoshm</refname>
 
-    <refpurpose>arco-cosseno hiperbÃ³lico da matriz (matriz arco-cosseno
-    hiperbÃ³lico)</refpurpose>
+    <refpurpose>arco-cosseno hiperbólico da matriz (matriz arco-cosseno
+    hiperbólico)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=acoshm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,12 +49,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>acoshm Ã© o arco-cosseno hiperbÃ³lico da matriz x (matriz arco-cosseno
-    hiperbÃ³lico). Usa a fÃ³rmula
+    <para>acoshm é o arco-cosseno hiperbólico da matriz x (matriz arco-cosseno
+    hiperbólico). Usa a fórmula
     <literal>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</literal> Para
-    matrizes nÃ£o-simÃ©tricas, o resultado pode ser impreciso.</para>
+    matrizes não-simétricas, o resultado pode ser impreciso.</para>
   </refsection>
 
   <refsection>
@@ -71,7 +71,7 @@ coshm(acoshm(A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m </title>
+    <title>Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="acosh">acosh</link></member>

@@ -23,7 +23,7 @@
 int getPointer(int* _piAddress, void** _pvPtr)
 {
 	int *piTmp = NULL;
-	double vVal	= 0;
+
 	if(	_piAddress == NULL || getVarType(_piAddress) != sci_lufact_pointer)
 	{
 		return 1;

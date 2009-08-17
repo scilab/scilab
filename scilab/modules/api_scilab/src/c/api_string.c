@@ -175,7 +175,7 @@ int readNamedMatrixOfString(char* _pstName, int* _piRows, int* _piCols, int* _pi
 int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings)
 {
 	char **pstStrings = NULL;
-	int *_iLenStrings = NULL;
+	int *piLenStrings = NULL;
 	int i = 0;
 	int ierr = 0;
 
@@ -191,40 +191,40 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piw
 		return 0;
 	}
 
-	_iLenStrings = (int*)MALLOC(sizeof(int*) * (*_piRows * *_piCols));
-	if (_iLenStrings == NULL)
+	piLenStrings	= (int*)MALLOC(sizeof(int*) * (*_piRows * *_piCols));
+	if (piLenStrings == NULL)
 	{
 		return 1;
 	}
 
 	// get length UTF size
-	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, _iLenStrings, pstStrings);
+	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
 	if (ierr)
 	{
-		if (_iLenStrings) {FREE(_iLenStrings); _iLenStrings = NULL;}
+		if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
 		return ierr;
 	}
 
 	pstStrings = (char**)MALLOC(sizeof(char*) * (*_piRows * *_piCols));
 	if (pstStrings == NULL)
 	{
-		if (_iLenStrings) {FREE(_iLenStrings); _iLenStrings = NULL;}
+		if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
 		return 1;
 	}
 
 	for(i = 0; i < (*_piRows * *_piCols); i++)
 	{
-		pstStrings[i] = (char*)MALLOC(sizeof(char)*(_iLenStrings[i] + 1));
+		pstStrings[i] = (char*)MALLOC(sizeof(char)*(piLenStrings[i] + 1));
 		if (pstStrings[i] == NULL)
 		{
-			if (_iLenStrings) {FREE(_iLenStrings); _iLenStrings = NULL;}
+			if (piLenStrings) {FREE(piLenStrings); piLenStrings = NULL;}
 			freeArrayOfString(pstStrings, i);
 			return 1;
 		}
 	}
 
 	// get strings UTF format
-	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, _iLenStrings, pstStrings);
+	ierr = getMatrixOfString(_piAddress, _piRows, _piCols, piLenStrings, pstStrings);
 
 	if (ierr == 0)
 	{
@@ -235,7 +235,7 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piw
 				wchar_t* wString = to_wide_string(pstStrings[i]);
 				if (wString)
 				{
-					_piwLength[i] = wcslen(wString);
+					_piwLength[i] = (int)wcslen(wString);
 					FREE(wString);
 					wString = NULL;
 				}
@@ -251,13 +251,13 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piw
 			for(i = 0; i < (*_piRows * *_piCols); i++)
 			{
 				_pwstStrings[i] = to_wide_string(pstStrings[i]);
-				_piwLength[i] = wcslen(_pwstStrings[i]);
+				_piwLength[i] = (int)wcslen(_pwstStrings[i]);
 			}
 		}
 	}
 
 	freeArrayOfString(pstStrings, (*_piRows * *_piCols));
-	FREE(_iLenStrings); _iLenStrings = NULL;
+	FREE(piLenStrings); piLenStrings = NULL;
 
 	return ierr;
 }

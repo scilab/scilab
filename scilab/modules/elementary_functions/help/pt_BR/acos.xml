@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>acos</refname>
 
-    <refpurpose>arco-cosseno em relaÃ§Ã£o aos elementos</refpurpose>
+    <refpurpose>arco-cosseno em relação aos elementos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=acos(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Os componentes do vetor <literal>t</literal> sÃ£o os arcos-cossenos
-    das entradas correspondentes do vetor <literal>x</literal>. O domÃ­nio de
-    definiÃ§Ã£o Ã© [-1, 1].</para>
+    <para>Os componentes do vetor <literal>t</literal> são os arcos-cossenos
+    das entradas correspondentes do vetor <literal>x</literal>. O domínio de
+    definição é [-1, 1].</para>
 
     <para><literal>acos</literal> toma valores em :</para>
   </refsection>

@@ -43,4 +43,5 @@ JNIEXPORT jboolean JNICALL Java_javasci_SciBooleanArray_GetElement(JNIEnv *env ,
 }
 #endif
 #endif
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
+

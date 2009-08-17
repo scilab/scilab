@@ -111,7 +111,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			}
 
 			/* linear search algorithm */
-			for ( idx = 0 ; idx < hashtableSize ; idx++ ) 
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
 			{
 				if ( htable[idx].used)
 				{
@@ -129,7 +129,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 		{
 			/* linear search algorithm */
 			unsigned int idx = 0;
-			for ( idx = 0 ; idx < hashtableSize ; idx++ ) 
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
 			{
 				if ( (htable[idx].used) && (htable[idx].entry.data == *scilab_funptr) ) 
 				{
@@ -148,6 +148,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			realloc_hashtable_scilab_functions();
 
 			if (filled ==  hashtableSize) return FALSE;
+
 			for (idx = 0; idx < hashtableSize; idx++)
 			{
 				if (htable[idx].used == 0)
@@ -171,7 +172,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 	case SCI_HFUNCTIONS_DELETE:
 		{
 			unsigned int idx = 0;
-			for (idx = 0; idx < hashtableSize; idx++)
+			for (idx = 0; idx < filled + 1; idx++)
 			{
 				if ( (htable[idx].used) &&
 					 (htable[idx].entry.data == *scilab_funptr) &&
@@ -214,7 +215,7 @@ char **GetFunctionsList(int *sizeList)
 
 	*sizeList = 0;
 
-	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 	{
 		if (htable[i].entry.namefunction) 
 		{
@@ -227,7 +228,7 @@ char **GetFunctionsList(int *sizeList)
 	j = 0;
 	if (ListFunctions)
 	{
-		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+		for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 		{
 			if (htable[i].entry.namefunction)
 			{
@@ -246,7 +247,7 @@ BOOL ExistFunction(char *name)
 {
 	int i = 0;
 
-	for ( i = 0 ; i < (int)hashtableSize ; i++ ) 
+	for ( i = 0 ; i < (int)filled + 1; i++ ) 
 	{
 		if (htable[i].used) 
 		{

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rubberbox" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rubberbox</refname>
+
+    <refpurpose>Caixa tipo liga de borracha para seleção de um
+    retângulo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[final_rect,btn]=rubberbox()
+[final_rect,btn]=rubberbox(initial_rect)
+[final_rect,btn]=rubberbox(edition_mode)
+[final_rect,btn]=rubberbox(initial_rect, edition_mode)
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>initial_rect</term>
+
+        <listitem>
+          <para>vetor de duas a quatro entradas. Com quatro entradas fornece o
+          retângulo inicial definido por [x_esquerdo, y_topo, largura,
+          altura]. Com duas entradas, largura e altura são supostas 0.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>edition_mode</term>
+
+        <listitem>
+          <para>um booleano, se edition_mode==%t; um aperto de botão seleciona
+          a primeira quina, soltar seleciona a quina oposta. Se edition_mode==
+          %f, aperto de botão ou clique seleciona a primeira quina, um clique
+          é requerido para selecionar a quina oposta. O valor padrão é
+          edition_mode=%f</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>final_rect</term>
+
+        <listitem>
+          <para>um retângulo definido por [x_esquerdo, y_topo, largura,
+          altura] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>btn</term>
+
+        <listitem>
+          <para>um inteiro, o número do botão do mouse clicado</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>rubberbox(initial_rect)</literal> trilha uma caixa liga de
+    borracha na janela de gráficos corrente, seguindo o mouse. Quando um botão
+    é clicado, <literal>rubberbox</literal> retorna a definição dos retângulos
+    finais <literal>final_Rect</literal>. Se o argumento
+    <literal>initial_rect</literal> estiver presente, o usuário deve clicar
+    para fixar a posição da quina inicial.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+xsetech(frect=[0,0,100,100])
+[x,y]=xclick();r=rubberbox([x;y;30;10])
+xrect(r)
+r=rubberbox()
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xrect">xrect</link></member>
+
+      <member><link linkend="xrects">xrects</link></member>
+
+      <member><link linkend="xclick">xclick</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="dragrect">dragrect</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

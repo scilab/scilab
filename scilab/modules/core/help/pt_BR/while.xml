@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="while" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -19,43 +19,43 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>while</literal> . Deve ser terminado por
     <literal>"end"</literal></para>
 
-    <para><literal>while expressÃ£o ,instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
+    <para><literal>while expressão ,instruções1,...[,else instruções],
     end</literal></para>
 
-    <para><literal>while expressÃ£o do instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
+    <para><literal>while expressão do instruções1,...[,else instruções],
     end</literal></para>
 
-    <para><literal>while expressÃ£o then instruÃ§Ãµes1,...[,else instruÃ§Ãµes],
+    <para><literal>while expressão then instruções1,...[,else instruções],
     end</literal></para>
 
     <para>Notas:</para>
 
     <itemizedlist>
       <listitem>
-        <para>A Ãºnica restriÃ§Ã£o Ã© que cada palavra-chave "then" ou "do" deve
+        <para>A única restrição é que cada palavra-chave "then" ou "do" deve
         estar na mesma linha que a palavra-chave "while".</para>
       </listitem>
 
       <listitem>
-        <para>As palavras-chaves "then" ou "do" podem ser substituÃ­das por um
-        retorno de carro ou uma vÃ­rgula. Para compatibilidade com o Matlab,
-        tambÃ©m Ã© possÃ­vel, mas nÃ£o recomendado, por um espaÃ§o entre o fim da
-        expressÃ£o e o inÃ­cio da primeira instruÃ§Ã£o.</para>
+        <para>As palavras-chaves "then" ou "do" podem ser substituídas por um
+        retorno de carro ou uma vírgula. Para compatibilidade com o Matlab,
+        também é possível, mas não recomendado, por um espaço entre o fim da
+        expressão e o início da primeira instrução.</para>
       </listitem>
 
       <listitem>
-        <para>A construÃ§Ã£o opcional <literal>,else instruÃ§Ãµes</literal>
-        permite fornecer instruÃ§Ãµes que sÃ£o executadas quando a expressÃ£o
-        expressÃ£o torna-se falsa.</para>
+        <para>A construção opcional <literal>,else instruções</literal>
+        permite fornecer instruções que são executadas quando a expressão
+        expressão torna-se falsa.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Aviso: o nÃºmero de caracateres usados para definir o corpo de
+    <para>Aviso: o número de caracateres usados para definir o corpo de
     qualquer estrutura condicional (if while for ou select/case) deve ser
     limitado a 16k.</para>
   </refsection>
@@ -73,7 +73,7 @@
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="for">for</link></member>

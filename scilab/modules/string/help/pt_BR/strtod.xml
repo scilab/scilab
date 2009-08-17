@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strtod" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strtod</refname>
+
+    <refpurpose>converte um string para um double</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seq&#252;&#234;ncia de Chamamento</title>
+
+    <synopsis>d =  strtod(str)
+[d,endstr] = strtod(str)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Par&#226;metros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>string ou matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d</term>
+
+        <listitem>
+          <para>escalar real ou matriz de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>endstr</term>
+
+        <listitem>
+          <para>string ou matriz de strings (pr&#243;ximo caractere em str
+          ap&#243;s o valor num&#233;rico).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descri&#231;&#227;o</title>
+
+    <para><literal>[d,endstr] = strtod(str)</literal> analisa o string str
+    interpretando o seu conte&#250;do como um n&#250;mero de ponto flutuante e
+    retorna o seu valor como um real.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+strtod('123.556Este &#233; um real de amostra')
+[d,endstr] = strtod('123.556Este &#233; um real de amostra)
+strtod(['123.556Este &#233; um real de amostra','888.666 aqui'])
+[d,endstr] =strtod(['123.556Este &#233; um real de amostra','888.666 aqui'])
+ 
+  </programlisting>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>isdef</refname>
 
-    <refpurpose>verifica exist√™ncia de vari√°veis</refpurpose>
+    <refpurpose>verifica existÍncia de vari·veis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>isdef(name [,where])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>where</term>
 
         <listitem>
-          <para>um string opcional com valor padr√£o 'all' (todos os locais)
+          <para>um string opcional com valor padr„o 'all' (todos os locais)
           </para>
         </listitem>
       </varlistentry>
@@ -57,23 +57,23 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>isdef(name)</literal> retorna <literal>%T</literal> se a
-    vari√°vel <literal>name</literal> existe e <literal>%F</literal> em caso
-    contr√°rio.</para>
+    vari·vel <literal>name</literal> existe e <literal>%F</literal> em caso
+    contr·rio.</para>
 
-    <para>Aviso: uma fun√ß√£o que utiliza <literal>isdef</literal> pode retornar
+    <para>Aviso: uma funÁ„o que utiliza <literal>isdef</literal> pode retornar
     um resultado que depende do ambiente!</para>
 
     <para><literal>isdef(name,'local')</literal> retorna <literal>%T</literal>
-    se a vari√°vel <literal>name</literal> existe no ambiente local da fun√ß√£o
-    corrente e <literal>%F</literal> em caso contr√°rio.</para>
+    se a vari·vel <literal>name</literal> existe no ambiente local da funÁ„o
+    corrente e <literal>%F</literal> em caso contr·rio.</para>
 
     <para><literal>isdef(name,'nolocal')</literal> retorna
-    <literal>%T</literal> se a vari√°vel <literal>name</literal> existe no
-    ambiente de chamada completo (incluindo o n√≠vel global) da fun√ß√£o corrente
-    e <literal>%F</literal> em caso contr√°rio.</para>
+    <literal>%T</literal> se a vari·vel <literal>name</literal> existe no
+    ambiente de chamada completo (incluindo o nÌvel global) da funÁ„o corrente
+    e <literal>%F</literal> em caso contr·rio.</para>
   </refsection>
 
   <refsection>
@@ -104,7 +104,7 @@ go()
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="exists">exists</link> <link

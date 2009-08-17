@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>spaninter</refname>
 
-    <refpurpose>interseÃ§Ã£o de subespaÃ§os</refpurpose>
+    <refpurpose>interseção de subespaços</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>A, B</term>
 
         <listitem>
-          <para>duas matrizes de reais ou de complexos com igual nÃºmero de
+          <para>duas matrizes de reais ou de complexos com igual número de
           linhas </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
         <term>X</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unitÃ¡ria</para>
+          <para>matriz quadrada ortogonal ou unitária</para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>dim</term>
 
         <listitem>
-          <para>inteiro, dimensÃ£o do subesbaÃ§o Im(<literal>A</literal>) inter
+          <para>inteiro, dimensão do subesbaço Im(<literal>A</literal>) inter
           Im(<literal>B</literal>)</para>
         </listitem>
       </varlistentry>
@@ -66,24 +66,24 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Computa a intereseÃ§Ã£o de Im(<literal>A</literal>) e
+    <para>Computa a intereseção de Im(<literal>A</literal>) e
     Im(<literal>B</literal>).</para>
 
     <para>As primeiras <literal>dim</literal> colunas de <literal>X</literal>
-    geram esta interseÃ§Ã£o i.e. <literal>X(:,1:dim)</literal> Ã© uma base
+    geram esta interseção i.e. <literal>X(:,1:dim)</literal> é uma base
     ortogonal para</para>
 
     <para>Im(<literal>A</literal>) inter Im(<literal>B</literal>)</para>
 
     <para>Na base <literal>X</literal>, <literal>A</literal> e
-    <literal>B</literal> sÃ£o respectivamente representados por:</para>
+    <literal>B</literal> são respectivamente representados por:</para>
 
     <para><literal>X'*A</literal> e <literal>X'*B</literal>.</para>
 
-    <para><literal>tol</literal> Ã© um limiar (<literal>sqrt(%eps)</literal> Ã©
-    o valor padrÃ£o).</para>
+    <para><literal>tol</literal> é um limiar (<literal>sqrt(%eps)</literal> é
+    o valor padrão).</para>
   </refsection>
 
   <refsection>
@@ -91,10 +91,10 @@
 
     <programlisting role="example">
 
-A=rand(5,3)*rand(3,4);     // A Ã© 5 x 4, rank=3
+A=rand(5,3)*rand(3,4);     // A é 5 x 4, rank=3
 B=[A(:,2),rand(5,1)]*rand(2,2);
 [X,dim]=spaninter(A,B);
-X1=X(:,1:dim);    //A interseÃ§Ã£o
+X1=X(:,1:dim);    //A interseção
 svd(A),svd([X1,A])   // X1 no gerado(A) (span(A))
 svd(B),svd([B,X1])   // X1 no gerado(B) (span(B))
  
@@ -102,7 +102,7 @@ svd(B),svd([B,X1])   // X1 no gerado(B) (span(B))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="spanplus">spanplus</link></member>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="intg" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>intg</refname>
+
+    <refpurpose>integral definida</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[v,err]=intg(a,b,f [,ea [,er])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a,b</term>
+
+        <listitem>
+          <para>números reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função externa (função, lista ou string)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ea, er</term>
+
+        <listitem>
+          <para>números reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ea</term>
+
+        <listitem>
+          <para>erro absoluto requerido no resultado. Valor padrão:
+          1.d-14</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>er</term>
+
+        <listitem>
+          <para>erro relativo requerido no resultado. Valor padrão:
+          1.d-8</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>erro absoluto estimado no resultado</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>intg(a,b,f)</literal> avalia a integral definida de
+    <literal>a</literal> a <literal>b</literal> de <literal>f(t)dt</literal>.
+    A função <literal>f(t)</literal> deve ser contínua.</para>
+
+    <para>Espera-se que a avaliação satisfaça à seguinte precisão:
+    <literal>abs(I-v)&lt;= max(ea,er*abs(I))</literal> onde I é o valor exato
+    da integral.</para>
+
+    <para><literal>f</literal> é uma função externa :</para>
+
+    <para>Se <literal>f</literal> é uma função, sua definição deve ser como
+    segue: <literal> y = f(t) </literal></para>
+
+    <para>Se <literal>f</literal> é uma lista, a lista deve ser como segue:
+    <literal> list(f,x1,x2,...)</literal> onde <literal>f</literal> é uma
+    função com seqüência de chamamento
+    <literal>f(t,x1,x2,...)</literal>.</para>
+
+    <para>Se <literal>f</literal> é um string, ele se refere ao nome de uma
+    função FORTRAN ou procedure C com dada seqüência de chamamento:</para>
+
+    <para>No caso FORTRAN, a seqüência de chamamento deve ser <literal>double
+    precision function f(x)</literal> onde <literal>x</literal> tabém é um
+    número de dupla precisão.</para>
+
+    <para>No caso C, a seqüência de chamamento é <literal>double f(double
+    *x)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//caso de função Scilab
+function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
+exact=-2.5432596188;
+I=intg(0,2*%pi,f)
+abs(exact-I)
+
+//caso de função Scilab com parâmetros
+function y=f1(x,w),y=x*sin(w*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
+I=intg(0,2*%pi,list(f1,30))
+abs(exact-I)
+
+
+// caso de código FORTRAN (compilador FORTRAN requerido)
+// escreve o código FORTRAN
+F=['      double precision function ffun(x)'
+   '      double precision x,pi'
+   '      pi=3.14159265358979312d+0'
+   '      ffun=x*sin(30.0d+0*x)/sqrt(1.0d+0-(x/(2.0d+0*pi))**2)'
+   '      return'
+   '      end'];
+mputl(F,TMPDIR+'/ffun.f')
+// compile o código FORTRAN
+l=ilib_for_link('ffun','ffun.o',[],'f',TMPDIR+'/Makefile');
+// linking incremental
+link(l,'ffun','f')
+//integrando a função
+I=intg(0,2*%pi,'ffun')
+abs(exact-I)
+
+// caso de código C (compilador C requerido)
+// escreva o código C
+C=['#include &lt;math.h&gt;'
+   'double cfun(double *x)'
+   '{'
+   '  double y,pi=3.14159265358979312;'
+   '  y=*x/(2.0e0*pi);'
+   '  return *x*sin(30.0e0**x)/sqrt(1.0e0-y*y);'
+   '}'];
+mputl(C,TMPDIR+'/cfun.c')
+// compile o código C
+l=ilib_for_link('cfun','cfun.o',[],'c',TMPDIR+'/Makefile');
+// linking incremental
+link(l,'cfun','c')
+//integrando a função
+I=intg(0,2*%pi,'cfun')
+abs(exact-I)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="inttrap">inttrap</link></member>
+
+      <member><link linkend="intsplin">intsplin</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Funções Utilizadas</title>
+
+    <para>As rotinas associadas podem ser encontradas no diretório
+    routines/integ :</para>
+
+    <para>dqag0.f e dqags.f de quadpack</para>
+  </refsection>
+</refentry>

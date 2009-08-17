@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>mlist</refname>
 
-    <refpurpose>objeto Scilab, definiÃ§Ã£o de listas com tipos orientadas
+    <refpurpose>objeto Scilab, definição de listas com tipos orientadas
     matricialmente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>mlist(typ,a1,....an )</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,39 +58,39 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Objetos mlist sÃ£o bastante semelhantes a objetos <link
-    linkend="tlist">tlist</link> objects. A Ãºnica diferenÃ§a concerne Ã s
-    sintaxes de extraÃ§Ã£o e inserÃ§Ã£o (<link
+    <para>Objetos mlist são bastante semelhantes a objetos <link
+    linkend="tlist">tlist</link> objects. A única diferença concerne às
+    sintaxes de extração e inserção (<link
     linkend="extraction">extraction</link> e <link
-    linkend="insertion">insertion</link>): se <literal>M</literal> Ã© uma
-    mlist, para qualquer Ã­ndice <literal>i</literal> que nÃ£o Ã© um campo de
-    nome, <literal>M(i)</literal> nÃ£o Ã© mais o <literal>i</literal>-Ã©simo
+    linkend="insertion">insertion</link>): se <literal>M</literal> é uma
+    mlist, para qualquer índice <literal>i</literal> que não é um campo de
+    nome, <literal>M(i)</literal> não é mais o <literal>i</literal>-ésimo
     campo da lista</para>
 
-    <para>A semÃ¢ntica da sintaxe de extraÃ§Ã£o e inserÃ§Ã£o deve ser dada por uma
-    funÃ§Ã£o de (sobrecarga) <link
+    <para>A semântica da sintaxe de extração e inserção deve ser dada por uma
+    função de (sobrecarga) <link
     linkend="overloading">overloading</link>.</para>
 
-    <para>A funÃ§Ã£o de overloading para sintaxe de extraÃ§Ã£o
-    <literal>b=a(i1,...,in)</literal> tem a seguinte seqÃ¼Ãªncia de chamamento:
+    <para>A função de overloading para sintaxe de extração
+    <literal>b=a(i1,...,in)</literal> tem a seguinte seqüência de chamamento:
     <literal>b=%&lt;tipo_de_a&gt;_e_(i1,...,in,a)</literal></para>
 
     <para>e a sintaxe <literal>[x1,..,xm]=a(i1,...,in)</literal> tem a
-    seguinte seqÃ¼Ãªncia de chamamento:
+    seguinte seqüência de chamamento:
     <literal>[x1,..,xm]=%&lt;type_de_a&gt;_e_(i1,...,in,a)</literal></para>
 
     <para></para>
 
-    <para>A funÃ§Ã£o de overloading associada Ã  sintaxe de inserÃ§Ã£o
-    <literal>a(i1,...,in)=b</literal> tem a seguinte seqÃ¼Ãªncia de chamamento:
+    <para>A função de overloading associada à sintaxe de inserção
+    <literal>a(i1,...,in)=b</literal> tem a seguinte seqüência de chamamento:
     <literal>a=%&lt;type_de_b&gt;_i_&lt;type_de_a&gt;(i1,...,in,b,a)</literal>.</para>
 
     <para></para>
 
-    <para>Os campos de um mlist devem, entÃ£o, ser designados por seus nomes.
-    Eles tambÃ©m podem ser manipulados usando-se as funÃ§Ãµes
+    <para>Os campos de um mlist devem, então, ser designados por seus nomes.
+    Eles também podem ser manipulados usando-se as funções
     <literal>getfield</literal> e <literal>setfield</literal>.</para>
   </refsection>
 
@@ -100,10 +100,10 @@
     <programlisting role="example">
 
 M=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
-//Definindo exibiÃ§Ã£o
+//Definindo exibição
 function %V_p(M),disp(M.name+':'+string(M.value)),endfunction
 
-//Definindo operaÃ§Ã£o de extraÃ§Ã£o
+//Definindo operação de extração
 function r=%V_e(varargin)
    M=varargin($)
    r=mlist(['V','name','value'],M.name(varargin(1:$-1)),M.value(varargin(1:$-1)))
@@ -111,7 +111,7 @@ endfunction
 M(2,:) // a segunda entrada do vetor M
 M.value
 
-//Definindo operaÃ§Ãµes de inserÃ§Ã£o
+//Definindo operações de inserção
 function M=%V_i_V(varargin)
    M=varargin($)
    N=varargin($-1)
@@ -120,7 +120,7 @@ function M=%V_i_V(varargin)
 endfunction
 M(1,1)=M(2,2)
 
-function M=%s_i_V(varargin) //inserÃ§Ã£o de uma matriz regular em uma matriz V
+function M=%s_i_V(varargin) //inserção de uma matriz regular em uma matriz V
    M=varargin($)
    N=varargin($-1)
    M.value(varargin(1:$-2))=N
@@ -145,7 +145,7 @@ M('name')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tlist">tlist</link></member>

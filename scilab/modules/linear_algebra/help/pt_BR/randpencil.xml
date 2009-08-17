@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>randpencil</refname>
 
-    <refpurpose>feixe aleat√≥rio</refpurpose>
+    <refpurpose>feixe aleatÛrio</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> Par√¢metros </title>
+    <title> Par‚metros </title>
 
     <variablelist>
       <varlistentry>
@@ -57,8 +57,8 @@
         <term>fin</term>
 
         <listitem>
-          <para>vetor de reais, ou polin√¥mio m√¥nico, ou vetor de polin√¥mios
-          m√¥nicos </para>
+          <para>vetor de reais, ou polinÙmio mÙnico, ou vetor de polinÙmios
+          mÙnicos </para>
         </listitem>
       </varlistentry>
 
@@ -82,16 +82,16 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Fun√ß√£o utilit√°ria. <literal>F=randpencil(eps,infi,fin,eta)</literal>
-    retorna um feixe aleat√≥rio <literal>F</literal> com dada estrutura de
-    Kronecker. A estrutura √© dada por: <literal>eps=[eps1,...,epsk]</literal>:
+    <para>FunÁ„o utilit·ria. <literal>F=randpencil(eps,infi,fin,eta)</literal>
+    retorna um feixe aleatÛrio <literal>F</literal> com dada estrutura de
+    Kronecker. A estrutura È dada por: <literal>eps=[eps1,...,epsk]</literal>:
     estrutura de blocos epsilon (tamanho eps1x(eps1+1),....)
     <literal>fin=[l1,...,ln]</literal> conjunto de autovalores finitos
     (assumidos como reais) (possivelmente [])
     <literal>infi=[k1,...,kp]</literal> tamanho de blocos J no infinito
-    <literal>ki&gt;=1</literal> (infi=[] se n√£o h√° blocos J).
+    <literal>ki&gt;=1</literal> (infi=[] se n„o h· blocos J).
     <literal>eta=[eta1,...,etap]</literal>: estrutura dos blocos eta (size
     eta1+1)xeta1,...)</para>
 
@@ -99,12 +99,12 @@
     <literal>etai</literal>'s devem ser &gt;=0, <literal>infi</literal>'s
     devem ser &gt;=1.</para>
 
-    <para>Se <literal>fin</literal> √© um polin√¥mio (m√¥nico), o bloco finito
-    admite ra√≠zes de <literal>fin</literal> como autovalores.</para>
+    <para>Se <literal>fin</literal> È um polinÙmio (mÙnico), o bloco finito
+    admite raÌzes de <literal>fin</literal> como autovalores.</para>
 
-    <para>Se <literal>fin</literal> √© um vetor de polin√¥mios, eles s√£o os
-    divisores elementares finitos de <literal>F</literal> ,i.e., as ra√≠zes de
-    <literal>p(i)</literal> s√£o autovalores finitos de
+    <para>Se <literal>fin</literal> È um vetor de polinÙmios, eles s„o os
+    divisores elementares finitos de <literal>F</literal> ,i.e., as raÌzes de
+    <literal>p(i)</literal> s„o autovalores finitos de
     <literal>F</literal>.</para>
   </refsection>
 
@@ -124,7 +124,7 @@ det(F)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="kroneck">kroneck</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,40 +28,40 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[n,d]=cmndred(num,den)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>num, den</term>
 
         <listitem>
-          <para>duas matrizes de polinÃ´mios de dimensÃµes iguais</para>
+          <para>duas matrizes de polinômios de dimensões iguais</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>[n,d]=cmndred(num,den)</literal> computa uma matriz de
-    polinÃ´mios <literal>n</literal> e um polinÃ´mio denominador comum<literal>
+    polinômios <literal>n</literal> e um polinômio denominador comum<literal>
     d</literal> tais que:</para>
 
     <para><literal>n/d=num./den</literal></para>
 
-    <para>A matriz de razÃµes de polinÃ´mios definida por
-    <literal>num./den</literal> Ã© <literal>n/d</literal></para>
+    <para>A matriz de razões de polinômios definida por
+    <literal>num./den</literal> é <literal>n/d</literal></para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="simp">simp</link></member>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="tree2code" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-03-07 13:01:23 +0100 (Wed, 07 Mar 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>tree2code</refname>
+
+    <refpurpose>gera a definição ASCII de uma função Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>tree</term>
+
+        <listitem>
+          <para>uma árvore macro (vinda de macr2tree)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prettyprint</term>
+
+        <listitem>
+          <para>valor opcional booleano</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>%T</term>
+
+              <listitem>
+                <para>o código gerado é identado e embelezado</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>%F</term>
+
+              <listitem>
+                <para>o código gerado não é embelezado (padrão)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>txt</term>
+
+        <listitem>
+          <para>um vetor coluna de strings, o texto fornecendo as instruções
+          Scilab</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dada uma função Scilab carregada "tree" (retornada por macr2tree),
+    tree2code permite gerar novamente o código.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+tree=macr2tree(cosh);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)');
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="macr2tree">macr2tree</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

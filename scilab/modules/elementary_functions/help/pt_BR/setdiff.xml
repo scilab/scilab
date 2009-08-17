@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>setdiff</refname>
 
-    <refpurpose>retorna componentes de um vetor que nÃ£o pertecem a outro
+    <refpurpose>retorna componentes de um vetor que não pertecem a outro
     vetor</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>v=setdiff(a,b)
 [v,ka]=setdiff(a,b)
@@ -37,14 +37,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>vetor de nÃºmeros reais ou strings </para>
+          <para>vetor de números reais ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -52,7 +52,7 @@
         <term>b</term>
 
         <listitem>
-          <para>vetor de nÃºmeros reais ou strings </para>
+          <para>vetor de números reais ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -60,7 +60,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vetor de nÃºmeros reais ou strings com a mesma orientaÃ§Ã£o de
+          <para>vetor de números reais ou strings com a mesma orientação de
           <literal>a</literal></para>
         </listitem>
       </varlistentry>
@@ -69,7 +69,7 @@
         <term>ka</term>
 
         <listitem>
-          <para>vetor linha de inteiros, ka(i) Ã© a localizaÃ§Ã£o de v(i) em
+          <para>vetor linha de inteiros, ka(i) é a localização de v(i) em
           a</para>
         </listitem>
       </varlistentry>
@@ -77,15 +77,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>setdiff(a,b)</literal> retorna um vetor ordenado que retÃ©m
-    as entradas de <literal>a</literal> que nÃ£o estÃ£o em
+    <para><literal>setdiff(a,b)</literal> retorna um vetor ordenado que retém
+    as entradas de <literal>a</literal> que não estão em
     <literal>b</literal></para>
 
     <para><literal>[v,ka]=setdiff(a,b)</literal> retorna um vetor ordenado que
-    retÃ©m as entradas de <literal>a</literal> que nÃ£o estÃ£o em
-    <literal>b</literal> e a localizaÃ§Ã£o destas entradas em a.</para>
+    retém as entradas de <literal>a</literal> que não estão em
+    <literal>b</literal> e a localização destas entradas em a.</para>
   </refsection>
 
   <refsection>
@@ -102,7 +102,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="unique">unique</link></member>

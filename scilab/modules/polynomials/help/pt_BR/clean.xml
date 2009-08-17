@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -29,20 +29,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento</title>
+    <title> Seq¸Íncia de Chamamento</title>
 
     <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>uma matriz num√©rica (de escalares, de polin√¥mios, esparsa...)
+          <para>uma matriz numÈrica (de escalares, de polinÙmios, esparsa...)
           </para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
         <term>epsa,epsr</term>
 
         <listitem>
-          <para>n√∫meros reais (valores padr√µes respectivos: 1.d-10 e
+          <para>n˙meros reais (valores padrıes respectivos: 1.d-10 e
           1.d-10)</para>
         </listitem>
       </varlistentry>
@@ -59,15 +59,15 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Esta fun√ß√£o elimina (i.e. ajusta para zero) todos os coeficientes
+    <para>Esta funÁ„o elimina (i.e. ajusta para zero) todos os coeficientes
     com valores absolutos&lt; <literal>epsa</literal> e valores relativos&lt;
-    <literal>epsr</literal> (relativo siginifica "em rela√ß√£o √† norma-1 de
-    coeficientes") em um polin√¥mio (possivelmente uma matriz de polin√¥mios ou
-    matriz de raz√µes de polin√¥mios).</para>
+    <literal>epsr</literal> (relativo siginifica "em relaÁ„o ‡ norma-1 de
+    coeficientes") em um polinÙmio (possivelmente uma matriz de polinÙmios ou
+    matriz de razıes de polinÙmios).</para>
 
-    <para>Os valores padr√µes s√£o <literal>epsa=1.d-10</literal> e
+    <para>Os valores padrıes s„o <literal>epsa=1.d-10</literal> e
     <literal>epsr=1.d-10;</literal></para>
 
     <para>Para uma matriz de constantes <literal>clean(A,epsa)</literal>

@@ -1,0 +1,964 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Graphics" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Graphics</refname>
+
+    <refpurpose>Resumo da biblioteca de gráficos</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Desenhos 2d</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>plot2d</term>
+
+        <listitem>
+          <para>esboço 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plot2d2</term>
+
+        <listitem>
+          <para>esboço 2d (funções de degraus)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plot2d3</term>
+
+        <listitem>
+          <para>esboço 2d (barras veticais)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plot2d4</term>
+
+        <listitem>
+          <para>esboço 2d (setas)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fplot2d</term>
+
+        <listitem>
+          <para>esboço 2d de uma curva definida por uma função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>champ</term>
+
+        <listitem>
+          <para>esboço de campo vetorial 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>champ1</term>
+
+        <listitem>
+          <para>campo vetorial 2d com setas coloridas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fchamp</term>
+
+        <listitem>
+          <para>campo direcional de uma EDO 2d de primeira ordem</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>contour2d</term>
+
+        <listitem>
+          <para>curvas de nível de uma superfície em um esboço 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fcontour2d</term>
+
+        <listitem>
+          <para>curvas de nível de uma superfície definida por uma função em
+          um esboço 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>grayplot</term>
+
+        <listitem>
+          <para>esboço 2d de uma superfície utilizando-se cores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fgrayplot</term>
+
+        <listitem>
+          <para>esboço 2d de uma superfície definida por uma função utilizando
+          cores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sgrayplot</term>
+
+        <listitem>
+          <para>esboço 2d suave de uma superfície utilizando cores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sfgrayplot</term>
+
+        <listitem>
+          <para>esboço 2d suave de uma superfície definida por uma função
+          utilizando cores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xgrid</term>
+
+        <listitem>
+          <para>adiciona um grid em um esboço 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>errbar</term>
+
+        <listitem>
+          <para>adiciona barras de erro veriticais a um esboço 2d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>histplot</term>
+
+        <listitem>
+          <para>esboça um histograma</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Matplot</term>
+
+        <listitem>
+          <para>esboço 2d de uma matriz utilizando-se cores</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Desenhos 3d</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>plot3d</term>
+
+        <listitem>
+          <para>esboço 3d de uma superfície</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plot3d1</term>
+
+        <listitem>
+          <para>esboço 3d em níveis de cinza ou de cores de uma
+          superfície</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fplot3d</term>
+
+        <listitem>
+          <para>esboço 3d de uma superfície definida por uma função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fplot3d1</term>
+
+        <listitem>
+          <para>esboço 3d em escala de cinza ou colorido de nível de uma
+          superfície definida por uma função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param3d</term>
+
+        <listitem>
+          <para>esboço 3d de uma curva parametrizada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param3d1</term>
+
+        <listitem>
+          <para>esboço 3d de curvas parametrizadas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>contour</term>
+
+        <listitem>
+          <para>curvas de nível em uma superfície 3d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fcontour</term>
+
+        <listitem>
+          <para>curvas de nível sobre uma superfície 3d definida por uma
+          função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hist3d</term>
+
+        <listitem>
+          <para>representação 3d de um histograma</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>genfac3d</term>
+
+        <listitem>
+          <para>computa facetas de uma superfície 3d</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>eval3dp</term>
+
+        <listitem>
+          <para>computa facetas 3d de uma superfície parametrizada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>geom3d</term>
+
+        <listitem>
+          <para>projeção 3d para 2d após um esboço 3d</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Desenho de linhas e poligonais</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xpoly</term>
+
+        <listitem>
+          <para>desenha uma poligonal ou um polígono</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xpolys</term>
+
+        <listitem>
+          <para>desenha um conjunto de poligonais ou polígonos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xrpoly</term>
+
+        <listitem>
+          <para>desenha um polígono regular</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xsegs</term>
+
+        <listitem>
+          <para>desenha segmentos desconexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xfpoly</term>
+
+        <listitem>
+          <para>preenche um polígono</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xfpolys</term>
+
+        <listitem>
+          <para>preenche um conjunto de polígonos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Desenho de retângulos</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xrect</term>
+
+        <listitem>
+          <para>desenha um retângulo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xfrect</term>
+
+        <listitem>
+          <para>preenche um retângulo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xrects</term>
+
+        <listitem>
+          <para>desenha ou preenche um conjunto de retângulos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Desenho de arcos</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xarc</term>
+
+        <listitem>
+          <para>esboça parte de uma elipse</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xarcs</term>
+
+        <listitem>
+          <para>desenha partes de um conjunto de elipses</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xfarc</term>
+
+        <listitem>
+          <para>preenche parte de uma elipse</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xfarcs</term>
+
+        <listitem>
+          <para>preenche partes de um conjunto de elipses</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Desenho de setas</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xarrows</term>
+
+        <listitem>
+          <para>desenha um conjunto de setas</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Strings</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xstring</term>
+
+        <listitem>
+          <para>imprime strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xstringl</term>
+
+        <listitem>
+          <para>computa uma caixa que cerca strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xstringb</term>
+
+        <listitem>
+          <para>escreve strings em uma caixa</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xtitle</term>
+
+        <listitem>
+          <para>adidciona títulos a janelas de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>titlepage</term>
+
+        <listitem>
+          <para>adiciona título no meio de uma janela de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xinfo</term>
+
+        <listitem>
+          <para>escreve um string de informação na subjanela de
+          mensagens</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Molduras e eixos</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xaxis</term>
+
+        <listitem>
+          <para>desenha um eixo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>graduate</term>
+
+        <listitem>
+          <para>graduação de eixos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plotframe</term>
+
+        <listitem>
+          <para>esboça uma moldura com escalas e grides. Esta função está
+          obsoleta.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Transformações de coordenadas</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>isoview</term>
+
+        <listitem>
+          <para>ajusta escalas para esboço isométrico (não muda o tamanho da
+          janela)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>square</term>
+
+        <listitem>
+          <para>ajusta escalas para esboço isométrico (muda o tamanho da
+          janela)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>scaling</term>
+
+        <listitem>
+          <para>transformação afim de um conjunto de pontos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rotate</term>
+
+        <listitem>
+          <para>rotação de um conjunto de pontos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xsetech</term>
+
+        <listitem>
+          <para>ajusta a sub-janela de uma janela de gráficos para
+          esboço</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>subplot</term>
+
+        <listitem>
+          <para>divide uma janela de gráficos em uma matriz de
+          sub-janelas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xgetech</term>
+
+        <listitem>
+          <para>retorna a escala de gráficos corrente</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xchange</term>
+
+        <listitem>
+          <para>conversão de coordenadas reais para coordenadas pixeis</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Cores</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>colormap</term>
+
+        <listitem>
+          <para>mapa de cores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>getcolor</term>
+
+        <listitem>
+          <para>abre um diálogo que exibe as cores no mapa de cores
+          corrente</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>addcolor</term>
+
+        <listitem>
+          <para>adiciona cores novas ao mapa de cores corrente</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>graycolormap</term>
+
+        <listitem>
+          <para>mapa de cores linear cinza</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hotcolormap</term>
+
+        <listitem>
+          <para>mapa de cores de vermelho para amarelo</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Contexto gráfico</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xset</term>
+
+        <listitem>
+          <para>ajusta valores para o contexto gráfico. Função obsoleta</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xget</term>
+
+        <listitem>
+          <para>retorna valores correntes do contexto gráfico.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xlfont</term>
+
+        <listitem>
+          <para>carrega uma fonte em um contexto gráfico ou pergunta a fonte
+          carregada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>getsymbol</term>
+
+        <listitem>
+          <para>Diálogo para a seleção de um símbolo e seu tamanho.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Gravação e carregamento</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xsave</term>
+
+        <listitem>
+          <para>salva gráficos em um arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xload</term>
+
+        <listitem>
+          <para>carrega gráficos salvos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xs2fig</term>
+
+        <listitem>
+          <para>envia gráficos para um arquivo em sintaxe Xfig</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xs2gif</term>
+
+        <listitem>
+          <para>envia gráficos a um arquivo em sintaxe GIF</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xs2ppm</term>
+
+        <listitem>
+          <para>envia gráficos para um arquivo em sintaxe PPM</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Primitivas gráficas</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xbasc</term>
+
+        <listitem>
+          <para>limpa uma janela de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xclear</term>
+
+        <listitem>
+          <para>limpa janela de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>driver</term>
+
+        <listitem>
+          <para>seleciona um driver gráfico</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xinit</term>
+
+        <listitem>
+          <para>inicialização de um driver de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xend</term>
+
+        <listitem>
+          <para>termina uma sessão de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xbasr</term>
+
+        <listitem>
+          <para>desenha novamente uma janela de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>replot</term>
+
+        <listitem>
+          <para>redesenha a janela de gráficos corrente com novas
+          fronteiras</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xpause</term>
+
+        <listitem>
+          <para>suspende o Scilab</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xselect</term>
+
+        <listitem>
+          <para>restaura a janela de gráficos corrente</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xdel</term>
+
+        <listitem>
+          <para>deleta uma janela de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>winsid</term>
+
+        <listitem>
+          <para>retorna a lista de janelas de gráficos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xname</term>
+
+        <listitem>
+          <para>muda o nome da janela de gráficos corrente</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Posição do mouse</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xclick</term>
+
+        <listitem>
+          <para>espera por um clique do mouse</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>locate</term>
+
+        <listitem>
+          <para>seleção pelo mouse de um conjunto de pontos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xgetmouse</term>
+
+        <listitem>
+          <para>retorna os eventos de mouse e posição corrente</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Editor interativo</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>edit_curv</term>
+
+        <listitem>
+          <para>editor interativo de curvas gráficas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>gr_menu</term>
+
+        <listitem>
+          <para>editor gráfico interativo simples</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sd2sci</term>
+
+        <listitem>
+          <para>estrutura gr_menu para conversor de instrução Scilab</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Funções gráficas e controle automático</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>bode</term>
+
+        <listitem>
+          <para>diagrama de Bode</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>gainplot</term>
+
+        <listitem>
+          <para>esboço de magnitude</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nyquist</term>
+
+        <listitem>
+          <para>diagrama de Nyquist</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m_circle</term>
+
+        <listitem>
+          <para>esboço de um M-círculo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>chart</term>
+
+        <listitem>
+          <para>carta de Nichols</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>black</term>
+
+        <listitem>
+          <para>diagrama de Black</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>evans</term>
+
+        <listitem>
+          <para>lugar geométrico das raízes Evans</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sgrid</term>
+
+        <listitem>
+          <para>esboça linhas de grid de um s-plano </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>plzr</term>
+
+        <listitem>
+          <para>esboço de pólo-zero</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zgrid</term>
+
+        <listitem>
+          <para>esboço de um z-grid</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="deff" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>deff</refname>
+
+    <refpurpose>definição on-line de função</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>e1,e2,...,</term>
+
+        <listitem>
+          <para>variáveis de entrada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>s1,s2,...,</term>
+
+        <listitem>
+          <para>variáveis de saída</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text</term>
+
+        <listitem>
+          <para>matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>opt</term>
+
+        <listitem>
+          <para>string opcional</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>'c'</term>
+
+              <listitem>
+                <para>a função é "compilada" para ser eficiente
+                (padrão)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>'p'</term>
+
+              <listitem>
+                <para>a função é compilada e preparada para profiling (ver
+                profile)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>'n'</term>
+
+              <listitem>
+                <para>a função não é "compilada"</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>deff</literal> pode ser usada para definir funções de
+    seqüências de instruções escritas em strings de textos. Objeto função
+    resultante tem as mesmas propriedades que qualquer outra função definida
+    em um arquivo de texto e carregada através de <literal>getf</literal> ou
+    <literal>exec</literal>.</para>
+
+    <para>Aspas em instruções (delimitando strings ou indicando transposição
+    de matrizes) devem ser dobradas para serem interpretadas corretamente (ver
+    quote). Isto pode tornar a escrita um tanto estranha. Uma alternativa em
+    tais casos é definir funções em arquivos, como de uso, para carregá-las no
+    Scilab através de <literal>getf</literal> (com a opção
+    <literal>'n'</literal>) e utilizar <literal>sci2exp</literal> para uma
+    impressão das instruções <literal>deff</literal> correspondentes.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+deff('[x]=myplus(y,z)','x=y+z')
+//
+deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="comp">comp</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="profile">profile</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

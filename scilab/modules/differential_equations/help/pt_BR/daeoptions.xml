@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="daeoptions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>daeoptions</refname>
+
+    <refpurpose>ajusta opções para o solucionador de equações diferenciais
+    algébricas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>daeoptions()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Se no contexto do chamamento da função dae existe a variável
+    <literal>%DAEOPTIONS</literal>, a função dae a utiliza para ajustar suas
+    opções.</para>
+
+    <para>A função daeoptions exibe interativamente um comando que deveria ser
+    executado para se ajustar diversas opções do solucionador <link
+    linkend="dae">dae</link>.</para>
+
+    <para>CUIDADO: a função <literal>dae</literal> verifica se esta variável
+    existe e, neste caso, a utiliza. Para utilizar valores padrões, você deve
+    limpar esta variável. Note que <literal>daeoptions</literal> não cria esta
+    variável. Para criá-la, você deve executar a linha de comando exibida por
+    <literal>daeoptions</literal>.</para>
+
+    <para>A variável <literal>%DAEOPTIONS</literal> é uma lista <link
+    linkend="list">list</link> com os seguintes elementos:</para>
+
+    <programlisting>list(tstop,imode,band,maxstep,stepin,nonneg,isest)</programlisting>
+
+    <para>O valor padrão é:</para>
+
+    <programlisting>list([],0,[],[],[],0,0)</programlisting>
+
+    <para>Os siginificados destes elementos são listados abaixo.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>tstop</term>
+
+        <listitem>
+          <para>um escalar real ou uma matriz, fornece o tempo máximo para o
+          qual se permite a avaliação de <literal>g</literal>. Uma matriz
+          vazia significa que "não há limites" impostos pelo tempo.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>imode</term>
+
+        <listitem>
+          <para>Se for 0, dae retorna apenas os valores de pontos do tempo
+          especificado pelo usuário. Se for 1, dae retorna seus valores
+          intermediários computados.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>band</term>
+
+        <listitem>
+          <para>um vetor de dois componentes que fornece a definição
+          <literal>[ml,mu]</literal> da matriz de bandas computada por
+          <literal>jac</literal> ; <literal></literal></para>
+
+          <para><literal>r(i - j + ml + mu + 1,j)</literal> =
+          <literal>dg(i)/dy(j)+cj*dg(i)/dydot(j)</literal> . Se
+          <literal>jac</literal> retorna uma matriz completa ajustado
+          <literal>band=[]</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>maxstep</term>
+
+        <listitem>
+          <para>um escalar ou matriz vazia, o tamanho máximo do passo. Uma
+          matriz vazia indica ausência de limitiação.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stepin</term>
+
+        <listitem>
+          <para>um escalar ou matriz vazia, o tamanho mínimo do passo. Uma
+          matriz vazia indica "não especificado".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nonneg</term>
+
+        <listitem>
+          <para>um escalar, deve ser ajustado para 0 se <literal>a solução se
+          conhece ser não negativa.</literal> E caso contrário, deve ser
+          ajustado para 1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>isest</term>
+
+        <listitem>
+          <para>A scalar, deve ser ajustado para 0 se a dada condição inicial
+          é compatível: <literal>g(t0,x0,xdot0)=0</literal>. Deve ser ajustado
+          para 1 se <literal>xdot0</literal> é apenas uma estimativa.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dae">dae</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

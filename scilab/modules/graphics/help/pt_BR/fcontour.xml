@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,21 +24,21 @@
   <refnamediv>
     <refname>fcontour</refname>
 
-    <refpurpose>curvas de nÃ­vel sobre uma superfÃ­cie 3d definida por uma
-    funÃ§Ã£o</refpurpose>
+    <refpurpose>curvas de nível sobre uma superfície 3d definida por uma
+    função</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>fcontour(xr,yr,f,nz,[theta,alpha,leg,flag,ebox,zlev])
 fcontour(xr,yr,f,nz,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o estÃ¡ obsoleta. EstÃ¡ agora inclusa na funÃ§Ã£o <link
+    <para>Esta função está obsoleta. Está agora inclusa na função <link
     linkend="contour">contour</link>.</para>
   </refsection>
 
