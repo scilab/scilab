@@ -242,7 +242,7 @@ namespace ast
 			int iRetVal = 0;
 			//out->push_back(execVar->result_get());
 			Function::ReturnValue Ret = pF->call(in, &iRetVal, out);
-			if(Ret == Function::AllGood)
+			if(Ret == Function::AllGood && out.size() > 0)
 			{
 				result_set(out.front());
 			}
@@ -665,6 +665,10 @@ namespace ast
 					def = execMe.result_get();
 					def->DenyDelete();
 				}
+				else
+				{
+					def = new Double(0, 0);
+				}
 				
 				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
 				{
@@ -692,9 +696,21 @@ namespace ast
 				bool getter = false;
 				bool setter = false;
 				
-				ExecVisitor execMe;
-				mdec->body_get().accept(execMe);
-				Function *code = dynamic_cast<Function*>(execMe.result_get());
+				std::list<symbol::Symbol> &in = *new std::list<symbol::Symbol>;
+				std::list<symbol::Symbol> &out = *new std::list<symbol::Symbol>;
+				std::list<Var*>::const_iterator it;
+				
+				for(it = mdec->args_get().vars_get().begin(); it != mdec->args_get().vars_get().end(); ++it)
+				{
+					in.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+				}
+				
+				for(it = mdec->returns_get().vars_get().begin(); it != mdec->returns_get().vars_get().end(); ++it)
+				{
+					out.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+				}
+				
+				Function *code = new types::Macro(in, out, const_cast<Exp&>(mdec->body_get()));
 				
 				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
 				{
@@ -724,14 +740,15 @@ namespace ast
 				else
 				{
 					if(class_slot)
-						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
-					else
 						kls->install_method(sdec->name_get().name_get(), vis, code);
+					else
+						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
 				}
 			}
 		}
 		
 		ObjectMatrix *res = types::ObjectMatrix::create_standard_ref(kls);
+		res->DenyDelete();
 		result_set(res);
 		symbol::Context::getInstance()->put(symbol::Symbol(*e.name_get()), *res);
 	}

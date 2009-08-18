@@ -429,8 +429,8 @@ namespace ast
       DEBUG_END_NODE();
     }
     {
-      DEBUG("Slot attributes:");
       DEBUG_START_NODE();
+      DEBUG("Slot attributes:");
       visit(e.attributes_get());
       DEBUG_END_NODE();
     }

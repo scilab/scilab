@@ -63,7 +63,6 @@ namespace ast
     {
       delete &_args;
       delete &_returns;
-      delete &_body;
     }
 
 
