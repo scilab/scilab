@@ -95,6 +95,7 @@ Help & Tests:
 
 Bug fixes:
 ==========
+ * bug 336  fixed - pspect and cspec help pages improved
 
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
