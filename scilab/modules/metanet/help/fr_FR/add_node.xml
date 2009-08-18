@@ -61,7 +61,7 @@
     nouveau graphe <literal>g1</literal>.
   </para>
     <para>
-    Les coordonnées du nouveau sommet sont éventuellement précisées dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnées, (les éléments <literal>node_x</literal> et <literal>node_y</literal> sont égaux à <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
+    Les coordonnées du nouveau sommet sont éventuellement précisées dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnées, (les éléments <literal>g.nodes.graphics.x</literal> et <literal>g.nodes.graphics.y</literal> sont égaux à <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
     du graphe <literal>g</literal> ont des coordonnées et que <literal>xy</literal> n'est pas donné, le 
     nouveau sommet a <literal>(0,0)</literal> comme coordonnées.
   </para>

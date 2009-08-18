@@ -61,24 +61,45 @@
     <literal>g</literal>. Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
     le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problème n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est égal à 0, sinon il est égal à 1.
   </para>
+  <para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
     <para>
-    Les bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité minimum doit être égal à zéro. Les valeurs des capacités maximum doivent être entières et positives.
-    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
-  </para>
+      Les valeurs des capacités maximum et minimum doivent être
+      entières et positives.  La valeur de la capacité maximum doit
+      être supérieure ou égale à la valeur de la capacité minimum.  Si
+      la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être entiers et positifs.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+      Les coûts sur les arêtes sont donnés par les éléments
+      <literal>g.edges.data.cost</literal> du graphe.  Les coûts
+      doivent être non négatifs.  Si la valeur de
+      <literal>cost</literal> n'est pas donnée, elle est supposé nulle
+      sur chaque arête.
+    </para>
+   <para>
+     La demande sur les sommets est donnée par l'élément
+     <literal>g.nodes.data.demand</literal> du graphe.  Les demandes
+     doivent être des nombre entiers. La somme des demandes doit être
+     nulle pour que le problème soit soluble. Si la valeur de
+     <literal>demand</literal> n'est pas donnée, elle est supposée
+     nulle sur chaque sommet.
   </para>
-    <para>
-  </para>
-    <para>
-    La demande sur les sommets est donnée par l'élément <literal>node_demand</literal> du graphe.
-    Les demandes doivent être des nombre entiers. La somme des demandes doit être nulle pour que le problème soit soluble. Si la valeur de <literal>node_demand</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), elle est supposée nulle sur chaque sommet.
-  </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ou <literal>cost</literal> ne sont
+      pas présents dans la structure du graphe, ils peuvent être
+      ajoutés et affectés en utilisant la fonction  <link
+      linkend="add_edge_data">add_edge_data</link>.
+      Si le champs de donnée <literal>demand</literal>  n'est 
+      pas présent dans la structure du graphe, il peut être
+      ajouté et affecté en utilisant la fonction  <link
+      linkend="add_node_data">add_node_data</link>.
+    </para>
     <para>
     Cette fonction utilise un algorithme de relaxation dû à D. Bertsekas.
   </para>

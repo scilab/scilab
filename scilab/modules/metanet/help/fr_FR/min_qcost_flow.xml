@@ -64,29 +64,50 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_qcost_flow</literal> calcule flot de coût quadratique minimum dans un réseau 
-    <literal>g</literal>. Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
-    le vecteur ligne des flots sur les arcs <literal>phi</literal>. <literal>eps</literal> est la précision
-    de l'algorithme itératif. Si le problème n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est égal à 0, sinon il 
-    est égal à 1.
-  </para>
     <para>
-    Les bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité maximum doit être supérieure ou égale à la valeur de la capacité minimum.
-    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
-  </para>
-    <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_q_orig</literal> et
-    <literal>edge_q_weight</literal> du graphe. Le coût sur l'arc <literal>u</literal> est donné par:
-  </para>
-    <para>
-      <literal>(1/2)*edge_q_weight[u](phi[u]-edge_q_orig[u])^2</literal>
+      <literal>min_qcost_flow</literal> calcule flot de coût
+      quadratique minimum dans un réseau <literal>g</literal>. Elle
+      renvoie le coût total du flot sur les arcs <literal>c</literal>
+      et le vecteur ligne des flots sur les arcs
+      <literal>phi</literal>. <literal>eps</literal> est la précision
+      de l'algorithme itératif. Si le problème n'est pas soluble
+      (impossible de trouver un flot compatible),
+      <literal>flag</literal> est égal à 0, sinon il est égal à 1.
     </para>
     <para>
-    Les coûts doivent être positifs.
-    Si les valeurs de <literal>edge_q_orig</literal> ou <literal>edge_q_weight</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
-  </para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
+    <para>
+      Les valeurs des capacités maximum et minimum doivent être
+      non négatives.  La valeur de la capacité maximum doit
+      être supérieure ou égale à la valeur de la capacité minimum.  Si
+      la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
+    <para>
+      Les coûts sur les arêtes sont donnés par les éléments
+      <literal>g.edges.data.q_orig</literal> et
+      <literal>g.edges.data.q_weight</literal> du graphe. Ce doit être
+      des valeurs non négatives. Si la valeur de
+      <literal>q_orig</literal> ou <literal>q_weight</literal> n'est
+      pas donnée, elle est supposé nulle sur chaque arête.  Le coût
+      sur l'arc <literal>u</literal> est donné par:
+      <literal>(1/2)*q_weight[u](phi[u]-q_orig[u])^2</literal>.
+    </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ou <literal>q_orig</literal> ou
+      <literal>q_weight</literal>ne sont pas présents dans la
+      structure du graphe, ils peuvent être ajoutés et affectés en
+      utilisant la fonction <link
+      linkend="add_edge_data">add_edge_data</link>.
+    </para>
+    <para>
+   
+ 
     <para>
     Cette fonction utilise un algorithme dû à M. Minoux.
   </para>

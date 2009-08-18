@@ -50,14 +50,34 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>pipe_network</literal> renvoie les valeurs des flots et des potentiels
-    pour le problème du réseau de tuyaux (problème de flots avec deux lois de Kirchhoff).
-    Le graphe doit être orienté. Le problème doit être soluble (la somme des
-    demandes des sommets doit être égale à 0). Les résistances sur les arcs doivent être strictement positives et sont données par les valeurs de l'élément 'edge_weight' du graphe.
-  </para>
     <para>
-    Le problème est résolu à l'aide d'une factorisation LU creuse.
-  </para>
+      <literal>pipe_network</literal> renvoie les valeurs des flots et
+      des potentiels pour le problème du réseau de tuyaux (problème de
+      flots avec deux lois de Kirchhoff).  Le graphe doit être
+      orienté. Le problème doit être soluble (la somme des demandes
+      des sommets doit être égale à 0). 
+    </para>
+    <para>
+      Les résistances sur les arcs sont données par le champ
+      <literal>g.edges.data.weight</literal> de la structure de
+      graphe. S'il nest pas présent dans la structure de donnée ce
+      champ peut être ajouté et affecté par la fonction <link
+      linkend="add_edge_data">add_edge_data</link>. Les valeurs des
+      résistances doivent être strictement positives.
+    </para>
+   <para>
+      Les demandes sur les noeuds sont données par le champ
+      <literal>g.nodes.data.demand</literal> de la structure de
+      graphe. S'il nest pas présent dans la structure de donnée ce
+      champ peut être ajouté et affecté par la fonction <link
+      linkend="add_node_data">add_node_data</link>. La somme des
+      demandes des sommets doit être égale à 0.
+    </para>
+
+  
+    <para>
+      Le problème est résolu à l'aide d'une factorisation LU creuse.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

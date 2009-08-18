@@ -77,14 +77,27 @@
     faits en nombres entiers. Le graphe doit être orienté. Si le problème n'est 
     pas soluble, <literal>flag</literal> est égal à 0, sinon il est égal à 1.
   </para>
+  <para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
     <para>
-    Les bornes sur le flot sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité maximum doit être supérieure ou égale à 
-    la capacité minimum.
-    Si la valeur de <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> n'est pas donnée 
-    (vecteur ligne vide <literal>[]</literal>), elle est supposée égale à 0 sur chaque arête.
-  </para>
+      Les valeurs des capacités maximum et minimum doivent être
+      non négatives .  La valeur de la capacité maximum doit
+      être supérieure ou égale à la valeur de la capacité minimum.  Si
+      la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ne sont pas présents dans la
+      structure du graphe, ils peuvent être ajoutés et affectés en
+      utilisant la fonction <link
+      linkend="add_edge_data">add_edge_data</link>.
+    </para>
+
   </refsection>
   <refsection>
     <title>Exemples</title>

@@ -57,31 +57,45 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_flow1</literal> calcule flot de coût linéaire minimum dans un réseau 
-    <literal>g</literal>. Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
-    le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problème n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est égal à 0, sinon il est égal à 1.
-  </para>
     <para>
-    Les bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    Les valeurs des capacités maximum et minimum doivent être entières et positives.
-    La valeur de la capacité maximum doit être supérieure ou égale à la valeur de la capacité minimum.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
-  </para>
+      <literal>min_lcost_flow1</literal> calcule flot de coût linéaire
+      minimum dans un réseau <literal>g</literal>. Elle renvoie le
+      coût total du flot sur les arcs <literal>c</literal> et le
+      vecteur ligne des flots sur les arcs <literal>phi</literal>. Si
+      le problème n'est pas soluble (impossible de trouver un flot
+      compatible), <literal>flag</literal> est égal à 0, sinon il est
+      égal à 1.
+    </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être positifs.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
-  </para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
     <para>
-    Les demandes, i.e. les élément <literal>node_demand</literal> du graphe, doivent être
-    égales à zéro.
-  </para>
+      Les valeurs des capacités maximum et minimum doivent être
+      entières et positives.  La valeur de la capacité maximum doit
+      être supérieure ou égale à la valeur de la capacité minimum.  Si
+      la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
     <para>
-    Cette fonction utilise l'algorithme out-of-kilter.
-  </para>
+      Les coûts sur les arêtes sont donnés par les éléments
+      <literal>g.edges.data.cost</literal> du graphe.  Les coûts
+      doivent être non négatifs.  Si la valeur de
+      <literal>cost</literal> n'est pas donnée, elle est supposé nulle
+      sur chaque arête.
+    </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ou <literal>cost</literal> ne sont
+      pas présents dans la structure du graphe, ils peuvent être
+      ajoutés et affectés en utilisant la fonction  <link
+      linkend="add_edge_data">add_edge_data</link>.
+    </para>
+    <para>
+      Cette fonction utilise l'algorithme out-of-kilter.
+    </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -104,8 +118,6 @@ g.edges.graphics.foreground(find(phi<>0))=color('red');
 g=add_edge_data(g,'flow',phi)
 g.edges.graphics.display='flow';
 show_graph(g);
-
- 
   ]]></programlisting>
   </refsection>
   <refsection>
