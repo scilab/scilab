@@ -23,7 +23,11 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/tostring_common.cpp \
 			src/cpp/function.cpp \
 			src/cpp/macro.cpp \
-			src/cpp/object.cpp
+			src/cpp/object.cpp \
+			src/cpp/objectmatrix.cpp \
+			src/cpp/instance.cpp \
+			src/cpp/class.cpp \
+			src/cpp/ooutils.cpp
 
 pkglib_LTLIBRARIES 	= libscitypes.la
 

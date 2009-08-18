@@ -15,6 +15,9 @@
 #include "localization.h"
 #include "macro.hxx"
 
+#include "class.hxx"
+#include "ooutils.hxx"
+
 using std::string;
 
 bool bConditionState(ast::ExecVisitor *exec);
