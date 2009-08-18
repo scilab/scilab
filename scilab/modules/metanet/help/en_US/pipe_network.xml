@@ -47,14 +47,31 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>pipe_network</literal> returns the value of the flows and of the potentials
-    for the pipe network problem: flow problem with two Kirchhoff laws.
-    The graph must be directed. The problem must be feasible (the sum of
-    the node demands must be equal to 0). The resistances on the arcs must
-    be strictly positive and are given as the values of the
-    weight field of the graph <link linkend="edges_data_structure">edges_data_structure</link>.</para>
     <para>
-    The problem is solved by using sparse matrices LU factorization.</para>
+      <literal>pipe_network</literal> returns the value of the flows
+      and of the potentials for the pipe network problem: flow problem
+      with two Kirchhoff laws.  The graph must be directed. The
+      problem must be feasible (the sum of the node demands must be
+      equal to 0). 
+    </para>
+    <para>
+      The resistances on the arcs are given by the field
+      <literal>g.edges.data.weight</literal> of the graph data
+      structure. If this field is not present it may be added and set
+      using the function <link
+      linkend="add_edge_data">add_edge_data</link>. The values of the resistances must be strictly positive.
+    </para>
+    <para>
+      THe demands on nodes are given by the field
+      <literal>g.nodes.data.demand</literal> of the graph data
+      structure. If this field is not present it may be added and set
+      using the function <link
+      linkend="add_node_data">add_node_data</link>. The sum of the node demands must be
+      equal to 0. 
+    </para>
+    <para>
+      The problem is solved by using sparse matrices LU factorization.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

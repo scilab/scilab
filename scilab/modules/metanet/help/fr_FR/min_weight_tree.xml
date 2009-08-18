@@ -74,7 +74,7 @@
     significatif pour un graphe non-orienté.</para>
 
     <para>Les poids sont données par les éléments
-    <literal>edge_weight</literal> du graphe. Si ces valeurs ne sont pas
+    <literal>g.edges.data.weight</literal> du graphe. Si ces valeurs ne sont pas
     données (vecteur vide <literal>[]</literal>), elles sont supposées nulles.
     Les poids peuvent être positifs, nuls ou négatifs. Pour calculer un arbre
     recouvrant sans tenir compte des poids, leur donner une valeur nulle ou
