@@ -11,6 +11,8 @@
  */
 
 #include "macro.hxx"
+#include "context.hxx"
+#include "execvisitor.hxx"
 
 namespace types
 {
@@ -20,5 +22,45 @@ namespace types
   void Macro::whoAmI()
   {
     std::cout << "types::Macro";
+  }
+  
+  Function::ReturnValue Macro::call(typed_list &in, int* _piRetCount, typed_list &out)
+  {
+    // FIXME: what to do with _piRetCount ?
+   
+    if(in.size() != m_inputArgs->size())
+    {
+      return Function::WrongParamNumber;
+    }
+    
+    symbol::Context *ctx = symbol::Context::getInstance();
+    ctx->scope_begin();
+    
+    // Copy input arguments to the stack
+    {
+      std::list<symbol::Symbol>::iterator it_argname = m_inputArgs->begin();
+      typed_list::iterator it_argval = in.begin();
+      for( ; it_argname != m_inputArgs->end(); ++it_argname, ++it_argval)
+      {
+        ctx->put(*it_argname, *(*it_argval)->clone());
+      }
+    }
+    
+    // Call the code
+    ast::ExecVisitor execMe;
+    m_body->accept(execMe);
+    
+    // Get ouput arguments from the stack
+    {
+      std::list<symbol::Symbol>::iterator it_argname = m_outputArgs->begin();
+      for( ; it_argname != m_outputArgs->end(); ++it_argname)
+      {
+        out.push_back(ctx->get(*it_argname)->clone());
+      }
+    }
+    
+    ctx->scope_end();
+    
+    return Function::AllGood;
   }
 }

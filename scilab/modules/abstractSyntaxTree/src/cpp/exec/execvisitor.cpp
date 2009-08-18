@@ -13,6 +13,7 @@
 #include "execvisitor.hxx"
 #include "timer.hxx"
 #include "localization.h"
+#include "macro.hxx"
 
 using std::string;
 
@@ -226,7 +227,7 @@ namespace ast
 		std::list<Exp *>::const_iterator	i;
 
 		e.name_get().accept(*execFunc);
-		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
+		if(execFunc->result_get() != NULL && execFunc->result_get()->getAsFunction() != NULL)
 		{//function call
 			Function *pF = execFunc->result_get()->getAsFunction();
 			types::typed_list out;
@@ -609,7 +610,24 @@ namespace ast
 		function foo
 		endfunction
 		*/
-
+		std::list<symbol::Symbol> &in = *new std::list<symbol::Symbol>;
+		std::list<symbol::Symbol> &out = *new std::list<symbol::Symbol>;
+		std::list<Var*>::const_iterator it;
+		
+		for(it = e.args_get().vars_get().begin(); it != e.args_get().vars_get().end(); ++it)
+		{
+			in.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+		}
+		
+		for(it = e.returns_get().vars_get().begin(); it != e.returns_get().vars_get().end(); ++it)
+		{
+			out.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+		}
+		
+		Macro *func = new types::Macro(in, out, const_cast<Exp&>(e.body_get()));
+		func->DenyDelete();
+		symbol::Context::getInstance()->put(e.name_get(), *func);
+		result_set(func);
 	}
   
 	void ExecVisitor::visit (const ClassDec &e)
