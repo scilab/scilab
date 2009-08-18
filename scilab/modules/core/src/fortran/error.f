@@ -30,7 +30,6 @@ c
       ival(1)=lin(k+8)
       ival(2)=lin(k+9)
       stk(lstk(isiz))=val
-
 c     recherche du nom de la function correspondant a ce niveau
       lk=sadr(lin(k+6))
       if(lk.le.lstk(top+1)) then
@@ -57,7 +56,6 @@ c     .           compiled macro
 c     .           uncompiled macro
                   nlc=1
                endif
-               call linestore(lct(8)-nlc)
             else
                buf='line '
                m=6
@@ -69,10 +67,6 @@ c     .           uncompiled macro
             m=m+13
             if (km.le.isiz) then
                call cvnamel(idstk(1,km),buf(m+1:m+nlgh),1,leng)
-               if(first) then
-                  call funnamestore(buf(m+1:m+nlgh),leng)
-                  first=.false.
-               endif
                m=m+leng
             endif
          else
@@ -101,34 +95,9 @@ c
             if(l1.gt.0.and.m.gt.0.and.m+l1-1.le.lsiz) then
                call cvstr(m,lin(l1),buf(1:m),1)
                call basout(io,lunit,buf(1:m))
-               if(istk(ilk).eq.10) then
-                  if(first) then
-                     if(m.gt.24) m=24
-                     call funnamestore(buf(1:m),m) 
-                     first=.false.
-                  endif
-               endif
             endif
          endif
-      else
-c     .  no trace, just memorize the error line, and function
-         if(istk(ilk).ne.10) then
-            if(first) then
-               if (istk(ilk).eq.13) then 
-c     .           compiled macro
-                  nlc=0
-               else
-c     .           uncompiled macro
-                  nlc=1
-               endif
-               call linestore(lct(8)-nlc)
-            endif
-            if (km.le.isiz.and.first) then
-               call cvnamel(idstk(1,km),buf(1:nlgh),1,leng)
-               call funnamestore(buf(1:nlgh),leng)
-               first=.false.
-            endif
-         endif
+
       endif
 c
       macr=macr-1
@@ -158,7 +127,6 @@ c
                buf='at line '
                m=11
                nlc=0
-               call linestore(lct(8))
             else
                buf='line '
                m=6
@@ -178,11 +146,7 @@ c
             endif
             call cvstr(m,lin(l1),buf,1)
             call basout(io,lunit,buf(1:m))
-            if(first) then
-               if(m.gt.24) m=24
-               call funnamestore(buf(1:m),m) 
-               first=.false.
-            endif
+            
          endif
          mode(1)=0
          call clunit(-rio,buf,mode)
@@ -245,3 +209,45 @@ c
       return
       end
 
+      subroutine errcontext()
+c     this routines stores the line number  of the instruction that
+c     produces  the error as well as the calling macro name if any
+      include 'stack.h'
+
+      integer sadr
+      sadr(l)=(l/2)+1
+      if (macr.le.0) return
+      k=lpt(1)-(13+nsiz)
+
+
+c     recherche du nom de la function correspondant a ce niveau
+      lk=sadr(lin(k+6))
+      if(lk.le.lstk(top+1)) then
+         km=0
+      else
+         km=lin(k+5)-1
+      endif
+ 10   km=km+1
+      if(km.gt.isiz)goto 11
+      if(lstk(km).ne.lk) goto 10
+
+ 11   continue
+      ilk=lin(k+6)
+      if(istk(ilk).ne.10) then
+         if (istk(ilk).eq.13) then 
+c     .     compiled macro
+            call linestore(lct(8))
+         else
+c     .     uncompiled macro
+            call linestore(lct(8)-1)
+         endif
+         if (km.le.isiz) then
+            call cvnamel(idstk(1,km),buf(1:nlgh),1,leng)
+            call funnamestore(buf(1:nlgh),leng)
+         endif
+      else
+         call linestore(lct(8)-1)
+c         if(m.gt.24) m=24
+c         call funnamestore(buf(1:m),m) 
+      endif
+      end
