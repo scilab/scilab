@@ -30,24 +30,20 @@ namespace types
       WrongParamType
     };
 
-    Macro *getAsMacro(void);
-    RealType getType(void) { return RealMacro; }
+		Macro *getAsMacro(void);
+    RealType getType(void);
 
     void whoAmI();
 
-    Macro() {};
-    Macro(std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body) :
-      m_inputArgs(&_inputArgs),
-      m_outputArgs(&_outputArgs),
-      m_body(&_body)
-      {
-      };
-    ~Macro();
+		Macro(){};
+		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
+		~Macro(){};
   
   public :
     std::list<symbol::Symbol>	*m_inputArgs;
     std::list<symbol::Symbol>	*m_outputArgs;
     ast::SeqExp			*m_body;
+    std::string			m_stName;
   };
 }
 

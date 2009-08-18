@@ -24,6 +24,7 @@ namespace ast
 {
 	void ExecVisitor::visit (const AssignExp  &e)
 	{
+		symbol::Context *pcontext = symbol::Context::getInstance();
 		/*Create local exec visitor*/
 		ExecVisitor* execMeR = new ExecVisitor();
 		try
@@ -37,7 +38,7 @@ namespace ast
 			{//dynamic_cast failed : left operand is not a SimpleVar ;)
 				bool bNew								= false;
 				CallExp *CallVar				= (CallExp *)(&e.left_exp_get());
-				int iProductElem				= CallVar->args_get().size();
+				int iProductElem				= (int)CallVar->args_get().size();
 				Var											= (SimpleVar*)&CallVar->name_get();
 				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
 				bool bSeeAsVector				= iProductElem == 1;

@@ -36,6 +36,7 @@ namespace ast
 		ExecVisitor *execMeL = new ast::ExecVisitor();
 		ExecVisitor *execMeR = new ast::ExecVisitor();
 
+		symbol::Context *pContext = symbol::Context::getInstance();
 		/*getting what to assign*/
 		e.left_get().accept(*execMeL);
 		/*getting what to assign*/

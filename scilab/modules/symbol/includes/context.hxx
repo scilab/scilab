@@ -57,6 +57,7 @@ namespace symbol
 		bool put(Symbol key, InternalType &type);
 
 		bool AddFunction(types::Function *_info);
+		bool AddMacro(types::Macro *_info);
 
 	private :
 		Stack PrivateFunTable;
