@@ -77,6 +77,10 @@ namespace types
   class Class;
   class Instance;
   
+  /** Private classes, never mind */
+  class BoundGetter;
+  class BoundSetter;
+  
   /** Represents an object
    *   It contains slots, which are destroyed with the object (right now, when
    * reference count is 0).
@@ -86,6 +90,8 @@ namespace types
   class Object
   {
   friend class Class;
+  friend class BoundGetter;
+  friend class BoundSetter;
   
   public:
     virtual ~Object() { }
@@ -99,6 +105,8 @@ namespace types
      * resolution algorithm starts from a level upper than the bottom level in
      * the super chain. If this case, this is the start level of slot
      * resolution while p_self is the bottom of the super chain.
+     *   Return value will be destroyed with this object (or when it will be
+     * set), clone it if you may need it later.
      */
     InternalType *get(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
     
@@ -147,6 +155,10 @@ namespace types
   private:
     // root_object is the object at the top of all super chains
     static Object *get_root_object();
+  
+    // m_slots_values manipulation
+    InternalType *raw_get(PropertySlot &slot);
+    void raw_set(PropertySlot &slot, InternalType *value);
   
   protected:
     Object(Object *p_isa = NULL): m_isa(p_isa) {}

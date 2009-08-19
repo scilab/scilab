@@ -222,7 +222,7 @@ namespace types
       if(prop->getter)
         return do_call(prop->getter, p_level, NULL);
       else
-        return prop->default_value;
+        return raw_get(*prop);
     }
     else
     {
@@ -240,7 +240,7 @@ namespace types
       if(prop->setter)
         do_call(prop->getter, p_level, p_value, NULL);
       else
-        prop->default_value = p_value->clone(); /* FIXME */
+        raw_set(*prop, p_value);
     }
     else
     {
@@ -286,5 +286,32 @@ namespace types
       // TODO: remove_slot, slots_list, %get, %set
     }
     return obj;
+  }
+  
+  InternalType *
+  Object::raw_get(PropertySlot &slot)
+  {
+    std::map<std::string, InternalType *>::iterator it = m_slots_values.find(slot.name);
+    if(it == m_slots_values.end())
+    {
+      InternalType *ret = slot.default_value->clone();
+      m_slots_values[slot.name] = ret;
+      ret->DenyDelete();
+      return ret;
+    }
+    else
+    {
+      return it->second;
+    }
+  }
+  
+  void Object::raw_set(PropertySlot &slot, InternalType *value)
+  {
+    std::map<std::string, InternalType *>::iterator it = m_slots_values.find(slot.name);
+    if(it != m_slots_values.end())
+      delete it->second;
+    
+    m_slots_values[slot.name] = value;
+    value->DenyDelete();
   }
 }

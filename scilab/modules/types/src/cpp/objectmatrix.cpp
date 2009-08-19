@@ -42,7 +42,7 @@ namespace types
   void
   ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value)
   {
-    ObjectMatrix * sender = NULL; // symbol::Context::getInstance()->get("this", true);
+    ObjectMatrix * sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
     
     // Handle the case of this.x = y with x being private
     if(sender != NULL && is_this())
