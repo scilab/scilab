@@ -238,7 +238,7 @@ namespace types
     {
       PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
       if(prop->setter)
-        do_call(prop->getter, p_level, p_value, NULL);
+        do_call(prop->setter, p_level, p_value, NULL);
       else
         raw_set(*prop, p_value);
     }

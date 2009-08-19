@@ -22,6 +22,7 @@ namespace types
   ro_setter_func(typed_list &in, int *_piRetCount, typed_list &out)
   {
     printf("Read only property");
+    out.push_back(new Double(0));
     return Function::AllGood;
   }
   
