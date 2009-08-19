@@ -249,6 +249,57 @@ namespace ast
 			{
 				result_set(out.front());
 			}
+
+			if(e.is_verbose())
+			{
+			  std::ostringstream ostr;
+			  ostr <<  out.front()->toString(10,75) << std::endl;
+			  YaspWrite((char *) ostr.str().c_str());
+			}
+		}
+		else if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealMacro)
+		{
+			Macro* pMacro	= execFunc->result_get()->getAsMacro();
+			std::list<symbol::Symbol>::const_iterator	i;
+			std::list<ast::Exp *>::const_iterator	j;
+
+			//check excepted and input parameters numbers
+			if(e.args_get().size() != pMacro->m_inputArgs->size())
+			{
+				std::ostringstream os;
+				char szError[bsiz];
+#ifdef _MSC_VER
+				sprintf_s(szError, bsiz, _("excepted and input parameters numbers don't match\n"));
+#else
+				sprintf(szError, _("excepted and input parameters numbers don't match\n"));
+#endif
+				os << szError;
+				string szErr(os.str());
+				throw szErr;
+			}
+
+			//open a new scope
+			symbol::Context *pContext = symbol::Context::getInstance();
+			symbol::Context::getInstance()->scope_begin();
+
+			//assign value to variable in the new context
+			for (i = pMacro->m_inputArgs->begin(), j = e.args_get().begin(); j != e.args_get().end (); j++,i++)
+			{
+				ExecVisitor *execVar2	= new ast::ExecVisitor();
+				(*j)->accept(*execVar2);
+				symbol::Context::getInstance()->put((*i), *execVar2->result_get());
+				delete execVar2;
+			}
+
+			pMacro->m_body->accept(*execFunc);
+
+			for (i = pMacro->m_outputArgs->begin(); i != pMacro->m_outputArgs->end(); i++)
+			{
+				result_set(symbol::Context::getInstance()->get((*i)));
+			}
+			
+			//close the current scope
+			symbol::Context::getInstance()->scope_end();
 		}
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
@@ -259,7 +310,6 @@ namespace ast
 				InternalType *pIT = execFunc->result_get();
 				int iArgDim				= (int)e.args_get().size();
 				bool bSeeAsVector	= iArgDim == 1;
-
 
 				//Create list of indexes
 				//std::vector<std::vector<int>> IndexList;
@@ -434,27 +484,36 @@ namespace ast
 
 	void ExecVisitor::visit (const ForExp  &e)
 	{
-		ExecVisitor *execMe = new ast::ExecVisitor();
-		e.vardec_get().accept(*execMe);
+		ExecVisitor *execVar = new ast::ExecVisitor();
+		e.vardec_get().accept(*execVar);
 
-		if(execMe->result_get()->getType() == InternalType::RealImplicitList)
+		if(execVar->result_get()->getType() == InternalType::RealImplicitList)
 		{
-			ImplicitList* pVar = (ImplicitList*)execMe->result_get();
+			ExecVisitor *execBody = new ast::ExecVisitor();
+			ImplicitList* pVar = (ImplicitList*)execVar->result_get();
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
 				double dblVal = pVar->extract_value(i);
 				Double *pdbl = new Double(dblVal);
 				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
-				e.body_get().accept(*execMe);
+				e.body_get().accept(*execBody);
 			}
-			delete pVar;
+			delete execBody;
 		}
 		else
 		{//Matrix i = [1,3,2,6] or other type
-
+			ExecVisitor *execBody = new ast::ExecVisitor();
+			Double* pVar = (Double*)execVar->result_get();
+			for(int i = 0 ; i < pVar->size_get() ; i++)
+			{
+				double dblVal = pVar->real_get(0,i);
+				Double *pdbl = new Double(dblVal);
+				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
+				e.body_get().accept(*execBody);
+			}
+			delete execBody;
 		}
-
-		delete execMe;
+		delete execVar;
 	}
 
 	void ExecVisitor::visit (const BreakExp &e)
@@ -613,24 +672,28 @@ namespace ast
 		function foo
 		endfunction
 		*/
-		std::list<symbol::Symbol> &in = *new std::list<symbol::Symbol>;
-		std::list<symbol::Symbol> &out = *new std::list<symbol::Symbol>;
-		std::list<Var*>::const_iterator it;
-		
-		for(it = e.args_get().vars_get().begin(); it != e.args_get().vars_get().end(); ++it)
+		std::list<ast::Var *>::const_iterator	i;
+
+		//get input parameters list
+		std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+		ArrayListVar *pListVar = (ArrayListVar *)&e.args_get();
+		for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
 		{
-			in.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+			string sz = ((SimpleVar*)(*i))->name_get().name_get();
+			pVarList->push_back(((SimpleVar*)(*i))->name_get());
 		}
-		
-		for(it = e.returns_get().vars_get().begin(); it != e.returns_get().vars_get().end(); ++it)
+
+		//get output parameters list
+		std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+		ArrayListVar *pListRet = (ArrayListVar *)&e.returns_get();
+		for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
 		{
-			out.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
+			pRetList->push_back(((SimpleVar*)(*i))->name_get());
 		}
-		
-		Macro *func = new types::Macro(in, out, const_cast<Exp&>(e.body_get()));
-		func->DenyDelete();
-		symbol::Context::getInstance()->put(e.name_get(), *func);
-		result_set(func);
+
+		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
+		types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get());
+		symbol::Context::getInstance()->AddMacro(pMacro);
 	}
   
 	void ExecVisitor::visit (const ClassDec &e)
@@ -842,7 +905,7 @@ namespace ast
 
 	void ExecVisitor::result_set(const InternalType *e)
 	{
-		if(_result != NULL)
+		if(_result != NULL && _result->isDeletable())
 		{
 			delete _result;
 		}
@@ -946,12 +1009,13 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 {
 	//Create list of indexes
 	//std::vector<std::vector<int>> IndexList;
+	symbol::Context *pcontext = symbol::Context::getInstance();
 	int iProductElem				= (int)_plstArg.size();
 	int **piIndexList				= NULL;
 	int iTotalCombi					= 1;
+	ExecVisitor* execMeArg	= new ExecVisitor();
 
 	int *piTabSize					= new int[iProductElem];
-	ExecVisitor* execMeArg	= new ExecVisitor();
 	(*_piMaxDim)						= new int[iProductElem];
 	piIndexList							= new int*[iProductElem];
 
@@ -1059,6 +1123,8 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			delete pDbl;
 		}
 	}
+
+	delete execMeArg;
 
 	int iTabSize	= iTotalCombi * iProductElem;
 	*_piIndexSeq	= new int[iTabSize];

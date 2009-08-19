@@ -17,37 +17,33 @@
 #include "types.hxx"
 #include "symbol.hxx"
 #include "seqexp.hxx"
-#include "function.hxx"
 
 namespace types
 {
-  class EXTERN_TYPES Macro : public Function
+  class EXTERN_TYPES Macro : public InternalType
   {
   public :
-    Macro *getAsMacro(void) { return this; }
-    RealType getType(void) { return RealMacro; }
+    enum ReturnValue
+    {
+      AllGood,
+      WrongParamNumber,
+      WrongParamType
+    };
+
+		Macro *getAsMacro(void);
+    RealType getType(void);
 
     void whoAmI();
-    virtual ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
 
-    Macro() {};
-    Macro(std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::Exp &_body) :
-      m_inputArgs(&_inputArgs),
-      m_outputArgs(&_outputArgs),
-      m_body(&_body)
-      {
-      };
-    virtual ~Macro()
-    {
-      delete m_inputArgs;
-      delete m_outputArgs;
-      delete m_body;
-    }
+		Macro(){};
+		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
+		~Macro(){};
   
   public :
     std::list<symbol::Symbol>	*m_inputArgs;
     std::list<symbol::Symbol>	*m_outputArgs;
-    ast::Exp			*m_body;
+    ast::SeqExp			*m_body;
+    std::string			m_stName;
   };
 }
 
