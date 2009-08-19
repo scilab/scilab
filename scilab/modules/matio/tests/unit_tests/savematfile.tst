@@ -198,7 +198,7 @@ for varIndex=1:size(varNames,"*")
 	& isempty(strindex(varNames(varIndex), "NDarray")) & isempty(strindex(varNames(varIndex), "cell")) & isempty(strindex(varNames(varIndex), "struct")) & isempty(strindex(varNames(varIndex), "sparse")))
 
         // Save data in Matlab format
-        filename = getcwd()+pathconvert("/")+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
+        filename = pwd()+pathconvert("/")+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
 	saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
         execstr(saveCmd);
 	// Read saved file

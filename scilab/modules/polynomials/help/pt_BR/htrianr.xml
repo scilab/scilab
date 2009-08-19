@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>htrianr</refname>
 
-    <refpurpose>triangularizaÃ§Ã£o de matrizes de polinÃ´mios</refpurpose>
+    <refpurpose>triangularização de matrizes de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros </title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios</para>
+          <para>matriz de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>Ar</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios</para>
+          <para>matriz de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +57,7 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz unimodular de polinÃ´mios </para>
+          <para>matriz unimodular de polinômios </para>
         </listitem>
       </varlistentry>
 
@@ -72,9 +72,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>TriangularizaÃ§Ã£o da matriz de polinÃ´mios
+    <para>Triangularização da matriz de polinômios
     <literal>A</literal>.</para>
 
     <para><literal>A</literal> is <literal>[m,n]</literal> , <literal>m &lt;=
@@ -82,8 +82,8 @@
 
     <para><literal>Ar=A*U</literal></para>
 
-    <para>Aviso: hÃ¡ eliminaÃ§Ã£o de termos "pequenos" (ver cÃ³digo da
-    funÃ§Ã£o).</para>
+    <para>Aviso: há eliminação de termos "pequenos" (ver código da
+    função).</para>
   </refsection>
 
   <refsection>
@@ -101,7 +101,7 @@ M*U(:,1:2)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="hrmt">hrmt</link></member>

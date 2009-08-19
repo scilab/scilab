@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,26 +24,26 @@
   <refnamediv>
     <refname>genmarkov</refname>
 
-    <refpurpose>gera uma matriz de Markov aleatÃ³ria com classes recorrentes e
+    <refpurpose>gera uma matriz de Markov aleatória com classes recorrentes e
     transientes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>M=genmarkov(rec,tr)
 M=genmarkov(rec,tr,flag)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>rec</term>
 
         <listitem>
-          <para>vetor linha de inteiros (sua dimensÃ£o Ã© o nÃºmero de classes
+          <para>vetor linha de inteiros (sua dimensão é o número de classes
           recorrentes)</para>
         </listitem>
       </varlistentry>
@@ -52,7 +52,7 @@ M=genmarkov(rec,tr,flag)</synopsis>
         <term>tr</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de estados transientes)</para>
+          <para>inteiro (número de estados transientes)</para>
         </listitem>
       </varlistentry>
 
@@ -69,18 +69,18 @@ M=genmarkov(rec,tr,flag)</synopsis>
         <term>flag</term>
 
         <listitem>
-          <para>string <literal>'perm'</literal>. Se fornecido, uma permutaÃ§Ã£o
-          dos estados Ã© feita.</para>
+          <para>string <literal>'perm'</literal>. Se fornecido, uma permutação
+          dos estados é feita.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title> DescriÃ§Ã£o </title>
+    <title> Descrição </title>
 
-    <para>Retorna em M uma matriz de probabilidade de transiÃ§Ã£o de Markov
-    aleatÃ³ria com <literal>rec(1),...rec($)</literal> entradas respectivamente
+    <para>Retorna em M uma matriz de probabilidade de transição de Markov
+    aleatória com <literal>rec(1),...rec($)</literal> entradas respectivamente
     e tr estados transientes.</para>
   </refsection>
 
@@ -98,7 +98,7 @@ P(perm,perm)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="classmarkov">classmarkov</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>fullrf</refname>
 
-    <refpurpose>fatoraÃ§Ã£o de posto completo (ou cheio)</refpurpose>
+    <refpurpose>fatoração de posto completo (ou cheio)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[Q,M,rk]=fullrf(A,[tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>nÃºmero real (limiar para determinaÃ§Ã£o do posto) </para>
+          <para>número real (limiar para determinação do posto) </para>
         </listitem>
       </varlistentry>
 
@@ -72,21 +72,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FatoraÃ§Ã£o de posto cheio : <literal>fullrf</literal> retorna
+    <para>Fatoração de posto cheio : <literal>fullrf</literal> retorna
     <literal>Q</literal> e <literal>M</literal> tais que <literal>A =
     Q*M</literal> com Im(<literal>Q</literal>)=Im(<literal>A</literal>) e
     Nuc(<literal>M</literal>)=Nuc(<literal>A</literal>), <literal>Q</literal>
     de posto-coluna cheio, <literal>M</literal> de posto-linha cheio e
     <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>.</para>
 
-    <para><literal>tol</literal> Ã© um parÃ¢metro real opcional (valor real
-    padrÃ£o Ã© <literal>sqrt(%eps)</literal>). O posto <literal>rk</literal> de
-    <literal>A</literal> Ã© definido como o nÃºmero de valores singulares
+    <para><literal>tol</literal> é um parâmetro real opcional (valor real
+    padrão é <literal>sqrt(%eps)</literal>). O posto <literal>rk</literal> de
+    <literal>A</literal> é definido como o número de valores singulares
     maiores que <literal>norm(A)*tol</literal>.</para>
 
-    <para>Se A Ã© simÃ©trica, <literal>fullrf</literal> retorna
+    <para>Se A é simétrica, <literal>fullrf</literal> retorna
     <literal>M=Q'</literal>.</para>
   </refsection>
 
@@ -105,7 +105,7 @@ svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2)) (span = "gerado"
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="svd">svd</link></member>

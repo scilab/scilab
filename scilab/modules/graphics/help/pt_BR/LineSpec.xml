@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="LineSpec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>LineSpec</refname>
+
+    <refpurpose>Customização rápida de linhas que aparecem em um
+    esboço</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>    Nenhuma. LineSpec é um argumento opcional que pode ser utilizado dentro de um comando plot para customizar os aspectos de cada linha nova. Deve ser fornecido um string concatenado contendo as informações sobre cor, estilo de linha e marcas. É muito útil para especificar de forma rápida estas propriedades de linha básicas. 
+    Para especificar uma linha vermelha de traço longo com marcas de rombo, o string pode ser 'r--diam'. Como você pode ver, não é necessário escrita completa de cada de cada valor de propriedade, mas o string, que é uma concatenação (em qualquer ordem destas três propriedades), não pode conter ambigüidade. Além disso, a especificação de strings não diferencia letras maiúsculas de minúsculas. </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Aqui está uma lista completa dos tipos <literal>LineSpec</literal>
+    que você pode especificar (utilizando <link
+    linkend="plot">plot</link>).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>LineStyle:</term>
+
+        <listitem>
+          <para>um string definindo o estilo de linha. Esta propriedade está
+          ligada à propriedade <literal>line_style</literal> do objeto (ver
+          <link
+          linkend="polyline_properties">polyline_properties</link>).</para>
+
+          <para></para>
+
+          <informaltable border="1">
+            <tr>
+              <td><literal>especificador</literal></td>
+
+              <td><literal>estilo de linha</literal></td>
+            </tr>
+
+            <tr>
+              <td><literal>-</literal></td>
+
+              <td>linha sólida (padrão)</td>
+            </tr>
+
+            <tr>
+              <td><literal>--</literal></td>
+
+              <td>linha tracejada</td>
+            </tr>
+
+            <tr>
+              <td><literal>:</literal></td>
+
+              <td>linha pontilhada</td>
+            </tr>
+
+            <tr>
+              <td><literal>-.</literal></td>
+
+              <td>linha tracejada-pontilhada</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Color:</term>
+
+        <listitem>
+          <para>um string definindo a cor da linha. Esta propriedade está
+          ligada à propriedade <literal>foreground</literal> do objeto (ver
+          <link
+          linkend="polyline_properties">polyline_properties</link>).</para>
+
+          <para></para>
+
+          <informaltable border="1">
+            <tr>
+              <td><literal>especificador </literal></td>
+
+              <td><literal>cor</literal></td>
+            </tr>
+
+            <tr>
+              <td><literal>r</literal></td>
+
+              <td>vermelho</td>
+            </tr>
+
+            <tr>
+              <td><literal>g</literal></td>
+
+              <td>verde</td>
+            </tr>
+
+            <tr>
+              <td><literal>b</literal></td>
+
+              <td>azul</td>
+            </tr>
+
+            <tr>
+              <td><literal>c</literal></td>
+
+              <td>ciano</td>
+            </tr>
+
+            <tr>
+              <td><literal>m</literal></td>
+
+              <td>magenta</td>
+            </tr>
+
+            <tr>
+              <td><literal>y</literal></td>
+
+              <td>amarelo</td>
+            </tr>
+
+            <tr>
+              <td><literal>k</literal></td>
+
+              <td>preto</td>
+            </tr>
+
+            <tr>
+              <td><literal>w</literal></td>
+
+              <td>branco</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term></term>
+
+        <listitem>
+          <para>Uma tabela de cores padrão é utilizada para colorir curvas
+          esboçadas se você não especificar as cores (nem com
+          <literal>LineSpec</literal> nem com <link
+          linkend="GlobalProperty">GlobalProperty</link>). Quando linhas
+          múltiplas são desenhadas, o comando plot automaticamente atribui em
+          ciclos as cores a seguir:</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term></term>
+
+        <listitem>
+          <informaltable border="1">
+            <tr>
+              <td><literal>R</literal></td>
+
+              <td><literal>G</literal></td>
+
+              <td><literal>B</literal></td>
+            </tr>
+
+            <tr>
+              <td>0.</td>
+
+              <td>0.</td>
+
+              <td>1.</td>
+            </tr>
+
+            <tr>
+              <td>0.</td>
+
+              <td>0.5</td>
+
+              <td>0.</td>
+            </tr>
+
+            <tr>
+              <td>1.</td>
+
+              <td>0.</td>
+
+              <td>0.</td>
+            </tr>
+
+            <tr>
+              <td>0.</td>
+
+              <td>0.75</td>
+
+              <td>0.75</td>
+            </tr>
+
+            <tr>
+              <td>0.75</td>
+
+              <td>0.</td>
+
+              <td>0.75</td>
+            </tr>
+
+            <tr>
+              <td>0.75</td>
+
+              <td>0.75</td>
+
+              <td>0.</td>
+            </tr>
+
+            <tr>
+              <td>0.25</td>
+
+              <td>0.25</td>
+
+              <td>0.25</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Marker type:</term>
+
+        <listitem>
+          <para>um string definindo o tipo do marcador. Note que se você
+          especificar um marcador (ou marca) sem um estilo de linha, apenas o
+          marcador é desenhado. Esta propriedade está ligada à propriedade do
+          objeto <literal>mark_style</literal> e <literal>mark_mode</literal>
+          do objeto (ver <link
+          linkend="polyline_properties">polyline_properties</link>).</para>
+
+          <para></para>
+
+          <informaltable border="1">
+            <tr>
+              <td><literal>especificador</literal></td>
+
+              <td><literal>tipo de marcador</literal></td>
+            </tr>
+
+            <tr>
+              <td><literal>+</literal></td>
+
+              <td>sinal de mais</td>
+            </tr>
+
+            <tr>
+              <td><literal>o</literal></td>
+
+              <td>círculo</td>
+            </tr>
+
+            <tr>
+              <td><literal>*</literal></td>
+
+              <td>asterísco</td>
+            </tr>
+
+            <tr>
+              <td><literal>.</literal></td>
+
+              <td>ponto</td>
+            </tr>
+
+            <tr>
+              <td><literal>x</literal></td>
+
+              <td>cruz</td>
+            </tr>
+
+            <tr>
+              <td><literal>'square'</literal> ou <literal>'s'</literal></td>
+
+              <td>quadrado</td>
+            </tr>
+
+            <tr>
+              <td><literal>'diamond'</literal> ou <literal>'d'</literal></td>
+
+              <td>rombo (ou diamante)</td>
+            </tr>
+
+            <tr>
+              <td><literal>^</literal></td>
+
+              <td>triângulo para cima</td>
+            </tr>
+
+            <tr>
+              <td><literal>v</literal></td>
+
+              <td>triângulo para baixo</td>
+            </tr>
+
+            <tr>
+              <td><literal>&gt;</literal></td>
+
+              <td>triângulo para a direita</td>
+            </tr>
+
+            <tr>
+              <td><literal>&lt;</literal></td>
+
+              <td>triângulo para a esquerda</td>
+            </tr>
+
+            <tr>
+              <td><literal>'pentagram'</literal></td>
+
+              <td>estrela de cinco pontas (pentagrama)</td>
+            </tr>
+
+            <tr>
+              <td><literal>'none'</literal></td>
+
+              <td>nenhum marcador (padrão)</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">x=1:0.1:10; // inicialização
+plot(x,sin(x),'r.-&gt;') // esboçando um linha de traços e pontos com um truângulo apontando para a direita centrado em cada ponto.
+clf();
+
+// se você especificar um marcador sem um estilo de linha, apenas a marca é desenhada
+plot(x,sin(x),'d') // esboçando um linha de traços e pontos com um truângulo apontando para a direita centrado em cada ponto
+
+x=1:10; // Init.
+// a ordem das combinações não importa
+plot(x,x.*x,'*cya--') 
+
+//múltiplos esboçoes com diferentes LineSpecs
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+ 
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="GlobalProperty">GlobalProperty</link></member>
+
+      <member><link linkend="plot">plot</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

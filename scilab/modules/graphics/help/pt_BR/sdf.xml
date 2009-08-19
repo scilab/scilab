@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sdf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sdf</refname>
+
+    <refpurpose>Ajusta figura padrão</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>sdf()
+f = gdf(); set(f,"default_values",1)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>manipulador da figura padrão.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta rotina reajusta a figura modelo para valores padrões. </para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   
+   x=[0:0.1:2*%pi]';
+   f=get("default_figure"); // obtendo o manipulador da figura modelo 
+   a=get("default_axes"); // obtendo o manipulador dos eixos modelos
+     // ajustando suas propriedades
+   f.background=4;
+   f.auto_resize="off";
+   f.figure_size=[400 300];
+   f.axes_size=[600 400];
+   f.figure_position=[0 -1];
+   a.x_location="top";
+   a.y_location="left";
+   for (i=1:6)
+     xset("window",i) // criando figura com identificador i
+     plot2d(x,[sin(x) cos(x)],[i -i])
+     xclick();
+     if i == 4, sdf(); end // obtendo os valores padrões da figura modelo
+    end
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sda">sda</link></member>
+
+      <member><link linkend="gdf">gdf</link></member>
+
+      <member><link linkend="gda">gda</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -21,6 +21,8 @@
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(errloc)(); /* fortran */
 extern int C2F(errmgr)(); /* fortran */
+extern int C2F(errcontext)(); /* fortran */
+
 /*--------------------------------------------------------------------------*/ 
 int error_internal(int *n,char *buffer,int mode)
 {
@@ -76,7 +78,7 @@ int error_internal(int *n,char *buffer,int mode)
 		}
 		C2F(iop).lct[0] = 0;
 	}
-
+	C2F(errcontext)(); 
 	/* handle the error */
 	C2F(errmgr)(n, &errtyp);
 

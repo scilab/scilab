@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>factors</refname>
 
-    <refpurpose>fatora√ß√£o num√©rica real</refpurpose>
+    <refpurpose>fatoraÁ„o numÈrica real</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[lnum,g]=factors(pol [,'flag'])
 [lnum,lden,g]=factors(rat [,'flag'])
@@ -36,14 +36,14 @@ rat=factors(rat,'flag')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>pol</term>
 
         <listitem>
-          <para>polin√¥mio real</para>
+          <para>polinÙmio real</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ rat=factors(rat,'flag')</synopsis>
         <term>rat</term>
 
         <listitem>
-          <para>raz√£o de polin√¥mios reais
+          <para>raz„o de polinÙmios reais
           (<literal>rat=pol1/pol2</literal>)</para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@ rat=factors(rat,'flag')</synopsis>
         <term>lnum</term>
 
         <listitem>
-          <para>lista de polin√¥mios (de graus 1 ou 2) </para>
+          <para>lista de polinÙmios (de graus 1 ou 2) </para>
         </listitem>
       </varlistentry>
 
@@ -68,7 +68,7 @@ rat=factors(rat,'flag')</synopsis>
         <term>lden</term>
 
         <listitem>
-          <para>lista de polin√¥mios (de graus 1 ou 2) </para>
+          <para>lista de polinÙmios (de graus 1 ou 2) </para>
         </listitem>
       </varlistentry>
 
@@ -76,7 +76,7 @@ rat=factors(rat,'flag')</synopsis>
         <term>g</term>
 
         <listitem>
-          <para>n√∫mero real </para>
+          <para>n˙mero real </para>
         </listitem>
       </varlistentry>
 
@@ -91,42 +91,42 @@ rat=factors(rat,'flag')</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna os fatores do polin√¥mio <literal>pol</literal> na lista
+    <para>Retorna os fatores do polinÙmio <literal>pol</literal> na lista
     <literal>lnum</literal> e o "ganho" g.</para>
 
     <para>Tem-se pol= g vezes o produto das entradas da lista
-    <literal>lnum</literal> (se <literal>flag</literal> n√£o for fornecido). Se
-    <literal>flag='c'</literal> for dado, ent√£o tem-se <literal>|pol(i
+    <literal>lnum</literal> (se <literal>flag</literal> n„o for fornecido). Se
+    <literal>flag='c'</literal> for dado, ent„o tem-se <literal>|pol(i
     omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>. Se
-    <literal>flag='d'</literal> for dado, ent√£o tem-se <literal>|pol(exp(i
+    <literal>flag='d'</literal> for dado, ent„o tem-se <literal>|pol(exp(i
     omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>. Se
-    o argumento de <literal>factors</literal> for uma raz√£o
+    o argumento de <literal>factors</literal> for uma raz„o
     <literal>rat=pol1/pol2</literal>, os fatores do numerador
-    <literal>pol1</literal> e do denominador <literal>pol2</literal> s√£o
+    <literal>pol1</literal> e do denominador <literal>pol2</literal> s„o
     retornados nas listas <literal>lnum</literal> e <literal>lden</literal>
     respectivamente.</para>
 
-    <para>O "ganho" √© retornado como <literal>g</literal>, i.e. tem-se: rat= g
+    <para>O "ganho" È retornado como <literal>g</literal>, i.e. tem-se: rat= g
     vezes (produto das entradas de lnum) / (produto das entradas de
     lden).</para>
 
     <para>Se <literal>flag</literal> for <literal>'c'</literal>
-    (respectivamente, <literal>'d'</literal>), as ra√≠zes
-    <literal>pol</literal> ser√£o refletidas em rela√ß√£o em rela√ß√£o ao eixo
-    imagin√°rio (respectivamente, ao c√≠rculo unit√°rio), i.e. os fatores em
-    <literal>lnum</literal> s√£o polin√¥mios est√°veis.</para>
+    (respectivamente, <literal>'d'</literal>), as raÌzes
+    <literal>pol</literal> ser„o refletidas em relaÁ„o em relaÁ„o ao eixo
+    imagin·rio (respectivamente, ao cÌrculo unit·rio), i.e. os fatores em
+    <literal>lnum</literal> s„o polinÙmios est·veis.</para>
 
     <para>A mesma coisa se <literal>factors</literal> for invocado com
     argumentos racionais: as entradas em <literal>lnum</literal> e
-    <literal>lden</literal> s√£o polin√¥mios est√°veis se <literal>flag</literal>
+    <literal>lden</literal> s„o polinÙmios est·veis se <literal>flag</literal>
     for dado. <literal>R2=factors(R1,'c')</literal> ou
-    <literal>R2=factors(R1,'d')</literal> com <literal>R1</literal> uma fun√ß√£o
-    racional ou lista <literal>syslin</literal> SISO, ent√£o a sa√≠da
-    <literal>R2</literal> √© uma transfer√™ncia com com numerador e denominador
-    est√°veis e com a mesma magnitude de <literal>R1</literal> ao longo do eixo
-    imagin√°rio (<literal>'c'</literal>) ou do c√≠rculo unit√°rio
+    <literal>R2=factors(R1,'d')</literal> com <literal>R1</literal> uma funÁ„o
+    racional ou lista <literal>syslin</literal> SISO, ent„o a saÌda
+    <literal>R2</literal> È uma transferÍncia com com numerador e denominador
+    est·veis e com a mesma magnitude de <literal>R1</literal> ao longo do eixo
+    imagin·rio (<literal>'c'</literal>) ou do cÌrculo unit·rio
     (<literal>'d'</literal>).</para>
   </refsection>
 
@@ -148,7 +148,7 @@ norm(abs(horner(R1,w))-abs(horner(R,w)))
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="simp">simp</link></member>

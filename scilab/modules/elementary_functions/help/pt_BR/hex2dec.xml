@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,18 +25,18 @@
   <refnamediv>
     <refname>hex2dec</refname>
 
-    <refpurpose>conversÃ£o de representaÃ§Ã£o hexadecimal para
+    <refpurpose>conversão de representação hexadecimal para
     inteiros</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>d=hex2dec(h)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@
         <term>h</term>
 
         <listitem>
-          <para>matriz de strings correspondentes Ã s representaÃ§Ãµes
+          <para>matriz de strings correspondentes às representações
           hexadecimais</para>
         </listitem>
       </varlistentry>
@@ -59,10 +59,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>hex2dec(x)</literal> retorna a matriz de nÃºmeros
-    correspondentes Ã s representaÃ§Ãµes hexadecimais.</para>
+    <para><literal>hex2dec(x)</literal> retorna a matriz de números
+    correspondentes às representações hexadecimais.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ hex2dec(['ABC','0','A'])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

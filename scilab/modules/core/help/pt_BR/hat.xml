@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) {date_debut_1}-{date_fin_1} - {organisme 1} {auteur 1} 
@@ -30,34 +30,34 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>A^b</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>ExponenciaÃ§Ã£o de matrizes ou vetores por um vetor constante.</para>
+    <para>Exponenciação de matrizes ou vetores por um vetor constante.</para>
 
-    <para>Se <literal>A</literal> Ã© um vetor ou uma matriz retangular, a
-    exponenciaÃ§Ã£o Ã© feita elemento a elemento no sentido usual.</para>
+    <para>Se <literal>A</literal> é um vetor ou uma matriz retangular, a
+    exponenciação é feita elemento a elemento no sentido usual.</para>
 
-    <para>Para matrizes quadradas, a exponenciaÃ§Ã£o Ã© feita no sentido
+    <para>Para matrizes quadradas, a exponenciação é feita no sentido
     matricial.</para>
 
-    <para>Para matrizes de booleanos, polinÃ´mios ou razÃµes de polinÃ´mios, o
+    <para>Para matrizes de booleanos, polinômios ou razões de polinômios, o
     expoente deve ser um inteiro</para>
 
     <refsection>
-      <title>ObservaÃ§Ãµes</title>
+      <title>Observações</title>
 
-      <para><literal>123.^b</literal> Ã© interpretado como<literal>
-      (123).^b</literal>. Em tais casos, o ponto Ã© parte do operador, nÃ£o do
-      nÃºmero.</para>
+      <para><literal>123.^b</literal> é interpretado como<literal>
+      (123).^b</literal>. Em tais casos, o ponto é parte do operador, não do
+      número.</para>
 
-      <para>Para dois nÃºmeros reais ou complexos <literal>x1</literal> e
-      <literal>x2</literal> , o valor de <literal>x1^x2</literal> Ã© o "valor
+      <para>Para dois números reais ou complexos <literal>x1</literal> e
+      <literal>x2</literal> , o valor de <literal>x1^x2</literal> é o "valor
       principal" determinado por <literal>x1^x2 =
       exp(x2*log(x1))</literal>.</para>
     </refsection>
@@ -79,7 +79,7 @@ s=poly(0,"s");
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="exp">exp</link></member>

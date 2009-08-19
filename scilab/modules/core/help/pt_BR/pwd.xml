@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="pwd" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>pwd</refname>
 
-    <refpurpose>Imprime o diret贸rio corrente do Scilab</refpurpose>
+    <refpurpose>Imprime o diret髍io corrente do Scilab</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="getcwd">
     <refname>getcwd</refname>
 
-    <refpurpose>Retorna o diret贸rio corrente do Scilab</refpurpose>
+    <refpurpose>Retorna o diret髍io corrente do Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq眉锚ncia de Chamamento</title>
+    <title>Seqncia de Chamamento</title>
 
     <synopsis>pwd
 x=pwd()
@@ -31,11 +31,11 @@ x=getcwd()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri莽茫o</title>
+    <title>Descri玢o</title>
 
-    <para><literal>pwd</literal> retorna em <literal>ans</literal> o diret贸rio
+    <para><literal>pwd</literal> retorna em <literal>ans</literal> o diret髍io
     corrente do Scilab. <literal>x=pwd()</literal> ou
-    <literal>x=getcwd()</literal> retorna em <literal>x</literal> o diret贸rio
+    <literal>x=getcwd()</literal> retorna em <literal>x</literal> o diret髍io
     corrente do Scilab.</para>
   </refsection>
 
@@ -51,7 +51,7 @@ x=pwd()
   </refsection>
 
   <refsection>
-    <title> Ver Tamb茅m </title>
+    <title> Ver Tamb閙 </title>
 
     <simplelist type="inline">
       <member><link linkend="chdir">chdir</link></member>

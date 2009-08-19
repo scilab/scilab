@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -25,17 +25,17 @@
     <refname>flipdim</refname>
 
     <refpurpose>gira os componentes de x ao longo de uma dada
-    dimens√£o</refpurpose>
+    dimens„o</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=flipdim(x,dim)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,28 +65,28 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dado <literal>x</literal>, um escalar/vetor/array de reais e
-    <literal>dim</literal> um inteiro positivo, esta fun√ß√£o gira os
-    componentes de x ao longo da dimens√£o de n√∫mero <literal>dim</literal> de
-    <literal>x</literal> (<literal>x</literal> e <literal>y</literal> t√™m o
+    <literal>dim</literal> um inteiro positivo, esta funÁ„o gira os
+    componentes de x ao longo da dimens„o de n˙mero <literal>dim</literal> de
+    <literal>x</literal> (<literal>x</literal> e <literal>y</literal> tÍm o
     mesmo tamanho)</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exemplo 1: girando os componentes de x ao longo da primeira dimens√£o
+    <programlisting role="example">// exemplo 1: girando os componentes de x ao longo da primeira dimens„o
 x=[1 2 3 4; 5 6 7 8];
 dim=1;
 y=flipdim(x,dim)
 
-// exemplo 1: girando os componentes de x ao longo da segunda dimens√£o
+// exemplo 1: girando os componentes de x ao longo da segunda dimens„o
 dim=2;
 y=flipdim(x,dim)
 
-// exemplo e: girando os componentes de x ao longo da terceira dimens√£o
+// exemplo e: girando os componentes de x ao longo da terceira dimens„o
 x=matrix(1:48,[3 2,4,2]);
 dim=3;
 y=flipdim(x,dim)
@@ -94,7 +94,7 @@ y=flipdim(x,dim)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <para>F.Belahcene</para>
   </refsection>

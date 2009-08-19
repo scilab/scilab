@@ -24,7 +24,7 @@ int C2F(funtab)(int *id, int *fptr, int *job,char *namefunction, unsigned long n
   switch ( *job) 
   {
 	case SCI_HFUNCTIONS_FIND : 
-		*fptr=0;
+		*fptr = 0;
 		action_hashtable_scilab_functions(id,NULL,fptr,SCI_HFUNCTIONS_FIND);
     break;
 

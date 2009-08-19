@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>genfac3d</refname>
 
-    <refpurpose>computa facetas de uma superfÃ­cie 3d</refpurpose>
+    <refpurpose>computa facetas de uma superfície 3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -42,9 +42,9 @@
 
         <listitem>
           <para>matrizes de tamanho (4,n-1xm-1). <literal>xx(:,i)</literal>
-          ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> sÃ£o
+          ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> são
           respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
-          i-Ã©sima faceta de quatro lados </para>
+          i-ésima faceta de quatro lados </para>
         </listitem>
       </varlistentry>
 
@@ -68,8 +68,8 @@
         <term>z</term>
 
         <listitem>
-          <para>matriz de tamanho (m,n). <literal>z(i,j)</literal> Ã© o valor
-          da superfÃ­cie no ponto (x(i),y(j)). </para>
+          <para>matriz de tamanho (m,n). <literal>z(i,j)</literal> é o valor
+          da superfície no ponto (x(i),y(j)). </para>
         </listitem>
       </varlistentry>
 
@@ -86,10 +86,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>genfac3d</literal> computa uma faceta de quatro lados de
-    uma superfÃ­cie 3d <literal>z=f(x,y)</literal> definida por
+    uma superfície 3d <literal>z=f(x,y)</literal> definida por
     <literal>x</literal>, <literal>y</literal> e <literal>z</literal>.</para>
   </refsection>
 
@@ -106,7 +106,7 @@ plot3d(xx,yy,zz)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="eval3dp">eval3dp</link></member>

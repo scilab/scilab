@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xget" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xget</refname>
+
+    <refpurpose>retorna valores correntes do contexto gráfico. <emphasis
+    role="bold">Esta função está obsoleta</emphasis>.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[x1]=xget(str,[flag])
+xget()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>string.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>opcional. Ajustado para 1 fornece um modo verboso.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><emphasis role="bold">Aviso: esta função está obsoleta</emphasis>.
+    Use a representação de objetos gráficos do Scilab (ver as ajudas de <link
+    linkend="set">set</link> e <link linkend="get">get</link> bem como a
+    página <link linkend="graphics_entities">graphics_entities</link>).</para>
+
+    <para>Esta função é utilizada para se obter valores de um contexto de
+    gráficos no tópico especificado pelo string <literal>str</literal>. Quando
+    chamada sem argumento, um menu de escolha é criado exibindo os valores
+    correntes e mudanças podem ser realizadas através de botões de
+    alternância.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>number=xget("alufunction")</term>
+
+        <listitem>
+          <para>recebe o número da função lógica usada para desenhar. Ver
+          <literal>xset</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str=xget("auto clear")</term>
+
+        <listitem>
+          <para>recebe o status de auto-limpeza (<literal>"on"</literal> ou
+          <literal>"off"</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color=xget("background")</term>
+
+        <listitem>
+          <para>recebe a cor de fundo da janela de gráficos corrente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect=xget("clipping")</term>
+
+        <listitem>
+          <para>recebe a zona de recorte como o retângulo rect=[x,y,w,h]
+          (ponto superior esquerdo, largura, altura).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c=xget("color")</term>
+
+        <listitem>
+          <para>recebe a cor padrão para funções de preenchimento, desenho de
+          linha ou texto. c é um inteiro projetado no intervalo [0,whiteid]. 0
+          significa preenchimento com preto e whiteid preenchimento com
+          branco. O valor de whitid <literal>xget("white")</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cmap=xget("colormap")</term>
+
+        <listitem>
+          <para>recebe o mapa decores utilizado para a janela de gráficos
+          corrente como uma matriz m x 3 RGB (vermelho, verde, azul).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dash=xget("dashes")</term>
+
+        <listitem>
+          <para>recebe o estilo de traço dash= [dash_number] onde dash_number
+          é o identifcador do traço. Esta palavra-chave está obsoleta, use
+          <literal>xget("color")</literal> ou <literal>xget("line
+          style")</literal> ao invés.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font=xget("font")</term>
+
+        <listitem>
+          <para>recebe font=[fontid,fontsize], a fonte padrão e o tamanho
+          padrão para fontes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fontsize=xget("font size")</term>
+
+        <listitem>
+          <para>recebe o tamanho padrão para fontes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color=xget("foreground")</term>
+
+        <listitem>
+          <para>recebe a cor de primeiro plano do objeto Axes corrente. O
+          resultado é um índice do mapa de cores correspondente à cor.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str=xget("fpf")</term>
+
+        <listitem>
+          <para>recebe o formato em ponto flutuante do número do número de
+          exibição em funções de contorno . Note que <literal>str</literal> é
+          " " quando o formato padrão é utilizado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color=xget("hidden3d")</term>
+
+        <listitem>
+          <para>recebe o número de cor para faces escondidas em plot3d.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pat=xget("lastpattern")</term>
+
+        <listitem>
+          <para>recebe o identificador do último padrão ou cor disponível no
+          mapa de cores da janela corrente. Na verdade
+          <literal>pat+1</literal> e <literal>pat+2</literal> também estão
+          disponíveis e correspondem a padrões preto e branco
+          respectivamente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>type=xget("line mode")</term>
+
+        <listitem>
+          <para>recebe o modo de desenho de linha. type=1 é o modo absoluto e
+          type=0 é o modo relativo. (Aviso: type=0 tem defeitos)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xget("line style")</term>
+
+        <listitem>
+          <para>recebe o estilo de linhas padrão(1: sólido, &gt;1 para linhas
+          tracejadas).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark=xget("mark")</term>
+
+        <listitem>
+          <para>recebe o identificador do estilo de marcas padrão e o tamanho
+          de marcas padrão. <literal>mark=[markid,marksize]</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>marksize=xget("mark size")</term>
+
+        <listitem>
+          <para>recebe o tamanho de marcas padrão.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pat=xget("pattern")</term>
+
+        <listitem>
+          <para>recebe o padrão corrente ou a cor corrente.
+          <literal>pat</literal> é um inteiro no intervalo
+          <literal>[1,last]</literal>. Quando se usa preto ou branco, 0 é
+          usado para preenchimento com preto e <literal>last</literal> para
+          preenchimento com branco. O valor de <literal>last</literal> pode
+          ser obtido com <literal>xget("lastpattern")</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value=xget("thickness")</term>
+
+        <listitem>
+          <para>recebe a espessura das linhas em pixel (0 e 1 têm o mesmo
+          significado: 1 pixel de espessura).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag=xget("use color")</term>
+
+        <listitem>
+          <para>recebe o flag 0 (para uso apenas de preto e branco) ou 1 (uso
+          de cores). Ver <literal>xset</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[x,y]=xget("viewport")</term>
+
+        <listitem>
+          <para>recebe a posição corrente da parte visível de gráficos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim=xget("wdim")</term>
+
+        <listitem>
+          <para>recebe a largura e a altura da janela de gráficos corrente
+          dim=[largura,altura].</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>win=xget("window")</term>
+
+        <listitem>
+          <para>recebe o número de janela corrente
+          <literal>win</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pos=xget("wpos");</term>
+
+        <listitem>
+          <para>recebe a posição do ponto superior esquerdo da janela de
+          gráficos pos=[x,y].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xset">xset</link></member>
+
+      <member><link linkend="getcolor">getcolor</link></member>
+
+      <member><link linkend="getsymbol">getsymbol</link></member>
+
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

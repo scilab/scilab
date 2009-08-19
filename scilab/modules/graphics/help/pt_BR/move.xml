@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="move" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>move</refname>
+
+    <refpurpose>Move uma entidade gráfica e seus galhos. </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>move(h,xy)
+move(h,xy,"alone")</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador da entidade a ser movida </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xy</term>
+
+        <listitem>
+          <para>um array <literal>[dx,dy]</literal> que fornece o vetor
+          translação a ser aplicado </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"alone"</term>
+
+        <listitem>
+          <para>palavra-chave string (opcional)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta rotina pode ser usada para aplicar uma translação em uma
+    entidade de gráficos. Se a entidade tiver galhos (unidades de dependência
+    hierárquica), elas também serão transladadas.</para>
+
+    <para>Dada a palavra chave <literal>"alone"</literal> , apenas a unidade
+    especificada precisa ser redesenhada. Deve ser especialmente usada com a
+    propriedade <literal>pixel_drawing_mode</literal> da entidade de figura
+    (ver como desenhar objetos no modo de desenho
+    <literal>"xor"</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="draw">draw</link></member>
+
+      <member><link
+      linkend="figure_properties">figure_properties</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

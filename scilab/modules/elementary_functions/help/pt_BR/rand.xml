@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>rand</refname>
 
-    <refpurpose>gerador de n√∫meros rand√¥mico</refpurpose>
+    <refpurpose>gerador de n˙meros randÙmico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>rand(m1,m2,.. [,key])
 rand(x [, key])
@@ -41,7 +41,7 @@ rand("info")
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,26 +65,26 @@ rand("info")
         <term>x</term>
 
         <listitem>
-          <para>uma matriz. Apenas suas dimens√µes s√£o levadas em conta </para>
+          <para>uma matriz. Apenas suas dimensıes s„o levadas em conta </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Gerador de matriz rand√¥mico. </para>
+    <para>Gerador de matriz randÙmico. </para>
 
-    <para>Sem argumento "key", as sintaxes abaixo produzem matrizes rand√¥micas
-    com o gerador rand√¥mico corrente (o padr√£o √© "uniform") </para>
+    <para>Sem argumento "key", as sintaxes abaixo produzem matrizes randÙmicas
+    com o gerador randÙmico corrente (o padr„o È "uniform") </para>
 
     <variablelist>
       <varlistentry>
         <term>rand(m1,m2)</term>
 
         <listitem>
-          <para>√© uma matriz rand√¥mica de dimens√£o <literal>m1</literal> por
+          <para>È uma matriz randÙmica de dimens„o <literal>m1</literal> por
           <literal>m2</literal>.</para>
         </listitem>
       </varlistentry>
@@ -93,7 +93,7 @@ rand("info")
         <term>rand(m1,m2,..,mn)</term>
 
         <listitem>
-          <para>√© uma matriz rand√¥mica de dimens√£o <literal>m1</literal> por
+          <para>È uma matriz randÙmica de dimens„o <literal>m1</literal> por
           <literal>m2</literal>,.. por <literal>mn</literal>.</para>
         </listitem>
       </varlistentry>
@@ -102,8 +102,8 @@ rand("info")
         <term>rand(a)</term>
 
         <listitem>
-          <para>√© uma matriz rand√¥mica com mesmo tamanho que a.
-          <literal>rand(a)</literal>√© de complexos se <literal>a</literal> √©
+          <para>È uma matriz randÙmica com mesmo tamanho que a.
+          <literal>rand(a)</literal>È de complexos se <literal>a</literal> È
           uma matriz de complexos. </para>
         </listitem>
       </varlistentry>
@@ -113,21 +113,21 @@ rand("info")
         muda</term>
 
         <listitem>
-          <para>a cada vez que √© referenciado.</para>
+          <para>a cada vez que È referenciado.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
     <para>Se presente, o argumento "key" permite especificar uma outra
-    distribui√ß√£o rand√¥mica. </para>
+    distribuiÁ„o randÙmica. </para>
 
     <variablelist>
       <varlistentry>
         <term>rand('uniform')</term>
 
         <listitem>
-          <para>o gerador corrente √© acertado como gerador rand√¥mico uniforme.
-          N√∫meros aleat√≥rios s√£o distribuidos uniformemente e pertencem ao
+          <para>o gerador corrente È acertado como gerador randÙmico uniforme.
+          N˙meros aleatÛrios s„o distribuidos uniformemente e pertencem ao
           intervalo (0,1).</para>
         </listitem>
       </varlistentry>
@@ -136,8 +136,8 @@ rand("info")
         <term>rand('normal')</term>
 
         <listitem>
-          <para>o gerador corrente √© acertado como gerador de n√∫meros
-          rand√¥mico gaussiano (com m√©dia 0 e vari√¢ncia 1) . </para>
+          <para>o gerador corrente È acertado como gerador de n˙meros
+          randÙmico gaussiano (com mÈdia 0 e vari‚ncia 1) . </para>
         </listitem>
       </varlistentry>
 
@@ -145,13 +145,13 @@ rand("info")
         <term>str=rand('info')</term>
 
         <listitem>
-          <para>retorna o tipo do gerado rand√¥mico padr√£o ('uniform' ou
+          <para>retorna o tipo do gerado randÙmico padr„o ('uniform' ou
           'normal')</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>√â poss√≠vel (re-)inicializar o "seed" do gerador rand√¥mico: </para>
+    <para>… possÌvel (re-)inicializar o "seed" do gerador randÙmico: </para>
 
     <variablelist>
       <varlistentry>
@@ -166,7 +166,7 @@ rand("info")
         <term>rand('seed',n)</term>
 
         <listitem>
-          <para>define o seed como <literal>n</literal>. (o padr√£o √©
+          <para>define o seed como <literal>n</literal>. (o padr„o È
           <literal>n=0</literal> numa primeira chamada).</para>
         </listitem>
       </varlistentry>
@@ -174,10 +174,10 @@ rand("info")
   </refsection>
 
   <refsection>
-    <title>Observa√ß√£o</title>
+    <title>ObservaÁ„o</title>
 
-    <para>Use a fun√ß√£o mais poderosa <link linkend="grand">grand</link> ao
-    inv√©s. </para>
+    <para>Use a funÁ„o mais poderosa <link linkend="grand">grand</link> ao
+    invÈs. </para>
   </refsection>
 
   <refsection>
@@ -195,7 +195,7 @@ x=rand(2,2,2)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="grand">grand</link></member>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="help_skeleton" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>help_skeleton</refname>
+
+    <refpurpose>constrói o esqueleto do arquivo de ajuda xml associado à
+    função Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>txt = help_skeleton(funname [,path [,language]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>funname</term>
+
+        <listitem>
+          <para>string : o nome da função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>path</term>
+
+        <listitem>
+          <para>string : o endereço onde se criará o arquivo, se for
+          requerido. Se este argumento não for fornecido, o esqueleto é
+          retornado como um string.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>language</term>
+
+        <listitem>
+          <para>string :com valor possível "fr_FR" ou "en_US" o padrão é
+          "en_US"</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>txt</term>
+
+        <listitem>
+          <para>o código xml ou o endereço do arquivo xml completo</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>txt = help_skeleton(funname)</literal> gera um vetor de
+    strings contendo o esqueleto do código XML descrevendo a ajuda da função
+    <literal>funname</literal>.</para>
+
+    <para><literal>fullpath = help_skeleton(funname,dirpath)</literal> gera o
+    código XML descrevendo a ajuda da função <literal>funname</literal> em um
+    arquivo nomeado <literal>funname.xml</literal> no diretório especificado
+    pelo endereço <literal>dirpath</literal>. Neste caso, a função retorna o
+    endereço do arquivo.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   function [y,z]=foo(a,b),y=a+b,z=1,endfunction
+    p=help_skeleton('foo',TMPDIR)
+    scipad(p)
+  
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="help">help</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer, INRIA</para>
+  </refsection>
+</refentry>

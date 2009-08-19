@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="scf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>scf</refname>
+
+    <refpurpose>Ajusta a (janela) de figura gráfica corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>f = scf()
+f = scf(h)
+f = scf(num)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>o manipulador da figura </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>num</term>
+
+        <listitem>
+          <para>identificador da figura </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>manipulador da figura corrente</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A figura corrente é o destino do desenho gráfico. A função
+    <literal>scf</literal> permite modificar esta figura corrente ou criar uma
+    caso ainda não exista.</para>
+
+    <para></para>
+
+    <para><literal>scf(num)</literal> ajusta a figura com
+    <literal>figure_id==num</literal> como figura corrente. Se ainda não
+    existir, ela é criada.</para>
+
+    <para></para>
+
+    <para><literal>scf(h)</literal> ajusta a figura apontada pelo manipulador
+    <literal>h</literal> ajusta a figura apontada pelo manipulador</para>
+
+    <para><literal>scf()</literal> é equivalente a
+    <literal>scf(max(winsid())+1) </literal>. Pode ser utilizado para criar
+    uma nova janela de gráficos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   f4=scf(4); //criando figura com id==4 e a torna a figura corrente
+   f0=scf(0); //criando figura com id==0 e a torna a figura corrente
+   plot2d() //desenhando na figura corrente (id=0)
+   scf(f4); // ajustando a primeira figura criada como sendo a corrente
+   plot3d() //desenhando na figura corrente (id=4)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link
+      linkend="get_figure_handle">get_figure_handle</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>S. Steer INRIA</para>
+  </refsection>
+</refentry>

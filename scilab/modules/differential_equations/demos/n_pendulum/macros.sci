@@ -100,7 +100,7 @@ function []=npend_build_and_load()
 // we use TMPDIR
 
   if ~c_link('npend') then
-    cdpath = getcwd(); 
+    cdpath = pwd(); 
     chdir(TMPDIR); 
     fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/dlslv.f');mputl(fcode,'dlslv.f')
     fcode=mgetl(SCI+'/modules/others/demos/simulation/npend/Maple/ener.f');mputl(fcode,'ener.f')

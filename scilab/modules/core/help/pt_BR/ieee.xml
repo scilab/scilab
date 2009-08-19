@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="ieee" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,34 +13,34 @@
   <refnamediv>
     <refname>ieee</refname>
 
-    <refpurpose>ajusta o modo de exceÃ§Ã£o de ponto flutuante</refpurpose>
+    <refpurpose>ajusta o modo de exceção de ponto flutuante</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>mod=ieee()
 ieee(mod)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>mod</term>
 
         <listitem>
-          <para>escalar inteiro com possÃ­veis valores 0,1,ou 2</para>
+          <para>escalar inteiro com possíveis valores 0,1,ou 2</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>ieee()</literal> retorna o modo de exceÃ§Ã£o de ponto
+    <para><literal>ieee()</literal> retorna o modo de exceção de ponto
     flutuante corrente</para>
 
     <variablelist>
@@ -48,7 +48,7 @@ ieee(mod)</synopsis>
         <term>0</term>
 
         <listitem>
-          <para>exceÃ§Ã£o de ponto flutuante produz um erro;</para>
+          <para>exceção de ponto flutuante produz um erro;</para>
         </listitem>
       </varlistentry>
 
@@ -56,7 +56,7 @@ ieee(mod)</synopsis>
         <term>1</term>
 
         <listitem>
-          <para>exceÃ§Ã£o de ponto flutuante produz um aviso; </para>
+          <para>exceção de ponto flutuante produz um aviso; </para>
         </listitem>
       </varlistentry>
 
@@ -64,23 +64,23 @@ ieee(mod)</synopsis>
         <term>2</term>
 
         <listitem>
-          <para>exceÃ§Ã£o de ponto flutuante produz um Inf ou NaN ("infinito" ou
-          "nÃ£o Ã© nÃºmero").</para>
+          <para>exceção de ponto flutuante produz um Inf ou NaN ("infinito" ou
+          "não é número").</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para><literal>ieee(mod)</literal> ajusta o modo corrente de excessÃ£o de
+    <para><literal>ieee(mod)</literal> ajusta o modo corrente de excessão de
     ponto flutuante.</para>
 
-    <para>O valor de modo incial Ã© 0.</para>
+    <para>O valor de modo incial é 0.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes </title>
+    <title>Observações </title>
 
-    <para>ExceÃ§Ãµes de ponto flutuante emergentes em alguns algoritmos de
-    bibliotecas ainda nÃ£o sÃ£o manipuladas pelos modos
+    <para>Exceções de ponto flutuante emergentes em alguns algoritmos de
+    bibliotecas ainda não são manipuladas pelos modos
     <literal>ieee</literal>.</para>
   </refsection>
 
@@ -96,7 +96,7 @@ ieee(2);1/0,log(0)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="errcatch">errcatch</link></member>

@@ -25,7 +25,7 @@ else
   for k=1:n
     therhs = expression2code(rhs(k));
     if k==1 then
-      C = therhs;
+      C = therhs + ",";
     else
       if therhs == "(EOL)" then
 	C = [C;""];
@@ -33,7 +33,7 @@ else
 	if C($)=="" then
 	  // Previous rhs was a EOL
 	  C = [C(1:($-2));
-	      C($-1)+",..";
+	      C($-1)+"..";
 	      C($) + therhs(1);
 	      therhs(2:$)];
 	else

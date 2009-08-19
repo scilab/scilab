@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=acosm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>t</literal> Ã© o arco-cosseno da matriz <literal>x</literal>
-    (matriz arco-cosseno de x). Ã‰ usado o mÃ©todo da diagonalizaÃ§Ã£o. Para
-    matrizes nÃ£o-simÃ©tricas, o resultado pode ser impreciso. Tem-se
+    <para><literal>t</literal> é o arco-cosseno da matriz <literal>x</literal>
+    (matriz arco-cosseno de x). É usado o método da diagonalização. Para
+    matrizes não-simétricas, o resultado pode ser impreciso. Tem-se
     <literal>t=-%i*logm(x+%i*sqrtm(eye()-x*x))</literal></para>
   </refsection>
 
@@ -76,7 +76,7 @@ cosm(acosm(A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m </title>
+    <title>Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="acos">acos</link></member>

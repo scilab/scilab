@@ -31,7 +31,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
     return ;
   end
   
-  oldpath = getcwd();
+  oldpath = pwd();
   files = files(:)';
   
   managed_ext = ['.obj','.o'];

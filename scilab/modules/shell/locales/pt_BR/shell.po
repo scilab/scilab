@@ -1,0 +1,71 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-06-28 19:23+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Valor errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Este recurso não foi implementado.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr "%s: Este recurso não foi implementado neste modo.\n"
+
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr "%s: Não implementado neste modo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Continuar a exibir? n (não) para parar, qualquer outra tecla para continuar]"
+
+msgid "File or Directory"
+msgstr "Arquivo ou Diretório"
+
+msgid "Scilab Function"
+msgstr "Função do Scilab"
+
+msgid "Scilab Command"
+msgstr "Comando do Scilab"
+
+msgid "Scilab Macro"
+msgstr "Macro do Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variável do Scilab"
+
+msgid "Graphics handle field"
+msgstr "Campo de manipulador gráfico"

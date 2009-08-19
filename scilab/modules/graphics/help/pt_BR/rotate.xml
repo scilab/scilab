@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>rotate</refname>
 
-    <refpurpose>rota√ß√£o de um conjunto de pontos</refpurpose>
+    <refpurpose>rotaÁ„o de um conjunto de pontos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xy1=rotate(xy,[theta,orig])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
         <term>theta</term>
 
         <listitem>
-          <para>real, √¢ngulo em radianos; o valor padr√£o √© 0. </para>
+          <para>real, ‚ngulo em radianos; o valor padr„o È 0. </para>
         </listitem>
       </varlistentry>
 
@@ -65,21 +65,21 @@
         <term>orig</term>
 
         <listitem>
-          <para>centro de rota√ß√£o; o valor padr√£o √© [0;0].</para>
+          <para>centro de rotaÁ„o; o valor padr„o È [0;0].</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>rotate</literal> executa a rota√ß√£o com o √¢ngulo
+    <para><literal>rotate</literal> executa a rotaÁ„o com o ‚ngulo
     <literal>theta</literal>:</para>
 
     <para><literal>xy1(:,i) = M(theta) *xy (:,i) + orig</literal></para>
 
-    <para>onde <literal>M</literal> √© a matriz de rota√ß√£o
+    <para>onde <literal>M</literal> È a matriz de rotaÁ„o
     correspondente.</para>
   </refsection>
 

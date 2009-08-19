@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>linsolve</refname>
 
-    <refpurpose>solucionador de equaÃ§Ãµes lineares</refpurpose>
+    <refpurpose>solucionador de equações lineares</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>b</term>
 
         <listitem>
-          <para>um vetor <literal>na x 1</literal> (mesma dimensÃ£o de linha de
+          <para>um vetor <literal>na x 1</literal> (mesma dimensão de linha de
           <literal>A</literal>)</para>
         </listitem>
       </varlistentry>
@@ -74,19 +74,19 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>linsolve</literal> computa todas as soluÃ§Ãµes para <literal>
+    <para><literal>linsolve</literal> computa todas as soluções para <literal>
     A*x+b=0</literal>.</para>
 
-    <para><literal>x0</literal> Ã© uma soluÃ§Ã£o particular (se houver) e
-    <literal> kerA= </literal>nÃºcleo de <literal>A</literal>. Qualquer
-    <literal>x=x0+kerA*w</literal> com <literal>w</literal> arbitrÃ¡rio
+    <para><literal>x0</literal> é uma solução particular (se houver) e
+    <literal> kerA= </literal>núcleo de <literal>A</literal>. Qualquer
+    <literal>x=x0+kerA*w</literal> com <literal>w</literal> arbitrário
     satisfaz <literal> A*x+b=0</literal>.</para>
 
-    <para>Se um compatible <literal>x0</literal> compatÃ­vel Ã© dado na entrada,
-    <literal>x0</literal> Ã© retornado. SenÃ£o, um <literal>x0</literal>,
-    compatÃ­vel Ã© retornado, se houver.</para>
+    <para>Se um compatible <literal>x0</literal> compatível é dado na entrada,
+    <literal>x0</literal> é retornado. Senão, um <literal>x0</literal>,
+    compatível é retornado, se houver.</para>
   </refsection>
 
   <refsection>
@@ -95,15 +95,15 @@
     <programlisting role="example">
 
 A=rand(5,3)*rand(3,8);
-b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatÃ­vel
-b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatÃ­vel
-A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x Ã© Ãºnico
+b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   //b comatível
+b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   //b incompatível
+A=rand(5,5);[x,kerA]=linsolve(A,b), -inv(A)*b  //x é único
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="inv">inv</link></member>

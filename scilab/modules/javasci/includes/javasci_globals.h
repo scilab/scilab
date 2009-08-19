@@ -13,13 +13,8 @@
 #ifndef _Included_javasci_globals
 #define _Included_javasci_globals
 
-#include <math.h>
 #include <stdio.h> 
 #include <string.h>
-#ifdef _MSC_VER
-  #include <windows.h>
-  #pragma comment(lib, "User32.lib")
-#endif
 #include "jni.h"
 #include "stack-c.h"
 #include "tmpdir.h"
@@ -28,23 +23,20 @@
 #include "CallScilab.h"
 #include "fromjava.h"
 #include "MALLOC.h"
-
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 #ifndef SCI 
   #define SCI ".."
 #endif 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 #define MAX_STR 512
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /**
  * Enable the Interface
- *
  */
 void EnableInterf(void);
 
 /**
  * Disable the Interface
- *
  */
 void DisableInterf(void);
 
@@ -63,18 +55,8 @@ int send_scilab_job(char *job) ;
 
 /**
  * Initialisation of Scilab
- *
  */
 void Initialize(void) ;
-/*****************************************************************************/
-extern void C2F(banier)(int *x) ;
-extern int C2F(inisci)(int *,int *,int *);
-extern void C2F(storeversion)(char *str,int n);
-extern int GetLastErrorCode(void);
-/*****************************************************************************/
-#ifdef _MSC_VER
-extern void start_sci_tcltk();
+/*--------------------------------------------------------------------------*/
 #endif
-/*****************************************************************************/
-#endif
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/

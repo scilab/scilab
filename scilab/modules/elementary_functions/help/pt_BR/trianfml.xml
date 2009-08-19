@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,21 +24,21 @@
   <refnamediv>
     <refname>trianfml</refname>
 
-    <refpurpose>triangularizaÃ§Ã£o simbÃ³lica</refpurpose>
+    <refpurpose>triangularização simbólica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[f [,sexp]]=trianfml(f [,sexp])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>TriangularizaÃ§Ã£o simbÃ³lica da matriz <literal>f</literal> ; a
-    triangularizaÃ§Ã£o Ã© executada por transformaÃ§Ãµes elementares de linha;
-    <literal>sexp</literal> Ã© um conjunto de expressÃµes comuns aramazenadas
+    <para>Triangularização simbólica da matriz <literal>f</literal> ; a
+    triangularização é executada por transformações elementares de linha;
+    <literal>sexp</literal> é um conjunto de expressões comuns aramazenadas
     pelo algoritmo.</para>
   </refsection>
 
@@ -60,7 +60,7 @@ evstr(W(:,1:2))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="addf">addf</link></member>

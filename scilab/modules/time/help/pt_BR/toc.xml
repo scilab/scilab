@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,36 +24,36 @@
   <refnamediv>
     <refname>toc</refname>
 
-    <refpurpose>lÃª o cronÃ´metro</refpurpose>
+    <refpurpose>lê o cronômetro</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>toc()
 t = toc()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>t</term>
 
         <listitem>
-          <para>nÃºmero de segundos desde a Ãºltima chamada a
-          <literal>tic()</literal> (precisÃ£o em ordem de milissegundos)</para>
+          <para>número de segundos desde a última chamada a
+          <literal>tic()</literal> (precisão em ordem de milissegundos)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>A seqÃ¼Ãªncia de comandos <literal>tic(); operation; toc();</literal>
-    imprime o nÃºmero de segundos requeridos para a operaÃ§Ã£o.</para>
+    <para>A seqüência de comandos <literal>tic(); operation; toc();</literal>
+    imprime o número de segundos requeridos para a operação.</para>
   </refsection>
 
   <refsection>
@@ -71,7 +71,7 @@ toc();
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tic">tic</link></member>

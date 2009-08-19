@@ -109,7 +109,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     end
 
     //** save path in case of error in ilib_compile
-    oldpath=getcwd();
+    oldpath=pwd();
 
     //** compile Makefile
     ierr=execstr('libn=ilib_compile(''lib''+blknam,Makename)','errcatch')
@@ -155,7 +155,7 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
     //** "cflags"  : C compiler flags
 
     //** save path in case of error
-    oldpath = getcwd(); //** current working path 
+    oldpath = pwd(); //** current working path 
 
     //** For this revision (22/03/2008) Scicos Super Block and Modelica are handled in a slight different 
     //** ways, so the code is splitted in two branches. 

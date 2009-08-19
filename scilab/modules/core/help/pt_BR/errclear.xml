@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="errclear" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,23 +17,23 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>errclear([n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Limpa a aÃ§Ã£o (manipulador de erros) conectada ao erro de tipo
+    <para>Limpa a ação (manipulador de erros) conectada ao erro de tipo
     <literal>n</literal>.</para>
 
-    <para>Se <literal>n</literal> Ã© positivo, Ã© o nÃºmero do erro limpo; caso
-    contrÃ¡rio, todos os erros sÃ£o limpos (caso padrÃ£o).</para>
+    <para>Se <literal>n</literal> é positivo, é o número do erro limpo; caso
+    contrário, todos os erros são limpos (caso padrão).</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="errcatch">errcatch</link></member>

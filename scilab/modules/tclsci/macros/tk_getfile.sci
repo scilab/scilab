@@ -19,7 +19,7 @@ else
   filemask = "*";
 end;
 
-initialdir = getcwd();
+initialdir = pwd();
 if exists("path","local")==1 then
   initialdir = pathconvert(path,%f,%t)
   initialdir = strsubst(initialdir,"\","/")

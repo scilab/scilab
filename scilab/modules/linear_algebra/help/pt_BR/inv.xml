@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,50 +28,50 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>inv(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos, matriz de polinÃ´mios,
-          matriz de razÃµes de polinÃ´mios em representaÃ§Ã£o de transferÃªncia ou
-          espaÃ§o de estados</para>
+          <para>matriz quadrada de reais ou complexos, matriz de polinômios,
+          matriz de razões de polinômios em representação de transferência ou
+          espaço de estados</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>inv(X)</literal> Ã© a inversa da matriz quadrada
-    <literal>X</literal>. Uma aviso Ã© impresso na tela se <literal>X</literal>
-    possui mÃ¡ escala ou Ã© quase singular.</para>
+    <para><literal>inv(X)</literal> é a inversa da matriz quadrada
+    <literal>X</literal>. Uma aviso é impresso na tela se <literal>X</literal>
+    possui má escala ou é quase singular.</para>
 
-    <para>Para matrizes de polinÃ´mios ou matrizes razÃµes de polinÃ´mios em
-    representaÃ§Ã£o de transferÃªncia, <literal>inv(X)</literal> Ã© equivalente a
+    <para>Para matrizes de polinômios ou matrizes razões de polinômios em
+    representação de transferência, <literal>inv(X)</literal> é equivalente a
     <literal>invr(X)</literal>.</para>
 
-    <para>Para sistemas lineares na representaÃ§Ã£o de espaÃ§o de estados (lista
-    <literal>syslin</literal>), <literal>invr(X)</literal> Ã© equivalente a
+    <para>Para sistemas lineares na representação de espaço de estados (lista
+    <literal>syslin</literal>), <literal>invr(X)</literal> é equivalente a
     <literal>invsyslin(X)</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>ReferÃªncias</title>
+    <title>Referências</title>
 
-    <para>A funÃ§Ã£o inv para matrizes de nÃºmeros Ã© baseada nas rotinas de
+    <para>A função inv para matrizes de números é baseada nas rotinas de
     Lapack DGETRF, DGETRI para matrizes de reais e ZGETRF, ZGETRI para o caso
-    de matrizes de complexos. Para matrizes de polinÃ´mios e matrizes de
-    funÃ§Ãµes racionais, <literal>inv</literal> Ã© baseado na funÃ§Ã£o
+    de matrizes de complexos. Para matrizes de polinômios e matrizes de
+    funções racionais, <literal>inv</literal> é baseado na função
     <literal>invr</literal> do Scilab.</para>
   </refsection>
 
@@ -96,7 +96,7 @@ clean(ss2tf(W))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="slash">slash</link></member>

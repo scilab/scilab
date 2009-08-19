@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>fullrfk</refname>
 
-    <refpurpose>fatoraÃ§Ã£o de posto completo de A^k</refpurpose>
+    <refpurpose>fatoração de posto completo de A^k</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento </title>
+    <title>Seqüência de Chamamento </title>
 
     <synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,16 +64,16 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o calcula a fatoraÃ§Ã£o de posto completo (ou cheio) de
+    <para>Esta função calcula a fatoração de posto completo (ou cheio) de
     <literal>A^k</literal> i.e. <literal>Bk*Ck=A^k</literal> onde
-    <literal>Bk</literal> Ã© de posto-coluna cheio e <literal>Ck</literal> de
+    <literal>Bk</literal> é de posto-coluna cheio e <literal>Ck</literal> de
     posto-linha cheio. Tem-se
     Im(<literal>Bk</literal>)=Im(<literal>A^k</literal>) e
     Nuc(<literal>Ck</literal>)=Nuc(<literal>A^k</literal>).</para>
 
-    <para>Para <literal>k=1</literal>, <literal>fullrfk</literal> Ã©
+    <para>Para <literal>k=1</literal>, <literal>fullrfk</literal> é
     equivalente a <literal>fullrf</literal>.</para>
   </refsection>
 
@@ -89,7 +89,7 @@ norm(Bk*Ck-A^3,1)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="fullrf">fullrf</link></member>

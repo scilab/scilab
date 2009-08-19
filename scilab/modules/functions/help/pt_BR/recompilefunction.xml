@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="recompilefunction" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>10-Jun-2007</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>recompilefunction</refname>
+
+    <refpurpose>recompila uma função Scilab modificando o seu
+    tipo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>recompilefunction(funname [,kind [,force]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>funname</term>
+
+        <listitem>
+          <para>string, nome da função a ser recompilada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kind</term>
+
+        <listitem>
+          <para>string: <emphasis role="bold">"n"</emphasis> (não compilado,
+          tipo 11), <emphasis role="bold">"c"</emphasis> (compilado, tipo 13)
+          or <emphasis role="bold">"p"</emphasis> (compilado, tipo 13,
+          preparado para profiling). Pardrão: "c".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>force</term>
+
+        <listitem>
+          <para>booleano. Se falso, a função é recompilada apenas se seu tipo
+          mudar; se verdadeiro, é recompilada ainda que mantenha o tipo
+          (notavelmente útil para compilar uma função "p" function, para
+          reiniciar as estatísticas de profiling).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Esta função compila reversamente uma variável função via <link
+        linkend="fun2string">fun2string</link>, e a recompila para o tipo
+        desejado através de <link linkend="deff">deff</link>.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   recompilefunction("asinh","p")
+   for i=1:100; asinh(rand(100,100)); end
+   showprofile(asinh)   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="comp">comp</link></member>
+
+      <member><link linkend="fun2string">fun2string</link></member>
+
+      <member><link linkend="profile">profile</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Enrico Segre</term>
+
+        <listitem>
+          <para></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliografia</title>
+
+    <para>http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</para>
+  </refsection>
+</refentry>

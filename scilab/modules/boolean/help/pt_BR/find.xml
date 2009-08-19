@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA 
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>find</refname>
 
-    <refpurpose>encontra √≠ndices de elementos verdadeiros em uma matriz ou
+    <refpurpose>encontra Ìndices de elementos verdadeiros em uma matriz ou
     vetor de booleanos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[ii]=find(x [,nmax])
 [i1,i2,..]=find(x [,nmax])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -44,7 +44,7 @@
 
         <listitem>
           <para>pode ser um vetor, matriz ou hipermatriz de booleanos, uma
-          matriz ou hipermatriz "padr√£o". </para>
+          matriz ou hipermatriz "padr„o". </para>
         </listitem>
       </varlistentry>
 
@@ -52,10 +52,10 @@
         <term>nmax</term>
 
         <listitem>
-          <para>um inteiro fornecendo o n√∫mero m√°ximo de √≠ndices a serem
-          retornados. o valor padr√£o √© -1, que significa "todos". Esta op√ß√£o
-          pode ser usada por efici√™ncia, para evitar uma busca por todos os
-          √≠ndices. </para>
+          <para>um inteiro fornecendo o n˙mero m·ximo de Ìndices a serem
+          retornados. o valor padr„o È -1, que significa "todos". Esta opÁ„o
+          pode ser usada por eficiÍncia, para evitar uma busca por todos os
+          Ìndices. </para>
         </listitem>
       </varlistentry>
 
@@ -63,30 +63,30 @@
         <term>ii, i1, i2, ..</term>
 
         <listitem>
-          <para>vetores de √≠ndices inteiros ou matrizes vazias</para>
+          <para>vetores de Ìndices inteiros ou matrizes vazias</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Se <literal>x</literal> √© uma matriz booleana,</para>
+    <para>Se <literal>x</literal> È uma matriz booleana,</para>
 
-    <para><literal>ii=find(x)</literal> retorna o vetor de √≠ndices
-    <literal>i</literal> para os quais <literal>x(i)</literal> √© "true"
+    <para><literal>ii=find(x)</literal> retorna o vetor de Ìndices
+    <literal>i</literal> para os quais <literal>x(i)</literal> È "true"
     ("verdadeiro").Se nenhum elemento "true" for encontrado, retorna uma
     matriz vazia.</para>
 
-    <para><literal>[i1,i2,..]=find(x)</literal> retorna vetores de √≠ndices
+    <para><literal>[i1,i2,..]=find(x)</literal> retorna vetores de Ìndices
     <literal>i1</literal> (para linhas) e <literal>i2</literal> (para
-    colunas),... tais que <literal>x(i1(n),i2(n),..)</literal> i√© "true"
+    colunas),... tais que <literal>x(i1(n),i2(n),..)</literal> iÈ "true"
     ("verdadeiro"). Se nenhum elemento "true" for encontrado, retorna matrizes
     vazias em <literal>i1</literal>, <literal>i2</literal>, ...</para>
 
-    <para>Se <literal>x</literal> √© uma matriz ou hipermatriz padr√£o
-    <literal>find(x)</literal> √© interpretado como
+    <para>Se <literal>x</literal> È uma matriz ou hipermatriz padr„o
+    <literal>find(x)</literal> È interpretado como
     <literal>find(x&lt;&gt;0)</literal></para>
 
     <para><literal>find([])</literal> retorna <literal>[]</literal></para>
@@ -103,7 +103,7 @@ A(w)
 w=find(A&gt;100) 
 
 B=rand(1,20);
-w=find(B&lt;0.4,2) //no m√°ximo dois valores retornados
+w=find(B&lt;0.4,2) //no m·ximo dois valores retornados
 
 H=rand(4,3,5); //uma hipermatriz
 [i,j,k]=find(H&gt;0.9)  
@@ -114,7 +114,7 @@ H(i(1),j(1),k(1))
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="boolean">boolean</link></member>

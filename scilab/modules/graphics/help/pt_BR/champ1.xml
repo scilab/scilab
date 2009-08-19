@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="champ1" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,13 +17,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>champ1(x,y,fx,fy,[arfact,rect,strf])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -39,7 +39,7 @@
 
         <listitem>
           <para>uma matriz que descreve o componente x do campo vetorial.
-          <literal>fx(i,j)</literal> √© o componente x do campo vetorial no
+          <literal>fx(i,j)</literal> È o componente x do campo vetorial no
           ponto <literal>(x(i),y(j))</literal>.</para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
 
         <listitem>
           <para>uma matriz que descreve o componente y do campo vetorial.
-          <literal>fy(i,j)</literal> √© o componente y do campo vetorial no
+          <literal>fy(i,j)</literal> È o componente y do campo vetorial no
           ponto <literal>(x(i),y(j))</literal>.</para>
         </listitem>
       </varlistentry>
@@ -59,8 +59,8 @@
 
         <listitem>
           <para>um argumento opcional do tipo real que fornece um fator de
-          escala para a exibi√ß√£o das cabe√ßas das setas no esbo√ßo (o valor
-          padr√£o √© 1.0). </para>
+          escala para a exibiÁ„o das cabeÁas das setas no esboÁo (o valor
+          padr„o È 1.0). </para>
         </listitem>
       </varlistentry>
 
@@ -69,7 +69,7 @@
 
         <listitem>
           <para>um vetor <literal>rect=[xmin,ymin,xmax,ymax]</literal> que
-          fornece as fronteiras da moldura gr√°fica a ser utilizada. </para>
+          fornece as fronteiras da moldura gr·fica a ser utilizada. </para>
         </listitem>
       </varlistentry>
 
@@ -77,8 +77,8 @@
         <term>frameflag</term>
 
         <listitem>
-          <para>ccontrola a computa√ß√£o dos intervalos de coordenadas
-          verdadeiros a partir dos valores m√≠nimos requeridos. O valor
+          <para>ccontrola a computaÁ„o dos intervalos de coordenadas
+          verdadeiros a partir dos valores mÌnimos requeridos. O valor
           associado deve ser um inteiro no intervalo de 0 a 8. </para>
         </listitem>
       </varlistentry>
@@ -87,7 +87,7 @@
         <term>axesflag</term>
 
         <listitem>
-          <para>especifica como os eixos s√£o desenhados. O valor associado
+          <para>especifica como os eixos s„o desenhados. O valor associado
           deve ser um inteiro no intervalo de 0 a 5.</para>
         </listitem>
       </varlistentry>
@@ -97,8 +97,8 @@
 
         <listitem>
           <para>um string de comprimento 3 "xyz" que possui o mesmo
-          significado do par√¢metro <literal>strf</literal> de
-          <literal>plot2d</literal>. O primeiro caractere n√£o tem efeito com
+          significado do par‚metro <literal>strf</literal> de
+          <literal>plot2d</literal>. O primeiro caractere n„o tem efeito com
           <literal>champ1</literal>.</para>
         </listitem>
       </varlistentry>
@@ -106,16 +106,16 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>champ1</literal> desenha um campo vetorial 2d com setas
     coloridas. A cor das setas depende da intensidade do campo.</para>
 
-    <para>Se voc√™ quiser setas proporcionais √† intensidade do campo, use
+    <para>Se vocÍ quiser setas proporcionais ‡ intensidade do campo, use
     <literal>champ</literal>.</para>
 
     <para>Entre com o comando <literal>champ1()</literal> para visualizar uma
-    demonstra√ß√£o.</para>
+    demonstraÁ„o.</para>
   </refsection>
 
   <refsection>
@@ -129,7 +129,7 @@ champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="champ">champ</link></member>

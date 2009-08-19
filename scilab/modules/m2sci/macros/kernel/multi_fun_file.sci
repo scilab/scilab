@@ -62,14 +62,9 @@ else
   end
 
   // Verify if the directory exists
-	
-  if MSDOS then
-    dirnam=unix_g('dir /b '+pathconvert(TMPDIR)+base_name)
-  else
-    dirnam=unix_g('ls ' + pathconvert(TMPDIR)+base_name)
-  end
+	dirnam = ls(pathconvert(TMPDIR)+base_name);
   
-  sep=filesep();
+  sep = filesep();
   
   if or(dirnam<>'') then
     rmdir(pathconvert(TMPDIR)+base_name,'s')

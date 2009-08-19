@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="javasci-Ant"
 	ProjectGUID="{6182A20D-8111-41C1-9713-CD2A4725057C}"
 	RootNamespace="javasci-Ant"
 	Keyword="MakeFileProj"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -146,6 +146,14 @@
 			</File>
 			<File
 				RelativePath=".\javasci\SciDoubleArray.java"
+				>
+			</File>
+			<File
+				RelativePath=".\javasci\SciInteger.java"
+				>
+			</File>
+			<File
+				RelativePath=".\javasci\SciIntegerArray.java"
 				>
 			</File>
 			<File

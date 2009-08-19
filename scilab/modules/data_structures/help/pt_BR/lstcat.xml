@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>lstcat</refname>
 
-    <refpurpose>concatenaÃ§Ã£o de listas</refpurpose>
+    <refpurpose>concatenação de listas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>lc=lstcat(l1,..ln)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>li</term>
 
         <listitem>
-          <para>lista ou qualquer outro tipo de variÃ¡vel </para>
+          <para>lista ou qualquer outro tipo de variável </para>
         </listitem>
       </varlistentry>
 
@@ -56,12 +56,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>lc=lstcat(l1,..ln)</literal> concatena os componentes das
-    <literal>li</literal> listas em uma Ãºnica lista. Se os
-    <literal>li</literal> sÃ£o outros tipos de variÃ¡veis, eles simplesmente sÃ£o
-    adicionados Ã  lista resultante.</para>
+    <literal>li</literal> listas em uma única lista. Se os
+    <literal>li</literal> são outros tipos de variáveis, eles simplesmente são
+    adicionados à lista resultante.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ lstcat(1,2,3)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="list">list</link></member>

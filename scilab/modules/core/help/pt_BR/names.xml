@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="names" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,21 +17,21 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Nomes de variÃ¡veis ou funÃ§Ãµes no Scilab devem comeÃ§ar com uma letra,
+    <para>Nomes de variáveis ou funções no Scilab devem começar com uma letra,
     ou com um dos seguintes caracteres especiais: '<literal>%</literal>',
     '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
     '<literal>$</literal>', '<literal>?</literal>'.</para>
 
-    <para>Os prÃ³ximos caracteres podem ser letras ou um dos seguintes
+    <para>Os próximos caracteres podem ser letras ou um dos seguintes
     caracteres especiais: '<literal>_</literal>', '<literal>#</literal>',
     '<literal>!</literal>', '<literal>$</literal>',
     '<literal>?</literal>'</para>
 
-    <para>Nomes podem ser tÃ£o longos quanto se queira, mas apenas os primeiros
-    24 caracteres serÃ£o levados em consideraÃ§Ã£o. Letras maiÃºsculas e
-    minÃºsculas sÃ£o diferentes.</para>
+    <para>Nomes podem ser tão longos quanto se queira, mas apenas os primeiros
+    24 caracteres serão levados em consideração. Letras maiúsculas e
+    minúsculas são diferentes.</para>
   </refsection>
 
   <refsection>
@@ -39,12 +39,12 @@
 
     <programlisting role="example">
 
-//Nomes vÃ¡lidos
+//Nomes válidos
 %eps
 A1=123
 #Color=8
 My_Special_Color_Table=rand(10,3)
-//Nomes invÃ¡lidos
+//Nomes inválidos
 //1A , b%, .C
  
   </programlisting>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>foo</refname>
+
+    <refpurpose>descrição breve de foo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[y] = foo(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>o que puder ser x</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>o que puder ser y</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Um primeiro parárgrafo que explica o que a função foo computa. Se
+    quiser enfatizar um parâmetro, então você utiliza o seguinte tag
+    <literal>x</literal>, se quiser enfatizar parte do texto
+    <emphasis>encerre-o nestes tags</emphasis> e então utilize estes <emphasis
+    role="bold">para obter uma fonte em negrito</emphasis> e finalmente
+    <literal>para um estilo em máquina de escrever</literal>.</para>
+
+    <para>Um segundo parágrafo... Aqui está um exemplo de um link para outra
+    página : <link linkend="man">man</link>.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>first</term>
+
+        <listitem>
+          <para>parágrafo simples</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>second</term>
+
+        <listitem>
+          <para>toto é o foo francês...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+deff("y=foo(x)","y=x"); // define a função foo como a função identidade.
+foo("toto")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="man">man</link></member>
+
+      <member><link linkend="apropos">apropos</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>B. P.</member>
+    </simplelist>
+  </refsection>
+</refentry>

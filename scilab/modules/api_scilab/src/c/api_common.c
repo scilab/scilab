@@ -14,6 +14,7 @@
  */
 
 #include <string.h>
+#include <stdlib.h>
 #include "machine.h"
 #include "CallScilab.h"
 #include "api_common.h"
@@ -24,17 +25,17 @@
 #include "stack-c.h"
 #include "stackinfo.h"
 #include "Scierror.h"
-
+/*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
 extern int C2F(stackp)(int *,int *);
-
+/*--------------------------------------------------------------------------*/
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
-
+/*--------------------------------------------------------------------------*/
 int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 {
 	if(_piAddress != NULL && isVarMatrixType(_piAddress))
@@ -50,7 +51,19 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 		return 1;
 	}
 }
-
+/*--------------------------------------------------------------------------*/
+int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet)
+	{
+		return 0;
+	}
+	return getVarDimension(piAddr, _piRows, _piCols);
+}
+/*--------------------------------------------------------------------------*/
 int getVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
@@ -64,7 +77,7 @@ int getVarAddressFromPosition(int _iVar, int** _piAddress)
 	intersci_.ntypes[_iVar - 1] = '$' ;
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int getVarNameFromPosition(int _iVar, char* _pstName)
 {
 	int iNameLen				= 0;
@@ -78,7 +91,7 @@ int getVarNameFromPosition(int _iVar, char* _pstName)
 	_pstName[iNameLen]	= '\0';
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(_iVar));
@@ -87,6 +100,7 @@ int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 
 	return 0;
 }
+/*--------------------------------------------------------------------------*/
 int getVarAddressFromName(char* _pstName, int** _piAddress)
 {
 	int iVarID[nsiz];
@@ -116,7 +130,7 @@ int getVarAddressFromName(char* _pstName, int** _piAddress)
 	*_piAddress = piAddr;
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int getVarType(int* _piAddress)
 {
 	if(_piAddress == NULL)
@@ -125,7 +139,19 @@ int getVarType(int* _piAddress)
 	}
 	return _piAddress[0];
 }
-
+/*--------------------------------------------------------------------------*/
+int getNamedVarType(char* _pstName)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet)
+	{
+		return 0;
+	}
+	return getVarType(piAddr);
+}
+/*--------------------------------------------------------------------------*/
 int isVarComplex(int* _piAddress)
 {
 	int iType			= 0;
@@ -149,7 +175,16 @@ int isVarComplex(int* _piAddress)
 	}
 	return iComplex;
 }
-
+/*--------------------------------------------------------------------------*/
+int isNamedVarComplex(char *_pstName)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet) return 0;
+	return isVarComplex(piAddr);
+}
+/*--------------------------------------------------------------------------*/
 void createNamedVariable(int *_piVarID)
 {
 	int iOne				= 1;
@@ -159,7 +194,7 @@ void createNamedVariable(int *_piVarID)
   C2F(stackp)(_piVarID, &iOne);
 //  C2F(iop).lct[3] = iSaveLct;
 }
-
+/*--------------------------------------------------------------------------*/
 int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress)
 {
 
@@ -168,13 +203,13 @@ int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddres
 	intersci_.lad[_iVar - 1]		= _iSCIDataAddress;
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int updateLstk(int _iNewpos, int _iSCIDataAddress, int _iVarSize)
 {
 	*Lstk(_iNewpos + 1) = _iSCIDataAddress + _iVarSize;
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int isVarMatrixType(int* _piAddress)
 {
 	if(_piAddress != NULL)
@@ -203,7 +238,16 @@ int isVarMatrixType(int* _piAddress)
 	}
 	return 1;
 }
-
+/*--------------------------------------------------------------------------*/
+int isNamedVarMatrixType(char *_pstName)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet) return 0;
+    return isVarMatrixType(piAddr);
+}
+/*--------------------------------------------------------------------------*/
 int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 {
 	int iRet				= 0;
@@ -302,7 +346,7 @@ int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 	}
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int getDimFromVar(int* _piAddress, int* _piVal)
 {
 	int iRet					= 0;
@@ -429,5 +473,14 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		return 1;
 	}
 	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getDimFromNamedVar(char* _pstName, int* _piVal)
+{
+	int iRet				= 0;
+	int* piAddr				= NULL;
+	iRet = getVarAddressFromName(_pstName, &piAddr);
+	if(iRet) return iRet;
+	return getDimFromVar(piAddr, _piVal);
 }
 /*--------------------------------------------------------------------------*/

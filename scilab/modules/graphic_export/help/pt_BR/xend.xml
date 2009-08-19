@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,20 +24,20 @@
   <refnamediv>
     <refname>xend</refname>
 
-    <refpurpose>termina uma sess√£o de gr√°ficos</refpurpose>
+    <refpurpose>termina uma sess„o de gr·ficos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xend()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xend</literal> √© usado para encerrar uma sess√£o de
-    gr√°ficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
+    <para><literal>xend</literal> È usado para encerrar uma sess„o de
+    gr·ficos. Sob os drivers Postscript, Xfig ou Gif <literal>xend</literal>
     fecha o arquivo que foi aberto por <literal>xinit</literal>.</para>
   </refsection>
 
@@ -56,7 +56,7 @@ driver("X11")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xinit">xinit</link></member>

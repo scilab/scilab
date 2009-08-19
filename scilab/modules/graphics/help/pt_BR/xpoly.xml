@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xpoly</refname>
 
-    <refpurpose>desenha uma poligonal ou um pol√≠gono</refpurpose>
+    <refpurpose>desenha uma poligonal ou um polÌgono</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>dtype</term>
 
         <listitem>
-          <para>string (estilo de desenho). O valor padr√£o √© "lines". </para>
+          <para>string (estilo de desenho). O valor padr„o È "lines". </para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +57,7 @@
         <term>close</term>
 
         <listitem>
-          <para>inteiro. Se close= 1,a poligonal √© fechada; o valor padr√£o √©
+          <para>inteiro. Se close= 1,a poligonal È fechada; o valor padr„o È
           0.</para>
         </listitem>
       </varlistentry>
@@ -65,12 +65,12 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>xpoly</literal> desenha uma poligonal descrita pelos
     vetores de coordenadas <literal>xv</literal> e <literal>yv</literal>. Se
-    <literal>xv</literal> e <literal>yv</literal> forem matrizes, ser√£o
-    considerados vetores obtidos por concatena√ß√£o de suas colunas.
+    <literal>xv</literal> e <literal>yv</literal> forem matrizes, ser„o
+    considerados vetores obtidos por concatenaÁ„o de suas colunas.
     <literal>dtype</literal> pode ser <literal>"lines"</literal> para uso do
     estilo de linha corrente ou <literal>"marks"</literal> para utilizar a
     marca corrente para desenho da poligonal.</para>
@@ -86,16 +86,16 @@ y=cos(2*%pi*(0:4)/5);
 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
-xpoly(x,y,"lines",1) // por padr√£o √© fechado
+xpoly(x,y,"lines",1) // por padr„o È fechado
 
-// apenas no novo estilo de gr√°ficos
-e=gce(); // retorna a entidade corrente (a √∫ltima criada: aqui, √© a poligonal)
-e.closed = 'off' // a poligonal est√° agora aberta
+// apenas no novo estilo de gr·ficos
+e=gce(); // retorna a entidade corrente (a ˙ltima criada: aqui, È a poligonal)
+e.closed = 'off' // a poligonal est· agora aberta
   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpoly">xfpoly</link></member>

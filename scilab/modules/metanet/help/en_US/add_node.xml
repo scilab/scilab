@@ -55,12 +55,14 @@
     <title>Description</title>
     <para><literal>add_node</literal> adds  disconnected nodes to graph <literal>g</literal> and returns the new
     graph <literal>g1</literal>.</para>
-    <para>The coordinates of the new nodes can be given as a  vector of
-    coordinates in <literal>xy</literal>.
-    If the nodes of graph <literal>g</literal> have no
-    coordinates (elements <literal>node_x</literal> and <literal>node_y</literal> are <literal>[]</literal>), to
-    give <literal>xy</literal> has no effect. If the nodes of graph <literal>g</literal> have
-    coordinates and <literal>xy</literal> is not given, the new node has <literal>(0,0)</literal> as
+    <para>The coordinates of the new nodes can be given as a vector of
+    coordinates in <literal>xy</literal>.  If the nodes of graph
+    <literal>g</literal> have no coordinates (elements
+    <literal>g.nodes.graphics.x</literal> and
+    <literal>g.nodes.graphics.y</literal> are <literal>[]</literal>),
+    to give <literal>xy</literal> has no effect. If the nodes of graph
+    <literal>g</literal> have coordinates and <literal>xy</literal> is
+    not given, the new node has <literal>(0,0)</literal> as
     coordinates.</para>
     <para>If <literal>name</literal> is given, it is the vector  of the new node names, otherwise the node number
      is taken as the name of each new node.</para>

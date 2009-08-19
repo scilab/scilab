@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="int2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>int2d</refname>
+
+    <refpurpose>integral definida 2d por quadratura e cubatura</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[I,err]=int2d(X,Y,f [,params])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>um array 3 por N contendo as abscissas dos vertices dos N
+          triângulos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Y</term>
+
+        <listitem>
+          <para>um array 3 por N contendo as ordenadas dos vertices dos N
+          triângulos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função externa (função, string ou lista) definindo o
+          integrando <literal>f(u,v)</literal>;</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>params</term>
+
+        <listitem>
+          <para>vetor de reais <literal>[tol, iclose, maxtri, mevals,
+          iflag]</literal>. O valor padrão é <literal>[1.d-10, 1, 50, 4000,
+          1]</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>tol</term>
+
+              <listitem>
+                <para>o limite desejado do erro. Se
+                <literal>iflag=0</literal>, <literal>tol</literal> é
+                interpretado como um limite de erro relativo; se
+                <literal>iflag=</literal>1, o limite é de erro
+                absoluto.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iclose</term>
+
+              <listitem>
+                <para>um inteiro que determina a seleção dos métodos LQM0 ou
+                LQM. Se <literal>iclose=1</literal> , então LQM1 é utilizado.
+                Qualquer outro valor de <literal>iclose</literal> faz com que
+                LQM0 seja usado. LQM0 utiliza valores da função apenas em
+                pontos interiores ao triângulo. LQM1 geralmente é mais preciso
+                que LQM0 mas envolve a avaliação do integrando em mais pontos,
+                incluindo em alguns pontos da fronteira do triângulo.
+                Geralmente é melhor utilizar LQM1 a não ser que o integrando
+                possuia singularidades nas bordas do triângulo.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>maxtri</term>
+
+              <listitem>
+                <para>o número máximo de triângulos na triangularização final
+                da região</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mevals</term>
+
+              <listitem>
+                <para>o número máximo de avaliações da função permitido. Este
+                número terá efeito na limitação da computação se for menor que
+                94*<literal>maxtri</literal> quando LQM1 é especificado ou
+                56*<literal>maxtri</literal> quando LQM0 é
+                especificado.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iflag</term>
+
+              <listitem>
+                <para>:</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>I</term>
+
+        <listitem>
+          <para>o valor da integral</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>o erro estimado</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>int2d</literal> computa a integral bidimensional de uma
+    função <literal>f</literal> sobre uma região que consiste de
+    <literal>n</literal> triângulos. Um estimativa de erro total é obtida e
+    comparada a - <literal>tol</literal> - que é fornecida como entrada para a
+    subrotina. A tolerância de erro é tratada como relativa ou absoluta
+    dependendo do valor de entrada de <literal>iflag</literal>. Um "módulo de
+    quadratura local" ("Local Quadrature Module") é aplicado para cada
+    triângulo de entrada e estimativas da integral total e do erro total são
+    computadas. O módulo de quadratura local é a subrotina LQM0 ou a subrotina
+    LQM1 e a escolha entre elas é determinada pelo valor da variável
+    <literal>iclose</literal>.</para>
+
+    <para>Se a estimativa de erro total excede a tolerância, o triângulo com
+    maior erro absoluto é dividio em dois outro triângulos traçando-se uma
+    mediana por seu maior lado. O módulo de quadratura local é então aplicado
+    a cada um dos subtriângulos para se obter novas estimativas da integral e
+    do erro. Este processo é repetido até que um dos seguintes (1) a
+    tolerância é satisfeita, (2) o número de triângulos gerados excede o
+    parâmetro <literal>maxtri</literal>, (3) o número de avaliações do
+    integrando excede o parâmetro <literal>mevals</literal>, ou (4) a função
+    sente que um erro de arredondamento está começando a contaminar o
+    resultado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+X=[0,0;1,1;1,0];
+Y=[0,0;0,1;1,1];
+deff('z=f(x,y)','z=cos(x+y)')
+[I,e]=int2d(X,Y,f)
+// computa o integrando sobre o quadrado [0 1]x[0 1]
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="int3d">int3d</link></member>
+
+      <member><link linkend="intg">intg</link></member>
+
+      <member><link linkend="mesh2d">mesh2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>Autores da rotina FORTRAN twodq: Kahaner,D.K.,N.B.S.,
+    Rechard,O.W.,N.B.S.,; Barnhill,Robert,Univ. de UTAH</para>
+  </refsection>
+</refentry>

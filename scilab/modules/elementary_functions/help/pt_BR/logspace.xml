@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>logspace</refname>
 
-    <refpurpose>vetor espa√ßado logaritmicamente</refpurpose>
+    <refpurpose>vetor espaÁado logaritmicamente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>logspace(d1,d2, [n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,19 +50,19 @@
         <term>n</term>
 
         <listitem>
-          <para>inteiro (n√∫mero de valores). O valor padr√£o √© 50</para>
+          <para>inteiro (n˙mero de valores). O valor padr„o È 50</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna um vetor linha de <literal>n</literal> pontos espa√ßados
+    <para>Retorna um vetor linha de <literal>n</literal> pontos espaÁados
     logaritmicamente de maneira igual entre <literal>10^d1</literal> e
-    <literal>10^d2</literal>. Se <literal>d2=%pi</literal> ent√£o os pontos
-    est√£o entre <literal>10^d1</literal> e <literal>pi</literal>.</para>
+    <literal>10^d2</literal>. Se <literal>d2=%pi</literal> ent„o os pontos
+    est„o entre <literal>10^d1</literal> e <literal>pi</literal>.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ logspace(1,2,10)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="linspace">linspace</link></member>

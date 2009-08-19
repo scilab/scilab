@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>pinv(A,[tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,24 +49,24 @@
         <term>tol</term>
 
         <listitem>
-          <para>n√∫mero real</para>
+          <para>n˙mero real</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>X = pinv(A)</literal> produz uma matriz
-    <literal>X</literal> de mesma dimens√£o que <literal>A'</literal> tal
+    <literal>X</literal> de mesma dimens„o que <literal>A'</literal> tal
     que:</para>
 
     <para><literal>A*X*A = A, X*A*X = X</literal> e ambas
-    <literal>A*X</literal> e <literal>X*A</literal> s√£o Hermitianas.</para>
+    <literal>A*X</literal> e <literal>X*A</literal> s„o Hermitianas.</para>
 
-    <para>A computa√ß√£o √© baseada em SVD e qualquer valor singular abaixo da
-    toler√¢ncia √© tratado como zero: esta toler√¢ncia √© acessada por
+    <para>A computaÁ„o È baseada em SVD e qualquer valor singular abaixo da
+    toler‚ncia È tratado como zero: esta toler‚ncia È acessada por
     <literal>X=pinv(A,tol)</literal>.</para>
   </refsection>
 
@@ -82,7 +82,7 @@ norm(A*pinv(A)*A-A,1)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="rank">rank</link></member>
@@ -94,9 +94,9 @@ norm(A*pinv(A)*A-A,1)
   </refsection>
 
   <refsection>
-    <title>Fun√ß√£o Usada</title>
+    <title>FunÁ„o Usada</title>
 
-    <para><literal>pinv</literal> √© baseada na decomposi√ß√£o em valores
-    singulares (fun√ß√£o do Scilab <literal>svd</literal>).</para>
+    <para><literal>pinv</literal> È baseada na decomposiÁ„o em valores
+    singulares (funÁ„o do Scilab <literal>svd</literal>).</para>
   </refsection>
 </refentry>

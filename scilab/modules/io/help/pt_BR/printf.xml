@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="printf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>printf</refname>
+
+    <refpurpose>emulador da função da linguagem C printf</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>printf(format,value_1,..,value_n)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>string Scilab. especifica um string combinando caracteres
+          literais com especificações de conversão.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value_i</term>
+
+        <listitem>
+          <para>especifica os dados a serem convertidos de acordo com o
+          parâmetro de formato.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>vetor coluna de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file</term>
+
+        <listitem>
+          <para>string Scilab especificando um arquivo ou um número de unidade
+          lógica (ver <literal>file</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função <literal>printf</literal> converte, formata e escreve seus
+    parâmetros <literal>value</literal> sob controle do parâmetro
+    <literal>format</literal> para a saída padrão.</para>
+
+    <para>O parâmetro <literal>format</literal> é um string que contém dois
+    tipos de objetos:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Caracteres literais</term>
+
+        <listitem>
+          <para>que são copiados no fluxo de saída</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Especificações de conversão</term>
+
+        <listitem>
+          <para>cada um dos quais faz com que zero ou mais itens sejam
+          buscados da lista de parâmetros <literal>value</literal>. Ver <link
+          linkend="printf_conversion">printf_conversion</link> para
+          detalhes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Se algum item de <literal>value</literal>s sobrar após todo o
+    <literal>format</literal> ter sido processado, ele é ignorado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+printf('O resultado é:\nalpha=%f',0.535)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="print">print</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="format">format</link></member>
+
+      <member><link linkend="disp">disp</link></member>
+
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="fprintf">fprintf</link></member>
+
+      <member><link linkend="sprintf">sprintf</link></member>
+
+      <member><link
+      linkend="printf_conversion">printf_conversion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

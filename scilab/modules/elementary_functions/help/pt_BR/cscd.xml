@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="cscd" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -21,13 +21,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>x = cscd(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,16 +49,16 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>As emtradas de <literal>y</literal> sÃ£o as cossecantes
+    <para>As emtradas de <literal>y</literal> são as cossecantes
     <literal>1/sin</literal> das entradas de <literal>x</literal> dadas em
-    graus. Os resultados sÃ£o reais em <literal>]-%inf -1] U [1
+    graus. Os resultados são reais em <literal>]-%inf -1] U [1
     %inf[</literal>. Para entradas iguais a <literal>n*180</literal> com
-    <literal>n</literal> inteiro, o resultado Ã© infinito (ou um erro
+    <literal>n</literal> inteiro, o resultado é infinito (ou um erro
     dependendo do modo <link linkend="ieee">ieee</link>). Para entradas iguais
-    a <literal>n*90</literal> com <literal>n</literal> inteiro e Ã­mpar, o
-    resultado Ã© exatamente 1 ou -1.</para>
+    a <literal>n*90</literal> com <literal>n</literal> inteiro e ímpar, o
+    resultado é exatamente 1 ou -1.</para>
   </refsection>
 
   <refsection>
@@ -71,7 +71,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="secd">secd</link></member>
