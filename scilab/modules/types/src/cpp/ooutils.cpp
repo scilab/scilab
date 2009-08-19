@@ -19,7 +19,7 @@ namespace types
 {
   /** Public utils */
   static Function::ReturnValue
-  ro_setter_func(typed_list &in, int *_piRetCount, typed_list &out)
+  ro_setter_func(typed_list &, int *, typed_list &out)
   {
     printf("Read only property");
     out.push_back(new Double(0));
@@ -39,7 +39,7 @@ namespace types
   
   /** Bound method, object and setter */
   BoundMethod::BoundMethod(Function *p_func, Object *p_self, Object *p_level)
-    : m_func(p_func)
+    : m_func(p_func), m_this(NULL), m_super(NULL)
   {
     if(p_level == NULL)
       p_level = p_self;
@@ -89,7 +89,7 @@ namespace types
   
   /** Root object */
   Function::ReturnValue
-  install_property(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *super)
+  install_property(typed_list &in, int *, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;
@@ -123,7 +123,7 @@ namespace types
   }
   
   Function::ReturnValue
-  install_method(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *super)
+  install_method(typed_list &in, int *, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;

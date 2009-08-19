@@ -161,7 +161,7 @@ namespace types
     void raw_set(PropertySlot &slot, InternalType *value);
   
   protected:
-    Object(Object *p_isa = NULL): m_isa(p_isa) {}
+    Object(Object *p_isa = NULL): m_isa(p_isa), m_slots(), m_slots_values() {}
   
     // Search p_slotName in slots list (recursively).
     // If found, set r_lvptr to the level where the slot is found and r_slot to

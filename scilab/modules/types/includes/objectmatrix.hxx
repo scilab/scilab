@@ -51,7 +51,7 @@ namespace types
     virtual ~ObjectMatrix() {}
   
   private:
-    ObjectMatrix(): InternalType() { }
+    ObjectMatrix(): InternalType(), m_optr(NULL), m_lvptr(NULL), m_startptr(NULL) { }
   
     Object *m_optr; // Reference to the object
     Object *m_lvptr; // For "this" only: pointer to current level

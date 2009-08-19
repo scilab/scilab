@@ -20,8 +20,8 @@ namespace types
 {
   Class::Class(const std::string &p_name, Object *p_isa):
     Object(p_isa),
-    m_name(p_name),
-    m_instance_slots()
+    m_instance_slots(),
+    m_name(p_name)
   {
     String *s = new String(p_name.c_str());
     install_property("super", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
@@ -109,7 +109,7 @@ namespace types
   /* Root class */
   
   static Function::ReturnValue
-  new_instance(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *super)
+  new_instance(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
   {
     Class *kls = dynamic_cast<Class*>(self->object_ref_get());
     Instance *inst = kls->create_instance(in);
@@ -119,9 +119,8 @@ namespace types
   }
   
   static Function::ReturnValue
-  empty_constructor(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *super)
+  empty_constructor(typed_list &, int *, typed_list &, ObjectMatrix *, ObjectMatrix *)
   {
-    *_piRetCount = 0;
     return Function::AllGood;
   }
   

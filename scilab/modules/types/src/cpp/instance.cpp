@@ -17,8 +17,8 @@
 namespace types
 {
   Instance::Instance(Class *p_kls, Object *p_isa):
-    m_kls(p_kls),
-    Object(p_isa)
+    Object(p_isa),
+    m_kls(p_kls)
   {
     install_property("super", Slot::PRIVATE, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
     install_property("klass", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_kls), NULL, ro_setter);
