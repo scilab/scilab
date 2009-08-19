@@ -907,6 +907,7 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/gui/includes/
 
 libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
