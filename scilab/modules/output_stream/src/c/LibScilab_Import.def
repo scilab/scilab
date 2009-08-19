@@ -31,3 +31,5 @@ getIntermediateMemoryNeeded
 getstackinfo_
 getWarningMode
 ;
+;core_f
+errcontext_
