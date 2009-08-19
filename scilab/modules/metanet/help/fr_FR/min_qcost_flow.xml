@@ -102,12 +102,9 @@
       <literal>max_cap</literal> ou <literal>q_orig</literal> ou
       <literal>q_weight</literal>ne sont pas présents dans la
       structure du graphe, ils peuvent être ajoutés et affectés en
-      utilisant la fonction <link
-      linkend="add_edge_data">add_edge_data</link>.
+      utilisant la fonction <link linkend="add_edge_data">add_edge_data</link>.
     </para>
-    <para>
-   
- 
+
     <para>
     Cette fonction utilise un algorithme dû à M. Minoux.
   </para>
