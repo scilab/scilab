@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=logm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,14 +48,14 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>logm(x)</literal> √© o logaritmo da matriz
-    <literal>x</literal>. (matriz logaritmo de x). O resultado √© complexo se
-    <literal>x</literal> n√£o √© positiva ou positiva definida. Se
-    <literal>x</literal> √© uma matriz sim√©trica, o c√°lculo √© feito pela forma
-    de Schur. Em caso contr√°rio, <literal>x</literal> √© assumida como sendo
-    diagonaliz√°vel. Tem-se <literal>expm(logm(x))=x</literal></para>
+    <para><literal>logm(x)</literal> È o logaritmo da matriz
+    <literal>x</literal>. (matriz logaritmo de x). O resultado È complexo se
+    <literal>x</literal> n„o È positiva ou positiva definida. Se
+    <literal>x</literal> È uma matriz simÈtrica, o c·lculo È feito pela forma
+    de Schur. Em caso contr·rio, <literal>x</literal> È assumida como sendo
+    diagonaliz·vel. Tem-se <literal>expm(logm(x))=x</literal></para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ expm(logm(A1))
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="expm">expm</link></member>

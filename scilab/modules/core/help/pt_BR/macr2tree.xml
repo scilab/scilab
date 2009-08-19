@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="macr2tree" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>macr2tree</refname>
 
-    <refpurpose>conversÃ£o de funÃ§Ã£o para Ã¡rvore</refpurpose>
+    <refpurpose>conversão de função para árvore</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=macr2tree(function-name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,18 +38,18 @@
         <term>t</term>
 
         <listitem>
-          <para>uma "Ã¡rvore" do Scilab</para>
+          <para>uma "árvore" do Scilab</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta primitiva converte uma funÃ§Ã£o Scilab compilada
-    <literal>function-name</literal> em uma Ã¡rvore (tlistas imbricadas) que
-    codifica a representaÃ§Ã£o interna da funÃ§Ã£o. Deve ser usada com
+    <para>Esta primitiva converte uma função Scilab compilada
+    <literal>function-name</literal> em uma árvore (tlistas imbricadas) que
+    codifica a representação interna da função. Deve ser usada com
     <literal>tree2code</literal>.</para>
   </refsection>
 
@@ -66,7 +66,7 @@ write(%io(2),txt,'(a)');
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tree2code">tree2code</link></member>

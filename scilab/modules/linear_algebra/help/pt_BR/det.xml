@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,22 +28,22 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>det(X)
 [e,m]=det(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X</term>
 
         <listitem>
-          <para>matriz quadrada de reais ou complexos, matriz de polinÃ´mios ou
-          de razÃµes de polinÃ´mios</para>
+          <para>matriz quadrada de reais ou complexos, matriz de polinômios ou
+          de razões de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@
         <term>m</term>
 
         <listitem>
-          <para>nÃºmero real ou complexo, a mantissa de base 10 do
+          <para>número real ou complexo, a mantissa de base 10 do
           determinante</para>
         </listitem>
       </varlistentry>
@@ -67,22 +67,22 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>det(X)</literal> ( <literal>m*10^e</literal> Ã© o
+    <para><literal>det(X)</literal> ( <literal>m*10^e</literal> é o
     determinante da matriz quadrada <literal>X)</literal>.</para>
 
-    <para>Para uma matriz de polinÃ´mios, <literal>det(X)</literal> Ã©
+    <para>Para uma matriz de polinômios, <literal>det(X)</literal> é
     equivalente a <literal>determ(X)</literal>.</para>
 
-    <para>Para matrizes de razÃµes de polinÃ´mios <literal>det(X)</literal> Ã©
+    <para>Para matrizes de razões de polinômios <literal>det(X)</literal> é
     equivalente a <literal>detr(X)</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>ReferÃªncias</title>
+    <title>Referências</title>
 
-    <para>As computaÃ§Ãµes da funÃ§Ã£o det sÃ£o baseadas nas rotinas do LAPACK
+    <para>As computações da função det são baseadas nas rotinas do LAPACK
     DGETRF para matrizes de reais e ZGETRF para o caso de matrizes de
     complexos.</para>
   </refsection>
@@ -102,7 +102,7 @@ det(A), prod(spec(A))
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="detr">detr</link></member>

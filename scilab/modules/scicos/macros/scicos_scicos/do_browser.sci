@@ -22,7 +22,7 @@
 function do_browser(scs_m)
 
   tt = scs_TreeView(scs_m);
-  cur_wd = getcwd();
+  cur_wd = pwd();
   chdir(TMPDIR);
   mputl(tt,scs_m.props.title(1)+'.tcl');
   chdir(cur_wd)

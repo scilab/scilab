@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="getvariablesonstack"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,11 +14,11 @@
   <refnamediv>
     <refname>getvariablesonstack</refname>
 
-    <refpurpose>retorna nomes de variÃ¡veis em na pilha Scilab</refpurpose>
+    <refpurpose>retorna nomes de variáveis em na pilha Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>s=getvariablesonstack()
 s=getvariablesonstack('local')
@@ -26,7 +26,7 @@ s=getvariablesonstack('global')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -40,18 +40,18 @@ s=getvariablesonstack('global')</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna na variÃ¡vel <literal>s</literal> nomes de variÃ¡veis na pilha
+    <para>Retorna na variável <literal>s</literal> nomes de variáveis na pilha
     do Scilab.</para>
 
-    <para>getvariablesonstack('local') retorna o nome das variÃ¡veis locais na
+    <para>getvariablesonstack('local') retorna o nome das variáveis locais na
     pilha.</para>
 
-    <para>getvariablesonstack('global') retorna o nome das variÃ¡veis globais
+    <para>getvariablesonstack('global') retorna o nome das variáveis globais
     na pilha.</para>
 
-    <para>As variÃ¡veis sÃ£o organizadas na ordem alfabÃ©tica.</para>
+    <para>As variáveis são organizadas na ordem alfabética.</para>
   </refsection>
 
   <refsection>
@@ -65,7 +65,7 @@ s=getvariablesonstack('global')</synopsis>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="who">who</link></member>

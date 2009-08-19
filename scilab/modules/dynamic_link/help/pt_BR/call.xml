@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,21 +24,21 @@
   <refnamediv>
     <refname>call</refname>
 
-    <refpurpose>chamada a rotinas de usu√°rio FORTRAN ou C</refpurpose>
+    <refpurpose>chamada a rotinas de usu·rio FORTRAN ou C</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
-    <synopsis>// forma longa: 'out' est√° presente  
+    <synopsis>// forma longa: 'out' est· presente  
 [y1,...,yk]=call("ident",x1,px1,"tx1",...,xn,pxn,"txn", 
 "out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl") 
-// forma curta : nenhum par√¢metro 'out' 
+// forma curta : nenhum par‚metro 'out' 
 [y1,....,yk]=call("ident",x1,...,xn) </synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -77,35 +77,35 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Chamada interativa ao programa do usu√°rio FORTRAN (ou C) do Scilab.
+    <para>Chamada interativa ao programa do usu·rio FORTRAN (ou C) do Scilab.
     A rotina deve estar previamente linkada ("ligada") ao Scilab. Este link
     pode ser feito:</para>
 
     <itemizedlist>
       <listitem>
         <para>Com o comando "<literal>link</literal>" do Scilab (linkagem
-        "suave" ("soft") incremental) durante a sess√£o Scilab. (ver
+        "suave" ("soft") incremental) durante a sess„o Scilab. (ver
         <literal>link</literal>)</para>
       </listitem>
     </itemizedlist>
 
-    <para>H√° duas formas de sintaxe de chamamento, uma curta e uma longa. A
-    curta fornece um c√≥digo mais r√°pido e uma sintaxe de chamamento mais
-    f√°cil, mas deve-se escrever uma pequena interface (C ou FORTRAN) para que
-    esta forma seja poss√≠vel. A forma longa torna poss√≠vel uma chamada a uma
-    rotina FORTRAN (ou C) sem modifica√ß√£o do c√≥digo, mas a sintaxe √© mais
-    complexa e o c√≥digo interpretado mais devagar.</para>
+    <para>H· duas formas de sintaxe de chamamento, uma curta e uma longa. A
+    curta fornece um cÛdigo mais r·pido e uma sintaxe de chamamento mais
+    f·cil, mas deve-se escrever uma pequena interface (C ou FORTRAN) para que
+    esta forma seja possÌvel. A forma longa torna possÌvel uma chamada a uma
+    rotina FORTRAN (ou C) sem modificaÁ„o do cÛdigo, mas a sintaxe È mais
+    complexa e o cÛdigo interpretado mais devagar.</para>
 
-    <para>O significado de cada par√¢metro √© descrito abaixo:</para>
+    <para>O significado de cada par‚metro È descrito abaixo: </para>
 
     <variablelist>
       <varlistentry>
         <term>"ident"</term>
 
         <listitem>
-          <para>√© o nome da subrotina chamada.</para>
+          <para>È o nome da subrotina chamada. </para>
         </listitem>
       </varlistentry>
 
@@ -113,8 +113,8 @@
         <term>x1,...,xn</term>
 
         <listitem>
-          <para>s√£o as vari√°veis de entrada (strings ou matrizes de reais)
-          enviados √† rotina</para>
+          <para>s„o as vari·veis de entrada (strings ou matrizes de reais)
+          enviados ‡ rotina</para>
         </listitem>
       </varlistentry>
 
@@ -122,7 +122,7 @@
         <term>px1,...,pxn</term>
 
         <listitem>
-          <para>s√£o as respectivas posi√ß√µes destas vari√°veis na seq√º√™ncia de
+          <para>s„o as respectivas posiÁıes destas vari·veis na seq¸Íncia de
           chamamento da rotina <literal>"ident"</literal> e</para>
         </listitem>
       </varlistentry>
@@ -131,10 +131,10 @@
         <term>tx1,...,txn</term>
 
         <listitem>
-          <para>s√£o seus tipos (<literal>"r"</literal>,
+          <para>s„o seus tipos (<literal>"r"</literal>,
           <literal>"i"</literal>, <literal>"d"</literal> e
           <literal>"c"</literal> para ponto flutuante real , inteiro, dupla
-          precis√£o e strings)</para>
+          precis„o e strings) </para>
         </listitem>
       </varlistentry>
 
@@ -142,10 +142,10 @@
         <term>"out"</term>
 
         <listitem>
-          <para>√© a palavra-chave usada para separar vari√°veis de entrada das
-          vari√°veis de sa√≠da. Quando esta palavra-chave est√° presente, ela
-          indica que a forma longa ser√° usada e quando n√£o est√° presente,
-          indica que a forma curta ser√° usada.</para>
+          <para>È a palavra-chave usada para separar vari·veis de entrada das
+          vari·veis de saÌda. Quando esta palavra-chave est· presente, ela
+          indica que a forma longa ser· usada e quando n„o est· presente,
+          indica que a forma curta ser· usada. </para>
         </listitem>
       </varlistentry>
 
@@ -153,9 +153,9 @@
         <term>[ny1, my1]</term>
 
         <listitem>
-          <para>s√£o os tamanhos (n√∫mero de linhas e colunas. Para argumentos
-          'c',<literal> m1*n1</literal> √© o n√∫mero de caracteres) das
-          vari√°veis de sa√≠da e</para>
+          <para>s„o os tamanhos (n˙mero de linhas e colunas. Para argumentos
+          'c',<literal> m1*n1</literal> È o n˙mero de caracteres) das
+          vari·veis de saÌda e </para>
         </listitem>
       </varlistentry>
 
@@ -163,8 +163,8 @@
         <term>py1, ...</term>
 
         <listitem>
-          <para>s√£o as posi√ß√µes das vari√°veis de sa√≠da (possivelmente iguais a
-          <literal>pxi</literal> ) na seq√º√™ncia de chamamento da rotina. Os
+          <para>s„o as posiÁıes das vari·veis de saÌda (possivelmente iguais a
+          <literal>pxi</literal> ) na seq¸Íncia de chamamento da rotina. Os
           inteiros <literal>pyi</literal>'s devem estar em ordem
           crescente.</para>
         </listitem>
@@ -174,26 +174,28 @@
         <term>"ty1", ...</term>
 
         <listitem>
-          <para>s√£o os tipos FORTRAN das vari√°veis de sa√≠da. As
-          <literal>k</literal> primeiras vari√°veis de sa√≠da s√£o postas em
+          <para>s„o os tipos FORTRAN das vari·veis de saÌda. As
+          <literal>k</literal> primeiras vari·veis de saÌda s„o postas em
           <literal>y1,..., yk</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Se uma vari√°vel de sa√≠da coincide com uma vari√°vel de entrada (i.e.,
-    <literal>pyi=pxj</literal> ) pode-se apenas passar sua posi√ß√£o
-    <literal>pyi</literal> . O tamanho e tipo de <literal>yi</literal> s√£o
-    ent√£o os mesmos que os de<literal>xi</literal>. Se uma vari√°vel de sa√≠da
-    coincide com uma vari√°vel de entrada e s√£o especificadas as dimens√µes da
-    vari√°vel de sa√≠da, <literal>[myl,nyl]</literal> deve satisfazer a condi√ß√£o
+    <para>Se uma vari·vel de saÌda coincide com uma vari·vel de entrada (i.e.,
+    <literal>pyi=pxj</literal> ) pode-se apenas passar sua posiÁ„o
+    <literal>pyi</literal> . O tamanho e tipo de <literal>yi</literal> s„o
+    ent„o os mesmos que os de<literal>xi</literal>. Se uma vari·vel de saÌda
+    coincide com uma vari·vel de entrada e s„o especificadas as dimensıes da
+    vari·vel de saÌda, <literal>[myl,nyl]</literal> deve satisfazer a condiÁ„o
     de compatibilidade <literal>mxk*nxk &gt;= myl*nyl</literal>.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">    //Exemplo 1 com um c√≥digo C simples
+    <programlisting role="example">
+    
+    //Exemplo 1 com um cÛdigo C simples
     f1=['#include &lt;math.h&gt;'
         'void fooc(c,a,b,m,n)'
          'double a[],*b,c[];'
@@ -206,7 +208,7 @@
 
     mputl(f1,'fooc.c')
 
-    //criando a biblioteca compartilhada (um gateway (liga√ß√£o), um Makefile e um loader (carregador) s√£o 
+    //criando a biblioteca compartilhada (um gateway (ligaÁ„o), um Makefile e um loader (carregador) s„o 
     //gerados.)  
 
     ilib_for_link('fooc','fooc.o',[],"c") 
@@ -220,15 +222,15 @@
     [m,n]=size(a);
 
     // Entradas:
-    // a est√° na posi√ß√£o 2 e double
+    // a est· na posiÁ„o 2 e double
     // b                3     double
     // n                4     integer
     // m                5     integer
-    // Sa√≠das:
-    // c est√° na posi√ß√£o 1 e double com tamanho [m,n]
+    // SaÌdas:
+    // c est· na posiÁ„o 1 e double com tamanho [m,n]
     c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
 
-    //Exemplo 2 com um c√≥digo FORTRAN simples
+    //Exemplo 2 com um cÛdigo FORTRAN simples
     f1=['      subroutine foof(c,a,b,n,m)'
         '      integer n,m'
         '      double precision a(*),b,c(*)'
@@ -238,7 +240,7 @@
         '      end'];
     mputl(f1,'foof.f')
 
-    //criando a biblioteca compartilhada (um gateway, um Makefile e um loader s√£o  
+    //criando a biblioteca compartilhada (um gateway, um Makefile e um loader s„o  
     //gerados.)  
 
     ilib_for_link('foof','foof.o',[],"f") 
@@ -254,7 +256,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="link">link</link></member>

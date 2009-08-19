@@ -154,3 +154,7 @@ pvm3
 # pvm configuration file
 #
 .pvmd.conf
+
+# atoms generated files
+.atoms
+contrib/archives

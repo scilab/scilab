@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getrelativefilename"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getrelativefilename</refname>
+
+    <refpurpose>dado um nome de diretório absoluto e um nome de arquivo
+    relativo, retorna um nome de arquivo relativo.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rel_file = getrelativefilename(abs_dir,abs_file)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>abs_dir</term>
+
+        <listitem>
+          <para>string : o diretório absoluto</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>abs_file</term>
+
+        <listitem>
+          <para>string : o nome de arquivo absoluto</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rel_file</term>
+
+        <listitem>
+          <para>string : o nome de arquivo relativo</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>dado um nome de diretório absoluto e um nome de arquivo relativo,
+    retorna um nome de arquivo relativo.</para>
+
+    <para>Por exemplo, se o diretório corrente é C:\scilab\bin e o nome de
+    arquivo C:\scilab\modules\helptools\readme.txt é dado, getrelativefilename
+    retornará ..\modules\helptools\readme.txt.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+if MSDOS then
+	getrelativefilename('C:\program file\scilab-4.0\bin','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+	getrelativefilename('C:\program file\scilab-4.0\bin\','C:\program file\scilab-4.0\modules\helptools\help.dtd')
+	getrelativefilename(SCI+'\bin',SCI+'\modules\helptools\help.dtd')
+	getrelativefilename(WSCI+'\bin',WSCI+'\modules\helptools\help.dtd')
+	getrelativefilename(getcwd(),WSCI+'\bin\Wscilex')
+else
+	getrelativefilename('/usr/local/scilab-4.0/bin','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+	getrelativefilename('/usr/local/scilab-4.0/bin/','/usr/local/scilab-4.0/modules/helptools/help.dtd')
+	getrelativefilename(SCI+'/bin',SCI+'/modules/helptools/help.dtd')
+	getrelativefilename(getcwd(),SCI+'/bin/scilex')
+end
+
+	</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="getshortpathname">getshortpathname</link></member>
+
+      <member><link linkend="getlongpathname">getlongpathname</link></member>
+
+      <member><link linkend="getcwd">getcwd</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Pierre MARECHAL</para>
+  </refsection>
+</refentry>

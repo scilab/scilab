@@ -10,68 +10,97 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="min_weight_tree">
+<refentry version="5.0-subset Scilab" xml:id="min_weight_tree" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>min_weight_tree</refname>
-    <refpurpose> minimum weight spanning tree</refpurpose>
+
+    <refpurpose>minimum weight spanning tree</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>t = min_weight_tree([i],g)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>i</term>
+
         <listitem>
           <para>integer, node number of the root of the tree</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>g</term>
+
         <listitem>
-          <para> a <link linkend="graph_data_structure">graph_data_structure</link>.</para>
+          <para>a <link
+          linkend="graph_data_structure">graph_data_structure</link>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
-          <para>row vector of integer numbers of the arcs of the tree if it exists</para>
+          <para>row vector of integer numbers of the arcs of the tree if it
+          exists</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
+
     <para><literal>min_weight_tree</literal> tries to find a minimum weight
     spanning tree for the graph <literal>g</literal>. The optional argument
     <literal>i</literal> is the number of the root node of the tree; its
-    default value is node number 1. This node is meaningless for an
-    undirected graph.</para>
-    <para>
-    The weights are given by the <literal>weight</literal> field of the
-    graph <link linkend="edges_data_structure">edges_data_structure</link>.  If its value is not
-    given, it is assumed to be equal to 0 on each edge.  Weigths can
-    be positive, equal to 0 or negative. To compute a spanning tree
-    without dealing with weights, give to weights a value of 0 on each
+    default value is node number 1. This node is meaningless for an undirected
+    graph.</para>
+
+    <para>The weights are given by the <literal>weight</literal> field of the
+    graph <link linkend="edges_data_structure">edges_data_structure</link>. If
+    its value is not given, it is assumed to be equal to 0 on each edge.
+    Weigths can be positive, equal to 0 or negative. To compute a spanning
+    tree without dealing with weights, give to weights a value of 0 on each
     edge.</para>
-    <para><literal>min_weight_tree</literal> returns the tree <literal>t</literal> as
-    a row vector of the arc numbers (directed graph) or edge numbers
-    (undirected graph) if it exists or the empty vector
-    <literal>[]</literal> otherwise.  If the tree exists, the dimension of
-    <literal>t</literal> is the number of nodes less 1.  If
+
+    <para>The graph structure may not have a weight field defined. In this
+    case <literal>min_weight_tree supposes that all weigths are equal to zero.
+    To add the weight field to the graph structure one has to use the 
+    <link linkend="add_edge_data">add_edge_data</link>function.</literal></para>
+
+    <para><literal>min_weight_tree</literal> returns the tree
+    <literal>t</literal> as a row vector of the arc numbers (directed graph)
+    or edge numbers (undirected graph) if it exists or the empty vector
+    <literal>[]</literal> otherwise. If the tree exists, the dimension of
+    <literal>t</literal> is the number of nodes less 1. If
     <literal>t(i)</literal> is the root of the tree: - for j &lt; i,
     <literal>t(j)</literal> is the number of the arc in the tree after node
-    <literal>t(j)</literal> - for j &gt; i, <literal>t(j)</literal> is the number
-    of the arc in the tree before node <literal>t(j)</literal></para>
+    <literal>t(j)</literal> - for j &gt; i, <literal>t(j)</literal> is the
+    number of the arc in the tree before node <literal>t(j)</literal></para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -80,6 +109,8 @@ g.nodes.graphics.x=[117,57,7,4,57,57,112,111,145,167,227,232,195,287,291,354,296
 g.nodes.graphics.y=[5,42,87,134,89,135,86,137,191,46,80,135,189,197,69,51,126];
 g.nodes.graphics.type(1)=2;
 show_graph(g);
+
+g=add_edge_data(g,"weight",ones(edge_number(g),1));
 t=min_weight_tree(1,g); 
 
 g.edges.graphics.foreground(t)=color('red');
@@ -87,6 +118,6 @@ show_graph(g);
 
 
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
 </refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>lcmdiag</refname>
 
-    <refpurpose>fatora√ß√£o diagonal por MMC</refpurpose>
+    <refpurpose>fatoraÁ„o diagonal por MMC</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[N,D]=lcmdiag(H)
 [N,D]=lcmdiag(H,flag)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>H</term>
 
         <listitem>
-          <para>matriz de raz√µes de polin√¥mios </para>
+          <para>matriz de razıes de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>N</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>D</term>
 
         <listitem>
-          <para>matriz de polin√¥mios diagonal </para>
+          <para>matriz de polinÙmios diagonal </para>
         </listitem>
       </varlistentry>
 
@@ -67,23 +67,23 @@
 
         <listitem>
           <para>string: <literal>'row'</literal> ou <literal>'col'</literal>
-          (padr√£o)</para>
+          (padr„o)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>[N,D]=lcmdiag(H,'row')</literal> computa uma fatora√ß√£o
-    <literal>D*H=N</literal>, i.e. <literal>H=D^(-1)*N</literal> onde D √© uma
-    matriz diagonal com D(k,k)=MMC da k-√©sima linha de H('den').</para>
+    <para><literal>[N,D]=lcmdiag(H,'row')</literal> computa uma fatoraÁ„o
+    <literal>D*H=N</literal>, i.e. <literal>H=D^(-1)*N</literal> onde D È uma
+    matriz diagonal com D(k,k)=MMC da k-Èsima linha de H('den').</para>
 
     <para><literal>[N,D]=lcmdiag(H)</literal> ou
     <literal>[N,D]=lcmdiag(H,'col)</literal> retorna
     <literal>H=N*D^(-1)</literal> com matriz diagonal D e D(k,k)=MMC da
-    k-√©sima coluna de H('den')</para>
+    k-Èsima coluna de H('den')</para>
   </refsection>
 
   <refsection>
@@ -100,7 +100,7 @@ N/D-H
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="lcm">lcm</link></member>

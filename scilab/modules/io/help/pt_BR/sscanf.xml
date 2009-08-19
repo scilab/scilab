@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sscanf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sscanf</refname>
+
+    <refpurpose>converte entrada formatada fornecida por um
+    string</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[v_1,...v_n]=sscanf (string,format)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>: especifica a conversão de formato</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string</term>
+
+        <listitem>
+          <para>: especifica a entrada a ser lida</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função está obsoleta, use a função <literal>msscanf</literal>
+    de preferência, que é mais eficiente mais compatível com o procedimento C
+    <literal>sscanf</literal>.</para>
+
+    <para>A função sscanf intepreta um string de acordo com um formato, e
+    retorna os resultados convertidos.</para>
+
+    <para>O parâmetro de formato contém especificações de conversão utilizadas
+    para interpretar a saída.</para>
+
+    <para>O parâmetro de formato pode conter caracteres em branco (espaços,
+    tabulações, novas linhas, quebra de página) os quais, exceto nos dois
+    casos seguintes, lê a entrada até o próximo caractere preenchido. A menos
+    que haja uma correspondência no string de controle, espaços em branco
+    (incluindo caractere de nova linha) vindo por último não são lidos.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Qualquer caractere exceto % (sinal de porcento), que deve
+        corresponder ao próximo caractere do fluxo de entrada.</para>
+      </listitem>
+
+      <listitem>
+        <para>Uma especificação de conversão que direciona a conversão do
+        próximo campo de entrada. Ver <link
+        linkend="scanf_conversion">scanf_conversion</link> para
+        detalhes.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="msscanf">msscanf</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link
+      linkend="scanf_conversion">scanf_conversion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

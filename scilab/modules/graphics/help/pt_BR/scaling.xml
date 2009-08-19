@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>scaling</refname>
 
-    <refpurpose>transformaÃ§Ã£o afim de um conjunto de pontos</refpurpose>
+    <refpurpose>transformação afim de um conjunto de pontos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>xy1=scaling(xy,factor,[orig])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
         <term>factor</term>
 
         <listitem>
-          <para>escalar real, coeficiente da transformaÃ§Ã£o linear. </para>
+          <para>escalar real, coeficiente da transformação linear. </para>
         </listitem>
       </varlistentry>
 
@@ -65,16 +65,16 @@
         <term>orig</term>
 
         <listitem>
-          <para>vetor de deslocamento; o valor padrÃ£o Ã© [0;0].</para>
+          <para>vetor de deslocamento; o valor padrão é [0;0].</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>scaling</literal> executa uma transformaÃ§Ã£o afim de um
+    <para><literal>scaling</literal> executa uma transformação afim de um
     conjunto de pontos definidos pelas coordenadas
     <literal>xy</literal>:</para>
 

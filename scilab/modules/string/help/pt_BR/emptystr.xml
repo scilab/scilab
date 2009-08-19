@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="emptystr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>emptystr</refname>
+
+    <refpurpose>string de comprimento zero</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>s=emptystr()
+s=emptystr(a)
+s=emptystr(m,n)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>qualquer tipo de matriz</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>s</term>
+
+        <listitem>
+          <para>matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m,n</term>
+
+        <listitem>
+          <para>inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna uma matriz de strings de comprimento zero.</para>
+
+    <para>Sem argumentos de entrada, retorna um string de comprimento
+    zero.</para>
+
+    <para>Com uma matriz como argumento de entrada, retorna uma matriz de
+    strings de comprimento zero de mesmo tamanho.</para>
+
+    <para>Com dois argumentos inteiros, retorna uma matriz mxn de strings de
+    comprimento zero.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=emptystr();for k=1:10, x=x+','+string(k);end
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="part">part</link></member>
+
+      <member><link linkend="length">length</link></member>
+
+      <member><link linkend="string">string</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

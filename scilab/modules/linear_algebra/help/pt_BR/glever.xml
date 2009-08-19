@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>E, A</term>
 
         <listitem>
-          <para>duas matrizes de reais quadradas de igual dimens√£o</para>
+          <para>duas matrizes de reais quadradas de igual dimens„o</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>s</term>
 
         <listitem>
-          <para>string (o valor padr√£o √© '<literal>s</literal>')</para>
+          <para>string (o valor padr„o È '<literal>s</literal>')</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +57,7 @@
         <term>Bfs,Bis</term>
 
         <listitem>
-          <para>duas matrizes de polin√¥mios </para>
+          <para>duas matrizes de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -65,16 +65,16 @@
         <term>chis</term>
 
         <listitem>
-          <para>polin√¥mio</para>
+          <para>polinÙmio</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Computa√ß√£o de</para>
+    <para>ComputaÁ„o de</para>
 
     <para><literal>(s*E-A)^-1</literal></para>
 
@@ -87,13 +87,13 @@
    
     </programlisting>
 
-    <para><literal>chis</literal> = polin√¥mio caracter√≠stico (at√© uma
+    <para><literal>chis</literal> = polinÙmio caracterÌstico (atÈ uma
     constante multiplicativa).</para>
 
-    <para><literal>Bfs</literal> = nmatriz de polin√¥mios como
+    <para><literal>Bfs</literal> = nmatriz de polinÙmios como
     numerador.</para>
 
-    <para><literal>Bis</literal> = matriz de polin√¥mios ( - expans√£o de
+    <para><literal>Bis</literal> = matriz de polinÙmios ( - expans„o de
     <literal>(s*E-A)^-1</literal> ao infinito).</para>
 
     <para>Note o sinal - antes de <literal>Bis</literal>.</para>
@@ -102,7 +102,7 @@
   <refsection>
     <title>Cuidado </title>
 
-    <para>Esta fun√ß√£o usa <literal>cleanp</literal> para simplificar
+    <para>Esta funÁ„o usa <literal>cleanp</literal> para simplificar
     <literal>Bfs,Bis</literal> e <literal>chis</literal>.</para>
   </refsection>
 
@@ -119,7 +119,7 @@ inv(F)-((Bfs/chis) - Bis)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="rowshuff">rowshuff</link></member>

@@ -8,7 +8,7 @@
         <submenu label="&amp;Execute...">
             <callback
             instruction='
-              %fileToExec = uigetfile("*.sc*", getcwd(), gettext("Select a file to execute"));
+              %fileToExec = uigetfile("*.sc*", pwd(), gettext("Select a file to execute"));
               if ~isempty(%fileToExec) then
                 exec(%fileToExec);
                 disp(msprintf(gettext("Execution done.\n")));
@@ -20,7 +20,7 @@
         <submenu label="&amp;Open a file...">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", getcwd(), gettext("Select a file to open with Scipad"));
+              %fileToOpen = uigetfile("*.sc*", pwd(), gettext("Select a file to open with Scipad"));
               if ~isempty(%fileToOpen) then
                 scipad(%fileToOpen);
               end
@@ -30,7 +30,7 @@
         <submenu label="&amp;Load environment...">
             <callback
             instruction='
-              %fileToLoad = uigetfile("*.sav", getcwd(), gettext("Select a file to load"));
+              %fileToLoad = uigetfile("*.sav", pwd(), gettext("Select a file to load"));
               if ~isempty(%fileToLoad) then
                 load(%fileToLoad);
                 disp(msprintf(gettext("Environment loaded.\n")));
@@ -41,7 +41,7 @@
         <submenu label="&amp;Save environment...">
             <callback
             instruction='
-              %fileToSave = uiputfile("*.sav", getcwd(), gettext("Select a file to write"));
+              %fileToSave = uiputfile("*.sav", pwd(), gettext("Select a file to write"));
               if ~isempty(%fileToSave) then
                 if isempty(fileparts(%fileToSave, "extension")) then
                   %fileToSave = %fileToSave + ".sav";
@@ -56,7 +56,7 @@
         <submenu label="&amp;Change current directory...">
             <callback
             instruction='
-              %newDir = uigetdir(getcwd(), gettext("Select a directory"));
+              %newDir = uigetdir(pwd(), gettext("Select a directory"));
               if ~isempty(%newDir) then
                 cd(%newDir);
               end
@@ -64,7 +64,7 @@
             type="0"/>
         </submenu>
         <submenu label="&amp;Display current directory">
-            <callback instruction='if iswaitingforinput() then printf("\n%s\n\n%s\n",prompt(),getcwd()); else printf("\n\n%s\n\n",getcwd());end' type="0"/>
+            <callback instruction='if iswaitingforinput() then printf("\n%s\n\n%s\n",prompt(),pwd()); else printf("\n\n%s\n\n",pwd());end' type="0"/>
         </submenu>
         <separator/>
         <submenu label="P&amp;age setup...">

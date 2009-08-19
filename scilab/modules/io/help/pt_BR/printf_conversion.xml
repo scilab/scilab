@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="printf_conversion" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>printf_conversion</refname>
+
+    <refpurpose>Especificações de conversão de printf, sprintf,
+    fprintf</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Cada especificação de conversão no parâmetro format de
+    <literal>printf</literal> , <literal>sprintf</literal> ,
+    <literal>fprintf</literal> possui a seguinte sintaxe:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Um sinal % (porcento).</para>
+      </listitem>
+
+      <listitem>
+        <para>Zero ou mais <literal>options</literal> (opções), que modificam
+        o significado da especificação de conversão. A lista seguinte contem
+        os caracteres <literal>option</literal> e seus significados:</para>
+      </listitem>
+
+      <listitem>
+        <para>Alinhe à esquerda, dentro do campo, o resultado da
+        conversão.</para>
+      </listitem>
+
+      <listitem>
+        <para>Comece o resultado de uma conversão com sinal com um sinal (+ ou
+        -).</para>
+      </listitem>
+
+      <listitem>
+        <para>Prefixe um caractere de espaço ao resultado se o primeiro
+        caractere de uma conversão com sinal não for um sinal. Se ambas as
+        opções (espaço) e + aparecerem, a opção (space) é ignorada.</para>
+      </listitem>
+
+      <listitem>
+        <para>Converta o valor para uma forma alternativa. Para as conversões
+        <literal>c</literal>, <literal>d</literal>, <literal>i</literal>,
+        <literal>s</literal>, e <literal>u</literal>, a opção
+        <literal>#</literal> não possui efeito. Para a conversão
+        <literal>o</literal>, <literal>#</literal> aumenta a precisão para
+        forçar o primeiro dígito do resultado a ser 0 (zero). Para as
+        conversões <literal>x</literal> e <literal>X</literal>, um valor
+        não-nulo possui 0x ou 0X prefixado a ele. Para as conversões
+        <literal>e, E, f, g,</literal> e <literal>G</literal>, o resultado
+        sempre contém ponto decimal, Mesmo que nenhum dígito o siga. Para as
+        conversões <literal>g</literal> e <literal>G</literal>, zeros por
+        último não são removidos.</para>
+      </listitem>
+
+      <listitem>
+        <para>Aumente a largura do campo utilizando zeros à esquerda (seguindo
+        qualquer indicação de sinal ou base) para as conversões
+        <literal>d</literal>, <literal>i</literal>, <literal>o</literal>,
+        <literal>u</literal>, <literal>x</literal>, <literal>X</literal>,
+        <literal>e</literal>, <literal>E</literal>, <literal>f</literal>,
+        <literal>g</literal>, e <literal>G</literal>; nenhum aumento de espaço
+        é realizado. Se ambos os indicadores <literal>0</literal> e
+        <literal>\-</literal> (barra) aparecerem, o indicador
+        <literal>0</literal> é ignorado. Para as conversões
+        <literal>d</literal>, <literal>i</literal>, <literal>o</literal>
+        <literal>u</literal>, <literal>x</literal>, e <literal>X</literal>, se
+        uma precisão for especificada, o indicador <literal>0</literal> também
+        é ignorado.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Um string de dígitos decimais opcional que especifica a largura
+    mínima do campo. Se o valor convertido tiver menos caracteres que a
+    largura do campo, o campo é aumentado à esquerda até o comprimento
+    especificado pela largura do campo. Se a opção de ajuste à esquerda for
+    especificada, o campo é aumentado pela direita.</para>
+
+    <para>Uma precisão opcional. A precisão é um <literal>.</literal> (ponto)
+    seguido por um string de dígito decimal. Se nenhuma precisão for
+    fornecida, o parâmetro é tratado como 0 (zero). A precisão
+    especifica:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>O número mínimo de dígitos a aparecerem nas conversões
+        <literal>d</literal>, <literal>u</literal>, <literal>o</literal>,
+        <literal>x</literal>, ou <literal>X</literal> </para>
+      </listitem>
+
+      <listitem>
+        <para>O número de dígitos a aparecerem após o ponto decimal nas
+        conversões <literal>e</literal>, <literal>E</literal>, e
+        <literal>f</literal></para>
+      </listitem>
+
+      <listitem>
+        <para>O número máximo de dígitos significativos para as conversões
+        <literal>g</literal> e <literal>G</literal></para>
+      </listitem>
+
+      <listitem>
+        <para>O número máximo de caracteres a serem impressos a partir de um
+        string em uma convesão <literal>s</literal></para>
+      </listitem>
+
+      <listitem>
+        <para>O caractere que indica o tipo de conversão a ser
+        aplicada:</para>
+      </listitem>
+
+      <listitem>
+        <para>Não realiza conversão. Exibe %.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um valor inteiro e o converte para notação decimal com
+        sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
+        o valor sendo convertido puder ser representado em menos dígitos, ele
+        é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
+        de se converter um valor zero com uma precisão de zero é um string
+        nulo. A especificação de uma largura de campo com zero como caractere
+        mais à esquerda faz com que o valor da largura do campo seja
+        preenchido com zeros à esquerda.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um valor inteiro e o converte para a notação decimal sem
+        sinal. A precisão especifica o número mínimo de dígitos a aparecer. Se
+        o valor sendo convertido puder ser representado em menos dígitos, ele
+        é expandido com zeros à esquerda. A precisão padrão é 1. O resultado
+        de se converter um valor zero com uma precisão de zero é um string
+        nulo. A especificação de uma largura de campo com zero como caractere
+        mais à esquerda faz com que o valor da largura do campo seja
+        preenchido com zeros à esquerda.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um valor inteiro e o converte para a sua notação octal
+        sem sinal. A precisão especifica o número mínimo de dígitos a
+        aparecer. Se o valor sendo convertido puder ser representado em menos
+        dígitos, ele é expandido com zeros à esquerda. A precisão padrão é 1.
+        O resultado de se converter um valor zero com uma precisão de zero é
+        um string nulo. A especificação de uma largura de campo com zero como
+        caractere mais à esquerda faz com que o valor da largura do campo seja
+        preenchido com zeros à esquerda. Não é implicado um valor octal para a
+        largura do campo.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um valor inteiro e o converte para a sua notação
+        hexadecimal sem sinal. As letras ``abcdef'' são utilizadas para a
+        conversão <literal>x</literal>; as letras ``ABCDEF'' são utilizadas
+        para a conversão <literal>X</literal>. A precisão especifica o número
+        mínimo de dígitos a aparecer. Se o valor sendo convertido puder ser
+        representado em menos dígitos, ele é expandido com zeros à esquerda. A
+        precisão padrão é 1. O resultado de se converter um valor zero com uma
+        precisão de zero é um string nulo. A especificação de uma largura de
+        campo com zero como caractere mais à esquerda faz com que o valor da
+        largura do campo seja preenchido com zeros à esquerda.</para>
+      </listitem>
+
+      <listitem>
+        <para>Aceita um valor float ou double e o converte para a sua notação
+        decimal no formato %[\-]<literal>ddd.ddd</literal>. O número de
+        dígitos após o ponto decimal é igual à especificação de
+        precisão.</para>
+      </listitem>
+
+      <listitem>
+        <para>Se nenhuma precisão for especificada, a saída possui seis
+        dígitos</para>
+      </listitem>
+
+      <listitem>
+        <para>Se a precisão for zero, nenhum ponto decimal aparece e o sistema
+        imprime na saída o valor inteiro mais próximo de
+        <literal>value</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Se a saída possui um ponto decimal, pelo menos um dígito é posto
+        antes dele.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um real e o converte para a sua forma exponencial
+        %[\-]<literal>d.ddde</literal>+/\-<literal>dd</literal>. Há um dígito
+        antes do ponto decimal, e o número de dígitos após o ponto decimal é
+        igual à especificação de precisão.</para>
+      </listitem>
+
+      <listitem>
+        <para>Se nenhuma precisão for especificada, a saída são seis
+        dígitos</para>
+      </listitem>
+
+      <listitem>
+        <para>Se a precisão for zero, nenhum ponto decimal aparece.</para>
+      </listitem>
+
+      <listitem>
+        <para>A caractere de conversão <literal>E</literal> produz um número
+        com o caractere 'E', ao invés de 'e' antes do expoente. O expoente
+        sempre contém pelo menos dois dígitos. Se o valor for zero, o expoente
+        é zero.</para>
+      </listitem>
+
+      <listitem>
+        <para>Aceita um real e o converte no estilo dos caracteres de
+        conversão <literal>e</literal>, <literal>E</literal>, ou
+        <literal>f</literal>, com a precisão especificando o número de dígitos
+        significativos. Zeros por último são removidos. Um ponto decimal
+        aparece apenas se for seguido de um dígito. O estilo depende do valor
+        convertido. O resultado é o estilo <literal>e</literal>
+        (<literal>E</literal>, se <literal>G</literal> é o indicador
+        utilizado) apenas se o expoente resultante da conversão for menor do
+        que -4, ou se for maior do que ou igual à precisão.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita e exibe um valor inteiro convertido em um
+        caractere.</para>
+      </listitem>
+
+      <listitem>
+        <para>:Aceita um valor string e exibe caracteres do string até o fim
+        ou até que o número de caracteres indicados pela precisão seja
+        alcançado. Se nenhuma precisão for especificada, todos os caracteres
+        até o fim são exibidos.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Uma largura de campo ou uma precisão podem ser indicadas por
+    <literal>*</literal> (asterísco) ao invés de um string de dígito. Neste
+    caso, um parâmetro de valor inteiro provê a largura do campo ou a
+    precisão. O parâmetro de valor convertido para saída não é buscado até que
+    a letra de conversão seja alcançada, então os parâmetros especificando o
+    comprimento de campo ou precisão devem aparecer antes do valor a ser
+    convertido (se houver algum).</para>
+
+    <para>Se o resultado da conversão for maior que a largura do campo, o
+    campo é expandido para conter o resultado convertido.</para>
+
+    <para>A representação do sinal de mais depende da opção de formatação
+    especificada, se <literal>+</literal> ou (espaço).</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="printf">printf</link></member>
+
+      <member><link linkend="fprintf">fprintf</link></member>
+
+      <member><link linkend="sprintf">sprintf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

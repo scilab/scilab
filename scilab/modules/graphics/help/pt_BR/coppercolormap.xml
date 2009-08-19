@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="coppercolormap" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>coppercolormap</refname>
+
+    <refpurpose>Mapa de cores de preto a um tom claro de cobre</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>cmap=coppercolormap(n)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiro &gt;= 3, o tamanho do mapa de cores. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cmap</term>
+
+        <listitem>
+          <para>matriz com 3 colunas <literal>[R,G,B]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>coppercolormap</literal> computa um mapa de cores com
+    <literal>n</literal> cores que variam de preto a um tom claro de
+    cobre.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+f = scf();
+plot3d1();
+f.color_map = coppercolormap(32);
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="colormap">colormap</link></member>
+
+      <member><link linkend="autumncolormap">autumncolormap</link></member>
+
+      <member><link linkend="bonecolormap">bonecolormap</link></member>
+
+      <member><link linkend="coolcolormap">coolcolormap</link></member>
+
+      <member><link linkend="graycolormap">graycolormap</link></member>
+
+      <member><link linkend="hotcolormap">hotcolormap</link></member>
+
+      <member><link linkend="hsvcolormap">hsvcolormap</link></member>
+
+      <member><link linkend="jetcolormap">jetcolormap</link></member>
+
+      <member><link linkend="oceancolormap">oceancolormap</link></member>
+
+      <member><link linkend="pinkcolormap">pinkcolormap</link></member>
+
+      <member><link linkend="rainbowcolormap">rainbowcolormap</link></member>
+
+      <member><link linkend="springcolormap">springcolormap</link></member>
+
+      <member><link linkend="summercolormap">summercolormap</link></member>
+
+      <member><link linkend="whitecolormap">whitecolormap</link></member>
+
+      <member><link linkend="wintercolormap">wintercolormap</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>sysdiag</refname>
 
-    <refpurpose>conexÃ£o de sistemas diagonais em blocos</refpurpose>
+    <refpurpose>conexão de sistemas diagonais em blocos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Retorna um sistema diagonal em blocos feito de subsistemas postos na
     diagonal principal.</para>
@@ -44,19 +44,19 @@
         <term>ai</term>
 
         <listitem>
-          <para>subsistemas (i.e. ganhos, ou sistema linear em forma de espaÃ§o
-          de estados ou de transferÃªncia)</para>
+          <para>subsistemas (i.e. ganhos, ou sistema linear em forma de espaço
+          de estados ou de transferência)</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Usado em particular para interconexÃµes de sistemas.</para>
+    <para>Usado em particular para interconexões de sistemas.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
-    <para>No mÃ¡ximo 17 argumentos.</para>
+    <para>No máximo 17 argumentos.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="brackets">brackets</link></member>

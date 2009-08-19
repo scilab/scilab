@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="string" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>string</refname>
+
+    <refpurpose>conversão para string (cadeia de caracteres)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>string(x)
+[out,in,text]=string(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>matriz de reais ou função</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Converte uma matriz em uma matriz de strings.</para>
+
+    <para>Se <literal>x</literal> é uma função
+    <literal>[out,in,text]=string(x)</literal> retorna três vetores de strings
+    : <literal>out</literal> é o vetor de variáveis de saída,
+    <literal>in</literal> é o vetor de variáveis de entrada, e
+    <literal>text</literal> é o vetor (coluna) do código fonte da
+    função.</para>
+
+    <para>Se <literal>x</literal> é uma variável <literal>lib</literal>
+    (bibiloteca), text é um vetor coluna de strings. O primeiro elemento
+    contém o endereço do arquivo biblioteca e o outro o nome da função que ela
+    define.</para>
+
+    <para>Strings são definidos como <literal>'string'</literal> (entre aspas
+    simples) ou <literal>"string"</literal> (entre aspas duplas); matrizes de
+    strings são definidas como matrizes de constantes.</para>
+
+    <para>Concatenação de strings é feita pela operação
+    <literal>+</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 'Result is '+string(x)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="part">part</link></member>
+
+      <member><link linkend="length">length</link></member>
+
+      <member><link linkend="quote">quote</link></member>
+
+      <member><link linkend="evstr">evstr</link></member>
+
+      <member><link linkend="execstr">execstr</link></member>
+
+      <member><link linkend="strsubst">strsubst</link></member>
+
+      <member><link linkend="strcat">strcat</link></member>
+
+      <member><link linkend="strindex">strindex</link></member>
+
+      <member><link linkend="sci2exp">sci2exp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

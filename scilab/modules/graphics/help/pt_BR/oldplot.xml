@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="oldplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>oldplot</refname>
+
+    <refpurpose>Esboço simples (versão antiga)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>oldplot(x,y,[xcap,ycap,caption])
+oldplot(y)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores de tamanhos iguais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xcap,ycap,caption</term>
+
+        <listitem>
+          <para>strings ou matrizes de strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esboça <literal>y</literal> em função <literal>x</literal>.
+    <literal>xcap</literal> e <literal>ycap</literal> são legendas para os
+    eixos x e y respectivamente e <literal>caption</literal> é a legenda do
+    esboço.</para>
+
+    <para>IChamado com apenas um argumento, <literal>oldplot(y)</literal>
+    esboça o vetor <literal>y</literal> ou, se <literal>y</literal> for uma
+    matriz, esboça todos os vetores linhas em um mesmo esboço. Isto é feito em
+    relação ao vetor 1: &lt;número de colunas de
+    <literal>y</literal>&gt;.</para>
+
+    <para><literal>oldplot</literal> está obsoleto. Use
+    <literal>plot2d</literal> ou <literal>plot</literal> ao invés.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=0:0.1:2*%pi;
+// esboço simples
+oldplot(sin(x))
+// usando legendas
+xbasc()
+oldplot(x,sin(x),"sin","tempo","esboço de seno")
+// esboço de duas funções
+
+xbasc()
+oldplot([sin(x);cos(x)])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="plot">plot</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

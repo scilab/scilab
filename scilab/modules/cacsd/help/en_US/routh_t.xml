@@ -10,36 +10,123 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="routh_t">
+<refentry version="5.0-subset Scilab" xml:id="routh_t" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>routh_t</refname>
-    <refpurpose> Routh's table</refpurpose>
+
+    <refpurpose>Routh's table</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>r=routh_t(h [,k]).</synopsis>
+
+    <synopsis>r=routh_t(p)
+r=routh_t(h [,k])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
-        <term>h</term>
+        <term>p</term>
+
         <listitem>
-          <para>square rational matrix</para>
+          <para>a real polynomial</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>a real SISO transfer system</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>a real polynomial or a scalar</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>a matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>r=routh_t(h,k)</literal> computes Routh's table of denominator of the
-    system described by transfer matrix SISO <literal>h</literal> with the
-    feedback by the gain <literal>k</literal>.</para>
-    <para>
-    If  <literal>k=poly(0,'k')</literal> we will have a polynomial matrix with dummy variable
-    <literal>k</literal>, formal expression of the Routh table.</para>
+
+    <para><literal>r=routh_t(p)</literal> computes Routh's table of the
+    polynomial <literal>h</literal>.</para>
+
+    <para><literal>r=routh_t(h,k)</literal> computes Routh's table of
+    denominator of the system described by transfer matrix SISO
+    <literal>h</literal> with the feedback by the gain
+    <literal>k</literal>.</para>
+
+    <para>If <literal>k=poly(0,'k')</literal> we will have a polynomial matrix
+    with dummy variable <literal>k</literal>, formal expression of the Routh
+    table.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+    s=%s;
+    P=5*s^3-10*s^2+7*s+20;
+    routh_t(P)
+
+    //transfer function with formal feedback
+    routh_t((1+s)/P,poly(0,'k'))
+    
+    // One of the coefficients in the polynomial equals zero
+    P1=2*s^3-24*s+32; 
+    routh_t(P1)
+
+    // A row full of zeros
+    P2=s^4-6*s^3+10*s^2-6*s+9;
+    routh_t(P2)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="root">root</link></member>
+
+      <member><link linkend="kpure">kpure</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>http://controls.engin.umich.edu/wiki/index.php/RouthStability</para>
+
+    <para>http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</para>
+
+    <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
+    Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133</para>
   </refsection>
 </refentry>

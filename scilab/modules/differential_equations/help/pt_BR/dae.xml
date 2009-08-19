@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dae" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dae</refname>
+
+    <refpurpose>Solucionador de equações diferenciais algébricas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis> y=dae(initial,t0,t,res) 
+[y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
+[y,rd]=dae("root",initial,t0,t,res,ng,surface)
+[y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>initial</term>
+
+        <listitem>
+          <para>um vetor coluna. Pode ser igual a <literal>x0 </literal>or
+          <literal>[x0;xdot0]</literal>, onde <literal>x0</literal> é o valor
+          de estado no tempo inicial <literal>t0</literal> e
+          <literal>ydot0</literal> é o valor da derivada do estado inicial ou
+          uma estimativa dela (ver abaixo).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>número real, o tempo inicial</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>escalar real ou vetor. Fornece instantes para os quais você
+          deseja uma solução. Note que você pode obter soluções para cada
+          ponto de passo de dae fazendo <literal><link
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rtol</term>
+
+        <listitem>
+          <para>escalar real ou vetor coluna com o mesmo tamanho que
+          <literal>x0</literal>. A tolerância do erro relativo da solução. Se
+          <literal>rtol</literal> for um vetor, as tolerâncias são
+          especificadas para cada componente do
+          estado.<literal></literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol</term>
+
+        <listitem>
+          <para>escalar real ou vetor coluna com o mesmo tamanho que
+          <literal>x0</literal>. A tolerância do erro absoluto da solução. Se
+          <literal>atol</literal> for um vetor, as tolerâncias são
+          especificadas para cada componente do estado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>uma função externa (<link linkend="external" role=""
+          version="">external</link>). Computa o valor de
+          <literal>g(t,y,ydot)</literal>. Pode ser</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Uma função do Scilab</term>
+
+              <listitem>
+                <para>Neste caso, a sua seqüência de chamamento pode ser
+                <literal>[r,ires]=res(t,x,xdot)</literal> e
+                <literal>res</literal> deve retornar o resíduo
+                <literal>r=g(t,x,xdot)</literal> e o indicador de erro
+                <literal>ires</literal>. <literal>ires = 0</literal> se
+                <literal>res</literal> obtiver sucesso ao computar
+                <literal>r</literal>, <literal>=-1</literal> se o resíduo é
+                indefinido localmente para <literal>(t,x,xdot)</literal>,
+                <literal>=-2</literal> se os parâmetros estão fora do
+                intervalo admissível.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Uma lista</term>
+
+              <listitem>
+                <para>Esta forma é utilizada para passar parâmetros à função.
+                Deve ser como segue:</para>
+
+                <programlisting>list(res,p1,p2,...)</programlisting>
+
+                <para>Onde a seqüência de chamamento da função
+                <literal>res</literal> é agora</para>
+
+                <programlisting>r=res(t,y,ydot,p1,p2,...)</programlisting>
+
+                <para><literal>res</literal> ainda retorna o valor residual
+                como uma função de <literal>(t,x,xdot,x1,x2,...)</literal>, e
+                p1,p2,... são parâmetros da função.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Um string</term>
+
+              <listitem>
+                <para>Deve se referir ao nome subrotina C ou Fortran. Supondo
+                que &lt;r_name&gt; ié o nome dado.</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>A seqüência de chamamento em Fortran deve
+                    ser</literal></para>
+
+                    <para><literal>&lt;r_name&gt;(t,x,xdot,res,ires,rpar,ipar)</literal></para>
+
+                    <para><literal>double precision
+                    t,x(*),xdot(*),res(*),rpar(*)</literal></para>
+
+                    <para><literal>integer ires,ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>A seqüência de chamamento em C deve ser</para>
+
+                    <para>C2F(&lt;r_name&gt;)(double *t, double *x, double
+                    *xdot, double *res, integer *ires, double *rpar, integer
+                    *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>onde</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>t</literal> é o valor de tempo
+                    corrente</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>x</literal> é o array de estados</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>xdot</literal> é o array das derivadas dos
+                    estados</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>res é o array de resíduos</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>ires</literal> é o indicador de
+                    execução</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>rpar</literal> é o array de valores de
+                    parâmetros em ponto flutuante, necessário, mas não pode
+                    ser definido pela função <literal>dae</literal> </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>ipar</literal> é o array de valores de
+                    parâmetros inteiros, necessário, mas não pode ser definido
+                    pela função <literal>dae</literal> </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>uma função externa (<link linkend="external" role=""
+          version="">external</link>). Computa o valor de
+          <literal>dg/dx+cj*dg/dxdot</literal> para um dado valor do parâmetro
+          <literal>cj. Pode ser</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Uma função do Scilab</term>
+
+              <listitem>
+                <para>Sua seqüência de chamamento deve ser
+                <literal>r=jac(t,x,xdot,cj)</literal> e a função
+                <literal>jac</literal> deve retornar
+                <literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>
+                onde <literal>cj</literal> é um escalar real.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Uma lista</term>
+
+              <listitem>
+                <para>Esta forma é utilizada para passar parâmetros à função.
+                Deve ser como segue:</para>
+
+                <programlisting>list(jac,p1,p2,...)               </programlisting>
+
+                <para>Onde a seqüência de chamamento da função
+                <literal>jac</literal> é agora</para>
+
+                <programlisting>r=jac(t,x,xdot,p1,p2,...)      </programlisting>
+
+                <para><literal>jac</literal> ainda retorna
+                <literal>dg/dx+cj*dg/dxdot</literal> como uma função de
+                <literal>(t,x,xdot,cj,p1,p2,...)</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Um string</term>
+
+              <listitem>
+                <para>Deve se referir ao nome de uma subrotina C ou Fortran.
+                Supondo que &lt;j_name&gt; é o nome dado,</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>A seqüência de chamamento em Fortran deve
+                    ser</literal></para>
+
+                    <para><literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
+                    rpar, ipar)</literal></para>
+
+                    <para><literal>double precision t, x(*), xdot(*), r(*),
+                    ci, rpar(*)</literal></para>
+
+                    <para><literal>integer ires, ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>A seqüência de chamamento dem C deve ser</para>
+
+                    <para>C2F(&lt;j_name&gt;)(double *t, double *x, double
+                    *xdot, double *r, double *cj,</para>
+
+                    <para>integer *ires, double *rpar, integer *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>onde <literal>t</literal>, x, xdot, ires, rpar, ipar são
+                definidas semelhantemente como acima, r é o array de
+                resultados.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>surface</term>
+
+        <listitem>
+          <para>uma função externa (<link linkend="external" role=""
+          version="">external</link>). Computa o valor de cada vetor coluna
+          <literal>surface(t,x)</literal> como componentes
+          <literal>ng</literal>. Cada componente define uma superfície.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Uma função do Scilab</term>
+
+              <listitem>
+                <para>Sua seqüência de chamamento deve ser
+                <literal>r=surface(t,x)</literal>, esta função deve retornar
+                um vetor com <literal>ng</literal> elementos.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Uma lista</term>
+
+              <listitem>
+                <para>Esta forma é utilizada para passar parâmetros à função.
+                Deve ser como segue:</para>
+
+                <programlisting>list(surface,p1,p2,...)</programlisting>
+
+                <para>Onde a seqüência de chamamento da função
+                <literal>surface</literal> é agora</para>
+
+                <programlisting>r=surface(t,x,p1,p2,...)</programlisting>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>String</term>
+
+              <listitem>
+                <para>Deve se referir ao nome de uma rotina C ou Fortran.
+                Supondo que &lt;s_name&gt; é o nom dado,</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>A seqüência de chamamento em Fortran deve
+                    ser</literal></para>
+
+                    <para><literal>&lt;r_name&gt;(nx, t, x, ng, r, rpar,
+                    ipar)</literal></para>
+
+                    <para><literal>double precision t, x(*), r(*),
+                    rpar(*)</literal></para>
+
+                    <para><literal>integer nx, ng,ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>A seqüência de chamamento em C deve ser</para>
+
+                    <para>C2F(&lt;r_name&gt;)(double *t, double *x, double
+                    *xdot, double *r, double *cj,</para>
+
+                    <para>integer *ires, double *rpar, integer *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>onde <literal>t</literal>, x, rpar, ipar são definidas
+                semelhantemente como acima, <literal>ng </literal>é o número
+                de superfícies, <literal>nx</literal> é a dimensão do estado e
+                r é o array de resultados.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rd</term>
+
+        <listitem>
+          <para>um vetor com duas entradas <literal>[times num]</literal>
+          <literal>times</literal> é o valor do tempo no qual a superfície é
+          cruzada, <literal>num</literal> é o número da superfície
+          cruzada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hd</term>
+
+        <listitem>
+          <para>um vetor de reais que permite armazenar o contexto de
+          <literal>dae</literal>. Pode ser utilizado como argumento de entrada
+          para retomar a integração (recomeço rápido).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>matriz de reais. Se <literal><link
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>, cada coluna
+          é o vetor <literal>[t;x(t);xdot(t)]</literal> onde
+          <literal>t</literal> é o índice do tempo para o qual a solução foi
+          computada. De outro modo, <literal>y</literal> é o vetor
+          <literal>[x(t);xdot(t)]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função <literal>dae</literal> é uma porta construída sobre as
+    funções <link linkend="dassl">dassl</link> e <link
+    linkend="dasrt">dasrt</link> designada para equações diferenciais
+    implícitas.</para>
+
+    <programlisting>
+    g(t,x,xdot)=0
+    x(t0)=x0  e   xdot(t0)=xdot0
+ </programlisting>
+
+    <para>Se <literal>xdot0</literal> não for fornecido no argumento<literal>
+    initial</literal>, a função dae tenta computá-lo resolvendo
+    g(t,x0,xdot0)=0,</para>
+
+    <para>Se <literal>xdot0</literal> for fornecido no argumento<literal>
+    initial</literal>, pode ser tanto uma derivada compatível satisfazendo
+    g(t,x0,xdot0)=0 ou um valor aproximado . No último caso <literal><link
+    linkend="daeoptions">%DAEOPTIONS</link>(7) deve ser ajustado para
+    1.</literal></para>
+
+    <para>Exemplos detalhados utilizando funções externas codificadas em C e
+    Fortran são dados em
+    <literal>modules/differential_equations/tests/unit_tests/dassldasrt.tst</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">//Exemplo com um código Scilab
+ function [r,ires]=chemres(t,y,yd)
+     r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
+     r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
+     r(3) =       y(1) +     y(2)      + y(3)-1;
+     ires =  0;
+ endfunction
+ function pd=chemjac(x,y,yd,cj)
+     pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+          0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+          1       , 1                      , 1       ]
+ endfunction
+
+x0=[1; 0; 0];
+xd0=[-0.04; 0.04; 0];
+t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+
+y=dae([x0,xd0],0,t,chemres);// retorna os pontos de observação requisitados
+
+%DAEOPTIONS=list([],1,[],[],[],0,0); // pede que a malha de dae seja retornada
+y=dae([x0,xd0],0,4d10,chemres); // sem jacobiano
+y=dae([x0,xd0],0,4d10,chemres,chemjac); // com jacobiano
+
+//exemplo com um código C (requer-se um compilador C) --------------------------------------------------
+//-1- criando os códigos C em TMPDIR - equação de Vanderpol, forma implícita
+code=['#include &lt;math.h&gt;'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+mputl(code,TMPDIR+'/t22.c') 
+//-2- compilando e carregando
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+exec(TMPDIR+'/t22loader.sce')
+//-3- executando
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+//simulação simples
+t=0:0.003:300;
+yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+clf();plot(yy(1,:),yy(2,:))
+//achando o primeiro ponto onde yy(1)=0
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+
+//recomeço rápido para o próximo ponto
+t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+
+
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="daeoptions">daeoptions</link></member>
+
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="impl">impl</link></member>
+
+      <member><link linkend="fort">fort</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

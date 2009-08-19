@@ -264,4 +264,3 @@ a=alr(:,perm);
 if norm(evstr(a1)- matrix(a(:,ind),N1,P1)) > %eps then bugmes();quit;end;
 // a and string(a) are in the same order in the previous example 
 if norm(evstr(a1)- a2 ) > %eps then bugmes();quit;end;
-exit

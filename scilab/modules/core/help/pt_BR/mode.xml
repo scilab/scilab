@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="mode" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,22 +13,22 @@
   <refnamediv>
     <refname>mode</refname>
 
-    <refpurpose>seleciona um modo em um arquivo execut√°vel</refpurpose>
+    <refpurpose>seleciona um modo em um arquivo execut·vel</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>mode(k)
 k=mode()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Usado exclusivamente dentro de um arquivo execut√°vel ou uma fun√ß√£o
-    do Scilab, <literal>mode(k)</literal> permite mudar as informa√ß√µes
-    exibidas durante a execu√ß√£o, dependendo do valor de
+    <para>Usado exclusivamente dentro de um arquivo execut·vel ou uma funÁ„o
+    do Scilab, <literal>mode(k)</literal> permite mudar as informaÁıes
+    exibidas durante a execuÁ„o, dependendo do valor de
     <literal>k</literal>:</para>
 
     <variablelist>
@@ -36,7 +36,7 @@ k=mode()</synopsis>
         <term>k=0</term>
 
         <listitem>
-          <para>os novos valores de vari√°veis s√£o exibidos, se requeridos (ver
+          <para>os novos valores de vari·veis s„o exibidos, se requeridos (ver
           ajuda em semi ou comma). </para>
         </listitem>
       </varlistentry>
@@ -45,8 +45,8 @@ k=mode()</synopsis>
         <term>k=-1</term>
 
         <listitem>
-          <para>o arquivo execut√°vel ou a fun√ß√£o Scilab roda
-          "silenciosamente". (este √© o valor padr√£o para fun√ß√µes do Scilab)
+          <para>o arquivo execut·vel ou a funÁ„o Scilab roda
+          "silenciosamente". (este È o valor padr„o para funÁıes do Scilab)
           </para>
         </listitem>
       </varlistentry>
@@ -55,9 +55,9 @@ k=mode()</synopsis>
         <term>k=1 or k=3</term>
 
         <listitem>
-          <para>cada linha de instru√ß√µes √© ecoada precedida do prompt (se
-          poss√≠vel). Os novos valores de vari√°veis s√£o exibidos, se requerido.
-          Este √© o padr√£o para arquivos execut√°veis. </para>
+          <para>cada linha de instruÁıes È ecoada precedida do prompt (se
+          possÌvel). Os novos valores de vari·veis s„o exibidos, se requerido.
+          Este È o padr„o para arquivos execut·veis. </para>
         </listitem>
       </varlistentry>
 
@@ -65,23 +65,23 @@ k=mode()</synopsis>
         <term>k=7</term>
 
         <listitem>
-          <para>Os novos valores de vari√°veis s√£o exibidos, se requerido. Cada
-          linha de instru√ß√µes √© ecoada (se poss√≠vel) e um prompt (&gt;&gt;)
-          aparece ap√≥s cada linha esperando por um retorno de carro.</para>
+          <para>Os novos valores de vari·veis s„o exibidos, se requerido. Cada
+          linha de instruÁıes È ecoada (se possÌvel) e um prompt (&gt;&gt;)
+          aparece apÛs cada linha esperando por um retorno de carro.</para>
 
-          <para>Se o retorno de carro segue o caractere "p", a execu√ß√£o √©
+          <para>Se o retorno de carro segue o caractere "p", a execuÁ„o È
           pausada (ver <link linkend="pause">pause</link>).</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>A exibi√ß√£o de linha √© desabilitada para fun√ß√µes do Scilab compiladas
-    (ver getf ou comp). Por padr√£o, fun√ß√µes do Scilab s√£o executadas no modo
+    <para>A exibiÁ„o de linha È desabilitada para funÁıes do Scilab compiladas
+    (ver getf ou comp). Por padr„o, funÁıes do Scilab s„o executadas no modo
     "silencioso" ("-1").</para>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="exec">exec</link></member>

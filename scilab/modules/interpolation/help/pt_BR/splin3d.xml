@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="splin3d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>splin3d</refname>
 
-    <refpurpose>interpolaÃ§Ã£o spline em grides 3d</refpurpose>
+    <refpurpose>interpolação spline em grides 3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -31,7 +31,7 @@
 
         <listitem>
           <para> vetores linhas estritamente crescentes (cada um com pelo
-          menos trÃªs componentes) definindo o grid de interpolaÃ§Ã£o 3d</para>
+          menos três componentes) definindo o grid de interpolação 3d</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
 
         <listitem>
           <para>(opcional) um vetor 1x3 [kx,ky,kz] dada a ordem do tensor
-          spline em cada direÃ§Ã£o (o padrÃ£o Ã© [4,4,4], i.e. spline tricÃºbico)
+          spline em cada direção (o padrão é [4,4,4], i.e. spline tricúbico)
           </para>
         </listitem>
       </varlistentry>
@@ -66,27 +66,27 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o computa um spline tensor 3d <emphasis>s</emphasis> que
+    <para>Esta função computa um spline tensor 3d <emphasis>s</emphasis> que
     interpola os pontos <emphasis>(xi,yj,zk,vijk)</emphasis>, i.e., temos
     <emphasis>s(xi,yj,zk)=vijk</emphasis> para todo
     <emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> e
     <emphasis>k=1,..,nz</emphasis>. O spline resultante <emphasis>s</emphasis>
-    Ã© definido por <literal>tl</literal> que consiste em uma representaÃ§Ã£o
-    B-tensor-spline de <emphasis>s</emphasis>. A avaliaÃ§Ã£o de s em alguns
-    pontos deve ser feita pela funÃ§Ã£o <link linkend="interp3d">interp3d</link>
-    (para computar s e suas derivadas primeiras) ou pela funÃ§Ã£o <link
+    é definido por <literal>tl</literal> que consiste em uma representação
+    B-tensor-spline de <emphasis>s</emphasis>. A avaliação de s em alguns
+    pontos deve ser feita pela função <link linkend="interp3d">interp3d</link>
+    (para computar s e suas derivadas primeiras) ou pela função <link
     linkend="bsplin3val">bsplin3val</link> (para computar uma derivada
-    arbitrÃ¡ria de s) . VÃ¡rios tipos de splines podem ser computados
-    selecionando a ordem dos splines em cada direÃ§Ã£o
+    arbitrária de s) . Vários tipos de splines podem ser computados
+    selecionando a ordem dos splines em cada direção
     <literal>order=[kx,ky,kz]</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
-    <para>Esta funÃ§Ã£o funciona sob as condiÃ§Ãµes: </para>
+    <para>Esta função funciona sob as condições: </para>
 
     <programlisting>
        nx, ny, nz &gt;= 3
@@ -94,7 +94,7 @@
        2 &lt;= ky &lt; ny
        2 &lt;= kz &lt; nz</programlisting>
 
-    <para>HÃ¡ erro quando estas condiÃ§Ãµes nÃ£o sÃ£o respeitadas. </para>
+    <para>Há erro quando estas condições não são respeitadas. </para>
   </refsection>
 
   <refsection>
@@ -106,8 +106,8 @@
 
 func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
 deff("v=f(x,y,z)",func);
-n = 10;  // n x n x n  pontos de interpolaÃ§Ã£o
-x = linspace(0,1,n); y=x; z=x; // grid de interpolaÃ§Ã£o
+n = 10;  // n x n x n  pontos de interpolação
+x = linspace(0,1,n); y=x; z=x; // grid de interpolação
 [X,Y,Z] = ndgrid(x,y,z);
 V = f(X,Y,Z);
 tl = splin3d(x,y,z,V,[5 5 5]);
@@ -121,8 +121,8 @@ er = max(abs(vp_exact - vp_interp))
 
 
 
-// exemplo 2 (veja a pÃ¡gina de ajuda de linear_interpn que contÃ©m o
-//            mesmo exemplo com interpolaÃ§Ã£o trilinear)
+// exemplo 2 (veja a página de ajuda de linear_interpn que contém o
+//            mesmo exemplo com interpolação trilinear)
 // =============================================================================
 
 exec("SCI/modules/interpolation/demos/interp_demo.sci")
@@ -155,13 +155,13 @@ xset("colormap",jetcolormap(nb_col));
 xbasc(); xset("hidden3d",xget("background"));
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
-xtitle("interpolaÃ§Ã£o por spline 3d da funÃ§Ã£o "+func)
+xtitle("interpolação por spline 3d da função "+func)
 xselect()
 </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="linear_interpn">linear_interpn</link></member>
@@ -176,7 +176,7 @@ xselect()
     <title>Autores</title>
 
     <simplelist type="vert">
-      <member>R.F. Boisvert, C. De Boor (cÃ³digo da biblioteca FORTRAN CMLIB)
+      <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
       </member>
 
       <member>B. Pincon (interface Scilab)</member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,14 +24,14 @@
   <refnamediv>
     <refname>signm</refname>
 
-    <refpurpose>funÃ§Ã£o do sinal da matriz</refpurpose>
+    <refpurpose>função do sinal da matriz</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Para matrizes quadradas e Hemitianas, <literal>X=signm(A)</literal>
-    Ã© a funÃ§Ã£o do sinal da matriz.</para>
+    é a função do sinal da matriz.</para>
   </refsection>
 
   <refsection>
@@ -45,7 +45,7 @@ A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sign">sign</link></member>

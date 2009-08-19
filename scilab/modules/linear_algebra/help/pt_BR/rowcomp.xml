@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>rowcomp</refname>
 
-    <refpurpose>compress√£o de linhas, imagem</refpurpose>
+    <refpurpose>compress„o de linhas, imagem</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento</title>
+    <title> Seq¸Íncia de Chamamento</title>
 
     <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,9 +49,9 @@
         <term>flag</term>
 
         <listitem>
-          <para>string opcional, com valores poss√≠veis
-          <literal>'svd'</literal> ou <literal>'qr'</literal>. O valor padr√£o
-          √© <literal>'svd'</literal>.</para>
+          <para>string opcional, com valores possÌveis
+          <literal>'svd'</literal> ou <literal>'qr'</literal>. O valor padr„o
+          È <literal>'svd'</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>n√∫mero real n√£o-negativo opcional. O valor padr√£o √©
+          <para>n˙mero real n„o-negativo opcional. O valor padr„o È
           <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
         </listitem>
       </varlistentry>
@@ -68,7 +68,7 @@
         <term>W</term>
 
         <listitem>
-          <para>matriz quadrada n√£o-singular (matriz mudan√ßa de base)</para>
+          <para>matriz quadrada n„o-singular (matriz mudanÁa de base)</para>
         </listitem>
       </varlistentry>
 
@@ -83,18 +83,18 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Compress√£o de linhas de <literal>A</literal>. <literal>Ac =
-    W*A</literal> √© uma matriz de linhas comprimidas, i.e.
+    <para>Compress„o de linhas de <literal>A</literal>. <literal>Ac =
+    W*A</literal> È uma matriz de linhas comprimidas, i.e.
     <literal>Ac=[Af;0]</literal> com <literal>Af</literal> de posto-linha
     cheio.</para>
 
-    <para><literal>flag</literal> e <literal>tol</literal> s√£o par√¢metros
+    <para><literal>flag</literal> e <literal>tol</literal> s„o par‚metros
     opcionais: <literal>flag='qr'</literal> ou <literal>'svd'</literal> (o
-    padr√£o √© <literal>'svd'</literal>).</para>
+    padr„o È <literal>'svd'</literal>).</para>
 
-    <para><literal>tol</literal> √© um par√¢metro de toler√¢ncia.</para>
+    <para><literal>tol</literal> È um par‚metro de toler‚ncia.</para>
 
     <para>As <literal>rk</literal> primeiras colunas de <literal>W'</literal>
     geram a imagem de <literal>A</literal>.</para>
@@ -103,10 +103,10 @@
     <literal>W</literal> geram a imagem de linha de
     <literal>A</literal>.</para>
 
-    <para>Um vetor n√£o nulo <literal>x</literal> pertence √†
-    Im(<literal>A</literal>) se,e s√≥ se, <literal>W*x</literal> √© de linhas
+    <para>Um vetor n„o nulo <literal>x</literal> pertence ‡
+    Im(<literal>A</literal>) se,e sÛ se, <literal>W*x</literal> È de linhas
     comprimidas de acordo com <literal>Ac</literal> i.e, a norma de seus
-    √∫ltimos componentes √© pequena com rela√ß√£o a dos seus primeiros
+    ˙ltimos componentes È pequena com relaÁ„o a dos seus primeiros
     componentes.</para>
   </refsection>
 
@@ -126,7 +126,7 @@
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="colcomp">colcomp</link></member>
@@ -144,10 +144,10 @@
   </refsection>
 
   <refsection>
-    <title>Fun√ß√£o Usada </title>
+    <title>FunÁ„o Usada </title>
 
-    <para>A fun√ß√£o <literal>rowcomp</literal> √© baseada nas decomposi√ß√µes
-    <link linkend="svd">svd</link> (decomposi√ß√£o em valores singulares) ou
+    <para>A funÁ„o <literal>rowcomp</literal> È baseada nas decomposiÁıes
+    <link linkend="svd">svd</link> (decomposiÁ„o em valores singulares) ou
     <link linkend="qr">qr</link> .</para>
   </refsection>
 </refentry>

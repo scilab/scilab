@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sca" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sca</refname>
+
+    <refpurpose>Ajusta a entidade de eixos corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>a=sca(a)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>o manipulador da entidade Axes (de eixos)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>sca(a)</literal> é usado para ajustar a entidade
+    <literal>Axes</literal> corrente (ver <link
+    linkend="graphics_entities">graphics_entities</link>) como sendo aquela
+    apontada pelo manipulador <literal>a</literal>. As funções de esboço
+    geralmente utilizam a entidade de eixos corrente.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+clf()
+a1=newaxes(); 
+a1.axes_bounds=[0,0,1.0,0.5];
+t=0:0.1:20;
+plot(t,acosh(t),'r')
+a2=newaxes();
+a2.axes_bounds=[0,0.5,1.0,0.5];
+x=0:0.1:4;
+plot(x,sinh(x))
+
+
+sca(a1); //tornando os primeiros eixos correntes
+plot(t,asinh(t),'g')
+legend(['acosh','asinh'])
+sca(a2); //tornando os segundos eixos correntes
+legend('sinh')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="subplot">subplot</link></member>
+
+      <member><link linkend="gda">gda</link></member>
+
+      <member><link linkend="newaxes">newaxes</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>S. Steer, INRIA</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[t]=asin(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>As entradas de <literal>t</literal> sÃ£o os arcos-senos das entradas
-    correspondentes de <literal>x</literal>. O domÃ­nio de deifiniÃ§Ã£o Ã© [-1,
-    1]. A funÃ§Ã£o toma valores em conjuntos</para>
+    <para>As entradas de <literal>t</literal> são os arcos-senos das entradas
+    correspondentes de <literal>x</literal>. O domínio de deifinição é [-1,
+    1]. A função toma valores em conjuntos</para>
   </refsection>
 
   <refsection>
@@ -75,7 +75,7 @@ sin(asin(A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sin">sin</link></member>

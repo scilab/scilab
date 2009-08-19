@@ -67,7 +67,7 @@ sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_createdir.c \
 sci_gateway/c/sci_chdir.c \
-sci_gateway/c/sci_getcwd.c \
+sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \

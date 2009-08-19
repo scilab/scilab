@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,17 +25,17 @@
   <refnamediv>
     <refname>oct2dec</refname>
 
-    <refpurpose>conversÃ£o de octais para inteiros</refpurpose>
+    <refpurpose>conversão de octais para inteiros</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>d=oct2dec(o)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>o</term>
 
         <listitem>
-          <para>matriz de strings correspondentes Ã s representaÃ§Ãµes
+          <para>matriz de strings correspondentes às representações
           octais</para>
         </listitem>
       </varlistentry>
@@ -58,10 +58,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>oct2dec(x)</literal> retorna a matriz de nÃºmero
-    correspondentes Ã  representaÃ§Ã£o octal</para>
+    <para><literal>oct2dec(x)</literal> retorna a matriz de número
+    correspondentes à representação octal</para>
   </refsection>
 
   <refsection>
@@ -75,7 +75,7 @@ oct2dec(["1" "756115"; "0" "23"])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

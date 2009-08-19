@@ -111,14 +111,23 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
 ta=[1 1 2 3 5 4 6 7 7 3 3 8 8 5];
 he=[2 3 5 4 6 6 7 4 3 2 8 1 7 4];
 g=make_graph('foo',1,8,ta,he);
-g('node_x')=[116 231 192 323 354 454 305 155];
-g('node_y')=[118 116 212 219 117 185 334 316];
+g.nodes.graphics.x=[116 231 192 323 354 454 305 155];
+g.nodes.graphics.y=[118 116 212 219 117 185 334 316];
 show_graph(g);
 [fe,che,fn,chn] = chain_struct(g)
- ]]></programlisting>
+for i=1:node_number(g)
+  hilite_nodes(i); xpause(1d6)
+  cur=fe(i);while cur<>0;hilite_edges(cur);cur=che(cur);xpause(5d5);end
+
+  unhilite_nodes(i);
+  cur=fe(i);while cur<>0;unhilite_edges(cur);cur=che(cur);end
+end
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

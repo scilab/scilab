@@ -28,7 +28,7 @@
     <refsection>
         <title>Description</title>
         <para>This help describes how to add sparse matrix.</para>
-        <para>There are 2 types of functions which can be used to write in the memory of Scilab.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
     </refsection>
     <refsection>
         <title>Create from existing data</title>
@@ -102,6 +102,10 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
                     <para>
                         Address of imaginary data array (size: _iNbItem).
                     </para>
+                       <para>
+                               This argument does not exist with createSparseMatrix.
+                       </para>
+
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -168,7 +172,7 @@ int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
                 <term>_pdblReal</term>
                 <listitem>
                     <para>
-                        Reddurn address of real data array (size: _iNbItem).
+                        Address of real data array (size: _iNbItem).
                     </para>
                 </listitem>
             </varlistentry>
@@ -178,6 +182,9 @@ int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
                     <para>
                         Address of imaginary data array (size: _iNbItem).
                     </para>
+                       <para>
+                               This argument does not exist with allocSparseMatrix.
+                       </para>
                 </listitem>
             </varlistentry>
         </variablelist>

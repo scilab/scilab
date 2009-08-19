@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>gammaln</refname>
 
-    <refpurpose>o logaritmo (natural) da funÃ§Ã£o gama </refpurpose>
+    <refpurpose>o logaritmo (natural) da função gama </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = gammaln(x)</synopsis>
   </refsynopsisdiv>
@@ -58,7 +58,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>gammaln(x)</literal> avalia o logaritmo (natural) da funÃ§Ã£o
+    <para><literal>gammaln(x)</literal> avalia o logaritmo (natural) da função
     gama em todos os elementos de <literal>x</literal>, evitando underflow e
     overflow. <literal>x</literal> deve ser de reais.</para>
   </refsection>
@@ -75,7 +75,7 @@ gammaln(0.5)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gamma">gamma</link></member>
@@ -87,6 +87,6 @@ gammaln(0.5)
   <refsection>
     <title>Autores</title>
 
-    <para>W. J. Cody e L. Stoltz (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody e L. Stoltz (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

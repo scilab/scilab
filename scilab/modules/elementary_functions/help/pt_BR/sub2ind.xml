@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
@@ -24,26 +24,26 @@
   <refnamediv>
     <refname>sub2ind</refname>
 
-    <refpurpose>converte matriz de valores subescrtos para Ã­ndice
+    <refpurpose>converte matriz de valores subescrtos para índice
     linear</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>I = sub2ind(dims,i1,i2,...)
 J = sub2ind(dims,Mi)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>dims</term>
 
         <listitem>
-          <para>vetor, as dimensÃµes da matriz </para>
+          <para>vetor, as dimensões da matriz </para>
         </listitem>
       </varlistentry>
 
@@ -60,7 +60,7 @@ J = sub2ind(dims,Mi)</synopsis>
         <term>Mi</term>
 
         <listitem>
-          <para>matriz cujas colunas contÃ©m os valores subescritos. </para>
+          <para>matriz cujas colunas contém os valores subescritos. </para>
         </listitem>
       </varlistentry>
 
@@ -68,26 +68,26 @@ J = sub2ind(dims,Mi)</synopsis>
         <term>I</term>
 
         <listitem>
-          <para>o array de Ã­ndice linear</para>
+          <para>o array de índice linear</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>sub2ind</literal> Ã© usado para determinar o Ã­ndice Ãºnico
+    <para><literal>sub2ind</literal> é usado para determinar o índice único
     equivalente que corresponde ao dado conjunto de valores subescritos.
-    <literal>I = sub2ind(dims,i1,i2,..)</literal> retorna o Ã­ndice linear
+    <literal>I = sub2ind(dims,i1,i2,..)</literal> retorna o índice linear
     equivalente aos subescritos das linha, coluna, ... nos arrays
     <literal>i1</literal>, <literal>i2</literal>,.. para uma matriz de tamanho
     <literal>dims</literal>. Neste caso, <literal>i1</literal>,
     <literal>i2</literal>,.. devem ter o mesmo formato e o resultado
     <literal>I</literal> tem a mesma forma da matriz. <literal>I =
-    sub2ind(dims,Mi)</literal> retorna o Ã­ndice linear equivalente aos
+    sub2ind(dims,Mi)</literal> retorna o índice linear equivalente aos
     subescritos nas colunas da matriz <literal>Mi</literal> para uma matriz
-    com tamanho <literal>dims</literal>. Neste caso <literal>I</literal> Ã© um
+    com tamanho <literal>dims</literal>. Neste caso <literal>I</literal> é um
     vetor coluna.</para>
   </refsection>
 
@@ -105,7 +105,7 @@ sub2ind([2,3,2],[i',j',k'])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="ind2sub">ind2sub</link></member>

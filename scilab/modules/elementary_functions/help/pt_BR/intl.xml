@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=intl(a,b,z0,r,f)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>z0</term>
 
         <listitem>
-          <para>nÃºmero complexo</para>
+          <para>número complexo</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>a,b</term>
 
         <listitem>
-          <para>dois nÃºmero reais</para>
+          <para>dois número reais</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +57,7 @@
         <term>r</term>
 
         <listitem>
-          <para>nÃºmero real positivo</para>
+          <para>número real positivo</para>
         </listitem>
       </varlistentry>
 
@@ -65,26 +65,26 @@
         <term>f</term>
 
         <listitem>
-          <para>funÃ§Ã£o externa</para>
+          <para>função externa</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>f</literal> Ã© uma funÃ§Ã£o externa com valores complexos,
+    <para>Se <literal>f</literal> é uma função externa com valores complexos,
     <literal>intl(a,b,z0,r,f)</literal> computa a integral de
     <literal>f(z)dz</literal> ao longo da curva no plano complexo definida por
     <literal>z0 + r.exp(%i*t)</literal> para <literal>a&lt;=t&lt;=b</literal>
-    (parte do cÃ­rculo com centro <literal>z0</literal> e raio
+    (parte do círculo com centro <literal>z0</literal> e raio
     <literal>r</literal> com fase entre <literal>a</literal> e
     <literal>b</literal>).</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="intc">intc</link></member>

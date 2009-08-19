@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>geom3d</refname>
 
-    <refpurpose>projeÃ§Ã£o 3d para 2d apÃ³s um esboÃ§o 3d</refpurpose>
+    <refpurpose>projeção 3d para 2d após um esboço 3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[x,y]=geom3d(x1,y1,z1)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,15 +57,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>ApÃ³s o uso de uma funÃ§Ã£o de esboÃ§o 3d como
+    <para>Após o uso de uma função de esboço 3d como
     <literal>plot3d</literal>, <literal>plot3d1</literal> ou
     <literal>param3d</literal>, <literal>geom3d</literal> gives the mapping
     between a point in 3D space <literal>(x1(i),y1(i),z1(i))</literal> e o
     ponto correspondente <literal>(x(i),y(i))</literal> no plano 2d projetado.
-    EntÃ£o, todas as primitivas de grÃ¡ficos 2d que funcionam em
-    <literal>(x,y)</literal> podem ser usadas para superposiÃ§Ã£o no esboÃ§o
+    Então, todas as primitivas de gráficos 2d que funcionam em
+    <literal>(x,y)</literal> podem ser usadas para superposição no esboço
     3d.</para>
   </refsection>
 
@@ -76,9 +76,9 @@
 
 deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
 t=%pi*(-10:10)/10;
-// esboÃ§o 3d da superfÃ­cie
+// esboço 3d da superfície
 fplot3d(t,t,surface,35,45,"X@Y@Z")
-// agora, (t,t,sin(t).*cos(t)) Ã© uma curva na superfÃ­cie
+// agora, (t,t,sin(t).*cos(t)) é uma curva na superfície
 // que pode ser desenhada utilizando-se geom3d e xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
  

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,20 +24,20 @@
   <refnamediv>
     <refname>coth</refname>
 
-    <refpurpose>cotangente hiperbÃ³lica</refpurpose>
+    <refpurpose>cotangente hiperbólica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[t]=coth(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Os elementos do vetor <literal>t</literal> sÃ£o as cotangentes
-    hiperbÃ³licas dos elementos do vetor <literal>x</literal>.</para>
+    <para>Os elementos do vetor <literal>t</literal> são as cotangentes
+    hiperbólicas dos elementos do vetor <literal>x</literal>.</para>
   </refsection>
 
   <refsection>
@@ -54,7 +54,7 @@ coth(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cotg">cotg</link></member>

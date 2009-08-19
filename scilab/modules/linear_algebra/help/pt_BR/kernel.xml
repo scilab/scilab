@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>kernel</refname>
 
-    <refpurpose>n√∫cleo de uma matriz</refpurpose>
+    <refpurpose>n˙cleo de uma matriz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>W=kernel(A [,tol,[,flag])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>flag</term>
 
         <listitem>
-          <para>string <literal>'svd'</literal> (padr√£o) ou
+          <para>string <literal>'svd'</literal> (padr„o) ou
           <literal>'qr'</literal></para>
         </listitem>
       </varlistentry>
@@ -59,7 +59,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>n√∫mero real </para>
+          <para>n˙mero real </para>
         </listitem>
       </varlistentry>
 
@@ -74,18 +74,18 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>W=kernel(A)</literal> retorna o n√∫cleo (espa√ßo nulo) de
-    <literal>A</literal>. Se A tem posto-coluna completo, ent√£o uma matriz
-    vazia [] √© retornada.</para>
+    <para><literal>W=kernel(A)</literal> retorna o n˙cleo (espaÁo nulo) de
+    <literal>A</literal>. Se A tem posto-coluna completo, ent„o uma matriz
+    vazia [] È retornada.</para>
 
-    <para><literal>flag</literal> e <literal>tol</literal> s√£o par√¢metros
+    <para><literal>flag</literal> e <literal>tol</literal> s„o par‚metros
     opcionais: <literal>flag = 'qr'</literal> ou<literal>'svd'</literal> (o
-    padr√£o √© <literal>'svd'</literal>).</para>
+    padr„o È <literal>'svd'</literal>).</para>
 
-    <para><literal>tol</literal> = par√¢metro de toler√¢ncia (de ordem
-    <literal>%eps</literal> como valor padr√£o).</para>
+    <para><literal>tol</literal> = par‚metro de toler‚ncia (de ordem
+    <literal>%eps</literal> como valor padr„o).</para>
   </refsection>
 
   <refsection>
@@ -102,7 +102,7 @@ clean(A*kernel(A))
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="colcomp">colcomp</link></member>

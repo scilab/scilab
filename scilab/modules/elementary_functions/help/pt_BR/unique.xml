@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>unique</refname>
 
-    <refpurpose>extrai componentes Ãºnicos de um vetor ou de
+    <refpurpose>extrai componentes únicos de um vetor ou de
     matrizes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>
       [N [,k]]=unique(M)
@@ -38,14 +38,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>M</term>
 
         <listitem>
-          <para>vetor ou matriz de nÃºmeros ou strings </para>
+          <para>vetor ou matriz de números ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -53,7 +53,7 @@
         <term>orient</term>
 
         <listitem>
-          <para>flag com valores possÃ­veis : 1 ou "r", 2 ou "c"</para>
+          <para>flag com valores possíveis : 1 ou "r", 2 ou "c"</para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,7 @@
         <term>N</term>
 
         <listitem>
-          <para>vetor ou matriz de nÃºmeros ou strings </para>
+          <para>vetor ou matriz de números ou strings </para>
         </listitem>
       </varlistentry>
 
@@ -76,21 +76,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>unique(M)</literal> retorna um vetor que retÃ©m as entradas
-    Ãºnicas de <literal>M</literal> em ordem ascendente.</para>
+    <para><literal>unique(M)</literal> retorna um vetor que retém as entradas
+    únicas de <literal>M</literal> em ordem ascendente.</para>
 
     <para><literal>unique(M,"r")</literal> ou
-    <literal>unique(M,1)</literal>retorna as linhas Ãºnicas de
-    <literal>M</literal> em ordem lexicogrÃ¡fica ascendente.</para>
+    <literal>unique(M,1)</literal>retorna as linhas únicas de
+    <literal>M</literal> em ordem lexicográfica ascendente.</para>
 
     <para><literal>unique(M,"c")</literal> ou
-    <literal>unique(M,2)</literal>retorna as linhas Ãºnicas de
-    <literal>M</literal> em ordem lexicogrÃ¡fica ascendente.</para>
+    <literal>unique(M,2)</literal>retorna as linhas únicas de
+    <literal>M</literal> em ordem lexicográfica ascendente.</para>
 
-    <para>Se requerido, o argumento de saÃ­da, <literal>k</literal> contÃ©m a
-    posiÃ§Ã£o das primeiras entradas Ãºnicas encontradas.</para>
+    <para>Se requerido, o argumento de saída, <literal>k</literal> contém a
+    posição das primeiras entradas únicas encontradas.</para>
   </refsection>
 
   <refsection>
@@ -115,12 +115,12 @@ A = [0,0,1,1;
      0,0,1,1];
 T='x'+string(A);
 
-//linhas Ãºnicas
+//linhas únicas
 
 [m,k]=unique(A,'r')
 unique(T,'r')
 
-//colunas Ãºnicas
+//colunas únicas
 [m,k]=unique(T,'c')
 unique(A,'c')
  
@@ -128,7 +128,7 @@ unique(A,'c')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="union">union</link></member>

@@ -37,3 +37,5 @@ getRecursionFunctionToCall
 isRecursionCallToFunction
 freeArrayOfString
 ;
+;core_f
+errcontext_

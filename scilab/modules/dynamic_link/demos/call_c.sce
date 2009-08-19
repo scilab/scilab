@@ -23,7 +23,7 @@ if haveacompiler() then
 if ~c_link('foo') then
   cur_ilib_verbose = ilib_verbose();
   ilib_verbose(1);
-  path = getcwd(); 
+  path = pwd(); 
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
   
