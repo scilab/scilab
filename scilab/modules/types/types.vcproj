@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -115,7 +115,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -187,7 +187,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -259,7 +259,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -337,6 +337,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\macro.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\matrixpoly.cpp"
 				>
 			</File>
@@ -400,6 +404,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\internal.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\macro.hxx"
 				>
 			</File>
 			<File
