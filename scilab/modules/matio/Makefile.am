@@ -48,6 +48,7 @@ libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			$(MATIO_CFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
