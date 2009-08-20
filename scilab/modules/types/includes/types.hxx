@@ -67,10 +67,10 @@ namespace types
     bool isMacro(void) { return (getType() == RealMacro); }
 
 
-		/*commun functions*/
-		int cols_get();
-		int rows_get();
-		int size_get();
+		/*common functions*/
+		int cols_get() const;
+		int rows_get() const;
+		int size_get() const;
 
 		std::string DimToString();
 
