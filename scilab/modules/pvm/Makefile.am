@@ -55,6 +55,7 @@ libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/io/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/operations/includes/
 	$(PVM_INCLUDE)
 
@@ -105,7 +106,10 @@ libscipvm_la_SOURCES = $(PVM_C_SOURCES)
 libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
 
-libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/
+libscipvm_la_CFLAGS = \
+						-I$(top_srcdir)/modules/api_scilab/includes \
+						-I$(top_srcdir)/modules/output_stream/includes/
+
 
 modulename=pvm
 

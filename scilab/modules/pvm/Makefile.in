@@ -489,12 +489,16 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_recv_var.c \
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
-@PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/
+@PVM_FALSE@libscipvm_la_CFLAGS = \
+@PVM_FALSE@						-I$(top_srcdir)/modules/api_scilab/includes \
+@PVM_FALSE@						-I$(top_srcdir)/modules/output_stream/includes/
+
 @PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  \
 @PVM_TRUE@	-I$(top_srcdir)/modules/output_stream/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/modules/io/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/modules/fileio/includes/ \
+@PVM_TRUE@	-I$(top_srcdir)/modules/api_scilab/includes \
 @PVM_TRUE@	-I$(top_srcdir)/modules/operations/includes/
 
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
