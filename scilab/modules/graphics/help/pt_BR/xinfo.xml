@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>xinfo</refname>
 
-    <refpurpose>escreve um string de informaÃ§Ã£o na subjanela de
+    <refpurpose>escreve um string de informação na subjanela de
     mensagens</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>xinfo(info)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,9 +49,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>xinfo</literal> escreve o string <literal>info</literal> na
-    subjanela de mensagens da janela de grÃ¡ficos corrente.</para>
+    subjanela de mensagens da janela de gráficos corrente.</para>
   </refsection>
 </refentry>

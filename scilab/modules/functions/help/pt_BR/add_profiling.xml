@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry version="5.0-subset Scilab" xml:id="add_profiling" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>add_profiling</refname>
+
+    <refpurpose>adiciona instruções de profiling (análise de performance) a
+    uma função</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>add_profiling(funname)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>funname</term>
+
+        <listitem>
+          <para>string, o nome da função</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>add_profiling(funname)</literal> adiciona instruções de
+    profiling a uma função de nome <literal>funname</literal>. Então, quando
+    esta função é chamada, o número de chamadas e o tempo gasto é armazenado
+    para cada linha da função.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+function x=foo(a,n)
+ x=0;
+ for i=1:n
+   if x&lt;10 then
+     x=x+a
+   else
+     x=x+1
+   end  
+ end
+ x=x^2+1
+endfunction
+
+add_profiling("foo")
+foo(0.1,100) //executando a função
+profile(foo) //extraindo informação de profile
+
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="profile">profile</link></member>
+
+      <member><link linkend="plotprofile">plotprofile</link></member>
+
+      <member><link
+      linkend="remove_profiling">remove_profiling</link></member>
+
+      <member><link linkend="reset_profiling">reset_profiling</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Funções Utilizadas</title>
+
+    <para>Esta função utiliza as funções Scilab <literal>bytecode</literal> e
+    <literal>walkbytecode</literal></para>
+  </refsection>
+</refentry>

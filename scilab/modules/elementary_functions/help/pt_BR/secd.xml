@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="secd" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -21,13 +21,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = secd(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,16 +49,16 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>as entradas de <literal>y</literal> sÃ£o as secantes
+    <para>as entradas de <literal>y</literal> são as secantes
     <literal>1/cos</literal> das entradas de <literal>x</literal> dadas em
-    graus. Os resultados sÃ£o reais e estÃ£o em <literal>]-%inf -1] U [1
+    graus. Os resultados são reais e estão em <literal>]-%inf -1] U [1
     %inf[</literal>. para entradas iguais a <literal>n*180</literal> com
-    <literal>n</literal> inteiro, o resultado Ã© exatamente
+    <literal>n</literal> inteiro, o resultado é exatamente
     <literal>-1</literal> ou <literal>+1</literal>. para entradas iguais a
-    <literal>n*90</literal> com <literal>n</literal> inteiro e Ã­mpar, o
-    resultado Ã© infinito (ou um erro dependendo do modo <link
+    <literal>n*90</literal> com <literal>n</literal> inteiro e ímpar, o
+    resultado é infinito (ou um erro dependendo do modo <link
     linkend="ieee">ieee</link>).</para>
   </refsection>
 
@@ -72,7 +72,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cosd">cosd</link></member>

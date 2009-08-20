@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,7 +28,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>X=eye(m,n)
 X=eye(A)
@@ -36,7 +36,7 @@ X=eye()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,24 +58,24 @@ X=eye()</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Define uma matriz <literal>m</literal>x<literal>n</literal> com 1's
-    ao longo de sua diagonal ou uma matriz identidade com as mesmas dimensÃµes
+    ao longo de sua diagonal ou uma matriz identidade com as mesmas dimensões
     de <literal>A</literal> .</para>
 
-    <para>Cuidado: <literal>eye(10)</literal> Ã© interpretado como
+    <para>Cuidado: <literal>eye(10)</literal> é interpretado como
     <literal>eye(A)</literal> com <literal>A=10</literal> i.e.
-    <literal>1</literal>. (NÃƒO Ã© uma matriz identidade 10 x 10!).</para>
+    <literal>1</literal>. (NÃO é uma matriz identidade 10 x 10!).</para>
 
-    <para>Se <literal>A</literal> Ã© um sistema linear representado por uma
+    <para>Se <literal>A</literal> é um sistema linear representado por uma
     lista <literal>syslin</literal> , <literal>eye(A)</literal> retorna uma
-    matriz <literal>eye</literal> com dimensÃµes apropriadas: (nÃºmero de saÃ­das
-    x nÃºmero de entradas).</para>
+    matriz <literal>eye</literal> com dimensões apropriadas: (número de saídas
+    x número de entradas).</para>
 
-    <para><literal>eye()</literal> produz uma matriz identidade com dimensÃµes
-    indefinidas. As dimensÃµes serÃ£o definidas quando esta matriz identidade
-    for adicionada a uma matriz com dimensÃµes fixas.</para>
+    <para><literal>eye()</literal> produz uma matriz identidade com dimensões
+    indefinidas. As dimensões serão definidas quando esta matriz identidade
+    for adicionada a uma matriz com dimensões fixas.</para>
   </refsection>
 
   <refsection>
@@ -94,7 +94,7 @@ A=ssrand(2,2,3);eye(A)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="ones">ones</link></member>

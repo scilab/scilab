@@ -27,10 +27,9 @@ olddir=pwd();
     createdir(dirName+'_other');
     if isdir(dirName+'_other') == %f then bugmes();quit;end
     cd(dirName);
-    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // 2. Fix bug in  sci_pwd, for pwd
     // =========================================================================
     if ~(length(pwd()) > 0) then bugmes();quit;end
-    if ~(length(getcwd()) > 0) then bugmes();quit;end
     // 3. test mopen
     // =========================================================================
     fd=mopen(fileName,'w');
@@ -121,10 +120,9 @@ olddir=pwd();
     createdir(dirName+'_other');
     if isdir(dirName+'_other') == %f then bugmes();quit;end
     cd(dirName);
-    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // 2. Fix bug in  sci_pwd, for pwd
     // =========================================================================
     if ~(length(pwd()) > 0) then bugmes();quit;end
-    if ~(length(getcwd()) > 0) then bugmes();quit;end
     // 3. test mopen
     // =========================================================================
     fd=mopen(fileName,'w');

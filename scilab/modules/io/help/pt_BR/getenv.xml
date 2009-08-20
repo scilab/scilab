@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,27 +24,27 @@
   <refnamediv>
     <refname>getenv</refname>
 
-    <refpurpose>retorna o valor de uma vari√°vel de ambiente</refpurpose>
+    <refpurpose>retorna o valor de uma vari·vel de ambiente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>env=getenv(str [, rep] )</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>str</term>
 
         <listitem>
-          <para>string especificando o nome da vari√°vel de ambiente; rep : um
-          string opcional. Quando este valor opcional √© usado, a fun√ß√£o
+          <para>string especificando o nome da vari·vel de ambiente; rep : um
+          string opcional. Quando este valor opcional È usado, a funÁ„o
           <literal>getenv</literal> retorna o valor <literal>rep</literal>
-          quando a vari√°vel de ambiente <literal>str</literal> n√£o √©
+          quando a vari·vel de ambiente <literal>str</literal> n„o È
           encontrada. </para>
         </listitem>
       </varlistentry>
@@ -53,16 +53,16 @@
         <term>env</term>
 
         <listitem>
-          <para>string que cont√©m o valor da vari√°vel de ambiente</para>
+          <para>string que contÈm o valor da vari·vel de ambiente</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Retorna o valor de uma vari√°vel de ambiente, se existir.</para>
+    <para>Retorna o valor de uma vari·vel de ambiente, se existir.</para>
   </refsection>
 
   <refsection>

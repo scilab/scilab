@@ -31,7 +31,7 @@ function []=npend_build_and_load()
 	
 	if ~c_link('npend') then
 		path   = SCI+"/modules/differential_equations/demos/n_pendulum/Maple/"
-		cdpath = getcwd();
+		cdpath = pwd();
 		chdir(TMPDIR);
 		fcode = mgetl(path+'dlslv.f');mputl(fcode,'dlslv.f');
 		fcode = mgetl(path+'ener.f');mputl(fcode,'ener.f');

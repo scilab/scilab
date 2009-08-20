@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
@@ -18,7 +18,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoÃ» 2006)
+    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006)
     $</pubdate>
   </info>
 
@@ -29,20 +29,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>mat</term>
 
         <listitem>
-          <para>matriz de entrada da qual a matriz redimensionada serÃ¡
+          <para>matriz de entrada da qual a matriz redimensionada será
           criada</para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
         <term>nbRow</term>
 
         <listitem>
-          <para>nÃºmero de linhas da matriz redimensionada</para>
+          <para>número de linhas da matriz redimensionada</para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@
         <term>nbCol</term>
 
         <listitem>
-          <para>nÃºmero de colunas da matriz redimensionada</para>
+          <para>número de colunas da matriz redimensionada</para>
         </listitem>
       </varlistentry>
 
@@ -82,22 +82,22 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Cria uma matriz de tamanho <literal>nbRow</literal> x
-    <literal>nbCol</literal> e cujos elementos <literal>(i,j)</literal> sÃ£o
-    <literal>mat(i,j)</literal> se <literal>(i,j)</literal> estÃ¡ ao alcance da
-    matriz de entrada. De outro modo, <literal>(i,j)</literal> sÃ£o
+    <literal>nbCol</literal> e cujos elementos <literal>(i,j)</literal> são
+    <literal>mat(i,j)</literal> se <literal>(i,j)</literal> está ao alcance da
+    matriz de entrada. De outro modo, <literal>(i,j)</literal> são
     <literal>0</literal> para matrizes de reais ou de inteiros,
     <literal>%f</literal> para matrizes de booleanos e um string vazio para
     matrizes de strings.</para>
 
-    <para>O tipo da matriz de saÃ­da pode ser modificado especificando-se o
+    <para>O tipo da matriz de saída pode ser modificado especificando-se o
     argumento <literal>typeOfMat</literal>. Neste caso, esteja certo de que o
-    tipo da matriz de entrada Ã© compatÃ­vel com este.</para>
+    tipo da matriz de entrada é compatível com este.</para>
 
     <para>Por enquanto, apenas matrizes de reais, inteiros, booleanos, e
-    strings sÃ£o suportadas. Isto significa que <literal>typeOfMat</literal>
+    strings são suportadas. Isto significa que <literal>typeOfMat</literal>
     deve ser escolhido dentre: 'constant', 'boolean', 'string' ou qualquer
     tipo inteiro ('int8', 'int16',...).</para>
   </refsection>
@@ -107,7 +107,7 @@
 
     <programlisting role="example">
 
-  // matriz de nÃºmeros
+  // matriz de números
   myMat = 5 * rand( 3, 4 )
   myMat = resize_matrix( myMat, 3, 3 ) // reduzindo tamanho da matriz
   myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // criando uma matriz de inteiros
@@ -122,7 +122,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

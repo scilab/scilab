@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[y]=norm(x [,flag])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,14 +50,14 @@
         <term>flag</term>
 
         <listitem>
-          <para>string (tipo da norma) (valor padrÃ£o = 2)</para>
+          <para>string (tipo da norma) (valor padrão = 2)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>For matrices</para>
 
@@ -66,7 +66,7 @@
         <term>norm(x)</term>
 
         <listitem>
-          <para>ou <literal>norm(x,2)</literal> Ã© o maior valor singular de
+          <para>ou <literal>norm(x,2)</literal> é o maior valor singular de
           <literal>x</literal> (<literal>max(svd(x))</literal>).</para>
         </listitem>
       </varlistentry>
@@ -147,7 +147,7 @@ norm(A)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="h_norm">h_norm</link></member>

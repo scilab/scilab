@@ -11,9 +11,9 @@
   </info>
 
   <refnamediv>
-    <refname>and (&amp;)</refname>
+    <refname>and</refname>
 
-    <refpurpose>et logique</refpurpose>
+    <refpurpose>et logique des éléments d'un tableau</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -22,7 +22,7 @@
     <synopsis>b=and(A), b=and(A,'*')
 b=and(A,'r'), b=and(A,1)
 b=and(A,'c'), b=and(A,2)
-A&amp;B</synopsis>
+</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -44,18 +44,15 @@ A&amp;B</synopsis>
     ligne de <literal>x</literal> (<literal>y(i)=
     and(A(i,j),j=1,n)</literal>)).</para>
 
-    <para><literal>A&amp;B</literal> renvoie la conjonction logique élément
-    par élément des matrices booléennes <literal>A</literal> et
-    <literal>B</literal> .<literal>A</literal> et <literal>B</literal> doivent
-    être des matrices de même dimensions ou l'une d'elle doit être un simple
-    booléen.</para>
   </refsection>
 
   <refsection>
     <title>Voir Aussi</title>
 
     <simplelist type="inline">
-      <member><link linkend="not">not</link></member>
+     <member><link linkend="not">not</link></member>
+
+      <member><link linkend="and_op">opérateur logique et (&amp;) </link></member>
 
       <member><link linkend="or">or</link></member>
     </simplelist>

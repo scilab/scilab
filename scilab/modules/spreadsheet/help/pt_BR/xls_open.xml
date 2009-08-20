@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xls_open" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xls_open</refname>
+
+    <refpurpose>abre um arquivo Excel para leitura</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file_path</term>
+
+        <listitem>
+          <para>string: o endereço do arquivo Excel.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>número, a unidade lógica do fluxo de dados do Excel</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>SST</term>
+
+        <listitem>
+          <para>vetor de todos os strings que aparecem na folha do
+          Excel</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sheetnames</term>
+
+        <listitem>
+          <para>vetor de strings, os nomes das folhas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Sheetpos</term>
+
+        <listitem>
+          <para>vetor de números,as posições dos inícios das folhas no fluxo
+          de dados do Excel</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função primeiro analisa a estrutura de dados ole2 associada ao
+    dado arquivo para extrair o fluxo de dado do Excel no qual está contido.
+    Após isso, o fluxo de dados do Excel é salvo no diretório
+    <literal>TMDIR</literal> e aberto. Uma unidade lógica
+    <literal>fd</literal> aponta para este arquivo temporário. Então, a
+    primeira folha neste fluxo é lida para se obter informações globais como o
+    número de folhas, o nome das folhas <literal>Sheetnames</literal>,
+    endereços das folhas dentro do fluxo <literal>Sheetpos</literal> e
+    <literal>SST</literal> que contém todos os strings utilizados nas
+    folhas.</para>
+
+    <para>Os dados <literal>fd</literal> e <literal>Sheetpos</literal> devem
+    ser passados para <link linkend="xls_read">xls_read</link> para se ler as
+    folhas de dados</para>
+
+    <para>A função <link linkend="readxls">readxls</link> pode ser usada para
+    se ler todo um arquivo Excel em uma função através de uma única chamada de
+    função.</para>
+
+    <para>AVISO: apenas arquivos Excel BIFF8 (última versão do Excel (2003))
+    são manipulados.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+   //Decodificando o arquivo ole, extraindo e abrindo o fluxo de dados do Excel
+    [fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+    //Lendo a primeira folha de dados
+    [Value,TextInd] = xls_read(fd,Sheetpos(1))
+    //fechando o fluxo da planilha
+    mclose(fd)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xls_read">xls_read</link></member>
+
+      <member><link linkend="readxls">readxls</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Serge Steer</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliografia</title>
+
+    <para>Esta função é baseada na documentação do arquivo ole2 da Microsoft
+    (<ulink
+    url="http://chicago.sourceforge.net/devel/docs/ole/">http://chicago.sourceforge.net/devel/docs/ole/</ulink>)
+    e na descrição do OpenOffice sobre fluxo de dados do Excel (<ulink
+    url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Funções Utilizadas</title>
+
+    <para>O procedure ripole-0.1.4 (http://www.pldaniels.com/ripole) é
+    utilizado para extrair do arquivo ole o fluxo de dados da planilha.</para>
+  </refsection>
+</refentry>

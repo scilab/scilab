@@ -445,7 +445,7 @@ namespace types
 				{
 					for(it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
 					{
-						iLen += (*it_Exp).size();
+						iLen += (int)(*it_Exp).size();
 					}
 				}
 				else
@@ -488,11 +488,11 @@ namespace types
 							for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 							{
 								osExp << *it_Exp;
-								Add_Space(&osExp, piMaxLen[iCols2] - (*it_Exp).size());
+								Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Exp).size());
 								osExp << endl;
 
 								osExp << *it_Coef;
-								Add_Space(&osExp, piMaxLen[iCols2] - (*it_Coef).size());
+								Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Coef).size());
 								osExp << endl;
 								bMultiLine = true;
 							}
@@ -500,9 +500,9 @@ namespace types
 						else
 						{
 							osExp << listExpR.front();
-							Add_Space(&osExp, piMaxLen[iCols2] - listExpR.front().size());
+							Add_Space(&osExp, piMaxLen[iCols2] - (int)listExpR.front().size());
 							osCoef << listCoefR.front();
-							Add_Space(&osCoef, piMaxLen[iCols2] - listCoefR.front().size());
+							Add_Space(&osCoef, piMaxLen[iCols2] - (int)listCoefR.front().size());
 							bMultiLine = false;
 						}
 						listExpR.clear();
@@ -569,12 +569,11 @@ namespace types
 					for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 					{//normally useless ...
 						osExp << *it_Exp;
-						int titi = piMaxLen[iCols2] - (*it_Exp).size();
-						Add_Space(&osExp, piMaxLen[iCols2] - (*it_Exp).size());
+						Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Exp).size());
 						osExp << endl;
 
 						osExp << *it_Coef;
-						Add_Space(&osExp, piMaxLen[iCols2] - (*it_Coef).size());
+						Add_Space(&osExp, piMaxLen[iCols2] - (int)(*it_Coef).size());
 						osExp << endl;
 					}
 				}
@@ -585,9 +584,9 @@ namespace types
 						osExp << listExpR.front();
 					}
 
-					Add_Space(&osExp, piMaxLen[iCols2] - listExpR.front().size());
+					Add_Space(&osExp, piMaxLen[iCols2] - (int)listExpR.front().size());
 					osCoef << listCoefR.front();
-					Add_Space(&osCoef, piMaxLen[iCols2] - listCoefR.front().size());
+					Add_Space(&osCoef, piMaxLen[iCols2] - (int)listCoefR.front().size());
 				}
 				listExpR.clear();
 				listCoefR.clear();
@@ -665,11 +664,11 @@ namespace types
 
 			if(osExp.str().size() != 0)
 			{
-				iLen = osExp.str().size();
+				iLen = (int)osExp.str().size();
 			}
 			else
 			{
-				iLen = osCoef.str().size();
+				iLen = (int)osCoef.str().size();
 			}
 
 			listCoefR.clear();

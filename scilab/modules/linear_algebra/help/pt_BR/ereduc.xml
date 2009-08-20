@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,17 +25,17 @@
     <refname>ereduc</refname>
 
     <refpurpose>computa de forma escada de colunas da matriz por
-    transforma√ß√µes qz</refpurpose>
+    transformaÁıes qz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,7 +66,7 @@
         <term>Q</term>
 
         <listitem>
-          <para>matriz unit√°ria m x m </para>
+          <para>matriz unit·ria m x m </para>
         </listitem>
       </varlistentry>
 
@@ -74,7 +74,7 @@
         <term>Z</term>
 
         <listitem>
-          <para>matriz unit√°ria n x n </para>
+          <para>matriz unit·ria n x n </para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +82,7 @@
         <term>stair</term>
 
         <listitem>
-          <para>vetor de √≠ndices,</para>
+          <para>vetor de Ìndices,</para>
 
           <variablelist>
             <varlistentry>
@@ -90,7 +90,7 @@
 
               <listitem>
                 <para><literal>ISTAIR(i) = + j</literal> se o elemento da
-                borda <literal>E(i,j)</literal> √© uma quina.</para>
+                borda <literal>E(i,j)</literal> È uma quina.</para>
               </listitem>
             </varlistentry>
 
@@ -99,7 +99,7 @@
 
               <listitem>
                 <para><literal>ISTAIR(i) = - j</literal> se o elemento da
-                borda <literal>E(i,j)</literal> n√£o √© uma quina.</para>
+                borda <literal>E(i,j)</literal> n„o È uma quina.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -119,12 +119,12 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Dada uma matriz X <literal>m x n</literal> (n√£o necessariamente
-    regular), a fun√ß√£o ereduc calcula a matriz unit√°ria transformada
-    <literal>E=Q*X*Z</literal> que est√° na forma escada de colunas (forma
-    trapezoidal). Ainda, o posto da matriz <literal>X</literal> √©
+    <para>Dada uma matriz X <literal>m x n</literal> (n„o necessariamente
+    regular), a funÁ„o ereduc calcula a matriz unit·ria transformada
+    <literal>E=Q*X*Z</literal> que est· na forma escada de colunas (forma
+    trapezoidal). Ainda, o posto da matriz <literal>X</literal> È
     determinado.</para>
   </refsection>
 
@@ -140,7 +140,7 @@ X=[1 2 3;4 5 6]
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="fstair">fstair</link></member>

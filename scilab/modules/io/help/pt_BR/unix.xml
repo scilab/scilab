@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unix" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unix</refname>
+
+    <refpurpose>execução de comando shell (sh)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>stat=unix(command-name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+
+        <listitem>
+          <para>string contendo uma instrução Unix sh</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stat</term>
+
+        <listitem>
+          <para>flag inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Envia um string <literal>command-name</literal> ao Unix para
+    execução com o shell sh. Saída e erros padrões do shell de comando são
+    escritos no shell chamado. <literal>stat</literal> retorna -1 se o Unix
+    não pode ser chamado (memória do sistema disponível insuficiente) ou o
+    código de retorno sh.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+if ~MSDOS then
+  unix("ls $SCI/demos");
+end
+
+function wd=directory()
+  if MSDOS then
+    unix('cd&gt;'+TMPDIR+'\path');
+  else
+    unix('pwd&gt;'+TMPDIR+'/path');
+  end
+  wd=read(TMPDIR+'/path',1,1,'(a)');
+endfunction
+
+wd=directory()
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="edit">edit</link></member>
+
+      <member><link linkend="manedit">manedit</link></member>
+
+      <member><link linkend="unix_g">unix_g</link></member>
+
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+
+      <member><link linkend="host">host</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

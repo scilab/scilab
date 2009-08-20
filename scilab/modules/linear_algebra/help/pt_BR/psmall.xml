@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>psmall</refname>
 
-    <refpurpose>proje√ß√£o espectral</refpurpose>
+    <refpurpose>projeÁ„o espectral</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -49,7 +49,7 @@
         <term>thres</term>
 
         <listitem>
-          <para>n√∫mero real </para>
+          <para>n˙mero real </para>
         </listitem>
       </varlistentry>
 
@@ -75,12 +75,12 @@
   <refsection>
     <title>Description</title>
 
-    <para>Proje√ß√£o sobre auto-subespa√ßo associado com autovalores com parte
+    <para>ProjeÁ„o sobre auto-subespaÁo associado com autovalores com parte
     real &lt; <literal>thres</literal> (<literal>flag='c'</literal>) ou com
-    m√≥dulo &lt; <literal>thres</literal> (<literal>flag='d'</literal>).</para>
+    mÛdulo &lt; <literal>thres</literal> (<literal>flag='d'</literal>).</para>
 
-    <para>A proje√ß√£o √© definda por <literal>Q*M</literal>,
-    <literal>Q</literal> √© de posto-coluna cheio, <literal>M</literal> √© de
+    <para>A projeÁ„o È definda por <literal>Q*M</literal>,
+    <literal>Q</literal> È de posto-coluna cheio, <literal>M</literal> È de
     posto-linha cheio e <literal>M*Q=eye</literal>.</para>
 
     <para>Se <literal>flag='c'</literal>, os autovalores de
@@ -92,14 +92,14 @@
     magnitude &lt; <literal>thres</literal>.</para>
 
     <para>Se <literal>flag='c'</literal> e se <literal>[Q1,M1]</literal> =
-    fatora√ß√£o em posto cheio (<literal>fullrf</literal>) de
-    <literal>eye()-Q*M</literal>ent√£o os autovalores de
+    fatoraÁ„o em posto cheio (<literal>fullrf</literal>) de
+    <literal>eye()-Q*M</literal>ent„o os autovalores de
     <literal>M1*A*Q1</literal> = autovalores de<literal> A</literal> com parte
     real &gt;= <literal>thres</literal>.</para>
 
     <para>Se <literal>flag='d'</literal> e se <literal>[Q1,M1]</literal> =
-    fatora√ß√£o em posto cheio (<literal>fullrf</literal>) de
-    <literal>eye()-Q*M</literal> ent√£o os autovalores de
+    fatoraÁ„o em posto cheio (<literal>fullrf</literal>) de
+    <literal>eye()-Q*M</literal> ent„o os autovalores de
     <literal>M1*A*Q1</literal> = autovalores de <literal>A</literal> com
     magnitude &gt;= <literal>thres</literal>.</para>
   </refsection>
@@ -139,7 +139,7 @@ spec(M1*A*Q1)
   <refsection>
     <title>Used Functions</title>
 
-    <para>Esta fun√ß√£o √© baseada na forma de Schur ordenada (Fun√ß√£o do
+    <para>Esta funÁ„o È baseada na forma de Schur ordenada (FunÁ„o do
     Scilab<literal> schur</literal>).</para>
   </refsection>
 </refentry>

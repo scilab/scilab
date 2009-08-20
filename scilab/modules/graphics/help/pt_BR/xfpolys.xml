@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>xfpolys</refname>
 
-    <refpurpose>preenche um conjunto de pol√≠gonos</refpurpose>
+    <refpurpose>preenche um conjunto de polÌgonos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>xpols,ypols</term>
 
         <listitem>
-          <para>matrizes de mesmo tamanho (p,n) (pontos dos pol√≠gonos).
+          <para>matrizes de mesmo tamanho (p,n) (pontos dos polÌgonos).
           </para>
         </listitem>
       </varlistentry>
@@ -57,45 +57,45 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xfpolys</literal> preenche um conjunto de pol√≠gonos de
+    <para><literal>xfpolys</literal> preenche um conjunto de polÌgonos de
     mesmo tamanho definidos pelas matrizes <literal>xpols</literal> e
-    <literal>ypols</literal>. As coordenadas de cada pol√≠gono s√£o armazenadas
+    <literal>ypols</literal>. As coordenadas de cada polÌgono s„o armazenadas
     em uma coluna de <literal>xpols</literal> e
     <literal>ypols</literal>.</para>
 
-    <para>Os pol√≠gonos podem ser preenchidos por uma dada cor (preenchimento
-    mon√≥tono) ou pintados com cores interpoladas (preenchimento por
-    gradua√ß√£o). </para>
+    <para>Os polÌgonos podem ser preenchidos por uma dada cor (preenchimento
+    monÛtono) ou pintados com cores interpoladas (preenchimento por
+    graduaÁ„o). </para>
 
     <variablelist>
       <varlistentry>
-        <term>preenchimento mon√≥tono</term>
+        <term>preenchimento monÛtono</term>
 
         <listitem>
           <para>Neste caso, <literal>fill</literal> deve ser um vetor de
-          tamanho <literal>n</literal>. O padr√£o para preenchimento de um
-          pol√≠gono de n√∫mero i √© dado por <literal>fill(i)</literal>:</para>
+          tamanho <literal>n</literal>. O padr„o para preenchimento de um
+          polÌgono de n˙mero i È dado por <literal>fill(i)</literal>:</para>
 
           <itemizedlist>
             <listitem>
-              <para>se <literal>fill(i)&lt;0</literal>, o pol√≠gono √©
-              preenchido com padr√£o de identificador
+              <para>se <literal>fill(i)&lt;0</literal>, o polÌgono È
+              preenchido com padr„o de identificador
               <literal>-fill(i)</literal>.</para>
             </listitem>
 
             <listitem>
-              <para>se <literal>fill(i)=0</literal>, o pol√≠gono √© desenhado no
-              estilo de tra√ßo (ou cor) corrente e n√£o √© preenchido. </para>
+              <para>se <literal>fill(i)=0</literal>, o polÌgono È desenhado no
+              estilo de traÁo (ou cor) corrente e n„o È preenchido. </para>
             </listitem>
 
             <listitem>
-              <para>se <literal>fill(i)&gt;0</literal>, o pol√≠gono √©
-              preenchido com padr√£o de identificador
-              <literal>fill(i)</literal>. Ent√£o seu contorno √© desenhado com o
-              estilo de tra√ßo (ou cor) corrente e fechado, se
-              necess√°rio.</para>
+              <para>se <literal>fill(i)&gt;0</literal>, o polÌgono È
+              preenchido com padr„o de identificador
+              <literal>fill(i)</literal>. Ent„o seu contorno È desenhado com o
+              estilo de traÁo (ou cor) corrente e fechado, se
+              necess·rio.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -111,7 +111,7 @@
           igual a 3 ou 4. </para>
 
           <para><literal>fill(k,i)</literal> fornece a cor da
-          <literal>k</literal> -√©sima borda do pol√≠gono
+          <literal>k</literal> -Èsima borda do polÌgono
           <literal>i</literal>.</para>
         </listitem>
       </varlistentry>
@@ -164,7 +164,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpoly">xfpoly</link></member>

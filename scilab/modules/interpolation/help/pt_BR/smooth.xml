@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="smooth" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>smooth</refname>
 
-    <refpurpose>suavizaÃ§Ã£o por funÃ§Ãµes splines</refpurpose>
+    <refpurpose>suavização por funções splines</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[pt]=smooth(ptd [,step])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,7 +38,7 @@
         <term>step</term>
 
         <listitem>
-          <para>real (passo de discretizaÃ§Ã£o das abscissas) </para>
+          <para>real (passo de discretização das abscissas) </para>
         </listitem>
       </varlistentry>
 
@@ -53,13 +53,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o computa a interpolaÃ§Ã£o por funÃ§Ãµes splines para um dado
-    conjunto de pontos no plano. As coordenadas sÃ£o
+    <para>Esta função computa a interpolação por funções splines para um dado
+    conjunto de pontos no plano. As coordenadas são
     <literal>(ptd(1,i),ptd(2,i))</literal>. Os componentes
-    <literal>ptd(1,:)</literal> devem estar em ordem crescente. O valor padrÃ£o
-    para o para step Ã©
+    <literal>ptd(1,:)</literal> devem estar em ordem crescente. O valor padrão
+    para o para step é
     <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal></para>
   </refsection>
 
@@ -78,7 +78,7 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin">splin</link></member>

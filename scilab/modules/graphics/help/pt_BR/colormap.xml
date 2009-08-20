@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="colormap" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>colormap</refname>
+
+    <refpurpose>mapa de cores</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Um mapa de cores <literal>cmap</literal> é definido por uma matriz m
+    x 3 . m é o número de cores. A cor de número i é dada pela tripla
+    <literal>cmap(i,1)</literal>, <literal>cmap(i,2)</literal>
+    <literal>cmap(i,3)</literal> correspondentes às intensidades de vermelho,
+    verde e azul entre 0 e 1.</para>
+
+    <para>De início, 32 cores são definidas no mapa de cores. Você pode
+    modificar o mapa de cores de uma figura através da opção
+    <literal>set(f,"color_map",cmap)</literal> onde <literal>f</literal> é o
+    manipulador da figura.</para>
+
+    <para>Cada cor no mapa de cores possui um identificador que você deve
+    utilizar para especificar a cor na maioria das funções de esboço. Para
+    visualizar os identificadores, use a função <link
+    linkend="getcolor">getcolor</link>.</para>
+
+    <para>As funções <link linkend="hotcolormap">hotcolormap</link>, <link
+    linkend="jetcolormap">jetcolormap</link> e <link
+    linkend="graycolormap">graycolormap</link> fornecem mapas de cores com
+    variação contínua de cores.</para>
+
+    <para>Você pode obter o mapa de cores padrão através de
+    <literal>cmap=get(sdf(),"color_map")</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+n=64;
+r=linspace(0,1,n)';
+g=linspace(1,0,n)';
+b=ones(r);
+cmap=[r g b];
+f=gcf(); f.color_map=cmap;
+plot3d1()
+f.color_map=get(sdf(),"color_map");
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="autumncolormap">autumncolormap</link></member>
+
+      <member><link linkend="bonecolormap">bonecolormap</link></member>
+
+      <member><link linkend="coolcolormap">coolcolormap</link></member>
+
+      <member><link linkend="coppercolormap">coppercolormap</link></member>
+
+      <member><link linkend="graycolormap">graycolormap</link></member>
+
+      <member><link linkend="hotcolormap">hotcolormap</link></member>
+
+      <member><link linkend="hsvcolormap">hsvcolormap</link></member>
+
+      <member><link linkend="jetcolormap">jetcolormap</link></member>
+
+      <member><link linkend="oceancolormap">oceancolormap</link></member>
+
+      <member><link linkend="pinkcolormap">pinkcolormap</link></member>
+
+      <member><link linkend="rainbowcolormap">rainbowcolormap</link></member>
+
+      <member><link linkend="springcolormap">springcolormap</link></member>
+
+      <member><link linkend="summercolormap">summercolormap</link></member>
+
+      <member><link linkend="whitecolormap">whitecolormap</link></member>
+
+      <member><link linkend="wintercolormap">wintercolormap</link></member>
+
+      <member><link linkend="color">color</link></member>
+
+      <member><link linkend="getcolor">getcolor</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

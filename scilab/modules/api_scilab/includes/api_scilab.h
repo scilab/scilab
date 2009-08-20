@@ -12,6 +12,8 @@
 #ifndef __VARIABLE_API__
 #define __VARIABLE_API__
 
+#define API_SCILAB_VERSION	1
+
 #include "api_common.h"
 #include "api_double.h"
 #include "api_string.h"

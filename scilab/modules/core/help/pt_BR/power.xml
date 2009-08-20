@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="power" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>power</refname>
 
-    <refpurpose>opera√ß√£o de potencia√ß√£o(^,.^)</refpurpose>
+    <refpurpose>operaÁ„o de potenciaÁ„o(^,.^)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>t=A^b
 t=A**b
@@ -25,15 +25,15 @@ t=A.^b</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A,t</term>
 
         <listitem>
-          <para>matriz de escalares, polin√¥mios ou raz√µes de
-          polin√¥mios.</para>
+          <para>matriz de escalares, polinÙmios ou razıes de
+          polinÙmios.</para>
         </listitem>
       </varlistentry>
 
@@ -48,39 +48,39 @@ t=A.^b</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <itemizedlist>
       <listitem>
         <para><literal>"(A:square)^(b:scalar)"</literal>Se
-        <literal>A</literal> √© uma matriz quadrada e <literal>b</literal> √© um
-        escalar, ent√£o <literal>A^b</literal> √© a matriz <literal>A</literal>
-        elevada √† pot√™ncia <literal>b</literal>.</para>
+        <literal>A</literal> È uma matriz quadrada e <literal>b</literal> È um
+        escalar, ent„o <literal>A^b</literal> È a matriz <literal>A</literal>
+        elevada ‡ potÍncia <literal>b</literal>.</para>
       </listitem>
 
       <listitem>
         <para><literal>"(A:matrix).^(b:scalar)"</literal>Se
-        <literal>b</literal> √© um escalar e <literal>A</literal> uma matriz,
-        ent√£o <literal>A.^b</literal> √© formada pelos elementos de
-        <literal>A</literal> elevados √† pot√™ncia <literal>b</literal>
-        (potencia√ß√£o elemento a elemento). Se <literal>A</literal> √© um vetor
-        e <literal>b</literal> √© um escalar, ent√£o <literal>A^b</literal> e
-        <literal>A.^b</literal> realizam a mesma opera√ß√£o (i.e., potencia√ß√£o
+        <literal>b</literal> È um escalar e <literal>A</literal> uma matriz,
+        ent„o <literal>A.^b</literal> È formada pelos elementos de
+        <literal>A</literal> elevados ‡ potÍncia <literal>b</literal>
+        (potenciaÁ„o elemento a elemento). Se <literal>A</literal> È um vetor
+        e <literal>b</literal> È um escalar, ent„o <literal>A^b</literal> e
+        <literal>A.^b</literal> realizam a mesma operaÁ„o (i.e., potenciaÁ„o
         elemento a elemento). </para>
       </listitem>
 
       <listitem>
         <para><literal>"(A:scalar).^(b:matrix)"</literal> Se
-        <literal>A</literal> √© um escalar e <literal>b</literal> √© uma matriz
-        (ou vetor) ent√£o <literal>A^b</literal> e <literal>A.^b</literal> s√£o
+        <literal>A</literal> È um escalar e <literal>b</literal> È uma matriz
+        (ou vetor) ent„o <literal>A^b</literal> e <literal>A.^b</literal> s„o
         as matrizes (ou vetores) formados por<literal>
         a^(b(i,j))</literal>.</para>
       </listitem>
 
       <listitem>
         <para><literal>"(A:matrix).^(b:matrix)"</literal> Se
-        <literal>A</literal> e <literal>b</literal> s√£o vetores (matrizes) de
-        mesmo tamanho <literal>A.^b</literal> √© o vetor
+        <literal>A</literal> e <literal>b</literal> s„o vetores (matrizes) de
+        mesmo tamanho <literal>A.^b</literal> È o vetor
         <literal>A(i)^b(i)</literal> (matriz
         <literal>A(i,j)^b(i,j)</literal>).</para>
       </listitem>
@@ -88,11 +88,11 @@ t=A.^b</synopsis>
 
     <para>Notas:</para>
 
-    <para>- Para matrizes quadradas <literal>A^p</literal> √© computada atrav√©s
-    de sucessivas multiplica√ß√µes de matrizes se <literal>p</literal> is √© um
-    n√∫mero inteiro positivo e por diagonaliza√ß√£o se n√£o for.</para>
+    <para>- Para matrizes quadradas <literal>A^p</literal> È computada atravÈs
+    de sucessivas multiplicaÁıes de matrizes se <literal>p</literal> is È um
+    n˙mero inteiro positivo e por diagonalizaÁ„o se n„o for.</para>
 
-    <para>- Os operadores ** e ^ s√£o sin√¥nimos.</para>
+    <para>- Os operadores ** e ^ s„o sinÙnimos.</para>
   </refsection>
 
   <refsection>
@@ -113,7 +113,7 @@ s^(1:10)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="exp">exp</link></member>

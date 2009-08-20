@@ -11,7 +11,7 @@
 // test addinter
 //================================================
 if ~c_link('libintertest') then
-  curPath = getcwd();
+  curPath = pwd();
   copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+filesep()+'unit_tests'+filesep()+'addinter.c', TMPDIR+filesep()+'addinter.c');
   chdir(TMPDIR);
   files=['addinter.o'];

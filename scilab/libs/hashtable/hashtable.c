@@ -57,7 +57,7 @@ static const unsigned int primes[] = {
 const unsigned int prime_table_length = sizeof(primes)/sizeof(primes[0]);
 const float max_load_factor = 0.65f;
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 struct hashtable *
 create_hashtable(unsigned int minsize,
                  unsigned int (*hashf) (void*),
@@ -85,7 +85,7 @@ create_hashtable(unsigned int minsize,
     return h;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 unsigned int
 hash(struct hashtable *h, void *k)
 {
@@ -99,7 +99,7 @@ hash(struct hashtable *h, void *k)
     return i;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 static int
 hashtable_expand(struct hashtable *h)
 {
@@ -157,14 +157,14 @@ hashtable_expand(struct hashtable *h)
     return -1;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 unsigned int
 hashtable_count(struct hashtable *h)
 {
     return h->entrycount;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 int
 hashtable_insert(struct hashtable *h, void *k, void *v)
 {
@@ -190,7 +190,7 @@ hashtable_insert(struct hashtable *h, void *k, void *v)
     return -1;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 
 
 /** 
@@ -221,7 +221,7 @@ void * hashtable_search(struct hashtable *h, void *k)
     return NULL;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 void * /* returns value associated with key */
 hashtable_remove(struct hashtable *h, void *k)
 {
@@ -255,7 +255,7 @@ hashtable_remove(struct hashtable *h, void *k)
     return NULL;
 }
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* destroy */
 void hashtable_destroy(struct hashtable *h, int free_values)
 {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="percent" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,24 +17,24 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Alguns nomes de variÃ¡veis predefinidas comeÃ§am com '
+    <para>Alguns nomes de variáveis predefinidas começam com '
     <literal>%</literal>', tais como <literal>%i</literal> (para
     <literal>sqrt(-1)</literal>), <literal>%inf</literal> (para
     <literal>Infinity</literal>), <literal>%pi</literal> (para
     <literal>3.14...</literal>), <literal>%T</literal> (para a constante
     booleana<literal>"true"</literal>),...</para>
 
-    <para>Ainda, funÃ§Ãµes cujo nome comeÃ§a com % sÃ£o especiais : elas sÃ£o
+    <para>Ainda, funções cujo nome começa com % são especiais : elas são
     usadas para primitivas e overloading ("sobrecarga") de operadores (ver
     <literal>overloading</literal>).</para>
 
-    <para>Por exemplo, a funÃ§Ã£o <literal>%rmr</literal> realiza a operaÃ§Ã£o de
-    multiplicaÃ§Ã£o (<literal>m</literal>) <literal>x*y</literal> para
-    <literal>x</literal> e <literal>y</literal> matrizes de razÃµes de
-    polinÃ´mios (<literal>r</literal>). As convenÃ§Ãµes de codificaÃ§Ã£o sÃ£o
-    fornecidas pelo arquivo "leia-me" no diretÃ³rio
+    <para>Por exemplo, a função <literal>%rmr</literal> realiza a operação de
+    multiplicação (<literal>m</literal>) <literal>x*y</literal> para
+    <literal>x</literal> e <literal>y</literal> matrizes de razões de
+    polinômios (<literal>r</literal>). As convenções de codificação são
+    fornecidas pelo arquivo "leia-me" no diretório
     <literal>SCIDIR/macros/percent</literal>.</para>
   </refsection>
 
@@ -52,7 +52,7 @@ x1*x2
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="overloading">overloading</link></member>

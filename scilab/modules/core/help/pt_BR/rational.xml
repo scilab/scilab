@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="rational" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>rational</refname>
 
-    <refpurpose>objeto do Scilab, razÃ£o de polinÃ´mios</refpurpose>
+    <refpurpose>objeto do Scilab, razão de polinômios</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Um razÃ£o de polinÃ´mios <literal>r</literal> Ã© um quociente entre
-    dois polinÃ´mios <literal>r=num/den</literal>. A representaÃ§Ã£o interna de
-    uma razÃ£o de polinÃ´mios Ã© uma lista.
-    <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> Ã© o mesmo
-    que <literal>r=num/den</literal>. Uma matriz de razÃµes de polinÃ´mios pode
+    <para>Um razão de polinômios <literal>r</literal> é um quociente entre
+    dois polinômios <literal>r=num/den</literal>. A representação interna de
+    uma razão de polinômios é uma lista.
+    <literal>r=tlist('['r','num','den','dt'],num,den,[])</literal> é o mesmo
+    que <literal>r=num/den</literal>. Uma matriz de razões de polinômios pode
     ser definida pela sintaxe usual, por exemplo:
-    <literal>[r11,r12;r21,r22]</literal> iÃ© uma matriz 2x2 onde
-    <literal>rij</literal> sÃ£o razÃµes 1x1. Uma matriz de razÃµes de polinÃ´mios
-    tambÃ©m pode ser definida como acima como uma lista
+    <literal>[r11,r12;r21,r22]</literal> ié uma matriz 2x2 onde
+    <literal>rij</literal> são razões 1x1. Uma matriz de razões de polinômios
+    também pode ser definida como acima como uma lista
     <literal>tlist(['r','num','den','dt'],num,den,[])</literal> com
     <literal>num</literal> e <literal>den</literal> matrizes de
-    polinÃ´mios.</para>
+    polinômios.</para>
   </refsection>
 
   <refsection>
@@ -52,7 +52,7 @@ syslin('c',H)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

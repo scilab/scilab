@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,34 +24,34 @@
   <refnamediv>
     <refname>xfrect</refname>
 
-    <refpurpose>preenche um ret√¢ngulo</refpurpose>
+    <refpurpose>preenche um ret‚ngulo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xfrect(x,y,w,h)
 xfrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x,y,w,h</term>
 
         <listitem>
-          <para>quatro valores reais definindo um ret√¢ngulo</para>
+          <para>quatro valores reais definindo um ret‚ngulo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xrect</literal> preenche um ret√¢ngulo definido por
+    <para><literal>xrect</literal> preenche um ret‚ngulo definido por
     <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura, altura)
     usando a escala e o estilo correntes.</para>
   </refsection>
@@ -70,7 +70,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xrect">xrect</link></member>

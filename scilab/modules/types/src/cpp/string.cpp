@@ -206,8 +206,8 @@ namespace types
 			for(int i = 0 ; i < m_iCols ; i++)
 			{
 				int iLen = 0;
-				int iCurLen = strlen(string_get(0, i));
-				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + ostemp.str().size();
+				int iCurLen = (int)strlen(string_get(0, i));
+				iLen = iCurLen + SIZE_BETWEEN_TWO_VALUES + (int)ostemp.str().size();
 				if(iLen > _iLineLen)
 				{//Max length, new line
 					if(iLastVal + 1 == i)

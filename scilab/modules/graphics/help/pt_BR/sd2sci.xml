@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1988 - INRIA - Serge Steer
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>sd2sci</refname>
 
-    <refpurpose>estrutura gr_menu para conversor de instruÃ§Ã£o
+    <refpurpose>estrutura gr_menu para conversor de instrução
     Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>sd</term>
 
         <listitem>
-          <para>estrutura de dados construÃ­da por gr_menu. </para>
+          <para>estrutura de dados construída por gr_menu. </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>sz</term>
 
         <listitem>
-          <para>vetor de nÃºmeros ou strings com dois componentes, fornece os
+          <para>vetor de números ou strings com dois componentes, fornece os
           fatores de zoom x e y </para>
         </listitem>
       </varlistentry>
@@ -59,7 +59,7 @@
         <term>orig</term>
 
         <listitem>
-          <para>vetor de nÃºmeros ou strings, fornece o vetor translaÃ§Ã£o da
+          <para>vetor de números ou strings, fornece o vetor translação da
           origem</para>
         </listitem>
       </varlistentry>
@@ -67,24 +67,24 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dada uma estrutura de dados <literal>sd</literal> gerada por
     <literal>gr_menu</literal> <literal>sd2sci</literal> forma um vetor de
-    instruÃ§Ãµes do Scilab correspondente ao grÃ¡fico editado por
+    instruções do Scilab correspondente ao gráfico editado por
     <literal>gr_menu</literal>.</para>
 
-    <para>Os parÃ¢metros opcionais <literal>sz</literal> e
-    <literal>orig</literal> permitem ampliar e deslocar o grÃ¡fico
+    <para>Os parâmetros opcionais <literal>sz</literal> e
+    <literal>orig</literal> permitem ampliar e deslocar o gráfico
     inicial.</para>
 
-    <para>Se <literal>sz</literal> ou <literal>orig</literal> sÃ£o fornecidos
-    por strings, as instruÃ§Ãµes geradas sÃ£o relativas a expressÃµes
+    <para>Se <literal>sz</literal> ou <literal>orig</literal> são fornecidos
+    por strings, as instruções geradas são relativas a expressões
     formais.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="execstr">execstr</link></member>

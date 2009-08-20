@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="type" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>type</refname>
 
-    <refpurpose>tipo de variÃ¡vel</refpurpose>
+    <refpurpose>tipo de variável</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[i]=type(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -45,14 +45,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>type(x)</literal>retorna um inteiro que indica o tipo de
     <literal>x </literal>como segue:</para>
 
     <para> 1 : uma matriz constante de reais ou complexos;</para>
 
-    <para> 2 : uma matriz de polinÃ´mios;</para>
+    <para> 2 : uma matriz de polinômios;</para>
 
     <para> 4 : uma matriz de valores booleanos;</para>
 
@@ -64,15 +64,15 @@
 
     <para> 8 : uma matriz de inteiros armazenados em 1, 2 ou 4 bytes;</para>
 
-    <para> 9 : uma matriz de manipuladores grÃ¡ficos;</para>
+    <para> 9 : uma matriz de manipuladores gráficos;</para>
 
     <para> 10 : uma matriz de strings;</para>
 
-    <para> 11 : uma funÃ§Ã£o nÃ£o-compilada (cÃ³digo Scilab);</para>
+    <para> 11 : uma função não-compilada (código Scilab);</para>
 
-    <para> 13 : uma funÃ§Ã£o compilada (cÃ³digo Scilab);</para>
+    <para> 13 : uma função compilada (código Scilab);</para>
 
-    <para> 14 : uma biblioteca de funÃ§Ãµes;</para>
+    <para> 14 : uma biblioteca de funções;</para>
 
     <para> 15 : uma lista;</para>
 
@@ -83,13 +83,13 @@
     <para> 128 : um ponteiro (ver <link
     linkend="lufact">lufact</link>).</para>
 
-    <para>129 : polinÃ´mio de tamanho implÃ­cito, usado para indexaÃ§Ã£o.</para>
+    <para>129 : polinômio de tamanho implícito, usado para indexação.</para>
 
-    <para>130 : intrÃ­nseco do Scilab (cÃ³digo C ou Fortran).</para>
+    <para>130 : intrínseco do Scilab (código C ou Fortran).</para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="typeof">typeof</link></member>

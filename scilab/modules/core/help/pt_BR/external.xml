@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="external" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,26 +13,26 @@
   <refnamediv>
     <refname>external</refname>
 
-    <refpurpose>objeto Scilab, funÃ§Ã£o ou rotina externa</refpurpose>
+    <refpurpose>objeto Scilab, função ou rotina externa</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FunÃ§Ã£o ou rotina externa para uso com comandos especÃ­ficos.</para>
+    <para>Função ou rotina externa para uso com comandos específicos.</para>
 
-    <para>Uma "external" Ã© uma funÃ§Ã£o ou rotina que Ã© usada como argumento em
-    algumas primitivas de alto nÃ­vel (tais como <literal>ode</literal>,
+    <para>Uma "external" é uma função ou rotina que é usada como argumento em
+    algumas primitivas de alto nível (tais como <literal>ode</literal>,
     <literal>optim</literal>, <literal>schur</literal>...).</para>
 
-    <para>A seqÃ¼Ãªncia de chamamento da "external" (funÃ§Ã£o ou rotina) Ã© imposta
-    pela primitiva de alto nÃ­vel que configura os argumentos da
+    <para>A seqüência de chamamento da "external" (função ou rotina) é imposta
+    pela primitiva de alto nível que configura os argumentos da
     external.</para>
 
-    <para>Por exemplo, a funÃ§Ã£o externa costfunc Ã© um argumento da primitiva
-    optim . Sua seqÃ¼Ãªncia de chamamento deve ser:
+    <para>Por exemplo, a função externa costfunc é um argumento da primitiva
+    optim . Sua seqüência de chamamento deve ser:
     <literal>[f,g,ind]=costfunc(x,ind)</literal> e <literal>optim</literal> (a
-    primitiva de otimizaÃ§Ã£o de alto nÃ­vel) Ã© invocada como segue:</para>
+    primitiva de otimização de alto nível) é invocada como segue:</para>
 
     <programlisting>
 
@@ -40,15 +40,15 @@ optim(costfunc,...)
    
     </programlisting>
 
-    <para>Aqui <literal>costfunc</literal> (a funÃ§Ã£o de custo a ser minimizada
+    <para>Aqui <literal>costfunc</literal> (a função de custo a ser minimizada
     pela primitiva <literal>optim</literal>) avalia <literal>f=f(x)</literal>
     e <literal>g=</literal> gradiente de <literal>f</literal> em
-    <literal>x</literal> (<literal>ind</literal> Ã© um inteiro. Seu uso Ã©
+    <literal>x</literal> (<literal>ind</literal> é um inteiro. Seu uso é
     esclarecido na ajuda de <literal>optim</literal>).</para>
 
-    <para>Se a funÃ§Ã£o externa necessita de outros valores, estas variÃ¡veis
-    podem ser definidas em seu ambiente. Elas tambÃ©m podem ser colocadas em
-    uma lista. Por exemplo, a funÃ§Ã£o externa</para>
+    <para>Se a função externa necessita de outros valores, estas variáveis
+    podem ser definidas em seu ambiente. Elas também podem ser colocadas em
+    uma lista. Por exemplo, a função externa</para>
 
     <programlisting>
 
@@ -56,9 +56,9 @@ optim(costfunc,...)
    
     </programlisting>
 
-    <para>Ã© vÃ¡lida para <literal>optim</literal> se o external (funÃ§Ã£o
-    externa) Ã© <literal>list(costfunc,a,b,c)</literal> e a chamada a
-    <literal>optim</literal> Ã©, entÃ£o:</para>
+    <para>é válida para <literal>optim</literal> se o external (função
+    externa) é <literal>list(costfunc,a,b,c)</literal> e a chamada a
+    <literal>optim</literal> é, então:</para>
 
     <programlisting>
 
@@ -66,12 +66,12 @@ optim(list(costfunc,a1,b1,c1),....
    
     </programlisting>
 
-    <para>Um external tambÃ©m pode ser uma rotina FORTRAN ou C: isto Ã©
-    conveniente para acelerar computaÃ§Ãµes.</para>
+    <para>Um external também pode ser uma rotina FORTRAN ou C: isto é
+    conveniente para acelerar computações.</para>
 
-    <para>TO nome da rotina Ã© fornecido para a primitiva de alto nÃ­vel como um
-    string. A seqÃ¼Ãªncia de chamamento da rotina tambÃ©m Ã© imposta. Exemplos sÃ£o
-    dados no diretÃ³rio <literal>routines/default</literal> (ver o arquivo
+    <para>TO nome da rotina é fornecido para a primitiva de alto nível como um
+    string. A seqüência de chamamento da rotina também é imposta. Exemplos são
+    dados no diretório <literal>routines/default</literal> (ver o arquivo
     <literal>README</literal>).</para>
 
     <para>Rotinas FORTRAN ou C podem ser dinamicamente linkadas ("ligadas,
@@ -79,7 +79,7 @@ optim(list(costfunc,a1,b1,c1),....
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="ode">ode</link></member>

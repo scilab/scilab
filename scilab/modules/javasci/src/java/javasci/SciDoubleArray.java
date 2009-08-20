@@ -51,7 +51,6 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 		this.x = new double[ r * c ];
 		this.name = name;
 
-
 		if ((Scilab.TypeVar(name) == 1)
 			 & (getNumberOfRowsFromScilab(name) == r) 
 			 & (getNumberOfColsFromScilab(name) == c)) {
@@ -63,6 +62,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 				Send();
 			}
 	}
+	
 	/**
 	 * Constructs a Scilab Double Array from a java double array
 	 * @param name  the name of the Scilab Variable 
@@ -81,7 +81,6 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 		Send();
 	}
 
-
 	/**
 	 * Get only ONE element from Scilab Matrix 
 	 * indr AND indc are indices in scilab 
@@ -93,7 +92,6 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 * @return the double value at the position [indr, indc]
 	 */
 	public native double GetElement(int indr, int indc);
-  
 
 	/**
 	 * Return the data
@@ -101,9 +99,7 @@ public class SciDoubleArray extends javasci.SciAbstractArray implements java.io.
 	 */
 	public double[] getData() {
 		Get();
-
 		return x;
 	}
-
 }
 

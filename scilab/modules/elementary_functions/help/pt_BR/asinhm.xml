@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>asinhm</refname>
 
-    <refpurpose>arco-seno hiperbÃ³lico da matriz (matriz arco-seno
-    hiperbÃ³lico)</refpurpose>
+    <refpurpose>arco-seno hiperbólico da matriz (matriz arco-seno
+    hiperbólico)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=asinhm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,12 +49,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>asinhm Ã© o arco-seno hiperbÃ³lico da matriz x (matriz arco-seno
-    hiperbÃ³lico de x). Usa a fÃ³rmula
+    <para>asinhm é o arco-seno hiperbólico da matriz x (matriz arco-seno
+    hiperbólico de x). Usa a fórmula
     <literal>t=logm(x+sqrtm(x*x+eye()))</literal>. Os resultados podem ser
-    imprecisos se a matriz Ã© nÃ£o-simÃ©trica.</para>
+    imprecisos se a matriz é não-simétrica.</para>
   </refsection>
 
   <refsection>
@@ -69,7 +69,7 @@ sinhm(asinhm(A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="asinh">asinh</link></member>

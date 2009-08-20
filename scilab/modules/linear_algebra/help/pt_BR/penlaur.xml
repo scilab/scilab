@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,14 +28,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Si,Pi,Di,order]=penlaur(Fs)
 [Si,Pi,Di,order]=penlaur(E,A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,7 +58,7 @@
         <term>Si,Pi,Di</term>
 
         <listitem>
-          <para>tr√™s matrizes quadradas de reais </para>
+          <para>trÍs matrizes quadradas de reais </para>
         </listitem>
       </varlistentry>
 
@@ -73,7 +73,7 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>penlaur</literal> computa os primeiros coeficientes de
     Laurent de <literal>(s*E-A)^-1</literal> no infinito.</para>
@@ -82,27 +82,27 @@
     <literal>s</literal> = infinito.</para>
 
     <para><literal>order</literal> = ordem da singularidade
-    (ordem=√≠ndice-1).</para>
+    (ordem=Ìndice-1).</para>
 
     <para>O feixe de matrizes <literal>Fs=s*E-A</literal> deve ser
-    invert√≠vel.</para>
+    invertÌvel.</para>
 
-    <para>Para um feixe de √≠ndice 0, <literal>Pi, Di,...</literal> s√£o zero e
+    <para>Para um feixe de Ìndice 0, <literal>Pi, Di,...</literal> s„o zero e
     <literal>Si=inv(E)</literal>.</para>
 
-    <para>Para um feixe de √≠ndice 1 (order=0),<literal>Di</literal> =0.</para>
+    <para>Para um feixe de Ìndice 1 (order=0),<literal>Di</literal> =0.</para>
 
-    <para>Para feixes de √≠ndices maiores, os termos <literal> -s^2 Di(2), -s^3
-    Di(3),... </literal> s√£o dados por:</para>
+    <para>Para feixes de Ìndices maiores, os termos <literal> -s^2 Di(2), -s^3
+    Di(3),... </literal> s„o dados por:</para>
 
     <para><literal> Di(2)=Di*A*Di</literal>, <literal>
-    Di(3)=Di*A*Di*A*Di</literal> (at√© <literal>Di(order)</literal>).</para>
+    Di(3)=Di*A*Di*A*Di</literal> (atÈ <literal>Di(order)</literal>).</para>
   </refsection>
 
   <refsection>
-    <title>Observa√ß√£o</title>
+    <title>ObservaÁ„o</title>
 
-    <para>Vers√£o experimental: h√° problemas quando se tem mal-condicionamento
+    <para>Vers„o experimental: h· problemas quando se tem mal-condicionamento
     de<literal>so*E-A</literal></para>
   </refsection>
 
@@ -121,7 +121,7 @@ norm(coeff(Bis,1)-Di,1)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="glever">glever</link></member>

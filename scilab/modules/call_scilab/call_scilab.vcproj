@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -212,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -302,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -428,10 +428,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\ScilabAPI.h"
 				>
 			</File>
 		</Filter>

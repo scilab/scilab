@@ -66,12 +66,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-scf(0)
-plot2d()
-//exportando para PPM
-filename='foo.ppm';
-xs2ppm(0,filename);
+    <programlisting role="example">    scf(0)
+    plot2d()
+    //exportando para PPM
+    xs2ppm(0,(foo.ppm');
   </programlisting>
   </refsection>
 

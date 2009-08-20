@@ -346,7 +346,7 @@ namespace types
 							continue;
 						}
 
-						Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+						Add_Space(&ostemp2, piIndexExp[j] - (int)ostemp2.str().size());
 						if(isZero(_pdblVal[j]) == false)
 							ostemp2 << j;
 					}
@@ -364,10 +364,10 @@ namespace types
 				if(i != 0)
 				{
 					ostemp << _szVar;
-					piIndexExp[i] = ostemp.str().size();
+					piIndexExp[i] = (int)ostemp.str().size();
 				}
 				ostemp << " ";
-				iLen = ostemp.str().size();
+				iLen = (int)ostemp.str().size();
 			}
 		}
 
@@ -380,7 +380,7 @@ namespace types
 					continue;
 				}
 
-				Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+				Add_Space(&ostemp2, piIndexExp[j] - (int)ostemp2.str().size());
 				if(isZero(_pdblVal[j]) == false)
 				{
 					ostemp2 << j;
@@ -390,7 +390,7 @@ namespace types
 			if(ostemp.str() == "  ")
 			{
 				ostemp << "  0";
-				Add_Space(&ostemp2, ostemp.str().size());
+				Add_Space(&ostemp2, (int)ostemp.str().size());
 			}
 
 			_pListExp->push_back(ostemp2.str());

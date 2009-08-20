@@ -63,7 +63,7 @@ cd SCI
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="getcwd">getcwd</link>
+        <link linkend="pwd">pwd</link>
       </member>
     </simplelist>
   </refsection>

@@ -39,8 +39,6 @@
     )</literal>Constructor</para>
     <para><literal>public int getNumbersOfRows()</literal>Get number of rows</para>
     <para><literal>public int getNumbersOfCols() </literal>Get number of colons</para>
-    <para><literal>public int getRow()</literal>(deprecated) Get number of rows</para>
-    <para><literal>public int getCol() </literal>(deprecated) Get number of colons</para>
     <para><literal>public String getName()</literal>Get Name of scilab object</para>
     <para><literal>public String[] getData()</literal>Get Value of scilab object</para>
     <para><literal>public void Get() </literal>Get in java object , value of scilab

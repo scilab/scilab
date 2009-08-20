@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>colcompr</refname>
 
-    <refpurpose>compressÃ£o de colunas de matrizes de polinÃ´mios</refpurpose>
+    <refpurpose>compressão de colunas de matrizes de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios </para>
+          <para>matriz de polinômios </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>Y</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios quadrada (base unimodular direita)
+          <para>matriz de polinômios quadrada (base unimodular direita)
           </para>
         </listitem>
       </varlistentry>
@@ -66,17 +66,17 @@
         <term>Ac</term>
 
         <listitem>
-          <para>: <literal>Ac=A*Y</literal>, matriz de polinÃ´mios</para>
+          <para>: <literal>Ac=A*Y</literal>, matriz de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>CompressÃ£o de colunas da matriz de polinÃ´mios <literal>A</literal>
-    (compressÃ£o para a esquerda).</para>
+    <para>Compressão de colunas da matriz de polinômios <literal>A</literal>
+    (compressão para a esquerda).</para>
   </refsection>
 
   <refsection>
@@ -93,7 +93,7 @@ p*p'*Y
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="rowcompr">rowcompr</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,13 +29,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>c=cellstr(s)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,30 +49,30 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Retorna um cell array de strings</para>
 
     <itemizedlist>
       <listitem>
-        <para>Se <literal>s </literal>i√© um vetor linha de strings, ent√£o
-        <literal>cellstr(s)</literal> retorna um cell (um-por-um) que cont√©m
-        um componente (a concatena√ß√£o de todas as colunas componentes de
+        <para>Se <literal>s </literal>iÈ um vetor linha de strings, ent„o
+        <literal>cellstr(s)</literal> retorna um cell (um-por-um) que contÈm
+        um componente (a concatenaÁ„o de todas as colunas componentes de
         <literal>s ).</literal></para>
       </listitem>
 
       <listitem>
-        <para>Se <literal>s</literal> √© um vetor coluna de strings, ent√£o
+        <para>Se <literal>s</literal> È um vetor coluna de strings, ent„o
         <literal>cellstr(s)</literal> converte s em um cell que tem o mesmo
         tamanho : cell de strings
         <literal>(size(s,1)-por-um)</literal>.</para>
       </listitem>
 
       <listitem>
-        <para>Se <literal>s</literal> √© uma matriz de strings, ent√£o, para
+        <para>Se <literal>s</literal> È uma matriz de strings, ent„o, para
         cada linha<literal> i </literal>de <literal>s</literal>,
         <literal>cellstr(s)</literal> concatena todos os componentes da
-        i-√©sima linha da matriz <literal>s</literal> (i.e s(i,1), s(i,2),
+        i-Èsima linha da matriz <literal>s</literal> (i.e s(i,1), s(i,2),
         s(i,3),...) e retorna um cell de strings
         (<literal>size(s,1)-por-um)</literal>.</para>
       </listitem>
@@ -92,7 +92,7 @@ cellstr(["abc","def",'gh';"i","j","klm"])
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="cell">cell</link></member>

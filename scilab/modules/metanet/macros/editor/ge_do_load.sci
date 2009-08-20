@@ -19,7 +19,7 @@ function [ok,GraphList,edited,fname]=ge_do_load(fname)
   if fname==emptystr() then ok=%f,return,end// Canceled by user
   [GraphList,edited,msg]=load_graph(fname)
   if msg<>[] then //an error occured
-    message(msg)
+    messagebox(msg,"modal")
     ok=%f
     return
   end

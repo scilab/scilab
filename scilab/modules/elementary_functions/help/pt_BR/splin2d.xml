@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="splin2d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>splin2d</refname>
 
-    <refpurpose>interpolaÃ§Ã£o por spline bicÃºbico em grides 2d</refpurpose>
+    <refpurpose>interpolação por spline bicúbico em grides 2d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -31,7 +31,7 @@
 
         <listitem>
           <para>vetores linhas estritamente crescentes (com pelo menos dois
-          componentes) definindo o grid de interpolaÃ§Ã£o</para>
+          componentes) definindo o grid de interpolação</para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>spline_type</term>
 
         <listitem>
-          <para>(opcional) um string selecionando o tipo de spline bicÃºbico a
+          <para>(opcional) um string selecionando o tipo de spline bicúbico a
           ser computado</para>
         </listitem>
       </varlistentry>
@@ -58,25 +58,25 @@
         <term>C</term>
 
         <listitem>
-          <para>um vetor grande com coeficientes dos elementos de Ã¡rea
-          bicÃºbicos (veja detalhes em "ObservaÃ§Ãµes")</para>
+          <para>um vetor grande com coeficientes dos elementos de área
+          bicúbicos (veja detalhes em "Observações")</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o computa um spline ou sub-spline bicÃºbico
+    <para>Esta função computa um spline ou sub-spline bicúbico
     <emphasis>s</emphasis> que interpola os pontos
     <emphasis>(xi,yj,zij)</emphasis> i.e., temos
     <emphasis>s(xi,yj)=zij</emphasis> para todo <emphasis>i=1,..,nx</emphasis>
-    e <emphasis>j=1,..,ny</emphasis>. O spline resultante s Ã© definido pela
-    tripla <literal>(x,y,C)</literal> onde <literal>C</literal> Ã© o vetor (com
+    e <emphasis>j=1,..,ny</emphasis>. O spline resultante s é definido pela
+    tripla <literal>(x,y,C)</literal> onde <literal>C</literal> é o vetor (com
     comprimento 16(nx-1)(ny-1)) com os coeficientes de cada um dos
-    (nx-1)(ny-1) elementos de Ã¡rea bicÃºbicos : em <emphasis>[x(i)
-    x(i+1)]x[y(j) y(j+1)]</emphasis>, <emphasis>s</emphasis> Ã© definido por
+    (nx-1)(ny-1) elementos de área bicúbicos : em <emphasis>[x(i)
+    x(i+1)]x[y(j) y(j+1)]</emphasis>, <emphasis>s</emphasis> é definido por
     :</para>
 
     <programlisting>
@@ -87,18 +87,18 @@
              k=1   l=1
           </programlisting>
 
-    <para>A avaliaÃ§Ã£o de s em alguns pontos deve ser feita pela funÃ§Ã£o <link
-    linkend="interp2d">interp2d</link> VÃ¡rios tipos de splines podem ser
-    computados selecionando o parÃ¢metro <literal>spline_type</literal>
-    apropriado. O mÃ©todo usada para computar os splines (ou sub-spline)
-    bicÃºbicos Ã© o mesmo do antigo, i.e., computar em cada ponto do grid
-    <emphasis>(xi,yj)</emphasis> uma aproximaÃ§Ã£o das derivadas primeiras
+    <para>A avaliação de s em alguns pontos deve ser feita pela função <link
+    linkend="interp2d">interp2d</link> Vários tipos de splines podem ser
+    computados selecionando o parâmetro <literal>spline_type</literal>
+    apropriado. O método usada para computar os splines (ou sub-spline)
+    bicúbicos é o mesmo do antigo, i.e., computar em cada ponto do grid
+    <emphasis>(xi,yj)</emphasis> uma aproximação das derivadas primeiras
     <emphasis>ds/dx(xi,yj)</emphasis> e <emphasis>ds/dy(xi,yj)</emphasis> e
     das derivadas cruzadas <emphasis>d2s/dxdy(xi,yj)</emphasis>. Estas
-    derivadas sÃ£o computadas pelo modo dos esquemas do spline 1d levando a uma
-    funÃ§Ã£o de classe C2 (s Ã© duas vezes continuamente diferenciÃ¡vel) ou
-    atravÃ©s de um esquema de aproximaÃ§Ã£o local, levando a uma funÃ§Ã£o de classe
-    C1 apenas. Este esquema Ã© selecionado atravÃ©s do parÃ¢metro
+    derivadas são computadas pelo modo dos esquemas do spline 1d levando a uma
+    função de classe C2 (s é duas vezes continuamente diferenciável) ou
+    através de um esquema de aproximação local, levando a uma função de classe
+    C1 apenas. Este esquema é selecionado através do parâmetro
     <literal>spline_type</literal> (ver <link linkend="splin">splin</link>
     para detalhes) :</para>
 
@@ -107,7 +107,7 @@
         <term>"not_a_knot"</term>
 
         <listitem>
-          <para>Ã© o caso padrÃ£o</para>
+          <para>é o caso padrão</para>
         </listitem>
       </varlistentry>
 
@@ -115,9 +115,9 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>usado se a funÃ§Ã£o subjacente Ã© periÃ³dica: deve-se ter
+          <para>usado se a função subjacente é periódica: deve-se ter
           <emphasis>z(1,j) = z(nx,j) para todo j em [1,ny] e z(i,1) = z(i,ny)
-          para i em [1,nx]</emphasis> # mas isto nÃ£o Ã© verificado pela
+          para i em [1,nx]</emphasis> # mas isto não é verificado pela
           interface.</para>
         </listitem>
       </varlistentry>
@@ -125,26 +125,26 @@
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes</title>
+    <title>Observações</title>
 
-    <para>De um ponto de vista de precisÃ£o, use essencialmente o tipo
+    <para>De um ponto de vista de precisão, use essencialmente o tipo
     <emphasis role="bold">not_a_knot</emphasis> ou <emphasis
-    role="bold">periodic</emphasis> se a funÃ§Ã£o interpolada subjacente Ã©
-    periÃ³dica.</para>
+    role="bold">periodic</emphasis> se a função interpolada subjacente é
+    periódica.</para>
 
     <para>Os tipos <emphasis role="bold">natural</emphasis>, <emphasis
     role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (ou
-    <emphasis role="bold">fast_periodic</emphasis>) podem ser Ãºteis em alguns
-    casos, por exemplo para limitar oscilaÃ§Ãµes (<emphasis
-    role="bold">monotone</emphasis> Ã© o mais poderoso para isso).</para>
+    <emphasis role="bold">fast_periodic</emphasis>) podem ser úteis em alguns
+    casos, por exemplo para limitar oscilações (<emphasis
+    role="bold">monotone</emphasis> é o mais poderoso para isso).</para>
 
-    <para>Para obter coeficientes dos remendos bicÃºbicos de um modo mais
-    amigÃ¡vel vocÃª pode usar <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>
-    entÃ£o o coeficiente <emphasis>(k,l)</emphasis> do remendo
-    <emphasis>(i,j)</emphasis> (ver equaÃ§Ã£o aqui antes) Ã© armazenado em
-    <literal>c(k,l,i,j)</literal>. NÃ£o obstante, a funÃ§Ã£o <link
+    <para>Para obter coeficientes dos remendos bicúbicos de um modo mais
+    amigável você pode usar <literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>
+    então o coeficiente <emphasis>(k,l)</emphasis> do remendo
+    <emphasis>(i,j)</emphasis> (ver equação aqui antes) é armazenado em
+    <literal>c(k,l,i,j)</literal>. Não obstante, a função <link
     linkend="interp2d">interp2d</link> espera pelo vetor grande
-    <literal>C</literal> e nÃ£o pela hipermatriz <literal>c</literal> (note que
+    <literal>C</literal> e não pela hipermatriz <literal>c</literal> (note que
     se pode recuperar facilmente <literal>C</literal> de <literal>c</literal>
     com <literal>C=c(:)</literal>).</para>
   </refsection>
@@ -153,13 +153,13 @@
     <title>Exemplos</title>
 
     <programlisting role="example">
-// exemplo 1 : interpolaÃ§Ã£o de cos(x)cos(y)
-n = 7;  // um grid regular com n x n pontos de interpolaÃ§Ã£o
-        // serÃ¡ usado
+// exemplo 1 : interpolação de cos(x)cos(y)
+n = 7;  // um grid regular com n x n pontos de interpolação
+        // será usado
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
-m = 50; // parÃ¢metro de discretizaÃ§Ã£o do grid de avaliaÃ§Ã£o
+m = 50; // parâmetro de discretização do grid de avaliação
 xx = linspace(0,2*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz = interp2d(XX,YY, x, y, C);
@@ -168,10 +168,10 @@ xbasc()
 plot3d(xx, yy, zz, flag=[2 4 4])
 [X,Y] = ndgrid(x,y);
 param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
-str = msprintf(" com %d x %d pontos de interpolaÃ§Ã£o. ermax = %g",n,n,emax) 
-xtitle("InterpolaÃ§Ã£o por spline de cos(x)cos(y)"+str)
+str = msprintf(" com %d x %d pontos de interpolação. ermax = %g",n,n,emax) 
+xtitle("Interpolação por spline de cos(x)cos(y)"+str)
 
-// exemplo 2 : diferentes funÃ§Ãµes de interpolaÃ§Ã£o em dados aleatÃ³rios
+// exemplo 2 : diferentes funções de interpolação em dados aleatórios
 n = 6;
 x = linspace(0,1,n); y = x;
 z = rand(n,n);
@@ -199,14 +199,14 @@ subplot(2,2,4)
 xselect()
 
 // exemplo 3 : spline not_a_knot e sub-spline monotone
-//             em uma funÃ§Ã£o de degraus
+//             em uma função de degraus
 a = 0; b = 1; c = 0.25; d = 0.75;
-// criando grid de interpolaÃ§Ã£o
+// criando grid de interpolação
 n = 11;
 x = linspace(a,b,n);
 ind = find(c &lt;= x &amp; x &lt;= d); 
 z = zeros(n,n); z(ind,ind) = 1;  // um degrau dentro de um quadrado
-// criando grid de avaliaÃ§Ã£o
+// criando grid de avaliação
 np = 220;
 xp = linspace(a,b, np);
 [XP, YP] = ndgrid(xp, xp);
@@ -225,7 +225,7 @@ subplot(1,2,2)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cshep2d">cshep2d</link></member>

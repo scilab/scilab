@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>erf</refname>
 
-    <refpurpose>funÃ§Ã£o de erro </refpurpose>
+    <refpurpose>função de erro </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = erf(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,9 +56,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>erf</literal> computa a funÃ§Ã£o de erro:</para>
+    <para><literal>erf</literal> computa a função de erro:</para>
 
     <programlisting>
 
@@ -83,7 +83,7 @@ erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="erfc">erfc</link></member>
@@ -99,6 +99,6 @@ erf(0.5)-2/sqrt(%pi)*intg(0,0.5,f)
   <refsection>
     <title>Autor</title>
 
-    <para>W. J. Cody (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

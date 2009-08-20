@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>spanplus</refname>
 
-    <refpurpose>soma de subespaÃ§os</refpurpose>
+    <refpurpose>soma de subespaços</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[X,dim,dima]=spanplus(A,B[,tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>A, B</term>
 
         <listitem>
-          <para>duas matrizes de reais ou complexos com igual nÃºmero de
+          <para>duas matrizes de reais ou complexos com igual número de
           linhas</para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
         <term>X</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unitÃ¡ria </para>
+          <para>matriz quadrada ortogonal ou unitária </para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
         <term>dim, dima</term>
 
         <listitem>
-          <para>inteiros, dimensÃµes de subespaÃ§os </para>
+          <para>inteiros, dimensões de subespaços </para>
         </listitem>
       </varlistentry>
 
@@ -66,26 +66,26 @@
         <term>tol</term>
 
         <listitem>
-          <para>nÃºmero real nÃ£o-negativo</para>
+          <para>número real não-negativo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Computa a base X tal que:</para>
 
     <para>as primeiras <literal>dima</literal> colunas de <literal>X</literal>
     geram Im(<literal>A</literal>) e as (<literal>dim-dima</literal>) colunas
-    seguintes formam uma base de <literal>A+B</literal> em relaÃ§Ã£o a
+    seguintes formam uma base de <literal>A+B</literal> em relação a
     <literal>A</literal>.</para>
 
     <para>As <literal>dim</literal> primeiras colunas de <literal>X</literal>
     formam uma base para <literal>A+B</literal>.</para>
 
-    <para>Tem-se a seguinte forma canÃ´nica para
+    <para>Tem-se a seguinte forma canônica para
     <literal>[A,B]</literal>:</para>
 
     <programlisting>
@@ -96,8 +96,8 @@ X'*[A,B]=[0,*]    (dim-dima rows)
    
     </programlisting>
 
-    <para><literal>tol</literal> Ã© um argumento opcional (ver cÃ³digo da
-    funÃ§Ã£o).</para>
+    <para><literal>tol</literal> é um argumento opcional (ver código da
+    função).</para>
   </refsection>
 
   <refsection>
@@ -115,7 +115,7 @@ dim
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="spaninter">spaninter</link></member>
