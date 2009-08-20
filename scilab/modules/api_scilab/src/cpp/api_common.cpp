@@ -27,11 +27,13 @@
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
+extern "C" {
 extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
 /* *jobptr==0: Get Scilab codes from C-string */
 /* *jobptr==1: Get C-string from Scilab codes */
 
 extern int C2F(stackp)(int *,int *);
+};
 /*--------------------------------------------------------------------------*/
 #define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
 #define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
@@ -413,7 +415,7 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT8 :
 			{
 				unsigned char* pucData		= NULL;
-				iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pucData);
+				iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucData);
 				if(iRet)
 				{
 					return 1;
@@ -435,7 +437,7 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT16 :
 			{
 				unsigned short* pusData		= NULL;
-				iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &pusData);
+				iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusData);
 				if(iRet)
 				{
 					return 1;
@@ -457,7 +459,7 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 		case SCI_UINT32 :
 			{
 				unsigned int* puiData		= NULL;
-				iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &puiData);
+				iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiData);
 				if(iRet)
 				{
 					return 1;

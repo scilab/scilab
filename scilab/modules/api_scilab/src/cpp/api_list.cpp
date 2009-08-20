@@ -1415,32 +1415,32 @@ static int allocCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iIte
 
 int allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, _pucData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _iRows, _iCols, (void **)_pucData);
 }
 
 int allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, _pusData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _iRows, _iCols, (void**)_pusData);
 }
 
 int allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, _puiData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _iRows, _iCols, (void**)_puiData);
 }
 
 int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, _pcData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _iRows, _iCols, (void**)_pcData);
 }
 
 int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, _psData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _iRows, _iCols, (void**)_psData);
 }
 
 int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)
 {
-	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
+	return allocCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, (void**)_piData);
 }
 
 static int createCommomMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
@@ -1513,32 +1513,32 @@ static int getCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemP
 
 int getMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, _pucData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, (void**)_pucData);
 }
 
 int getMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, _pusData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, (void**)_pusData);
 }
 
 int getMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, _puiData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, (void**)_puiData);
 }
 
 int getMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, _pcData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, (void**)_pcData);
 }
 
 int getMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, _psData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, (void**)_psData);
 }
 
 int getMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, _piData);
+	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
 }
 
 static int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)

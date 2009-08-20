@@ -12,6 +12,10 @@
 #ifndef __DOUBLE_API__
 #define __DOUBLE_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "doublecomplex.h"
 #include "dynlib_api_scilab.h"
 
@@ -156,4 +160,7 @@ API_SCILAB_IMPEXP int readNamedMatrixOfDouble(char* _pstName, int* _piRows, int*
 API_SCILAB_IMPEXP int readNamedComplexMatrixOfDouble(char* _pstName, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __DOUBLE_API__ */

@@ -14,6 +14,7 @@
 #ifndef __GW_LINEAR_ALGEBRA__
 #define __GW_LINEAR_ALGEBRA__
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 #define SCI_DOUBLE 1
 #define STRING  10
