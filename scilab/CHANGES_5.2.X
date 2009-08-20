@@ -278,6 +278,8 @@ Bug fixes:
 
 * bug 4533 fixed - link fails on some path (windows)
 
+* bug 4539 fixed - some optional parameters where not set in hist3d
+
 * bug 4547 fixed - examples of javasci with graphics are no more interactive.
 
 * bug 4548 fixed - with intel fortran, file unit opened in a external dll are not shared.
