@@ -10,6 +10,7 @@ WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
 libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

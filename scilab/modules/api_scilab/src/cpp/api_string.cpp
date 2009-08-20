@@ -22,12 +22,14 @@
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_string.h"
-
+#include "api_internal_string.h"
 #include "CallScilab.h"
 #include "stack-c.h"
+extern "C"
+{
 #include "code2str.h"
-#include "api_internal_string.h"
 #include "freeArrayOfString.h"
+};
 /*--------------------------------------------------------------------------*/
 
 /*******************************/

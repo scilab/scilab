@@ -209,7 +209,7 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT8, _iRows, _iCols, (void*)&pcData8);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT8, _iRows, _iCols, (void**)&pcData8);
 	if(iRet)
 	{
 		return 1;
@@ -231,7 +231,7 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT16, _iRows, _iCols, (void*)&psData16);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT16, _iRows, _iCols, (void**)&psData16);
 	if(iRet)
 	{
 		return 1;
@@ -253,7 +253,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void*)&piData32);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&piData32);
 	if(iRet)
 	{
 		return 1;
@@ -282,7 +282,7 @@ int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned ch
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT8, _iRows, _iCols, (void*)&pucData8);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT8, _iRows, _iCols, (void**)&pucData8);
 	if(iRet)
 	{
 		return 1;
@@ -304,7 +304,7 @@ int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned s
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT16, _iRows, _iCols, (void*)&pusData16);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT16, _iRows, _iCols, (void**)&pusData16);
 	if(iRet)
 	{
 		return 1;
@@ -326,7 +326,7 @@ int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned i
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void*)&puiData32);
+	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&puiData32);
 	if(iRet)
 	{
 		return 1;

@@ -17,6 +17,10 @@
 
 #include <string.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #if  ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) )
 #include "core_math.h"
 #else
@@ -30,7 +34,6 @@
 #include "stack1.h"
 #include "stack2.h"
 #include "stack3.h"
-
 
 /*-------------------------------------------------
  * types
@@ -383,6 +386,9 @@ extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_
 
 extern void C2F(freeptr)(double *ip[]);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /*  STACK_SCI  */
 
 

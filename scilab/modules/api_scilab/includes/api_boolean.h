@@ -12,6 +12,10 @@
 #ifndef __BOOLEAN_API__
 #define __BOOLEAN_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 /**
  * Get boolean variable
@@ -65,4 +69,7 @@ API_SCILAB_IMPEXP int createNamedMatrixOfBoolean(char* _pstName, int _iRows, int
  */
 API_SCILAB_IMPEXP int readNamedMatrixOfBoolean(char* _pstName, int* _piRows, int* _piCols, int* _piBool);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __BOOLEAN_API__ */
