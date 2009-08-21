@@ -12,6 +12,7 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <fstream> 
+#include <iostream> 
 #include "Diary.hxx"
 #include "getFullFilename.hxx"
 #include "getDiaryDate.hxx"
@@ -23,7 +24,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/ 
 Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 {
-	int wofstream_mode = 0;
+	std::ios::openmode wofstream_mode = std::ios::trunc | std::ios::binary;
 
 	suspendwrite = false;
 
@@ -34,14 +35,24 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	if (_mode == 0)
 	{
 		wofstream_mode = std::ios::trunc | std::ios::binary ;
-		
 	}
 	else
 	{
 		wofstream_mode = std::ios::app | std::ios::binary ;
 	}
+
 #ifdef _MSC_VER
 	std::wofstream fileDiary(getFullFilename(_wfilename).c_str(),wofstream_mode);
+#else
+	std::wstring wstrfile = getFullFilename(_wfilename);
+	wchar_t *wcfile = (wchar_t*)wstrfile.c_str();
+	char *filename = wide_string_to_UTF8(wcfile);
+
+	std::ofstream fileDiary(filename, wofstream_mode);
+
+	if (filename) {FREE(filename); filename = NULL;}
+#endif
+
 	if ( fileDiary.bad())
 	{
 		wfilename = std::wstring(L"");
@@ -55,48 +66,6 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 		setID(ID);
 	}
 	fileDiary.close();
-
-#else
-	std::wstring wstrfile = getFullFilename(_wfilename);
-	wchar_t *wcfile = (wchar_t*)wstrfile.c_str();
-	char *filename = wide_string_to_UTF8(wcfile);
-
-	if (_mode == 0)
-	{
-		std::ofstream fileDiary(filename,  std::ios::trunc | std::ios::binary) ;
-		if ( fileDiary.bad())
-		{
-		wfilename = std::wstring(L"");
-		fileAttribMode = -1;
-		setID(-1);
-		}
-		else
-		{
-		wfilename = getFullFilename(_wfilename);
-		fileAttribMode = wofstream_mode;
-		setID(ID);
-		}	
-	fileDiary.close();
-	}
-	else
-	{
-		std::ofstream fileDiary(filename, std::ios::app | std::ios::binary );
-		if ( fileDiary.bad())
-		{
-		wfilename = std::wstring(L"");
-		fileAttribMode = -1;
-		setID(-1);
-		}
-		else
-		{
-		wfilename = getFullFilename(_wfilename);
-		fileAttribMode = wofstream_mode;
-		setID(ID);
-		}
-	fileDiary.close();
-	}
-#endif
-
 }
 /*--------------------------------------------------------------------------*/ 
 Diary::~Diary()
@@ -115,18 +84,22 @@ void Diary::write(std::wstring _wstr, bool bInput)
 {
 	if (!suspendwrite)
 	{
+		std::ios::openmode wofstream_mode = std::ios::app | std::ios::binary;
 #ifdef _MSC_VER
-		std::wofstream fileDiary(wfilename.c_str(),std::ios::app | std::ios::binary );
+		std::wofstream fileDiary(wfilename.c_str(), wofstream_mode );
 #else
 		wchar_t *wcfile = (wchar_t*)wfilename.c_str();
 		char *filename = wide_string_to_UTF8(wcfile);
-		std::ofstream fileDiary(filename, std::ios::app | std::ios::binary);
+		std::ofstream fileDiary(filename, wofstream_mode);
+		if (filename) {FREE(filename); filename = NULL;}
 #endif
+
 		if (fileDiary.good())
 		{
 			char *line = NULL;
 
 #ifdef _MSC_VER
+			/* carriage return for Windows */
 			_wstr = replace(_wstr, std::wstring(L"\n"), std::wstring(L"\r\n"));
 			_wstr = replace(_wstr, std::wstring(L"\r\r"), std::wstring(L"\r"));
 #endif
@@ -167,6 +140,7 @@ void Diary::write(std::wstring _wstr, bool bInput)
 
 			if (line) {FREE(line); line = NULL;}
 		}
+		fileDiary.close();
 	}
 }
 /*--------------------------------------------------------------------------*/ 
