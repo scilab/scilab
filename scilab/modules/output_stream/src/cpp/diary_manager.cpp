@@ -11,7 +11,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "diary_manager.hxx"
-#include "diaryList.hxx"
+#include "DiaryList.hxx"
 #include "diary.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;

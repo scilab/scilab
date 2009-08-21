@@ -48,7 +48,7 @@ private:
 	/*
 	* used on Windows to replace carriage return
 	*/
-	std::wstring Diary::replace(std::wstring text, std::wstring s, std::wstring replacement);
+	std::wstring replace(std::wstring text, std::wstring s, std::wstring replacement);
 
 public:
 	Diary(std::wstring _wfilename,int _mode,int ID);

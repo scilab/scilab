@@ -13,13 +13,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include "getFullFilename.hxx"
 /*--------------------------------------------------------------------------*/ 
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 extern "C"
 {
 #include "machine.h"
 #include "PATH_MAX.h"
-#ifndef _MSC_VER
-#include <unistd.h>
-#endif
 }
 /*--------------------------------------------------------------------------*/ 
 static void wcsplitpath(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
@@ -28,10 +28,10 @@ std::wstring getFullFilename(std::wstring _wfilename)
 {
 	std::wstring wfullfilename(L"");
 	std::wstring tmpWstr;
-	wchar_t wcdrive[MAX_PATH];
-	wchar_t wcdirectory[MAX_PATH];
-	wchar_t wcname[MAX_PATH];
-	wchar_t wcext [MAX_PATH];
+	wchar_t wcdrive[1024];
+	wchar_t wcdirectory[1024];
+	wchar_t wcname[1024];
+	wchar_t wcext [1024];
 
 	size_t found = _wfilename.rfind(L"\\");
 
@@ -45,11 +45,11 @@ std::wstring getFullFilename(std::wstring _wfilename)
 	wfullfilename.append(tmpWstr.assign(wcdirectory));
 	if (wfullfilename.compare(L"") == 0)
 	{
-		wchar_t wcCurrentDir[PATH_MAX];
+		wchar_t wcCurrentDir[1024];
 #if _MSC_VER
 		if ( _wgetcwd(wcCurrentDir, PATH_MAX) != NULL)
 #else
-		if (getcwd(wcCurrentDir,PATH_MAX) != NULL)
+		if (/*getcwd(wcCurrentDir,1024) != NULL*/ 1)
 #endif
 		{
 			wfullfilename = tmpWstr.assign(wcCurrentDir);
