@@ -35,7 +35,6 @@ extern "C"
 #define DIARY_SECOND_ARG_NEW L"new"
 #define DIARY_SECOND_ARG_APPEND L"append"
 #define DIARY_SECOND_ARG_EXISTS L"exists"
-#define DIARY_SECOND_ARG_OPEN L"open"
 #define DIARY_THIRD_ARG_FILTER_COMMAND L"filter=command"
 #define DIARY_THIRD_ARG_FILTER_OUTPUT L"filter=output"
 #define DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH L"prefix=U"
@@ -164,7 +163,6 @@ static int sci_diary_no_rhs(char *fname)
 /*--------------------------------------------------------------------------*/
 static int sci_diary_one_rhs(char *fname)
 {
-	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
 
 	getVarAddressFromPosition(1, &piAddressVarOne);

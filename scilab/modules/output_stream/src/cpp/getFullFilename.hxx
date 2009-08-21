@@ -16,6 +16,11 @@
 
 #include <string>
 
+/**
+* get full filename with path of a file
+* @param[in] std::wstring input filename
+* @return std::wstring full filename
+*/
 std::wstring getFullFilename(std::wstring _wfilename);
 
 #endif /* __GETFULLFILENAME_HXX__ */

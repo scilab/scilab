@@ -28,16 +28,16 @@ extern "C"
 #include <locale.h>
 }
 /*--------------------------------------------------------------------------*/
-std::wstring getDiaryDate(int _mode)
+std::wstring getDiaryDate(int format_mode)
 {
 	std::wstring wstrdate(L"");
 	std::wstringstream StrStream;
 	time_t tDate;
 	time(&tDate);
 
-	switch (_mode)
+	switch (format_mode)
 	{
-	case 0: default:
+	case 0: default: // UNIX TIMESTAMP
 		{
 			StrStream << (unsigned int)tDate;
 			wstrdate = StrStream.str();

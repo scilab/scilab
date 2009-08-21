@@ -16,10 +16,13 @@
 #include <string>
 
 /**
-*
-*
+* get current date and time
+* @param[in]: format_mode
+* _mode 0: UNIX EPOCH
+* _mode 1: ISO_8601
+* @return std::wstring date & time
 */
-std::wstring getDiaryDate(int _mode);
+std::wstring getDiaryDate(int format_mode);
 
 #endif /* __GETDIARYDATE_HXX__ */
 /*--------------------------------------------------------------------------*/

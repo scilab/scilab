@@ -164,7 +164,7 @@ bool Diary::setSuspendWrite(bool bWith)
 {
 	bool previous =  suspendwrite;
 	suspendwrite = bWith;
-	return suspendwrite;
+	return previous;
 }
 /*--------------------------------------------------------------------------*/ 
 bool Diary::getSuspendWrite(void)

@@ -16,10 +16,8 @@
 /*--------------------------------------------------------------------------*/ 
 #include <string>
 /*--------------------------------------------------------------------------*/ 
-
 class Diary
 {
-
 private:
 	std::wstring wfilename;
 	int ID_foutstream;
@@ -28,6 +26,7 @@ private:
 
 	void setID(int _ID);
 
+	/* resume mode */
 	bool suspendwrite;
 
 	// 0 UNIX epoch
@@ -51,23 +50,57 @@ private:
 	std::wstring replace(std::wstring text, std::wstring s, std::wstring replacement);
 
 public:
+	/*
+	* constructor
+	*/
 	Diary(std::wstring _wfilename,int _mode,int ID);
+
+	/*
+	* destructor
+	*/
 	~Diary();
 
+	/*
+	* get filename of this diray
+	*/
 	std::wstring getFilename(void);
+
+	/*
+	* get & set IO mode
+	*/
 	void setIOMode(int _mode);
 	int getIOMode(void);
+
+	/*
+	* get ID of this diary
+	*/
 	int getID(void);
 
+	/*
+	* write a string in this diary
+	*/
 	void write(std::wstring _wstr, bool bInput);
+
+	/*
+	* write a line in this diary
+	*/
 	void writeln(std::wstring _wstr, bool bInput);
 
+	/*
+	* get & set Resume mode 
+	*/
 	bool setSuspendWrite(bool bWith);
 	bool getSuspendWrite(void);
 
+	/*
+	* get & set Prefix mode
+	*/
 	void setPrefixMode(int iPrefixMode);
 	int getPrefixMode(void);
 
+	/*
+	* get & set IO mode filter
+	*/
 	void setPrefixIoModeFilter(int mode);
 	int getPrefixIoModeFilter(void);
 };
