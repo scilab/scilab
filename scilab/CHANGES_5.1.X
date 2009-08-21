@@ -232,6 +232,8 @@ Bug fixes:
 
  * bug 4683 fixed - There is no example of the use of tlist in the dedicated page.
 
+ * bug 4709 fixed - The set function with 2 parameters and no handles makes Scilab hangs
+
  * bug 4710 fixed - Error with C++ interface which uses the function CreateVar.
 
 
