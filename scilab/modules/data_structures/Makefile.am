@@ -43,6 +43,7 @@ sci_gateway/fortran/sci_list.f
 libscidata_structures_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes
 
 # Disable optimisation of the file intl_e.f

@@ -94,6 +94,7 @@ GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la

@@ -381,6 +381,128 @@ h.data = TL;
 h.color_flag=3; // interpolated shading mode
 
 ]]></programlisting>
+
+    <para>We can also use the plot3d function to plot a set of patches (triangular, quadrangular, etc). </para>
+
+    <programlisting role="example"><![CDATA[
+ 
+// The plot3d function to draw patches:
+// patch(x,y,[z])
+// patch(x,y,[list(z,c)])
+// The size of x : number of points in the patches x number of patches
+// y and z have the same sizes as x
+// c:
+// - a vector of size number of patches: the color of the patches
+// - a matrix of size number of points in the patches x number of 
+//   patches: the color of each points of each patches
+
+// Example 1: a set of triangular patches
+
+x = [0 0;
+     0 1;
+     1 1];
+
+y = [1 1;
+     2 2;
+     2 1];
+
+z = [1 1;
+     1 1;
+     1 1];
+
+tcolor = [2 3]';
+
+subplot(2,2,1);
+plot3d(x,y,list(z,tcolor));
+xtitle('A triangle set of patches');
+
+// Example 2: a mixture of triangular and quadrangular patches
+
+xquad = [5, 0;
+         10,0;
+         15,5;
+         10,5];
+         
+yquad = [15,0;
+         20,10;
+         15,15;
+         10,5];
+         
+zquad = ones(4,2);
+
+xtri = [ 0,10,10, 5, 0;
+        10,20,20, 5, 0;
+        20,20,15,10,10];
+        
+ytri = [ 0,10,20, 5,10;
+        10,20,20,15,20;
+         0, 0,15,10,20];
+         
+ztri = zeros(3,5);
+
+subplot(2,2,3);
+plot3d(xquad,yquad,zquad);
+plot3d(xtri,ytri,ztri);
+xtitle('Mixing triangle and quadrangle set of patches');
+
+// Example 3: some rabbits
+
+rabxtri = [ 5,  5, 2.5,  7.5, 10;
+            5, 15, 5,   10,   10;
+           15, 15, 5,   10,   15];
+           
+rabytri = [10, 10, 9.5,  2.5, 0;
+           20, 10, 12,   5,   5;
+           10   0   7    0    0];
+rabztri = [0,0,0,0,0;
+           0,0,0,0,0;
+           0,0,0,0,0];
+
+rabtricolor_byface = [2 2 2 2 2];
+
+rabtricolor = [2,2,2,2,2;
+               3,3,3,3,3;
+               4,4,4,4,4];
+               
+rabxquad = [0, 1;
+            0, 6;
+            5,11;
+            5, 6];
+            
+rabyquad = [18,23;
+            23,28;
+            23,28;
+            18,23];
+            
+rabzquad = [1,1;
+            1,1;
+            1,1;
+            1,1];
+
+rabquadcolor_byface = [2 2];
+
+rabquadcolor = [2,2;
+                3,3;
+                4,4;
+                5,5];
+
+subplot(2,2,2);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A psychedelic rabbit set of patches');
+
+subplot(2,2,4);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor_byface));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor_byface));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A standard rabbit set of patches');
+ 
+]]></programlisting>
+    <para> The result of the preceding example: </para>
+    <para> <imagedata fileref="../images/plot3d_patch.png" /> </para>
   </refsection>
   <refsection>
     <title>See Also</title>

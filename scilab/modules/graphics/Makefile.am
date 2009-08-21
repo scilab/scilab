@@ -26,11 +26,12 @@ libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
 # the module Doublylinkedlist  is included here... of course, it is not
 # used in the mode without gui but It causes some silly problems with includes
-libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
+libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes/ \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
 
@@ -416,15 +417,17 @@ libscigraphics_la_CFLAGS +=	$(JAVA_JNI_INCLUDE) \
 				$(TK_INC_PATH) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/libs/hashtable/ \
-				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/renderer/includes/ \
-				-I$(top_srcdir)/modules/action_binding/includes \
-				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/action_binding/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_la_CXXFLAGS =  	-Iincludes/ \
 				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
-				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/jvm/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
@@ -585,11 +588,15 @@ tcl/ged/images/text.gif
 
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
-libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/renderer/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-Iincludes/ \
+-I$(top_srcdir)/libs/doublylinkedlist/includes/
 
 libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
+libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 
 # endif
 
