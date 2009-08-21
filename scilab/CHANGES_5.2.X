@@ -321,3 +321,6 @@ Bug fixes:
 * bug 4688 fixed - listfiles("/") returned an error.
 
 * bug 4684 fixed - printf(), mprintf, msprintf do not properly deal with -%inf.
+
+* bug 4724 fixed - when the f variation of a data set is too small, plot hangs
+
