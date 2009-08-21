@@ -15,7 +15,8 @@ src/cpp/api_list.cpp \
 src/cpp/api_poly.cpp \
 src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
-src/cpp/api_pointer.cpp
+src/cpp/api_pointer.cpp \
+src/cpp/api_oldstack.cpp 
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -26,6 +27,9 @@ libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 -I$(top_srcdir)/modules/operations/includes
 
 libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
@@ -36,6 +40,9 @@ libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/localization/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/operations/includes \
+-I$(top_srcdir)/modules/types/includes \
+-I$(top_srcdir)/modules/symbol/includes \
+-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 -I$(top_srcdir)/modules/string/includes
 
 
