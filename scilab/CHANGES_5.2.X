@@ -52,7 +52,7 @@ Input/Output functions:
 
  - Rewrite :
     + getenv
-    + diary
+    + diary - SEP 23
 
 Core functions:
 ===============
