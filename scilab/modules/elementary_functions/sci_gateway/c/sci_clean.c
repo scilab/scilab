@@ -18,16 +18,16 @@
 
 
 /*Some call to other module ( polynomial et sparse*/
-extern int C2F(sci_cleanp) (char *fname,unsigned long fname_len);
-extern int C2F(sci_spclean) (char *fname,unsigned long fname_len);
+extern int C2F(sci_cleanp) (char *fname, int* _piKey);
+extern int C2F(sci_spclean) (char *fname, int* _piKey);
 extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
-int clean_double(int* _piAddress);
-int clean_poly(int* _piAddress);
-int clean_sparse(int* _piAddress);
+int clean_double(int* _piAddress, int* _piKey);
+int clean_poly(int* _piAddress, int* _piKey);
+int clean_sparse(int* _piAddress, int* _piKey);
 
-int C2F(sci_clean) (char *fname,unsigned long fname_len)
+int C2F(sci_clean) (char *fname, int* _piKey)
 {
 	int iRet			= 0;
 
@@ -36,7 +36,7 @@ int C2F(sci_clean) (char *fname,unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -45,13 +45,13 @@ int C2F(sci_clean) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr1))
 	{
 	case sci_matrix : 
-		iRet = clean_double(piAddr1);
+		iRet = clean_double(piAddr1, _piKey);
 		break;
 	case sci_poly : 
-		iRet = clean_poly(piAddr1);
+		iRet = clean_poly(piAddr1, _piKey);
 		break;
 	case sci_sparse :
-		iRet = clean_sparse(piAddr1);
+		iRet = clean_sparse(piAddr1, _piKey);
 		break;
 	default :
 		OverLoad(1);
@@ -60,20 +60,20 @@ int C2F(sci_clean) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int clean_poly(int* _piAddress)
+int clean_poly(int* _piAddress, int* _piKey)
 {
-	C2F(sci_cleanp)("clean", 5);
+	C2F(sci_cleanp)("clean", _piKey);
 	return 0;
 }
 
-int clean_sparse(int* _piAddress)
+int clean_sparse(int* _piAddress, int* _piKey)
 {
 	C2F(ref2val)();
-	C2F(sci_spclean)("clean", 5);
+	C2F(sci_spclean)("clean", _piKey);
 	return 0;
 }
 
-int clean_double(int* _piAddress)
+int clean_double(int* _piAddress, int* _piKey)
 {
 	int i;
 	int iRet							= 0;
@@ -104,7 +104,7 @@ int clean_double(int* _piAddress)
 
 	if(Rhs == 3)
 	{
-		iRet = getVarAddressFromPosition(3, &piAddr3);
+		iRet = getVarAddressFromPosition(3, &piAddr3, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -137,7 +137,7 @@ int clean_double(int* _piAddress)
 
 	if(Rhs >= 2)
 	{
-		iRet = getVarAddressFromPosition(2, &piAddr2);
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -180,7 +180,7 @@ int clean_double(int* _piAddress)
 
 		dblNorm = wasums(iRows1 * iCols1, pdblReal1, pdblImg1);
 
-		allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+		allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet, _piKey);
 
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
 		for(i = 0 ; i < iRows1 * iCols1 ; i++)
@@ -204,7 +204,7 @@ int clean_double(int* _piAddress)
 		dblNorm			= C2F(dasum)(&iSize1, pdblReal1, &iOne);
 
 		dblEps = Max(dblEpsA, dblEpsR * dblNorm);
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

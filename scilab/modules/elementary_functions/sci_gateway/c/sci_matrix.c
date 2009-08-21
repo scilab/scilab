@@ -20,7 +20,7 @@
 
 #define MAX_INTERGER	2147483647
 
-int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet);
+int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
 int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet);
 int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet);
 int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet);
@@ -30,7 +30,7 @@ int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet);
 
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
+int C2F(sci_scimatrix) (char *fname, int* _piKey)
 {
 	int iRet				= 0;
 	int iRows1			= 0;
@@ -72,7 +72,7 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	getVarAddressFromPosition(1, &piAddr1);
+	getVarAddressFromPosition(1, &piAddr1, _piKey);
 
 	iType = getVarType(piAddr1);
 
@@ -90,7 +90,7 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		getVarAddressFromPosition(2, &piAddr2);
+		getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(isVarComplex(piAddr2))
 		{
 			Error(32);
@@ -116,8 +116,8 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		getVarAddressFromPosition(2, &piAddr2);
-		getVarAddressFromPosition(3, &piAddr3);
+		getVarAddressFromPosition(2, &piAddr2, _piKey);
+		getVarAddressFromPosition(3, &piAddr3, _piKey);
 		if(isVarComplex(piAddr3) || isVarComplex(piAddr2))
 		{
 			Error(32);
@@ -174,7 +174,7 @@ int C2F(sci_scimatrix) (char *fname,unsigned long fname_len)
 	switch(iType)
 	{
 	case sci_matrix : 
-		iRet = matrix_double(piAddr1, iRowsRet, iColsRet);
+		iRet = matrix_double(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_poly:
 		matrix_poly(piAddr1, iRowsRet, iColsRet);
@@ -463,7 +463,7 @@ int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
-int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
+int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet, int*_piKey)
 {
 	int iRet					= 0;
 	int iIndex				= 0;
@@ -481,7 +481,7 @@ int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
 			return 1;
 		}
 
-		iRet = createComplexMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal, pdblImg);
+		iRet = createComplexMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal, pdblImg, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -495,7 +495,7 @@ int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet)
 			return 1;
 		}
 
-		iRet = createMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal);
+		iRet = createMatrixOfDouble(Rhs + 1, _iRowsRet, _iColsRet, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;

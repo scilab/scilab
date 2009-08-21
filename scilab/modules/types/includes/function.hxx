@@ -16,6 +16,7 @@
 #include <string>
 #include <cstdio>
 #include "types.hxx"
+#include <map>
 
 namespace types
 {
@@ -33,7 +34,7 @@ namespace types
     RealType getType(void) { return RealFunction; }
 
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int* _piRetCount, typed_list &out); 
-    typedef ReturnValue (*OLDGW_FUNC)();
+    typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
     void					whoAmI();
     virtual ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
@@ -49,32 +50,43 @@ namespace types
 
  public :
     std::string			m_szName;
-    GW_FUNC			m_pFunc;
+    GW_FUNC					m_pFunc;
     std::string			m_szModule;
   };
 
   class WrapFunction : public Function
   {
   public :
-    WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule) {
-      m_szName	 = _szName;
-      m_pOldFunc = _pFunc;
-      m_szModule = _szModule;
-    }
-
-    ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out) {
-      printf("Fake Stack put ...\n");
-      printf("Call old style GW ...\n");
-      m_pOldFunc();
-      printf("Fake Stack get ...\n");
-    
-      return AllGood;
-    }
+    WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
+    ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
   private :
-    OLDGW_FUNC				m_pOldFunc;
-
+    OLDGW_FUNC m_pOldFunc;
   };
 
+	class EXTERN_TYPES GatewayStruct
+	{
+	public :
+		typed_list* m_pin;
+		typed_list* m_pout;
+		int*	m_piRetCount;
+
+		GatewayStruct(){};
+		~GatewayStruct(){};
+	};
+
+	class EXTERN_TYPES GatewayParam
+	{
+		static GatewayParam* me;
+
+		std::map<int*, GatewayStruct*> m_GWList;
+
+	public :
+		GatewayParam(){};
+		static GatewayParam* getInstance(void);
+
+		GatewayStruct*	get(int* pKey) const;
+		bool put(int* _pKey, GatewayStruct* _pParam);
+	};
 }
 
 

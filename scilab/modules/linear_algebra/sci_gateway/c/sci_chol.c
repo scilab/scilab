@@ -23,7 +23,7 @@
 #include "chol.h"
 
 
-int C2F(intchol)(char *fname,unsigned long fname_len)
+int C2F(intchol)(char *fname, int* _piKey)
 {
   int *pArg1;
   int iCholProductResult = 0;
@@ -40,7 +40,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 
   if( Rhs >= 1)
     {
-      getVarAddressFromPosition(1, &pArg1);
+      getVarAddressFromPosition(1, &pArg1, _piKey);
       if (getVarType(pArg1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -67,11 +67,11 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 	  getMatrixOfDouble(pArg1, &iRows, &iCols, &pdblReal);
 	  if(isVarComplex(pArg1))
 	    {
-	      allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
+	      allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg, _piKey);
 	    }
 	  else
 	    {
-	      allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
+	      allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, _piKey);
 	    }
 	  LhsVar(1) = Rhs + 1;
 	  return 0;
@@ -98,7 +98,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 	  
 	  iCholProductResult = iComplexCholProduct(poData, iRows);
 	  
-	  allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
+	  allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg, _piKey);
 	  
 	  vGetPointerFromDoubleComplex(poData, iRows * iCols, pdblReturnReal, pdblReturnImg);
 	  vFreeDoubleComplexFromPointer(poData);
@@ -106,7 +106,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
       else
 	{
 	  getMatrixOfDouble(pArg1, &iRows, &iCols, &pdblReal);
-	  allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
+	  allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, _piKey);
 	  memcpy(pdblReturnReal, pdblReal, iRows * iCols * sizeof(double));
 	  iCholProductResult = iRealCholProduct(pdblReturnReal, iRows);
 	}

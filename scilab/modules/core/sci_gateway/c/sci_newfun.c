@@ -28,7 +28,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_newfun) (char *fname,unsigned long fname_len)
+int C2F(sci_newfun) (char *fname, int* _piKey)
 {
 
 	int m1 = 0, n1 = 0;
@@ -45,8 +45,8 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-	getVarAddressFromPosition(2, &piAddressVarTwo);
+	getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
+	getVarAddressFromPosition(2, &piAddressVarTwo, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

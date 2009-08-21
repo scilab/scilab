@@ -32,7 +32,7 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
 /*--------------------------------------------------------------------------*/
 int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
-int sci_calendar(char *fname,unsigned long fname_len)
+int sci_calendar(char *fname, int* _piKey)
 {
   int n1 = 0, m1 = 0;
   int * p1_in_address = NULL;
@@ -54,11 +54,11 @@ int sci_calendar(char *fname,unsigned long fname_len)
   
   if ( IsAScalar(Rhs-1) && IsAScalar(Rhs) )
     {
-      getVarAddressFromPosition(1, &p1_in_address);
+      getVarAddressFromPosition(1, &p1_in_address, _piKey);
       res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
       year = (int)*pDblReal;
       
-      getVarAddressFromPosition(2, &p1_in_address);
+      getVarAddressFromPosition(2, &p1_in_address, _piKey);
       res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
 
       month = (int)*pDblReal;
@@ -107,7 +107,7 @@ int sci_calendar(char *fname,unsigned long fname_len)
   CALMONTH = transposeMatrixDouble(NBRDAY,NBRWEEK,CALMONTH);
   if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
   
-  res = createMatrixOfDouble(Rhs+1, m1, n1, CALMONTH);
+  res = createMatrixOfDouble(Rhs+1, m1, n1, CALMONTH, _piKey);
 
   LhsVar(1)=Rhs+1;
   C2F(putlhsvar)();

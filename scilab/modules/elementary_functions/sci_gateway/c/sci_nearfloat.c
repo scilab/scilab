@@ -17,7 +17,7 @@
 #include "Scierror.h"
 
 
-int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
+int C2F(sci_nearfloat) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -41,13 +41,13 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2);
+	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -117,7 +117,7 @@ int C2F(sci_nearfloat) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pdblRealRet);
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows2, iCols2, &pdblRealRet, _piKey);
 	if(iRet)
 	{
 		return 1;

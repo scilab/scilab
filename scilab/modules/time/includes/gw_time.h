@@ -21,13 +21,16 @@ TIME_IMPEXP int gw_time(void);
 /*--------------------------------------------------------------------------*/ 
 /* interface for the previous function Table */ 
 /*--------------------------------------------------------------------------*/ 
-TIME_IMPEXP int sci_getdate(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_calendar(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_timer(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_sleep(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_xpause(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_realtimeinit(char *fname,unsigned long fname_len);
-TIME_IMPEXP int sci_realtime(char *fname,unsigned long fname_len);
+
+//YaSp
+TIME_IMPEXP int sci_xpause(char *fname, int* _piKey);
+TIME_IMPEXP int sci_sleep(char *fname, int* _piKey);
+TIME_IMPEXP int sci_realtimeinit(char *fname, int* _piKey);
+TIME_IMPEXP int sci_realtime(char *fname, int* _piKey);
+TIME_IMPEXP int sci_getdate(char *fname, int* _piKey);
+TIME_IMPEXP int sci_calendar(char *fname, int* _piKey);
+TIME_IMPEXP int sci_timer(char *fname,int* _piKey);
+
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_TIME_H__ */
 /*--------------------------------------------------------------------------*/

@@ -33,14 +33,12 @@ int C2F(sci_errcatch)(char *fname,unsigned long fname_len);
 int C2F(sci_errclear)(char *fname,unsigned long fname_len);
 int C2F(sci_iserror)(char *fname,unsigned long fname_len);
 int C2F(sci_predef)(char *fname,unsigned long fname_len);
-int C2F(sci_newfun)(char *fname,unsigned long fname_len);
 int C2F(sci_clearfun)(char *fname,unsigned long fname_len);
 int C2F(sci_funptr)(char *fname,unsigned long fname_len);
 int C2F(sci_macr2lst)(char *fname,unsigned long fname_len);
 int C2F(sci_setbpt)(char *fname,unsigned long fname_len);
 int C2F(sci_delbpt)(char *fname,unsigned long fname_len);
 int C2F(sci_dispbpt)(char *fname,unsigned long fname_len);
-int C2F(sci_funcprot)(char *fname,unsigned long fname_len);
 int C2F(sci_whereis)(char *fname,unsigned long fname_len);
 int C2F(sci_where)(char *fname,unsigned long fname_len);
 int C2F(sci_havewindow)(char *fname,unsigned long fname_len);
@@ -50,7 +48,6 @@ int C2F(sci_clear)(char *fname,unsigned long fname_len);
 int C2F(sci_what)(char *fname,unsigned long fname_len);
 int C2F(sci_sciargs)(char *fname,unsigned long fname_len);
 int C2F(sci_ieee)(char *fname,unsigned long fname_len);
-int C2F(sci_typename)(char *fname,unsigned long fname_len);
 int C2F(sci_global)(char *fname,unsigned long fname_len);
 int C2F(sci_clearglobal)(char *fname,unsigned long fname_len);
 int C2F(sci_isglobal)(char *fname,unsigned long fname_len);
@@ -76,6 +73,12 @@ int C2F(sci_getdebuginfo)(char *fname,unsigned long fname_len);
 int C2F(sci_readgateway)(char *fname,unsigned long fname_len);
 int C2F(sci_exit)(char *fname,unsigned long fname_len);
 int C2F(sci_comp)(char *fname,unsigned long fname_len);
+
+
+int C2F(sci_typename)(char *fname,int* _piKey);
+int C2F(sci_funcprot)(char *fname,int* _piKey);
+int C2F(sci_newfun)(char *fname, int* _piKey);
+
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/

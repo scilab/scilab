@@ -17,7 +17,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_prod) (char *fname,unsigned long fname_len)
+int C2F(sci_prod) (char *fname, int* _piKey)
 {
 	int iRet						= 0;
 
@@ -36,7 +36,7 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -44,7 +44,14 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		iRet = getProcessMode(2, piAddr, &iMode);
+		int* piAddr2 = NULL;
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getProcessMode(piAddr2, piAddr, &iMode);
 		if(iRet)
 		{
 			return 1;
@@ -71,7 +78,7 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 			iRows = 0;
 			iCols = 0;
 		}
-		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblVal);
+		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblVal, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -107,7 +114,7 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 			return 1;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -123,7 +130,7 @@ int C2F(sci_prod) (char *fname,unsigned long fname_len)
 			return 1;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

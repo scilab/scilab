@@ -22,7 +22,7 @@
 #include "getenvc.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getenv)(char *fname,unsigned long fname_len)
+int C2F(sci_getenv)(char *fname, int* _piKey)
 {
 	int ierr = 0;
 	char *default_env_value = NULL;
@@ -47,7 +47,7 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 
 	if (Rhs == 2)
 	{
-		getVarAddressFromPosition(2, &piAddressVarTwo);
+		getVarAddressFromPosition(2, &piAddressVarTwo, _piKey);
 
 		if ( getVarType(piAddressVarTwo) != sci_strings )
 		{
@@ -74,7 +74,7 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		}
 	}
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

@@ -23,7 +23,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setenv)(char *fname,unsigned long fname_len)
+int C2F(sci_setenv)(char *fname, int* _piKey)
 {
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -44,8 +44,8 @@ int C2F(sci_setenv)(char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(0,1);
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-	getVarAddressFromPosition(2, &piAddressVarTwo);
+	getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
+	getVarAddressFromPosition(2, &piAddressVarTwo, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

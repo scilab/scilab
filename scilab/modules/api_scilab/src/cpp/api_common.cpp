@@ -13,6 +13,7 @@
  * still available and supported in Scilab 6.
  */
 
+
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
@@ -25,6 +26,9 @@
 #include "stack-c.h"
 #include "stackinfo.h"
 #include "Scierror.h"
+#include "alltypes.hxx"
+
+using namespace types;
 /*--------------------------------------------------------------------------*/
 /* Defined in SCI/modules/core/src/fortran/cvname.f */
 extern "C" {
@@ -42,8 +46,8 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 {
 	if(_piAddress != NULL && isVarMatrixType(_piAddress))
 	{
-		*_piRows		= _piAddress[1];
-		*_piCols		= _piAddress[2];
+		*_piRows		= ((GenericType*)_piAddress)->rows_get();
+		*_piCols		= ((GenericType*)_piAddress)->cols_get();
 		return 0;
 	}
 	else
@@ -66,17 +70,28 @@ int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
 	return getVarDimension(piAddr, _piRows, _piCols);
 }
 /*--------------------------------------------------------------------------*/
-int getVarAddressFromPosition(int _iVar, int** _piAddress)
+int getVarAddressFromPosition(int _iVar, int** _piAddress, int* _piKey)
 {
-	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
-	int iValType	= *istk(iAddr);
-	if(iValType < 0)
+	//int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
+	//int iValType	= *istk(iAddr);
+	//if(iValType < 0)
+	//{
+	//	iAddr				= iadr(*istk(iAddr + 1));
+	//}
+
+	//*_piAddress		= istk(iAddr);
+	//intersci_.ntypes[_iVar - 1] = '$' ;
+
+	GatewayParam* pGW = types::GatewayParam::getInstance();
+	types::GatewayStruct *pStr =  pGW->get(_piKey);
+
+	if(pStr->m_pin->size() < _iVar)
 	{
-		iAddr				= iadr(*istk(iAddr + 1));
+		return 1;
 	}
 
-	*_piAddress		= istk(iAddr);
-	intersci_.ntypes[_iVar - 1] = '$' ;
+	*_piAddress = (int*)((*pStr->m_pin)[_iVar - 1]);
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -139,7 +154,28 @@ int getVarType(int* _piAddress)
 	{
 		return 0;
 	}
-	return _piAddress[0];
+
+	InternalType* pIT = (types::InternalType*)_piAddress;
+	InternalType::RealType iType = pIT->getType();
+
+	switch(iType)
+	{
+	case InternalType::RealDouble : 
+		return sci_matrix;
+	case InternalType::RealPoly : 
+		return sci_poly;
+	case InternalType::RealBool : 
+		return sci_boolean;
+	case InternalType::RealInt : 
+	case InternalType::RealUInt : 
+		return sci_ints;
+	case InternalType::RealString : 
+		return sci_strings;
+	default :
+		return 0;
+	}
+
+	return 0;
 }
 /*--------------------------------------------------------------------------*/
 int getNamedVarType(char* _pstName)
@@ -168,7 +204,11 @@ int isVarComplex(int* _piAddress)
 	switch(iType)
 	{
 	case sci_matrix :
+		iComplex = ((InternalType*)_piAddress)->getAsDouble()->isComplex() ? 1 : 0;
+		break;
 	case sci_poly :
+		iComplex = ((InternalType*)_piAddress)->getAsPoly()->isComplex() ? 1 : 0;
+		break;
 	case sci_sparse :
 		iComplex = _piAddress[3];
 		break;
@@ -250,7 +290,7 @@ int isNamedVarMatrixType(char *_pstName)
     return isVarMatrixType(piAddr);
 }
 /*--------------------------------------------------------------------------*/
-int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
+int getProcessMode(int* _piAddCheck, int* _piAddRef, int *_piMode)
 {
 	int iRet				= 0;
 	int iRows1			= 0;
@@ -266,16 +306,10 @@ int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 		return 1;
 	}
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr2);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	if(getVarType(piAddr2) == sci_matrix && !isVarComplex(piAddr2))
+	if(getVarType(_piAddCheck) == sci_matrix && !isVarComplex(_piAddCheck))
 	{
 		double *pdblReal2 = NULL;
-		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+		iRet = getMatrixOfDouble(_piAddCheck, &iRows2, &iCols2, &pdblReal2);
 		if(iRet)
 		{
 			return 1;
@@ -289,12 +323,12 @@ int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 
 		iMode = (int)pdblReal2[0];
 	}
-	else if(getVarType(piAddr2) == sci_strings)
+	else if(getVarType(_piAddCheck) == sci_strings)
 	{
 		int iLen					= 0;
 		char *pstMode[1]	= {""};
 
-		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
+		iRet = getVarDimension(_piAddCheck, &iRows2, &iCols2);
 		if(iRet)
 		{
 			return 1;
@@ -306,14 +340,14 @@ int getProcessMode(int _iPos, int* _piAddRef, int *_piMode)
 			return 1;
 		}
 
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, NULL);
+		iRet = getMatrixOfString(_piAddCheck, &iRows2, &iCols2, &iLen, NULL);
 		if(iRet)
 		{
 			return 1;
 		}
 
 		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, &iLen, pstMode);
+		iRet = getMatrixOfString(_piAddCheck, &iRows2, &iCols2, &iLen, pstMode);
 		if(iRet)
 		{
 			return 1;

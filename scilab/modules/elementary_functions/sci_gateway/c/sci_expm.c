@@ -96,7 +96,7 @@ extern int C2F(wexpm1)();
 extern int C2F(drot)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_expm) (char *fname,unsigned long fname_len)
+int C2F(sci_expm) (char *fname, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -113,7 +113,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 	CheckRhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -141,7 +141,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 
 	if(iRows * iCols == 0)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -159,7 +159,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 
 	if(isVarComplex(piAddr))
 	{
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -172,7 +172,7 @@ int C2F(sci_expm) (char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

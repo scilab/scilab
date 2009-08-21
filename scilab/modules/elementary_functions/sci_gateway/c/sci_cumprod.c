@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 
-int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
+int C2F(sci_cumprod) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet							= 0;
@@ -35,7 +35,7 @@ int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 
 	if(getVarType(piAddr1) != sci_matrix)
 	{
@@ -45,7 +45,13 @@ int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		iRet = getProcessMode(2, piAddr1, &iMode);
+		int *piAddr2		= NULL;
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+		iRet = getProcessMode(piAddr2, piAddr1, &iMode);
 		if(iRet)
 		{
 			return 1;
@@ -60,7 +66,7 @@ int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
 			return 1;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 
 		/*Set the first column of returned matrix at the same value of the input matrix*/
 		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
@@ -108,7 +114,7 @@ int C2F(sci_cumprod) (char *fname,unsigned long fname_len)
 			return 1;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 
 		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
 

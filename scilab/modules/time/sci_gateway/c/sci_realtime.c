@@ -17,7 +17,7 @@
 #include "api_double.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
-int sci_realtimeinit(char *fname,unsigned long fname_len)
+int sci_realtimeinit(char *fname, int* _piKey)
 {
   int m1 = 0,n1 = 0;
   int * p1_in_address = NULL;
@@ -32,7 +32,7 @@ int sci_realtimeinit(char *fname,unsigned long fname_len)
   
   CheckScalar(1,m1,n1);
 
-  getVarAddressFromPosition(1, &p1_in_address);
+  getVarAddressFromPosition(1, &p1_in_address, _piKey);
   res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
 
   /* cross variable size checking */
@@ -44,7 +44,7 @@ int sci_realtimeinit(char *fname,unsigned long fname_len)
   return 0;
 }
 /*--------------------------------------------------------------------------*/  
-int sci_realtime(char *fname,unsigned long fname_len)
+int sci_realtime(char *fname, int* _piKey)
 {
   int m1 = 0,n1 = 0;
   int * p1_in_address = NULL;
@@ -57,7 +57,7 @@ int sci_realtime(char *fname,unsigned long fname_len)
   /*  checking variable t */
   CheckScalar(1,m1,n1);
 
-  getVarAddressFromPosition(1, &p1_in_address);
+  getVarAddressFromPosition(1, &p1_in_address, _piKey);
   res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
 
   /* cross variable size checking */

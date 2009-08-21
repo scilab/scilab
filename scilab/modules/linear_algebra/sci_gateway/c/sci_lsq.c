@@ -38,13 +38,13 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int *num);
 /*--------------------------------------------------------------------------*/
-int C2F(intlsq)(char *fname,unsigned long fname_len)
+int C2F(intlsq)(char *fname, int* _piKey)
 {
   int* arg[3]= {NULL, NULL, NULL};
   int ret= 0;
   if (Rhs>=1)
     {
-      getVarAddressFromPosition(1, &arg[0]);
+      getVarAddressFromPosition(1, &arg[0], _piKey);
       if(getVarType(arg[0])!=sci_matrix)
 	{
 	  OverLoad(1);
@@ -52,7 +52,7 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 	}
       if (Rhs >= 2)
 	{
-	  getVarAddressFromPosition(2, &arg[1]);
+	  getVarAddressFromPosition(2, &arg[1], _piKey);
 	  if(getVarType(arg[1])!=sci_matrix)
 	    {
 	      OverLoad(2);
@@ -106,7 +106,7 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 	  }
 	if(Rhs == 3)
 	  {
-	    getVarAddressFromPosition(3, &arg[2]);
+	    getVarAddressFromPosition(3, &arg[2], _piKey);
 	    if(getVarType(arg[2]) != sci_matrix)
 	      { /* original fortran implementation does not warn */
 		Scierror(256, _("%s: Wrong type for input argument #%d: A Real expected.\n"),fname, 3);
@@ -132,8 +132,8 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 
 	    ret= complexArgs 
 	      ? ( pResult= (emptyMatrix ? NULL : (double*)MALLOC( iCols[0] * iCols[1] * sizeof(doublecomplex)))) /* MALLOC(0) is invalid :( */
-	      ,allocComplexMatrixOfDouble(Rhs+1, iCols[0], iCols[1] , &pResultReal, &pResultImg)
-	      : allocMatrixOfDouble(Rhs+1, iCols[0], iCols[1], &pResult) ;
+	      ,allocComplexMatrixOfDouble(Rhs+1, iCols[0], iCols[1] , &pResultReal, &pResultImg, _piKey)
+	      : allocMatrixOfDouble(Rhs+1, iCols[0], iCols[1], &pResult, _piKey) ;
 	    if(ret==0)
 	      {
 		ret= emptyMatrix ? 0 : iLsqM(pData[0], iRows[0], iCols[0], pData[1], iCols[1], complexArgs, pResult, pTol, (Lhs==2) ? &rank : NULL);
@@ -153,11 +153,11 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 		    double* pRank;
 		    if(emptyMatrix)
 		      {
-			allocMatrixOfDouble(Rhs+2, 0, 0, &pRank);
+			allocMatrixOfDouble(Rhs+2, 0, 0, &pRank, _piKey);
 		      }
 		    else
 		      {
-			allocMatrixOfDouble(Rhs+2, 1, 1, &pRank);
+			allocMatrixOfDouble(Rhs+2, 1, 1, &pRank, _piKey);
 			*pRank= (double) rank;
 		      }
 		    LhsVar(2)= Rhs + 2;

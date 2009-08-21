@@ -15,12 +15,12 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 
-int img_double(int* _piAddress);
+int img_double(int* _piAddress, int* _piKey);
 int img_poly(int* _piAddress);
 int img_sparse(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imag) (char *fname,unsigned long fname_len)
+int C2F(sci_imag) (char *fname,int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -28,7 +28,7 @@ int C2F(sci_imag) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -38,7 +38,7 @@ int C2F(sci_imag) (char *fname,unsigned long fname_len)
 	{
 	case sci_matrix:
 		{
-			iRet = img_double(piAddr);
+			iRet = img_double(piAddr, _piKey);
 			break;
 		}
 	case sci_poly:
@@ -61,7 +61,7 @@ int C2F(sci_imag) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int img_double(int* _piAddress)
+int img_double(int* _piAddress, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -79,7 +79,7 @@ int img_double(int* _piAddress)
 			return 1;
 		}
 
-		iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg);
+		iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -93,7 +93,7 @@ int img_double(int* _piAddress)
 			return 1;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

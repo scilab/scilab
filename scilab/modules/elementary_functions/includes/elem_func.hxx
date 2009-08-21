@@ -38,6 +38,6 @@ public :
 
 Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::typed_list &out);
 Function::ReturnValue sci_sin(types::typed_list &in, int* _piRetCount, types::typed_list &out);
-Function::ReturnValue sci_blouno();
+int sci_blouno(char* fname, int* _piKey);
 
 #endif /* __ELEM_FUNC_H__ */

@@ -20,7 +20,7 @@
 
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_number_properties) (char *fname,unsigned long fname_len)
+int C2F(sci_number_properties) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet				= 0;
@@ -36,7 +36,7 @@ int C2F(sci_number_properties) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -79,7 +79,7 @@ int C2F(sci_number_properties) (char *fname,unsigned long fname_len)
 		return 1;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRet);
+	iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRet, _piKey);
 	//pReturnData = (double*)malloc(sizeof(double));
 
 	if(strcmp(pstData[0], "eps") == 0)

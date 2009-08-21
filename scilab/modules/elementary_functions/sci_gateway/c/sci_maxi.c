@@ -22,11 +22,11 @@
 
 int compare_list(int* _piAddress, int _iIsMini);
 int compare_sparse(int* _piAddress, int _iIsMini);
-int compare_double(int _iIsMini);
-int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode);
+int compare_double(int _iIsMini, int* _piKey);
+int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_maxi) (char *fname,unsigned long fname_len)
+int C2F(sci_maxi) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet			= 0;
@@ -42,7 +42,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 		iMini = 1;
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -53,7 +53,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 	if(Rhs == 2)
 	{
 		int *piAddr2		= NULL;
-		iRet = getVarAddressFromPosition(2, &piAddr2);
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -61,7 +61,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 
 		if(getVarType(piAddr2) == sci_strings)
 		{
-			iRet = getProcessMode(2, piAddr1, &iMode);
+			iRet = getProcessMode(piAddr2, piAddr1, &iMode);
 			if(iRet)
 			{
 				return 1;
@@ -74,14 +74,14 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 	case sci_matrix :
 		if(Rhs == 1)
 		{
-			iRet = compare_double_inside(piAddr1, iMini, iMode);
+			iRet = compare_double_inside(piAddr1, iMini, iMode, _piKey);
 		}
 		else
 		{
 			for(i = 2 ; i <= Rhs ; i++)
 			{
 				int* piAddr		= NULL;
-				iRet = getVarAddressFromPosition(i, &piAddr);
+				iRet = getVarAddressFromPosition(i, &piAddr, _piKey);
 				if(iRet)
 				{
 					return 1;
@@ -93,7 +93,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 					return 0;
 				}
 			}
-			iRet = compare_double(iMini);
+			iRet = compare_double(iMini, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -111,9 +111,9 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 		C2F(ref2val)();
 		Fin -= 6; //Ugly !!!
 		if(iMini)
-			C2F(sci_spmin)(fname, fname_len);
+			C2F(sci_spmin)(fname, _piKey);
 		else
-			C2F(sci_spmax)(fname, fname_len);
+			C2F(sci_spmax)(fname, _piKey);
 		break;
 	default:
 		OverLoad(1);
@@ -125,7 +125,7 @@ int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int compare_double(int _iIsMini)
+int compare_double(int _iIsMini, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;
@@ -146,7 +146,7 @@ int compare_double(int _iIsMini)
 		int iRhsRows	= 0;
 		int iRhsCols	= 0;
 
-		iRet = getVarAddressFromPosition(iVar, &piAddr);
+		iRet = getVarAddressFromPosition(iVar, &piAddr, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -193,7 +193,7 @@ int compare_double(int _iIsMini)
 		}
 	}//for
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet1);
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet1, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -201,7 +201,7 @@ int compare_double(int _iIsMini)
 
 	if(Lhs == 2)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 2, iRows, iCols, &pdblRealRet2);
+		iRet = allocMatrixOfDouble(Rhs + 2, iRows, iCols, &pdblRealRet2, _piKey);
 		vDset(iRows * iCols, 1, pdblRealRet2, 1);
 	}
 
@@ -274,7 +274,7 @@ int compare_double(int _iIsMini)
 	return 0;
 }
 
-int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
+int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode, int* _piKey)
 {
 	int i;
 	int iRet							= 0;
@@ -303,7 +303,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 	{
 		iRows = 0;
 		iCols = 0;
-		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet1);
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet1, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -312,7 +312,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 
 		if(Lhs == 2)
 		{
-			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblRealRet2);
+			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblRealRet2, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -325,7 +325,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 	switch(_iMode)
 	{
 	case BY_ALL :
-		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet1);
+		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet1, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -349,7 +349,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 		{		
 			if(iRows == 1 || iCols == 1)
 			{
-				iRet = allocMatrixOfDouble(Rhs + 2, 1, 1, &pdblRealRet2);
+				iRet = allocMatrixOfDouble(Rhs + 2, 1, 1, &pdblRealRet2, _piKey);
 				if(iRet)
 				{
 					return 1;
@@ -358,7 +358,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 			}
 			else
 			{
-				iRet = allocMatrixOfDouble(Rhs + 2, 1, 2, &pdblRealRet2);
+				iRet = allocMatrixOfDouble(Rhs + 2, 1, 2, &pdblRealRet2, _piKey);
 				if(iRet)
 				{
 					return 1;
@@ -370,14 +370,14 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 		}
 		break;
 	case BY_ROWS :
-		iRet = allocMatrixOfDouble(Rhs + 1, 1, iCols, &pdblRealRet1);
+		iRet = allocMatrixOfDouble(Rhs + 1, 1, iCols, &pdblRealRet1, _piKey);
 		if(iRet)
 		{
 			return 1;
 		}
 		if(Lhs == 2)
 		{
-			iRet = allocMatrixOfDouble(Rhs + 2, 1, iCols, &pdblRealRet2);
+			iRet = allocMatrixOfDouble(Rhs + 2, 1, iCols, &pdblRealRet2, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -417,7 +417,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 		}
 		break;
 	case BY_COLS :
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, 1, &pdblRealRet1);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, 1, &pdblRealRet1, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -425,7 +425,7 @@ int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 
 		if(Lhs == 2)
 		{
-			iRet = allocMatrixOfDouble(Rhs + 2, iRows, 1, &pdblRealRet2);
+			iRet = allocMatrixOfDouble(Rhs + 2, iRows, 1, &pdblRealRet2, _piKey);
 			if(iRet)
 			{
 				return 1;

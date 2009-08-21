@@ -15,10 +15,10 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 
-int int_double(int* _piAddress);
+int int_double(int* _piAddress, int* _piKey);
 int int_poly(int* _piAddress);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_int) (char *fname,unsigned long fname_len)
+int C2F(sci_int) (char *fname,int* _piKey)
 {
 	int iRet						= 0;
 
@@ -27,7 +27,7 @@ int C2F(sci_int) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -36,7 +36,7 @@ int C2F(sci_int) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr))
 	{
 	case sci_matrix :
-		iRet = int_double(piAddr);
+		iRet = int_double(piAddr, _piKey);
 		break;
 	case sci_poly :
 		iRet = int_poly(piAddr);
@@ -55,7 +55,7 @@ int C2F(sci_int) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int int_double(int* _piAddress)
+int int_double(int* _piAddress, int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -75,7 +75,7 @@ int int_double(int* _piAddress)
 			return 1;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -95,7 +95,7 @@ int int_double(int* _piAddress)
 			return 1;
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

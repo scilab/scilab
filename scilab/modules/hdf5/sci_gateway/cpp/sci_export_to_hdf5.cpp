@@ -49,10 +49,10 @@ static bool export_lib(int *_piVar, char* _pstName);
 static bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
-int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
+int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int sci_export_to_hdf5(char *fname,unsigned long fname_len)
+int sci_export_to_hdf5(char *fname, int* _piKey)
 {
 	CheckRhs(2,1000000);//input parameters
 	CheckLhs(1,1);//output parameter
@@ -67,7 +67,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
 	/*get input data*/
 	pstNameList = (char**)MALLOC(sizeof(char*) * Rhs);
-	iNbVar = extractVarNameList(1, Rhs, pstNameList);
+	iNbVar = extractVarNameList(1, Rhs, pstNameList, _piKey);
 
 	piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - 1));
 	for(int i = 0 ; i < Rhs - 1 ; i++)
@@ -547,7 +547,7 @@ void print_type(char* _pstType)
 #endif
 }
 
-int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
+int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList, int* _piKey)
 {
 	int iCount = 0;
 
@@ -558,7 +558,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		int iLen					= 0;
 		int* piAddr				= NULL;
 
-		getVarAddressFromPosition(i, &piAddr);
+		getVarAddressFromPosition(i, &piAddr, _piKey);
 		//get filename
 		if(getVarType(piAddr) != sci_strings)
 		{

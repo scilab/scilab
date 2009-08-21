@@ -18,7 +18,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log1p) (char *fname,unsigned long fname_len)
+int C2F(sci_log1p) (char *fname,int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -35,7 +35,7 @@ int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -76,7 +76,7 @@ int C2F(sci_log1p) (char *fname,unsigned long fname_len)
 			}
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

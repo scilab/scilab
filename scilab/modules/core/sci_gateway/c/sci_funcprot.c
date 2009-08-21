@@ -21,7 +21,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
+int C2F(sci_funcprot)(char *fname, int* _piKey)
 {
 	CheckLhs(1,1);
 	CheckRhs(0,1);
@@ -34,7 +34,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;
-		createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
+		createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, _piKey);
 		LhsVar(1) = Rhs + 1; 
 		C2F(putlhsvar)();
 	}
@@ -46,7 +46,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double *pdVarOne = NULL;
 
 		/* get Address of inputs */
-		getVarAddressFromPosition(1, &piAddressVarOne);
+		getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
 
 		/* check input type */
 		if ( getVarType(piAddressVarOne) != sci_matrix )

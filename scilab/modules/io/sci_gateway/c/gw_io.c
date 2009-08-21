@@ -18,9 +18,9 @@
 #define IO_TAB_SIZE 18
 static gw_generic_table Tab[IO_TAB_SIZE]=
 {
-{C2F(sci_setenv),"setenv"},
+{NULL, ""}, //setenv
 {C2F(sci_read),"read"},
-{C2F(sci_getenv),"getenv"},
+{NULL, ""}, //getenv
 {C2F(sci_getio),"getio"},
 {C2F(sci_diary),"diary"},
 {C2F(sci_mgetl),"mgetl"},

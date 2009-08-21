@@ -27,14 +27,14 @@
 
 #define STACK3
 
-int C2F(intinv)(char *fname,unsigned long fname_len)
+int C2F(intinv)(char *fname, int* _piKey)
 {
   int* arg;
   int ret = 0;
   /*   inv(A)  */
   if(Rhs >= 1)
     {
-      getVarAddressFromPosition(1, &arg);
+      getVarAddressFromPosition(1, &arg, _piKey);
       if (getVarType(arg) !=sci_matrix)
 	{
 	  OverLoad(1);

@@ -23,10 +23,10 @@ static int C2F(intvoid)(char *fname, unsigned long fname_len)
 /*--------------------------------------------------------------------------*/ 
 #define LINEAR_ALGEBRA_TAB_SIZE 6
 static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
-  {C2F(inthess),"hess"},
+  {NULL, ""}, //hess
   {C2F(intschur),"schur"},
-  {C2F(inteig),"spec"},
-  {C2F(intbdiagr),"bdiag"},
+  {NULL, ""}, //spec
+  {NULL, ""}, //bdiag
   {C2F(intvoid),"xxxx"},
   {C2F(intbalanc),"balanc"}
 };

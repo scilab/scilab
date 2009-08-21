@@ -20,7 +20,7 @@
 #define FUNCTIONS_TAB_SIZE 5
 static gw_generic_table Tab[FUNCTIONS_TAB_SIZE]=
 {
-	{C2F(sci_lib),"lib"},
+	{NULL ,""}, //lib
 	{C2F(sci_deff),"deff"},
 	{C2F(sci_getf),"getf"},
 	{C2F(sci_exec),"exec"},

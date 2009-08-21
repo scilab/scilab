@@ -32,8 +32,8 @@ static int JNI_getMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_thi
 static int JNI_getMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
 /*--------------------------------------------------------------------------*/
 static int JNI_setMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
-static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
-static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
+static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name, int* _piKey);
+static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name, int* _piKey);
 static int JNI_setMatrixOfString(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
 static int JNI_setMatrixOfBoolean(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name);
 /*--------------------------------------------------------------------------*/
@@ -244,7 +244,7 @@ static char* detectSignatureTypeFromObjectName(JNIEnv *env, jobject obj_this)
 * Method:    Send
 * Signature: ()V
 */
-JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject obj_this)
+JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject obj_this, int* _piKey)
 {
 	char *signatureType = detectSignatureTypeFromObjectName(env, obj_this);
 
@@ -264,7 +264,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
 	}
 	else if (strcmp(signatureType,"D") == 0)
 	{
-		JNI_setMatrixOfDouble(env, obj_this, class_Mine, (int)jm, (int)jn, (char*)cname);
+		JNI_setMatrixOfDouble(env, obj_this, class_Mine, (int)jm, (int)jn, (char*)cname, _piKey);
 	}
 	else if (strcmp(signatureType,"Z") == 0)
 	{
@@ -272,7 +272,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send(JNIEnv *env, jobject o
 	}
 	else if (strcmp(signatureType,"CO") == 0)
 	{
-		JNI_setMatrixOfComplex(env, obj_this, class_Mine, (int)jm, (int)jn, (char*)cname);
+		JNI_setMatrixOfComplex(env, obj_this, class_Mine, (int)jm, (int)jn, (char*)cname, _piKey);
 	}
 	else if (strcmp(signatureType,"Ljava/lang/String;") == 0)
 	{
@@ -491,13 +491,13 @@ static int JNI_setMatrixOfInteger(JNIEnv *env, jobject obj_this, jclass class_th
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
+static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name, int* _piKey)
 {
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jdoubleArray jx = (*env)->GetObjectField(env, obj_this, id_x);
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 
-	if (createNamedMatrixOfDouble(name, Rows, Cols, cx))
+	if (createNamedMatrixOfDouble(name, Rows, Cols, cx, _piKey))
 	{
 		fprintf(stderr,"Error in JNI_setMatrixOfDouble.\n");
 		(*env)->ReleaseDoubleArrayElements(env, jx ,cx, 0);
@@ -508,7 +508,7 @@ static int JNI_setMatrixOfDouble(JNIEnv *env, jobject obj_this, jclass class_thi
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name)
+static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_this, int Rows, int Cols, char *name, int* _piKey)
 {
 	jfieldID id_x = (*env)->GetFieldID(env, class_this, "x", "[D");
 	jfieldID id_y = (*env)->GetFieldID(env, class_this, "y", "[D");
@@ -519,7 +519,7 @@ static int JNI_setMatrixOfComplex(JNIEnv *env, jobject obj_this, jclass class_th
 	double *cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	double *cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	if (createNamedComplexMatrixOfDouble(name, Rows, Cols, cx, cy))
+	if (createNamedComplexMatrixOfDouble(name, Rows, Cols, cx, cy, _piKey))
 	{
 		fprintf(stderr,"Error in JNI_setMatrixOfComplex.\n");
 		(*env)->ReleaseDoubleArrayElements(env, jx, cx, 0);

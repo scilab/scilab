@@ -17,13 +17,13 @@
 /*--------------------------------------------------------------------------*/
 #define TIME_TAB_SIZE 7
 static gw_generic_table Tab[TIME_TAB_SIZE]={
-    {sci_getdate,"getdate"},
-	{sci_calendar,"Calendar"},
-	{sci_timer,"timer"},
-	{sci_sleep,"sleep"},
-	{sci_xpause,"xpause"},
-	{sci_realtimeinit,"realtimeinit"},
-	{sci_realtime,"realtime"},
+	{NULL, ""}, //getdate
+	{NULL, ""}, //Calendar
+	{NULL, ""}, //timer
+	{NULL, ""}, //sleep
+	{NULL, ""}, //xpause
+	{NULL, ""}, //realtimeinit
+	{NULL, ""}, //realtime
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_time(void)

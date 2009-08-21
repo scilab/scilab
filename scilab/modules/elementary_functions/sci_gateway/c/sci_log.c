@@ -19,7 +19,7 @@
 
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log) (char *fname,unsigned long fname_len)
+int C2F(sci_log) (char *fname,int* _piKey)
 {
 	int i;
 	int iAlert					= 1; // to print only one warning message
@@ -37,7 +37,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -57,7 +57,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 			return 1;
 		}
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -114,7 +114,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 
 		if(iLessZero == 0)
 		{//All values > 0
-			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -127,7 +127,7 @@ int C2F(sci_log) (char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 			if(iRet)
 			{
 				return 1;

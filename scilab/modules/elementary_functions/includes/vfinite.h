@@ -13,6 +13,7 @@
 #ifndef __VFINITE__
 #define __VFINITE__
 
+#include "machine.h"
 #include "doublecomplex.h" 
 
 int C2F(vfinite)(int *n, double *v);

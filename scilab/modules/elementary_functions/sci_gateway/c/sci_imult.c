@@ -16,7 +16,7 @@
 #include "api_scilab.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imult) (char *fname,unsigned long fname_len)
+int C2F(sci_imult) (char *fname,int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -33,7 +33,7 @@ int C2F(sci_imult) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -58,7 +58,7 @@ int C2F(sci_imult) (char *fname,unsigned long fname_len)
 			pdblImg[i] *= -1;
 		}
 
-		iRet = createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg, pdblReal);
+		iRet = createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblImg, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -75,7 +75,7 @@ int C2F(sci_imult) (char *fname,unsigned long fname_len)
 		pdblRealRet = (double*)malloc(sizeof(double) * iRows * iCols);
 		memset(pdblRealRet, 0x00, sizeof(double) * iRows * iCols);
 
-		iRet = createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblRealRet, pdblReal);
+		iRet = createComplexMatrixOfDouble(Rhs + 1, iRows, iCols, pdblRealRet, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;

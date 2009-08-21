@@ -22,7 +22,7 @@ int isreal_sparse(int* _piAddress, double _dblRef, int* _piIsReal);
 int isreal_common(double *_pdblData, int _iSize, double _dblRef, int* _piIsReal);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_isreal) (char *fname,unsigned long fname_len)
+int C2F(sci_isreal) (char *fname,int* _piKey)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -38,7 +38,7 @@ int C2F(sci_isreal) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -67,7 +67,7 @@ int C2F(sci_isreal) (char *fname,unsigned long fname_len)
 	else //Rhs == 2
 	{
 		double dblPrec = 0;
-		iRet = getVarAddressFromPosition(2, &piAddr2);
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(iRet)
 		{
 			return 1;

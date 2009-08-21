@@ -1386,7 +1386,7 @@ static int fillCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItem
 	//1st case, 5 * 5 int8  -> (10,5) (5,1) (1:25) -> 3 : 2 + 25/8 + !!(25%8) -> 2 + 3  + 1 -> 6
 	//2nd case, 5 * 1 int16 -> (10,5) (5,2)	(1:25) -> 4 : 2 + 25/4 + !!(25%4) -> 2 + 6  + 1 -> 9
 	//3th case, 5 * 5 int32 -> (10,5) (5,3) (1:25) -> 5 : 2 + 25/2 + !!(25%2) -> 2 + 12 + 1 -> 15
-	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2 + _iRows * _iCols / (sizeof(double) / (_iPrecision % 10 )) + !!(_iRows * _iCols) % (sizeof(double) / (_iPrecision % 10 ));
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2 + _iRows * _iCols / (sizeof(double) / (_iPrecision % 10 )) + (int)!!(_iRows * _iCols) % (sizeof(double) / (_iPrecision % 10 ));
 
 	return 0;
 }
@@ -1403,7 +1403,7 @@ static int allocCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iIte
 		return 1;
 	}
 
-	piEnd = (int*)*_pvData + _iRows * _iCols / (sizeof(int) / (_iPrecision % 10)) + !!(_iRows * _iCols) % (sizeof(int) / (_iPrecision % 10));
+	piEnd = (int*)*_pvData + _iRows * _iCols / (sizeof(int) / (_iPrecision % 10)) + (int)!!(_iRows * _iCols) % (sizeof(int) / (_iPrecision % 10));
 	closeList(iNewPos, piEnd);
 
 	if(_iItemPos == _piParent[1])
@@ -1576,7 +1576,7 @@ static int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent
 	//1st case, 5 * 1 int8  -> 10 5 1 1 (1,2,3,4) (5,x,x,x)						-> 6 : 4 + 5/4 + !!(5%4) -> 4 + 1 + 1 -> 6
 	//2nd case, 5 * 1 int16 -> 10 5 1 2   (1,2)     (3,4)   (5,x)			-> 7 : 4 + 5/2 + !!(5%2) -> 4 + 2 + 1 -> 7
 	//3th case, 5 * 1 int32 -> 10 5 1 4     1         2       3   4 5	-> 9 : 4 + 5/1 + !!(5%1) -> 4 + 5 + 0 -> 9
-	piEnd = piChildAddr + 4 + _iRows * _iCols / (sizeof(int) / (_iPrecision % 10)) + !!(_iRows * _iCols) % ((sizeof(int) / (_iPrecision % 10)));
+	piEnd = piChildAddr + 4 + _iRows * _iCols / (sizeof(int) / (_iPrecision % 10)) + (int)!!(_iRows * _iCols) % ((sizeof(int) / (_iPrecision % 10)));
 	closeList(Top, piEnd);
 
 	if(_iItemPos == _piParent[1])

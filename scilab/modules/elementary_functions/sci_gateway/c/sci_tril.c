@@ -13,7 +13,7 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-
+#include "Scierror.h"
 #define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/
 int tril_matrix(int _iOffset);

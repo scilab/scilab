@@ -18,10 +18,10 @@
 
 int real_poly(int* _piAddress);
 int real_sparse(int* _piAddress);
-int real_double(int* _piAddress);
+int real_double(int* _piAddress, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_real) (char *fname,unsigned long fname_len)
+int C2F(sci_real) (char *fname, int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -29,7 +29,7 @@ int C2F(sci_real) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -38,7 +38,7 @@ int C2F(sci_real) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr))
 	{
 	case sci_matrix :
-		iRet = real_double(piAddr);
+		iRet = real_double(piAddr, _piKey);
 		break;
 	case sci_poly :
 		iRet = real_poly(piAddr);
@@ -243,7 +243,7 @@ int real_sparse(int* _piAddress)
 	return 0;
 }
 
-int real_double(int* _piAddress)
+int real_double(int* _piAddress, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -269,7 +269,7 @@ int real_double(int* _piAddress)
 		}
 	}
 
-	iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal);
+	iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal, _piKey);
 	if(iRet)
 	{
 		return 1;
