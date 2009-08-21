@@ -20,18 +20,21 @@ extern "C"
 {
 #include "machine.h"
 #include "PATH_MAX.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/ 
 static void wcsplitpath(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
 /*--------------------------------------------------------------------------*/ 
 std::wstring getFullFilename(std::wstring _wfilename)
 {
-	std::wstring wfullfilename(L"");
-	std::wstring tmpWstr;
 	wchar_t wcdrive[1024];
 	wchar_t wcdirectory[1024];
 	wchar_t wcname[1024];
 	wchar_t wcext [1024];
+
+	std::wstring wfullfilename(L"");
+	std::wstring tmpWstr;
 
 	size_t found = _wfilename.rfind(L"\\");
 
@@ -45,14 +48,21 @@ std::wstring getFullFilename(std::wstring _wfilename)
 	wfullfilename.append(tmpWstr.assign(wcdirectory));
 	if (wfullfilename.compare(L"") == 0)
 	{
-		wchar_t wcCurrentDir[1024];
 #if _MSC_VER
+		wchar_t wcCurrentDir[1024];
 		if ( _wgetcwd(wcCurrentDir, PATH_MAX) != NULL)
 #else
-		if (/*getcwd(wcCurrentDir,1024) != NULL*/ 1)
+		char CurrentDir[1024];
+		if (getcwd(CurrentDir,1024) != NULL)
 #endif
 		{
+#if _MSC_VER		
 			wfullfilename = tmpWstr.assign(wcCurrentDir);
+#else
+			wchar_t *wcCurrentDir = to_wide_string(CurrentDir);
+			wfullfilename = tmpWstr.assign(wcCurrentDir);
+			FREE(wcCurrentDir);
+#endif
 			size_t found = wfullfilename.rfind(L"\\");
 			while (found != std::wstring::npos)
 			{
@@ -65,7 +75,9 @@ std::wstring getFullFilename(std::wstring _wfilename)
 		{
 			wfullfilename.assign(L"");
 		}
-
+#ifndef _MSC_VER
+		//if (CurrentDir) {FREE(CurrentDir); CurrentDir = NULL;}
+#endif
 	}
 	wfullfilename.append(tmpWstr.assign(wcname));
 	wfullfilename.append(tmpWstr.assign(wcext));
