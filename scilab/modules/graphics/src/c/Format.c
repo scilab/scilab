@@ -764,11 +764,11 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
 
-  // Correction of bug 4724
+  // Correction of bug 4724 and 4432
   if ( SAFE_EQUAL2( *xmaxv, *xminv, 1e-5 ) )
   {
-    xmin = *xminv - 1e-6;
-    xmax = *xmaxv + 1e-6;
+    xmin = *xminv - 1e-6*(fabs(*xmaxv) + fabs(*xminv));
+    xmax = *xmaxv + 1e-6*(fabs(*xmaxv) + fabs(*xminv));
     /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
