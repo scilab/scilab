@@ -39,7 +39,7 @@
 <PRIMITIVE gatewayId="5" primitiveId="2" primitiveName="read" />
 <PRIMITIVE gatewayId="5" primitiveId="3" primitiveName="getenv" />
 <PRIMITIVE gatewayId="5" primitiveId="4" primitiveName="getio" />
-<PRIMITIVE gatewayId="5" primitiveId="5" primitiveName="diary" />
+<!-- <PRIMITIVE gatewayId="5" primitiveId="5" primitiveName="diary" />  -->
 <PRIMITIVE gatewayId="5" primitiveId="6" primitiveName="mgetl" />
 <PRIMITIVE gatewayId="5" primitiveId="7" primitiveName="write" />
 <PRIMITIVE gatewayId="5" primitiveId="8" primitiveName="rat" />

@@ -378,12 +378,14 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes
 
 # Includes need for the compilation
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la

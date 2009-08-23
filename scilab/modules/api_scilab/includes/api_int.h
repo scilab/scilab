@@ -12,6 +12,10 @@
 #ifndef __INT_API__
 #define __INT_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 #define SCI_INT8		1
@@ -272,5 +276,8 @@ API_SCILAB_IMPEXP int readNamedMatrixOfUnsignedInteger32(char* _pstName, int* _p
 #ifdef __SCILAB_INT64__
 API_SCILAB_IMPEXP int readNamedMatrixOfInteger64(char* _pstName, int* _piRows, int* _piCols, long long* _pllData64);
 API_SCILAB_IMPEXP int readNamedMatrixOfUnsignedInteger64(char* _pstName, int* _piRows, int* _piCols, unsigned long long* _pullData64);
+#endif
+#ifdef __cplusplus
+}
 #endif
 #endif /* __INT_API__ */

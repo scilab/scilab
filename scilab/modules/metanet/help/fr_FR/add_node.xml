@@ -61,7 +61,7 @@
     nouveau graphe <literal>g1</literal>.
   </para>
     <para>
-    Les coordonnées du nouveau sommet sont éventuellement précisées dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnées, (les éléments <literal>node_x</literal> et <literal>node_y</literal> sont égaux à <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
+    Les coordonnées du nouveau sommet sont éventuellement précisées dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnées, (les éléments <literal>g.nodes.graphics.x</literal> et <literal>g.nodes.graphics.y</literal> sont égaux à <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
     du graphe <literal>g</literal> ont des coordonnées et que <literal>xy</literal> n'est pas donné, le 
     nouveau sommet a <literal>(0,0)</literal> comme coordonnées.
   </para>
@@ -73,17 +73,21 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
+//create a graph
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
-g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
+//set node coordinates for visualization
+g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642]/2;
+g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
 show_graph(g);
-n=g('node_number');
-g1=add_node(g,[270 140]);
-g1('node_color')=[ones(1,n) 11];
+
+g1=add_node(g,[270  350 700;140 0 400]);
 show_graph(g1);
- ]]></programlisting>
+hilite_nodes(18:20);
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

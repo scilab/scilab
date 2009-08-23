@@ -15,7 +15,20 @@ function r=routh_t(h,k)
 //If  k=poly(0,'k') we will have a polynomial matrix with dummy variable
 //k, formal expression of the Routh table.
 //r=routh_t(d) computes Routh table of h :attention ! d=denom of system
-//!
+
+//If a zero row appears, it means that there exist a pair of pure imaginary
+//roots (oscillating system) or symmetric real roots. In this case, the pure imaginary roots are the
+//imaginary roots of the bisquare polynomial given by the previous row. The
+//routh table can be continued replacing this row by the derivative of this
+//polynomial.
+//see http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf for degenerated
+//cases
+  
+  //see also 
+//Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic Control, IEEE T.A.C
+//Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133
+  
+  //http://controls.engin.umich.edu/wiki/index.php/RouthStability
   [lhs,rhs]=argn(0);
   h1=h(1);
   if rhs==2 then
@@ -49,18 +62,31 @@ function r=routh_t(h,k)
   r=[r1;r2]
   if ncol<2 then r=[],return,end;
   if rhs==2 then
+
     for i=3:nd,
       r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
     end;
   else
     for i=3:nd,
-      if r(i-1,1)==0 then
-	k=find(r(i-1,2:ncol)<>0)
-	r(i,1:ncol-1)=r(i-2,2:ncol)
-	if k<>[] then r(i,k-1)=%inf,end
-      else
-	r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
+     if and(r(i-1,:)==0) then
+	naux=nd-i+2 //order of previous polynomial
+	exponents=naux:-2:0
+	ncoeff=size(exponents,'*')
+	r(i-1,1:ncoeff)=r(i-2,1:ncoeff).*exponents //derivative of previous polynomial
       end
+      if r(i-1,1)==0 then 
+	if rhs==1 then
+	  if typeof(r)=='rational' then 
+	    //scilab is not able to handle multivariable polynomials
+	    r=horner(r,%eps^2); 
+	  end
+	  r(i-1,1)=poly(0,'eps')
+	else
+	  r(i-1,1)=%eps^2,
+	end
+      end
+      r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
+      
     end;
   end;
 endfunction

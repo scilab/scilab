@@ -7,7 +7,7 @@
     <refname>pwd</refname>
     <refpurpose> print Scilab current directory</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="pwd">
+  <refnamediv>
     <refname>pwd</refname>
     <refpurpose> get Scilab current directory</refpurpose>
   </refnamediv>
@@ -19,7 +19,7 @@ x=pwd()</synopsis>
   <refsection>
     <title>Description</title>
     <para><literal>pwd</literal> returns in <literal>ans</literal> the Scilab current directory.
-    <literal>x=pwd()</literal></literal> returns in <literal>x</literal> the Scilab current
+    <literal>x=pwd()</literal> returns in <literal>x</literal> the Scilab current
     directory.</para>
   </refsection>
   <refsection>

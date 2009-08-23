@@ -12,6 +12,10 @@
 #ifndef __LIST_API__
 #define __LIST_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 #include "doublecomplex.h"
 
@@ -1129,6 +1133,8 @@ API_SCILAB_IMPEXP int readPointerInNamedList(char* _pstName, int* _piParent, int
  */
 API_SCILAB_IMPEXP int createPointerInNamedList(char* _pstName, int* _piParent, int _iItemPos, void* _pvPtr);
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* __LIST_API__ */
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{6A6A6F76-CCC0-40C4-8AEE-8A010F49A604}"
 	RootNamespace="call_scilab"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -301,7 +302,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -427,10 +428,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\ScilabAPI.h"
 				>
 			</File>
 		</Filter>

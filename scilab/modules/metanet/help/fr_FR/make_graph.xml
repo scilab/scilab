@@ -91,21 +91,25 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-// création d'un graphe orienté avec 3 sommets et 4 arcs.
+
+// creating a directed graph with 3 nodes and 4 arcs.
 g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
-// création d'un graphe orienté avec 13 sommets et 14 arcs.
+
+// creating a directed graph with 13 nodes and 14 arcs.
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
 g=make_graph('foo',1,13,ta,he);
-g('node_x')=[120  98  87 188 439 698 226 127 342 467 711 779 477];
-g('node_y')=[ 21 184 308 426 435 428 129 360 435  55 109 320 321];
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159]
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107]
 show_graph(g)
-// création d'un graphe sans sommet isolé et avec 14 arcs.
+
+// creating same graph without isolated node and 14 arcs.
 g=make_graph('foo',1,0,ta,he);
-g('node_x')=[120  98 226 127 342 467 711 779 477];
-g('node_y')=[ 21 184 129 360 435  55 109 320 321];
+g.nodes.graphics.x=[40,33,75,42,114,156,237,260,159];
+g.nodes.graphics.y=[7,61,43,120,145,18,36,107,107];
 show_graph(g,'new')
- ]]></programlisting>
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
