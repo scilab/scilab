@@ -11,13 +11,14 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "gw_string.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 #define STRING_TAB_SIZE 31
 static gw_generic_table Tab[STRING_TAB_SIZE]=
 {
-	{sci_length,"length"},
+	{NULL, ""}, //length
 	{sci_part,"part"},
 	{sci_string,"string"},
 	{sci_convstr,"convstr"},

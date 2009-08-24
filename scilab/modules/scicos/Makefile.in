@@ -695,6 +695,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/time/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/operations/includes
 
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)

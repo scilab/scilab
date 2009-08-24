@@ -26,8 +26,8 @@ static gw_generic_table Tab[SPARSE_TAB_SIZE]=
 	{C2F(sci_luget),"luget"},
 	{C2F(sci_spclean),"spclean"},
 	{C2F(sci_nnz),"nnz"},
-	{C2F(sci_spmax),"spmax"},
-	{C2F(sci_spmin),"spmin"},
+	{NULL, ""}, //spmax
+	{NULL, ""}, //spmin
 	{C2F(sci_spmatrix),"spmatrix"},
 	{C2F(sci_spchol),"spchol"},
 	{C2F(sci_readmps),"readmps"},

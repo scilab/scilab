@@ -12,6 +12,10 @@
 #ifndef __POINTER_API__
 #define __POINTER_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /**
@@ -47,5 +51,7 @@ API_SCILAB_IMPEXP int fillPointer(int *_piAddress, void** _pvPtr);
  */
 API_SCILAB_IMPEXP int createPointer(int _iVar, void* _pvPtr);
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* __POINTER_API__ */

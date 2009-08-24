@@ -17,6 +17,9 @@
 #include <sys/types.h>
 #include "MALLOC.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
 * wcfopen macro for fopen Multibyte char multiplatform
@@ -63,5 +66,8 @@ char *wide_string_to_UTF8(wchar_t *_wide);
 int wcstat(char* filename, struct _stat *st);
 #endif
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __CHARENCODING_H__ */
 

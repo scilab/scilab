@@ -21,7 +21,9 @@
 
 #include "CallScilab.h"
 #include "stack-c.h"
+#include "alltypes.hxx"
 
+using namespace types;
 /*******************************/
 /*   double matrix functions   */
 /*******************************/
@@ -57,22 +59,23 @@ int getCommonMatrixOfDouble(int* _piAddress, int _iComplex, int* _piRows, int* _
 	
 	getVarDimension(_piAddress, _piRows, _piCols);
 
+	Double* pdbl = ((InternalType*)_piAddress)->getAsDouble();
 	if(_pdblReal != NULL)
 	{
-		*_pdblReal	= (double*)(_piAddress + 4);
+		*_pdblReal	= pdbl->real_get();
 	}
 	if(_iComplex && _pdblImg != NULL)
 	{
-		*_pdblImg	= (double*)(_piAddress + 4) + *_piRows * *_piCols;
+		*_pdblImg	= pdbl->img_get();
 	}
 	return 0;
 }
 
-int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal)
+int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, int* _piKey)
 {
 	double *pdblReal	= NULL;
 
-	int iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL, _piKey);
 	if(iRet != 0)
 	{
 		return 1;
@@ -83,12 +86,12 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal)
 	return 0;
 }
 
-int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int* _piKey)
 {
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	int iRet = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg, _piKey);
 	if(iRet != 0)
 	{
 		return 1;
@@ -99,16 +102,37 @@ int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdbl
 	return 0;
 }
 
-int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int* _piKey)
 {
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int* piAddr			= NULL;
+	GatewayParam* pGW = types::GatewayParam::getInstance();
+	types::GatewayStruct *pStr =  pGW->get(_piKey);
 
-	getNewVarAddressFromPosition(iNewPos, &piAddr);
-	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
+	int iNewPos			= _iVar - (int)pStr->m_pin->size() - 1;
+
+	Double *pdbl = NULL;
+
+	if(iNewPos < 0 /*|| iNewPos > *pStr->m_piRetCount*/)
+	{
+		return 1;
+	}
+
+	if(_iComplex)
+	{
+		pdbl = new Double(_iRows, _iCols, _pdblReal, _pdblImg);
+	}
+	else
+	{
+		pdbl = new Double(_iRows, _iCols, _pdblReal);
+	}
+
+	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
+	{
+		pStr->m_pout->push_back(NULL);
+	}
+
+	(*pStr->m_pout)[iNewPos] = pdbl;
+
+
 	return 0;
 }
 
@@ -133,14 +157,14 @@ int fillCommonMatrixOfDouble(int* _piAddress, int _iComplex, int _iRows, int _iC
 	return 0;
 }
 
-int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal)
+int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, int* _piKey)
 {
 	double *pdblReal	= NULL;
 
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	int iRet = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal);
+	int iRet = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -150,7 +174,7 @@ int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal)
 	return 0;
 }
 
-int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey)
 {
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
@@ -158,7 +182,7 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	int iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+	int iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -169,14 +193,14 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 	return 0;
 }
 
-int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData)
+int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData, int* _piKey)
 {
 	int iRet						= 0;
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
 
 
-	iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+	iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -186,17 +210,17 @@ int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomple
 	return 0;
 }
 
-int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal)
+int createNamedMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, int* _piKey)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, 0, _iRows, _iCols, _pdblReal, NULL);
+	return createCommunNamedMatrixOfDouble(_pstName, 0, _iRows, _iCols, _pdblReal, NULL, _piKey);
 }
 
-int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+int createNamedComplexMatrixOfDouble(char* _pstName, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey)
 {
-	return createCommunNamedMatrixOfDouble(_pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg);
+	return createCommunNamedMatrixOfDouble(_pstName, 1, _iRows, _iCols, _pdblReal, _pdblImg, _piKey);
 }
 
-int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData)
+int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, doublecomplex* _pdblData, int* _piKey)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -230,7 +254,7 @@ int createNamedComplexZMatrixOfDouble(char* _pstName, int _iRows, int _iCols, do
 	return 0;
 }
 
-int createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
+int createCommunNamedMatrixOfDouble(char* _pstName, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;

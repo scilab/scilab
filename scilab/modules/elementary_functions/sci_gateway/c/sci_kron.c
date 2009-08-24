@@ -32,7 +32,7 @@ extern int C2F(dcopy)();
 extern int C2F(dscal)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_kron) (char *fname,unsigned long fname_len)
+int C2F(sci_kron) (char *fname,int* _piKey)
 {
 	int iRet						= 0;
 
@@ -63,13 +63,13 @@ int C2F(sci_kron) (char *fname,unsigned long fname_len)
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2);
+	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -111,13 +111,13 @@ int C2F(sci_kron) (char *fname,unsigned long fname_len)
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, &pdblImgRet, _piKey);
 	}
 	else
 	{
 		iRowsRet = iRows1 * iRows2;
 		iColsRet = iCols1 * iCols2;
-		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRowsRet, iColsRet, &pdblRealRet, _piKey);
 	}
 
 	if(iRet)

@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2009 - INRIA
@@ -23,14 +22,14 @@
 #include "rcond.h"
 
 
-int C2F(intrcond)(char *fname,unsigned long fname_len)
+int C2F(intrcond)(char *fname, int* _piKey)
 {
   int ret= 0;
   /*   rcond(A)  */
   int* adr1;
   if(Rhs >=1)
     {
-      getVarAddressFromPosition(1, &adr1);
+      getVarAddressFromPosition(1, &adr1, _piKey);
       if(getVarType(adr1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -43,8 +42,6 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	  CheckLhs(1,1);
 	  {
 	    double* pData;
-	    double* pDataReal;
-	    double* pDataImg;
 	    int iRows, iCols;
 	    int complexArg;
 
@@ -71,7 +68,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	      {
 		double* pRcond;
 		int dim= iRows ? 1 : 0 ;
-		allocMatrixOfDouble(2, dim, dim, &pRcond);
+		allocMatrixOfDouble(2, dim, dim, &pRcond, _piKey);
 		if(iRows)
 		  {
 		    if( iRows == -1 )

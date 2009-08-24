@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intlib)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lib)(char *fname,unsigned long fname_len)
+int C2F(sci_lib)(char *fname, int*_piKey)
 {
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -38,7 +38,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	getVarAddressFromPosition(1, &piAddressVarOne);
+	getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

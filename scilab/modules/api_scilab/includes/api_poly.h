@@ -12,6 +12,10 @@
 #ifndef __POLY_API__
 #define __POLY_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /*****************************/
@@ -121,4 +125,7 @@ API_SCILAB_IMPEXP int readNamedMatrixOfPoly(char* _pstName, int* _piRows, int* _
  */
 API_SCILAB_IMPEXP int readNamedComplexMatrixOfPoly(char* _pstName, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __POLY_API__ */

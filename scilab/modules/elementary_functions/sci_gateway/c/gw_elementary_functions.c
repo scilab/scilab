@@ -10,64 +10,65 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "gw_elementary_functions.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 #define ELEMENTARY_FUNCTIONS_TAB_SIZE 53
 static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 {
-	{C2F(sci_abs),"abs"},
-	{C2F(sci_real),"real"},
-	{C2F(sci_imag),"imag"},
-	{C2F(sci_conj),"conj"},
-	{C2F(sci_round),"round"},
-	{C2F(sci_int),"int"},
-	{C2F(sci_size),"size"},
+	{NULL ,""}, //abs
+	{NULL ,""}, //real
+	{NULL ,""}, //imag
+	{NULL ,""}, //conj
+	{NULL ,""}, //round
+	{NULL ,""}, //int
+	{NULL,""}, //size
 	{C2F(sci_sum),"sum"},
-	{C2F(sci_prod),"prod"},
-	{C2F(sci_diag),"diag"},
-	{C2F(sci_triu),"triu"},
-	{C2F(sci_tril),"tril"},
-	{C2F(sci_eye),"eye"},
+	{NULL ,""}, //prod
+	{NULL ,""}, //diag
+	{NULL ,""}, //trui
+	{NULL ,""}, //tril
+	{NULL ,""}, //eye
 	{C2F(sci_rand),"rand"},
-	{C2F(sci_ones),"ones"},
-	{C2F(sci_maxi),"maxi"},
-	{C2F(sci_maxi),"mini"},
-	{C2F(sci_kron),"kron"},
-	{C2F(sci_kron),".*."},
-	{C2F(sci_kron),"./."},
-	{C2F(sci_kron),".\\."},
-	{C2F(sci_sin),"sin"},
-	{C2F(sci_cos),"cos"},
-	{C2F(sci_atan),"atan"},
-	{C2F(sci_exp),"exp"},
+	{NULL ,""}, //ones
+	{NULL ,""}, //maxi
+	{NULL ,""}, //mini
+	{NULL ,""}, //kron
+	{NULL ,""}, //kron
+	{NULL ,""}, //kron
+	{NULL ,""}, //kron
+	{NULL ,""}, //sin
+	{NULL ,""}, //cos
+	{NULL ,""}, //atan
+	{NULL ,""}, //exp
 	{C2F(sci_sqrt),"sqrt"},
-	{C2F(sci_log),"log"},
+	{NULL ,""}, //log
 	{C2F(sci_chinesehat),"^"},
-	{C2F(sci_sign),"sign"},
-	{C2F(sci_clean),"clean"},
-	{C2F(sci_floor),"floor"},
-	{C2F(sci_ceil),"ceil"},
-	{C2F(sci_expm),"expm"},
-	{C2F(sci_cumsum),"cumsum"},
-	{C2F(sci_cumprod),"cumprod"},
+	{NULL ,""}, //sign
+	{NULL ,""}, //clean
+	{NULL ,""}, //floor
+	{NULL ,""}, //ceil
+	{NULL ,""}, //expm
+	{NULL ,""}, //cumsum
+	{NULL ,""}, //cumprod
 	{C2F(sci_testmatrix),"testmatrix"},
-	{C2F(sci_isreal),"isreal"},
-	{C2F(sci_frexp),"frexp"},
+	{NULL ,""}, //isreal
+	{NULL ,""}, //frexp
 	{C2F(sci_zeros),"zeros"},
 	{C2F(sci_tan),"tan"},
-	{C2F(sci_log1p),"log1p"},
-	{C2F(sci_imult),"imult"},
-	{C2F(sci_asin),"asin"},
-	{C2F(sci_acos),"acos"},
-	{C2F(sci_number_properties),"number_properties"},
-	{C2F(sci_nearfloat),"nearfloat"},
-	{C2F(sci_dsearch),"dsearch"},
+	{NULL ,""}, //log1p
+	{NULL ,""}, //imult
+	{NULL ,""}, //asin
+	{NULL ,""}, //acos
+	{NULL ,""}, //number_properties
+	{NULL ,""}, //nearfloat
+	{NULL ,""}, //dsearch
 	{C2F(sci_isequal),"isequal"},
 	{C2F(sci_spones),"spones"},
 	{C2F(sci_gsort),"gsort"},
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
-	{C2F(sci_scimatrix),"matrix"},
+	{NULL ,""}, //matrix
 	{C2F(sci_sort),"sort"}
 };
 /*--------------------------------------------------------------------------*/

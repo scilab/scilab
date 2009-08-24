@@ -18,10 +18,10 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 
-static int getMode(int _iPos, char *_pcMode);
+static int getMode(int _iPos, char *_pcMode, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
+int C2F(sci_dsearch) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet								= 0;
@@ -48,13 +48,13 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	CheckRhs(2,3);
 	CheckLhs(1,3);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = getVarAddressFromPosition(2, &piAddr2);
+	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -69,7 +69,7 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	//get ch
 	if(Rhs == 3)
 	{
-		iRet = getMode(3, &cMode);
+		iRet = getMode(3, &cMode, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -144,17 +144,17 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 
 	if(Lhs >= 1)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealInd);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealInd, _piKey);
 	}
 
 	if(Lhs >= 2)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc);
+		iRet = allocMatrixOfDouble(Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc, _piKey);
 	}
 
 	if(Lhs >= 3)
 	{
-		iRet = allocMatrixOfDouble(Rhs + 3, 1, 1, &pdblRealInfo);
+		iRet = allocMatrixOfDouble(Rhs + 3, 1, 1, &pdblRealInfo, _piKey);
 	}
 
 	if(iRows1 == 0 || iCols1 == 0)
@@ -195,7 +195,7 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-static int getMode(int _iPos, char *_pcMode)
+static int getMode(int _iPos, char *_pcMode, int* _piKey)
 {
 	int iRet			= 0;
 	int iRows			= 0;
@@ -203,7 +203,7 @@ static int getMode(int _iPos, char *_pcMode)
 	int iMode			= 0;
 	int* piAddr		= NULL;
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr);
+	iRet = getVarAddressFromPosition(_iPos, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;

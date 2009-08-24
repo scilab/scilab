@@ -21,8 +21,9 @@
 #include "MALLOC.h"
 #include "CallScilab.h"
 #include "stack-c.h"
+extern "C" {
 #include "code2str.h"
-
+};
 
 int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {

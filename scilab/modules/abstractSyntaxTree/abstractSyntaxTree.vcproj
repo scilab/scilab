@@ -65,6 +65,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				GenerateDebugInformation="true"
 				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
 			/>
 			<Tool
@@ -136,6 +137,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
+				GenerateDebugInformation="true"
 				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
 			/>
 			<Tool

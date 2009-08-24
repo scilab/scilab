@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Get
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_javasci_SciAbstractArray_Send
-  (JNIEnv *, jobject);
+  (JNIEnv *, jobject, int* _piKey);
 
 #ifdef __cplusplus
 }

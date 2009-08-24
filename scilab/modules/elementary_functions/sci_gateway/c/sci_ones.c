@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ones) (char *fname,unsigned long fname_len)
+int C2F(sci_ones) (char *fname, int* _piKey)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -49,7 +49,7 @@ int C2F(sci_ones) (char *fname,unsigned long fname_len)
 	}
 	else if(Rhs == 1)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1);
+		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -68,13 +68,13 @@ int C2F(sci_ones) (char *fname,unsigned long fname_len)
 	}
 	else if(Rhs == 2)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1);
+		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 		if(iRet)
 		{
 			return 1;
 		}
 
-		iRet = getVarAddressFromPosition(2, &piAddr2);
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -99,7 +99,7 @@ int C2F(sci_ones) (char *fname,unsigned long fname_len)
 		iCols = 0;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReal);
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReal, _piKey);
 	if(iRows != 0)
 	{
 		vDset(iRows * iCols, 1, pdblReal, 1);

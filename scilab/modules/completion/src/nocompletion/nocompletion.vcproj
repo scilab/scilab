@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{D1586C83-3F16-467B-85C6-6A12A08CCB8D}"
 	RootNamespace="nocompletion"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOCOMPLETION_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +126,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOCOMPLETION_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -209,7 +210,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOCOMPLETION_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -298,7 +299,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../includes;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOCOMPLETION_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

@@ -19,19 +19,19 @@
 /*--------------------------------------------------------------------------*/ 
 #define LINEAR_ALGEBRA2_TAB_SIZE 15
 static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
-	{C2F(intqr),"qr"},
-	{C2F(intsvd),"svd"},
-	{C2F(intlsq),"lsq"},
-	{C2F(inteig),"spec"},
-	{C2F(intinv),"inv"},
-	{C2F(intrcond),"rcond"},
-	{C2F(intchol),"chol"},
-	{C2F(intlu),"lu"},
+	{NULL, ""}, //qr
+	{NULL, ""}, //svd
+	{NULL, ""}, //lsq
+	{NULL, ""}, //spec
+	{NULL, ""}, //inv
+	{NULL, ""}, //rcond
+	{NULL, ""}, //chol
+	{NULL, ""}, //lu
 	{C2F(intslash),"slash"},
 	{C2F(intbackslash),"backslash"},
 	{C2F(intschur),"schur"},
-	{C2F(inthess),"hess"},
-	{C2F(intdet),"det"},
+	{NULL, ""}, //hess
+	{NULL ,""}, //det
 	{C2F(intbalanc),"balanc"}
 };
 /*--------------------------------------------------------------------------*/ 

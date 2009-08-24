@@ -13,6 +13,7 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
 int sum_matrix(int _iMode);

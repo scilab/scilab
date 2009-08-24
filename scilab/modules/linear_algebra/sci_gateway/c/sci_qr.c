@@ -44,7 +44,7 @@ iQrM(pData, iRows, iCols, complexArg, iRowsToCompute, tol, pdblQ, pdblR, pdblE, 
 
 */
 /*--------------------------------------------------------------------------*/
-int C2F(intqr)(char *fname,unsigned long fname_len)
+int C2F(intqr)(char *fname, int* _piKey)
 {
   int* arg[2]= {NULL, NULL};
   
@@ -57,7 +57,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 
   if (Rhs>=1)
     {
-      getVarAddressFromPosition(1, &arg[0]);
+      getVarAddressFromPosition(1, &arg[0], _piKey);
       if( getVarType(arg[0])!=sci_matrix)
 	{
 	  OverLoad(1);
@@ -98,26 +98,26 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	      double* pdblQImg;
 	      double* pdblRReal;
 	      double* pdblRImg;
-	      allocComplexMatrixOfDouble(Rhs+1, 0, 0, &pdblQReal, &pdblQImg);
-	      allocComplexMatrixOfDouble(Rhs+2, 0, 0, &pdblRReal, &pdblRImg);	  
+	      allocComplexMatrixOfDouble(Rhs+1, 0, 0, &pdblQReal, &pdblQImg, _piKey);
+	      allocComplexMatrixOfDouble(Rhs+2, 0, 0, &pdblRReal, &pdblRImg, _piKey);
 	    }
 	  else
 	    {
 	      double* pdblQ;
 	      double* pdblR;
-	      allocMatrixOfDouble(Rhs+1, 0, 0, &pdblQ);
-	      allocMatrixOfDouble(Rhs+2, 0, 0, &pdblR);
+	      allocMatrixOfDouble(Rhs+1, 0, 0, &pdblQ, _piKey);
+	      allocMatrixOfDouble(Rhs+2, 0, 0, &pdblR, _piKey);
 	    }
 	  LhsVar(1)= Rhs+1;
 	  LhsVar(2)= Rhs+2;
 	  if( Lhs >= 3) /* ..[rk],E] =*/
 	    {
 	      double* pdblE;
-	      allocMatrixOfDouble(Rhs+3, 0, 0, &pdblE);
+	      allocMatrixOfDouble(Rhs+3, 0, 0, &pdblE, _piKey);
 	      if( Lhs == 4 ) /* rk */
 		{
 		  double* pdblRk;
-		  allocMatrixOfDouble(Rhs+4, 1, 1, &pdblRk);
+		  allocMatrixOfDouble(Rhs+4, 1, 1, &pdblRk, _piKey);
 		  *pdblRk= 0.;
 		  LhsVar(3)= Rhs+4;
 		  LhsVar(4)= Rhs+3;
@@ -141,7 +141,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	      double dblTol= -1.;
 	      if(Rhs == 2) /* first check economy mode or tolerance */
 		{
-		  getVarAddressFromPosition(2, &arg[1]);
+		  getVarAddressFromPosition(2, &arg[1], _piKey);
 		  switch( getVarType(arg[1])){
 		  case sci_strings :
 		    { /* /!\ original code did not check that string is "e" so any [matrix of] string is accepted as "e" ! */
@@ -180,8 +180,8 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	    
 		if(complexArg)
 		  {
-		    if( (ret= (allocComplexMatrixOfDouble(Rhs+1, iRows, iRowsToCompute, &pdblQReal, &pdblQImg)
-			       ||allocComplexMatrixOfDouble(Rhs+2, iRowsToCompute, iCols, &pdblRReal, &pdblRImg))))
+		    if( (ret= (allocComplexMatrixOfDouble(Rhs+1, iRows, iRowsToCompute, &pdblQReal, &pdblQImg, _piKey)
+			       ||allocComplexMatrixOfDouble(Rhs+2, iRowsToCompute, iCols, &pdblRReal, &pdblRImg, _piKey))))
 		      {
 			Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		      }
@@ -196,8 +196,8 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 		  }
 		else 
 		  {
-		    if( (ret= (allocMatrixOfDouble(Rhs+1, iRows, iRowsToCompute, &pdblQ)
-			       ||allocMatrixOfDouble(Rhs+2, iRowsToCompute, iCols, &pdblR))))
+		    if( (ret= (allocMatrixOfDouble(Rhs+1, iRows, iRowsToCompute, &pdblQ, _piKey)
+			       ||allocMatrixOfDouble(Rhs+2, iRowsToCompute, iCols, &pdblR, _piKey))))
 		      {
 			Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		      }
@@ -205,10 +205,10 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 		if( !ret ){
 		  if( (ret=  
 		       (( Lhs >= 3) /* next alloc for E needed only for lhs>=3 */
-			&& allocMatrixOfDouble(Rhs+3, iCols, iCols, &pdblE)
+			&& allocMatrixOfDouble(Rhs+3, iCols, iCols, &pdblE, _piKey)
 			)
 		       ||((Lhs >=4) /* next alloc for Rk needed only for lhs>=4 */
-			  && allocMatrixOfDouble(Rhs+4, 1, 1, &pdblRk))
+			  && allocMatrixOfDouble(Rhs+4, 1, 1, &pdblRk, _piKey))
 		       ))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);

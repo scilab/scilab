@@ -15,7 +15,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_eye) (char *fname,unsigned long fname_len)
+int C2F(sci_eye) (char *fname, int* _piKey)
 {
 	int iRet							= 0;
 	int iRows							= 0;
@@ -36,7 +36,7 @@ int C2F(sci_eye) (char *fname,unsigned long fname_len)
 	{
 		iRows = -1;
 		iCols = -1;
-		iRet = allocMatrixOfDouble(Rhs + 1, -1, -1, &pdblRealRet);
+		iRet = allocMatrixOfDouble(Rhs + 1, -1, -1, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -48,7 +48,7 @@ int C2F(sci_eye) (char *fname,unsigned long fname_len)
 	}
 	else if(Rhs == 1)
 	{
-		iRet = getVarAddressFromPosition(1, &piAddr1);
+		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -86,7 +86,7 @@ int C2F(sci_eye) (char *fname,unsigned long fname_len)
 		iCols = (int)dabss(iCols);
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 
 
 	if(iRows * iCols != 0)

@@ -91,24 +91,24 @@ static int optimalWorkSizes(int complexArg, int iRows, int iCols, int iRowsToCom
       C2F(dorgqr)(&iRows, &iRowsToCompute, &minRowsCols, NULL, &iRows, NULL, &optGqr, &query, &info);
     }
   /* sort sizes in decreasing order */
-  *opt1= Max(optGeqrf, optGeqp3);
-  *opt2= Min(optGeqrf, optGeqp3);
+  *opt1= (int)Max(optGeqrf, optGeqp3);
+  *opt2= (int)Min(optGeqrf, optGeqp3);
   if(optGqr > *opt1)
     {
       *opt3= *opt2;
       *opt2= *opt1;
-      *opt1= optGqr;
+      *opt1= (int)optGqr;
     }
   else
     {
       if(optGqr > *opt2)
 	{
 	  *opt3= *opt2;
-	  *opt2= optGqr;
+	  *opt2= (int)optGqr;
 	}
       else
 	{
-	  *opt3= optGqr;
+	  *opt3= (int)optGqr;
 	}
     }
   return info;

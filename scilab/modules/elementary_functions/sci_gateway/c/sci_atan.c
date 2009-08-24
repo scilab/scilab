@@ -19,7 +19,7 @@
 #include "api_scilab.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_atan) (char *fname,unsigned long fname_len)
+int C2F(sci_atan) (char *fname, int* _piKey)
 {
 	int i;
 	int iRet								= 0;
@@ -41,7 +41,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr1);
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(getVarType(piAddr1) != sci_matrix)
 	{
 		OverLoad(1);
@@ -58,7 +58,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 				return 1;
 			}
 			
-			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet);
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, &pdblImgRet, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -87,7 +87,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 				return 1;
 			}
 
-			allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet);
+			allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, _piKey);
 			for(i = 0 ; i < iRows1 * iCols1 ; i++)
 			{
 				pdblRealRet[i] = datans(pdblReal1[i]);
@@ -96,7 +96,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 	}
 	else
 	{//Rhs == 2
-		iRet = getVarAddressFromPosition(2, &piAddr2);
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -118,7 +118,7 @@ int C2F(sci_atan) (char *fname,unsigned long fname_len)
 
 			if(iRows1 * iCols1 == iRows2 * iCols2)
 			{
-				allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet);
+				allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealRet, _piKey);
 				for(i = 0 ; i < iRows1 * iCols1 ; i++)
 				{
 					pdblRealRet[i] = datan2s(pdblReal1[i], pdblReal2[i]);

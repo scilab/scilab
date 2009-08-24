@@ -14,6 +14,7 @@
 #define __GW_IO_H__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 int gw_io(void);
 /*--------------------------------------------------------------------------*/
@@ -28,14 +29,12 @@ int C2F(sci_unix)(char *fname,unsigned long fname_len);
 int C2F(sci_readb)(char *fname,unsigned long fname_len);
 int C2F(sci_writb)(char *fname,unsigned long fname_len);
 int C2F(sci_getpid)(char *fname,unsigned long fname_len);
-int C2F(sci_getenv)(char *fname,unsigned long fname_len);
 int C2F(sci_read4b)(char *fname,unsigned long fname_len);
 int C2F(sci_write4b)(char *fname,unsigned long fname_len);
 int C2F(sci_save)(char *fname,unsigned long fname_len);
 int C2F(sci_load)(char *fname,unsigned long fname_len);
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
 int C2F(sci_getio)(char *fname,unsigned long fname_len);
-int C2F(sci_setenv)(char *fname,unsigned long fname_len);
 
 int C2F(intgetenv)(char *fname,unsigned long fname_len);
 int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
@@ -50,6 +49,11 @@ int C2F(intreadb)(void);
 int C2F(intwrite)(void);
 int C2F(intwrite4b)(void);
 int C2F(intwritb)(void);
+
+
+//YaSp
+int C2F(sci_getenv)(char *fname, int* _piKey);
+int C2F(sci_setenv)(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */

@@ -17,10 +17,10 @@
 
 extern int C2F(dscal)();
 
-int conj_double(int* _piAddress);
+int conj_double(int* _piAddress, int* _piKey);
 int conj_poly(int* _piAddress);
 
-int C2F(sci_conj) (char *fname,unsigned long fname_len)
+int C2F(sci_conj) (char *fname, int* _piKey)
 {
 	int iRet		= 0;
 	int* piAddr	= NULL;
@@ -28,7 +28,7 @@ int C2F(sci_conj) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -37,7 +37,7 @@ int C2F(sci_conj) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr))
 	{
 	case sci_matrix : 
-		iRet = conj_double(piAddr);
+		iRet = conj_double(piAddr, _piKey);
 		break;
 	case sci_poly : 
 		iRet = conj_poly(piAddr);
@@ -52,7 +52,7 @@ int C2F(sci_conj) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int conj_double(int* _piAddress)
+int conj_double(int* _piAddress, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -76,7 +76,7 @@ int conj_double(int* _piAddress)
 
 		iSize = iRows * iCols;
 
-		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -95,7 +95,7 @@ int conj_double(int* _piAddress)
 			return 1;
 		}
 
-		iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal);
+		iRet = createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;

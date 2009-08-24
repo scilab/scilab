@@ -28,14 +28,14 @@
  * [e,m]=det(X)
  */
 
-int C2F(intdet)(char *fname,unsigned long fname_len)
+int C2F(intdet)(char *fname, int* _piKey)
 {
   int ret= 0;
   int* arg= NULL;
 
   if ( Rhs>=1 )
     {
-      getVarAddressFromPosition(1, &arg);
+      getVarAddressFromPosition(1, &arg, _piKey);
       if( getVarType(arg)!=sci_matrix )
 	{
 	  OverLoad(1);
@@ -74,9 +74,9 @@ int C2F(intdet)(char *fname,unsigned long fname_len)
 		double* pExponent= NULL;
 		if( (ret= 
 		     (complexArg
-		      ? allocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg)
-		      : allocMatrixOfDouble(2, 1, 1, &pMantissaReal))
-		     ||( (Lhs == 2) && allocMatrixOfDouble(3, 1, 1, &pExponent)))
+		      ? allocComplexMatrixOfDouble(2, 1, 1, &pMantissaReal, &pMantissaImg, _piKey)
+		      : allocMatrixOfDouble(2, 1, 1, &pMantissaReal, _piKey))
+		     ||( (Lhs == 2) && allocMatrixOfDouble(3, 1, 1, &pExponent, _piKey)))
 		    )
 		  {
 		    Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);

@@ -16,14 +16,14 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 
-int getStartPosition(int _iPos, int* _piStartPos);
+int getStartPosition(int _iPos, int* _piStartPos, int* _piKey);
 
-int diag_double(int* _piAddress, int _iStartPos);
+int diag_double(int* _piAddress, int _iStartPos, int* _piKey);
 int diag_poly(int* _piAddress, int _iStartPos);
 
 extern int C2F(sci_pdiag) (char *fname,unsigned long fname_len);
 
-int C2F(sci_diag) (char *fname,unsigned long fname_len)
+int C2F(sci_diag) (char *fname, int *_piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -39,14 +39,14 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		iRet = getStartPosition(2, &_iStartPos);
+		iRet = getStartPosition(2, &_iStartPos, _piKey);
 		if(iRet)
 		{
 			return 1;
 		}
 	}
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -55,7 +55,7 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr))
 	{
 	case sci_matrix :
-		iRet = diag_double(piAddr, _iStartPos);
+		iRet = diag_double(piAddr, _iStartPos, _piKey);
 		break;
 	case sci_poly :
 		iRet = diag_poly(piAddr, _iStartPos);
@@ -75,7 +75,7 @@ int C2F(sci_diag) (char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int diag_double(int* _piAddress, int _iStartPos)
+int diag_double(int* _piAddress, int _iStartPos, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -116,7 +116,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 			iRows = 0;
 			iCols = 0;
 
-			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+			iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -129,11 +129,11 @@ int diag_double(int* _piAddress, int _iStartPos)
 			int iIncOut = 1;
 			if(isVarComplex(_piAddress))
 			{
-				iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet, &pdblImgRet);
+				iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet, &pdblImgRet, _piKey);
 			}
 			else
 			{
-				iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet);
+				iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, 1, &pdblRealRet, _piKey);
 			}
 
 			if(iRet)
@@ -179,7 +179,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 
 		if(isVarComplex(_piAddress))
 		{
-			iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, &pdblImgRet);
+			iRet = allocComplexMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, &pdblImgRet, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -189,7 +189,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 		}
 		else
 		{
-			iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet);
+			iRet = allocMatrixOfDouble(Rhs + 1, iMatrixSize, iMatrixSize, &pdblRealRet, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -230,7 +230,7 @@ int diag_poly(int* _piAddress, int _iStartPos)
 	return 0;
 }
 
-int getStartPosition(int _iPos, int* _piStartPos)
+int getStartPosition(int _iPos, int* _piStartPos, int* _piKey)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -238,7 +238,7 @@ int getStartPosition(int _iPos, int* _piStartPos)
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 
-	iRet = getVarAddressFromPosition(_iPos, &piAddr);
+	iRet = getVarAddressFromPosition(_iPos, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;

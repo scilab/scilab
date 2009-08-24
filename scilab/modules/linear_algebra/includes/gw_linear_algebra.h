@@ -14,6 +14,7 @@
 #ifndef __GW_LINEAR_ALGEBRA__
 #define __GW_LINEAR_ALGEBRA__
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 #define SCI_DOUBLE 1
 #define STRING  10
@@ -27,20 +28,9 @@
 /*--------------------------------------------------------------------------*/
 int gw_linear_algebra(void);
 /*--------------------------------------------------------------------------*/
-int C2F(inthess)(char *fname,unsigned long fname_len);
-int C2F(intqr)(char *fname,unsigned long fname_len);
 int C2F(intbackslash)(char *fname,unsigned long fname_len);
-int C2F(intbdiagr)(char *fname, long unsigned int fname_len);
-int C2F(intdet)(char *fname,unsigned long fname_len);
-int C2F(intinv)(char *fname,unsigned long fname_len);
 int C2F(invnew)(char *fname,unsigned long fname_len);
-int C2F(intlu)(char *fname,unsigned long fname_len);
-int C2F(intrcond)(char *fname,unsigned long fname_len);
 int C2F(intslash)(char *fname,unsigned long fname_len);
-int C2F(intsvd)(char *fname,unsigned long fname_len);
-int C2F(intlsq)(char *fname,unsigned long fname_len);
-int C2F(intchol)(char *fname,unsigned long fname_len);
-int C2F(inteig) (char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 /* used in 'eig' */
 int sci_dsyev(char *fname, unsigned long fname_len);
@@ -52,6 +42,20 @@ int sci_zggev(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len);
 int C2F(intschur)(char *fname, unsigned long fname_len);
+
+//YaSp
+int C2F(intchol)(char *fname, int* _piKey);
+int C2F(intbdiagr)(char *fname, int* _piKey);
+int C2F(intsvd)(char *fname, int* _piKey);
+int C2F(intrcond)(char *fname, int* _piKey);
+int C2F(intqr)(char *fname, int* _piKey);
+int C2F(intlu)(char *fname, int* _piKey);
+int C2F(intlsq)(char *fname, int* _piKey);
+int C2F(intinv)(char *fname, int* _piKey);
+int C2F(inthess)(char *fname, int* _piKey);
+int C2F(inteig) (char *fname, int* _piKey);
+int C2F(intdet)(char *fname, int* _piKey);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LINEAR_ALGEBRA__ */
 /*--------------------------------------------------------------------------*/

@@ -12,6 +12,13 @@
 #ifndef ALL_TYPES_HH
 #define ALL_TYPES_HH
 
+#ifdef getType
+#undef getType
+#endif
+#ifdef isComplex
+#undef isComplex
+#endif
+
 #include "internal.hxx"
 #include "implicitlist.hxx"
 #include "types.hxx"

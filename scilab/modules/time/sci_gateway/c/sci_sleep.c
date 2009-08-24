@@ -24,7 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_sleep(char *fname,unsigned long fname_len)
+int sci_sleep(char *fname, int* _piKey)
 {
   int m1 = 0, n1 = 0, sec=0;
   int * p1_in_address = NULL;
@@ -36,7 +36,7 @@ int sci_sleep(char *fname,unsigned long fname_len)
 
   if (Rhs == 1)
     {
-      getVarAddressFromPosition(1, &p1_in_address);
+      getVarAddressFromPosition(1, &p1_in_address, _piKey);
       res = getMatrixOfDouble(p1_in_address, &m1, &n1, &pDblReal);
 
       CheckScalar(1,m1,n1);

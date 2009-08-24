@@ -22,7 +22,7 @@ int size_list(int* _piAddress);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_size) (char *fname,unsigned long fname_len)
+int C2F(sci_size) (char *fname, int* _piKey)
 {
 	int iRet		= 0;
 	int iMode		= 0;
@@ -31,11 +31,11 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 	static int id[6];
 	C2F(intsize)(id);
 	return 0;
-
+/*
 	CheckRhs(1,2);
 	CheckLhs(1,2);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -83,7 +83,7 @@ int C2F(sci_size) (char *fname,unsigned long fname_len)
 
 	PutLhsVar();
 	return 0;
-}
+*/	}
 
 int size_list(int* _piAddress)
 {

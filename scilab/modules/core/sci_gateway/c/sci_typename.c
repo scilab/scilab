@@ -23,19 +23,19 @@
 #include "api_int.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-static int sci_typename_two_rhs(char *fname,unsigned long fname_len);
-static int sci_typename_no_rhs(char *fname,unsigned long fname_len);
+static int sci_typename_two_rhs(char *fname, int* _piKey);
+static int sci_typename_no_rhs(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_typename)(char *fname,unsigned long fname_len)
+int C2F(sci_typename)(char *fname, int *_piKey)
 {
 	CheckLhs(1,2); 
 	switch (Rhs)
 	{
 	case 0:
-		sci_typename_no_rhs(fname,fname_len);
+		sci_typename_no_rhs(fname, _piKey);
 		break;
 	case 2:
-		sci_typename_two_rhs(fname,fname_len);
+		sci_typename_two_rhs(fname, _piKey);
 		break;
 	default:
 		Scierror(999,_("%s: Wrong number of input arguments: %d or %d expected.\n"),fname,0,2);
@@ -44,7 +44,7 @@ int C2F(sci_typename)(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_typename_two_rhs(char *fname,unsigned long fname_len)
+int sci_typename_two_rhs(char *fname, int* _piKey)
 {
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -55,8 +55,8 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	getVarAddressFromPosition(1, &piAddressVarOne);
-	getVarAddressFromPosition(2, &piAddressVarTwo);
+	getVarAddressFromPosition(1, &piAddressVarOne, _piKey);
+	getVarAddressFromPosition(2, &piAddressVarTwo, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
@@ -127,7 +127,7 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_typename_no_rhs(char *fname,unsigned long fname_len)
+int sci_typename_no_rhs(char *fname, int* _piKey)
 {
 	int numberOfTypes = 0;
 	int *TypesNumbers = NULL;

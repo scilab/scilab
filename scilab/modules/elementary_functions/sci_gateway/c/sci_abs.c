@@ -11,17 +11,17 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
-#include "stack-c.h"
+//#include "stack-c.h"
 #include "api_scilab.h"
 #include "basic_functions.h"
+#include "api_oldstack.h"
 
-int abs_double(int* _piAddress);
-int abs_poly(int* _piAddress);
-int abs_sparse(int* _piAddress);
+int abs_double(int* _piAddress, int* _piKey);
+int abs_poly(int* _piAddress, int* _piKey);
+int abs_sparse(int* _piAddress, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-/*--------------------------------------------------------------------------*/
-int C2F(sci_abs) (char *fname,unsigned long fname_len)
+int sci_abs(char *fname, int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -29,7 +29,7 @@ int C2F(sci_abs) (char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	iRet = getVarAddressFromPosition(1, &piAddr);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -38,16 +38,16 @@ int C2F(sci_abs) (char *fname,unsigned long fname_len)
 	switch(getVarType(piAddr))
 	{
 	case sci_matrix:
-		iRet = abs_double(piAddr);
+		iRet = abs_double(piAddr, _piKey);
 		break;
 	case sci_poly:
-		iRet = abs_poly(piAddr);
+		iRet = abs_poly(piAddr, _piKey);
 		break;
 	case sci_sparse:
-		iRet = abs_sparse(piAddr);
+		iRet = abs_sparse(piAddr, _piKey);
 		break;
 	default:
-		OverLoad(1);
+		//OverLoad(1);
 		break;
 	}
 
@@ -62,7 +62,7 @@ int C2F(sci_abs) (char *fname,unsigned long fname_len)
 }
 
 /*Absolute value for a double*/
-int abs_double(int* _piAddress)
+int abs_double(int* _piAddress, int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -81,7 +81,7 @@ int abs_double(int* _piAddress)
 			return 1;
 		}
 
-		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblRealRet[i] = dabsz(pdblReal[i], pdblImg[i]);
@@ -95,7 +95,7 @@ int abs_double(int* _piAddress)
 			return 1;
 		}
 
-		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
+		allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
 			pdblRealRet[i] = dabss(pdblReal[i]);
@@ -105,7 +105,7 @@ int abs_double(int* _piAddress)
 }
 
 /*Absolute value for a polynomial ( absolute value of each coefficient )*/
-int abs_poly(int* _piAddress)
+int abs_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iLen							= 0;
@@ -223,7 +223,7 @@ int abs_poly(int* _piAddress)
 }
 
 /*Absolute value for a sparse ( absolute value of each element )*/
-int abs_sparse(int* _piAddress)
+int abs_sparse(int* _piAddress, int* _piKey)
 {
 	int i;
 	int iRet						= 0;

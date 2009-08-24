@@ -14,6 +14,7 @@
 #ifndef __GW_LOCALIZATION__
 #define __GW_LOCALIZATION__
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_localization(void);
 /*--------------------------------------------------------------------------*/ 

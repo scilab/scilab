@@ -40,14 +40,14 @@
 #include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
-static int lengthStrings(int RhsPosition);
+static int lengthStrings(int RhsPosition, int* _piKey);
 static int lengthOthers(char *fname);
 static int lengthfunction(int RhsPosition,char *VariableType);
 static int lengthPoly(int RhsPosition);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
 static int lengthSparse(int RhsPosition);
 /*----------------------------------------------------------------------------*/
-int sci_length(char *fname,unsigned long fname_len)
+int sci_length(char *fname, int* _piKey)
 {
 	int lenghtValue = 0;
 	int m_out = 1, n_out = 1, l_out = 0;
@@ -63,7 +63,7 @@ int sci_length(char *fname,unsigned long fname_len)
 
 		case sci_strings :
 			/* to optimize output, we write directly on stack */
-			return lengthStrings(1);
+			return lengthStrings(1, _piKey);
 		break;
 
 		case sci_matrix :
@@ -113,7 +113,7 @@ int sci_length(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthStrings(int RhsPosition)
+static int lengthStrings(int RhsPosition, int* _piKey)
 {
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
@@ -128,7 +128,7 @@ static int lengthStrings(int RhsPosition)
 	int ierr = 0;
 	
 	/* get Address of inputs */
-	getVarAddressFromPosition(RhsPosition, &piAddressVarOne);
+	getVarAddressFromPosition(RhsPosition, &piAddressVarOne, _piKey);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
@@ -173,7 +173,7 @@ static int lengthStrings(int RhsPosition)
 	}
 	FREE(lenStVarOne); lenStVarOne = NULL;
 
-	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut, _piKey);
 	LhsVar(1) = Rhs + 1; 
 	C2F(putlhsvar)();
 

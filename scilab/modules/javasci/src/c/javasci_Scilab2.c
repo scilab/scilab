@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
 	if ( GetInterfState() == 0) { EnableInterf(); Initialize();} 
 }
 /*--------------------------------------------------------------------------*/
-JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
+JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass cl, jobject objMatrix, int* _piKey)
 {
 	const char *cname = NULL;
 	double *matrix = NULL;
@@ -60,7 +60,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendDoubleMatrix (JNIEnv *env, jclass
 	cname = (*env)->GetStringUTFChars(env, jname, NULL); 
 	matrix = (*env)->GetDoubleArrayElements(env, jmatrix, NULL);
 
-	if (createNamedMatrixOfDouble((char*)cname, nbRow, nbCol, matrix))
+	if (createNamedMatrixOfDouble((char*)cname, nbRow, nbCol, matrix, _piKey))
 	{
 		fprintf(stderr,"Error in Java_javasci_Scilab_sendDoubleMatrix.\n");
 	}
@@ -122,7 +122,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveDoubleMatrix (JNIEnv *env, jcl
 	(*env)->ReleaseDoubleArrayElements(env, jmatrix, matrix, 0);
 }
 /*--------------------------------------------------------------------------*/
-JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
+JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclass cl, jobject objMatrix, int* _piKey)
 {
 	const char *cname = NULL;
 	double *cx = NULL, *cy = NULL;
@@ -149,7 +149,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_sendComplexMatrix (JNIEnv *env, jclas
 	cx = (*env)->GetDoubleArrayElements(env, jx, NULL);
 	cy = (*env)->GetDoubleArrayElements(env, jy, NULL);
 
-	if ( createNamedComplexMatrixOfDouble((char*)cname, nbRow, nbCol, cx, cy) )
+	if ( createNamedComplexMatrixOfDouble((char*)cname, nbRow, nbCol, cx, cy, _piKey) )
 	{
 		fprintf(stderr,"Error in Java_javasci_Scilab_sendComplexMatrix.\n");
 	}

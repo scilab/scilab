@@ -13,10 +13,11 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __GW_STRING__
 #define __GW_STRING__
+#include "api_common.h"
+
 /*--------------------------------------------------------------------------*/ 
 int gw_string(void);
 /*--------------------------------------------------------------------------*/ 
-int sci_length(char *fname,unsigned long fname_len);
 int sci_part(char *fname,unsigned long fname_len);
 int sci_string(char *fname,unsigned long fname_len);
 int sci_convstr(char *fname,unsigned long fname_len);
@@ -47,6 +48,9 @@ int sci_strspn(char *fname,unsigned long fname_len);
 int sci_strtod(char *fname,unsigned long fname_len);
 int sci_regexp(char *fname,unsigned long fname_len);
 int sci_NumTokens(char *fname,unsigned long fname_len);
+
+//YaSp
+int sci_length(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/

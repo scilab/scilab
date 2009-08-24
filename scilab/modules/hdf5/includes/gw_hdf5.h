@@ -14,11 +14,12 @@
 #define __GW_HDF5_H__
 /*--------------------------------------------------------------------------*/ 
 #include "dynlib_hdf5_scilab.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/ 
 HDF5_SCILAB_IMPEXP int gw_hdf5(void);
 /*--------------------------------------------------------------------------*/ 
-HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname,unsigned long fname_len);
-HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname,unsigned long fname_len);
+HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname, int* _piKey);
+HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_HDF5_H__ */
 /*--------------------------------------------------------------------------*/

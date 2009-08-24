@@ -41,12 +41,12 @@ extern int C2F(vfinite)(int *n, double *v);
 
 static int isEconomyMode(int*const arg2);
 
-static int handleEmptyMatrix(void);
+static int handleEmptyMatrix(int* _piKey);
 
-static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double** ptrsU, double** pS, double** ptrsV);
+static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double** ptrsU, double** pS, double** ptrsV, int* _piKey);
 
 
-int C2F(intsvd)(char *fname,unsigned long fname_len)
+int C2F(intsvd)(char *fname, int* _piKey)
 {
   int ret=0, economy=0, complexArg, iRows, iCols;
   double* pData= NULL;
@@ -69,7 +69,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
   int* adr2= NULL;
   if ( Rhs >=1 )
     {
-      getVarAddressFromPosition(1, &adr1);
+      getVarAddressFromPosition(1, &adr1, _piKey);
       if(getVarType(adr1) != sci_matrix)
 	{
 	  OverLoad(1);
@@ -81,7 +81,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	  CheckLhs(1, 4);
 	  if(Rhs == 2)
 	    {
-	      getVarAddressFromPosition(2, &adr2);
+	      getVarAddressFromPosition(2, &adr2, _piKey);
 	      economy= isEconomyMode(adr2);
 	    }
 	  if( (complexArg= isVarComplex(adr1)) )
@@ -99,7 +99,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	    }
 	  if(iRows == 0) /* empty matrix */
 	    {
-	      handleEmptyMatrix();
+				handleEmptyMatrix(_piKey);
 	    }
 	  else
 	    {
@@ -110,7 +110,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 		}
 	      else
 		{
-		  int const totalsize= iRows * iCols * (complexArg ? 2 : 1); 
+		  int totalsize= iRows * iCols * (complexArg ? 2 : 1); 
 		  if(!C2F(vfinite)(&totalsize, pData))
 		    {
 		      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 1);
@@ -123,7 +123,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 			  int const economyRows= economy ? Min(iRows, iCols) : iRows;
 			  int const economyCols= economy ? Min(iRows, iCols) : iCols;
 
-			  allocU_S_V(iRows, iCols, economyRows, economyCols, complexArg, ptrsU, &pS, ptrsV);
+			  allocU_S_V(iRows, iCols, economyRows, economyCols, complexArg, ptrsU, &pS, ptrsV, _piKey);
 
 			  if(Lhs == 4)
 			    {
@@ -134,7 +134,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 				  getMatrixOfDouble(adr2, &dummy, &dummy, &tmpData);
 				  tol= *tmpData;
 				}
-			      allocMatrixOfDouble(Rhs+4, 1, 1, &pRk);
+			      allocMatrixOfDouble(Rhs+4, 1, 1, &pRk, _piKey);
 
 			    }
 			}
@@ -146,7 +146,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 			    }
 			  else /* Lhs == 1 */
 			    {
-			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
+			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV, _piKey);
 			    }
 			}
 		      ret=  iSvdM(pData, iRows, iCols, complexArg, economy, tol, pSV, ptrsU[0], pS, ptrsV[0], pRk);
@@ -255,48 +255,48 @@ int isEconomyMode(int*const adr2)
   return economy;
 }
 
-int handleEmptyMatrix(void)
+int handleEmptyMatrix(int* _piKey)
 {
   double* data;
 
-  allocMatrixOfDouble(3, 0, 0, &data);
+  allocMatrixOfDouble(3, 0, 0, &data, _piKey);
   LhsVar(1)= 3;
   if(Lhs >= 2)
     {
-      allocMatrixOfDouble(4, 0, 0, &data);
+      allocMatrixOfDouble(4, 0, 0, &data, _piKey);
       LhsVar(2)= 4;
     }
   if(Lhs >=3)
     {
-      allocMatrixOfDouble(5, 0, 0, &data);
+      allocMatrixOfDouble(5, 0, 0, &data, _piKey);
       LhsVar(3)= 5;
     }
   if(Lhs == 4)
     {
-      allocMatrixOfDouble(6, 1, 1, &data);
+      allocMatrixOfDouble(6, 1, 1, &data, _piKey);
       *data= 0.;
       LhsVar(4)= 6;
     }
   return 0;
 }
 
-static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double* ptrsU[], double** ptrS, double* ptrsV[])
+static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double* ptrsU[], double** ptrS, double* ptrsV[], int*_piKey)
 {
   if(isComplex)
     {
-      allocComplexMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+1, ptrsU+2); 
+      allocComplexMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+1, ptrsU+2, _piKey); 
       ptrsU[0]= (double*)MALLOC(rows * economyRows*(isComplex ? sizeof(doublecomplex): sizeof(double)));
-      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS);
-      allocComplexMatrixOfDouble(Rhs+3, cols, economyCols, ptrsV+1, ptrsV+2);
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, _piKey);
+      allocComplexMatrixOfDouble(Rhs+3, cols, economyCols, ptrsV+1, ptrsV+2, _piKey);
       ptrsV[0]= (double*)MALLOC(cols * economyCols*(isComplex ? sizeof(doublecomplex): sizeof(double)));
     }
   else
     {
       ptrsU[1]= ptrsU[2]= NULL;
-      allocMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+0);
-      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS);
+      allocMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+0, _piKey);
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, _piKey);
       ptrsV[1]= ptrsV[2]= (double*)NULL;
-      allocMatrixOfDouble(Rhs+3, cols, economyCols , ptrsV+0);
+      allocMatrixOfDouble(Rhs+3, cols, economyCols , ptrsV+0, _piKey);
     }
   return 0;
 }

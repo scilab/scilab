@@ -51,8 +51,8 @@ void workSizes(int n, int lo, int hi, int complexArg, int* bestSize, int* semiOp
       C2F(dgehrd)(&n, &lo, &hi, NULL, &n, NULL, &optHrd, &query, &info);
       C2F(dorghr)(&n, &lo, &hi, NULL, &n, NULL, &optGhr, &query, &info);      
     }
-  *bestSize= Max(optHrd, optGhr);
-  *semiOptimalSize= Min(optHrd, optGhr);
+  *bestSize= (int)Max(optHrd, optGhr);
+  *semiOptimalSize= (int)Min(optHrd, optGhr);
   *minimalSize= Max( (hi-lo), Max(1, n));
 }
 

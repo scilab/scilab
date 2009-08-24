@@ -12,7 +12,9 @@
 
 #ifndef __GW_SPARSE__
 #define __GW_SPARSE__
+
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
@@ -25,8 +27,6 @@ int C2F(sci_ludel) (char *fname,unsigned long fname_len);
 int C2F(sci_luget) (char *fname,unsigned long fname_len);
 int C2F(sci_spclean) (char *fname,unsigned long fname_len);
 int C2F(sci_nnz) (char *fname,unsigned long fname_len);
-int C2F(sci_spmax) (char *fname,unsigned long fname_len);
-int C2F(sci_spmin) (char *fname,unsigned long fname_len);
 int C2F(sci_spmatrix) (char *fname,unsigned long fname_len);
 int C2F(sci_spchol) (char *fname,unsigned long fname_len);
 int C2F(sci_readmps) (char *fname,unsigned long fname_len);
@@ -42,6 +42,11 @@ int C2F(sci_bfinit) (char *fname,unsigned long fname_len);
 int C2F(sci_msparse) (char *fname,unsigned long fname_len);
 int C2F(sci_mspget) (char *fname,unsigned long fname_len);
 int C2F(sci_mfull) (char *fname,unsigned long fname_len);
+
+//YaSp
+int C2F(sci_spmin) (char *fname, int* _piKey);
+int C2F(sci_spmax) (char *fname, int* _piKey);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPARSE__ */
 /*--------------------------------------------------------------------------*/

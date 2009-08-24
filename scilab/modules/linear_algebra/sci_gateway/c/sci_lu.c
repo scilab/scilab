@@ -25,7 +25,7 @@
 
 #define STACK3
 
-int C2F(intlu)(char *fname,unsigned long fname_len)
+int C2F(intlu)(char *fname, int* _piKey)
 {
   int* arg= NULL;
   int complexArg;
@@ -40,7 +40,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
   /*   lu(A)  */
   if ( Rhs >=1 )
     {
-      getVarAddressFromPosition(1,&arg);
+      getVarAddressFromPosition(1,&arg, _piKey);
       if(getVarType(arg)!=sci_matrix) 
 	{
 	  OverLoad(1);
@@ -78,7 +78,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	{
 	  double* pdblL= NULL;
 	  LhsVar(1)= 1;
-	  if((ret = allocMatrixOfDouble(2, 0, 0, &pdblL)))
+	  if((ret = allocMatrixOfDouble(2, 0, 0, &pdblL, _piKey)))
 	    {
 	      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 	    }
@@ -89,7 +89,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	  if(Lhs == 3)
 	    {
 	      double* pdblE= NULL;
-	      if((ret = allocMatrixOfDouble(3, 0, 0, &pdblE)))
+	      if((ret = allocMatrixOfDouble(3, 0, 0, &pdblE, _piKey)))
 		{
 		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		}
@@ -108,7 +108,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		{
 		  double* pdblLReal;
 		  double* pdblLImg;
-		  if((ret = allocComplexMatrixOfDouble(2, -1, -1, &pdblLReal, &pdblLImg)))
+		  if((ret = allocComplexMatrixOfDouble(2, -1, -1, &pdblLReal, &pdblLImg, _piKey)))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		    }
@@ -123,7 +123,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	      else
 		{
 		  double* pdblLData;
-		  if((ret = allocMatrixOfDouble(2, -1, -1, &pdblLData)))
+		  if((ret = allocMatrixOfDouble(2, -1, -1, &pdblLData, _piKey)))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		    }
@@ -140,7 +140,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		    {
 		      double* pdblEReal;
 		      double* pdblEImg;
-		      if((ret= allocComplexMatrixOfDouble(3, -1, -1, &pdblEReal, &pdblEImg)))
+		      if((ret= allocComplexMatrixOfDouble(3, -1, -1, &pdblEReal, &pdblEImg, _piKey)))
 			{
 			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 			}
@@ -153,7 +153,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		  else
 		    {
 		      double* pdblEData;
-		      if((ret=  allocMatrixOfDouble(3, -1, -1, &pdblEData)))
+		      if((ret=  allocMatrixOfDouble(3, -1, -1, &pdblEData, _piKey)))
 			{
 			  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 			}
@@ -181,8 +181,8 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 	  
 	      if(complexArg)
 		{
-		  if(allocComplexMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg)
-		     || allocComplexMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg))
+		  if(allocComplexMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg, _piKey)
+		     || allocComplexMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg, _piKey))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		      ret= 1;
@@ -209,8 +209,8 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		}
 	      else
 		{
-		  if(allocMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLData)
-		     ||allocMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUData))
+		  if(allocMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLData, _piKey)
+		     ||allocMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUData, _piKey))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		      ret= 1;
@@ -218,7 +218,7 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
 		}
 	      if(Lhs == 3)
 		{
-		  if(allocMatrixOfDouble(4, iRows, iRows, &pdblEData))
+		  if(allocMatrixOfDouble(4, iRows, iRows, &pdblEData, _piKey))
 		    {
 		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		      ret=1;

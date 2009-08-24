@@ -37,14 +37,14 @@ static gw_generic_table Tab[CORE_TAB_SIZE]=
 {C2F(sci_errclear),"errclear"},
 {C2F(sci_iserror),"iserror"},
 {C2F(sci_predef),"predef"},
-{C2F(sci_newfun),"newfun"},
+{NULL,""}, //newfun
 {C2F(sci_clearfun),"clearfun"},
 {C2F(sci_funptr),"funptr"},
 {C2F(sci_macr2lst),"macr2lst"},
 {C2F(sci_setbpt),"setbpt"},
 {C2F(sci_delbpt),"delbpt"},
 {C2F(sci_dispbpt),"dispbpt"},
-{C2F(sci_funcprot),"funcprot"},
+{NULL,""},//funcprot
 {C2F(sci_whereis),"whereis"},
 {C2F(sci_where),"where"},
 {C2F(sci_havewindow),"havewindow"},
@@ -54,7 +54,7 @@ static gw_generic_table Tab[CORE_TAB_SIZE]=
 {C2F(sci_what),"what"},
 {C2F(sci_sciargs),"sciargs"},
 {C2F(sci_ieee),"ieee"},
-{C2F(sci_typename),"typename"},
+{NULL,""},//typename
 {C2F(sci_global),"global"},
 {C2F(sci_clearglobal),"clearglobal"},
 {C2F(sci_isglobal),"isglobal"},

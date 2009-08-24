@@ -33,7 +33,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_getdate(char *fname,unsigned long fname_len)
+int sci_getdate(char *fname, int* _piKey)
 {
   int n1 = 0,m1 = 0;
   int * p1_in_address = NULL;
@@ -63,13 +63,13 @@ int sci_getdate(char *fname,unsigned long fname_len)
 	  C2F(convertdate)(&dt,DATEMATRIX);
 	  m1=1;
 	  n1=10;
-	  res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX);
+	  res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX, _piKey);
 	}
 
     }
   else /* Rhs == 1 */
     {
-      getVarAddressFromPosition(1, &p1_in_address);
+      getVarAddressFromPosition(1, &p1_in_address, _piKey);
 
       if (getVarType(p1_in_address) == sci_strings)
 	{
@@ -88,7 +88,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
 	      DATEMATRIX[0]=(int)dt;
 	      m1=1;
 	      n1=1;
-	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX);
+	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEMATRIX, _piKey);
 	      if (Param1) FREE(Param1);
 	    }
 	  else
@@ -137,7 +137,7 @@ int sci_getdate(char *fname,unsigned long fname_len)
 	      n1=10;
 	      DATEARRAYtmp=DATEARRAY;
 	      DATEARRAY = transposeMatrixDouble(n1,m1,DATEARRAY);
-	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEARRAY);
+	      res = createMatrixOfDouble(Rhs+1, m1, n1, DATEARRAY, _piKey);
 
 	      LhsVar(1)=Rhs+1;
 	      C2F(putlhsvar)();
