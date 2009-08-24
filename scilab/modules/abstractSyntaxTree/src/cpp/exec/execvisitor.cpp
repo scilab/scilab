@@ -304,7 +304,7 @@ namespace ast
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
 
-				Double *pResult = NULL;
+				InternalType *pResult = NULL;
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
 				InternalType *pIT = execFunc->result_get();
@@ -322,6 +322,7 @@ namespace ast
 				if(pIT->getType() == InternalType::RealDouble)
 				{
 					Double *pDouble	= pIT->getAsDouble();
+					Double *dResult;
 					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector
 							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
 							iArgDim > 2) //more than 2 dimensions ?
@@ -338,25 +339,25 @@ namespace ast
 					int iColOut	= 0;
 					if(iArgDim == 1)
 					{
-						pResult = new Double(piDimSize[0], 1, pDouble->isComplex());
+						pResult = dResult = new Double(piDimSize[0], 1, pDouble->isComplex());
 						iRowOut = piDimSize[0];
 						iColOut = 1;
 					}
 					else
 					{
-						pResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
+						pResult = dResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
 						iRowOut = piDimSize[0];
 						iColOut = piDimSize[1];
 					}
 
 					double *pRealIn		= pDouble->real_get();
 					double *pImgIn		= pDouble->img_get();
-					double *pRealOut	= pResult->real_get();
-					double *pImgOut		= pResult->img_get();
+					double *pRealOut	= dResult->real_get();
+					double *pImgOut		= dResult->img_get();
 
 					if(bSeeAsVector)
 					{
-						if(pResult->isComplex())
+						if(dResult->isComplex())
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
@@ -375,7 +376,7 @@ namespace ast
 					else//matrix
 					{
 						int iRowIn = pDouble->rows_get();
-						if(pResult->isComplex())
+						if(dResult->isComplex())
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
@@ -394,13 +395,12 @@ namespace ast
 							}
 						}
 					}
-
-					result_set(pResult);
 				}
 				else
 				{
 				}
 				delete[] piDimSize;
+				result_set(pResult);
 				if(e.is_verbose())
 				{
 				  std::ostringstream ostr;
