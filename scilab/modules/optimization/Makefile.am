@@ -74,9 +74,7 @@ src/fortran/calbx.f \
 src/fortran/rednor.f \
 src/fortran/zgcbd.f \
 src/fortran/writebuf.f \
-src/fortran/dpofa.f \
-src/fortran/qpgen1sci.f \
-src/fortran/util.f
+src/fortran/qpgen1sci.f
 
 MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
 src/fortran/minpack/qrfac.f \
