@@ -62,7 +62,7 @@
       flow for instance), <literal>flag</literal> is equal to 0,
       otherwise it is equal to 1.
     </para>
-    <para>
+
    <para>
       The bounds of the flow are given by the
       <literal>g.edges.data.min_cap</literal> and
@@ -75,8 +75,7 @@
       of the minimum capacity. 
     </para>
     <para> 
-      If the value of
-      <literal>min_cap</literal> or <literal>max_cap</literal> is not
+      If the value of <literal>min_cap</literal> or <literal>max_cap</literal> is not
       given it is assumed to be equal to 0 on each edge.</para>
     <para>
       The costs on the edges are given by the element
@@ -97,17 +96,12 @@
       If the <literal>min_cap</literal> or <literal>max_cap</literal>
       or <literal>cost</literal> data
       fields are not present in the graph structure they can be added
-      and set using the <link
-      linkend="add_edge_data">add_edge_data</link> function.
+      and set using the <link linkend="add_edge_data">add_edge_data</link> function.
       If the <literal>demand</literal>  data
       field is not present in the graph structure it can be added
-      and set using the <link
-      linkend="add_node_data">add_node_data</link> function.
-
+      and set using the <link linkend="add_node_data">add_node_data</link> function.
     </para>
-    <para>
-      This functions uses a relaxation algorithm due to D. Bertsekas.
-    </para>
+    <para>This functions uses a relaxation algorithm due to D. Bertsekas.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

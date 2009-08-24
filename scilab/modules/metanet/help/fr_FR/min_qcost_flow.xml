@@ -105,9 +105,7 @@
       utilisant la fonction <link
       linkend="add_edge_data">add_edge_data</link>.
     </para>
-    <para>
-   
- 
+    
     <para>
     Cette fonction utilise un algorithme dû à M. Minoux.
   </para>
