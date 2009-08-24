@@ -363,7 +363,6 @@ static int sci_diary_two_rhs(char *fname)
 				return AppendByFilenames(fname, DIARY_FILTER_INPUT_AND_OUTPUT, 
 					PREFIX_TIME_FORMAT_UNIX_EPOCH, 
 					PREFIX_FILTER_NONE, false);
-				
 			}
 			else
 			{
@@ -525,6 +524,12 @@ static double *getInputArgumentOneIDs(char *fname,int *sizeReturnedArray, int *i
 		if ( (m1 == 1) || (n1 == 1) )
 		{
 			*sizeReturnedArray = m1 * n1;
+		}
+		else if ( (m1 == 0) || (n1 == 0) )
+		{
+			*sizeReturnedArray = 0;
+			*ierror = 2;
+			return NULL;
 		}
 		else
 		{
@@ -787,7 +792,15 @@ static int CloseByIds(char *fname)
 	int ierr = 0;
 
 	dIDs = getInputArgumentOneIDs(fname, &dIDs_size, &ierr);
-	if (ierr) return 0;
+
+	if (ierr == 2)
+	{
+		// diary([], 'close')
+		diaryCloseAll();
+		C2F(putlhsvar)();
+		return 0;
+	}
+	else if (ierr) return 0;
 
 	ierr = checkExistByIDs(fname, dIDs, dIDs_size);
 	if (ierr) return 0;
