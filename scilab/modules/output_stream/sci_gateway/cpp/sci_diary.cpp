@@ -207,7 +207,7 @@ static int sci_diary_one_rhs(char *fname)
 		{
 			if (diaryExists(wcFilenames[0]))
 			{
-				double dID = (double)diaryNew(wcFilenames[0]);
+				double dID = (double)diaryNew(wcFilenames[0], false);
 				if (dID == -1)
 				{
 					char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
@@ -1069,7 +1069,7 @@ static int NewByFilenames(char *fname,
 
 	if (dIDs_size == 1)
 	{
-		double dID = (double)diaryNew(wcFilenames[0]);
+		double dID = (double)diaryNew(wcFilenames[0], true);
 		if (dID == -1)
 		{
 			char *utf_str = wide_string_to_UTF8(wcFilenames[0]);

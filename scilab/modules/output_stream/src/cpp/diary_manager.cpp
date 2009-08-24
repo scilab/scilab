@@ -222,13 +222,13 @@ int diaryExists(wchar_t *filename)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryNew(wchar_t *filename)
+int diaryNew(wchar_t *filename, bool autorename)
 {
 	createDiaryManager();
 
 	if (SCIDIARY)
 	{
-		return SCIDIARY->openDiary(std::wstring(filename));
+		return SCIDIARY->openDiary(std::wstring(filename),autorename);
 	}
 
 	return -1;
@@ -239,7 +239,7 @@ int diaryAppend(wchar_t *filename)
 	createDiaryManager();
 	if (SCIDIARY)
 	{
-		return SCIDIARY->openDiary(std::wstring(filename),1);
+		return SCIDIARY->openDiary(std::wstring(filename),1,false);
 	}
 	return -1;
 }

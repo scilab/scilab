@@ -123,7 +123,7 @@ int diaryExists(wchar_t *filename);
 * @param[in] filename
 * @return ID or -1 (NOK)
 */
-int diaryNew(wchar_t *filename);
+int diaryNew(wchar_t *filename, bool autorename);
 
 /**
 * append to a diary

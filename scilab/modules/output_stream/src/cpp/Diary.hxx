@@ -48,7 +48,7 @@ public:
 	/*
 	* constructor
 	*/
-	Diary(std::wstring _wfilename,int _mode,int ID);
+	Diary(std::wstring _wfilename,int _mode,int ID, bool autorename);
 
 	/*
 	* destructor

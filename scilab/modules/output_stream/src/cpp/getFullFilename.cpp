@@ -211,14 +211,7 @@ static int GetFileSize(std::wstring _wfilename)
 	if (_filename == NULL) return false;
 	ifstream file(_filename);
 #endif
-	int size = 0;
-	while (!file.eof()) 
-	{
-		file.get();
-		size++;
-	}
-	file.close();
-	delete file;
-	return size;
+	file.seekg(std::ios::end); 
+	return (int)file.tellg();
 }
 /*--------------------------------------------------------------------------*/ 

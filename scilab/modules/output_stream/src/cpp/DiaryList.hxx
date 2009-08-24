@@ -29,8 +29,8 @@ public:
 	~DiaryList();
 
 	/* open a diary */
-	int openDiary(std::wstring _wfilename,int _mode);
-	int openDiary(std::wstring _wfilename);
+	int openDiary(std::wstring _wfilename,int _mode, bool autorename);
+	int openDiary(std::wstring _wfilename, bool autorename);
 
 	/* close a diary by ID */
 	bool closeDiary(int ID_diary);

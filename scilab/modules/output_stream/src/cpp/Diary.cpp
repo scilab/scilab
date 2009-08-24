@@ -22,11 +22,20 @@ extern "C"
 #include "MALLOC.h"
 }
 /*--------------------------------------------------------------------------*/ 
-Diary::Diary(std::wstring _wfilename,int _mode,int ID)
+Diary::Diary(std::wstring _wfilename,int _mode,int ID, bool autorename)
 {
 	std::ios::openmode wofstream_mode = std::ios::trunc | std::ios::binary;
 
-	std::wstring uniquefullfilename = getUniqueFilename(_wfilename);
+	std::wstring fullfilename = getUniqueFilename(_wfilename);
+	if (autorename)
+	{
+		fullfilename = getUniqueFilename(_wfilename);
+	}
+	else
+	{
+		fullfilename = getFullFilename(_wfilename);
+	}
+
 
 	suspendwrite = false;
 
@@ -44,9 +53,9 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 
 #ifdef _MSC_VER
-	std::wofstream fileDiary(uniquefullfilename.c_str(),wofstream_mode);
+	std::wofstream fileDiary(fullfilename.c_str(),wofstream_mode);
 #else
-	wchar_t *wcfile = (wchar_t*)uniquefullfilename.c_str();
+	wchar_t *wcfile = (wchar_t*)fullfilename.c_str();
 	char *filename = wide_string_to_UTF8(wcfile);
 
 	std::ofstream fileDiary(filename, wofstream_mode);
@@ -62,7 +71,7 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 	else
 	{
-		wfilename = uniquefullfilename;
+		wfilename = fullfilename;
 		fileAttribMode = wofstream_mode;
 		setID(ID);
 	}

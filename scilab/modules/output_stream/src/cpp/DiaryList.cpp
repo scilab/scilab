@@ -23,15 +23,15 @@ DiaryList::~DiaryList()
 	closeAllDiaries();
 }
 /*--------------------------------------------------------------------------*/ 
-int DiaryList::openDiary(std::wstring _wfilename)
+int DiaryList::openDiary(std::wstring _wfilename, bool autorename)
 {
-	return openDiary(_wfilename,0);
+	return openDiary(_wfilename, 0, autorename);
 }
 /*--------------------------------------------------------------------------*/ 
-int DiaryList::openDiary(std::wstring _wfilename,int _mode)
+int DiaryList::openDiary(std::wstring _wfilename,int _mode, bool autorename)
 {
 	int ID = -1;
-	Diary newDiary(_wfilename, _mode,findFreeID());
+	Diary newDiary(_wfilename, _mode, findFreeID(), autorename);
 	if (newDiary.getID() != -1)
 	{
 		LSTDIARY.push_back(newDiary);
