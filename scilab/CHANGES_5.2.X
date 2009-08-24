@@ -324,3 +324,4 @@ Bug fixes:
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
 
+* bug 4732 fixed - the help page of function ss2ss has some missing part
