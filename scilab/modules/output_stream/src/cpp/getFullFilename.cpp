@@ -185,9 +185,9 @@ static bool fileExists(std::wstring _wfilename)
 #if _MSC_VER
 	std::wifstream f(_wfilename.c_str());
 #else
-	char *_filename = wide_string_to_UTF8(_wfilename.c_str());
+	char *_filename = wide_string_to_UTF8((wchar_t*)_wfilename.c_str());
 	if (_filename == NULL) return false;
-	ifstream f(_filename);
+        std::ifstream f(_filename);
 	FREE(_filename); _filename = NULL;
 #endif
 	if (f.is_open())
@@ -207,9 +207,9 @@ static int GetFileSize(std::wstring _wfilename)
 #ifdef _MSC_VER
 	std::wifstream file(_wfilename.c_str());
 #else
-	char *_filename = wide_string_to_UTF8(_wfilename.c_str());
+	char *_filename = wide_string_to_UTF8((wchar_t*)_wfilename.c_str());
 	if (_filename == NULL) return false;
-	ifstream file(_filename);
+	std::ifstream file(_filename);
 #endif
 	file.seekg(std::ios::end); 
 	return (int)file.tellg();
