@@ -10,17 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="add_help_chapter">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="del_help_chapter">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>add_help_chapter</refname>
-    <refpurpose> Add an entry in the helps list</refpurpose>
+    <refname>del_help_chapter</refname>
+    <refpurpose> Delete an entry in the helps list</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>add_help_chapter(title,path[,mode])</synopsis>
+    <synopsis>del_help_chapter(title[,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -29,12 +29,6 @@
         <term>title</term>
         <listitem>
           <para>String array, Help chapters title</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>path</term>
-        <listitem>
-          <para>String array, Help chapters path</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -50,9 +44,7 @@
   <refsection>
     <title>Description</title>
     <para>
-  This function adds a new entry in the helps list. If the path is already present
-  in the help list, <literal>add_help_chapter</literal> skips the add. The function
-  checks if the directory exist.</para>
+  This function deletes an entry in the helps list.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -61,14 +53,8 @@
         <link linkend="help">help</link>
       </member>
       <member>
-        <link linkend="del_help_chapter">del_help_chapter</link>
+        <link linkend="add_help_chapter">add_help_chapter</link>
       </member>
     </simplelist>
-  </refsection>
-  <refsection>
-    <title>Authors</title>
-    <para>
-    Serge Steer , INRIA
-  </para>
   </refsection>
 </refentry>

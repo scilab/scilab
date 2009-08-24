@@ -10,100 +10,155 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ss2ss">
+<refentry version="5.0-subset Scilab" xml:id="ss2ss" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>ss2ss</refname>
-    <refpurpose> state-space to state-space conversion, feedback, injection</refpurpose>
+
+    <refpurpose>state-space to state-space conversion, feedback,
+    injection</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[Sl1,right,left]=ss2ss(Sl,T, [F, [G , [flag]]])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>Sl</term>
+
         <listitem>
-          <para>linear system (<literal>syslin</literal> list) in state-space form</para>
+          <para>linear system (<literal>syslin</literal> list) in state-space
+          form</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>T</term>
+
         <listitem>
           <para>square (non-singular) matrix</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>Sl1, right, left</term>
+
         <listitem>
           <para>linear systems (syslin lists) in state-space form</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>F</term>
+
         <listitem>
           <para>real matrix (state feedback gain)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>G</term>
+
         <listitem>
           <para>real matrix (output injection gain)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Returns the linear system <literal>Sl1=[A1,B1,C1,D1]</literal>
-    where <literal>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</literal>.
-  </para>
-    <para>
-    Optional parameters <literal>F</literal> and <literal>G</literal> are state feedback
-    and output injection respectively. 
-  </para>
-    <para>
-    For example,
-    <literal>Sl1=ss2ss(Sl,T,F)</literal> returns <literal>Sl1</literal> with:
-  </para>
-    <para>
-    and <literal>right</literal> is a non singular linear system such that <literal>Sl1=Sl*right</literal>.
-  </para>
-    <para><literal>Sl1*inv(right)</literal> is a factorization of <literal>Sl</literal>.
-  </para>
-    <para><literal>Sl1=ss2ss(Sl,T,0*F,G)</literal> returns <literal>Sl1</literal> with:
-  </para>
-    <para>
-    and <literal>left</literal> is a non singular linear system such that <literal>Sl1=left*Sl</literal> (<literal>right=Id</literal> if <literal>F=0</literal>).
-  </para>
-    <para>
-    When both <literal>F</literal> and <literal>G</literal> are given, <literal>Sl1=left*Sl*right</literal>.
-  </para>
+
+    <para>Returns the linear system <literal>Sl1=[A1,B1,C1,D1]</literal> where
+    <literal>A1=inv(T)*A*T, B1=inv(T)*B, C1=C*T, D1=D</literal>.</para>
+
+    <para>Optional parameters <literal>F</literal> and <literal>G</literal>
+    are state feedback and output injection respectively.</para>
+
+    <para>For example, <literal>Sl1=ss2ss(Sl,T,F)</literal> returns
+    <literal>Sl1</literal> with:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../mml/ss2ss_equation1.mml" />
+      </imageobject>
+    </mediaobject>
+
+    <para>and <literal>right</literal> is a non singular linear system such
+    that <literal>Sl1=Sl*right</literal>.</para>
+
+    <para><literal>Sl1*inv(right)</literal> is a factorization of
+    <literal>Sl</literal>.</para>
+
+    <para><literal>Sl1=ss2ss(Sl,T,0*F,G)</literal> returns
+    <literal>Sl1</literal> with:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../mml/ss2ss_equation2.mml" />
+      </imageobject>
+    </mediaobject>
+
+    <para>and <literal>left</literal> is a non singular linear system such
+    that <literal>Sl1=left*Sl</literal> (<literal>right=Id</literal> if
+    <literal>F=0</literal>).</para>
+
+    <para>When both <literal>F</literal> and <literal>G</literal> are given,
+    <literal>Sl1=left*Sl*right</literal>.</para>
+
     <itemizedlist>
       <listitem>
-        <para>When <literal>flag</literal> is used and <literal>flag=1</literal> an output injection  as follows is used 
-    and then a feedback is performed, <literal>F</literal> must be of size <literal>(m+p,n)</literal></para>
-        <para>
-    ( x is in <literal>R^n</literal> , y in <literal>R^p</literal>, u in <literal>R^m</literal> ). 
-  </para>
-        <para><literal>right</literal> and <literal>left</literal> have the following property:
-  </para>
+        <para>When <literal>flag</literal> is used and
+        <literal>flag=1</literal> an output injection as follows is used
+        </para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="../mml/ss2ss_equation3.mml" />
+          </imageobject>
+        </mediaobject>
+
+        <para>and then a feedback is performed, <literal>F</literal> must be
+        of size <literal>(m+p,n)</literal></para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="left" fileref="../mml/ss2ss_equation4.mml" />
+          </imageobject>
+        </mediaobject>
+
+        <para><literal>right</literal> and <literal>left</literal> have the
+        following property:</para>
+
         <programlisting><![CDATA[
 
   Sl1 =  left*sysdiag(sys,eye(p,p))*right 
    
         ]]></programlisting>
       </listitem>
+
       <listitem>
-        <para>When <literal>flag</literal> is used and <literal>flag=2</literal> a feedback
-  (<literal>F</literal> must be of  size <literal>(m,n)</literal>) is performed
-  and then the above output injection is applied. <literal>right</literal>
-  and <literal>left</literal> have  the following property:</para>
+        <para>When <literal>flag</literal> is used and
+        <literal>flag=2</literal> a feedback (<literal>F</literal> must be of
+        size <literal>(m,n)</literal>) is performed and then the above output
+        injection is applied. <literal>right</literal> and
+        <literal>left</literal> have the following property:</para>
+
         <programlisting><![CDATA[
 
   Sl1 = left*sysdiag(sys*right,eye(p,p)))
@@ -112,8 +167,10 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection>
     <title>Examples</title>
+
     <programlisting role="example"><![CDATA[
 
 Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
@@ -149,15 +206,14 @@ res=clean(ss2tf(sys2)-ss2tf(sys1))
  
   ]]></programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="projsl">projsl</link>
-      </member>
-      <member>
-        <link linkend="feedback">feedback</link>
-      </member>
+      <member><link linkend="projsl">projsl</link></member>
+
+      <member><link linkend="feedback">feedback</link></member>
     </simplelist>
   </refsection>
 </refentry>
