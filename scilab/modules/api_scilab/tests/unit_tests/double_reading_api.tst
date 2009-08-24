@@ -1,0 +1,30 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+ilib_verbose(0);
+mkdir(pathconvert(TMPDIR+"/double_reading_api"));
+cd(pathconvert(TMPDIR+"/double_reading_api"));
+cflags = "-I"+SCI+"/modules/localization/includes";
+ilib_build("double_reading",["read_double","read_double"],SCI+"/modules/api_scilab/tests/unit_tests/double_reading_api.c",[],[],"",cflags);
+exec("loader.sce");
+
+            
+a = [   0 1 2 3; ..
+        4 5 6 7; ..
+        8 9 10 11];
+b = [   23*%i,      1+22*%i,    2+21*%i,    3+20*%i,    4+19*%i,    5+18*%i; ..
+        6+17*%i,    7+16*%i,    8+15*%i,    9+14*%i,     10+13*%i,  11+12*%i; ..
+        12+11*%i,   13+10*%i,   14+9*%i,    15+8*%i,    16+7*%i,    17+6*%i; ..
+        18+5*%i,    19+4*%i,    20+3*%i,    21+2*%i,    22+1*%i,    23];
+
+a2 = read_double(a);
+b2 = read_double(b);
+
+if or(a2 <> a * -1) then pause;end
+if or(b2 <> (imag(b) + real(b) * %i)) then pause;end
+            
+        

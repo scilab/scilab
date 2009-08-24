@@ -161,6 +161,9 @@ Bug fixes:
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
+* bug 1628 fixed - with long programs (several hours) I get a negative value for
+                   timer()
+
 * bug 1776 fixed - funcprot accepts non-integer arguments
 
 * bug 2275 fixed - add the isvector help page
@@ -170,8 +173,7 @@ Bug fixes:
 
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
-* bug 1628 fixed - with long programs (several hours) I get a negative value for
-                   timer()
+* bug 3201 fixed - add the help page for the function del_help_chapter
 
 * bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
 
@@ -314,6 +316,8 @@ Bug fixes:
 
 * bug 4638 fixed - this example with optim freezes scilab
 
+* bug 4641 fixed - the parameter Q of the function derivative was not clear.
+
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
@@ -324,3 +328,4 @@ Bug fixes:
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
 
+* bug 4732 fixed - the help page of function ss2ss has some missing part

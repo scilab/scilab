@@ -222,13 +222,13 @@ int diaryExists(wchar_t *filename)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryNew(wchar_t *filename)
+int diaryNew(wchar_t *filename, bool autorename)
 {
 	createDiaryManager();
 
 	if (SCIDIARY)
 	{
-		return SCIDIARY->openDiary(std::wstring(filename));
+		return SCIDIARY->openDiary(std::wstring(filename),autorename);
 	}
 
 	return -1;
@@ -239,7 +239,7 @@ int diaryAppend(wchar_t *filename)
 	createDiaryManager();
 	if (SCIDIARY)
 	{
-		return SCIDIARY->openDiary(std::wstring(filename),1);
+		return SCIDIARY->openDiary(std::wstring(filename),1,false);
 	}
 	return -1;
 }
@@ -266,7 +266,7 @@ int diaryWriteln(wchar_t *wstr, BOOL bInput)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diarySetFilterMode(int _iId, int mode)
+int diarySetFilterMode(int _iId, diary_filter mode)
 {
 	if (SCIDIARY)
 	{
@@ -276,7 +276,7 @@ int diarySetFilterMode(int _iId, int mode)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diarySetPrefixMode(int ID_diary,int iPrefixMode)
+int diarySetPrefixMode(int ID_diary,diary_prefix_time_format iPrefixMode)
 {
 	if (SCIDIARY)
 	{
@@ -295,7 +295,7 @@ int diaryGetPrefixMode(int ID_diary)
 	return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diarySetPrefixIoModeFilter(int ID_diary,int mode)
+int diarySetPrefixIoModeFilter(int ID_diary,diary_prefix_time_filter mode)
 {
 	if (SCIDIARY)
 	{
@@ -305,12 +305,12 @@ int diarySetPrefixIoModeFilter(int ID_diary,int mode)
 	return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryGetPrefixIoModeFilter(int ID_diary)
+diary_prefix_time_filter diaryGetPrefixIoModeFilter(int ID_diary)
 {
 	if (SCIDIARY)
 	{
 		return SCIDIARY->getPrefixIoModeFilter(ID_diary);
 	}
-	return -1;
+	return PREFIX_FILTER_ERROR;
 }
 /*--------------------------------------------------------------------------*/

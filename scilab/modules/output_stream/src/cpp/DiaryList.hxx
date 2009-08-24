@@ -17,6 +17,7 @@
 #include <string>
 #include <list>
 #include "Diary.hxx"
+#include "DiaryModesEnum.hxx"
 /*--------------------------------------------------------------------------*/ 
 class DiaryList
 {
@@ -28,8 +29,8 @@ public:
 	~DiaryList();
 
 	/* open a diary */
-	int openDiary(std::wstring _wfilename,int _mode);
-	int openDiary(std::wstring _wfilename);
+	int openDiary(std::wstring _wfilename,int _mode, bool autorename);
+	int openDiary(std::wstring _wfilename, bool autorename);
 
 	/* close a diary by ID */
 	bool closeDiary(int ID_diary);
@@ -67,13 +68,13 @@ public:
 	int getID(std::wstring _wfilename);
 
 	/* set & get mode */
-	void setFilterMode(int ID_diary, int mode);
+	void setFilterMode(int ID_diary, diary_filter mode);
 
-	void setPrefixMode(int ID_diary,int iPrefixMode);
-	int getPrefixMode(int ID_diary);
+	void setPrefixMode(int ID_diary,diary_prefix_time_format iPrefixMode);
+	diary_prefix_time_format getPrefixMode(int ID_diary);
 
-	void setPrefixIoModeFilter(int ID_diary,int mode);
-	int getPrefixIoModeFilter(int ID_diary);
+	void setPrefixIoModeFilter(int ID_diary, diary_prefix_time_filter mode);
+	diary_prefix_time_filter getPrefixIoModeFilter(int ID_diary);
 
 private:
 	/* list of diary */

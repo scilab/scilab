@@ -22,15 +22,26 @@ extern "C"
 #include "MALLOC.h"
 }
 /*--------------------------------------------------------------------------*/ 
-Diary::Diary(std::wstring _wfilename,int _mode,int ID)
+Diary::Diary(std::wstring _wfilename,int _mode,int ID, bool autorename)
 {
 	std::ios::openmode wofstream_mode = std::ios::trunc | std::ios::binary;
 
+	std::wstring fullfilename = getUniqueFilename(_wfilename);
+	if (autorename)
+	{
+		fullfilename = getUniqueFilename(_wfilename);
+	}
+	else
+	{
+		fullfilename = getFullFilename(_wfilename);
+	}
+
+
 	suspendwrite = false;
 
-	Prefixmode = 0;
-	IoModeFilter = 0; // default command & input
-	PrefixIoModeFilter = 3; // no prefix
+	PrefixTimeFormat = PREFIX_TIME_FORMAT_UNIX_EPOCH;
+	IoModeFilter = DIARY_FILTER_INPUT_AND_OUTPUT; // default command & input
+	PrefixIoModeFilter = PREFIX_FILTER_NONE; // no prefix
 
 	if (_mode == 0)
 	{
@@ -42,10 +53,9 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 
 #ifdef _MSC_VER
-	std::wofstream fileDiary(getFullFilename(_wfilename).c_str(),wofstream_mode);
+	std::wofstream fileDiary(fullfilename.c_str(),wofstream_mode);
 #else
-	std::wstring wstrfile = getFullFilename(_wfilename);
-	wchar_t *wcfile = (wchar_t*)wstrfile.c_str();
+	wchar_t *wcfile = (wchar_t*)fullfilename.c_str();
 	char *filename = wide_string_to_UTF8(wcfile);
 
 	std::ofstream fileDiary(filename, wofstream_mode);
@@ -61,7 +71,7 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 	else
 	{
-		wfilename = getFullFilename(_wfilename);
+		wfilename = fullfilename;
 		fileAttribMode = wofstream_mode;
 		setID(ID);
 	}
@@ -85,6 +95,7 @@ void Diary::write(std::wstring _wstr, bool bInput)
 	if (!suspendwrite)
 	{
 		std::ios::openmode wofstream_mode = std::ios::app | std::ios::binary;
+
 #ifdef _MSC_VER
 		std::wofstream fileDiary(wfilename.c_str(), wofstream_mode );
 #else
@@ -107,11 +118,11 @@ void Diary::write(std::wstring _wstr, bool bInput)
 
 			if (bInput) // input
 			{
-				if ( (IoModeFilter == 0) || (IoModeFilter == 1) )
+				if ( (IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_INPUT) )
 				{
-					if ( (PrefixIoModeFilter == 0) || (PrefixIoModeFilter == 1) )
+					if ( (PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_INPUT) )
 					{
-						char *timeInfo = wide_string_to_UTF8((wchar_t*)getDiaryDate(Prefixmode).c_str());
+						char *timeInfo = wide_string_to_UTF8((wchar_t*)getDiaryDate(PrefixTimeFormat).c_str());
 						if (timeInfo) 
 						{
 							fileDiary << timeInfo << " ";
@@ -123,11 +134,11 @@ void Diary::write(std::wstring _wstr, bool bInput)
 			}
 			else // output
 			{
-				if ( (IoModeFilter == 0) || (IoModeFilter == 2) )
+				if ( (IoModeFilter == DIARY_FILTER_INPUT_AND_OUTPUT) || (IoModeFilter == DIARY_FILTER_ONLY_OUTPUT) )
 				{
-					if ( (PrefixIoModeFilter == 0) || (PrefixIoModeFilter == 2) )
+					if ( (PrefixIoModeFilter == PREFIX_FILTER_INPUT_AND_OUTPUT) || (PrefixIoModeFilter == PREFIX_FILTER_ONLY_OUTPUT) )
 					{
-						char *timeInfo = wide_string_to_UTF8((wchar_t*)getDiaryDate(Prefixmode).c_str());
+						char *timeInfo = wide_string_to_UTF8((wchar_t*)getDiaryDate(PrefixTimeFormat).c_str());
 						if (timeInfo) 
 						{
 							fileDiary << timeInfo << " ";
@@ -189,32 +200,32 @@ std::wstring Diary::replace(std::wstring text, std::wstring s, std::wstring repl
 	return text;
 }
 /*--------------------------------------------------------------------------*/ 
-int Diary::getIOMode(void)
+diary_filter Diary::getIOMode(void)
 {
 	return IoModeFilter;
 }
 /*--------------------------------------------------------------------------*/ 
-void Diary::setIOMode(int _mode)
+void Diary::setIOMode(diary_filter _mode)
 {
 	IoModeFilter = _mode;
 }
 /*--------------------------------------------------------------------------*/ 
-void Diary::setPrefixMode(int iPrefixMode)
+void Diary::setPrefixMode(diary_prefix_time_format iPrefixTimeFormat)
 {
-	Prefixmode = iPrefixMode;
+	PrefixTimeFormat = iPrefixTimeFormat;
 }
 /*--------------------------------------------------------------------------*/ 
-void Diary::setPrefixIoModeFilter(int mode)
+void Diary::setPrefixIoModeFilter(diary_prefix_time_filter mode)
 {
 	PrefixIoModeFilter = mode;
 }
 /*--------------------------------------------------------------------------*/ 
-int Diary::getPrefixMode(void)
+diary_prefix_time_format Diary::getPrefixMode(void)
 {
-	return Prefixmode;
+	return PrefixTimeFormat;
 }
 /*--------------------------------------------------------------------------*/ 
-int Diary::getPrefixIoModeFilter(void)
+diary_prefix_time_filter Diary::getPrefixIoModeFilter(void)
 {
 	return PrefixIoModeFilter;
 }

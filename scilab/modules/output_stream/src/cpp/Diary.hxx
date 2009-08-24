@@ -15,6 +15,7 @@
 #define __DIARY_HXX__
 /*--------------------------------------------------------------------------*/ 
 #include <string>
+#include "DiaryModesEnum.hxx"
 /*--------------------------------------------------------------------------*/ 
 class Diary
 {
@@ -29,20 +30,14 @@ private:
 	/* resume mode */
 	bool suspendwrite;
 
-	// 0 UNIX epoch
-	// 1 ISO_8601
-	int Prefixmode;
+	/* see DiaryModesEnum.hxx */
+	diary_prefix_time_format PrefixTimeFormat;
 
-	// 0 prefix @ beginning of Input and Output
-	// 1 prefix only @ beginning of Input
-	// 2 prefix only @ beginning of Output
-	// 3 no prefix
-	int PrefixIoModeFilter;
+	/* see DiaryModesEnum.hxx */
+	diary_prefix_time_filter PrefixIoModeFilter;
 
-	// 0 all (output and input)
-	// 1 input
-	// 2 output
-	int IoModeFilter;
+	/* see DiaryModesEnum.hxx */
+	diary_filter IoModeFilter;
 
 	/*
 	* used on Windows to replace carriage return
@@ -53,7 +48,7 @@ public:
 	/*
 	* constructor
 	*/
-	Diary(std::wstring _wfilename,int _mode,int ID);
+	Diary(std::wstring _wfilename,int _mode,int ID, bool autorename);
 
 	/*
 	* destructor
@@ -61,15 +56,15 @@ public:
 	~Diary();
 
 	/*
-	* get filename of this diray
+	* get filename of this diary
 	*/
 	std::wstring getFilename(void);
 
 	/*
 	* get & set IO mode
 	*/
-	void setIOMode(int _mode);
-	int getIOMode(void);
+	void setIOMode(diary_filter _mode);
+	diary_filter getIOMode(void);
 
 	/*
 	* get ID of this diary
@@ -95,14 +90,14 @@ public:
 	/*
 	* get & set Prefix mode
 	*/
-	void setPrefixMode(int iPrefixMode);
-	int getPrefixMode(void);
+	void setPrefixMode(diary_prefix_time_format iPrefixTimeFormat);
+	diary_prefix_time_format getPrefixMode(void);
 
 	/*
 	* get & set IO mode filter
 	*/
-	void setPrefixIoModeFilter(int mode);
-	int getPrefixIoModeFilter(void);
+	void setPrefixIoModeFilter(diary_prefix_time_filter mode);
+	diary_prefix_time_filter getPrefixIoModeFilter(void);
 };
 
 #endif /* __DIARY_HXX__ */
