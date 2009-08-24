@@ -241,7 +241,7 @@ int DiaryList::getID(std::wstring _wfilename)
 	return -1;
 }
 /*--------------------------------------------------------------------------*/ 
-void DiaryList::setFilterMode(int ID_diary, int mode)
+void DiaryList::setFilterMode(int ID_diary, diary_filter mode)
 {
 	std::list<Diary>::iterator iter;
 
@@ -254,7 +254,7 @@ void DiaryList::setFilterMode(int ID_diary, int mode)
 	}
 }
 /*--------------------------------------------------------------------------*/ 
-void DiaryList::setPrefixMode(int ID_diary,int iPrefixMode)
+void DiaryList::setPrefixMode(int ID_diary,diary_prefix_time_format iPrefixMode)
 {
 	std::list<Diary>::iterator iter;
 
@@ -268,7 +268,7 @@ void DiaryList::setPrefixMode(int ID_diary,int iPrefixMode)
 	}
 }
 /*--------------------------------------------------------------------------*/ 
-int DiaryList::getPrefixMode(int ID_diary)
+diary_prefix_time_format DiaryList::getPrefixMode(int ID_diary)
 {
 	std::list<Diary>::iterator iter;
 
@@ -279,10 +279,10 @@ int DiaryList::getPrefixMode(int ID_diary)
 			return iter->getPrefixMode();
 		}
 	}
-	return -1;
+	return PREFIX_TIME_FORMAT_ERROR;
 }
 /*--------------------------------------------------------------------------*/ 
-void DiaryList::setPrefixIoModeFilter(int ID_diary,int mode)
+void DiaryList::setPrefixIoModeFilter(int ID_diary,diary_prefix_time_filter mode)
 {
 	std::list<Diary>::iterator iter;
 
@@ -296,7 +296,7 @@ void DiaryList::setPrefixIoModeFilter(int ID_diary,int mode)
 	}
 }
 /*--------------------------------------------------------------------------*/ 
-int DiaryList::getPrefixIoModeFilter(int ID_diary)
+diary_prefix_time_filter DiaryList::getPrefixIoModeFilter(int ID_diary)
 {
 	std::list<Diary>::iterator iter;
 
@@ -307,7 +307,7 @@ int DiaryList::getPrefixIoModeFilter(int ID_diary)
 			return iter->getPrefixIoModeFilter();
 		}
 	}
-	return -1;
+	return PREFIX_FILTER_ERROR;
 }
 /*--------------------------------------------------------------------------*/ 
 

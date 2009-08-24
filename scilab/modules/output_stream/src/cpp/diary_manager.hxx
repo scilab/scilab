@@ -14,6 +14,7 @@
 #define __DIARY_MANAGER_HXX__
 
 #include <wchar.h>
+#include "DiaryModesEnum.hxx"
 
 /**
 * get filename of a ID
@@ -135,24 +136,17 @@ int diaryAppend(wchar_t *filename);
 * Set filter mode (input, output)
 * @param[in] ID
 * @param[in] mode
-* 0 all (output and input)
-* 1 input
-* 2 output
 * @return 0 (OK) 1 (NOK)
 */
-int diarySetFilterMode(int _iId, int mode);
+int diarySetFilterMode(int _iId, diary_filter mode);
 
 /*
 * Set prefix time mode 
 * @param[in] ID
 * @param[in] mode
-* 0 prefix @ beginning of Input and Output
-* 1 prefix only @ beginning of Input
-* 2 prefix only @ beginning of Output
-* 3 no prefix
 * @return 0 (OK) 1 (NOK)
 */
-int diarySetPrefixMode(int ID_diary,int iPrefixMode);
+int diarySetPrefixMode(int ID_diary,diary_prefix_time_format iPrefixMode);
 
 /*
 * get prefix mode
@@ -167,14 +161,14 @@ int diaryGetPrefixMode(int ID_diary);
 * @param[in] mode
 * @return 0 (OK) 1 (NOK)
 */
-int diarySetPrefixIoModeFilter(int ID_diary,int mode);
+int diarySetPrefixIoModeFilter(int ID_diary,diary_prefix_time_filter mode);
 
 /*
 * get prefix IO mode filter
 * @param[in] ID
 * @return mode 
 */
-int diaryGetPrefixIoModeFilter(int ID_diary);
+diary_prefix_time_filter diaryGetPrefixIoModeFilter(int ID_diary);
 
 #endif /* __DIARY_MANAGER_HXX__ */
 /*--------------------------------------------------------------------------*/

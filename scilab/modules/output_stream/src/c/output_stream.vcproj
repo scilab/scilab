@@ -515,6 +515,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\DiaryModesEnum.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\errmds.h"
 				>
 			</File>
