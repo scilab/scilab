@@ -26,6 +26,8 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 {
 	std::ios::openmode wofstream_mode = std::ios::trunc | std::ios::binary;
 
+	std::wstring uniquefullfilename = getUniqueFilename(_wfilename);
+
 	suspendwrite = false;
 
 	PrefixTimeFormat = PREFIX_TIME_FORMAT_UNIX_EPOCH;
@@ -42,10 +44,9 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 
 #ifdef _MSC_VER
-	std::wofstream fileDiary(getFullFilename(_wfilename).c_str(),wofstream_mode);
+	std::wofstream fileDiary(uniquefullfilename.c_str(),wofstream_mode);
 #else
-	std::wstring wstrfile = getFullFilename(_wfilename);
-	wchar_t *wcfile = (wchar_t*)wstrfile.c_str();
+	wchar_t *wcfile = (wchar_t*)uniquefullfilename.c_str();
 	char *filename = wide_string_to_UTF8(wcfile);
 
 	std::ofstream fileDiary(filename, wofstream_mode);
@@ -61,7 +62,7 @@ Diary::Diary(std::wstring _wfilename,int _mode,int ID)
 	}
 	else
 	{
-		wfilename = getFullFilename(_wfilename);
+		wfilename = uniquefullfilename;
 		fileAttribMode = wofstream_mode;
 		setID(ID);
 	}
@@ -85,6 +86,7 @@ void Diary::write(std::wstring _wstr, bool bInput)
 	if (!suspendwrite)
 	{
 		std::ios::openmode wofstream_mode = std::ios::app | std::ios::binary;
+
 #ifdef _MSC_VER
 		std::wofstream fileDiary(wfilename.c_str(), wofstream_mode );
 #else

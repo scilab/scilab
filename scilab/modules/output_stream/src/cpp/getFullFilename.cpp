@@ -11,6 +11,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/ 
+#include <fstream> 
+#include <iostream>
+#include <sstream>  
 #include "getFullFilename.hxx"
 /*--------------------------------------------------------------------------*/ 
 #ifndef _MSC_VER
@@ -25,6 +28,8 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/ 
 static void wcsplitpath(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
+static bool fileExists(std::wstring _wfilename);
+static int GetFileSize(std::wstring _wfilename);
 /*--------------------------------------------------------------------------*/ 
 std::wstring getFullFilename(std::wstring _wfilename)
 {
@@ -70,6 +75,7 @@ std::wstring getFullFilename(std::wstring _wfilename)
 				found = wfullfilename.rfind(L"\\");
 			}
 			wfullfilename.append(L"/");
+
 		}
 		else
 		{
@@ -134,5 +140,85 @@ static void wcsplitpath(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t
 		for(s=path; s<p; ) *dir++ = *s++;
 		*dir = L'\0';
 	}
+}
+/*--------------------------------------------------------------------------*/ 
+std::wstring getUniqueFilename(std::wstring _wfilename)
+{
+	std::wstring wfullfilename = getFullFilename(_wfilename);
+	std::wstring newfilename;
+
+	if (fileExists(wfullfilename) == true)
+	{
+		wchar_t wcdrive[PATH_MAX];
+		wchar_t wcdirectory[PATH_MAX];
+		wchar_t wcname[PATH_MAX];
+		wchar_t wcext [PATH_MAX];
+		unsigned int id = -1;
+
+		std::wstring prefixFilename;
+
+		wcsplitpath(_wfilename.c_str(), wcdrive, wcdirectory, wcname, wcext);
+		prefixFilename.assign(L"");
+		prefixFilename.append(wcdrive);
+		prefixFilename.append(wcdirectory);
+		prefixFilename.append(wcname);
+
+		do
+		{
+			std::wstringstream StrStream;
+			id++;
+			StrStream << (unsigned int)id;
+			newfilename = prefixFilename + L"_" + StrStream.str() + wcext;
+		}
+		while( (fileExists(newfilename) == true) && (GetFileSize(newfilename) != 0) );
+	}
+	else
+	{
+		newfilename = wfullfilename;
+	}
+	return newfilename;
+}
+/*--------------------------------------------------------------------------*/ 
+static bool fileExists(std::wstring _wfilename)
+{
+	bool returnVal = false;
+#if _MSC_VER
+	std::wifstream f(_wfilename.c_str());
+#else
+	char *_filename = wide_string_to_UTF8(_wfilename.c_str());
+	if (_filename == NULL) return false;
+	ifstream f(_filename);
+	FREE(_filename); _filename = NULL;
+#endif
+	if (f.is_open())
+	{
+		f.close();
+		returnVal = true;
+	}
+	else
+	{
+		returnVal = false;
+	}
+	return returnVal;
+}
+/*--------------------------------------------------------------------------*/ 
+static int GetFileSize(std::wstring _wfilename) 
+{
+#ifdef _MSC_VER
+	std::wifstream file(_wfilename.c_str());
+#else
+	char *_filename = wide_string_to_UTF8(_wfilename.c_str());
+	if (_filename == NULL) return false;
+	ifstream file(_filename);
+#endif
+	int size = 0;
+	while (!file.eof()) 
+	{
+		file.get();
+		size++;
+	}
+	file.close();
+	delete file;
+	return size;
 }
 /*--------------------------------------------------------------------------*/ 

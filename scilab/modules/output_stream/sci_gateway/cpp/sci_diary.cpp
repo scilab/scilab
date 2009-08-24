@@ -247,18 +247,15 @@ static int sci_diary_one_rhs(char *fname)
 						return 0;
 					}
 				}
+				LhsVar(1) = 0; 
 			}
 
-			if (wcFilenames)
-			{
-				if (wcFilenames[0]) {FREE(wcFilenames[0]); wcFilenames[0] = NULL;}
-				FREE(wcFilenames); wcFilenames = NULL;
-			}
-
+			freeInput(wcFilenames,sizewcFilenames);
 			C2F(putlhsvar)();
 		}
 		else
 		{
+			freeInput(wcFilenames,sizewcFilenames);
 			Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 1);
 		}
 	}

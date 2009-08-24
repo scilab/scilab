@@ -23,5 +23,8 @@
 */
 std::wstring getFullFilename(std::wstring _wfilename);
 
+
+std::wstring getUniqueFilename(std::wstring _wfilename);
+
 #endif /* __GETFULLFILENAME_HXX__ */
 /*--------------------------------------------------------------------------*/ 

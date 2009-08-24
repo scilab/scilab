@@ -13,12 +13,12 @@
 // <-- Short Description -->
 // mprintf does not display accent correctly
 
-if 'àéùç' <> sprintf('àéùç') then pause,end
-if 'àéùç' <> sprintf('%s','àéùç') then pause,end
-disp('àéùç')
-mprintf('àéùç');
-mprintf('\n%s\n','àéùç');
-printf('àéùç');
-printf('\n%s\n','àéùç');
+if 'Ã Ã©Ã¹Ã§' <> sprintf('Ã Ã©Ã¹Ã§') then pause,end
+if 'Ã Ã©Ã¹Ã§' <> sprintf('%s','Ã Ã©Ã¹Ã§') then pause,end
+disp('Ã Ã©Ã¹Ã§')
+mprintf('Ã Ã©Ã¹Ã§');
+mprintf('\n%s\n','Ã Ã©Ã¹Ã§');
+printf('Ã Ã©Ã¹Ã§');
+printf('\n%s\n','Ã Ã©Ã¹Ã§');
 
-printf("-- Création de [%s] (Macros) --\n",'test')
+printf("-- CrÃ©ation de [%s] (Macros) --\n",'test')
