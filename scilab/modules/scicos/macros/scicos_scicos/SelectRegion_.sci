@@ -53,7 +53,7 @@ function SelectRegion_()
   kc = find(%win==windows(:,2))
 
   if kc==[] then
-    message("This window is not an active palette");
+    messagebox("This window is not an active palette",'modal');
     return ; //** Exit point
 
   elseif windows(kc,1)<0 then //click inside a palette window

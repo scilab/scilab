@@ -37,7 +37,7 @@ function OrtLink_()
     tt = "No"
   end
 
-  rep1 = message(["Use orthogonal links?" ; "current choice is " + tt], ["Yes" ; "No"])
+  rep1 = messagebox(["Use orthogonal links?" ; "current choice is " + tt], 'modal', ["Yes" ; "No"])
 
   if rep1==1 then
      SL_mode = 1;

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="strcmpi" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>strcmpi</refname>
+
+    <refpurpose>compara strings (caso independente)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>res = strcmpi(string_one,string_two)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>string_one</term>
+
+        <listitem>
+          <para>string ou matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string_two</term>
+
+        <listitem>
+          <para>string ou matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>matriz</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>res = strcmpi(string_one,string_two)</literal> retorna um
+    valor inteiro indicando a relação entre os strings.</para>
+
+    <para>Um valor inteiro maior que zero indica que o primeiro caractere que
+    não corresponde possui valor maior em <literal>string_one</literal> que em
+    <literal>string_two</literal></para>
+
+    <para>Um valor negativo indica o contrário.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
+TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
+strcmpi(TXT1,TXT2)
+strcmpi(TXT1,'scilab')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strcat">strcat</link></member>
+
+      <member><link linkend="strcmp">strcmp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

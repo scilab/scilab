@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[X,dim]=range(A,k)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,19 +66,19 @@
         <term>dim</term>
 
         <listitem>
-          <para>inteiro (dimensÃ£o de subespaÃ§o)</para>
+          <para>inteiro (dimensão de subespaço)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>ComputaÃ§Ã£o da imagem de <literal>A^k</literal> ; as primeiras dim
+    <para>Computação da imagem de <literal>A^k</literal> ; as primeiras dim
     colunas de <literal>X</literal> geram a imagem de <literal>A^k</literal>.
-    As Ãºltimas linhas de <literal>X</literal> geram o complemento ortogonal da
-    imagem. <literal>X*X'</literal> Ã© a matriz identidade.</para>
+    As últimas linhas de <literal>X</literal> geram o complemento ortogonal da
+    imagem. <literal>X*X'</literal> é a matriz identidade.</para>
   </refsection>
 
   <refsection>
@@ -89,13 +89,13 @@
     A=rand(4,2)*rand(2,4);   // 4 vetores colunas, 2 independentes.
     [X,dim]=range(A,1);dim   // computando a imagem
 
-    y1=A*rand(4,1);          //um vetor que estÃ¡ na imagem de A
-    y2=rand(4,1);            //um vetor que nÃ£o estÃ¡ na imagem de A
-    norm(X(dim+1:$,:)*y1)    //as Ãºltimas entradas sÃ£o zeros, y1 estÃ¡ na imagem de A
-    norm(X(dim+1:$,:)*y2)    //as Ãºltimas entradas nÃ£o sÃ£o zeros
+    y1=A*rand(4,1);          //um vetor que está na imagem de A
+    y2=rand(4,1);            //um vetor que não está na imagem de A
+    norm(X(dim+1:$,:)*y1)    //as últimas entradas são zeros, y1 está na imagem de A
+    norm(X(dim+1:$,:)*y2)    //as últimas entradas não são zeros
 
-    I=X(1:dim,:)'            //I Ã© uma base para a imagem
-    coeffs=X(1:dim,:)*y1     //componentes de y1 relativos Ã  base I
+    I=X(1:dim,:)'            //I é uma base para a imagem
+    coeffs=X(1:dim,:)*y1     //componentes de y1 relativos à base I
 
     norm(I*coeffs-y1)        //verificando
 
@@ -104,7 +104,7 @@
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="fullrfk">fullrfk</link></member>
@@ -120,10 +120,10 @@
   </refsection>
 
   <refsection>
-    <title> FunÃ§Ã£o Usada</title>
+    <title> Função Usada</title>
 
-    <para>A funÃ§Ã£o <literal>range</literal> Ã© baseada na funÃ§Ã£o <link
-    linkend="rowcomp">rowcomp</link> que usa decomposiÃ§Ã£o <link
-    linkend="svd">svd</link> (decomposiÃ§Ã£o em valores singulares).</para>
+    <para>A função <literal>range</literal> é baseada na função <link
+    linkend="rowcomp">rowcomp</link> que usa decomposição <link
+    linkend="svd">svd</link> (decomposição em valores singulares).</para>
   </refsection>
 </refentry>

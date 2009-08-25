@@ -36,7 +36,7 @@ function [x,y,typ]=PENDULUM_ANIM(job,arg1,arg2)
         ok=%f
       end
       if ~ok then
-        message(mess)
+        messagebox(mess,'modal')
       else
         rpar=[plen;csiz;phi;xmin;xmax;ymin;ymax]
         model.rpar=rpar;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,22 +24,22 @@
   <refnamediv>
     <refname>gspec</refname>
 
-    <refpurpose>autovalores de feixe de matrizes (funÃ§Ã£o
+    <refpurpose>autovalores de feixe de matrizes (função
     obsoleta)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[al,be]=gspec(A,E)
 [al,be,Z]=gspec(A,E)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o estÃ¡ agora inclusa na funÃ§Ã£o <literal>spec</literal> . A
-    seqÃ¼Ãªncia de chamamento deve ser substituida por</para>
+    <para>Esta função está agora inclusa na função <literal>spec</literal> . A
+    seqüência de chamamento deve ser substituida por</para>
 
     <programlisting>
 
@@ -50,7 +50,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="spec">spec</link></member>

@@ -25,8 +25,8 @@ function New_()
     
     %r = 2     ; //** preload the default answer
     if edited then
-      %r = message(["Diagram has not been saved";
-	            "Are you sure you want to proceed ?"],['No';'Yes'])
+      %r = messagebox(["Diagram has not been saved";
+	            "Are you sure you want to proceed ?"],'modal',['No';'Yes'])
     else 
       %r = 2 ;
     end             //** No -> %r = 1 ; Yes -> %r = 2  

@@ -4,6 +4,8 @@
 /* Template toolbox_skeleton */
 /* This file is released into the public domain */
 /* ==================================================================== */
+#include "csum.h"
+/* ==================================================================== */
 int csum(double *a, double *b, double *c)
 {
 	*c = *a + *b;

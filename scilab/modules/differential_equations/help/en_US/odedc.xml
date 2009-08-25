@@ -11,116 +11,156 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="odedc">
+<refentry version="5.0-subset Scilab" xml:id="odedc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>odedc</refname>
-    <refpurpose> discrete/continuous ode solver</refpurpose>
+
+    <refpurpose>discrete/continuous ode solver</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>y0</term>
+
         <listitem>
-          <para>real column vector (initial conditions), <literal>y0=[y0c;y0d]</literal> where <literal>y0d</literal> has <literal>nd</literal> components.</para>
+          <para>real column vector (initial conditions),
+          <literal>y0=[y0c;y0d]</literal> where <literal>y0d</literal> has
+          <literal>nd</literal> components.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>nd</term>
+
         <listitem>
           <para>integer, dimension of <literal>y0d</literal></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>stdel</term>
+
         <listitem>
-          <para>real vector with one or two entries, <literal>stdel=[h, delta]</literal> (with <literal>delta=0</literal> as default value).</para>
+          <para>real vector with one or two entries, <literal>stdel=[h,
+          delta]</literal> (with <literal>delta=0</literal> as default
+          value).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t0</term>
+
         <listitem>
           <para>real scalar (initial time).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
-          <para>real (row) vector, instants where <literal>yt</literal> is calculated .</para>
+          <para>real (row) vector, instants where <literal>yt</literal> is
+          calculated .</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
-          <para>external i.e. function or character string or list with calling sequence: <literal>yp=f(t,yc,yd,flag)</literal>.</para>
+          <para>external i.e. function or character string or list with
+          calling sequence: <literal>yp=f(t,yc,yd,flag)</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal>
-    computes the solution of a mixed discrete/continuous system. 
-    The discrete system state <literal>yd_k</literal> is embedded into a  piecewise constant <literal>yd(t)</literal> time function as follows:</para>
-    <programlisting><![CDATA[
 
-yd(t)=yd_k for t in 
+    <para><literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> computes
+    the solution of a mixed discrete/continuous system. The discrete system
+    state <literal>yd_k</literal> is embedded into a piecewise constant
+    <literal>yd(t)</literal> time function as follows:</para>
+
+    <programlisting> 
+yd(t) = yd_k for t in 
 [t_k=delay+k*h,t_(k+1)=delay+(k+1)*h[ (with delay=h*delta).
-   
-    ]]></programlisting>
-    <para>
-    The simulated equations are now:</para>
-    <programlisting><![CDATA[
+       </programlisting>
 
-dyc/dt=f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
-yc(t0)=y0c
-   
-    ]]></programlisting>
-    <para>
-    and at instants <literal>t_k</literal> the discrete variable <literal>yd</literal> is updated by:</para>
-    <programlisting><![CDATA[
+    <para>The simulated equations are now:</para>
 
-yd(t_k+)=f(yc(t_k-),yd(t_k-),1)
-   
-    ]]></programlisting>
-    <para>
-    Note that, using the definition of <literal>yd(t)</literal> the last equation gives</para>
-    <programlisting><![CDATA[
+    <programlisting> 
+dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
+yc(t0) = y0c
+     </programlisting>
 
+    <para>and at instants <literal>t_k</literal> the discrete variable
+    <literal>yd</literal> is updated by:</para>
+
+    <programlisting> 
+yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
+      </programlisting>
+
+    <para>Note that, using the definition of <literal>yd(t)</literal> the last
+    equation gives</para>
+
+    <programlisting> 
 yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc is time-continuous: yc(t_k-)=yc(tk))
-   
-    ]]></programlisting>
-    <para>
-    The calling parameters of <literal>f</literal> are fixed: <literal>ycd=f(t,yc,yd,flag)</literal>;
-    this function must return either the derivative of the vector <literal>yc</literal> if
-    <literal>flag=0</literal> or the update of <literal>yd</literal> if <literal>flag=1</literal>.</para>
-    <para><literal>ycd=dot(yc)</literal> must be a vector with same dimension as <literal>yc</literal> 
-    if <literal>flag=0</literal> and <literal>ycd=update(yd)</literal> must be a vector with same 
-    dimension as <literal>yd</literal> if <literal>flag=1</literal>.</para>
-    <para><literal>t</literal> is a vector of instants where the solution <literal>y</literal> is computed.</para>
-    <para><literal>y</literal> is the vector <literal>y=[y(t(1)),y(t(2)),...]</literal>.
-    This function can be called with the same optional parameters as the
-    <literal>ode</literal> function (provided <literal>nd</literal> and <literal>stdel</literal> are given
-    in the calling sequence as second and third parameters).
-    In particular integration flags, tolerances can be set. Optional
-    parameters can be set by the <literal>odeoptions</literal> function.</para>
-    <para>
-    An example for calling an external routine is given in directory 
+     </programlisting>
+
+    <para>The calling parameters of <literal>f</literal> are fixed:
+    <literal>ycd=f(t,yc,yd,flag)</literal>; this function must return either
+    the derivative of the vector <literal>yc</literal> if
+    <literal>flag=0</literal> or the update of <literal>yd</literal> if
+    <literal>flag=1</literal>.</para>
+
+    <para><literal>ycd=dot(yc)</literal> must be a vector with same dimension
+    as <literal>yc</literal> if <literal>flag=0</literal> and
+    <literal>ycd=update(yd)</literal> must be a vector with same dimension as
+    <literal>yd</literal> if <literal>flag=1</literal>.</para>
+
+    <para><literal>t</literal> is a vector of instants where the solution
+    <literal>y</literal> is computed.</para>
+
+    <para><literal>y</literal> is the vector
+    <literal>y=[y(t(1)),y(t(2)),...]</literal>. This function can be called
+    with the same optional parameters as the <literal>ode</literal> function
+    (provided <literal>nd</literal> and <literal>stdel</literal> are given in
+    the calling sequence as second and third parameters). In particular
+    integration flags, tolerances can be set. Optional parameters can be set
+    by the <literal>odeoptions</literal> function.</para>
+
+    <para>An example for calling an external routine is given in directory
     <literal>SCIDIR/default/fydot2.f</literal></para>
-    <para>
-    External routines can be dynamically linked (see <literal>link</literal>).</para>
+
+    <para>External routines can be dynamically linked (see
+    <literal>link</literal>).</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 //Linear system with switching input
 deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
 x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
@@ -162,24 +202,20 @@ norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // Fast calculation (see fydot2.f)
 plot2d([t',t',t'],xcd(1:3,:)');
 xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
 xset("window",0);
- 
-  ]]></programlisting>
+    </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
-      <member>
-        <link linkend="odeoptions">odeoptions</link>
-      </member>
-      <member>
-        <link linkend="csim">csim</link>
-      </member>
-      <member>
-        <link linkend="external">external</link>
-      </member>
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="odeoptions">odeoptions</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="external">external</link></member>
     </simplelist>
   </refsection>
 </refentry>

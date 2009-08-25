@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("modelica_fsm_buck.dem.sce");
-scicos_demostration(thispath+"/Finite_state_Buck.cosf");
+scicos_demonstration(thispath+"/Finite_state_Buck.cosf");
 clear thispath;

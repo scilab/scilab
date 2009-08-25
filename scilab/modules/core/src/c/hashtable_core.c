@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "MALLOC.h"
+#include "stack-def.h"
 #include "hashtable_core.h"
 #include "getfunctionslist.h"
 #include "existfunction.h"
@@ -19,46 +21,59 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
-static _ENTRY   * htable = NULL;
-static unsigned   hashtableSize;
-static unsigned   filled;
-/*--------------------------------------------------------------------------*/
-static int Equal_id(int *x, int *y);
-
-/**
- * Check if a number is prime (or not)
- * @param number the number
- */
-static int isprime(unsigned int number);
-/*--------------------------------------------------------------------------*/
-int create_hashtable_scilab_functions(unsigned int nel)
+#define MAXLENGHTFUNCTIONNAME 256 /* 24 in fact in scilab */
+typedef struct entry 
 {
-    unsigned int i;
+	int key[nsiz];
+	int data;
+	char namefunction[MAXLENGHTFUNCTIONNAME];
+} ENTRY;
+
+typedef struct 
+{ 
+	unsigned int   used;
+	ENTRY entry;
+} _ENTRY;
+/*--------------------------------------------------------------------------*/
+static _ENTRY   *htable = NULL;
+static unsigned hashtableSize = 0;
+static unsigned filled = 0;
+/*--------------------------------------------------------------------------*/
+extern int C2F(cvname)(int *,char *,int *, unsigned long int);
+/*--------------------------------------------------------------------------*/
+static BOOL Equal_id(int *x, int *y);
+static BOOL realloc_hashtable_scilab_functions(void);
+/*--------------------------------------------------------------------------*/
+BOOL create_hashtable_scilab_functions(void)
+{
+	unsigned int i = 0;
+
 	if (htable == NULL)
 	{
-		nel |= 1;      /* make odd */
-		while (!isprime(nel)) nel += 2;
-
-		hashtableSize  = nel;
+		hashtableSize  = DEFAULT_ELEMENTFUNCTIONLIST;
 		filled = 0;
 
-		if ((htable = (_ENTRY *)MALLOC((hashtableSize+1)*sizeof(_ENTRY))) == NULL)	
+		htable = (_ENTRY *) CALLOC((hashtableSize + 1), sizeof(_ENTRY));
+
+		if (htable)	
 		{
-			return 0;
-		}
-		else
-		{
-		  for(i=0;i<hashtableSize;i++)
-		    {
-		      htable[i].used = 0;
-		      strcpy(htable[i].entry.namefunction,"");
-		      htable[i].entry.key[0] = 0;
-		      htable[i].entry.data = 0;
-		    }
-		  return 1;
+			unsigned int i = 0;
+			htable[0].used = 0;
+			strcpy(htable[0].entry.namefunction, "");
+			for (i = 0; i < nsiz; i++)
+			{
+				htable[0].entry.key[i] = 0;
+			}
+			htable[0].entry.data = 0;
+
+			for(i = 1; i < hashtableSize; i++)
+			{
+				memcpy(&htable[i], &htable[0], sizeof(htable[0]));
+			}
+			return TRUE;
 		}
 	}
-	return 0;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 void destroy_hashtable_scilab_functions()
@@ -70,172 +85,158 @@ void destroy_hashtable_scilab_functions()
 	}
 }
 /*--------------------------------------------------------------------------*/
-int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action)
+BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action)
 {
-
-	if (action == SCI_HFUNCTIONS_BACKSEARCH)
+	switch(action)
 	{
-		unsigned int i=0;
-		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used && htable[i].entry.data == *data ) 
+	case SCI_HFUNCTIONS_FIND:
 		{
-			int j=0;
-			for (j = 0; j < nsiz ; j++ ) key[j] = htable[i].entry.key[j];
-			return OK;
-		}
-	}
-	else
-	{
-		register unsigned len = nsiz;
-		register unsigned hval=0;
-		register unsigned hval2=0;
-		register unsigned count=0;
+			/* linear search algorithm */
+			unsigned int idx = 0;
+			int keyToSearch[nsiz];
 
-		register unsigned idx=0;
-
-		if (action == SCI_HFUNCTIONS_ENTER && filled == hashtableSize) return FAILED;
-
-		hval  = len;
-		count = len;
-
-		/* @TODO add comment : Why are doing this ? */
-		while (count-- > 0) 
-		{
-			hval += key[count];
-			hval %= hashtableSize;
-		}
-
-		if (hval == 0) hval++;
-
-		idx = hval;
-
-		if (htable[idx].used) 
-		{
-			if (htable[idx].used == hval )
+			if (name)
 			{
-				if ( Equal_id(key, htable[idx].entry.key) == 0) 
+				/* faster than a strcmp */
+				int job = 0; /* convert name to id */
+				C2F(cvname)(keyToSearch, name, &job, (unsigned long)strlen(name));
+			}
+			else
+			{
+				unsigned int i = 0;
+				for(i = 0; i < nsiz; i++)
 				{
-					switch (action) 
-					{
-					case SCI_HFUNCTIONS_ENTER :
-						htable[idx].entry.data = *data;
-						if (name) strcpy(htable[idx].entry.namefunction,name);
-						else strcpy(htable[idx].entry.namefunction,"");
-						return OK;
-						break;
-					case SCI_HFUNCTIONS_DELETE :
-						htable[idx].used = 0;
-						filled--;
-						return OK ;
-						break;
-
-					case SCI_HFUNCTIONS_FIND :
-						*data = htable[idx].entry.data;
-						return OK;
-						break;
-
-					case SCI_HFUNCTIONS_BACKSEARCH :
-						return FAILED;
-						break;
-					}
+					keyToSearch[i] = key[i];
 				}
 			}
 
-			hval2 = 1 + hval % (hashtableSize-2);
-
-			do 
+			/* linear search algorithm */
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
 			{
-				if (idx <= hval2) idx = hashtableSize+idx-hval2;
-				else idx -= hval2;
-
-				if (htable[idx].used == hval ) 
+				if ( htable[idx].used)
 				{
-					if ( Equal_id(key, htable[idx].entry.key) == 0) 
+					if (Equal_id(keyToSearch, htable[idx].entry.key) == TRUE)
 					{
-						switch (action) 
-						{
-						case SCI_HFUNCTIONS_ENTER :
-							htable[idx].entry.data = *data; 
-							if (name) strcpy(htable[idx].entry.namefunction,name);
-							else strcpy(htable[idx].entry.namefunction,"");
-							return OK;
-						case SCI_HFUNCTIONS_DELETE :
-							htable[idx].used = 0;
-							filled--;
-							return OK;
-							break;
-						case SCI_HFUNCTIONS_FIND :
-							*data = htable[idx].entry.data; 
-							return OK;
-						case SCI_HFUNCTIONS_BACKSEARCH :
-							return FAILED;
-							break;
-						}
+						*scilab_funptr = htable[idx].entry.data;
+						return TRUE;
 					}
 				}
-			} while (htable[idx].used);
+			}
+			return FALSE;
 		}
-
-		if (action == SCI_HFUNCTIONS_ENTER) 
+		break;
+	case SCI_HFUNCTIONS_BACKSEARCH:
 		{
-			int i=0;
-			htable[idx].used  = hval;
-			for ( i=0 ; i < nsiz ; i++ ) htable[idx].entry.key[i] = key[i];
-			htable[idx].entry.data = *data;
-			if (name) strcpy(htable[idx].entry.namefunction,name);
-			filled++;
-			return OK ;
+			/* linear search algorithm */
+			unsigned int idx = 0;
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
+			{
+				if ( (htable[idx].used) && (htable[idx].entry.data == *scilab_funptr) ) 
+				{
+					int j = 0;
+					for (j = 0; j < nsiz ; j++ ) key[j] = htable[idx].entry.key[j];
+					return TRUE;
+				}
+			}
+			return FALSE;
 		}
-		else return FAILED;
+		break;
+	case SCI_HFUNCTIONS_ENTER:
+		{
+			unsigned int idx = 0;
+
+			realloc_hashtable_scilab_functions();
+
+			if (filled ==  hashtableSize) return FALSE;
+
+			for (idx = 0; idx < hashtableSize; idx++)
+			{
+				if (htable[idx].used == 0)
+				{
+					int zero = 0;
+					int j = 0;
+					htable[idx].entry.data = *scilab_funptr;
+					if (name) strcpy(htable[idx].entry.namefunction, name);
+					else strcpy(htable[idx].entry.namefunction, "");
+
+					C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
+
+					htable[idx].used = 1;
+					filled++;
+					return TRUE;
+				}
+			}
+			return FALSE;
+		}
+		break;
+	case SCI_HFUNCTIONS_DELETE:
+		{
+			unsigned int idx = 0;
+			for (idx = 0; idx < filled + 1; idx++)
+			{
+				if ( (htable[idx].used) &&
+					 (htable[idx].entry.data == *scilab_funptr) &&
+					 (Equal_id(key, htable[idx].entry.key) == TRUE) )
+				{
+					int i = 0;
+					htable[idx].used = 0;
+					htable[idx].entry.data = 0;
+					strcpy(htable[idx].entry.namefunction, "");
+					for (i = 0; i < nsiz; i++)
+					{
+						htable[idx].entry.key[i] = 0;
+					}
+					filled--;
+					return TRUE;
+				}
+			}
+			return FALSE;
+		}
+		break;
 	}
-
-	return FAILED;
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/  
-static int Equal_id(int *x, int *y)
+static BOOL Equal_id(int *x, int *y)
 {
-	int i;
-	for (i = 0; i < nsiz ; i++ ) if ( x[i] != y[i] ) return(1);
-	return(0);
-}
-/*--------------------------------------------------------------------------*/  
-static int isprime(unsigned int number)
-{
-	unsigned div_ = 3;
-
-	while (div_*div_ < number && number%div_ != 0) div_ += 2;
-
-	return number%div_ != 0;
+	int i = 0;
+	for (i = 0; i < nsiz ; i++ )
+	{
+		if ( x[i] != y[i] ) return FALSE;
+	}
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/  
 char **GetFunctionsList(int *sizeList)
 {
-	char **ListFunctions=NULL;
-	unsigned int i=0;
-	int j=0;
+	char **ListFunctions = NULL;
+	unsigned int i = 0;
+	int j = 0;
 
-	*sizeList=0;
+	*sizeList = 0;
 
-	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 	{
 		if (htable[i].entry.namefunction) 
 		{
 			if (strlen(htable[i].entry.namefunction) > 0) j++;
 		}
 	}
-	*sizeList=j;
+	*sizeList = j;
 
-	ListFunctions=(char**)MALLOC(sizeof(char*)*(*sizeList));
-
-	j=0;
-
-	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+	ListFunctions = (char**)MALLOC(sizeof(char*)*(*sizeList));
+	j = 0;
+	if (ListFunctions)
 	{
-		if (htable[i].entry.namefunction)
+		for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 		{
-			if (strlen(htable[i].entry.namefunction) > 0)
+			if (htable[i].entry.namefunction)
 			{
-				ListFunctions[j] = strdup(htable[i].entry.namefunction);
-				j++;
+				if (strlen(htable[i].entry.namefunction) > 0)
+				{
+					ListFunctions[j] = strdup(htable[i].entry.namefunction);
+					j++;
+				}
 			}
 		}
 	}
@@ -244,18 +245,56 @@ char **GetFunctionsList(int *sizeList)
 /*--------------------------------------------------------------------------*/  
 BOOL ExistFunction(char *name)
 {
-	int i=0;
+	int i = 0;
 
-	for ( i = 0 ; i < (int)hashtableSize ; i++ ) {
-		if ( htable[i].used) 
+	for ( i = 0 ; i < (int)filled + 1; i++ ) 
+	{
+		if (htable[i].used) 
+		{
+			if (strcmp(htable[i].entry.namefunction, name) == 0)
 			{
-				if (strcmp(htable[i].entry.namefunction,name) == 0)
-					{
-						return TRUE;
-					}
+				return TRUE;
 			}
+		}
 	}
-
 	return FALSE;
+}
+/*--------------------------------------------------------------------------*/  
+BOOL realloc_hashtable_scilab_functions(void)
+{
+	if ( (filled) >= hashtableSize)
+	{
+		int newhashtableSize = filled * 2;
+
+		if (newhashtableSize > MAXELEMENTFUNCTIONLIST) newhashtableSize = MAXELEMENTFUNCTIONLIST;
+
+		if ( (hashtableSize != newhashtableSize) && (hashtableSize != MAXELEMENTFUNCTIONLIST) )
+		{
+
+			htable = (_ENTRY *) REALLOC(htable, (newhashtableSize + 1) * sizeof(_ENTRY));
+			if (htable)	
+			{
+				_ENTRY emptyEntry;
+				int i = 0;
+
+				emptyEntry.used = 0;
+				strcpy(emptyEntry.entry.namefunction, "");
+				for (i = 0; i < nsiz; i++)
+				{
+					emptyEntry.entry.key[i] = 0;
+				}
+				emptyEntry.entry.data = 0;
+
+				for (i = hashtableSize; i < newhashtableSize; i++)
+				{
+					memcpy(&htable[i], &emptyEntry, sizeof(emptyEntry));
+				}
+				hashtableSize = newhashtableSize;
+				return TRUE;
+			}
+			return FALSE;
+		}
+	}
+	return TRUE;
 }
 /*--------------------------------------------------------------------------*/  

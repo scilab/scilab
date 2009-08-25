@@ -54,7 +54,7 @@ if obj_selected > 1 then
   //**------------------ Multiple object selected ---------------
   if kc==[] then
   //** ------------- It's NOT a Scicos window -------------------
-    message("This window is not an active scicos window")
+    messagebox("This window is not an active scicos window",'modal')
     Cmenu = []; %pt=[]; %ppt=[]; Select=[] ;
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point
@@ -86,7 +86,7 @@ if obj_selected > 1 then
                     //** read only operation
   else
   //**---- ... in any other case -------------------------------
-    message("This window is not an active scicos window")
+    messagebox("This window is not an active scicos window",'modal')
     Cmenu=[]; %pt=[]; %ppt=[]; Select=[];
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point
@@ -99,7 +99,7 @@ else //** single / multiple object(s) switch
   //**------------------- Zero or one single object selected by pop up ------------
   if kc==[] then
   //** ------------- It's NOT a Scicos window -------------------
-    message("This window is not an active scicos window")
+    messagebox("This window is not an active scicos window",'modal')
     Cmenu = []; %pt=[]; %ppt=[]; Select=[] ;
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point
@@ -184,7 +184,7 @@ else //** single / multiple object(s) switch
 
   else
   //**---- ... in any other case -------------------------------
-    message("This window is not an active scicos window")
+    messagebox("This window is not an active scicos window",'model')
     Cmenu=[]; %pt=[]; %ppt=[]; Select=[];
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point

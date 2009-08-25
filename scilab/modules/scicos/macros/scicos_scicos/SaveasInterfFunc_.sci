@@ -32,7 +32,7 @@ function SaveasInterfFunc_()
 	case 'sci' then
 	  ok=%t
 	else
-	  message('Only *.sci files allowed');
+	  messagebox('Only *.sci files allowed','modal');
 	  ok = %f
 	end
       else
@@ -55,8 +55,8 @@ function SaveasInterfFunc_()
 	
 	if %path<>[] then 
 	  if execstr('getf(%path)','errcatch')<>0 then
-	     message([name+': error:'
-		      lasterror()])
+	     messagebox([name+': error:'
+		      lasterror()],'modal')
 	  end
 	end
       end

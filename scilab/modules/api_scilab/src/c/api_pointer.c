@@ -23,7 +23,7 @@
 int getPointer(int* _piAddress, void** _pvPtr)
 {
 	int *piTmp = NULL;
-	double vVal	= 0;
+
 	if(	_piAddress == NULL || getVarType(_piAddress) != sci_lufact_pointer)
 	{
 		return 1;
@@ -31,7 +31,7 @@ int getPointer(int* _piAddress, void** _pvPtr)
 
 	piTmp = (_piAddress + 4);
 
-	*_pvPtr = piTmp;
+	*_pvPtr = (void*)*(long long*)piTmp;
 	return 0;
 }
 
@@ -99,7 +99,7 @@ int createPointer(int _iVar, void* _pvPtr)
 		return 1;
 	}
 
-	((double*)pvPtr)[0] = (double) ((unsigned long int) _pvPtr);
+	((long long*)pvPtr)[0] = (long long) ((unsigned long int) _pvPtr);
 
 	return 0;
 }

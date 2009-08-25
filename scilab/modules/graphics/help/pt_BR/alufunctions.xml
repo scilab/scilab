@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="alufunctions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>alufunctions</refname>
+
+    <refpurpose>Funções de desenho de pixel</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>src is the source ie the "value of the pixel" which we want to draw.
+    dst is the destination ie "value of the pixel" which is already
+    drawn.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>0</term>
+
+        <listitem>
+          <para>clear ie "0" (limpo) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>1</term>
+
+        <listitem>
+          <para>and ie "src AND dst" (E) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2</term>
+
+        <listitem>
+          <para>and reverse ie "src AND NOT dst" (E NÃO, "e reverso") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>3</term>
+
+        <listitem>
+          <para>copy ie "src" (cópia) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>4</term>
+
+        <listitem>
+          <para>and inverted ie "(NOT src) AND dst" (NÃO, E; "e invertido")
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>5</term>
+
+        <listitem>
+          <para>noop ie "dst" () </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>6</term>
+
+        <listitem>
+          <para>xor ie "src XOR dst" (UM OU OUTRO) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>7</term>
+
+        <listitem>
+          <para>or ie "src OR dst" (OU) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>8</term>
+
+        <listitem>
+          <para>nor ie "(NOT src) AND (NOT dst)" (NÃO, E NÃO; nem um, nem
+          outro) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>9</term>
+
+        <listitem>
+          <para>equiv ie "(NOT src) XOR dst" (NÃO UM OU O OUTRO; equivalência)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>10</term>
+
+        <listitem>
+          <para>invert ie "NOT dst" (NÃO) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>11</term>
+
+        <listitem>
+          <para>or reverse ie "src OR (NOT dst)" (OU NÃO; ou reverso)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>12</term>
+
+        <listitem>
+          <para>copy inverted ie "NOT src" (cópia invertida) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>13</term>
+
+        <listitem>
+          <para>or inverted ie "(NOT src) OR dst" (NÃO, OU invertido) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>14</term>
+
+        <listitem>
+          <para>nand ie "(NOT src) OR (NOT dst)" (NÃO OU NÃO, pelo menos um
+          não) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>15</term>
+
+        <listitem>
+          <para>set ie "1" (ajustado)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

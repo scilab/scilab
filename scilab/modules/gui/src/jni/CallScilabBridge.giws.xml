@@ -390,6 +390,14 @@
 	<method name="isFrameEnable" returnType="boolean" modifier="static">
           <parameter type="int" name="objID"/>
         </method>      
+<!-- Menu setting -->
+	<method name="setMenuChecked" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="boolean" name="status"/>
+	</method>
+	<method name="isMenuChecked" returnType="boolean" modifier="static">
+	  <parameter type="int" name="objID"/>
+	</method>
 <!-- Delete Menus -->
 	<method name="removeRootMenu" returnType="void" modifier="static">
 	  <parameter type="String" name="menuName"/>

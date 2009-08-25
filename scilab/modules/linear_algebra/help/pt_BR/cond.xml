@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>cond</refname>
 
-    <refpurpose>nÃºmero de condicionamento de uma matriz</refpurpose>
+    <refpurpose>número de condicionamento de uma matriz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>cond(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,10 +48,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>NÃºmero de condicionamento em norma-2. <literal>cond(X)</literal> Ã© a
-    razÃ£o entre o maior e o menor valor singular de
+    <para>Número de condicionamento em norma-2. <literal>cond(X)</literal> é a
+    razão entre o maior e o menor valor singular de
     <literal>X</literal>.</para>
   </refsection>
 
@@ -67,7 +67,7 @@ cond(A)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="rcond">rcond</link></member>

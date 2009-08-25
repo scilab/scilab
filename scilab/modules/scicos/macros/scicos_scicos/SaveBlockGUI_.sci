@@ -24,7 +24,7 @@ function SaveBlockGUI_()
 //   -fix a bug un case there are selected objects in other windows  
   K=find(Select(:,2)==curwin)
   if size(K,'*')<>1 then
-     message('Select one and only one block in the current window.')
+     messagebox('Select one and only one block in the current window.','modal')
      Cmenu=[]
      return
   else
@@ -34,7 +34,7 @@ function SaveBlockGUI_()
     else
        Cmenu=[]
        if scs_m.objs(Select(K,1)).gui<>'DSUPER' then
-          message('Only Masked blocks can be saved.')
+          messagebox('Only Masked blocks can be saved.','modal')
        else
        	  fname=do_saveblockgui(scs_m.objs(Select(K,1)))
           if fname<>emptystr() then

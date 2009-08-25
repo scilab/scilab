@@ -62,7 +62,8 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math><mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
+            <mml:math>
+            <mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
             mml:stretchy="false">∫</mml:mo> <mml:mn>0</mml:mn>
             <mml:mi>x</mml:mi> </mml:munderover> <mml:mfrac> <mml:mi
             mml:fontstyle="italic">dt</mml:mi> <mml:msqrt> <mml:mrow>

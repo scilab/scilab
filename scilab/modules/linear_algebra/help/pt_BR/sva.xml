@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>sva</refname>
 
-    <refpurpose>aproximaÃ§Ã£o em valores singulares</refpurpose>
+    <refpurpose>aproximação em valores singulares</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento </title>
+    <title>Seqüência de Chamamento </title>
 
     <synopsis>[U,s,V]=sva(A,k)
 [U,s,V]=sva(A,tol)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,27 +58,27 @@
         <term>tol</term>
 
         <listitem>
-          <para>nÃºmero real nÃ£o-negativo</para>
+          <para>número real não-negativo</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>AproximaÃ§Ã£o em valores singulares.</para>
+    <para>Aproximação em valores singulares.</para>
 
     <para><literal>[U,S,V]=sva(A,k)</literal> com <literal>k</literal> inteiro
     &gt;=1, retorna <literal>U,S</literal> e <literal>V</literal> tais que
-    <literal>B=U*S*V'</literal> Ã© a melhor aproximaÃ§Ã£o L2 de
+    <literal>B=U*S*V'</literal> é a melhor aproximação L2 de
     <literal>A</literal> com
     posto(<literal>B</literal>)=<literal>k</literal>.</para>
 
     <para><literal>[U,S,V]=sva(A,tol)</literal> com <literal>tol</literal>
     real retorna <literal>U,S</literal> e <literal>V</literal> tais que
-    <literal>B=U*S*V'</literal> e a norma-L2 de <literal>A-B</literal> Ã©, no
-    mÃ¡ximo, <literal>tol</literal>.</para>
+    <literal>B=U*S*V'</literal> e a norma-L2 de <literal>A-B</literal> é, no
+    máximo, <literal>tol</literal>.</para>
   </refsection>
 
   <refsection>
@@ -97,7 +97,7 @@ clean(svd(A-B))
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="svd">svd</link></member>

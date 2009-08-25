@@ -29,17 +29,17 @@ function ok = scicos_block_link(funam, txt, flag)
  
   if (flag<>"c")&(flag<>"f") then
      ok = %f;
-     message("Sorry: Only C or FORTRAN languages are supported");
+     messagebox("Sorry: Only C or FORTRAN languages are supported",'modal');
      return; 
   end
   
   if stripblanks(funam)==emptystr() then 
     ok = %f;
-    message("Sorry file name not defined in "+flag+" block");
+    messagebox("Sorry file name not defined in "+flag+" block",'modal');
     return; 
   end
 
-  cur_wd = getcwd(); //** get and save current working directory 
+  cur_wd = pwd(); //** get and save current working directory 
 
   chdir(TMPDIR); //** change to TMPDIR 
 

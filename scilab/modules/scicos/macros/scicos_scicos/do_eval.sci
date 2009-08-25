@@ -27,9 +27,14 @@ needcompile1=max(2,needcompile)
 %mprt=funcprot()
 funcprot(0) 
 getvalue=setvalue;
-deff('message(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
-		    'global %scicos_prob;'
-		    '%scicos_prob=resume(%t)'])
+
+function scicosmessage(txt)
+  messagebox(['In block ' + o.gui + ': ';
+	      txt;
+	      'current parameter value kept'],'Warning','modal');
+  %scicos_prob = resume(%t)
+endfunction
+
 
 global %scicos_prob
 %scicos_prob=%f
@@ -65,7 +70,7 @@ for %kk=1:%nx
       [scicos_context1,ierr]=script2var(context,%scicos_context)
       if ierr <>0 then
 	%now_win=xget('window')
-        message(['Cannot evaluate a context';lasterror()])
+        scicosmessage(['Cannot evaluate a context';lasterror()])
 	xset('window',%now_win)
       else
         [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context1)

@@ -90,7 +90,7 @@ while K<>[] do
   elseif typ=='Deleted' then
   //**-------------------------------- U.F.O. ----------------------------------------
   else
-    message('This object can''t be deleted')
+    messagebox('This object can''t be deleted','modal')
   end
 end
 

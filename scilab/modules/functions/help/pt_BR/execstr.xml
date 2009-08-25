@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>execstr</refname>
 
-    <refpurpose>executa cÃ³digo Scilab em strings</refpurpose>
+    <refpurpose>executa código Scilab em strings</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>execstr(instr)
 ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>instr</term>
 
         <listitem>
-          <para>vetor de strings, instruÃ§Ã£o Scilab a ser executada. </para>
+          <para>vetor de strings, instrução Scilab a ser executada. </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
         <term>ierr</term>
 
         <listitem>
-          <para>inteiro, 0 ou nÃºmero de erro. </para>
+          <para>inteiro, 0 ou número de erro. </para>
         </listitem>
       </varlistentry>
 
@@ -59,32 +59,32 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
 
         <listitem>
           <para>string com valores <literal>'m'</literal> ou
-          <literal>'n'</literal>. O padrÃ£o Ã© <literal>'n'</literal>.</para>
+          <literal>'n'</literal>. O padrão é <literal>'n'</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Executa as instruÃ§Ãµes Scilab fornecidas pelo argumento
+    <para>Executa as instruções Scilab fornecidas pelo argumento
     <literal>instr</literal>.</para>
 
-    <para>Note que instr nÃ£o deve fazer uso de marcas de continuaÃ§Ã£o(..)
+    <para>Note que instr não deve fazer uso de marcas de continuação(..)
     </para>
 
     <para></para>
 
-    <para>Se o flag 'errcatch' nÃ£o estiver presente, a manipulaÃ§Ã£o de erros
+    <para>Se o flag 'errcatch' não estiver presente, a manipulação de erros
     ocorre de maneira usual.</para>
 
     <para>Se o flag 'errcatch' for ajustado, e um erro for encontrado enquanto
-    sÃ£o executadas as instruÃ§Ãµes definidas em <literal>instr</literal>,
-    <literal>execstr</literal> nÃ£o imprime uma mensagem de erro, mas aborta a
-    execuÃ§Ã£o das instruÃ§Ãµes <literal>instr</literal> (no ponto onde o erro
-    ocorreu) e retorna com <literal>ierr</literal> igual ao nÃºmero de erro.
-    Neste caso a exibiÃ§Ã£o da mensagem de erro Ã© controlada pela opÃ§Ã£o
+    são executadas as instruções definidas em <literal>instr</literal>,
+    <literal>execstr</literal> não imprime uma mensagem de erro, mas aborta a
+    execução das instruções <literal>instr</literal> (no ponto onde o erro
+    ocorreu) e retorna com <literal>ierr</literal> igual ao número de erro.
+    Neste caso a exibição da mensagem de erro é controlada pela opção
     <literal>msg</literal> :</para>
 
     <variablelist>
@@ -92,7 +92,7 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
         <term>"m"</term>
 
         <listitem>
-          <para>a mensagem Ã© exibida e registrada.</para>
+          <para>a mensagem é exibida e registrada.</para>
         </listitem>
       </varlistentry>
 
@@ -100,16 +100,16 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
         <term>"n"</term>
 
         <listitem>
-          <para>nenhuma mensagem de erro Ã© exibida, mas a mensagem de erro Ã©
-          registrada (ver <literal>lasterror</literal>). Este Ã© o
-          padrÃ£o.</para>
+          <para>nenhuma mensagem de erro é exibida, mas a mensagem de erro é
+          registrada (ver <literal>lasterror</literal>). Este é o
+          padrão.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>ierr= execstr(instr,'errcatch') pode manipular erros sintÃ¡ticos.
-    Isto Ã© Ãºtil para a avaliaÃ§Ã£o de uma instruÃ§Ã£o obtida por uma pegunta ao
-    usuÃ¡rio.</para>
+    <para>ierr= execstr(instr,'errcatch') pode manipular erros sintáticos.
+    Isto é útil para a avaliação de uma instrução obtida por uma pegunta ao
+    usuário.</para>
   </refsection>
 
   <refsection>
@@ -142,7 +142,7 @@ lasterror(%t)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="evstr">evstr</link></member>

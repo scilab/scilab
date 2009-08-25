@@ -11,91 +11,105 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="odeoptions">
+<refentry version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>odeoptions</refname>
-    <refpurpose> set options for ode solvers</refpurpose>
+
+    <refpurpose>set options for ode solvers</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>odeoptions()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>
-    This function interactively displays a command which
-    should be executed to set various options of ode solvers.
-    The global variable <literal>%ODEOPTIONS</literal> sets the options.</para>
-    <para>
-    CAUTION: the <literal>ode</literal> function checks if this variable
-    exists and in this case it uses it. For using default
-    values you should clear this variable. Note that <literal>odeoptions</literal>
-    does not create this variable. To create it you must execute
-    the command line displayed by <literal>odeoptions</literal>.</para>
-    <para>
-    The variable <literal>%ODEOPTIONS</literal> is a vector with the following elements:</para>
-    <programlisting><![CDATA[
 
+    <para>This function interactively displays a command which should be
+    executed to set various options of ode solvers. The global variable
+    <literal>%ODEOPTIONS</literal> sets the options.</para>
+
+    <para>CAUTION: the <literal>ode</literal> function checks if this variable
+    exists and in this case it uses it. For using default values you should
+    clear this variable. Note that <literal>odeoptions</literal> does not
+    create this variable. To create it you must execute the command line
+    displayed by <literal>odeoptions</literal>.</para>
+
+    <para>The variable <literal>%ODEOPTIONS</literal> is a vector with the
+    following elements:</para>
+
+    <programlisting> 
 [itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
-   
-    ]]></programlisting>
-    <para>
-    The default value is:</para>
-    <programlisting><![CDATA[
+     </programlisting>
 
+    <para>The default value is:</para>
+
+    <programlisting> 
 [1,0,0,%inf,0,2,500,12,5,0,-1,-1]
-   
-    ]]></programlisting>
-    <para>
-    The meaning of the elements is described below.</para>
-    <para><literal>itask</literal>
-     1 : normal computation at specified times
-     2 : computation at mesh points (given in first row of output of <literal>ode</literal>)
-     3 : one step at one internal mesh point and return
-     4 : normal computation without overshooting <literal>tcrit</literal>
-     5 : one step, without passing <literal>tcrit</literal>, and return</para>
-    <para><literal>tcrit</literal>
-      assumes <literal>itask</literal> equals 4 or 5, described above</para>
-    <para><literal>h0</literal>
-      first step tried</para>
-    <para><literal>hmax</literal>
-      max step size</para>
-    <para><literal>hmin</literal>
-      min step size</para>
-    <para><literal>jactype</literal>
-     0 : functional iterations, no jacobian used (<literal>"adams"</literal> or
-         <literal>"stiff"</literal> only)
-     1 : user-supplied full jacobian
-     2 : internally generated full jacobian
-     3 : internally generated diagonal jacobian (<literal>"adams"</literal> or 
-         <literal>"stiff"</literal> only)
-     4 : user-supplied banded jacobian (see <literal>ml</literal> and <literal>mu</literal> below)
-     5 : internally generated banded jacobian (<literal>see</literal> ml and <literal>mu</literal> below)</para>
-    <para><literal>maxordn</literal> 
-     maximum non-stiff order allowed, at most 12</para>
-    <para><literal>maxords</literal>
-     maximum stiff order allowed, at most 5</para>
-    <para><literal>ixpr</literal> 
-     print level, 0 or 1</para>
-    <para><literal>ml</literal>,<literal>mu</literal>
-     If <literal>jactype</literal> equals 4 or 5, <literal>ml</literal> and <literal>mu</literal> are the lower
-     and upper half-bandwidths of the banded jacobian: the band is the
-     i,j's with i-ml &lt;= j &lt;= ny-1.
-     If <literal>jactype</literal> equals 4 the jacobian function must return
-     a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))
-     such that column 1 of J is made of mu zeros followed by
-     df1/dy1, df2/dy1, df3/dy1, ... (1+ml possibly non-zero entries)
-     column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2, etc</para>
+     </programlisting>
+
+    <para>The meaning of the elements is described below.</para>
+
+    <para><literal>itask</literal> 1 : normal computation at specified times 2
+    : computation at mesh points (given in first row of output of
+    <literal>ode</literal>) 3 : one step at one internal mesh point and return
+    4 : normal computation without overshooting <literal>tcrit</literal> 5 :
+    one step, without passing <literal>tcrit</literal>, and return</para>
+
+    <para><literal>tcrit</literal> assumes <literal>itask</literal> equals 4
+    or 5, described above</para>
+
+    <para><literal>h0</literal> first step tried</para>
+
+    <para><literal>hmax</literal> max step size</para>
+
+    <para><literal>hmin</literal> min step size</para>
+
+    <para><literal>jactype</literal> 0 : functional iterations, no jacobian
+    used (<literal>"adams"</literal> or <literal>"stiff"</literal> only) 1 :
+    user-supplied full jacobian 2 : internally generated full jacobian 3 :
+    internally generated diagonal jacobian (<literal>"adams"</literal> or
+    <literal>"stiff"</literal> only) 4 : user-supplied banded jacobian (see
+    <literal>ml</literal> and <literal>mu</literal> below) 5 : internally
+    generated banded jacobian (<literal>see</literal> ml and
+    <literal>mu</literal> below)</para>
+
+    <para><literal>maxordn</literal> maximum non-stiff order allowed, at most
+    12</para>
+
+    <para><literal>maxords</literal> maximum stiff order allowed, at most
+    5</para>
+
+    <para><literal>ixpr</literal> print level, 0 or 1</para>
+
+    <para><literal>ml</literal>,<literal>mu</literal> If
+    <literal>jactype</literal> equals 4 or 5, <literal>ml</literal> and
+    <literal>mu</literal> are the lower and upper half-bandwidths of the
+    banded jacobian: the band is the i,j's with i-ml &lt;= j &lt;= ny-1. If
+    <literal>jactype</literal> equals 4 the jacobian function must return a
+    matrix J which is ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y)) such
+    that column 1 of J is made of mu zeros followed by df1/dy1, df2/dy1,
+    df3/dy1, ... (1+ml possibly non-zero entries) column 2 is made of mu-1
+    zeros followed by df1/dx2, df2/dx2, etc</para>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
+      <member><link linkend="ode">ode</link></member>
     </simplelist>
   </refsection>
 </refentry>

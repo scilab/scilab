@@ -95,7 +95,7 @@ function CodeGeneration_()
                                'ppprot=funcprot();funcprot(0);';
                                'ierr=execstr(''exec('''''+gui_path+''''');'',''errcatch'');';
                                 'funcprot(ppprot);clear ppprot;';
-                               'if ierr<> 0 then message(''Cannot load the '''''+gui_path+''''' file'');end';
+                               'if ierr<> 0 then messagebox(''Cannot load the '''''+gui_path+''''' file'',''modal'');end';
                                 '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1;'
                                'Cmenu='"Replot'"']
             else
@@ -1364,7 +1364,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
         //elseif scs_m.objs(i).model.dep_ut(2)==%t then
         //check for time dependency PAS IICI
         //ok=%f;%cpr=list()
-        //message('a block have time dependence.')
+        //messagebox('a block have time dependence.','modal')
         //return
       elseif scs_m.objs(i).gui=='CLKOUTV_f' then
         scs_m.objs(i).gui='EVTOUT_f';
@@ -1421,7 +1421,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
 
   if ~ok then
     %cpr=list()
-    message('Sorry: problem in the pre-compilation step.')
+    messagebox('Sorry: problem in the pre-compilation step.','modal')
     return
   end
 
@@ -1668,7 +1668,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
     ind = find(bllst(i).sim(1)==sim_to_be_removed(:,1))
     if ind<>[] then
       mess=mprintf("%s  block is not allowed.\nIt will be not called.',sim_to_be_removed(ind,2))
-      okk=message(mess,[_('Ok');_('Go Back')])
+      okk = messagebox(mess,[_('Ok');_('Go Back')],'modal')
       if okk==1 then
         bllst(i).sim(1)='bidon'
         if type(bllst(i).sim(1))==13 then
@@ -1847,7 +1847,7 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
      elseif (clkptr(i+1)-clkptr(i))<>0 &funtyp(i)>-1 &funs(i)~='bidon' then
 //Alan      //msg=[msg;'Regular block generating activation not allowed yet']
     end
-    if msg<>[] then message(msg),ok=%f,return,end
+    if msg<>[] then messagebox(msg,'modal'),ok=%f,return,end
   end
 
   //********************************************************
@@ -1869,18 +1869,13 @@ function [ok,XX,gui_path,flgcdgen,szclkINTemp,freof,c_atomic_code]=do_compile_su
   //***********************************
   okk=%f;
   rdnom='foo';
-  rpat=getcwd();
+  rpat=pwd();
   if %scicos_libs<>[] then
     libs=sci2exp(%scicos_libs(:)',0);
   else
     libs=''
   end
-  //## disable the 'ugly' / in windaube world
-  if MSDOS then
-    label1=[hname;getcwd()+'\'+hname;libs];
-  else
-    label1=[hname;getcwd()+'/'+hname;libs];
-  end
+  label1=[hname;pwd()+filesep()+hname;libs];
 
   while %t do //loop while the user answer are not ok
     ok=%t  // to avoid infinite loop
@@ -8261,7 +8256,7 @@ function [depu_mat,ok]=incidence_mat(bllst,connectmat,clkconnect,cor,corinv)
   end
   %mprt=funcprot()
   funcprot(0) 
-  deff('message(txt)',' ')
+  deff('messagebox(txt)',' ')
   funcprot(%mprt)
   in=0
   for i=In_blocks'

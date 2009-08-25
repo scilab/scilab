@@ -8,7 +8,7 @@
 #include <string.h>
 #include "../MALLOC/includes/MALLOC.h"
 
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/
 /* hashtable_change
  *
  * function to change the value associated with a key, where there already

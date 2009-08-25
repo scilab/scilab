@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="case" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,7 +18,7 @@
   </refnamediv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Palavra chave usada na estrutura <literal>select ...
     case</literal></para>
@@ -27,19 +27,19 @@
 
     <programlisting>
 
-select expressÃ£o0,
- case expressÃ£o1 then instruÃ§Ãµes1,
- case expressÃ£o2 then instruÃ§Ãµes2,
+select expressão0,
+ case expressão1 then instruções1,
+ case expressão2 then instruções2,
  ...
- case expressÃ£on then instruÃ§Ãµesn,
- [else instruÃ§Ãµes],
+ case expressãon then instruçõesn,
+ [else instruções],
 end
    
     </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="select">select</link></member>

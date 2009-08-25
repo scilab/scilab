@@ -58,7 +58,7 @@ elseif get(gcbo,"tag")=="dirradio" then
 //
 elseif get(gcbo,"tag")=="dirbtn" then
   
-  directoryname = uigetdir(getcwd(), gettext("Select the directory to convert"));
+  directoryname = uigetdir(pwd(), gettext("Select the directory to convert"));
   set(findobj("tag", "diredit"), "string", directoryname);
   
 //
@@ -66,7 +66,7 @@ elseif get(gcbo,"tag")=="dirbtn" then
 //
 elseif get(gcbo,"tag")=="filebtn" then
   
-  filename = uigetfile("*.m", getcwd(), gettext("Select the file to convert"));
+  filename = uigetfile("*.m", pwd(), gettext("Select the file to convert"));
   set(findobj("tag", "fileedit"), "string", filename);
   
 //
@@ -74,7 +74,7 @@ elseif get(gcbo,"tag")=="filebtn" then
 //
 elseif get(gcbo,"tag")=="outbtn" then
   
-  directoryname = uigetdir(getcwd(), gettext("Select the directory for generated files"));
+  directoryname = uigetdir(pwd(), gettext("Select the directory for generated files"));
   set(findobj("tag", "outedit"), "string", directoryname);
   
 //

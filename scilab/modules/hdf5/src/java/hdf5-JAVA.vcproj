@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -109,6 +109,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 		</Filter>
+		<File
+			RelativePath="..\..\build.xml"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>

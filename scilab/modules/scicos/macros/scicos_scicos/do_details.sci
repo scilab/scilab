@@ -26,7 +26,7 @@ function do_details(x)
     if Select==[] then // nothing selected return details on current diagram
       o = scs_m;
     elseif size(Select,1)>1 then
-      message(_("Multiple selection cannot be used here"))
+      messagebox(_("Multiple selection cannot be used here"),"modal")
       return
     else //a single object is selected
       cwin = Select(1,2)

@@ -26,7 +26,7 @@ function Paste_()
 
 //** Verify window and last mouse "click" position 
   if %win<>curwin  then
-     message(["Paste operation is not possible in this window"]);
+     messagebox(["Paste operation is not possible in this window"],'modal');
      Cmenu = []; %pt = []; %ppt = [] ;
      return
   end        
@@ -72,7 +72,7 @@ if and(size(Select)==[1,2]) then //** only one object selected
    end
    
   else
-   message(["Paste -> Source / Destination incompatible"]);
+   messagebox(["Paste -> Source / Destination incompatible"],'modal');
    Cmenu=[]; %pt = []; %ppt = [] ; return ; //** EXIT point 
   end
   

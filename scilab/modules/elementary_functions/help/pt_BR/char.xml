@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>char</refname>
 
-    <refpurpose>fun√ß√£o char</refpurpose>
+    <refpurpose>funÁ„o char</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=char( x)
 y=char(st1,st2,st3,....)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>um cell de arrays de strings, ou um array de c√≥digos ASCII
+          <para>um cell de arrays de strings, ou um array de cÛdigos ASCII
           </para>
         </listitem>
       </varlistentry>
@@ -66,34 +66,34 @@ y=char(st1,st2,st3,....)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>Argumento de uma entrada :</literal></para>
 
-    <para>Dado um<literal> cell de arrays de strings x</literal>, esta fun√ß√£o
-    retorna um vetor de strings <literal>y </literal>no qual as linhas s√£o
+    <para>Dado um<literal> cell de arrays de strings x</literal>, esta funÁ„o
+    retorna um vetor de strings <literal>y </literal>no qual as linhas s„o
     componentes do cell de strings.</para>
 
-    <para>Dado um<literal> array de c√≥digos ASCII x,</literal> esta fun√ß√£o
+    <para>Dado um<literal> array de cÛdigos ASCII x,</literal> esta funÁ„o
     retorna um array de strings <literal>y</literal> correspondente aos
-    c√≥digos ASCII. Se dims (<literal>x</literal>)=[n1,n2,n3,n4,....], ent√£o o
-    valor retornado tem o mesmo tamanho que o valor de entrada, ao inv√©s do
+    cÛdigos ASCII. Se dims (<literal>x</literal>)=[n1,n2,n3,n4,....], ent„o o
+    valor retornado tem o mesmo tamanho que o valor de entrada, ao invÈs do
     segundo dims, dims(<literal>y</literal>)=[n1,n3,n4,..]</para>
 
     <para><literal>Argumento de mais de uma entrada :</literal></para>
 
     <para>Dados <literal>arrays de strings</literal>
-    <literal>st1,st2,st3,...</literal>, esta fun√ß√£o retorna um vetor de
-    strings no qual as linhas s√£o os componentes de <literal>st1,st2,st3,...
+    <literal>st1,st2,st3,...</literal>, esta funÁ„o retorna um vetor de
+    strings no qual as linhas s„o os componentes de <literal>st1,st2,st3,...
     </literal><literal> No vetor </literal><literal>y </literal>o comprimento
-    de todos os strings sti √© completado por lacunas, para terem o mesmo
-    comprimento que o comprimento m√°ximo de sti.</para>
+    de todos os strings sti È completado por lacunas, para terem o mesmo
+    comprimento que o comprimento m·ximo de sti.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">//exemplo com uma hipermatriz de c√≥digos ASCII :
+    <programlisting role="example">//exemplo com uma hipermatriz de cÛdigos ASCII :
 x=hypermat([4,2,3],61:84);
 y=char(x)
 size(x)
@@ -105,14 +105,14 @@ st2=["one","two"];
 st3=["three"];
 y=char(st1,st2,st3)
 size(y)
-//todos os strings s√£o completados por "lacunas" para terem o mesmo comprimento : 6
+//todos os strings s„o completados por "lacunas" para terem o mesmo comprimento : 6
 length(y)
 
 </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="asciimat">asciimat</link></member>

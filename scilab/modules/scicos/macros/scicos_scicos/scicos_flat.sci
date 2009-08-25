@@ -117,7 +117,7 @@ for k=1:n //loop on all objects
 	    mxwin=maxi(winsid());
 	    scs_show(scs_m,mxwin+1);
 	    hilite_obj(k);
-	    message("There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''");
+	    messagebox("There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''","modal");
 	    gh_del = scf(mxwin+1);
 	    unhilite_obj(k);
 	    delete(gh_del);
@@ -314,7 +314,7 @@ for k=1:n //loop on all objects
 end //end of loop on objects
 
 if ksup==0&nb==0 then
-  message('Empty diagram')
+  messagebox('Empty diagram','modal')
   ok=%f
   return
 end
@@ -347,7 +347,7 @@ end
 tof=find((sco_mat(:,2)=='1')& (sco_mat(:,5)=='10'))
 if tof<>[] then
   if mod_blk_exist then
-    message('Warning the enable does not consider the modelica blocks')
+    messagebox('Warning the enable does not consider the modelica blocks','modal')
   end
 end
 //----------------------Goto From Analyses--------------------------
@@ -375,8 +375,8 @@ if tag_exprs<>[] then
   for i=1:size(tag_exprs,1)
     index=find((tag_exprs(:,1)==tag_exprs(i,1))&(tag_exprs(:,2)==tag_exprs(i,2)))
     if size(index,'*') > 1  then
-      message(["Error In Compilation. You cannot have multiple GotoTagVisibility";..
-	      " with the same tag value in the same scs_m"])
+      messagebox(["Error In Compilation. You cannot have multiple GotoTagVisibility";..
+	      " with the same tag value in the same scs_m"],'modal')
       ok=%f;
       return
     end
@@ -386,7 +386,7 @@ if tag_exprs<>[] then
     index=find((sco_mat(:,2)=='1')&(sco_mat(:,3)==tag_exprs(i,1))&(sco_mat(:,4)=='2')&(sco_mat(:,5)==tag_exprs(i,2)))
     if index<>[] then
       if size(index,'*')>1 then
-	message(["Error in compilation";"Multiple GOTO are taged by the same GotoTagVisibility"])
+	messagebox(["Error in compilation";"Multiple GOTO are taged by the same GotoTagVisibility"],'modal')
 	ok=%f
 	return
       end

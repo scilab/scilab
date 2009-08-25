@@ -38,9 +38,9 @@ if typeof(o)=='Block' then
          edited=%t
       end
    else
-      message('This block is not masked.')
+      messagebox('This block is not masked.','modal')
    end
 else
-  message('Select a block.')
+  messagebox('Select a block.','modal')
 end
 endfunction

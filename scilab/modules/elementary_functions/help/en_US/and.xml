@@ -10,45 +10,62 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="and">
+<refentry version="5.0-subset Scilab" xml:id="and" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>and</refname>
-    <refpurpose> (&amp;) logical and</refpurpose>
+
+    <refpurpose>logical and of the elements of an array</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>b=and(A), b=and(A,'*')
 b=and(A,'r'), b=and(A,1)
 b=and(A,'c'), b=and(A,2)
-A&amp;B</synopsis>
+</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para><literal>and(A)</literal> is the logical AND of elements of 
-    the boolean matrix <literal>A</literal>. <literal>and(A)</literal> returns <literal>%T</literal> ("true")  iff 
-    all entries of <literal>A</literal> are <literal>%T</literal>.</para>
-    <para><literal>y=and(A,'r')</literal> (or, equivalently, <literal>y=and(A,1)</literal>) is the rowwise and. It returns in each 
-    entry of the row vector <literal>y</literal> the and of the rows of <literal>x</literal> (The and is performed on the 
-    row index : <literal>y(j)= and(A(i,j),i=1,m)</literal>).</para>
-    <para><literal>y=and(A,'c')</literal> (or, equivalently, <literal>y=and(A,2)</literal>) is the columnwise and. It returns 
-    in each entry of the column vector <literal>y</literal> the and of the columns of <literal>x</literal> 
-    (The and is performed on the column index:  <literal>y(i)= and(A(i,j),j=1,n)</literal>)).</para>
-    <para><literal>A&amp;B</literal>  gives the element-wise logical <literal>and</literal> of the booleans matrices
-     <literal>A</literal> and  <literal>B</literal> .<literal>A</literal> and  <literal>B</literal> must be matrices with the same
-     dimensions or one from them must be a single boolean.</para>
+
+    <para><literal>and(A)</literal> is the logical AND of elements of the
+    boolean matrix <literal>A</literal>. <literal>and(A)</literal> returns
+    <literal>%T</literal> ("true") iff all entries of <literal>A</literal> are
+    <literal>%T</literal>.</para>
+
+    <para><literal>y=and(A,'r')</literal> (or, equivalently,
+    <literal>y=and(A,1)</literal>) is the rowwise and. It returns in each
+    entry of the row vector <literal>y</literal> the and of the rows of
+    <literal>x</literal> (The and is performed on the row index :
+    <literal>y(j)= and(A(i,j),i=1,m)</literal>).</para>
+
+    <para><literal>y=and(A,'c')</literal> (or, equivalently,
+    <literal>y=and(A,2)</literal>) is the columnwise and. It returns in each
+    entry of the column vector <literal>y</literal> the and of the columns of
+    <literal>x</literal> (The and is performed on the column index:
+    <literal>y(i)= and(A(i,j),j=1,n)</literal>)).</para>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="not">not</link>
-      </member>
-      <member>
-        <link linkend="or">or</link>
-      </member>
+      <member><link linkend="not">not</link></member>
+
+      <member><link linkend="and_op">and operator (&amp;) </link></member>
+
+      <member><link linkend="or">or</link></member>
     </simplelist>
   </refsection>
 </refentry>

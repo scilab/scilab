@@ -14,11 +14,11 @@
 //
 //     getd doesn't work
 //
-//-->getd(getcwd())
+//-->getd(pwd())
 // !--error 998
-//Can't go to directory getd(getcwd())
+//Can't go to directory getd(pwd())
 //at line 14 of function cd called by :
-//cd getd(getcwd())
+//cd getd(pwd())
 
 my_dir          = pathconvert(TMPDIR+"/bug_1966",%F,%F);
 my_file         = pathconvert(my_dir+"/bug_1966_tst.sci",%F,%F);
@@ -32,4 +32,4 @@ mputl(my_function_str,my_file);
 
 if execstr("getd(my_dir);","errcatch")   <> 0 then pause,end
 cd(my_dir);
-if execstr("getd(getcwd());","errcatch") <> 0 then pause,end
+if execstr("getd(pwd());","errcatch") <> 0 then pause,end

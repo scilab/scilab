@@ -234,8 +234,8 @@ outtb=buildouttb(lnksz,lnktyp);
 if exists('%scicos_solver')==0 then %scicos_solver=0,end
 
 if max(funtyp)>10000 &%scicos_solver==0 then
-  message(['Diagram contains Implicit blocks,'
-    'Compiling for implicit Solver'])
+  messagebox(['Diagram contains Implicit blocks,'
+    'Compiling for implicit Solver'],'modal')
   %scicos_solver=100
 end
 

@@ -38,11 +38,10 @@ olddir=pwd();
     cd(dirName);
     
     
-    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // 2. Fix bug in  sci_pwd, for pwd
     // =========================================================================
     
     if ~(length(pwd()) > 0) then pause, end
-    if ~(length(getcwd()) > 0) then pause, end
     
     
     // 3. test mopen
@@ -173,11 +172,10 @@ olddir=pwd();
     cd(dirName);
     
     
-    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // 2. Fix bug in  sci_pwd, for pwd
     // =========================================================================
     
     if ~(length(pwd()) > 0) then pause, end
-    if ~(length(getcwd()) > 0) then pause, end
     
     
     // 3. test mopen

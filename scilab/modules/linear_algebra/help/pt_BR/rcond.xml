@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>rcond</refname>
 
-    <refpurpose>nÃºmero de condicionamento inverso</refpurpose>
+    <refpurpose>número de condicionamento inverso</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>rcond(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,21 +48,21 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>rcond(X)</literal> Ã© uma estimativa para a recÃ­proca da
-    condiÃ§Ã£o de <literal>X</literal> na norma-1.</para>
+    <para><literal>rcond(X)</literal> é uma estimativa para a recíproca da
+    condição de <literal>X</literal> na norma-1.</para>
 
-    <para>Se <literal>X</literal> Ã© bem condicionada,
-    <literal>rcond(X)</literal> Ã© prÃ³ximo a 1. SenÃ£o,
-    <literal>rcond(X)</literal> Ã© prÃ³ximo a 0.</para>
+    <para>Se <literal>X</literal> é bem condicionada,
+    <literal>rcond(X)</literal> é próximo a 1. Senão,
+    <literal>rcond(X)</literal> é próximo a 0.</para>
 
     <para><literal>[r,z]=rcond(X)</literal> ajusta <literal>r</literal> a
     <literal>rcond(X)</literal> e retorna <literal>z</literal> tal que
     <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal></para>
 
-    <para>Portanto, se <literal>rcond</literal> Ã© pequeno,
-    <literal>z</literal> Ã© um vetor do nÃºcleo.</para>
+    <para>Portanto, se <literal>rcond</literal> é pequeno,
+    <literal>z</literal> é um vetor do núcleo.</para>
   </refsection>
 
   <refsection>
@@ -79,7 +79,7 @@ rcond(A)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="svd">svd</link></member>

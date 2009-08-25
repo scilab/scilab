@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="interp3d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>interp3d</refname>
 
-    <refpurpose>fun√ß√£o de avalia√ß√£o spline 3d</refpurpose>
+    <refpurpose>funÁ„o de avaliaÁ„o spline 3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -47,7 +47,7 @@
         <term>out_mode</term>
 
         <listitem>
-          <para>(opcional) string definindo a avalia√ß√£o de
+          <para>(opcional) string definindo a avaliaÁ„o de
           <literal>s</literal> fora do grid
           ([xmin,xmax]x[ymin,ymax]x[zmin,zmax]) </para>
         </listitem>
@@ -58,7 +58,7 @@
 
         <listitem>
           <para>vetor ou matriz de mesmo formato que <literal>xp</literal>,
-          <literal>yp</literal> e <literal>zp</literal>, avalia√ß√£o elemento a
+          <literal>yp</literal> e <literal>zp</literal>, avaliaÁ„o elemento a
           elemento de <literal>s</literal> onesses pontos. </para>
         </listitem>
       </varlistentry>
@@ -69,7 +69,7 @@
         <listitem>
           <para>vetores (ou matrizes) de mesmo formato que
           <literal>xp</literal>, <literal>yp</literal> e
-          <literal>zp</literal>, avalia√ß√£o elemento a elemento das primeiras
+          <literal>zp</literal>, avaliaÁ„o elemento a elemento das primeiras
           derivadas de <literal>s</literal> nesses pontos.</para>
         </listitem>
       </varlistentry>
@@ -77,12 +77,12 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Dada uma tlist <literal>tl</literal> definindo uma fun√ß√£o spline 3d
-    (ver <link linkend="splin3d">splin3d</link>) esta fun√ß√£o avalia
+    <para>Dada uma tlist <literal>tl</literal> definindo uma funÁ„o spline 3d
+    (ver <link linkend="splin3d">splin3d</link>) esta funÁ„o avalia
     <emphasis>s</emphasis> (e <emphasis>ds/dx, ds/dy, ds/dz</emphasis> , se
-    necess√°rio) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :</para>
+    necess·rio) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :</para>
 
     <programlisting>
       zp(i) = s(xp(i),yp(i))   
@@ -91,8 +91,8 @@
       dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
          </programlisting>
 
-    <para>O par√¢metro <literal>out_mode</literal>define a regra de avalia√ß√£o
-    para extrapola√ß√£o, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
+    <para>O par‚metro <literal>out_mode</literal>define a regra de avaliaÁ„o
+    para extrapolaÁ„o, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
     [xmin,xmax]x[ymin,ymax]x[zmin,zmax]</emphasis>:</para>
 
     <variablelist>
@@ -100,7 +100,7 @@
         <term>"by_zero"</term>
 
         <listitem>
-          <para>uma extrapola√ß√£o por zero √© feita </para>
+          <para>uma extrapolaÁ„o por zero È feita </para>
         </listitem>
       </varlistentry>
 
@@ -108,7 +108,7 @@
         <term>"by_nan"</term>
 
         <listitem>
-          <para>extrapola√ß√£o por NaN ("n√£o √© n√∫mero") </para>
+          <para>extrapolaÁ„o por NaN ("n„o È n˙mero") </para>
         </listitem>
       </varlistentry>
 
@@ -116,10 +116,10 @@
         <term>"C0"</term>
 
         <listitem>
-          <para>a extrapola√ß√£o definida como segue :</para>
+          <para>a extrapolaÁ„o definida como segue :</para>
 
           <programlisting>
-    s(x,y) = s(proj(x,y)) onde  proj(x,y) √© o ponto mais pr√≥ximo 
+    s(x,y) = s(proj(x,y)) onde  proj(x,y) È o ponto mais prÛximo 
                            em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
          </programlisting>
         </listitem>
@@ -129,7 +129,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> √© estendido por periodicidade.</para>
+          <para>: <literal>s</literal> È estendido por periodicidade.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -139,13 +139,13 @@
     <title>Exemplos </title>
 
     <programlisting role="example">
-// veja exemplos na p√°gina da fun√ß√£o splin3d
+// veja exemplos na p·gina da funÁ„o splin3d
 
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="splin3d">splin3d</link></member>
@@ -158,7 +158,7 @@
     <title>Autores</title>
 
     <simplelist type="vert">
-      <member>R.F. Boisvert, C. De Boor (c√≥digo da biblioteca FORTRAN CMLIB)
+      <member>R.F. Boisvert, C. De Boor (cÛdigo da biblioteca FORTRAN CMLIB)
       </member>
 
       <member>B. Pincon (interface Scilab)</member>

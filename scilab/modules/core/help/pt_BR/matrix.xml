@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="matrix" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,14 +17,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=matrix(v,n,m)
 y=matrix(v,[sizes])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -62,7 +62,7 @@ y=matrix(v,[sizes])</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Para um vetor ou matriz com <literal>n</literal> x
     <literal>m</literal> entradas, o comando
@@ -71,17 +71,17 @@ y=matrix(v,[sizes])</synopsis>
     <literal>v</literal> em uma matriz <literal>nxm</literal> empilhando as
     entradas coluna a coluna de <literal>v</literal>.</para>
 
-    <para>Se uma das dimens√µes m ou n √© igual a -1, ela √© automaticamente
-    atribu√≠da ao quociente de tamanho (v,'*') pela outra dimens√£o,</para>
+    <para>Se uma das dimensıes m ou n È igual a -1, ela È automaticamente
+    atribuÌda ao quociente de tamanho (v,'*') pela outra dimens„o,</para>
 
     <para>Para uma hipermatriz tal como
     <literal>prod(size(v))==prod(sizes)</literal>, o comando
     <literal>y=matrix(v,sizes)</literal> (ou equivalentemente
     <literal>y=matrix(v,n1,n2,...nm)</literal>) transforma
     <literal>v</literal> em uma matriz ou hipermatriz empilhando "coluna a
-    coluna" as entradas de <literal>v</literal> (a primeira dimens√£o variando
+    coluna" as entradas de <literal>v</literal> (a primeira dimens„o variando
     primeiro). <literal>y=matrix(v,sizes)</literal> resulta numa matriz
-    regular se os tamanhos s√£o escalares ou um vetor de duas entradas.</para>
+    regular se os tamanhos s„o escalares ou um vetor de duas entradas.</para>
   </refsection>
 
   <refsection>
@@ -98,7 +98,7 @@ matrix(a,3,2)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m</title>
+    <title> Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="matrices">matrices</link></member>

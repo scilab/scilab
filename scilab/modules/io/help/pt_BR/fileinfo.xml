@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fileinfo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fileinfo</refname>
+
+    <refpurpose>Fornece informa&#231;&#245;es sobre um arquivo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seq&#252;&#234;ncia de Chamamento</title>
+
+    <synopsis>[x,ierr]=fileinfo(file)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Par&#226;metros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file</term>
+
+        <listitem>
+          <para>string, o endere&#231;o do arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>um vetor de inteiros de tamanho 13 contendo
+          informa&#231;&#245;es ou uma matriz vazia se o arquivo n&#227;o
+          existir.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ierr</term>
+
+        <listitem>
+          <para>indicador de erro, 0, se n&#227;o for encontrado nenhum
+          erro.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descri&#231;&#227;o</title>
+
+    <para>x=fileinfo(file) retorna</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>x(1)</term>
+
+        <listitem>
+          <para>O tamanho do arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(2)</term>
+
+        <listitem>
+          <para>O modo do arquivo (valor decimal)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(3)</term>
+
+        <listitem>
+          <para>O id do usu&#225;rio</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(4)</term>
+
+        <listitem>
+          <para>O id do grupo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(5)</term>
+
+        <listitem>
+          <para>O n&#250;mero do dispositivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(6)</term>
+
+        <listitem>
+          <para>A data da &#250;ltima modifica&#231;&#227;o</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(7)</term>
+
+        <listitem>
+          <para>A data da &#250;ltima mudan&#231;a</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(8)</term>
+
+        <listitem>
+          <para>A data do &#250;ltimo acesso</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(9)</term>
+
+        <listitem>
+          <para>O tipo de dispositivo (se o dispositivo for inode)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(10)</term>
+
+        <listitem>
+          <para>O tamanho de bloco para a entrada/sa&#237;da do sismtema de
+          arquivos (sempre 0 no Windows)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(11)</term>
+
+        <listitem>
+          <para>O n&#250;mero de blocos alocados (sempre 0 no Windows)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(12)</term>
+
+        <listitem>
+          <para>O inode</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(13)</term>
+
+        <listitem>
+          <para>O n&#250;mero de hard links.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Refer&#234;ncia</title>
+
+    <para>Esta fun&#231;&#227;o &#233; uma interface para a fun&#231;&#227;o C
+    stat.</para>
+
+    <para>Permiss&#245;es s&#227;o tipicamente especificadas como n&#250;meros
+    octais : dec2oct(x(2)) para convers&#227;o.</para>
+
+    <para>O modo num&#233;rico possui de um a quatro d&#237;gitos octais
+    (0-7), derivados atrav&#233;s da soma de bits com os valores 4, 2, e 1.
+    Quaisquer d&#237;gitos omitidos s&#227;o supostos como zeros &#224;
+    esquerda. O primeiro d&#237;gito seleciona o ID de usu&#225;rio (4) e
+    ajusta o ID do grupo (2) e atributos "sticky" (1). O segundo d&#237;gito
+    seleciona permiss&#245;es para o usu&#225;rio que possui o arquivo:
+    leitura (4), escrita (2), e execu&#231;&#227;o (1); o terceiro d&#237;gito
+    seleciona permiss&#245;es para os outros usu&#225;rios no grupo do
+    arquivo, com os mesmos valores; e o quarto seleciona permiss&#245;es para
+    outros usu&#225;rios que n&#227;o est&#227;o no grupo do arquivo, com os
+    mesmos valores.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+w = fileinfo(SCI+'/etc/scilab.start')
+// permiss&#227;o do arquivo
+dec2oct(w(2))
+// data do arquivo
+getdate(w(6))
+
+// Verificando a permiss&#227;o de escrita em um arquivo
+w = fileinfo(SCI+'/etc/scilab.start')
+
+S_IWRITE = 128; // mascarando a permiss&#227;o de escrita
+S_IEXEC = 64; // mascarando a permiss&#227;o de execu&#231;&#227;o
+S_IREAD = 256; // mascarando a permiss&#227;o de leitura
+S_IFCHR = 8192; // mascarando a permiss&#227;o de diret&#243;rio
+
+if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
+ disp('PERIMISS&#195;O DE ESCRITA neste arquivo.');
+else
+ disp('N&#195;O H&#193; PERIMISS&#195;O DE ESCRITA neste arquivo.');
+end
+
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Tamb&#233;m</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getdate">getdate</link></member>
+
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="dispfiles">dispfiles</link></member>
+
+      <member><link linkend="newest">newest</link></member>
+
+      <member><link linkend="isdir">isdir</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>S. Steer INRIA</para>
+
+    <para>A.C</para>
+  </refsection>
+</refentry>

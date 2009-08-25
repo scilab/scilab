@@ -74,12 +74,8 @@ end
 // mfiles is a vector which contains the names (and the paths) of files to translate
 mfiles=[]
 for k=1:size(Paths,'*')
-  path=Paths(k)
-  if MSDOS then 
-    mfiles=[mfiles;path + unix_g('dir /b '+ """" + path + """" + '*.m')]
-  else
-    mfiles=[mfiles;unix_g('ls '+ """" + path + """" + '*.m')]
-  end
+  path = Paths(k);
+  mfiles = [mfiles; ls('*.m')];
 end
 
 // fnamvect is a vector which contains all M-files names (just the names) found in Paths

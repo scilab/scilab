@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'√©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'Èventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="csc" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -21,13 +21,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y = csc(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -42,7 +42,7 @@
         <term>y</term>
 
         <listitem>
-          <para>array de reais ou complexos com as mesmas dimens√µes que
+          <para>array de reais ou complexos com as mesmas dimensıes que
           <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
@@ -52,9 +52,9 @@
   <refsection>
     <title>Description</title>
 
-    <para>Computa a cossecante do argumento elemento a elemento. A fun√ß√£o
-    cossecante √© uma fun√ß√£o peri√≥dica definida como 1/sin. Para dados reais,
-    os resultados s√£o reais em <literal>]-%inf -1] U [1
+    <para>Computa a cossecante do argumento elemento a elemento. A funÁ„o
+    cossecante È uma funÁ„o periÛdica definida como 1/sin. Para dados reais,
+    os resultados s„o reais em <literal>]-%inf -1] U [1
     %inf[</literal>.</para>
   </refsection>
 
@@ -68,7 +68,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="sec">sec</link></member>

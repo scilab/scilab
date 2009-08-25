@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="stringbox" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>stringbox</refname>
+
+    <refpurpose>Computa o retângulo de fronteira de um texto ou
+    rótulo.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rect = stringbox( string, x, y, [angle, [fontStyle, [fontSize]]] )
+rect = stringbox( Handle )</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>uma matriz 2x4 contendo as quatro coordenadas dos vértices do
+          retângulo de fronteira. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string</term>
+
+        <listitem>
+          <para>matriz de strings a ser encerrada </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>escalares reais, coordenadas do ponto inferior esquerdo dos
+          strings. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>angle</term>
+
+        <listitem>
+          <para>ângulo de rotação dos strings em sentido horário e em graus ao
+          redor do ponto <literal>(x,y)</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fonStyle</term>
+
+        <listitem>
+          <para>inteiro especificando o tipo da fonte. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fontSize</term>
+
+        <listitem>
+          <para>inteiro especificando o tamanho da fonte. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Handle</term>
+
+        <listitem>
+          <para>um manipulador gráfico do tipo Text ou Label.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>stringbox</literal> retorna os vértices de um retângulo de
+    fronteira de um texto ou rótulo ou um string que será exibido de certo
+    modo. As coordenadas são dadas com a escala gráfica corrente. O primeiro
+    vértice corresponde às coordenadas do texto <literal>(x,y)</literal>,
+    ponto superior esquerdo sem rotação, os vértices seguintes são dados em
+    sentido horário na matriz resultante.</para>
+
+    <para>O resultado pode ser impreciso com um driver Postscript.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">// exibindo eixos
+axes = gca() ;
+axes.axes_visible = 'on' ;
+axes.data_bounds = [ 1, 1 ; 10, 10 ] ;
+
+// exibindo rótulos para eixos
+xtitle( 'stringbox', 'X', 'Y' )  ;
+
+// obtendo a caixa de fronteixa do rótulo X
+stringbox( axes.x_label )
+
+// imprimindo um string
+str = [ "Scilab", "não" , "é", "Skylab" ] ;
+xstring( 4, 9, str ) ;
+
+//modificando o texto
+e = gce() ;
+e.font_angle = 90 ;
+e.font_size    = 6  ;
+e.font_style   = 7 ;
+e.box = 'on' ;
+
+// obtendo sua caixa de fronteira
+stringbox( e )
+// ou
+rect = stringbox( str, 4, 9, 90, 7, 6 )
+
+// clicando e descobrindo se o texto foi acertado
+hit = xclick()  ;
+hit = hit( 2 : 3 ) ;
+
+if hit(1) &gt;= rect(1,1)  &amp; hit(1) &lt;=  rect(1,2) &amp; hit(2) &lt;= rect(2,2) &amp; hit(2) &gt;= rect(2,3) then
+  disp('Você acertou o texto.') ;
+else
+  disp('Você errou.')
+end;
+
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xstring">xstring</link></member>
+
+      <member><link linkend="xstringl">xstringl</link></member>
+
+      <member><link linkend="xstringb">xstringb</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

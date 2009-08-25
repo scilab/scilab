@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="funcprot" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,48 +13,48 @@
   <refnamediv>
     <refname>funcprot</refname>
 
-    <refpurpose>alterna o modo de prote√ß√£o de fun√ß√µes Scilab</refpurpose>
+    <refpurpose>alterna o modo de proteÁ„o de funÁıes Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>prot=funcprot()
 funcprot(prot)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>prot</term>
 
         <listitem>
-          <para>inteiro com valores poss√≠veis 0,1 ou 2</para>
+          <para>inteiro com valores possÌveis 0,1 ou 2</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Fun√ß√µes Scilab s√£o vari√°veis, funcprot permite especificar o que o
-    Scilab faz quando tais vari√°veis s√£o redefinidas.</para>
+    <para>FunÁıes Scilab s„o vari·veis, funcprot permite especificar o que o
+    Scilab faz quando tais vari·veis s„o redefinidas.</para>
 
     <itemizedlist>
       <listitem>
-        <para>Se prot==0 nada especial √© feito</para>
+        <para>Se prot==0 nada especial È feito</para>
       </listitem>
 
       <listitem>
-        <para>Se prot==1 o scilab exibe uma mensagem de aviso quando a fun√ß√£o
-        √© redefinida (modo padr√£o)</para>
+        <para>Se prot==1 o scilab exibe uma mensagem de aviso quando a funÁ„o
+        È redefinida (modo padr„o)</para>
       </listitem>
 
       <listitem>
-        <para>Se prot==2 o scilab exibe uma mensagem de erro quando a fun√ß√£o √©
+        <para>Se prot==2 o scilab exibe uma mensagem de erro quando a funÁ„o È
         redefinida</para>
       </listitem>
     </itemizedlist>

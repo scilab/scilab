@@ -41,8 +41,7 @@ function Copy_()
     Select=[];
   else
     //** no object
-    message(['No block is selected';
-	     'click on a block or select a region first.'])
+    messagebox(['No block is selected';'click on a block or select a region first.'],'modal')
     Cmenu=[]; %pt=[]; %ppt=[]
   end
 endfunction

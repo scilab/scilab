@@ -39,7 +39,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
     K   = Select(:,1)';
     %pt = [] ;
     if size(K,'*')>1 | %win<>Select(1,2) then
-      message("Only one block can be selected in current window for this operation.")
+      messagebox("Only one block can be selected in current window for this operation.",'modal')
       Cmenu=[]; %pt=[]; return ; //** ---> EXIT
     end
   end
@@ -102,7 +102,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
 
     else
     //** nor Block nor Link
-      message("Resize is allowed only for Blocks or Links.")
+      messagebox("Resize is allowed only for Blocks or Links.",'modal')
     end
 
   else

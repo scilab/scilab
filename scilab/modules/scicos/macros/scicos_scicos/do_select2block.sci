@@ -46,8 +46,8 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
 		    'CLKOUT_f'
                     'INIMPL_f'
 		    'OUTIMPL_f']) then
-	message('Input/Output ports are not allowed in the region.')
 
+	messagebox('Input/Output ports are not allowed in the region.','error','modal')
 	return ; //** Exit point !
       end //** check block type 
       

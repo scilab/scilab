@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("fibonacci.dem.sce");
-scicos_demostration(thispath+"/Fibonacci.cosf");
+scicos_demonstration(thispath+"/Fibonacci.cosf");
 clear thispath;

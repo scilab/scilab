@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,14 +28,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>H = hess(A)
 [U,H] = hess(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,29 +58,29 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz quadrada ortogonal ou unitÃ¡ria</para>
+          <para>matriz quadrada ortogonal ou unitária</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>[U,H] = hess(A)</literal> produz uma matriz unitÃ¡ria
+    <para><literal>[U,H] = hess(A)</literal> produz uma matriz unitária
     <literal>U</literal> e uma matriz de Hessenberg <literal>H</literal> tais
     que <literal>A = U*H*U'</literal> e <literal>U'*U</literal> = Identidade.
-    Por si sÃ³, <literal>hess(A) </literal>retorna <literal>H</literal>.</para>
+    Por si só, <literal>hess(A) </literal>retorna <literal>H</literal>.</para>
 
-    <para>A forma de Hessenberg de uma matriz Ã© zero abaixo da primeira
-    subdiagonal. Se a matriz Ã© simetrica ou Hermitiana, a forma Ã©
+    <para>A forma de Hessenberg de uma matriz é zero abaixo da primeira
+    subdiagonal. Se a matriz é simetrica ou Hermitiana, a forma é
     tridiagonal.</para>
   </refsection>
 
   <refsection>
-    <title>ReferÃªncias</title>
+    <title>Referências</title>
 
-    <para>A funÃ§Ã£o hess Ã© baseada nas rotinas Lapack DGEHRD, DORGHR para
+    <para>A função hess é baseada nas rotinas Lapack DGEHRD, DORGHR para
     matrizes de e ZGEHRD, ZORGHR para matrizes de complexos.</para>
   </refsection>
 
@@ -96,7 +96,7 @@ and( abs(U*H*U'-A)&lt;1.d-10 )
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="qr">qr</link></member>

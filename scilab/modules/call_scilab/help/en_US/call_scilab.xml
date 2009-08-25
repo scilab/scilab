@@ -22,10 +22,10 @@
   </info>
 
   <refnamediv>
-
     <refname>call_scilab</refname>
 
-    <refpurpose>call_scilab is an interface which provides the ability to call Scilab engine from C/C++ code</refpurpose>
+    <refpurpose>call_scilab is an interface which provides the ability to call
+    Scilab engine from C/C++ code</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -34,22 +34,24 @@
     <para>Scilab offers the possibility to be called from a native (C/C++)
     application.</para>
 
-    <para>Thanks to this module, it is possible to call Scilab from C/C++
-	in order to interface Scilab's features from an other code/application
-	or to be able to interface Scilab's features from an other language.</para>
+    <para>Thanks to this module, it is possible to call Scilab from C/C++ in
+    order to interface Scilab's features from an other code/application or to
+    be able to interface Scilab's features from an other language.</para>
 
-	<para>It is also possible to read and write the most important Scilab's datastructures thanks to this module</para>	
+    <para>It is also possible to read and write the most important Scilab's
+    datastructures thanks to this module</para>
 
     <para>This help describes the features of the call_scilab API.</para>
 
-	<para>Note that the <link linkend="javasci">javasci</link> module is based on call_scilab.</para>	
-
+    <para>Note that the <link linkend="javasci">javasci</link> module is based
+    on call_scilab.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple call_scilab example 
+    <programlisting role="example"><![CDATA[
+// A simple call_scilab example 
 
 #include &lt;stdio.h&gt; /* stderr */
 
@@ -62,46 +64,47 @@ int main(void)
 {
 /****** INITIALIZATION **********/
 #ifdef _MSC_VER
-	if ( StartScilab(NULL,NULL,NULL) == FALSE )
+ if ( StartScilab(NULL,NULL,NULL) == FALSE )
 #else
-	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
+ if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
 #endif
-		{
-			fprintf(stderr,"Error while calling StartScilab\n");
-			return -1;
-		}
+  {
+   fprintf(stderr,"Error while calling StartScilab\n");
+   return -1;
+  }
 
 /****** ACTUAL Scilab TASKS *******/
 
-	SendScilabJob("myMatrix=['sample','for the help']");
-	SendScilabJob("disp(myMatrix);"); // Will display !sample  for the help  !
-	SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.  
+ SendScilabJob("myMatrix=['sample','for the help']");
+ SendScilabJob("disp(myMatrix);"); // Will display !sample  for the help  !
+ SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.  
 
 /****** TERMINATION **********/
-	if ( TerminateScilab(NULL) == FALSE ) {
-		fprintf(stderr,"Error while calling TerminateScilab\n");
-		return -2;
-	}
-	return 0;
+ if ( TerminateScilab(NULL) == FALSE ) {
+  fprintf(stderr,"Error while calling TerminateScilab\n");
+  return -2;
+ }
+ return 0;
 }
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>, 
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link>
-</member>
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link>, <link linkend="MatrixManagement_callscilab">Matrix
+      Management</link>, <link linkend="BooleanManagement_callscilab">Boolean
+      Management</link>, <link linkend="ComplexManagement_callscilab">Complex
+      Management</link>, <link linkend="StringManagement_callscilab">String
+      Management</link></member>
     </simplelist>
   </refsection>
 
   <refsection>
     <title>Authors</title>
+
     <para>Sylvestre Ledru</para>
   </refsection>
 </refentry>

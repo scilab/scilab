@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2009 - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,47 +13,30 @@
 #ifndef __HASHTABLE_CORE_H__
 #define __HASHTABLE_CORE_H__
 /*--------------------------------------------------------------------------*/
-#include "stack-def.h"
-#include "existfunction.h"
-/*--------------------------------------------------------------------------*/
-#ifdef FAILED
-	#undef FAILED
-#endif
-#define FAILED 0
-#define OK 1
-#define MAXLENGHTFUNCTIONNAME 256 /* 24 in fact in scilab */
-/*--------------------------------------------------------------------------*/
-typedef struct entry 
-{
-	int key[nsiz];
-	int data;
-	char namefunction[MAXLENGHTFUNCTIONNAME];
-} ENTRY;
-/*--------------------------------------------------------------------------*/
-typedef struct 
-{ 
-	unsigned int   used;
-	ENTRY entry;
-} _ENTRY;
+#include "addinter.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 typedef enum 
 {
-	SCI_HFUNCTIONS_FIND = 1,SCI_HFUNCTIONS_BACKSEARCH = 2, SCI_HFUNCTIONS_ENTER = 3,SCI_HFUNCTIONS_DELETE = 4
+	SCI_HFUNCTIONS_FIND = 1,
+	SCI_HFUNCTIONS_BACKSEARCH = 2,
+	SCI_HFUNCTIONS_ENTER = 3,
+	SCI_HFUNCTIONS_DELETE = 4
 } SCI_HFUNCTIONS_ACTION;
 /*--------------------------------------------------------------------------*/
-/* maximum number of entries in the htable 
- * in fact create_hashtable_scilab_functions used a 
- * prime > MAXELEMENTFUNCTIONLIST 
- * WARNING : MAXELEMENTFUNCTIONLIST must be chosen > 2* the number of scilab
- * functions 
- * for good efficiency of the hash code */
-#define MAXELEMENTFUNCTIONLIST 1536
+/**
+ * scilab 5.2 can manage 550000 primitives (max) MAXELEMENTFUNCTIONLIST
+ * initialized to DEFAULT_ELEMENTFUNCTIONLIST (800) by default
+ * dynamic reallocation when we add a function if it is necessary
+ */
+#define MAXELEMENTFUNCTIONLIST (DynInterfStart + MAXDYNINTERF) * NumberMaxFunctionsByGateway
+#define DEFAULT_ELEMENTFUNCTIONLIST 800
 /*--------------------------------------------------------------------------*/
 /** 
  * Create the hashtable of Scilab functions
- * @param nel TODO
+ * @return TRUE or FALSE
  */
-int	create_hashtable_scilab_functions(unsigned int nel);
+BOOL create_hashtable_scilab_functions(void);
 
 /** 
  * Destroy the hashtable of Scilab functions
@@ -61,13 +45,13 @@ void destroy_hashtable_scilab_functions(void);
 
 /** 
  * Perform an action on the hashtable of Scilab functions
- * @param key 
- * @param name
- * @param data
- * @param action SCI_HFUNCTIONS_ACTION 
- * @return result of the operation
+ * @param[in,out] key hash key
+ * @param[in,out] name function name
+ * @param[in,out] scilab_funptr coded by GATEWAY_ID * 1000 + PRIMITIVE_ID
+ * @param[in] action SCI_HFUNCTIONS_ACTION 
+ * @return TRUE or FALSE
  */
-int action_hashtable_scilab_functions(int *key,char *name, int *data, SCI_HFUNCTIONS_ACTION action);
+BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, SCI_HFUNCTIONS_ACTION action);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __HASHTABLE_CORE_H__ */

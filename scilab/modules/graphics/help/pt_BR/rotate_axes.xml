@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rotate_axes" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-09 10:14:07 +0200 (mer., 09 avr. 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rotate_axes</refname>
+
+    <refpurpose>Rotação interativa de um manipulador Axes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rotate_axes()
+rotate_axes(h)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>manipulador Axes ou Figure. Especifica sobre qual eixo se
+          efetuará a rotação.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>rotate_axes</literal> é utilizado para realizar uma rotação
+    interativa sobre um objeto Axes. Quando a função é chamada, pede-se ao
+    usuário que clique duas vezes na janela gráfica. O primeiro clique
+    inicializa uma rotação e o segundo termina.</para>
+
+    <para>Se um manipulador Axes for especificado como argumento de entrada, a
+    rotação será aplicada sobre ele. Se um manipulador Figure for
+    especificado, o primeiro clique determina qual objeto Axes rotacionar. Se
+    a função for chamada sem argumento, a rotação se aplicará sobre a Figura
+    corrente.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+      clf();
+      // criando dois pares de eixos em uma figura
+      subplot(2, 1, 1);
+      plot2d;
+      subplot(2, 1, 2);
+      plot3d;
+
+      // girando apenas o segundo
+      axes2 = gca();
+      rotate_axes(axes2);
+
+      // girando o selecionado
+      rotate_axes();
+      // ou
+      rotate_axes(gcf());
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="zoom_rect">zoom_rect</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="impl" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>impl</refname>
+
+    <refpurpose>equações diferenciais algébricas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0,ydot0</term>
+
+        <listitem>
+          <para>vetor de reais ou matriz (condições iniciais)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>escalar real (tempo inicial).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>vetor de reais (tempos nos quais a solução é
+          computada).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res,adda</term>
+
+        <listitem>
+          <para>funções externas (função, strting ou lista).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>string <literal>'adams'</literal> ou
+          <literal>'stiff'</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol,rtol</term>
+
+        <listitem>
+          <para>escalar real ou vetor de reais com as mesmas dimensões que
+          <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>função externa (função, string ou lista).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Solução da equação diferencial linear implicita</para>
+
+    <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
+
+    <para><literal>t0</literal> é o instante inicial, <literal>y0</literal> é
+    o vetor de condições iniciais. O vetor <literal>ydot0</literal> da
+    derivada em relação ao tempo <literal>y</literal> em <literal>t0</literal>
+    também deve ser dado. A entrada <literal>res</literal> é uma função
+    externa i.e. uma função com sintaxe especificada, ou o nome da subrotina
+    FORTRAN ou da função C (string) com seqüência de chamamento especificada,
+    ou uma lista.</para>
+
+    <para>Se <literal>res</literal> for uma função, a sintaxe deve ser como
+    segue:</para>
+
+    <programlisting>
+
+r = res(t,y,ydot)
+   
+    </programlisting>
+
+    <para>onde <literal>t</literal> é um escalar real (tempo) e
+    <literal>y</literal> e <literal>ydot</literal> são vetores de reais
+    (estado e derivada do estado). Esta função deve retornar
+    <literal>r=g(t,y)-A(t,y)*ydot</literal>.</para>
+
+    <para>Se <literal>res</literal> for um string, ele se refere a uma
+    subrotina FORTRAN ou uma função C. Ver
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    exemplo.</para>
+
+    <para><literal>res</literal> também pode ser uma lista, ver a ajuda de
+    <literal>ode</literal>.</para>
+
+    <para>A entrada <literal>adda</literal> também é uma função externa</para>
+
+    <para>Se <literal>adda</literal> for uma função, a sintaxe deve ser como
+    segue:</para>
+
+    <programlisting>
+
+r = adda(t,y,p)
+   
+    </programlisting>
+
+    <para>e deve retornar <literal>r=A(t,y)+p</literal> onde
+    <literal>p</literal> é uma matriz a ser adicionada a
+    <literal>A(t,y)</literal>.</para>
+
+    <para>Se <literal>adda</literal> for um string, ele se refere a uma
+    subrotina FORTRAN ou uma função C. Ver
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    exemplo.</para>
+
+    <para><literal>adda</literal> também pode ser uma lista, ver a ajuda de
+    <literal>ode</literal>.</para>
+
+    <para>A entrada <literal>jac</literal> também é uma função externa</para>
+
+    <para>Se <literal>jac</literal> for uma função, a sintaxe deve ser como
+    segue:</para>
+
+    <programlisting>
+
+j = jac(t,y,ydot)
+   
+    </programlisting>
+
+    <para>e deve retornar o Jacobiano de
+    <literal>r=g(t,y)-A(t,y)*ydot</literal> em relação a
+    <literal>y</literal>.</para>
+
+    <para>Se <literal>jac</literal> for um string, ele se refere a uma
+    subrotina FORTRAN ou uma função C. Ver
+    <literal>SCIDIR/routines/default/Ex-impl.f</literal> para um
+    exemplo.</para>
+
+    <para><literal>jac</literal> também pode ser uma lista, ver a ajuda de
+    <literal>ode</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+// utilizando reinicialização rápida 
+//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+// inicialização rápida da chamada anterior 
+//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//maxi(abs(x1-x))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

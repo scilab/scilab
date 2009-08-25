@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="plus" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,26 +13,26 @@
   <refnamediv>
     <refname>plus</refname>
 
-    <refpurpose>(+) operador de adiÃ§Ã£o</refpurpose>
+    <refpurpose>(+) operador de adição</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento </title>
+    <title>Seqüência de Chamamento </title>
 
     <synopsis>X+Y
 str1+str2</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X,Y</term>
 
         <listitem>
-          <para>escalar, vetor ou matriz de nÃºmeros, polinÃ´mios ou razÃµes de
-          polinÃ´mios. TambÃ©m pode ser uma lista
+          <para>escalar, vetor ou matriz de números, polinômios ou razões de
+          polinômios. Também pode ser uma lista
           <literal>syslin</literal></para>
         </listitem>
       </varlistentry>
@@ -48,25 +48,25 @@ str1+str2</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>AdiÃ§Ã£o.</para>
+    <para>Adição.</para>
 
-    <para>Para operandos numÃ©ricos, Ã© a adiÃ§Ã£o em sentido usual. Se um dos
-    operandos Ã© uma matriz e o outro um escalar, o escalar Ã© adicionado a cada
-    uma das entradas da matriz. Se um dos operandos Ã© a matriz vazia, um o
-    outro operando Ã© retornado (este comportamento padrÃ£o pode ser modificado
-    pela funÃ§Ã£o <literal>mtlb_mode</literal>).</para>
+    <para>Para operandos numéricos, é a adição em sentido usual. Se um dos
+    operandos é uma matriz e o outro um escalar, o escalar é adicionado a cada
+    uma das entradas da matriz. Se um dos operandos é a matriz vazia, um o
+    outro operando é retornado (este comportamento padrão pode ser modificado
+    pela função <literal>mtlb_mode</literal>).</para>
 
-    <para>Para strings ' + ' significa concatenaÃ§Ã£o.</para>
+    <para>Para strings ' + ' significa concatenação.</para>
 
-    <para>A adiÃ§Ã£o tambÃ©m pode ser definida para outros tipos de dados atravÃ©s
-    de operaÃ§Ãµes "soft-coded" ("codificaÃ§Ã£o suave") (ver
+    <para>A adição também pode ser definida para outros tipos de dados através
+    de operações "soft-coded" ("codificação suave") (ver
     <literal>overloading</literal>).</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <programlisting role="example">
 

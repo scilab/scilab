@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("demo_flipflop.dem.sce");
-scicos_demostration(thispath+"/demo_flipflop.cos");
+scicos_demonstration(thispath+"/demo_flipflop.cos");
 clear thispath;

@@ -27,7 +27,7 @@ graphics=o.graphics;
 XX = o;
 [params,param_types]=FindSBParams(model.rpar,[])
 if params<>[] then
-  message('The parameter ""'+params+'"" must be defined in the context of the atomic super block.')
+  messagebox('The parameter ""'+params+'"" must be defined in the context of the atomic super block.',"modal")
   return;
 end
 ALL=%f;
@@ -37,7 +37,7 @@ xx=CodeGeneration_;
 if ~ok then return; end
 
 if freof <> [] then 
-  message('An Atomic Superblock cannot contain sample clocks')
+  messagebox('An Atomic Superblock cannot contain sample clocks','modal')
   return
 end
 

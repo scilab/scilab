@@ -16,6 +16,7 @@
 // if name is a full path just extract the filename 
 
 function gateway_filename = ilib_gen_gateway(name,tables)
+
   gateway_filename = '';
   k = strindex(name,['/','\']);
   if k~=[] then
@@ -61,18 +62,18 @@ function gateway_filename = ilib_gen_gateway(name,tables)
     [gate,names] = new_names(table); 
     t = [ '#include <mex.h> ';
           '#include <sci_gateway.h>';
-	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
-	        'extern Gatefunc ' + names(:) + ';';
-	        'static GenericTable Tab[]={';
-	        '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
-	        '};'
-	        ' '
-	        'int C2F('+tname+')()'
-	        '{'
-	        '  Rhs = Max(0, Rhs);'
-	        '  (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);'
-	        '  return 0;'
-	        '}'];
+          'static int direct_gateway(char *fname,void F(void)) { F();return 0;};';
+          'extern Gatefunc ' + names(:) + ';';
+          'static GenericTable Tab[]={';
+          '  {'+ gate(:)+','+ names(:)+',""'+table(:,1)+'""},';
+          '};';
+          ' ';
+          'int C2F(' + tname + ')()';
+          '{';
+          '  Rhs = Max(0, Rhs);';
+          '  if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f))(Tab[Fin-1].name,Tab[Fin-1].F);';
+          '  return 0;';
+          '}'];
 
 	  gateway_filename = path + tname + '.c';
     // first chek if we already have a gateway 
@@ -117,11 +118,27 @@ function [gate,names] = new_names(table)
      case 'Fmex' then 
        gate(i) = "(Myinterfun)fortran_mex_gateway" ;
        names(i) = "C2F(mex" + table(i,2) + ")" ;
-     case 'csci'  then 
-       gate(i) = "(Myinterfun)sci_gateway" ;
+     case 'csci'  then
+       if isdef('WITHOUT_AUTO_PUTLHSVAR') then
+         if (WITHOUT_AUTO_PUTLHSVAR == %T) then
+           gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
+         else
+           gate(i) = "(Myinterfun)sci_gateway" ;
+         end
+       else
+         gate(i) = "(Myinterfun)sci_gateway" ;
+       end
        names(i) = table(i,2) ;
      case 'fsci'  then 
-       gate(i) = "(Myinterfun)sci_gateway" ;
+       if isdef('WITHOUT_AUTO_PUTLHSVAR') then
+         if (WITHOUT_AUTO_PUTLHSVAR == %T) then
+           gate(i) = "(Myinterfun)sci_gateway_without_putlhsvar" ;
+         else
+           gate(i) = "(Myinterfun)sci_gateway" ;
+         end
+       else
+         gate(i) = "(Myinterfun)sci_gateway" ;
+       end
        names(i) = "C2F(" + table(i,2) + ")" ;
      case 'direct'  then 
        gate(i) = "(Myinterfun)direct_gateway" ;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,20 +24,20 @@
   <refnamediv>
     <refname>mulf</refname>
 
-    <refpurpose>multiplicaÃ§Ã£o simbÃ³lica</refpurpose>
+    <refpurpose>multiplicação simbólica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>mulf('d','c')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Retorna o string <literal>'c*d'</literal> SimplificaÃ§Ãµes triviais
-    tais como <literal>'1*c' = 'c'</literal> sÃ£o realizadas.</para>
+    <para>Retorna o string <literal>'c*d'</literal> Simplificações triviais
+    tais como <literal>'1*c' = 'c'</literal> são realizadas.</para>
   </refsection>
 
   <refsection>
@@ -53,7 +53,7 @@ mulf('0','a')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="rdivf">rdivf</link></member>

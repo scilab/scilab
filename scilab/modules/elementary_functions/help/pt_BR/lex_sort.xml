@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>lex_sort</refname>
 
-    <refpurpose>ordenaÃ§Ã£o lexicogrÃ¡fica de linhas de uma matriz</refpurpose>
+    <refpurpose>ordenação lexicográfica de linhas de uma matriz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
 </synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -65,20 +65,20 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>A funÃ§Ã£o <literal>lex_sort</literal> estÃ¡ obsoleta gora. Ela pode
-    ser substituÃ­da pelas funÃ§Ãµes <link linkend="gsort">gsort</link> e <link
+    <para>A função <literal>lex_sort</literal> está obsoleta gora. Ela pode
+    ser substituída pelas funções <link linkend="gsort">gsort</link> e <link
     linkend="unique">unique</link>.</para>
 
     <para><literal>N=lex_sort(M)</literal> ordena as linhas (como um grupo) da
     matriz <literal>M</literal> em ordem ascendente. Se requerido, o argumento
-    de saÃ­da <literal>k</literal> contÃ©m a ordem:
+    de saída <literal>k</literal> contém a ordem:
     <literal>[N,k]=lex_sort(M)</literal> retorna <literal>k</literal> tal que
-    <literal>N</literal> Ã© igual a <literal>M(k,:)</literal> .</para>
+    <literal>N</literal> é igual a <literal>M(k,:)</literal> .</para>
 
     <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produz o mesmo
-    resultado que a seguinte seqÃ¼Ãªncia de instruÃ§Ãµes:</para>
+    resultado que a seguinte seqüência de instruções:</para>
 
     <programlisting>
 
@@ -88,9 +88,9 @@ N=M(k,:)
     </programlisting>
 
     <para>O flag (indicador) <literal>'unique'</literal> deve ser fornecido
-    caso deseje-se reter apenas linhas Ãºnicas no resultado. Perceba que
-    <literal>lex_sort(M,sel,'unique')</literal> retÃ©m apenas linhas tais que
-    M(:,sel) sÃ£o Ãºnicas.</para>
+    caso deseje-se reter apenas linhas únicas no resultado. Perceba que
+    <literal>lex_sort(M,sel,'unique')</literal> retém apenas linhas tais que
+    M(:,sel) são únicas.</para>
   </refsection>
 
   <refsection>
@@ -109,7 +109,7 @@ lex_sort(M,'unique')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gsort">gsort</link></member>

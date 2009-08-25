@@ -623,6 +623,7 @@ function save_graphichandle(h,fd)
     mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
     mput(h.callback_type,"il",fd); // Callback Type
     mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
+    mput(bool2s(h.checked=="on"),"c",fd); // Checked
     
   case "uicontrol"
     mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // Type

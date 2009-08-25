@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>rankqr</refname>
 
-    <refpurpose>fatora√ß√£o QR com revela√ß√£o do posto</refpurpose>
+    <refpurpose>fatoraÁ„o QR com revelaÁ„o do posto</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,11 +49,11 @@
         <term>RCOND</term>
 
         <listitem>
-          <para> n√∫mero real usado para determinar o posto efetivo de
-          <literal>A</literal>, que √© definido como sendo a ordem da maior
-          submatriz regente triangular <literal>R11</literal> na fatora√ß√£o QR
-          com pivoteamento de <literal>A</literal>, cujo n√∫mero de
-          condicionamento estimado √© &lt; <literal>1/RCOND</literal>.</para>
+          <para> n˙mero real usado para determinar o posto efetivo de
+          <literal>A</literal>, que È definido como sendo a ordem da maior
+          submatriz regente triangular <literal>R11</literal> na fatoraÁ„o QR
+          com pivoteamento de <literal>A</literal>, cujo n˙mero de
+          condicionamento estimado È &lt; <literal>1/RCOND</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -62,12 +62,12 @@
 
         <listitem>
           <para>vetor de inteiros nas entradas, se <literal>JPVT(i)</literal>
-          n√£o √© 0, a <literal>i</literal>-√©simo coluna de <literal>
-          A</literal> √© permtutada para a frente de <literal>AP</literal>,
-          sen√£o, a coluna <literal>i</literal> √© uma coluna livre. Na sa√≠da,
-          se <literal>JPVT(i) = k</literal>, ent√£o a
-          <literal>i</literal>-√©sima coluna de <literal>A*P</literal> era a
-          <literal>k</literal>-√©sima coluna de <literal>A</literal>.</para>
+          n„o È 0, a <literal>i</literal>-Èsimo coluna de <literal>
+          A</literal> È permtutada para a frente de <literal>AP</literal>,
+          sen„o, a coluna <literal>i</literal> È uma coluna livre. Na saÌda,
+          se <literal>JPVT(i) = k</literal>, ent„o a
+          <literal>i</literal>-Èsima coluna de <literal>A*P</literal> era a
+          <literal>k</literal>-Èsima coluna de <literal>A</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -76,8 +76,8 @@
 
         <listitem>
           <para>posto efetivo de <literal>A</literal>, i.e., a ordem da
-          submatriz <literal>R11</literal>. √â o mesmo que a ordem da submatriz
-          <literal>T1</literal> na fatora√ß√£o ortogonal completa de
+          submatriz <literal>R11</literal>. … o mesmo que a ordem da submatriz
+          <literal>T1</literal> na fatoraÁ„o ortogonal completa de
           <literal>A</literal>.</para>
         </listitem>
       </varlistentry>
@@ -89,30 +89,30 @@
           <para>vetor de reais com 3 componentes; as estimativas de alguns dos
           valores singulares do fator triangular <literal>R</literal>.</para>
 
-          <para><literal>SVAL(1)</literal> √© o maior valor singular de
+          <para><literal>SVAL(1)</literal> È o maior valor singular de
           <literal>R(1:RANK,1:RANK)</literal>;</para>
 
-          <para><literal>SVAL(2)</literal> √© o menor valor singular de
+          <para><literal>SVAL(2)</literal> È o menor valor singular de
           <literal>R(1:RANK,1:RANK)</literal>;</para>
 
-          <para><literal>SVAL(3) </literal>√© o menor valor singular de
+          <para><literal>SVAL(3) </literal>È o menor valor singular de
           <literal>R(1:RANK+1,1:RANK+1)</literal>, se <literal>RANK</literal>
           &lt; <literal>MIN(M,N)</literal>, ou de
-          <literal>R(1:RANK,1:RANK)</literal>, caso contr√°rio.</para>
+          <literal>R(1:RANK,1:RANK)</literal>, caso contr·rio.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Computa (opcionalmente) uma fatora√ß√£o QR com revela√ß√£o do posto de
+    <para>Computa (opcionalmente) uma fatoraÁ„o QR com revelaÁ„o do posto de
     uma matriz de reais geral M-por-N, ou de complexos <literal>A</literal>,
     que pode ser deficiente de posto, e estima seu posto efetivo usando
-    estimativa de condi√ß√£o incremental.</para>
+    estimativa de condiÁ„o incremental.</para>
 
-    <para>A rotina usa uma fatora√ß√£o QR com pivoteamento de colunas:</para>
+    <para>A rotina usa uma fatoraÁ„o QR com pivoteamento de colunas:</para>
 
     <programlisting>
 
@@ -122,21 +122,21 @@
     </programlisting>
 
     <para>com <literal>R11</literal> definida como a maior submatriz regente
-    cujo n√∫mero de condi√ß√£o estimado √© menor que <literal>1/RCOND</literal>. A
-    ordem de <literal>R11</literal>, <literal>RANK</literal>, √© o posto
+    cujo n˙mero de condiÁ„o estimado È menor que <literal>1/RCOND</literal>. A
+    ordem de <literal>R11</literal>, <literal>RANK</literal>, È o posto
     efetivo de<literal>A</literal>.</para>
 
-    <para>Se a fatora√ß√£o triangular revela o posto (que ser√° o caso se as
-    colunas regentes forem bem condicionadas), ent√£o
-    <literal>SVAL(1)</literal> tamb√©m ser√° uma estimativa para o maior valor
+    <para>Se a fatoraÁ„o triangular revela o posto (que ser· o caso se as
+    colunas regentes forem bem condicionadas), ent„o
+    <literal>SVAL(1)</literal> tambÈm ser· uma estimativa para o maior valor
     singular de <literal>A</literal>, e <literal>SVAL(2)</literal> e
-    <literal>SVAL(3)</literal> ser√£o estimativas para o
-    <literal>RANK</literal>-√©simo e <literal>(RANK+1)</literal>-√©simo valores
+    <literal>SVAL(3)</literal> ser„o estimativas para o
+    <literal>RANK</literal>-Èsimo e <literal>(RANK+1)</literal>-Èsimo valores
     singulares de <literal>A</literal>, respectivamente.</para>
 
-    <para>Examinando-se estes valores, pode-se confirmar que o posto √© bem
+    <para>Examinando-se estes valores, pode-se confirmar que o posto È bem
     definido a respeito do valor escolhido de <literal>RCOND</literal>. A
-    raz√£o <literal>SVAL(1)/SVAL(2)</literal> √© uma estimativa do n√∫mero de
+    raz„o <literal>SVAL(1)/SVAL(2)</literal> È uma estimativa do n˙mero de
     condicionamento de <literal>R(1:RANK,1:RANK)</literal>.</para>
   </refsection>
 
@@ -152,7 +152,7 @@ A=rand(5,3)*rand(3,7);
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="qr">qr</link></member>
@@ -162,7 +162,7 @@ A=rand(5,3)*rand(3,7);
   </refsection>
 
   <refsection>
-    <title> Fun√ß√µes Usadas</title>
+    <title> FunÁıes Usadas</title>
 
     <para>Rotinas da biblioteca Slicot MB03OD, ZB03OD.</para>
   </refsection>

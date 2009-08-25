@@ -48,8 +48,8 @@ function OpenSet_()
       end
     end
     if ierr<>0 then
-      message(['This window is not active anymore or';
-	       'the browser is not up-to-date.'])
+      messagebox(['This window is not active anymore or';
+	       'the browser is not up-to-date.'],'modal')
       %scicos_navig=[]  // stop navigation
       Scicos_commands=[]
       Cmenu=[];%pt=[]

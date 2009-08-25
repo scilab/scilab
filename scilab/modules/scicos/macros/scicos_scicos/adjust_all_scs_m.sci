@@ -33,7 +33,7 @@ function all_scs_m=adjust_all_scs_m(scs_m_temporary,k)
   [bllst,connectmat,clkconnect,cor,corinv,ok]=c_pass1(scs_m_temporary);
 
   if ~ok then
-   message('The pre-compilation has failed; the scs_m will not be adjust');
+   messagebox('The pre-compilation has failed; the scs_m will not be adjust',"modal");
    ok=%f;
   end
 

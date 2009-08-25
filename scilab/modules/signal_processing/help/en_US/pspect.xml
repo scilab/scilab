@@ -188,7 +188,8 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata>
-            <mml:math><mml:semantics> <mml:mrow> <mml:msub> <mml:mi>S</mml:mi>
+            <mml:math>
+            <mml:semantics> <mml:mrow> <mml:msub> <mml:mi>S</mml:mi>
             <mml:mi mml:fontstyle="italic">xy</mml:mi> </mml:msub> <mml:mrow>
             <mml:mrow> <mml:mo mml:stretchy="false">(</mml:mo> <mml:mo
             mml:stretchy="false">ω</mml:mo> <mml:mo

@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("discrete_kalman.dem.sce");
-scicos_demostration(thispath+"/Discrete-KalmanFilter.cosf");
+scicos_demonstration(thispath+"/Discrete-KalmanFilter.cosf");
 clear thispath;

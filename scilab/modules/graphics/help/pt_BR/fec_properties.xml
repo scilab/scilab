@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fec_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fec_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Fec</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Fec é uma folha na hierarquia de entidade gráficas.
+    Representa um esboço 2d de elementos finitos (ver <literal>fec</literal>,
+    <literal>Sgrayplot</literal>).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador para a raiz. A raiz da
+          entidade Fec deve ser do tipo <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador
+          . Contudo, manipuladores <literal>Fec</literal> correntemente não
+          possuem galhos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade . Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, o esboço é
+          visível, a propriedade é <literal>"on"</literal>. Se
+          <literal>"off"</literal> o esboço não é exibido na tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>uma matriz de três colunas <literal>[x,y,f]</literal>, onde
+          <literal>x(i)</literal> e <literal>y(i)</literal> são as coordenadas
+          do i-ésimo nó. <literal>f(i)</literal> é o valor associado ao nó
+          <literal>i</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>triangles:</term>
+
+        <listitem>
+          <para>uma matriz de cinco colunas
+          <literal>[tn,n1,n2,n3,flag]</literal>. <literal>tn(j)</literal> é o
+          número do triângulo. <literal>n1(j)</literal>,
+          <literal>n2(j)</literal> e <literal>n3(j)</literal> são índices dos
+          nós que constituem o triângulo. (<literal>flag(j)</literal> não é
+          usado).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z_bounds:</term>
+
+        <listitem>
+          <para>este vetor de tamanho 2, <literal>[zmin,zmax]</literal>,
+          fornece os valores z associados às primeira e última cores (do mapa
+          de cores corrente). Mais exatamente, se o mapa de cores possui nc
+          cores e se notarmos <literal>dz = (zmax-zmin)/nc</literal>, então a
+          parte da triângularização onde <literal>zmin + (i-1)dz &lt;= z &lt;
+          zmin + i dz</literal> é preenchida com a cor <literal>i</literal>).
+          Por padrão o valor da propriedade <literal>z_bounds</literal> é
+          <literal>[0,0]</literal>. Neste caso, <literal>zmin</literal> e
+          <literal>zmax</literal> são automaticamente ajustados para os
+          valores mínimo e máximo do argumento <literal>func</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>outside_color:</term>
+
+        <listitem>
+          <para>este vetor de tamanho 2, <literal>[cmin, cmax]</literal>,
+          define a cor utilizada quando os valores dos nós estão fora do
+          intervalo <literal>z_bounds = [zmin,zmax]</literal>. Quando os
+          valores dos nós são menores do que <literal>zmin</literal>, a cor
+          com índice <literal>cmin</literal> é utilizada. Quando os valores
+          dos nós são menores do que <literal>zmax</literal> a cor com índice
+          <literal>cmax</literal> é utilizada. Por padrão, o valor da
+          propriedade <literal>outside_color</literal> é
+          <literal>[0,0]</literal>. Neste caso, <literal>cmin</literal> e
+          <literal>cmax</literal> são automaticamente ajustados para os
+          limites do mapa de cores. Se <literal>cmin</literal> ou
+          <literal>cmax</literal> são negativos, então os valores fora do
+          intervalo z_bounds não são exibidos, eles aparecem
+          transparentes.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color_range:</term>
+
+        <listitem>
+          <para>este vetor de tamanho 2, <literal>[rmin, rmax]</literal>,
+          permite utilizar apenas uma parte do mapa de cores para a exibição.
+          <literal>rmin</literal> e <literal>rmax</literal> são os índices do
+          mapa de cores. Se ambos forem maiores do que 1, então o mapa de
+          cores utilizados para exibir a entidade fec é
+          <literal>colormap(rmin:rmax)</literal> onde
+          <literal>colormap</literal> é o mapa de cores da figura raiz. Por
+          padrão, O valor da propriedade <literal>color_range</literal> é
+          <literal>[0,0]</literal>. Neste caso, todo o mapa de cores é
+          utilizado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+          <para>Se <literal>"on"</literal>, o wireframe (esqueleto) encerrando
+          os triângulos é desenhado. Se <literal>"off"</literal>, apenas os
+          triângulos de dentro são desenhados.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>este índice de cor especifica a cor da malha. Se a propriedade
+          <literal>line_mode</literal> for <literal>"on"</literal>, o
+          wireframe é desenhado utilizando-se esta cor.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para o fec. o valor de clip_state pode
+          ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que o fec não é
+              recortado. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que o fec é
+              recortado fora da caixa dos eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que o fec é recortado
+              fora do retângulo dado pela propriedade clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade
+          <literal>clip_box</literal>. Por padrão seu valor é uma matriz vazia
+          se a propriedade clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções do retângulo a ser exibido, contudo o
+          valor da propriedade <literal>clip_state</literal> será alterado.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade Fec e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   x=-10:10; y=-10:10;m =rand(21,21);
+   Sgrayplot(x,y,m);
+   a=get("current_axes");
+   f=a.children.children(1)
+   f.data(:,3)=(1:size(f.data,1))';
+   a.parent.color_map=hotcolormap(64);
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="fec">fec</link></member>
+
+      <member><link linkend="Sgrayplot">Sgrayplot</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

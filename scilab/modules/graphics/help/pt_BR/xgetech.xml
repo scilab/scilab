@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xgetech</refname>
 
-    <refpurpose>retorna a escala de gr√°ficos corrente</refpurpose>
+    <refpurpose>retorna a escala de gr·ficos corrente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,35 +56,35 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xgetech</literal> retorna a escala de gr√°ficos corrente (da
-    janela corrente). O ret√¢ngulo [xmin,ymin,xmax,ymax] dado por
-    <literal>frect</literal> √© o tamanho de toda a janela de gr√°ficos. O
-    esbo√ßo ser√° feito na regi√£o da janela de gr√°ficos corrente especificada
+    <para><literal>xgetech</literal> retorna a escala de gr·ficos corrente (da
+    janela corrente). O ret‚ngulo [xmin,ymin,xmax,ymax] dado por
+    <literal>frect</literal> È o tamanho de toda a janela de gr·ficos. O
+    esboÁo ser· feito na regi„o da janela de gr·ficos corrente especificada
     por <literal>wrect</literal>.</para>
 
     <para><literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo,
-    largura, altura) descreve uma regi√£o dentro de uma janela de gr√°ficos. Os
-    valores em <literal>wrect</literal> s√£o especificados utilizando-se a
-    propor√ß√£o de largura e altura da janela de gr√°ficos:</para>
+    largura, altura) descreve uma regi„o dentro de uma janela de gr·ficos. Os
+    valores em <literal>wrect</literal> s„o especificados utilizando-se a
+    proporÁ„o de largura e altura da janela de gr·ficos:</para>
 
     <para><literal>wrect=[0 0 1 1]</literal> significa que toda a janela de
-    gr√°ficos ser√° utilizada.</para>
+    gr·ficos ser· utilizada.</para>
 
-    <para><literal>wrect=[0.5 0 0.5 1]</literal> significa que a regi√£o de
-    gr√°ficos √© a metade direita da janela de gr√°ficos.</para>
+    <para><literal>wrect=[0.5 0 0.5 1]</literal> significa que a regi„o de
+    gr·ficos È a metade direita da janela de gr·ficos.</para>
 
-    <para><literal>logflag</literal> √© um string de tamanho 2 "xy", onde x e y
+    <para><literal>logflag</literal> È um string de tamanho 2 "xy", onde x e y
     podem ser "n" ou "l". "n" significa escala normal (linear) e "l" significa
-    escala logar√≠tmica. x corresponde ao eixo x e y corresponde ao eixo
+    escala logarÌtmica. x corresponde ao eixo x e y corresponde ao eixo
     y.</para>
 
     <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> fornece o
-    tamanho da moldura dentro da subjanela. O quadro gr√°fico √© especificado
-    (como <literal>wrect</literal>) utilizando-se a propor√ß√£o de largura ou
-    altura da subjanela de gr√°ficos corrente. O valor padr√£o √©
-    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n√£o for
+    tamanho da moldura dentro da subjanela. O quadro gr·fico È especificado
+    (como <literal>wrect</literal>) utilizando-se a proporÁ„o de largura ou
+    altura da subjanela de gr·ficos corrente. O valor padr„o È
+    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> n„o for
     fornecido, o valor corrente permanece inalterado.</para>
   </refsection>
 
@@ -96,13 +96,13 @@
 // primeira subjanela
 xsetech([0,0,1.0,0.5])
 plot2d()
-// ent√£o, xsetech, √© usado para ajustar a segunda sub-janela
+// ent„o, xsetech, È usado para ajustar a segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
 grayplot()
-// obtendo as escalas gr√°ficas da primeira sub-janela
+// obtendo as escalas gr·ficas da primeira sub-janela
 xsetech([0,0,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
-// obtendo as escalas gr√°ficas da segunda sub-janela
+// obtendo as escalas gr·ficas da segunda sub-janela
 xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
 xbasc();
@@ -112,7 +112,7 @@ xset('default')
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xsetech">xsetech</link></member>

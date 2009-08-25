@@ -62,6 +62,21 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   clear noguimode
   //**-----------------------------------------------------------------------------------------
 
+  // Define Scicos data tables ===========================================
+  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
+     ~isdef("%scicos_contrib") | ~isdef("%scicos_libs") ) then
+
+    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
+     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif, ...
+     %scicos_contrib,%scicos_libs] = initial_scicos_tables();
+     clear initial_scicos_tables
+   end
+  // =====================================================================
+
 
   //** -------------------- Check the recurring calling level of scicos ----------------------
   [%ljunk, %mac] = where() ; //** where I am ?
@@ -84,7 +99,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
     //**---- prepare from and to workspace stuff
-    curdir = getcwd() ;
+    curdir = pwd() ;
     chdir(TMPDIR)     ;
     mkdir("Workspace");
     chdir("Workspace");
@@ -145,57 +160,57 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
        %scicos_contrib_d ] = initial_scicos_tables() ;
 
       if exists('scicos_pal')==0 then
-	message(["scicos_pal not defined"; "using default values"])
+	messagebox(["scicos_pal not defined"; "using default values"],"modal")
 	scicos_pal = scicos_pal_d ;
       end
 
       if exists('%scicos_menu')==0 then
-	message(["%scicos_menu not defined"; "using default values"])
+	messagebox(["%scicos_menu not defined"; "using default values"],"modal")
 	%scicos_menu = %scicos_menu_d ;
       end
 
       if exists('%scicos_short')==0 then
-	message(["%scicos_short not defined"; "using default values"])
+	messagebox(["%scicos_short not defined"; "using default values"],"modal")
 	%scicos_short = %scicos_short_d ;
       end
 
       if exists('%scicos_help')==0 then
-	message(["%scicos_help not defined"; "using default values"])
+	messagebox(["%scicos_help not defined"; "using default values"],"modal")
 	%scicos_help = %scicos_help_d ;
       end
 
       if exists('%scicos_display_mode')==0 then
-	message(["%scicos_display_mode not defined"; "using default values"])
+	messagebox(["%scicos_display_mode not defined"; "using default values"],"modal")
 	%scicos_display_mode = %scicos_display_mode_d ;
       end
 
       if exists('modelica_libs')==0 then
-	message(["modelica_libs not defined"; "using default values"])
+	messagebox(["modelica_libs not defined"; "using default values"],"modal")
 	modelica_libs = modelica_libs_d ;
       end
 
       if exists('scicos_pal_libs')==0 then
-	message(["scicos_pal_libs not defined"; "using default values"])
+	messagebox(["scicos_pal_libs not defined"; "using default values"],"modal")
 	scicos_pal_libs = scicos_pal_libs_d ;
       end
 
       if exists('%scicos_lhb_list')==0 then
-	message(["%scicos_lhb_list not defined"; "using default values"])
+	messagebox(["%scicos_lhb_list not defined"; "using default values"],"modal")
 	%scicos_lhb_list = %scicos_lhb_list_d ;
       end
 
       if exists('%CmenuTypeOneVector')==0 then
-	message(["%CmenuTypeOneVector not defined"; "using default values"])
+	messagebox(["%CmenuTypeOneVector not defined"; "using default values"],"modal")
 	%CmenuTypeOneVector = %CmenuTypeOneVector_d ;
       end
 
       if exists('%scicos_gif')==0 then
-        message(["%scicos_gif not defined"; "using default values"])
+        messagebox(["%scicos_gif not defined"; "using default values"],"messagebox")
         %scicos_gif = %scicos_gif_d ;
       end
 
       if exists('%scicos_contrib')==0 then
-        message(["%scicos_contrib not defined"; "using default values"])
+        messagebox(["%scicos_contrib not defined"; "using default values"],"modal")
         %scicos_contrib = %scicos_contrib_d ;
       end
     end //** ... of the initialization variable
@@ -512,7 +527,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     //end of for backward compatibility for scifunc
 
     if ierr  <>0 then
-      message(['Error occur when evaluating context:' lasterror() ]) ;
+      messagebox(['Error occur when evaluating context:' lasterror() ],"modal") ;
     else
       deff('%fonct()',scs_m.props.context)
       %outfun = macrovar(%fonct);
@@ -668,7 +683,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	    execstr('ierr=exec(OpenSet_,''errcatch'',-1)')
             //execstr('exec(OpenSet_,-1)')
 	    //**---------------------------------------------------
-	    if ierr<>0 then message(lasterror()),end
+	    if ierr<>0 then messagebox(lasterror(),"modal"),end
 	    if isequal(%diagram_path_objective,super_path) then // must add after testing &%scicos_navig<>[]
 	      if ~or(curwin==winsid()) then
 		gh_current_window = scf(curwin);
@@ -887,8 +902,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
     if ~ok then
-      message(["Problem saving a backup; I cannot activate Scilab.";
-	       "Save your diagram scs_m manually."]);
+      messagebox(["Problem saving a backup; I cannot activate Scilab.";
+	       "Save your diagram scs_m manually."],"modal");
       pause ;
     end
 
@@ -938,7 +953,7 @@ function [itype, mess] = CmType(Cmenu)
   end
 
   if size(k,'*')>1 then //** if found more than one command
-    message('Warning '+string( size(k,'*'))+' menus have identical name '+Cmenu);
+    messagebox('Warning '+string( size(k,'*'))+' menus have identical name '+Cmenu,"modal");
     k = k(1); //** extract the index
   end
 
@@ -977,11 +992,11 @@ function scicos_pal = check_palettes_paths(scicos_pal)
   if toremove<>[] then
     rmpal=scicos_pal(toremove,:)
     rmpal(:,1)=part(rmpal(:,1),1:max(length(rmpal(:,1))))
-    message(['Following palette(s) ignored (associated file(s) no more exist):';
+    messagebox(['Following palette(s) ignored (associated file(s) no more exist):';
 	     ' '
 	     rmpal(:,1)+':  '+rmpal(:,2)
 	     ' '
-	     ' To avoid this message, please update the ""'+pwd()+filesep()+'.scicos_pal"" file'])
+	     ' To avoid this message, please update the ""'+pwd()+filesep()+'.scicos_pal"" file'],"modal")
     scicos_pal(toremove,:)=[];
   end
 endfunction

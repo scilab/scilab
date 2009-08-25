@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="black" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>black</refname>
+
+    <refpurpose>diagrama de Black (carta de Nichols)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>black( sl,[fmin,fmax] [,step] [,comments] )
+black( sl,frq [,comments] )
+black(frq,db,phi [,comments])
+black(frq,repf [,comments])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+
+        <listitem>
+          <para>lista ( sistema linear <literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fmin,fmax</term>
+
+        <listitem>
+          <para>reais (limites de freqüência) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frq</term>
+
+        <listitem>
+          <para>vetor linha ou matriz (freqüências) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>db,phi</term>
+
+        <listitem>
+          <para>vetores linhas ou matrizes (módulo, fase) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>repf</term>
+
+        <listitem>
+          <para>vetores linhas ou matrizes (resposta de freqüência complexa)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>step</term>
+
+        <listitem>
+          <para>real</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>comments</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Diagrama de Black (carta de Nichols) para um sistema linear
+    <literal>sl</literal>. <literal>sl</literal> pode ser um sistema SIMO de
+    tempo contínuo ou discreto (ver <literal>syslin</literal>). No caso de
+    múltiplas saídas, elas são esboçadas com símbolos diferentes.</para>
+
+    <para>As freqüências são dadas pelos limites
+    <literal>fmin</literal>,<literal>fmax</literal> (em Hz) ou por um vetor
+    linha (ou uma matriz para múltiplas saídas) <literal>frq</literal>.</para>
+
+    <para><literal>step</literal> é o passo de discretização ( logarítmica).
+    (ver <literal>calfrq</literal> para escolha do valor padrão).</para>
+
+    <para><literal>comments</literal> é um vetor de strings (legendas).</para>
+
+    <para><literal>db,phi</literal> são matrizes de módulos (em Db) e fases
+    (em graus). (Uma linha para cada resposta).</para>
+
+    <para><literal>repf</literal> matriz de números complexos. Uma linha para
+    cada resposta.</para>
+
+    <para>Para esboçar o grid de iso-ganho e iso-fase de
+    <literal>y/(1+y)</literal> use <link
+    linkend="chart">chart()</link>.</para>
+
+    <para>Valores padrões para <literal>fmin</literal> e
+    <literal>fmax</literal> são <literal>1.d-3</literal>,
+    <literal>1.d+3</literal> se <literal>sl</literal> for de tempo contínuo ou
+    <literal>1.d-3</literal>, <literal>0.5</literal>/sl.dt (freqüência de
+    Nyquist) se <literal>sl</literal> for de tempo discreto.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+
+clf();black(h,0.01,100);
+chart(list(1,0));
+
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+clf()
+black([h1;h],0.01,100,['h1';'h'])
+chart(list(1,0)); 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="nyquist">nyquist</link></member>
+
+      <member><link linkend="chart">chart</link></member>
+
+      <member><link linkend="freq">freq</link></member>
+
+      <member><link linkend="repfreq">repfreq</link></member>
+
+      <member><link linkend="calfrq">calfrq</link></member>
+
+      <member><link linkend="phasemag">phasemag</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

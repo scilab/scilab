@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>chfact</refname>
 
-    <refpurpose>fatoraÃ§Ã£o esparsa de Cholesky</refpurpose>
+    <refpurpose>fatoração esparsa de Cholesky</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>spcho=chfact(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros</title>
+    <title> Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>uma matriz simÃ©trica, positiva e esparsa</para>
+          <para>uma matriz simétrica, positiva e esparsa</para>
         </listitem>
       </varlistentry>
 
@@ -57,18 +57,18 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>spcho=chfact(A)</literal> computa os fatores esparsos de
-    Cholesky da matriz esparsa <literal>A</literal>, assumida simÃ©trica e
-    positiva definida. A funÃ§Ã£o Ã© baseada nos programas Ng-Peyton (ORNL). Ver
-    os programas FORTRAN para uma completa descriÃ§Ã£o das variÃ¡veis em
-    <literal>spcho</literal>. Esta funÃ§Ã£o deve ser usada com a funÃ§Ã£o
+    Cholesky da matriz esparsa <literal>A</literal>, assumida simétrica e
+    positiva definida. A função é baseada nos programas Ng-Peyton (ORNL). Ver
+    os programas FORTRAN para uma completa descrição das variáveis em
+    <literal>spcho</literal>. Esta função deve ser usada com a função
     <literal>chsolve</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="chsolve">chsolve</link></member>

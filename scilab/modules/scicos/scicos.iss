@@ -45,6 +45,8 @@ Source: modules\{#SCICOS}\help\addchapter.sce; DestDir: {app}\modules\{#SCICOS}\
 ;
 Source: modules\{#SCICOS}\jar\*.jar; DestDir: {app}\modules\{#SCICOS}\jar; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
 ;
+Source: modules\{#SCICOS}\palettes\*.cosf; DestDir: {app}\modules\{#SCICOS}\palettes; Flags: recursesubdirs; Components:  {#COMPN_SCICOS}
+;
 #ifdef WITH_CHM
 Source: modules\{#SCICOS}\chm\*.chm; DestDir: {app}\modules\{#SCICOS}\chm; Components: {#COMPN_SCICOS}
 #endif

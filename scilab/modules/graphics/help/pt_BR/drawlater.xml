@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="drawlater" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>drawlater</refname>
+
+    <refpurpose>Torna galhos dos eixos invisíveis.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>drawlater()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função pode ser utilizada para não se exibir imediatamente na
+    figura corrente os próximos objetos gráficos a serem criados por uma
+    chamada a funções de alto-nível tais como funções de esboço ou ajuste de
+    propriedades de objetos existentes. A propriedade
+    <literal>immediate_drawing</literal> da figura corrente é ajustada para
+    <literal>'off'</literal> para se adiar os próximos desenhos.</para>
+
+    <para>Pode ser utilizada especialmente com a função</para>
+
+    <para>Para reabilitar <literal>immediate_drawing</literal> para a figura
+    corrente, você pode utilizar a função.</para>
+
+    <para>Aviso: note que entre chamadas às funções drawlater e drawnow, a
+    figura corrente pode ser modificada. Logo, estas funções devem ser usadas
+    com cuidado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+  //Exemplo 1:  uma entidade Axes / uma entidade Figure
+  drawlater(); 
+  xfarc(.25,.55,.1,.15,0,64*360);
+  xfarc(.55,.55,.1,.15,0,64*360);
+  xfrect(.3,.8,.3,.2); 
+  xfrect(.2,.7,.5,.2);  
+  xfrect(.32,.78,.1,.1);
+  xfrect(.44,.78,.14,.1);
+  xfrect(-.2,.4,1.5,.8);
+  xstring(0.33,.9,"A Scilab Car");    
+  a=get("current_axes");
+  a.children(1).font_size=4;
+  a.children(1).font_style=4;  
+  a.children(1).background=5;
+  a.children(3).background=8;
+  a.children(4).background=8; 
+  a.children(5).background=17;
+  a.children(6).background=17; 
+  a.children(7).background=25;
+  a.children(8).background=25;
+  xclick();drawnow();
+ 
+  //Exemplo 2: duas entidades Axes/ uma entidade Figure
+
+  subplot(212)
+  a=gca();
+  drawlater // o que estará presente nestes eixos será desenhado depois
+  plot2d // desenhará estes eixos e seus galhos depois...
+
+  subplot(211) // aviso: mudamos os eixos
+  plot2d1 // modo de desenho padrão
+
+  draw(a) // ...os eixos são visíveis apenas se você não resdesenhar a janela
+  drawnow() // tudo está visível
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="drawnow">drawnow</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -464,7 +464,7 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\hdf5_gateway.xml"
+			RelativePath="..\..\sci_gateway\hdf5_gateway.xml"
 			>
 		</File>
 		<File

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>squarewave</refname>
 
-    <refpurpose>gera uma onda quadrada de perÃ­odo 2*%pi</refpurpose>
+    <refpurpose>gera uma onda quadrada de período 2*%pi</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>x=squarewave(t [,percent])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>t</term>
 
         <listitem>
-          <para>vetor de reais, discretizaÃ§Ã£o do tempo </para>
+          <para>vetor de reais, discretização do tempo </para>
         </listitem>
       </varlistentry>
 
@@ -58,22 +58,22 @@
         <term>percent</term>
 
         <listitem>
-          <para>escalar real positivo, a porcentagem do perÃ­odo no qual o
-          sinal Ã© positivo. O valor padrÃ£o Ã© 50</para>
+          <para>escalar real positivo, a porcentagem do período no qual o
+          sinal é positivo. O valor padrão é 50</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>squarewave(t)</literal> gera o vetor dos valores da onda
-    quadrada de perÃ­odo 2*%pi em cada data dada no vetor <literal>t</literal>
+    quadrada de período 2*%pi em cada data dada no vetor <literal>t</literal>
     .</para>
 
     <para><literal>squarewave(t,%)</literal> gera uma onda quadrada tal que %
-    Ã© a porcentagem do perÃ­odo no qual o sinal Ã© positivo.</para>
+    é a porcentagem do período no qual o sinal é positivo.</para>
   </refsection>
 
   <refsection>
@@ -88,7 +88,7 @@ plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sin">sin</link></member>

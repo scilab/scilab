@@ -6,5 +6,5 @@
 //
 
 thispath = get_absolute_file_path("old_gain_block.dem.sce");
-scicos_demostration(thispath+"/OldGainTest.cosf");
+scicos_demonstration(thispath+"/OldGainTest.cosf");
 clear thispath;

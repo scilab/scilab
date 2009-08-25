@@ -41,7 +41,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
           %scicos_lhb_list, %CmenuTypeOneVector,%scicos_gif, ...
           %scicos_contrib,%scicos_libs] = initial_scicos_tables()
 
-//**        This function is called from "scilab/scilab.star" at Scilab's startup
+//**        This function is called from "scicos" "scicos_simulate" "lincos" "steadycos"
 
   %scicos_display_mode = 0 ; //** obsolete: with the new graphics the display mode
                              //** is fixed
@@ -60,7 +60,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
                'Modelica'   ;'Lookup_Tables' ;'Threshold' ;'Others'   ;
                'DemoBlocks' ;'OldBlocks'];
   
-  scicos_pal = [pal_names  'SCI/modules/scicos/macros/scicos_scicos/'+pal_names+'.cosf']
+  scicos_pal = [pal_names  'SCI/modules/scicos/palettes/'+pal_names+'.cosf']
 
   %scicos_gif = SCI+"/modules/scicos/help/scicos_doc/man/gif_icons/";
 

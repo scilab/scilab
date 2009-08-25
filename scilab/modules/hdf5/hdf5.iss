@@ -19,9 +19,9 @@
 ;
 Source: bin\scihdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HDF5}\jar\org.scilab.modules.hdf5.jar;DestDir: {app}\modules\{#HDF5}\jar; Components: {#COMPN_SCILAB}
+Source: modules\{#HDF5}\jar\org.scilab.modules.hdf5.jar;DestDir: {app}\modules\{#HDF5}\jar; Components: {#COMPN_SCILAB}
 ;
-;Source: bin\nohdf5.dll; DestDir: {app}\bin; DestName: scihdf5.dll; Components: not ({#COMPN_ACTION_BINDING})
+;Source: bin\nohdf5.dll; DestDir: {app}\bin; DestName: scihdf5.dll; Components: not ({#COMPN_SCILAB})
 ;
 Source: modules\{#HDF5}\changelog.txt; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB};
 Source: modules\{#HDF5}\license.txt; DestDir: {app}\modules\{#HDF5}; Components: {#COMPN_SCILAB}

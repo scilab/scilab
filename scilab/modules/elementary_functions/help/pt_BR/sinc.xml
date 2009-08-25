@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>sinc</refname>
 
-    <refpurpose>funÃ§Ã£o sinc (seno cardinal)</refpurpose>
+    <refpurpose>função sinc (seno cardinal)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=sinc(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,10 +56,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Se <literal>x</literal> Ã© um vetor ou uma matriz,
-    <literal>t=sinc(x)</literal> Ã© o vetor ou matriz tal que
+    <para>Se <literal>x</literal> é um vetor ou uma matriz,
+    <literal>t=sinc(x)</literal> é o vetor ou matriz tal que
     <literal>t(i)=sin(x(i))/x(i)</literal> if <literal>x(i)~=0</literal> e
     <literal>t(i)=1</literal> se <literal>x(i)==0</literal></para>
   </refsection>
@@ -76,7 +76,7 @@ plot2d(x,sinc(x))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sin">sin</link></member>

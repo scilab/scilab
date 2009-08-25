@@ -26,8 +26,8 @@ function Undo_()
 
     if enable_undo==2 then  // open SB's may have been affected
       %r=2
-      %r=message(['Undo operation undoes changes in a subdiagram';
-                  'These changes will be lost for ever'],['Proceed'; ...
+      %r=messagebox(['Undo operation undoes changes in a subdiagram';
+                  'These changes will be lost for ever'], 'modal', ['Proceed'; ...
 		    'Cancel'])
       if %r==2 then 
          return,
@@ -52,7 +52,7 @@ function Undo_()
          Cmenu='Replot'     
          enable_undo = %f ; //** "Undo" is a single level function 
     else
-      message('No more undo available.')
+      messagebox('No more undo available.','modal')
     end
     
 endfunction

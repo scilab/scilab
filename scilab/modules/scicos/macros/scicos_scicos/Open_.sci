@@ -111,7 +111,7 @@ function Open_()
       //** end of for backward compatibility for scifunc
 
       if ierr<>0 then
-	message(["Error occur when evaluating context:" lasterror()])
+	messagebox(["Error occur when evaluating context:" lasterror()],'modal')
       else
 	deff('%fonct()',scs_m.props.context)
 	%outfun = macrovar(%fonct);

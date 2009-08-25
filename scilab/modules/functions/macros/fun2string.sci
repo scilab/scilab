@@ -133,7 +133,15 @@ function txt=cla2sci(clause)
     level(2)=1
     [exp1,t1,ilst]=exp2sci(clause(2),1)
     exp1=exp1(1)
-    txt=catcode('select ',splitexp(exp1(1)))
+    le1=length(exp1(1))
+    if le1<=1|part(exp1(1),le1-1:le1)<>CR then
+      txt=catcode(catcode('select ',splitexp(exp1(1))),'; ')
+    else
+      txt=catcode('select ',splitexp(exp1(1)))
+      txt($)=''
+    end
+      
+    //txt=catcode('select ',splitexp(exp1(1)))
     
     for ic=2:2:2*ncas
       level(2)=ic/2
@@ -274,6 +282,8 @@ function [txt,ilst]=cod2sci(lst,ilst)
 		  end
 		end
 	      end
+	    elseif type(P(1))==10 then
+	      p='.'+evstr(P(1))
 	    else // /x(i)=...
 	      p='('+P(1)+')'
 	    end
@@ -346,6 +356,15 @@ function [stk,txt,ilst]=exp2sci(lst,ilst)
 	      top=top+1
 	      stk(top)=list(op(2),'0')
 	      m=%f
+	    elseif type(stk(top)(1))==10 then
+	      if op(4)=='1'&funptr(op(2))==0&exists(op(2))==0|and(type(evstr(op(2)))<>[11 13 130]) then
+	      top=top+1
+	      stk(top)=list(op(2),'0')
+	      m=%f
+//		stk(top)(1)=op(2)+'.'+stk(top)(1)
+//		pause
+//		m=%f
+	      end
 	    end
 	  end
 	  if m then
@@ -876,6 +895,8 @@ function [stk,txt,top]=_e2sci()
 	end
       end
       stk=list(ex,'0')
+    elseif type(s2(1))==10&type(evstr(s2(1)))==10 then // recursive extraction
+      stk=list(sn(1)+'.'+evstr(s2(1)),'0')
     else
       if s2(1)=='eye()' then s2(1)=':',end
       stk=list(sn(1)+'('+s2(1)+')','0')

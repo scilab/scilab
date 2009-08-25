@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>frexp</refname>
 
-    <refpurpose>separa um nÃºmero em ponto flutuante em potÃªncia de base 2 e
+    <refpurpose>separa um número em ponto flutuante em potência de base 2 e
     mantissa</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[f,e]=frexp(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -59,7 +59,7 @@
         <term>e</term>
 
         <listitem>
-          <para>array de inteiros que satisfazem a equaÃ§Ã£o: <literal>x =
+          <para>array de inteiros que satisfazem a equação: <literal>x =
           f.*2.^e</literal></para>
         </listitem>
       </varlistentry>
@@ -67,9 +67,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o corresponde Ã  funÃ§Ã£o ANSI C frexp(). Quaisquer zeros em
+    <para>Esta função corresponde à função ANSI C frexp(). Quaisquer zeros em
     <literal>x</literal> produzem <literal>f=0</literal> e
     <literal>e=0</literal>.</para>
   </refsection>
@@ -85,7 +85,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="log">log</link></member>

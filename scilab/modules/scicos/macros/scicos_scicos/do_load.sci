@@ -82,8 +82,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   //check extensions
   ext=convstr(ext)
   if and(ext<>['cos','cosf','xml']) then
-    message(_('Only *.cos (binary),  *.cosf or *.xml (formatted) files\n'+..
-	      'are allowed'))
+    messagebox(_('Only *.cos (binary),  *.cosf or *.xml (formatted) files\n'+'are allowed'),'modal')
     if file_is_given then 
       //open an empty diagram
       scs_m = get_new_scs_m();
@@ -104,7 +103,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       stacksize(2*x(1))
     end
   else
-    message(msprintf(_('%s file  cannot be loaded.\nOpening a new empty diagram'),fname))
+    messagebox(msprintf(_('%s file  cannot be loaded.\nOpening a new empty diagram'),fname),'modal')
     ext='new'
   end
 
@@ -128,10 +127,10 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   
   if ierr<>0 then
     if ext=='xml' then
-      message(msprintf(_('An error has occured during parsing of file %s.\n'+..
-	       'Please check the format of your XML file\n'),fname))
+      messagebox(msprintf(_('An error has occured during parsing of file %s.\n'+..
+	       'Please check the format of your XML file\n'),fname),'modal')
     else
-      message(msprintf(_('An error has occured during loading of file %s.\n'),fname))
+      messagebox(msprintf(_('An error has occured during loading of file %s.\n'),fname),'modal')
     end
     ok=%f
     scs_m=get_new_scs_m();     
@@ -155,7 +154,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   //##update version
   [ierr,scicos_ver,scs_m]=update_version(scs_m)
   if ierr<>0 then
-    message('An error has occured during the update of '+name+'.')
+    messagebox('An error has occured during the update of '+name+'.', 'modal')
     ok=%f
     scs_m = get_new_scs_m();
     //scs_m=scicos_diagram(version=current_version)
@@ -260,7 +259,7 @@ function [ok,scs_m]=do_define_and_set(scs_m,flg)
 %mprt=funcprot()
 funcprot(0) 
 getvalue=setvalue;
-deff('message(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
+deff('scicosmessage(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
 		    'global %scicos_prob;'
 		    '%scicos_prob=resume(%t)'])
 

@@ -34,8 +34,7 @@ function [mod,scs_m]=do_label(%pt,scs_m)
   else
     K=Select(:,1)';%pt=[]
     if size(K,'*')>1 | curwin<>Select(1,2) then
-      message("Only one block can be selected in current window for this o"+...
-	      "peration.")
+      messagebox("Only one block can be selected in current window for this operation.","modal")
       Cmenu=[];return
     end
   end
@@ -43,7 +42,7 @@ function [mod,scs_m]=do_label(%pt,scs_m)
   o = scs_m.objs(K)
   // avoid error with links
   if typeof(o)<>'Block' then 
-    message("No label can be placed on Links.")  
+    messagebox("No label can be placed on Links.","modal")  
     return,
   end
   model = o.model

@@ -40,36 +40,30 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple ScilabHaveAGraph example
-	int code=SendScilabJob("plot3d()"); /* This will failed since plot3d is
-										   among the disable features*/
-	if (ScilabHaveAGraph()){
-		printf("Graphics\n");
-	}else{
-		printf("NO Graphics\n");
-	}
-	
-</programlisting>
+    <programlisting role="example"><![CDATA[
+// A simple ScilabHaveAGraph example
+int code=SendScilabJob("plot3d()"); /* This will failed since plot3d is
+                                       among the disable features*/
+if (ScilabHaveAGraph()){
+ printf("Graphics\n");
+}else{
+ printf("NO Graphics\n");
+}
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link>
-
-<link linkend="compile_and_run_call_scilab">Compile and run with
-      call_scilab</link>
-
-<link linkend="SendScilabJob">SendScilabJob</link>,
-
-<link linkend="TerminateScilab">TerminateScilab</link>,
-
-      <link linkend="MatrixManagement_callscilab">Matrix Management</link>, 
-      <link linkend="BooleanManagement_callscilab">Boolean Management</link>, 
-      <link linkend="ComplexManagement_callscilab">Complex Management</link>, 
-      <link linkend="StringManagement_callscilab">String Management</link>
-</member>
+      <member><link linkend="Scilab">Scilab</link> <link
+      linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link> <link linkend="SendScilabJob">SendScilabJob</link>,
+      <link linkend="TerminateScilab">TerminateScilab</link>, <link
+      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
+      linkend="BooleanManagement_callscilab">Boolean Management</link>, <link
+      linkend="ComplexManagement_callscilab">Complex Management</link>, <link
+      linkend="StringManagement_callscilab">String Management</link></member>
     </simplelist>
   </refsection>
 
