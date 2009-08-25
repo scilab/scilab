@@ -975,10 +975,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wnrm2.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wrscal.c"
 				>
 			</File>
@@ -1708,10 +1704,6 @@
 			</File>
 			<File
 				RelativePath=".\wmul.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wnrm2.f"
 				>
 			</File>
 			<File
