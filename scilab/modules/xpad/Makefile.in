@@ -465,7 +465,9 @@ libscixpad_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/core/includes \
+			-I$(top_srcdir)/modules/completion/includes
 
 libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -1138,8 +1140,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-			-I$(top_srcdir)/modules/core/includes \
-			-I$(top_srcdir)/modules/completion/includes
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
