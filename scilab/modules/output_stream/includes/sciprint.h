@@ -15,6 +15,10 @@
 #define __SCIPRINT_H__
 
 #include <stdarg.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include "BOOL.h"
 
 /**
@@ -33,6 +37,9 @@ void sciprint(char *fmt,...) ;
 * @param[in] va_list
 * @return nb characters
 */int scivprint(char *fmt,va_list args);
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __SCIPRINT_H__ */
 /*--------------------------------------------------------------------------*/ 

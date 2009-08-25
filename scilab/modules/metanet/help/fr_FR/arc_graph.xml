@@ -64,15 +64,32 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
+//create the initial graph
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
 g=make_graph('foo',1,8,ta,he);
-g('node_x')=[281  284  360  185  405  182  118  45];
-g('node_y')=[262  179  130  154  368  248  64  309];
+g.nodes.graphics.x=[281  284  360  185  405  182  118  45];
+g.nodes.graphics.y=[262  179  130  154  368  248  64  309];
+//customize display
+g.nodes.graphics.display='name';
+g.edges.graphics.name=string(1:edge_number(g));
+g.edges.graphics.display='name';
 show_graph(g);
+
+//compute the arc_graph
 g1=arc_graph(g);
+g1.edges.graphics.name=string(1:edge_number(g1));
+g1.edges.graphics.display='name';
+g1.nodes.graphics.display='name';
 show_graph(g1,'new');
- ]]></programlisting>
+
+// merge the two graph
+g1.nodes.graphics.colors(2,:)=color('red');
+g1.edges.graphics.foreground(:)=color('red');
+show_graph(graph_union(g,g1,%f),'new')
+  
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

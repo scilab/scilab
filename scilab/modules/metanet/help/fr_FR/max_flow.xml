@@ -77,42 +77,50 @@
     faits en nombres entiers. Le graphe doit être orienté. Si le problème n'est 
     pas soluble, <literal>flag</literal> est égal à 0, sinon il est égal à 1.
   </para>
+  <para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
     <para>
-    Les bornes sur le flot sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité maximum doit être supérieure ou égale à 
-    la capacité minimum.
-    Si la valeur de <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> n'est pas donnée 
-    (vecteur ligne vide <literal>[]</literal>), elle est supposée égale à 0 sur chaque arête.
-  </para>
+      Les valeurs des capacités maximum et minimum doivent être
+      non négatives .  La valeur de la capacité maximum doit
+      être supérieure ou égale à la valeur de la capacité minimum.  Si
+      la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ne sont pas présents dans la
+      structure du graphe, ils peuvent être ajoutés et affectés en
+      utilisant la fonction <link
+      linkend="add_edge_data">add_edge_data</link>.
+    </para>
+
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15];
-ta=[ta, 15 8 9 10 11 12 13 14];
-he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4];
-he=[he, 5 6 7 16 16 16 16 16 16 16];
-n=16;
-g=make_graph('foo',1,n,ta,he);
-g('node_x')=[42 615 231 505 145 312 403 233 506 34 400 312 142 614 260 257];
-g('node_y')=[143 145 154 154 147 152 157 270 273 279 269 273 273 274 50 376];
+    <programlisting role="example">
+
+ta=[1 1 2 2 3 3 4 4 5 5 5 5 6 6 6 7 7 15 15 15 15 15 15 15 8 9 10 11 12 13 14];
+he=[10 13 9 14 8 11 9 11 8 10 12 13 8 9 12 8 11 1 2 3 4 5 6 7 16 16 16 16 16 16 16];
+g=make_graph('foo',1,16,ta,he);
+g.nodes.graphics.x=[53,430,202,374,116,250,325,176,373,34,330,233,114,429,208,206];
+g.nodes.graphics.y=[86,114,115,129,118,122,133,222,222,221,214,219,218,246,40,301];
 ma=edge_number(g);
-g('edge_max_cap')=ones(1,ma);
-g('edge_min_cap')=zeros(1,ma);
-source=15; sink=16;
-nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
-g('node_type')=nodetype;
-nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
-g('node_color')=nodecolor;
+g=add_edge_data(g,'max_cap',[2,4,3,3,3,2,3,3,5,2,3,1,2,1,4,1,2,2,2,2,4,1,5,3,2,1,5,4,3,4,2]);
+g=add_edge_data(g,'min_cap',ones(1,ma))
+source=15;g.nodes.graphics.type(source)=2; //source node
+sink=16;g.nodes.graphics.type(sink)=1; //sink node
 show_graph(g);
+
 [v,phi,ierr]=max_flow(source,sink,g);
-ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
-g('edge_color')=edgecolor;
-edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
-g('edge_font_size')=edgefontsize;
-g('edge_label')=string(phi);
+g.edges.graphics.foreground(phi&lt;&gt;0)=11;
+g=add_edge_data(g,'flow',phi)
+g.edges.graphics.display='flow';
 show_graph(g);
- ]]></programlisting>
+ 
+  </programlisting>
   </refsection>
 </refentry>

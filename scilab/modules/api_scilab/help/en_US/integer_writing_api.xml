@@ -32,7 +32,7 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <programlisting><![CDATA[
+        <programlisting role=""><![CDATA[
 int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8)
 int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
 int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32)
@@ -83,7 +83,7 @@ int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned 
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <programlisting><![CDATA[
+        <programlisting role=""><![CDATA[
 int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
 int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
 int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)

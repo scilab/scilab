@@ -1489,7 +1489,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
       (*index2)++;
       interf_index2 = data[*index2];
 
-      funptr = interf_num + interf_index2;
+      funptr = interf_num * 10 + interf_index2;
 
       C2F(funtab)(id,&funptr,&job2,"NULL_NAME",0);
 

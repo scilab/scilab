@@ -15,8 +15,13 @@
 #ifndef __JVM_H__
 #define __JVM_H__
 
-#include "BOOL.h" /* BOOL */
 #include <jni.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include "BOOL.h" /* BOOL */
 /**
 * start JVM used in InitializeJVM function
 * @param Scilab path
@@ -37,6 +42,9 @@ BOOL finishJVM(void);
  */
 JNIEnv *getScilabJNIEnv(void);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __JVM_H__ */
 /*--------------------------------------------------------------------------*/ 

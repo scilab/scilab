@@ -197,7 +197,7 @@ fct(int *n, double x[],double v[],int *iflag)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // A simple example with fsolve 
 a=[1,7;2,8];b=[10;11];
 
@@ -213,7 +213,35 @@ a*xres+b
 // See routines/default/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
-  </programlisting>
+  ]]></programlisting>
+    <para>For some starting points and some equations system, the fsolve method can fail. The fsolve method is a local search method. 
+      So, to have a good chance to find a solution to your equations system, you must ship, a good starting point to fsolve.</para>
+    <para> Here is an example on which fsolve can fail:</para>
+    <programlisting role="example"><![CDATA[ 
+// Another example with fsolve 
+function F=feuler(x,r)
+  F=x-r-dt*(x^2-x^3);
+endfunction
+function J=dFdx(x)  //definition de la derivee de F
+   J=1-dt*(2*x-3*x^2);
+endfunction
+
+r = 0.04257794928862307 ;
+dt = 10;
+
+[x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolve don't find the solution
+disp(v); // The residual
+disp(info); // The termination indicator
+
+[x,v,info]=fsolve(1,list(feuler,r),dFdx); // fsolve find the solution
+disp(v); // The residual
+disp(info); // The termination indicator
+
+clf();x=linspace(0,1,1000);plot(x,feuler(x))
+a=gca();a.grid=[5 5];
+
+  ]]></programlisting>
+    <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
   </refsection>
 
   <refsection>

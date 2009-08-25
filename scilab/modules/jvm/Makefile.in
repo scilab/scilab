@@ -403,6 +403,7 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
 
@@ -460,6 +461,7 @@ libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
 libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(srcdir)/src/c \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)

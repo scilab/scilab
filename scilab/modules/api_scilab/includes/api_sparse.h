@@ -12,6 +12,10 @@
 #ifndef __SAPRSE_API__
 #define __SAPRSE_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /*****************************/
@@ -153,4 +157,7 @@ API_SCILAB_IMPEXP int readNamedSparseMatrix(char* _pstName, int* _piRows, int* _
  */
 API_SCILAB_IMPEXP int readNamedComplexSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __SAPRSE_API__ */

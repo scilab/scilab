@@ -12,6 +12,9 @@
 
 #ifndef __GW_OUTPUT_STREAM_H__
 #define __GW_OUTPUT_STREAM_H__
+
+#include "api_common.h"
+
 /*--------------------------------------------------------------------------*/
 int gw_output_stream(void);
 /*--------------------------------------------------------------------------*/
@@ -19,6 +22,7 @@ int sci_print(char *fname,unsigned long fname_len);
 int sci_mprintf(char *fname,unsigned long fname_len);
 int sci_msprintf(char *fname,unsigned long fname_len);
 int sci_disp(char *fname,unsigned long fname_len);
+int sci_diary(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_OUTPUT_STREAM_H__ */
 /*--------------------------------------------------------------------------*/

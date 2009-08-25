@@ -51,9 +51,9 @@ my $nb_bad_file      = 0;
 my %bad_file_list;
 
 my %languages;
-#$languages{'fr_FR'} = 1;
+$languages{'fr_FR'} = 1;
 $languages{'en_US'} = 1;
-#$languages{'pt_BR'} = 1;
+$languages{'pt_BR'} = 1;
 
 # Initialisation du fichier de log
 unless( open(LOG,'> '.$log) )

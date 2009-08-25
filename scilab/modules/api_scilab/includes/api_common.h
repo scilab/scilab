@@ -13,6 +13,10 @@
 #ifndef __COMMON_API__
 #define __COMMON_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /* generics functions */
@@ -125,4 +129,7 @@ API_SCILAB_IMPEXP int getDimFromVar(int* _piAddress, int* _piVal);
 */
 API_SCILAB_IMPEXP int getDimFromNamedVar(char* _pstName, int* _piVal);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __COMMON_API__ */
