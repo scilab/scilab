@@ -40,7 +40,8 @@ public class ScilabKeywordsJNI {
     }
   }
 
-  public final static native String[] ScilabKeyword_GetCommandsName();
-  public final static native String[] ScilabKeyword_GetFunctionsName();
-  public final static native String[] ScilabKeyword_GetMacrosName();
+  public final static native String[] GetVariablesName();
+  public final static native String[] GetCommandsName();
+  public final static native String[] GetFunctionsName();
+  public final static native String[] GetMacrosName();
 }
