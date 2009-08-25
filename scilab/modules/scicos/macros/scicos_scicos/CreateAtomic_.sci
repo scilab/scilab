@@ -27,7 +27,12 @@ if alreadyran then
   //return
 else
   Cmenu=[];%pt=[];
-  if size(Select,1)<>1 | curwin<>Select(1,2) then
+  if size(Select,1)<>1 then
+    messagebox(_('Please select a single Super Block.'),'error','modal');
+    return
+  end 
+  if curwin<>Select(1,2) then
+    messagebox(_('Please select a Super Block.'),'error','modal');
     return
   end
   i=Select(1)
@@ -38,10 +43,10 @@ else
       if ~ok then message('Error in Creating Atomic');return ;end
       scs_m = update_redraw_obj(scs_m,list('objs',i),o)
     else
-      message('Atomic can only be affected to Non Atomic Super Blocks.');
+      messagebox(_('Atomic can only be affected to Non Atomic Super Blocks.'),'error','modal');
     end
   else
-    message('Atomic can only be affected to Non Atomic Super Blocks.');
+     messagebox(_('Atomic can only be affected to Non Atomic Super Blocks.'),'error','modal');
   end
 end
 endfunction
