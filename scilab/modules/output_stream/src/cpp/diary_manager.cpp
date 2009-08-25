@@ -13,6 +13,7 @@
 #include "diary_manager.hxx"
 #include "DiaryList.hxx"
 #include "diary.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;
 /*--------------------------------------------------------------------------*/
@@ -44,8 +45,8 @@ wchar_t *getDiaryFilename(int _Id)
 	{
 		if (SCIDIARY->getFilename(_Id).compare(L""))
 		{
-			wcFilename = new wchar_t[SCIDIARY->getFilename(_Id).length()];
-			wcscpy(wcFilename, SCIDIARY->getFilename(_Id).c_str());
+			wcFilename = (wchar_t*) MALLOC(sizeof(wchar_t) * (SCIDIARY->getFilename(_Id).length() + 1));
+			if (wcFilename) wcscpy(wcFilename, SCIDIARY->getFilename(_Id).c_str());
 		}
 	}
 	return wcFilename;
@@ -59,10 +60,10 @@ wchar_t **getDiaryFilenames(int *array_size)
 		std::wstring * wstringFilenames = SCIDIARY->getFilenames(array_size);
 		if (array_size > 0)
 		{
-			wchar_t **wcFilenames = new wchar_t*[*array_size]; 
+			wchar_t **wcFilenames = (wchar_t **) MALLOC (sizeof(wchar_t*) *(*array_size)); 
 			for(int i = 0; i < *array_size; i++)
 			{
-				wcFilenames[i] = new wchar_t[wstringFilenames[i].length()];
+				wcFilenames[i] = (wchar_t*) MALLOC(sizeof(wchar_t) * (wstringFilenames[i].length() + 1));
 				wcscpy(wcFilenames[i], wstringFilenames[i].c_str());
 			}
 			return wcFilenames;

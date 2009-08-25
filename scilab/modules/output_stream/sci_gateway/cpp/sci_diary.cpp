@@ -139,8 +139,7 @@ static int sci_diary_no_rhs(char *fname)
 			createMatrixOfWideString(Rhs + 2, nb_diary_filenames, 1, wcdiary_filenames);
 			LhsVar(2) = Rhs + 2;
 
-			delete [] wcdiary_filenames;
-			wcdiary_filenames = NULL;
+			freeInput(wcdiary_filenames, nb_diary_filenames);
 			nb_diary_filenames = 0;
 		}
 		else
@@ -151,8 +150,7 @@ static int sci_diary_no_rhs(char *fname)
 				LhsVar(2) = Rhs + 2;
 				if (wcdiary_filenames)
 				{
-					delete [] wcdiary_filenames;
-					wcdiary_filenames = NULL;
+					freeInput(wcdiary_filenames, nb_diary_filenames);
 					nb_diary_filenames = 0;
 				}
 			}
@@ -232,7 +230,7 @@ static int sci_diary_one_rhs(char *fname)
 					wfilenameUsed[0] = getDiaryFilename((int)dID);
 					createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 					LhsVar(2) = Rhs + 2;
-					if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+					freeInput(wfilenameUsed,1);
 				}
 			}
 			else // diary(filename) exists (close diary)
@@ -1054,7 +1052,7 @@ static int AppendByFilenames(char *fname,
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
 			createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 			LhsVar(2) = Rhs + 2;
-			if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+			freeInput(wfilenameUsed, 1);
 		}
 		C2F(putlhsvar)();
 	}
@@ -1115,7 +1113,7 @@ static int NewByFilenames(char *fname,
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
 			createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 			LhsVar(2) = Rhs + 2;
-			if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+			freeInput(wfilenameUsed, 1);
 		}
 		C2F(putlhsvar)();
 	}
