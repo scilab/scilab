@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
 import java.util.Collections;
+import java.util.Hashtable;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +28,8 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
+
+import org.scilab.modules.xpad.ScilabKeywords;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
     String sb = "";
@@ -52,7 +55,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private boolean indentInprogress = false;
 
     private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\"};
-    private final String[] controls = {"if ", "while ", "for ", " then", "else", "do", "end", "function", "endfunction"};
+    private final String[] controls = {"if ", "while ", "for ", " then", "else", "do", "case ", "end", "function", "endfunction"};
     private final String[] strings = {"(\"|')[^{\n}]*?(\"|')"};
     private final String[] bools = {"%T", "%F", "%t", "%f"};
     private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
@@ -257,6 +260,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		colorizeInprogress = false;
 	    }
 	}
+	Hashtable<String, String[]>keywords = getScilabKeywords();
     }
 
     public Vector<Integer> findWord(String word) {
@@ -535,6 +539,42 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	    text += textLine;
 	}
 	return text;
+    }
+    
+    public Hashtable<String, String[]> getScilabKeywords() {
+    	
+    	String[] commands =  ScilabKeywords.GetCommandsName();
+    	String[] functions =  ScilabKeywords.GetFunctionsName();
+    	String[] macros =  ScilabKeywords.GetMacrosName();
+    	
+    	for (int i = 0; i < commands.length; i++) {
+			System.out.println("---COMMAND---");
+			System.out.println(commands[i]);
+		}
+    	
+    	Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
+    	
+    	/*for (int i = 0; i < commands.length; i++) {
+			keywords.put("command", commands);
+		}
+    	for (int i = 0; i < functions.length; i++) {
+			keywords.put("function", functions);
+		}
+    	for (int i = 0; i < macros.length; i++) {
+			keywords.put("macro", macros);
+		}
+    	
+    	System.out.println("------------KEYWORDS---------");
+    	System.out.println(keywords.size());
+    	System.out.println(keywords.keySet());
+    	
+    	for (int i = 0; i < commands.length; i++) {
+			System.out.println(commands[i].toString());
+		}
+    	
+    	System.out.println("------------KEYWORDS---------");*/
+    	
+    	return keywords;
     }
 
 

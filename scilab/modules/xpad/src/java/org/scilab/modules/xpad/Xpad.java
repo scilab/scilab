@@ -79,8 +79,6 @@ import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
 public class Xpad extends SwingScilabTab implements Tab { 
 
     private final Window parentWindow;
