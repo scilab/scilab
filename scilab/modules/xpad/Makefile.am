@@ -25,7 +25,10 @@ etc/xpad.start
 
 include $(top_srcdir)/Makefile.incl.am
 
-XPAD_C_SOURCES = 
+
+XPAD_JNI_SOURCES = src/jni/ScilabKeywords_wrap.c
+
+XPAD_C_SOURCES = src/c/ScilabKeywords.c
 
 XPAD_CPP_SOURCES = src/jni/Xpad.cpp src/cpp/callxpad.cpp
 
@@ -46,6 +49,8 @@ libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
+			-I$(top_srcdir)/modules/core/includes \
+			-I$(top_srcdir)/modules/completion/includes
 
 libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -73,13 +78,19 @@ endif
 
 libscixpad_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscixpad_la_SOURCES = $(XPAD_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XPAD_CPP_SOURCES)
+libscixpad_la_SOURCES = $(XPAD_C_SOURCES) $(XPAD_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XPAD_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(XPAD_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixpad_la_CFLAGS)
 
 
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/ScilabKeywords.i 
+
+if SWIG
+BUILT_SOURCES=swig
+endif
 
 libscixpad_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
