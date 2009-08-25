@@ -47,6 +47,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
                     'INIMPL_f'
 		    'OUTIMPL_f']) then
 	message('Input/Output ports are not allowed in the region.')
+
 	return ; //** Exit point !
       end //** check block type 
       
@@ -63,7 +64,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     end
   end
   
-  
+  drawlater()
   prt = splitted_links(scs_m,keep,del) ; //** OK 
   [reg,DEL]=do_delete2(scs_m,del,%f)   ; //** OK 
   rect = dig_bound(reg) ; 
@@ -211,7 +212,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
   end
   reg=do_purge(reg)
   
-  if lstsize(reg.objs)==0 then return, end
+  if lstsize(reg.objs)==0 then drawnow();return, end
   //superblock should not inherit the context nor the name
   reg.props.context=' ' 
   reg.props.title(1)='SuperBlock'
@@ -229,10 +230,10 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
   // open the superblock in editor
   [ok,sup] = adjust_s_ports(sup)
 
-  [scs_m,DEL] = do_delete2(scs_m,keep,%f) //** Quick speed improvement using %f (was %t)
+  [scs_m,DEL] = do_delete2(scs_m,keep,%t) //** Quick speed improvement using %f (was %t)
   
   drawobj(sup)
-  
+
   scs_m.objs($+1)=sup
   // connect it
   nn=lstsize(scs_m.objs)  //superblock number
@@ -389,7 +390,7 @@ function [%pt,scs_m] = do_select2block(%pt,scs_m)
     scs_m.objs(k1)=o1
     nnk=nnk+1
   end
-  
+  drawnow()
   [scs_m_save,nc_save,enable_undo,edited,needcompile,..
    needreplay]=resume(scs_m_save,nc_save,%t,%t,4,needreplay)
 
