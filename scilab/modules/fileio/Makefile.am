@@ -27,7 +27,6 @@ src/c/mputi.c \
 src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
-src/c/diary.c \
 src/c/readline.c \
 src/c/getdrives.c \
 src/c/deleteafile.c \
@@ -152,7 +151,6 @@ includes/mopen.h \
 includes/mtell.h \
 includes/addfile.h \
 includes/delfile.h \
-includes/diary.h \
 includes/getfiledesc.h \
 includes/getfileinfo.h \
 includes/getfiletype.h \

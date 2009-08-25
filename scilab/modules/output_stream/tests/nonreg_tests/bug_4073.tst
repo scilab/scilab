@@ -12,13 +12,34 @@
 //
 // <-- Short Description -->
 // mprintf does not display accent correctly
-
-if 'àéùç' <> sprintf('àéùç') then pause,end
-if 'àéùç' <> sprintf('%s','àéùç') then pause,end
-disp('àéùç')
-mprintf('àéùç');
-mprintf('\n%s\n','àéùç');
-printf('àéùç');
-printf('\n%s\n','àéùç');
-
-printf("-- Création de [%s] (Macros) --\n",'test')
+// =============================================================================
+tab_ref = [
+"ä¸–ç•Œæ‚¨å¥½",
+"Ğ°Ğ·ĞµĞ°Ğ·ĞµÑ",
+"ãƒãƒ­ãƒ¼ãƒ»ãƒ¯ãƒ¼ãƒ«ãƒ‰",
+"à¹€à¸®à¸¥à¹‚à¸¥à¹€à¸§à¸´à¸¥à¸”à¹Œ",
+"Ø­Ø±ÙŠØ§Øª ÙˆØ­Ù‚ÙˆÙ‚",
+"×ª×•×›× ×™×ª",
+'Ã Ã©Ã¹Ã§'];
+// =============================================================================
+for i = 1 : size(tab_ref,'*')
+  if tab_ref(i) <> sprintf(tab_ref(i)) then bugmes();quit;end
+  if tab_ref(i) <> sprintf('%s',tab_ref(i)) then bugmes();quit;end
+end
+// =============================================================================
+for i = 1 : size(tab_ref,'*')
+  disp(tab_ref(i));
+end
+// =============================================================================
+for i = 1 : size(tab_ref,'*')
+  mprintf(tab_ref(i));
+  mprintf('\n');
+  mprintf('%s\n',tab_ref(i));
+end
+// =============================================================================
+for i = 1 : size(tab_ref,'*')
+  printf(tab_ref(i));
+  printf('\n');
+  printf('%s\n',tab_ref(i));
+end
+// =============================================================================

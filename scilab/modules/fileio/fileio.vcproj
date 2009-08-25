@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -397,10 +397,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\diary.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\DllmainFileio.c"
 				>
 			</File>
@@ -716,10 +712,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\delfile.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\diary.h"
 				>
 			</File>
 			<File

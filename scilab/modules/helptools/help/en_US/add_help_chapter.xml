@@ -60,6 +60,9 @@
       <member>
         <link linkend="help">help</link>
       </member>
+      <member>
+        <link linkend="del_help_chapter">del_help_chapter</link>
+      </member>
     </simplelist>
   </refsection>
   <refsection>

@@ -111,9 +111,9 @@ sciGetPointerToFeature (sciPointObj * pobj)
 sciEntityType
 sciGetEntityType (sciPointObj * pobj)
 {
-  /*if (pobj != (sciPointObj *) NULL)*/
+  if (pobj != (sciPointObj *) NULL)
     return pobj->entitytype;
-  /*return (sciEntityType)-1;*/
+  return (sciEntityType)-1;
 }
 
 

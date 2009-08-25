@@ -26,7 +26,6 @@ sci_gateway/c/sci_writeb.c \
 sci_gateway/c/sci_setenv.c \
 sci_gateway/c/gw_io.c \
 sci_gateway/c/sci_mgetl.c \
-sci_gateway/c/sci_diary.c \
 sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \

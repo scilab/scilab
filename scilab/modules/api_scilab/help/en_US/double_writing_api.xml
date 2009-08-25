@@ -32,7 +32,7 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <programlisting>
+        <programlisting role="">
 		<![CDATA[
 int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal)
 int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
@@ -88,7 +88,7 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <programlisting><![CDATA[
+        <programlisting role=""><![CDATA[
 int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal)
 int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 ]]></programlisting>

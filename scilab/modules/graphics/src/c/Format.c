@@ -652,7 +652,7 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   //nup = round(*xmaxv/ width2);
 	nup = floor(*xmaxv / width2 + 0.5);
   up = nup * width2;
-  
+
   if ( low > *xminv )
   { 
     nlow = floor( *xminv / width2 ) ;
@@ -678,7 +678,6 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   {
     gr[k]=gr[k-1]+width2;
   }
-  
 }
 
 
@@ -758,9 +757,18 @@ int C2F(theticks)( double * xminv, double * xmaxv, double * grads, int * ngrads)
   static int k, tst0;
   
   /* check if the two bounds are not too close for a correct display */
-  if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) ) 
+  if ( SAFE_EQUAL( *xmaxv, *xminv, EPSILON ) )
   {
     correctBounds( *xminv, *xmaxv, &xmin, &xmax ) ;    
+    /* call again the ticks with updated values. */
+    return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
+  }
+
+  // Correction of bug 4724 and 4432
+  if ( SAFE_EQUAL2( *xmaxv, *xminv, 1e-5 ) )
+  {
+    xmin = *xminv - 1e-6*(fabs(*xmaxv) + fabs(*xminv));
+    xmax = *xmaxv + 1e-6*(fabs(*xmaxv) + fabs(*xminv));
     /* call again the ticks with updated values. */
     return C2F(theticks)(&xmin,&xmax,grads,ngrads) ;
   }
@@ -839,9 +847,9 @@ int TheTicks( double * xminv ,
   }
 
   C2F(theticks)(xminv, xmaxv, grads, ngrads);
-  
+
   if(*ngrads == 1 && !compNgrads)
-    {
+    { 
       /* unfortunately there is only 1 graduation (normally this case 
 	 happens when handling small intervals with huge numbers (i.e. [10^60 10^60+1]) */
       /* What I do is to enlarge this interval */
