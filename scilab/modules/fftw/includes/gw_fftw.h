@@ -14,6 +14,7 @@
 #define __GW_FFTW__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
+#include "api_common.h"
 #include "sci_get_fftw_wisdom.h"
 #include "sci_fftw_flags.h"
 #include "sci_loadfftwlibrary.h"

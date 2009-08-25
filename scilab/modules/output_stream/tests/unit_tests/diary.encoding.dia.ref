@@ -12,7 +12,7 @@ tab_ref = [
 "حريات وحقوق",
 "תוכנית"];
 for i = 1 : size(tab_ref,'*')
-  diary(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.diary');
+  diary(TMPDIR + filesep() + tab_ref(i) + '.diary');
   1+1;
-  if (fileinfo(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.diary') == []) then bugmes();quit;end
-end
+  if (fileinfo(TMPDIR + filesep() + tab_ref(i) + '.diary') == []) then bugmes();quit;end
+end  

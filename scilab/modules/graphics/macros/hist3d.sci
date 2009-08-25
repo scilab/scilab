@@ -10,7 +10,13 @@
 function hist3d(f,T,A,leg,flags,ebox)
 //!
 nep=8
-def=list(35,45,'X@Y@Z',[2 1 4])
+
+if ~isdef('T','local') then T = 35; end;
+if ~isdef('A','local') then T = 45; end;
+if ~isdef('leg','local') then leg = 'X@Y@Z'; end;
+if ~isdef('flags','local') then flags = [2 1 4]; end;
+  
+def=list(35,45,'X@Y@Z',[2 1 4]);
 [lhs,rhs]=argn(0)
 if rhs<=0 then  //demo
   s_mat=['hist3d(10*rand(10,10));';]

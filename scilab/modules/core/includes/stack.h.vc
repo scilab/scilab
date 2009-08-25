@@ -60,8 +60,8 @@ c
       integer icall,krec
       common /recu/ ids,pstk,rstk,pt,niv,macr,paus,icall,krec
 
-      integer ddt,err,lct(8),lin(lsiz),lpt(6),hio,rio,wio,rte,wte
-      common /iop/ ddt,err,lct,lin,lpt,rio,wio,rte,wte
+      integer ddt,err,lct(8),lin(lsiz),lpt(6),hio,rio,rte,wte
+      common /iop/ ddt,err,lct,lin,lpt,rio,rte,wte
 
       integer err1,err2,errct,toperr,errpt,ieee,catch
       common /errgst/ err1,err2,errct,toperr,errpt,ieee,catch

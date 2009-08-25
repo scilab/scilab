@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{B7A0273E-8E71-4663-8497-0895945ED54D}"
 	RootNamespace="scicos"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -44,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -130,7 +131,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -218,7 +219,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -310,7 +311,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/doublylinkedlist/includes;../../../core/includes;../../../time/includes;../../../output_stream/includes;../../../scicos_blocks/includes;../../../graphics/includes;../../../string/includes;../../../intersci/src/lib;../../../dynamic_link/includes;../scicos_sundials;../../../action_binding/includes;../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

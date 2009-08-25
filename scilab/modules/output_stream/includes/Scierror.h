@@ -15,6 +15,10 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include "do_error_number.h"
 
 
@@ -27,5 +31,8 @@
 */
 int  Scierror(int iv,char *fmt,...);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __SCIERROR__ */
 /*--------------------------------------------------------------------------*/ 
