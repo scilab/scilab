@@ -17,25 +17,25 @@
 #include "BOOL.h"
 #include "ScilabKeywords.h"
 /*--------------------------------------------------------------------------*/ 
-char **ScilabKeyword_GetVariablesName(void)
+char **GetVariablesName(void)
 {
 	int returnedArraySize = 0;
 	return getVariablesName(&returnedArraySize, TRUE);
 }
 /*--------------------------------------------------------------------------*/ 
-char **ScilabKeyword_GetCommandsName(void)
+char **GetCommandsName(void)
 {
 	int returnedArraySize = 0;
 	return getcommandkeywords(&returnedArraySize);
 }
 /*--------------------------------------------------------------------------*/ 
-char **ScilabKeyword_GetFunctionsName(void)
+char **GetFunctionsName(void)
 {
 	int returnedArraySize = 0;
 	return GetFunctionsList(&returnedArraySize);
 }
 /*--------------------------------------------------------------------------*/ 
-char **ScilabKeyword_GetMacrosName(void)
+char **GetMacrosName(void)
 {
 	int returnedArraySize = 0;
 	return getmacrosdictionary(&returnedArraySize);

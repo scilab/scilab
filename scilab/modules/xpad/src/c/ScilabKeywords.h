@@ -17,25 +17,25 @@
 * Get all variables name in scilab
 * @return char array
 */
-char **ScilabKeyword_GetVariablesName(void);
+char **GetVariablesName(void);
 
 /**
 * Get all commands name in scilab
 * @return char array
 */
-char **ScilabKeyword_GetCommandsName(void);
+char **GetCommandsName(void);
 
 /**
 * get primitives name in scilab
 * @return char array
 */
-char **ScilabKeyword_GetFunctionsName(void);
+char **GetFunctionsName(void);
 
 /**
 * get macros name  in scilab
 * @return char array
 */
-char **ScilabKeyword_GetMacrosName(void);
+char **GetMacrosName(void);
 
 #endif /* __SCILABKEYWORDS_H__ */
 /*--------------------------------------------------------------------------*/  

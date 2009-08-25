@@ -21,16 +21,20 @@ public class ScilabKeywords {
  protected ScilabKeywords() {
 	throw new UnsupportedOperationException();
  }
-  public static String[] ScilabKeyword_GetCommandsName() {
-    return ScilabKeywordsJNI.ScilabKeyword_GetCommandsName();
+  public static String[] GetVariablesName() {
+    return ScilabKeywordsJNI.GetVariablesName();
   }
 
-  public static String[] ScilabKeyword_GetFunctionsName() {
-    return ScilabKeywordsJNI.ScilabKeyword_GetFunctionsName();
+  public static String[] GetCommandsName() {
+    return ScilabKeywordsJNI.GetCommandsName();
   }
 
-  public static String[] ScilabKeyword_GetMacrosName() {
-    return ScilabKeywordsJNI.ScilabKeyword_GetMacrosName();
+  public static String[] GetFunctionsName() {
+    return ScilabKeywordsJNI.GetFunctionsName();
+  }
+
+  public static String[] GetMacrosName() {
+    return ScilabKeywordsJNI.GetMacrosName();
   }
 
 }

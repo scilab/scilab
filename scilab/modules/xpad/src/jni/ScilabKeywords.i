@@ -75,29 +75,39 @@ public class";
 	throw new UnsupportedOperationException();
  }";
 
-/* JavaDoc */
-%javamethodmodifiers GetVariablesName() "
-/**
-* get Commands Name
-* @return a array of chars 
-*/
-public";
-char **ScilabKeyword_GetCommandsName(void);
 
 /* JavaDoc */
-%javamethodmodifiers GetVariablesName() "
-/**
-* get Functions Name
-* @return a array of chars 
-*/
-public";
-char **ScilabKeyword_GetFunctionsName(void);
-
-/* JavaDoc */
-%javamethodmodifiers GetVariablesName() "
+%javamethodmodifiers GetMacrosName() "
 /**
 * get Macros Name
 * @return a array of chars 
 */
 public";
-char **ScilabKeyword_GetMacrosName(void);
+char **GetVariablesName(void);
+
+/* JavaDoc */
+%javamethodmodifiers GetMacrosName() "
+/**
+* get Macros Name
+* @return a array of chars 
+*/
+public";
+char **GetCommandsName(void);
+
+/* JavaDoc */
+%javamethodmodifiers GetMacrosName() "
+/**
+* get Macros Name
+* @return a array of chars 
+*/
+public";
+char **GetFunctionsName(void);
+
+/* JavaDoc */
+%javamethodmodifiers GetMacrosName() "
+/**
+* get Macros Name
+* @return a array of chars 
+*/
+public";
+char **GetMacrosName(void);
