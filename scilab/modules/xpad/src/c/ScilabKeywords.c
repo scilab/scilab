@@ -16,28 +16,54 @@
 #include "getmacrosdictionary.h"
 #include "BOOL.h"
 #include "ScilabKeywords.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 char **GetVariablesName(void)
 {
 	int returnedArraySize = 0;
-	return getVariablesName(&returnedArraySize, TRUE);
+	char **VarsName = getVariablesName(&returnedArraySize, TRUE);
+	/* SWIG char array must be finished by NULL */
+	if (VarsName)
+	{
+		VarsName = (char**)REALLOC(VarsName,sizeof(char*)*(returnedArraySize+1));
+		VarsName[returnedArraySize] = NULL;
+	}
+	return VarsName;
 }
 /*--------------------------------------------------------------------------*/ 
 char **GetCommandsName(void)
 {
 	int returnedArraySize = 0;
-	return getcommandkeywords(&returnedArraySize);
+	char **CommandKeywords = getcommandkeywords(&returnedArraySize);
+	if (CommandKeywords)
+	{
+		CommandKeywords = (char**)REALLOC(CommandKeywords, sizeof(char*)*(returnedArraySize+1));
+		CommandKeywords[returnedArraySize] = NULL;
+	}
+	return CommandKeywords;
 }
 /*--------------------------------------------------------------------------*/ 
 char **GetFunctionsName(void)
 {
 	int returnedArraySize = 0;
-	return GetFunctionsList(&returnedArraySize);
+	char **FunctionsName = GetFunctionsList(&returnedArraySize);
+	if (FunctionsName)
+	{
+		FunctionsName = (char**)REALLOC(FunctionsName, sizeof(char*)*(returnedArraySize+1));
+		FunctionsName[returnedArraySize] = NULL;
+	}
+	return FunctionsName;
 }
 /*--------------------------------------------------------------------------*/ 
 char **GetMacrosName(void)
 {
 	int returnedArraySize = 0;
-	return getmacrosdictionary(&returnedArraySize);
+	char **MacrosName = getmacrosdictionary(&returnedArraySize);
+	if (MacrosName)
+	{
+		MacrosName = (char**)REALLOC(MacrosName, sizeof(char*)*(returnedArraySize+1));
+		MacrosName[returnedArraySize] = NULL;
+	}
+	return MacrosName;
 }
 /*--------------------------------------------------------------------------*/ 

@@ -543,14 +543,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     
     public Hashtable<String, String[]> getScilabKeywords() {
     	
+    	System.out.println("---ICI---");
+    	
     	String[] commands =  ScilabKeywords.GetCommandsName();
     	String[] functions =  ScilabKeywords.GetFunctionsName();
     	String[] macros =  ScilabKeywords.GetMacrosName();
+    	String[] variables =  ScilabKeywords.GetVariablesName();
+    	
+
     	
     	for (int i = 0; i < commands.length; i++) {
 			System.out.println("---COMMAND---");
 			System.out.println(commands[i]);
 		}
+		
+    	
+    	for (int i = 0; i < functions.length; i++) {
+			System.out.println("---FUNCTIONS---");
+			System.out.println(functions[i]);
+		}
+
+    	for (int i = 0; i < variables.length; i++) {
+			System.out.println("---VARIABLES---");
+			System.out.println(variables[i]);
+		}
+
     	
     	Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
     	

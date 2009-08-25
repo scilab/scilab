@@ -112,6 +112,10 @@
 				RelativePath=".\org\scilab\modules\xpad\ScilabKeywords.java"
 				>
 			</File>
+			<File
+				RelativePath=".\org\scilab\modules\xpad\ScilabKeywordsJNI.java"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\build.xml"

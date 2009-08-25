@@ -10,7 +10,7 @@
  *
  */
 /* ScilabKeywords.i */
-/*  swig -java -package org.scilab.modules.xpad -outdir ../java/org/scilab/modules/xpad/ ScilabKeywords.i */
+/* swig -java -package org.scilab.modules.xpad -outdir ../java/org/scilab/modules/xpad/ ScilabKeywords.i */
 %module ScilabKeywords
 
 %{
@@ -43,10 +43,10 @@ public class%}
   static {
     try {
         if (OSNAME.indexOf("windows") != -1) {
-        System.loadLibrary("scixpad");
+        System.loadLibrary("xpad");
         }
         else {
-        System.loadLibrary("xpad");
+        System.loadLibrary("scixpad");
         }
     } catch (SecurityException e) {
 		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
