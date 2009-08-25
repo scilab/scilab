@@ -84,15 +84,6 @@ static void printf_scilab(char *buffer)
 		wcBuffer = to_wide_string(buffer);
 		if (wcBuffer)
 		{
-			/* remove blanks at end of line */
-			/*int i = 0;
-			int len = (int) wcslen(wcBuffer) - 1;
-			for (i = len; i >= 0; i--)
-			{
-				if (wcBuffer[i] == ' ') wcBuffer[i] = L'\0';
-				else break;
-			}*/
-		
 			diaryWrite(wcBuffer, FALSE);
 			FREE(wcBuffer);
 			wcBuffer = NULL;

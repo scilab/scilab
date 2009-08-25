@@ -61,8 +61,16 @@ static int ResumeByFilenames(char *fname);
 static int ResumeByIds(char *fname);
 static int ExistByFilenames(char *fname);
 static int ExistByIds(char *fname);
-static int AppendByFilenames(char *fname, int filterMode, int prefixMode, int prefixModeFilter);
-static int NewByFilenames(char *fname, int filterMode, int prefixMode, int prefixModeFilter);
+static int AppendByFilenames(char *fname, 
+							 diary_filter filterMode, 
+							 diary_prefix_time_format prefixMode, 
+							 diary_prefix_time_filter prefixModeFilter,
+							 bool suspended);
+static int NewByFilenames(char *fname, 
+						  diary_filter filterMode, 
+						  diary_prefix_time_format prefixMode, 
+						  diary_prefix_time_filter prefixModeFilter,
+						  bool suspended);
 /*--------------------------------------------------------------------------*/
 int sci_diary(char *fname,unsigned long fname_len)
 {
@@ -131,8 +139,7 @@ static int sci_diary_no_rhs(char *fname)
 			createMatrixOfWideString(Rhs + 2, nb_diary_filenames, 1, wcdiary_filenames);
 			LhsVar(2) = Rhs + 2;
 
-			delete [] wcdiary_filenames;
-			wcdiary_filenames = NULL;
+			freeInput(wcdiary_filenames, nb_diary_filenames);
 			nb_diary_filenames = 0;
 		}
 		else
@@ -143,8 +150,7 @@ static int sci_diary_no_rhs(char *fname)
 				LhsVar(2) = Rhs + 2;
 				if (wcdiary_filenames)
 				{
-					delete [] wcdiary_filenames;
-					wcdiary_filenames = NULL;
+					freeInput(wcdiary_filenames, nb_diary_filenames);
 					nb_diary_filenames = 0;
 				}
 			}
@@ -199,7 +205,7 @@ static int sci_diary_one_rhs(char *fname)
 		{
 			if (diaryExists(wcFilenames[0]))
 			{
-				double dID = (double)diaryNew(wcFilenames[0]);
+				double dID = (double)diaryNew(wcFilenames[0], false);
 				if (dID == -1)
 				{
 					char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
@@ -224,7 +230,7 @@ static int sci_diary_one_rhs(char *fname)
 					wfilenameUsed[0] = getDiaryFilename((int)dID);
 					createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 					LhsVar(2) = Rhs + 2;
-					if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+					freeInput(wfilenameUsed,1);
 				}
 			}
 			else // diary(filename) exists (close diary)
@@ -239,18 +245,15 @@ static int sci_diary_one_rhs(char *fname)
 						return 0;
 					}
 				}
+				LhsVar(1) = 0; 
 			}
 
-			if (wcFilenames)
-			{
-				if (wcFilenames[0]) {FREE(wcFilenames[0]); wcFilenames[0] = NULL;}
-				FREE(wcFilenames); wcFilenames = NULL;
-			}
-
+			freeInput(wcFilenames,sizewcFilenames);
 			C2F(putlhsvar)();
 		}
 		else
 		{
+			freeInput(wcFilenames,sizewcFilenames);
 			Scierror(999,_("%s: Wrong size for input argument #%d.\n"),fname, 1);
 		}
 	}
@@ -341,7 +344,9 @@ static int sci_diary_two_rhs(char *fname)
 		{
 			if (getVarType(piAddressVarOne) == sci_strings)
 			{
-				return NewByFilenames(fname, 0, 0, 3);
+				return NewByFilenames(fname, DIARY_FILTER_INPUT_AND_OUTPUT, 
+					PREFIX_TIME_FORMAT_UNIX_EPOCH, 
+					PREFIX_FILTER_NONE, false);
 			}
 			else
 			{
@@ -353,7 +358,9 @@ static int sci_diary_two_rhs(char *fname)
 		{
 			if (getVarType(piAddressVarOne) == sci_strings)
 			{
-				return AppendByFilenames(fname, 0, 0, 3);
+				return AppendByFilenames(fname, DIARY_FILTER_INPUT_AND_OUTPUT, 
+					PREFIX_TIME_FORMAT_UNIX_EPOCH, 
+					PREFIX_FILTER_NONE, false);
 			}
 			else
 			{
@@ -400,33 +407,42 @@ static int sci_diary_three_rhs(char *fname)
 
 	if (wcArgumentThree)
 	{
-		int filterMode = 0;
-		int iPrefixMode = 0;
-		int iPrefixIoModeFilter = 3;
+		diary_filter filterMode = DIARY_FILTER_INPUT_AND_OUTPUT;
+		diary_prefix_time_format iPrefixMode = PREFIX_TIME_FORMAT_UNIX_EPOCH;
+		diary_prefix_time_filter iPrefixIoModeFilter = PREFIX_FILTER_NONE;
+		bool suspendedDiary = false;
 
 		for (int i = 0; i < size_ArgThree; i++)
 		{
 			if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_FILTER_COMMAND) == 0)
 			{
-				filterMode = 1; // input only
+				filterMode = DIARY_FILTER_ONLY_INPUT; // input only
 			}
 			else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_FILTER_OUTPUT) == 0)
 			{
-				filterMode = 2; // output only
+				filterMode = DIARY_FILTER_ONLY_OUTPUT; // output only
 			}
 			else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_UNIX_EPOCH) == 0)
 			{
-				iPrefixMode = 0;
-				if (iPrefixIoModeFilter == 3) iPrefixIoModeFilter = 0;
+				iPrefixMode = PREFIX_TIME_FORMAT_UNIX_EPOCH;
+				if (iPrefixIoModeFilter == PREFIX_FILTER_NONE) iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
 			}
 			else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_DEFAULT) == 0)
 			{
-				iPrefixMode = 1;
-				if (iPrefixIoModeFilter == 3) iPrefixIoModeFilter = 0;
+				iPrefixMode = PREFIX_TIME_FORMAT_ISO_8601;
+				if (iPrefixIoModeFilter == PREFIX_FILTER_NONE) iPrefixIoModeFilter = PREFIX_FILTER_INPUT_AND_OUTPUT;
 			}
 			else if (wcscmp(wcArgumentThree[i], DIARY_THIRD_ARG_PREFIX_ONLY_COMMANDS) == 0)
 			{
-				iPrefixIoModeFilter = 1;
+				iPrefixIoModeFilter = PREFIX_FILTER_ONLY_INPUT;
+			}
+			else if ( (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_ON) == 0) || (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_RESUME) == 0) )
+			{
+				suspendedDiary = false;
+			}
+			else if ( (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_OFF) == 0) || (wcscmp(wcArgumentThree[i], DIARY_SECOND_ARG_PAUSE) == 0) )
+			{
+				suspendedDiary = true;
 			}
 			else
 			{
@@ -449,7 +465,7 @@ static int sci_diary_three_rhs(char *fname)
 				FREE(wcArgumentTwo); wcArgumentTwo = NULL;
 				if (getVarType(piAddressVarOne) == sci_strings)
 				{
-					return NewByFilenames(fname, filterMode, iPrefixMode, iPrefixIoModeFilter);
+					return NewByFilenames(fname, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
 				}
 				else
 				{
@@ -462,7 +478,7 @@ static int sci_diary_three_rhs(char *fname)
 				FREE(wcArgumentTwo); wcArgumentTwo = NULL;
 				if (getVarType(piAddressVarOne) == sci_strings)
 				{
-					return AppendByFilenames(fname, filterMode, iPrefixMode, iPrefixIoModeFilter);
+					return AppendByFilenames(fname, filterMode, iPrefixMode, iPrefixIoModeFilter, suspendedDiary);
 				}
 				else
 				{
@@ -506,6 +522,12 @@ static double *getInputArgumentOneIDs(char *fname,int *sizeReturnedArray, int *i
 		if ( (m1 == 1) || (n1 == 1) )
 		{
 			*sizeReturnedArray = m1 * n1;
+		}
+		else if ( (m1 == 0) || (n1 == 0) )
+		{
+			*sizeReturnedArray = 0;
+			*ierror = 2;
+			return NULL;
 		}
 		else
 		{
@@ -768,7 +790,15 @@ static int CloseByIds(char *fname)
 	int ierr = 0;
 
 	dIDs = getInputArgumentOneIDs(fname, &dIDs_size, &ierr);
-	if (ierr) return 0;
+
+	if (ierr == 2)
+	{
+		// diary([], 'close')
+		diaryCloseAll();
+		C2F(putlhsvar)();
+		return 0;
+	}
+	else if (ierr) return 0;
 
 	ierr = checkExistByIDs(fname, dIDs, dIDs_size);
 	if (ierr) return 0;
@@ -974,7 +1004,11 @@ static int ExistByIds(char *fname)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int AppendByFilenames(char *fname, int filterMode, int prefixMode, int prefixModeFilter)
+static int AppendByFilenames(char *fname, 
+							 diary_filter filterMode, 
+							 diary_prefix_time_format prefixMode, 
+							 diary_prefix_time_filter prefixModeFilter,
+							 bool suspended)
 {
 	wchar_t **wcFilenames = NULL;
 	int dIDs_size = 0;
@@ -1007,6 +1041,7 @@ static int AppendByFilenames(char *fname, int filterMode, int prefixMode, int pr
 		diarySetFilterMode((int)dID, filterMode);
 		diarySetPrefixMode((int)dID, prefixMode);
 		diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
+		if (suspended) diaryPause((int)dID);
 
 		createMatrixOfDouble(Rhs + 1, 1, 1, &dID);
 		LhsVar(1) = Rhs + 1;
@@ -1017,7 +1052,7 @@ static int AppendByFilenames(char *fname, int filterMode, int prefixMode, int pr
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
 			createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 			LhsVar(2) = Rhs + 2;
-			if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+			freeInput(wfilenameUsed, 1);
 		}
 		C2F(putlhsvar)();
 	}
@@ -1030,7 +1065,11 @@ static int AppendByFilenames(char *fname, int filterMode, int prefixMode, int pr
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int NewByFilenames(char *fname, int filterMode, int prefixMode, int prefixModeFilter)
+static int NewByFilenames(char *fname,
+						  diary_filter filterMode, 
+						  diary_prefix_time_format prefixMode, 
+						  diary_prefix_time_filter prefixModeFilter, 
+						  bool suspended)
 {
 	wchar_t **wcFilenames = NULL;
 	int dIDs_size = 0;
@@ -1041,7 +1080,7 @@ static int NewByFilenames(char *fname, int filterMode, int prefixMode, int prefi
 
 	if (dIDs_size == 1)
 	{
-		double dID = (double)diaryNew(wcFilenames[0]);
+		double dID = (double)diaryNew(wcFilenames[0], true);
 		if (dID == -1)
 		{
 			char *utf_str = wide_string_to_UTF8(wcFilenames[0]);
@@ -1063,6 +1102,7 @@ static int NewByFilenames(char *fname, int filterMode, int prefixMode, int prefi
 		diarySetFilterMode((int)dID, filterMode);
 		diarySetPrefixMode((int)dID, prefixMode);
 		diarySetPrefixIoModeFilter((int)dID, prefixModeFilter);
+		if (suspended) diaryPause((int)dID);
 
 		createMatrixOfDouble(Rhs + 1, 1, 1, &dID);
 		LhsVar(1) = Rhs + 1;
@@ -1073,7 +1113,7 @@ static int NewByFilenames(char *fname, int filterMode, int prefixMode, int prefi
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
 			createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 			LhsVar(2) = Rhs + 2;
-			if (wfilenameUsed) {delete [] wfilenameUsed; wfilenameUsed = NULL;}
+			freeInput(wfilenameUsed, 1);
 		}
 		C2F(putlhsvar)();
 	}
