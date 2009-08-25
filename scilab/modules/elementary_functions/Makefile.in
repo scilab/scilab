@@ -195,6 +195,8 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-wpade.lo \
 	libscielementary_functions_la-wcopy.lo \
+	libscielementary_functions_la-dpofa.lo \
+	libscielementary_functions_la-util.lo \
 	libscielementary_functions_la-dgefa.lo
 am__objects_3 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
@@ -835,6 +837,8 @@ src/fortran/slatec/balanc.f
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
    src/fortran/linpack/wpade.f \
    src/fortran/linpack/wcopy.f \
+   src/fortran/linpack/dpofa.f \
+   src/fortran/linpack/util.f \
    src/fortran/linpack/dgefa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
@@ -2182,6 +2186,12 @@ libscielementary_functions_la-wpade.lo: src/fortran/linpack/wpade.f
 
 libscielementary_functions_la-wcopy.lo: src/fortran/linpack/wcopy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wcopy.lo `test -f 'src/fortran/linpack/wcopy.f' || echo '$(srcdir)/'`src/fortran/linpack/wcopy.f
+
+libscielementary_functions_la-dpofa.lo: src/fortran/linpack/dpofa.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dpofa.lo `test -f 'src/fortran/linpack/dpofa.f' || echo '$(srcdir)/'`src/fortran/linpack/dpofa.f
+
+libscielementary_functions_la-util.lo: src/fortran/linpack/util.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
 
 libscielementary_functions_la-dgefa.lo: src/fortran/linpack/dgefa.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgefa.lo `test -f 'src/fortran/linpack/dgefa.f' || echo '$(srcdir)/'`src/fortran/linpack/dgefa.f

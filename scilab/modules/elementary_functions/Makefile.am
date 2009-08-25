@@ -118,6 +118,8 @@ src/fortran/slatec/balanc.f
 LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
    src/fortran/linpack/wpade.f \
    src/fortran/linpack/wcopy.f \
+   src/fortran/linpack/dpofa.f \
+   src/fortran/linpack/util.f \
    src/fortran/linpack/dgefa.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
