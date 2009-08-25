@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="predef" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>predef</refname>
 
-    <refpurpose>proteÃ§Ã£o de variÃ¡veis</refpurpose>
+    <refpurpose>proteção de variáveis</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>n=predef()
 oldnew=predef(n)
@@ -26,47 +26,47 @@ oldnew=predef('clear')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FunÃ§Ã£o utilitÃ¡ria para definir as variÃ¡veis "mais antigas" como
-    "protegidas". VariÃ¡veis protegidas nÃ£o podem ser cancelada. Elas nÃ£o sÃ£o
-    salvas pelo comando <literal>'save'</literal> . As variÃ¡veis "mais
-    antigas" sÃ£o aquelas que aparecem por Ãºltimo em
+    <para>Função utilitária para definir as variáveis "mais antigas" como
+    "protegidas". Variáveis protegidas não podem ser cancelada. Elas não são
+    salvas pelo comando <literal>'save'</literal> . As variáveis "mais
+    antigas" são aquelas que aparecem por último em
     <literal>who('get')</literal>.</para>
 
-    <para><literal>predef()</literal> retorna o nÃºmero de variÃ¡veis
+    <para><literal>predef()</literal> retorna o número de variáveis
     protegidas.</para>
 
-    <para><literal>predef('a[ll]')</literal> ajusta todas as variÃ¡veis como
-    protegidas, tambÃ©m retorna o nÃºmero antigo e o novo de variÃ¡veis
+    <para><literal>predef('a[ll]')</literal> ajusta todas as variáveis como
+    protegidas, também retorna o número antigo e o novo de variáveis
     protegidas.</para>
 
-    <para><literal>predef('c[lear]')</literal> desprotege todas as variÃ¡veis,
-    exceto as 7 Ãºltimas e tambÃ©m retorna o nÃºmero antigo e o novo de variÃ¡veis
+    <para><literal>predef('c[lear]')</literal> desprotege todas as variáveis,
+    exceto as 7 últimas e também retorna o número antigo e o novo de variáveis
     protegidas.</para>
 
     <para><literal>predef(n) </literal>ajusta as <literal>max(n,7)</literal>
-    Ãºltimas variÃ¡veis definidas como protegidas, tambÃ©m retorna o nÃºmero
-    antigo e o novo de variÃ¡veis protegidas. </para>
+    últimas variáveis definidas como protegidas, também retorna o número
+    antigo e o novo de variáveis protegidas. </para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o </title>
+    <title>Observação </title>
 
-    <para>Um nÃºmero de variÃ¡veis protegidas estÃ¡ configurado no arquivo de
-    "start-up" (inicializaÃ§Ã£o) <literal>SCI/etc/scilab.start</literal>. O
-    usuÃ¡rio pode, em particular, configurar suas prÃ³prias variÃ¡veis
-    predefinidas nos arquivos de inicializaÃ§Ã£o do usuÃ¡rio
+    <para>Um número de variáveis protegidas está configurado no arquivo de
+    "start-up" (inicialização) <literal>SCI/etc/scilab.start</literal>. O
+    usuário pode, em particular, configurar suas próprias variáveis
+    predefinidas nos arquivos de inicialização do usuário
     <literal>SCIHOME/.scilab</literal> e
     <literal>SCIHOME/scilab.ini</literal></para>
 
-    <para>DefiniÃ§Ã£o SCIHOME: no Windows : C:/Documents and
+    <para>Definição SCIHOME: no Windows : C:/Documents and
     Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt; No Linux/Unix :
     /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt; </para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="clear">clear</link></member>

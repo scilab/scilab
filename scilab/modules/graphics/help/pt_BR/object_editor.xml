@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="object_editor" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>object_editor</refname>
+
+    <refpurpose>Descrição das capacidades do editor de objetos
+    gráficos</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="graphic">
+    <refname>graphic</refname>
+
+    <refpurpose>Descrição das capacidades do editor de objetos
+    gráficos</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="menus">
+    <refname>menus</refname>
+
+    <refpurpose>Descrição das capacidades do editor de objetos
+    gráficos</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Os gráficos do Scilab permitem que o usuário interaja com os
+    gráficos antes e depois de tê-los desenhado. Cada janela gráfica e seus
+    conteúdos são representados por entidades hierárquicas. O topo da
+    hierarquia é a figura (entidade Figure). Cada figura define pelo menos uma
+    entidade galho do tipo Axes (eixos). Cada entidade Axes contém entidades
+    folhas que são objetos gráficos básicos como, Rectangles, Arcs, Segs,...
+    (retângulos, arcos, segmentos). Também contém o tipo Compound que são
+    conjuntos recursivos de entidades.</para>
+
+    <para>O principal interesse do novo modo gráfico é tornar mudanças de
+    propriedades mais fáceis. Este novo modo de gráficos fornece um conjunto
+    de rotinas gráficas de alto-nível (ver <link linkend="set">set</link>,
+    <link linkend="get">get</link>) utilizadas para controlar propriedades dos
+    objetos tais como dados, coordenadas e escalas, cores e aparências sem que
+    seja necessário entrar com os comandos gráficos iniciais novamente.</para>
+
+    <para>Entidades gráficas são associadas a variáveis Scilab do tipo
+    <literal>handle</literal>. a qual chamaremos manipulador. Um manipulador é
+    um identificador único que é associado a cada instância de uma entidade
+    gráfica criada. Utilizando manipuladores, é possível alcançar propriedades
+    de entidade através das rotinas "set" e "get" . Os manipuladores também
+    são utilizados para manipular objetos gráficos, para movê-los, para fazer
+    copiá-los ou deletá-los.</para>
+
+    <para>Para completar e utilizar a capacidade de um manipulador gráfico ao
+    seu máximo, um editor de objetos gráficos também foi criado. É um conjunto
+    de interfaces Tcl/Tk disponíveis para cada tipo de objeto gráfico (ver
+    <link linkend="graphics_entities">graphics_entities</link> para mais
+    detalhes) que pode ser habilitado para cada janela de gráficos. Para
+    fazê-lo funcionar, selecione o menu <literal>Edit</literal> na janela de
+    gráficos. Sete operações de edição gráfica estão disponíveis:</para>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Select figure as current:</term>
+
+        <listitem>
+          <para>permite que uma figura seja a corrente.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Redraw figure:</term>
+
+        <listitem>
+          <para> redesenha o conteúdo da janela de gráficos</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Erase figure:</term>
+
+        <listitem>
+          <para>apaga o conteúdo da janela de gráficos. Sua ação corresponde a
+          um comando <literal>clf</literal>.</para>
+
+          <para></para>
+
+          <para></para>
+
+          <para>Os últimos oito itens são especialmente dedicados ao editor
+          gráfico:</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Copy object:</term>
+
+        <listitem>
+          <para>utilizando o mouse, permite que o usuário selecione um objeto
+          2d (como uma curva, um retângulo...) e coloque na área de
+          transferência. Logo, por uma nova chamada a <literal>Paste
+          object</literal>, (colar objeto), o objeto é copiado nos eixos
+          correntes selecionados.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Paste object:</term>
+
+        <listitem>
+          <para>permite que o usuário cole um objeto anterior posto na àrea de
+          transferência nos eixos correntes selecionados.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Move object:</term>
+
+        <listitem>
+          <para>utilizando o mouse, permite que o usuário mova um objeto 2d
+          (como uma curva, um retângulo...) dentro dos eixos correntes
+          selecionados.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Delete object:</term>
+
+        <listitem>
+          <para>utilizando o mouse, permite que o usuário selecione um objeto
+          2d(como uma curva, um retângulo...) dentro dos eixos correntes
+          selecionados e delete-o instantaneamente.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Figure Properties:</term>
+
+        <listitem>
+          <para>lança a interface Tcl/Tk para o objeto Figure aplicado ao
+          manipulador da figura da janela de gráficos.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Current Axes Properties:</term>
+
+        <listitem>
+          <para>lança a interface Tcl/Tk para o objeto Axes aplicado ao
+          manipulador dos eixos correntes da janela de gráficos.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Start Entity Picker:</term>
+
+        <listitem>
+          <para>inicia um manipulador de eventos na janela de gráficos para
+          pegar os cliques do mouse sobre objetos gráficos e lança a interface
+          Tcl/Tk correspondente. O clique com botão esquerdo do mouse permite
+          edição de objetos e com botão direito realiza um movimento do objeto
+          selecionado. Note que, por ora, este recurso só se aplica a objetos
+          2d.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Stop Entity Picker:</term>
+
+        <listitem>
+          <para>para a ação de Entity Picker terminando o manipulador de
+          eventos na janela de gráficos.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Uma vez que a interface gráfica é habilitada (utilizando as opções
+    <literal>Figure Properties</literal> ou <literal>Current Axes
+    Properties</literal>), duas áreas principais aparecem:</para>
+
+    <para></para>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Um tree selector (seletor de árvore):</term>
+
+        <listitem>
+          <para>posicionado à direita do editor gráfico, um seletor de árvores
+          hierárquicas especifica que objeto é correntemente editado . Pode
+          ser usado para alternar de um objeto gráfico para outro fornecido
+          estando eles na mesma janela de gráficos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/tree.gif"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Um notebook (caderno):</term>
+
+        <listitem>
+          <para>a segunda área representa um caderno composto de diferentes
+          páginas de propriedades (como <literal>Style</literal>,
+          <literal>Data</literal>, <literal>Clipping</literal>...) dependendo
+          do objeto gráfico selecionado. Utilizando-se este editor, pode-se
+          editar mais facilmente todo o conjunto de propriedade gráficas de
+          cada objeto gráfico (como através dos comandos
+          <literal>"set"</literal> e <literal>"get"</literal>). Aqui está um
+          exemplo de um caderno para a entidade Axes exibindo as suas
+          propriedades:</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/notebook.gif"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para></para>
+
+    <para>Furthermore, você poderá colocar legendas/anotações em sua figura
+    utilizando primitivas de amostra fornecidas no menu
+    <literal>Insert</literal> na janela gráfica. Utilizando o mouse e seguindo
+    as instruções na subjanela de mensagem, você poderá acrescentar:</para>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Line:</term>
+
+        <listitem>
+          <para>Desenhe uma linha entre dois cliques do mouse. A linha vive
+          nos eixos onde o primeiro ponto foi selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Polyline:</term>
+
+        <listitem>
+          <para>Desenhe uma poligonal clicando no botão esquerdo para definir
+          o caminho da linha e clique no botão direito para completar o
+          desenho. A poligonal vive nos eixos onde o primeiro ponto foi
+          selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Arrow:</term>
+
+        <listitem>
+          <para>Desenhe uma seta entre dois cliques do mouse. A seta vive nos
+          eixos onde o primeiro ponto foi selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Double arrow:</term>
+
+        <listitem>
+          <para>Desenhe uma seta dupla entre dois cliques do mouse. A seta
+          dupla vive nos eixos onde o primeiro ponto foi selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Text:</term>
+
+        <listitem>
+          <para>Abra uma caixa de diálogo para inserir o texto, então clique
+          na janela da figura para posicioná-lo. O texto vive nos eixos onde o
+          primeiro ponto foi selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Rectangle:</term>
+
+        <listitem>
+          <para>Desenhe um retângulo: dois cliques com o botão direito definem
+          os cantos superior esquerdo e inferior direito do retângulo. O
+          retângulo vive nos eixos onde o primeiro ponto foi
+          selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para></para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Circle:</term>
+
+        <listitem>
+          <para>Desenhe um círculo: 2dois cliques com o botão direito definem
+          os cantos superior esquerdo e inferior direito da caixa em que o
+          círculo vive. O retângulo vive nos eixos onde o primeiro ponto foi
+          selecionado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="plot">plot</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Leray INRIA</para>
+  </refsection>
+</refentry>

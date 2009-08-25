@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getf</refname>
+
+    <refpurpose>Definindo uma função a partir de um arquivo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>getf(file-name [,opt])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>opt</term>
+
+        <listitem>
+          <para>string opcional</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"c"</term>
+
+              <listitem>
+                <para>as funções carregadas são "compiladas" para uma maior
+                eficiência (padrão)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"n"</term>
+
+              <listitem>
+                <para>as funções carregadas não são "compiladas"</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"p"</term>
+
+              <listitem>
+                <para>as funções carregadas são "compiladas" e preparadas para
+                profiling (ver profile)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Carrega uma ou várias funções (ver <literal>functions</literal>)
+    definidas no arquivo <literal>'file-name'</literal>. O string
+    <literal>opt='n'</literal> significa que as funções não são compiladas
+    (pre-interpretadas) quando carregadas. Isto pode ser útil par propósitos
+    de depuramento (ver <literal>comp</literal>). Por padrão, as funções são
+    compiladas quando carregadas (i.e. <literal>opt='c'</literal> is
+    used).</para>
+
+    <para>Em um arquivo, uma função deve começar pela linha de "definição de
+    sintaxe" como segue:</para>
+
+    <programlisting>
+
+function [y1,...,yn]=foo(x1,...,xm)
+   
+    </programlisting>
+
+    <para>As linhas seguintes conterão seqüências de instruções do
+    Scilab.</para>
+
+    <para>A linha de "definição de sintaxe" fornece a sintaxe de chamamento
+    "completa" desta função. Os <literal>yi</literal> sçao variáveis de saída
+    calculadas em função das variáveis de entrada <literal>xi</literal> e de
+    variáveis existentes no Scilab quando a função é executada. Listas de
+    argumentos de entrada ou saída mais curtas podem ser utilizadas.</para>
+
+    <para>Muitas funções podem ser escritas em um mesmo arquivo. Uma função é
+    terminada pela palavra-chave <literal>endfunction</literal>. Para
+    compatibilidade com funções anteriores, uma função pode ser terminada pela
+    palavra-chave <literal>function</literal> seguinte ou pela marca
+    <literal>EOF</literal> mark. Por esta razão, não é possível carregar
+    funções com definições de funções aninhadas através da função
+    <literal>getf</literal>.</para>
+
+    <para><literal>getf</literal> é um modo obsoleto de carregar funções no
+    Scilab a partir de um arquivo. Ele é substituída por <link
+    linkend="exec">exec</link>. Note que funções em um arquivo devem ser
+    terminadas pela palavra-chave <literal>endfunction</literal>. A função
+    <literal>exec</literal> supõe <literal>opt=='c'</literal>.</para>
+
+    <para>Para preparar uma função para profiling, por favor, utilize a função
+    <link linkend="add_profiling">add_profiling</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+getf('SCI/modules/graphics/macros/plot.sci')
+
+getf SCI/modules/graphics/macros/plot.sci
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="functions">functions</link></member>
+
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="genlib">genlib</link></member>
+
+      <member><link linkend="getd">getd</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="edit">edit</link></member>
+
+      <member><link linkend="comp">comp</link></member>
+
+      <member><link linkend="add_profiling">add_profiling</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

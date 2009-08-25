@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=asinm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>t</literal> Ã© o arco-seno da matriz <literal>x</literal>
-    matrix. (matriz arco-seno de x). Ã‰ usado o mÃ©todo da diagonalizaÃ§Ã£o. Para
-    matrizes nÃ£o-simÃ©tricas, o resultado pode ser impreciso.</para>
+    <para><literal>t</literal> é o arco-seno da matriz <literal>x</literal>
+    matrix. (matriz arco-seno de x). É usado o método da diagonalização. Para
+    matrizes não-simétricas, o resultado pode ser impreciso.</para>
   </refsection>
 
   <refsection>
@@ -76,7 +76,7 @@ asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="asin">asin</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>contour</refname>
 
-    <refpurpose>curvas de n√≠vel em uma superf√≠cie 3d</refpurpose>
+    <refpurpose>curvas de nÌvel em uma superfÌcie 3d</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
 contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,8 +50,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>z</term>
 
         <listitem>
-          <para>matriz de reais de tamanho (n1,n2), os valores da fun√ß√£o sobre
-          o gride ou uma fun√ß√£o Scilab que define uma superf√≠cie
+          <para>matriz de reais de tamanho (n1,n2), os valores da funÁ„o sobre
+          o gride ou uma funÁ„o Scilab que define uma superfÌcie
           <literal>z=f(x,y)</literal>.</para>
         </listitem>
       </varlistentry>
@@ -60,7 +60,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>nz</term>
 
         <listitem>
-          <para>os valores de n√≠vel ou o n√∫mero de n√≠veis.</para>
+          <para>os valores de nÌvel ou o n˙mero de nÌveis.</para>
 
           <variablelist>
             <varlistentry>
@@ -68,7 +68,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>Se <literal>nz</literal> for um inteiro, seu valor
-                fornece o n√∫mero de n√≠veis igualmente espa√ßados de zmin a zmax
+                fornece o n˙mero de nÌveis igualmente espaÁados de zmin a zmax
                 como segue:</para>
 
                 <programlisting>
@@ -77,9 +77,9 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
    
                 </programlisting>
 
-                <para>Note que os n√≠veis <literal>zmin</literal> e
-                <literal>zmax</literal> n√£o s√£o desenhados (genericamente eles
-                s√£o reduzidos a pontos) mas podem ser adicionados atrav√©s
+                <para>Note que os nÌveis <literal>zmin</literal> e
+                <literal>zmax</literal> n„o s„o desenhados (genericamente eles
+                s„o reduzidos a pontos) mas podem ser adicionados atravÈs
                 de</para>
 
                 <programlisting>
@@ -96,10 +96,10 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
 
               <listitem>
                 <para>Se <literal>nz</literal> for um vetor,
-                <literal>nz(i)</literal> fornece o valor da i-√©sima curva de
-                n√≠vel. Note que isto pode ser √∫til para se visualizar as
-                curvas de n√≠vel <literal>zmin</literal> e
-                <literal>zmax</literal> para se adicionar uma toler√¢ncia eps:
+                <literal>nz(i)</literal> fornece o valor da i-Èsima curva de
+                nÌvel. Note que isto pode ser ˙til para se visualizar as
+                curvas de nÌvel <literal>zmin</literal> e
+                <literal>zmax</literal> para se adicionar uma toler‚ncia eps:
                 <literal>nz=[zmin+%eps,..,zmax-%eps]</literal>.</para>
               </listitem>
             </varlistentry>
@@ -111,11 +111,11 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>uma seq√º√™ncia de declara√ß√µes <literal>key1=value1,
+          <para>uma seq¸Íncia de declaraÁıes <literal>key1=value1,
           key2=value2</literal>, ... onde keys podem ser
           <literal>theta</literal>,<literal>alpha</literal>,<literal>leg</literal>,<literal>flag</literal>,
           <literal>ebox</literal>,<literal>zlev</literal> (ver abaixo). Neste
-          caso, a ordem n√£o possui significado especial.</para>
+          caso, a ordem n„o possui significado especial.</para>
         </listitem>
       </varlistentry>
 
@@ -123,8 +123,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>theta, alpha</term>
 
         <listitem>
-          <para>valores reais de dados em graus, as coordenadas esf√©ricas do
-          ponto de observa√ß√£o.</para>
+          <para>valores reais de dados em graus, as coordenadas esfÈricas do
+          ponto de observaÁ„o.</para>
         </listitem>
       </varlistentry>
 
@@ -132,7 +132,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>leg</term>
 
         <listitem>
-          <para>string definindo os r√≥tulos para cada eixo com @ como um
+          <para>string definindo os rÛtulos para cada eixo com @ como um
           separador de campos, por exemplo "X@Y@Z".</para>
         </listitem>
       </varlistentry>
@@ -141,7 +141,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>flag</term>
 
         <listitem>
-          <para>um vetor real de tamanho tr√™s.
+          <para>um vetor real de tamanho trÍs.
           <literal>flag=[mode,type,box]</literal>.</para>
 
           <variablelist>
@@ -149,14 +149,14 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
               <term>mode</term>
 
               <listitem>
-                <para>string de representa√ß√£o de modo.</para>
+                <para>string de representaÁ„o de modo.</para>
 
                 <variablelist>
                   <varlistentry>
                     <term>mode=0:</term>
 
                     <listitem>
-                      <para>as curvas s√£o desenhadas na superf√≠cie definida
+                      <para>as curvas s„o desenhadas na superfÌcie definida
                       por (x,y,z).</para>
                     </listitem>
                   </varlistentry>
@@ -165,8 +165,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>mode=1:</term>
 
                     <listitem>
-                      <para>as curvas s√£o desenhadas em um esbo√ßo 3d e sobre o
-                      plano definido pela equa√ß√£o z=zlev.</para>
+                      <para>as curvas s„o desenhadas em um esboÁo 3d e sobre o
+                      plano definido pela equaÁ„o z=zlev.</para>
                     </listitem>
                   </varlistentry>
 
@@ -174,7 +174,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>mode=2:</term>
 
                     <listitem>
-                      <para>as curvas s√£o desenhadas em um esbo√ßo 2D.</para>
+                      <para>as curvas s„o desenhadas em um esboÁo 2D.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -192,7 +192,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=0</term>
 
                     <listitem>
-                      <para>o esbo√ßo √© feito utilizando-se a escala 3d
+                      <para>o esboÁo È feito utilizando-se a escala 3d
                       corrente (definida por uma chamada anterior a
                       <literal>param3d</literal>, <literal>plot3d</literal>,
                       <literal>contour</literal> ou
@@ -204,8 +204,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=1</term>
 
                     <listitem>
-                      <para>re-escala automaticamente caixas 3d com rela√ß√£o de
-                      aspecto extrema, as fronteiras s√£o especificadas pelo
+                      <para>re-escala automaticamente caixas 3d com relaÁ„o de
+                      aspecto extrema, as fronteiras s„o especificadas pelo
                       valor do argumento opcional
                       <literal>ebox</literal>.</para>
                     </listitem>
@@ -215,8 +215,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=2</term>
 
                     <listitem>
-                      <para>re-escala automaticamente caixas 3d com rela√ß√£o de
-                      aspecto extrema, as fronteiras s√£o computadas
+                      <para>re-escala automaticamente caixas 3d com relaÁ„o de
+                      aspecto extrema, as fronteiras s„o computadas
                       utilizando-se dados fornecidos.</para>
                     </listitem>
                   </varlistentry>
@@ -225,7 +225,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=3</term>
 
                     <listitem>
-                      <para>fronteiras 3d isom√©tricas com fronteiras da caixa
+                      <para>fronteiras 3d isomÈtricas com fronteiras da caixa
                       dadas por <literal>ebox</literal>, de modo semelhante a
                       <literal>type=1</literal></para>
                     </listitem>
@@ -235,7 +235,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=4</term>
 
                     <listitem>
-                      <para>fronteiras 3d isom√©tricas derivadas dos dados, de
+                      <para>fronteiras 3d isomÈtricas derivadas dos dados, de
                       modo semelhante a <literal>type=2</literal></para>
                     </listitem>
                   </varlistentry>
@@ -244,7 +244,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=5</term>
 
                     <listitem>
-                      <para>fronteiras 3d isom√©tricas expandidas com
+                      <para>fronteiras 3d isomÈtricas expandidas com
                       fronteiras fornecidas por <literal>ebox</literal>, de
                       modo semelhante a <literal>type=1</literal></para>
                     </listitem>
@@ -254,7 +254,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>type=6</term>
 
                     <listitem>
-                      <para>fronteiras 3d isom√©tricas expandidas derivadas dos
+                      <para>fronteiras 3d isomÈtricas expandidas derivadas dos
                       dados, de modo semelhante a
                       <literal>type=2</literal></para>
                     </listitem>
@@ -267,14 +267,14 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
               <term>box</term>
 
               <listitem>
-                <para>um inteiro (moldura ao redor do esbo√ßo).</para>
+                <para>um inteiro (moldura ao redor do esboÁo).</para>
 
                 <variablelist>
                   <varlistentry>
                     <term>box=0</term>
 
                     <listitem>
-                      <para>nada √© desenhado ao redor do esbo√ßo.</para>
+                      <para>nada È desenhado ao redor do esboÁo.</para>
                     </listitem>
                   </varlistentry>
 
@@ -282,7 +282,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>box=1</term>
 
                     <listitem>
-                      <para>n√£o implementado (√© como box=0).</para>
+                      <para>n„o implementado (È como box=0).</para>
                     </listitem>
                   </varlistentry>
 
@@ -290,7 +290,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>box=2</term>
 
                     <listitem>
-                      <para>apenas os eixos atr√°s da superf√≠cie s√£o
+                      <para>apenas os eixos atr·s da superfÌcie s„o
                       desenhados.</para>
                     </listitem>
                   </varlistentry>
@@ -299,8 +299,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>box=3</term>
 
                     <listitem>
-                      <para>uma caixa cercando a superf√≠cie √© desenhada e
-                      legendas s√£o adicionadas.</para>
+                      <para>uma caixa cercando a superfÌcie È desenhada e
+                      legendas s„o adicionadas.</para>
                     </listitem>
                   </varlistentry>
 
@@ -308,8 +308,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
                     <term>box=4</term>
 
                     <listitem>
-                      <para>uma caixa cercando a superf√≠cie √© desenhada e
-                      legendas e eixos s√£o adicionados.</para>
+                      <para>uma caixa cercando a superfÌcie È desenhada e
+                      legendas e eixos s„o adicionados.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -324,8 +324,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>usado quando <literal>type</literal> em
-          <literal>flag</literal> √© 1. Especifica as fronteiras do esbo√ßo
-          atrav√©s do vetor
+          <literal>flag</literal> È 1. Especifica as fronteiras do esboÁo
+          atravÈs do vetor
           <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>.</para>
         </listitem>
       </varlistentry>
@@ -334,21 +334,21 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>zlev</term>
 
         <listitem>
-          <para>n√∫mero real.</para>
+          <para>n˙mero real.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>contour</literal> desenha curvas de n√≠vel de uma superf√≠cie
-    z= f(x,y). As curvas de n√≠vel s√£o desenhadas sobre uma superf√≠cie 3d. Os
-    argumentos opcionais s√£o os mesmos que os da fun√ß√£o
+    <para><literal>contour</literal> desenha curvas de nÌvel de uma superfÌcie
+    z= f(x,y). As curvas de nÌvel s„o desenhadas sobre uma superfÌcie 3d. Os
+    argumentos opcionais s„o os mesmos que os da funÁ„o
     <literal>plot3d</literal> (exceto por <literal>zlev</literal>)e seus
-    significados s√£o os mesmos. Eles controlam o desenho das curva de n√≠vel em
-    um esbo√ßo 3d. Apenas <literal>flag(1)=mode</literal> tem significado
+    significados s„o os mesmos. Eles controlam o desenho das curva de nÌvel em
+    um esboÁo 3d. Apenas <literal>flag(1)=mode</literal> tem significado
     especial.</para>
 
     <variablelist>
@@ -356,7 +356,7 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>mode=0</term>
 
         <listitem>
-          <para>as curvas s√£o desenhadas na superf√≠cie definida por
+          <para>as curvas s„o desenhadas na superfÌcie definida por
           (x,y,z).</para>
         </listitem>
       </varlistentry>
@@ -365,8 +365,8 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>mode=1</term>
 
         <listitem>
-          <para>as curvas s√£o desenhadas em um esbo√ßo 3d e sobre o plano
-          definido pela equa√ß√£o z=zlev.</para>
+          <para>as curvas s„o desenhadas em um esboÁo 3d e sobre o plano
+          definido pela equaÁ„o z=zlev.</para>
         </listitem>
       </varlistentry>
 
@@ -374,23 +374,23 @@ contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
         <term>mode=2</term>
 
         <listitem>
-          <para>as curvas s√£o desenhadas em um esbo√ßo 2D.</para>
+          <para>as curvas s„o desenhadas em um esboÁo 2D.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Voc√™ pode modificar o formato dos pontos flutuantes impressos sobre
-    os n√≠veis utilizando <literal>xset("fpf",string)</literal> onde
+    <para>VocÍ pode modificar o formato dos pontos flutuantes impressos sobre
+    os nÌveis utilizando <literal>xset("fpf",string)</literal> onde
     <literal>string</literal> fornece o formato em na sintaxe de formato C
     (por exemplo <literal>string="%.3f"</literal>). Use
-    <literal>string=""</literal> para voltar ao formato padr√£o e use
-    <literal>string=" "</literal> para suprimir a impress√£o.</para>
+    <literal>string=""</literal> para voltar ao formato padr„o e use
+    <literal>string=" "</literal> para suprimir a impress„o.</para>
 
-    <para>Geralmente √© usado <literal>contour2d</literal> para se esbo√ßar
-    curvas de n√≠vel em um esbo√ßo 2d.</para>
+    <para>Geralmente È usado <literal>contour2d</literal> para se esboÁar
+    curvas de nÌvel em um esboÁo 2d.</para>
 
     <para>Entre com o comando <literal>contour()</literal> para visualizar uma
-    demonstra√ß√£o.</para>
+    demonstraÁ„o.</para>
   </refsection>
 
   <refsection>
@@ -402,7 +402,7 @@ t=linspace(-%pi,%pi,30);
 function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
 
 contour(t,t,my_surface,10)
-// mudando o formato da impress√£o dos n√≠veis
+// mudando o formato da impress„o dos nÌveis
 xset("fpf","%.1f")
 xbasc()
 contour(t,t,my_surface,10)
@@ -417,7 +417,7 @@ plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="contour2d">contour2d</link></member>

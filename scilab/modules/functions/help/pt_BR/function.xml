@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="function" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>function</refname>
+
+    <refpurpose>abre definição de função</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="endfunction">
+    <refname>endfunction</refname>
+
+    <refpurpose>encerra definição de função</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <programlisting>
+
+function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;
+&lt;statements&gt;
+endfunction
+   
+    </programlisting>
+
+    <para>Onde</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>&lt;function_name&gt;</term>
+
+        <listitem>
+          <para>é o nome da função</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;rhs_arguments&gt;</term>
+
+        <listitem>
+          <para>é a lista de argumentos de entrada. Pode ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>uma seqüência separada por vírgula de nomes de variáveis
+              encerrada por parênteses, como <literal>(x1,...,xm)</literal>. O
+              último nome de variável pode ser a palavra-chave
+              <literal>varargin</literal> (ver varargin)</para>
+            </listitem>
+
+            <listitem>
+              <para>a seqüência <literal>()</literal> ou nada, se a função não
+              possui argumentos de entrada.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;lhs_arguments&gt;</term>
+
+        <listitem>
+          <para>é a lista de argumentos de saída. Pode ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>uma seqüência separada por vírgula de nomes de variáveis
+              encerrada por colchetes, como <literal>[y1,...,yn]</literal>. O
+              último nome de variável pode ser a palavra-chave
+              <literal>varargout</literal> (ver varargout)</para>
+            </listitem>
+
+            <listitem>
+              <para>a seqüência <literal>[]</literal> ,se a função não possui
+              argumentos de saída. neste caso, a sintaxe também, pode ser:
+              <literal>function
+              &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;statements&gt;</term>
+
+        <listitem>
+          <para>conjunto de instruções Scilab (declarações). Esta sintaxe pode
+          ser usada para definir funções (ver functions) inline ou em arquivo
+          script (ver exec). Para compatibilidade com versões Scilab antigas,
+          as funções podem ser definidas em um arquivo script contendo apenas
+          definições de funções podem ser "carregadas" no Scilab através da
+          função <literal>getf</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>A seqüência <literal>function
+    &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+    não pode ser separada em várias linhas. Esta seqüência pode ser seguida
+    por declarações na mesma linha, se uma vírgula ou ponto-e-vírgula for
+    adicionado ao seu fim.</para>
+
+    <para>Definições de funções podem ser aninhadas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//definição inline (ver functions)
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//uma definição de função de uma linha
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+//definição de função aninhada
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+
+// definição em um arquivo script (ver exec)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="functions">functions</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

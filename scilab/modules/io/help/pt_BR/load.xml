@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="load" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>load</refname>
+
+    <refpurpose>carrega variável salva</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>load(filename [,x1,...,xn])
+load(fd [,x1,...,xn])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>string contendo o endereço do arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>descritor de arquivo fornecido por uma chamada a mopen</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>nome(s) de variáveis Scilab arbitrárias fornecidos como
+          strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O comando <literal>load</literal> pode ser utilizado para recarregar
+    no Scilab variáveis de sessão previamente gravadas com o comando
+    <literal>save</literal>. Se o arquivo contém variáveis correspondentes a
+    manipuladores gráficos, as <link
+    linkend="graphics_entities">graphics_entities</link> (entidades gráficas)
+    correspondentes são desenhados.</para>
+
+    <para>Desde o Scilab 5.0, todos os manipuladores <link
+    linkend="uimenu">uimenu</link> ou <link
+    linkend="uicontrol">uicontrol</link> também são desenhados.</para>
+
+    <para><literal>load(filename)</literal> carrega variáveis no arquivo dado
+    pelo endereço <literal>filename</literal>.</para>
+
+    <para><literal>load(fd)</literal> carrega variáveis no arquivo fornecido
+    pelo seu descritor <literal>fd</literal>.</para>
+
+    <para><literal>load(filename,'x','y')</literal> ou
+    <literal>load(fd,'x','y')</literal> carrega apenas as variáveis
+    <literal>x,y</literal>.</para>
+
+    <para>Mesmo que o formato de arquivo binário tenha mudado na versão 2.5,
+    <literal>load(filename,...)</literal> é capaz de ler formatos antigos.
+    Formatos antigos podem ser acessados por enquanto utilizando as funções
+    oldsave e oldload.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="listvarinfile">listvarinfile</link></member>
+
+      <member><link linkend="save_format">save_format</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xgraduate" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xgraduate</refname>
+
+    <refpurpose>Graduação de eixos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xmi,xma</term>
+
+        <listitem>
+          <para>escalares reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi, xa, kMinr, kMaxr, ar</term>
+
+        <listitem>
+          <para>escalares reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>np1,np2</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xgraduate</literal> retorna as graduações de eixos que são
+    utilizadas pelas rotinas de esboço (com o flag de embelezamento
+    habilitado). Retorna um intervalo <literal>[xi,xa]</literal> que contém o
+    dado intervalo <literal>[xmi,xma]</literal> e tal que</para>
+
+    <para><literal>xi= kMinr*10^ar</literal>,
+    <literal>xa=kMaxr*10^ar</literal> e o intervalo pode ser dividido em
+    <literal>np2</literal> intervalos e cada intervalo é dividido em
+    <literal>np1</literal> subintervalos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+  [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="graduate">graduate</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.P.C ; ;</para>
+  </refsection>
+</refentry>

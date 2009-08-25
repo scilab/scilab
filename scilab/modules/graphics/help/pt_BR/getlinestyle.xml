@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getlinestyle" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getlinestyle</refname>
+
+    <refpurpose>Diálogo para seleção de estilo de linha.<emphasis role="bold">
+    Função obsoleta.</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>k=getlinestyle()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>inteiro, o estilo de linha selecionado ou [] se o botão
+          "Cancel" (cancelar) for clicado.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função, que foi projetada para trabalhar com a função <link
+    linkend="xset">xset</link>, <emphasis role="bold">também está
+    obsoleta</emphasis>. Utilize o editor de propriedades <link
+    linkend="ged">ged</link>.</para>
+
+    <para><literal>getlinestyle</literal> abre uma janela de gráfico para
+    selecionar um estilo de linha.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+x=0:0.1:10;
+plot2d(x,sin(x))
+e=gce(); // armazenando o Compound contendo o esboço
+e.children(1).line_style = getlinestyle();
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link
+      linkend="polyline_properties">segs_properties</link></member>
+
+      <member><link linkend="segs_properties">segs_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

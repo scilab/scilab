@@ -35,14 +35,14 @@ c     if  compilation mode skip primitive functions
       endif
 c
 c     look for name in primitive functions
-      call funtab(id,fptr,1)
+      call funtab(id,fptr,1,'NULL_NAME',0)
       if(fptr.le.0) then
          if(comp(1).eq.0.and.fin.ne.-5) goto 30
          fin=0
          fun=0
       else
-         fun = fptr/100
-         fin = mod(fptr,100)
+         fun = fptr/1000
+         fin = mod(fptr,1000)
       endif
       return
 c     

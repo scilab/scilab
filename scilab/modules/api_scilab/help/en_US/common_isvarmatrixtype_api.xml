@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Common isvarmatrixtype_API"
+<refentry version="5.0-subset Scilab" xml:id="Common_isvarmatrixtype_API"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -25,11 +25,10 @@
             How to know if a variable is stored as a matrix.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to know if a variable is stored as a matrix.</para>
-        <synopsis>int isVarMatrixType(int* _piAddress)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int isVarMatrixType(int* _piAddress)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -41,13 +40,24 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Returned value</term>
+                <listitem>
+                    <para>
+                        1 if the variable is stored as matrix otherwise 0.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
-        <title>Return value</title>
-        <para>This function returns 1 if the variable is stored as matrix otherwise 0</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
+        <title>Description</title>
+        <para>This help describes how to know if a variable is stored as a matrix.</para>
+        <para>In some cases (exemple: list), a variable is not stored as a standard Scilab matrix. This function provides a way to handle both cases.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
         <!--Lib_name: commom_function-->
         <!--Func_list: commom_function-->
         <title>Gateway Source</title>

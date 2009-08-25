@@ -13,25 +13,33 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intones) (int *id);
+#include "api_scilab.h"
+#include "Scierror.h"
+#include "sciprint.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_ones) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iIndex				= 0;
-	int iRows				= 0;
-	int iCols				= 0;
-	double *pReturnRealData	= 0;
+	int iRet					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+	double *pdblReal	= 0;
+	int* piAddr1			= NULL;
+	int* piAddr2			= NULL;
 
 	CheckLhs(1,1);
 
+
 	if(Rhs > 2)
-	{
-		//trouver un moyen d'appeller %hm_ones :(
+	{//call %hm_ones
+		int iStart	= 1;
+		int iRhs		= Rhs;
+		int iLhs		= Lhs;
+
+		SciString(&iStart,"%hm_ones", &iLhs, &iRhs);
+
+		LhsVar(1) = 1;
+		PutLhsVar();
+		return 0;
 	}
 	else if(Rhs <= 0)
 	{
@@ -41,37 +49,64 @@ int C2F(sci_ones) (char *fname,unsigned long fname_len)
 	}
 	else if(Rhs == 1)
 	{
-		if(GetType(1) > 10)
+		iRet = getVarAddressFromPosition(1, &piAddr1);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(getVarType(piAddr1) > 10)//pas classe !
 		{
 			OverLoad(1);
 			return 0;
 		}
-		GetVarDimension(1, &iRows, &iCols);
-		CheckVarUsed(1);
+		iRet = getVarDimension(piAddr1, &iRows, &iCols);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 	else if(Rhs == 2)
 	{
-		GetDimFromVar(1, 2, &iRows);
-		GetDimFromVar(2, 1, &iCols);
+		iRet = getVarAddressFromPosition(1, &piAddr1);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getVarAddressFromPosition(2, &piAddr2);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getDimFromVar(piAddr1, &iRows);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getDimFromVar(piAddr2, &iCols);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 
-	if(iCols == 0)
+	if(iRows == 0 || iCols == 0)
+	{
 		iRows = 0;
-	if(iRows == 0)
 		iCols = 0;
+	}
 
-	iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-	//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReal);
 	if(iRows != 0)
-		vDset(iRows * iCols, 1, pReturnRealData, 1);
+	{
+		vDset(iRows * iCols, 1, pdblReal, 1);
+	}
 
-	//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-	//free(pReturnRealData);
-#else
-	C2F(intones)(id);
-#endif
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

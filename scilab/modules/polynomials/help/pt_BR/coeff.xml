@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA - Serge STEER
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>coeff</refname>
 
-    <refpurpose>coeficientes de matrizes de polinÃ´mios</refpurpose>
+    <refpurpose>coeficientes de matrizes de polinômios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[C]=coeff(Mp [,v])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>Mp</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios</para>
+          <para>matriz de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -65,22 +65,22 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>C=coeff(Mp)</literal> retorna em uma matriz grande
-    <literal>C</literal> os coeficientes da matriz de polinÃ´mios
-    <literal>Mp</literal> . <literal>C</literal> Ã© particionada como
-    <literal>C=[C0,C1,...,Ck]</literal> onde os <literal>Ci</literal> estÃ£o
+    <literal>C</literal> os coeficientes da matriz de polinômios
+    <literal>Mp</literal> . <literal>C</literal> é particionada como
+    <literal>C=[C0,C1,...,Ck]</literal> onde os <literal>Ci</literal> estão
     dispostos em ordem crescente, <literal>k =
     maxi(degree(Mp))</literal></para>
 
     <para><literal>C=coeff(Mp,v)</literal> retorna a matriz de coeficientes
-    com graus em <literal>v</literal> . (<literal>v</literal> Ã© um vetor linha
+    com graus em <literal>v</literal> . (<literal>v</literal> é um vetor linha
     ou coluna).</para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

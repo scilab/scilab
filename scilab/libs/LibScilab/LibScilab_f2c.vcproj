@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="LibScilab_f2c"
-	ProjectGUID="{64BC155E-292F-484F-9404-76EE6AE67A43}"
+	ProjectGUID="{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
 	RootNamespace="LibScilab"
 	TargetFrameworkVersion="0"
 	>

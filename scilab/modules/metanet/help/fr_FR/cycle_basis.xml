@@ -60,25 +60,25 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+    
+//create a directed graph
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
 gt=make_graph('foo',1,17,ta,he);
-gt('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-gt('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
-gt('edge_color')=modulo([1:(edge_number(gt))],15)+1;
-gt('node_diam')=[1:(gt('node_number'))]+20;
+gt.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642]/2;
+gt.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
 show_graph(gt);
+
+//Make simple and undirected
 g=graph_simp(gt);
-g('edge_color')=modulo([1:(edge_number(g))],15)+1;
-g('node_diam')=gt('node_diam');
-g('default_edge_hi_width')=12;
-show_graph(g);
-spc=cycle_basis(g);
-for kk=1:(size(spc,1)),
-  aaa=spc(kk,:);aaa=full(aaa);aaa(aaa==0)=[];
-  show_arcs(aaa);
-end;
- ]]></programlisting>
+show_graph(g,'new');
+
+//Compute the cycle basis
+cycles_list=cycle_basis(g,'list');
+
+//Display the cycles
+for c=cycles_list,hilite_edges(c);xpause(1d6),unhilite_edges(c);end;
+   ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

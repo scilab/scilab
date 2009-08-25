@@ -25,12 +25,11 @@ static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
 static BOOL Set_SCI_PATH(char *DefaultPath);
 static BOOL Set_HOME_PATH(char *DefaultPath);
+static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath);
 static BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void);
 /*--------------------------------------------------------------------------*/
 /**
-* Les variables d'environnements SCI, and some others
-* sont définies directement dans scilab
-* scilex peut donc etre executé seul 
+* Set some environment variablesSCI, and some others
 */
 void SciEnvForWindows(void)
 {
@@ -53,17 +52,16 @@ void SciEnvForWindows(void)
 	if (SCIPathName) {FREE(SCIPathName);SCIPathName=NULL;}
 }
 /*--------------------------------------------------------------------------*/
-/*----------------------------------------------------
-* set env variables (used when calling scilab from
-* other programs)
-*----------------------------------------------------*/
+/* set env variables (used when calling scilab from * other programs) */
 void SetScilabEnvironmentVariables(char *DefaultSCIPATH)
 {
 	if (DefaultSCIPATH)
 	{
+
 		Set_SCI_PATH(DefaultSCIPATH);
 		Set_HOME_PATH(DefaultSCIPATH);
 		Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB();
+		AddScilabBinDirectoryToPATHEnvironnementVariable(DefaultSCIPATH);
 	}
 	else
 	{
@@ -144,19 +142,19 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 {
 	BOOL bOK=TRUE;
 
-	#ifdef _MSC_VER
-		_putenv ("COMPILER=VC++");
-	#endif
+#ifdef _MSC_VER
+	_putenv ("COMPILER=VC++");
+#endif
 
 	/* WIN32 variable Environment */
-    #ifdef _WIN32
-		_putenv ("WIN32=OK");
-	#endif
+#ifdef _WIN32
+	_putenv ("WIN32=OK");
+#endif
 
 	/* WIN64 variable Environment */
-    #ifdef _WIN64
-		_putenv ("WIN64=OK");
-	#endif
+#ifdef _WIN64
+	_putenv ("WIN64=OK");
+#endif
 
 	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
 	{
@@ -181,19 +179,19 @@ BOOL IsTheGoodShell(void)
 	_splitpath(shellCmd,drive,dir,fname,ext);
 
 	if (_stricmp(fname,"cmd")==0) bOK=TRUE;
-	
+
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/
 BOOL Set_Shell(void)
 {
-	BOOL bOK=FALSE;
+	BOOL bOK = FALSE;
 	char env[_MAX_DRIVE+_MAX_DIR+_MAX_FNAME+_MAX_EXT+10];
-	char *WINDIRPATH=NULL;
+	char *WINDIRPATH = NULL;
 
-	WINDIRPATH=getenv ("SystemRoot");
+	WINDIRPATH = getenv ("SystemRoot");
 	sprintf(env,"ComSpec=%s\\system32\\cmd.exe",WINDIRPATH);
-	
+
 	if (_putenv (env))
 	{
 		bOK=FALSE;		
@@ -202,8 +200,32 @@ BOOL Set_Shell(void)
 	{
 		bOK=TRUE;
 	}
-	
+
 	if (WINDIRPATH){ FREE(WINDIRPATH); WINDIRPATH=NULL; }
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+static BOOL AddScilabBinDirectoryToPATHEnvironnementVariable(char *DefaultPath)
+{
+	#define PATH_FORMAT "PATH=%s/bin;%s"
+
+	BOOL bOK = FALSE;
+	char *PATH = NULL;
+	char *env = NULL;
+
+	PATH = getenv("PATH");
+
+	env = (char*) MALLOC(sizeof(char)* (strlen(PATH_FORMAT) + strlen(PATH) + strlen(DefaultPath) + 1));
+	if (env)
+	{
+		sprintf(env, PATH_FORMAT, DefaultPath, PATH);
+		if (_putenv (env))
+		{
+			bOK = FALSE;
+		}
+		else bOK = TRUE;
+		FREE(env); env = NULL;
+	}
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/

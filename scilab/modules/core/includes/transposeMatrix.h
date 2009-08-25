@@ -38,7 +38,7 @@ int *transposeMatrixInt(int C,int L,int *MatrixInt);
 * param[in] MatrixStr
 * return transposed matrix
 */
-char **transposeMatrixStrings(int C,int L,char **MatrixStr);
+//char **transposeMatrixStrings(int C,int L,char **MatrixStr);
 
 #endif /* __TRANSPOSEMATRIX_H__ */
 /*--------------------------------------------------------------------------*/

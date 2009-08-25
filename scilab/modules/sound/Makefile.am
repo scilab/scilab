@@ -13,6 +13,7 @@ libscisound_la_CFLAGS=  -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisound.la

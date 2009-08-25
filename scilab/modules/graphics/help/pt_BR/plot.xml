@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plot</refname>
+
+    <refpurpose>Esboço 2d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
+plot(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>uma matriz ou vetor de reais. Se omitido, é assumido como
+          sendo o vetor <literal>1:n</literal> onde <literal>n</literal> é o
+          número de pontos de curva dado pelo parâmetro
+          <literal>y</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>uma matriz de reais ou um vetor. <literal>y</literal> também
+          pode ser uma função definida como um macro ou uma primitiva. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;LineSpec&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional deve ser usado como um atalho para
+          especificar um modo de desenhar uma linha. Podemos ter um
+          <literal>LineSpec</literal> por<literal> y</literal> ou
+          <literal>{x,y}</literal> previamente entrados. As opções
+          <literal>LineSpec</literal> lidam com os especificadores LineStyle,
+          Marker e Color (ver <link linkend="LineSpec">LineSpec</link>). Estes
+          especificadores determinam o estilo de linha, de marcas e a cor das
+          linhas esboçadas. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional representa uma seqüência de pares de
+          declarações <literal>{PropertyName,PropertyValue}</literal> tque
+          define propriedades globais de objetos a serem aplicadas a todas as
+          curvas criadas pelo esboço. Para uma visualização completa de das
+          propriedades disponíveis veja <link
+          linkend="GlobalProperty">GlobalProperty</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional força o esboço a aparecer dentro dos
+          eixos selecionados fornecidos por <literal>axes_handle</literal> ao
+          invés dos eixos correntes (ver <link
+          linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>plot</literal> esboça um conjunto de curvas 2d.
+    <literal>plot</literal> foi reconstruído para lidar melhor com a sintaxe
+    do Matlab. Para melhorar a compatibilidade gráfica com o Matlab, utilize
+    <literal>plot</literal> (ao invés de <link
+    linkend="plot2d">plot2d</link>).</para>
+
+    <para>Especificação de entrada de dados:</para>
+
+    <para>Neste parágrafo, para sermos mais claros, não mencionaremos os
+    argumentos opcionais <literal>LineSpec</literal> ou
+    <literal>GlobalProperty</literal> já que eles não interferem na entrada de
+    dados (exceto pelas propriedades <literal>"Xdata"</literal>,
+    <literal>"Ydata"</literal> e <literal>"Zdata"</literal>, ver <link
+    linkend="GlobalProperty">GlobalProperty</link>). É assumido que todos
+    estes argumentos podem estar presentes também.</para>
+
+    <para>Se <literal>y</literal> é um vetor, plot(y) esboça um vetor
+    <literal>y</literal> versus o vetor
+    <literal>1:size(y,'*')</literal>.</para>
+
+    <para>Se <literal>y</literal> é uma matriz, plot(y) esboça cada coluna de
+    <literal>y</literal> versus o vetor <literal>1:size(y,1)</literal>.</para>
+
+    <para>Se <literal>x</literal> e <literal>y</literal> são vetores,
+    plot(x,y) esboça o vetor <literal>y</literal> versus o vetor
+    <literal>x</literal>. Os vetores <literal>x</literal> e
+    <literal>y</literal> devem ter o mesmo número de entradas.</para>
+
+    <para>Se <literal>x</literal> é um vetor e <literal>y</literal> uma matriz
+    plot(x,y) esboça cada coluna de <literal>y</literal> versus o vetor
+    <literal>x</literal>. Neste caso, o número de colunas de
+    <literal>y</literal> deve ser igual ao número de entradas de
+    <literal>x</literal>.</para>
+
+    <para>Se <literal>x</literal> e <literal>y</literal> são matrizes,
+    plot(x,y) esboça cada coluna de <literal>y</literal> versus a coluna
+    correspondente de <literal>x</literal>. Neste caso, os tamanhos
+    <literal>x</literal> e <literal>y</literal> devem ser os mesmos.</para>
+
+    <para>Finalmente, se apenas <literal>x</literal> ou <literal>y</literal> é
+    uma matriz, o vetor é esboçado versus cada linha ou cada coluna da matriz.
+    A escolha é feita dependendo se a dimensão de linha ou coluna do vetor
+    coincide com a dimensão de linha ou coluna da matriz. No caso de uma
+    matriz quadrada (apenas <literal>x</literal> ou penas
+    <literal>y</literal>), a prioridade é dada a colunas ao invés de linhas
+    (ver exemplos abaixo).</para>
+
+    <para><literal>y</literal> também pode ser uma função definida como um
+    macro ou uma primitiva. Neste caso, os dados <literal>x</literal> devem
+    ser fornecidos (como um vetor ou uma matriz) e a computação correspondente
+    de <literal>y(x)</literal> é feita implicitamente.</para>
+
+    <para>Os argumentos <literal>LineSpec</literal> e
+    <literal>GlobalProperty</literal> devem ser utilizados para customizar o
+    esboço. Aqui está uma lista completa das opções disponíveis.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>LineSpec</term>
+
+        <listitem>
+          <para>esta opção pode ser utilizada para se especificar, de um modo
+          curto e fácil, como as curvas são desenhadas. Deve sempre ser um
+          string contendo referências aos especificadores LineStyle, Marker e
+          Color.</para>
+
+          <para>Essas referências devem ser ajustadas denro do string (a ordem
+          não é importante) de modo a não ter ambigüidades. Por exemplo, para
+          especificar uma linha vermelha de traço longo com marcas de rombos,
+          pode-se escrever : <literal>'r--d'</literal> ou
+          <literal>'--dire'</literal> ou <literal>'--reddiam'</literal> ou
+          outra sentença sem ambigüidade... ou de modo completo
+          <literal>'diamondred--'</literal> (ver <link
+          linkend="LineSpec">LineSpec</link>).</para>
+
+          <para>Note que os estilos de linha e marcas (e tamanhos) e as cores,
+          podem ser (re*)ajustados através das propriedades da entidade
+          poligonal (ver <link
+          linkend="polyline_properties">polyline_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>GlobalProperty</term>
+
+        <listitem>
+          <para>esta opção pode ser utilizada para especificar como as linhas
+          serão desenhadas com mais opções que via
+          <literal>LineSpec</literal>. Deve sempre ser um par de declarações
+          constituidos de um string definindo <literal>PropertyName</literal>,
+          (nome da propriedade) e seu valor associado
+          <literal>PropertyValue</literal> (que pode ser um string, um inteiro
+          ou qualquer outra coisa... dependendo do tipo de
+          <literal>PropertyName</literal>). Utilizando-se
+          <literal>GlobalProperty</literal>, pode-se ajustar várias
+          propriedades : todas as propriedades disponíveis via LineSpec e
+          mais: a cor da marca (plano de fundo e primeiro plano), a
+          visibilidade, o recorte e a espessura das curvas. (ver <link
+          linkend="GlobalProperty">GlobalProperty</link>)</para>
+
+          <para>Note que todas as propriedades podem ser (re-)ajustadas
+          através das propriedades de entidades poligonais (ver <link
+          linkend="polyline_properties">polyline_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Observações </title>
+
+    <para>Por padrão, esboços sucessivos são superpostos. Para limpar o esboço
+    anterior, use <literal>clf()</literal>. Para habilitar o modo
+    <literal>auto_clear</literal> (limpeza automática) como modo padrão, edite
+    seus eixos fazendo o seguinte:</para>
+
+    <para>da=gda();</para>
+
+    <para>da.auto_clear = 'on'</para>
+
+    <para>Para uma melhor exibição, a função <literal>plot</literal> pode
+    modificar a propriedade <literal>box</literal> de seu Axes (eixos) raíze.
+    Isto acontece quando uma entidade Axes é criada por uma chamada a
+    <literal>plot</literal> ou é vazia antes da chamada. Se um dos eixos é
+    centrado na origem, box é desabilitado. Em caso contrário, box é
+    habilitado.</para>
+
+    <para>Para mais informações sobre a propriedade box e sobre o
+    posicionamento dos eixos, veja <link
+    linkend="axes_properties">axes_properties</link></para>
+
+    <para>Uma tabela de cores padrão é utilizada para colorir as curvas
+    esboçadas quando você não especifica as cores. Ao desenhar linhas
+    múltiplas, o comando plot automaticamente atribui as cores abaixo de modo
+    cíclico. Aqui estão as cores utilizadas:</para>
+
+    <informaltable border="1">
+      <tr>
+        <td><literal>R</literal></td>
+
+        <td><literal>G</literal></td>
+
+        <td><literal>B</literal></td>
+      </tr>
+
+      <tr>
+        <td>0.</td>
+
+        <td>0.</td>
+
+        <td>1.</td>
+      </tr>
+
+      <tr>
+        <td>0.</td>
+
+        <td>0.5</td>
+
+        <td>0.</td>
+      </tr>
+
+      <tr>
+        <td>1.</td>
+
+        <td>0.</td>
+
+        <td>0.</td>
+      </tr>
+
+      <tr>
+        <td>0.</td>
+
+        <td>0.75</td>
+
+        <td>0.75</td>
+      </tr>
+
+      <tr>
+        <td>0.75</td>
+
+        <td>0.</td>
+
+        <td>0.75</td>
+      </tr>
+
+      <tr>
+        <td>0.75</td>
+
+        <td>0.75</td>
+
+        <td>0.</td>
+      </tr>
+
+      <tr>
+        <td>0.25</td>
+
+        <td>0.25</td>
+
+        <td>0.25</td>
+      </tr>
+    </informaltable>
+
+    <para></para>
+
+    <para>Entre com o comando <literal>plot</literal> para visualizar uma
+    demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// inicialização de x
+x=[0:0.1:2*%pi]';
+//esboço simples
+plot(sin(x))
+clf()
+plot(x,sin(x))
+//esboços múltiplos
+clf()
+plot(x,[sin(x) sin(2*x) sin(3*x)])
+clf()
+
+// eixo à direita
+plot(x,sin(x)) 
+a=gca(); // manipulador da entidade Axes
+a.y_location ="right"; 
+clf()
+
+// eixo centrado em (0,0)
+plot(x-4,sin(x),x+2,cos(x))
+a=gca(); // manipulador da entidade Axes
+a.x_location = "middle"; 
+a.y_location = "middle"; 
+
+// algumas operações em entidades criadas por plot...
+a=gca();
+a.isoview='on'; 
+a.children // listando os galhos da entidade Axes: aqui, é um galho Compound composto por duas entidades 
+poly1= a.children.children(2); //armazenando um manipulador Polyline em poly1
+poly1.foreground = 4; // outro modo de se mudar o estilo...
+poly1.thickness = 3;  // ...e a espessura de uma curva.
+poly1.clip_state='off' // controle de recorte
+a.isoview='off'; 
+
+//exemplos com LineSpec e GlobalProperty:
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+scf(2)
+plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+scf(3)
+axfig3 = gca();
+scf(4) // deveria permanecer em branco
+plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
+xdel(winsid())
+
+//especificação de dados
+t=-%pi:0.1:%pi;
+size(t)
+plot(t) // esboços simples de y versus tamanho do vetor t
+clf(); // limpando figura
+
+plot(t,sin(t)); // esboça sin(t) versus t
+clf();
+
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
+
+plot(t) // esboça cada coluna t column versus tamanho de linha
+clf();
+
+subplot(221)
+plot(t,sin(t)); // esboça sin(t) versus t coluna por coluna desta vez
+xtitle("sin(t) versus t")
+subplot(222)
+plot(t,sin(t)')
+xtitle("sin(t)'' versus t")
+subplot(223)
+plot(t',sin(t))
+a=gca();
+a.data_bounds=[0 -1;7 1]; // para ver a linha vertical escondida pelo eixo y
+xtitle("sin(t) versus t''")
+subplot(224)
+plot(t',sin(t)')
+xtitle("sin(t)'' versus t''")
+
+clf();
+
+//caso especial 1
+//x : vector ([5 6 7 8]) and y : matrix (t)
+x=[5 6 7 8]
+plot(x,t);
+plot(x',t); // idem, x é automaiticamente transposto para corresponder a t (aqui as colunas)
+clf()
+
+// apenas um caso de possibilidade de correspondência: como realizar quatro esboços idênticos 4 de quatro maneiras 4...
+// x é um vetor 1x4 (vector) y is uma matriz não-quadrada 4x5
+subplot(221);
+plot(x,[t [8;9;10;12]]');
+subplot(222);
+plot(x',[t [8;9;10;12]]');
+subplot(223);
+plot(x,[t [8;9;10;12]]');
+subplot(224);
+plot(x',[t [8;9;10;12]]');
+clf()
+
+
+//caso especial 2
+// caso onde apenas x ou y é uma matriz quadrada
+//x : matrix (t) e y  : vetor ([1 2 3 4])
+plot(t,[1 2 3 4]) // equivalente a plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t,[1;2;3;4]) // o mesmo esboço
+clf();
+
+// t é transposto: note a prioridade dada ao tratamento das colunas
+plot(t',[1 2 3 4]) // equivalente a plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t',[1 2 3 4]') // o mesmo esboço
+clf();
+
+// y é uma função definida por...
+// ..uma primitiva
+plot(1:0.1:10,sin) // equivalente a plot(1:0.1:10,sin(1:0.1:10))
+clf();
+
+// ...uma macro:
+deff('[y]=toto(x)','y=x.*x')
+plot(1:10,toto)
+ 
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="surf">surf</link></member>
+
+      <member><link linkend="scf">scf</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="xdel">xdel</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="LineSpec">LineSpec</link></member>
+
+      <member><link linkend="GlobalProperty">GlobalProperty</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

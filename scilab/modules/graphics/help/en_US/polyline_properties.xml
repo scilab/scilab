@@ -140,11 +140,11 @@
             </listitem>
           </itemizedlist>
 	  <para>
-	  <mediaobject>
+	  <inlinemediaobject>
 	    <imageobject>
 	      <imagedata fileref="../images/polyline_style.svg"/>
 	    </imageobject>
-	  </mediaobject>
+	  </inlinemediaobject>
 	</para>
 
         </listitem>

@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "hashtable_core.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
@@ -72,14 +73,14 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   /* Save last code interpreted */
   int cod_sav = 0;
 
+  int deleted = 0;
+
   /* Loop index */
   int k = 0;
 
   /* Used for statements list creation */
   int sz = 0; /* Size */
   int newinstr = 0; /* flag used to know if a new instruction has been created (1->TRUE) */
-
-  int deleted = 0;
 
   /* Verify number of RHS arguments */
   CheckRhs(1,1);
@@ -199,6 +200,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   }
 
   /* Fill list */
+  
   for(k=1;k<=nbstat;k++)
     {
       newinstr = 0;
@@ -1288,6 +1290,7 @@ static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
   // Free memory
   freeArrayOfString(str, nCols*nRows);
   FREE(int_str);
+  return 0;
 }
 
 /****************************************************************
@@ -1320,7 +1323,7 @@ static int CreateOperationTList(int *data,int *index2)
 
   int one = 1;
 
-  int stkPos = 0;
+  int stkPos = Top;
   int nbOps = 0;
 
   /* Memory allocation */
@@ -1362,7 +1365,6 @@ static int CreateOperationTList(int *data,int *index2)
     }
 
   /* In case a EOL is inserted in a row/column catenation */
-  stkPos = Top;
   if(operator_index2!=24)
     {
       while (nbOps!=nb_operands && stkPos>0)
@@ -1443,7 +1445,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 
   /* Used when fromwhat=="funptr" */
   int interf_num,interf_index2,funptr;
-  int job1 = 1,job2 = 2;
+  int job1 = 1,job2 = (int)SCI_HFUNCTIONS_BACKSEARCH;
   int id[nsiz];
 
   double nblhs = 0;
@@ -1461,9 +1463,9 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   int m_mat = 0;
   int n_mat = 0;
 
-  int stkPos = 0;
+  int stkPos = Top;
   int nbOps = 0;
-  
+
   /* Memory allocation */
   if((funname=CALLOC(1,sizeof(char*)))==NULL)
     {
@@ -1487,7 +1489,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
       (*index2)++;
       interf_index2 = data[*index2];
 
-      funptr = interf_num + interf_index2;
+      funptr = interf_num * 10 + interf_index2;
 
       C2F(funtab)(id,&funptr,&job2,"NULL_NAME",0);
 
@@ -1563,7 +1565,6 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 	nbrhs=0;
 
       /* In case a EOL is inserted in a row/column catenation */
-      stkPos = Top;
       while (nbOps!=nbrhs && stkPos>0)
         {
           if (*istk(iadr(*Lstk(stkPos))) == 16)
@@ -2216,7 +2217,7 @@ int complexity(int *data,int *index2,int *lgth)
 
       if (codeSave==15)
         {
-          if (begin>0 & data[cur_ind]!=29) /* Inside a list of inputs or operands */
+          if ((begin>0) & (data[cur_ind]!=29)) /* Inside a list of inputs or operands */
             {
               count--; /* No new instruction created */
             }
@@ -2247,43 +2248,39 @@ int complexity(int *data,int *index2,int *lgth)
 
 }
 
-/****************************************************************
- Function name: isAComment
-****************************************************************/
-static int isAComment(int stkPos)
+int isAComment(int stkPos)
 {
-  int il = iadr(*Lstk(stkPos));
+	int nbElements = 0;
+	int firstElementAdr = 0;
+	int firstChar = 0;
+	int secondChar = 0;
+	int thirdChar = 0;
+	int fourthChar = 0;
+	int il = iadr(*Lstk(stkPos));
 
-  int nbElements = 0;
-  int firstElementAdr = 0;
-  int firstChar = 0;
-  int secondChar = 0;
-  int thirdChar = 0;
-  int fourthChar = 0;
+	/* If not a tlist then cannot be a comment */
+	if (*istk(il) != 16)
+	{
+		return 0;
+	}
 
-  /* If not a tlist then cannot be a comment */
-  if (*istk(il) != 16)
-    {
-      return 0;
-    }
+	/* If tlist size not equal to two then cannot be a comment */
+	if (*istk(il + 1) != 2)
+	{
+		return 0;
+	}
 
-  /* If tlist size not equal to two then cannot be a comment */
-  if (*istk(il + 1) != 2)
-    {
-      return 0;
-    }
+	/* Now the tlist can be a comment or a cste */
+	nbElements = *istk(il + 1);
+	firstElementAdr = iadr(sadr(il + 3 + nbElements));
+	firstChar = *istk(firstElementAdr + 7);
+	secondChar = *istk(firstElementAdr + 8);
+	thirdChar = *istk(firstElementAdr + 9);
+	fourthChar = *istk(firstElementAdr + 10);
 
-  /* Now the tlist can be a comment or a cste */
-  nbElements = *istk(il + 1);
-  firstElementAdr = iadr(sadr(il + 3 + nbElements));
-  firstChar = *istk(firstElementAdr + 7);
-  secondChar = *istk(firstElementAdr + 8);
-  thirdChar = *istk(firstElementAdr + 9);
-  fourthChar = *istk(firstElementAdr + 10);
-  
-  /* 12 = Scilab code for 'c' */
-  /* 24 = Scilab code for 'o' */
-  /* 22 = Scilab code for 'm' */
-  return firstChar==12 && secondChar==24 && thirdChar==22 && fourthChar==22;
+	/* 12 = Scilab code for 'c' */
+	/* 24 = Scilab code for 'o' */
+	/* 22 = Scilab code for 'm' */
+	return firstChar==12 && secondChar==24 && thirdChar==22 && fourthChar==22;
 
 }

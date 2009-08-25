@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="label_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>label_properties</refname>
+
+    <refpurpose>Descrição de propriedades da entidade Label
+    (rótulo)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Label é um galho da entidade <literal>Axes</literal> (de
+    eixos). Quando uma entidade Axes é construída, os manipuladores das
+    entidades Title e Label são criados juntos e são parte das propriedade da
+    entidade Axes. Logo, as propriedades destes sub-objetos são editáveis via
+    o manipulador da entidade Axes (ver <literal>gca</literal> e
+    <literal>gda</literal>). Esta entidade define os parâmetros para impressão
+    de rótulos:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador para a raiz. A raiz de
+          uma entidade Label deve ser do tipo <literal>"Axes"</literal>
+          .</para>
+
+          <para>Note que, por ora, a entidade Label é exclusivamente utilizada
+          na construção de <literal>title</literal>,
+          <literal>x_label</literal>, <literal>y_label</literal> e
+          <literal>z_label</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, o rótulo é
+          visível, o valor da propriedade é <literal>"on"</literal>. Se
+          <literal>"off"</literal> o rótulo não é impresso na tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text:</term>
+
+        <listitem>
+          <para>a matriz contendo os strings do objeto. As linhas da matriz
+          são exibidas horizontalmente e as colunas verticalmente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_foreground:</term>
+
+        <listitem>
+          <para>este campo contém o índice de cor utilizado para exibir o
+          rótulo <literal>text</literal>. Seu valor deve ser um índice de cor
+          (relativo ao mapa de cores corrente).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>este campo contém a cor utilizada para exibir o rótulo e a
+          linha ao redor da caixa, se houver. Deve ser um índice de cor
+          (relativo ao mapa de cores corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background:</term>
+
+        <listitem>
+          <para>este campo contém a cor a ser usada para preencher a caixa, se
+          houver. Deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode:</term>
+
+        <listitem>
+          <para>este campo toma valores <literal>"on"</literal> ou
+          <literal>"off"</literal>. Se <literal>"on"</literal> uma caixa é
+          desenhada ao redor do texto com uma linha em sua borda e um plano de
+          fundo. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_style:</term>
+
+        <listitem>
+          <para>especifica a fonte a ser utilizada para exibir o rótulo. É um
+          inteiro positivo fazendo referência uma das fontes carregadas. Seu
+          valor deve estar entre 0, fazendo referência à primeira fonte, e o
+          número de fontes carregadas menos um, fazendo referência à última
+          fonte. Para mais informações, veja <link
+          linkend="graphics_fonts">graphics_fonts</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_size:</term>
+
+        <listitem>
+          <para>é um escalar especificando o tamanho dos caracteres exibidos.
+          Se a propriedade <literal>fractional_font</literal> for
+          <literal>"off"</literal>, apenas a parte inteira é utilizada. Para
+          mais informações, veja <link
+          linkend="graphics_fonts">graphics_fonts</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fractional_font:</term>
+
+        <listitem>
+          <para>esta propriedade especifica se o texto será utilizado
+          utilizando-se tamanhos de fonte fracionários. Seu valor deve ser
+          <literal>"on"</literal> ou <literal>"off"</literal>. Se
+          <literal>"on"</literal>, o valor em ponto flutuante de
+          <literal>font_size</literal> é utilizado para a exibição e evita-se
+          o serrilhamento da fonte. Se <literal>"off"</literal>, apenas a
+          parte inteira é utilizada e a fonte não é suavizada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_angle:</term>
+
+        <listitem>
+          <para>um escalar que permite girar o rótulo. A fonte é girada em
+          sentido horário em um ângulo dado em graus. Note que mudar
+          <literal>font_angle</literal> desabilitará automaticamente a
+          propriedade <literal>auto_rotation</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>auto_rotation:</term>
+
+        <listitem>
+          <para>se <literal>"on"</literal>, o Scilab computa automaticamente o
+          melhor ângulo de rotação para a exibição do rótulo. Se
+          <literal>"off"</literal>, o rótulo pode ser girado manualmente
+          através da propriedade <literal>font_angle</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>position:</term>
+
+        <listitem>
+          <para>este vetor 2d permite posicionar o rótulo na tela. A posição é
+          armazenada em unidades de dados dos eixos. Note que mudar
+          <literal>font_angle</literal> desabilitará automaticamente a
+          propriedade <literal>auto_position</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>auto_position:</term>
+
+        <listitem>
+          <para>se <literal>"on"</literal>, o Scilab computa automticamente a
+          melhor posição para a exibição do rótulo na janela de gráficos. Se
+          <literal>"off"</literal>, o rótulo pode ser posicionado manualmente
+          através da propriedade <literal>position</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">   
+
+   a=get("current_axes");
+   a.title
+   type(a.title)
+   plot3d()
+   a.x_label
+   a.y_label
+   a.z_label
+   xtitle("Meu título","meu rótulo de eixo x", "Volume","Mês") 
+
+   t=a.title;
+   t.foreground=9;
+   t.font_size=5;
+   t.font_style=5;
+   t.text="SCILAB";
+   
+   x_label=a.x_label;
+   x_label.text=" Peso"
+   x_label.font_style= 5;
+   a.y_label.foreground = 12;
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="xtitle">xtitle</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+
+      <member><link linkend="text_properties">text_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

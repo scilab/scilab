@@ -11,7 +11,7 @@
 
 ilib_verbose(0);
 
-curPath = getcwd(); 
+curPath = pwd(); 
 pref='ext';
 suf='f';
 routines=[pref(ones(1,12))+string(1:12)+suf(ones(1,12))];

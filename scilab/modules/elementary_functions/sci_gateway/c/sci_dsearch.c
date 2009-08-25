@@ -15,32 +15,52 @@
 #include "basic_functions.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "api_scilab.h"
+#include "Scierror.h"
+
+static int getMode(int _iPos, char *_pcMode);
 
 /*--------------------------------------------------------------------------*/
 int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 {
-	int iRows				= 0;
-	int iCols				= 0;
-	int iRealData			= 0;
-	int iImgData			= 0;
-	int iIndex				= 0;
-	char cMode				= 0;
-	int iRowOcc				= 0;
-	int iColOcc				= 0;
-	int iRowVal				= 0;
-	int iColVal				= 0;
-	double *pdblRealData	= 0;
-	double *pdblRealVal		= 0;
+	int i;
+	int iRet								= 0;
 
+	int* piAddr1						= NULL;
+	int iRows1							= 0;
+	int iCols1							= 0;
+	double *pdblReal1				= NULL;
 
-	double *pdblRealOccData		= NULL;
-	double *pdblRealIndData		= NULL;
-	double *pdblRealInfoData	= NULL;
+	int* piAddr2						= NULL;
+	int iRows2							= 0;
+	int iCols2							= 0;
+	double *pdblReal2				= NULL;
+
+	char cMode							= 0;
+
+	int iRowsOcc						= 0;
+	int iColsOcc						= 0;
+	double *pdblRealOcc			= NULL;
+
+	double *pdblRealInfo		= NULL;
+	double *pdblRealInd			= NULL;
 
 	CheckRhs(2,3);
 	CheckLhs(1,3);
 
-	if(GetType(1) != sci_matrix || GetType(2) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr1);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getVarAddressFromPosition(2, &piAddr2);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr1) != sci_matrix || getVarType(piAddr2) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -49,8 +69,11 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	//get ch
 	if(Rhs == 3)
 	{
-		GetRhsVar(3, STRING_DATATYPE, &iRows, &iCols, &iRealData);
-		cMode = *cstk(iRealData);
+		iRet = getMode(3, &cMode);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 	else
 		cMode = 'c';
@@ -62,21 +85,23 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	if(iIsComplex(2) || iIsComplex(1))
+	if(isVarComplex(piAddr1) || isVarComplex(piAddr2))
 	{
 		Error(202);
 		return 0;
 	}
 	else
 	{
-		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRowVal, &iColVal, &iRealData);
-		pdblRealVal = stk(iRealData);
-
+		iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+		if(iRet)
+		{
+			return 1;
+		}
 
 		//verif that val is in strict increasing order
-		for(iIndex = 1 ; iIndex < iRowVal * iColVal ; iIndex++)
+		for(i = 1 ; i < iRows2 * iCols2 ; i++)
 		{
-			if(pdblRealVal[iIndex] < pdblRealVal[iIndex - 1])
+			if(pdblReal2[i] < pdblReal2[i - 1])
 			{
 				sciprint(_("%s: the array val (arg 2) is not well ordered.\n"), fname);
 				Error(999);
@@ -85,11 +110,11 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 		}
 	}
 
-	iRowOcc = iRowVal;
-	iColOcc = iColVal;
+	iRowsOcc = iRows2;
+	iColsOcc = iCols2;
 	if(cMode == 'd')
 	{
-		if( iRowOcc * iColOcc < 1)
+		if( iRowsOcc * iColsOcc < 1)
 		{
 			sciprint(_("%s: Argument 2: argument 2 must not be an empty vector.\n"), fname);
 			Error(999);
@@ -98,74 +123,122 @@ int C2F(sci_dsearch) (char *fname,unsigned long fname_len)
 	}
 	else
 	{// cMode == 'c'
-		if( iRowOcc * iColOcc < 2)
+		if( iRowsOcc * iColsOcc < 2)
 		{
 			sciprint(_("%s: in the interval case, argument 2 must be a vector with length > 1.\n"), fname);
 			Error(999);
 			return 0;
 		}
-		if(iRowOcc == 1)
-			iColOcc--;
+		if(iRowsOcc == 1)
+			iColsOcc--;
 		else
-			iRowOcc--;
+			iRowsOcc--;
 	}
 
 	//Get X
-	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-	pdblRealData		= stk(iRealData);
+	iRet = getMatrixOfDouble(piAddr1, &iRows1, &iCols1, &pdblReal1);
+	if(iRet)
+	{
+		return 1;
+	}
 
 	if(Lhs >= 1)
-		iAllocMatrixOfDouble(Rhs + 1, iRows,		iCols,		&pdblRealIndData);
-	if(Lhs >= 2)
-		iAllocMatrixOfDouble(Rhs + 2, iRowOcc,		iColOcc,	&pdblRealOccData);
-	if(Lhs >= 3)
-		iAllocMatrixOfDouble(Rhs + 3, 1,			1,			&pdblRealInfoData);
-
-	//pdblRealIndData		= (double*)malloc(iRows * iCols * sizeof(double));
-	//pdblRealOccData		= (double*)malloc(iRowOcc * iColOcc * sizeof(double));
-	//pdblRealInfoData	= (double*)malloc(sizeof(double));
-
-	if(iRows == 0 || iCols == 0)
 	{
-		pdblRealInfoData[0] = 0;
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows1, iCols1, &pdblRealInd);
+	}
+
+	if(Lhs >= 2)
+	{
+		iRet = allocMatrixOfDouble(Rhs + 2, iRowsOcc, iColsOcc, &pdblRealOcc);
+	}
+
+	if(Lhs >= 3)
+	{
+		iRet = allocMatrixOfDouble(Rhs + 3, 1, 1, &pdblRealInfo);
+	}
+
+	if(iRows1 == 0 || iCols1 == 0)
+	{
+		pdblRealInfo[0] = 0;
 		if(Lhs >= 2)
-		memset(pdblRealOccData, 0x00, iRowOcc * iColOcc * sizeof(double));
+		{
+			memset(pdblRealOcc, 0x00, iRowsOcc * iColsOcc * sizeof(double));
+		}
 	}
 	else
 	{
 		//go on for the computation
 		if(cMode == 'c')
 		{
-			vDsearchC(pdblRealData, iRows*iCols, pdblRealVal, iRowVal * iColVal - 1, pdblRealIndData, pdblRealOccData, pdblRealInfoData);
+			vDsearchC(pdblReal1, iRows1 * iCols1, pdblReal2, iRows2 * iCols2 - 1, pdblRealInd, pdblRealOcc, pdblRealInfo);
 		}
 		else
 		{
-			vDsearchD(pdblRealData, iRows*iCols, pdblRealVal, iRowVal * iColVal, pdblRealIndData, pdblRealOccData, pdblRealInfoData);
+			vDsearchD(pdblReal1, iRows1 * iCols1, pdblReal2, iRows2 * iCols2, pdblRealInd, pdblRealOcc, pdblRealInfo);
 		}
 	}
 
 	if(Lhs >= 1)
 	{
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pdblRealIndData);
 		LhsVar(1) = Rhs + 1;
 	}
 	if(Lhs >= 2)
 	{
-		//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRowOcc, &iColOcc, &pdblRealOccData);
 		LhsVar(2) = Rhs + 2;
 	}
 	if(Lhs >= 3)
 	{
-		//int iRow = 1;
-		//int iCol = 1;
-		//CreateVarFromPtr(Rhs + 3, MATRIX_OF_DOUBLE_DATATYPE, &iRow, &iCol, &pdblRealInfoData);
 		LhsVar(3) = Rhs + 3;
 	}
 
-	//free(pdblRealIndData);
-	//free(pdblRealOccData);
-	//free(pdblRealInfoData);
 	PutLhsVar();
+	return 0;
+}
+
+static int getMode(int _iPos, char *_pcMode)
+{
+	int iRet			= 0;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iMode			= 0;
+	int* piAddr		= NULL;
+
+	iRet = getVarAddressFromPosition(_iPos, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) == sci_strings)
+	{
+		int iLen						= 0;
+		char pstMode[1][2]	= {""};
+
+		iRet = getVarDimension(piAddr, &iRows, &iCols);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(iRows != 1 || iCols != 1)
+		{
+			Error(89);
+			return 1;
+		}
+
+		iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, (char**)pstMode);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		*_pcMode = pstMode[0][0];
+	}
+	else
+	{
+		Error(44);
+		return 2;
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -77,8 +77,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="corth.f"/>
 		<File RelativePath="cortr.f"/>
 		<File RelativePath="coshin.f"/>
-		<File RelativePath="cupro.f"/>
-		<File RelativePath="cuproi.f"/>
 		<File RelativePath="cusum.f"/>
 		<File RelativePath="d1mach.f"/>
 		<File RelativePath="dad.f"/>
@@ -102,9 +100,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="dmmul.f"/>
 		<File RelativePath="dmmul1.f"/>
 		<File RelativePath="dmprod.f"/>
-		<File RelativePath="dmsum.f"/>
 		<File RelativePath="drdiv.f"/>
-		<File RelativePath="dsearch.f"/>
 		<File RelativePath="dset.f"/>
 		<File RelativePath="dsort.f"/>
 		<File RelativePath="dsum.f"/>
@@ -138,10 +134,10 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="magic.f"/>
 		<File RelativePath="mtran.f"/>
 		<File RelativePath="nearfloat.f"/>
+		<File RelativePath=".\old_pythag.f"/>
 		<File RelativePath="orthes.f"/>
 		<File RelativePath="ortran.f"/>
 		<File RelativePath="psi.f"/>
-		<File RelativePath="pythag.f"/>
 		<File RelativePath="rat.f"/>
 		<File RelativePath="rcopy.f"/>
 		<File RelativePath="rcsort.f"/>
@@ -159,10 +155,8 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clean.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_conj.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_cos.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_cumprod.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_cumsum.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_diag.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dsearch.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_exp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_expm.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_eye.f"/>
@@ -191,7 +185,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sort.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_spones.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sqrt.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_sum.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tan.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_testmatrix.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tril.f"/>
@@ -226,7 +219,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="wmprod.f"/>
 		<File RelativePath="wmsum.f"/>
 		<File RelativePath="wmul.f"/>
-		<File RelativePath="wnrm2.f"/>
 		<File RelativePath="wrscal.f"/>
 		<File RelativePath="wscal.f"/>
 		<File RelativePath="wshrsl.f"/>

@@ -25,13 +25,14 @@
             How to get the address of a list in a list.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get the address of a list in a list.</para>
-        <synopsis>int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-        <synopsis>int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-        <synopsis>int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)</synopsis>
-    </refsection>
+     <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>
+int getListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+int getTListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+int getMListInList(int _iVar, int* _piParent, int _iItemPos, int** _piAddress)
+      </synopsis>
+   </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -68,6 +69,10 @@
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection>
+      <title>Description</title>
+      <para>This help describes how to get the address of a list in a list.</para>
     </refsection>
     <refsection>
         <!--File_gateway: SCI/modules/core/tests/unit_tests/list_getlist_api.c-->

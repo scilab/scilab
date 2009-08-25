@@ -7,20 +7,19 @@
     <refname>pwd</refname>
     <refpurpose> print Scilab current directory</refpurpose>
   </refnamediv>
-  <refnamediv xml:id="getcwd">
-    <refname>getcwd</refname>
+  <refnamediv>
+    <refname>pwd</refname>
     <refpurpose> get Scilab current directory</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>pwd
-x=pwd()
-x=getcwd()</synopsis>
+x=pwd()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para><literal>pwd</literal> returns in <literal>ans</literal> the Scilab current directory.
-    <literal>x=pwd()</literal> or <literal>x=getcwd()</literal> returns in <literal>x</literal> the Scilab current
+    <literal>x=pwd()</literal> returns in <literal>x</literal> the Scilab current
     directory.</para>
   </refsection>
   <refsection>

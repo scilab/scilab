@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="hsvcolormap" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>hsvcolormap</refname>
+
+    <refpurpose>Mapa de cores de matiz-saturação-valor
+    (hue-saturation-value)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>cmap = hsvcolormap(n)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiro &gt;= 1, o tamanho do mapa de cores. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cmap</term>
+
+        <listitem>
+          <para>matriz com 3 colunas <literal>[R,G,B]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>hsvcolormap</literal> computa um mapa de cores com
+    <literal>n</literal> cores. Este mapa de cores varia o componente de matiz
+    do modelo de cor hsv (hue-saturation-value, "matiz-saturação-valor "). As
+    cores começam do vermelho, passando por amarelo, verde, azul celeste,
+    azul, magenta, e retornam para o vermelho. O mapa é particularmente útil
+    para exibir funções periódicas. </para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+    f=gcf();f.color_map=hsvcolormap(64);
+     plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+
+        <listitem>
+          <para>INRIA</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="colormap">colormap</link></member>
+
+      <member><link linkend="autumncolormap">autumncolormap</link></member>
+
+      <member><link linkend="bonecolormap">bonecolormap</link></member>
+
+      <member><link linkend="coolcolormap">coolcolormap</link></member>
+
+      <member><link linkend="coppercolormap">coppercolormap</link></member>
+
+      <member><link linkend="graycolormap">graycolormap</link></member>
+
+      <member><link linkend="hotcolormap">hotcolormap</link></member>
+
+      <member><link linkend="hsvcolormap">hsvcolormap</link></member>
+
+      <member><link linkend="jetcolormap">jetcolormap</link></member>
+
+      <member><link linkend="oceancolormap">oceancolormap</link></member>
+
+      <member><link linkend="pinkcolormap">pinkcolormap</link></member>
+
+      <member><link linkend="rainbowcolormap">rainbowcolormap</link></member>
+
+      <member><link linkend="springcolormap">springcolormap</link></member>
+
+      <member><link linkend="summercolormap">summercolormap</link></member>
+
+      <member><link linkend="whitecolormap">whitecolormap</link></member>
+
+      <member><link linkend="wintercolormap">wintercolormap</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

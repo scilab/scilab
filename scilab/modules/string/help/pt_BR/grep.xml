@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="grep" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>grep</refname>
+
+    <refpurpose>acha correspondências de um string em um vetor de
+    strings</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>row=grep(haystack,needle )
+[row,which]=grep(haystack,needle )
+row=grep(haystack,needle ,[flag])
+[row,which]=grep(haystack,needle ,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
+
+        <listitem>
+          <para>vetor linha de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>needle</term>
+
+        <listitem>
+          <para>string ou vetor linha de strings . O(s) string(s) a serem
+          procurados em <literal>haystack.</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>row</term>
+
+        <listitem>
+          <para>vetor de índices: linha onde uma correspondência foi
+          encontrada, ou matriz vazia se nenhuma ocorrência tiver sido
+          encontrada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>which</term>
+
+        <listitem>
+          <para>vetor de índices: índice do string needle encontrado, ou uma
+          matriz vazia, se nenhuma correspondência tiver sido
+          encontrada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>caractere ("r" para expressão regular)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para cada entradada de haystack , grep procura se pelo menos um
+    string em needle corresponde a um substring. Os índices das entradas de
+    haystack onde pelo menos uma entrada foi encontrada são retornados no
+    argumento row. O argumento opcional which fornece o índice do primeiro
+    string de needle encontrado. Quando se usa o terceiro parâmetro "r",
+    needle deve ser substituído por uma expressão regular. Então, grep vai
+    corresponder a haystack de acordo com as regras regulares
+    expressas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+txt=['acha correspondência em um string ou em um vetor de strings'
+     'procura posição de um string em outro string'
+     'Compara Strings'];
+
+grep(txt,'strings')
+grep(txt,['strings' 'Strings'])
+
+[r,w]=grep(txt,['strings' 'Strings'])
+
+str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
+
+grep(str,'/[hc]+at/','r')
+grep(str,'/[hc]?at/','r')
+grep(str,'/cat|dog/','r')
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strindex">strindex</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

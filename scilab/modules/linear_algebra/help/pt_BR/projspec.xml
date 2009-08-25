@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento</title>
+    <title> Seqüência de Chamamento</title>
 
     <synopsis>[S,P,D,i]=projspec(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> ParÃ¢metros </title>
+    <title> Parâmetros </title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
         <term>i</term>
 
         <listitem>
-          <para>inteiro (Ã­ndice do autovalor zero de
+          <para>inteiro (índice do autovalor zero de
           <literal>A</literal>).</para>
         </listitem>
       </varlistentry>
@@ -65,18 +65,18 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>CaracterÃ­sticas espectrais de <literal>A</literal> em 0.</para>
+    <para>Características espectrais de <literal>A</literal> em 0.</para>
 
     <para><literal>S</literal> = resolvente reduzido em 0
     (<literal>S</literal> = -Inverso_de_Drazin(<literal>A</literal>)).</para>
 
-    <para><literal>P</literal> = projeÃ§Ã£o espectral em 0.</para>
+    <para><literal>P</literal> = projeção espectral em 0.</para>
 
     <para><literal>D</literal> = operador nilpotente em 0.</para>
 
-    <para><literal>index</literal> = Ã­ndice do autovalor 0.</para>
+    <para><literal>index</literal> = índice do autovalor 0.</para>
 
     <para>Tem-se <literal>(s*eye()-A)^(-1) = D^(i-1)/s^i +... + D/s^2 + P/s -
     S - s*S^2 -...</literal> ao redor da singularidade s=0.</para>
@@ -92,7 +92,7 @@ A=sysdiag(jdrn(3),jdrn(2),rand(2,2));X=rand(7,7);
 A=X*A*inv(X);
 [S,P,D,index]=projspec(A);
 index   //tamanho do bloco J
-trace(P)  //soma das dimensÃµes dos blocos J
+trace(P)  //soma das dimensões dos blocos J
 A*S-(eye()-P)
 norm(D^index,1)
  
@@ -100,7 +100,7 @@ norm(D^index,1)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m</title>
+    <title> Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="coff">coff</link></member>

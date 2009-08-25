@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xsave" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xsave</refname>
+
+    <refpurpose>salva gráficos em um arquivo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xsave(filename,[win_num])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file_name</term>
+
+        <listitem>
+          <para>string, nome do arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>inteiro, o número da janela de gráficos. Se não for
+          forneceido, a janela de gráficos corrente é utilizada.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xsave</literal> salva os gráficos contidos na janela de
+    gráficos <literal>win_num</literal> no arquivo binário
+    <literal>file_name</literal> e pode ser carregado com
+    <literal>xload</literal>.</para>
+
+    <para>Desde o Scilab 5.0, todos os manipuladores <link
+    linkend="uimenu">uimenu</link> ou <link
+    linkend="uicontrol">uicontrol</link> também são salvos.</para>
+
+    <para>Para novos gráficos <literal>xsave(file_name,win_num)</literal>use
+    preferivelmente <literal>save(file_name,scf(win_num)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+    //novo estilo
+    t=0:0.01:10;
+    subplot(211),plot2d(t,sin(t))
+    subplot(212),plot2d(t,sin(3*t))
+    save(TMPDIR+'/foo.scg',gcf())
+    clf()
+    load(TMPDIR+'/foo.scg')
+    
+    a=gca();
+    curve=a.children.children; //handle on the curve
+    save(TMPDIR+'/foo.scg',curve)
+    delete(curve)
+    load(TMPDIR+'/foo.scg')
+    
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xload">xload</link></member>
+
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="load">load</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

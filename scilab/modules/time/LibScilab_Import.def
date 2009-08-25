@@ -16,5 +16,4 @@ EXPORTS
  vstk_
  createvar_
  callFunctionFromGateway
- transposeMatrixInt
  

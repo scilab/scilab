@@ -156,7 +156,7 @@ whos -name "a "
 
       <member><link linkend="chdir">chdir</link></member>
 
-      <member><link linkend="getcwd">getcwd</link></member>
+      <member><link linkend="pwd">pwd</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -25,11 +25,11 @@
   <refnamediv>
     <refname>xinit</refname>
 
-    <refpurpose>inicializa√ß√£o de um driver de gr√°ficos</refpurpose>
+    <refpurpose>inicializaÁ„o de um driver de gr·ficos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>
     xinit(FileName)
@@ -38,7 +38,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -52,14 +52,14 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Para os drivers Postscript, Xfig, Gif ou PPM,
-    <literal>FileName</literal> deve ser especificado. √â o nome do arquivo
-    onde todas as opera√ß√µes gr√°ficas s√£o registradas.</para>
+    <literal>FileName</literal> deve ser especificado. … o nome do arquivo
+    onde todas as operaÁıes gr·ficas s„o registradas.</para>
 
     <para>Para os drivers (X11 ou Rec), <literal>xinit</literal> deve ser
-    chamado sem nenhum argumento e abre uma janela de gr√°ficos vazia.</para>
+    chamado sem nenhum argumento e abre uma janela de gr·ficos vazia.</para>
   </refsection>
 
   <refsection>
@@ -77,7 +77,7 @@ driver("X11")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="driver">driver</link></member>

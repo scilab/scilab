@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>atanh</refname>
 
-    <refpurpose>arco-tangente hiperbÃ³lico</refpurpose>
+    <refpurpose>arco-tangente hiperbólico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=atanh(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,31 +56,31 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Os compontente do vetor <literal>t</literal> sÃ£o os arcos-tangentes
-    hiperbÃ³licos das entradas correspondentes em <literal>x</literal>. O
-    domÃ­nio de definiÃ§Ã£o Ã© <literal>[-1,1]</literal> para a funÃ§Ã£o real (ver
-    "ObservaÃ§Ã£o").</para>
+    <para>Os compontente do vetor <literal>t</literal> são os arcos-tangentes
+    hiperbólicos das entradas correspondentes em <literal>x</literal>. O
+    domínio de definição é <literal>[-1,1]</literal> para a função real (ver
+    "Observação").</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o </title>
+    <title>Observação </title>
 
-    <para>No Scilab (como em alguns outros softwares numÃ©ricos), quando se
-    tenta avaliar uma funÃ§Ã£o matemÃ¡tica elementar fora de seu domÃ­nio de
-    definiÃ§Ã£o no caso real, uma extensÃ£o complexa Ã© usada (com resultado
-    complexo). O exemplo mais famoso Ã© a funÃ§Ã£o sqrt (tente
-    <literal>sqrt(-1)</literal> !). !). Esta aproximaÃ§Ã£o tem algumas
-    desvantagens quando vocÃª avalia a funÃ§Ã£o em um ponto singular que pode
-    levar a diferentes resultados quando o ponto Ã© considerado como real ou
-    complexo. Para a funÃ§Ã£o <literal>atanh</literal> isto ocorre para
+    <para>No Scilab (como em alguns outros softwares numéricos), quando se
+    tenta avaliar uma função matemática elementar fora de seu domínio de
+    definição no caso real, uma extensão complexa é usada (com resultado
+    complexo). O exemplo mais famoso é a função sqrt (tente
+    <literal>sqrt(-1)</literal> !). !). Esta aproximação tem algumas
+    desvantagens quando você avalia a função em um ponto singular que pode
+    levar a diferentes resultados quando o ponto é considerado como real ou
+    complexo. Para a função <literal>atanh</literal> isto ocorre para
     <literal>-1</literal> e <literal>1</literal> porque, nestes pontos, a
-    parte imaginÃ¡ria nÃ£o converge e entÃ£o <literal>atanh(1) = +Inf + i
+    parte imaginária não converge e então <literal>atanh(1) = +Inf + i
     NaN</literal> enquanto <literal>atanh(1) = +Inf</literal> para o caso real
-    (como lim x-&gt;1- de atanh(x)). EntÃ£o, quando vocÃª avaliar esta funÃ§Ã£o no
-    vetor <literal>[1 2]</literal> , como <literal>2</literal> estÃ¡ fora do
-    domÃ­nio de definiÃ§Ã£o, a extensÃ£o complexa Ã© usada para todo o vetor e o
+    (como lim x-&gt;1- de atanh(x)). Então, quando você avaliar esta função no
+    vetor <literal>[1 2]</literal> , como <literal>2</literal> está fora do
+    domínio de definição, a extensão complexa é usada para todo o vetor e o
     resultado de <literal>atanh(1) = +Inf + i NaN</literal> enquanto o
     resultado de <literal>atanh(1) = +Inf</literal> com <literal>[1
     0.5]</literal> , por exemplo.</para>
@@ -100,7 +100,7 @@ x = [-%inf -3 -2 -1 0 1 2 3 %inf]
 ieee(2)
 atanh(tanh(x))
 
-// exemplo 3 (ver "ObservaÃ§Ã£o")
+// exemplo 3 (ver "Observação")
 ieee(2)
 atanh([1 2])
 atanh([1 0.5])
@@ -109,7 +109,7 @@ atanh([1 0.5])
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="tanh">tanh</link></member>

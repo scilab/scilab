@@ -24,7 +24,7 @@ foo=['void verylongfunctionnamewithmore24characters(double *a,double *b,double *
 // we use TMPDIR for compilation 
 	
 if ~c_link('foo') then
-  curPath = getcwd(); 
+  curPath = pwd(); 
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
   

@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA
-* ...
+* Copyright (C) 2009 - DIGITEO - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -13,6 +13,8 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <ctype.h>  
+#include <math.h>
+#include "machine.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
@@ -44,6 +46,10 @@ static int GetScalarDouble(char *fname,int *prev,int *arg,int narg, int *ic,int 
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target);
 static char* readNextUTFChar(char* utfstream,int* size);
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval );
+#ifndef signbit
+/* signbit does not exist with VS 2008 */
+static int signbit(double x);
+#endif
 /*--------------------------------------------------------------------------*/
 static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 {
@@ -55,7 +61,7 @@ static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval )
 {
 	/* for switch on number of '*' and type */
-	#define  choosetype(num,type)  (5*(num)+(type))
+#define  choosetype(num,type)  (5*(num)+(type))
 
 	int retval=-1;
 
@@ -388,12 +394,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 		case 'd':
 		case 'x':
 		case 'X':
-			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
+			rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
 				if (rval== NOT_ENOUGH_ARGS) 
 				{
-					error_on_rval(xxprintf,flush,target);
+					error_on_rval(xxprintf, flush, target);
 					return RET_BUG;
 				}
 				return rval;
@@ -403,12 +409,12 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 		case 'i':
 		case 'u':
-			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
+			rval=GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
 				if (rval== NOT_ENOUGH_ARGS)
 				{
-					error_on_rval(xxprintf,flush,target);
+					error_on_rval(xxprintf, flush, target);
 					return RET_BUG;
 				}
 				return rval;
@@ -426,7 +432,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 				Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
 				return RET_BUG;
 			}
-			rval=GetScalarDouble(fname,&prev,&arg_count,nargs,&ccount,lcount,&dval);
+			rval = GetScalarDouble(fname, &prev, &arg_count, nargs, &ccount, lcount, &dval);
 			if (rval <= 0) 
 			{
 				if (rval== NOT_ENOUGH_ARGS)
@@ -457,6 +463,7 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 
 #define NanString "Nan"
 #define InfString "Inf"
+#define NegInfString "-Inf"
 			/* print is not a string or a char */
 			if ( (conversion_type != PF_S) && (conversion_type != PF_C) )
 			{
@@ -478,7 +485,17 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					else /* %inf */
 					{
 						char formatinf[3] = "%s";
-						char *valueinf = strdup(InfString);
+						char *valueinf = NULL;
+
+						if ( signbit(dval) )
+						{
+							valueinf = strdup(NegInfString);
+						}
+						else
+						{
+							valueinf =  strdup(InfString);
+						}
+
 						conversion_type = PF_S;
 						dval = 0.;
 						/* valueinf FREED in call_printf */
@@ -633,4 +650,23 @@ static int GetScalarDouble(char *fname, int *prev, int *arg, int narg, int *ic, 
 	*ic=*ic+1;
 	return OK;
 }
+/*--------------------------------------------------------------------------*/
+#ifndef signbit
+static int signbit(double x)
+{
+	union
+	{
+		double d;
+		short s[4];
+		int i[2];
+	} u;
+
+	u.d = x;
+#if SIZEOF_INT == 4
+	return u.i[1] < 0;
+#else
+	return u.s[3] < 0;
+#endif 
+}
+#endif /* signbit */
 /*--------------------------------------------------------------------------*/

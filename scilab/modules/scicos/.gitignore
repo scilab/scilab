@@ -25,6 +25,7 @@ src/scicos_sundials/scicos_sundials.def
 chm
 help/en_US/master_help.xml
 help/fr_FR/master_help.xml
+help/pt_BR/master_help.xml
 help/en_US/scilab_en_US_help/
 help/en_US/scilab_fr_FR_help/
 help/en_US/scilab_pt_BR_help/

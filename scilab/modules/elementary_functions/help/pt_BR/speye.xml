@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,21 +28,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>Isp=speye(nrows,ncols)
 Isp=speye(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>nrows</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de linhas) </para>
+          <para>inteiro (número de linhas) </para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@ Isp=speye(A)</synopsis>
         <term>ncols</term>
 
         <listitem>
-          <para>inteiro (nÃºmero de colunas) </para>
+          <para>inteiro (número de colunas) </para>
         </listitem>
       </varlistentry>
 
@@ -73,19 +73,19 @@ Isp=speye(A)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>Isp=speye(nrows,ncols)</literal> retorna uma matriz
     identidade esparsa <literal>Isp</literal> com <literal>nrows</literal>
     linhas e , <literal>ncols</literal> colunas (matrizes identidades
-    nÃ£o-quadradas tÃªm um nÃºmero mÃ¡ximo de algarismos 1 na diagonal
+    não-quadradas têm um número máximo de algarismos 1 na diagonal
     principal).</para>
 
     <para><literal>Isp=speye(A)</literal> retorna uma matriz identidade
-    esparsa com as mesmas dimensÃµes de <literal>A</literal>.
+    esparsa com as mesmas dimensões de <literal>A</literal>.
     Se<literal>[m,n]=size(A)</literal>, <literal>speye(m,n)</literal> e
-    <literal>speye(A)</literal> sÃ£o equivalentes. Em particular
-    <literal>speye(3)</literal> nÃ£o Ã© equivalente a
+    <literal>speye(A)</literal> são equivalentes. Em particular
+    <literal>speye(3)</literal> não é equivalente a
     <literal>speye(3,3)</literal>.</para>
   </refsection>
 
@@ -100,7 +100,7 @@ eye(3,3)-full(speye(3,3))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

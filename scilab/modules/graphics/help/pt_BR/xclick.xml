@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xclick" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xclick</refname>
+
+    <refpurpose>espera por um clique do mouse</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[ibutton,xcoord,yxcoord,iwin,cbmenu]=xclick([flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton</term>
+
+        <listitem>
+          <para>escalar real (valor inteiro): número do botão do mouse, código
+          da tecla... (ver descrição abaixo)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xcoord</term>
+
+        <listitem>
+          <para>escalar real: coordenada x do ponteiro do mouse quando ocorreu
+          o clique, na escala gráfica corrente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ycoord</term>
+
+        <listitem>
+          <para>escalar real: coordenada y do ponteiro do mouse quando ocorreu
+          o clique, na escala gráfica corrente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iwin</term>
+
+        <listitem>
+          <para>escalar real (valor inteiro): número da janela onde a ação
+          ocorreu.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cbmenu</term>
+
+        <listitem>
+          <para>string: callback associado a um menu se
+          <literal>xclick</literal> retorna devido a um clique em um menu.
+          Neste caso, <literal>ibutton</literal>, <literal>xcoord</literal>,
+          <literal>ycoord</literal>, e <literal>iwin</literal> tomam valores
+          arbitrários.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>escalar real (valor inteiro): se presente, a fila de eventos
+          de clique não é limpa ao se entrar xclick.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xclick</literal> espera pelo clique do mouse na janela de
+    gráficos.</para>
+
+    <para>Se for chamado com 3 argumentos do lado esquerdo, espera pelo clique
+    do mouse na janela de gráficos corrente.</para>
+
+    <para>Se chamado com 4 ou 5 argumentos do lado esquerdo, espera pelo
+    clique do mouse em qualquer janela de gráficos.</para>
+
+    <para>Os valores de <literal>ibutton</literal> estão descritos
+    abaixo:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton==0</term>
+
+        <listitem>
+          <para>o botão esquerdo foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==1</term>
+
+        <listitem>
+          <para>o botão do meio foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==2</term>
+
+        <listitem>
+          <para>o botão direito foi pressionado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==3</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==4</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==5</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==10</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==11</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==12</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado duas vezes</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII <literal>ibutton</literal> foi
+          pressionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &lt;=-32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII <literal>-ibutton</literal> foi
+          liberada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=1000+32</term>
+
+        <listitem>
+          <para>uma tecla com código ASCII <literal>ibutton-1000</literal> foi
+          pressionada enquanto a tecla CTRL estava sendo pressionada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-1000</term>
+
+        <listitem>
+          <para>a janela de gráficos foi fechada</para>
+
+          <para>Aviso: <literal>ibutton</literal> era igual a -100 para
+          fechamento de janelas gráficas até o Scilab 4.1.2, mas este código
+          foi modificado (no Scilab 5.0), pois também era o código retornado
+          pela liberação da tecla <literal>d</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-2</term>
+
+        <listitem>
+          <para>um menu dinâmico foi selecionado e seu callback é retornado em
+          <literal>cbmenu</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="locate">locate</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="seteventhandler">seteventhandler</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>J.Ph.C.</para>
+
+    <para>V.C.</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>perms</refname>
 
-    <refpurpose>retorna todas as permutaÃ§Ãµes dos componentes de um
+    <refpurpose>retorna todas as permutações dos componentes de um
     vetor</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=perms(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,13 +57,13 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado um vetor <literal>x</literal> de comprimento
     <literal>n</literal>, <literal>perms</literal> retorna todas as
-    permutaÃ§Ãµes dos <literal>n</literal> componentes de <literal>x</literal>
-    (i.e <literal>n!</literal> permutaÃ§Ãµes). O tamanho de <literal>y</literal>
-    Ã©<literal> n! x n</literal></para>
+    permutações dos <literal>n</literal> componentes de <literal>x</literal>
+    (i.e <literal>n!</literal> permutações). O tamanho de <literal>y</literal>
+    é<literal> n! x n</literal></para>
   </refsection>
 
   <refsection>

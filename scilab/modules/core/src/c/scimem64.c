@@ -15,6 +15,7 @@
 #include "stack-c.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "doublecomplex.h"
 
 #include <assert.h>
 

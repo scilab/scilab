@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="surf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>surf</refname>
+
+    <refpurpose>Esboço de superfície 3d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>surf(Z,&lt;GlobalProperty&gt;)
+surf(Z,color,&lt;GlobalProperty&gt;)
+surf(X,Y,Z,&lt;color&gt;,&lt;GlobalProperty&gt;)
+surf(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>uma matriz real definindo as alturas da superfície. Não pode
+          ser omitida. O dado Z é uma matriz<literal>
+          m</literal>x<literal>n</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X,Y</term>
+
+        <listitem>
+          <para>dois vetores ou matrizes reais: sempre ajustados juntos, estes
+          dados definem um novo grid padrão. Estes novos componentes
+          <literal>X</literal> e <literal>Y</literal> do grid devem coincidir
+          com as dimensões de <literal>Z</literal> (ver a descrição
+          abaixo).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color</term>
+
+        <listitem>
+          <para>um matriz de reais opcional definindo valores de cores para
+          cada ponto <literal>(X(j),Y(i))</literal> do grid (ver descrição
+          abaixo).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+
+        <listitem>
+          <para>esta propriedade rerpresenta uma seqüência de pares de
+          sentenças <literal>{PropertyName,PropertyValue}</literal> que
+          definem propriedades globais de objetos aplicadas a todas as curvas
+          criadas neste esboço. Para uma completa visualização das
+          propriedades disponíveis veja <link
+          linkend="GlobalProperty">GlobalProperty</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional força os eixos a aparecerem dentro dos
+          eixos selecionados dados por <literal>axes_handle</literal> ao invés
+          dos eixos correntes (ver <link linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>surf</literal> desenha uma superfície parametrizada
+    colorida utilizando um grid retangular definido pelas coordenadas
+    <literal>X</literal> e <literal>Y</literal> (se <literal>{X,Y}</literal>
+    não forem especificados, este grid é determinado utilizando-se as
+    dimensões da matriz <literal>Z</literal>) ; em cada ponto deste grid, uma
+    coordenada Z é dada utilizando-se uma matriz <literal>Z</literal> (apenas
+    dados obrigatórios). <literal>surf</literal> foi criada para lidar melhor
+    com a sintaxe do Matlab. Para melhorar a compatibilidade gráfica, usuários
+    do Matlab devem utilizar <literal>surf</literal> (ao invés de <link
+    linkend="plot3d">plot3d</link>).</para>
+
+    <para>Especificação de entrada de dados:</para>
+
+    <para>Neste parágrafo, e para sermos mais claros, não mencionaremos os
+    argumentos opcionais de <literal>GlobalProperty</literal> ojá que eles não
+    interferem na entrada de dados (exceto pelas propriedades
+    <literal>"Xdata"</literal>, <literal>"Ydata"</literal> e
+    <literal>"Zdata"</literal>, ver <link
+    linkend="GlobalProperty">GlobalProperty</link>). É assumido que todos
+    estes argumentos opcionais podem estar presentes também.</para>
+
+    <para>Se <literal>Z</literal> é a única matriz especificada, surf(Z)
+    esboça a matriz <literal>Z</literal> versus o grid definido por
+    <literal>1:size(Z,2)</literal> ao longo do eixo x e
+    <literal>1:size(Z,1)</literal> ao longo do eixo.</para>
+
+    <para>Se uma tripla <literal>{X,Y,Z}</literal> for fornecida,
+    <literal>Z</literal> deve ser uma matriz de size(<literal>Z</literal>)=
+    [<literal>m</literal>x<literal>n</literal>], <literal>X</literal> or
+    <literal>Y</literal> can be :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>a) um vetor: se <literal>X</literal> for um vetor,
+        length(<literal>X</literal>)=<literal>n</literal>. Respectivamente, se
+        <literal>Y</literal> for um vetor,
+        length(<literal>Y</literal>)=<literal>m</literal>.</para>
+
+        <para>b) uma matriz: neste caso, size(<literal>X</literal>) (ou
+        size(<literal>Y</literal>)) deve ser igual a
+        size(<literal>Z</literal>).</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Especificação de entrada de cores:</para>
+
+    <para>Como citado acima, a superfície é criada sobre um gride retangular
+    de apoio. Consideremos duas variáveis independentes <literal>i</literal> e
+    <literal>j</literal> tais que:</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/surf_01.gif"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Este grid retangular imaginário é utilizado para se contruir o
+    suporte da superfície real sobre o plano <literal>XY</literal> . De fato,
+    os dados <literal>X</literal>,<literal>Y</literal> e <literal>Z</literal>
+    possuem o mesmo tamanho (mesmo se <literal>X</literal> ou
+    <literal>Y</literal> for um vetor, ver abaixo) e podem ser considerados
+    como três funções <literal>x(i,j)</literal>, <literal>y(i,j)</literal> e
+    <literal>z(i,j)</literal> especificando a superficie desejada. Se
+    <literal>X</literal> ou <literal>Y</literal> forem vetores, eles são
+    internamente tratados para produzir boas matrizes de dimensões
+    correspondentes às dimensões da matriz <literal>Z</literal> (e o grid é
+    forçosamente uma região retangular).</para>
+
+    <para>Considerando as três funções <literal>x(i,j)</literal>,
+    <literal>y(i,j)</literal> e <literal>z(i,j)</literal>, a porção da
+    superfície definida entre dois <literal>i</literal> e <literal>j</literal>
+    consecutivos é chamada remendo.</para>
+
+    <para>Por padrão, quando nenhuma matriz de cores é adicionada a uma
+    chamada a surf, o parâmetro de cor é ligado o dado <literal>Z</literal> .
+    Quando uma matriz de cores <literal>color</literal> é dada, pode ser
+    aplicada aos remendos de duas formas diferentes: nos vértices, ou no
+    centro de cada remendo.</para>
+
+    <para>É por isto que, se <literal>Z</literal> é uma matriz
+    [<literal>m</literal>x<literal>n</literal>] , a dimensão da matriz
+    <literal>color C</literal> pode ser
+    [<literal>m</literal>x<literal>n</literal>] (uma cor definida por vértice)
+    ou [<literal>m-1</literal>x<literal>n-1</literal>] (uma cor definida por
+    remendo).</para>
+
+    <para>A representação de cores também varia quando se especifica algumas
+    GlobalProperties (propriedades globais):</para>
+
+    <para>A propriedade <literal>FaceColor</literal> ajusta o padrão de
+    gradação: pode ser <literal> 'interp'</literal> ou
+    <literal>'flat'</literal> (modo padrão). Quando
+    <literal>'interp'</literal> é selecionado, é realizado uma interpolação
+    bilinear de cores no remendo. Se size(<literal>C</literal>) é igual a
+    size(<literal>Z</literal>)-1 (i.e. for fornecida apenas uma cor ao
+    remendo) então a cor dos vértices definindo o remendo é ajustada para a
+    dada cor do remendo.</para>
+
+    <para>Quando <literal>'flat'</literal> (modo padrão) é habilitado, é
+    utilizada uma representação de cores de facetadas (uma cor por remendo).
+    Se size(<literal>C</literal>) é igual a size(<literal>Z</literal>) (i.e.
+    foi fornecida apenas uma cor por os vértices), as últimas linha e coluna
+    de <literal>C</literal> são ignoradas.</para>
+
+    <para></para>
+
+    <para>Os argumentos <literal>GlobalProperty</literal> devem ser usados
+    para customizar a superfície. Aqui está uma breve descrição de como
+    funcionam:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>GlobalProperty</term>
+
+        <listitem>
+          <para>esta opção pode ser utilizada para especificar como todas as
+          superfícies serão desenhadas. Deve sempre ser um par de sentenças
+          constituidos de um string definindo <literal>PropertyName</literal>,
+          (nome da propriedade) e seu valor associado
+          <literal>PropertyValue</literal> (que pode ser um inteiro ou outra
+          coisa... dependendo do tipo de <literal>PropertyName</literal>).
+          Note que você pode ajustar múltiplas propriedades : a cor da face e
+          da borda, dados de cores, mapeamento de dados de cores, cor do
+          marcador (plano de fundo e primeiro plano), visibilidade, recorte,
+          espessura das bordas da superfície... (ver <link
+          linkend="GlobalProperty">GlobalProperty</link> )</para>
+
+          <para>Note que todas essas propriedades podem ser (re-)ajustadas
+          através das propriedades da entidade superfície (ver <link
+          linkend="surface_properties">surface_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Observações</title>
+
+    <para>Por padrão, esboços sucessivos de superfície são superpostos. Para
+    limpar o esboço anteirior, use <literal>clf()</literal>. Para habilitar o
+    modo <literal>auto_clear</literal> (limpeza automática) como modo padrão,
+    edite seus eixos padrões fazendo:</para>
+
+    <para>da=gda();</para>
+
+    <para>da.auto_clear = 'on'</para>
+
+    <para>Entre com o comando <literal>surf</literal> para visualizar uma
+    demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// inicialização de Z
+
+Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
+    0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000
+    0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020
+   -0.0088   -0.0871    0.0364    1.8559    1.4995   -2.2171   -0.2729    0.8368    0.2016    0.0130
+   -0.0308   -0.4313   -1.7334   -0.1148    3.0731    0.4444    2.6145    2.4410    0.4877    0.0301
+   -0.0336   -0.4990   -2.3552   -2.1722    0.8856   -0.0531    2.6416    2.4064    0.4771    0.0294
+   -0.0137   -0.1967   -0.8083    0.2289    3.3983    3.1955    2.4338    1.2129    0.2108    0.0125
+   -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
+    0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
+    0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
+
+//superfície simples
+surf(Z); // note que X e Y são determinados pelas dimensões de Z
+
+//a mesma superfície com faces vermelhas e bordas azuis
+scf(2); // nova figura de número 2
+surf(Z,'facecol','red','edgecol','blu")
+
+// inicialização de X e Y
+// NB: aqui, X tem as mesmas linhas e Y tem as mesmas colunas
+X = [ -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000
+   -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000];
+
+Y= [   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000   -3.0000
+   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333   -2.3333
+   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667   -1.6667
+   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000   -1.0000
+   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333   -0.3333
+    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333    0.3333
+    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000    1.0000
+    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667    1.6667
+    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333    2.3333
+    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000    3.0000];
+
+// exemplo 1
+scf(3)
+surf(X,Y,Z)
+
+//exemplo 2
+// como você pode ver, o grid não é necessariamente retangular
+scf(4)
+X(1,4) = -1.5;
+Y(1,4) = -3.5;
+Z(1,4) = -2;
+surf(X,Y,Z)
+
+// exemplo 3
+// X e Y são vetores =&gt; mesmo comportamento que a amostra 1
+// com vetores, o grid é inevitavelmente retangular
+scf(5)// nova figura de número 5
+X=[ -3.0000   -2.3333   -1.6667   -1.0000   -0.3333    0.3333    1.0000    1.6667    2.3333    3.0000];
+Y=X;
+surf(X,Y,Z)
+
+
+//exemplos com LineSpec e GlobalProperty:
+xdel(winsid()) // destruindo todas as figuras existentes
+surf(Z,Z+5) // array de cores especificado
+e=gce();
+e.cdata_mapping='direct' // o padrão é 'scaled' relativo ao mapa de cores colormap
+e.color_flag=3; // modo de gradação interpolada. O padrão é 4 (modo 'flat') para surf
+
+scf(2)
+surf(X,Y,Z,'colorda',ones(10,10),'edgeco','cya','marker','penta','markersiz',20,'markeredg','yel','ydata',56:65)
+
+scf(3)
+surf(Z,'cdatamapping','direct')
+scf(4)
+surf(Z,'facecol','interp') // interpolated shading mode (color_flag == 3)
+
+scf(10)
+axfig10=gca();
+scf(11);
+surf(axfig10,Z,'ydat',[100:109],'marker','d','markerfac','green','markeredg','yel') // draw onto the axe of figure 10
+
+xdel(winsid())
+
+ 
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="xdel">xdel</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="LineSpec">LineSpec</link></member>
+
+      <member><link linkend="GlobalProperty">GlobalProperty</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

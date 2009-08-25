@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>lu</refname>
 
-    <refpurpose>fatores LU de eliminaÃ§Ã£o Gaussiana</refpurpose>
+    <refpurpose>fatores LU de eliminação Gaussiana</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[L,U]= lu(A)
 [L,U,E]= lu(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -66,35 +66,35 @@
         <term>E</term>
 
         <listitem>
-          <para>uma matriz de permutaÃ§Ã£o (n x n)</para>
+          <para>uma matriz de permutação (n x n)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>[L,U]= lu(A)</literal> produz duas matrizes
     <literal>L</literal> e <literal>U</literal> tais que <literal>A =
     L*U</literal> com <literal>U</literal> triangular superior e
-    <literal>E*L</literal> triangular infeiror para uma matriz de permutaÃ§Ã£o
+    <literal>E*L</literal> triangular infeiror para uma matriz de permutação
     <literal>E</literal>.</para>
 
     <para>Se <literal>A</literal> tem posto <literal>k</literal>, as linhas de
-    <literal>k+1</literal> a <literal>n</literal> de <literal>U</literal> sÃ£o
+    <literal>k+1</literal> a <literal>n</literal> de <literal>U</literal> são
     zeros.</para>
 
-    <para><literal>[L,U,E]= lu(A)</literal> produz trÃªs matrizes
+    <para><literal>[L,U,E]= lu(A)</literal> produz três matrizes
     <literal>L</literal>, <literal>U</literal> e <literal>E</literal> tais que
     <literal>E*A = L*U</literal> com <literal>U</literal> triangular superior
     e <literal>E*L</literal> l triangular inferior para uma matriz de
-    permutaÃ§Ã£o <literal>E</literal>.</para>
+    permutação <literal>E</literal>.</para>
 
-    <para>Se <literal>A</literal> Ã© uma matriz de reais, usando as funÃ§Ãµes
-    <literal>lufact</literal> e <literal>luget</literal> Ã© possÃ­vel obter as
-    matrizes de permutaÃ§Ã£o e, tambÃ©m, quando <literal>A</literal> nÃ£o Ã© de
-    posto cheio, a compressÃ£o de colunas da matriz
+    <para>Se <literal>A</literal> é uma matriz de reais, usando as funções
+    <literal>lufact</literal> e <literal>luget</literal> é possível obter as
+    matrizes de permutação e, também, quando <literal>A</literal> não é de
+    posto cheio, a compressão de colunas da matriz
     <literal>L</literal>.</para>
   </refsection>
 
@@ -107,17 +107,17 @@ a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)
 
-[h,rk]=lufact(sparse(a))  // funÃ§Ã£o lufact com matrizes esparsas 
+[h,rk]=lufact(sparse(a))  // função lufact com matrizes esparsas 
 [P,L,U,Q]=luget(h);
 ludel(h)
 P=full(P);L=full(L);U=full(U);Q=full(Q); 
-norm(P*L*U*Q-a) // P e Q sÃ£o as matrizes de permutaÃ§Ã£o
+norm(P*L*U*Q-a) // P e Q são as matrizes de permutação
  
   </programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="lufact">lufact</link></member>
@@ -133,9 +133,9 @@ norm(P*L*U*Q-a) // P e Q sÃ£o as matrizes de permutaÃ§Ã£o
   </refsection>
 
   <refsection>
-    <title> FunÃ§Ã£o Usada</title>
+    <title> Função Usada</title>
 
-    <para>As decomposiÃ§Ãµes de lu sÃ£o baseadas nas rotinas de Lapack DGETRF
+    <para>As decomposições de lu são baseadas nas rotinas de Lapack DGETRF
     para matrizes reais e ZGETRF para o caso de matrizes complexas.</para>
   </refsection>
 </refentry>

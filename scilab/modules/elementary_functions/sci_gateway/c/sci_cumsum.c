@@ -13,28 +13,32 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intcumsum) (int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
+	int i;
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
 
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	char **szRealData	= 0;
-	int iImgData		= 0;
-	int iIndex			= 0;
-	int iMode			= 0;
+	int* piAddr1					= NULL;
+
+	double *pdblReal		 = NULL;
+	double *pdblImg			 = NULL;
+	double *pdblRealRet	 = NULL;
+	double *pdblImgRet	 = NULL;
+
+	int iMode						= 0;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr1);
+
+	if(getVarType(piAddr1) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -42,160 +46,97 @@ int C2F(sci_cumsum) (char *fname,unsigned long fname_len)
 
 	if(Rhs == 2)
 	{
-		double dblSel = 0;
-		double *pdblRealData = 0;
-
-		if(GetType(2) == sci_matrix)
+		iRet = getProcessMode(2, piAddr1, &iMode);
+		if(iRet)
 		{
-			GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-			iMode = (int)stk(iRealData)[0];
-		}
-		else if(GetType(2) == sci_strings)
-		{
-			GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
-			iMode = (int)*szRealData[0];
-		}
-		else
-		{
-			Error(44);
-			return 2;
-		}
-		
-		if(iRows != 1 || iCols != 1)
-		{
-			Error(89);
-			return 2;
-		}
-
-		if(iMode == ROW_LETTER || iMode == BY_ROWS)
-			iMode = BY_ROWS;
-		else if(iMode == COL_LETTER || iMode == BY_COLS)
-			iMode = BY_COLS;
-		else if(iMode == STAR_LETTER || iMode == BY_ALL)
-			iMode = BY_ALL;
-		else if(iMode == MTLB_LETTER || iMode == BY_MTLB)
-		{//J'ai pas tout compris dans le fonctionnement pour MtLb©
-			iMode = 0;
-			if(iRows > 1)
-				iMode = 1;
-			else if(iCols > 1)
-				iMode = 2;
-		}
-		else
-		{
-			Error(44);
-			return 2;
+			return 1;
 		}
 	}
 
-
-	if(iIsComplex(1))
+	if(isVarComplex(piAddr1))
 	{
-		double *pdblRealData = 0;
-		double *pdblImgData = 0;
-		double *pReturnRealData = NULL;
-		double *pReturnImgData = NULL;
-		int iComplex = 1;
+		iRet = getComplexMatrixOfDouble(piAddr1, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-		pdblRealData	= stk(iRealData);
-		pdblImgData		= stk(iImgData);
-
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgData);
-		//pReturnRealData = (double*)malloc(iRows * iCols * sizeof(double));
-		//pReturnImgData	= (double*)malloc(iRows * iCols * sizeof(double));
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet);
 
 		/*Set the first column of returned matrix at the same value of the input matrix*/
-		for(iIndex = 0 ; iIndex < iRows ; iIndex++)
-		{
-			pReturnRealData[iIndex] = pdblRealData[iIndex];
-			pReturnImgData[iIndex] = pdblImgData[iIndex];
-		}
+		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
+		memcpy(pdblImgRet, pdblImg, iRows * sizeof(double));
 
 		if(iMode == BY_ROWS)
 		{
-			for(iIndex = 0 ; iIndex < iCols ; iIndex++)
+			for(i = 0 ; i < iCols ; i++)
 			{
-				vCusum(iRows, pdblRealData + iRows * iIndex, pReturnRealData + iRows * iIndex);
-				vCusum(iRows, pdblImgData + iRows * iIndex, pReturnImgData + iRows * iIndex);
+				vCusum(iRows, pdblReal + iRows * i, pdblRealRet + iRows * i);
+				vCusum(iRows, pdblImg + iRows * i, pdblImgRet + iRows * i);
 			}
 		}
 		else if(iMode == BY_COLS)
 		{
-			int iIndex = 0;
 			int iOffset = 0;
 
-			for(iIndex = 0 ; iIndex < iCols - 1; iIndex++)
+			for(i = 0 ; i < iCols - 1; i++)
 			{
-				vDadd(iRows, pReturnRealData + iOffset, pdblRealData + iOffset + iRows, 1, 1, pReturnRealData + iOffset + iRows);
-				vDadd(iRows, pReturnImgData + iOffset, pdblImgData + iOffset + iRows, 1, 1, pReturnImgData + iOffset + iRows);
+				vDadd(iRows, pdblRealRet + iOffset, pdblReal + iOffset + iRows, 1, 1, pdblRealRet + iOffset + iRows);
+				vDadd(iRows, pdblImgRet + iOffset, pdblImg + iOffset + iRows, 1, 1, pdblImgRet + iOffset + iRows);
 				iOffset += iRows;
 			}
 		}
 		else if(iMode == BY_ALL)
 		{
-			vCusum(iRows * iCols, pdblRealData, pReturnRealData);
-			vCusum(iRows * iCols, pdblImgData, pReturnImgData);
+			vCusum(iRows * iCols, pdblReal, pdblRealRet);
+			vCusum(iRows * iCols, pdblImg, pdblImgRet);
 		}
 		else
 		{
 			Error(44);
 			return 2;
 		}
-
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnRealData, &pReturnImgData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
-		//free(pReturnImgData);
 	}
 	else
 	{
-		double *pdblRealData = 0;
-		double *pReturnRealData = NULL;
+		iRet = getMatrixOfDouble(piAddr1, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblRealData		= stk(iRealData);
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet);
 
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData		= (double*)malloc(iRows * iCols * sizeof(double));
-		for(iIndex = 0 ; iIndex < iRows ; iIndex++)
-			pReturnRealData[iIndex] = pdblRealData[iIndex];
+		memcpy(pdblRealRet, pdblReal, iRows * sizeof(double));
 
 		if(iMode == BY_ROWS)
 		{
-			for(iIndex = 0 ; iIndex < iCols ; iIndex++)
-				vCusum(iRows, pdblRealData + iRows * iIndex, pReturnRealData + iRows * iIndex);
+			for(i = 0 ; i < iCols ; i++)
+				vCusum(iRows, pdblReal + iRows * i, pdblRealRet + iRows * i);
 		}
 		else if(iMode == BY_COLS)
 		{
-			int iIndex = 0;
 			int iOffset = 0;
 
-			for(iIndex = 0 ; iIndex < iCols -1; iIndex++)
+			for(i = 0 ; i < iCols - 1; i++)
 			{
-				vDadd(iRows, pReturnRealData + iOffset, pdblRealData + iOffset + iRows, 1, 1, pReturnRealData + iOffset + iRows);
+				vDadd(iRows, pdblRealRet + iOffset, pdblReal + iOffset + iRows, 1, 1, pdblRealRet + iOffset + iRows);
 				iOffset += iRows;
 			}
 		}
 		else if(iMode == BY_ALL)
 		{
-			vCusum(iRows * iCols, pdblRealData, pReturnRealData);
+			vCusum(iRows * iCols, pdblReal, pdblRealRet);
 		}
 		else
 		{
 			Error(44);
 			return 2;
 		}
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
 	}
-#else
-	C2F(intcumsum)(id);
-#endif
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

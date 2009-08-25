@@ -22,14 +22,13 @@
         <refname>Variable Dimension (Scilab gateway)</refname>
 
         <refpurpose>
-            How to get dimention of a variable stored as matrix.
+            How to get the dimensions of a variable stored as matrix.
         </refpurpose>
     </refnamediv>
-    <refsection>
-        <title>Description</title>
-        <para>This help describes how to get dimention of a variable stored as matrix.</para>
-        <synopsis>int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)</synopsis>
-    </refsection>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)</synopsis>
+    </refsynopsisdiv>
     <refsection>
         <title>Parameters</title>
         <variablelist>
@@ -37,7 +36,7 @@
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Address of the variable.
+                        The address of the variable.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,8 +59,12 @@
         </variablelist>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
+      <title>Description</title>
+      <para>This help describes how to get the dimensions of a variable in a gateway.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
         <!--Lib_name: commom_function-->
         <!--Func_list: commom_function-->
         <title>Gateway Source</title>

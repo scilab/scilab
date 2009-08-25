@@ -20,7 +20,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_variable.h"
+#include "api_scilab.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
@@ -32,21 +32,21 @@ extern "C"
 //#define PRINT_DEBUG
 int iLevel = 0;
 
-bool export_data(int _iH5File, int *_piVar, char* _pstName);
-bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
-bool export_double(int _iH5File, int *_piVar, char* _pstName);
-bool export_poly(int _iH5File, int *_piVar, char* _pstName);
-bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
-bool export_sparse(int _iH5File, int *_piVar, char* _pstName);
-bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName);
-bool export_matlab_sparse(int *_piVar, char* _pstName);
-bool export_ints(int _iH5File, int *_piVar, char* _pstName);
-bool export_handles(int *_piVar, char* _pstName);
-bool export_strings(int _iH5File, int *_piVar, char* _pstName);
-bool export_u_function(int *_piVar, char* _pstName);
-bool export_c_function(int *_piVar, char* _pstName);
-bool export_lib(int *_piVar, char* _pstName);
-bool export_lufact_pointer(int *_piVar, char* _pstName);
+static bool export_data(int _iH5File, int *_piVar, char* _pstName);
+static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
+static bool export_double(int _iH5File, int *_piVar, char* _pstName);
+static bool export_poly(int _iH5File, int *_piVar, char* _pstName);
+static bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
+static bool export_sparse(int _iH5File, int *_piVar, char* _pstName);
+static bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName);
+static bool export_matlab_sparse(int *_piVar, char* _pstName);
+static bool export_ints(int _iH5File, int *_piVar, char* _pstName);
+static bool export_handles(int *_piVar, char* _pstName);
+static bool export_strings(int _iH5File, int *_piVar, char* _pstName);
+static bool export_u_function(int *_piVar, char* _pstName);
+static bool export_c_function(int *_piVar, char* _pstName);
+static bool export_lib(int *_piVar, char* _pstName);
+static bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
 int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList);
@@ -116,7 +116,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	return 0;
 }
 
-bool export_data(int _iH5File, int* _piVar, char* _pstName)
+static bool export_data(int _iH5File, int* _piVar, char* _pstName)
 {
 	bool bReturn = false;
 	int iType = getVarType(_piVar);
@@ -198,7 +198,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 	return bReturn;
 }
 
-bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
+static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 {
 	int iRet = 0;
 	bool bReturn = false;
@@ -221,7 +221,7 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 		getListItemAddress(_piVar, i + 1, &piNewVar);//1 indexed
 		if(piNewVar == NULL)
 		{
-			Scierror(999,"Item not found");
+			Scierror(999,_("Item not found.\n"));
 			return 0;
 		}
 
@@ -240,7 +240,7 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 	return true;
 }
 
-bool export_double(int _iH5File, int *_piVar, char* _pstName)
+static bool export_double(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iType = getVarType(_piVar);
 	if(iType != sci_matrix)
@@ -271,7 +271,7 @@ bool export_double(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_poly(int _iH5File, int *_piVar, char* _pstName)
+static bool export_poly(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRows						= 0;
 	int iCols						= 0;
@@ -340,7 +340,7 @@ bool export_poly(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
+static bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRows					= 0;
 	int iCols					= 0;
@@ -355,7 +355,7 @@ bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
+static bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -383,7 +383,7 @@ bool export_boolean_sparse(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
+static bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -427,19 +427,19 @@ bool export_sparse(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_boolean_sparse(int *_piVar, char* _pstName)
+static bool export_boolean_sparse(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_matlab_sparse(int *_piVar, char* _pstName)
+static bool export_matlab_sparse(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_ints(int _iH5File, int *_piVar, char* _pstName)
+static bool export_ints(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRows					= 0;
 	int iCols					= 0;
@@ -478,13 +478,13 @@ bool export_ints(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_handles(int *_piVar, char* _pstName)
+static bool export_handles(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_strings(int _iH5File, int *_piVar, char* _pstName)
+static bool export_strings(int _iH5File, int *_piVar, char* _pstName)
 {
 	int iRows				= 0;
 	int iCols				= 0;
@@ -512,25 +512,25 @@ bool export_strings(int _iH5File, int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_u_function(int *_piVar, char* _pstName)
+static bool export_u_function(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_c_function(int *_piVar, char* _pstName)
+static bool export_c_function(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_lib(int *_piVar, char* _pstName)
+static bool export_lib(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
 }
 
-bool export_lufact_pointer(int *_piVar, char* _pstName)
+static bool export_lufact_pointer(int *_piVar, char* _pstName)
 {
 	print_type(_pstName);
 	return true;
@@ -562,7 +562,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		//get filename
 		if(getVarType(piAddr) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"), "export_to_hdf5", i);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), "export_to_hdf5", i);
 			return 0;
 		}
 

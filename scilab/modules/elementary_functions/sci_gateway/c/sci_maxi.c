@@ -16,405 +16,449 @@
 #include "idmin.h"
 #include "idmax.h"
 #include "../../../sparse/includes/gw_sparse.h"
+#include "api_scilab.h"
+#include "Scierror.h"
 
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-void compare_list(int _iIsMaxi);
-void compare_sparse(int _iIsMaxi);
-int compare_double(int _iIsMaxi);
-int compare_double_inside(int _iIsMaxi, int _iMode);
+int compare_list(int* _piAddress, int _iIsMini);
+int compare_sparse(int* _piAddress, int _iIsMini);
+int compare_double(int _iIsMini);
+int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode);
 
-extern int C2F(intmaxi) (char *fname,int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_maxi) (char *fname,unsigned long fname_len)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iType			= 0;
-	int iMaxi			= 1;
-	int iMode			= 0;
-	int iIndex			= 0;
+	int i;
 	int iRet			= 0;
-	CheckRhs(1,10000);
+	int iMode			= 0;
+	int iMini			= 0;
+
+	int *piAddr1		= NULL;
+
 	CheckLhs(1,2);
 
-	if(Fin == 17) // mini
-		iMaxi = 0;
-
-/*
-Les differents appels : 
- - Matrix, chaine
- - Matrix, Matrix, ...
- - Matrix
- - List
-*/
-
-	iType = GetType(Rhs);
-	switch(iType)
+	if(Fin == 17)
 	{
-	case sci_strings :
-		if(Rhs == 2)
+		iMini = 1;
+	}
+
+	iRet = getVarAddressFromPosition(1, &piAddr1);
+	if(iRet)
+	{
+		return 1;
+	}
+
+
+	//manage "c", "r", "m"
+	if(Rhs == 2)
+	{
+		int *piAddr2		= NULL;
+		iRet = getVarAddressFromPosition(2, &piAddr2);
+		if(iRet)
 		{
-			iMode = iGetOrient(2);
-			if(GetType(1) != sci_matrix)
+			return 1;
+		}
+
+		if(getVarType(piAddr2) == sci_strings)
+		{
+			iRet = getProcessMode(2, piAddr1, &iMode);
+			if(iRet)
 			{
-				OverLoad(1);
-				return 0;
+				return 1;
 			}
+		}
+	}
+
+	switch(getVarType(piAddr1))
+	{
+	case sci_matrix :
+		if(Rhs == 1)
+		{
+			iRet = compare_double_inside(piAddr1, iMini, iMode);
 		}
 		else
 		{
-			OverLoad(1);
-			return 0;
-		}
-		compare_double_inside(iMaxi, iMode);
-		break;
-	case sci_matrix:
-		for(iIndex = 0 ; iIndex < Rhs ; iIndex++)
-		{
-			if(GetType(iIndex + 1) != sci_matrix)
+			for(i = 2 ; i <= Rhs ; i++)
 			{
-				OverLoad(1);
-				return 0;
+				int* piAddr		= NULL;
+				iRet = getVarAddressFromPosition(i, &piAddr);
+				if(iRet)
+				{
+					return 1;
+				}
+
+				if(getVarType(piAddr) != sci_matrix)
+				{
+					OverLoad(1);
+					return 0;
+				}
+			}
+			iRet = compare_double(iMini);
+			if(iRet)
+			{
+				return 1;
 			}
 		}
-
-		iRet = compare_double(iMaxi);
-		if(iRet != 0)
-			return 0;
 		break;
 	case sci_list :
-		compare_list(iMaxi);
+		iRet = compare_list(piAddr1, iMini);
+		if(iRet)
+		{
+			return 1;
+		}
 		break;
 	case sci_sparse:
 		C2F(ref2val)();
 		Fin -= 6; //Ugly !!!
-		if(iMaxi == 1)
-			C2F(sci_spmax)(fname, fname_len);
-		else
+		if(iMini)
 			C2F(sci_spmin)(fname, fname_len);
+		else
+			C2F(sci_spmax)(fname, fname_len);
 		break;
 	default:
 		OverLoad(1);
-		break;
+		return 0;
+		break;	
 	}
-#else
-	C2F(intmaxi)(fname,id);
-#endif
+
+	PutLhsVar();
 	return 0;
 }
 
-int compare_double(int _iIsMaxi)
+int compare_double(int _iIsMini)
 {
-	int iType		= 0;
-	int iRows		= 0;
-	int iCols		= 0;
-	int	iRhsIndex	= 0;
-	int iRefRows	= 0;
-	int iRefCols	= 0;
-	int iRefData	= 0;
-	int iIndex		= 0;
+	int i,j;
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
+	int iRefRows					= 0;
+	int iRefCols					= 0;
 
-	double *pReturnData1	= NULL;
-	double *pReturnData2	= NULL;
+	int* piAddr						= NULL;
 
-	if(Rhs > 1)
+	double *pdblReal			= NULL;
+	double *pdblRealRet1	= NULL;
+	double *pdblRealRet2	= NULL;
+
+	for(i = 1 ; i <= Rhs ; i++)
 	{
-		for(iRhsIndex = 0 ; iRhsIndex < Rhs ; iRhsIndex++)
+		int iVar			= i;
+		int iRhsRows	= 0;
+		int iRhsCols	= 0;
+
+		iRet = getVarAddressFromPosition(iVar, &piAddr);
+		if(iRet)
 		{
-			int iVar		= iRhsIndex + 1;
-			int iRhsRows	= 0;
-			int iRhsCols	= 0;
-			int iRealData	= 0;
-
-
-			GetVarDimension(iVar, &iRhsRows, &iRhsCols);
-			if(iRhsRows * iRhsCols == 0)
-			{
-				Err = iVar;
-				Error(45);
-				return 1;
-			}
-
-			if(iVar == 1)
-			{
-				iRows = iRhsRows;
-				iCols = iRhsCols;
-			}
-			else
-			{
-				if(iRhsRows != 1 || iRhsCols != 1)
-				{
-					if(iRhsRows != iRows || iRhsCols != iCols)
-					{
-						if(iRows * iCols != 1)
-						{
-							Err = iVar;
-							Error(42);
-							return 2;
-						}
-						else
-						{
-							iRows = iRhsRows;
-							iCols = iRhsCols;
-						}
-					}
-				}
-			}
-		}//for
-
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnData1);
-	
-		if(Lhs == 2)
-		{
-			iAllocMatrixOfDouble(Rhs + 2, iRows, iCols, &pReturnData2);
-			vDset(iRows * iCols, 1, pReturnData2, 1);
+			return 1;
 		}
 
-		//Value
-		//pReturnData1 = (double*)malloc(iRows * iCols * sizeof(double));
+		if(isVarComplex(piAddr))
+		{
+			Err = i;
+			Error(202);
+		}
 
-		//Index
-		//pReturnData2 = (double*)malloc(iRows * iCols * sizeof(double));
+		getVarDimension(piAddr, &iRhsRows, &iRhsCols);
+		if(iRhsRows * iRhsCols == 0)
+		{
+			Err = iVar;
+			Error(45);
+			return 1;
+		}
 
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRefRows, &iRefCols, &iRefData);
-		if(iRefRows * iRefCols == 1)
-			vDset(iRows * iCols, *stk(iRefData), pReturnData1, 1);
+		if(iVar == 1)
+		{
+			iRows = iRhsRows;
+			iCols = iRhsCols;
+		}
 		else
-			memcpy(pReturnData1, stk(iRefData), iRows * iCols * sizeof(double));
-
-		for(iIndex = 1 ; iIndex < Rhs ; iIndex++)
 		{
-			int iVar			= iIndex + 1;
-			int iCurRows		= 0;
-			int iCurCols		= 0;
-			int iCurData		= 0;
-			double *pCurData	= NULL;
-			int iInc			= 0;
-			int iIndex2			= 0;
-			int iIndex3			= 0;
-
-			GetRhsVar(iVar, MATRIX_OF_DOUBLE_DATATYPE, &iCurRows, &iCurCols, &iCurData);
-			pCurData = stk(iCurData);
-
-			if(iCurRows == 1 && iCurCols == 1)
-				iInc = 0;
-			else
-				iInc = 1;
-
-			if(_iIsMaxi == 0)//mini
+			if(iRhsRows != 1 || iRhsCols != 1)
 			{
-				for(iIndex2 = 0 ; iIndex2 < iRows * iCols; iIndex2++)
+				if(iRhsRows != iRows || iRhsCols != iCols)
 				{
-					if(pCurData[iIndex3] < pReturnData1[iIndex2] || ISNAN(pCurData[iIndex3]) == 1)
+					if(iRows * iCols != 1)
 					{
-						pReturnData1[iIndex2] = pCurData[iIndex3];
-						if(Lhs == 2)
-							pReturnData2[iIndex2] = (double)iVar;
+						Err = iVar;
+						Error(42);
+						return 2;
 					}
-					iIndex3 += iInc;
+					else
+					{
+						iRows = iRhsRows;
+						iCols = iRhsCols;
+					}
 				}
 			}
-			else//maxi
-			{
-				for(iIndex2 = 0 ; iIndex2 < iRows * iCols; iIndex2++)
-				{
-					if(pCurData[iIndex3] > pReturnData1[iIndex2] || ISNAN(pCurData[iIndex3]) == 1)
-					{
-						pReturnData1[iIndex2] = pCurData[iIndex3];
-						if(Lhs == 2)
-							pReturnData2[iIndex2] = (double)iVar;
-					}
-					iIndex3 += iInc;
-				}
-			}
-		}//for
+		}
+	}//for
 
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData1);
-		LhsVar(1) = Rhs + 1;
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet1);
+	if(iRet)
+	{
+		return 1;
+	}
 
-		if(Lhs == 2)
+	if(Lhs == 2)
+	{
+		iRet = allocMatrixOfDouble(Rhs + 2, iRows, iCols, &pdblRealRet2);
+		vDset(iRows * iCols, 1, pdblRealRet2, 1);
+	}
+
+	iRet = getMatrixOfDouble(piAddr, &iRefRows, &iRefCols, &pdblReal);
+	if(iRefRows * iRefCols == 1)
+		vDset(iRows * iCols, pdblReal[0], pdblRealRet1, 1);
+	else
+		memcpy(pdblRealRet1, pdblReal, iRows * iCols * sizeof(double));
+
+	for(i = 1 ; i < Rhs ; i++)
+	{
+		int iVar				= i + 1;
+		int iCurRows		= 0;
+		int iCurCols		= 0;
+		int iCurData		= 0;
+		double *pdblCur	= NULL;
+		int iInc				= 0;
+		int iIndex2			= 0;
+		int iIndex3			= 0;
+
+		iRet = getMatrixOfDouble(piAddr, &iCurRows, &iCurCols, &pdblCur);
+		if(iRet)
 		{
-			//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData2);
-			LhsVar(2) = Rhs + 2;
+			return 1;
 		}
 
-		PutLhsVar();
-		//free(pReturnData1);
-		//free(pReturnData2);
-	}
-	else // Rhs == 1
+		if(iCurRows == 1 && iCurCols == 1)
+			iInc = 0;
+		else
+			iInc = 1;
+
+		if(_iIsMini == 0)
+		{
+			int k = 0;
+			for(j = 0 ; j < iRows * iCols; j++)
+			{
+				if(pdblCur[k] < pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
+				{
+					pdblRealRet1[j] = pdblCur[k];
+					if(Lhs == 2)
+					{
+						pdblRealRet2[j] = (double)iVar;
+					}
+				}
+				k += iInc;
+			}
+		}
+		else//maxi
+		{
+			int k = 0;
+			for(j = 0 ; j < iRows * iCols; j++)
+			{
+				if(pdblCur[k] > pdblRealRet1[j] || ISNAN(pdblCur[k]) == 1)
+				{
+					pdblRealRet1[j] = pdblCur[k];
+					if(Lhs == 2)
+						pdblRealRet2[j] = (double)iVar;
+				}
+				k += iInc;
+			}
+		}
+	}//for
+
+	LhsVar(1) = Rhs + 1;
+
+	if(Lhs == 2)
 	{
-		compare_double_inside(_iIsMaxi, 0);
+		LhsVar(2) = Rhs + 2;
 	}
 	return 0;
 }
 
-int compare_double_inside(int _iIsMaxi, int _iMode)
+int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode)
 {
-	int iRows		= 0;
-	int iCols		= 0;
-	int iRealData	= 0;
-	int iIndex		= 0;
-	int iUn			= 1;
-	int iTemp		= 0;
+	int i;
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
+	int iValIndex					= 0;
+	int iOne							= 1;//for fortran calls
 
-	double *pdblRealData	= 0;
-	double *pReturnData1	= NULL;
-	double *pReturnData2	= NULL;
+	double *pdblReal			= NULL;
+	double *pdblRealRet1	= NULL;
+	double *pdblRealRet2	= NULL;
 
-	GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-	pdblRealData		= stk(iRealData);
+	if(isVarComplex(_piAddress))
+	{
+		Err = 1;
+		Error(202);
+	}
+
+	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+	if(iRet)
+	{
+		return 1;
+	}
 
 	if(iRows * iCols <= 0)
 	{
 		iRows = 0;
 		iCols = 0;
-		iAllocMatrixOfDouble(Rhs + 1, 0, 0, &pReturnData1);
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData1);
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet1);
+		if(iRet)
+		{
+			return 1;
+		}
 		LhsVar(1) = Rhs + 1;
+
 		if(Lhs == 2)
 		{
-			iAllocMatrixOfDouble(Rhs + 2, 0, 0, &pReturnData2);
-			//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData2);
+			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblRealRet2);
+			if(iRet)
+			{
+				return 1;
+			}
 			LhsVar(2) = Rhs + 2;
 		}
-		PutLhsVar();
 		return 0;
 	}
 
 	switch(_iMode)
 	{
 	case BY_ALL :
-		iAllocMatrixOfDouble(Rhs + 1, 1, 1, &pReturnData1);
-		//pReturnData1 = (double*)malloc(sizeof(double));
-		if(_iIsMaxi == 0)//mini
+		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet1);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(_iIsMini)
 		{
 			int iSize = iRows * iCols;
-			iTemp = C2F(idmin)(&iSize, pdblRealData, &iUn);
+			iValIndex = C2F(idmin)(&iSize, pdblReal, &iOne);
 		}
 		else //maxi
 		{
 			int iSize = iRows * iCols;
-			iTemp = C2F(idmax)(&iSize, pdblRealData, &iUn);
+			iValIndex = C2F(idmax)(&iSize, pdblReal, &iOne);
 		}
-		pReturnData1[0] = pdblRealData[iTemp-1];
 
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iUn, &iUn, &pReturnData1);
+		pdblRealRet1[0] = pdblReal[iValIndex-1];
 		LhsVar(1) = Rhs + 1;
-		//free(pReturnData1);
 
 		if(Lhs == 2)
 		{		
 			if(iRows == 1 || iCols == 1)
 			{
-				iAllocMatrixOfDouble(Rhs + 2, 1, 1, &pReturnData2);
-				//pReturnData2 = (double*)malloc(sizeof(double));
-				pReturnData2[0] = iTemp;
-				iCols = 1;
+				iRet = allocMatrixOfDouble(Rhs + 2, 1, 1, &pdblRealRet2);
+				if(iRet)
+				{
+					return 1;
+				}
+				pdblRealRet2[0] = iValIndex;
 			}
 			else
 			{
-				iCols = 2;
-				iAllocMatrixOfDouble(Rhs + 2, 1, iCols, &pReturnData2);
-				//pReturnData2 = (double*)malloc(iCols * sizeof(double));
-				pReturnData2[0] = ((iTemp - 1) % iRows) + 1;
-				pReturnData2[1] = ((iTemp - 1) / iRows) + 1;
+				iRet = allocMatrixOfDouble(Rhs + 2, 1, 2, &pdblRealRet2);
+				if(iRet)
+				{
+					return 1;
+				}
+				pdblRealRet2[0] = ((iValIndex - 1) % iRows) + 1;
+				pdblRealRet2[1] = ((iValIndex - 1) / iRows) + 1;
 			}
-			//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iUn, &iCols, &pReturnData2);
 			LhsVar(2) = Rhs + 2;
-			//free(pReturnData2);
 		}
-		PutLhsVar();
 		break;
 	case BY_ROWS :
-		iAllocMatrixOfDouble(Rhs + 1, 1, iCols, &pReturnData1);
-		if(Lhs == 2)
-			iAllocMatrixOfDouble(Rhs + 2, 1, iCols, &pReturnData2);
-
-		//pReturnData1 = (double*)malloc(iCols * sizeof(double));
-		//pReturnData2 = (double*)malloc(iCols * sizeof(double));
-	
-		if(_iIsMaxi == 0) //mini
+		iRet = allocMatrixOfDouble(Rhs + 1, 1, iCols, &pdblRealRet1);
+		if(iRet)
 		{
-			for(iIndex = 0 ; iIndex < iCols ; iIndex++)
+			return 1;
+		}
+		if(Lhs == 2)
+		{
+			iRet = allocMatrixOfDouble(Rhs + 2, 1, iCols, &pdblRealRet2);
+			if(iRet)
 			{
-				iTemp = C2F(idmin)(&iRows, &pdblRealData[iIndex*iRows], &iUn);
-				pReturnData1[iIndex] = pdblRealData[iIndex*iRows + iTemp -1];
+				return 1;
+			}
+		}
+	
+		if(_iIsMini)
+		{
+			for(i = 0 ; i < iCols ; i++)
+			{
+				iValIndex					= C2F(idmin)(&iRows, &pdblReal[i * iRows], &iOne);
+				pdblRealRet1[i]		= pdblReal[i * iRows + iValIndex - 1];
 				if(Lhs == 2)
-					pReturnData2[iIndex] = iTemp;
+				{
+					pdblRealRet2[i] = iValIndex;
+				}
 			}
 		}
 		else //maxi
 		{
-			for(iIndex = 0 ; iIndex < iCols ; iIndex++)
+			for(i = 0 ; i < iCols ; i++)
 			{
-				iTemp = C2F(idmax)(&iRows, &pdblRealData[iIndex*iRows], &iUn);
-				pReturnData1[iIndex] = pdblRealData[iIndex*iRows + iTemp -1];
+				iValIndex					= C2F(idmax)(&iRows, &pdblReal[i*iRows], &iOne);
+				pdblRealRet1[i]		= pdblReal[i * iRows + iValIndex - 1];
 				if(Lhs == 2)
-					pReturnData2[iIndex] = iTemp;
+				{
+					pdblRealRet2[i]	= iValIndex;
+				}
 			}
 		}
 
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iUn, &iCols, &pReturnData1);
 		LhsVar(1) = Rhs + 1;
 
 		if(Lhs == 2)
 		{
-			//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iUn, &iCols, &pReturnData2);
 			LhsVar(2) = Rhs + 2;
 		}
-
-		PutLhsVar();
-		//free(pReturnData1);
-		//free(pReturnData2);
 		break;
 	case BY_COLS :
-		iAllocMatrixOfDouble(Rhs + 1, iRows, 1, &pReturnData1);
-		if(Lhs == 2)
-			iAllocMatrixOfDouble(Rhs + 2, iRows, 1, &pReturnData2);
-
-		//pReturnData1 = (double*)malloc(iRows * sizeof(double));
-		//pReturnData2 = (double*)malloc(iRows * sizeof(double));
-	
-		if(_iIsMaxi == 0) //mini
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, 1, &pdblRealRet1);
+		if(iRet)
 		{
-			for(iIndex = 0 ; iIndex < iRows ; iIndex++)
+			return 1;
+		}
+
+		if(Lhs == 2)
+		{
+			iRet = allocMatrixOfDouble(Rhs + 2, iRows, 1, &pdblRealRet2);
+			if(iRet)
 			{
-				iTemp = C2F(idmin)(&iCols, &pdblRealData[iIndex], &iRows);
-				pReturnData1[iIndex] = pdblRealData[iIndex + (iTemp -1) * iRows];
+				return 1;
+			}
+		}
+	
+		if(_iIsMini == 0)
+		{
+			for(i = 0 ; i < iRows ; i++)
+			{
+				iValIndex					= C2F(idmin)(&iCols, &pdblReal[i], &iRows);
+				pdblRealRet1[i]		= pdblReal[i + (iValIndex - 1) * iRows];
 				if(Lhs == 2)
-					pReturnData2[iIndex] = iTemp;
+					pdblRealRet2[i] = iValIndex;
 			}
 		}
 		else //maxi
 		{
-			for(iIndex = 0 ; iIndex < iRows ; iIndex++)
+			for(i = 0 ; i < iRows ; i++)
 			{
-				iTemp = C2F(idmax)(&iCols, &pdblRealData[iIndex], &iRows);
-				pReturnData1[iIndex] = pdblRealData[iIndex + (iTemp -1) * iRows];
+				iValIndex					= C2F(idmax)(&iCols, &pdblReal[i], &iRows);
+				pdblRealRet1[i]		= pdblReal[i + (iValIndex - 1) * iRows];
 				if(Lhs == 2)
-					pReturnData2[iIndex] = iTemp;
+					pdblRealRet2[i] = iValIndex;
 			}
 		}
 
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iUn, &pReturnData1);
 		LhsVar(1) = Rhs + 1;
 
 		if(Lhs == 2)
 		{
-			//CreateVarFromPtr(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iUn, &pReturnData2);
 			LhsVar(2) = Rhs + 2;
 		}
-
-		PutLhsVar();
-
-		iRows = 0;
-		iCols = 0;
-
-		//free(pReturnData1);
-		//free(pReturnData2);
 		break;
 	default: 
 		break;
@@ -422,7 +466,8 @@ int compare_double_inside(int _iIsMaxi, int _iMode)
 	return 0;
 }
 
-void compare_list(int iIsMaxi)
+int compare_list(int* _piAddress, int _iIsMini)
 {
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="interp2d" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>interp2d</refname>
 
-    <refpurpose>funÃ§Ã£o de avaliaÃ§Ã£o spline bicÃºbica (2d)</refpurpose>
+    <refpurpose>função de avaliação spline bicúbica (2d)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -38,7 +38,7 @@
         <term>x,y,C</term>
 
         <listitem>
-          <para>vetores de reais definindo uma funÃ§Ã£o de spline bicÃºbico ou
+          <para>vetores de reais definindo uma função de spline bicúbico ou
           sub-spline (chamada <literal>s</literal> daqui em diante) </para>
         </listitem>
       </varlistentry>
@@ -47,7 +47,7 @@
         <term>out_mode</term>
 
         <listitem>
-          <para>(opcional) string definindo a avaliaÃ§Ã£o de
+          <para>(opcional) string definindo a avaliação de
           <literal>s</literal> fora de [x(1),x(nx)]x[y(1),y(ny)] </para>
         </listitem>
       </varlistentry>
@@ -57,7 +57,7 @@
 
         <listitem>
           <para>vetor ou matriz com o mesmo formato que <literal>xp</literal>
-          e <literal>yp</literal>, avaliaÃ§Ã£o elemento a elemento de
+          e <literal>yp</literal>, avaliação elemento a elemento de
           <literal>s</literal> nestes pontos. </para>
         </listitem>
       </varlistentry>
@@ -67,7 +67,7 @@
 
         <listitem>
           <para>vetores (ou matrizes) de mesmo formato que
-          <literal>xp</literal> e <literal>yp</literal>, avaliaÃ§Ã£o elemento a
+          <literal>xp</literal> e <literal>yp</literal>, avaliação elemento a
           elemento das derivadas primeiras de <literal>s</literal> nesses
           pontos.</para>
         </listitem>
@@ -78,7 +78,7 @@
 
         <listitem>
           <para>vetores (ou matrizes) de mesmo formato que
-          <literal>xp</literal> e <literal>yp</literal>, eavaliaÃ§Ã£o elemento a
+          <literal>xp</literal> e <literal>yp</literal>, eavaliação elemento a
           elemento das derivadas segundas de <literal>s</literal> nesses
           pontos.</para>
         </listitem>
@@ -87,12 +87,12 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Dados trÃªs vetores <literal>(x,y,C)</literal> definindo uma funÃ§Ã£o
-    de sub-spline ou spline bicÃºbico (ver <link
-    linkend="splin2d">splin2d</link>) esta funÃ§Ã£o avalia s (e <emphasis>ds/dx,
-    ds/dy, d2s/dxx, d2s/dxy, d2s/dyy</emphasis> se necessÃ¡rio) em
+    <para>Dados três vetores <literal>(x,y,C)</literal> definindo uma função
+    de sub-spline ou spline bicúbico (ver <link
+    linkend="splin2d">splin2d</link>) esta função avalia s (e <emphasis>ds/dx,
+    ds/dy, d2s/dxx, d2s/dxy, d2s/dyy</emphasis> se necessário) em
     <emphasis>(xp(i),yp(i))</emphasis> :</para>
 
     <programlisting>
@@ -104,8 +104,8 @@
       d2zpdyy(i) = d2s/dy2(xp(i),yp(i))
          </programlisting>
 
-    <para>O parÃ¢metro <literal>out_mode</literal> define a regra de avaliaÃ§Ã£o
-    para extrapolaÃ§Ã£o, i.e., para <emphasis>(xp(i),yp(i)) fora de
+    <para>O parâmetro <literal>out_mode</literal> define a regra de avaliação
+    para extrapolação, i.e., para <emphasis>(xp(i),yp(i)) fora de
     [x(1),x(nx)]x[y(1),y(ny)]</emphasis>:</para>
 
     <variablelist>
@@ -113,7 +113,7 @@
         <term>"by_zero"</term>
 
         <listitem>
-          <para>uma extrapolaÃ§Ã£o por zero Ã© realizada </para>
+          <para>uma extrapolação por zero é realizada </para>
         </listitem>
       </varlistentry>
 
@@ -121,7 +121,7 @@
         <term>"by_nan"</term>
 
         <listitem>
-          <para>extrapolaÃ§Ã£o por NaN </para>
+          <para>extrapolação por NaN </para>
         </listitem>
       </varlistentry>
 
@@ -129,10 +129,10 @@
         <term>"C0"</term>
 
         <listitem>
-          <para>ExtrapolaÃ§Ã£o definida como segue :</para>
+          <para>Extrapolação definida como segue :</para>
 
           <programlisting>
-     s(x,y) = s(proj(x,y)) onde  proj(x,y) Ã© o ponto mais prÃ³ximo 
+     s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
                            em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
          </programlisting>
         </listitem>
@@ -142,8 +142,8 @@
         <term>"natural"</term>
 
         <listitem>
-          <para>a extrapolaÃ§Ã£o Ã© realizada utilizando o elemento de Ã¡rea
-          bicÃºbico mais prÃ³ximo de (x,y). </para>
+          <para>a extrapolação é realizada utilizando o elemento de área
+          bicúbico mais próximo de (x,y). </para>
         </listitem>
       </varlistentry>
 
@@ -151,7 +151,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> Ã© estendida por periodicidade. </para>
+          <para>: <literal>s</literal> é estendida por periodicidade. </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -163,15 +163,15 @@
     <programlisting role="example">
 // veja os exemplos de splin2d
 
-// este exemplo mostra caracterÃ­sticas de extrapolaÃ§Ãµes diferentes
-// interpolaÃ§Ã£o de cos(x)cos(y)
-n = 7;  // um grid de interpolaÃ§Ã£o n x n
+// este exemplo mostra características de extrapolações diferentes
+// interpolação de cos(x)cos(y)
+n = 7;  // um grid de interpolação n x n
 x = linspace(0,2*%pi,n); y = x;
 z = cos(x')*cos(y);
 C = splin2d(x, y, z, "periodic");
 
-// agora avaliando em um domÃ­nio maior que [0,2pi]x [0,2pi]
-m = 80; // parÃ¢metro de discretizaÃ§Ã£o do grid de avaliaÃ§Ã£o
+// agora avaliando em um domínio maior que [0,2pi]x [0,2pi]
+m = 80; // parâmetro de discretização do grid de avaliação
 xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
 [XX,YY] = ndgrid(xx,yy);
 zz1 = interp2d(XX,YY, x, y, C, "C0");
@@ -181,22 +181,22 @@ zz4 = interp2d(XX,YY, x, y, C, "natural");
 xbasc()
 subplot(2,2,1)
   plot3d(xx, yy, zz1, flag=[2 6 4])
-  xtitle("ExtrapolaÃ§Ã£o com o outmode C0")
+  xtitle("Extrapolação com o outmode C0")
 subplot(2,2,2)
   plot3d(xx, yy, zz2, flag=[2 6 4])
-  xtitle("ExtrapolaÃ§Ã£o com o outmode by_zero")
+  xtitle("Extrapolação com o outmode by_zero")
 subplot(2,2,3)
   plot3d(xx, yy, zz3, flag=[2 6 4])
-  xtitle("ExtrapolaÃ§Ã£o com o outmode periodic")
+  xtitle("Extrapolação com o outmode periodic")
 subplot(2,2,4)
   plot3d(xx, yy, zz4, flag=[2 6 4])
-  xtitle("ExtrapolaÃ§Ã£o com o outmode natural")
+  xtitle("Extrapolação com o outmode natural")
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin2d">splin2d</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>binomial</refname>
 
-    <refpurpose>probabilidades de distribuiÃ§Ã£o binomial</refpurpose>
+    <refpurpose>probabilidades de distribuição binomial</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>pr=binomial(p,n)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>p</term>
 
         <listitem>
-          <para>nÃºmero real em [0,1] </para>
+          <para>número real em [0,1] </para>
         </listitem>
       </varlistentry>
 
@@ -64,15 +64,15 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>pr=binomial(p,n)</literal> retorna o vetor de probabilidade
-    binomial, i.e. <literal>pr(k+1)</literal> Ã© a probabilidade de
+    binomial, i.e. <literal>pr(k+1)</literal> é a probabilidade de
     <literal>k</literal> successos em <literal>n</literal> tentativas
     independentes de Bernoulli com probabilidade de sucesso
     <literal>p</literal>. Em outras palavras : <literal>pr(k+1) =
-    probability(X=k)</literal> , com X uma variÃ¡vel aleatÃ³ria, segundo a
-    distribuiÃ§Ã£o B(n,p) , e numericamente :</para>
+    probability(X=k)</literal> , com X uma variável aleatória, segundo a
+    distribuição B(n,p) , e numericamente :</para>
 
     <programlisting>
 
@@ -100,14 +100,14 @@ plot2d(x, sigma*binomial(p,n));
 deff('y=Gauss(x)','y=1/sqrt(2*%pi)*exp(-(x.^2)/2)')
 plot2d(x, Gauss(x), style=2);
 
-// pela fÃ³rmula binomial (cuidado, se n for grande)
+// pela fórmula binomial (cuidado, se n for grande)
 function pr=binomial2(p,n)
 x=poly(0,'x');pr=coeff((1-p+x)^n).*horner(x^(0:n),p);
 endfunction
 p=1/3;n=5;
 binomial(p,n)-binomial2(p,n)
 
-// pela funÃ§Ã£o gama: gamma(n+1)=n! (cuidado, se n for grande)
+// pela função gama: gamma(n+1)=n! (cuidado, se n for grande)
 p=1/3;n=5;
 Cnks=gamma(n+1)./(gamma(1:n+1).*gamma(n+1:-1:1));
 x=poly(0,'x');
@@ -118,7 +118,7 @@ pr-binomial(p,n)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cdfbin">cdfbin</link></member>

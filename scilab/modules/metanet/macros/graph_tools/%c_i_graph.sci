@@ -21,5 +21,14 @@ function g=%c_i_graph(i,d,g)
       g.edges.data=data
     end
     g.edges.data.label=d
+  elseif i=='edge_weight' then
+    F=getfield(1,g.edges.data)
+    if and(F<>'weight') then 
+      data=g.edges.data
+      setfield(1,[F 'weight'],data)
+      data.weight=zeros(1,edge_number(g))
+      g.edges.data=data
+    end
+    g.edges.data.weight=d
   end
 endfunction

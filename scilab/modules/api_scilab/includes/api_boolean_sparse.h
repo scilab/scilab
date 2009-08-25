@@ -12,6 +12,10 @@
 #ifndef __BOOLEAN_SPARSE_API__
 #define __BOOLEAN_SPARSE_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /*******************************/
@@ -79,4 +83,7 @@ API_SCILAB_IMPEXP int createNamedBooleanSparseMatrix(char* _pstName, int _iRows,
  */
 API_SCILAB_IMPEXP int readNamedBooleanSparseMatrix(char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __BOOLEAN_SPARSE_API__ */

@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
+
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
@@ -46,7 +48,7 @@ int sci_isdir(char *fname,unsigned long fname_len);
 int sci_createdir(char *fname,unsigned long fname_len);
 int sci_removedir(char *fname,unsigned long fname_len);
 int sci_chdir(char *fname,unsigned long fname_len);
-int sci_getcwd(char *fname,unsigned long fname_len);
+int sci_pwd(char *fname,unsigned long fname_len);
 int sci_fileinfo(char *fname,unsigned long fname_len);
 int sci_newest(char *fname,unsigned long fname_len);
 int sci_getrelativefilename(char *fname, unsigned long l);

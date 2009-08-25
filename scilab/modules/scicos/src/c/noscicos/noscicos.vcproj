@@ -6,6 +6,7 @@
 	ProjectGUID="{0A0B68FA-98F5-4FC2-A9E9-4AC9CEE6A6B4}"
 	RootNamespace="noscicos"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -125,7 +126,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -209,7 +210,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -297,7 +298,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../../output_stream/includes;../../../includes;../../../../../libs/intl;../../../../intersci/includes;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;NOTCLSCI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"

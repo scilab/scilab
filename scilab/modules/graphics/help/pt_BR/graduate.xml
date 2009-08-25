@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1992 - INRIA - Serge Steer
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>graduate</refname>
 
-    <refpurpose>graduaÃ§Ã£o de eixos</refpurpose>
+    <refpurpose>graduação de eixos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
 [xi,xa,np]=graduate( xmi, xma)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>n1, n2</term>
 
         <listitem>
-          <para>inteiros com valores padrÃµes 3,10 </para>
+          <para>inteiros com valores padrões 3,10 </para>
         </listitem>
       </varlistentry>
 
@@ -73,10 +73,10 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>graduate procura pelo intervalo mÃ­nimo <literal>[xi,xa]</literal> e
-    um nÃºmero de tiques <literal>np</literal> tais que:</para>
+    <para>graduate procura pelo intervalo mínimo <literal>[xi,xa]</literal> e
+    um número de tiques <literal>np</literal> tais que:</para>
 
     <para><literal>xi &lt;= xmi &lt;= xma &lt;= xa</literal></para>
 
@@ -101,7 +101,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xsetech">xsetech</link></member>

@@ -1,0 +1,48 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-10-03 17:11+0200\n"
+"PO-Revision-Date: 2009-06-28 18:21+0000\n"
+"Last-Translator: Daniel de Souza Grilo <soporter@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "File or Directory"
+msgstr "Arquivo ou Diretório"
+
+msgid "Scilab Command"
+msgstr "Comando do Scilab"
+
+msgid "Scilab Function"
+msgstr "Função do Scilab"
+
+msgid "Scilab Macro"
+msgstr "Macro do Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variável do Scilab"
+
+msgid "No help"
+msgstr "Sem ajuda"
+
+msgid "Out of Screen"
+msgstr "Fora da tela"
+
+msgid "Graphics handle field"
+msgstr "Campo de manipulador gráfico"
+
+msgid "Could not change the Console Font."
+msgstr "Não foi possível mudar a fonte do Console"
+
+msgid "Could not change the Console Foreground."
+msgstr "Não foi possível mudar o primeiro plano do Console"

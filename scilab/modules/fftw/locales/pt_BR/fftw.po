@@ -1,0 +1,99 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
+"PO-Revision-Date: 2009-07-25 23:18+0000\n"
+"Last-Translator: Guilherme Kunigami <kunigami@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "A biblioteca %s de FFTW não foi encontrada.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "A biblioteca de FFTW não foi encontrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um número real "
+"ou complexo.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Valores errados para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de N "
+"dimensões.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: Esperava-se os mesmos "
+"tamanhos.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: Esperava-se números "
+"inteiros não negativos.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um sinalizador "
+"de FFTW.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Um erro ocorreu: %s\n"
+
+msgid "Scilab FFTW module not installed.\n"
+msgstr "O módulo FFTW do Scilab não está instalado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: Número errado de argumentos de entrada: não esperava por %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: esperava uma matriz de "
+"inteiros.\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW não consegue ler o wisdom."

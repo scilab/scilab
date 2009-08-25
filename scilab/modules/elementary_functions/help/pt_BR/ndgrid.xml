@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="ndgrid" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,12 +13,12 @@
   <refnamediv>
     <refname>ndgrid</refname>
 
-    <refpurpose>Arrays para avaliaÃ§Ã£o de funÃ§Ã£o multidimensional em
+    <refpurpose>Arrays para avaliação de função multidimensional em
     grid</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[X, Y] = ndgrid(x,y)
 [X, Y, Z] = ndgrid(x,y,z)
@@ -27,7 +27,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,14 +50,14 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta rotina utilitÃ¡ria Ã© Ãºtil para criar arrays para a avaliaÃ§Ã£o da
-    funÃ§Ã£o em grids 2, 3, ..., n dimensionais. Por exemplo, em 2d, um grid Ã©
+    <para>Esta rotina utilitária é útil para criar arrays para a avaliação da
+    função em grids 2, 3, ..., n dimensionais. Por exemplo, em 2d, um grid é
     definido por dois vetores, <literal>x</literal> e <literal> y</literal> de
-    comprimento nx e ny, e se deseja avaliar uma funÃ§Ã£o (dita f) em todos os
-    pontos do grid, isto Ã©, em todos os pontos de coordenadas (x(i),y(j)) com
-    i=1,..,nx e j=1,..,ny . Neste caso, esta funÃ§Ã£o pode computar as duas
+    comprimento nx e ny, e se deseja avaliar uma função (dita f) em todos os
+    pontos do grid, isto é, em todos os pontos de coordenadas (x(i),y(j)) com
+    i=1,..,nx e j=1,..,ny . Neste caso, esta função pode computar as duas
     matrizes <literal>X,Y</literal> de tamanho nx x ny tais que : </para>
 
     <programlisting>
@@ -65,15 +65,15 @@
       Y(i,j) = y(j)       e j em [1,ny]
      </programlisting>
 
-    <para>e a avaliaÃ§Ã£o pode ser feita com <literal>Z=f(X,Y)</literal> (sob a
-    condiÃ§Ã£o de que <literal>f</literal> foi codificada para a avaliaÃ§Ã£o em
-    argumentos de vetor, que Ã© feito (em geral) usando os operadores elemento
+    <para>e a avaliação pode ser feita com <literal>Z=f(X,Y)</literal> (sob a
+    condição de que <literal>f</literal> foi codificada para a avaliação em
+    argumentos de vetor, que é feito (em geral) usando os operadores elemento
     a elemento <literal>.*</literal>, <literal>./</literal> and
     <literal>.^</literal> no lugar de <literal>*</literal>,
     <literal>/</literal> e <literal>^</literal>).</para>
 
     <para>No caso 3d, considerando 3 vetores <literal>x,y,z</literal> de
-    comprimentos nx, ny e nz, <literal>X,Y,Z</literal> sÃ£o 3 hipermatrizes de
+    comprimentos nx, ny e nz, <literal>X,Y,Z</literal> são 3 hipermatrizes de
     tamanho nx x ny x nz tais que : </para>
 
     <programlisting>
@@ -83,8 +83,8 @@
      </programlisting>
 
     <para>No caso geral de m argumentos de entrada <literal>x1, x2, ..,
-    xm</literal>, os m argumentos de saÃ­da <literal>X1, X2, .., Xm</literal>
-    sÃ£o hipermatrizes de tamanho <emphasis>nx1 x nx2 x ... x nxm</emphasis> e
+    xm</literal>, os m argumentos de saída <literal>X1, X2, .., Xm</literal>
+    são hipermatrizes de tamanho <emphasis>nx1 x nx2 x ... x nxm</emphasis> e
     :</para>
 
     <programlisting>
@@ -102,7 +102,7 @@ nx = 40; ny = 40;
 x = linspace(-1,1,nx);
 y = linspace(-1,1,ny);
 [X,Y] = ndgrid(x,y);
-// computando uma funÃ§Ã£o no grid e plotando
+// computando uma função no grid e plotando
 //deff("z=f(x,y)","z=128*x.^2 .*(1-x).^2 .*y.^2 .*(1-y).^2");
 deff("z=f(x,y)","z=x.^2 + y.^3")
 Z = f(X,Y);
@@ -134,7 +134,7 @@ xtitle("A 3d grid !"); xselect()
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="kron">kron</link></member>

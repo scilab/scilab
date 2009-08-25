@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>Ws</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
 
         <listitem>
           <para>feixe quadrado de reais <literal>F1s = s*E1 -A1</literal> com
-          <literal>E1</literal> n√£o-singular </para>
+          <literal>E1</literal> n„o-singular </para>
         </listitem>
       </varlistentry>
 
@@ -66,29 +66,29 @@
         <term>alfa</term>
 
         <listitem>
-          <para>n√∫mero real (<literal>alfa = 0</literal> √© o valor
-          padr√£o)</para>
+          <para>n˙mero real (<literal>alfa = 0</literal> È o valor
+          padr„o)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Algoritmo de embaralhamento: dado o feixe
     <literal>Fs=s*E-A</literal>, retorna Ws=W(s) (matriz quadrada de
-    polin√¥mios) tal que:</para>
+    polinÙmios) tal que:</para>
 
-    <para><literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> √© um feixe com
-    matriz <literal>E1</literal> n√£o-singular.</para>
+    <para><literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> È um feixe com
+    matriz <literal>E1</literal> n„o-singular.</para>
 
-    <para>Isto √© poss√≠vel se, e s√≥ se, o feixe <literal>Fs = s*E-A</literal> √©
-    regular (i.e., invert√≠vel). O grau de <literal>Ws</literal> √© igual ao
-    √≠ndice do feixe.</para>
+    <para>Isto È possÌvel se, e sÛ se, o feixe <literal>Fs = s*E-A</literal> È
+    regular (i.e., invertÌvel). O grau de <literal>Ws</literal> È igual ao
+    Ìndice do feixe.</para>
 
-    <para>Os p√≥los no infinito de<literal> Fs</literal> as√£o colocados para
-    <literal>alfa</literal> e os zeros de <literal>Ws</literal> est√£o em
+    <para>Os pÛlos no infinito de<literal> Fs</literal> as„o colocados para
+    <literal>alfa</literal> e os zeros de <literal>Ws</literal> est„o em
     <literal>alfa</literal>.</para>
 
     <para>Note que <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) =
@@ -101,10 +101,10 @@
     <programlisting role="example">
 
 F=randpencil([],[2],[1,2,3],[]);
-F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com tr√™s avalia√ß√µes em 1,2,3
+F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com trÍs avaliaÁıes em 1,2,3
 [Ws,F1]=rowshuff(F,-1);
 [E1,A1]=pen2ea(F1);
-svd(E1)           //E1 n√£o-singular
+svd(E1)           //E1 n„o-singular
 roots(det(Ws))
 clean(inv(F)-inv(F1)*Ws,1.d-7)
  
@@ -112,7 +112,7 @@ clean(inv(F)-inv(F1)*Ws,1.d-7)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="pencan">pencan</link></member>

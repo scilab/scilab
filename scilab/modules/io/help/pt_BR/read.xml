@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="read" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>read</refname>
+
+    <refpurpose>Leitura de matrizes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[x]=read(file-desc,m,n,[format])
+[x]=read(file-desc,m,n,k,format)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file-desc</term>
+
+        <listitem>
+          <para>string especificando o nome do arquivo ou valor inteiro
+          especificando uma unidade lógica (ver file).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m, n</term>
+
+        <listitem>
+          <para>inteiros (dimensões da matriz x). Ajuste m=-1 se você
+          desconhece o número de linhas, para que todo o arquivo seja
+          lido.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>format</term>
+
+        <listitem>
+          <para>string, especifica um formato "Fortran". Este string deve
+          começar com um parêntese direito e terminar com um parêntese
+          esquerdo. Formatos não podem misturar pontos flutuantes, inteiros ou
+          modo de edição de caractere</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>inteiro ou vetor de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Lê linha após linha a matriz x <literal>mxn</literal>
+    (<literal>n=1</literal> para cadeia de caracteres) no arquivo
+    <literal>file-desc</literal> (string ou inteiro). Cada linha da matriz
+    <literal>x</literal> começa em uma nova linha do arquivo
+    <literal>file-desc</literal>. Dependendo de <literal>format</literal>, uma
+    dada linha da matriz <literal>x</literal> pode ser lida de mais de uma
+    linha do arquivo <literal>file-desc</literal>.</para>
+
+    <para>O tipo do resultado dependerá do formato especificado. Se format
+    contém apenas os descritores <literal>(d,e,f,g)</literal> a função tenta
+    ler dados numéricos (o resultado é uma matriz de números reais).</para>
+
+    <para>Se format contém apenas o descritor <literal>a</literal> a função
+    tenta ler strings (o resultado é um vetor coluna de strings). Neste caso,
+    n deve ser igual a 1. Aviso: Os strings serão truncados se tiverem tamanho
+    maior que 4093.</para>
+
+    <para>Exemplos para <literal>format</literal>:</para>
+
+    <programlisting>
+
+(1x,e10.3,5x,3(f3.0))
+(10x,a20) 
+   
+    </programlisting>
+
+    <para>Quando format é o omitido, os dados são lidos utilizando-se o
+    formato numérico livre: espaços em branco, vírgulas e barras podem ser
+    utilizados como separadores de dados, n*v pode ser utilizado para
+    representar n ocorrências do valor n.</para>
+
+    <para>Um arquivo de acesso direto pode ser utilzado na presença de um
+    parâmetro <literal>k</literal> que é um vetor de números de gravações a
+    serem lidas (uma gravação por linha), logo <literal>m</literal> deve ser
+    <literal>m=prod(size(k))</literal>.</para>
+
+    <para>Para ler no teclado use <literal>read(%io(1),...)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Observação</title>
+
+    <para>A última linha de cada arquivo de dados devemser terminada por uma
+    nova linha (newline) a ser levada em conta.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+if MSDOS then unix('del foo');
+else unix('rm -f foo'); end
+A=rand(3,5); write('foo',A);
+B=read('foo',3,5)
+B=read('foo',-1,5)
+read(%io(1),1,1,'(a)')  // espera por entrada do usuário
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="readb">readb</link></member>
+
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="x_dialog">x_dialog</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="msscanf">msscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

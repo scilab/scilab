@@ -69,18 +69,21 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
 ta=[1 2 3 4 5 6 6 7 8  9 10 16 16 10 11 11 12 12 11 14 15 15 13 7 13 13];
 he=[2 3 4 5 6 7 8 8 9 10 16  2  3 11 12 13  1 14 14 15  5  9 12 4 14 15];
 g=make_graph('foo',0,16,ta,he);
-g('node_x')=[106 199 369 467 470 403 399 347 308 269 184 108 199 268 345 272];
-g('node_y')=[341 420 422 321 180 212 286 246 193 244 243 209  59 134  51 348];
-g('node_diam')=[1:(g('node_number'))]+20;
+g.nodes.graphics.x=[106 199 369 467 470 403 399 347 308 269 184 108 199 268 345 272]/2;
+g.nodes.graphics.y=[341 420 422 321 180 212 286 246 193 244 243 209  59 134  51 348]/2;
 show_graph(g);
+
 [ns,no] = max_clique(g);
 show_nodes(no);
+
 g1=graph_complement(g);
 [ns,no] = max_clique(g1);
 show_nodes(no);
- ]]></programlisting>
+ 
+  ]]></programlisting>
   </refsection>
 </refentry>

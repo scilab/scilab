@@ -71,6 +71,7 @@ libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/mexlib/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/operations/includes
 
 #### umfpack : include files ####

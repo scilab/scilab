@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xtitle</refname>
 
-    <refpurpose>adidciona tÃ­tulos a janelas de grÃ¡ficos</refpurpose>
+    <refpurpose>adidciona títulos a janelas de gráficos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>xtitle(title,[x_label,[y_label,[z_label]]],&lt;opts_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,9 +49,9 @@
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
+          <para>uma seqüência de declarações <literal>key1=value1,
           key2=value2</literal>, ... onde keys podem ser
-          <literal>boxed</literal> (ver abaixo). Nesse caso, a ordem nÃ£o tem
+          <literal>boxed</literal> (ver abaixo). Nesse caso, a ordem não tem
           valor especial</para>
         </listitem>
       </varlistentry>
@@ -60,40 +60,40 @@
         <term>boxed</term>
 
         <listitem>
-          <para>um valor inteiro. Se for 1, um retÃ¢ngulo Ã© desenhado ao redor
-          de cada tÃ­tulo.</para>
+          <para>um valor inteiro. Se for 1, um retângulo é desenhado ao redor
+          de cada título.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>xtitle</literal> adiciona tÃ­tulos a um esboÃ§o 2d ou 3d.
-    <literal>title</literal> Ã© o tÃ­tulo geral e <emphasis
+    <para><literal>xtitle</literal> adiciona títulos a um esboço 2d ou 3d.
+    <literal>title</literal> é o título geral e <emphasis
     role="bold">x_label</emphasis>, <emphasis role="bold">y_label</emphasis> e
-    <emphasis role="bold">z_label</emphasis> sÃ£o os tÃ­tulos dos trÃªs eixos. Se
-    os argumentos sÃ£o matrizes, cada linha das matrizes Ã© exibida em uma linha
+    <emphasis role="bold">z_label</emphasis> são os títulos dos três eixos. Se
+    os argumentos são matrizes, cada linha das matrizes é exibida em uma linha
     diferente.</para>
 
     <para>Entre com o comando <literal>xtitle()</literal> para visualizar uma
-    demonstraÃ§Ã£o.</para>
+    demonstração.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// desenhando uma superfÃ­cie
+    <programlisting role="example">// desenhando uma superfície
 plot3d() ;
-// pondo os tÃ­tulos
-xtitle( 'Minha superfÃ­cie Ã© azul', 'eixo X', 'eixo Y', 'eixo Z' ) ;
-// desenhando uma caixa ao redor dos tÃ­tulos
-xtitle( 'Minha superfÃ­cie Ã© azul', 'eixo X', 'eixo Y', 'eixo Z' , boxed = 1 ) ;</programlisting>
+// pondo os títulos
+xtitle( 'Minha superfície é azul', 'eixo X', 'eixo Y', 'eixo Z' ) ;
+// desenhando uma caixa ao redor dos títulos
+xtitle( 'Minha superfície é azul', 'eixo X', 'eixo Y', 'eixo Z' , boxed = 1 ) ;</programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="titlepage">titlepage</link> <link

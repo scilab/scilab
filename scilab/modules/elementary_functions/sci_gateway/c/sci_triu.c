@@ -12,6 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "Scierror.h"
 #include "basic_functions.h"
 
 #define _NEW_TONIO_

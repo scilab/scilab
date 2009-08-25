@@ -17,7 +17,7 @@
 // uigetdir returns a invalid value if you do "cancel"
 
 
-%newDir = uigetdir(getcwd(), gettext("Select a directory"))
+%newDir = uigetdir(pwd(), gettext("Select a directory"))
 // click on cancel
 
 if type(%newDir)<> 10 then pause,end

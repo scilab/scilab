@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>legendre</refname>
 
-    <refpurpose>funÃ§Ãµes associadas de Legendre</refpurpose>
+    <refpurpose>funções associadas de Legendre</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>n</term>
 
         <listitem>
-          <para>inteiro nÃ£o-negativo ou vetor de inteiros nÃ£o-negativos
-          igualmente espaÃ§ados com incremento igual a 1 </para>
+          <para>inteiro não-negativo ou vetor de inteiros não-negativos
+          igualmente espaçados com incremento igual a 1 </para>
         </listitem>
       </varlistentry>
 
@@ -50,8 +50,8 @@
         <term>m</term>
 
         <listitem>
-          <para>inteiro nÃ£o-negativo ou vetor de inteiros nÃ£o-negativos
-          igualmente espaÃ§ados com incremento igual a 1 </para>
+          <para>inteiro não-negativo ou vetor de inteiros não-negativos
+          igualmente espaçados com incremento igual a 1 </para>
         </listitem>
       </varlistentry>
 
@@ -75,11 +75,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Quando <literal>n</literal> e <literal>m</literal> sÃ£o escalares,
-    <literal>legendre(n,m,x)</literal> avalia a funÃ§Ã£o de Legendre associada
-    Pnm(x) em todos os elementos de <literal>x</literal>. A definiÃ§Ã£o usada Ã©
+    <para>Quando <literal>n</literal> e <literal>m</literal> são escalares,
+    <literal>legendre(n,m,x)</literal> avalia a função de Legendre associada
+    Pnm(x) em todos os elementos de <literal>x</literal>. A definição usada é
     : </para>
 
     <programlisting>
@@ -90,12 +90,12 @@
                             dx 
      </programlisting>
 
-    <para>onde <literal>Pn</literal> Ã© o polinÃ´mio de Legendre de grau
-    <literal>n</literal>. EntÃ£o, <literal>legendre(n,0,x)</literal> avalia o
-    polinÃ´mio de Legendre Pn(x) em todos os elementos de
+    <para>onde <literal>Pn</literal> é o polinômio de Legendre de grau
+    <literal>n</literal>. Então, <literal>legendre(n,0,x)</literal> avalia o
+    polinômio de Legendre Pn(x) em todos os elementos de
     <literal>x</literal>.</para>
 
-    <para>Quando normflag Ã© igual a "norm" o resultado Ã© uma versÃ£o
+    <para>Quando normflag é igual a "norm" o resultado é uma versão
     normalizada (sem o fator <literal>(-1)^m</literal> ), precisamente :
     </para>
 
@@ -107,21 +107,21 @@
                                                 dx 
      </programlisting>
 
-    <para>que Ã© Ãºtil para computar funÃ§Ãµes harmÃ´nicas esfÃ©ricas (ver exemplo
+    <para>que é útil para computar funções harmônicas esféricas (ver exemplo
     3): </para>
 
-    <para>Por eficiÃªncia, um dos primeiros dois argumentos pode ser um vetor,
+    <para>Por eficiência, um dos primeiros dois argumentos pode ser um vetor,
     por exemplo <literal>legendre(n1:n2,0,x)</literal> avalia todos os
-    polinÃ´mios de Legendre de graus <emphasis>n1, n1+1, ..., n2</emphasis> nos
+    polinômios de Legendre de graus <emphasis>n1, n1+1, ..., n2</emphasis> nos
     elementos de <literal>x</literal> e <literal>legendre(n,m1:m2,x)</literal>
-    avalia todas as funÃ§Ãµes de Legendre associadas Pnm para <emphasis>m=m1,
+    avalia todas as funções de Legendre associadas Pnm para <emphasis>m=m1,
     m1+1, ..., m2</emphasis> em <literal>x</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Formato de SaÃ­da </title>
+    <title>Formato de Saída </title>
 
-    <para>Em qualquer caso, o formato Ã© <literal>y</literal> :</para>
+    <para>Em qualquer caso, o formato é <literal>y</literal> :</para>
 
     <programlisting>
         max(length(n),length(m)) x length(x)
@@ -130,13 +130,13 @@
     <para>e :</para>
 
     <programlisting>
-       y(i,j) = P(n(i),m;x(j))   se n Ã© um vetor
-       y(i,j) = P(n,m(i);x(j))   se m Ã© um vetor
-       y(1,j) = P(n,m;x(j))      se ambos n e m sÃ£o escalares
+       y(i,j) = P(n(i),m;x(j))   se n é um vetor
+       y(i,j) = P(n,m(i);x(j))   se m é um vetor
+       y(1,j) = P(n,m;x(j))      se ambos n e m são escalares
      </programlisting>
 
-    <para>de tal modo que <literal>x</literal> Ã© preferivelmente um vetor
-    linha, mas qualquer matriz <literal>mx x nx</literal> Ã© excetuada e
+    <para>de tal modo que <literal>x</literal> é preferivelmente um vetor
+    linha, mas qualquer matriz <literal>mx x nx</literal> é excetuada e
     considerada como uma matriz <literal>1 x (mx * nx)</literal> matrix,
     reformada segundo a ordem das colunas. </para>
   </refsection>
@@ -145,24 +145,24 @@
     <title>Exemplos</title>
 
     <programlisting role="example">
-// exemplo 1 : plot dos primeiros 6 polinÃ´mios de Legendre em (-1,1)
+// exemplo 1 : plot dos primeiros 6 polinômios de Legendre em (-1,1)
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
 y = legendre(0:5, 0,  x);
 xbasc()
 plot2d(x,y', leg="p0@p1@p2@p3@p4@p5@p6")
-xtitle("Os 6 primeiros polinÃ´mios de Legendre")
+xtitle("Os 6 primeiros polinômios de Legendre")
 
-// exemplo 2 : plot das funÃ§Ãµes associadas de Legendre de grau 5 
+// exemplo 2 : plot das funções associadas de Legendre de grau 5 
 l = nearfloat("pred",1);
 x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");
 xbasc()
 plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-xtitle("As funÃ§Ãµes associadas de Legendre (normalizadas) de grau 5")
+xtitle("As funções associadas de Legendre (normalizadas) de grau 5")
 
-// exemplo 3 : definindo e plotando uma funÃ§Ã£o harmÃ´nica esfÃ©rica
-// 3-1 : definindo a funÃ§Ã£o Ylm
+// exemplo 3 : definindo e plotando uma função harmônica esférica
+// 3-1 : definindo a função Ylm
 function [y] = Y(l,m,theta,phi)
    // teta pode ser um escalar ou um vetor linha
    // phi pode ser um escalar ou um vetor coluna
@@ -173,7 +173,7 @@ function [y] = Y(l,m,theta,phi)
    end      
 endfunction
 
-// 3.2 : definindo outra funÃ§Ã£o Ãºtil
+// 3.2 : definindo outra função útil
 function [x,y,z] = sph2cart(theta,phi,r)
    // vetor linha teta      1 x nt
    // vetor coluna phi  np x 1
@@ -206,7 +206,7 @@ plot3d(xf3,yf3,zf3,flag=[2 4 4]); xtitle("|Imag(Y31(theta,phi))|")
     <title>Autores</title>
 
     <simplelist type="vert">
-      <member>Smith, John M. (cÃ³digo dxlegf.f de Slatec) </member>
+      <member>Smith, John M. (código dxlegf.f de Slatec) </member>
 
       <member>B. Pincon (interface Scilab)</member>
     </simplelist>

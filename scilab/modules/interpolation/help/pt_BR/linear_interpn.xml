@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="linear_interpn" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>linear_interpn</refname>
 
-    <refpurpose>interpola√ß√£o linear n-dimensional</refpurpose>
+    <refpurpose>interpolaÁ„o linear n-dimensional</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -39,7 +39,7 @@
 
         <listitem>
           <para> vetores linhas estritamente crescentes (com pelo menos 2
-          elementos) definindo o grid de interpola√ß√£o n-dimensional </para>
+          elementos) definindo o grid de interpolaÁ„o n-dimensional </para>
         </listitem>
       </varlistentry>
 
@@ -48,7 +48,7 @@
 
         <listitem>
           <para>vetor (caso n=1), matriz (caso n=2) ou hipermatriz (caso n
-          &gt; 2) com valores da fun√ß√£o subjacente interpolada nos pontos do
+          &gt; 2) com valores da funÁ„o subjacente interpolada nos pontos do
           grid. </para>
         </listitem>
       </varlistentry>
@@ -57,8 +57,8 @@
         <term>out_mode</term>
 
         <listitem>
-          <para>(opcional) string definindo a avalia√ß√£o fora do grid
-          (extrapola√ß√£o)</para>
+          <para>(opcional) string definindo a avaliaÁ„o fora do grid
+          (extrapolaÁ„o)</para>
         </listitem>
       </varlistentry>
 
@@ -74,19 +74,19 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Dado um grid n-dimensional definido pelos n vetores <literal>x1 ,x2,
-    ..., xn</literal> e os valores <literal>v</literal> de uma fun√ß√£o (aqui
+    ..., xn</literal> e os valores <literal>v</literal> de uma funÁ„o (aqui
     nomeada <emphasis>f</emphasis>) nos pontos do grid : </para>
 
     <programlisting>
       v(i1,i2,...,in) = f(x1(i1),x2(i2), ..., xn(in))
          </programlisting>
 
-    <para>esta fun√ß√£o computa o interpolante linear de <emphasis>f</emphasis>
+    <para>esta funÁ„o computa o interpolante linear de <emphasis>f</emphasis>
     do grid (chamado de s a partir daqui) nos pontos nos quais as coordenadas
-    s√£o definidas pelos vetores (ou matrizes) <literal>xp1, xp2, ...,
+    s„o definidas pelos vetores (ou matrizes) <literal>xp1, xp2, ...,
     xpn</literal>:</para>
 
     <programlisting>
@@ -95,23 +95,23 @@
    or vp(i,j) = s(xp1(i,j),xp2(i,j), ..., xpn(i,j)) caso xpk sejam matrizes
          </programlisting>
 
-    <para>O par√¢metro <literal>out_mode</literal> ajusta a regra para
-    extrapola√ß√£o: se notarmos
-    <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , ent√£o
-    <literal>out_mode</literal> define a regra de avalia√ß√£o quando: </para>
+    <para>O par‚metro <literal>out_mode</literal> ajusta a regra para
+    extrapolaÁ„o: se notarmos
+    <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> , ent„o
+    <literal>out_mode</literal> define a regra de avaliaÁ„o quando: </para>
 
     <programlisting>
-   P(i) est√° fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
+   P(i) est· fora de  [x1(1) x1($)] x [x2(1) x2($)] x ... x [xn(1) xn($)]
          </programlisting>
 
-    <para>As escolhas s√£o: </para>
+    <para>As escolhas s„o: </para>
 
     <variablelist>
       <varlistentry>
         <term>"by_zero"</term>
 
         <listitem>
-          <para>uma extrapola√ß√£o por zero √© feita </para>
+          <para>uma extrapolaÁ„o por zero È feita </para>
         </listitem>
       </varlistentry>
 
@@ -119,7 +119,7 @@
         <term>"by_nan"</term>
 
         <listitem>
-          <para>uma extrapola√ß√£o por NaN </para>
+          <para>uma extrapolaÁ„o por NaN </para>
         </listitem>
       </varlistentry>
 
@@ -127,10 +127,10 @@
         <term>"C0"</term>
 
         <listitem>
-          <para>a extrapola√ß√£o √© definida como segue: </para>
+          <para>a extrapolaÁ„o È definida como segue: </para>
 
           <programlisting>
-     s(P) = s(proj(P))onde  proj(P) √© o ponto mais pr√≥ximo de P 
+     s(P) = s(proj(P))onde  proj(P) È o ponto mais prÛximo de P 
                        localizado na fronteira do grid.
          </programlisting>
         </listitem>
@@ -140,7 +140,7 @@
         <term>"natural"</term>
 
         <listitem>
-          <para>a extrapola√ß√£o √© feita usando o remendo n-linear mais pr√≥ximo
+          <para>a extrapolaÁ„o È feita usando o remendo n-linear mais prÛximo
           do ponto.</para>
         </listitem>
       </varlistentry>
@@ -149,7 +149,7 @@
         <term>"periodic"</term>
 
         <listitem>
-          <para>: <literal>s</literal> √© estendido por periodicidade.</para>
+          <para>: <literal>s</literal> È estendido por periodicidade.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -159,7 +159,7 @@
     <title>Exemplos </title>
 
     <programlisting role="example">
-// exemplo 1 : interpola√ß√£o linear 1d
+// exemplo 1 : interpolaÁ„o linear 1d
 x = linspace(0,2*%pi,11);
 y = sin(x);
 xx = linspace(-2*%pi,4*%pi,400)';
@@ -167,9 +167,9 @@ yy = linear_interpn(xx, x, y, "periodic");
 xbasc()
 plot2d(xx,yy,style=2)
 plot2d(x,y,style=-9, strf="000")
-xtitle("Interpola√ß√£o linear de sin(x) com 11 pontos de interpola√ß√£o")
+xtitle("InterpolaÁ„o linear de sin(x) com 11 pontos de interpolaÁ„o")
 
-// exemplo 2 : interpola√ß√£o bilinear
+// exemplo 2 : interpolaÁ„o bilinear
 n = 8;
 x = linspace(0,2*%pi,n); y = x;
 z = 2*sin(x')*sin(y);
@@ -180,11 +180,11 @@ xbasc()
 plot3d(xx, xx, zp, flag=[2 6 4])
 [xg,yg] = ndgrid(x,x);
 param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
-xtitle("Interpola√ß√£o bilinear de 2sin(x)sin(y)")
-legends("pontos de interpola√ß√£o",-9,1)
+xtitle("InterpolaÁ„o bilinear de 2sin(x)sin(y)")
+legends("pontos de interpolaÁ„o",-9,1)
 xselect()
 
-// exemplo 3 : interpola√ß√£o bilinear e experimenta√ß√£o
+// exemplo 3 : interpolaÁ„o bilinear e experimentaÁ„o
 //             com todos os tipos de outmode
 nx = 20; ny = 30;
 x = linspace(0,1,nx);
@@ -203,7 +203,7 @@ zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
 xbasc()
 subplot(2,3,1)
    plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
-   xtitle("fun√ß√£o inicial 0.4 cos(2 pi x) cos(pi y)")
+   xtitle("funÁ„o inicial 0.4 cos(2 pi x) cos(pi y)")
 subplot(2,3,2)
    plot3d(xp, yp, zp1, leg="x@y@z", flag = [2 4 4])
    xtitle("Natural")
@@ -222,10 +222,10 @@ subplot(2,3,6)
 xselect()
 
 
-// exemplo 4 : interpola√ß√£o trilinear (ver ajuda de splin3d
+// exemplo 4 : interpolaÁ„o trilinear (ver ajuda de splin3d
 //             que tem os mesmos exemplos com
-//             interpola√ß√£o por spline tric√∫bico)
-exec("SCI/demos/interp/interp_demo.sci") 
+//             interpolaÁ„o por spline tric˙bico)
+getf("SCI/demos/interp/interp_demo.sci") 
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 
@@ -256,13 +256,13 @@ xbasc()
 xset("hidden3d",xget("background"))
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
-xtitle("Interpola√ß√£o trilinear de"+func)
+xtitle("InterpolaÁ„o trilinear de"+func)
 xselect()
  </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="interpln">interpln</link></member>

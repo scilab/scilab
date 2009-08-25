@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>coshm</refname>
 
-    <refpurpose>co-seno hiperbÃ³lico da matriz (matriz co-seno
-    hiperbÃ³lico)</refpurpose>
+    <refpurpose>co-seno hiperbólico da matriz (matriz co-seno
+    hiperbólico)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=coshm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,11 +49,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>coshm Ã© o co-seno hiperbÃ³lico da matriz x (matriz co-seno
-    hiperbÃ³lico de x). <literal>t=(expm(x)+expm(-x))/2</literal>. O resultado
-    pode ser impreciso para matrizes nÃ£o-simÃ©tricas.</para>
+    <para>coshm é o co-seno hiperbólico da matriz x (matriz co-seno
+    hiperbólico de x). <literal>t=(expm(x)+expm(-x))/2</literal>. O resultado
+    pode ser impreciso para matrizes não-simétricas.</para>
   </refsection>
 
   <refsection>
@@ -68,7 +68,7 @@ acoshm(coshm(A))
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="cosh">cosh</link></member>

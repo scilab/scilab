@@ -53,15 +53,30 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>max_cap_path</literal> returns the path with maximum capacity from node
-    <literal>i</literal> to node <literal>j</literal> for the graph <literal>g</literal> if it exists and returns 
-    the empty vector <literal>[]</literal> otherwise.</para>
+    <para><literal>max_cap_path</literal> returns the path with
+    maximum capacity from node <literal>i</literal> to node
+    <literal>j</literal> for the graph <literal>g</literal> if it
+    exists and returns the empty vector <literal>[]</literal>
+    otherwise.
+    </para>
+<para>
+      The capacities of the edges are given by the field
+      <literal>g.edges.data.max_cap</literal> of the graph.
+    </para>
     <para>
-    The capacities of the edges are given by the field <literal>max_cap</literal>
-    of the edges sub field of the graph data structure. If its value is not given (empty vector <literal>[]</literal>), 
-    <literal>max_cap_path</literal> returns the empty vector <literal>[]</literal>.
-    The capacities must be strictly positive, i.e negative capacities
-    are considered as equal to 0 (no capacity at all).</para>
+      The value of the capacity must be non negative.
+    </para>
+    <para> 
+      If the value of <literal>max_cap</literal> is not
+      given it is assumed to be equal to 0 on each edge.</para>
+   
+    <para>
+      If the  <literal>max_cap</literal>
+      data fields is not present in the
+      graph structure it  can be added and set using the <link
+      linkend="add_edge_data">add_edge_data</link> function.
+    </para>
+    
   </refsection>
   <refsection>
     <title>Examples</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>permute</refname>
 
-    <refpurpose>permuta as dimensÃµes de um array</refpurpose>
+    <refpurpose>permuta as dimensões de um array</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=permute(x,dims)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>dims</term>
 
         <listitem>
-          <para>um escalar ou um vetor de nÃºmeros reais positivos </para>
+          <para>um escalar ou um vetor de números reais positivos </para>
         </listitem>
       </varlistentry>
 
@@ -56,7 +56,7 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>y=permute(x,dims) : </literal></para>
   </refsection>
@@ -76,7 +76,7 @@ y=permute(x,[3 1 2]);
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="pertrans">pertrans</link></member>

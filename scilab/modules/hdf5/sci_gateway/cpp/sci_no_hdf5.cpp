@@ -11,9 +11,15 @@
  */
 extern "C" {
 #include "stack-c.h"
-#include "gw_fileio.h"
+#include "gw_hdf5.h"
 #include "Scierror.h"
 #include "localization.h"
+}
+
+int gw_hdf5()
+{
+  Scierror(999, _("HDF5 is not installed"));
+  return 0;
 }
 
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)

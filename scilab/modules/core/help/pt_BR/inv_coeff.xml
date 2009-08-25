@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="inv_coeff" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>inv_coeff</refname>
 
-    <refpurpose>constr√≥i uma matriz de polin√¥mios a partir de seus
+    <refpurpose>constrÛi uma matriz de polinÙmios a partir de seus
     coeficientes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -39,8 +39,8 @@
         <term>d</term>
 
         <listitem>
-          <para>grau da matriz de polin√¥mios. Par√¢metro opcional com valor
-          padr√£o <literal>d=-1+size(C,'c')/size(C,'r')</literal></para>
+          <para>grau da matriz de polinÙmios. Par‚metro opcional com valor
+          padr„o <literal>d=-1+size(C,'c')/size(C,'r')</literal></para>
         </listitem>
       </varlistentry>
 
@@ -48,7 +48,7 @@
         <term>name</term>
 
         <listitem>
-          <para>string fornecendo o nome da vari√°vel polinomial (valor padr√£o
+          <para>string fornecendo o nome da vari·vel polinomial (valor padr„o
           <literal>'x'</literal>).</para>
         </listitem>
       </varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>P=inv_coeff(Mp,k)</literal>, quando <literal>k</literal> √©
-    compat√≠vel com o tamanho de <literal>Mp</literal> size, retorna uma matriz
-    de polin√¥mios de grau k. <literal>C=[C0,C1,...,Ck]</literal> and
+    <para><literal>P=inv_coeff(Mp,k)</literal>, quando <literal>k</literal> È
+    compatÌvel com o tamanho de <literal>Mp</literal> size, retorna uma matriz
+    de polinÙmios de grau k. <literal>C=[C0,C1,...,Ck]</literal> and
     <literal>P= C0 + C1*x +... +Ck*x^k</literal>.</para>
   </refsection>
 
@@ -70,10 +70,10 @@
     <programlisting role="example">
 
 A=int(10*rand(2,6))
-// Construindo uma matriz de polin√¥mios de grau 1
+// Construindo uma matriz de polinÙmios de grau 1
 P=inv_coeff(A,1)
 norm(coeff(P)-A)
-// Usando valor padr√£o para o grau
+// Usando valor padr„o para o grau
 P1=inv_coeff(A)
 norm(coeff(P1)-A)
  
@@ -81,7 +81,7 @@ norm(coeff(P1)-A)
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

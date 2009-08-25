@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="surface_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>surface_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Surface
+    (superfície)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Surface é uma folha das hierarquia de entidades gráficas.
+    Duas classes aparecem sob este tipo de entidade :
+    <literal>Plot3d</literal> e <literal>Fac3d</literal> de acordo com a
+    função de esboço ou com o modo como os dados foram inseridos. As entidades
+    <literal>Fac3d</literal> e <literal>Plo3d</literal> são semelhantes, mas
+    <literal>Fac3d</literal> é mais completa e aceita mais opções que
+    <literal>Plot3d</literal>. Para sempre ter entidades
+    <literal>Fac3d</literal> simplesmente use <literal>genfac3d</literal> para
+    pré-construir matrizes antes de usar os comandos <literal>plot3d</literal>
+    ou use o comando <literal>surf</literal>.</para>
+
+    <para>Aqui estão as propriedades contidas em uma entidade
+    superfície:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade Surface pode ser <literal>"Axes"</literal> ou
+          <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          Contudo, manipuladores de superfície não possuem galhos
+          correntemente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, superfícies são
+          visíveis , o valor da propriedade é <literal>"on"</literal>. Se for
+          <literal>"off"</literal> os gráficos 3d não são exibidos na
+          tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>surface_mode:</term>
+
+        <listitem>
+          <para> este campo contém o valor padrão da propriedade
+          <literal>surface_mode</literal> para a superfície. Pode ser
+          <literal>"on" </literal> (superfície desenhada) ou
+          <literal>"off"</literal> (nenhuma superfície desenhada). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+          <para>se <literal>color_mode &gt;= 0</literal>, contém o índice da
+          cor a ser usada nas bordas. Se não, foreground não é usado. O valor
+          foreground deve ser um índice inteiro de cor (relativo ao mapa de
+          cores corrente).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+          <para>este campo contém o valor de <literal>thickness</literal>
+          (espessura) das linhas usadas para desenhar facetas ou contornos.
+          Deve ser um inteiro positivo. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_mode:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_mode</literal> para a superfície. Seu valor pode ser
+          <literal>"on"</literal> (marcas desenhadas) ou
+          <literal>"off"</literal> (marcas não desenhadas).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_style:</term>
+
+        <listitem>
+          <para>o valor da propriedade <literal>mark_style</literal> é usado
+          para selecionar o tipo de marca usada quando a propriedade
+          <literal>mark_mode</literal> é <literal>"on"</literal>. O valor deve
+          ser um inteiro no intervalo [0 14] que significa: ponto, mais, cruz,
+          estrela, rombo preenchido, rombo, triângulo para cima, triângulo
+          para baixo, rombo mais, círculo, asterísco, quadrado, trângulo para
+          direita, triângulo para esquerda e pentagrama.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size_unit:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_size_unit</literal>. Se
+          <literal>mark_size_unit</literal> é ajustado para
+          <literal>"point"</literal>, então o valor de
+          <literal>mark_size</literal> é dado diretamente em pontos. Quando
+          <literal>mark_size_unit</literal> é ajustado para
+          <literal>"tabulated"</literal>, <literal>mark_size</literal> é
+          computado de acordo com o array de tamanho de fonte: logo, seu valor
+          deve ser um inteiro no intervalo [0 5] que significa 8pt, 10pt,
+          12pt, 14pt, 18pt e 24pt. Note que <link
+          linkend="plot3d">plot3d</link> e funções puras do Scilab usam o modo
+          <literal>tabulated</literal> como padrão; quando se utiliza as
+          funções <link linkend="surf">surf</link> (ou <link
+          linkend="plot">plot</link> para linhas 2d) o modo
+          <literal>point</literal> é automaticamente habilitado. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_size:</term>
+
+        <listitem>
+          <para>a propriedade <literal>mark_size</literal> é utilizada para
+          selecionar o tamanho de fonte das marcas quando a propriedade
+          <literal>mark_mode</literal> está <literal>"on"</literal>. O valor
+          deve ser um inteiro entre 0 e 5 que significa 8pt, 10pt, 12pt, 14pt,
+          18pt e 24pt. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_foreground:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_foreground</literal> que é a cor da borda das marcas.
+          Seu valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mark_background:</term>
+
+        <listitem>
+          <para>este campo contém o valor padrão da propriedade
+          <literal>mark_background</literal> que é a cor da face das marcas.
+          Seu valor deve ser um índice de cor (relativo ao mapa de cores
+          corrente). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo define uma estrutura de dados
+          <literal>tlist</literal> do tipo "3d" composto de índices de uma
+          linha e uma coluna de cada elemento como as coordenadas x, y e z
+          contidas respectivamente em
+          <literal>data.x</literal>,<literal>data.y</literal> e
+          <literal>data.z</literal>. O campo complementar
+          <literal>data.color</literal> está disponível caso um vetor ou
+          matriz reais de cores seja especificado. Se nenhum for,
+          <literal>data.color</literal> não é listado. A superfície é pintada
+          de acordo com as propriedades <literal>color_mode </literal>e
+          <literal>color_flag</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color_mode:</term>
+
+        <listitem>
+          <para>um inteiro no intervalo <literal>[-size(colormap) ;
+          size(colormap)]</literal> definindo a cor da faceta quando o valor
+          de <literal>color_flag</literal> é <literal>0</literal>. Como dito
+          antes, se<literal> color_mode &gt; 0</literal>, as bordas são
+          desenhadas usando a cor <literal>foreground</literal>. Se
+          <literal>color_mode</literal> é ajustado para <literal>0</literal>,
+          uma malha das superfície é desenhada: faces da frente não têm cores.
+          Finalmente, quando <literal>color_mode &lt; 0</literal>, as faces da
+          frente são pintadas com a cor <literal>-color_mode</literal> mas
+          nenhuma borda é exibida. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>color_flag:</term>
+
+        <listitem>
+          <para>este campo é usado para definir o algoritimo usado para
+          ajustar as cores das facetas. Note que as regras em
+          <literal>color_mode</literal>, <literal>foreground</literal> e
+          <literal>hiddencolor</literal> ainda são aplicadas nesse
+          caso.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>color_flag == 0</literal></para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Todas as facetas são pintadas usando-se o índice de
+                  cores e o método definido por <literal>color_mode</literal>
+                  (ver acima).</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><literal>color_flag == 1</literal></para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Todas as facetas são pintadas utilizando-se um índice
+                  de cor por faceta proporcional a <literal>z</literal>. O
+                  valor mínimo de <literal>z</literal> é pintado utilizando-se
+                  o índice 1, enquanto o valor máximo de <literal>z</literal>
+                  é pintado utilizando-se o índice mais alto. As bordas das
+                  facetas pode ser adicionalmente desenhadas dependendo do
+                  valor de <literal>color_mode</literal> (ver acima).</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para>Os três casos restantes
+              (<literal>color_flag</literal><literal>== 2,3 or 4</literal>) só
+              estão disponíveis para a entidade <literal>Fac3d</literal> .
+              Então, o valor de <literal>data.color</literal> é usado para
+              ajustar cores para as facetas (índices do mapa de cores
+              corrente) se existirem. Se não, o <literal>color_mode</literal>
+              corrente é utilizado para pintar as facetas.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>color_flag == 2 ('flat' shading)</literal></para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Todas as facetas são pintadas utilizando-se o índice
+                  de cor dado na propriedade <literal>data.color</literal>
+                  (uma cor por faceta é necessária). Dois são os casos
+                  possíveis:</para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>data.color</literal> contém um vetor
+                  <literal>color</literal> vector : se
+                  <literal>color(i)</literal> for positivo, fornece a cor da
+                  faceta <literal>i</literal> e a borda da faceta é desenhada
+                  com o estilo de linha e cor correntes. Se
+                  <literal>color(i)</literal> for negativo, o a cor de
+                  identificador <literal>-color(i)</literal> é usado e a borda
+                  da faceta não é desenhada.</para>
+
+                  <para><literal>data.color</literal> contém uma matriz de
+                  cores de tamanho (nf,n) onde <literal>n</literal> significa
+                  o número de facetas e <literal>nf</literal> o número de
+                  pontos definindo a faceta poligonal. Para os vértices
+                  <literal>nf</literal> definindo cada faceta, o algoritmo
+                  computa o valor médio do índice de cores (da matriz de
+                  índices de cores) : os <literal>nf</literal> vértices da
+                  mesma faceta terão o mesmo valor de índice de cor.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><literal>color_flag == 3 ('interpolated'
+              shading)</literal></para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>Pinta as facetas por interpolação das cores dos
+                  vértices. Os índices das cores dos vértices são dados pela
+                  propriedade <literal>data.color</literal> (uma cor por
+                  vértice é necessária). Dois são os casos possíveis:</para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>data.color</literal> contém um vetor
+                  <literal>colors</literal> : então há poucos dados para
+                  completar o modo de gradação interpolada. De fato, uma
+                  matriz de cores de tamanho (nf,n) (onde <literal>n</literal>
+                  é o número de facetas e <literal>nf</literal> o número de
+                  pontos definindo a faceta poligonal) é necessária para
+                  realizar esta operação. Para cada faceta, o algoritmo copia
+                  o único valor de índice de cor da faceta nos
+                  <literal>nf</literal> vértices de índices de cores definindo
+                  a borda da faceta.</para>
+
+                  <para><literal>data.color</literal> contém uma matriz de
+                  cores de tamanho (nf,n) (ver acima para definições de
+                  <literal>nf</literal> e <literal>n</literal>), o modo de
+                  gradação interpolada pode ser completado normalmente
+                  utilizando-se estes índices de cores.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+
+            <listitem>
+              <para><literal>color_flag == 4 (Matlab-like 'flat'
+              shading)</literal></para>
+
+              <itemizedlist>
+                <listitem>
+                  <para>É o mesmo que <literal>color_flag==2</literal> com uma
+                  pequena diferença quando <literal>data.color</literal> é uma
+                  matriz. Todas as facetas são pintadas com o índice de cor
+                  fornecido pela propriedade <literal>data.color</literal>
+                  (uma cor por faceta é necessária). Dois casos são então
+                  possíveis:</para>
+                </listitem>
+
+                <listitem>
+                  <para><literal>data.color</literal> contém um vetor
+                  <literal>color</literal> vector : se
+                  <literal>color(i)</literal> é positivo, fornece a cor da
+                  faceta <literal>i</literal> e a borda da faceta é desenhada
+                  com o estilo de linha e cor correntes. Se
+                  <literal>color(i)</literal> é negativo, a cor de
+                  identificador <literal>-color(i)</literal> é utilizado e a
+                  borda da faceta não é desenhada.</para>
+
+                  <para><literal>data.color</literal> contém uma matriz de
+                  cores de tamanho (nf,n) onde <literal>n</literal> é o número
+                  de facetas e <literal>nf</literal> o número de pontos
+                  definindo a faceta poligonal. Para os <literal>nf</literal>
+                  vértices definindo cada faceta, o algoritimo toma a cor do
+                  primeiro vértice definindo o retículo (faceta).</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cdata_mapping:</term>
+
+        <listitem>
+          <para><literal>específico para manipuladores Fac3d</literal>. Um
+          string definindo um valor <literal>'scaled'</literal> ou
+          <literal>'direct'</literal>. Se um <literal>data.color</literal> é
+          definido, cada dado de índice de cor especifica um valor único para
+          vértice. <literal>cdata_mapping</literal> determina se estes índices
+          estão em escala para serem mapeados linearmente no mapa de cores
+          corrente (modo<literal> 'scaled'</literal>) ou aponta diretamente
+          para o mapa de cores (modo <literal>'direct</literal>'). Esta
+          propriedade é útil quando <literal>color_flag</literal> é igual a
+          <literal>2</literal>,<literal>3</literal> ou
+          <literal>4</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hiddencolor:</term>
+
+        <listitem>
+          <para>esta propriedade contém o índice de cor usado para desenhar as
+          faces atrás de uma superfície. Seu valor deve ser um inteiro
+          positivo (índice de cores relativo ao mapa de cores corrente). Se
+          for um inteiro negativo, a mesma cor que a face "visível" é aplicada
+          para a parte traseira. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para a superfície. O valor de
+          clip_state pode ser:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que a superfície não é
+              recortada. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que a superfície é
+              recortada fora da caixa dos eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que a superfície é
+              recortada fora do retângulo dado pela propriedade
+              clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade
+          <literal>clip_box</literal>. Por padrão seu valor é uma matriz vazia
+          se a propriedade clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções da poligonal a serem exibidas, contudo o
+          valor da propriedade <literal>clip_state</literal> será alterado.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser usado para armazenar qualquer variável
+          Scilab na estrutura de dados da superfície e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+//criando uma figura
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z); 
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
+h=get("hdl") //obtendo manipulador da entidade corrente (aqui, é a superfície) 
+a=gca(); //obtendo eixos correntes
+a.rotation_angles=[40,70]; 
+a.grid=[1 1 1]; 
+//criando grides
+a.data_bounds=[-6,0,-1;6,6,5];
+a.axes_visible="off"; 
+//os eixos estão escondidos a.axes_bounds=[.2 0 1 1]; 
+f=get("current_figure");
+//obtendo o manipulador da figura raiz
+f.color_map=hotcolormap(64); 
+//mudando o mapa de cores da figura 
+h.color_flag=1; 
+//colorindo de acordo com z 
+h.color_mode=-2; 
+//removendo as bordas das facetas
+h.color_flag=2; 
+//colorindo de acordo com as dadas cores
+h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
+//gradação
+h.color_flag=3; 
+
+scf(2); // criando segunda janela e utilizando o comando surf
+subplot(211)
+surf(z,'cdata_mapping','direct','facecol','interp')
+
+subplot(212)
+surf(t,t,z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
+e=gce();
+e.color_flag=1 // índice de cor proporcional à altitude (coordenada z)
+e.color_flag=2; // de volta ao modo padrão
+e.color_flag= 3; // modo de gradação interpolada (baseada na cor azul padrão porque o campo data.color não está preenchido)
+
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="plot3d">plot3d</link></member>
+
+      <member><link linkend="plot3d1">plot3d1</link></member>
+
+      <member><link linkend="plot3d2">plot3d2</link></member>
+
+      <member><link linkend="surf">surf</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>Djalel ABDEMOUCHE &amp; F.Leray</para>
+  </refsection>
+</refentry>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>fplot2d</refname>
 
-    <refpurpose>esboÃ§o 2d de uma curva definida por uma funÃ§Ã£o</refpurpose>
+    <refpurpose>esboço 2d de uma curva definida por uma função</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>fplot2d(xr,f,[style,strf,leg,rect,nax])
 fplot2d(xr,f,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,8 +50,8 @@ fplot2d(xr,f,&lt;opt_args&gt;)</synopsis>
         <term>f</term>
 
         <listitem>
-          <para>funÃ§Ã£o externa do tipo <literal>y=f(x)</literal> i.e. uma
-          funÃ§Ã£o scilab ou rotina dinamicamente linkada ("ligada") referida
+          <para>função externa do tipo <literal>y=f(x)</literal> i.e. uma
+          função scilab ou rotina dinamicamente linkada ("ligada") referida
           como um string.</para>
         </listitem>
       </varlistentry>
@@ -75,15 +75,15 @@ fplot2d(xr,f,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>fplot2d</literal> esboÃ§a uma curva definida pela funÃ§Ã£o
-    externa <literal>f</literal>. A curva Ã© aproximada por uma interpolaÃ§Ã£o
+    <para><literal>fplot2d</literal> esboça uma curva definida pela função
+    externa <literal>f</literal>. A curva é aproximada por uma interpolação
     linear seccional utilizando os pontos <literal>(xr(i),f(xr(i))</literal>.
-    Os valores de f(x) sÃ£o obtidos por <literal>feval(xr,f)</literal>.</para>
+    Os valores de f(x) são obtidos por <literal>feval(xr,f)</literal>.</para>
 
     <para>Entre com o comando <literal>fplot2d()</literal> para visualizar uma
-    demonstraÃ§Ã£o.</para>
+    demonstração.</para>
   </refsection>
 
   <refsection>
@@ -101,7 +101,7 @@ fplot2d(1:10,'parab')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot2d">plot2d</link></member>

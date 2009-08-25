@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="captions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>captions</refname>
+
+    <refpurpose>Impressão de legendas de gráficos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>hl=captions(h, strings [,location])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>vetor de manipuladores de entidades Polyline</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>n-vetor de strings, strings(i) é a legenda da i-ésima
+          poligonal</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>um manipulador do tipo "<literal>Legend</literal>", pontos
+          para a estrutura contendo todas as informações das legendas (ver
+          <link linkend="legend_properties">legend_properties</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>location</term>
+
+        <listitem>
+          <para>string com possíveis valores</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>: as legendas são
+              exibidas no canto superior direito da caixa de eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: as legendas são
+              exibidas no canto superior esquerdo da caixa de eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>: as legendas são
+              exibidas no canto inferior direito da caixa de eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: as legendas são
+              exibidas no canto inferior esquerdo da caixa de eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: as legendas são
+              exibidas à direita do canto superior direito da caixa de
+              eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: as legendas são
+              exibidas à esquerda do canto superior esquerdo da caixa de
+              eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: as legendas são
+              exibidas à direita do canto inferior direito da caixa de
+              eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: as legendas são
+              exibidas à esquerda do canto inferior esquerdo da caixa de
+              eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: as legendas são
+              exibidas acima do canto superior esquerdo da caixa de
+              eixos</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: as legendas são
+              exibidas abaixo do canto inferior esquerdo da caixa de eixos.
+              Esta opção corresponde ao argumento <literal>leg</literal> de
+              <link linkend="plot2d">plot2d</link></para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: o canto superior
+              esquerdo da caixa das legendas é dada pelo campo "position" da
+              estrutura de dados associada. As posições <literal>x</literal> e
+              <literal>y</literal> são fornecidas como frações dos tamanhos de
+              <literal>axes_bounds.</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Coloca legendas no esboço corrente no canto inferior esquerdo da
+    janela gráfica utilizando-se os strings especificados como rótulos.
+    <literal>captions</literal> prefixa rótulos por uma nova chamada às
+    poligonais correspondentes. O tipo e propriedades são recuperados do dado
+    manipulador:</para>
+
+    <para>A função <literal>captions</literal> cria uma estrutura de dados
+    <link linkend="legend_properties">Legend</link>.</para>
+
+    <para>Há no máximo uma <literal>Legend</literal> associada a cada entidade
+    Axes. Se a função caption for chamada novamente enquanto
+    <literal>Legend</literal> ainda existe, a legenda antiga é apagada.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+t=0:0.1:2*%pi;
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+a.margins(4)=0.2;
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[1,2 3]);  
+e=gce();
+e.children(1).thickness=3;
+e.children(2).line_style=4;
+
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)'],'in_upper_right');
+
+hl.legend_location='in_upper_right'
+hl.fill_mode='on';
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="legend">legend</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+
+      <member><link
+      linkend="legend_properties">legend_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

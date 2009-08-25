@@ -12,6 +12,10 @@
 #ifndef __POINTER_API__
 #define __POINTER_API__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 
 /**
@@ -32,6 +36,14 @@ API_SCILAB_IMPEXP int getPointer(int* _piAddress, void** _pvPtr);
 API_SCILAB_IMPEXP int allocPointer(int _iVar, void** _pvPtr);
 
 /**
+ * @todo
+ * @param[in] _piAddress variable address
+ * @param[out] _pvPtr return pointer on pointer
+ * @return if the operation successed (0) or not ( !0 )
+ */
+API_SCILAB_IMPEXP int fillPointer(int *_piAddress, void** _pvPtr);
+
+/**
  * Create pointer variable
  * @param[in] _iVar variable number
  * @param[in] _pvPtr pointer on pointer
@@ -39,5 +51,7 @@ API_SCILAB_IMPEXP int allocPointer(int _iVar, void** _pvPtr);
  */
 API_SCILAB_IMPEXP int createPointer(int _iVar, void* _pvPtr);
 
-
+#ifdef __cplusplus
+}
+#endif
 #endif /* __POINTER_API__ */

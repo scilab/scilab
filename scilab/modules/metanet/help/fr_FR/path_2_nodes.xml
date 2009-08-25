@@ -58,22 +58,20 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
-g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
-show_graph(g);
+g.nodes.graphics.x=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642]/2;
+g.nodes.graphics.y=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301]/2;
 p=[2 16 23 25 26 22 17 18 19 13 10 11];
-g1=g; edgecolor=1*ones(ta); edgecolor(p)=11*ones(p);
-g1('edge_color')=edgecolor;
-show_graph(g1); show_arcs(p);
+g.edges.graphics.foreground(p)=color('red')
+show_graph(g);
+
 ns=path_2_nodes(p,g);
-g1=g; nodecolor=1*ones(g1('node_number')); nodecolor(ns)=11*ones(ns);
-g1('node_color')=nodecolor;
-show_graph(g1);show_nodes(ns);
-show_arcs(p,'sup');
- ]]></programlisting>
+hilite_nodes(ns);
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
