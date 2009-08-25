@@ -16,7 +16,6 @@
 #include "basout.h"
 #include "MALLOC.h"
 #include "prompt.h"
-#include "diary.h"
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif

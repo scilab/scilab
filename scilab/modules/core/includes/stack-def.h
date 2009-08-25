@@ -120,7 +120,6 @@ typedef struct
 	int lin[lsiz]; /**< @TODO : add comment */
 	int lpt[6]; /**< @TODO : add comment */
 	int rio; /* Id input (fortran) file descriptor */
-	int wio; /* Id output (fortran) file descriptor */
 	int rte; /* Id input (fortran) terminal descriptor (stdin)  */
 	int wte; /* Id output (fortran) terminal descriptor (stdout) */
 } IOP_struct;
