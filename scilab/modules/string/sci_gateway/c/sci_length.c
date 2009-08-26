@@ -152,6 +152,7 @@ static int lengthStrings(int *piAddressVar)
 	if (ierr)
 	{
 		FREE(lenStVarOne); lenStVarOne = NULL;
+		freeArrayOfString(pStVarOne, m1 * n1);
 		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
 		return 0;
 	}
@@ -162,6 +163,7 @@ static int lengthStrings(int *piAddressVar)
 	if (pdOut == NULL)
 	{
 		FREE(lenStVarOne); lenStVarOne = NULL;
+		freeArrayOfString(pStVarOne, m1 * n1);
 		Scierror(999,_("%s: No more memory.\n"),"length");
 		return 0;
 	}
