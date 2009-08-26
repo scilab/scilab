@@ -24,6 +24,7 @@ namespace types
   public:
     virtual ~Instance() {}
     std::string toString() const { return "<'"+m_kls->name_get()+"' Instance>"; }
+    Class *class_get() const { return m_kls; }
   
   private:
     static Instance *get_root_instance();

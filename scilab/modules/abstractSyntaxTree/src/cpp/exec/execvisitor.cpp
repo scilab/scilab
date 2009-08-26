@@ -396,8 +396,46 @@ namespace ast
 						}
 					}
 				}
-				else
+				else if(pIT->getType() == InternalType::RealObject)
 				{
+					ObjectMatrix *pObj = pIT->getAsObject();
+					ObjectMatrix *oResult;
+					if(iArgDim == 1 && piMaxDim[0] > pObj->size_get() || //SeeAsVector
+							iArgDim == 2 && (piMaxDim[0] > pObj->rows_get() || piMaxDim[0] > pObj->cols_get()) || //check dimension to extract
+							iArgDim > 2) //more than 2 dimensions ?
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+
+
+					int iRowOut = 0;
+					int iColOut	= 0;
+					if(iArgDim == 1)
+					{
+						pResult = oResult = new ObjectMatrix(piDimSize[0], 1);
+						iRowOut = piDimSize[0];
+						iColOut = 1;
+					}
+					else
+					{
+						// TODO
+					}
+
+					if(bSeeAsVector)
+					{
+						for(int i = 0 ; i < iTotalCombi ; i++)
+						{
+							oResult->elem_set(i, pObj->elem_get(piIndexSeq[i] - 1));
+						}
+					}
+					else//matrix
+					{
+						// TODO
+					}
 				}
 				delete[] piDimSize;
 				result_set(pResult);

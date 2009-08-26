@@ -74,12 +74,7 @@ namespace types
   
   /** Declarations to avoid circular references */
   class ObjectMatrix;
-  class Class;
   class Instance;
-  
-  /** Private classes, never mind */
-  class BoundGetter;
-  class BoundSetter;
   
   /** Represents an object
    *   It contains slots, which are destroyed with the object (right now, when
@@ -89,10 +84,6 @@ namespace types
    */
   class Object
   {
-  friend class Class;
-  friend class BoundGetter;
-  friend class BoundSetter;
-  
   public:
     virtual ~Object() { }
     
@@ -152,16 +143,16 @@ namespace types
     /** See InternalType::toString */
     virtual std::string toString() const { return "Object"; }
   
-  private:
     // root_object is the object at the top of all super chains
     static Object *get_root_object();
   
+  private:
     // m_slots_values manipulation
     InternalType *raw_get(PropertySlot &slot);
     void raw_set(PropertySlot &slot, InternalType *value);
   
   protected:
-    Object(Object *p_isa = NULL): m_isa(p_isa), m_slots(), m_slots_values() {}
+    Object(Object *p_isa = NULL): m_isa(p_isa), m_slots(), m_slots_values() { }
   
     // Search p_slotName in slots list (recursively).
     // If found, set r_lvptr to the level where the slot is found and r_slot to

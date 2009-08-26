@@ -33,11 +33,11 @@ namespace types
     std::string toString() const { return "<Class '"+m_name+"'>"; }
     std::string name_get() const { return m_name; }
   
+    static Class *get_root_class();
+    
   private:
     Class(const std::string &p_name, Object *p_isa);
     Instance *create_instance();
-    
-    static Class *get_root_class();
   
   protected:
     std::map<std::string, Slot&> m_instance_slots;
