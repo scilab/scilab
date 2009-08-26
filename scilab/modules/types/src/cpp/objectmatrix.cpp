@@ -159,6 +159,9 @@ namespace types
   InternalType *
   ObjectMatrix::get(const std::string &p_slotName) const
   {
+    if(m_iSize != 1)
+      throw std::string("Must be a single object");
+    
     ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
     
     // Handle the case of this.x with x being private
@@ -183,6 +186,9 @@ namespace types
   void
   ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value) const
   {
+    if(m_iSize != 1)
+      throw std::string("Must be a single object");
+    
     ObjectMatrix * sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
     
     // Handle the case of this.x = y with x being private

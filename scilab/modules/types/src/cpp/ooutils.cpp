@@ -21,9 +21,7 @@ namespace types
   static Function::ReturnValue
   ro_setter_func(typed_list &, int *, typed_list &out)
   {
-    printf("Read only property");
-    out.push_back(new Double(0));
-    return Function::AllGood;
+    throw std::string("Read-only property");
   }
   
   Function *ro_setter = new Function("", ro_setter_func, "");

@@ -24,10 +24,7 @@ namespace types
   {
     SlotsIterator it = m_slots.find(p_slotName);
     if(it != m_slots.end())
-    {
-      printf("Error: slot already exists\n");
-      return;
-    }
+      throw std::string("Error: slot already exists");
     
     PropertySlot *slot = new PropertySlot;
     slot->name = p_slotName;
@@ -43,10 +40,7 @@ namespace types
   {
     SlotsIterator it = m_slots.find(p_slotName);
     if(it != m_slots.end())
-    {
-      printf("Error: slot already exists\n");
-      return;
-    }
+      throw std::string("Error: slot already exists");
     
     MethodSlot *slot = new MethodSlot;
     slot->name = p_slotName;
@@ -132,8 +126,9 @@ namespace types
     }
     else if(res)
     {
-      printf("Error: slot %s found but not visible from this context\n", p_slotName.c_str());
-      return NULL;
+      std::stringstream ss;
+      ss << "Error: slot " << p_slotName << " found but not visible from this context";
+      throw ss.str();
     }
     
     // Not found: try to call a magic method
@@ -146,8 +141,11 @@ namespace types
     }
     
     // No magic method, error
-    fprintf(stderr, "Error: slot %s not found\n", p_slotName.c_str());
-    return NULL;
+    {
+      std::stringstream ss;
+      ss << "Error: slot " <<  p_slotName << " not found";
+      throw ss.str();
+    }
   }
   
   InternalType *
@@ -176,8 +174,9 @@ namespace types
     }
     else if(res)
     {
-      printf("Error: slot %s found but not visible from this context\n", p_slotName.c_str());
-      return;
+      std::stringstream ss;
+      ss << "Error: slot " << p_slotName << " found but not visible from this context";
+      throw ss.str();
     }
     
     // Not found: try to call a magic method
@@ -193,7 +192,11 @@ namespace types
     }
     
     // No magic method, error
-    printf("Error: slot %s not found\n", p_slotName.c_str());
+    {
+      std::stringstream ss;
+      ss << "Error: slot " <<  p_slotName << " not found";
+      throw ss.str();
+    }
   }
   
   bool
@@ -244,7 +247,7 @@ namespace types
     }
     else
     {
-      printf("Can't do a set operation on a method\n");
+      throw std::string("Can't do a set operation on a method");
     }
   }
   
