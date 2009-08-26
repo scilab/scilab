@@ -17,20 +17,21 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 #define MAX_INTERGER	2147483647
 
 int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
-int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet);
-int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet);
-int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet);
-int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet);
+int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
+int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
+int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
+int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
+int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
+int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scimatrix) (char *fname, int* _piKey)
+int sci_scimatrix(char *fname, int* _piKey)
 {
 	int iRet				= 0;
 	int iRows1			= 0;
@@ -177,22 +178,22 @@ int C2F(sci_scimatrix) (char *fname, int* _piKey)
 		iRet = matrix_double(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_poly:
-		matrix_poly(piAddr1, iRowsRet, iColsRet);
+		matrix_poly(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_boolean :
-		matrix_bool(piAddr1, iRowsRet, iColsRet);
+		matrix_bool(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_sparse :
-		matrix_sparse(piAddr1, iRowsRet, iColsRet);
+		matrix_sparse(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_boolean_sparse :
-		matrix_bsparse(piAddr1, iRowsRet, iColsRet);
+		matrix_bsparse(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_ints:
-		matrix_int(piAddr1, iRowsRet, iColsRet);
+		matrix_int(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	case sci_strings:
-		matrix_string(piAddr1, iRowsRet, iColsRet);
+		matrix_string(piAddr1, iRowsRet, iColsRet, _piKey);
 		break;
 	default :
 		return 1;
@@ -205,7 +206,7 @@ int C2F(sci_scimatrix) (char *fname, int* _piKey)
 	return 0;
 }
 
-int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
+int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -379,7 +380,7 @@ int matrix_sparse(int* _piAddress, int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
-int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet)
+int matrix_bsparse(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -504,7 +505,7 @@ int matrix_double(int* _piAddress, int _iRowsRet, int _iColsRet, int*_piKey)
 	return 0;
 }
 
-int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
+int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int i;
 	int iRet					= 0;
@@ -610,7 +611,7 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
-int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
+int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int i;
 	int iRet				= 0;
@@ -659,7 +660,7 @@ int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
-int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet)
+int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int iRet								= 0;
 	int iPrec								= 0;
@@ -737,7 +738,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet)
 	return 0;
 }
 
-int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet)
+int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
 	int iRet					= 0;
 	int iIndex				= 0;
@@ -752,12 +753,11 @@ int	matrix_bool(int* _piAddress, int _iRowsRet, int _iColsRet)
 		return 1;
 	}
 
-	iRet = createMatrixOfBoolean(Rhs + 1, _iRowsRet, _iColsRet, piBool);
+	iRet = createMatrixOfBoolean(Rhs + 1, _iRowsRet, _iColsRet, piBool, _piKey);
 	if(iRet)
 	{
 		return 1;
 	}
 	return 0;
 }
-
 /*--------------------------------------------------------------------------*/

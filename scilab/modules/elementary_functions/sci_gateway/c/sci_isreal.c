@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 int isreal_double(int* _piAddress, double _dblRef, int* _piIsReal);
 int isreal_poly(int* _piAddress, double _dblRef, int* _piIsReal);
@@ -22,7 +23,7 @@ int isreal_sparse(int* _piAddress, double _dblRef, int* _piIsReal);
 int isreal_common(double *_pdblData, int _iSize, double _dblRef, int* _piIsReal);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_isreal) (char *fname,int* _piKey)
+int sci_isreal(char *fname,int* _piKey)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -31,7 +32,7 @@ int C2F(sci_isreal) (char *fname,int* _piKey)
 
 	int* piAddr1			= NULL;
 	int* piAddr2			= NULL;
-	int* piBool				= NULL;
+	int bBool					= 0;
 
 	double *pdblPrec	= NULL;
 
@@ -51,18 +52,12 @@ int C2F(sci_isreal) (char *fname,int* _piKey)
 		return 0;
 	}
 
-	iRet = allocMatrixOfBoolean(Rhs + 1, 1, 1, &piBool);
-	if(iRet)
-	{
-		return 1;
-	}
-
 	if(Rhs == 1)
 	{
 		if(isVarComplex(piAddr1))
-			piBool[0] = 0;
+			bBool = 0;
 		else
-			piBool[0] = 1;
+			bBool = 1;
 	}
 	else //Rhs == 2
 	{
@@ -87,20 +82,20 @@ int C2F(sci_isreal) (char *fname,int* _piKey)
 	
 		if(!isVarComplex(piAddr1)) //Not complex
 		{
-			piBool[0] = 1;
+			bBool = 1;
 		}
 		else //Complex
 		{
 			switch(getVarType(piAddr1))
 			{
 			case sci_matrix :
-				iRet = isreal_double(piAddr1, pdblPrec[0], piBool);
+				iRet = isreal_double(piAddr1, pdblPrec[0], &bBool);
 				break;
 			case sci_poly :
-				iRet = isreal_poly(piAddr1, pdblPrec[0], piBool);
+				iRet = isreal_poly(piAddr1, pdblPrec[0], &bBool);
 				break;
 			case sci_sparse :
-				iRet = isreal_sparse(piAddr1, pdblPrec[0], piBool);
+				iRet = isreal_sparse(piAddr1, pdblPrec[0], &bBool);
 				break;
 			default: //never pass here
 				break;
@@ -108,6 +103,12 @@ int C2F(sci_isreal) (char *fname,int* _piKey)
 		}
 	}
 
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = createMatrixOfBoolean(Rhs + 1, 1, 1, &bBool, _piKey);
 	if(iRet)
 	{
 		return 1;

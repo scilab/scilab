@@ -15,12 +15,13 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 int round_double(int* _piAddress, int* _piKey);
-int round_poly(int* _piAddress);
+int round_poly(int* _piAddress, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_round) (char *fname, int* _piKey)
+int sci_round(char *fname, int* _piKey)
 {
 	int iRet		= 0;
 	int* piAddr	= NULL;
@@ -40,7 +41,7 @@ int C2F(sci_round) (char *fname, int* _piKey)
 		iRet = round_double(piAddr, _piKey);
 		break;
 	case sci_poly :
-		iRet = round_poly(piAddr);
+		iRet = round_poly(piAddr, _piKey);
 		break;
 	default:
 		OverLoad(1);
@@ -113,7 +114,7 @@ int round_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int round_poly(int* _piAddress)
+int round_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;

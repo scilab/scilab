@@ -53,10 +53,10 @@ namespace ast
 						(*col)->accept (*execMe);
 						if(execMe->result_get()->getType() == InternalType::RealImplicitList)
 						{
-							if(execMe->result_get()->getAsList()->computable() == true)
+							if(execMe->result_get()->getAsImplicitList()->computable() == true)
 							{
-								Double *pTemp = new Double(1, execMe->result_get()->getAsList()->size_get(), false);
-								execMe->result_get()->getAsList()->extract_matrix(pTemp->real_get());
+								Double *pTemp = new Double(1, execMe->result_get()->getAsImplicitList()->size_get(), false);
+								execMe->result_get()->getAsImplicitList()->extract_matrix(pTemp->real_get());
 								delete execMe->result_get();
 								execMe->result_set(pTemp);
 								iCurCol += ((GenericType*)execMe->result_get())->cols_get();
@@ -398,31 +398,31 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			break;
 		case GenericType::RealImplicitList :
 			{
-				if(_poSource->getAsList()->start_type_get() == InternalType::RealPoly)
+				if(_poSource->getAsImplicitList()->start_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsList()->start_set(_poSource->getAsList()->start_poly_get());
+					poResult->getAsImplicitList()->start_set(_poSource->getAsImplicitList()->start_poly_get());
 				}
 				else
 				{
-					poResult->getAsList()->start_set(_poSource->getAsList()->start_get());
+					poResult->getAsImplicitList()->start_set(_poSource->getAsImplicitList()->start_get());
 				}
 
-				if(_poSource->getAsList()->step_type_get() == InternalType::RealPoly)
+				if(_poSource->getAsImplicitList()->step_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsList()->step_set(_poSource->getAsList()->step_poly_get());
+					poResult->getAsImplicitList()->step_set(_poSource->getAsImplicitList()->step_poly_get());
 				}
 				else
 				{
-					poResult->getAsList()->step_set(_poSource->getAsList()->step_get());
+					poResult->getAsImplicitList()->step_set(_poSource->getAsImplicitList()->step_get());
 				}
 
-				if(_poSource->getAsList()->end_type_get() == InternalType::RealPoly)
+				if(_poSource->getAsImplicitList()->end_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsList()->end_set(_poSource->getAsList()->end_poly_get());
+					poResult->getAsImplicitList()->end_set(_poSource->getAsImplicitList()->end_poly_get());
 				}
 				else
 				{
-					poResult->getAsList()->end_set(_poSource->getAsList()->end_get());
+					poResult->getAsImplicitList()->end_set(_poSource->getAsImplicitList()->end_get());
 				}
 				break;
 			}

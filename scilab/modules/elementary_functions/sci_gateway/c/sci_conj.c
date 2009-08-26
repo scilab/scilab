@@ -14,13 +14,14 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 extern int C2F(dscal)();
 
 int conj_double(int* _piAddress, int* _piKey);
-int conj_poly(int* _piAddress);
+int conj_poly(int* _piAddress, int* _piKey);
 
-int C2F(sci_conj) (char *fname, int* _piKey)
+int sci_conj(char *fname, int* _piKey)
 {
 	int iRet		= 0;
 	int* piAddr	= NULL;
@@ -40,7 +41,7 @@ int C2F(sci_conj) (char *fname, int* _piKey)
 		iRet = conj_double(piAddr, _piKey);
 		break;
 	case sci_poly : 
-		iRet = conj_poly(piAddr);
+		iRet = conj_poly(piAddr, _piKey);
 		break;
 	default : 
 		OverLoad(1);
@@ -104,7 +105,7 @@ int conj_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int conj_poly(int* _piAddress)
+int conj_poly(int* _piAddress, int* _piKey)
 {
 	int i;
 	int iRet							= 0;

@@ -16,9 +16,10 @@
 #include "../../core/src/c/parse.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log1p) (char *fname,int* _piKey)
+int sci_log1p(char *fname,int* _piKey)
 {
 	int i;
 	int iRet						= 0;
@@ -54,7 +55,7 @@ int C2F(sci_log1p) (char *fname,int* _piKey)
 	}
 	else
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
 		if(iRet)
 		{
 			return 1;

@@ -102,7 +102,7 @@ int C2F(sci_setenv)(char *fname, int* _piKey)
 	FREE(pStVarTwo); pStVarTwo = NULL;
 
 	m_out1 = 1; n_out1 = 1;
-	createMatrixOfBoolean(Rhs + 1, m_out1, n_out1, &result);
+	createMatrixOfBoolean(Rhs + 1, m_out1, n_out1, &result, _piKey);
 	LhsVar(1) = Rhs + 1; 
 
 	C2F(putlhsvar)();

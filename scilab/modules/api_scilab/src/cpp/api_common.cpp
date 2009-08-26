@@ -72,18 +72,7 @@ int getNamedVarDimension(char *_pstName, int* _piRows, int* _piCols)
 /*--------------------------------------------------------------------------*/
 int getVarAddressFromPosition(int _iVar, int** _piAddress, int* _piKey)
 {
-	//int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
-	//int iValType	= *istk(iAddr);
-	//if(iValType < 0)
-	//{
-	//	iAddr				= iadr(*istk(iAddr + 1));
-	//}
-
-	//*_piAddress		= istk(iAddr);
-	//intersci_.ntypes[_iVar - 1] = '$' ;
-
-	GatewayParam* pGW = types::GatewayParam::getInstance();
-	types::GatewayStruct *pStr =  pGW->get(_piKey);
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
 	if(pStr->m_pin->size() < _iVar)
 	{

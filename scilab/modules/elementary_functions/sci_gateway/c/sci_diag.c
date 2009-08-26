@@ -15,15 +15,16 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 int getStartPosition(int _iPos, int* _piStartPos, int* _piKey);
 
 int diag_double(int* _piAddress, int _iStartPos, int* _piKey);
-int diag_poly(int* _piAddress, int _iStartPos);
+int diag_poly(int* _piAddress, int* _piKey);
 
-extern int C2F(sci_pdiag) (char *fname,unsigned long fname_len);
+extern int C2F(sci_pdiag) (char *fname, int* _piKey);
 
-int C2F(sci_diag) (char *fname, int *_piKey)
+int sci_diag(char *fname, int *_piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
@@ -58,7 +59,7 @@ int C2F(sci_diag) (char *fname, int *_piKey)
 		iRet = diag_double(piAddr, _iStartPos, _piKey);
 		break;
 	case sci_poly :
-		iRet = diag_poly(piAddr, _iStartPos);
+		iRet = diag_poly(piAddr, _piKey);
 		break;
 	default :
 		OverLoad(1);
@@ -224,9 +225,9 @@ int diag_double(int* _piAddress, int _iStartPos, int* _piKey)
 	return 0;
 }
 
-int diag_poly(int* _piAddress, int _iStartPos)
+int diag_poly(int* _piAddress, int* _piKey)
 {
-	C2F(sci_pdiag)("diag", 4);
+	C2F(sci_pdiag)("diag", _piKey);
 	return 0;
 }
 

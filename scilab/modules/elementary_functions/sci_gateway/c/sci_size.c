@@ -16,13 +16,14 @@
 #include "stdio.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 int size_matrix(int* _piAddress, int _iMode);
 int size_list(int* _piAddress);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_size) (char *fname, int* _piKey)
+int sci_size(char *fname, int* _piKey)
 {
 	int iRet		= 0;
 	int iMode		= 0;

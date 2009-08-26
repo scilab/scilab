@@ -15,13 +15,14 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
-int real_poly(int* _piAddress);
-int real_sparse(int* _piAddress);
+int real_poly(int* _piAddress, int* _piKey);
+int real_sparse(int* _piAddress, int* _piKey);
 int real_double(int* _piAddress, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_real) (char *fname, int* _piKey)
+int sci_real(char *fname, int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -41,10 +42,10 @@ int C2F(sci_real) (char *fname, int* _piKey)
 		iRet = real_double(piAddr, _piKey);
 		break;
 	case sci_poly :
-		iRet = real_poly(piAddr);
+		iRet = real_poly(piAddr, _piKey);
 		break;
 	case sci_sparse :
-		iRet = real_sparse(piAddr);
+		iRet = real_sparse(piAddr, _piKey);
 		break;
 	default:
 		OverLoad(1);
@@ -60,7 +61,7 @@ int C2F(sci_real) (char *fname, int* _piKey)
 	return 0;
 }
 
-int real_poly(int* _piAddress)
+int real_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;
@@ -168,7 +169,7 @@ int real_poly(int* _piAddress)
 	return 0;
 }
 
-int real_sparse(int* _piAddress)
+int real_sparse(int* _piAddress, int* _piKey)
 {
 	int i,j,x,y;
 	int iRet						= 0;

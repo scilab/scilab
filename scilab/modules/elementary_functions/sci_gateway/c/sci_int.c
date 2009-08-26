@@ -14,11 +14,12 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 int int_double(int* _piAddress, int* _piKey);
-int int_poly(int* _piAddress);
+int int_poly(int* _piAddress, int* _piKey);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_int) (char *fname,int* _piKey)
+int sci_int(char *fname,int* _piKey)
 {
 	int iRet						= 0;
 
@@ -39,7 +40,7 @@ int C2F(sci_int) (char *fname,int* _piKey)
 		iRet = int_double(piAddr, _piKey);
 		break;
 	case sci_poly :
-		iRet = int_poly(piAddr);
+		iRet = int_poly(piAddr, _piKey);
 	default :
 		OverLoad(1);
 		return 0;
@@ -109,7 +110,7 @@ int int_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int int_poly(int* _piAddress)
+int int_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;

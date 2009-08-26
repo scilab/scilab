@@ -11,6 +11,7 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include <stdlib.h>
 #include "gw_polynomials.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
@@ -32,7 +33,7 @@ static gw_generic_table Tab[POLYNOMIALS_TAB_SIZE]=
 {C2F(sci_simp),"simp"},
 {C2F(sci_psum),"sum"},
 {C2F(sci_pprod),"prod"},
-{C2F(sci_pdiag),"diag"},
+{NULL, ""}, //"diag"
 {C2F(sci_ptriu),"triu"},
 {C2F(sci_ptril),"tril"},
 {C2F(sci_bezout),"bezout"},

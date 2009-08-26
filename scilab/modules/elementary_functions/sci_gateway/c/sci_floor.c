@@ -14,11 +14,12 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
-int floor_poly(int* _piAddress);
+int floor_poly(int* _piAddress, int* _piKey);
 int floor_double(int* _piAddress, int* _piKey);
 
-int C2F(sci_floor) (char *fname,int* _piKey)
+int sci_floor(char *fname,int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -38,7 +39,7 @@ int C2F(sci_floor) (char *fname,int* _piKey)
 		iRet = floor_double(piAddr, _piKey);
 		break;
 	case sci_poly :
-		iRet = floor_poly(piAddr);
+		iRet = floor_poly(piAddr, _piKey);
 		break;
 	default:
 		OverLoad(1);
@@ -109,7 +110,7 @@ int floor_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int floor_poly(int* _piAddress)
+int floor_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;
@@ -175,6 +176,12 @@ int floor_poly(int* _piAddress)
 				pdblImgRet[i][j] = dfloors(pdblImg[i][j]);
 			}
 		}
+
+		iRet = createComplexMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
+		if(iRet)
+		{
+			return 1;
+		}
 	}
 	else
 	{
@@ -212,6 +219,12 @@ int floor_poly(int* _piAddress)
 			{
 				pdblRealRet[i][j] = dfloors(pdblReal[i][j]);
 			}
+		}
+
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		if(iRet)
+		{
+			return 1;
 		}
 	}
 	return 0;

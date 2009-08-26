@@ -104,8 +104,7 @@ int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdbl
 
 int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int* _piKey)
 {
-	GatewayParam* pGW = types::GatewayParam::getInstance();
-	types::GatewayStruct *pStr =  pGW->get(_piKey);
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
 	int iNewPos			= _iVar - (int)pStr->m_pin->size() - 1;
 

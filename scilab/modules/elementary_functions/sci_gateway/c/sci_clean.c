@@ -15,19 +15,19 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 
 /*Some call to other module ( polynomial et sparse*/
 extern int C2F(sci_cleanp) (char *fname, int* _piKey);
 extern int C2F(sci_spclean) (char *fname, int* _piKey);
-extern int C2F(ref2val) (void);
 extern double C2F(dasum)();
 
 int clean_double(int* _piAddress, int* _piKey);
 int clean_poly(int* _piAddress, int* _piKey);
 int clean_sparse(int* _piAddress, int* _piKey);
 
-int C2F(sci_clean) (char *fname, int* _piKey)
+int sci_clean(char *fname, int* _piKey)
 {
 	int iRet			= 0;
 
@@ -54,7 +54,7 @@ int C2F(sci_clean) (char *fname, int* _piKey)
 		iRet = clean_sparse(piAddr1, _piKey);
 		break;
 	default :
-		OverLoad(1);
+//		OverLoad(1);
 		return 0;
 	}
 	return 0;
@@ -68,7 +68,6 @@ int clean_poly(int* _piAddress, int* _piKey)
 
 int clean_sparse(int* _piAddress, int* _piKey)
 {
-	C2F(ref2val)();
 	C2F(sci_spclean)("clean", _piKey);
 	return 0;
 }

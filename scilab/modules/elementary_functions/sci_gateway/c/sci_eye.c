@@ -14,8 +14,10 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
+
 /*--------------------------------------------------------------------------*/
-int C2F(sci_eye) (char *fname, int* _piKey)
+int sci_eye(char *fname, int* _piKey)
 {
 	int iRet							= 0;
 	int iRows							= 0;
@@ -26,7 +28,7 @@ int C2F(sci_eye) (char *fname, int* _piKey)
 
 	double *pdblRealRet		= NULL;
 
-	Rhs = Max(Rhs,0);
+	//Rhs = Max(Rhs,0);
 
 	CheckRhs(0,2);
 	CheckLhs(1,1);

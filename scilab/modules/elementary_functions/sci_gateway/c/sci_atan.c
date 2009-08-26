@@ -17,9 +17,9 @@
 #include "../../core/src/c/parse.h"
 #include "Scierror.h"
 #include "api_scilab.h"
-
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_atan) (char *fname, int* _piKey)
+int sci_atan(char *fname, int* _piKey)
 {
 	int i;
 	int iRet								= 0;
@@ -44,7 +44,7 @@ int C2F(sci_atan) (char *fname, int* _piKey)
 	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(getVarType(piAddr1) != sci_matrix)
 	{
-		OverLoad(1);
+//		OverLoad(1);
 		return 0;
 	}
 

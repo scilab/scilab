@@ -21,7 +21,9 @@
 
 #include "CallScilab.h"
 #include "stack-c.h"
+#include "alltypes.hxx"
 
+using namespace types;
 
 /********************************/
 /*   boolean matrix functions   */
@@ -73,16 +75,27 @@ int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
 	return 0;
 }
 
-int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
+int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool, int*_piKey)
 {
-	int* piBool		= NULL;
-	int iRet = allocMatrixOfBoolean(_iVar, _iRows, _iCols, &piBool);
-	if(iRet)
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
+
+	int iNewPos			= _iVar - (int)pStr->m_pin->size() - 1;
+
+	bool *pbBool	= NULL;
+	Bool *pbool		= new Bool(_iRows, _iCols, &pbBool);
+
+	for(int i = 0 ; i < _iRows * _iCols ; i++)
 	{
-		return 1;
+		pbBool[i]		= _piBool[i] == 0 ? false : true;
 	}
 
-	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
+	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
+	{
+		pStr->m_pout->push_back(NULL);
+	}
+
+	(*pStr->m_pout)[iNewPos] = pbool;
+
 	return 0;
 }
 

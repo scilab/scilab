@@ -18,8 +18,6 @@ using std::string;
 using ast::Exp;
 using ast::ExecVisitor;
 
-//std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List);
-
 namespace ast
 {
 	void ExecVisitor::visit (const AssignExp  &e)
@@ -29,20 +27,21 @@ namespace ast
 		ExecVisitor* execMeR = new ExecVisitor();
 		try
 		{
-			/*getting what to assign*/
-			e.right_exp_get().accept(*execMeR);
+			/*get king of left hand*/
+			const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
+			const AssignListExp *pList	= dynamic_cast<const AssignListExp*>(&e.left_exp_get());
+			const CallExp *pCall				= dynamic_cast<const CallExp*>(&e.left_exp_get());
 
-			/*get symbol*/
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
-			if(Var == NULL)
-			{//dynamic_cast failed : left operand is not a SimpleVar ;)
+			if(pCall)
+			{//x(?) = ?
 				bool bNew								= false;
-				CallExp *CallVar				= (CallExp *)(&e.left_exp_get());
-				int iProductElem				= (int)CallVar->args_get().size();
-				Var											= (SimpleVar*)&CallVar->name_get();
-				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
+				int iProductElem				= (int)pCall->args_get().size();
+				pVar										= (SimpleVar*)&pCall->name_get();
+				InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
 				bool bSeeAsVector				= iProductElem == 1;
 
+				/*getting what to assign*/
+				e.right_exp_get().accept(*execMeR);
 				if(pIT == NULL)
 				{//Var doesn't exist, create it with good dimensions
 					bNew = true;
@@ -58,7 +57,7 @@ namespace ast
 				int *piIndexSeq		= NULL;
 				int *piMaxDim			= NULL;
 				int *piDimSize			= new int[iProductElem];
-				int iTotalCombi		= GetIndexList(CallVar->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+				int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
 				/*I have  the indexlist expanded and the max index*/
 
@@ -139,10 +138,12 @@ namespace ast
 							if(pIn->cols_get() == 1)
 							{
 								pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
+								pOut->zero_set();
 							}
 							else if(pIn->rows_get() == 1)
 							{
 								pOut = new Double(1, piMaxDim[0], pIn->isComplex());
+								pOut->zero_set();
 							}
 							else
 							{
@@ -304,13 +305,13 @@ namespace ast
 
 						if(bNew)
 						{
-							symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pOut));
+							symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
 						}
 
 						if(e.is_verbose())
 						{
 							std::ostringstream ostr;
-							ostr << Var->name_get() << " = " << std::endl;
+							ostr << pVar->name_get() << " = " << std::endl;
 							ostr << std::endl;
 							ostr << pOut->toString(10,75) << std::endl;
 							YaspWrite((char *)ostr.str().c_str());
@@ -333,28 +334,84 @@ namespace ast
 				delete piMaxDim;
 				delete[] piDimSize;
 			}
-			else
-			{//Var != NULL
-				InternalType *pVar	=	execMeR->result_get();
-				if(pVar->isList())
+			else if(pVar)
+			{// x = ?
+				/*getting what to assign*/
+				e.right_exp_get().accept(*execMeR);
+
+				if(execMeR->result_size_get() != 1)
+				{
+					std::ostringstream os;
+					os << "Lhs != Rhs";
+					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					string szErr(os.str());
+					throw szErr;
+				}
+				
+				InternalType *pIT	=	execMeR->result_get();
+				if(pIT->isImplicitList())
 				{
 					double *pData = NULL;
-					Double *pTemp = new Double(1, ((ImplicitList*)pVar)->size_get(), &pData);
-					((ImplicitList*)pVar)->extract_matrix(pData);
-					delete pVar;
-					pVar = pTemp;
+					Double *pTemp = new Double(1, ((ImplicitList*)pIT)->size_get(), &pData);
+					((ImplicitList*)pIT)->extract_matrix(pData);
+					delete pIT;
+					pIT = pTemp;
 				}
 
-				symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
+				symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
 
 				if(e.is_verbose())
 				{
 					std::ostringstream ostr;
-					ostr << Var->name_get() << " = " << std::endl;
+					ostr << pVar->name_get() << " = " << std::endl;
 					ostr << std::endl;
-					ostr << pVar->toString(10,75) << std::endl;
+					ostr << pIT->toString(10,75) << std::endl;
 					YaspWrite((char *)ostr.str().c_str());
 				}
+			}
+			else if(pList)
+			{//[x,y] = ?
+
+				size_t iLhsCount = pList->exps_get().size();
+
+				/*getting what to assign*/
+				execMeR->expected_size_set(iLhsCount);
+				e.right_exp_get().accept(*execMeR);
+
+				if(execMeR->result_size_get() != execMeR->expected_size_get())
+				{
+					std::ostringstream os;
+					os << "Incorrect assignment" << std::endl;
+					string szErr(os.str());
+					throw szErr;
+				}
+
+
+				std::list<Exp *>::const_reverse_iterator it;
+				int i = (int)iLhsCount - 1;
+				for(it = pList->exps_get().rbegin() ; it != pList->exps_get().rend() ; it++)
+				{
+					const SimpleVar *pListVar	= dynamic_cast<const SimpleVar*>((*it));
+					symbol::Context::getInstance()->put(pListVar->name_get(), *((GenericType*)execMeR->result_get(i)));
+					if(e.is_verbose())
+					{
+						std::ostringstream ostr;
+						ostr << pListVar->name_get() << " = " << std::endl;
+						ostr << std::endl;
+						ostr << execMeR->result_get(i)->toString(10,75) << std::endl;
+						YaspWrite((char *)ostr.str().c_str());
+					}
+					i--;
+				}
+
+			}
+			else
+			{//Houston ...
+				std::ostringstream os;
+				os << "unknow script form";
+				os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+				string szErr(os.str());
+				throw szErr;
 			}
 		}
 		catch(string sz)

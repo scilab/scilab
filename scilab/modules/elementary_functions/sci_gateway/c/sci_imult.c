@@ -14,9 +14,10 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imult) (char *fname,int* _piKey)
+int sci_imult(char *fname,int* _piKey)
 {
 	int i;
 	int iRet						= 0;

@@ -17,6 +17,7 @@
 #include "double.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 #ifdef _MSC_VER
 /* BUG 3863 */
@@ -96,7 +97,7 @@ extern int C2F(wexpm1)();
 extern int C2F(drot)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_expm) (char *fname, int* _piKey)
+int sci_expm(char *fname, int* _piKey)
 {
 	int iRet						= 0;
 	int iRows						= 0;
