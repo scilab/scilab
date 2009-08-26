@@ -117,7 +117,7 @@ TARGETS_ALL=macros
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
-TARGETS_ALL+=localization
+#TARGETS_ALL+=localization
 endif
 
 all-local: $(TARGETS_ALL)
@@ -162,27 +162,29 @@ icons/scilab.icns
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
-macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
-	-@( cd $(top_builddir) ; \
-	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
+macros:
+#$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+#	-@( cd $(top_builddir) ; \
+#	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+#	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
-if BUILD_HELP
-	-@if test -x $(top_builddir)/scilab-bin; then \
-		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
-	else \
-		echo "Cannot find Scilab-adv-cli binary"; \
-	fi
-else
-	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
-endif
+doc:
+#$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
+#if BUILD_HELP
+#	-@if test -x $(top_builddir)/scilab-bin; then \
+#		cd $(top_builddir);\
+#		echo "-- Building documentation (English) --"; \
+#		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+#		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
+#		echo "-- Building documentation (French) --"; \
+#		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+#		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
+#	else \
+#		echo "Cannot find Scilab-adv-cli binary"; \
+#	fi
+#else
+#	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
+#endif
 
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
@@ -262,25 +264,25 @@ endif
 # Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
 localization:
-	@echo "-- Build localization (.mo from .po) --"; \
-	MASK="modules/*/locales/"; \
-	LC="LC_MESSAGES"; \
-	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-	FILENAME="*.po*"; \
-	rm modules/*/locales/*/*~ 2> /dev/null; \
-	for LOCALE in $(ALL_LINGUAS); do \
-		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
-		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
-		if test ! -d $$PATHTO; then \
-			echo "        Creating $$PATHTO"; \
-			mkdir -p $$PATHTO; \
-		fi; \
-		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
-		$(MSGCAT) -o $$POFILE $$FILES; \
-		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-	done;
+#	@echo "-- Build localization (.mo from .po) --"; \
+#	MASK="modules/*/locales/"; \
+#	LC="LC_MESSAGES"; \
+#	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
+#	FILENAME="*.po*"; \
+#	rm modules/*/locales/*/*~ 2> /dev/null; \
+#	for LOCALE in $(ALL_LINGUAS); do \
+#		echo "        -- Building for $$LOCALE --"; \
+#		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+#		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
+#		if test ! -d $$PATHTO; then \
+#			echo "        Creating $$PATHTO"; \
+#			mkdir -p $$PATHTO; \
+#		fi; \
+#		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
+#		$(MSGCAT) -o $$POFILE $$FILES; \
+#		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
+#		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
+#	done;
 endif
 
 # Misc variable for the documentation installation
