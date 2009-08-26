@@ -26,7 +26,7 @@ function do_details(x)
     if Select==[] then // nothing selected return details on current diagram
       o = scs_m;
     elseif size(Select,1)>1 then
-      messagebox(_("Multiple selection cannot be used here"),"modal")
+      messagebox(_("Multiple selection cannot be used here"),"error","modal")
       return
     else //a single object is selected
       cwin = Select(1,2)
@@ -43,7 +43,6 @@ function do_details(x)
   else
     o = x ; 
   end
-
   tree_show(o) ; //** beware to the BWidget version ! 
 
 endfunction
