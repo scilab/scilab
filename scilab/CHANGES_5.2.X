@@ -322,9 +322,13 @@ Bug fixes:
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
-* bug 4688 fixed - listfiles("/") returned an error.
+* bug 4676 fixed - diary() removes whitespaces characters from the output of mprintf()
 
 * bug 4684 fixed - printf(), mprintf, msprintf do not properly deal with -%inf.
+
+* bug 4688 fixed - listfiles("/") returned an error.
+
+* bug 4689 fixed - diary() do not report interactive commands into the output file
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
