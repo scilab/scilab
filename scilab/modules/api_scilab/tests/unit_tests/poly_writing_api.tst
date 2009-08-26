@@ -6,15 +6,17 @@
 // =============================================================================
 
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/sparse_writing_api"));
-cd(pathconvert(TMPDIR+"/sparse_writing_api"));
+mkdir(pathconvert(TMPDIR+"/poly_writing_api"));
+cd(pathconvert(TMPDIR+"/poly_writing_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("sparse_writing",["write_sparse","write_sparse"],SCI+"/modules/core/tests/unit_tests/sparse_writing_api.c",[],[],"",cflags);
+ilib_build("poly_writing",["write_poly","write_poly"],SCI+"/modules/api_scilab/tests/unit_tests/poly_writing_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
-sp_ref = sparse([1,8;2,4;2,7;3,2],[1+4*%i,2+3*%i,3+2*%i,4+%i], [3,10]);
-sp = tonio();
-if or(sp <> sp_ref) then pause;end
+p_ref = [2 5 18 1 -4 0 0 1 -14 0 0 4 0 0 0 0 0 0;64 1 0 0 0 0 -12 0 0 2 0 32 0 0 0 0 0 8];
+l = list();
+a = write_poly();
+p = coeff(a);
+if or(p <> p_ref) then pause;end
             
         

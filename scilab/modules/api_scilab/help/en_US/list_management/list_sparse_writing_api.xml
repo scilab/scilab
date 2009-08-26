@@ -122,8 +122,8 @@ int createComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, in
         <para>This help describes how to add sparse matrix in a list.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/list_createlist_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/list_createlist_api.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
         <!--Lib_name: list_createlist-->
         <!--Func_list: list_createlist-->
         <title>Gateway Source</title>
