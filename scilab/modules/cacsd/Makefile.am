@@ -113,7 +113,6 @@ src/slicot/riccpack.f
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
-src/fortran/hhdml.f \
 src/fortran/tild.f \
 src/fortran/degl2.f \
 src/fortran/qvalz.f \
