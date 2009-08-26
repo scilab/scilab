@@ -336,4 +336,6 @@ Bug fixes:
 
 * bug 4727 fixed - The function 'length' does not return the same value in Scilab 5.1 and Scilab 4.1.2
 
+* bug 4728 fixed - The function 'strcat' does not return the same value in Scilab 5.1 and Scilab 4.1.2
+
 * bug 4732 fixed - the help page of function ss2ss has some missing part
