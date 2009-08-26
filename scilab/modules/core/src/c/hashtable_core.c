@@ -156,11 +156,21 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 					int zero = 0;
 					int j = 0;
 					htable[idx].entry.data = *scilab_funptr;
-					if (name) strcpy(htable[idx].entry.namefunction, name);
-					else strcpy(htable[idx].entry.namefunction, "");
 
-					C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
-
+					if (name)
+					{
+						strcpy(htable[idx].entry.namefunction, name);
+						C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
+					}
+					else
+					{
+						unsigned int i = 0;
+						strcpy(htable[idx].entry.namefunction, "");
+						for(i = 0; i < nsiz; i++)
+						{
+							htable[idx].entry.key[i] = key[i];
+						}
+					}
 					htable[idx].used = 1;
 					filled++;
 					return TRUE;
