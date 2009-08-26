@@ -22,7 +22,7 @@
 Tcl_Interp	*__globalTclInterp = NULL;
 __threadLock	singleInterpAccess;
 
-static initialized = 0;
+static int initialized = 0;
 
 /*
 ** Initialize the global interpreter.
