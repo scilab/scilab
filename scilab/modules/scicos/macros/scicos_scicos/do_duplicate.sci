@@ -30,7 +30,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
   
   if kc==[] then
     //** -----> It is NOT a Scicos window
-    messagebox("This window is not an active palette","modal"); 
+    messagebox(_("This window is not an active palette","error","modal")); 
     k=[]; //** this means that not valid objet was found; used as flag for the rest of the code
 
     //** -----> It is a PALETTE window
@@ -64,7 +64,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
     end
 
   else // in all the other cases 
-    messagebox("This window is not an active palette","modal")
+    messagebox(_("This window is not an active palette"),"error","modal")
     k=[]; 
     
   end //** end of the filter on windows  
@@ -76,7 +76,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
     //** the duplicate function move an empty box until the user
     //** choose a destination for the block 
 
-    xinfo("Click where you want object to be placed (right-click to cancel)");
+    xinfo(_("Click where you want object to be placed (right-click to cancel)"));
 
     [xy, sz] = (o.graphics.orig, o.graphics.sz) //** origin and size
     %xc = xy(1);  %yc = xy(2) ; //** default start position
