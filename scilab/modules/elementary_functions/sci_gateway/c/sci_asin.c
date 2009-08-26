@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-#include "api_oldStack.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 int sci_asin(char *fname, int* _piKey)
 {
