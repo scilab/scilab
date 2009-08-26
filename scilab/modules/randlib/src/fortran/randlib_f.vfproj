@@ -86,10 +86,8 @@ lib /DEF:&quot;$(InputDir)randlib_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<File RelativePath=".\ignnbn.f"/>
 		<File RelativePath=".\lennob.f"/>
 		<File RelativePath=".\phrtsd.f"/>
-		<File RelativePath=".\sdot.f"/>
 		<File RelativePath=".\setgmn.f"/>
-		<File RelativePath=".\snorm.f"/>
-		<File RelativePath=".\spofa.f"/></Filter>
+		<File RelativePath=".\snorm.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\randlib_gateway.xml"/></Files>
