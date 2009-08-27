@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr, double *di, double *z, int *ldz, double *sigmar, double *sigmai, double *workev, char *bmat, int *n, char *which, int *nev, double *tol, double *resid, int *ncv, double *v, int *ldv, int *iparam, int *ipntr, double *workd, double *workl, int *lworkl, int *info, unsigned long howmany_length, unsigned long bmat_length, unsigned long which_length);
 /*--------------------------------------------------------------------------*/
-int C2F(intdneupd)(char *fname,unsigned long fname_len)
+int sci_dneupd(char *fname,unsigned long fname_len)
 {
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;

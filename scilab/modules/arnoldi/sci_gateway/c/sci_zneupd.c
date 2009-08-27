@@ -23,7 +23,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(zneupd)();
 /*--------------------------------------------------------------------------*/
-int C2F(intzneupd)(char *fname,unsigned long fname_len)
+int sci_zneupd(char *fname,unsigned long fname_len)
 {
   int RVEC,     mRVEC,     nRVEC,      pRVEC;
   int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
