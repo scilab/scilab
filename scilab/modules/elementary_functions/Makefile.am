@@ -130,7 +130,9 @@ LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/spofa.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
-	src/fortran/linpack/wgesl.f   
+	src/fortran/linpack/wgesl.f \
+	src/fortran/linpack/dpofa.f \
+	src/fortran/linpack/util.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
