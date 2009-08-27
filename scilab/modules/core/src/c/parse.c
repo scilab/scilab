@@ -28,6 +28,7 @@
 #include "stack-def.h" /* C2F(basbrk) */
 #include "Scierror.h"
 #include "prompt.h"
+#include "dynamic_menus.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -70,7 +71,7 @@ extern int C2F(getsym)(void);
 extern int C2F(eqid)(int *,int *);
 
 extern int C2F(bexec)(char *,int *,int *);
-extern int C2F(getmen)(char *,int *,int *);
+
 
 extern int C2F(findequal)(int *);
 extern int C2F(print)(int *,int *,int *);
