@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>getdate</refname>
 
-    <refpurpose>retorna informaÃ§Ã£o sobre data e hora</refpurpose>
+    <refpurpose>retorna informação sobre data e hora</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>dt=getdate()
 x=getdate("s")
@@ -36,7 +36,7 @@ dt=getdate(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -59,7 +59,7 @@ dt=getdate(x)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <variablelist>
       <varlistentry>
@@ -73,7 +73,7 @@ dt=getdate(x)</synopsis>
               <term>dt(1)</term>
 
               <listitem>
-                <para>o ano como um nÃºmero (com o sÃ©culo) entre 0000 e 9999.
+                <para>o ano como um número (com o século) entre 0000 e 9999.
                 </para>
               </listitem>
             </varlistentry>
@@ -82,7 +82,7 @@ dt=getdate(x)</synopsis>
               <term>dt(2)</term>
 
               <listitem>
-                <para>o mÃªs do ano como um nÃºmero entre 01 e 12. </para>
+                <para>o mês do ano como um número entre 01 e 12. </para>
               </listitem>
             </varlistentry>
 
@@ -90,7 +90,7 @@ dt=getdate(x)</synopsis>
               <term>dt(3)</term>
 
               <listitem>
-                <para>o nÃºmero da semana ISO 8601 como um nÃºmero entre 01 e
+                <para>o número da semana ISO 8601 como um número entre 01 e
                 53. </para>
               </listitem>
             </varlistentry>
@@ -99,7 +99,7 @@ dt=getdate(x)</synopsis>
               <term>dt(4)</term>
 
               <listitem>
-                <para>o dia Juliano do ano como um nÃºmero entre 001 e 366.
+                <para>o dia Juliano do ano como um número entre 001 e 366.
                 </para>
               </listitem>
             </varlistentry>
@@ -108,7 +108,7 @@ dt=getdate(x)</synopsis>
               <term>dt(5)</term>
 
               <listitem>
-                <para>especifica o dia da semana como um nÃºmero decimal entre
+                <para>especifica o dia da semana como um número decimal entre
                 1 e 7 , com 1 representando domingo. </para>
               </listitem>
             </varlistentry>
@@ -117,7 +117,7 @@ dt=getdate(x)</synopsis>
               <term>dt(6)</term>
 
               <listitem>
-                <para>o dia do mÃªs como um nÃºmero entre 01 e 31. </para>
+                <para>o dia do mês como um número entre 01 e 31. </para>
               </listitem>
             </varlistentry>
 
@@ -125,7 +125,7 @@ dt=getdate(x)</synopsis>
               <term>dt(7)</term>
 
               <listitem>
-                <para>a hora do dia como um nÃºmero entre 00 e 23. </para>
+                <para>a hora do dia como um número entre 00 e 23. </para>
               </listitem>
             </varlistentry>
 
@@ -133,7 +133,7 @@ dt=getdate(x)</synopsis>
               <term>dt(8)</term>
 
               <listitem>
-                <para>o minuto da hora como um nÃºmero entre 00 e 59. </para>
+                <para>o minuto da hora como um número entre 00 e 59. </para>
               </listitem>
             </varlistentry>
 
@@ -141,7 +141,7 @@ dt=getdate(x)</synopsis>
               <term>dt(9)</term>
 
               <listitem>
-                <para>o segundo do minuto como um nÃºmero entre 00 e 59.</para>
+                <para>o segundo do minuto como um número entre 00 e 59.</para>
               </listitem>
             </varlistentry>
 
@@ -149,7 +149,7 @@ dt=getdate(x)</synopsis>
               <term>dt(10)</term>
 
               <listitem>
-                <para>o milissegundo do segundo como um nÃºmero entre 000 e
+                <para>o milissegundo do segundo como um número entre 000 e
                 999.</para>
               </listitem>
             </varlistentry>
@@ -161,8 +161,8 @@ dt=getdate(x)</synopsis>
         <term>x=getdate("s")</term>
 
         <listitem>
-          <para>retorna um escalar com o nÃºmero de segundos desde 01/01/1970,
-          00:00 UTC (ConvenÃ§Ã£o de Tempo Unix) </para>
+          <para>retorna um escalar com o número de segundos desde 01/01/1970,
+          00:00 UTC (Convenção de Tempo Unix) </para>
         </listitem>
       </varlistentry>
 
@@ -170,8 +170,8 @@ dt=getdate(x)</synopsis>
         <term>dt=getdate(x)</term>
 
         <listitem>
-          <para>pÃµe a data dada por x (nÃºmero de segundos desde 01/01/1970,
-          00:00 UTC) no formato acima. Neste caso, dt(10) Ã© sempre igual a
+          <para>põe a data dada por x (número de segundos desde 01/01/1970,
+          00:00 UTC) no formato acima. Neste caso, dt(10) é sempre igual a
           0.</para>
         </listitem>
       </varlistentry>
@@ -184,7 +184,7 @@ dt=getdate(x)</synopsis>
     <programlisting role="example">
 
 w=getdate()
-mprintf("Ano:%d,MÃªs:%d,Dia:%d",w(1),w(2),w(6));
+mprintf("Ano:%d,Mês:%d,Dia:%d",w(1),w(2),w(6));
 
 x=getdate("s")
 getdate(x)
@@ -194,7 +194,7 @@ getdate(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="date">date</link></member>

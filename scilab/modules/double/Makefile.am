@@ -31,7 +31,8 @@ pkglib_LTLIBRARIES = libscidouble.la
 
 libscidouble_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+libscidouble_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/output_stream/includes
 
 libscidouble_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 

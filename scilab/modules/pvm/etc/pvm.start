@@ -7,30 +7,31 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// pvm module initialisation file 
-// ====================================================================
 if %pvm then
-//Load  functions libraries
-load('SCI/modules/pvm/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('pvm');
-// ====================================================================
-//add demos
-pathdemos = pathconvert(SCI+"/modules/pvm/demos/pvm.dem",%f,%t);
-add_demo(gettext("PVM parallel Toolbox"),pathdemos);
-clear pathdemos
-// ====================================================================
-if MSDOS then
-  if %pvm then
-  	configure_pvm()
-  	clear configure_pvm
-  end
+	
+	// Load  functions libraries
+	// =========================================================================
+	load('SCI/modules/pvm/macros/lib');
+
+	// Add help chapter
+	// =========================================================================
+	if WITH_HELPTOOLS then
+		add_module_help_chapter("pvm");
+	end
+	
+	// Add demos
+	// =========================================================================
+	if WITH_DEMOS then
+		pathdemos = pathconvert(SCI+"/modules/pvm/demos/pvm.dem",%f,%t);
+		add_demo(gettext("PVM parallel Toolbox"),pathdemos);
+		clear pathdemos
+	end
+	
+	if MSDOS then
+		if %pvm then
+			configure_pvm()
+			clear configure_pvm
+		end
+	end
+	
 end
-// ====================================================================
-clear path pathdemos;
-// ====================================================================
-end // if %pvm then
-// ====================================================================

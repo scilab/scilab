@@ -15,6 +15,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len)
 {
@@ -68,20 +69,7 @@ int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len)
 	LhsVar(1) = Rhs + 1;
 	C2F(putlhsvar)();
 
-	if (Variables)
-	{
-		int i = 0;
-		for( i = 0; i < sizeVariables; i++)
-		{
-			if (Variables[i])
-			{
-				FREE(Variables[i]);
-				Variables[i] = NULL;
-			}
-		}
-		FREE(Variables);
-		Variables = NULL;
-	}
+	freeArrayOfString(Variables, sizeVariables);
 
 	return 0;
 }

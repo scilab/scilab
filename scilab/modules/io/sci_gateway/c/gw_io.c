@@ -15,17 +15,17 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define IO_TAB_SIZE 18
+static gw_generic_table Tab[IO_TAB_SIZE]=
 {
 {C2F(sci_setenv),"setenv"},
 {C2F(sci_read),"read"},
 {C2F(sci_getenv),"getenv"},
 {C2F(sci_getio),"getio"},
-{C2F(sci_diary),"diary"},
+{NULL,""},
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
-{sci_export_to_hdf5,"export_to_hdf5"},
 {C2F(sci_file),"file"},
 {C2F(sci_host),"host"},
 {C2F(sci_unix),"unix"},
@@ -64,7 +64,7 @@ int gw_io(void)
 	else
 	{
 		Rhs = Max(0, Rhs);
-		callFunctionFromGateway(Tab);
+		callFunctionFromGateway(Tab,IO_TAB_SIZE);
 	}
 	return 0;
 }

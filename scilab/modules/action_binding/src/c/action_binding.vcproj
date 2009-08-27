@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,7 +6,7 @@
 	ProjectGUID="{8A654CC5-22C1-4972-A8CF-1B89F78B5383}"
 	RootNamespace="action_binding"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="0"
+
 	>
 	<Platforms>
 		<Platform

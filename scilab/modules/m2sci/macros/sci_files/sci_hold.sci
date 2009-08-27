@@ -30,7 +30,7 @@ else
       tree.name="set"
       tree.rhs=Rhs_tlist(gca_funcall,Cste("auto_clear"),Cste("on"))
     else
-      no_equivalent(msprintf(gettext("%s option."),opt.value))
+      no_equiv(msprintf(gettext("%s option."),opt.value))
     end
   else
     tree.name="mtlb_hold"

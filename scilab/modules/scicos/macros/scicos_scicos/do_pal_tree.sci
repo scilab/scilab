@@ -34,7 +34,7 @@ function scs_m = do_pal_tree(scicos_pal)
 
   tt = pal_TreeView(scs_m); //** local functions: see below in this file
 
-  cur_wd = getcwd();
+  cur_wd = pwd();
   chdir(TMPDIR);
   mputl(tt,scs_m.props.title(1)+'.tcl');
   chdir(cur_wd)

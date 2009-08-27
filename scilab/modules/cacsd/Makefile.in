@@ -62,9 +62,9 @@ subdir = modules/cacsd
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -100,30 +100,25 @@ libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
-	libscicacsd_la-hhdml.lo libscicacsd_la-tild.lo \
-	libscicacsd_la-degl2.lo libscicacsd_la-dqrdc.lo \
+	libscicacsd_la-tild.lo libscicacsd_la-degl2.lo \
 	libscicacsd_la-qvalz.lo libscicacsd_la-dfrmg.lo \
 	libscicacsd_la-hessl2.lo libscicacsd_la-rtitr.lo \
 	libscicacsd_la-watfac.lo libscicacsd_la-sszer.lo \
 	libscicacsd_la-mzdivq.lo libscicacsd_la-expan.lo \
 	libscicacsd_la-optml2.lo libscicacsd_la-wdegre.lo \
-	libscicacsd_la-phi.lo libscicacsd_la-dgeco.lo \
-	libscicacsd_la-ricd.lo libscicacsd_la-shrslv.lo \
-	libscicacsd_la-qhesz.lo libscicacsd_la-rilac.lo \
-	libscicacsd_la-scaleg.lo libscicacsd_la-arl2.lo \
-	libscicacsd_la-wesidu.lo libscicacsd_la-dzdivq.lo \
-	libscicacsd_la-arl2a.lo libscicacsd_la-wgeco.lo \
+	libscicacsd_la-phi.lo libscicacsd_la-ricd.lo \
+	libscicacsd_la-shrslv.lo libscicacsd_la-qhesz.lo \
+	libscicacsd_la-rilac.lo libscicacsd_la-scaleg.lo \
+	libscicacsd_la-arl2.lo libscicacsd_la-wesidu.lo \
+	libscicacsd_la-dzdivq.lo libscicacsd_la-arl2a.lo \
 	libscicacsd_la-lq.lo libscicacsd_la-outl2.lo \
 	libscicacsd_la-dhetr.lo libscicacsd_la-domout.lo \
 	libscicacsd_la-rootgp.lo libscicacsd_la-feq.lo \
-	libscicacsd_la-dgedi.lo libscicacsd_la-fout.lo \
-	libscicacsd_la-deg1l2.lo libscicacsd_la-modul.lo \
-	libscicacsd_la-scapol.lo libscicacsd_la-wgesl.lo \
+	libscicacsd_la-fout.lo libscicacsd_la-deg1l2.lo \
+	libscicacsd_la-modul.lo libscicacsd_la-scapol.lo \
 	libscicacsd_la-dlslv.lo libscicacsd_la-giv.lo \
-	libscicacsd_la-dqrsl.lo libscicacsd_la-storl2.lo \
-	libscicacsd_la-dqrsm.lo libscicacsd_la-calsca.lo \
-	libscicacsd_la-qitz.lo libscicacsd_la-front.lo \
-	libscicacsd_la-wgefa.lo
+	libscicacsd_la-storl2.lo libscicacsd_la-calsca.lo \
+	libscicacsd_la-qitz.lo libscicacsd_la-front.lo
 am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-tb01wd.lo libscicacsd_la-ib01py.lo \
 	libscicacsd_la-mb01rx.lo libscicacsd_la-ib01md.lo \
@@ -287,6 +282,9 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_CFLAGS = @HDF5_CFLAGS@
+HDF5_ENABLE = @HDF5_ENABLE@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -309,6 +307,7 @@ JAVA_JNI_LIBS = @JAVA_JNI_LIBS@
 JDB = @JDB@
 JEUCLID_CORE = @JEUCLID_CORE@
 JHALL = @JHALL@
+JHDF5 = @JHDF5@
 JOGL = @JOGL@
 JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
@@ -356,8 +355,8 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
+PVM_ARCH = @PVM_ARCH@
 PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
@@ -380,7 +379,6 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -564,10 +562,8 @@ src/slicot/riccpack.f
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
-src/fortran/hhdml.f \
 src/fortran/tild.f \
 src/fortran/degl2.f \
-src/fortran/dqrdc.f \
 src/fortran/qvalz.f \
 src/fortran/dfrmg.f \
 src/fortran/hessl2.f \
@@ -579,7 +575,6 @@ src/fortran/expan.f \
 src/fortran/optml2.f \
 src/fortran/wdegre.f \
 src/fortran/phi.f \
-src/fortran/dgeco.f \
 src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
@@ -589,28 +584,22 @@ src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
 src/fortran/arl2a.f \
-src/fortran/wgeco.f \
 src/fortran/lq.f \
 src/fortran/outl2.f \
 src/fortran/dhetr.f \
 src/fortran/domout.f \
 src/fortran/rootgp.f \
 src/fortran/feq.f \
-src/fortran/dgedi.f \
 src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/wgesl.f \
 src/fortran/dlslv.f \
 src/fortran/giv.f \
-src/fortran/dqrsl.f \
 src/fortran/storl2.f \
-src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
-src/fortran/front.f \
-src/fortran/wgefa.f
+src/fortran/front.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \
 sci_gateway/c/sci_gspec.c \
@@ -660,6 +649,7 @@ sci_gateway/fortran/sci_f_rankqr.f
 
 libscicacsd_la_FFLAGS = -I$(srcdir)/includes/
 libscicacsd_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
@@ -1017,17 +1007,11 @@ libscicacsd_la-jacl2.lo: src/fortran/jacl2.f
 libscicacsd_la-onface.lo: src/fortran/onface.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
 
-libscicacsd_la-hhdml.lo: src/fortran/hhdml.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-hhdml.lo `test -f 'src/fortran/hhdml.f' || echo '$(srcdir)/'`src/fortran/hhdml.f
-
 libscicacsd_la-tild.lo: src/fortran/tild.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
 
 libscicacsd_la-degl2.lo: src/fortran/degl2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
-
-libscicacsd_la-dqrdc.lo: src/fortran/dqrdc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrdc.lo `test -f 'src/fortran/dqrdc.f' || echo '$(srcdir)/'`src/fortran/dqrdc.f
 
 libscicacsd_la-qvalz.lo: src/fortran/qvalz.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
@@ -1062,9 +1046,6 @@ libscicacsd_la-wdegre.lo: src/fortran/wdegre.f
 libscicacsd_la-phi.lo: src/fortran/phi.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
 
-libscicacsd_la-dgeco.lo: src/fortran/dgeco.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dgeco.lo `test -f 'src/fortran/dgeco.f' || echo '$(srcdir)/'`src/fortran/dgeco.f
-
 libscicacsd_la-ricd.lo: src/fortran/ricd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
 
@@ -1092,9 +1073,6 @@ libscicacsd_la-dzdivq.lo: src/fortran/dzdivq.f
 libscicacsd_la-arl2a.lo: src/fortran/arl2a.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
 
-libscicacsd_la-wgeco.lo: src/fortran/wgeco.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgeco.lo `test -f 'src/fortran/wgeco.f' || echo '$(srcdir)/'`src/fortran/wgeco.f
-
 libscicacsd_la-lq.lo: src/fortran/lq.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
 
@@ -1113,9 +1091,6 @@ libscicacsd_la-rootgp.lo: src/fortran/rootgp.f
 libscicacsd_la-feq.lo: src/fortran/feq.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
 
-libscicacsd_la-dgedi.lo: src/fortran/dgedi.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dgedi.lo `test -f 'src/fortran/dgedi.f' || echo '$(srcdir)/'`src/fortran/dgedi.f
-
 libscicacsd_la-fout.lo: src/fortran/fout.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
 
@@ -1128,23 +1103,14 @@ libscicacsd_la-modul.lo: src/fortran/modul.f
 libscicacsd_la-scapol.lo: src/fortran/scapol.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
 
-libscicacsd_la-wgesl.lo: src/fortran/wgesl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgesl.lo `test -f 'src/fortran/wgesl.f' || echo '$(srcdir)/'`src/fortran/wgesl.f
-
 libscicacsd_la-dlslv.lo: src/fortran/dlslv.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
 
 libscicacsd_la-giv.lo: src/fortran/giv.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
 
-libscicacsd_la-dqrsl.lo: src/fortran/dqrsl.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrsl.lo `test -f 'src/fortran/dqrsl.f' || echo '$(srcdir)/'`src/fortran/dqrsl.f
-
 libscicacsd_la-storl2.lo: src/fortran/storl2.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
-
-libscicacsd_la-dqrsm.lo: src/fortran/dqrsm.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dqrsm.lo `test -f 'src/fortran/dqrsm.f' || echo '$(srcdir)/'`src/fortran/dqrsm.f
 
 libscicacsd_la-calsca.lo: src/fortran/calsca.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
@@ -1154,9 +1120,6 @@ libscicacsd_la-qitz.lo: src/fortran/qitz.f
 
 libscicacsd_la-front.lo: src/fortran/front.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
-
-libscicacsd_la-wgefa.lo: src/fortran/wgefa.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgefa.lo `test -f 'src/fortran/wgefa.f' || echo '$(srcdir)/'`src/fortran/wgefa.f
 
 libscicacsd_la-sb04pd.lo: src/slicot/sb04pd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="input" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>input</refname>
+
+    <refpurpose>prompt para entrada do usuário</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>x = input(message [, "string"])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>message</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"string"</term>
+
+        <listitem>
+          <para>string <literal>"string"</literal> (pode ser abreviado para
+          <literal>"s"</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>número real (ou string se <literal>"string"</literal> estiver
+          na seqüência de chamamento)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>input(message)</literal> fornece ao usuário o prompt no
+    string de texto e então espera por entrada no teclado. A entrada pode ser
+    a expressão avaliada por <link linkend="evstr">evstr</link>. Se apenas um
+    retorno-de-carro for fornecido no prompt,
+    <literal>input(message)</literal> retorna uma matriz vazia.</para>
+
+    <para>Chamado com dois argumentos, a saída é um string que é a expressão
+    fornecida pelo teclado. Se apenas um retorno de carro for fornecido,
+    <literal>input(message)</literal> retorna um único espaço em branco
+    <literal>" "</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//x=input("Quantas iterações")
+//x=input("Qual o seu nome?","string")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="evstr">evstr</link></member>
+
+      <member><link linkend="x_dialog">x_dialog</link></member>
+
+      <member><link linkend="x_mdialog">x_mdialog</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

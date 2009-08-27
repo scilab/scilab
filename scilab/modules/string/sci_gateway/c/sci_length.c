@@ -3,6 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA 2007 - Cong WU
  * Copyright (C) INRIA 2008 - Allan CORNET
+ * Copyright (C) DIGITEO 2009 - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,6 +30,10 @@
 #include <stdio.h>
 #include "gw_string.h"
 #include "stack-c.h"
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+#include "api_list.h"
 #include "core_math.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -37,206 +42,276 @@
 #include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
-static int lengthStrings(int RhsPosition);
+static int lengthStrings(int *piAddressVar);
 static int lengthOthers(char *fname);
-static int lengthfunction(int RhsPosition,char *VariableType);
-static int lengthPoly(int RhsPosition);
+static int lengthDefault(int *piAddressVar);
+static int lengthList(int *piAddressVar);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
-static int lengthSparse(int RhsPosition);
+static int lengthSparse(int *piAddressVar);
 /*----------------------------------------------------------------------------*/
 int sci_length(char *fname,unsigned long fname_len)
 {
-	int lenghtValue = 0;
-	int m_out = 1, n_out = 1, l_out = 0;
+	int *piAddressVarOne = NULL;
+	int iScilabType = 0;
 
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+	/* get Address of inputs */
+	int ierr = getVarAddressFromPosition(1, &piAddressVarOne);
 
-	switch ( GetType(1) )
+	iScilabType = getVarType(piAddressVarOne);
+
+	switch ( iScilabType )
 	{
-		case sci_poly :
-			lenghtValue = lengthPoly(1);
+	case sci_strings :
+		{
+			return lengthStrings(piAddressVarOne);
+		}
+	case sci_sparse :
+		{
+			return lengthSparse(piAddressVarOne);
+		}
+	case sci_list :
+	case sci_tlist :
+	case sci_mlist :
+		{
+			return lengthList(piAddressVarOne);
+		}
 		break;
 
-		case sci_strings :
-			/* to optimize output, we write directly on stack */
-			return lengthStrings(1);
-		break;
-
-		case sci_matrix :
-			lenghtValue = lengthfunction(1,MATRIX_OF_DOUBLE_DATATYPE);
-		break;
-
-		case sci_boolean :
-			lenghtValue = lengthfunction(1,MATRIX_OF_BOOLEAN_DATATYPE);
-		break;
-
-		case sci_sparse :
-			lenghtValue = lengthSparse(1);
-		break;
-
-		case sci_ints :
-			lenghtValue = lengthfunction(1,MATRIX_OF_INTEGER_DATATYPE);
-		break;
-
-		case sci_handles :
-			lenghtValue = lengthfunction(1,GRAPHICAL_HANDLE_DATATYPE);
-		break;
-
-		case sci_list :
-			lenghtValue = lengthfunction(1,LIST_DATATYPE);
-		break;
-
-		case sci_tlist :
-			lenghtValue = lengthfunction(1,TYPED_LIST_DATATYPE);
-		break;
-
-		case sci_mlist :
-			lenghtValue = lengthfunction(1,MATRIX_ORIENTED_TYPED_LIST_DATATYPE);
-		break;
-
-		case sci_lufact_pointer :
-			lenghtValue = lengthfunction(1,SCILAB_POINTER_DATATYPE);
-		default :
-			return lengthOthers(fname);
+	case sci_matrix : case sci_poly : case sci_boolean : case sci_boolean_sparse : 
+	case sci_matlab_sparse : case sci_ints : case sci_handles : 
+		{
+			return lengthDefault(piAddressVarOne);
+		}
+	default :
+		return lengthOthers(fname);
 		break;
 	}
-
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m_out,&n_out, &l_out);
-	stk(l_out)[0] = (double)(lenghtValue);
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
-
-	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int lengthStrings(int RhsPosition)
+static int lengthStrings(int *piAddressVar)
 {
-	char **Input_StringMatrix = NULL;
-	int Row_Num = 0,Col_Num = 0,mn = 0;
+	int m1 = 0, n1 = 0;
+	char **pStVarOne = NULL;
+	int *lenStVarOne = NULL;
 
-	/* When input character string or matrix of strings. */
-	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-	mn = Row_Num*Col_Num;
+	int m_out = 0, n_out = 0;
+	int *piAddressOut = NULL;
+	double *pdOut = NULL;
+	int i = 0;
 
-	if (Input_StringMatrix)
+	int ierr = 0;
+
+	if ( getVarType(piAddressVar) != sci_strings )
 	{
-		int outIndex = 0 ;
-		int x = 0;
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),"length",1);
+		return 0;
+	}
 
-		CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
-		for  ( x = 0; x < mn; x++ )
+	ierr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
+	if (ierr)
+	{
+		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+		return 0;
+	}
+
+	lenStVarOne = (int*)MALLOC(sizeof(int) * (m1*n1));
+	if (lenStVarOne == NULL)
+	{
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
+
+	ierr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
+	if (ierr)
+	{
+		FREE(lenStVarOne); lenStVarOne = NULL;
+		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+		return 0;
+	}
+
+	pStVarOne = (char**)MALLOC(sizeof(char*) * (m1*n1));
+	if (pStVarOne == NULL)
+	{
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
+
+	for (i = 0; i < m1 * n1; i++)
+	{
+		pStVarOne[i] = (char*)MALLOC(sizeof(char) * (lenStVarOne[i] + 1));
+		if (pStVarOne[i] == NULL)
 		{
-			if (Input_StringMatrix[x])
+			FREE(lenStVarOne); lenStVarOne = NULL;
+			freeArrayOfString(pStVarOne, i);
+			Scierror(999,_("%s: No more memory.\n"),"length");
+			return 0;
+		}
+	}
+
+	ierr = getMatrixOfString(piAddressVar, &m1, &n1, lenStVarOne, pStVarOne);
+	if (ierr)
+	{
+		FREE(lenStVarOne); lenStVarOne = NULL;
+		freeArrayOfString(pStVarOne, m1 * n1);
+		Scierror(999,_("%s: impossible to get dimensions of this matrix.\n"),"length");
+		return 0;
+	}
+
+	m_out = m1;  n_out = n1;
+	pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
+
+	if (pdOut == NULL)
+	{
+		FREE(lenStVarOne); lenStVarOne = NULL;
+		freeArrayOfString(pStVarOne, m1 * n1);
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
+
+	for (i = 0; i < m_out * n_out; i++)
+	{
+		int clen = (int)strlen(pStVarOne[i]);
+		int scilen = lenStVarOne[i];
+
+		int trueLength = 0;
+
+		wchar_t *wcStr = NULL;
+
+		if (scilen > clen)  
+		{
+			int j = 0;
+			/* bug 4727 */
+			/* A scilab string is a array of characters */
+			/* we can put '\0' in a scilab string */
+			for (j = 0; j < lenStVarOne[i]; j++)
 			{
-				wchar_t *wcLine = to_wide_string(Input_StringMatrix[x]);
-				if (wcLine)
+				if (pStVarOne[i][j] == 0) 
 				{
-					stk(outIndex)[x] = (int) wcslen(wcLine);
-					FREE(wcLine); wcLine = NULL;
-				}
-				else
-				{
-					stk(outIndex)[x] = -1;
+					pStVarOne[i][j] = ' ';
 				}
 			}
-			else
+
+			wcStr = to_wide_string(pStVarOne[i]);
+			if (wcStr) 
 			{
-				stk(outIndex)[x] = 0;
+				trueLength = (int) wcslen(wcStr);
+				FREE(wcStr); wcStr = NULL;
+			}
+		}
+		else 
+		{
+			wcStr = to_wide_string(pStVarOne[i]);
+			if (wcStr) 
+			{
+				trueLength = (int) wcslen(wcStr);
+				FREE(wcStr); wcStr = NULL;
 			}
 		}
 
-		LhsVar(1) = Rhs+1 ;
-		C2F(putlhsvar)();
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+		pdOut[i] = (double)trueLength;
 	}
-	else
-	{
-		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-		Scierror(999,_("%s: No more memory.\n"),"length");
-	}
+
+	freeArrayOfString(pStVarOne,  m_out * n_out);
+
+	FREE(lenStVarOne); lenStVarOne = NULL;
+
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	LhsVar(1) = Rhs + 1; 
+	C2F(putlhsvar)();
+
+	FREE(pdOut); pdOut = NULL;
 	return 0;
+	
 }
 /*--------------------------------------------------------------------------*/
 static int lengthOthers(char *fname)
 {
-	/* unknow type */
+	/* unknown type */
 	Scierror(999, _("%s: Wrong type for input argument(s).\n"),fname);
 	return 0;
-}
-/*--------------------------------------------------------------------------*/
-static int lengthfunction(int RhsPosition,char *VariableType)
-{
-	int m = 0, n = 0, l = 0;
-	int mn = 0;
-
-	GetRhsVar(RhsPosition,VariableType,&m,&n,&l);
-	mn = m * n;
-
-	return mn;
-}
-/*--------------------------------------------------------------------------*/
-static int lengthPoly(int RhsPosition)
-{
-      int m = 0, n = 0; /* matrix size */
-      int mn = 0; /* m*n */
-
-      int il = 0; int ilrd = 0;
-      int l1 = 0;
-
-      int lw = RhsPosition + Top - Rhs;
-
-      l1 = *Lstk(lw);
-      il = iadr(l1);
-
-      if (*istk(il ) < 0) il = iadr(*istk(il + 1));
-
-      /* get dimensions */
-      m = getNumberOfLines(il); /* row */
-      n = getNumberOfColumns(il); /* col */
-      mn = m * n ;
-
-      ilrd = il + 4;
-
-      /* readjust stack before to call createvar */
-      C2F(intersci).ntypes[RhsPosition - 1] = '$';
-      C2F(intersci).iwhere[RhsPosition - 1] = l1;
-      C2F(intersci).lad[RhsPosition - 1] = l1;
-
-      return mn;
 }
 /*--------------------------------------------------------------------------*/
 /* !!! WARNING !!! */
 /* Compatibility with Scilab 4.x */
 /* length returned is the max of dimensions of the sparse matrix max(m,n) */
 /* and not m * n */
-static int lengthSparse(int RhsPosition)
+static int lengthSparse(int *piAddressVar)
 {
-	int m = 0, n = 0; /* matrix size */
-    int lengthreturned = 0;
+	int m_out = 0, n_out = 0;
+	int *piAddressOut = NULL;
+	double *pdOut = NULL;
 
-    int il = 0; int ilrd = 0;
-    int l1 = 0;
+	int m = 0, n = 0;
+	int ierr = getVarDimension(piAddressVar, &m, &n);
 
-    int lw = RhsPosition + Top - Rhs;
+	m_out = 1;  n_out = 1;
+	pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
+	if (pdOut == NULL)
+	{
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
 
-    l1 = *Lstk(lw);
-    il = iadr(l1);
+	pdOut[0] = Max(m,n);
 
-    if (*istk(il ) < 0) il = iadr(*istk(il + 1));
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	LhsVar(1) = Rhs + 1; 
+	C2F(putlhsvar)();
 
-    /* get dimensions */
-    m = getNumberOfLines(il); /* row */
-    n = getNumberOfColumns(il); /* col */
+	FREE(pdOut); pdOut = NULL;
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int lengthList(int *piAddressVar)
+{
+	int m_out = 0, n_out = 0;
+	int *piAddressOut = NULL;
+	double *pdOut = NULL;
 
-	lengthreturned = Max(m,n);
+	int nbItem = 0;
+	int ierr = getListItemNumber(piAddressVar, &nbItem);
+	m_out = 1;  n_out = 1;
+	pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
+	if (pdOut == NULL)
+	{
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
 
-    ilrd = il + 4;
+	pdOut[0] = (double) nbItem;
 
-    /* readjust stack before to call createvar */
-    C2F(intersci).ntypes[RhsPosition - 1] = '$';
-    C2F(intersci).iwhere[RhsPosition - 1] = l1;
-    C2F(intersci).lad[RhsPosition - 1] = l1;
-    return lengthreturned;
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	LhsVar(1) = Rhs + 1; 
+	C2F(putlhsvar)();
+
+	FREE(pdOut); pdOut = NULL;
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int lengthDefault(int *piAddressVar)
+{
+	int m_out = 0, n_out = 0;
+	int *piAddressOut = NULL;
+	double *pdOut = NULL;
+
+	int m = 0, n = 0;
+	int ierr = getVarDimension(piAddressVar, &m, &n);
+
+	m_out = 1;  n_out = 1;
+	pdOut = (double*)MALLOC(sizeof(double) * (m_out * n_out));
+	if (pdOut == NULL)
+	{
+		Scierror(999,_("%s: No more memory.\n"),"length");
+		return 0;
+	}
+
+	pdOut[0] = m * n;
+
+	createMatrixOfDouble(Rhs + 1, m_out, n_out, pdOut);
+	LhsVar(1) = Rhs + 1; 
+	C2F(putlhsvar)();
+
+	FREE(pdOut); pdOut = NULL;
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

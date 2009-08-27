@@ -813,7 +813,8 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
 		for (i=0; i < nblegends; i++)
 		{
-			ppLegend->tabofhandles[i] = tabofhandles[i];
+ 			// Bug 4530: we must reverse the order of the handles
+			ppLegend->tabofhandles[i] = tabofhandles[nblegends - 1 - i];
 		}
 
 		ppLegend->text.fontcontext.textorientation = 0.0;
@@ -1072,6 +1073,9 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     return NULL;
   }
 
+  /* allocatePolyline created a "fake" relationship, destroy it */
+  FREE(pobj->relationShip);
+  
   if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
   {
     FREE(pobj->pfeatures);
@@ -2463,10 +2467,16 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure)
 void createDefaultRelationShip(sciPointObj * pObj)
 {
 	/* Create a new relationship structure */
-	sciRelationShip * relationShip = MALLOC(sizeof(sciRelationShip));
-	if (relationShip == NULL || sciGetEntityType(pObj) == SCI_LABEL)
+	sciRelationShip * relationShip = NULL;
+	if(sciGetEntityType(pObj) == SCI_LABEL)
 	{
 		/* labels have their relationShip stored in their text objects */
+		return;
+	}
+	
+	relationShip = MALLOC(sizeof(sciRelationShip));
+	if (relationShip == NULL)
+	{
 		return;
 	}
 

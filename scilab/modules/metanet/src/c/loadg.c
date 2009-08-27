@@ -11,6 +11,7 @@
  *
  */
 #include <errno.h>
+#include <string.h>
 #include "PATH_MAX.h"
 #include "defs.h"
 #include "hashtable_metanet.h"
@@ -18,6 +19,9 @@
 #include "localization.h"
 #include "charEncoding.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 static int CompString(char **s1,char **s2)
 {
@@ -83,12 +87,13 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
   pname = StripGraph(my_basename(path));
   *lname = (int)strlen(pname);
 
-  if ((*name = (char *)MALLOC((unsigned)sizeof(char)*(*lname + 1))) == NULL)
+  *name = strdup(pname);
+  if (*name == NULL)
   {
-    cerro(_("Running out of memory"));
-    return;
+	  cerro(_("Running out of memory"));
+	  return;
   }
-  strcpy(*name,pname);
+
   if (pname) { FREE(pname); pname=NULL;}
 #ifndef _MSC_VER
   if(!CheckGraphName(*name,dir))

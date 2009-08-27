@@ -14,6 +14,6 @@ mkdir(pathconvert(baseDir+"/test_rmdir_1",%F,%F));
 mkdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2",%F,%F));
 mkdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F));
 if ~isdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F)) then bugmes();quit;end
-res=rmdir(baseDir);
+res=rmdir(baseDir,'s');
 if ~res then bugmes();quit;end
 if isdir(baseDir) then bugmes();quit;end

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +8,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
 // Main Scilab initialisation file
-
 
 mode(-1);  // silent execution mode
 
@@ -22,9 +21,9 @@ clearglobal();
 defaultstacksize = 5000000;
 old = stacksize()
 params = sciargs();
-nparam = find(params=='-mem');
+nparam = find(params=="-mem");
 if (nparam) then
-  ierr = execstr('newstacksize='+params(nparam+1),'errcatch');
+  ierr = execstr("newstacksize="+params(nparam+1),"errcatch");
   if (ierr == 0) then
     if old(1) <> newstacksize then
       stacksize(newstacksize);
@@ -49,22 +48,14 @@ ieee(0);
 // boolean variables
 %T = %t;
 %F = %f;
-// Startup message  ===================================================
-verbose = (sciargs()<>"-nb");
-if verbose then
-  if ~fromjava() & ~fromc() then
-    banner();
-    write(%io(2),[' ';' ';gettext("Startup execution:")]);
-  end
-end
 
-// Load scilab functions libraries  ===================================
-if verbose then
-  if ~fromjava() & ~fromc() then
-    write(%io(2),gettext("  loading initial environment"));
-  end
+// Startup message  ===================================================
+
+if (sciargs()<>"-nb") & ~fromjava() & ~fromc() then
+  banner();
+  write(%io(2),[' ';' ';gettext("Startup execution:")]);
+  write(%io(2),gettext("  loading initial environment"));
 end
-clear verbose
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;
@@ -75,7 +66,7 @@ global %modalWarning;
 clear %modalWarning;
 
 // Create some configuration variables ================================
-PWD = getcwd();
+PWD = pwd();
 
 // Define Initial demo tables  ========================================
 // demolist is a two column matrix of strings
@@ -96,19 +87,20 @@ clear larg args L
 // loads modules ======================================================
 
 modules = getmodules();
-index = size(modules);
-for i = 1:index(1) do
- exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
+WITH_HELPTOOLS = ((with_module("helptools"))  & (getscilabmode() <> "NWNI"));
+WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
+
+for i=1:size(modules,"*")
+  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".start",-1);
 end
 
-clear modules index i add_demo add_help_chapter add_module_help_chapter
+clear modules i add_demo add_help_chapter add_module_help_chapter WITH_HELPTOOLS WITH_DEMOS
 
 // Create some configuration variables ================================
-home = getenv('HOME',SCI);
+home = getenv("HOME",SCI);
 if MSDOS then
   // path of scilab main directory for Windows
-  WSCI = getlongpathname(pathconvert(SCI,%f,%f,'w'));
-  clear pathconvert
+  WSCI = getlongpathname(pathconvert(SCI,%f,%f,"w"));
 else
   if getenv('PRINTERS','ndef') == "ndef" then
     setenv("PRINTERS","lp");
@@ -116,10 +108,10 @@ else
 end
 setenv("VERSION",getversion());
 
-clear  pathconvert //remove the local variable
+clear pathconvert; //remove the local variable
 
 // Protect variable previously defined  ================================
-predef('all')
+predef("all");
 
 // At startup, no interactive vertical paging is authorized.===========
 // Note :
@@ -132,34 +124,34 @@ lines(0);
 
 // load contrib menu if present ========================================
 if fileinfo(SCI+'/contrib/loader.sce') <> [] then
-  global %toolboxes
-  global %toolboxes_dir
+  global %toolboxes;
+  global %toolboxes_dir;
   exec(SCI+'/contrib/loader.sce');
-  clear %toolboxes %toolboxes_dir
+  clear %toolboxes %toolboxes_dir;
 end
 
 // calling user initialization =========================================
 // Home dir startup (if any)
-if sciargs()<>'-nouserstartup' then
+if sciargs()<>"-nouserstartup" then
   startup_path = SCIHOME + filesep();
 
-  if (fileinfo(startup_path+'.scilab') <> []) then
-  lines(0);
-    exec(startup_path+'.scilab',-1);
+  if (fileinfo(startup_path+".scilab") <> []) then
+    lines(0);
+    exec(startup_path+".scilab",-1);
   else
-    if (fileinfo(startup_path+'scilab.ini') <> []) then
-      exec(startup_path+'scilab.ini',-1);
+    if (fileinfo(startup_path+"scilab.ini") <> []) then
+      exec(startup_path+"scilab.ini",-1);
     end
   end
   clear startup ierr startup_path
 
   // working dir startup (if any)
-  if (SCIHOME <> getcwd()) then
-    if (fileinfo('.scilab') <> []) then
-      exec('.scilab',-1);
+  if (SCIHOME <> pwd()) then
+    if (fileinfo(".scilab") <> []) then
+      exec(".scilab",-1);
     else
-      if (fileinfo('scilab.ini') <> []) then
-        exec('scilab.ini',-1);
+      if (fileinfo("scilab.ini") <> []) then
+        exec("scilab.ini",-1);
       end
     end
   end
@@ -167,30 +159,28 @@ end
 clear startup ierr
 
 // Menus/toolbar can now be enabled ====================================
-if ( getscilabmode() == 'STD') then
-        setmenu(gettext("&File"));
-        setmenu(gettext("&Edit"));
-        setmenu(gettext("&Preferences"));
-        setmenu(gettext("&Control"));
-        setmenu(gettext("&Applications"));
-        if ~with_module("scipad") then // Desactivate Editor menu
-          unsetmenu(gettext("&Applications"),1);
-        end
-        if ~with_module("scicos") then // Desactivate Scicos menu
-          unsetmenu(gettext("&Applications"),3);
-        end
-        if ~with_module("m2sci") then // Desactivate mfile2sci menu
-          unsetmenu(gettext("&Applications"),5);
-        end
-        setmenu(gettext("&?"));
-        setmenu(gettext("&Toolboxes"));
-        toolbar(-1, "on");
+if getscilabmode() == "STD" then
+  setmenu(gettext("&File"));
+  setmenu(gettext("&Edit"));
+  setmenu(gettext("&Preferences"));
+  setmenu(gettext("&Control"));
+  setmenu(gettext("&Applications"));
+  if ~with_module("scipad") then // Desactivate Editor menu
+    unsetmenu(gettext("&Applications"),1);
+  end
+  if ~with_module("scicos") then // Desactivate Scicos menu
+    unsetmenu(gettext("&Applications"),3);
+  end
+  if ~with_module("m2sci") then // Desactivate mfile2sci menu
+    unsetmenu(gettext("&Applications"),5);
+  end
+  setmenu(gettext("&?"));
+  setmenu(gettext("&Toolboxes"));
+  toolbar(-1, "on");
 end
-// =====================================================================
-// Restore initial lines mode
+
+// Restore initial lines mode ==========================================
 lines(_DEFAULT_LN_(2),_DEFAULT_LN_(1));
 clear _DEFAULT_LN_;
-// =====================================================================
-// =====================================================================
 
 clear ans

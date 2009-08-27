@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
- * Ajouter ici d'√©ventuels commentaires sur le fichier XML
+ * Ajouter ici d'Èventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="csch" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -16,18 +16,18 @@
   <refnamediv>
     <refname>csch</refname>
 
-    <refpurpose>computa a cossecante hipertb√≥lica do argumento elemento a
+    <refpurpose>computa a cossecante hipertbÛlica do argumento elemento a
     elemento</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y = csch(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -42,7 +42,7 @@
         <term>y</term>
 
         <listitem>
-          <para>array de reais ou complexos com as mesmas dimens√µes que
+          <para>array de reais ou complexos com as mesmas dimensıes que
           <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
@@ -50,10 +50,10 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Computa a cossecante hipertb√≥lica do argumento elemento a elemento.
-    Para dados reais, os resultados s√£o reais</para>
+    <para>Computa a cossecante hipertbÛlica do argumento elemento a elemento.
+    Para dados reais, os resultados s„o reais</para>
   </refsection>
 
   <refsection>
@@ -66,7 +66,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="csc">csc</link></member>

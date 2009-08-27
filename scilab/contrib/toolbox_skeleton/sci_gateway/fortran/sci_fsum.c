@@ -5,8 +5,8 @@
 /* This file is released into the public domain */
 /* ==================================================================== */
 #include "stack-c.h" 
-#include "common_api.h"
-#include "double_api.h"
+#include "api_common.h"
+#include "api_double.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /* ==================================================================== */
@@ -23,7 +23,6 @@ int sci_fsum(char *fname)
   double *pdVarTwo = NULL;
   
   int m_out = 0, n_out = 0;
-  int *piAddressOut = NULL;
   double dOut = 0.0;
 
   /* --> result = csum(3,8)
@@ -33,8 +32,8 @@ int sci_fsum(char *fname)
   CheckLhs(1,1) ;   
   
   /* get Address of inputs */
-  getVarAddressFromNumber(1, &piAddressVarOne);
-  getVarAddressFromNumber(2, &piAddressVarTwo);
+  getVarAddressFromPosition(1, &piAddressVarOne);
+  getVarAddressFromPosition(2, &piAddressVarTwo);
   
   /* check input type */
   if ( getVarType(piAddressVarOne) != sci_matrix )
@@ -70,7 +69,7 @@ int sci_fsum(char *fname)
   
   /* create result on stack */
   m_out = 1;  n_out = 1;
-  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, &piAddressOut);
+  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
   LhsVar(1) = Rhs + 1; 
   
   return 0;

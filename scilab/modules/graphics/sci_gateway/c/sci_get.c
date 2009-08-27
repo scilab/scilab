@@ -25,12 +25,13 @@
 #include "CurrentObjectsManagement.h"
 
 #include "GetHashTable.h"
-
+#include "BuildObjects.h"
 #include "localization.h"
 #include "Scierror.h"
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/
@@ -74,11 +75,13 @@ int sci_get(char *fname,unsigned long fname_len)
 
 				if (m1*n1 != 1)
 				{
+					freeArrayOfString(stkAdr, m1 * n1);
 					Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get",2);
 					return SET_PROPERTY_ERROR;
 				}
 
 				status = GetScreenProperty(stkAdr[0]);
+				freeArrayOfString(stkAdr, m1 * n1);
 
 				if(status != SET_PROPERTY_SUCCEED) /* Return property */
 				{
@@ -116,10 +119,30 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_strings:/* string argument (string) */
 		CheckRhs(1,1);
 		GetRhsVar(1,STRING_DATATYPE,&numrow2,&numcol2,&l2);
-
-		/* no handle there */
-		hdl = 0;
-
+                if (strcmp(cstk(l2),"default_figure") != 0 && strcmp(cstk(l2),"default_axes") != 0)
+                  {
+                    if ( strcmp(cstk(l2),"current_figure") == 0 ||  strcmp(cstk(l2),"current_axes") == 0 ||  strcmp(cstk(l2),"current_entity") == 0 ||  strcmp(cstk(l2),"hdl") == 0)
+                      {
+                        hdl = 0;
+                      }
+                    else
+                      {
+                        /* Test debug F.Leray 13.04.04 */
+                        if ((strcmp(cstk(l2),"children") != 0) && (strcmp(cstk(l2),"zoom_") !=0) && (strcmp(cstk(l2),"clip_box") !=0) && (strcmp(cstk(l2),"auto_") !=0)) 
+                          {
+                            SciWin();
+                            hdl = sciGetHandle(sciGetCurrentObj());
+                          }
+                        else
+                          {
+                            hdl = sciGetHandle(sciGetCurrentSubWin());/* on recupere le pointeur d'objet par le handle */
+                          }
+                      }/* DJ.A 08/01/04 */
+                  }
+                else
+                  {
+                    hdl = 0;
+                  }
 		break;
 	default:
 		lw = 1 + Top - Rhs;

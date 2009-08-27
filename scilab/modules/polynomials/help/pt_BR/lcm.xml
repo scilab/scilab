@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>lcm</refname>
 
-    <refpurpose>mÃ­nimo mÃºltiplo comum</refpurpose>
+    <refpurpose>mínimo múltiplo comum</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[pp,fact]=lcm(p)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>vetor de polinÃ´mios </para>
+          <para>vetor de polinômios </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>fact</term>
 
         <listitem>
-          <para>vetor de polinÃ´mios ou inteiros (tipo igual a 8)</para>
+          <para>vetor de polinômios ou inteiros (tipo igual a 8)</para>
         </listitem>
       </varlistentry>
 
@@ -57,17 +57,17 @@
         <term>pp</term>
 
         <listitem>
-          <para>polinÃ´mio ou inteiro</para>
+          <para>polinômio ou inteiro</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>pp=lcm(p)</literal> computa o MMC <literal>pp</literal> do
-    vetor de polinÃ´mios <literal>p</literal>.</para>
+    vetor de polinômios <literal>p</literal>.</para>
 
     <para><literal>[pp,fact]=lcm(p)</literal> computa, ainda, o vetor
     <literal>fact</literal> tal que:</para>
@@ -94,7 +94,7 @@ lcm(V)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="gcd">gcd</link></member>

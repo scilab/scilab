@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="boolean" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,28 +13,28 @@
   <refnamediv>
     <refname>boolean</refname>
 
-    <refpurpose>objetos Scilab: vari√°veis booleanas e operadores '&amp;', '|'
+    <refpurpose>objetos Scilab: vari·veis booleanas e operadores '&amp;', '|'
     e '~' </refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Uma vari√°vel booleana √© <literal>%T</literal> (para "true",
+    <para>Uma vari·vel booleana È <literal>%T</literal> (para "true",
     "verdadeiro") ou <literal>%F</literal> (for "false"). (para
-    "false","falso"). Estas vari√°veis podem ser usadas para definir matrizes
+    "false","falso"). Estas vari·veis podem ser usadas para definir matrizes
     de valores booleanos, com a sintaxe usual. Matrizes de valores booleanos
-    podem ser manipuladas como matrizes ordin√°rias para extra√ß√£o/inser√ß√£o de
-    elementos e concatena√ß√£o. Note que outras opera√ß√µes usuais ( +, *, -, ^,
-    etc.) n√£o s√£o definidas para matrizes de valores booleanos. Tr√™s
-    operadores especiais s√£o definidos para estas matrizes: </para>
+    podem ser manipuladas como matrizes ordin·rias para extraÁ„o/inserÁ„o de
+    elementos e concatenaÁ„o. Note que outras operaÁıes usuais ( +, *, -, ^,
+    etc.) n„o s„o definidas para matrizes de valores booleanos. TrÍs
+    operadores especiais s„o definidos para estas matrizes: </para>
 
     <variablelist>
       <varlistentry>
         <term>~b</term>
 
         <listitem>
-          <para>√© a nega√ß√£o elemento a elemento de <literal>b</literal>
+          <para>È a negaÁ„o elemento a elemento de <literal>b</literal>
           (matriz).</para>
         </listitem>
       </varlistentry>
@@ -43,7 +43,7 @@
         <term>b1&amp;b2</term>
 
         <listitem>
-          <para>√© o <literal>and</literal> ("e") l√≥gico elemento a elemento de
+          <para>È o <literal>and</literal> ("e") lÛgico elemento a elemento de
           <literal>b1</literal> e <literal>b2</literal> (matrizes).</para>
         </listitem>
       </varlistentry>
@@ -52,20 +52,20 @@
         <term>b1|b2</term>
 
         <listitem>
-          <para>√© o <literal>or</literal> ("ou") l√≥gico elemento a elemento de
+          <para>È o <literal>or</literal> ("ou") lÛgico elemento a elemento de
           <literal>b1</literal> e <literal>b2</literal> (matrizes).</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Vari√°veis booleanas podem ser usadas para se indexar vetores ou
+        <term>Vari·veis booleanas podem ser usadas para se indexar vetores ou
         matrizes.</term>
 
         <listitem>
           <para>Por exemplo <literal>a([%T,%F,%T],:)</literal> retorna a
           submatriz feita das linhas <literal>1</literal> e
           <literal>3</literal> de <literal>a</literal>. Matrizes esparsas de
-          valores booleanos s√£o suportadas.</para>
+          valores booleanos s„o suportadas.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -84,7 +84,7 @@ a=1:5; a(a&gt;2)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="matrices">matrices</link></member>

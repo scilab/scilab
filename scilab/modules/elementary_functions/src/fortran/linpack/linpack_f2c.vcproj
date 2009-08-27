@@ -401,11 +401,39 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath=".\dgbfa.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dgeco.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dgedi.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dgefa.c"
 				>
 			</File>
 			<File
 				RelativePath=".\dgesl.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrdc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrsl.c"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrsm.c"
+				>
+			</File>
+			<File
+				RelativePath=".\hhdml.c"
 				>
 			</File>
 			<File
@@ -417,7 +445,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\spofa.c"
+				>
+			</File>
+			<File
 				RelativePath=".\wcopy.c"
+				>
+			</File>
+			<File
+				RelativePath=".\wgeco.c"
+				>
+			</File>
+			<File
+				RelativePath=".\wgefa.c"
+				>
+			</File>
+			<File
+				RelativePath=".\wgesl.c"
 				>
 			</File>
 			<File
@@ -441,11 +485,39 @@
 			Name="Fortran Files"
 			>
 			<File
+				RelativePath=".\dgbfa.f"
+				>
+			</File>
+			<File
+				RelativePath=".\dgeco.f"
+				>
+			</File>
+			<File
+				RelativePath=".\dgedi.f"
+				>
+			</File>
+			<File
 				RelativePath=".\dgefa.f"
 				>
 			</File>
 			<File
 				RelativePath=".\dgesl.f"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrdc.f"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrsl.f"
+				>
+			</File>
+			<File
+				RelativePath=".\dqrsm.f"
+				>
+			</File>
+			<File
+				RelativePath=".\hhdml.f"
 				>
 			</File>
 			<File
@@ -457,7 +529,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\spofa.f"
+				>
+			</File>
+			<File
 				RelativePath=".\wcopy.f"
+				>
+			</File>
+			<File
+				RelativePath=".\wgeco.f"
+				>
+			</File>
+			<File
+				RelativePath=".\wgefa.f"
+				>
+			</File>
+			<File
+				RelativePath=".\wgesl.f"
 				>
 			</File>
 			<File

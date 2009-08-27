@@ -19,25 +19,24 @@ class ExampleEvents
   {
     int i=0;
         
-	Scilab.Exec("plot3d();quit");
-  	
-  	while (Scilab.HaveAGraph()!=false)
-  	{
-  		Scilab.Events();
-  		try
-   		{
-  		 	Thread.sleep( 1 );
-  		}
-  		catch ( InterruptedException e )
-   		{
-   		}
-   		
-   		System.out.println("Java loop "+i);
-		  i++;
-  	}
+    Scilab.Exec("plot3d();");
+
+    while (Scilab.HaveAGraph()!=false)
+    {
+      Scilab.Events();
+      try
+      {
+        Thread.sleep( 1 );
+      }
+      catch ( InterruptedException e )
+      {
+      }
+
+      System.out.println("Java loop "+i);
+      i++;
+    }
   	System.out.println("Graphics window closed");
   	Scilab.Finish();
-  	
   }
 
 }

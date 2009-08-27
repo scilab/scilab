@@ -23,16 +23,6 @@
  * @param n 
  * @param ierr  
  */
-void C2F(mgetstr) (int *fd, char **start, int *n, int *ierr);
-
-/**
- * read a string 
- *
- * @param fd    
- * @param start 
- * @param n 
- * @param ierr  
- */
 void C2F(mgetstr1) (int *fd, char *start, int *n, int *ierr);
 
 #endif /* __MGETSTR_H__ */

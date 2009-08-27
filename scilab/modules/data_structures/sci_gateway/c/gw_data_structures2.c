@@ -17,7 +17,8 @@
 #include "stack-c.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define DATA_STRUCTURES2_TAB_SIZE 2
+static gw_generic_table Tab[DATA_STRUCTURES2_TAB_SIZE]=
 {
 	{C2F(sci_getfield),"getfield"},
 	{C2F(sci_setfield),"setfield"}
@@ -33,7 +34,7 @@ int gw_data_structures2(void)
 		return 0;
 	}
 
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,DATA_STRUCTURES2_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "hashtable_core.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
@@ -30,6 +31,9 @@ static int nbvars = 0;
 
 /* Store stack index for last EOL */
 static int last_eol_pos = 0;
+
+/* The position of the first item which can be used as input argument or operand */
+static int beginStorage = -10;
 
 /****************************************************************/
 static int CreateRecursiveIndex2List(int *data,int *index2);
@@ -69,6 +73,8 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   /* Save last code interpreted */
   int cod_sav = 0;
 
+  int deleted = 0;
+
   /* Loop index */
   int k = 0;
 
@@ -103,9 +109,9 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
     }
 
   /* Memory allocation */
-  if((name=CALLOC(1,sizeof(char)))==NULL)
+  if((name=CALLOC(1,sizeof(char*)))==NULL)
     {
-		Scierror(999,_("%s: No more memory.\n"),"macr2tree");
+      Scierror(999,_("%s: No more memory.\n"),"macr2tree");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
@@ -183,17 +189,18 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 
   *Lstk(Top+1) = sadr(il+3+nbstat);
 
-  /* Error handling (S. Steer */
+  /* Error handling (S. Steer) */
   if (*Lstk(Top+1) >= *Lstk(Bot))
   {
-	  Scierror(17,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), "macr2tree");
-
+    Scierror(17,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), "macr2tree");
+    
     /* Free memory */
-	freeArrayOfString(name,1);
+    freeArrayOfString(name,1);
     return 0;
   }
 
   /* Fill list */
+  
   for(k=1;k<=nbstat;k++)
     {
       newinstr = 0;
@@ -203,62 +210,108 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	  cod_sav=data[cod_ind];
 	  GetInstruction(data,&cod_ind,&nblines,&newinstr);
 
+          if (cod_sav==15)
+            {
+              if (beginStorage>0) /* Inside a list of inputs or operands */
+                {
+                  newinstr=0; /* No new instruction created */
+                }
+            }
+          else if (cod_sav==31)
+            {
+              if (beginStorage>0) /* Inside a list of inputs or operands */
+                {
+                  newinstr=0; /* No new instruction created */
+                }
+            }
+          else
+            {
+              if (newinstr==1)
+                {
+                  /* Reinit */
+                  beginStorage = -10;
+                  last_eol_pos=-10;
+                }
+              else if (beginStorage <= 0 && cod_sav!=16 && cod_sav!=21 && cod_sav!=0)
+                {
+                  /* Store position */
+                  beginStorage = Top - 1;
+                }
+            }
+
 	  /* Error handling (S. Steer) */
 	  if (Err>0 || C2F(errgst).err1>0)
 	    {
 	      /* Free memory */
-		  freeArrayOfString(name,1);
+              freeArrayOfString(name,1);
 	      FREE(data);
 
 	      return 0;
 	    }
- 	  if(cod_sav==15 && data[cod_ind+1]==29) /* EOL as the last component of a column concatenation */
+
+ 	  if(cod_sav==15 && (data[cod_ind+1]==29 || (data[cod_ind+1]==2 && data[cod_ind+3+nsiz]!=0))) /* EOL as the last component of a column concatenation */
 	    {
 	      /* a = ['a'
 		 'b'
 		 ] */
 	      Top--; /* EOL is erased */
-	      last_eol_pos=-10; /* EOL position is erased */
-	      newinstr=0; /* No new instruction created */
-	      nbstat--; /* One statement deleted */
+              newinstr=0; /* No new instruction created */
+              deleted ++;
 	    }
-	  else if(cod_sav==15 && Top!=TopSave+1) /* Column catenation with EOL after semi-colon */
-	    newinstr=0;
-	  else if(cod_sav==15) /* If EOL is not after semi-colon in catenation, it is ignored */
-	    last_eol_pos=-10;
 
 	  cod_ind++;
 	  if(cod_ind>codelength+ilt+1)
 	  {
-		  Scierror(999,_("%s: Out of code.\n"),"macr2tree");
-
-	      /* Free memory */
-		  freeArrayOfString(name,1);
-	      FREE(data);
-
-	      return 0;
+            Scierror(999,_("%s: Out of code.\n"),"macr2tree");
+            
+            /* Free memory */
+            freeArrayOfString(name,1);
+            FREE(data);
+            return 0;
 	  }
 
 	}
+
+      /* Test to be sure an instruction was created */
       if(TopSave!=Top-1)
-	  {
-		  Scierror(999,_("%s: Wrong %s value %d instead of %d.\n"),"macr2tree","Top",Top,TopSave+1);
+        {
+          Scierror(999,_("%s: Wrong %s value %d instead of %d.\n"),"macr2tree","Top",Top,TopSave+1);
+          
+          /* Free memory */
+          freeArrayOfString(name,1);
+          FREE(data);
+          
+          return 0;
+        }
+      
 
-
-	/* Free memory */
-	freeArrayOfString(name,1);
-	FREE(data);
-
-	return 0;
-      }
-
+      /* Size of the element created in the list */
       sz = *Lstk(Top+1) - *Lstk(Top);
-
+      
+      /* Update the "pointer" in the list header */
       *istk(il+2+k) = *istk(il+1+k) + sz ;
-
+      
+      /* Now element is added to the list, Scilab can ignore it */
       Top--;
-
+      
+      /* Update address to write next value */
       *Lstk(Top+1) = *Lstk(Top+2);
+
+      /* If a EOL was ignored (before affectation) it is added just after */
+      if (deleted)
+        {
+          k++;
+
+          CreateEOLList();
+
+          sz = *Lstk(Top+1) - *Lstk(Top);
+          *istk(il+2+k) = *istk(il+1+k) + sz ;
+          Top--;
+          *Lstk(Top+1) = *Lstk(Top+2);
+         
+          deleted = 0;
+        }
+
     }
 
   /* Number of lines */
@@ -309,7 +362,7 @@ static int CreateEOLList(void)
   int one = 1;
 
   /* Memory allocation */
-  if((eol=CALLOC(1,sizeof(char)))==NULL)
+  if((eol=CALLOC(1,sizeof(char*)))==NULL)
     {
 	  Scierror(999,_("%s: No more memory.\n"),"CreateEOLList");
       return 0;
@@ -329,10 +382,7 @@ static int CreateEOLList(void)
   C2F(mklist)(&one);
 
   /* Free memory */
-  FREE(eol[0]);
-  eol[0]=NULL;
-  //FREE(eol);
-  eol=NULL;
+  freeArrayOfString(eol, 1);
 
   return 0;
 }
@@ -396,7 +446,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   *addinstr=0;
 
   /* Memory allocation */
-  if((name=CALLOC(1,sizeof(char)))==NULL)
+  if((name=CALLOC(1,sizeof(char*)))==NULL)
     {
 		Scierror(999,_("%s: No more memory.\n"),"GetInstruction");
         return 0;
@@ -422,7 +472,6 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     CvNameL(&data[*index2+1],name[0],&job1,&namelgth);
     (name[0])[namelgth]='\0';
     *index2 += nsiz;
-
     if(data[*index2+2]==0) /* stack get (rhs=0) */
       {
 	CreateVariableTList(name);
@@ -457,7 +506,15 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
       }
     break;
   case 3: /* String */
-    CreateCsteTList("string",data,index2);
+    if(data[*index2 + data[*index2+1] + 2] == 26)
+      {
+        CreateInlineTList(data, index2, nblines, addinstr);
+        *addinstr=1;
+      }
+    else
+      {
+        CreateCsteTList("string",data,index2);
+      }
     break;
   case 4: /* Empty matrix */
     CreateCsteTList("emptymatrix",data,index2);
@@ -484,7 +541,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   case 9: /* 'while' control instruction */
     GetControlInstruction(data,index2,nblines);
     *addinstr=1;
-    break;
+   break;
   case 10: /* 'select-case' control instruction */
     GetControlInstruction(data,index2,nblines);
     *addinstr=1;
@@ -541,8 +598,9 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     *index2 += 2;
     break;
   case 26: /* Vector of strings */
-    Scierror(999,_("%s: code %d not yet implemented.\n"),"GetInstruction",data[*index2]);
-    break;
+    CreateInlineTList(data, index2, nblines, addinstr);
+    *addinstr=1;
+   break;
   case 27: /* varfunptr */
     Scierror(999,_("%s: code %d not yet implemented.\n"),"GetInstruction",data[*index2]);
     break;
@@ -559,7 +617,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     *index2 += 2;
     break;
   case 31: /* comment */
-     CreateCommentTList(data,index2);
+    CreateCommentTList(data,index2);
     *addinstr=1;
     break;
 
@@ -582,10 +640,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   }
 
   /* Free memory */
-  FREE(name[0]);
-  name[0]=NULL;
-  //FREE(name);
-  name=NULL;
+  freeArrayOfString(name, 1);
 
   return 0;
 }
@@ -662,7 +717,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 
       /* Get loop variable */
       /* Memory allocation */
-      if((name=CALLOC(1,sizeof(char)))==NULL)
+      if((name=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"GetControlInstruction");
 	  return 0;
@@ -701,10 +756,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
       C2F(mktlist)(&n_for_tlist);
 
       /* Free memory */
-      FREE(name[0]);
-      name[0]=NULL;
-      FREE(name);
-      name=NULL;
+      freeArrayOfString(name, 1);
     }
     /* TRYCATCH */
   else if(data[*index2]==11)
@@ -838,6 +890,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 	      endindex2 = *index2 + codelgth - 1;
 
 	      /* Get expression */
+              TopSave = Top;
 	      while(*index2<=endindex2)
 		{
 		  GetInstruction(data,index2,nblines,&newinstr);
@@ -849,7 +902,7 @@ static int GetControlInstruction(int *data,int *index2,int *nblines)
 	      endindex2 = *index2 + codelgth - 1;
 
 	      /* Get then instructions */
-	      TopSave = Top; /* Position on stack saved to get the number of instructions */
+	      TopSave = TopSave + 1; /* Position on stack saved to get the number of instructions */
 	      while(*index2<=endindex2)
 		{
 		  GetInstruction(data,index2,nblines,&newinstr);
@@ -938,7 +991,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
 
   /* Used to get endian */
   int littlendian = 1;
-  char *endptr;
+  char *endptr = NULL;
 
   /* Used when type=="emptymatrix" */
   double l_mat = 0;
@@ -946,8 +999,8 @@ static int CreateCsteTList(char *type,int *data,int *index2)
   int n_mat = 0;
 
   /* Used when type=="string" */
-  char **str;
-  int *int_str;
+  char **str = NULL;
+  int *int_str = NULL;
   int strlgth = 0;
   int job1 = 1;
   int one = 1;
@@ -971,7 +1024,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       strlgth = data[*index2];
 
       /* Memory allocation */
-      if((str=CALLOC(1,sizeof(char)))==NULL)
+      if((str=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"CreateCsteTList");
 	  return 0;
@@ -997,10 +1050,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       str2sci(str,one,one);
 
       /* Free memory */
-      FREE(str[0]);
-      str[0]=NULL;
-      FREE(str);
-      str=NULL;
+      freeArrayOfString(str, 1);
       FREE(int_str);
       int_str=NULL;
     }
@@ -1009,7 +1059,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
     {
       strlgth=nlgh;
       /* Memory allocation */
-      if((str=CALLOC(1,sizeof(char)))==NULL)
+      if((str=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"CreateCsteTList");
 	  return 0;
@@ -1024,15 +1074,11 @@ static int CreateCsteTList(char *type,int *data,int *index2)
       CvNameL(&data[*index2+1],str[0],&job1,&strlgth);
       (str[0])[strlgth]='\0';
       *index2 += nsiz;
-
       /* Write on stack */
       str2sci(str,one,one);
 
       /* Free memory */
-      FREE(str[0]);
-      str[0]=NULL;
-      FREE(str);
-      str=NULL;
+      freeArrayOfString(str, 1);
     }
   else if(!strncmp(type,"number",6))
     {
@@ -1063,7 +1109,6 @@ static int CreateCsteTList(char *type,int *data,int *index2)
 	  *index2 = *index2 + 1;
 	  *ivalue = data[*index2];
 	}
-
       C2F(dtosci)(value,&one,&one);
 
       /* Free memory */
@@ -1083,6 +1128,172 @@ static int CreateCsteTList(char *type,int *data,int *index2)
 }
 
 /****************************************************************
+ Function name: CreateInlineTList
+****************************************************************/
+static int CreateInlineTList(int *data,int *index2, int *nblines, int *addinstr)
+{
+  char *inline_tlist[] = {"inline","prototype","definition"};
+  int m_inline_tlist = 1;
+  int n_inline_tlist = 3;
+
+  int k = 0, i = 0; // Loop indices
+  int nCols = 0; // Number of columns
+  int nRows = 0; // Number of rows
+
+  int *lengths = NULL; // Elements lengths
+  int maxlength = 0;
+
+  char **str = NULL;
+  int *int_str = NULL;
+
+  int job1 = 1;
+  
+  int strlgth = 0;
+  int one = 1;
+  
+  /* First item of returned list */
+  str2sci(inline_tlist,m_inline_tlist,n_inline_tlist);
+
+  /* Get function prototype */
+  (*index2)++;
+  strlgth = data[*index2];
+  
+  /* Memory allocation */
+  if((str=CALLOC(1,sizeof(char*)))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  if((str[0]=(char *)CALLOC(1,sizeof(char)*(strlgth+1)))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  if((int_str=(int *)CALLOC(1,sizeof(int)*(strlgth+1)))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  /* Fill int_str */
+  for(i=0;i<strlgth;i++)
+    {
+      *index2=*index2 + 1;
+      int_str[i]=data[*index2];
+    }
+  CvStr(&strlgth,int_str,str[0],&job1,strlgth);
+  (str[0])[strlgth]='\0';
+  str2sci(str,one,one);
+  
+  /* Free memory */
+  freeArrayOfString(str, 1);
+  FREE(int_str);
+  int_str=NULL;
+  
+  /* Read function definition */
+  
+  (*index2)++; // Go to code 26
+  (*index2)++; // Ignore code 26
+  
+  nCols = data[*index2];
+  (*index2)++;
+    
+  nRows = data[*index2];
+  (*index2)++;
+  
+  // Next zero is ignored
+  (*index2)++; 
+  
+  /* Memory allocation */
+  if((lengths=(int *)CALLOC(1,sizeof(int)*(nCols*nRows)))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  
+  /* Read character strings lengths */
+  k = 0;
+  for (k=0; k<nCols*nRows; k++)
+    {
+      lengths[k] =  data[*index2 + 1] - data[*index2];
+      if (lengths[k] > maxlength)
+        {
+          maxlength = lengths[k];
+        }
+      (*index2)++;
+    }
+
+  /* Memory allocation */
+  if((str=CALLOC(1,sizeof(char*)*nCols*nRows))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  for (k=0; k< nCols*nRows; k++)
+    {
+      if((str[k]=(char *)CALLOC(1,sizeof(char)*(lengths[k]+1)))==NULL)
+        {
+          Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+          return 0;
+        }
+    }
+  if((int_str=(int *)CALLOC(1,sizeof(int)*(maxlength+1)))==NULL)
+    {
+      Scierror(999,_("%s: No more memory.\n"),"CreateInlineTList");
+      return 0;
+    }
+  
+  /* Read all strings and write to Scilab stack */
+  for(k=0;k<nCols*nRows;k++)
+    {
+      for(i=0;i<lengths[k];i++)
+        {
+          *index2=*index2 + 1;
+          int_str[i]=data[*index2];
+        }
+      CvStr(&lengths[k],int_str,str[k],&job1,lengths[k]);
+      (str[k])[lengths[k]]='\0';
+    }
+  (*index2)++;
+              
+  str2sci(str, nCols, nRows);
+
+  (*index2)++; // Unsused code
+  (*index2)++; // Go to code 6
+  
+  /* Ignore next constant creation (not used) */
+  if (data[*index2]==6)
+    {
+      GetInstruction(data,index2,nblines,addinstr);
+    }
+
+  /* Ignore next funcall: a call to deff function */
+  (*index2)++;
+  (*index2)++;
+  data[*index2+2] = 2; // Change number of inputs because of constant ignore above */
+  if (data[*index2]==3)
+    {
+      GetInstruction(data,index2,nblines,addinstr);
+      Top --;
+    }
+  *index2=*index2 + 1;
+
+  /* Ignore next affectation: ans used to store output of deff */
+  if (data[*index2]==29)
+    {
+      GetInstruction(data,index2,nblines,addinstr);
+      Top --;
+    }
+
+  /* Create returned list */
+  C2F(mktlist)(&n_inline_tlist);
+
+  // Free memory
+  freeArrayOfString(str, nCols*nRows);
+  FREE(int_str);
+  return 0;
+}
+
+/****************************************************************
  Function name: CreateOperationTList
 ****************************************************************/
 static int CreateOperationTList(int *data,int *index2)
@@ -1097,7 +1308,7 @@ static int CreateOperationTList(int *data,int *index2)
 	       ":","rc","ins","ext","'","cc","|","&","~",".^",".'","cceol"};
   /* cceol: special operator for column concatenation followed by EOL (initialisation made on more than one line... */
 
-  char **operator;
+  char **operator = NULL;
   int max_op_lgth = 5; /* strlen("cceol") */
 
   int operators_num[32]={45,46,47,98,200,149,48,99,201,150,
@@ -1110,12 +1321,13 @@ static int CreateOperationTList(int *data,int *index2)
 
   int orig,dest; /* Used when copy objects */
 
-  int offset = 0;
-
   int one = 1;
 
+  int stkPos = Top;
+  int nbOps = 0;
+
   /* Memory allocation */
-  if((operator=CALLOC(1,sizeof(char)))==NULL)
+  if((operator=CALLOC(1,sizeof(char*)))==NULL)
     {
 	  Scierror(999,_("%s: No more memory.\n"),"CreateOperationTList");
       return 0;
@@ -1135,9 +1347,7 @@ static int CreateOperationTList(int *data,int *index2)
   (*index2)++;
   nb_lhs = data[*index2]; /* Always one */
 
-  /* Write tlist items names */
-  str2sci(op_tlist,m_op_tlist,n_op_tlist);
-
+  
   /* Search operator index2 */
   for(k=0;k<32;k++)
     {
@@ -1147,32 +1357,39 @@ static int CreateOperationTList(int *data,int *index2)
 	  break;
 	}
     }
-  if(operator_index2<0) {
-	  Scierror(999,_("%s: Unknown operator %d.\n"),"CreateOperationTList",operator_num);
-    return 0;
-  }
+
+  if(operator_index2<0)
+    {
+      Scierror(999,_("%s: Unknown operator %d.\n"),"CreateOperationTList",operator_num);
+      return 0;
+    }
+
+  /* In case a EOL is inserted in a row/column catenation */
+  if(operator_index2!=24)
+    {
+      while (nbOps!=nb_operands && stkPos>0)
+        {
+          if (*istk(iadr(*Lstk(stkPos))) == 16)
+            {
+              if (!isAComment(stkPos))
+                {
+                  nbOps++;
+                }
+            }
+          stkPos --;
+        }
+      if(stkPos!=0)
+        {
+          nb_operands = Top - stkPos;
+        }
+    }
+
+  /* Write tlist items names */
+  str2sci(op_tlist,m_op_tlist,n_op_tlist);
+
 
   /* Move all operands to next place in stack */
-  /* Special case for column concatenation followed by a EOL */
-  /*  Example: a=[1,2;
-                  3,4] */
-  if( (operator_index2==26) && (last_eol_pos==Top-2) )
-    {
-      /* Change operator */
-      operator_index2 = 32;
-
-      /* First operand is placed before EOL */
-      orig = last_eol_pos - 1;
-      dest = Top + 1;
-      VCopyObj("CreateOperationTList",&orig,&dest,20L);
-
-      /* Second operand is placed after EOL */
-      orig = last_eol_pos + 1;
-      dest = Top + 1;
-      VCopyObj("CreateOperationTList",&orig,&dest,20L);
-      offset = 1;
-    }
-  else if(operator_index2==24) /* For extraction: variable is moved to be the first operand */
+  if(operator_index2==24) /* For extraction: variable is moved to be the first operand */
     {
       /* Move variable */
       orig = Top - 1;
@@ -1211,7 +1428,7 @@ static int CreateOperationTList(int *data,int *index2)
 
   /* Move resulting list to first free place in stack */
   orig = Top;
-  dest = Top - nb_operands - offset;
+  dest = Top - nb_operands;
   VCopyObj("CreateOperationTList",&orig,&dest,20L);
 
   return 0;
@@ -1228,13 +1445,13 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
 
   /* Used when fromwhat=="funptr" */
   int interf_num,interf_index2,funptr;
-  int job1 = 1,job2 = 2;
+  int job1 = 1,job2 = (int)SCI_HFUNCTIONS_BACKSEARCH;
   int id[nsiz];
 
   double nblhs = 0;
   int nbrhs = 0;
 
-  char **funname;
+  char **funname = NULL;
   int funnamelgth = 0;
 
   int one = 1;
@@ -1246,8 +1463,11 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   int m_mat = 0;
   int n_mat = 0;
 
+  int stkPos = Top;
+  int nbOps = 0;
+
   /* Memory allocation */
-  if((funname=CALLOC(1,sizeof(char)))==NULL)
+  if((funname=CALLOC(1,sizeof(char*)))==NULL)
     {
 	  Scierror(999,_("%s: No more memory.\n"),"CreateFuncallTList");
       return 0;
@@ -1269,7 +1489,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
       (*index2)++;
       interf_index2 = data[*index2];
 
-      funptr = interf_num + interf_index2;
+      funptr = interf_num * 10 + interf_index2;
 
       C2F(funtab)(id,&funptr,&job2,"NULL_NAME",0);
 
@@ -1326,7 +1546,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should never happen */
     {
-	  Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
+      Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 
@@ -1343,6 +1563,24 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
       /* In funcall tree, rhs=list() */
       if(nbrhs<0)
 	nbrhs=0;
+
+      /* In case a EOL is inserted in a row/column catenation */
+      while (nbOps!=nbrhs && stkPos>0)
+        {
+          if (*istk(iadr(*Lstk(stkPos))) == 16)
+            {
+              if (!isAComment(stkPos))
+                {
+                  nbOps++;
+                }
+            }
+          stkPos --;
+        }
+      if(stkPos!=0)
+        {
+          nbrhs = Top - stkPos;
+        }
+
       /* Create rhs list */
       C2F(mklist)(&nbrhs);
    }
@@ -1370,10 +1608,7 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   VCopyObj("CreateFuncallTList",&orig,&dest,18L);
 
   /* Free memory */
- // FREE(funname[0]);
-  funname[0]=NULL;
-//  FREE(funname);
-  funname=NULL;
+  freeArrayOfString(funname, 1);
 
   return 0;
 }
@@ -1395,7 +1630,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 
   int orig,dest; /* Used when copy objects */
 
-  char **name;
+  char **name = NULL;
   int namelgth = 0;
 
   /* Used for lhs which are insertion operations */
@@ -1405,17 +1640,17 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
   int m_op_tlist = 1;
   int n_op_tlist = 3;
 
-  char **operator;
+  char **operator = NULL;
 
   int one = 1;
 
-  char **endsymbol;
+  char **endsymbol = NULL;
   int symbol = 0;
 
   /* Memory allocation */
-  if((name=CALLOC(1,sizeof(char)))==NULL)
+  if((name=CALLOC(1,sizeof(char*)))==NULL)
     {
-   	  Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
+      Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
       return 0;
     }
   if((name[0]=(char *)CALLOC(1,sizeof(char)*(nlgh+1)))==NULL)
@@ -1425,7 +1660,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   (name[0])[nlgh] = '\0';
 
-  if((operator=CALLOC(1,sizeof(char)))==NULL)
+  if((operator=CALLOC(1,sizeof(char*)))==NULL)
     {
       Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
       return 0;
@@ -1459,7 +1694,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       symbol=data[*index2];
       if(symbol==43) /* ; */
 	{
-	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+	  if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	    {
 	      Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	      return 0;
@@ -1474,7 +1709,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	}
       else if(symbol==52) /* , */
 	{
-	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+	  if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	    {
 	      Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	      return 0;
@@ -1489,7 +1724,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	}
       else /* Nothing */
 	{
-	  if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+	  if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	    {
    	      Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	      return 0;
@@ -1501,6 +1736,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
 	    }
 	  (endsymbol[0])[0] = '\0';
 	}
+
       for(k=0;k<nblhs;k++)
 	{
 	  (*index2)++;
@@ -1588,7 +1824,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       C2F(mklist)(&nblhs);
 
       /* Symbol */
-      if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+      if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	  return 0;
@@ -1631,7 +1867,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       C2F(mklist)(&nblhs);
 
       /* Symbol */
-      if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+      if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	  return 0;
@@ -1664,7 +1900,7 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
       C2F(mklist)(&nblhs);
 
       /* Symbol */
-      if((endsymbol=CALLOC(1,sizeof(char)))==NULL)
+      if((endsymbol=CALLOC(1,sizeof(char*)))==NULL)
 	{
 	  Scierror(999,_("%s: No more memory.\n"),"CreateEqualTList");
 	  return 0;
@@ -1687,23 +1923,14 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
   else /* Should not happen */
     {
-	  Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
+      Scierror(999,_("%s: Wrong fromwhat value %s.\n"),"CreateEqualTList",fromwhat);
       return 0;
     }
 
   /* Free memory */
-//  FREE(name[0]);
-  name[0]=NULL;
-//  FREE(name);
-  name=NULL;
-//  FREE(operator[0]);
-  operator[0]=NULL;
-//  FREE(operator);
-  operator=NULL;
-//  FREE(endsymbol[0]);
-  endsymbol[0]=NULL;
-//  FREE(endsymbol);
-  endsymbol=0;
+  freeArrayOfString(name, 1);
+  freeArrayOfString(operator, 1);
+  freeArrayOfString(endsymbol, 1);
 
   return 0;
 }
@@ -1741,7 +1968,7 @@ static int CreateCommentTList(int *data,int *index2)
   str2sci(&text,one,one);
   *index2 = *index2 + strlgth-1;
   /* Free memory */
-//  FREE(text);
+  FREE(text);
   text=NULL;
 
   C2F(mktlist)(&n_fun_tlist);
@@ -1804,6 +2031,9 @@ static int VCopyObj(char *fname,int *orig,int *dest,unsigned long fname_length)
 int complexity(int *data,int *index2,int *lgth)
 {
   int count = 0;
+  int countSave = 0;
+  int codeSave = 0;
+  int begin = -10;
 
   int cur_ind = *index2+1;
 
@@ -1811,11 +2041,16 @@ int complexity(int *data,int *index2,int *lgth)
 
   int nbop = 0; /* Number of value stored on stack */
 
+  /* nbop equivalent to Top */
+  /* count equivalent to nbstat */
+
   while(cur_ind<=*lgth+*index2)
     {
+      countSave = count;
+      codeSave = data[cur_ind];
       switch(data[cur_ind])
 	{
-	case 0: /* Deleted operation */
+        case 0: /* Deleted operation */
 	  cur_ind = cur_ind + data[cur_ind+1];
 	  break;
 	case 1: /* Stack put (Obsolete) */
@@ -1835,12 +2070,15 @@ int complexity(int *data,int *index2,int *lgth)
 	  nbop++;
 	  break;
 	case 5: /* Operations */
-	  if( (data[cur_ind+1]==4) && (last_eol==nbop-2) ) /* rc with a EOL */
-	    {
-	      nbop--;
-	      count--;
-	    }
-	  nbop = nbop - data[cur_ind+2];
+          /* EOL inserted inside catenation */
+          if (begin>=0 && nbop - begin > data[cur_ind+2] && last_eol == nbop-2)
+            {
+              nbop = begin;
+            }
+          else
+            {
+              nbop = nbop - data[cur_ind+2];
+            }
 	  cur_ind = cur_ind + 4;
 	  nbop++;
 	  break;
@@ -1976,7 +2214,73 @@ int complexity(int *data,int *index2,int *lgth)
 	    }
 	  break;
 	}
+
+      if (codeSave==15)
+        {
+          if ((begin>0) & (data[cur_ind]!=29)) /* Inside a list of inputs or operands */
+            {
+              count--; /* No new instruction created */
+            }
+        }
+      else if (codeSave==31)
+        {
+          if (begin>0) /* Inside a list of inputs or operands */
+            {
+              count--; /* No new instruction created */
+            }
+        }
+      else
+        {
+          if (countSave!=count)
+            {
+              /* Reinit */
+              begin = -10;
+              last_eol = -10;
+            }
+          else if (begin <= 0 && codeSave!=16 && codeSave!=21 && codeSave!=0)
+            {
+              /* Store position */
+              begin = nbop - 1;
+            }
+        }
     }
   return count;
+
+}
+
+int isAComment(int stkPos)
+{
+	int nbElements = 0;
+	int firstElementAdr = 0;
+	int firstChar = 0;
+	int secondChar = 0;
+	int thirdChar = 0;
+	int fourthChar = 0;
+	int il = iadr(*Lstk(stkPos));
+
+	/* If not a tlist then cannot be a comment */
+	if (*istk(il) != 16)
+	{
+		return 0;
+	}
+
+	/* If tlist size not equal to two then cannot be a comment */
+	if (*istk(il + 1) != 2)
+	{
+		return 0;
+	}
+
+	/* Now the tlist can be a comment or a cste */
+	nbElements = *istk(il + 1);
+	firstElementAdr = iadr(sadr(il + 3 + nbElements));
+	firstChar = *istk(firstElementAdr + 7);
+	secondChar = *istk(firstElementAdr + 8);
+	thirdChar = *istk(firstElementAdr + 9);
+	fourthChar = *istk(firstElementAdr + 10);
+
+	/* 12 = Scilab code for 'c' */
+	/* 24 = Scilab code for 'o' */
+	/* 22 = Scilab code for 'm' */
+	return firstChar==12 && secondChar==24 && thirdChar==22 && fourthChar==22;
 
 }

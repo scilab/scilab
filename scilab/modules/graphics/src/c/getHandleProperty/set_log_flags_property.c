@@ -27,6 +27,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
 char ** ReBuildUserTicks( char old_logflag, char new_logflag, double * u_xgrads, int *u_nxgrads, char ** u_xlabels);
@@ -71,9 +72,7 @@ char ** CaseLogflagN2L(int * u_nxgrads, double *u_xgrads, char ** u_xlabels)
       cmpteur2++;
     }
 
-    for(i=0;i<nbtics;i++){ FREE(u_xlabels[i]); u_xlabels[i] = NULL;}
-
-    FREE(u_xlabels); u_xlabels = NULL;
+	freeArrayOfString(u_xlabels, nbtics);
     u_xlabels = ticklabel;
   }
 

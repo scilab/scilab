@@ -19,15 +19,15 @@
 
 // Génération du fichier de référence
 
-l = [" ";"-->mprintf(''hello world\n'')";"hello world";" ";"-->diary(0)"]
-l2 = ["hello world";" "]
+l = [" ";"-->mprintf(''hello world\n'')";"hello world";" ";"-->diary(TMPDIR+''/bug557.dia'');"];
+l2 = ["hello world";" "];
 mputl(l,TMPDIR+'/bug557.ref');
 
 // Génération du fichier rapport
 
 diary(TMPDIR+'/bug557.dia');
 mprintf('hello world\n')
-diary(0)
+diary(TMPDIR+'/bug557.dia');
 
 // Comparaison
 
@@ -38,5 +38,6 @@ ref=mgetl(u1);mclose(u1);
 dia=mgetl(u2);mclose(u2);
 
 // Affichage du résultat
-
+ref
+dia
 if or(ref<>dia) then pause,end

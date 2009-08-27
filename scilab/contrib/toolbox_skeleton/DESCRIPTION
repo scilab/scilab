@@ -1,0 +1,38 @@
+Toolbox: toolbox_skeleton
+
+Title: Toolbox Skeleton
+
+Summary: Skeleton of a valid atoms package
+
+Version: 1.3
+
+Author: Allan CORNET <allan.cornet@scilab.org>
+
+Maintainer: Allan CORNET <allan.cornet@scilab.org>
+ Pierre MARECHAL <pierre.marechal@scilab.org>
+
+Category: biology - Robotic_2
+ CatB - SScat2
+ biology - modelisation_III
+
+Entity: Digiteo
+
+WebSite: http://www.scilab.org
+
+License: CeCILL
+
+ScilabVersion: >= 5.2
+
+Depends: 
+
+Date: 2009-03-26
+
+Description: files to the new Docbook based format.
+ 
+ install xmltodocbook
+ - linux : unzip xmltodocbook.zip and exec builder.sce
+ - windows : click on xmltodocbook-1.0.exe
+ load toolbox in scilab
+ exec loader.sce
+ 
+ help xmltodocbook 

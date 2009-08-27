@@ -20,7 +20,8 @@ static int C2F(sci_notused)(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define POLYNOMIALS_TAB_SIZE 17
+static gw_generic_table Tab[POLYNOMIALS_TAB_SIZE]=
 {
 {C2F(sci_poly),"poly"},
 {C2F(sci_roots),"roots"},
@@ -43,7 +44,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_polynomials(void)
 {
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,POLYNOMIALS_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -16,9 +16,17 @@
 #endif
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
-void callFunctionFromGateway(gw_generic_table *Tab)
+void callFunctionFromGateway(gw_generic_table *Tab,int sizeTab)
 {
+	if ( (Fin > sizeTab) || (Fin < 1) )
+	{
+		Scierror(999,_("Error: Not a valid primitive ID %d.\n"),Fin);
+	}
+	else
+	{
 #ifdef _MSC_VER
 #ifndef _DEBUG
 	_try
@@ -35,5 +43,6 @@ void callFunctionFromGateway(gw_generic_table *Tab)
 #else
 	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 #endif
+	}
 }
 /*--------------------------------------------------------------------------*/

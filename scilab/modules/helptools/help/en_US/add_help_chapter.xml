@@ -28,20 +28,21 @@
       <varlistentry>
         <term>title</term>
         <listitem>
-          <para>a character string, the help chapter title</para>
+          <para>String array, Help chapters title</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>path</term>
         <listitem>
-          <para>a character string, the path of the directory containing the
-       help files.</para>
+          <para>String array, Help chapters path</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mode</term>
         <listitem>
-          <para>a boolean, %T if the help directory belongs to scilab modules list, %F else (toolboxes). The default value is %F.</para>
+          <para>A boolean, if TRUE, the chapter is considered as belongs to a
+          internal modules, otherwise, the chapter is added as external module.
+          It's an optional input argument and its default value is %F.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -49,11 +50,9 @@
   <refsection>
     <title>Description</title>
     <para>
-  This function adds a new entry in the helps list. The help chapter
-  files are to be located in a single directory. If the given
-  <literal>title</literal> already exists in the helps list associated with
-  the same path nothing is done.  The function checks if the directory
-  exist.</para>
+  This function adds a new entry in the helps list. If the path is already present
+  in the help list, <literal>add_help_chapter</literal> skips the add. The function
+  checks if the directory exist.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
@@ -62,7 +61,7 @@
         <link linkend="help">help</link>
       </member>
       <member>
-        <link linkend="add_demo">add_demo</link>
+        <link linkend="del_help_chapter">del_help_chapter</link>
       </member>
     </simplelist>
   </refsection>

@@ -860,6 +860,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sdot.c"
+				>
+			</File>
+			<File
 				RelativePath=".\simple.c"
 				>
 			</File>
@@ -1593,6 +1597,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"
+				>
+			</File>
+			<File
+				RelativePath=".\sdot.f"
 				>
 			</File>
 			<File

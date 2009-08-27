@@ -14,7 +14,8 @@
 #include "gw_string.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define STRING_TAB_SIZE 31
+static gw_generic_table Tab[STRING_TAB_SIZE]=
 {
 	{sci_length,"length"},
 	{sci_part,"part"},
@@ -52,7 +53,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_string(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,STRING_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -71,8 +71,9 @@ c
       data true/673717560,nz1*673720360/,false/673713976,nz1*673720360/
       
 c     
+c     mprot used to protect function see funcprot.c
       save /basbrk/,/mprot/
-c      save /units/
+
 c     
 
       iadr(l)=l+l-1
@@ -90,7 +91,7 @@ c     initialization C environment
 c     
 c     .  scilab function protection mode
 c     .  ------------------------------
-      macprt=1
+      call initfuncprot
 c     
 c     .  standard i/o initialization
 c     .  ----------------------------
@@ -122,7 +123,6 @@ c     .  wte = unit number for terminal output
       else
          wte=9999
       endif
-      wio = 0
 c     
       rio=rte
 c     

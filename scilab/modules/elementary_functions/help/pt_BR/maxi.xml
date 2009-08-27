@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>maxi</refname>
 
-    <refpurpose>m√°ximo</refpurpose>
+    <refpurpose>m·ximo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>[m [,k]]=maxi(A)
 [m [,k]]=maxi(A,'c')
@@ -39,7 +39,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -62,31 +62,31 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Para <literal>A</literal>, um vetor ou matriz de reais,
-    <literal>maxi(A)</literal> √© o maior elemento de <literal>A</literal>.
-    <literal>[m,k]=maxi(A)</literal> fornece, ainda, o √≠ndice do m√°ximo. Um
+    <literal>maxi(A)</literal> È o maior elemento de <literal>A</literal>.
+    <literal>[m,k]=maxi(A)</literal> fornece, ainda, o Ìndice do m·ximo. Um
     segundo argumento do tipo string <literal>'r'</literal> ou
-    <literal>'c'</literal> pode ser usado : <literal>'r'</literal> √© usado
+    <literal>'c'</literal> pode ser usado : <literal>'r'</literal> È usado
     para obter um vetor-linha <literal>m</literal> tal que
-    <literal>m(j)</literal> cont√©m o m√©ximo da <literal>j</literal> -√©sima
+    <literal>m(j)</literal> contÈm o mÈximo da <literal>j</literal> -Èsima
     coluna de A (<literal>A(:,j)</literal>), <literal>k(j)</literal> fornece o
-    √≠ndice de linha que cont√©m o m√°ximo para a coluna <literal>j</literal>.
-    <literal>'c'</literal> √© usado para a opera√ß√£o dual de linhas de
-    <literal>A</literal>. <literal>'m'</literal> √© usado para compatibilidade
+    Ìndice de linha que contÈm o m·ximo para a coluna <literal>j</literal>.
+    <literal>'c'</literal> È usado para a operaÁ„o dual de linhas de
+    <literal>A</literal>. <literal>'m'</literal> È usado para compatibilidade
     com Matlab.</para>
 
     <para><literal>m=maxi(A1,A2,...,An)</literal>, onde todos os
-    <literal>Aj</literal> s√£o matrizes de mesmo tamanho, retorna um vetor ou
+    <literal>Aj</literal> s„o matrizes de mesmo tamanho, retorna um vetor ou
     matriz <literal>m</literal> de tamanho <literal>size(m)=size(A1)</literal>
     tal que <literal>m(i)= maxi( Aj(i)), j=1,...,n</literal>.
     <literal>[m,k]=maxi(A1,A2,...,An)</literal> fornece, ainda, o vetor ou
     matriz <literal>k</literal>. Fixado <literal>i</literal>,
-    <literal>k(i)</literal> √© o n√∫mero do primeiro Aj(i) a alcan√ßar o
-    m√°ximo.</para>
+    <literal>k(i)</literal> È o n˙mero do primeiro Aj(i) a alcanÁar o
+    m·ximo.</para>
 
-    <para><literal>[m,k]=maxi(list(A1,...,An))</literal> √© uma outra sintaxe
+    <para><literal>[m,k]=maxi(list(A1,...,An))</literal> È uma outra sintaxe
     para <literal>[m,k]=maxi(A1,A2,...,An)</literal></para>
   </refsection>
 
@@ -105,7 +105,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="sort">sort</link></member>

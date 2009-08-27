@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2008 - INRIA - Antoine ELIAS
+* Copyright (C) 2008 - DIGITEO - Antoine ELIAS
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -26,13 +26,12 @@ extern "C"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
 
-#ifdef _MSC_VER
-#define strdup _strdup
-#endif
 using namespace std;
 /*--------------------------------------------------------------------------*/
 int sci_displaytree(char *fname,unsigned long fname_len)

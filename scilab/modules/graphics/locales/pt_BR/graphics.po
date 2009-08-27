@@ -1,0 +1,1404 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 17:45+0100\n"
+"PO-Revision-Date: 2009-08-09 13:55+0000\n"
+"Last-Translator: João Paulo Pizani Flor <joaopizani@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-08-15 17:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s: Entidade inválida %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um inteiro "
+"superior ou igual a %d\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade errada de argumentos de entrada. Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr "%s: Tipo de argumento de entrada errado #%d: Esperava-se um real\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr "%s: Tipo de argumento de entrada errado #%d: Esperava-se um real\n"
+
+msgid "Colormap"
+msgstr "Mapa de cores"
+
+msgid "Jet"
+msgstr "Jato"
+
+msgid "HSV"
+msgstr "HSV"
+
+msgid "Hot"
+msgstr "Quente"
+
+msgid "Gray"
+msgstr "Cinzento"
+
+msgid "Winter"
+msgstr "Inverno"
+
+msgid "Spring"
+msgstr "Primavera"
+
+msgid "Summer"
+msgstr "Verão"
+
+msgid "Autumn"
+msgstr "Outono"
+
+msgid "Bone"
+msgstr "Osso"
+
+msgid "Copper"
+msgstr "Cobre"
+
+msgid "Pink"
+msgstr "Rosa"
+
+msgid "Rainbow"
+msgstr "Arco-íris"
+
+msgid "Ocean"
+msgstr "Oceano"
+
+msgid "White"
+msgstr "Branco"
+
+msgid "Misc"
+msgstr "Miscelânea"
+
+msgid "Graphics"
+msgstr "Gráficos"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: A legenda não se encaixa no contexto corrente. Pulada\n"
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: O manipulador não é mais válido. Ignorado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Número errado de argumentos de entrada: Esperava-se de %d a %d."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''clear'' ou "
+"''reset''."
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor de "
+"manipuladores ''Figure''."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
+
+msgid "&File"
+msgstr "&Arquivo"
+
+msgid "&Tools"
+msgstr "&Ferramentas"
+
+msgid "&Edit"
+msgstr "&Editar"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Color number"
+msgstr "Número de cor"
+
+msgid "Name"
+msgstr "Nome"
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: Erro : não se consegue avaliar a função de entrada ''%s''."
+
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr "Erro %d na linha %d da função tal: ''%s''"
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: Erro : não se consegue avaliar a função de entrada."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se pelo menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Número de argumentos de entrada incorreto: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada %d: Esperava-se um manipulador "
+"''Axes''.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada %d: Esperava-se um "
+"manipulador ''Axes'' .\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor.\n"
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "O modo gráfico do Scilab desabilitou o modo -nogui ou -nwni.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Comprimentos "
+"incompatíveis.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
+msgstr "%s: Valor errado para o argumento de entrada #%d: Valor incorreto.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memória esgotada.\n"
+
+#, c-format
+msgid "%s: Objects must have the same axes.\n"
+msgstr "%s: Os objetos devem ter os mesmos eixos.\n"
+
+#, c-format
+msgid "%s: The handle is no more valid.\n"
+msgstr "%s: O manipulador não é mais válido.\n"
+
+#, c-format
+msgid "%s: The %d th handle is not a polyline handle.\n"
+msgstr "%s: O %d-ésimo manipulador não é um manipulador \"Polyline\".\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um escalar "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um escalar "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um manipulador "
+"''Text''.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um manipulador "
+"''Text''.\n"
+
+#, c-format
+msgid "%s: The handle is not valid.\n"
+msgstr "%s: O manipulador não é válido.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr ""
+"%s: Número errado de argumentos de entrada: Esperava-se de %d ou de %d a "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um array 2D de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um escalar ou "
+"string.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: O manipulador não é válido ou não é mais válido.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Número errado de argumentos de entrada: Esperava-se pelo menos %d.\n"
+
+#, c-format
+msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
+msgstr "%s: Argumento opcional deslocado: #%d deve estar na posição %d\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: Valor errado para argumento de entrada #%d: Esperava-se '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s' ou um "
+"manipulador.\n"
+
+#, c-format
+msgid "Demo of %s().\n"
+msgstr "Demonstração de %s().\n"
+
+msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
+msgstr "%: Valor errado para %s '%c': Esperava-se '%s', '%s' e '%s'.\n"
+
+#, c-format
+msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
+msgstr "%s: Argumento opcional deslocado: #%d deve estar na posição %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgstr ""
+"%s: Número errado de colunas para o argumento de entrada #%d: Esperava-se "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
+"string.\n"
+
+#, c-format
+msgid "%s: Could not read property '%s' for root object.\n"
+msgstr "%s: Não foi possível ler a propriedade '%s' para o objeto raiz.\n"
+
+#, c-format
+msgid "%s: Each handle should not appear twice.\n"
+msgstr "%s: Nenhum manipulador deveria aparecer duas vezes.\n"
+
+#, c-format
+msgid "%s: Objects must have the same parent.\n"
+msgstr "%s: Os objetos devem ter o mesmo pai.\n"
+
+#, c-format
+msgid "%s: Handle %d cannot be glued (invalid parent).\n"
+msgstr "%s: O manipulador %d não pode ser colado (pai inválido).\n"
+
+#, c-format
+msgid "%s: Handle %d cannot be glued (invalid type).\n"
+msgstr "%s: O manipulador %d não pode ser colado (tipo inválido).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz de "
+"manipuladores.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor %s "
+"ou%s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
+msgstr ""
+"%s: Tamanhoerrado para o argumento de entrada #%d: Esperava-se uma lista de "
+"tamanho %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Tamanho errado para os argumentos de entrada #%d e #%d.\n"
+
+#, c-format
+msgid "%s: Impossible status min > max in x or y rect data.\n"
+msgstr "%s: Status impossível min > max no dado x ou y rect.\n"
+
+#, c-format
+msgid ""
+"%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
+msgstr ""
+"%s: Limites no eixo x devem ser estritamente positivos para o uso do modo "
+"logarítmico.\n"
+
+#, c-format
+msgid ""
+"%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
+msgstr ""
+"%s: Limites no eixo y devem ser estritamente positivos para o uso do modo "
+"logarítmico.\n"
+
+#, c-format
+msgid ""
+"%s: At least one x data must be strictly positive to compute the bounds and "
+"use logarithmic mode.\n"
+msgstr ""
+"%s: Pelo menos um dado x deve ser positivo para se computar os limites e "
+"utilizar a escala logarítmica.\n"
+
+#, c-format
+msgid ""
+"%s: At least one y data must be strictly positive to compute the bounds and "
+"use logarithmic mode\n"
+msgstr ""
+"%s: Pelo menos um dado y deve ser positivo para se computar os limites e "
+"utilizar a escala logarítmica.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d, #%d e #%d: Comprimentos "
+"incompatíveis.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d e #%d: Comprimentos "
+"incompatíveis.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
+msgstr ""
+"%s: Tamanhoerrado para o argumento de entrada #%d e #%d: Esperava-se %s.\n"
+
+#, c-format
+msgid "%s: Handles must be relocated under a single parent.\n"
+msgstr "%s: Os manipuladores deve ser realocados sob um único pai.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single Figure or Axes handle "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
+"manipulador ''Figure'' ou ''Axes''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
+"tamanho %d ou %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean expected\n"
+"."
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um booleano\n"
+"."
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real row vector or a boolean "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor-linha "
+"de reais o um booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor-linha "
+"de reais.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string ou um "
+"manipulador.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um "
+"manipulador '%s' ou um escalar real.\n"
+
+#, c-format
+msgid "%s: Handle does not or no longer exists.\n"
+msgstr "%s: O manipulador não existe ou não existe mais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' handle or a real scalar "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um manipulador "
+"'%s' ou um escalar real.\n"
+
+#, c-format
+msgid "%s: Unable to create requested figure: No more memory.\n"
+msgstr "%s: Não se consegue criar a figura solicitada: Memória esgotada.\n"
+
+#, c-format
+msgid "%s: '%s' handle does not or no longer exists.\n"
+msgstr "%s: O manipulador '%s' não existe ou não existe mais.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada: Esperava-se um manipulador "
+"'%s'.\n"
+
+#, c-format
+msgid "%s: Routine can only swap two single handles.\n"
+msgstr "%s: A rotina só consegue permutar dois manipuladores simples.\n"
+
+#, c-format
+msgid "%s: Object must be a Compound.\n"
+msgstr "%s: O objeto deve ser um Compound.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Vector of Axes and Figure handles "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para argumento de entrada: Esperava-se um vetor de "
+"manipuladores ''Axes'' e ''Figure''.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s expected.\n"
+msgstr "%s: Tipo errado para o argumento de entrada #%d: Esperava-se %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d e #%d.\n"
+
+#, c-format
+msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
+msgstr ""
+"%s: A gradação interpolada só funciona em polígonos de tamanho %d ou %d\n"
+
+#, c-format
+msgid "%s: Unrecognized input argument: '%s'.\n"
+msgstr "%s: Valor desconhecido para o argumento de entrada: '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single double or boolean vector "
+"expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único double "
+"ou um vetor de booleanos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single double expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um único "
+"double.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor de "
+"booleanos.\n"
+
+#, c-format
+msgid ""
+"%s: Using xgetmouse with a flag to avoid the event queue to be cleared is "
+"obsolete.\n"
+"This functionnality will be permanently removed in Scilab 5.1.\n"
+msgstr ""
+"%s: Utilizar xgetmouse com um indicador para evitar que a fila de eventos "
+"seja limpa está obsoleto.\n"
+"Esta funcionalidade será permanentemente removida no Scilab 5.1.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um nome de "
+"fonte válido.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um inteiro não-"
+"negativo.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um inteiro não-"
+"negativo.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+"%s: Número incorreto de argumentos de entrada: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
+msgstr ""
+"%s: Comprimento incompatível para os argumentos de entrada #%d e #%d.\n"
+
+#, c-format
+msgid "%s : '%s' must be set\n"
+msgstr "%s : '%s' deve ser ajustado\n"
+
+#, c-format
+msgid ""
+"%s: Old graphic mode is no longer available. Please refer to the set help "
+"page.\n"
+msgstr ""
+"%s: O modo gráfico antigo não está mais disponível. Por favor encaminhe-se à "
+"página de ajuda de ''set''.\n"
+
+#, c-format
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: Argumento de entrada desconhecido '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: Tipo errado para argumento de entrada: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of size %d expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor de "
+"tamanho %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um único "
+"manipulador.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um manipulador "
+"''Figure'' ou ''Axes''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Os limites especificados "
+"não estão corretos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um manipulador "
+"ou um vetor de doubles.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Handle or vector of double expected.\n"
+msgstr ""
+"%s: Tipo errado para argumentos de entradas: Esperava-se um manipulador ou "
+"um vetor de doubles.\n"
+
+#, c-format
+msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
+msgstr ""
+"%s: Erro no argumento de entrada #%d: Os limites especificados não estão "
+"corretos.\n"
+
+msgid "The parent has to be a FIGURE\n"
+msgstr "O pai deve ser um FIGURE\n"
+
+msgid "The parent has to be a SUBWIN\n"
+msgstr "O pai deve ser um SUBWIN\n"
+
+msgid "No more place to allocates text string, try a shorter string.\n"
+msgstr ""
+"Não há mais espaçp para se alocar o string de texto, tente um string menor.\n"
+
+msgid "Problem with sciInitFontContext\n"
+msgstr "Problema com sciInitFontContext\n"
+
+msgid "Width and height must be positive.\n"
+msgstr "O comprimento e a altura devem ser positivos.\n"
+
+msgid "Impossible case when building axis\n"
+msgstr "Caso impossível ao se construir o eixo\n"
+
+msgid "This object cannot be cloned.\n"
+msgstr "Este objeto não pode ser clonado\n"
+
+msgid ""
+"Color matrix is NULL: Can not build color scaled linearly into the current "
+"colormap"
+msgstr ""
+"A matriz de cores é NULL: Não se pode construir cor em escala linear no mapa "
+"de cores correntes"
+
+#, c-format
+msgid "%s is only made to compute level curves and not display them.\n"
+msgstr ""
+"%s é feito apenas para se computar curvas de nível, não para exibi-las.\n"
+
+#, c-format
+msgid "Entity with type %d cannot be destroyed.\n"
+msgstr "Entidade com tipo %d não pode ser destruída.\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr "Este objeto não pode ser deletado.\n"
+
+msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+msgstr "Aviso: Não se pode utilizar Log no eixo X, xmin é negativo.\n"
+
+msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+msgstr "Aviso: Não se pode utilizar Log no eixo Y, ymin é negativo.\n"
+
+msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+msgstr "Aviso: Não se pode utilizar Log no eixo Z, zmin é negativo.\n"
+
+msgid "Warning: Nax does not work with logarithmic scaling.\n"
+msgstr "Aviso: Nax não trabalha com escala logarítmica.\n"
+
+msgid "Internal Error: Loop in graduate1\n"
+msgstr "Erro interno: Loop em graduate1\n"
+
+msgid "Please send a Bug report to dev@lists.scilab.org\n"
+msgstr "Por favor, envie um relatório de Bug a dev@lists.scilab.org\n"
+
+msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
+msgstr "Erro: ComputeFormat deve ser utilizado com objetos SCI_AXES\n"
+
+#, c-format
+msgid "%s: Wrong type argument %s.\n"
+msgstr "%s: Argumento de tipo errado %s.\n"
+
+#, c-format
+msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
+msgstr "Aviso: %s deve ser modificado, %s é '%s' e a dimensão %s não é %d.\n"
+
+#, c-format
+msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
+msgstr "%s deve ser modificado PRIMEIRO, %s é '%s' e a dimensão %s é < %d.\n"
+
+#, c-format
+msgid "Bad size in %s: you must first increase the size of the %s.\n"
+msgstr "Tamanho ruim em %s: Você deve primeiro aumentar o tamanho de %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d < %d expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d < %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String of %d characters expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um string de "
+"%d caracteres.\n"
+
+msgid "You are not using a legend object.\n"
+msgstr "Você não está utilizando um objeto legend.\n"
+
+msgid "Coordinates modifications are only applicable on axes objects.\n"
+msgstr ""
+"As modificações de coordenadas só são aplicáveis a objetos ''Axes'' agora.\n"
+
+msgid "Only axes handles have a viewing area."
+msgstr "Apenas manipuladores Axes possuem uma área de visualização."
+
+msgid "Unable to compute data bounds for this kind of object."
+msgstr "Não se consegue computar limites de dados para este tipo de objeto."
+
+msgid "Unable to compute x_location for this kind of object."
+msgstr "Não se consegue computar x_location para este tipo de objeto."
+
+msgid "Unable to compute y_location for this kind of object."
+msgstr "Não se consegue computar y_location para este tipo de objeto."
+
+#, c-format
+msgid "This object has no %s property.\n"
+msgstr "Este objeto não possui propriedade %s.\n"
+
+msgid "Warning: Nax does not work with logarithmic scaling\n"
+msgstr "Aviso: Nax não trabalha com escala logarítmica\n"
+
+msgid "Warning : Nax does not work with logarithmic scaling\n"
+msgstr "Aviso: Nax não trabalha com escala logarítmica\n"
+
+msgid "The parent handle is not or no more valid.\n"
+msgstr "O manipulador pai não é válido ou não mais válido.\n"
+
+#, c-format
+msgid "Handle number %d is not or no more valid.\n"
+msgstr "O manipulador de número %d não é válido ou não é mais válido.\n"
+
+#, c-format
+msgid "Handle number %d is not compatible with the parent handle.\n"
+msgstr "O manipulador de número %d não é compatível com o manipulador pai.\n"
+
+#, c-format
+msgid "Error relocating handle %d."
+msgstr "Erro ao se alocar o manipulador %d."
+
+#, c-format
+msgid "Handle #%d is not compatible with its new parent.\n"
+msgstr "O manipulador #%d não é compatível com o seu novo pai.\n"
+
+#, c-format
+msgid "Object #%d is not correctly placed in the hierarchy.\n"
+msgstr "O objeto #%d não está corretamente localizado na hierarquia.\n"
+
+#, c-format
+msgid "Handle #%d is not or no more valid.\n"
+msgstr "O manipulador #%d não é válido ou não é mais válido.\n"
+
+msgid "Default figure cannot be create.\n"
+msgstr "A figura padrão não pode ser criada.\n"
+
+msgid "Default axes cannot be create.\n"
+msgstr "Os eixos padrões não podeim ser criados.\n"
+
+#, c-format
+msgid "Graphic window number %d"
+msgstr "Janela gráfica número %d"
+
+msgid "This object has not any graphic mode\n"
+msgstr "Este objeto não possui modo gráfico\n"
+
+msgid "No Callback is associated with this Entity.\n"
+msgstr "Nenhum Callback está associado a esta entidade.\n"
+
+msgid "This object can not be moved.\n"
+msgstr "Este objeto não pode ser movido.\n"
+
+msgid "Warning : Nax does not work with logarithmic scaling.\n"
+msgstr "Aviso: Nax não trabalha com escala logarítmica.\n"
+
+#, c-format
+msgid "%s: Number of columns must be %d.\n"
+msgstr "%s: O número de colunas deve ser %d.\n"
+
+#, c-format
+msgid "%s: Object must be a %s.\n"
+msgstr "%s: O objeto deve ser um %s.\n"
+
+#, c-format
+msgid "Line width must be greater than %d.\n"
+msgstr "O comprimento de linha deve ser maior do que %d.\n"
+
+#, c-format
+msgid "The line style must be greater than %d.\n"
+msgstr "O estilo de linha deve ser maior do que %d.\n"
+
+#, c-format
+msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
+msgstr ""
+"Valor errado para propriedade %s: Deve estar no intervalo [%s, %s].\n"
+
+#, c-format
+msgid "The mark size must be greater or equal than %d.\n"
+msgstr "O tamanho de marca deve ser maior do que ou igual a %d.\n"
+
+#, c-format
+msgid "The mark size unit must be greater than %d.\n"
+msgstr "A unidade de tamanho da marca deve ser maior do que %d.\n"
+
+#, c-format
+msgid "The font size must be greater than %d.\n"
+msgstr "O tamanho de fonte deve ser maior do que %d.\n"
+
+msgid "Unable to load default values.\n"
+msgstr "Não se consegue carregar os valores padrões.\n"
+
+#, c-format
+msgid "Figure name may not contains any %% character, except a single %%d.\n"
+msgstr ""
+"O nome da figura não pode conter qualquer caractere %%, exceto um único "
+"%%d.\n"
+
+msgid "Handle is not a SubWindow.\n"
+msgstr "O manipulador não está em uma subjanela.\n"
+
+#, c-format
+msgid "Number of columns must be %d (%d if %s coordinate).\n"
+msgstr "O número de colunas deve ser %d (%d de a coordenada for %s).\n"
+
+#, c-format
+msgid "Number of elements must be %d (%d if %s coordinate).\n"
+msgstr "O número de elementos deve ser %d (%d de a coordenada for  %s).\n"
+
+#, c-format
+msgid "Number of elements must be %d (%d if z coordinate )\n"
+msgstr "O número de elementos deve ser %d (%d se a coordenada for z)\n"
+
+msgid "Unhandled data field\n"
+msgstr "Campo de dados não manipulado\n"
+
+#, c-format
+msgid "Number of columns must be %d.\n"
+msgstr "O número de colunas deve ser %d.\n"
+
+#, c-format
+msgid "%s: please use %s instead.\n"
+msgstr "%s: Por favor, utilize %s ao invés.\n"
+
+#, c-format
+msgid "%s: Can't enable a void event handler.\n"
+msgstr "%s: Não se consegue habilitar um manipulador de eventos vazio.\n"
+
+#, c-format
+msgid "%s should be a vector of double.\n"
+msgstr "%s deveria ser um vetor de doubles.\n"
+
+msgid "Ticks location and label vectors must have the same size.\n"
+msgstr ""
+"A localização dos traços e os vetores de rótulos devem ter o mesmo tamanho.\n"
+
+#, c-format
+msgid "%s should be a string vector.\n"
+msgstr "%s deve ser um vetor de strings.\n"
+
+#, c-format
+msgid "Unknown property: %s.\n"
+msgstr "Propriedade desconhecida: %s.\n"
+
+msgid "Error accessing alignment property.\n"
+msgstr "Erro ao se acessar a propriedade de alinhamento.\n"
+
+#, c-format
+msgid "%s property does not exist for this handle.\n"
+msgstr "%s A propriedade não existe para este manipulador.\n"
+
+#, c-format
+msgid "%s undefined for this object.\n"
+msgstr "%s Indefinido para este objeto.\n"
+
+#, c-format
+msgid "%s property only exists for %s surfaces.\n"
+msgstr "A propriedade %s exite apenas para superfícies %s.\n"
+
+#, c-format
+msgid "%s: No more memory."
+msgstr "%s: Memória esgotada"
+
+#, c-format
+msgid "%s property undefined for this object.\n"
+msgstr "%s Propriedade indefinida para este objeto.\n"
+
+#, c-format
+msgid "%s does not exist for this handle.\n"
+msgstr "%s não existe para este manipulador.\n"
+
+#, c-format
+msgid "%s is not correctly defined.\n"
+msgstr "%s não está corretamente definido.\n"
+
+#, c-format
+msgid ""
+"Warning: %s use is deprecated and no more taken into account, use %s "
+"property to edit Axes color.\n"
+msgstr ""
+"Aviso: o uso de %s é desaprovado e não será levado em conta, utilize a "
+"propriedade %s para editar as cores do objeto ''Axes''.\n"
+
+#, c-format
+msgid "%s property undefined for this handle.\n"
+msgstr "A propriedade %s é indefinida para este manipulador.\n"
+
+#, c-format
+msgid "%s property does not exist for this label.\n"
+msgstr "A propriedade %s não existe para este rótulo.\n"
+
+#, c-format
+msgid "Incompatible type for property %s.\n"
+msgstr "Tipo incompatível para a propriedade %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s','%s' or '%s' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s','%s' ou "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"Incompatible type for property %s: Single character string expected.\n"
+msgstr ""
+"Tipo incompatível para a propriedade %s: Esperava-se um único string.\n"
+
+#, c-format
+msgid "Wrong value for property %s: value must be '%s' or '%s'.\n"
+msgstr "Valor errado para a propriedade %s: O valor deve ser '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input argument: '%s' or '%s' expected.\n"
+msgstr "%s: Argumento de entrada errado: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid "Wrong value: '%s' or '%s' expected.\n"
+msgstr "Valor errado: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Argumento de entrada errado #%d: Esperava-se \"%s\" ou \"%s\".\n"
+
+#, c-format
+msgid "Wrong value for input argument #%d: Between %d to %d expected.\n"
+msgstr ""
+"Valor errado para o argumento de entrada #%d: Esperava-se entre %d e %d.\n"
+
+#, c-format
+msgid "Wrong size for argument #%d: %d elements expected.\n"
+msgstr ""
+"Tamanho errado para o argumento de entrada #%d: Esperava-se %d elementos.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected."
+msgstr "%s: Argumento de entrada errado #%d: Esperava-se '%s' ou '%s'."
+
+#, c-format
+msgid "Wrong value for property '%s': smaller values expected.\n"
+msgstr "Valor errado para a propriedade '%s': Esperava-se valores menores.\n"
+
+#, c-format
+msgid ""
+"WARNING: '%s' property can not be modified if the %s is docked with other "
+"elements.\n"
+msgstr ""
+
+#, c-format
+msgid "%s must be set to '%s' or '%s'.\n"
+msgstr "%s Deve ser ajustado para '%s' ou '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s', '%s', "
+"'%s' ou '%s'.\n"
+
+#, c-format
+msgid "Incompatible value for property %s: Must be %d, %d, %d or %d.\n"
+msgstr ""
+"Valor incompatível para a propriedade%s: Deve ser %d, %d, %d ou %d.\n"
+
+#, c-format
+msgid "Wrong value for argument: '%s' or '%s' expected.\n"
+msgstr "Valor errado para o argumento: Esperava-se '%s' ou '%s'.\n"
+
+msgid "Children property can not be modified directly.\n"
+msgstr "A propriedade do filho não pode ser modificada diretamente.\n"
+
+#, c-format
+msgid "Argument must be a vector of size %d.\n"
+msgstr "O argumento deve ser um vetor de tamanho %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Tipo errado de argumento de entrada #%d: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %d, %d, %d, %d or %d expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se %d, %d, %d, %d "
+"ou %d.\n"
+
+#, c-format
+msgid "%s: No more memory\n"
+msgstr "%s: Memória esgotada\n"
+
+#, c-format
+msgid "Warning: %s property is only used in 3D mode.\n"
+msgstr "Aviso: A propriedade %s só é utilizada no modo 3D.\n"
+
+#, c-format
+msgid ""
+"Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"
+msgstr ""
+"Tamanho errado para o argumento de entrada #%d: Esperava-se um real ou um "
+"manipulador 'Figure'.\n"
+
+#, c-format
+msgid "'%s' handle does not or no longer exists.\n"
+msgstr "O manipulador '%s' não existe ou não existe mais.\n"
+
+#, c-format
+msgid ""
+"Wrong type for input argument #%d: A real or a '%s' handle expected.\n"
+msgstr ""
+"Tipo errado para o argumento de entrada #%d: Esperava-se um real ou um "
+"manipulador '%s'.\n"
+
+msgid "Unable to create requested figure: No more memory.\n"
+msgstr "Não se consegue criar a figura solicitada: Memória esgotada.\n"
+
+#, c-format
+msgid ""
+"Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"
+msgstr ""
+"Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz %s, "
+"%s, %s, %s, %s ou %s.\n"
+
+#, c-format
+msgid "Argument #%d must have %d elements.\n"
+msgstr "O argumento #%d deve ter elementos %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se vetores-"
+"colunas.\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Comprimentos "
+"incompatíveis.\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Tamanho incompatível\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d, #%d e #%d: "
+"Comprimentos incompatíveis.\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d e #%d: Deveria ser >= "
+"%d.\n"
+
+#, c-format
+msgid ""
+"Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
+"expected.\n"
+msgstr ""
+"Tamanho errado para o elemento %s: Esperava-se uma matriz %d-por-%d ou um "
+"vetor de tamanho %d.\n"
+
+#, c-format
+msgid "Can not change the %s of graphic object: its type is %s.\n"
+msgstr "Não se pode modificar o objeto gráfico %s: o seu tipo é %s.\n"
+
+#, c-format
+msgid "%s: Wrong value: Vector is not monotonous.\n"
+msgstr "%s: Valor errado: O vetor não é monótono.\n"
+
+msgid "Wrong type for input argument: Tlist expected.\n"
+msgstr "Tipo errado para o argumento de entrada: Esperava-se Tlist.\n"
+
+#, c-format
+msgid "Wrong size for input argument: %d or %d expected.\n"
+msgstr "Tipo errado para o argumento de entrada: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "Value must be %d to set default values.\n"
+msgstr "O valor deve ser %d para se ajustar os valores padrões.\n"
+
+#, c-format
+msgid "Wrong size for %s property: Vector of size %d expected.\n"
+msgstr ""
+"Tamanho errado para a propriedade %s: Esperava-se um vetor de tamanho %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'.\n"
+
+msgid ""
+"Old graphic mode is no longer available. Please refer to the set help page.\n"
+msgstr ""
+"O modo gráfico antigo não está mais disponível. Por favor, encaminhe-se à "
+"página de ajuda de ''set''.\n"
+
+#, c-format
+msgid "Wrong value for property %s: An Integer between %d and %d expected.\n"
+msgstr ""
+"Valor errado para a propriedade %s: Esperava-se um inteiro entre %d e %d.\n"
+
+#, c-format
+msgid "Wrong size for argument: %s or %s expected.\n"
+msgstr "Tamanho errado para o argumento : Esperava-se %s ou %s.\n"
+
+#, c-format
+msgid "Wrong value for argument: %d (no grid) or number of color expected.\n"
+msgstr ""
+"Valor errado para o argumento: Esperava-se %d (sem grid) ou um número de "
+"cor.\n"
+
+msgid "Color outside of color map boundaries.\n"
+msgstr "Cor fora dos limites do mapa de cores.\n"
+
+#, c-format
+msgid "%s can only be set on %s objects.\n"
+msgstr "%s só pode ser ajustado em objetos %s.\n"
+
+#, c-format
+msgid "You must first specify an %s for this object.\n"
+msgstr "Você primeiro deve especificar um %s para este objeto.\n"
+
+#, c-format
+msgid ""
+"Under interpolated color mode the column dimension of the color vector must "
+"match the number of points defining the line (which must be %d or %d).\n"
+msgstr ""
+"Sob o modo de cores interpoladas, a dimensão da coluna do vetor de cores "
+"deve coincidir com o número de pontos definindo a linha (que deve ser %d ou "
+"%d).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se '%s', '%s' ou "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s Invalid dimension of the assigned handle, expected dimension is %d.\n"
+msgstr "%s Dimensão inválida do vetor designado, a dimensão esperada é %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: %d or %d expected.\n"
+msgstr "%s: Tamanho errado para o argumento: Esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
+msgstr "%s: Tamanho errado para o argumento: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid ""
+"Error: data_bounds on %s axis must be strictly positive to switch to "
+"logarithmic mode.\n"
+msgstr ""
+"Erro: data_bounds no eixo %s deve ser estritamente positivo para se alternar "
+"para o modo logarítmico.\n"
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+"%s: Tipo errado para a propriedade '%s': Esperava-se um manipulador '%s' ou "
+"'%s'.\n"
+
+msgid "Parent property can not be modified directly.\n"
+msgstr "A propriedade do pai não pode ser modificada diretamente.\n"
+
+#, c-format
+msgid "Wrong value for %s property: Must be between %d and %d.\n"
+msgstr "Valor errado para a propriedade %s: Deve estar entre %d e %d.\n"
+
+#, c-format
+msgid "Value must have %d elements (%d if in 3D).\n"
+msgstr "Value deve ter %d elementos (%d no modo 3D).\n"
+
+#, c-format
+msgid "%s cannot be set in this case.\n"
+msgstr "%s não pode ser ajustado nesse caso.\n"
+
+#, c-format
+msgid "Wrong value for input argument: '%s' or '%s' expected.\n"
+msgstr ""
+"Valor errado para o argumento de entrada: Esperava-se '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada: Esperava-se '%s', '%s' ou "
+"'%s'.\n"
+
+#, c-format
+msgid "%s must be a 2D vector.\n"
+msgstr "%s deve ser um vetor 2D.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Row vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor-"
+"linha.\n"
+
+#, c-format
+msgid "Value must have at least %d elements.\n"
+msgstr "Value deve ter pelo menos %d elementos.\n"
+
+#, c-format
+msgid "Wrong value for argument: %s or %s expected.\n"
+msgstr "Valor errado para o argumento: Esperava-se %s ou %s.\n"
+
+#, c-format
+msgid "Wrong value for %s: '%s' or '%s' or '%s' expected.\n"
+msgstr "Valor errado para %s: Esperava-se '%s' ou '%s' ou '%s'.\n"
+
+#, c-format
+msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
+msgstr ""
+"Erro: Tamanho ruim em %s ; primeiro, você deve aumentar o tamanho de %s.\n"
+
+#, c-format
+msgid ""
+"Warning: %s has been set by user ; you must first increase the size of the "
+"%s string vector before switching to the new %s mode.\n"
+msgstr ""
+"Aviso: %s foi ajustado pelo usuário ; primeiro, você deve aumentar o tamanho "
+"do vetor de strings %s antes de alternar para o novo modo %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected."
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se '%s' ou '%s'."
+
+msgid "Can not set directly a label object.\n"
+msgstr "Não se pode ajustar diretamente um objeto Label.\n"
+
+#, c-format
+msgid "Argument #%d must have %d columns.\n"
+msgstr "O argumento #%d deve ter %d colunas.\n"
+
+#, c-format
+msgid "This handle has no %s property.\n"
+msgstr "Este manipulador não possui propriedade %s.\n"
+
+#, c-format
+msgid "Bad input, %s should be a row or column vector.\n"
+msgstr "Entrada ruim, %s deveria ser um vetor-linha ou coluna.\n"
+
+msgid "Wrong size for input vector.\n"
+msgstr "Tamanho errado para o vetor de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um vetor.\n"
+
+#, c-format
+msgid "Wrong size for property %s: A vector of size %d expected.\n"
+msgstr ""
+"Tamanho errado para a propriedade %s: Esperava-se um vetor de tamanho %d.\n"
+
+#, c-format
+msgid "Argument must be a vector of size %d (or %d in 2d).\n"
+msgstr "O argumento deve ser um vetor de tamanho %d (ou %d no modo 2d).\n"
+
+#, c-format
+msgid ""
+"WARNING: Wrong value for property %s: indices oustside the colormap will be "
+"clamped.\n"
+msgstr ""
+
+#, c-format
+msgid "Impossible: %s must be freed before re-allocating"
+msgstr "Impossível: %s deve ser liberado antes da realocação"
+
+#, c-format
+msgid "%s: x vector is not monotonous.\n"
+msgstr "%s: o vetor x não é monótono\n"
+
+msgid "Scilab Graphics module not installed.\n"
+msgstr "O módulo Gráfico do Scilab não foi instalado\n"

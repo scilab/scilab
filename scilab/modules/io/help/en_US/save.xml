@@ -134,6 +134,8 @@ mclose(fd)
     <simplelist type="inline">
       <member><link linkend="load">load</link></member>
 
+      <member><link linkend="write">write</link></member>
+
       <member><link linkend="save_format">save_format</link></member>
 
       <member><link linkend="mopen">mopen</link></member>

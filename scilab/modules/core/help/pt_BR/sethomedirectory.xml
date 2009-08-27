@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="sethomedirectory" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,19 +13,19 @@
   <refnamediv>
     <refname>sethomedirectory</refname>
 
-    <refpurpose>ajusta o diretÃ³rio home do Scilab</refpurpose>
+    <refpurpose>ajusta o diretório home do Scilab</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
-    <synopsis>[home,scilabhome]=sethomedirectory()</synopsis>
+    <synopsis>[home,scilabhome] = sethomedirectory()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Ajusta o endereÃ§o hom do Scilab : variÃ¡vel "SCIHOME".</para>
+    <para>Ajusta o endereço hom do Scilab : variável "SCIHOME".</para>
 
     <para>No Windows 2k e XP , C:\Documents and
     Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>

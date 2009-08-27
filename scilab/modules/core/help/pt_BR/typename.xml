@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="typename" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,7 +13,7 @@
   <refnamediv>
     <refname>typename</refname>
 
-    <refpurpose>associa um nome ao tipo de variÃ¡vel</refpurpose>
+    <refpurpose>associa um nome ao tipo de variável</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -31,7 +31,7 @@ typename(name,type)</synopsis>
         <term>types</term>
 
         <listitem>
-          <para>vetor coluna de inteiros: os cÃ³digos dos tipos de cada tipo de
+          <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de
           dado definido. </para>
         </listitem>
       </varlistentry>
@@ -40,7 +40,7 @@ typename(name,type)</synopsis>
         <term>names</term>
 
         <listitem>
-          <para>vetor coluna de strings: os nomes associados aos cÃ³digos de
+          <para>vetor coluna de strings: os nomes associados aos códigos de
           tipos. </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@ typename(name,type)</synopsis>
         <term>type</term>
 
         <listitem>
-          <para>inteiro: o cÃ³digo de tipo do novo tipo de dado. </para>
+          <para>inteiro: o código de tipo do novo tipo de dado. </para>
         </listitem>
       </varlistentry>
 
@@ -57,38 +57,38 @@ typename(name,type)</synopsis>
         <term>name</term>
 
         <listitem>
-          <para>string: o nome associado ao cÃ³digo de tipo </para>
+          <para>string: o nome associado ao código de tipo </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>O overloading de funÃ§Ãµes e operadores faz uso de nomes formais
-    associados aos tipos de dados para formar o nome da funÃ§Ã£o de overloading
+    <para>O overloading de funções e operadores faz uso de nomes formais
+    associados aos tipos de dados para formar o nome da função de overloading
     (ver overloading). <literal>typename</literal> pode ser usado para
     manipular esses nomes formais para tipos de dados "hard-coded" (os nomes
     formais de tipos de dados codificados de <literal>tlist</literal> ou
-    <literal>mlist</literal> sÃ£o definidos de outra forma, ver
+    <literal>mlist</literal> são definidos de outra forma, ver
     <literal>overloading</literal>).</para>
 
     <para>Chamado sem argumento do lado direito, <literal>typename</literal>
-    retorna informaÃ§Ãµes sobre tipos de dados definidos.</para>
+    retorna informações sobre tipos de dados definidos.</para>
 
     <para>Chamado com argumento do lado direito, <literal>typename</literal>
-    associa um nome a um cÃ³digo de tipo de dado.</para>
+    associa um nome a um código de tipo de dado.</para>
 
     <para><literal>typename('',type)</literal> suprime o tipo de dado
-    fornecido pelo seu cÃ³digo <literal>type</literal> de tabelas de tipos de
+    fornecido pelo seu código <literal>type</literal> de tabelas de tipos de
     dados conhecidos.</para>
     
     <para>Number max. of defined types is 50.</para>
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="type">type</link></member>

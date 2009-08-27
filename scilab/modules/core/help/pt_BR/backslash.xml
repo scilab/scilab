@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="backslash" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,45 +13,45 @@
   <refnamediv>
     <refname>backslash (\)</refname>
 
-    <refpurpose>divis√£o matricial direita-esquerda</refpurpose>
+    <refpurpose>divis„o matricial direita-esquerda</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>x=A\b</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>(\) denota a divis√£o matricial direita-esquerda.
-    <literal>x=A\b</literal> √© a solu√ß√£o para <literal>A*x=b</literal>.</para>
+    <para>(\) denota a divis„o matricial direita-esquerda.
+    <literal>x=A\b</literal> È a soluÁ„o para <literal>A*x=b</literal>.</para>
 
-    <para>Se <literal>A</literal> √© quadrada e n√£o-singular,
-    <literal>x=A\b</literal> (unicamente definida) √© equivalente a
-    <literal>x=inv(A)*b</literal> (mas as computa√ß√µes s√£o menos custosas).
+    <para>Se <literal>A</literal> È quadrada e n„o-singular,
+    <literal>x=A\b</literal> (unicamente definida) È equivalente a
+    <literal>x=inv(A)*b</literal> (mas as computaÁıes s„o menos custosas).
     </para>
 
-    <para>Se <literal>A</literal> n√£o √© quadrada, <literal>x</literal> √© uma
-    solu√ß√£o de m√≠nimo quadrado, i.e., <literal>norm(A*x-b)</literal> √© m√≠nima
-    (norma euclidiana). Se <literal>A</literal> √© de posto coluna cheio, a
-    solu√ß√£o de m√≠nimo quadrado, <literal>x=A\b</literal> , √© unicamente
-    definida (h√° um √∫nico <literal>x</literal> que minimiza
-    <literal>norm(A*x-b)</literal>). Se <literal>A</literal>n√£o √© de posto
-    coluna cheio, ent√£o a solu√ß√£o de m√≠nimo quadrado n√£o √© √∫nica e
-    <literal>x=A\b</literal> , em geral, n√£o √© a solu√ß√£o com norma m√≠nima (a
-    solu√ß√£o com norma m√≠nima √© <literal>x=pinv(A)*b</literal>).</para>
+    <para>Se <literal>A</literal> n„o È quadrada, <literal>x</literal> È uma
+    soluÁ„o de mÌnimo quadrado, i.e., <literal>norm(A*x-b)</literal> È mÌnima
+    (norma euclidiana). Se <literal>A</literal> È de posto coluna cheio, a
+    soluÁ„o de mÌnimo quadrado, <literal>x=A\b</literal> , È unicamente
+    definida (h· um ˙nico <literal>x</literal> que minimiza
+    <literal>norm(A*x-b)</literal>). Se <literal>A</literal>n„o È de posto
+    coluna cheio, ent„o a soluÁ„o de mÌnimo quadrado n„o È ˙nica e
+    <literal>x=A\b</literal> , em geral, n„o È a soluÁ„o com norma mÌnima (a
+    soluÁ„o com norma mÌnima È <literal>x=pinv(A)*b</literal>).</para>
 
-    <para><literal>A.\B</literal> √© a matriz com entrada
+    <para><literal>A.\B</literal> È a matriz com entrada
     <literal>(i,j)</literal> igual a <literal>A(i,j)\B(i,j)</literal>. Se
-    <literal>A</literal> (ou <literal>B</literal>√© um escalar,
-    <literal>A.\B</literal> √© equivalente a <literal>A*ones(B).\B</literal>
+    <literal>A</literal> (ou <literal>B</literal>È um escalar,
+    <literal>A.\B</literal> È equivalente a <literal>A*ones(B).\B</literal>
     (ou <literal>A.\(B*ones(A))</literal></para>
 
-    <para><literal>A\.B</literal> √© um operador sem significado predefinido.
+    <para><literal>A\.B</literal> È um operador sem significado predefinido.
     Pode ser usado para definir um novo operador (ver overloading) com a mesma
-    preced√™ncia que * ou /. </para>
+    precedÍncia que * ou /. </para>
   </refsection>
 
   <refsection>
@@ -68,7 +68,7 @@ A=rand(2,1)*rand(1,3); b=[1;1]; x=A\b; y=pinv(A)*b; A*x-b, A*y-b
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m </title>
+    <title>Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="slash">slash</link></member>

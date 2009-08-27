@@ -14,6 +14,7 @@
 #define __GW_UMFPACK__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 int gw_umfpack(void);
 int sci_umfpack(char* fname, unsigned long l);

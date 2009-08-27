@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="number_properties" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>number_properties</refname>
 
-    <refpurpose>determina par√¢metros de ponto flutuante</refpurpose>
+    <refpurpose>determina par‚metros de ponto flutuante</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>pr = number_properties(prop)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -45,12 +45,12 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o </title>
+    <title>DescriÁ„o </title>
 
-    <para>Esta fun√ß√£o pode ser usada para receber os n√∫meros/propriedades
-    caracter√≠sticos do conjunto de pontos flutuantes aqui dentoado por
+    <para>Esta funÁ„o pode ser usada para receber os n˙meros/propriedades
+    caracterÌsticos do conjunto de pontos flutuantes aqui dentoado por
     <literal>F(b,p,emin,emax)</literal> ((geralmente o conjunto de "floats" de
-    64 bits prescritos por IEEE 754). N√∫meros de <literal>F</literal> s√£o da
+    64 bits prescritos por IEEE 754). N˙meros de <literal>F</literal> s„o da
     forma: </para>
 
     <programlisting>
@@ -59,7 +59,7 @@
    
     </programlisting>
 
-    <para><literal>e</literal> √© o expoente e <literal>m</literal> a
+    <para><literal>e</literal> È o expoente e <literal>m</literal> a
     mantissa:</para>
 
     <programlisting>
@@ -68,9 +68,9 @@
    
     </programlisting>
 
-    <para><literal>d_i</literal> os d√≠gitos est√£o em <literal>[0,
+    <para><literal>d_i</literal> os dÌgitos est„o em <literal>[0,
     b-1]</literal> e <literal>e</literal> em <literal>[emin, emax]</literal>,
-    o n√∫mero √© dito "normalizado" se <literal>d_1 ~= 0</literal>. Os seguintes
+    o n˙mero È dito "normalizado" se <literal>d_1 ~= 0</literal>. Os seguintes
     podem ser recebidos: </para>
 
     <variablelist>
@@ -78,7 +78,7 @@
         <term>prop = "radix"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© a raiz <literal>b</literal> do
+          <para>ent„o <literal>pr</literal> È a raiz <literal>b</literal> do
           conjunto <literal>F</literal></para>
         </listitem>
       </varlistentry>
@@ -87,7 +87,7 @@
         <term>prop = "digits"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© o n√∫mero de d√≠gitos de
+          <para>ent„o <literal>pr</literal> È o n˙mero de dÌgitos de
           <literal>p</literal></para>
         </listitem>
       </varlistentry>
@@ -96,7 +96,7 @@
         <term>prop = "huge"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© o maior float positivo de
+          <para>ent„o <literal>pr</literal> È o maior float positivo de
           <literal>F</literal></para>
         </listitem>
       </varlistentry>
@@ -105,7 +105,7 @@
         <term>prop = "tiny"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© o menor float normalizado
+          <para>ent„o <literal>pr</literal> È o menor float normalizado
           positivo de <literal>F</literal></para>
         </listitem>
       </varlistentry>
@@ -114,8 +114,8 @@
         <term>prop = "denorm"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© um booleano (%t se n√∫meros
-          denormalizados s√£o utilizados) </para>
+          <para>ent„o <literal>pr</literal> È um booleano (%t se n˙meros
+          denormalizados s„o utilizados) </para>
         </listitem>
       </varlistentry>
 
@@ -123,8 +123,8 @@
         <term>prop = "tiniest"</term>
 
         <listitem>
-          <para>ent√£o se denorm = %t, <literal>pr</literal> √© o n√∫mero
-          positivo denormalizado m√≠nimo. Em outro caso, <literal>pr</literal>
+          <para>ent„o se denorm = %t, <literal>pr</literal> È o n˙mero
+          positivo denormalizado mÌnimo. Em outro caso, <literal>pr</literal>
           = tiny</para>
         </listitem>
       </varlistentry>
@@ -133,11 +133,11 @@
         <term>prop = "eps"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© a m√°quina epsilon ( geralmente
-          (<literal>b^(1-p))/2</literal> ) que √© o erro m√°ximo relativo entre
-          um real <literal>x</literal> (tal que <literal>|x|</literal> est√° em
+          <para>ent„o <literal>pr</literal> È a m·quina epsilon ( geralmente
+          (<literal>b^(1-p))/2</literal> ) que È o erro m·ximo relativo entre
+          um real <literal>x</literal> (tal que <literal>|x|</literal> est· em
           <literal>[tiny, huge]</literal>) e <literal>fl(x)</literal>, sua
-          aproxima√ß√£o em ponto flutuante em <literal>F</literal></para>
+          aproximaÁ„o em ponto flutuante em <literal>F</literal></para>
         </listitem>
       </varlistentry>
 
@@ -145,7 +145,7 @@
         <term>prop = "minexp"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© <literal>emin</literal></para>
+          <para>ent„o <literal>pr</literal> È <literal>emin</literal></para>
         </listitem>
       </varlistentry>
 
@@ -153,23 +153,23 @@
         <term>prop = "maxexp"</term>
 
         <listitem>
-          <para>ent√£o <literal>pr</literal> √© <literal>emax</literal></para>
+          <para>ent„o <literal>pr</literal> È <literal>emax</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Observa√ß√µes</title>
+    <title>ObservaÁıes</title>
 
-    <para>Esta fun√ß√£o usa uma rotina de LAPACK dlamch para receber os
-    par√¢metros m√°quinas (os nomes (radix, digits, huge, etc...) s√£o aqueles
-    recomendados pelo padr√£o LIA 1 e s√£o diferentes daqueles correspondentes
-    em LAPACK) ; CUIDADO: √†s vezes voc√™ poder√° encontrar a seguinte para a
-    m√°quina epsilon: <literal>eps = b^(1-p)</literal> , mas nesta fun√ß√£o n√≥s
-    usamos a defini√ß√£o tradicional (ver prop = "eps" acima) e ent√£o
+    <para>Esta funÁ„o usa uma rotina de LAPACK dlamch para receber os
+    par‚metros m·quinas (os nomes (radix, digits, huge, etc...) s„o aqueles
+    recomendados pelo padr„o LIA 1 e s„o diferentes daqueles correspondentes
+    em LAPACK) ; CUIDADO: ‡s vezes vocÍ poder· encontrar a seguinte para a
+    m·quina epsilon: <literal>eps = b^(1-p)</literal> , mas nesta funÁ„o nÛs
+    usamos a definiÁ„o tradicional (ver prop = "eps" acima) e ent„o
     <literal>eps = (b^(1-p))/2</literal> se o arredondamento normal acontecer
-    e <literal>eps = b^(1-p)</literal> se n√£o acontecer.</para>
+    e <literal>eps = b^(1-p)</literal> se n„o acontecer.</para>
   </refsection>
 
   <refsection>
@@ -184,7 +184,7 @@ eps = number_properties("eps")
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="nearfloat">nearfloat</link></member>

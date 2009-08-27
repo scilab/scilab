@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,31 +24,31 @@
   <refnamediv xml:id="oldbesseli">
     <refname>oldbesseli</refname>
 
-    <refpurpose>funÃ§Ãµes de Bessel modificadas do primeiro tipo (I sub
+    <refpurpose>funções de Bessel modificadas do primeiro tipo (I sub
     alfa).</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="oldbesselj">
     <refname>oldbesselj</refname>
 
-    <refpurpose>funÃ§Ãµes de Bessel do primeiro tipo (J sub alfa).</refpurpose>
+    <refpurpose>funções de Bessel do primeiro tipo (J sub alfa).</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="oldbesselk">
     <refname>oldbesselk</refname>
 
-    <refpurpose>funÃ§Ãµes de Bessel modificadas do segundo tipo (K sub
+    <refpurpose>funções de Bessel modificadas do segundo tipo (K sub
     alfa).</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="oldbessely">
     <refname>oldbessely</refname>
 
-    <refpurpose>funÃ§Ãµes de Bessel do segundo tipo (Y sub alfa).</refpurpose>
+    <refpurpose>funções de Bessel do segundo tipo (Y sub alfa).</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = oldbesseli(alpha,x)
 y = oldbesseli(alpha,x,ice)
@@ -59,14 +59,14 @@ y = oldbessely(alpha,x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vetor de reais com entradas nÃ£o-negativas </para>
+          <para>vetor de reais com entradas não-negativas </para>
         </listitem>
       </varlistentry>
 
@@ -74,7 +74,7 @@ y = oldbessely(alpha,x)</synopsis>
         <term>alpha</term>
 
         <listitem>
-          <para>vetor de reais com entradas nÃ£o-negativas igualmente espaÃ§adas
+          <para>vetor de reais com entradas não-negativas igualmente espaçadas
           com incremento igual a
           1<literal>alpha=alpha0+(n1:n2)</literal></para>
         </listitem>
@@ -84,60 +84,60 @@ y = oldbessely(alpha,x)</synopsis>
         <term>ice</term>
 
         <listitem>
-          <para>flag inteiro com valor padrÃ£o 1</para>
+          <para>flag inteiro com valor padrão 1</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>FunÃ§Ãµes obsoletas, use <link linkend="besseli">besseli</link>, <link
+    <para>Funções obsoletas, use <link linkend="besseli">besseli</link>, <link
     linkend="besselj">besselj</link>, <link linkend="besselk">besselk</link>,
     <link linkend="bessely">bessely</link> no lugar. Note, contudo, que a
-    semÃ¢ntica destes dois grupos de funÃ§Ãµes Ã© diferente.</para>
+    semântica destes dois grupos de funções é diferente.</para>
 
-    <para><literal>oldbesseli(alpha,x)</literal> computa funÃ§Ãµes modificadas
-    de Bessel do primeiro tipo (I sub alfa), para ordem real nÃ£o-negativa
-    <literal>alpha</literal> e argumento real nÃ£o-negativo
+    <para><literal>oldbesseli(alpha,x)</literal> computa funções modificadas
+    de Bessel do primeiro tipo (I sub alfa), para ordem real não-negativa
+    <literal>alpha</literal> e argumento real não-negativo
     <literal>x</literal>. <literal>besseli(alpha,x,2)</literal> computa
     <literal>besseli(alpha,x).*exp(-x)</literal>.</para>
 
-    <para><literal>oldbesselj(alpha,x)</literal> computa funÃ§Ãµes de Bessel do
-    primeiro tipo (J sub alfa), para ordem real nÃ£o-negativa
-    <literal>alpha</literal> e argumento real nÃ£o-negativo
+    <para><literal>oldbesselj(alpha,x)</literal> computa funções de Bessel do
+    primeiro tipo (J sub alfa), para ordem real não-negativa
+    <literal>alpha</literal> e argumento real não-negativo
     <literal>x</literal>.</para>
 
-    <para><literal>oldbesselk(alpha,x)</literal> computa as funÃ§Ãµes
+    <para><literal>oldbesselk(alpha,x)</literal> computa as funções
     modificadas de Bessel do segundo tipo (K sub alfa), para ordem real
-    nÃ£o-negativa <literal>alpha</literal> e argumento real nÃ£o-negativo
+    não-negativa <literal>alpha</literal> e argumento real não-negativo
     <literal>x</literal>. <literal>besselk(alpha,x,2)</literal> computa
     <literal>besselk(alpha,x).*exp(x)</literal>.</para>
 
-    <para><literal>oldbessely(alpha,x)</literal> computa funÃ§Ãµes de Bessel do
-    segundo tipo (Y sub alfa), para ordem real nÃ£o-negativa
-    <literal>alpha</literal> e argumento real nÃ£o-negativo
+    <para><literal>oldbessely(alpha,x)</literal> computa funções de Bessel do
+    segundo tipo (Y sub alfa), para ordem real não-negativa
+    <literal>alpha</literal> e argumento real não-negativo
     <literal>x</literal>.</para>
 
     <para><literal>alpha</literal> e <literal>x</literal> podem ser vetores. A
-    saÃ­da Ã© <literal>m</literal>-por-<literal>n</literal> com <literal>m =
+    saída é <literal>m</literal>-por-<literal>n</literal> com <literal>m =
     size(x,'*')</literal>, <literal>n = size(alpha,'*')</literal> whose
     <literal>(i,j)</literal> cuja entrada
     <literal>oldbessel?(alpha(j),x(i))</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ãµes </title>
+    <title>Observações </title>
 
-    <para>As funÃ§Ãµes Y_alfa e J_alfa de Bessel sÃ£o duas soluÃ§Ãµes independentes
-    da equaÃ§Ã£o diferencial de Bessel :</para>
+    <para>As funções Y_alfa e J_alfa de Bessel são duas soluções independentes
+    da equação diferencial de Bessel :</para>
 
     <programlisting>2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa &gt;=
     0</programlisting>
 
-    <para>As funÃ§Ãµes modificadas K_alfa e I_alfa de Bessel sÃ£o duas soluÃ§Ãµes
-    independentes da equaÃ§Ã£o diferencial modificada de Bessel:</para>
+    <para>As funções modificadas K_alfa e I_alfa de Bessel são duas soluções
+    independentes da equação diferencial modificada de Bessel:</para>
 
     <programlisting>2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa &gt;=
     0</programlisting>
@@ -147,28 +147,28 @@ y = oldbessely(alpha,x)</synopsis>
     <title>Exemplos </title>
 
     <programlisting role="example">
-// exemplo #1: exibindo algumas funÃ§Ãµes I de Bessel
+// exemplo #1: exibindo algumas funções I de Bessel
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
 ys = oldbesseli(0:4,x,2);
 xbasc()
 subplot(2,1,1)
    plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
-   xtitle("Algumas funÃ§Ãµes modificadas de Bessel do primeiro tipo")
+   xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
 subplot(2,1,2)
    plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
-   xtitle("Algumas funÃ§Ãµes modificadas de Bessel do primeiro tipo escaladas")
+   xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
 
-// exemplo #2 : exibindo algumas funÃ§Ãµes J de Bessel
+// exemplo #2 : exibindo algumas funções J de Bessel
 x = linspace(0,40,5000)';
 y = besselj(0:4,x);
 xbasc()
 plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
-xtitle("Algumas funÃ§Ãµes de Bessel do primeiro tipo")
+xtitle("Algumas funções de Bessel do primeiro tipo")
 
 // example #3 : usando o fato de que J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 //              para comparar o algoritmo de besselj(0.5,x) com
-//              uma fÃ³rmula mais direta
+//              uma fórmula mais direta
 x = linspace(0.1,40,5000)';
 y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
@@ -180,27 +180,27 @@ subplot(2,1,1)
    xtitle("besselj(0.5,x)")
 subplot(2,1,2)
    plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("erro relativo entre as duas fÃ³rmulas para besselj(0.5,x)") 
+   xtitle("erro relativo entre as duas fórmulas para besselj(0.5,x)") 
 
 
-// exemplo #4: exibindo algumas funÃ§Ãµes K de Bessel
+// exemplo #4: exibindo algumas funções K de Bessel
 x = linspace(0.01,10,5000)';
 y = besselk(0:4,x);
 ys = besselk(0:4,x,1);
 xbasc()
 subplot(2,1,1)
    plot2d(x,y, style=0:4, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
-   xtitle("Algumas funÃ§Ãµes modificadas de Bessel do segundo tipo")
+   xtitle("Algumas funções modificadas de Bessel do segundo tipo")
 subplot(2,1,2)
    plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
-   xtitle("Algumas funÃ§Ãµes modificadas de Bessel do segundo tipo escaladas")
+   xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
 
-// exemplo #5: plot de vÃ¡rias funÃ§Ãµes Y de Bessel
-x = linspace(0.1,40,5000)'; // funÃ§Ãµes  Y de Bessel nÃ£o possuem limite para x -&gt; 0+
+// exemplo #5: plot de várias funções Y de Bessel
+x = linspace(0.1,40,5000)'; // funções  Y de Bessel não possuem limite para x -&gt; 0+
 y = bessely(0:4,x);
 xbasc()
 plot2d(x,y, style=0:4, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
-xtitle("Algumas funÃ§Ãµes de Bessel do segundo tipo")
+xtitle("Algumas funções de Bessel do segundo tipo")
  
   </programlisting>
   </refsection>
@@ -208,6 +208,6 @@ xtitle("Algumas funÃ§Ãµes de Bessel do segundo tipo")
   <refsection>
     <title>Autores</title>
 
-    <para>W. J. Cody, L. Stoltz (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody, L. Stoltz (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="newest" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>newest</refname>
+
+    <refpurpose>retorna o arquivo mais novo de um conjunto de
+    arquivos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>k=newest(paths)
+k=newest(path1,path2,...,pathn)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>o índice do arquivo mais novo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>paths</term>
+
+        <listitem>
+          <para>vetor de strings, paths(i) é o endereço do i-ésimo
+          arquivo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pathi</term>
+
+        <listitem>
+          <para>string, o endereço do i-ésimo arquivo</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dado um conjunto de endereços, newest retorna o índice do mais novo.
+    Arquivos não existentes são supostos como mais antigos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+newest('SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin')
+newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode.bin'])
+newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fileinfo">fileinfo</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

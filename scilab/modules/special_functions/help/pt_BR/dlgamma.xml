@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>dlgamma</refname>
 
-    <refpurpose>derivada da funÃ§Ã£o gammaln, funÃ§Ã£o psi</refpurpose>
+    <refpurpose>derivada da função gammaln, função psi</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = dlgamma(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>dlgamma(x)</literal> avalia, em todos os elementos de
-    <literal>x</literal> a derivada logarÃ­tmica da funÃ§Ã£o gama (gamma), que
-    corresponde tambÃ©m Ã  derivada da funÃ§Ã£o ln(gama) (gammaln):</para>
+    <literal>x</literal> a derivada logarítmica da função gama (gamma), que
+    corresponde também à derivada da função ln(gama) (gammaln):</para>
 
     <programlisting>
 
@@ -68,7 +68,7 @@
      
     </programlisting>
 
-    <para><literal>x</literal> deve ser real. TambÃ©m Ã© conhecida como a funÃ§Ã£o
+    <para><literal>x</literal> deve ser real. Também é conhecida como a função
     psi.</para>
   </refsection>
 
@@ -84,7 +84,7 @@ dlgamma(0.5)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gamma">gamma</link></member>

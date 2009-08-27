@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="title" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>title</refname>
+
+    <refpurpose>Exibe um título em uma janela gráfica</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>title(my_title)
+title(my_title,&lt;Property&gt;)
+title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>my_title</term>
+
+        <listitem>
+          <para>string, o título a ser exibido </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;Property&gt;</term>
+
+        <listitem>
+          <para>argumento opcional, representa um par de declarações
+          <literal>{PropertyName,PropertyValue}</literal>que definem
+          propriedades de objetos globais aplicadas o título criado. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+
+        <listitem>
+          <para>este argumento opcional força o título a parecer dentro dos
+          eixos selecionados dados por <literal>axes_handle</literal> ao invés
+          dos eixos correntes (ver <link linkend="gca">gca</link>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>title</literal> exibe um título numa janela de gráficos.
+    </para>
+
+    <para>Os argumentos Property (propriedade) devem ser usados para
+    customizar o título. Aqui está uma lista completa das opções
+    disponíveis.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Property :</term>
+
+        <listitem>
+          <para><literal>backgroundcolor :</literal> este campo contém a cor
+          utilizada para preencher a caixa, se houver. Seu valor deve ser um
+          índice de cor (relativo ao mapa de cores corrente). </para>
+
+          <para><literal>color :</literal> este campo contém a cor a ser
+          utilizada para exibir o texto de título. Seu valor deve ser um
+          índice de cor (relativo ao mapa de cores corrente). </para>
+
+          <para><literal>edgecolor :</literal>este campo contém a cor usada
+          para exibir a linha ao redor da caixa, se houver alguma. Seu valor
+          deve ser um índice de cor (relativo ao mapa de cores corrente).
+          </para>
+
+          <para><literal>fontname :</literal> sete fontes diferentes estão
+          disponíveis: "Courrier", "Symbol", "Times", "Times Italic", "Times
+          Bold", "Definida pelo Usuário". A propriedade font_size é um índice
+          no intervalo [0 6] que é associado a um dos nomes anteriores.
+          </para>
+
+          <para><literal>fontsize :</literal> a propriedade é utilizada para
+          selecionar o tipo de tamanho do título. Seu valor deve ser um
+          inteiro entre 0 e 5 que significa 8pt, 10pt, 12pt, 14pt, 18pt e
+          24pt.</para>
+
+          <para><literal>position :</literal> este vetor 2d permite que você
+          posicione manualmente o título na tela. A posição é armazenada nas
+          unidades de dados dos eixos. </para>
+
+          <para><literal>rotation :</literal> escalar que permite que você
+          gire o título. A fonte é girada em sentido anti-horário com o ângulo
+          dado em graus. </para>
+
+          <para><literal>visible :</literal> este campo contém o valor da
+          propriedade visible para o título. Pode ser "on" ou "off". Por
+          padrão, o título é visível, a propriedade é "on" . Se "off" , o
+          título não é exibido na tela. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">// exibindo um título com várias propriedades
+title('meu título');
+// mudando a cor de fonte do título
+title('meu título','color','blue');
+// mudando a cor ao redor da caixa
+title('meu título','edgecolor','red');
+// mudando a posição do título
+title('meu título','position',[0.3 0.8]);
+// mudando o tamanho da fonte
+title('meu título','fontsize',3);
+// dando uma rotação 
+title('meu título','rotation',90);
+
+// podemos realizar todas essas modificações apenas pela instrução abaixo:
+title('meu título','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="label_properties">label_properties</link></member>
+
+      <member><link linkend="titlepage">titlepage</link></member>
+
+      <member><link linkend="xtitle">xtitle</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Belahcene</para>
+  </refsection>
+</refentry>

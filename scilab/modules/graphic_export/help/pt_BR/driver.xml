@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>driver</refname>
 
-    <refpurpose>seleciona um driver grÃ¡fico</refpurpose>
+    <refpurpose>seleciona um driver gráfico</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>driver(driver_name)
 current_driver=driver()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,12 +49,12 @@ current_driver=driver()</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o seleciona um driver grÃ¡fico, ou, sem argumentos, retorna
-    o nome do driver grÃ¡fico corrente. Na maioria das vezes, o usuÃ¡rio pode
-    ignorar esta funÃ§Ã£o e modificar o driver por uma chamada a funÃ§Ãµes de alto
-    nÃ­vel como <literal>xbasc</literal>. O driver selecionado pode ser um dos
+    <para>Esta função seleciona um driver gráfico, ou, sem argumentos, retorna
+    o nome do driver gráfico corrente. Na maioria das vezes, o usuário pode
+    ignorar esta função e modificar o driver por uma chamada a funções de alto
+    nível como <literal>xbasc</literal>. O driver selecionado pode ser um dos
     seguintes:</para>
 
     <variablelist>
@@ -62,7 +62,7 @@ current_driver=driver()</synopsis>
         <term>"X11"</term>
 
         <listitem>
-          <para>saÃ­da para a tela do computador.</para>
+          <para>saída para a tela do computador.</para>
         </listitem>
       </varlistentry>
 
@@ -70,7 +70,7 @@ current_driver=driver()</synopsis>
         <term>"Pos"</term>
 
         <listitem>
-          <para>saÃ­da em formato Postscript.</para>
+          <para>saída em formato Postscript.</para>
         </listitem>
       </varlistentry>
 
@@ -78,7 +78,7 @@ current_driver=driver()</synopsis>
         <term>"Rec"</term>
 
         <listitem>
-          <para>saÃ­da para a tela do computador. Ã‰ o mesmo que
+          <para>saída para a tela do computador. É o mesmo que
           <literal>X11</literal>.</para>
         </listitem>
       </varlistentry>
@@ -87,7 +87,7 @@ current_driver=driver()</synopsis>
         <term>"Fig"</term>
 
         <listitem>
-          <para>saÃ­da em formato XFig.</para>
+          <para>saída em formato XFig.</para>
         </listitem>
       </varlistentry>
 
@@ -95,7 +95,7 @@ current_driver=driver()</synopsis>
         <term>"GIF"</term>
 
         <listitem>
-          <para>saÃ­da em formato Gif.</para>
+          <para>saída em formato Gif.</para>
         </listitem>
       </varlistentry>
 
@@ -103,21 +103,21 @@ current_driver=driver()</synopsis>
         <term>"PPM"</term>
 
         <listitem>
-          <para>saÃ­da em formato PPM.</para>
+          <para>saída em formato PPM.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>ObservaÃ§Ã£o</title>
+    <title>Observação</title>
 
     <para>Para converter arquivos "GIF" ou "PPM" para outro formato de imagem
-    para construir uma animaÃ§Ã£o pode-se utilizar o programa "convert" para
+    para construir uma animação pode-se utilizar o programa "convert" para
     ImageMagic (http://www.imagemagick.org/)</para>
 
-    <para>Por exemplo, se Ã© gerada uma seqÃ¼Ãªncia de arquivos Gif nomeada
-    <literal>img*.gif</literal> Ã© possÃ­vel construir um arquivo Gif animado
+    <para>Por exemplo, se é gerada uma seqüência de arquivos Gif nomeada
+    <literal>img*.gif</literal> é possível construir um arquivo Gif animado
     (chamado anim.gif) por</para>
 
     <programlisting>
@@ -128,7 +128,7 @@ convert -delay 10  img*.gif anim.gif
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xbasc">xbasc</link></member>

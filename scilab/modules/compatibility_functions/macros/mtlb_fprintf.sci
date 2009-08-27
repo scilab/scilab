@@ -113,7 +113,7 @@ else
       if or(fid==[1 2]) then
 	error(msprintf(gettext("%s: %s Scilab function does not work with more than one row variables.\n"),"mtlb_fprintf", "mprintf"))
       else
-	mfprintfMat(fid,varargin(3:$),fmt)
+	fprintfMat(fid,varargin(3:$),fmt)
 	for k=1:nv
 	  count=count+size(varargin(k+2),"*")
 	end

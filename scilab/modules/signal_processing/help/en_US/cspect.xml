@@ -249,9 +249,8 @@
 
   </refsection>
   <refsection>
-    <title>Warning for Scilab version up to 5.0.2
-          the returned value was the modulus of the current
-          one.</title>
+    <title>Warning</title>
+    <para>For Scilab version up to 5.0.2 the returned value was the modulus of the current one.</para>
  </refsection>
   <refsection>
     <title>Reference</title>

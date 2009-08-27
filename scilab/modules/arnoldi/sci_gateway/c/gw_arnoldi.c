@@ -18,7 +18,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={
+#define ARNOLDI_TAB_SIZE 6
+static gw_generic_table Tab[ARNOLDI_TAB_SIZE]={
   {C2F(intdsaupd),"dsaupd"},
   {C2F(intdnaupd),"dnaupd"},
   {C2F(intznaupd),"znaupd"},
@@ -31,7 +32,7 @@ int gw_arnoldi(void)
 {
 	Rhs = Max(0, Rhs);
 
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,ARNOLDI_TAB_SIZE);
 
 	return 0;
 }

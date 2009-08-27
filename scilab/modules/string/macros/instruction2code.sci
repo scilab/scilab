@@ -296,10 +296,20 @@ if typeof(I)=="sup_equal" then
   return
 end
 
+// ----------------------------------------------------
+// Generate code corresponding to a function definition
+// ----------------------------------------------------
+if typeof(I)=="inline" then
+  C = "function "+I.prototype;
+  C = cat_code(C,I.definition)
+  C($+1) = "endfunction";
+  return
+end
+
 // -------
 // Command
 // -------
-if typeof(I)<>"funcall" then
+if and(typeof(I)<>["funcall" "variable", "comment"]) then
   disp("instruction2code: bug in macr2tree() !");
   pause
 end

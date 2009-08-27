@@ -21,6 +21,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import org.scilab.modules.localization.Messages;
+
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.utils.SciFileFilter;
@@ -147,7 +149,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 				if (this.dialogType == JFileChooser.SAVE_DIALOG) {
 					//Test if there is a file with the same name	
 					if (file.exists()) {
-						int actionDialog = JOptionPane.showConfirmDialog(this, "Replace existing file?", "File already exist", JOptionPane.YES_NO_OPTION);
+						int actionDialog = JOptionPane.showConfirmDialog(this, Messages.gettext("Replace existing file?"), Messages.gettext("File already exist"), JOptionPane.YES_NO_OPTION);
 
 						if (actionDialog == JOptionPane.YES_OPTION) {
 

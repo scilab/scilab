@@ -88,7 +88,7 @@ cd SCI
     <title>Ver Também</title>
 
     <simplelist type="inline">
-      <member><link linkend="getcwd">getcwd</link></member>
+      <member><link linkend="pwd">pwd</link></member>
     </simplelist>
   </refsection>
 </refentry>

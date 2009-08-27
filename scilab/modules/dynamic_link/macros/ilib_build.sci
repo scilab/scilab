@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
+// Copyright (C) DIGITEO - 2009 - Allan CORNEt
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,22 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   
   [lhs,rhs] = argn(0);
   
+  if type(ilib_name) <> 10 then
+    error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'ilib_build',1));
+  end
+  
+  if size(ilib_name,'*') <> 1 then
+    error(999,msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),'ilib_build',1));
+  end 
+
+  if type(table) <> 10 then
+    error(999,msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"),'ilib_build',2));
+  end
+  
+  if size(table,'*') > 999 * 2 then
+    error(999,msprintf(_("%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"),'ilib_build',2));
+  end 
+  
   if ~MSDOS & strncpy(ilib_name,3) <> "lib" then
 	// We add a leading lib under Linux/Unix because it is the way
 	  ilib_name="lib" + ilib_name;
@@ -27,10 +44,19 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   if rhs <= 7 then fflags  = ''; end 
   if rhs <= 8 then ismex  = %f; end 
   if rhs <= 9 then cc  = ''; end 
+  
+  // check if library is not already loaded
+  if or(link() == ilib_name) then
+    error(999,msprintf(_('%s: ''%s'' already loaded in scilab.'),'ilib_build',ilib_name) + ..
+    ascii(10) + _('You need to unload this library before.'));
+  end
+  
   // generate the gateway file
   if ( ilib_verbose() <> 0 ) then
     mprintf(_("   Generate a gateway file\n"));
-  end    
+  end
+  
+      
   file_gw_name = ilib_gen_gateway(ilib_name,table);
   
   // generate a loader file

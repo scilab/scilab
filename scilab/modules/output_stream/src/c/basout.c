@@ -16,15 +16,14 @@
 #include <stdlib.h>
 #include "stack-def.h"
 #include "basout.h"
-#include "../../../fileio/includes/diary.h"
-#include "sciprint.h"
 #include "MALLOC.h"
+#include "diary.h"
+#include "sciprint.h"
+#include "charEncoding.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(basouttofile)();
-/*--------------------------------------------------------------------------*/ 
-#define bufferformat "%s\n"
+extern int C2F(basouttofile)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
@@ -40,8 +39,6 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 
 	if (*lunit == C2F(iop).wte)
 	{
-		char *buffer = NULL;
-
 		/* Display on the standard output */
 
 		/* We haven't called this function before ... Then we call it and 
@@ -74,33 +71,74 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			}
 		}
 
-		buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
-		if (buffer)
+		if (string)
 		{
-			strncpy(buffer,string,nbcharacters);
-			buffer[nbcharacters]='\0';
-			sciprint(bufferformat,buffer);
-			FREE(buffer);
-			buffer = NULL;
+			if (nbcharacters > 1)
+			{
+				/* on linux , q=[] crashs with previous version 
+				in printf.f line 102 
+				call basout(io,lunit,'     []')
+				if we do basout(io,lunit,'     []',7) it works ...
+				temp workaround , we returns to old version with a allocation
+				*/
+				char *buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+1));
+				if (buffer)
+				{
+					strncpy(buffer,string,nbcharacters);
+					buffer[nbcharacters]='\0';
+					sciprint("%s\n",buffer);
+					FREE(buffer); buffer = NULL;
+				}
+				else
+				{
+					sciprint("\n");
+				}
+			}
+			else if (nbcharacters == 1)
+			{
+				sciprint("%c\n", string[0]);
+			}
+			else
+			{
+				sciprint("\n");
+			}
 		}
+		else sciprint("\n");
 	} 
 	else
 	{
 		if (*lunit == -2)
 		{
-			// it write a INPUT command line in diary
-		}
+			wchar_t *wcBuffer = NULL;
 
-		if (*lunit == C2F(iop).wio)
-		{
 			string[nbcharacters] = '\0';
-			diary(string,TRUE);
+
+			/* remove blanks at end of line */
+			if (*lunit == -2)
+			{
+				int i = 0;
+				int len = (int) strlen(string) - 2;
+				for (i = len; i >= 0; i--)
+				{
+					if (string[i] == ' ') string[i] = '\0';
+					else break;
+				}
+			}
+
+			wcBuffer = to_wide_string(string);
+			if (wcBuffer)
+			{
+				if (wcscmp(wcBuffer,L"")) diaryWriteln(wcBuffer, TRUE);
+				FREE(wcBuffer);
+				wcBuffer = NULL;
+			}
 		}
 		else
 		{
-			 C2F(basouttofile)(lunit, string,nbcharacters);
+			C2F(basouttofile)(lunit, string,nbcharacters);
 		}
 	}
 	return 0;
 } 
 /*--------------------------------------------------------------------------*/ 
+

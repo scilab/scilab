@@ -69,8 +69,6 @@ static BOOL defineSCIHOME(void)
 	char USERHOMESYSTEM[PATH_MAX];
 	char *SHORTUSERHOMESYSTEM = NULL;
 
-	char env[PATH_MAX+1+10]; /* PATH_MAX + strlen '\0' + strlen "SCIHOME=%s" */
-
 	BOOL bConverted = FALSE;
 
 	C2F(getenvc)(&ierr,"APPDATA",USERHOMESYSTEM,&buflen,&iflag);
@@ -116,21 +114,6 @@ static BOOL defineSCIHOME(void)
 	/* Set SCIHOME environment variable */
 	sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
 	sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIR_SEPARATOR,SCI_VERSION_STRING);
-	sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
-
-	{
-		wchar_t *wcenv = to_wide_string(env);
-		if (wcenv)
-		{
-			_wputenv(wcenv);
-			FREE(wcenv);
-		}
-		else
-		{
-			return FALSE;
-		}
-
-	}
 
 	/* creates directory if it does not exists */
 	if (!isdir(SCIHOMEPATH))
@@ -146,12 +129,11 @@ static BOOL defineSCIHOME(void)
 static BOOL defineSCIHOME(void)
 {
 	#define BASEDIR ".Scilab"
-	int ierr = 0;
+	int ierr   = 0;
 	int buflen = PATH_MAX;
-	int iflag = 0;
+	int iflag  = 0;
 	char USERPATHSCILAB[PATH_MAX];
 	char USERHOMESYSTEM[PATH_MAX];
-	char env[PATH_MAX+1+10]; /* PATH_MAX + strlen '\0' + strlen "SCIHOME=%s" */
 
 	C2F(getenvc)(&ierr,"HOME",USERHOMESYSTEM,&buflen,&iflag);
 	if (ierr) return FALSE; 
@@ -159,8 +141,6 @@ static BOOL defineSCIHOME(void)
 	/* Set SCIHOME environment variable */
 	sprintf(USERPATHSCILAB,"%s%s%s",USERHOMESYSTEM,DIR_SEPARATOR,BASEDIR);
 	sprintf(SCIHOMEPATH,"%s%s%s",USERPATHSCILAB,DIR_SEPARATOR,SCI_VERSION_STRING);
-	sprintf(env,"SCIHOME=%s",SCIHOMEPATH);
-	putenv(env);
 
 	/* creates directory if it does not exists */
 	if (!isdir(SCIHOMEPATH))

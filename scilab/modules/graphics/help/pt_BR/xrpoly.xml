@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>xrpoly</refname>
 
-    <refpurpose>desenha um pol√≠gono regular</refpurpose>
+    <refpurpose>desenha um polÌgono regular</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>n</term>
 
         <listitem>
-          <para>inteiro, n√∫mero de lados. </para>
+          <para>inteiro, n˙mero de lados. </para>
         </listitem>
       </varlistentry>
 
@@ -65,20 +65,20 @@
         <term>theta</term>
 
         <listitem>
-          <para>escalar real, √¢ngulo em radianos; 0 √© o valor padr√£o.</para>
+          <para>escalar real, ‚ngulo em radianos; 0 È o valor padr„o.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xrpoly</literal> desenha um pol√≠gono regular com
-    <literal>n</literal> lados contindo no c√≠rculo de di√¢metro
-    <literal>r</literal> e com a origem do c√≠rculo posta em um ponto
-    <literal>orig</literal>. <literal>theta</literal> especifica a rota√ß√£o do
-    √¢ngulo em radianos. Esta fun√ß√£o utiliza as escalas gr√°ficas
+    <para><literal>xrpoly</literal> desenha um polÌgono regular com
+    <literal>n</literal> lados contindo no cÌrculo de di‚metro
+    <literal>r</literal> e com a origem do cÌrculo posta em um ponto
+    <literal>orig</literal>. <literal>theta</literal> especifica a rotaÁ„o do
+    ‚ngulo em radianos. Esta funÁ„o utiliza as escalas gr·ficas
     correntes.</para>
   </refsection>
 
@@ -94,7 +94,7 @@ xrpoly([5,5],5,5)
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xrect">xrect</link></member>

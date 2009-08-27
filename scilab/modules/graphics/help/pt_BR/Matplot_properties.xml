@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Matplot_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Matplot_properties</refname>
+
+    <refpurpose>Descrição das propriedades da entidade Matplot</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Matplot é uma folha na hierarquia de entidades gráficas.
+    Representa esboços 2d de superfícies utilizando cores e imagens (ver
+    <literal>Matplot</literal> e <literal>Matplot1</literal>).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador da raiz. A raiz de uma
+          entidade Matplot deve ser do tipo <literal>"Axes"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>esta propriedade contém um vetor com os galhos do manipulador.
+          Contudo, manipuladores <literal>Matplot</literal> handles
+          correntemente não possuem galhos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade . Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, o esboço é
+          visível, o valor da propriedade é <literal>"on"</literal>. Se
+          <literal>"off"</literal> o esboço não é desenhado na tela. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo define uma matriz de cores
+          [<literal>m</literal>x<literal>n</literal>] <literal>color</literal>
+          utilizando o mapa de cores corrente. A cor associada a
+          <literal>color(i,j)</literal> é utilizanda para se esboçar um
+          pequeno quadrado de lado 1 com centro localizado em
+          <literal>(x=j,y=(m-i+1))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para o Matplot. o valor de clip_state
+          pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que o Matplot não é
+              recortado. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que o Matplot é
+              recortado fora da caixa dos eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que o Matplot é
+              recortado fora do retângulo dado pela propriedade
+              clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade
+          <literal>clip_box</literal>. Por padrão seu valor é uma matriz vazia
+          se a propriedade clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções do retângulo a ser exibido, contudo o
+          valor da propriedade <literal>clip_state</literal> será
+          alterado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode armazenar qualquer variável Scilab na
+          estrutura de dados do Matplot e recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+   Matplot((1:xget("lastpattern")))
+   e=gce(); // obtendo a entidade corrente
+
+   e.data=e.data($:-1:1) // ordem inversa
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="grayplot">grayplot</link></member>
+
+      <member><link linkend="Matplot">Matplot</link></member>
+
+      <member><link linkend="Matplot1">Matplot1</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link
+      linkend="grayplot_properties">grayplot_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

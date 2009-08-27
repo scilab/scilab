@@ -16,7 +16,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define WINDOWS_TOOLS_TAB_SIZE 12
+static gw_generic_table Tab[WINDOWS_TOOLS_TAB_SIZE]=
 {
 {sci_winopen,"winopen"},
 {sci_winqueryreg,"winqueryreg"},
@@ -35,7 +36,7 @@ static gw_generic_table Tab[]=
 int gw_windows_tools(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,WINDOWS_TOOLS_TAB_SIZE);
 	
 	return 0;
 }

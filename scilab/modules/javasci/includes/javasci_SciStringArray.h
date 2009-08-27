@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/
 #ifndef _Included_javasci_SciStringArray
 #define _Included_javasci_SciStringArray
 
@@ -33,11 +33,8 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_Job (JNIEnv *, jobject, jstri
 /* public native String GetString(int indx, int indy); */
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetString(JNIEnv *env , jobject obj_this,jint indxarg, jint indyarg);
 
-/* private native void SendString(String str,int indx, int indy); */
-JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobject obj_this,jstring strarg,jint indxarg, jint indyarg);
-
 #ifdef __cplusplus
 }
 #endif
 #endif
-/*****************************************************************************/
+/*--------------------------------------------------------------------------*/

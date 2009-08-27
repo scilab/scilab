@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) DIGITEO - 2008 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xlfont" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xlfont</refname>
+
+    <refpurpose>carrega uma fonte em um contexto gr&#225;fico ou pergunta a
+    fonte carregada</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seq&#252;&#234;ncia de Chamamento</title>
+
+    <synopsis>xlfont(font-name)
+xlfont(font-filename)
+xlfont('reset')
+xlfont(font-name,font-id)
+xlfont(font-filename,font-id)
+xlfont(font-name,font-id,bold)
+xlfont(font-name,font-id,bold,italic)
+fonts=xlfont('AVAILABLE_FONTS')
+fonts=xlfont()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Par&#226;metros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>font-name</term>
+
+        <listitem>
+          <para>string, nome da fam&#237;lia da fonte</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-filename</term>
+
+        <listitem>
+          <para>string, nome do arquivo de uma fonte true type</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-id</term>
+
+        <listitem>
+          <para>inteiro &gt;= 0 .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fonts</term>
+
+        <listitem>
+          <para>um vetor coluna de nomes de fontes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bold</term>
+
+        <listitem>
+          <para>um booleano, %t para negrito</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>italic</term>
+
+        <listitem>
+          <para>um booleano, %t para it&#225;lico</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descri&#231;&#227;o</title>
+
+    <para>Sem argumentos, <literal>xlfont()</literal> retorna a lista das
+    fontes correntemente carregadas.</para>
+
+    <para>xlfont('AVAILABLE_FONTS') retorna a lista de fontes dispon&#237;veis
+    no seu sistema.</para>
+
+    <para>xlfont('reset') reajusta para o &#237;ndice de fontes
+    inicial.</para>
+
+    <para>Com argumentos, <literal>xlfont</literal> &#233; usado para carregar
+    uma nova fonte em tamanhos diferentes no contexto gr&#225;fico.</para>
+
+    <para>As fam&#237;lias de fonte padr&#245;es s&#227;o "Monospaced" (0),
+    "Symbol" (1), "Serif" (2), "Serif Italic" (3), "Serif Bold" (4), "Serif
+    Bold Italic" (5), "SansSerif" (6), "SansSerif Italic" (7), "SansSerif
+    Bold" (8), "SansSerif Bold Italic" (9). Estas fontes s&#227;o
+    automaticamente carregadas quando necess&#225;rio, ent&#227;o
+    <literal>xlfont</literal> n&#227;o &#233; necessariamente requerido para
+    elas. Na verdade <literal>xlfont</literal> &#233; essencialmente &#250;til
+    para carregar uma nova fonte.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+xlfont('reset');
+xlfont()
+
+// este exemplo pode n&#227;o funcionar se seu sistema n&#227;o possuir a fonte Monospaced.
+xlfont("Monospaced",10,%t,%t);
+xstring(1,0,'A title');
+figure_entity = gcf();
+axes_entity = figure_entity.children;
+title_entity = axes_entity.children;
+title_entity.font_style = 10;
+
+xlfont()
+
+xlfont(SCI+'/thirdparty/fonts/scilabsymbols.ttf')
+title_entity.font_style = 11; // utilizando a fonte scilabsymbols.ttf
+title_entity.font_size  = 4; // tamanho da fonte scilabsymbols.ttf
+
+xlfont()
+
+xlfont('reset');
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Tamb&#233;m</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getfont">getfont</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

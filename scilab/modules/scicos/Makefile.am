@@ -105,6 +105,7 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/intersci/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/time/includes
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -275,6 +276,7 @@ NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 
 libsciscicos_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/scicos/includes
 
 libsciscicos_la_includedir=$(pkgincludedir)/scicos

@@ -140,6 +140,9 @@ public abstract class SciConsole extends JPanel {
 		// The promptview is given to the Parsing Manager
 		// Used to get the position of the CompletionWindow
 		((SciInputParsingManager) config.getInputParsingManager()).setPromptView(this.getConfiguration().getPromptView());
+
+		// Reset history settings - bug 3612
+		((SciHistoryManager)config.getHistoryManager()).setInHistory(false);
 	}
 
 	/**

@@ -53,13 +53,18 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>max_clique</literal> computes the maximum clique of the graph <literal>g</literal> i.e. the 
-    complete subgraph of maximum size. <literal>ind</literal> is a parameter for the choice
-    of the method: if <literal>ind</literal> is 0 the method is a partial enumerative 
-    algorithm and if <literal>ind</literal> is 1 the algorithm is based on quadratic 
-    zero-one programming. The default is 0.
-    The output <literal>size</literal> is the number of the nodes of the clique found by the
-    algorithm and <literal>nodes</literal> is the vector of the corresponding nodes.</para>
+    <para>
+      <literal>max_clique</literal> computes the maximum clique of the
+      graph <literal>g</literal> i.e. the complete subgraph of maximum
+      size. <literal>ind</literal> is a parameter for the choice of
+      the method: if <literal>ind</literal> is 0 the method is a
+      partial enumerative algorithm and if <literal>ind</literal> is 1
+      the algorithm is based on quadratic zero-one programming. The
+      default is 0.  The output <literal>size</literal> is the number
+      of the nodes of the clique found by the algorithm and
+      <literal>nodes</literal> is the vector of the corresponding
+      nodes.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

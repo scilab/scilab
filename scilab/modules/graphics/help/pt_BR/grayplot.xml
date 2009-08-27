@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>grayplot</refname>
 
-    <refpurpose>esboÃ§o 2d de uma superfÃ­cie utilizando-se cores</refpurpose>
+    <refpurpose>esboço 2d de uma superfície utilizando-se cores</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>grayplot(x,y,z,[strf,rect,nax])
 grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,7 +51,7 @@ grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
 
         <listitem>
           <para>matriz de reais de tamanho (n1,n2). <literal>z(i,j)</literal>
-          Ã© o valor da superfÃ­cie no ponto(x(i),y(j)). </para>
+          é o valor da superfície no ponto(x(i),y(j)). </para>
         </listitem>
       </varlistentry>
 
@@ -59,7 +59,7 @@ grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para> representa uma seqÃ¼Ãªncia de declaraÃ§Ãµes <literal>key1=value1,
+          <para> representa uma seqüência de declarações <literal>key1=value1,
           key2=value2</literal>,... onde <literal>key1</literal>,
           <literal>key2,...</literal> podem ser um dos seguintes: rect, nax,
           strf ou axesflag e frameflag (ver <literal>plot2d</literal> e
@@ -78,16 +78,16 @@ grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>grayplot</literal> faz um esboÃ§o 2d de uma superfÃ­cie dada
+    <para><literal>grayplot</literal> faz um esboço 2d de uma superfície dada
     por <literal>z</literal> em um grid definido por <literal>x</literal> e
-    <literal>y</literal>. Cada retÃ¢ngulo no grid Ã© preenchido com um nÃ­vel de
-    cinza ou de cor dependendo do valor mÃ©dio de <literal>z</literal> nas
-    quinas do retÃ¢ngulo.</para>
+    <literal>y</literal>. Cada retângulo no grid é preenchido com um nível de
+    cinza ou de cor dependendo do valor médio de <literal>z</literal> nas
+    quinas do retângulo.</para>
 
     <para>Entre com o comando <literal>grayplot()</literal> para visualizar
-    uma demonstraÃ§Ã£o.</para>
+    uma demonstração.</para>
   </refsection>
 
   <refsection>
@@ -105,7 +105,7 @@ grayplot(t,t,m)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="fgrayplot">fgrayplot</link></member>

@@ -7,18 +7,20 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// tclsci module initialisation file 
-// ====================================================================
 //Load  functions libraries
+// =============================================================================
 load('SCI/modules/tclsci/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('tclsci');
-// ====================================================================
-// add demos
-pathdemos = pathconvert(SCI+"/modules/tclsci/demos/tk/tcltk.dem.gateway.sce",%f,%t);
-add_demo(gettext('Tcl/Tk'),pathdemos);
-clear pathdemos;
-// ====================================================================
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("tclsci");
+end
+
+// Add demos
+// =============================================================================
+if WITH_HELPTOOLS then
+	pathdemos = pathconvert(SCI+"/modules/tclsci/demos/tk/tcltk.dem.gateway.sce",%f,%t);
+	add_demo(gettext('Tcl/Tk'),pathdemos);
+	clear pathdemos;
+end

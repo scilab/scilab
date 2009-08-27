@@ -77,29 +77,53 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_cflow</literal> computes the minimum cost flow in
-    the network <literal>g</literal>, with the value of the flow from source
-    node <literal>i</literal> to sink node <literal>j</literal> constrained to be
-    equal to <literal>cv</literal>.</para>
-    <para><literal>min_lcost_cflow</literal> returns the total cost of the flows on the arcs <literal>c</literal>,
-    the row vector of the flows on the arcs <literal>phi</literal> and the value of the flow 
-    <literal>v</literal> on the virtual arc from sink to source. If <literal>v</literal> is less than 
-    <literal>cv</literal>, a message is issued, but the computation is done: in this
-    case <literal>flag</literal> is equal to 0, otherwise it is equal to 1.</para>
     <para>
-    The bounds of the flows are given by the 
-     <literal>max_cap</literal> fields of the
-    <link linkend="edges_data_structure">edges_data_structure</link>.  The value of the maximum
-    capacity must be non negative and must be integer numbers.  If the
-    values of <literal>max_cap</literal> is not
-    given, they are assumed to be equal to 0 on each edge.</para>
+      <literal>min_lcost_cflow</literal> computes the minimum cost
+      flow in the network <literal>g</literal>, with the value of the
+      flow from source node <literal>i</literal> to sink node
+      <literal>j</literal> constrained to be equal to
+      <literal>cv</literal>.
+    </para>
     <para>
-    The costs on the edges are given by the  <literal>cost</literal> field
-    of the <link linkend="edges_data_structure">edges_data_structure</link>.  The costs must be non
-    negative.  If the value of <literal>cost</literal> is not given, it is
-    assumed to be equal to 0 on each edge.</para>
+      <literal>min_lcost_cflow</literal> returns the total cost of the
+      flows on the arcs <literal>c</literal>, the row vector of the
+      flows on the arcs <literal>phi</literal> and the value of the
+      flow <literal>v</literal> on the virtual arc from sink to
+      source. If <literal>v</literal> is less than
+      <literal>cv</literal>, a message is issued, but the computation
+      is done: in this case <literal>flag</literal> is equal to 0,
+      otherwise it is equal to 1.
+    </para>
+<para>
+      The bounds of the flow are given by the
+      <literal>g.edges.data.min_cap</literal> and
+      <literal>g.edges.data.max_cap</literal> fields of the graph.
+    </para>
     <para>
-    This function uses the algorithm of Busacker and Goven.</para>
+      The value of the the maximum capacity must be non negative and
+      must be integer numbers.  The value of the minimum capacity must
+      be equal to 0.
+    </para>
+    <para> 
+      If the value of <literal>min_cap</literal> or
+      <literal>max_cap</literal> is not given it is assumed to be
+      equal to 0 on each edge.</para>
+    <para>
+      The costs on the edges are given by the element
+      <literal>g.edges.data.cost</literal> of the fields of the graph.  The
+      costs must be non negative.  If the value of
+      <literal>cost</literal> is not given, it is assumed to be equal
+      to 0 on each edge.
+    </para>
+    <para>
+      If the <literal>min_cap</literal> or <literal>max_cap</literal>
+      or <literal>cost</literal> data fields are not present in the
+      graph structure they can be added and set using the <link
+      linkend="add_edge_data">add_edge_data</link> function.
+    </para>
+    <para>
+    This function uses the algorithm of Busacker and Goven.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>

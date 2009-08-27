@@ -14,7 +14,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define CALL_SCILAB_TAB_SIZE 2
+static gw_generic_table Tab[CALL_SCILAB_TAB_SIZE]=
 {
 {C2F(sci_fromjava),"fromjava"},
 {C2F(sci_fromc),"fromc"}
@@ -22,7 +23,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_call_scilab(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,CALL_SCILAB_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

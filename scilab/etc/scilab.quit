@@ -13,14 +13,17 @@
 // of a scilab session
 // ====================================================================
 // starts modules .quit
- modules = getmodules();
- index = size(modules);
+modules = getmodules();
 
- for i = 1:index(1) do 
-  exec("SCI/modules/"+modules(index(1)-i+1)+"/etc/"+modules(index(1)-i+1)+".quit",-1);
- end  
+WITH_HELPTOOLS = ((with_module("helptools"))  & (getscilabmode() <> "NWNI"));
+WITH_DEMOS     = ((with_module("demo_tools")) & (getscilabmode() <> "NWNI"));
  
-clear modules index i
+for i=1:size(modules,"*")
+  exec("SCI/modules/"+modules(i)+"/etc/"+modules(i)+".quit",-1);
+end  
+ 
+clear modules i WITH_HELPTOOLS WITH_DEMOS
+
 // ====================================================================
 // free all dynamics libraries
 ulink();

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>fplot3d</refname>
 
-    <refpurpose>esboÃ§o 3d de uma superfÃ­cie definida por uma
-    funÃ§Ã£o</refpurpose>
+    <refpurpose>esboço 3d de uma superfície definida por uma
+    função</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>fplot3d(xr,yr,f,[theta,alpha,leg,flag,ebox])
 fplot3d(xr,yr,f,&lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -82,14 +82,14 @@ fplot3d(xr,yr,f,&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>fplot3d</literal> esboÃ§a uma superfÃ­cie definida pela
-    funÃ§Ã£o externa <literal>f</literal> no grid definido por
+    <para><literal>fplot3d</literal> esboça uma superfície definida pela
+    função externa <literal>f</literal> no grid definido por
     <literal>xr</literal> e <literal>yr</literal>.</para>
 
     <para>Entre com o comando <literal>fplot3d()</literal> para ver uma
-    demonstraÃ§Ã£o.</para>
+    demonstração.</para>
   </refsection>
 
   <refsection>
@@ -105,7 +105,7 @@ clf() ;fplot3d(x,y,f,alpha=5,theta=31)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot3d">plot3d</link></member>

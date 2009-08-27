@@ -17,7 +17,8 @@
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]={
+#define FILEIO_TAB_SIZE 36
+static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 	{sci_mopen, "mopen"},
 	{sci_mputstr, "mputstr"},
 	{sci_mclose, "mclose"},
@@ -48,7 +49,7 @@ static gw_generic_table Tab[]={
 	{sci_isdir,"isdir"},
 	{sci_removedir,"removedir"},
 	{sci_createdir,"createdir"},
-	{sci_getcwd,"getcwd"},
+	{sci_pwd,"pwd"},
 	{sci_chdir,"chdir"},
 	{sci_fileinfo,"fileinfo"},
 	{sci_newest,"newest"},
@@ -59,7 +60,7 @@ static gw_generic_table Tab[]={
 int gw_fileio(void)
 {
 	Rhs = Max(0,Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,FILEIO_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 

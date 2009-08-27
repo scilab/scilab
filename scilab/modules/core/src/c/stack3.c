@@ -28,6 +28,7 @@
 #include "code2str.h"
 #include "elementary_functions.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 
 extern int C2F(stackp)(int *id, int *macmod);
 extern int C2F(dcopy)();
@@ -1238,6 +1239,7 @@ int iGetOrient(int _iVal)
 	{
 		GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
 		iMode = (int)*szRealData[0];
+		freeArrayOfString(szRealData, iRows * iCols);
 	}
 	else
 	{

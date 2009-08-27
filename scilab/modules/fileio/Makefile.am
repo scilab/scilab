@@ -27,7 +27,6 @@ src/c/mputi.c \
 src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
-src/c/diary.c \
 src/c/readline.c \
 src/c/getdrives.c \
 src/c/deleteafile.c \
@@ -43,9 +42,7 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c 
-
-
+src/c/getrelativefilename.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -69,7 +66,7 @@ sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_createdir.c \
 sci_gateway/c/sci_chdir.c \
-sci_gateway/c/sci_getcwd.c \
+sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \
@@ -84,13 +81,20 @@ sci_gateway/c/sci_mtell.c \
 sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
-sci_gateway/c/sci_getrelativefilename.c 
+sci_gateway/c/sci_getrelativefilename.c
+
+libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/io/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes
 
@@ -98,14 +102,19 @@ pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+				$(top_builddir)/modules/string/libscistring.la \
+				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
+				$(top_builddir)/libs/MALLOC/libscimalloc.la \
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/libs/libst/libscilibst.la
 #### Target ######
 modulename=fileio
 
@@ -138,7 +147,6 @@ includes/mopen.h \
 includes/mtell.h \
 includes/addfile.h \
 includes/delfile.h \
-includes/diary.h \
 includes/getfiledesc.h \
 includes/getfileinfo.h \
 includes/getfiletype.h \
@@ -149,6 +157,6 @@ includes/mseek.h \
 includes/deleteafile.h \
 includes/readline.h \
 includes/cluni0.h \
-includes/scicurdir.h 
+includes/scicurdir.h
 
 include $(top_srcdir)/Makefile.incl.am

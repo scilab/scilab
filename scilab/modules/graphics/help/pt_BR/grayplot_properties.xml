@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="grayplot_properties"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>grayplot_properties</refname>
+
+    <refpurpose>description of the grayplot entities properties</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Grayplot é uma folha na hierarquia de entidades gráficas.
+    Representa esboços 2d de superfícies utilizando cores e imagens (ver
+    <literal>grayplot</literal>, <literal>Sgrayplot</literal>,
+    <literal>fgrayplot</literal> e <literal>Sfgrayplot</literal>).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>esta propriedade contém o manipulador para a raiz. A raiz de
+          uma entidade grayplot deve ser do tipo
+          <literal>"Axes"</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para> esta propriedade contém um vetor com os galhos do
+          manipulador. Contudo, manipuladores grayplot não possuem galhos
+          correntemente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>visible</literal> para a entidade. Pode ser <literal>"on"
+          </literal> ou <literal>"off"</literal> . Por padrão, o grayplot é
+          visível, a propriedade é <literal>"on"</literal>. Se
+          <literal>"off"</literal> o grayplot não é exibido na tela.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+          <para>este campo define uma estrutura de dados do tipo
+          <literal>tlist</literal> de tipo <literal>"grayplotdata"</literal>
+          composto de uma linha e índices de colunas de cada elemento: as
+          coordenadas do grid x e y estão contidas respectivamente em
+          <literal>data.x</literal> e <literal>data.y</literal>. O campo
+          complementar chamado <literal>data.z</literal> é o valor da
+          superfície no ponto <literal>(x(i),y(j))</literal> (modo escalado)
+          ou o valor centrado da superfície definido entre dois pontos
+          consecutivos <literal>x(i)</literal> e <literal>y(j)</literal> (modo
+          direto). Se <literal>data_mapping</literal> (ver abaixo) for
+          ajustado para <literal>"scaled"</literal>, todo o dado z é utilizado
+          para realizar uma interpolação de cores, enquanto que, se o valor de
+          <literal>data_mapping</literal> for <literal>"direct"</literal>, a
+          última linha e coluna dos índices de dados z são ignoradas e a cor é
+          determinada diretamente no mapa de cores através dos índices da
+          submatriz <literal>data.z(1:$-1,1:$-1)</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data_mapping:</term>
+
+        <listitem>
+          <para>por padrão, o valor desta propriedade é
+          <literal>"scaled"</literal> : os índices das cores utilizadas para
+          colorir são proporcionais ao valor das coordenadas
+          <literal>z</literal>. Em outro caso, a propriedade possui valor
+          <literal>"direct"</literal> onde o esboço é um grayplot e os índices
+          das cores de pintura são fornecidos pelos dados (ver acima). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>este campo contém o valor da propriedade
+          <literal>clip_state</literal> para o grayplot. o valor de clip_state
+          pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> significa que o grayplot não é
+              recortado. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> significa que o grayplot é
+              recortado fora da caixa dos eixos. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> significa que o grayplot é
+              recortado fora do retângulo dado pela propriedade
+              clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>este campo determina a propriedade <literal>clip_box</literal>
+          . Por padrão seu valor é uma matriz vazia se a propriedade
+          clip_state é "off". Em outros casos, o vetor
+          <literal>[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+          altura) define as porções do retângulo a ser exibido, contudo o
+          valor da propriedade <literal>clip_state</literal> será
+          alterado.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>este campo pode ser utilizado para armazenar qualquer variável
+          Scilab na estrutura de dados da entidade grayplot e
+          recuperá-la.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+
+   m=5;n=5;
+   M=round(32*rand(m,n));
+   grayplot(1:m,1:n,M)
+
+   a=get("current_axes");
+   a.data_bounds=  [-1,-1;7,7]
+   h=a.children
+
+   h.data_mapping="direct";
+   
+   // um esboço 2D de uma matriz utilizando cores
+   xbasc()
+   a=get("current_axes");
+   a.data_bounds=  [0,0;4,4];
+  
+   b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
+   Matplot1(b,[1,1,3,3])  ;
+  
+   h=a.children
+   for i=1:7
+    xclick(); // um click ajusta os dados do Matplot
+    h.data=h.data+4;
+   end
+   
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="grayplot">grayplot</link></member>
+
+      <member><link linkend="Matplot">Matplot</link></member>
+
+      <member><link linkend="Matplot1">Matplot1</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+
+      <member><link
+      linkend="Matplot_properties">Matplot_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>Djalel ABDEMOUCHE &amp; F.Leray</para>
+  </refsection>
+</refentry>

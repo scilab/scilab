@@ -24,7 +24,7 @@ if rhs==1 then
   end
 else
   if and(size(a)==[1 1]) then
-    r=randn(a,a,opt)
+    r=rand(a,a,"normal")
   else
     tmp=list()
     for k=1:size(a,"*")

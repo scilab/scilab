@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="eventhandlerfunctions"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-03-08 08:05:42 +0200 (jeu, 08 mar 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>event handler functions</refname>
+
+    <refpurpose>Protótipo de funções que podem se utilizadas como
+    gerenciadoras de eventos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>envent_handler_function(win,x,y,ibut)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win</term>
+
+        <listitem>
+          <para>número da janela onde o evento ocorreu</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>coordenada X em píxeis do ponteiro do mouse no momento onde o
+          evento ocorreu</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>coordenada Y em píxeis do ponteiro do mouse no momento onde o
+          evento ocorreu</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut</term>
+
+        <listitem>
+          <para>número correspondente ao tipo de evento</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Quando o modo de gerenciador de eventos está habilitado, o Scilab
+    chamaráo gerenciador de eventos especificado a cada vez que um evento
+    ocorre na janela gráfica. A função de gerenciamento de evento deve
+    concordar com o protótipo acima. A cada vez que um evento ocorre, a função
+    é chamada e os quatro eventos são ajustados de acordo com o número da
+    janela, a posição do mouse e o tipo do evento.</para>
+
+    <para>O parâmetro <literal>ibut</literal> toma um dos seguintes valores
+    dependendo do tipo do evento ocorrido:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibut==0</term>
+
+        <listitem>
+          <para>o botão esquerdo foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==1</term>
+
+        <listitem>
+          <para>o botão do meio foi pressionado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==2</term>
+
+        <listitem>
+          <para>o botão direito foi pressionado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==3</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==4</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==5</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==10</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==11</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi clicado duas vezes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==12</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi clicado duas vezes</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==-5</term>
+
+        <listitem>
+          <para>o botão esquerdo do mouse foi liberado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==-4</term>
+
+        <listitem>
+          <para>o botão do meio do mouse foi liberado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==-3</term>
+
+        <listitem>
+          <para>o botão direito do mouse foi liberado</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==-1</term>
+
+        <listitem>
+          <para>o ponteiro do mouse foi movido</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut &gt; =32</term>
+
+        <listitem>
+          <para>uma tecla com código ascii(ibut) foi pressionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut &lt; =-32</term>
+
+        <listitem>
+          <para>uma tecla com código ascii(-ibut) foi liberadav</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut &gt; =1000+32</term>
+
+        <listitem>
+          <para>uma tecla com código ascii(ibut-1000) foi pressionada enquanto
+          a tecla CTRL estava sendo pressionada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibut==-1000</term>
+
+        <listitem>
+          <para>a janela de gráficos foi fechada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Por exemplo, digamos que o nome da função de gerenciamento de
+    eventos seja fooHandler para a janela de número 0. Um clique com o botão
+    esquerdo na janela na posição [100,150] (em píxeis) será equivalente a
+    chamar fooHandler( 0, 100, 150, 3 ).</para>
+
+    <para>Ver <link linkend="figure_properties">figure_properties</link> ou
+    <link linkend="seteventhandler">seteventhandler</link> para mais
+    informações sobre como especificar o nome do gerenciador de
+    eventos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+   function my_eventhandler(win,x,y,ibut)
+      if ibut==-1000 then return,end
+      [x,y]=xchange(x,y,'i2f')
+       xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
+   endfunction
+   plot2d()
+   fig = gcf() ;
+   fig.event_handler = 'my_eventhandler' ;
+   fig.event_handler_enable = "on" ;
+   //agora:
+   //   -  mova o mouse sobre a janela gráfica
+   //   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
+   //   -  pressione um botão, espere um pouco e libere
+   //   -  pressione e libere um botão
+   //   -  clique duas vezes em um botão
+
+
+   fig.event_handler_enable = "off" ; //suprimindo o gerenciador de eventos
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="figure_properties">figure_properties</link></member>
+
+      <member><link linkend="seteventhandler">seteventhandler</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="xclick">xclick</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

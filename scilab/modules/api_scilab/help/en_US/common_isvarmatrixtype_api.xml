@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Common_isvarmatrixtype_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>Matrix Type (Scilab gateway)</refname>
+
+        <refpurpose>
+            How to know if a variable is stored as a matrix.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+      <title>Calling Sequence</title>
+      <synopsis>int isVarMatrixType(int* _piAddress)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_piAddress</term>
+                <listitem>
+                    <para>
+                        Address of the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Returned value</term>
+                <listitem>
+                    <para>
+                        1 if the variable is stored as matrix otherwise 0.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how to know if a variable is stored as a matrix.</para>
+        <para>In some cases (exemple: list), a variable is not stored as a standard Scilab matrix. This function provides a way to handle both cases.</para>
+    </refsection>
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
+        <!--Lib_name: commom_function-->
+        <!--Func_list: commom_function-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+int printf_info(int _iVar);
+
+int commom_function(char *fname,unsigned long fname_len)
+{
+    int i;
+    int iRet        = 0;
+    int *piAddr1    = NULL;
+
+    for(i = 0 ; i < Rhs ; i++)
+    {
+        iRet = printf_info(i + 1);
+        if(iRet)
+        {
+            break;
+        }
+        sciprint("\n\n");
+    }
+
+    if(iRet)
+    {
+        //1 for true, 0 for false
+        iRet = !iRet;
+        createMatrixOfBoolean(1, 1, 1, &iRet);
+        //assign allocated variables to Lhs position
+        LhsVar(1) = 1;
+    }
+    else
+    {
+        //assign allocated variables to Lhs position
+        LhsVar(1) = 0;
+    }
+
+    return 0;
+}
+
+int printf_info(int _iVar)
+{
+    int* piAddr     = NULL;
+    int iRet        = 0;
+    int iType       = 0;
+    int iRows       = 0;
+    int iCols       = 0;
+    int iItem       = 0;
+    int iComplex    = 0;
+
+    iRet = getVarAddressFromPosition(_iVar, &piAddr);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    sciprint("Variable %d information:\n", _iVar);
+    iType = getVarType(piAddr);
+    sciprint("\tType: ");
+    switch(iType)
+    {
+        case sci_matrix : 
+            sciprint("double\n");
+            break;
+        case sci_poly : 
+            sciprint("polynomial\n");
+            break;
+        case sci_boolean : 
+           sciprint("boolean\n");
+           break;
+        case sci_sparse : 
+            sciprint("sparse\n");
+            break;
+        case sci_boolean_sparse : 
+            sciprint("boolean_sparse\n");
+            break;
+        case sci_ints : 
+        {
+            char pstSigned[]    = "signed";
+            char pstUnsigned[]  = "unsigned";
+            char* pstSign       = pstSigned;
+
+            int iPrec           = 0;
+            iRet = getMatrixOfIntegerPrecision(piAddr, &iPrec);
+
+            if(iPrec > 10)
+            {
+                pstSign = pstUnsigned;
+            }
+
+            sciprint("%s integer %d bits\n", pstSign, (iPrec % 10) * 8);
+        }
+        break;
+        case sci_strings : 
+            sciprint("strings\n");
+            break;
+        case sci_list : 
+            sciprint("list\n");
+            break;
+        case sci_tlist : 
+            sciprint("tlist\n");
+            break;
+        case sci_mlist : 
+            sciprint("mlist\n");
+            break;
+        default :
+            sciprint("Not manage by this function\n");
+            return 0;
+    }
+
+    if(isVarComplex(piAddr))
+    {
+        sciprint("\tComplex: Yes\n");
+    }
+
+    sciprint("\tDimensions: ");
+    if(isVarMatrixType(piAddr))
+    {
+        getVarDimension(piAddr, &iRows, &iCols);
+        sciprint("%d x %d", iRows, iCols);
+    }
+    else
+    {
+        getListItemNumber(piAddr, &iItem);
+        sciprint("%d", iItem);
+    }
+    return 0;
+}
+        ]]>
+        </programlisting>
+    </refsection>
+
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+l1 = [1,2*%i,3;%i,2,3*%i];
+l2 = ["may","the";"puffin","be";"with","you"];
+l3 = int8([1,2,3]);
+l4 = uint16([1000,2000,3000]);
+l5 = list(l1,l2,l3);
+l = list(l1,l2,l3,l4,l5);
+commom_function(l(1:$))
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

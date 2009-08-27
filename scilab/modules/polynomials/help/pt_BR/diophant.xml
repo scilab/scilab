@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>diophant</refname>
 
-    <refpurpose>equaÃ§Ã£o (de Bezout) diofantina</refpurpose>
+    <refpurpose>equação (de Bezout) diofantina</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>[x,err]=diophant(p1p2,b)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>p1p2</term>
 
         <listitem>
-          <para>vetor de polinÃ´mios <literal>p1p2 = [p1 p2]</literal></para>
+          <para>vetor de polinômios <literal>p1p2 = [p1 p2]</literal></para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>b</term>
 
         <listitem>
-          <para>polinÃ´mio</para>
+          <para>polinômio</para>
         </listitem>
       </varlistentry>
 
@@ -57,19 +57,19 @@
         <term>x</term>
 
         <listitem>
-          <para>vetor de polinÃ´mios [x1;x2]</para>
+          <para>vetor de polinômios [x1;x2]</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal> diophant</literal> resolve a equaÃ§Ã£o de Bezout:</para>
+    <para><literal> diophant</literal> resolve a equação de Bezout:</para>
 
     <para><literal>p1*x1+p2*x2=b</literal> com <literal>p1p2</literal> um
-    vetor de polinÃ´mios. Se a equaÃ§Ã£o nÃ£o for solÃºvel</para>
+    vetor de polinômios. Se a equação não for solúvel</para>
 
     <para>de outro modo <literal>err=0</literal></para>
   </refsection>

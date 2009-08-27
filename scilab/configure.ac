@@ -111,13 +111,13 @@ AC_ARG_WITH(intelcompilers,
     AC_HELP_STRING([--with-intelcompilers],[Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ]))
 
 AC_ARG_WITH(tk,
-    AC_HELP_STRING([--without-tk],[Do not compile with TCL/TK ]))
+    AC_HELP_STRING([--without-tk],[Disable the interface to Tcl/Tk ]))
 
 AC_ARG_WITH(javasci,
-    AC_HELP_STRING([--without-javasci],[Do not compile the Java/Scilab module ]))
+    AC_HELP_STRING([--without-javasci],[Disable the Java/Scilab interface (javasci)]))
 
 AC_ARG_WITH(gui,
-    AC_HELP_STRING([--without-gui],[Do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
+    AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
 AC_ARG_ENABLE(build-swig,
     AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
@@ -601,6 +601,26 @@ AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+
+#################
+## HDF5
+#################
+
+AC_ARG_WITH(hdf5,
+	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
+
+HDF5_ENABLE=no
+
+if test "$with_hdf5" != no; then
+   AC_HDF5()
+# TODO: check if the JNI JHDF5 library are available
+   HDF5_ENABLE=yes
+fi
+
+AC_SUBST(HDF5_ENABLE)
+AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+
+
 ###########################
 ## test for JAVA compiler
 ###########################
@@ -682,12 +702,20 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				JROSETTA_ENGINE=$PACKAGE_JAR_FILE
 				AC_SUBST(JROSETTA_ENGINE)
 
+				if test $HDF5_ENABLE = yes;  then
+				# HDF5 java lib
+				  AC_JAVA_CHECK_PACKAGE([jhdf5],[ncsa.hdf.hdf5lib.HDF5Constants],[HDF5 Java library])
+				  JHDF5=$PACKAGE_JAR_FILE
+				  AC_SUBST(JHDF5)
+				fi
+
 				# Logging (flexdock dep)
 				AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
 				COMMONS_LOGGING=$PACKAGE_JAR_FILE
 				AC_SUBST(COMMONS_LOGGING)
 
 				AC_DEFINE([WITH_GUI],[],[With the JAVA stuff (GUI, Console, JOGL...)])
+
 		fi
 	else
 		AC_MSG_WARN([Sun javac not found: I will not build the java interface])
@@ -840,7 +868,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termcap.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -883,17 +911,43 @@ AC_STRUCT_ST_BLOCKS
 ## termcap library
 ##################
 
+# some systems may have a system curses implementation as well as ncurses
+# installed.  We need to be consistent in making sure we get the correct
+# library to go with the correct header and also provide a way for the user
+# to have some control over which is picked when both are available.
+#
+# For now, just check for -lcurses and then -lncurses.  The user control
+# may need to be revisited
+
 TERMCAP_LIB=no
-AC_CHECK_LIB(ncurses,main,[TERMCAP_LIB=-lncurses])
-if test "$TERMCAP_LIB" = no; then
-  AC_CHECK_LIB(curses,main,[TERMCAP_LIB=-lcurses])
+
+# Various observations:
+#
+#  ncurses 
+#    - installs ncurses.h and possibly curses.h as a link to ncurses.h
+#    - installs -lncurses.
+#    - need to include term.h for tgetent() but tgetent() is in -lncurses.a
+#
+# curses as found in NetBSD-4 and NetBSD-5
+#    - installs curses.h
+#    - need to include termcap.h and link with -ltermcap for tgetent()
+#
+
+AC_CHECK_LIB([curses],[main])
+if test $ac_cv_lib_curses_main = no ; then
+	AC_CHECK_LIB([ncurses],[main])
 fi
-if test "$TERMCAP_LIB" != no; then
+
+# make sure we have what we need for tgetent
+AC_SEARCH_LIBS([tgetent],[termcap])
+
+AC_CHECK_HEADERS([ncurses.h curses.h])
+
+if test "x$ac_cv_lib_curses_main" = "xyes" -o "x$ac_cv_lib_ncurses_main" = "xyes" ; then
   AC_DEFINE([HAVE_TERMCAP],[],[Have Term Cap])
 else
  AC_MSG_ERROR([No termcap library detected. Please install ncurses dev library (or termcap library)])
 fi
-AC_SUBST(TERMCAP_LIB)
 
 ##################
 ## other libraries
@@ -901,16 +955,17 @@ AC_SUBST(TERMCAP_LIB)
 
 AC_CHECK_LIB(dl, dlopen)
 
+AC_SEARCH_LIBS([pthread_join],[pthread])
 
 #################
 ## SCICOS
 #################
 
 AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--without-scicos],[Compile without Scicos]))
+    AC_HELP_STRING([--without-scicos],[Disable Scicos]))
 
 AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules (modelica)]))
+    AC_HELP_STRING([--without-ocaml],[Disable the OCaml modules (modelica)]))
 
 
 SCICOS_ENABLE=no
@@ -965,6 +1020,7 @@ fi
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
+
 #################
 ## MPI
 #################
@@ -1005,7 +1061,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1138,7 +1194,7 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = yes)
 
 
 AC_ARG_WITH(matio,
-    AC_HELP_STRING([--without-matio],[Compile with the MAT File I/O library]))
+    AC_HELP_STRING([--without-matio],[Disable the interface to Matio (MAT File I/O library)]))
 
 AC_ARG_WITH(matio_include,
 		AC_HELP_STRING([--with-matio-include=DIR],[Set the path to the MATIO headers]),
@@ -1384,7 +1440,9 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/api_scilab/Makefile
 modules/call_scilab/Makefile
+modules/hdf5/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
@@ -1398,7 +1456,6 @@ modules/m2sci/Makefile
 modules/compatibility_functions/Makefile
 modules/texmacs/Makefile
 modules/scipad/Makefile
-modules/scilab2fortran/Makefile
 modules/development_tools/Makefile
 modules/output_stream/Makefile
 modules/console/Makefile
@@ -1407,6 +1464,7 @@ modules/genetic_algorithms/Makefile
 modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
+modules/atoms/Makefile
 modules/Makefile
 libs/Makefile
 Makefile
@@ -1545,7 +1603,7 @@ fi
 echo ""
 if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
-   echo "PVM Architecture ... = $PVMARCH"
+   echo "PVM Architecture ... = $PVM_ARCH"
    echo "PVM INCLUDE ........ = $PVM_INCLUDE"
    echo "PVM LIBS ........... = $PVM_LIB"
 else
@@ -1656,6 +1714,19 @@ else
 echo "  JAVA disabled"
 fi
 
+
+echo ""
+echo "Java dependencies:"
+if test ! -z "$JAVAC"; then
+echo "  Flexdock ............ = $FLEXDOCK"
+echo "  JOGL ................ = $JOGL"
+echo "  Jhall  .............. = $JHALL"
+echo "  Gluegen ............. = $GLUEGEN_RT"
+echo "  Jrosetta (API) ...... = $JROSETTA_API"
+echo "  Jrosetta (Engine) ... = $JROSETTA_ENGINE"
+echo "  Commons Logging ..... = $COMMONS_LOGGING"
+fi
+
 echo "" 
 echo "TCL/TK configuration:"
 echo "  TK_INC_PATH ........ = $TK_INC_PATH"
@@ -1669,6 +1740,16 @@ echo "XML configuration:"
 echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
+
+echo "" 
+if test $HDF5_ENABLE = yes;  then
+   echo "HDF5 configuration:"
+   echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
+   echo "  HDF5 LIBS ........... = $HDF5_LIBS"
+   echo "  HDF5 Java ........... = $JHDF5"
+else
+   echo "Not using HDF5"
+fi
 
 echo "" 
 echo "PCRE configuration:"

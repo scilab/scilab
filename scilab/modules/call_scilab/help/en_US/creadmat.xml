@@ -24,68 +24,70 @@
   <refnamediv>
     <refname>creadmat</refname>
 
-    <refpurpose>Read a single double or a matrix of double from Scilab memory using
-    call_scilab. Note that it is the default datatype in Scilab.</refpurpose>
+    <refpurpose>Read a single double or a matrix of double from Scilab memory
+    using call_scilab. Note that it is the default datatype in
+    Scilab.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(creadmat) (char *name, int *m, int *n, double *scimat, unsigned long name_len);
-</para>
+    <synopsis>int C2F(creadmat)(char *name, int *m, int *n, double *scimat, unsigned long name_len);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Parameters</title>
 
     <variablelist>
-        <varlistentry>
-          <term>name</term>
+      <varlistentry>
+        <term>name</term>
 
-          <listitem>
-            <para>The name of the future Scilab variable</para>
-          </listitem>
-        </varlistentry>
-        <varlistentry>
-          <term>m</term>
+        <listitem>
+          <para>The name of the future Scilab variable</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>Number of rows</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>m</term>
 
-        <varlistentry>
-          <term>n</term>
+        <listitem>
+          <para>Number of rows</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>Number of columns</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>n</term>
 
-        <varlistentry>
-          <term>scimat</term>
+        <listitem>
+          <para>Number of columns</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-				 <para>The actual matrix of double (array of double). Note that it is going to be stored in Scilab columnwise.</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>scimat</term>
 
-        <varlistentry>
-          <term>name_len</term>
+        <listitem>
+          <para>The actual matrix of double (array of double). Note that it is
+          going to be stored in Scilab columnwise.</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>The length of the variable <emphasis>name
-            </emphasis>(fortran compatibility)</para>
-          </listitem>
-        </varlistentry>
+      <varlistentry>
+        <term>name_len</term>
 
-        <varlistentry>
-          <term>C2F</term>
+        <listitem>
+          <para>The length of the variable <emphasis>name </emphasis>(fortran
+          compatibility)</para>
+        </listitem>
+      </varlistentry>
 
-          <listitem>
-            <para>C2F is just a macro which provides to this function the
-            ability to be called from fortran</para>
-          </listitem>
-        </varlistentry>
-      </variablelist>
+      <varlistentry>
+        <term>C2F</term>
+
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
 
   <refsection>
@@ -101,38 +103,37 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">		/* Load the previously set variable B */
+    <programlisting role="example"><![CDATA[
+/* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwritematrix.c
-		int rowB_ = 0, colB_ = 0, lp_ = 0;
-		double *matrixOfDoubleB = NULL;
-		int i = 0, j = 0;
+int rowB_ = 0, colB_ = 0, lp_ = 0;
+double *matrixOfDoubleB = NULL;
+int i = 0, j = 0;
 
-		char variableToBeRetrievedB[] = "B";
+char variableToBeRetrievedB[] = "B";
 
-		/* First, retrieve the size of the matrix */
-		C2F(cmatptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+/* First, retrieve the size of the matrix */
+C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
-		/* Alloc the memory */
-		matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
+/* Alloc the memory */
+matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
 
-		/* Load the matrix */
-		C2F(creadmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+/* Load the matrix */
+C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
 
-		printf("\n");
-		printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-		for(j = 0 ; j &lt; rowB_ ; j++)
-			{
-				for(i = 0 ; i &lt; colB_ ; i++)
-					{
-						/* Display the formated matrix ... the way the user
-						 * expect */
-						printf("%5.2f ",matrixOfDoubleB[i * rowB_ + j]);
-					}
-				printf("\n"); /* New row of the matrix */
-			}
-
-
-</programlisting>
+printf("\n");
+printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+for(j = 0 ; j < rowB_ ; j++)
+ {
+  for(i = 0 ; i < colB_ ; i++)
+   {
+    /* Display the formated matrix ... the way the user
+     * expect */
+    printf("%5.2f ",matrixOfDoubleB[i * rowB_ + j]);
+   }
+  printf("\n"); /* New row of the matrix */
+ }
+ ]]></programlisting>
   </refsection>
 
   <refsection>

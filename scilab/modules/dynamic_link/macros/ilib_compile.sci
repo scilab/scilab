@@ -31,7 +31,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
     return ;
   end
   
-  oldpath = getcwd();
+  oldpath = pwd();
   files = files(:)';
   
   managed_ext = ['.obj','.o'];
@@ -77,7 +77,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
    
   else
     //** ---------- Linux section ---------------------  
-	defaultModulesCHeader=[ "core", "mexlib", "output_stream" ];
+	defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
 	defaultModulesFHeader=[ "core" ];
 	
     // Source tree version

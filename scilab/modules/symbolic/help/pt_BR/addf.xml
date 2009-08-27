@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>addf</refname>
 
-    <refpurpose>adiÃ§Ã£o simbÃ³lica</refpurpose>
+    <refpurpose>adição simbólica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>addf("a","b")</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,11 +48,11 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para><literal>addf("a","b")</literal> retorna a cadeia de caracteres
-    <literal>"a+b"</literal>. SimplificaÃ§Ãµes triviais tais como
-    <literal>addf("0","a")</literal> ou <literal>addf("1","2")</literal> sÃ£o
+    <literal>"a+b"</literal>. Simplificações triviais tais como
+    <literal>addf("0","a")</literal> ou <literal>addf("1","2")</literal> são
     realizadas.</para>
   </refsection>
 
@@ -70,7 +70,7 @@ addf('1','2')
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="mulf">mulf</link></member>

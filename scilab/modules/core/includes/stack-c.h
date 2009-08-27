@@ -17,6 +17,10 @@
 
 #include <string.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #if  ( !(defined __MATH__)  || (defined __APPLE__) || (defined aix) )
 #include "core_math.h"
 #else
@@ -31,7 +35,6 @@
 #include "stack1.h"
 #include "stack2.h"
 #include "stack3.h"
-
 
 /*-------------------------------------------------
  * types
@@ -71,24 +74,6 @@ typedef enum {
 #define I_UCHAR 11
 #define I_UINT16 12
 #define I_UINT32 14
-
-/*
-@TODO
-some other are definied in data_structures/src/c/hmops.c
-
-#define SCI_REAL_OR_CMPLX 1
-#define SCI_POLYNOMIAL 2
-#define SCI_BOOLEAN 4
-#define SCI_SP_BOOLEAN 6
-#define SCI_INTEGER 8
-#define SCI_IMPLICIT_POLY 129
-#define SCI_STRING sci_strings
-#define SCI_MLIST sci_mlist
-#define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
-#define OLD_HYPERMAT -2
-
-See if it is interesting including them here
-*/
 
 /* a set of define for the associated casts */
 
@@ -209,10 +194,10 @@ static void initial_c1_local(void)
 #define GetRhsVar(n,ct,mx,nx,lx) if (! C2F(getrhsvar)((c_local=n,&c_local),ct,mx,nx,(int *) lx,1L))\
         { return 0;  }
 
-#define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L))\
+#define CreateVar(n,ct,mx,nx,lx) if(! C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(int *)lx, 1L))\
         { return 0;  }
 
-#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(void *)lx))\
+#define CreateWork(n,mx,lx) if(! C2F(creatework)((c_local=n,&c_local),mx,(int *)lx))\
         { return 0;  }
 
 #define SetWorkSize(n,mx) if(! C2F(setworksize)((c_local=n,&c_local),mx))\
@@ -253,9 +238,9 @@ static void initial_c1_local(void)
 
 #define Createlist(m,n) C2F(createlist)((c_local=m,&c_local),(c1_local=n,&c1_local))
 
-#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *)lx,(void *) lx1,1L))  { return 0;}
+#define CreateListVarFrom(n,m,ct,mx,nx,lx,lx1) if (!C2F(createlistvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(int *)lx,(int *) lx1,1L))  { return 0;}
 
-#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(void *)lx,(void *) lc,(void *) lx1,(void *)lc1,1L))  { return 0;}
+#define CreateListCVarFrom(n,m,ct,it,mx,nx,lx,lc,lx1,lc1) if (!C2F(createlistcvarfrom)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,it,mx,nx,(int *)lx,(int *) lc,(int *) lx1,(int *)lc1,1L))  { return 0;}
 
 #define CreateListVarFromPtr(n,m,ct,mx,nx,lx1) if (!C2F(createlistvarfromptr)((c_local=n,&c_local),(c1_local=m,&c1_local),ct,mx,nx,(void *) lx1,1L))  { return 0;}
 
@@ -402,6 +387,9 @@ extern int C2F(checklhs)(char *fname, int *imin, int *imax, unsigned long fname_
 
 extern void C2F(freeptr)(double *ip[]);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /*  STACK_SCI  */
 
 

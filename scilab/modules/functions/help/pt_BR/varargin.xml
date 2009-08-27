@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="varargin" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>varargin</refname>
+
+    <refpurpose>variável do número de argumentos de saída em uma lista de
+    argumentos de entrada</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Uma função cujo último argumento de entrada é
+    <literal>varargin</literal> pode ser chamada com mais argumentos de
+    entrada que os indicados pela lista de argumentos de entrada. Os
+    argumentos de chamada passados da palavra-chave
+    <literal>varargin</literal> em diante podem ser recuperados em uma lista
+    chamada <literal>varargin</literal>.</para>
+
+    <para>Suponha que a palavra-chave <literal>varargin</literal> é o n-ésimo
+    argumento da lista de argumentos de entrada formal, então, se a função é
+    chamada com <literal>n-1</literal> argumentos de entrada, a lista
+    <literal>varargin</literal> não é definida. Se a função for chamada com
+    <literal>n-1</literal> argumentos, então <literal>varargin</literal> é uma
+    lista vazia</para>
+
+    <para><literal>y = function ex(varargin)</literal> pode ser chamada com
+    qualquer número de argumentos de entrada. Dentro da função
+    <literal>ex</literal> argumentos de entrada podem ser recuperados em
+    <literal>varargin(i)</literal>
+    ,<literal>i=1:length(varargin)</literal></para>
+
+    <para>Se não for o último argumento de entrada da função,
+    <literal>varargin</literal> é um argumento de entrada normal, sem nenhum
+    significado especial.</para>
+
+    <para>O número de argumentos de entrada real é dado por <link
+    linkend="argn">argn(2)</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Observações</title>
+
+    <para>Sintaxe de argumento nomeada, como <literal>foo(...,key=value)
+    </literal>, é incompatível com o uso de varargin. A razão é que os nomes
+    (i.e. keys) associados aos valores value não são armazenados na lista
+    varargin. Considere por exemplo:</para>
+
+    <para>function
+    foo(varargin),disp([varargin(1),varargin(2)]),endfunction</para>
+
+    <para>foo(a=1,b=2)</para>
+
+    <para>O Scilab responde: 1. 2.</para>
+
+    <para>foo(b=1,a=2)</para>
+
+    <para>O Scilab responde: 1. 2.</para>
+
+    <para>O resultado é o mesmo, mas os argumentos foram invertidos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                          'if rhs&gt;=1 then disp(varargin),end'])
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="varargout">varargout</link></member>
+
+      <member><link linkend="list">list</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

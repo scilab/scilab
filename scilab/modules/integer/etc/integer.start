@@ -1,8 +1,5 @@
-// ====================================================================
-// integer module initialisation file 
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 
+// Copyright (C) 2009 - DIGITEO
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,11 +7,12 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
 //Load  functions libraries
+// =============================================================================
 load('SCI/modules/integer/macros/lib');
-// ====================================================================
-//add help chapter
-add_module_help_chapter('integer');
-// ====================================================================
+
+// Add help chapter
+// =============================================================================
+if WITH_HELPTOOLS then
+	add_module_help_chapter("integer");
+end

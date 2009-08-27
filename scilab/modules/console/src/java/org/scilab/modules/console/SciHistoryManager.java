@@ -25,7 +25,7 @@ import com.artenum.rosetta.interfaces.core.HistoryManager;
  */
 public class SciHistoryManager implements HistoryManager {
 
-	private boolean isInHistory = true;
+	private boolean isInHistory = false;
 
 	/**
 	 * Constructor
@@ -70,6 +70,7 @@ public class SciHistoryManager implements HistoryManager {
 	public String getNextEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
 		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+			//HistoryManagement.resetSearchedTokenInScilabHistory();
 			HistoryManagement.setSearchedTokenInScilabHistory(beg);
 		}
 		return HistoryManagement.getNextLineInScilabHistory();
@@ -84,6 +85,7 @@ public class SciHistoryManager implements HistoryManager {
 	public String getPreviousEntry(String beg) {
         /* Ask Scilab history manager for a matching entry */
 		if (HistoryManagement.getSearchedTokenInScilabHistory() != beg) {
+			//HistoryManagement.resetSearchedTokenInScilabHistory();
 			HistoryManagement.setSearchedTokenInScilabHistory(beg);
 		}
 		return HistoryManagement.getPreviousLineInScilabHistory();
@@ -130,8 +132,10 @@ public class SciHistoryManager implements HistoryManager {
 	 */
 	public void setTmpEntry(String currentCommandLine) {
 		if (currentCommandLine != null && currentCommandLine.trim().equals("")) {
+			HistoryManagement.resetSearchedTokenInScilabHistory();
 			HistoryManagement.setSearchedTokenInScilabHistory("");
 		} else {
+			HistoryManagement.resetSearchedTokenInScilabHistory();
 			HistoryManagement.setSearchedTokenInScilabHistory(currentCommandLine);
 		}
 	}

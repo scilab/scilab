@@ -87,9 +87,20 @@ current_driver=driver()</synopsis>
     <para>
     To convert "GIF" or "PPM" files to other image format or for building animation one can use the "convert" program for ImageMagic (http://www.imagemagick.org/)</para>
     <para>
+    To redirect the graphic output to a GIF file (which will be written in the current directory), you can use the following example:</para>
+    <programlisting><![CDATA[
+ 
+driver('GIF');
+xinit('mygiffile.gif');
+plot3d();
+xend();
+driver('X11');
+   
+    ]]></programlisting>
+    <para>
     For example if one has generated a sequence of Gif files named <literal>img*.gif</literal> it is possible to build an animated Gif file (named anim.gif) by</para>
     <programlisting><![CDATA[
-
+ 
 convert -delay 10  img*.gif anim.gif  
    
     ]]></programlisting>

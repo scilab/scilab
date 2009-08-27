@@ -21,20 +21,22 @@
 #include "TerminateHistoryManager.h"
 #include "getCommentDateSession.h"
 #include "Scierror.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
 {
 	int l1 = 0,n1 = 0,m1 = 0;
-	char *Output=NULL;
+	char *Output = NULL;
 
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;
 
 	if (Rhs == 0)
 	{
-		Output=(char*)MALLOC(4*sizeof(char));
-		if (historyIsEnabled()) strcpy(Output,"on");
-		else strcpy(Output,"off");
+		if (historyIsEnabled()) Output = strdup("on");
+		else Output = strdup("off");
 	}
 	else
 	{
@@ -47,12 +49,10 @@ int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
 
 			if ( (strcmp(param,"off")==0) || (strcmp(param,"on")==0) )
 			{
-				Output=(char*)MALLOC(4*sizeof(char));
-
 				if (strcmp(param,"off")==0)
 				{
 					if (historyIsEnabled()) TerminateHistoryManager();
-					strcpy(Output,"off");
+					Output = strdup("off");
 				}
 				else /* 'on' */
 				{
@@ -70,8 +70,7 @@ int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
 							FREE(commentbeginsession);commentbeginsession=NULL;
 						}
 					}
-
-					strcpy(Output,"on");
+					Output = strdup("on");
 				}
 			}
 			else

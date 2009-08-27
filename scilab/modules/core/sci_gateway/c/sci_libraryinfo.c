@@ -15,6 +15,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_libraryinfo)(char *fname,unsigned long fname_len)
 {
@@ -56,20 +57,7 @@ int C2F(sci_libraryinfo)(char *fname,unsigned long fname_len)
 			}
 			LhsVar(1) = Rhs+1;
 
-			if (macros)
-			{
-				int i = 0;
-				for( i = 0; i < sizemacrosarray; i++)
-				{
-					if (macros[i]) 
-					{
-						FREE(macros[i]);
-						macros[i] = NULL;
-					}
-				}
-				FREE(macros);
-				macros = NULL;
-			}
+			freeArrayOfString(macros, sizemacrosarray);
 
 			if (Lhs == 2)
 			{

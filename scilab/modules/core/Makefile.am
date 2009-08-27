@@ -82,16 +82,9 @@ src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
-src/c/common_api.c \
-src/c/double_api.c \
-src/c/int_api.c \
-src/c/poly_api.c \
-src/c/sparse_api.c \
-src/c/boolean_sparse_api.c \
-src/c/string_api.c \
-src/c/list_api.c \
 src/c/typename.c \
-src/c/inittypenames.c
+src/c/inittypenames.c \
+src/c/funcprot.c
 
 
 if USE_DYNAMIC_STACK
@@ -99,8 +92,7 @@ CORE_C_SOURCES += src/c/scimem64.c
 endif
 
 
-CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
-src/fortran/clunit.f \
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/isany.f \
@@ -197,7 +189,7 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f 
+src/fortran/isinstring.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -262,10 +254,9 @@ sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
-sci_gateway/c/sci_exit.c 
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
@@ -275,7 +266,6 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
@@ -292,21 +282,22 @@ sci_gateway/fortran/sci_isglobal.f
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-        -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-        -I$(top_srcdir)/modules/intersci/includes \
-        -I$(top_srcdir)/modules/call_scilab/includes \
-        -I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/intersci/includes \
+	-I$(top_srcdir)/modules/call_scilab/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
-        -I$(top_srcdir)/modules/dynamic_link/includes \
-        -I$(top_srcdir)/modules/pvm/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/pvm/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
-        -I$(top_srcdir)/modules/string/includes \
-        -I$(top_srcdir)/modules/fileio/includes \
-        -I$(top_srcdir)/modules/shell/includes \
-			$(XML_FLAGS)
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/shell/includes \
+	$(XML_FLAGS)
 
 
 
@@ -426,15 +417,6 @@ includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
 includes/transposeMatrix.h \
-includes/boolean_api.h \
-includes/double_api.h \
-includes/sparse_api.h \
-includes/boolean_sparse_api.h \
-includes/int_api.h \
-includes/string_api.h \
-includes/common_api.h \
-includes/poly_api.h \
-includes/variable_api.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -11,144 +11,174 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="ode_root">
+<refentry version="5.0-subset Scilab" xml:id="ode_root" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>ode_root</refname>
-    <refpurpose> ordinary differential equation solver with root finding</refpurpose>
+
+    <refpurpose>ordinary differential equation solver with root
+    finding</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>y,rd[,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>y0</term>
+
         <listitem>
           <para>real vector or matrix (initial conditions).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t0</term>
+
         <listitem>
           <para>real scalar (initial time).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
           <para>real vector (times at which the solution is computed).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>f</term>
+
         <listitem>
           <para>external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>rtol,atol</term>
+
         <listitem>
-          <para>real constants or real vectors of the same size as <literal>y</literal>.</para>
+          <para>real constants or real vectors of the same size as
+          <literal>y</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>jac</term>
+
         <listitem>
           <para>external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>w,iw</term>
+
         <listitem>
           <para>real vectors.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>ng</term>
+
         <listitem>
           <para>integer.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>g</term>
+
         <listitem>
           <para>external i.e. function or character string or list.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    With this syntax (first argument equal to <literal>"root"</literal>)
-    <literal>ode</literal>
-    computes the solution
-    of the differential equation <literal>dy/dt=f(t,y)</literal> until the state
-    <literal>y(t)</literal> crosses the surface <literal>g(t,y)=0</literal>.</para>
-    <para><literal>g</literal> should give the equation of the surface.
-    It is an external i.e. a function with
-    specified syntax, or the name of a Fortran subroutine or a C function 
-    (character string) with specified calling sequence or a list.</para>
-    <para>
-    If <literal>g</literal> is a function the syntax should be as follows:</para>
-    <programlisting><![CDATA[
 
-z=g(t,y)
-   
-    ]]></programlisting>
-    <para>
-    where <literal>t</literal> is a real scalar (time)  and <literal>y</literal> a real vector (state).
-    It returns a vector of size <literal>ng</literal> which corresponds to 
-    the <literal>ng</literal> constraints. 
-    If <literal>g</literal> is a character string it refers to the name of a Fortran
-    subroutine or a C function, with the following calling sequence: 
-    <literal>g(n,t,y,ng,gout)</literal>
-    where <literal>ng</literal> is the number of constraints and 
-    <literal>gout</literal> is the value of <literal>g</literal> (output of the program).
-    If <literal>g</literal> is a list the same conventions as for <literal>f</literal> apply (see ode
-    help).</para>
-    <para>
-    Ouput <literal>rd</literal> is a <literal>1 x k</literal> vector. The first entry contains the stopping
-    time. Other entries indicate which components of <literal>g</literal> have changed
-    sign. <literal>k</literal> larger than 2 indicates that more than one surface
-    (<literal>(k-1)</literal> surfaces) have been simultaneously traversed.</para>
-    <para>
-    Other arguments and other options are the same as for <literal>ode</literal>, see the
-    ode help.</para>
+    <para>With this syntax (first argument equal to <literal>"root"</literal>)
+    <literal>ode</literal> computes the solution of the differential equation
+    <literal>dy/dt=f(t,y)</literal> until the state <literal>y(t)</literal>
+    crosses the surface <literal>g(t,y)=0</literal>.</para>
+
+    <para><literal>g</literal> should give the equation of the surface. It is
+    an external i.e. a function with specified syntax, or the name of a
+    Fortran subroutine or a C function (character string) with specified
+    calling sequence or a list.</para>
+
+    <para>If <literal>g</literal> is a function the syntax should be as
+    follows:</para>
+
+    <programlisting> 
+z = g(t,y)
+       </programlisting>
+
+    <para>where <literal>t</literal> is a real scalar (time) and
+    <literal>y</literal> a real vector (state). It returns a vector of size
+    <literal>ng</literal> which corresponds to the <literal>ng</literal>
+    constraints. If <literal>g</literal> is a character string it refers to
+    the name of a Fortran subroutine or a C function, with the following
+    calling sequence: <literal>g(n,t,y,ng,gout)</literal> where
+    <literal>ng</literal> is the number of constraints and
+    <literal>gout</literal> is the value of <literal>g</literal> (output of
+    the program). If <literal>g</literal> is a list the same conventions as
+    for <literal>f</literal> apply (see ode help).</para>
+
+    <para>Ouput <literal>rd</literal> is a <literal>1 x k</literal> vector.
+    The first entry contains the stopping time. Other entries indicate which
+    components of <literal>g</literal> have changed sign. <literal>k</literal>
+    larger than 2 indicates that more than one surface
+    (<literal>(k-1)</literal> surfaces) have been simultaneously
+    traversed.</para>
+
+    <para>Other arguments and other options are the same as for
+    <literal>ode</literal>, see the ode help.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 // Integration of the differential equation
 // dy/dt=y , y(0)=1, and finds the minimum time t such that y(t)=2
 deff("[ydot]=f(t,y)","ydot=y")
 deff("[z]=g(t,y)","z=y-2")
 y0=1;ng=1;
 [y,rd]=ode("roots",y0,0,2,f,ng,g)
-
-
+ 
 deff("[z]=g(t,y)","z=y-[2;2;33]")
 [y,rd]=ode("roots",1,0,2,f,3,g)
-
-
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="dasrt">dasrt</link>
-      </member>
-      <member>
-        <link linkend="ode">ode</link>
-      </member>
+      <member><link linkend="dasrt">dasrt</link></member>
+
+      <member><link linkend="ode">ode</link></member>
     </simplelist>
   </refsection>
 </refentry>

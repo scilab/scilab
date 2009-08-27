@@ -13,6 +13,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "machine.h"
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "hashtable_core.h"
 #include "getmodules.h"
@@ -24,7 +26,7 @@ static int firstentry = 0;
 /*--------------------------------------------------------------------------*/  
 extern int C2F(cvname)(int *,char *,int *, unsigned long int);
 /*--------------------------------------------------------------------------*/  
-static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data);
+static int Add_a_Scilab_primitive_in_hashtable(char *str, int *GATEWAY_ID, int *PRIMITIVE_ID);
 static BOOL Load_primitives_from_gateway_xml_file(char *modulename);
 /*--------------------------------------------------------------------------*/  
 void LoadFunctionsTab(void)
@@ -48,14 +50,22 @@ void LoadFunctionsTab(void)
 
 }
 /*--------------------------------------------------------------------------*/
-static int Add_a_Scilab_primitive_in_hashtable(char *str, int *dataI, int *data)
+static int Add_a_Scilab_primitive_in_hashtable(char *str, int *GATEWAY_ID, int *PRIMITIVE_ID)
 {
-	int ldata;
+	int scilabFunPtr;
 	int id[nsiz];
-	int zero=0;
+	int zero = 0;
+	/* convert string name to scilab name */
 	C2F(cvname)(id,str,&zero,(unsigned long)strlen(str));
-	ldata= (*dataI)*100+*data; /* @TODO: what is 100 ? */
-	return( action_hashtable_scilab_functions(id,str,&ldata,SCI_HFUNCTIONS_ENTER));
+
+	/* fptr returned by funptr are coded by this algo :( */
+	/* example: funptr('clc') return 53001*/
+	/* 53 gateway ID */
+	/* 1  function ID */
+	/* we can have 999 functions in a gateway */
+	/* Limitation to remove with scilab 6 */
+	scilabFunPtr = (*GATEWAY_ID) * 1000 + *PRIMITIVE_ID;
+	return( action_hashtable_scilab_functions(id, str, &scilabFunPtr, SCI_HFUNCTIONS_ENTER));
 }
 /*--------------------------------------------------------------------------*/
 static BOOL Load_primitives_from_gateway_xml_file(char *modulename)

@@ -16,17 +16,34 @@ function C=rhs2code(rhs)
 // - C: Scilab code corresponding to rhs
 // V.C.
 
-C=[]
 n=size(rhs)
 
-args=[]
+C=""
 if typeof(rhs)<>"list" then
   C=expression2code(rhs)
 else
   for k=1:n
-    args=[args expression2code(rhs(k))]
+    therhs = expression2code(rhs(k));
+    if k==1 then
+      C = therhs + ",";
+    else
+      if therhs == "(EOL)" then
+	C = [C;""];
+      else
+	if C($)=="" then
+	  // Previous rhs was a EOL
+	  C = [C(1:($-2));
+	      C($-1)+"..";
+	      C($) + therhs(1);
+	      therhs(2:$)];
+	else
+	  C = [C(1:($-1));
+	      C($) + "," + therhs(1);
+	      therhs(2:$)];
+	end
+      end
+    end
   end
-  C=strcat(args,",")
 end
 
 

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Antoine ELIAS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Integer_management_writing_API"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+    <refnamediv>
+        <refname>Integer writing (Scilab gateway)</refname>
+
+        <refpurpose>
+            How to write matrices of integers in a gateway.
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>This help describes how matrix of integers can be handled through the Scilab API.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
+    </refsection>
+    <refsection>
+        <title>Create from existing data</title>
+        <programlisting role=""><![CDATA[
+int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8)
+int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
+int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32)
+int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)
+int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)
+int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Write directly in Scilab memory</title>
+        <programlisting role=""><![CDATA[
+int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
+int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
+int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)
+int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)
+int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)
+int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)
+]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>_iVar</term>
+                <listitem>
+                    <para>
+                        Position in the Scilab memory where you want to put the variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iRows</term>
+                <listitem>
+                    <para>
+                        Number of rows of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_iCols</term>
+                <listitem>
+                    <para>
+                        Numbers of columns of the new variable
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>_pcData8, _psData16, _piData32, _pucData8, _pusData16, _puiData32</term>
+                <listitem>
+                    <para>
+                        Returns address of data array (size: _iCols * _iRows)
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+
+    <refsection>
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/integer_writing_api.tst-->
+        <!--Lib_name: integer_writing-->
+        <!--Func_list: write_integer-->
+        <title>Gateway Source</title>
+        <programlisting role="code_gateway">
+            <![CDATA[
+void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
+
+int read_integer(char *fname,unsigned long fname_len)
+{
+    int iRet                    = 0;
+
+    //output variable info
+    int iRows8                  = 0;
+    int iCols8                  = 0;
+    int iRows16                 = 0;
+    int iCols16                 = 0;
+    int iRows32                 = 0;
+    int iCols32                 = 0;
+    int iRowsu8                 = 0;
+    int iColsu8                 = 0;
+    int iRowsu16                = 0;
+    int iColsu16                = 0;
+    int iRowsu32                = 0;
+    int iColsu32                = 0;
+    int iPrec                   = 0;
+
+    int* piAddr8                = NULL;
+    int* piAddr16               = NULL;
+    int* piAddr32               = NULL;
+    int* piAddru8               = NULL;
+    int* piAddru16              = NULL;
+    int* piAddru32              = NULL;
+
+    char* pcData                = NULL;
+    short* psData               = NULL;
+    int* piData                 = NULL;
+    unsigned char* pucData      = NULL;
+    unsigned short* pusData     = NULL;
+    unsigned int* puiData       = NULL;
+
+    char* pcDataOut             = NULL;
+    short* psDataOut            = NULL;
+    int* piDataOut              = NULL;
+    unsigned char* pucDataOut   = NULL;
+    unsigned short* pusDataOut  = NULL;
+    unsigned int* puiDataOut    = NULL;
+
+    //check input/ouput arguments count
+    CheckRhs(6,6);
+    CheckLhs(6,6);
+
+    //get varialbe address
+    getVarAddressFromPosition(1, &piAddr8);
+    getVarAddressFromPosition(2, &piAddru8);
+    getVarAddressFromPosition(3, &piAddr16);
+    getVarAddressFromPosition(4, &piAddru16);
+    getVarAddressFromPosition(5, &piAddr32);
+    getVarAddressFromPosition(6, &piAddru32);
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr8, &iPrec);
+    if(iPrec != SCI_INT8)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddru8, &iPrec);
+    if(iPrec != SCI_UINT8)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr16, &iPrec);
+    if(iPrec != SCI_INT16)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddru16, &iPrec);
+    if(iPrec != SCI_UINT16)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddr32, &iPrec);
+    if(iPrec != SCI_INT32)
+    {
+        return 1;
+    }
+
+    //check variable precision
+    iRet = getMatrixOfIntegerPrecision(piAddru32, &iPrec);
+    if(iPrec != SCI_UINT32)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger8(piAddr8, &iRows8, &iCols8, &pcData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfUnsignedInteger8(piAddru8, &iRowsu8, &iColsu8, &pucData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger16(piAddr16, &iRows16, &iCols16, &psData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfUnsignedInteger16(piAddru16, &iRowsu16, &iColsu16, &pusData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfInteger32(piAddr32, &iRows32, &iCols32, &piData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //retrieve dimensions and data
+    iRet = getMatrixOfUnsignedInteger32(piAddru32, &iRowsu32, &iColsu32, &puiData);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //alloc and fill new variable
+    pcDataOut   = (char*)create_output(2, 1, iRows8, iCols8, (void*)pcData);
+    pucDataOut  = (unsigned char*)create_output(4, 1, iRowsu8, iColsu8, (void*)pucData);
+    psDataOut   = (short*)create_output(8, 2, iRows16, iCols16, (void*)psData);
+    pusDataOut  = (unsigned short*)create_output(16, 2, iRowsu16, iColsu16, (void*)pusData);
+    piDataOut   = (int*)create_output(32, 4, iRows32, iCols32, (void*)piData);
+    puiDataOut  = (unsigned int*)create_output(64, 4, iRowsu32, iColsu32, (void*)puiData);
+
+    //create new variable
+    iRet = createMatrixOfInteger8(Rhs + 1, iRows8, iCols8, pcDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfUnsignedInteger8(Rhs + 2, iRowsu8, iColsu8, pucDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfInteger16(Rhs + 3, iRows16, iCols16, psDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfUnsignedInteger16(Rhs + 4, iRowsu16, iColsu16, pusDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfInteger32(Rhs + 5, iRows32, iCols32, piDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //create new variable
+    iRet = createMatrixOfUnsignedInteger32(Rhs + 6, iRowsu32, iColsu32, puiDataOut);
+    if(iRet)
+    {
+        return 1;
+    }
+
+    //assign allocated variables to Lhs position
+    LhsVar(1) = Rhs + 1;
+    LhsVar(2) = Rhs + 2;
+    LhsVar(3) = Rhs + 3;
+    LhsVar(4) = Rhs + 4;
+    LhsVar(5) = Rhs + 5;
+    LhsVar(6) = Rhs + 6;
+    PutLhsVar();
+    return 0;
+}
+
+void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn)
+{
+    int i = 0;
+    void* pvDataOut = (void*)malloc(_iSize * _iRows * _iCols);
+    for(i = 0 ; i < _iRows * _iCols ; i++)
+    {
+        int iVal = 0;
+        memcpy(&iVal, (char*)_pvDataIn + i * _iSize, _iSize);
+        iVal *= _iCoeff;
+        memcpy((char*)pvDataOut + i * _iSize, &iVal, _iSize);
+    }
+    return pvDataOut;
+}
+            ]]>
+        </programlisting>
+    </refsection>
+
+    <refsection>
+        <title>Scilab test script</title>
+        <programlisting role="code_scilab">
+            <![CDATA[
+a8  = int8([    1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+
+au8 = uint8([   1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+
+a16  = int16([  1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+
+au16 = uint16([ 1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+
+a32 = int32([   1   -2  3   -4  5; ..
+                -6  7   -8  9   -10; ..
+                11  -12 13  -14 15]);
+
+au32 = uint32([ 1   2   3   4   5; ..
+                6   7   8   9   10; ..
+                11  12  13  14  15]);
+
+[c8, cu8, c16, cu16, c32, cu32] = tonio(a8, au8, a16, au16, a32, au32);
+
+if or(c8 <> a8 * 2) then error("failed"), end
+if or(cu8 <> au8 * 4) then error("failed"), end
+if or(c16 <> a16 * 8) then error("failed"), end
+if or(cu16 <> au16 * 16) then error("failed"), end
+if or(c32 <> a32 * 32) then error("failed"), end
+if or(cu32 <> au32 * 64) then error("failed"), end
+            ]]>
+        </programlisting>
+    </refsection>
+</refentry>

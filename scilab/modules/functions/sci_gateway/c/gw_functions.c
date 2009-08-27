@@ -17,7 +17,8 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define FUNCTIONS_TAB_SIZE 5
+static gw_generic_table Tab[FUNCTIONS_TAB_SIZE]=
 {
 	{C2F(sci_lib),"lib"},
 	{C2F(sci_deff),"deff"},
@@ -59,7 +60,7 @@ int gw_functions(void)
 		}
 	}
 	
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,FUNCTIONS_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

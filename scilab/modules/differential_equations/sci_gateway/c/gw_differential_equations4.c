@@ -18,7 +18,8 @@
 #include "gw_differential_equations4.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define DIFFERENTIAL_EQUATIONS4_TAB_SIZE 4
+static gw_generic_table Tab[DIFFERENTIAL_EQUATIONS4_TAB_SIZE]=
 {
 	{C2F(sci_intg),"intg"},
 	{C2F(sci_int2d),"int2d"},
@@ -28,7 +29,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations4(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,DIFFERENTIAL_EQUATIONS4_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

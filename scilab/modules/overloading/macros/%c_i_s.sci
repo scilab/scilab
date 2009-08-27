@@ -12,8 +12,11 @@ function M=%c_i_s(varargin)
   M=varargin(rhs)
   N=varargin(rhs-1)//inserted matrix
   index=varargin(1) //
+  if size(M,'*')<>0 then
+    error(_("Affection of a string in a matrix of numbers is not implemented."))
+  end
   if rhs==3 then
-    if type(index)==10 then  //M.x=N or M.entries=N 
+     if type(index)==10 then  //M.x=N or M.entries=N 
       M=struct()
       M(index)=N
       if index=="entries" then //M.entries=N
@@ -40,17 +43,11 @@ function M=%c_i_s(varargin)
     end
 
   elseif rhs>4 then //more than 2 indices: insertion of a string in an empty matrix
-    if size(M,'*')<>0 then
-      error('affection of a string  in a matrix of numbers is not implemented')
-    end
     M=varargin($)
     M=mlist(['hm','dims','entries'],int32(size(M)),M(:))
     varargin($)=M;
     M=generic_i_hm('',varargin(:))
   else //should not occur (hard coded case)
-    if size(M,'*')<>0 then
-      error('affection of a string  in a matrix of numbers is not implemented')
-    end
     M=var
   end
 endfunction

@@ -26,14 +26,8 @@
 
 #define sign(a) ((a) < 0 ? -1 : 1)
 
-#define SCI_REAL_OR_CMPLX 1
-#define SCI_POLYNOMIAL 2
-#define SCI_BOOLEAN 4
-#define SCI_SP_BOOLEAN 6
-#define SCI_INTEGER 8
-#define SCI_IMPLICIT_POLY 129
-#define SCI_STRING sci_strings
-#define SCI_MLIST sci_mlist
+/* SCI_IMPLICIT_POLY is not used elsewhere in C code ... maybe fortran */
+#define SCI_IMPLICIT_POLY 129 
 #define NOT_REAL_or_CMPLX_or_BOOL_or_INT -1
 #define OLD_HYPERMAT -2
 
@@ -89,7 +83,7 @@ static int get_hmat(int num, HyperMat *H)
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 
-  if ( *istk(il) != SCI_MLIST )
+  if ( *istk(il) != sci_mlist )
     return 0;
   else if ( *istk(il+1) != 3 )  /* a hm mlist must have 3 fields */
     return 0;
@@ -103,7 +97,7 @@ static int get_hmat(int num, HyperMat *H)
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( (*istk(il1) != SCI_STRING)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
+  if ( (*istk(il1) != sci_strings)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     return 0;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     return 0;
@@ -112,7 +106,7 @@ static int get_hmat(int num, HyperMat *H)
 
 
   /*  get the 2d field */
-  if ( *istk(il2) == SCI_REAL_OR_CMPLX  &&  *istk(il2+3) == 0 )
+  if ( *istk(il2) == sci_matrix  &&  *istk(il2+3) == 0 )
     {
       /* this is an old hypermat (the dim field is an array of doubles) */
       H->type = OLD_HYPERMAT;
@@ -121,7 +115,7 @@ static int get_hmat(int num, HyperMat *H)
       return 2;
     }
 
-  if ( (*istk(il2) != SCI_INTEGER)  |  (*istk(il2+3) != I_INT32) )
+  if ( (*istk(il2) != sci_ints)  |  (*istk(il2+3) != I_INT32) )
     return 0;
 
 
@@ -137,25 +131,25 @@ static int get_hmat(int num, HyperMat *H)
   /*  get the 3d field */
   switch ( *istk(il3) )
     {
-    case (SCI_REAL_OR_CMPLX):
+    case (sci_matrix):
       H->size = (*istk(il3+1))*(*istk(il3+2));
-      H->type = SCI_REAL_OR_CMPLX;
+      H->type = sci_matrix;
       H->it = *istk(il3+3);
       H->R = stk(sadr(il3+4));
       if ( H->it == 1 )
 	H->I = H->R + H->size;
       return 1;
 
-    case (SCI_BOOLEAN):
+    case (sci_boolean):
       H->size = (*istk(il3+1))*(*istk(il3+2));
-      H->type = SCI_BOOLEAN;
+      H->type = sci_boolean;
       H->it = 0;   /* not used */
       H->P = (void *) istk(il3+3);
       return 1;
 
-    case (SCI_INTEGER):
+    case (sci_ints):
       H->size = (*istk(il3+1))*(*istk(il3+2));
-      H->type = SCI_INTEGER;
+      H->type = sci_ints;
       H->it = *istk(il3+3);
       H->P = (void *) istk(il3+4);
       return 1;
@@ -176,7 +170,7 @@ int C2F(ishm)()
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 
-  if ( *istk(il) != SCI_MLIST )
+  if ( *istk(il) != sci_mlist )
     return 0;
   else if ( *istk(il+1) != 3 )  /* a hm mlist must have 3 fields */
     return 0;
@@ -189,7 +183,7 @@ int C2F(ishm)()
   /*  test if the first field is a matrix string with 3 components
    *  and that the first is "hm" (ie 17 22  in scilab char code)
    */
-  if ( (*istk(il1) != SCI_STRING)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
+  if ( (*istk(il1) != sci_strings)  |  ((*istk(il1+1))*(*istk(il1+2)) != 3)  )
     return 0;
   else if ( *istk(il1+5)-1 != 2 )  /* 1 str must have 2 chars */
     return 0;
@@ -211,7 +205,7 @@ static int get_mat_as_hmat(int num, HyperMat *H)
 
   type = *istk(il);
 
-  if (type == SCI_REAL_OR_CMPLX || type == SCI_BOOLEAN || type == SCI_INTEGER)
+  if (type == sci_matrix || type == sci_boolean || type == sci_ints)
     {
 
       /* needed for Jpc stuff (putlhsvar) ? */
@@ -226,19 +220,19 @@ static int get_mat_as_hmat(int num, HyperMat *H)
       dims[1] = *istk(il+2);
       H->size = dims[0]*dims[1];
       H->dims = dims;
-      if (type == SCI_REAL_OR_CMPLX)
+      if (type == sci_matrix)
 	{
 	  H->it = *istk(il+3);
 	  H->R = stk(sadr(il+4));
 	  if (H->it == 1)
 	    H->I = H->R + H->size;
 	}
-      else if (type == SCI_BOOLEAN)
+      else if (type == sci_boolean)
 	{
 	  H->it = 0;
 	  H->P = (void *) istk(il+3);
 	}
-      else /* type = SCI_INTEGER */
+      else /* type = sci_ints */
 	{
 	  H->it = *istk(il+3);
 	  H->P = (void *) istk(il+4);
@@ -269,19 +263,19 @@ static int cre_hmat(int pos, HyperMat *H)
 
   switch (H->type)
     {
-    case (SCI_REAL_OR_CMPLX):
+    case (sci_matrix):
       CreateListCVarFrom(pos,3,MATRIX_OF_DOUBLE_DATATYPE, &H->it, &H->size, &one , &lr, &lc, &lar, &lac);
       H->R = stk(lr);
       if ( H->it == 1)
 	H->I = stk(lc);
       return 1;
 
-    case (SCI_BOOLEAN):
+    case (sci_boolean):
       CreateListVarFrom(pos, 3,MATRIX_OF_BOOLEAN_DATATYPE, &H->size, &one, &lr, &lar);
       H->P = (void *) istk(lr);
       return 1;
 
-    case (SCI_INTEGER):
+    case (sci_ints):
       lr = H->it;
       CreateListVarFrom(pos, 3,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &H->size, &one, &lr, &lar);
       H->P = (void *) istk(lr);
@@ -307,7 +301,7 @@ static int get_sci_bool_sparse(int num, SciBoolSparse *M)
   if ( *istk(il) < 0 )
     il = iadr(*istk(il+1));
 
-  if ( *istk(il) != SCI_SP_BOOLEAN )
+  if ( *istk(il) != sci_boolean_sparse )
     return 0;
 
   /* needed for Jpc stuff (putlhsvar) */
@@ -404,7 +398,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 
   switch ( GetType(pos) )
     {
-    case (SCI_REAL_OR_CMPLX):
+    case (sci_matrix):
 
       GetRhsVar(pos,MATRIX_OF_DOUBLE_DATATYPE, &m, &n, &l);
       if ( m == -1 )      /* implicit index : */
@@ -427,7 +421,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  return ( index_convert(td, ti, *mn, ind_max) );
 	}
 
-    case (SCI_INTEGER):
+    case (sci_ints):
 
       GetRhsVar(pos,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m, &n, (int *)&IV);
 
@@ -448,7 +442,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  return 1;
 	}
 
-    case (SCI_POLYNOMIAL):
+    case (sci_poly):
 
       il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
@@ -463,7 +457,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       ti = (int *)td;
       return ( index_convert(td, ti, *mn, ind_max) );
 
-    case (SCI_IMPLICIT_POLY):         /* p1:p2:p3 */
+    case (sci_implicit_poly ):         /* p1:p2:p3 */
 
       il = iadr( *Lstk( pos + Top - Rhs ) );
       if ( *istk(il) < 0 ) il = iadr( *istk(il+1) );
@@ -501,7 +495,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
 	  return 1;
 	}
 
-    case (SCI_BOOLEAN) :
+    case (sci_boolean) :
 
       GetRhsVar(pos,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &l);
       if ( m*n != nmax )
@@ -524,10 +518,10 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       *ind_max = ti[*mn-1] + 1;
       return 1;
 
-    case (SCI_MLIST) :         /* Try if it is an hypermat of BOOLEANS */
+    case (sci_mlist) :         /* Try if it is an hypermat of BOOLEANS */
 
       GetHMat(pos, &H);
-      if ( H.type != SCI_BOOLEAN ||  H.size != nmax)
+      if ( H.type != sci_boolean ||  H.size != nmax)
 	return 0;
       P = (int *) H.P;
       *ind_max = 0;
@@ -550,7 +544,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
       return 1;
 
 
-    case (SCI_SP_BOOLEAN) :
+    case (sci_boolean_sparse) :
 
       GetSciBoolSparse(pos, &B);
       if ( B.m*B.n != nmax )
@@ -737,16 +731,16 @@ int C2F(intehm)()
 	n = 1;
       switch (H.type)
 	{
-	case (SCI_REAL_OR_CMPLX):
+	case (sci_matrix):
 	  CreateCVar(dec+Rhs,MATRIX_OF_DOUBLE_DATATYPE, &(H.it), &m, &n, &lr, &lc);
 	  He.R = stk(lr);
 	  if ( H.it == 1 ) He.I = stk(lc);
 	  break;
-	case (SCI_BOOLEAN):
+	case (sci_boolean):
 	  CreateVar(dec+Rhs,MATRIX_OF_BOOLEAN_DATATYPE, &m, &n, &lr);
 	  He.P = (void *) istk(lr);
 	  break;
-	case (SCI_INTEGER):
+	case (sci_ints):
 	  lr = H.it;
 	  CreateVar(dec+Rhs,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE, &m, &n, &lr);
 	  He.P = (void *) istk(lr);
@@ -761,7 +755,7 @@ int C2F(intehm)()
   /*  fill the resulting hypermatrix or matrix  */
   switch ( H.type )
     {
-    case (SCI_REAL_OR_CMPLX) :
+    case (sci_matrix) :
       for ( k = 0 ; k < ntot ; k++ )
 	He.R[k] = H.R[j[k]];
       if (H.it == 1)
@@ -769,13 +763,13 @@ int C2F(intehm)()
 	  He.I[k] = H.I[j[k]];
       break;
 
-    case (SCI_BOOLEAN) :     /* (sci_boolean stored with 4 bytes) */
+    case (sci_boolean) :     /* (sci_boolean stored with 4 bytes) */
       Pe = (int *) He.P ; P = (int *) H.P;
       for ( k = 0 ; k < ntot ; k++ )
 	Pe[k] = P[j[k]];
       break;
 
-    case (SCI_INTEGER) :
+    case (sci_ints) :
       if ( H.it == I_INT32  ||  H.it == I_UINT32 )
 	{
 	  Pe = (int *) He.P; P = (int *) H.P;
@@ -928,7 +922,7 @@ int C2F(intihm)()
   /*   modify in place the hypermatrix A  */
   switch ( A.type )
     {
-    case (SCI_REAL_OR_CMPLX) :
+    case (sci_matrix) :
       if ( B_is_scalar )
 	{
 	  for ( k = 0 ; k < ntot ; k++ ) A.R[j[k]] = B.R[0];
@@ -943,7 +937,7 @@ int C2F(intihm)()
 	}
       break;
 
-    case (SCI_BOOLEAN) :
+    case (sci_boolean) :
       PA = (int *) A.P ; PB = (int *) B.P;
       if ( B_is_scalar )
 	for ( k = 0 ; k < ntot ; k++ ) PA[j[k]] = PB[0];
@@ -951,7 +945,7 @@ int C2F(intihm)()
 	for ( k = 0 ; k < ntot ; k++ ) PA[j[k]] = PB[k];
       break;
 
-    case (SCI_INTEGER) :
+    case (sci_ints) :
       if ( A.it == I_INT32  ||  A.it == I_UINT32 )
 	{
 	  PA = (int *) A.P ; PB = (int *) B.P;

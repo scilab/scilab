@@ -15,5 +15,5 @@
 -->
 <!-- =================== -->
 
-<VERSION major="7" minor="21" maintenance="1" revision="0" string="SciPad unstable-svn" />
+<VERSION major="7" minor="21" maintenance="1" revision="0" string="SciPad unstable-git" />
 </MODULE_VERSION>

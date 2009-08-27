@@ -17,6 +17,9 @@
 #include "getScilabJNIEnv.h"
 #include "MALLOC.h"
 #include "catchIfJavaException.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 char * system_setproperty(char *property,char *value)
 {
@@ -53,8 +56,7 @@ char * system_setproperty(char *property,char *value)
 						strPreviousValue = (*currentENV)->GetStringUTFChars(currentENV,jstrPreviousValue, 0);
 						if (strPreviousValue)
 						{
-							retValue = (char*)MALLOC(sizeof(char)*(strlen(strPreviousValue)+1));
-							if (retValue) strcpy(retValue,strPreviousValue);
+							retValue = strdup(strPreviousValue);
 						}
 						(*currentENV)->ReleaseStringUTFChars(currentENV, jstrPreviousValue , strPreviousValue);
 					}

@@ -55,7 +55,7 @@ msgstr ""
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
-"[Continuer à afficher? n (no) pour arrêter, autre touche pour continuer"
+"[Continuer à afficher? n (no) pour arrêter, autre touche pour continuer]"
 
 msgid "File or Directory"
 msgstr "Fichier ou répertoire"

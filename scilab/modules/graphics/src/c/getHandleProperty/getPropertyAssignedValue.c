@@ -22,6 +22,7 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"
+#include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
 BOOL isParameterHandle( int type )
@@ -109,14 +110,9 @@ char ** createCopyStringMatrixFromStack( size_t stackPointer, int nbElement )
 
     if ( res[i] == NULL )
     {
-      /* deallocate what have been allocated */
-      int j ;
-      for ( j = 0 ; j < i ; j++ )
-      {
-        FREE( res[j] ) ;
-      }
-      FREE( res ) ;
-      return NULL ;
+		/* deallocate what have been allocated */
+		freeArrayOfString(res, i);
+		return NULL ;
     }
 
     strcpy( res[i], values[i] ) ;

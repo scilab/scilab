@@ -98,11 +98,11 @@
       </tr>
       <tr>
         <td> |</td>
-        <td>or</td>
+        <td>or_op</td>
       </tr>
       <tr>
         <td> &amp;</td>
-        <td>and</td>
+        <td>and_op</td>
       </tr>
       <tr>
         <td> .*., ./., .\.</td>

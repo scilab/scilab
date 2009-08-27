@@ -7,9 +7,6 @@
 # Please see in SCI/tools/localization for localization management
 #
 
-SLATEC_SOURCES = src/fortran/slatec/dtensbs.f \
-src/fortran/slatec/pchim.f
-
 INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
 src/fortran/dspfit.f \
 src/fortran/cshep2d.f
@@ -35,13 +32,14 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciinterpolation_la_SOURCES = $(SLATEC_SOURCES) $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)

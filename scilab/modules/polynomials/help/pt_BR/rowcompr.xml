@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>rowcompr</refname>
 
-    <refpurpose>compress√£o de linhas de uma matriz de polin√¥mios</refpurpose>
+    <refpurpose>compress„o de linhas de uma matriz de polinÙmios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>Y</term>
 
         <listitem>
-          <para>matriz de polin√¥mios quadrada (base unimodular esquerda)
+          <para>matriz de polinÙmios quadrada (base unimodular esquerda)
           </para>
         </listitem>
       </varlistentry>
@@ -66,28 +66,28 @@
         <term>Ac</term>
 
         <listitem>
-          <para>: <literal>Ac=X*A</literal>, matriz de polin√¥mios</para>
+          <para>: <literal>Ac=X*A</literal>, matriz de polinÙmios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Compress√£o de linhas da matriz de polin√¥mios
+    <para>Compress„o de linhas da matriz de polinÙmios
     <literal>A</literal>.</para>
 
-    <para><literal>X</literal> √© uma base polinomial unimodular esquerda que
-    comprime as linhas de <literal>A</literal>. <literal>rk</literal> √© o
+    <para><literal>X</literal> È uma base polinomial unimodular esquerda que
+    comprime as linhas de <literal>A</literal>. <literal>rk</literal> È o
     posto normal de A.</para>
 
-    <para> Aviso: h√° elimina√ß√£o de termos "pequenos" (utilize com
+    <para> Aviso: h· eliminaÁ„o de termos "pequenos" (utilize com
     cuidado!).</para>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="colcompr">colcompr</link></member>

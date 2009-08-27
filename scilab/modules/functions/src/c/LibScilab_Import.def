@@ -5,7 +5,10 @@ EXPORTS
 ;core
 com_
 callFunctionFromGateway
-getRecursionGatewayToCall
-isRecursionCallToFunction
 getRecursionFunctionToCall
+isRecursionCallToFunction
+checklhs_
+checkrhs_
+intersci_
+putlhsvar_
 ;

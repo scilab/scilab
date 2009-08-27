@@ -33,14 +33,14 @@ function [xf,yf,zf,qf] = nf3dq(x,y,z,q,orient)
 endfunction
 
 
-function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir, val, ebox, nx, ny, nz)
+function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir_, val, ebox, nx, ny, nz)
    //
    //   ebox = [xmin xmax ymin ymax zmin zmax]
-   //   dir : string "x=", val
+   //   dir_ : string "x=", val
    //   n1 et n2 les discretisations
    //
    coef = 5.e-3;
-   select dir
+   select dir_
      case "x=" then
        if val < ebox(1)  |  ebox(2) < val then
 	  error("Bad slice choosen")
@@ -75,6 +75,6 @@ function [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir, val, ebox, nx, ny, nz)
        [Xp,Yp] = ndgrid(x,y)
        Zp = (val+dz)*ones(Xp);
    else
-      error("bad arg dir")
+      error("bad arg dir_")
    end // select
 endfunction

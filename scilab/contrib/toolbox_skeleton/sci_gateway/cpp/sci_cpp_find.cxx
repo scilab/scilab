@@ -10,9 +10,9 @@ extern "C"
 {
 /* ==================================================================== */	
   #include "stack-c.h"
-  #include "common_api.h"
-  #include "string_api.h"
-  #include "double_api.h"
+  #include "api_common.h"
+  #include "api_string.h"
+  #include "api_double.h"
   #include "Scierror.h"
   #include "MALLOC.h"
 /* ==================================================================== */
@@ -35,8 +35,8 @@ extern "C"
     CheckLhs(1,1);
     
     /* get Address of inputs */
-    getVarAddressFromNumber(1, &piAddressVarOne);
-    getVarAddressFromNumber(2, &piAddressVarTwo);
+    getVarAddressFromPosition(1, &piAddressVarOne);
+    getVarAddressFromPosition(2, &piAddressVarTwo);
     
     if ( getVarType(piAddressVarOne) != sci_strings )
     {
@@ -95,9 +95,8 @@ extern "C"
     
     /* create result on stack */
     int m_out = 1, n_out = 1;
-    int *piAddressOut = NULL;
     
-    createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, &piAddressOut);
+    createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
     LhsVar(1) = Rhs + 1; 
 
     return 0;

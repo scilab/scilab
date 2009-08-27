@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -25,18 +25,18 @@
   <refnamediv>
     <refname>feval</refname>
 
-    <refpurpose>mÃºltipla avaliaÃ§Ã£o</refpurpose>
+    <refpurpose>múltipla avaliação</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[z]=feval(x,y,f)
 [z]=feval(x,f)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -51,16 +51,16 @@
         <term>f</term>
 
         <listitem>
-          <para>funÃ§Ã£o ou string (para chamada FORTRAN ou C)</para>
+          <para>função ou string (para chamada FORTRAN ou C)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>MÃºltipla avaliaÃ§Ã£o de uma funÃ§Ã£o para um ou dois argumentos do tipo
+    <para>Múltipla avaliação de uma função para um ou dois argumentos do tipo
     vetor: </para>
 
     <variablelist>
@@ -83,34 +83,32 @@
       </varlistentry>
     </variablelist>
 
-    <para><literal>f</literal> Ã© uma external (funÃ§Ã£o ou rotina) que aceita
+    <para><literal>f</literal> é uma external (função ou rotina) que aceita
     dois ou mais argumentos supostos reais. O resultado retornado por
     <literal>f</literal> pode ser real ou complexo. No caso de uma chamada
-    FORTRAN, a funÃ§Ã£o <literal> 'f' </literal> deve ser definida na subrotina
-    <literal>ffeval.f</literal> (no diretÃ³rio
+    FORTRAN, a função <literal> 'f' </literal> deve ser definida na subrotina
+    <literal>ffeval.f</literal> (no diretório
     <literal>SCIDIR/routines/default</literal>)</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 deff('[z]=f(x,y)','z=x^2+y^2');
 feval(1:10,1:5,f)
 deff('[z]=f(x,y)','z=x+%i*y');
 feval(1:10,1:5,f)
 feval(1:10,1:5,'parab')   //See ffeval.f file
 feval(1:10,'parab')
-// Para link dinÃ¢mico (ver exemplo ftest em ffeval.f)
-// vocÃª pode usar o comando link (os parÃ¢metros dependem da mÃ¡quina):
+// Para link dinâmico (ver exemplo ftest em ffeval.f)
+// você pode usar o comando link (os parâmetros dependem da máquina):
 // unix('make ftest.o');link('ftest.o','ftest); feval(1:10,1:5,'ftest')
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="evstr">evstr</link></member>

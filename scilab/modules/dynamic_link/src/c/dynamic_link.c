@@ -103,7 +103,7 @@ int scilabLink(int idsharedlibrary,
 			#ifdef _MSC_VER
 			{
 				char *pathSearch = searchEnv(filename,"PATH");
-				if ( (pathSearch == NULL) && ((int)strlen(pathSearch) > 0) )
+				if ( (pathSearch != NULL) && ((int)strlen(pathSearch) > 0) )
 				{
 					if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
 					{

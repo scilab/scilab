@@ -17,6 +17,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
+#include "freeArrayOfString.h"
 
 #include "InitProgressionBar.h"
 /*--------------------------------------------------------------------------*/
@@ -69,6 +70,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
           pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex = waitbarID;
           setWaitBarIndeterminateMode(waitbarID, TRUE);
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
         }
       else
         {
@@ -97,6 +99,7 @@ int sci_progressionbar(char *fname,unsigned long fname_len)
           waitbarID = pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex;
           setWaitBarValue(waitbarID, 0); /* Update */
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
        }
       else
         {

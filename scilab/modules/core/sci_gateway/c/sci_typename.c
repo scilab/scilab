@@ -17,10 +17,10 @@
 #include "localization.h"
 #include "typename.h"
 #include "MALLOC.h"
-#include "common_api.h"
-#include "string_api.h"
-#include "double_api.h"
-#include "int_api.h"
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+#include "api_int.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int sci_typename_two_rhs(char *fname,unsigned long fname_len);
@@ -55,32 +55,32 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	getVarAddressFromNumber(1, &piAddressVarOne);
-	getVarAddressFromNumber(2, &piAddressVarTwo);
+	getVarAddressFromPosition(1, &piAddressVarOne);
+	getVarAddressFromPosition(2, &piAddressVarTwo);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 
 	if ( getVarType(piAddressVarTwo) != sci_matrix )
 	{
-		Scierror(999,"%s: Wrong type for input argument #%d: A scalar expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"),fname,2);
 		return 0;
 	}
 
 	getMatrixOfDouble(piAddressVarTwo,&m2,&n2,&pdVarTwo);
 	if ( (m2 != n2) && (n2 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A scalar expected.\n",fname,2);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A scalar expected.\n"),fname,2);
 		return 0;
 	}
 
 	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 	if ( (m1 != n1) && (n1 != 1) ) 
 	{
-		Scierror(999,"%s: Wrong size for input argument #%d: A string expected.\n",fname,1);
+		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
 	}
 	
@@ -139,21 +139,20 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	m_out1 = numberOfTypes;
 	n_out1 = 1;
 
-	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers,&piAddressOut1);
+	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers);
 	if (TypesNumbers) { FREE(TypesNumbers);TypesNumbers = NULL;	}
 	LhsVar(1) = Rhs + 1; 
 
 	if (Lhs > 1)
 	{
 		int m_out2 = 0, n_out2 = 0;
-		int *piAddressOut2 = NULL;
 		char **TypesNames = NULL;
 
 		TypesNames = getAllTypesName(&numberOfTypes);
 		m_out2 = numberOfTypes;
 		n_out2 = 1;
 		
-		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames, &piAddressOut2);
+		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames);
 		if (TypesNames) freeArrayOfString(TypesNames,numberOfTypes);
 		LhsVar(2) = Rhs + 2; 
 	}

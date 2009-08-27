@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>horner</refname>
 
-    <refpurpose>avaliaÃ§Ã£o polinomial/racional</refpurpose>
+    <refpurpose>avaliação polinomial/racional</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> SeqÃ¼Ãªncia de Chamamento </title>
+    <title> Seqüência de Chamamento </title>
 
     <synopsis>horner(P,x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>P</term>
 
         <listitem>
-          <para>matriz de polinÃ´mios ou de razÃµes de polinÃ´mios</para>
+          <para>matriz de polinômios ou de razões de polinômios</para>
         </listitem>
       </varlistentry>
 
@@ -49,27 +49,27 @@
         <term>x</term>
 
         <listitem>
-          <para>nÃºmero real, polinÃ´mio ou razÃ£o de polinÃ´mios</para>
+          <para>número real, polinômio ou razão de polinômios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Avalia a matriz de polinÃ´mios ou de razÃµes de polinÃ´mios <literal>P
-    = P(s)</literal> quando a variÃ¡vel <literal>s</literal> do polinÃ´mio Ã©
+    <para>Avalia a matriz de polinômios ou de razões de polinômios <literal>P
+    = P(s)</literal> quando a variável <literal>s</literal> do polinômio é
     substituida por <literal>x</literal>:</para>
 
     <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
 
-    <para>Exemplo (transformaÃ§Ã£o bilinear): admita que <literal>P =
-    P(s)</literal> uma matriz de razÃµes de polinÃ´mios, entÃ£o a matriz de
-    razÃµes de polinÃ´mios <literal>P((1+s)/(1-s))</literal> Ã© obtida por
+    <para>Exemplo (transformação bilinear): admita que <literal>P =
+    P(s)</literal> uma matriz de razões de polinômios, então a matriz de
+    razões de polinômios <literal>P((1+s)/(1-s))</literal> é obtida por
     <literal>horner(P,(1+s)/(1-s))</literal>.</para>
 
-    <para>Para avaliar uma matriz de razÃµes de polinÃ´mios em dadas freqÃ¼Ãªncias
+    <para>Para avaliar uma matriz de razões de polinômios em dadas freqüências
     use preferivelmente a primitiva <literal>freq</literal> .</para>
   </refsection>
 
@@ -78,18 +78,18 @@
 
     <programlisting role="example">
 
-//avaliaÃ§Ã£o de um polinÃ´mio para um vetor de nÃºmeros
+//avaliação de um polinômio para um vetor de números
 P=poly(1:3,'x')
 horner(P,[1 2 5])
 horner(P,[1 2 5]+%i)
 
-//avaliaÃ§Ã£o de uma razÃ£o
+//avaliação de uma razão
 s=poly(0,'s');M=[s,1/s];
 horner(M,1)
 horner(M,%i)
 horner(M,1/s)
 
-//avaliaÃ§Ã£o de um polinÃ´mio para uma matriz de nÃºmeros
+//avaliação de um polinômio para uma matriz de números
 X= [1 2;3 4]
 p=poly(1:3,'x','c')
 m=horner(p, X)
@@ -100,7 +100,7 @@ m=horner(p, X)
   </refsection>
 
   <refsection>
-    <title> Ver TambÃ©m </title>
+    <title> Ver Também </title>
 
     <simplelist type="inline">
       <member><link linkend="freq">freq</link></member>

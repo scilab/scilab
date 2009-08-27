@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>double</refname>
 
-    <refpurpose>conversÃ£o de inteiro para representaÃ§Ã£o de dupla
-    precisÃ£o</refpurpose>
+    <refpurpose>conversão de inteiro para representação de dupla
+    precisão</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y=double(X)
 y=int16(X)
@@ -40,14 +40,14 @@ y=uint32(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
         <term>X</term>
 
         <listitem>
-          <para>matriz de nÃºmeros em ponto flutuante ou inteiros </para>
+          <para>matriz de números em ponto flutuante ou inteiros </para>
         </listitem>
       </varlistentry>
 
@@ -55,19 +55,19 @@ y=uint32(X)</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>matriz de nÃºmeros em ponto flutuante</para>
+          <para>matriz de números em ponto flutuante</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Converte os dados armazenados usando inteiros de 1, 2 ou 4 bytes em
-    representaÃ§Ã£o de ponto flutuante de dupla precisÃ£o. Se as entradas de
-    <literal>X</literal> jÃ¡ sÃ£o nÃºmeros de ponto flutuante de dupla precisÃ£o,
-    nada Ã© feito .</para>
+    representação de ponto flutuante de dupla precisão. Se as entradas de
+    <literal>X</literal> já são números de ponto flutuante de dupla precisão,
+    nada é feito .</para>
   </refsection>
 
   <refsection>
@@ -82,7 +82,7 @@ double(x)
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="int8">int8</link></member>

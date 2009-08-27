@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="Windows-1252"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="interscin"
 	ProjectGUID="{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
-	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform

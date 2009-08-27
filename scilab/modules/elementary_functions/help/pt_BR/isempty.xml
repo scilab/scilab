@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>isempty</refname>
 
-    <refpurpose>verifica se uma variÃ¡vel Ã© uma matriz vazia ou uma lista
+    <refpurpose>verifica se uma variável é uma matriz vazia ou uma lista
     vazia</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>t=isempty(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -57,9 +57,9 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>isempty(x)</literal> retorna 'true' (verdadeiro) se x Ã© uma
+    <para><literal>isempty(x)</literal> retorna 'true' (verdadeiro) se x é uma
     matriz vazia ou uma lista vazia.</para>
   </refsection>
 

@@ -36,7 +36,6 @@ int ExitScilab(void)
   
 	if ( getScilabMode() != SCILAB_NWNI ) 
 	{
-		TerminateGUI();
 		TerminateTclTk();
 		TerminateGraphics();
 		TerminateGUI();

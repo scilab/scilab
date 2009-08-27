@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>tlist</refname>
 
-    <refpurpose>objeto do Scilab e definiÃ§Ã£o de listas com tipos ("typed
+    <refpurpose>objeto do Scilab e definição de listas com tipos ("typed
     lists") </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>tlist(typ,a1,....an )</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -58,65 +58,65 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Cria um <literal>typed-list</literal> com elementos
     <literal>ai</literal>'s. O argumento <literal>typ</literal> especifica o
-    tipo da lista. Tais <literal>typed-list</literal> permitem ao usuÃ¡rio
-    definir novas operaÃ§Ãµes trabalhando nestes objetos atravÃ©s de funÃ§Ãµes do
-    Scilab. A Ãºnica diferenÃ§a entre um <literal>typed-list</literal> e um
-    <literal>list</literal> (lista) Ã© o valor do tipo (16 ao invÃ©s de
+    tipo da lista. Tais <literal>typed-list</literal> permitem ao usuário
+    definir novas operações trabalhando nestes objetos através de funções do
+    Scilab. A única diferença entre um <literal>typed-list</literal> e um
+    <literal>list</literal> (lista) é o valor do tipo (16 ao invés de
     15).</para>
 
     <para><literal>typ(1)</literal> espeifica o tipo de lista (string usado
-    para definir operaÃ§Ãµes "soft-coded").</para>
+    para definir operações "soft-coded").</para>
 
     <para>Se especificado, <literal>typ(i)</literal> pode fornecer o nome
-    formal do <literal>i+1</literal> -Ã©simo elemento.</para>
+    formal do <literal>i+1</literal> -ésimo elemento.</para>
 
-    <para>OperaÃ§Ãµes padrÃµes em <literal>list</literal> operam de modo
+    <para>Operações padrões em <literal>list</literal> operam de modo
     semelhante para <literal>typed-list</literal>:</para>
 
-    <para>ExtraÃ§Ã£o : <literal>[x,y,z...]=l(v)</literal> onde
-    <literal>v</literal> Ã© o vetor de Ã­ndices; <literal>[x,y,z]=l(:)</literal>
+    <para>Extração : <literal>[x,y,z...]=l(v)</literal> onde
+    <literal>v</literal> é o vetor de índices; <literal>[x,y,z]=l(:)</literal>
     extrai todos os elementos.</para>
 
-    <para>InserÃ§Ã£o: <literal>l(i)=a</literal></para>
+    <para>Inserção: <literal>l(i)=a</literal></para>
 
-    <para>DeleÃ§Ã£o: <literal>l(i)=null()</literal> remove o i-Ã©simo elemento do
+    <para>Deleção: <literal>l(i)=null()</literal> remove o i-ésimo elemento do
     <literal>tlist l</literal>.</para>
 
-    <para>ExibiÃ§Ã£o.</para>
+    <para>Exibição.</para>
 
-    <para>AlÃ©m disso, se <literal>typ(2:n+1)</literal> forem especificados, o
-    usuÃ¡rio pode apontar elementos por seus nomes.</para>
+    <para>Além disso, se <literal>typ(2:n+1)</literal> forem especificados, o
+    usuário pode apontar elementos por seus nomes.</para>
 
-    <para>Abaixo fornecemos exemplos de onde tlists sÃ£o usados:</para>
+    <para>Abaixo fornecemos exemplos de onde tlists são usados:</para>
 
-    <para>Sistemas lineares sÃ£o representados por
-    <literal>typed-list</literal> especÃ­ficos, ex.: um sistema linear
-    <literal>[A,B,C,D]</literal> Ã© representado pelo tlist
+    <para>Sistemas lineares são representados por
+    <literal>typed-list</literal> específicos, ex.: um sistema linear
+    <literal>[A,B,C,D]</literal> é representado pelo tlist
     <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal>
-    e esta lista especÃ­fica pode ser criada pela funÃ§Ã£o
+    e esta lista específica pode ser criada pela função
     <literal>syslin</literal>.</para>
 
-    <para>Sys(2), Sys('A') ou Sys.A Ã© a estado-matriz e Sys('dt') ou Sys.dt Ã©
-    o domÃ­nio de tempo</para>
+    <para>Sys(2), Sys('A') ou Sys.A é a estado-matriz e Sys('dt') ou Sys.dt é
+    o domínio de tempo</para>
 
-    <para>Uma matriz de razÃµes de polinÃ´mios <literal>H</literal> Ã©
+    <para>Uma matriz de razões de polinômios <literal>H</literal> é
     representada por um <literal>typed-list</literal>
     <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> onde
-    <literal>Num</literal> e <literal>Den</literal> sÃ£o duas matrizes de
-    polinÃ´mios e um sistema linear (ex.: de tempo contÃ­nuo) com matriz de
-    transferÃªncia <literal>H</literal> possivelmente criada por
+    <literal>Num</literal> e <literal>Den</literal> são duas matrizes de
+    polinômios e um sistema linear (ex.: de tempo contínuo) com matriz de
+    transferência <literal>H</literal> possivelmente criada por
     <literal>syslin('c',H)</literal>.</para>
 
-    <para>H(2), H('num') ou H.num Ã© o numerador da matriz de
-    transferÃªncia</para>
+    <para>H(2), H('num') ou H.num é o numerador da matriz de
+    transferência</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="null">null</link></member>
