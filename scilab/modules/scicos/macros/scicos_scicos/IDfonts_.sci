@@ -34,10 +34,9 @@ function IDfonts_()
 
       //** Clear the graphic window WITHOUT changing his parameters ! :)
       drawlater() ;
-        delete(gh_axes.children) ; //** wipe out all the temp graphics object
-        drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
-      //** drawnow(); //** re-draw the graphic object and show on screen
-      //** show_pixmap() ; //** not useful on Scilab 5 
-     Cmenu = [] ; %pt = [];
+      delete(gh_axes.children) ; //** wipe out all the temp graphics object
+      drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
+				     
+   Cmenu = [] ; %pt = [];
     end
 endfunction
