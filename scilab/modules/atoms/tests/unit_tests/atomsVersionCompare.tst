@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
+load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 if atomsVersionCompare("5.1"        ,"5.1.0")     <> 0 then pause, end
 if atomsVersionCompare("5.1.0"      ,"5.1")       <> 0 then pause, end

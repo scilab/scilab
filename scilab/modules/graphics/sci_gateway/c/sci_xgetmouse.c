@@ -41,7 +41,6 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   double userCoords2D[2];
   sciPointObj * clickedSubwin = NULL;
 
-  int displayWarning = FALSE;
   int selPosition = 0;
 
   CheckRhs(0,1);

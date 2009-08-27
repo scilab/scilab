@@ -9,7 +9,7 @@ ilib_verbose(0);
 mkdir(pathconvert(TMPDIR+"/commom_read_api"));
 cd(pathconvert(TMPDIR+"/commom_read_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("commom_read",["commom_read","commom_read"],SCI+"/modules/core/tests/unit_tests/commom_read_api.c",[],[],"",cflags);
+ilib_build("commom_read",["commom_read","commom_read"],SCI+"/modules/api_scilab/tests/unit_tests/commom_read_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
