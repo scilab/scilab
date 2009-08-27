@@ -72,6 +72,10 @@ libscifunctions_la_sci_gateway_DATA = sci_gateway/functions_gateway.xml
 
 #### functions : include files ####
 libscifunctions_la_includedir=$(pkgincludedir)/functions
-libscifunctions_la_include_HEADERS = includes/gw_functions.h 
+libscifunctions_la_include_HEADERS = includes/gw_functions.h \
+	includes/librarieslist.h \
+	includes/libraryinfo.h \
+	includes/getmacroslist.h \
+	includes/dynlib_functions.h
 
 include $(top_srcdir)/Makefile.incl.am
