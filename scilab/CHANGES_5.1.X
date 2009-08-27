@@ -237,6 +237,8 @@ Bug fixes:
 
  * bug 4710 fixed - Error with C++ interface which uses the function CreateVar.
 
+ * bug 4750 fixed - Error boolean catenation
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
