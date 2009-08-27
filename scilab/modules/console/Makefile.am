@@ -104,6 +104,7 @@ SWIG_WRAPPERS = src/jni/GuiManagement.i
 #### console : include files ####
 libsciconsole_la_includedir=$(pkgincludedir)/console
 libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
+includes/dynlib_console.h \
 includes/ClearConsolePart.h \
 includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
@@ -112,16 +113,7 @@ includes/InitializeConsole.h \
 includes/PromptToHome.h \
 includes/ScilabLinesUpdate.h \
 includes/SetConsolePrompt.h \
-includes/ClearConsole.hxx \
-includes/ClearConsolePart.hxx \
 includes/ConsoleIsWaitingForInput.h \
-includes/ConsoleIsWaitingForInput.hxx \
-includes/ConsolePrintf.hxx \
-includes/ConsoleRead.hxx \
-includes/GetCharWithoutOutput.hxx \
-includes/PromptToHome.hxx \
-includes/ScilabLinesUpdate.hxx \
-includes/SetConsolePrompt.hxx
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1
