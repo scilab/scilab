@@ -442,13 +442,9 @@ function t=log2exp(a,lmax)
 	x($+1)=y
       end
     end
-    if lmax>0 then
-      t=[t;x]
-    else
-      t=t+x
-    end
+    t=[t;x]
   end,
-  if lmax>0&sum(length(t))<lmax then
+  if lmax==0|lmax>0&sum(length(t))<lmax then
     t=strcat(t,';')
   end
   if m*n>1 then
