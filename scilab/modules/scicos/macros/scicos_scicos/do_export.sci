@@ -63,32 +63,20 @@ function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
   //**------------------------------------------------------------------
   if rhs == 1 then //** default "scs_m only" case, no filename has been given
 
-    num = x_choose( ..
-		    ['File'; ..
-		     'Graphics window'], ..
-		    'Choose your export type:')
-
-    //** File            -> 1
-    //** Graphics window -> 2
-    //** [Cancel]        -> 0
-
-    if num == 0 then return; end //** EXIT point
-
-    if num == 1 then //** Export to file
-      
-      // Ask for format
-      exp_format=choose_export_format();
-      if isempty(exp_format) then // User cancelled
-	return
-      end
-      // Ask for filename
-      format_mask = '*.' + exp_format // for example: '*.png' or '*.eps'
-      dialog_title = 'Save ' + exp_format + ' file as...'
-      fname = getfile(format_mask, title = dialog_title)
-      
-      // Exit if user cancelled
-      if fname == "" then return; end
+  
+    // Ask for format
+    exp_format=choose_export_format();
+    if isempty(exp_format) then // User cancelled
+      return
     end
+    // Ask for filename
+    format_mask = '*.' + exp_format // for example: '*.png' or '*.eps'
+    dialog_title = 'Save ' + exp_format + ' file as...'
+    fname = getfile(format_mask, title = dialog_title)
+      
+    // Exit if user cancelled
+    if fname == "" then return; end
+
   end
 
   // In both export cases (file or graphics window), create a new window
@@ -161,24 +149,27 @@ function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
   end
   drawobjs(scs_m, gcf())
   drawnow()
-
-  if num == 1 then //** Export to file
-    fname=fname+'.'+%exp_format
-    if or(%exp_format == ["emf";"eps";"fig";"pdf";"ps";"svg" ])
-      cmd = 'xs2' + %exp_format + '(winc, fname, ''landscape'')'
-    else
-      cmd = 'xs2' + %exp_format + '(winc, fname)'
-    end
-    
-    try
-      execstr(cmd)
-    catch
-      messagebox([msprintf(_("Export in file %s failed\n"),fname);lasterror()],"error","modal")
-      ok=%f
-    end
-
-    delete(gh_winc)
+  lf=length(fname)
+  if part(fname,lf-length(exp_format):lf)<>'.'+exp_format then 
+    fname=fname+'.'+exp_format
   end
+  if exp_format =='scg' then
+    //scilab binary graphic format
+    cmd="save(fname,gca())"
+  elseif or(exp_format == ["emf";"eps";"fig";"pdf";"ps";"svg" ])
+    cmd = 'xs2' + exp_format + '(winc, fname, ''landscape'')'
+  else
+    cmd = 'xs2' + exp_format + '(winc, fname)'
+  end
+    
+  try
+    execstr(cmd)
+  catch
+    messagebox([msprintf(_("Export in file %s failed\n"),fname);lasterror()],"error","modal")
+    ok=%f
+  end
+
+  delete(gh_winc)
 
 endfunction
 
