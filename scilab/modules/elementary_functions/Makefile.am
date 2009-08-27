@@ -26,7 +26,7 @@ src/c/qsort-string.c \
 src/c/IsEqualVar.c
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES =
 
 SLATEC_SOURCES = 
 
