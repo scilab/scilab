@@ -64,6 +64,7 @@ Core functions:
      + predef
      + type
      + typename
+     + whereis
      
  - sethomedirectory is obsolete (see home). 
 
@@ -80,6 +81,7 @@ fileio functions:
                   of the path is removed (if present of course). See Bug 4468.
                   
   - getcwd is obsolete (see pwd). 
+  
 Dynamic link:
 =============
 
@@ -118,14 +120,14 @@ char encoding bugs :
 ====================
 
 * bug 2627 fixed - Scilab 5 console retrieve input strings in UTF-8 format and Scilab doesn't
-manage this format but ISO-8859.
+                   manage this format but ISO-8859.
 
 * bug 3228 fixed - ascii function broken for extended set (example : ascii('é')).
 
 * bug 3433 fixed - length with a UTF string returns a incorrect size
 
 * bug 3472 fixed - Dropping files in the Scilab shell doesn't work when the path
-             contains accented characters.
+                   contains accented characters.
 
 * bug 3666 fixed - 'input' returns accented characters.
 
@@ -154,7 +156,7 @@ Java/Scilab API:
 ================
  - uses new C API functions to write & read datas (internal for javasci)
  - SciInteger class added  
- 
+
  
 Bug fixes:
 ==========
@@ -339,3 +341,6 @@ Bug fixes:
 * bug 4728 fixed - The function 'strcat' does not return the same value in Scilab 5.1 and Scilab 4.1.2
 
 * bug 4732 fixed - the help page of function ss2ss has some missing part
+
+* bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
+

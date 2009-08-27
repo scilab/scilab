@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_libraryinfo)(char *fname,unsigned long fname_len)
+int sci_libraryinfo(char *fname,unsigned long fname_len)
 {
 	int l1,n1,m1;
 

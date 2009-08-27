@@ -3,7 +3,10 @@
 ### DIGITEO - Scilab 2009
 ##########
 
-FUNCTIONS__C_SOURCES = 
+FUNCTIONS__C_SOURCES = src/c/getmacroslist.c \
+	src/c/librarieslist.c \
+	src/c/libraryinfo.c \
+	src/c/searchmacroinlibraries.c
 
 FUNCTIONS__FORTRAN_SOURCES = 
 
@@ -12,7 +15,10 @@ sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_execstr.c \
-sci_gateway/c/sci_exec.c
+sci_gateway/c/sci_exec.c \
+sci_gateway/c/sci_whereis.c \
+sci_gateway/c/sci_librarieslist.c \
+sci_gateway/c/sci_libraryinfo.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intdeff.f \
@@ -25,6 +31,7 @@ libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/localization/includes

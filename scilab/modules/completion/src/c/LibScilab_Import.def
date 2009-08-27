@@ -14,8 +14,6 @@ getrhsvar_
 putlhsvar_
 com_
 callFunctionFromGateway
-getlibrarieslist
-getlistmacrosfromlibrary
 getVariablesName
 getcommandkeywords
 GetFunctionsList

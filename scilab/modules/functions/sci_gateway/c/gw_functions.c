@@ -17,14 +17,17 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define FUNCTIONS_TAB_SIZE 5
+#define FUNCTIONS_TAB_SIZE 8
 static gw_generic_table Tab[FUNCTIONS_TAB_SIZE]=
 {
 	{C2F(sci_lib),"lib"},
 	{C2F(sci_deff),"deff"},
 	{C2F(sci_getf),"getf"},
 	{C2F(sci_exec),"exec"},
-	{C2F(sci_execstr),"execstr"}
+	{C2F(sci_execstr),"execstr"},
+	{sci_librarieslist,"librarieslist"},
+	{sci_libraryinfo,"libraryinfo"},
+	{sci_whereis,"whereis"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)

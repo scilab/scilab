@@ -1,6 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
@@ -10,12 +9,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <stdlib.h>
-#include "getmacrosdictionary.h"
-#include "getmacroslist.h"
-/*--------------------------------------------------------------------------*/
-char **getmacrosdictionary(int *sizearray)
-{
-	return getmacroslist(sizearray);
-}
-/*--------------------------------------------------------------------------*/
+#ifndef __GETMACROSLIST_H__
+#define __GETMACROSLIST_H__
+
+/**
+* get scilab macros list
+* @param[out] size of returned array
+* @return array of strings
+*/
+char **getmacroslist(int *sizearray);
+
+#endif /* __GETMACROSDICTIONARY_H__ */
+/*--------------------------------------------------------------------------*/ 

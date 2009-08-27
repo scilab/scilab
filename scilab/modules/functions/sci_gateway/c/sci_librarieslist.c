@@ -15,7 +15,7 @@
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_librarieslist)(char *fname,unsigned long fname_len)
+int sci_librarieslist(char *fname,unsigned long fname_len)
 {
 	char **libraries = NULL;
 	int sizelibraries = 0;
