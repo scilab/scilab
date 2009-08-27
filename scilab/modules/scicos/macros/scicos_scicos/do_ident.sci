@@ -34,7 +34,7 @@ function scs_m = do_ident(scs_m)
 
   //** Filter out the "mutiple object selected" case
   if size(k,'*')>1 | %win<>Select(1,2) then
-    messagebox("Only one block can be selected in current window for this operation.","modal")
+    messagebox(_("Only one block can be selected in current window for this operation."),"modal")
     Cmenu=[]; %pt=[]; return
   end
 
@@ -58,7 +58,7 @@ function scs_m = do_ident(scs_m)
       identification = emptystr() ;
     end
     //** Use a dialog box to acquire/modify the id string
-    texte_1 = "Set Block identification" ;
+    texte_1 = _("Set Block identification") ;
     texte_2 = "ID"                       ;
     [ok, identification] = getvalue(texte_1, texte_2, list('str', 1), identification) ;
 
@@ -81,7 +81,7 @@ function scs_m = do_ident(scs_m)
       identification = emptystr() ;
     end
     //** Use a dialog box to acquire/modify the id string
-    texte_1 = "Set link Identification" ;
+    texte_1 = _("Set link Identification") ;
     texte_2 = "ID"                      ;
     [ok, identification] = getvalue(texte_1, texte_2, list('str', 1),identification) ;
     //
@@ -96,14 +96,12 @@ function scs_m = do_ident(scs_m)
         update_gr(gr_k, scs_m.objs(numero)) ;
       end
 
-      //** draw(gh_curwin.children);
       drawnow(); 
-      //** show_pixmap() ; //** not useful on Scilab 5
       
     end
   else
   //** It is NOT a Block AND it is NOT a Link: for any other object type
-    messagebox("It is impossible to set ID for this type of object",'modal')
+    messagebox(_("It is impossible to set ID for this type of object"),'error','modal')
   end
   //
 
