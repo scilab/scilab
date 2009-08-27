@@ -27,30 +27,26 @@ function [scs_m] = do_block(%pt,scs_m)
 //** 25/06/2009 : Serge Steer, remove links,  text and object which are
 //   not in the current window out of the selection
 
-
-  if Select==[] then //** No object is selected
-
-    xc = %pt(1); yc = %pt(2); %pt=[]; //** acquire mouse coordinate
-    K = getblock(scs_m,[xc;yc]) ; //** look from a clicked object
-    if K==[] then return, end //** if no object --> EXIT
-
-  else //** there are selected objects
-    //retains current window selected objects
-    K=find(Select(:,2)==%win)
-    if K==[] then return, end //** if no selected object in current window--> EXIT
-    if size(K,'*')>1 then  
-      messagebox("Only one block can be selected in current window for this operation.","modal") ;
-      return ; //** EXIT
-    end
-    if typeof(scs_m.objs(K))<>'Block' then 
-      messagebox("Icon menu applies only to blocks.","modal") ;
-      return, 
-    end
-    %pt=[]
+  K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+  if K==[] then
+    messagebox(_("No selected block in the current Scicos window."),'error','modal')
+    return
   end
+   
+  if size(K,'*')>1 then
+    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
+    return
+  end    
+  o=scs_m.objs(K)
+  if typeof(o)<>'Block' then
+    messagebox(_("Only  blocks can be selected for this operation."),'error','modal')
+    return
+  end    
+ 
+ 
   gh_curwin = scf(%win) ;  gh_axes = gca(); 
 
-  gr_i = scs_m.objs(K).graphics.gr_i ; //** isolate the graphics command string 'gr_i'
+  gr_i = o.graphics.gr_i ; //** isolate the graphics command string 'gr_i'
 
   if type(gr_i)==15 then //** ? boh
     [gr_i,coli] = gr_i(1:2)
@@ -75,7 +71,6 @@ function [scs_m] = do_block(%pt,scs_m)
     mac = null(); deff('[]=mac()', gr_i, 'n')
 
     if check_mac(mac) then
-      o = scs_m.objs(K)
       o.graphics.gr_i = list(gr_i,coli) ; //** update the graphic command string
       scs_m.objs(K) = o ; //** update the data structure
 
