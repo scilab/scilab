@@ -66,7 +66,7 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL ,""}, //dsearch
 	{C2F(sci_isequal),"isequal"},
 	{C2F(sci_spones),"spones"},
-	{C2F(sci_gsort),"gsort"},
+	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
 	{NULL ,""}, //matrix
 	{C2F(sci_sort),"sort"}
