@@ -44,7 +44,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="scicos_block">Blocks</link> </member>
-      <member> <link linkend="scicos_link">"Links</link> </member>
+      <member> <link linkend="scicos_link">Links</link> </member>
       <member> <link linkend="scicos_diagram">Diagrams</link> </member>
      </simplelist>
    </refsection>

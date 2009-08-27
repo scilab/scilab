@@ -52,8 +52,8 @@
     <title>Restriction</title>
     <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
   </refsection>
-  
-  <title>See Also</title>
+  <refsection>
+    <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="XcosMenu_Grid">Grid</link> </member>
       <member> <link linkend="XcosMenu_Move">Move</link> </member>

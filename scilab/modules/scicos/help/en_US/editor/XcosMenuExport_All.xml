@@ -47,7 +47,7 @@
       asked for the desired output format.
     </para>
     <para>
-      The <literal>"scg"<literal> format is the Scilab binary format
+      The <literal>"scg"</literal> format is the Scilab binary format
       used to save Scilab graphics.  Such files can be reloaded in
       Scilab using the <link linkend="load">load</link> function and
       regenerate a Scilab graphic window. The Scilab graphic editor
