@@ -191,7 +191,9 @@ am__objects_1 = libscielementary_functions_la-zwrsk.lo \
 	libscielementary_functions_la-zunk2.lo \
 	libscielementary_functions_la-zuoik.lo \
 	libscielementary_functions_la-dlngam.lo \
-	libscielementary_functions_la-balanc.lo
+	libscielementary_functions_la-balanc.lo \
+	libscielementary_functions_la-dtensbs.lo \
+	libscielementary_functions_la-pchim.lo
 am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-wpade.lo \
 	libscielementary_functions_la-wcopy.lo \
@@ -844,7 +846,9 @@ src/fortran/slatec/zunk1.f \
 src/fortran/slatec/zunk2.f \
 src/fortran/slatec/zuoik.f \
 src/fortran/slatec/dlngam.f \
-src/fortran/slatec/balanc.f
+src/fortran/slatec/balanc.f \
+src/fortran/slatec/dtensbs.f \
+src/fortran/slatec/pchim.f
 
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
@@ -2200,6 +2204,12 @@ libscielementary_functions_la-dlngam.lo: src/fortran/slatec/dlngam.f
 
 libscielementary_functions_la-balanc.lo: src/fortran/slatec/balanc.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balanc.lo `test -f 'src/fortran/slatec/balanc.f' || echo '$(srcdir)/'`src/fortran/slatec/balanc.f
+
+libscielementary_functions_la-dtensbs.lo: src/fortran/slatec/dtensbs.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dtensbs.lo `test -f 'src/fortran/slatec/dtensbs.f' || echo '$(srcdir)/'`src/fortran/slatec/dtensbs.f
+
+libscielementary_functions_la-pchim.lo: src/fortran/slatec/pchim.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-pchim.lo `test -f 'src/fortran/slatec/pchim.f' || echo '$(srcdir)/'`src/fortran/slatec/pchim.f
 
 libscielementary_functions_la-dgesl.lo: src/fortran/linpack/dgesl.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dgesl.lo `test -f 'src/fortran/linpack/dgesl.f' || echo '$(srcdir)/'`src/fortran/linpack/dgesl.f
