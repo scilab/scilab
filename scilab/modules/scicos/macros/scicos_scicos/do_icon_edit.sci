@@ -19,22 +19,24 @@
 // See the file ../license.txt
 //
 function scs_m = do_icon_edit(%pt,scs_m)
-  if Select==[] then
-    win=%win;
-    xc=%pt(1);yc=%pt(2);%pt=[];
-    K=getblock(scs_m,[xc;yc]);
-    if K==[] then 
-      Cmenu=[];%pt=[];
-      return
-    end
-  else
-    K=Select(:,1)';%pt=[];
-  end
-  if size(K,'*')>1|%win<>Select(1,2) then
-    messagebox(_("Only one block can be selected in current window for this operation."),'modal')
-    Cmenu=[];%pt=[];return
-  end    
   
+  K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
+  if K==[] then
+    messagebox(_("No selected block in the current Scicos window."),'error','modal')
+    return
+  end
+   
+  if size(K,'*')>1 then
+    messagebox(_("Only one block can be selected in current window for this operation."),'error','modal')
+    return
+  end  
+  
+  o=scs_m.objs(K)
+  if typeof(o)<>'Block' then
+    messagebox(_("Only  blocks can be selected for this operation."),'error','modal')
+    return
+  end    
+ 
   gr_i=scs_m.objs(K).graphics.gr_i ;
   sz=scs_m.objs(K).graphics.sz ;
   if type(gr_i)<>15 then  
