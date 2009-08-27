@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="diary" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>diary</refname>
+
+    <refpurpose>diary of session</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>      diary(filename)
+      [id,filename] = diary(filename, ['new'|'append'])
+
+      [ids, filenames] = diary()
+      [ids, filenames] = diary([], 'list')
+      
+      diary([], 'close')
+      diary(0)
+      diary(filename, 'close')
+      diary(id, 'close')
+      
+      diary([], 'pause'|'off')
+      diary(filename, 'pause'|'off')
+      diary(id, 'pause'|'off')
+      
+      diary([], 'resume'|'on')
+      diary(filename, 'resume'|'on')
+      diary(id, 'resume'|'on')
+      
+      diary(filenames, 'exists')
+      diary(ids, 'exists')
+      
+      diary(filename, 'new'|'append', 'prefix=Y-m-d H-i-s') 
+      diary(filename, 'new'|'append', 'prefix=U')
+      diary(filename, 'new'|'append', [ 'prefix=Y-m-d H-i-s' ; 'prefix-only-commands' ] );
+      
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>a character string, give the full file name path.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>id</term>
+
+        <listitem>
+          <para>a scalar to identify a diary.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>diary(f)</literal>function creates a log of keyboard input
+    and the resulting text output.</para>
+  </refsection>
+
+  <refsection>
+    <title>Start a diary session</title>
+
+    <para><literal>[id, filename] = diary(filename,
+    ['new'|'append'])</literal></para>
+
+    <para>returns :</para>
+
+    <para>* id : a positive integer (&gt;= 1) which is the diary session
+    identifier.</para>
+
+    <para>* filename : A string, the absolute path of the effective written
+    file.</para>
+
+    <para>The first input argument is a string that contain the path of the
+    diary file. This can be a relative path or a absolute path.</para>
+
+    <para>The 2nd input argument controls if a new file is created ('new') or
+    if diary() adds new content at the end of the file ('append'). If the 2nd
+    input argument is not present, the default value is 'new'.</para>
+
+    <para>When diary() is called with 'new' mode : If 'filename' already
+    exists and is not empty, an effective filename
+    'base(filemane)+_#+extension(filename)' is built, used, and returned by
+    diary(filename) as a second output argument (beside id). The rank # would
+    be set as the smallest integer for which the resultant filename does not
+    yet exists.</para>
+  </refsection>
+
+  <refsection>
+    <title>List diary sessions</title>
+
+    <para><literal>[ids, filenames] = diary()</literal></para>
+
+    <para><literal>[ids, filenames] = diary([],'list')</literal></para>
+
+    <para>returns a column vector of integer : identifiers list of opened
+    diary sessions. a column vector of strings : absolute paths of the files
+    associated with opened diary sessions.</para>
+  </refsection>
+
+  <refsection>
+    <title>Close diary session(s)</title>
+
+    <para><literal>diary([],'close')</literal></para>
+
+    <para><literal>diary(0)</literal></para>
+
+    <para><literal>diary(filename,'close')</literal></para>
+
+    <para><literal>diary(id,'close')</literal></para>
+
+    <para>The first and second syntaxes close all opened diary
+    sessions.</para>
+
+    <para>The third syntax closes diary session(s) identified by
+    'filename'.</para>
+
+    <para>The fourth syntax closes the diary session identified by “id” which
+    is a positive integer or a vector of positive integers.</para>
+
+    <para>Remark : diary(0) is retained as backwards compatibility.</para>
+  </refsection>
+
+  <refsection>
+    <title>Pause/Resume diary session(s)</title>
+
+    <para><literal>diary([] ,'pause'|'off')</literal></para>
+
+    <para><literal>diary(filename,'pause'|'off')</literal></para>
+
+    <para><literal>diary(id ,'pause'|'off')</literal></para>
+
+    <para>The first syntax suspends all opened diary sessions.</para>
+
+    <para>The second syntax suspend diary session(s) identified by 'filename'.
+    'filename' can be a single string or a character string array.</para>
+
+    <para>The third syntax suspend the diary session identified by 'id' which
+    is a positive integer or a vector of positive integers.</para>
+
+    <para></para>
+
+    <para><literal>diary([] ,'resume'|'on')</literal></para>
+
+    <para><literal>diary(filename,'resume'|'on')</literal></para>
+
+    <para><literal>diary(id ,'resume'|'on')</literal></para>
+
+    <para>The first syntax resume all opened diary sessions.</para>
+
+    <para>The second syntax resume diary session(s) identified by 'filename'.
+    'filename' can be a single string or a character string array.</para>
+
+    <para>The third syntax resume the diary session identified by 'id' which
+    is a positive integer or a vector of positive integers.</para>
+  </refsection>
+
+  <refsection>
+    <title>Does a diary session exists ?</title>
+
+    <para><literal>diary(filename,'exists')</literal></para>
+
+    <para><literal>diary(id,'exists')</literal></para>
+
+    <para>return true if a diary session is currently opened with the file
+    'filename', if not false.</para>
+  </refsection>
+
+  <refsection>
+    <title>Diary and time-stamp</title>
+
+    <para><literal>diary(filename,'new','prefix=YYY-MM-DD
+    hh-mm-ss')</literal></para>
+
+    <para><literal>diary(filename,'new','prefix=U')</literal></para>
+
+    <para><literal>diary(filename,'new',[ 'prefix=YYY-MM-DD hh-mm-ss' ;
+    'prefix-only-commands' ] );</literal></para>
+
+    <para>'prefix=YYY-MM-DD hh-mm-ss' add date &amp; hour</para>
+
+    <para>'prefix=U' add UNIX time epoch</para>
+
+    <para>'prefix-only-commands' add time-stamp only as prefix for
+    commands</para>
+  </refsection>
+
+  <refsection>
+    <title>Filtering diary</title>
+
+    <para><literal>diary(filename,”new”,”filter=command”) </literal>Log only
+    the input commands.</para>
+
+    <para><literal>diary(filename,”new”,”filter=output”) </literal>Log only
+    the text output.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">d1 = diary(TMPDIR + '/diary1.txt')
+d2 = diary(TMPDIR + '/diary2.txt')
+
+// some Scilab instructions …
+cd TMPDIR
+dir
+
+// returns infos about opened diary
+[ids, filenames]  = diary()
+
+// close diary d1
+diary(d1,'close')
+[ids, filenames]  = diary()
+
+// close diary d2
+diary(TMPDIR + '/diary2.txt')
+[ids, filenames]  = diary()
+// closes all diary
+diary([],'close')
+[ids, filenames]  = diary()
+
+</programlisting>
+  </refsection>
+</refentry>

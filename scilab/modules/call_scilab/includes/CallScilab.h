@@ -14,6 +14,10 @@
 #define __CALLSCILAB__
 #include "machine.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*--------------------------------------------------------------------------*/
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
@@ -339,6 +343,9 @@ int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_le
 int C2F(str2name)  (char *name__, int *id, unsigned long name_len);
 int C2F(objptr)  (char *name__, int *lp, int *fin, unsigned long name_len);
 
+#ifdef __cplusplus
+}
+#endif
 /*--------------------------------------------------------------------------*/
 #endif /* __CALLSCILAB__ */
 /*--------------------------------------------------------------------------*/

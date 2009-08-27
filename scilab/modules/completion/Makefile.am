@@ -38,6 +38,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/functions/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

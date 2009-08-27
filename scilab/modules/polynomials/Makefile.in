@@ -131,9 +131,8 @@ am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_poly.lo \
 	libscipolynomials_la-sci_triu.lo \
 	libscipolynomials_la-sci_degree.lo
-am__objects_4 = balbak.lo
 am_libscipolynomials_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+	$(am__objects_3)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -452,7 +451,6 @@ src/fortran/quad.f \
 src/fortran/calcsc.f \
 src/fortran/writebufsfact.f
 
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
 sci_gateway/c/sci_cleanp.c \
@@ -491,11 +489,12 @@ sci_gateway/fortran/sci_f_sfact.f \
 sci_gateway/fortran/sci_f_simpmd.f
 
 libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
@@ -1052,9 +1051,6 @@ sci_f_sfact.lo: sci_gateway/fortran/sci_f_sfact.f
 
 sci_f_simpmd.lo: sci_gateway/fortran/sci_f_simpmd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simpmd.lo `test -f 'sci_gateway/fortran/sci_f_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simpmd.f
-
-balbak.lo: src/fortran/eispack/balbak.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

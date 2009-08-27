@@ -61,27 +61,32 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
-he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
-g=make_graph('foo',1,17,ta,he);
-g('node_x')=[283 163 63 57 164 164 273 271 339 384 504 513 439 623 631 757 642];
-g('node_y')=[59 133 223 318 227 319 221 324 432 141 209 319 428 443 187 151 301];
-g('edge_color')=modulo([1:(edge_number(g))],15)+1;
-g('node_diam')=[1:(g('node_number'))]+20;
-g('node_name')=['A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M' 'N' 'O' 'P' 'Q'];
-w=show_graph(g);
-v=[7 8 9 10 11 12 13];
-show_nodes(v);
-g1=subgraph(v,'nodes',g);
-show_graph(g1,'new');
-v=[1 2 5 6 7 8 9 10];
-netwindow(w);
-show_nodes(v);
-g2=subgraph(v,'nodes',g);
-show_graph(g2,'new');
+
+ta1=[1,2,3,4,4,4,4,5,6,7,7];he1=[2,3,1,1,5,7,7,6,7,3,4];
+g1=make_graph('foo1',1,7,ta1,he1);
+g1.nodes.graphics.x= [273,271,339,384,504,513,439];
+g1.nodes.graphics.y= [221,324,432,141,209,319,428];
+g1.nodes.graphics.display= 'name';
+g1.nodes.graphics.name= ['A' 'B' 'C' 'D' 'E' 'F' 'G'];
+w1=show_graph(g1);
+
+ta2=[1,1,2,2,3,5,6,6,7,8];he2=[2,8,3,5,4,6,4,7,5,5];
+g2=make_graph('foo2',1,8,ta2,he2);
+g2.nodes.graphics.x= [233,113,114,114,223,221,289,334];
+g2.nodes.graphics.y= [59, 133,227,319,221,324,432,141];
+g2.nodes.graphics.name= ['H' 'I' 'J' 'K' 'A' 'B' 'C' 'D'];
+g2.nodes.graphics.display= 'name';
+w2=show_graph(g2,'new');
+
+
 g=graph_union(g1,g2);
 show_graph(g,'new');
- ]]></programlisting>
+
+g=graph_union(g1,g2,%f);
+show_graph(g,'new');
+
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

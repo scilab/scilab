@@ -22,7 +22,7 @@ static gw_generic_table Tab[IO_TAB_SIZE]=
 {C2F(sci_read),"read"},
 {C2F(sci_getenv),"getenv"},
 {C2F(sci_getio),"getio"},
-{C2F(sci_diary),"diary"},
+{NULL,""},
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},

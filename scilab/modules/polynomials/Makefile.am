@@ -65,8 +65,6 @@ src/fortran/calcsc.f \
 src/fortran/writebufsfact.f
 
 
-EISPACK_SOURCES = src/fortran/eispack/balbak.f
-
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
 sci_gateway/c/sci_sfact.c \
 sci_gateway/c/sci_cleanp.c \
@@ -106,16 +104,15 @@ sci_gateway/fortran/sci_f_simpmd.f
 
 
 
-
-
 libscipolynomials_la_CFLAGS= 	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
 
 libscipolynomials_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(EISPACK_SOURCES)
+libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)

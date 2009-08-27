@@ -121,8 +121,10 @@
         <term>Q</term>
 
         <listitem>
-          <para>(optional) real matrix, orthogonal (default is
-          eye(n,n)).</para>
+          <para>(optional) real matrix, orthogonal (default is eye(n,n)). Q is added to have the possibility to remove
+	    the arbitrariness of using the canonical basis to approximate the derivatives of a function and it should be an
+	    orthogonal matrix. It is not mandatory but better to recover the derivative as you need the inverse matrix (and 
+	    so simply Q' instead of inv(Q)).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -163,16 +165,16 @@
     optional arguments may also be passed as named arguments, so that one can
     use calls in the form :</para>
 
-    <programlisting> 
+    <programlisting><![CDATA[ 
 derivative(F, x, H_form = "hypermat")
 derivative(F, x, order = 4) etc.
-    </programlisting>
+    ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 function y=F(x)
   y=[sin(x(1)*x(2))+exp(x(2)*x(3)+x(1)) ; sum(x.^3)];
 endfunction
@@ -219,7 +221,7 @@ Je = x'*(A+A')+p'
 He = A+A'
 clean(Je - J)
 clean(He - H)
-  </programlisting>
+  ]]></programlisting>
   </refsection>
 
   <refsection>

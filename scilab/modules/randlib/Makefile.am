@@ -25,8 +25,6 @@ src/fortran/snorm.f \
 src/fortran/gennch.f \
 src/fortran/genmn.f \
 src/fortran/phrtsd.f \
-src/fortran/spofa.f \
-src/fortran/sdot.f \
 src/fortran/ignnbn.f \
 src/fortran/lennob.f \
 src/fortran/genf.f \
@@ -45,6 +43,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_randlib.c \
 sci_gateway/c/sci_grand.c
 
 libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscirandlib.la

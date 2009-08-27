@@ -81,17 +81,18 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 		return NULL;
 	}
 
-	int iMaxLen = (int)wcslen(_wide) * 4; //MBSC Max is 4 bytes by char
-	pchar = (char*)MALLOC((iMaxLen + 1) * sizeof(char));
+	/* The value of MB_CUR_MAX is the maximum number of bytes 
+	   in a multibyte character for the current locale. */
+	int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ; 
+	pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
 	if(pchar == NULL)
 	{
 		return NULL;
 	}
-
 	iCharLen = wcstombs (pchar, pwstr, iMaxLen);
 	if ( iCharLen == (size_t)(-1) )
 	{
-		FREE(pchar);
+		if (pchar) {FREE(pchar);pchar = NULL;}
 		return NULL;
 	}
 	pchar[iCharLen] = '\0';

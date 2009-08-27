@@ -54,8 +54,8 @@
         <para>This help describes how pointer can be handled through the Scilab API.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/pointer_reading_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/pointer_reading_api.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/pointer_reading_api.tst-->
         <!--Lib_name: pointer_reading-->
         <!--Func_list: read_pointer-->
         <title>Gateway Source</title>

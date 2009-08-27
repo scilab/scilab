@@ -85,33 +85,49 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_cflow</literal> calcule flot de coût linéaire minimum dans un réseau 
-    <literal>g</literal>, avec les valeurs des flots des sommets sources <literal>i</literal> aux
-    puits <literal>j</literal> contraints à valoir <literal>cv</literal>.
+    <para><literal>min_lcost_cflow</literal> calcule flot de coût
+    linéaire minimum dans un réseau <literal>g</literal>, avec les
+    valeurs des flots des sommets sources <literal>i</literal> aux
+    puits <literal>j</literal> contraints à valoir
+    <literal>cv</literal>.
   </para>
     <para>
-    Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
-    le vecteur ligne des flots sur les arcs <literal>phi</literal> et les valeurs des flots 
-    <literal>v</literal> sur les arcs virtuels des sources aux puits. Si <literal>v</literal> est plus petit que <literal>cv</literal>, un message est affiché, mais le calcul est fait quand même. Dans ce cas<literal>flag</literal> est égal à 0, sinon il est égal à 1.
+    Elle renvoie le coût total du flot sur les arcs
+    <literal>c</literal> et le vecteur ligne des flots sur les arcs
+    <literal>phi</literal> et les valeurs des flots
+    <literal>v</literal> sur les arcs virtuels des sources aux
+    puits. Si <literal>v</literal> est plus petit que
+    <literal>cv</literal>, un message est affiché, mais le calcul est
+    fait quand même. Dans ce cas<literal>flag</literal> est égal à 0,
+    sinon il est égal à 1.
   </para>
+  <para>
+      Les bornes sur les flots sont données par les éléments
+      <literal>g.edges.data.min_cap</literal> et
+      <literal>g.edges.data.max_cap</literal> du graphe.  
+   </para>
     <para>
-    es bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
-    <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité minimum doit être égal à zéro. Les valeurs des capacités maximum doivent être entières et positives.
-    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
-  </para>
+      Les valeurs des capacités maximum doivent être entières et
+      positives.  La valeur de la capacité minimum doit être égal à
+      zéro.  Si la valeur de <literal>min_cap</literal> ou de
+      <literal>max_cap</literal> n'est pas donnée elle est supposé
+      nulle sur chaque arête.
+    </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être positifs.
-  </para>
-    <para>
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
-  </para>
-    <para>
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
-  </para>
+      Les coûts sur les arêtes sont donnés par les éléments
+      <literal>g.edges.data.cost</literal> du graphe.  Les coûts
+      doivent être non négatifs.  Si la valeur de
+      <literal>cost</literal> n'est pas donnée, elle est supposé nulle
+      sur chaque arête.
+    </para>
+   <para>
+      Si les champs de donnée <literal>min_cap</literal> ou
+      <literal>max_cap</literal> ou <literal>cost</literal> ne sont
+      pas présents dans la structure du graphe, ils peuvent être
+      ajoutés et affectés en utilisant la fonction  <link
+      linkend="add_edge_data">add_edge_data</link>.
+    </para>
+
     <para>
     Cette fonction utilise l'algorithme de Busacker et Goven.
   </para>
@@ -119,32 +135,27 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
 he=[2 6 3 4 5 1 3 5 1 7 10 11 5 8 9 5 8 11 10 11 9 11 15 13 14 4 6 9 1];
 g=make_graph('foo',1,15,ta,he);
-g('node_x')=[194 191 106 194 296 305 305 418 422 432 552 550 549 416 548];
-g('node_y')=[56 181 276 278 276 103 174 281 177 86 175 90 290 397 399];
+g.nodes.graphics.x=[155,153,85,155,237,244,244,334,338,346,442,440,439,333,438];
+g.nodes.graphics.y=[45,145,221,222,221,82,139,225,142,69,140,72,232,318,319];
+source=15;g.nodes.graphics.type(source)=2; //source node
+sink=1;g.nodes.graphics.type(sink)=1; //sink node
 show_graph(g);
-g1=g; ma=arc_number(g1); n=g1('node_number');
-g1('edge_min_cap')=0*ones(1,ma);
-rand('uniform');
-g1('edge_max_cap')=round(20*rand(1,ma))+ones(1,ma);
-g1('edge_cost')=10*rand(1,ma)+ones(1,ma);
-source=15; sink=1; cv=5;
-[c,phi,v]=min_lcost_cflow(source,sink,cv,g1);
-messagebox(['Le cout est: '+string(c);
-           'Voici les flots sur les arcs'],"modal");
-nodetype=0*ones(1,n); nodetype(source)=2; nodetype(sink)=1;
-g1('node_type')=nodetype;
-ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
-g1('edge_color')=edgecolor;
-edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);
-nodecolor=0*ones(1,n); nodecolor(source)=11; nodecolor(sink)=11;
-g1('node_color')=nodecolor;
-g1('edge_font_size')=edgefontsize;
-g1('edge_label')=string(phi);
-show_graph(g1);
- ]]></programlisting>
+
+g=add_edge_data(g,'max_cap',[11,8,9,19,20,8,9,16,6,11,6,12,12,3,6,14,16,2,14,5,9,18,13,11,5,18,3,7,18]);
+g=add_edge_data(g,'cost',[9,6,11,7,11,2,8,5,7,10,2,9,10,7,7,9,2,7,2,8,4,6,11,8,1,7,4,4,7]);
+flow_constraint=5;
+[c,phi,v,flag]=min_lcost_cflow(source,sink,flow_constraint,g);
+
+g.edges.graphics.foreground(find(phi<>0))=color('red');
+g=add_edge_data(g,'flow',phi)
+g.edges.graphics.display='flow';
+show_graph(g);
+ 
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

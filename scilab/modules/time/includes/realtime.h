@@ -14,6 +14,10 @@
 #ifndef  __REALTIME_H__
 #define __REALTIME_H__
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "machine.h"
 #include "dynlib_time.h"
 
@@ -26,6 +30,10 @@ TIME_IMPEXP int C2F(realtimeinit)(double *t,double *scale);
 * @TODO add comment
 */
 TIME_IMPEXP int C2F(realtime)(double *t);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __REALTIME_H__ */ 
 /*--------------------------------------------------------------------------*/

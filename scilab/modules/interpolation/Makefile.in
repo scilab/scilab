@@ -99,14 +99,12 @@ libsciinterpolation_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/string/libscistring.la
-am__objects_1 = libsciinterpolation_la-dtensbs.lo \
-	libsciinterpolation_la-pchim.lo
-am__objects_2 = libsciinterpolation_la-interpolation.lo \
+am__objects_1 = libsciinterpolation_la-interpolation.lo \
 	libsciinterpolation_la-someinterp.lo
-am__objects_3 = libsciinterpolation_la-somespline.lo \
+am__objects_2 = libsciinterpolation_la-somespline.lo \
 	libsciinterpolation_la-dspfit.lo \
 	libsciinterpolation_la-cshep2d.lo
-am__objects_4 = libsciinterpolation_la-sci_lsq_splin.lo \
+am__objects_3 = libsciinterpolation_la-sci_lsq_splin.lo \
 	libsciinterpolation_la-sci_interp.lo \
 	libsciinterpolation_la-sci_interp2d.lo \
 	libsciinterpolation_la-sci_splin.lo \
@@ -119,7 +117,7 @@ am__objects_4 = libsciinterpolation_la-sci_lsq_splin.lo \
 	libsciinterpolation_la-sci_bsplin3val.lo \
 	libsciinterpolation_la-sci_eval_cshep2d.lo
 am_libsciinterpolation_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+	$(am__objects_3)
 libsciinterpolation_la_OBJECTS = $(am_libsciinterpolation_la_OBJECTS)
 libsciinterpolation_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
@@ -378,9 +376,6 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SLATEC_SOURCES = src/fortran/slatec/dtensbs.f \
-src/fortran/slatec/pchim.f
-
 INTERPOLATION_FORTRAN_SOURCES = src/fortran/somespline.f \
 src/fortran/dspfit.f \
 src/fortran/cshep2d.f
@@ -406,11 +401,12 @@ libsciinterpolation_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
                 -I$(top_srcdir)/modules/string/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libsciinterpolation_la_SOURCES = $(SLATEC_SOURCES) $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -713,12 +709,6 @@ libsciinterpolation_la-sci_eval_cshep2d.lo: sci_gateway/c/sci_eval_cshep2d.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-libsciinterpolation_la-dtensbs.lo: src/fortran/slatec/dtensbs.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-dtensbs.lo `test -f 'src/fortran/slatec/dtensbs.f' || echo '$(srcdir)/'`src/fortran/slatec/dtensbs.f
-
-libsciinterpolation_la-pchim.lo: src/fortran/slatec/pchim.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-pchim.lo `test -f 'src/fortran/slatec/pchim.f' || echo '$(srcdir)/'`src/fortran/slatec/pchim.f
 
 libsciinterpolation_la-somespline.lo: src/fortran/somespline.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciinterpolation_la_FFLAGS) $(FFLAGS) -c -o libsciinterpolation_la-somespline.lo `test -f 'src/fortran/somespline.f' || echo '$(srcdir)/'`src/fortran/somespline.f

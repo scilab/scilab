@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{E9741474-5C3A-4101-8B85-AC5221018C05}"
 	RootNamespace="metanet"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;METANET_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;METANET_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;METANET_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../api_scilab/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;METANET_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
