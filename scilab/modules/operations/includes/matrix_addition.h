@@ -22,6 +22,10 @@ EXTERN_OP int iAddComplexScalarToComplexMatrix(double _dblReal1, double _dblImg1
 EXTERN_OP int iAddRealMatrixToRealMatrix(double* _pdblReal1, double* _pdblReal2, int _iRows, int _iCols, double* _pdblRealOut);
 EXTERN_OP int iAddRealMatrixToComplexMatrix(double* _pdblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
 EXTERN_OP int iAddComplexMatrixToComplexMatrix(double* _pdblReal1, double* _pdblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows, int _iCols, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iAddRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut);
+EXTERN_OP int iAddRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iAddComplexIdentityToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iAddComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
 
 
 

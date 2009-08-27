@@ -171,7 +171,7 @@ int img_poly(int* _piAddress, int* _piKey)
 				}
 			}
 		}
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblImg);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblImg, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -193,7 +193,7 @@ int img_poly(int* _piAddress, int* _piKey)
 			pdblRealRet[i] = (double*)malloc(sizeof(double) * 1);
 			pdblRealRet[i] = 0;
 		}
-		createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;

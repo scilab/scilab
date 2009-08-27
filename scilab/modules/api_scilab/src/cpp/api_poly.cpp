@@ -17,7 +17,6 @@
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
 #include "api_poly.h"
-#include "alltypes.hxx"
 
 #include "MALLOC.h"
 #include "CallScilab.h"
@@ -26,11 +25,12 @@ extern "C" {
 #include "code2str.h"
 };
 
+#include "alltypes.hxx"
+
 using namespace types;
 
 int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
-//const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
 	MatrixPoly* pPoly = dynamic_cast<MatrixPoly*>((InternalType*)_piAddress);
 	if(pPoly == NULL)
 	{
@@ -59,34 +59,26 @@ int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 
 int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	MatrixPoly* pPoly = (MatrixPoly*)_piAddress;
-
-
-/*	int i							= 0;
-	int iSize					= 0;
-	int *piOffset			= NULL;
-	double *pdblReal	= NULL;
-	double *pdblImg		= NULL;
-
-	if(	_piAddress == NULL || 
-			getVarType(_piAddress) != sci_poly || 
-			isVarComplex(_piAddress) != _iComplex)
+	bool bRet = true;
+	MatrixPoly* pPoly = dynamic_cast<MatrixPoly*>((InternalType*)_piAddress);
+	if(pPoly == NULL || pPoly->isComplex() != (_iComplex == 1? true : false))
 	{
 		return 1;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
-	iSize	= *_piRows * *_piCols;
+	*_piRows = pPoly->rows_get();
+	*_piCols = pPoly->cols_get();
 
 	if(_piNbCoef == NULL)
 	{
 		return 0;
 	}
 
-	piOffset = _piAddress + 8; //4 for header and 4 for variable name
-	for(i = 0 ; i < iSize ; i++)
+	//get polys rank
+	bRet = pPoly->rank_get(_piNbCoef);
+	if(!bRet)
 	{
-		_piNbCoef[i]	= piOffset[i + 1] - piOffset[i];
+		return 1;
 	}
 
 	if(_pdblReal == NULL)
@@ -94,36 +86,80 @@ int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _pi
 		return 0;
 	}
 
-	pdblReal = (double*)(piOffset + iSize + 1 + ((iSize + 1) % 2 == 0 ? 0 : 1 ));
-	for(i = 0 ; i < iSize ; i++)
+	if(pPoly->isComplex() && _pdblImg == NULL)
 	{
-		memcpy(_pdblReal[i], pdblReal + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
+		return 0;
 	}
 
-	if(_iComplex == 1)
+	for(int i = 0 ; i < pPoly->size_get() ; i++)
 	{
-		pdblImg = pdblReal + piOffset[iSize] - 1;
-		for(i = 0 ; i < iSize ; i++)
+		memcpy(_pdblReal[i], pPoly->poly_get(i)->coef_real_get(), _piNbCoef[i] * sizeof(double));
+	}
+
+	if(pPoly->isComplex() && _pdblImg != NULL)
+	{
+		for(int i = 0 ; i < pPoly->size_get() ; i++)
 		{
-			memcpy(_pdblImg[i], pdblImg + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
+			memcpy(_pdblImg[i], pPoly->poly_get(i)->coef_img_get(), _piNbCoef[i] * sizeof(double));
 		}
 	}
-*/
 	return 0;
 }
 
-int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, int* _piKey)
 {
-	return createCommonMatrixOfPoly(_iVar, 0, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonMatrixOfPoly(_iVar, 0, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, NULL, _piKey);
 }
 
-int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piKey)
 {
-	return createCommonMatrixOfPoly(_iVar, 1, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonMatrixOfPoly(_iVar, 1, _pstVarName, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, _piKey);
 }
 
-int createCommonMatrixOfPoly(int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int createCommonMatrixOfPoly(int _iVar, int _iComplex, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piKey)
 {
+	bool bRet = true;
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
+
+	int iNewPos			= _iVar - (int)pStr->m_pin->size() - 1;
+
+	MatrixPoly *pPoly = NULL;
+
+	if(iNewPos < 0 /*|| iNewPos > *pStr->m_piRetCount*/)
+	{
+		return 1;
+	}
+
+	pPoly = new MatrixPoly(_pstVarName, _iRows, _iCols, _piNbCoef);
+	pPoly->complex_set(_iComplex ? true : false);
+
+	for(int i = 0 ; i < pPoly->size_get() ; i++)
+	{
+		Poly *pP = pPoly->poly_get(i);
+		if(_iComplex)
+		{
+			bRet = pP->coef_set(_pdblReal[i], _pdblImg[i]);
+		}
+		else
+		{
+			bRet = pP->coef_set(_pdblReal[i], NULL);
+		}
+	
+		if(bRet == false)
+		{
+			return 1;
+		}
+	}
+
+	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
+	{
+		pStr->m_pout->push_back(NULL);
+	}
+
+	(*pStr->m_pout)[iNewPos] = pPoly;
+
+	return 0;
+	/*
 	int *piAddr				= NULL;
 	int iSize					= _iRows * _iCols;
 	int iNewPos				= Top - Rhs + _iVar;
@@ -142,6 +178,7 @@ int createCommonMatrixOfPoly(int _iVar, int _iComplex, char* _pstVarName, int _i
 	updateLstk(iNewPos, iAddr + 4 + 4 + iSize + 1, iTotalLen);
 
 	return 0;
+*/
 }
 
 int fillCommonMatrixOfPoly(int* _piAddress, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen)

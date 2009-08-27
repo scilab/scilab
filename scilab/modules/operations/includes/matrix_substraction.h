@@ -15,6 +15,11 @@
 
 #include "operation.hxx"
 
+EXTERN_OP int iSubstractRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut);
+EXTERN_OP int iSubstractRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractComplexIdentityToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
+EXTERN_OP int iSubstractComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);
+
 EXTERN_OP int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut);
 EXTERN_OP int iSubstractComplexMatrixToRealScalar(double* _pdblReal1, double* _pdblImg1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut, double* _pdblImgOut);
 EXTERN_OP int iSubstractRealMatrixToComplexScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);

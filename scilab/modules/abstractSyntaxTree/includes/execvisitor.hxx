@@ -55,50 +55,7 @@ namespace ast
 			{
 				if(_result[i] != NULL && _result[i]->isDeletable() == true)
 				{
-					if(_result[i]->getType() == InternalType::RealBool)
-					{
-						delete _result[i]->getAsBool();
-					}
-					else if(_result[i]->getType() == InternalType::RealDouble)
-					{
-						delete _result[i]->getAsDouble();
-					}
-					else if(_result[i]->getType() == InternalType::RealFloat)
-					{
-						delete _result[i]->getAsFloat();
-					}
-					else if(_result[i]->getType() == InternalType::RealFunction)
-					{
-						delete _result[i]->getAsFunction();
-					}
-					else if(_result[i]->getType() == InternalType::RealImplicitList)
-					{
-						delete _result[i]->getAsImplicitList();
-					}
-					else if(_result[i]->getType() == InternalType::RealInt)
-					{
-						delete _result[i]->getAsInt();
-					}
-					else if(_result[i]->getType() == InternalType::RealMacro)
-					{
-						delete _result[i]->getAsMacro();
-					}
-					else if(_result[i]->getType() == InternalType::RealPoly)
-					{
-						delete _result[i]->getAsPoly();
-					}
-					else if(_result[i]->getType() == InternalType::RealString)
-					{
-						delete _result[i]->getAsString();
-					}
-					else if(_result[i]->getType() == InternalType::RealUInt)
-					{
-						delete _result[i]->getAsUInt();
-					}
-					else
-					{
-						delete _result[i];
-					}
+					delete _result[i];
 				}
 			}
 		}

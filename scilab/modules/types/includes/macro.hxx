@@ -37,7 +37,7 @@ namespace types
 
 		Macro(){};
 		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
-		~Macro(){};
+		virtual ~Macro(){};
   
   public :
     std::list<symbol::Symbol>	*m_inputArgs;

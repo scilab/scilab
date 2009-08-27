@@ -57,7 +57,6 @@ namespace ast
 							{
 								Double *pTemp = new Double(1, execMe->result_get()->getAsImplicitList()->size_get(), false);
 								execMe->result_get()->getAsImplicitList()->extract_matrix(pTemp->real_get());
-								delete execMe->result_get();
 								execMe->result_set(pTemp);
 								iCurCol += ((GenericType*)execMe->result_get())->cols_get();
 							}
@@ -395,6 +394,8 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			break;
 		case GenericType::RealString :
 			poResult->getAsString()->string_set(iCurRow, iCurCol, _poSource->getAsString()->string_get(0,0));
+			*_piRows = _poSource->getAsString()->rows_get();
+			*_piCols = _poSource->getAsString()->cols_get();
 			break;
 		case GenericType::RealImplicitList :
 			{

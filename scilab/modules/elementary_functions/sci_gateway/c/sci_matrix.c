@@ -553,7 +553,7 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 			return 1;
 		}
 
-		iRet			= createComplexMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal, pdblImg);
+		iRet			= createComplexMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal, pdblImg, _piKey);
 	}
 	else
 	{
@@ -582,7 +582,7 @@ int matrix_poly(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 			return 1;
 		}
 
-		iRet			= createMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal);
+		iRet			= createMatrixOfPoly(Rhs + 1, pstVarName, _iRowsRet, _iColsRet, piCoeff, pdblReal, _piKey);
 	}
 
 	if(iRet)
@@ -645,7 +645,7 @@ int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		return 1;
 	}
 
-	iRet = createMatrixOfString(Rhs + 1, _iRowsRet, _iColsRet, pstData);
+	iRet = createMatrixOfString(Rhs + 1, _iRowsRet, _iColsRet, pstData, _piKey);
 	if(iRet)
 	{
 		return 1;

@@ -25,13 +25,15 @@ namespace types
   public :
 							String(int _iRows, int _iCols);
 							String(const char *_pcData);
-							~String();
+							virtual ~String();
 
     char**		string_get() const;
     char*			string_get(int _iRows, int _iCols) const;
+		char*			string_get(int _iPos) const;
 
     bool			string_set(const char **_pcData);
     bool			string_set(int _iRows, int _iCols, const char *_pcData);
+		bool 			string_set(int _iPos, const char *_pcData);
 
     void 			whoAmI();
 
@@ -47,7 +49,6 @@ namespace types
 		void 			all_delete();
 		void 			string_delete(int _iRows, int _iCols);
 		void 			string_delete(int _iPos);
-		bool 			string_set(int _iPos, const char *_pcData);
 
 		void 			CreateString(int _iRows, int _iCols);
   };

@@ -13,6 +13,56 @@
 #include <stdio.h>
 #include "matrix_addition.h"
 #include "core_math.h"
+#include <string.h>
+
+int iAddRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut, _pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	+= _dblReal1;
+	}
+	return 0;
+}
+
+int iAddRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut,	_pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memcpy(_pdblImgOut,		_pdblImg2	, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	+= _dblReal1;
+	}
+	return 0;
+}
+
+int iAddComplexIdentityToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut,	_pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memset(_pdblImgOut,		0x00, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	+= _dblReal1;
+		_pdblImgOut[i * _iRows2 + i]	+= _dblImg1;
+	}
+	return 0;
+}
+
+int iAddComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut,	_pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memcpy(_pdblImgOut,		_pdblImg2	, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	+= _dblReal1;
+		_pdblImgOut[i * _iRows2 + i]	+= _dblImg1;
+	}
+	return 0;
+}
 
 int iAddRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut)
 {

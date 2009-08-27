@@ -30,6 +30,10 @@ extern "C"
 #include "code2str.h"
 #include "freeArrayOfString.h"
 };
+
+#include "alltypes.hxx"
+
+using namespace types;
 /*--------------------------------------------------------------------------*/
 
 /*******************************/
@@ -38,28 +42,23 @@ extern "C"
 
 int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	int i = 0;
-	int *piOffset = NULL;
-	int *piData		= NULL;
-
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_strings)
+	String *pS = dynamic_cast<String*>((InternalType*)_piAddress);
+	if(pS == NULL)
 	{
 		return 1;
 	}
 
-	getVarDimension(_piAddress, _piRows, _piCols);
+	*_piRows = pS->rows_get();
+	*_piCols = pS->cols_get();
 
 	if(_piLength == NULL)
 	{
 		return 0;
 	}
 
-	piOffset = _piAddress + 4;
-
-	//non cummulative length
-	for(i = 0 ; i < *_piRows * *_piCols ; i++)
+	for(int i = 0 ; i < pS->size_get() ; i++)
 	{
-		_piLength[i] = piOffset[i + 1] - piOffset[i];
+		_piLength[i] = (int)strlen(pS->string_get(i));
 	}
 
 	if(_pstStrings == NULL)
@@ -67,36 +66,42 @@ int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLengt
 		return 0;
 	}
 
-	piData = piOffset + *_piRows * *_piCols + 1;
-
-	for(i = 0 ; i < *_piRows * *_piCols ; i++)
+	for(int i = 0 ; i < pS->size_get() ; i++)
 	{
-		if(_pstStrings[i] == NULL)
-		{
-			return 1;
-		}
-		code2str(&_pstStrings[i], piData + iArraySum(_piLength, 0, i), _piLength[i]);
-		_pstStrings[i][_piLength[i]] = 0;
+		strcpy(_pstStrings[i], pS->string_get(i));
 	}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
+int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int* _piKey)
 {
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
-	int iTotalLen		= 0;
-	int *piAddr			= NULL;
+	bool bRet = true;
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet != 0)
+	int iNewPos			= _iVar - (int)pStr->m_pin->size() - 1;
+
+	String *pS = NULL;
+
+	if(iNewPos < 0 /*|| iNewPos > *pStr->m_piRetCount*/)
 	{
 		return 1;
 	}
 
-	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
-	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2)), (iTotalLen + 1) / (sizeof(double) / sizeof(int)));
+	pS = new String(_iRows, _iCols);
+	bRet = pS->string_set((const char**)_pstStrings);
+	if(bRet == false)
+	{
+		return 1;
+	}
+
+	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
+	{
+		pStr->m_pout->push_back(NULL);
+	}
+
+	(*pStr->m_pout)[iNewPos] = pS;
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -264,7 +269,7 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piw
 	return ierr;
 }
 /*--------------------------------------------------------------------------*/
-int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings)
+int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pstwStrings, int* _piKey)
 {
 	char **pStrings = NULL;
 	int i = 0;
@@ -281,7 +286,7 @@ int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pstwS
 		pStrings[i] = wide_string_to_UTF8(_pstwStrings[i]);
 	}
 
-	ierr = createMatrixOfString(_iVar, _iRows, _iCols, pStrings);
+	ierr = createMatrixOfString(_iVar, _iRows, _iCols, pStrings, _piKey);
 	freeArrayOfString(pStrings, _iRows * _iCols);
 
 	return ierr;

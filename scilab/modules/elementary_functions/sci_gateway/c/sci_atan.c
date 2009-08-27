@@ -44,7 +44,7 @@ int sci_atan(char *fname, int* _piKey)
 	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(getVarType(piAddr1) != sci_matrix)
 	{
-//		OverLoad(1);
+		OverLoad(1);
 		return 0;
 	}
 

@@ -10,6 +10,18 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
+#include "boolean_gw.hxx"
+
+extern "C"
+{
+	#include "gw_boolean.h"
+}
+
+using namespace types;
+
+bool BooleanModule::Load()
+{
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("or", &sci_or, "boolean"));
+	return true;
+}
 

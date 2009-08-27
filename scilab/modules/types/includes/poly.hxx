@@ -28,7 +28,7 @@ namespace types
 		Poly(double** _pdblCoefR, int _iRank);
 		Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
 		Poly(Double** _poCoefR, int _iRank);
-		~Poly();
+		virtual ~Poly();
 
 
 		/*Config management*/

@@ -335,7 +335,7 @@ int getProcessMode(int* _piAddCheck, int* _piAddRef, int *_piMode)
 			return 1;
 		}
 
-		pstMode[1] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
+		pstMode[0] = (char*)malloc(sizeof(char) * (iLen + 1)); //+1 for null termination
 		iRet = getMatrixOfString(_piAddCheck, &iRows2, &iCols2, &iLen, pstMode);
 		if(iRet)
 		{

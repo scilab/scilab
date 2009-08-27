@@ -26,7 +26,7 @@ namespace types
     Bool(int _iRows, int _iCols);
     Bool(int _iRows, int _iCols, bool **_pbData);
 		void CreateBool(int _iRows, int _iCols, bool **_pbData);
-		~Bool();
+		virtual ~Bool();
 
 		/*data management*/
 		bool*					bool_get() const;

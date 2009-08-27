@@ -21,7 +21,7 @@ namespace types
 	class EXTERN_TYPES Float : public GenericType
 	{
   public :
-		~Float();
+		virtual ~Float();
 		Float(float _fReal);
     Float(int _iRows, int _iCols, bool _bComplex = false);
     Float(int _iRows, int _iCols, float **_pfReal);

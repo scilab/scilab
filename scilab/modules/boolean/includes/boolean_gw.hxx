@@ -10,6 +10,21 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
+#ifndef __BOOLEAN_GW_HXX__
+#define __BOOLEAN_GW_HXX__
 
+#include "funcmanager.hxx"
+#include "context.hxx"
+
+#include "dynlib_boolean_gw.h"
+
+class BooleanModule
+{
+private :
+	BooleanModule(){};
+	~BooleanModule(){};
+public :
+	BOOLEAN_GW_IMPEXP static bool Load();
+};
+
+#endif /* __BOOLEAN_GW_HXX__ */

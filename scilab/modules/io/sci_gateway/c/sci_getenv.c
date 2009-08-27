@@ -131,7 +131,7 @@ int C2F(sci_getenv)(char *fname, int* _piKey)
 
 		if (ierr == 0)
 		{
-			createMatrixOfString(Rhs + 1, m_out, n_out, &env_value);
+			createMatrixOfString(Rhs + 1, m_out, n_out, &env_value, _piKey);
 			LhsVar(1) = Rhs + 1;
 			C2F(putlhsvar)();	
 		}
@@ -139,7 +139,7 @@ int C2F(sci_getenv)(char *fname, int* _piKey)
 		{
 			if (default_env_value)
 			{
-				createMatrixOfString(Rhs + 1, m_out, n_out, &default_env_value);
+				createMatrixOfString(Rhs + 1, m_out, n_out, &default_env_value, _piKey);
 				LhsVar(1) = Rhs + 1;
 				C2F(putlhsvar)();	
 			}

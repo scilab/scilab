@@ -160,7 +160,7 @@ int abs_poly(int* _piAddress, int* _piKey)
 			}
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, _piKey);
 	}
 	else
 	{
@@ -186,15 +186,21 @@ int abs_poly(int* _piAddress, int* _piKey)
 			pdblRealRet[i]	= (double*)malloc(sizeof(double) * piCoeff[i]);
 		}
 
+		iRet = getMatrixOfPoly(_piAddress, &iRows, &iCols, piCoeff, pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
+
 		for(i = 0 ; i < iRows * iCols ; i++)
 		{
-			for(j = 0 ; i < piCoeff[i] ; j++)
+			for(j = 0 ; j < piCoeff[i] ; j++)
 			{
 				pdblRealRet[i][j] = dabss(pdblReal[i][j]);
 			}
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, _piKey);
 	}
 
 	if(iRet)
