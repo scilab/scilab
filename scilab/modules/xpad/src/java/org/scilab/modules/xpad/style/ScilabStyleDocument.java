@@ -31,19 +31,20 @@ import javax.swing.undo.UndoManager;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 
+import sun.misc.Regexp;
+
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
     String sb = "";
     int startPoint = 0;
 
     private UndoManager undo = new UndoManager() {
 	public void undoableEditHappened(UndoableEditEvent e) {
-	    System.out.println("UndoableEditEvent ="+e.getClass().getCanonicalName());
-	    System.out.println("UndoableEdit ="+e.getEdit().toString());
-	    System.out.println("Source = "+e.getSource().toString());
-	    System.out.println("filter = "+(e.getEdit() instanceof AttributeUndoableEdit));
+//	    System.out.println("UndoableEditEvent ="+e.getClass().getCanonicalName());
+//	    System.out.println("UndoableEdit ="+e.getEdit().toString());
+//	    System.out.println("Source = "+e.getSource().toString());
+//	    System.out.println("filter = "+(e.getEdit() instanceof AttributeUndoableEdit));
 	    //			if(e.getEdit().getPresentationName().compareTo("addition") == 0
 	    //					|| e.getEdit().getPresentationName().compareTo("deletion") == 0) {
-	 
 	    undo.addEdit(e.getEdit());
 	    //			}
 	}
@@ -53,9 +54,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private boolean autoColorize = true;
     private boolean colorizeInprogress = false;
     private boolean indentInprogress = false;
-
-    private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\"};
-    private final String[] controls = {"if ", "while ", "for ", " then", "else", "do", "case ", "end", "function", "endfunction"};
+    
+    private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\", 
+    									"=", "\\+=", "-=", "\\*=", "/=", "\\++", "--", "!=", 
+    									"\\||", "&&", "!", "&", "\\|", "\\^", "<<", ">>", ">>>>"};
+    
+    //'controls' is now under the name of 'commands'
+    //private String[] controls = {"if ", "while ", "for ", " then", "else", "do", "case ", "end", "function", "endfunction"};
+    private String[] commands;
+    private String[] functions;
+    private String[] macros;
     private final String[] strings = {"(\"|')[^{\n}]*?(\"|')"};
     private final String[] bools = {"%T", "%F", "%t", "%f"};
     private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
@@ -67,6 +75,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private final String IN = "IN";
     private final String OUT = "OUT";
     private final String TABULATION = "  ";
+    
+    private Style defaultStyle;
+    private Style operatorStyle;
+    private Style commandStyle;
+    private Style stringStyle;
+    private Style boolStyle;
+    private Style commentStyle;
+    private Style functionStyle;
+    private Style macroStyle;
 
 
     private final void DEBUG(String msg) {
@@ -77,60 +94,40 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	super();
 	addDocumentListener(this);
 	addUndoableEditListener(undo);
-	Style defaultStyle = this.addStyle("Default", null);
+	/*Style */defaultStyle = this.addStyle("Default", null);
 	StyleConstants.setBold(defaultStyle, false);
 	StyleConstants.setForeground(defaultStyle, Color.BLACK);
 	StyleConstants.setFontSize(defaultStyle, 16);
 	StyleConstants.setLeftIndent(defaultStyle, 0);
 
-	Style operatorStyle = this.addStyle("Operator", defaultStyle);
+	/*Style */operatorStyle = this.addStyle("Operator", defaultStyle);
 	StyleConstants.setBold(operatorStyle, true);
 	StyleConstants.setForeground(operatorStyle, Color.RED);
 
-	Style controlStyle = this.addStyle("Control", defaultStyle);
-	StyleConstants.setBold(controlStyle, true);
-	StyleConstants.setForeground(controlStyle, Color.CYAN);
+	/*Style */commandStyle = this.addStyle("Command", defaultStyle);
+	StyleConstants.setBold(commandStyle, true);
+	StyleConstants.setForeground(commandStyle, Color.CYAN);
 
-	Style stringStyle = this.addStyle("String", defaultStyle);
+	/*Style */stringStyle = this.addStyle("String", defaultStyle);
 	StyleConstants.setBold(stringStyle, true);
 	StyleConstants.setForeground(stringStyle, Color.BLUE);
 
-	Style boolStyle = this.addStyle("Bool", defaultStyle);
+	/*Style */boolStyle = this.addStyle("Bool", defaultStyle);
 	StyleConstants.setBold(boolStyle, true);
 	StyleConstants.setForeground(boolStyle, Color.YELLOW);
 
-	Style commentStyle = this.addStyle("Comment", defaultStyle);
+	/*Style */commentStyle = this.addStyle("Comment", defaultStyle);
 	StyleConstants.setBold(commentStyle, true);
 	StyleConstants.setForeground(commentStyle, Color.GREEN);
-    }
-
-    private void resetStyle() {
-	// Reset Color
-	this.removeUndoableEditListener(undo);
-	this.setCharacterAttributes(0, this.getLength(), this.getStyle("Default"), true);
-	this.setParagraphAttributes(0, this.getLength(), this.getStyle("Default"), true);
-	this.addUndoableEditListener(undo);
-    }
-
-    /*
-     * Colorize <pattern> with <style>
-     */
-    private void applyStyle(String[] words, Style style) throws BadLocationException {
-	for(int i = 0 ; i < words.length ; i++)
-	{
-	    Pattern pattern = Pattern.compile(words[i], Pattern.DOTALL);
-	    Matcher matcher = pattern.matcher(this.getText(0, this.getLength()));
-
-	    while(matcher.find())
-	    {
-		DEBUG("Apply Style : "+style.getName());
-		DEBUG("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start()));
-		DEBUG("Text : "+this.getText(matcher.start(), matcher.end()-matcher.start()));
-		this.setCharacterAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
-		this.setParagraphAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
-
-	    }
-	}
+	
+	/*Style */functionStyle = this.addStyle("Function", defaultStyle);
+	StyleConstants.setBold(functionStyle, true);
+	StyleConstants.setForeground(functionStyle, Color.PINK);
+	
+	/*Style */macroStyle = this.addStyle("Macro", defaultStyle);
+	StyleConstants.setBold(macroStyle, true);
+	StyleConstants.setForeground(macroStyle, Color.ORANGE);
+	
     }
 
     public void indent(int start, int end) {
@@ -229,7 +226,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//Display the indentation
 	this.replace(start, end-start, indentedText, null);
 
-
 	//System.out.println(indentedText);
 
 	//ATTENTION : - reucperation des operateurs sur une meme ligne
@@ -237,17 +233,41 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//            - gestion des comment /* */
 	//			  - erreur d'indentation si ",end", ne reconnait pas le "end"
 	//			  - erreur d'indentation, ne prend pas en compte l'indentation precedente
+	//			  - erreur d'indentation si on a des lignes vides entre 2 lignes de texte
     }
-
+    
+    
     public void colorize() {
+    	//Get all Scilab keywords to be colorized
+    	Hashtable<String, String[]>keywords = getScilabKeywords();
+    	
+    	commands = (String[])keywords.get("command");
+    	functions = (String[])keywords.get("function");
+    	macros = (String[])keywords.get("macro");
+    	
+    	//We mark the boundary of each regexp (for commands, functions & macros) 
+    	for (int i = 0; i < commands.length; i++) {
+    		commands[i] = "\\b" + commands[i] + "\\b"; 
+		}
+    	
+    	for (int i = 0; i < functions.length; i++) {
+    		functions[i] = "\\b" + functions[i] + "\\b"; 
+		}
+    	
+    	for (int i = 0; i < macros.length; i++) {
+    		macros[i] = "\\b" + macros[i] + "\\b"; 
+		}
+    	
 	if (!colorizeInprogress) {
 	    colorizeInprogress = true;
 	    this.removeUndoableEditListener(undo);
 	    this.addUndoableEditListener(null);
 	    resetStyle();
 	    try {
+	    applyStyle(macros, getStyle("Macro"));	
+	    applyStyle(functions, getStyle("Function"));
 		applyStyle(operators, getStyle("Operator"));
-		applyStyle(controls, getStyle("Control"));
+		applyStyle(commands, getStyle("Command"));		
 		applyStyle(strings, getStyle("String"));
 		applyStyle(bools, getStyle("Bool"));
 		applyStyle(comments, getStyle("Comment"));
@@ -260,7 +280,34 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		colorizeInprogress = false;
 	    }
 	}
-	Hashtable<String, String[]>keywords = getScilabKeywords();
+    }
+    
+    private void resetStyle() {
+    	// Reset Color
+    	this.removeUndoableEditListener(undo);
+    	this.setCharacterAttributes(0, this.getLength(), this.getStyle("Default"), true);
+    	this.setParagraphAttributes(0, this.getLength(), this.getStyle("Default"), true);
+    	this.addUndoableEditListener(undo);
+    }
+
+    
+    /*
+     * Colorize <pattern> with <style>
+     */
+    private void applyStyle(String[] words, Style style) throws BadLocationException {
+    	for(int i = 0 ; i < words.length ; i++)
+    	{
+    		Pattern pattern = Pattern.compile(words[i], Pattern.MULTILINE);
+    		Matcher matcher = pattern.matcher(this.getText(0, this.getLength()));
+
+    		while(matcher.find()) {
+    			//DEBUG("Apply Style : "+style.getName());
+    			//DEBUG("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start()));
+    			//DEBUG("Text : "+this.getText(matcher.start(), matcher.end()-matcher.start()));
+    			this.setCharacterAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
+    			this.setParagraphAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
+    		}
+    	}
     }
 
     public Vector<Integer> findWord(String word) {
@@ -285,7 +332,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	return offsetList;
     }
-
     public void changedUpdate(DocumentEvent e) {
 	// TODO Auto-generated method stub
 //	System.err.println("Calling changedUpdate "+e.toString());
@@ -328,22 +374,22 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     }
 
     public void setAutoIndent(boolean b) {
-	DEBUG("setAutoIndent("+b+")");
+	//DEBUG("setAutoIndent("+b+")");
 	autoIndent = b;
     }
   
     public boolean getAutoIndent() {
-	DEBUG("getAutoIndent("+autoIndent+")");
+	//DEBUG("getAutoIndent("+autoIndent+")");
 	return autoIndent;
     }
     
     public void setColorize(boolean b) {
-	DEBUG("setColorize("+b+")");
+	//DEBUG("setColorize("+b+")");
 	autoColorize = b;
     }
     
     public boolean getColorize() {
-	DEBUG("setColorize("+autoColorize+")");
+	//DEBUG("setColorize("+autoColorize+")");
 	return autoColorize;
     }
 
@@ -542,36 +588,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     }
     
     public Hashtable<String, String[]> getScilabKeywords() {
-    	
-    	System.out.println("---ICI---");
-    	
+    	//Get all Scilab keywords with SWIG
     	String[] commands =  ScilabKeywords.GetCommandsName();
     	String[] functions =  ScilabKeywords.GetFunctionsName();
     	String[] macros =  ScilabKeywords.GetMacrosName();
-    	String[] variables =  ScilabKeywords.GetVariablesName();
-    	
-
-    	
-    	for (int i = 0; i < commands.length; i++) {
-			System.out.println("---COMMAND---");
-			System.out.println(commands[i]);
-		}
-		
-    	
-    	for (int i = 0; i < functions.length; i++) {
-			System.out.println("---FUNCTIONS---");
-			System.out.println(functions[i]);
-		}
-
-    	for (int i = 0; i < variables.length; i++) {
-			System.out.println("---VARIABLES---");
-			System.out.println(variables[i]);
-		}
-
+    	//String[] variables =  ScilabKeywords.GetVariablesName();
     	
     	Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
     	
-    	/*for (int i = 0; i < commands.length; i++) {
+    	for (int i = 0; i < commands.length; i++) {
 			keywords.put("command", commands);
 		}
     	for (int i = 0; i < functions.length; i++) {
@@ -580,19 +605,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     	for (int i = 0; i < macros.length; i++) {
 			keywords.put("macro", macros);
 		}
-    	
-    	System.out.println("------------KEYWORDS---------");
-    	System.out.println(keywords.size());
-    	System.out.println(keywords.keySet());
-    	
-    	for (int i = 0; i < commands.length; i++) {
-			System.out.println(commands[i].toString());
-		}
-    	
-    	System.out.println("------------KEYWORDS---------");*/
-    	
     	return keywords;
     }
-
 
 }
