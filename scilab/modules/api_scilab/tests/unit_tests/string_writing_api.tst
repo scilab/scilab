@@ -6,16 +6,22 @@
 // =============================================================================
 
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/pointer_reading_api"));
-cd(pathconvert(TMPDIR+"/pointer_reading_api"));
+mkdir(pathconvert(TMPDIR+"/string_writing_api"));
+cd(pathconvert(TMPDIR+"/string_writing_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("pointer_reading",["read_pointer","read_pointer"],SCI+"/modules/core/tests/unit_tests/pointer_reading_api.c",[],[],"",cflags);
+ilib_build("string_writing",["write_string","write_string"],SCI+"/modules/api_scilab/tests/unit_tests/string_writing_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
-b_ref = [1,2;3,4];
-a = read_pointer();
-b = read_pointer(a);
-if or(b <> b_ref) then pause;end
+a_ref = "may the puffin be with you ";
+b = [];
+a = write_string();
+for i=1:size(a,"r")
+    for j=1:size(a,"c")
+        b = b + a(i,j);
+        b = b + " ";
+    end
+end
+if b <> a_ref then pause;end
             
         

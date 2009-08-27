@@ -6,16 +6,20 @@
 // =============================================================================
 
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/list_getlist_api"));
-cd(pathconvert(TMPDIR+"/list_getlist_api"));
+mkdir(pathconvert(TMPDIR+"/common_list_api"));
+cd(pathconvert(TMPDIR+"/common_list_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("list_getlist_api",["list_getlist","list_getlist"],SCI+"/modules/core/tests/unit_tests/list_getlist_api.c",[],[],"",cflags);
+ilib_build("common_list",["common_list","common_list"],SCI+"/modules/api_scilab/tests/unit_tests/common_list_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
-M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
-T=tlist(['V','value1','value2','value3'],['a','b','c'], [1,2,3], int32([1,2,3]));
-L=list(M,T);
-list_getlist(L)
+l1 = [1,2*%i,3;%i,2,3*%i];
+l2 = ["may","the";"puffin","be";"with","you"];
+l3 = int8([1,2,3]);
+l5 = list(l1,l2,l3);
+l4 = list(l5, list(l5,l5));
+l6 = uint16([1000,2000,3000]);
+l = list(l1,l2,l3,l6,l4,l5);
+common_list(l)
             
         

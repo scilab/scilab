@@ -322,10 +322,20 @@ Bug fixes:
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
-* bug 4688 fixed - listfiles("/") returned an error.
+* bug 4676 fixed - diary() removes whitespaces characters from the output of mprintf()
 
 * bug 4684 fixed - printf(), mprintf, msprintf do not properly deal with -%inf.
 
+* bug 4688 fixed - listfiles("/") returned an error.
+
+* bug 4689 fixed - diary() do not report interactive commands into the output file
+
+* bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
+
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
+
+* bug 4727 fixed - The function 'length' does not return the same value in Scilab 5.1 and Scilab 4.1.2
+
+* bug 4728 fixed - The function 'strcat' does not return the same value in Scilab 5.1 and Scilab 4.1.2
 
 * bug 4732 fixed - the help page of function ss2ss has some missing part

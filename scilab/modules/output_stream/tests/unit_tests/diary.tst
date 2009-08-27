@@ -4,20 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-r = [];
-for i = 1:100
-  r = [r, diary(TMPDIR + '/test'+string(i)+'.diary','new');];
-  if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') == []) then pause,end
-end
-
-if (size(r,'*') <> 100) then pause,end
-
-for i = 1:100
-	diary(i,'close');
-	mdelete(TMPDIR + '/test'+string(i)+'.diary');
-	if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') <> []) then pause,end
-end
-// =============================================================================
 cd(TMPDIR);
 [a1,b1] = diary('log1.txt');
 if (a1 == 0) then pause,end
@@ -78,6 +64,9 @@ if ~diary(TMPDIR + '/log2.txt','exists') then pause,end
 
 diary(TMPDIR + '/log1.txt','close')
 diary(TMPDIR + '/log2.txt','close')
+
+mdelete(TMPDIR + '/log1.txt');
+mdelete(TMPDIR + '/log2.txt');
 // =============================================================================
 ierr = execstr("diary(TMPDIR + ''/diarydate'',''new'',''prefix=YY-MM-DD hh:mm:ss'')","errcatch");
 if ierr <> 999 then pause,end
@@ -92,13 +81,13 @@ ierr = execstr("diary(TMPDIR + ''/diarydate2'',''new'',''prefix=U'')","errcatch"
 if ierr <> 0 then pause,end
 if ( fileinfo(TMPDIR + '/diarydate2') == []) then pause,end
 diary(TMPDIR + '/diarydate2','close')
-mdelete(TMPDIR + '/diarydate');
+mdelete(TMPDIR + '/diarydate2');
 // =============================================================================
 ierr = execstr("diary(TMPDIR + ''/diarydate2'',''new'',[''prefix=U'',''prefix-only-commands''])","errcatch");
 if ierr <> 0 then pause,end
 if ( fileinfo(TMPDIR + '/diarydate2') == []) then pause,end
 diary(TMPDIR + '/diarydate2','close')
-mdelete(TMPDIR + '/diarydate');
+mdelete(TMPDIR + '/diarydate2');
 // =============================================================================
 ierr = execstr("diary(TMPDIR + ''/diarydate2'',''new'',''filter)command'')","errcatch");
 if ierr <> 999 then pause,end
@@ -107,13 +96,13 @@ ierr = execstr("diary(TMPDIR + ''/diarydate2'',''new'',''filter=command'')","err
 if ierr <> 0 then pause,end
 if ( fileinfo(TMPDIR + '/diarydate2') == []) then pause,end
 diary(TMPDIR + '/diarydate2','close')
-mdelete(TMPDIR + '/diarydate');
+mdelete(TMPDIR + '/diarydate2');
 // =============================================================================
 ierr = execstr("diary(TMPDIR + ''/diarydate2'',''new'',''filter=output'')","errcatch");
 if ierr <> 0 then pause,end
 if ( fileinfo(TMPDIR + '/diarydate2') == []) then pause,end
 diary(TMPDIR + '/diarydate2','close')
-mdelete(TMPDIR + '/diarydate');
+mdelete(TMPDIR + '/diarydate2');
 // =============================================================================
 ierr = execstr("diary('''','''','''')","errcatch");
 if ierr <> 999 then pause,end
@@ -124,3 +113,42 @@ if ierr <> 999 then pause,end
 ierr = execstr("diary([],''list'',[])","errcatch");
 if ierr <> 999 then pause,end
 // =============================================================================
+names = [];
+ids = [];
+[a0, b0] = diary(TMPDIR + '/checkname');
+for i=1:100
+  [a,b] = diary(TMPDIR + '/checkname','new');
+  ids = [ids, a];
+  names = [names, b];
+end
+if size(ids,'*') <> 100 then pause,end
+
+l = ls(TMPDIR+'/checkname*');
+if size(l,'*') <> 101 then pause,end
+
+if and(diary(ids,'exists')) <> %t then pause,end
+
+diary(ids, 'close')
+diary(a0, 'close')
+
+for i=0:99
+  mdelete(TMPDIR + '/checkname' + '_' + string(i));
+end
+
+mdelete(TMPDIR + '/checkname');
+// =============================================================================
+r = [];
+for i = 1:100
+  r = [r, diary(TMPDIR + '/test'+string(i)+'.diary','new');];
+  if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') == []) then pause,end
+end
+
+if (size(r,'*') <> 100) then pause,end
+
+for i = 1:100
+	diary(i,'close');
+	mdelete(TMPDIR + '/test'+string(i)+'.diary');
+	if ( fileinfo(TMPDIR + '/test'+string(i)+'.diary') <> []) then pause,end
+end
+// =============================================================================
+

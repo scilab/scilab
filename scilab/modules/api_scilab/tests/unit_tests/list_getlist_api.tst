@@ -6,17 +6,16 @@
 // =============================================================================
 
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/string_reading_api"));
-cd(pathconvert(TMPDIR+"/string_reading_api"));
+mkdir(pathconvert(TMPDIR+"/list_getlist_api"));
+cd(pathconvert(TMPDIR+"/list_getlist_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("string_reading",["read_string","read_string"],SCI+"/modules/core/tests/unit_tests/string_reading_api.c",[],[],"",cflags);
+ilib_build("list_getlist_api",["list_getlist","list_getlist"],SCI+"/modules/api_scilab/tests/unit_tests/list_getlist_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
-a_ref = ["may the puffin be with you"];
-a_ref = ["sample strings manipulation with gateway API"];
-a = ["may", "the", "puffin"; "be","with","you"];
-b = read_string(a);
-if a_ref <> b then pause;end
+M=mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+T=tlist(['V','value1','value2','value3'],['a','b','c'], [1,2,3], int32([1,2,3]));
+L=list(M,T);
+list_getlist(L)
             
         

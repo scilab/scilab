@@ -116,11 +116,21 @@ src/fortran/slatec/dlngam.f \
 src/fortran/slatec/balanc.f
 
 LINPACK_SOURCES =    src/fortran/linpack/dgesl.f \
-   src/fortran/linpack/wpade.f \
-   src/fortran/linpack/wcopy.f \
-   src/fortran/linpack/dpofa.f \
-   src/fortran/linpack/util.f \
-   src/fortran/linpack/dgefa.f
+	src/fortran/linpack/wpade.f \
+	src/fortran/linpack/util.f \
+	src/fortran/linpack/wcopy.f \
+	src/fortran/linpack/dgefa.f \
+	src/fortran/linpack/dgbfa.f \
+	src/fortran/linpack/dgeco.f \
+	src/fortran/linpack/dgedi.f \
+	src/fortran/linpack/dqrdc.f \
+	src/fortran/linpack/dqrsl.f \
+	src/fortran/linpack/dqrsm.f \
+	src/fortran/linpack/hhdml.f \
+	src/fortran/linpack/spofa.f \
+	src/fortran/linpack/wgeco.f \
+	src/fortran/linpack/wgefa.f \
+	src/fortran/linpack/wgesl.f   
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -253,7 +263,8 @@ src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
 src/fortran/rkbesl.f \
-src/fortran/rybesl.f
+src/fortran/rybesl.f \
+src/fortran/sdot.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
 sci_gateway/c/sci_matrix.c \

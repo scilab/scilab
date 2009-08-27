@@ -104,9 +104,8 @@ am__objects_1 = libscirandlib_la-fsultra.lo libscirandlib_la-mt.lo \
 am__objects_2 = libscirandlib_la-gw_randlib.lo \
 	libscirandlib_la-sci_grand.lo
 am__objects_3 = gennf.lo genchi.lo setgmn.lo gengam.lo snorm.lo \
-	gennch.lo genmn.lo phrtsd.lo spofa.lo sdot.lo ignnbn.lo \
-	lennob.lo genf.lo genunf.lo genexp.lo genmul.lo genprm.lo \
-	gennor.lo
+	gennch.lo genmn.lo phrtsd.lo ignnbn.lo lennob.lo genf.lo \
+	genunf.lo genexp.lo genmul.lo genprm.lo gennor.lo
 am_libscirandlib_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscirandlib_la_OBJECTS = $(am_libscirandlib_la_OBJECTS)
@@ -387,8 +386,6 @@ src/fortran/snorm.f \
 src/fortran/gennch.f \
 src/fortran/genmn.f \
 src/fortran/phrtsd.f \
-src/fortran/spofa.f \
-src/fortran/sdot.f \
 src/fortran/ignnbn.f \
 src/fortran/lennob.f \
 src/fortran/genf.f \
@@ -739,12 +736,6 @@ genmn.lo: src/fortran/genmn.f
 
 phrtsd.lo: src/fortran/phrtsd.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o phrtsd.lo `test -f 'src/fortran/phrtsd.f' || echo '$(srcdir)/'`src/fortran/phrtsd.f
-
-spofa.lo: src/fortran/spofa.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o spofa.lo `test -f 'src/fortran/spofa.f' || echo '$(srcdir)/'`src/fortran/spofa.f
-
-sdot.lo: src/fortran/sdot.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sdot.lo `test -f 'src/fortran/sdot.f' || echo '$(srcdir)/'`src/fortran/sdot.f
 
 ignnbn.lo: src/fortran/ignnbn.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ignnbn.lo `test -f 'src/fortran/ignnbn.f' || echo '$(srcdir)/'`src/fortran/ignnbn.f

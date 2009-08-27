@@ -248,6 +248,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "randlib", "modules\randlib\
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "randlib_f", "modules\randlib\src\fortran\randlib_f.vfproj", "{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	ProjectSection(ProjectDependencies) = postProject
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 		{A5911CD7-F8E8-440C-A23E-4843A0636F3A} = {A5911CD7-F8E8-440C-A23E-4843A0636F3A}
 	EndProjectSection
@@ -276,6 +277,7 @@ Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "signal_processing_f", "modu
 EndProject
 Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "slicot_f", "modules\cacsd\src\slicot\slicot_f\slicot_f.vfproj", "{C4C3EA58-1C27-4EFB-A5BF-0DB24EC5F87A}"
 	ProjectSection(ProjectDependencies) = postProject
+		{F0F55692-0355-4BC3-BE9D-552C8AAC5238} = {F0F55692-0355-4BC3-BE9D-552C8AAC5238}
 		{3170E4C2-1173-4264-A222-7EE8CCB3DDF7} = {3170E4C2-1173-4264-A222-7EE8CCB3DDF7}
 	EndProjectSection
 EndProject

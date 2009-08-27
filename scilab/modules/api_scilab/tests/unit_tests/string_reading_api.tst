@@ -6,17 +6,17 @@
 // =============================================================================
 
 ilib_verbose(0);
-mkdir(pathconvert(TMPDIR+"/poly_writing_api"));
-cd(pathconvert(TMPDIR+"/poly_writing_api"));
+mkdir(pathconvert(TMPDIR+"/string_reading_api"));
+cd(pathconvert(TMPDIR+"/string_reading_api"));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("poly_writing",["write_poly","write_poly"],SCI+"/modules/core/tests/unit_tests/poly_writing_api.c",[],[],"",cflags);
+ilib_build("string_reading",["read_string","read_string"],SCI+"/modules/api_scilab/tests/unit_tests/string_reading_api.c",[],[],"",cflags);
 exec("loader.sce");
 
             
-p_ref = [2 5 18 1 -4 0 0 1 -14 0 0 4 0 0 0 0 0 0;64 1 0 0 0 0 -12 0 0 2 0 32 0 0 0 0 0 8];
-l = list();
-a = write_poly();
-p = coeff(a);
-if or(p <> p_ref) then pause;end
+a_ref = ["may the puffin be with you"];
+a_ref = ["sample strings manipulation with gateway API"];
+a = ["may", "the", "puffin"; "be","with","you"];
+b = read_string(a);
+if a_ref <> b then pause;end
             
         
