@@ -11,14 +11,15 @@
  */
 #ifndef __SCICURDIR_H__
 #define __SCICURDIR_H__
-#include "machine.h"
+
+#include "dynlib_fileio.h"
 
 /**
  * Changes scilab current directory 
  * @param path : the path where Scilab should go
  * @param[out] err : the error code
  */
-int scichdir(char *path,int *err);
+FILEIO_IMPEXP int scichdir(char *path,int *err);
 
 /**
  * Get scilab current directory 
@@ -26,7 +27,7 @@ int scichdir(char *path,int *err);
  * @param[out] lpath : the length of the char * path
  * @param[out] err : the error code
  */
-int scigetcwd(char **path,int *lpath,int *err);
+FILEIO_IMPEXP int scigetcwd(char **path,int *lpath,int *err);
 
 #endif /* __SCICURDIR_H__ */
 /*--------------------------------------------------------------------------*/

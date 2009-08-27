@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __FILEEXIST_H__
 #define __FILEEXIST_H__
-
+#include "dynlib_fileio.h"
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -20,6 +20,6 @@
 * @param filename a string 
 * @return TRUE or FALSE
 */
-BOOL FileExist(char *filename);
+FILEIO_IMPEXP BOOL FileExist(char *filename);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __FILEEXIST_H__ */

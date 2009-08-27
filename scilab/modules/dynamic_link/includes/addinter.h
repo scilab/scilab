@@ -14,6 +14,7 @@
 #define  __ADDINTER_H__
 
 #include "dynlib_dynamic_link.h"
+#include "machine.h"
 
 /** 
 * the first dynamic interface is at position 500+1 
