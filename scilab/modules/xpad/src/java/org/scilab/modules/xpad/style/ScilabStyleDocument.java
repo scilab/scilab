@@ -31,8 +31,6 @@ import javax.swing.undo.UndoManager;
 
 import org.scilab.modules.xpad.ScilabKeywords;
 
-import sun.misc.Regexp;
-
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
     String sb = "";
     int startPoint = 0;
