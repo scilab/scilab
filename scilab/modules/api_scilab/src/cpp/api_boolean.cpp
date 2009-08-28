@@ -38,9 +38,18 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
 	
 	getVarDimension(_piAddress, _piRows, _piCols);
 
-	if(_piBool)
+	Bool* pb = ((InternalType*)_piAddress)->getAsBool();
+	if(_piBool != NULL)
 	{
-		*_piBool = _piAddress + 3;
+		int* piBool = new int[*_piRows * *_piCols];
+		for(int i = 0 ; i < *_piRows ; i++)
+		{
+			for(int j = 0 ; j < *_piCols ; j++)
+			{
+				piBool[i + j * *_piRows] = pb->bool_get(i,j) == true ? 1 : 0;
+			}
+		}
+			*_piBool = piBool;
 	}
 	return 0;
 }

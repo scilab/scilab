@@ -64,7 +64,7 @@ API_SCILAB_IMPEXP int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int*
  * @param[in] _pdblReal pointer on data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+API_SCILAB_IMPEXP int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, int* _piKey);
 
 /**
  * Get complex polynomial named variable data
@@ -77,7 +77,7 @@ API_SCILAB_IMPEXP int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRow
  * @param[in] _pdblImg pointer on imaginary data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piKey);
 
 /**
  * Create polynomial named variable

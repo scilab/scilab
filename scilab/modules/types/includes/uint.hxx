@@ -20,7 +20,7 @@ namespace types
 	class EXTERN_TYPES UInt : public GenericType
 	{
   public :
-		~UInt();
+		virtual ~UInt();
 		UInt(unsigned int _iReal);
     UInt(int _iRows, int _iCols, bool _bComplex = false);
     UInt(int _iRows, int _iCols, int unsigned **_puiReal);

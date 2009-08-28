@@ -22,7 +22,7 @@ namespace types
 	class EXTERN_TYPES Double : public GenericType
 	{
   public :
-		~Double();
+		virtual ~Double();
 
 		Double(double _dblReal);
 		Double(double _dblReal, double _dblImg);

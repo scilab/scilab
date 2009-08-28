@@ -126,7 +126,7 @@ int real_poly(int* _piAddress, int* _piKey)
 				}
 			}
 		}
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -160,7 +160,7 @@ int real_poly(int* _piAddress, int* _piKey)
 			return 1;
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;

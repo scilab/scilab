@@ -10,7 +10,59 @@
 *
 */
 
+#include "core_math.h"
 #include "matrix_substraction.h"
+#include "string.h"
+
+//Matrix - eye
+int iSubstractRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut, _pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	-= _dblReal1;
+	}
+	return 0;
+}
+
+int iSubstractRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut, _pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memcpy(_pdblImgOut,		_pdblImg2	, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	-= _dblReal1;
+	}
+	return 0;
+}
+
+int iSubstractComplexIdentityToRealMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut, _pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memset(_pdblImgOut,		0x00, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	-= _dblReal1;
+		_pdblImgOut[i * _iRows2 + i]	-= _dblImg1;
+	}
+	return 0;
+}
+
+int iSubstractComplexIdentityToComplexMatrix(double _dblReal1, double _dblImg1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut)
+{
+	int i = 0;
+	memcpy(_pdblRealOut,	_pdblReal2, sizeof(double) * _iRows2 * _iCols2);
+	memcpy(_pdblImgOut,		_pdblImg2	, sizeof(double) * _iRows2 * _iCols2);
+	for(i = 0 ; i < Min(_iRows2, _iCols2) ; i++)
+	{
+		_pdblRealOut[i * _iRows2 + i]	-= _dblReal1;
+		_pdblImgOut[i * _iRows2 + i]	-= _dblImg1;
+	}
+	return 0;
+}
 
 //Scalar - Matrix
 int iSubstractRealMatrixToRealScalar(double* _pdblReal1, int _iRows, int _iCols, double _dblReal2, double* _pdblRealOut)

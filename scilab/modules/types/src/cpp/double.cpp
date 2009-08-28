@@ -415,7 +415,30 @@ namespace types
 		//if(isComplex() == false)
 		{
 			/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
-			if(cols_get() == 0 || rows_get() == 0)
+			if(isIdentity())
+			{
+				ostr << "eye *" << endl << endl;
+				if(isComplex() == false)
+				{
+					int iWidth = 0, iPrec = 0;
+					bool bFP = false; // FloatingPoint
+					GetFormat((m_pdblReal[0]), _iPrecision, &iWidth, &iPrec, &bFP);
+					Add_Value(&ostr, (m_pdblReal[0]), iWidth, iPrec);
+					ostr << endl;
+				}
+				else
+				{//complex value
+					int iWidthR = 0, iWidthI = 0;
+					int iPrecR = 0, iPrecI = 0;
+					bool bFPR = false, bFPI = false; // FloatingPoint
+					GetFormat(ZeroIsZero(m_pdblReal[0]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
+					GetFormat(ZeroIsZero(m_pdblImg[0]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
+					Add_Complex_Value(&ostr, ZeroIsZero(m_pdblReal[0]), ZeroIsZero(m_pdblImg[0]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+					ostr << endl;
+				}
+				ostr << endl;
+			}
+			else if(cols_get() == 0 || rows_get() == 0)
 			{
 				ostr << "   []";
 				ostr << endl;

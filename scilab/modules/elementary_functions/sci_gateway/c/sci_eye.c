@@ -28,8 +28,6 @@ int sci_eye(char *fname, int* _piKey)
 
 	double *pdblRealRet		= NULL;
 
-	//Rhs = Max(Rhs,0);
-
 	CheckRhs(0,2);
 	CheckLhs(1,1);
 
@@ -73,6 +71,18 @@ int sci_eye(char *fname, int* _piKey)
 	}
 	else if(Rhs == 2)
 	{
+		iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
 		getDimFromVar(piAddr1, &iRows);
 		getDimFromVar(piAddr2, &iCols);
 	}

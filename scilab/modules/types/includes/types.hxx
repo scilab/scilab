@@ -37,7 +37,7 @@ namespace types
 
   protected :
     GenericType() {}
-
+		virtual ~GenericType() {}
   public :
     void whoAmI(void) { std::cout << "types::GenericType"; }
 
@@ -75,6 +75,7 @@ namespace types
 		std::string DimToString();
 
 
+    bool isIdentity(void);
     virtual bool isAssignable(void) { return true; }
 
 		virtual RealType getType(void) { return RealGeneric; }

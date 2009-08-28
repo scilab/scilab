@@ -3,6 +3,12 @@
 ### INRIA - Scilab 2006
 ##########
 
+
+BOOLEAN_CPP_SOURCES = \
+	src/cpp/boolean_gw.cpp
+
+
+
 BOOLEAN_C_SOURCES = src/c/matboolean.c \
 src/c/vect_or.c \
 src/c/vect_and.c
@@ -25,11 +31,24 @@ libsciboolean_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/operations/includes
 
+libsciboolean_la_CPPFLAGS = \
+	-I$(srcdir)/includes/ \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+        -I$(top_srcdir)/modules/types/includes \
+        -I$(top_srcdir)/modules/symbol/includes \
+        -I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+        -I$(top_srcdir)/modules/elementary_functions/includes \
+        -I$(top_srcdir)/modules/core/includes \
+        -I$(top_srcdir)/modules/operations/includes \
+        -I$(top_srcdir)/modules/api_scilab/includes
+
+
+
 pkglib_LTLIBRARIES = libsciboolean.la
 
 libsciboolean_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)

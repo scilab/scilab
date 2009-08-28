@@ -38,4 +38,13 @@ namespace types
 		return ostr.str();
 	}
 
+	bool GenericType::isIdentity(void)
+	{
+		if(m_iRows == -1 && m_iCols == -1)
+		{
+			return true;
+		}
+		return false;
+	}
+
 }

@@ -52,6 +52,7 @@ namespace types
 			RealObject
     };
 
+		virtual ~InternalType(){};
     virtual void whoAmI(void) { std::cout << "types::Inernal"; }
 
 		virtual bool isAssignable(void) { return false; }

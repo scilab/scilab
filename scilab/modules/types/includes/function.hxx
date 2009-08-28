@@ -43,7 +43,7 @@ namespace types
 
     Function() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
-    ~Function();
+    virtual ~Function();
     //private:
  
     static Function *createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule);

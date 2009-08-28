@@ -24,11 +24,83 @@ int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDou
 	bool bComplex2		= _pDouble2->isComplex();
 	bool bScalar1			= _pDouble1->rows_get() == 1 && _pDouble1->cols_get() == 1;
 	bool bScalar2			= _pDouble2->rows_get() == 1 && _pDouble2->cols_get() == 1;
+	bool bIdentity1		= _pDouble1->isIdentity();
+	bool bIdentity2		= _pDouble2->isIdentity();
 
 	double *pReal			= NULL;
 	double *pImg			= NULL;
 
-	if(bScalar1)
+	if(bIdentity1)
+	{
+		if(bComplex1 == false && bComplex2 == false)
+		{
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
+			iSubstractRealIdentityToRealMatrix(
+					_pDouble1->real_get()[0],
+					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
+					(*_pDoubleOut)->real_get());
+		}
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			iSubstractRealIdentityToComplexMatrix(
+					_pDouble1->real_get()[0], 
+					_pDouble2->real_get(), _pDouble2->img_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			iSubstractComplexIdentityToRealMatrix(
+					_pDouble1->real_get()[0], _pDouble1->img_get()[0],
+					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			iSubstractComplexIdentityToComplexMatrix(
+					_pDouble1->real_get()[0], _pDouble1->img_get()[0],
+					_pDouble2->real_get(), _pDouble2->img_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+	}
+	else if(bIdentity2)
+	{
+		if(bComplex1 == false && bComplex2 == false)
+		{
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
+			iSubstractRealIdentityToRealMatrix(
+					_pDouble2->real_get()[0],
+					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
+					(*_pDoubleOut)->real_get());
+		}
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			iSubstractComplexIdentityToRealMatrix(
+					_pDouble2->real_get()[0], _pDouble2->img_get()[0],
+					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			iSubstractRealIdentityToComplexMatrix(
+					_pDouble2->real_get()[0], 
+					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			iSubstractComplexIdentityToComplexMatrix(
+					_pDouble2->real_get()[0], _pDouble2->img_get()[0],
+					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
+		}
+	}
+	else if(bScalar1)
 	{//add pL with each element of pR
 		if(bComplex1 == false && bComplex2 == false)
 		{

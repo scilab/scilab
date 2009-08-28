@@ -55,7 +55,7 @@ API_SCILAB_IMPEXP int getMatrixOfWideString(int* _piAddress, int* _piRows, int* 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
+API_SCILAB_IMPEXP int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int* _piKey);
 
 /**
 * Create wide strings variable data
@@ -66,7 +66,7 @@ API_SCILAB_IMPEXP int createMatrixOfString(int _iVar, int _iRows, int _iCols, ch
 * @param[out] _piAddress return pointer on new variable
 * @return if the operation successed (0) or not ( !0 )
 */
-API_SCILAB_IMPEXP int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings);
+API_SCILAB_IMPEXP int createMatrixOfWideString(int _iVar, int _iRows, int _iCols, wchar_t** _pwstStrings, int* _piKey);
 
 /**
  * Create strings variable data

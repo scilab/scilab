@@ -152,7 +152,7 @@ int sci_typename_no_rhs(char *fname, int* _piKey)
 		m_out2 = numberOfTypes;
 		n_out2 = 1;
 		
-		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames);
+		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames, _piKey);
 		if (TypesNames) freeArrayOfString(TypesNames,numberOfTypes);
 		LhsVar(2) = Rhs + 2; 
 	}

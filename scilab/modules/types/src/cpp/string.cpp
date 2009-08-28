@@ -68,9 +68,18 @@ namespace types
 
 	char* String::string_get(int _iRows, int _iCols) const
 	{
-		if(m_pcData != NULL)
+		if(_iRows >= m_iRows || _iCols >= m_iCols)
 		{
-			return m_pcData[_iCols * m_iRows + _iRows];
+			return NULL;
+		}
+		return string_get(_iCols * m_iRows + _iRows);
+	}
+
+	char* String::string_get(int _iPos) const
+	{
+		if(m_pcData != NULL && _iPos < m_iSize)
+		{
+			return m_pcData[_iPos];
 		}
 		else
 		{

@@ -25,7 +25,7 @@ namespace types
     Int(int _iRows, int _iCols, int **_puiReal);
     Int(int _iRows, int _iCols, int **_puiReal, int **_puiImg);
 		void CreateInt(int _iRows, int _iCols, int **_puiReal, int **_puiImg);
-		~Int();
+		virtual ~Int();
 
 		/*data management*/
 		int*					real_get() const;

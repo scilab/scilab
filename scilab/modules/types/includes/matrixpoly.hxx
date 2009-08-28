@@ -15,6 +15,10 @@
 
 #include "types.hxx"
 
+#ifdef isComplex
+#undef isComplex
+#endif
+
 namespace types
 {
 	class EXTERN_TYPES MatrixPoly : public GenericType
@@ -22,7 +26,7 @@ namespace types
   public :
 		MatrixPoly();
 		MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
-		~MatrixPoly();
+		virtual ~MatrixPoly();
 
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);

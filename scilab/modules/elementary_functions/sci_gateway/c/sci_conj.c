@@ -163,7 +163,7 @@ int conj_poly(int* _piAddress, int* _piKey)
 			C2F(dscal)(&piCoeff[i], &dblCoef, pdblImgRet[i], &iOne);
 		}
 
-		iRet = createComplexMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet);
+		iRet = createComplexMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblRealRet, pdblImgRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -196,7 +196,7 @@ int conj_poly(int* _piAddress, int* _piKey)
 			return 1;
 		}
 
-		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal);
+		iRet = createMatrixOfPoly(Rhs + 1, pstVarName, iRows, iCols, piCoeff, pdblReal, _piKey);
 		if(iRet)
 		{
 			return 1;

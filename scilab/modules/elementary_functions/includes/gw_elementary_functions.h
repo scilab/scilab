@@ -29,13 +29,11 @@ int C2F(sci_zeros)(char *fname,unsigned long fname_len);
 int C2F(sci_tan)(char *fname,unsigned long fname_len);
 int C2F(sci_isequal)(char *fname,unsigned long fname_len);
 int C2F(sci_spones)(char *fname,unsigned long fname_len);
-int C2F(sci_gsort)(char *fname, unsigned long fname_len);
 int C2F(sci_isequalbitwise)(char *fname, unsigned long fname_len);
 int C2F(sci_sort)(char *fname, unsigned long fname_len);
 
 // YaSp
 int C2F(sci_size)(char *fnam, int* _piKey);
-
 
 int sci_abs(char *fname, int* _piKey);
 int sci_acos(char *fname, int* _piKey);
@@ -54,6 +52,7 @@ int sci_expm(char *fname, int* _piKey);
 int sci_eye(char *fname, int* _piKey);
 int sci_floor(char *fname, int* _piKey);
 int sci_frexp(char *fname, int* _piKey);
+int sci_gsort(char *fname, int* _piKey);
 int sci_imag(char *fname, int* _piKey);
 int sci_imult(char *fname, int* _piKey);
 int sci_int(char *fname, int* _piKey);
