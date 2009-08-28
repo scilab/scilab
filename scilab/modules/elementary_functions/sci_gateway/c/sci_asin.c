@@ -14,9 +14,9 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_asin) (char *fname, int* _piKey)
+int sci_asin(char *fname, int* _piKey)
 {
 	int i;
 	int iRet = 0;
@@ -41,7 +41,7 @@ int C2F(sci_asin) (char *fname, int* _piKey)
 
 	if(getVarType(piAddr) != sci_matrix)
 	{
-		OverLoad(1);
+//		OverLoad(1);
 		return 0;
 	}
 

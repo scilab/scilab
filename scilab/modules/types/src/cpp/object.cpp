@@ -265,7 +265,7 @@ namespace types
       args.push_back(arg);
     va_end(ap);
     
-    if(m.call(args, &retcount, out) == Function::AllGood)
+    if(m.call(args, &retcount, out) == Function::OK)
       return out[0];
     else
       return NULL;

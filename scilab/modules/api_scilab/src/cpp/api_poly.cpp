@@ -17,6 +17,7 @@
 #include "api_internal_common.h"
 #include "api_internal_poly.h"
 #include "api_poly.h"
+#include "alltypes.hxx"
 
 #include "MALLOC.h"
 #include "CallScilab.h"
@@ -25,37 +26,24 @@ extern "C" {
 #include "code2str.h"
 };
 
+using namespace types;
+
 int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
-	int i							= 0;
-	char *pstVarName	= NULL;
-
-	pstVarName = (char*)MALLOC(sizeof(char) * 5);
-	if(_piAddress == NULL || _piAddress[0] != sci_poly)
+//const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
+	MatrixPoly* pPoly = dynamic_cast<MatrixPoly*>((InternalType*)_piAddress);
+	if(pPoly == NULL)
 	{
 		return 1;
 	}
 
-	*_piVarNameLen = 4;
-	code2str(&pstVarName, &_piAddress[4], *_piVarNameLen);
-	for(i = 0 ; i < *_piVarNameLen ; i++)
-	{
-		if(pstVarName[i] == ' ')
-		{
-			memset(pstVarName + i, 0x00, *_piVarNameLen - i);
-			*_piVarNameLen = i;
-			break;
-		}
-	}
-	pstVarName[4] = 0;
-
+	*_piVarNameLen = (int)pPoly->var_get().size();
 	if(_pstVarName == NULL)
 	{
-		return 0;	
+		return 1;
 	}
 
-	strcpy(_pstVarName, pstVarName);
-	
+	strcpy(_pstVarName, pPoly->var_get().c_str());
 	return 0;
 }
 
@@ -71,7 +59,10 @@ int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 
 int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	int i							= 0;
+	MatrixPoly* pPoly = (MatrixPoly*)_piAddress;
+
+
+/*	int i							= 0;
 	int iSize					= 0;
 	int *piOffset			= NULL;
 	double *pdblReal	= NULL;
@@ -117,6 +108,7 @@ int getCommonMatrixOfPoly(int* _piAddress, int _iComplex, int* _piRows, int* _pi
 			memcpy(_pdblImg[i], pdblImg + piOffset[i] - 1, sizeof(double) * _piNbCoef[i]);
 		}
 	}
+*/
 	return 0;
 }
 

@@ -19,7 +19,7 @@ namespace types
 {
   /** Public utils */
   static Function::ReturnValue
-  ro_setter_func(typed_list &, int *, typed_list &out)
+  ro_setter_func(typed_list &, int, typed_list &out)
   {
     throw std::string("Read-only property");
   }
@@ -27,7 +27,7 @@ namespace types
   Function *ro_setter = new Function("", ro_setter_func, "");
 
   Function::ReturnValue
-  Method::call(typed_list &in, int* _piRetCount, typed_list &out)
+  Method::call(typed_list &in, int iRetCount, typed_list &out)
   {
     symbol::Context *ctx = symbol::Context::getInstance();
     ObjectMatrix *thisref = dynamic_cast<ObjectMatrix*>(ctx->get(symbol::Symbol("this")));
@@ -52,7 +52,7 @@ namespace types
   }
   
   Function::ReturnValue
-  BoundMethod::call(typed_list &in, int* _piRetCount, typed_list &out)
+  BoundMethod::call(typed_list &in, int iRetCount, typed_list &out)
   {
     Function::ReturnValue ret;
     symbol::Context *ctx = symbol::Context::getInstance();
@@ -69,14 +69,14 @@ namespace types
   }
   
   Function::ReturnValue
-  BoundGetter::inner_call(typed_list &in, int *_piRetCount, typed_list &out)
+  BoundGetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
     // push value = slot->value
     return inner_call(in, _piRetCount, out);
   }
   
   Function::ReturnValue
-  BoundSetter::inner_call(typed_list &in, int *_piRetCount, typed_list &out)
+  BoundSetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
     Function::ReturnValue ret;
     // push value = slot->value
@@ -87,7 +87,7 @@ namespace types
   
   /** Root object */
   Function::ReturnValue
-  install_property(typed_list &in, int *, typed_list &, ObjectMatrix *self, ObjectMatrix *)
+  install_property(typed_list &in, int, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;
@@ -117,11 +117,11 @@ namespace types
     
     self->object_ref_get()->install_property(name->string_get(0,0), svisib, def, getter, setter);
     
-    return Function::AllGood;
+    return Function::OK;
   }
   
   Function::ReturnValue
-  install_method(typed_list &in, int *, typed_list &, ObjectMatrix *self, ObjectMatrix *)
+  install_method(typed_list &in, int, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;
@@ -145,6 +145,6 @@ namespace types
     
     self->object_ref_get()->install_method(name->string_get(0,0), svisib, func);
     
-    return Function::AllGood;
+    return Function::OK;
   }
 }

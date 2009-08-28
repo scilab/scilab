@@ -16,10 +16,11 @@
 #include "../../core/src/c/parse.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_log) (char *fname,int* _piKey)
+int sci_log(char *fname,int* _piKey)
 {
 	int i;
 	int iAlert					= 1; // to print only one warning message

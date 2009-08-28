@@ -47,7 +47,7 @@ API_SCILAB_IMPEXP int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, in
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
+API_SCILAB_IMPEXP int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool, int*_piKey);
 
 /**
  * Create boolean named variable

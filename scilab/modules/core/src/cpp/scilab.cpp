@@ -86,10 +86,13 @@ void Add_i(void);
 void Add_pi(void);
 void Add_s(void);
 void Add_z(void);
+void Add_true(void);
+void Add_false(void);
 void Add_All_Variables(void);
 
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdblReal);
+void Add_Boolean_Constant(string _szName, bool _bBool);
 
 int InitializeEnvironnement(void);
 
@@ -458,6 +461,18 @@ void Add_All_Variables(void)
 	Add_i();
 	Add_s();
 	Add_z();
+	Add_true();
+	Add_false();
+}
+
+void Add_false(void)
+{
+	Add_Boolean_Constant("%f", false);
+}
+
+void Add_true(void)
+{
+	Add_Boolean_Constant("%t", true);
 }
 
 void Add_pi(void)
@@ -494,16 +509,18 @@ void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_p
 	Poly *poPoly = pVar->poly_get(0,0);
 	poPoly->coef_set(_pdbl);
 	Context::getInstance()->put(symbol::Symbol(_szName), *pVar);
-
-	/*	pVal->val_set(0,0,_dblReal,_dblImg);
-	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
-	*/
 }
 
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex)
 {
 	types::Double* pVal = new types::Double(1,1,_bComplex);
 	pVal->val_set(0,0,_dblReal,_dblImg);
+	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
+}
+
+void Add_Boolean_Constant(string _szName, bool _bBool)
+{
+	types::Bool* pVal = new types::Bool(_bBool);
 	symbol::Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);
 }
 

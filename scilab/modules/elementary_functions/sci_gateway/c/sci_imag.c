@@ -14,13 +14,14 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
+#include "api_oldstack.h"
 
 int img_double(int* _piAddress, int* _piKey);
-int img_poly(int* _piAddress);
-int img_sparse(int* _piAddress);
+int img_poly(int* _piAddress, int* _piKey);
+int img_sparse(int* _piAddress,int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imag) (char *fname,int* _piKey)
+int sci_imag(char *fname,int* _piKey)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -43,12 +44,12 @@ int C2F(sci_imag) (char *fname,int* _piKey)
 		}
 	case sci_poly:
 		{
-			iRet = img_poly(piAddr);
+			iRet = img_poly(piAddr, _piKey);
 			break;
 		}
 	case sci_sparse:
 		{
-			iRet = img_sparse(piAddr);
+			iRet = img_sparse(piAddr, _piKey);
 			break;
 		}
 	default:
@@ -105,7 +106,7 @@ int img_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int img_poly(int* _piAddress)
+int img_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;
@@ -201,7 +202,7 @@ int img_poly(int* _piAddress)
 	return 0;
 }
 
-int img_sparse(int* _piAddress)
+int img_sparse(int* _piAddress,int* _piKey)
 {
 	int i,j,x,y;
 	int iRet						= 0;

@@ -166,6 +166,20 @@ namespace ast
 
 	void ExecVisitor::visit (const ColonVar &e)
 	{
+		int pRank[1] = {2};
+		Double dblCoef(1,2);
+		dblCoef.val_set(0, 0, 0);
+		dblCoef.val_set(0, 1, 1);
+
+		MatrixPoly *pVar	= new MatrixPoly("$", 1, 1, pRank);
+		Poly *poPoly			= pVar->poly_get(0,0);
+		poPoly->coef_set(&dblCoef);
+
+		ImplicitList *pIL = new ImplicitList();
+		pIL->start_set(1);
+		pIL->step_set(1);
+		pIL->end_set(pVar);
+		result_set(pIL);
 		/*
 		: = 1:$
 		*/
@@ -225,7 +239,6 @@ namespace ast
 
 	void ExecVisitor::visit(const CallExp &e)
 	{
-		ExecVisitor *execVar	= new ast::ExecVisitor();
 		ExecVisitor *execFunc = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
@@ -236,21 +249,40 @@ namespace ast
 			types::typed_list out;
 			types::typed_list in;
 
-			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+
+			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
+			int j = 0;
+			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
 			{
-				(*i)->accept (*execVar);
-				in.push_back(execVar->result_get());
+				execVar[j] = new ast::ExecVisitor();
+				(*i)->accept (*execVar[j]);
+				in.push_back(execVar[j]->result_get());
 			}
 
-			int iRetVal = 0;
-			//out->push_back(execVar->result_get());
-			Function::ReturnValue Ret = pF->call(in, &iRetVal, out);
-			if(Ret == Function::AllGood && out.size() > 0)
+			Function::ReturnValue Ret = pF->call(in, (int)expected_size_get(), out);
+			if(Ret == Function::OK)
 			{
-				result_set(out.front());
+				if(out.size() != expected_size_get())
+				{
+					std::ostringstream os;
+					os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+					string szErr(os.str());
+					throw szErr;
+				}
+
+				for(int i = 0 ; i < out.size() ; i++)
+				{
+					result_set(i, out[i]);
+				}
 			}
 
-			if(e.is_verbose())
+			for (j = 0; j < e.args_get().size(); j++)
+			{
+				delete execVar[j];
+			}
+			delete[] execVar;
+
+			if(e.is_verbose() && Ret == Function::OK)
 			{
 			  std::ostringstream ostr;
 			  ostr <<  out.front()->toString(10,75) << std::endl;
@@ -339,9 +371,18 @@ namespace ast
 					int iColOut	= 0;
 					if(iArgDim == 1)
 					{
-						pResult = dResult = new Double(piDimSize[0], 1, pDouble->isComplex());
-						iRowOut = piDimSize[0];
-						iColOut = 1;
+						if(pDouble->rows_get() == 1)
+						{
+							pResult = new Double(1, piDimSize[0], pDouble->isComplex());
+							iRowOut = 1;
+							iColOut = piDimSize[0];
+						}
+						else
+						{
+							pResult = new Double(piDimSize[0], 1, pDouble->isComplex());
+							iRowOut = piDimSize[0];
+							iColOut = 1;
+						}
 					}
 					else
 					{
@@ -468,7 +509,6 @@ namespace ast
 			}
 */
 		}
-		delete execVar;
 		delete execFunc;
 	}
 
@@ -586,6 +626,16 @@ namespace ast
 
 	void ExecVisitor::visit (const ArrayListExp  &e)
 	{
+		std::list<Exp *>::const_iterator it;
+		int i = 0;
+		for(it = e.exps_get().begin() ; it != e.exps_get().end() ; it++)
+		{
+			ExecVisitor *execArg = new ExecVisitor();
+			(*it)->accept(*execArg);
+			execArg->result_get()->DenyDelete();
+			result_set(i++, execArg->result_get());
+			delete execArg;
+		}
 	}
 
 	void ExecVisitor::visit (const AssignListExp  &e)
@@ -936,20 +986,56 @@ namespace ast
 	}
 	/** \} */
 
-	InternalType	*ExecVisitor::result_get(void)
+	size_t ExecVisitor::expected_size_get(void)
 	{
-		return _result;
+		return _excepted_result;
 	}
 
-	void ExecVisitor::result_set(const InternalType *e)
+	size_t ExecVisitor::result_size_get(void)
 	{
-		if(_result != NULL && _result->isDeletable())
+		return _result.size();
+	}
+
+	void ExecVisitor::expected_size_set(size_t _iSize)
+	{
+		_excepted_result = _iSize;
+	}
+
+	InternalType* ExecVisitor::result_get(void)
+	{
+		return result_get(0);
+	}
+
+	types::InternalType* ExecVisitor::result_get(int _iPos)
+	{
+		if(_iPos >= _result.size())
 		{
-			delete _result;
+			return NULL;
 		}
-		_result = (InternalType *)e;
+		return _result[_iPos];
 	}
 
+	void ExecVisitor::result_set(int _iPos, const types::InternalType *gtVal)
+	{
+		if(_iPos < _result.size())
+		{
+			if(_result[_iPos] != NULL && _result[_iPos]->isDeletable())
+			{
+				delete _result[_iPos];
+			}
+		}
+
+		for(size_t i = _result.size() ; i <= _iPos ; i++)
+		{
+			_result.push_back(NULL);
+		}
+		_result[_iPos] = (InternalType *)gtVal;
+	}
+
+	void ExecVisitor::result_set(const InternalType *gtVal)
+	{
+		result_set(0, gtVal);
+	}
 }
 
 using namespace ast;
@@ -1076,7 +1162,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			}
 
 			Double dbl(iMaxDim); // $
-			ImplicitList *pIL = execMeArg->result_get()->getAsList();
+			ImplicitList *pIL = execMeArg->result_get()->getAsImplicitList();
 			if(pIL->computable() == false)
 			{
 				if(pIL->start_type_get() == InternalType::RealPoly)
@@ -1117,8 +1203,9 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 				}
 				else
 				{//houston we have a problem ...
-					//Allow empty matrix
-					return 0;
+					Double dbl(0);
+					pDbl = pPoly->evaluate(&dbl);
+
 				}
 			}
 			else if(pIn->getType() == InternalType::RealDouble)

@@ -23,8 +23,8 @@ namespace types
     BoundMethod(Function *p_func, Object *p_self, Object *p_level = NULL);
     virtual ~BoundMethod();
     
-    Function::ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
-    virtual Function::ReturnValue inner_call(typed_list &in, int* _piRetCount, typed_list &out) {
+    Function::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
+    virtual Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out) {
       return m_func->call(in, _piRetCount, out);
     }
   
@@ -41,7 +41,7 @@ namespace types
       BoundMethod(p_slot->getter, p_self, p_level), m_slot(p_slot) {}
     virtual ~BoundGetter();
     
-    Function::ReturnValue inner_call(typed_list &in, int *_piRetCount, typed_list &out);
+    Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   
   protected:
     PropertySlot *m_slot;
@@ -54,15 +54,15 @@ namespace types
       BoundMethod(p_slot->setter, p_self, p_level), m_slot(p_slot) {}
     virtual ~BoundSetter();
     
-    Function::ReturnValue inner_call(typed_list &in, int *_piRetCount, typed_list &out);
+    Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   
   protected:
     PropertySlot *m_slot;
   };
   
   /* Methods of root object */
-  Function::ReturnValue install_property(typed_list&, int*, typed_list&, ObjectMatrix*, ObjectMatrix*);
-  Function::ReturnValue install_method(typed_list&, int*, typed_list&, ObjectMatrix*, ObjectMatrix*);
+  Function::ReturnValue install_property(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
+  Function::ReturnValue install_method(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
 }
 
 #endif /* !__OOUTILS_PRIVATE_HXX__ */

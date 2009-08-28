@@ -362,7 +362,15 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\..\..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\..\bin\libintl.lib"
 			>
 		</File>
 	</Files>

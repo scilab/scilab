@@ -15,6 +15,9 @@
 
 #include "api_oldstack.h"
 #include "function.hxx"
+#include "sciprint.h"
+
+using namespace types;
 
 int api_Top(int* _piKey)
 {
@@ -23,8 +26,7 @@ int api_Top(int* _piKey)
 
 int api_Rhs(int* _piKey)
 {
-	types::GatewayParam* pGW = types::GatewayParam::getInstance();
-	types::GatewayStruct *pStr =  pGW->get(_piKey);
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
 	if(pStr == NULL)
 	{
@@ -41,8 +43,7 @@ int api_Rhs(int* _piKey)
 
 int api_Lhs(int* _piKey)
 {
-	types::GatewayParam* pGW = types::GatewayParam::getInstance();
-	types::GatewayStruct *pStr =  pGW->get(_piKey);
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
 
 	if(pStr == NULL)
 	{
@@ -84,4 +85,9 @@ int api_CheckLhs(int _iMin, int _iMax, int* _piKey)
 int* api_LhsVar(int _iVal)
 {
 	return &api_fake_int;
+}
+
+void api_OverLoad(int _iVal)
+{
+	sciprint("call overload %d", _iVal);
 }

@@ -34,12 +34,12 @@ Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::ty
 
 	if(in.size() != 1)
 	{
-		return Function::WrongParamNumber;
+		return Function::Error;
 	}
 
 	if(in[0]->getType() != types::InternalType::RealDouble)
 	{
-		return Function::WrongParamType;
+		return Function::Error;
 	}
 
 
@@ -68,6 +68,6 @@ Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::ty
 
 	out.push_back(pRetVal);
 	*_piRetCount = 1;
-	return Function::AllGood;
+	return Function::OK;
 }
 

@@ -93,8 +93,8 @@ namespace types
     virtual Macro* getAsMacro(void) { return NULL; }
 
     /* ImplicitList */
-		bool isList(void) { return (getType() == RealImplicitList); }
-		virtual ImplicitList* getAsList(void) { return NULL; }
+		bool isImplicitList(void) { return (getType() == RealImplicitList); }
+		virtual ImplicitList* getAsImplicitList(void) { return NULL; }
 
 		bool isPoly(void) { return (getType() == RealPoly); }
 		virtual MatrixPoly* getAsPoly(void) { return NULL; }

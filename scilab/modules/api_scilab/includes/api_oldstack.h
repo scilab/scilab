@@ -14,12 +14,11 @@
 #define __OLDSTACK_API__
 
 #include "dynlib_api_scilab.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int api_fake_int = 0;
+static int api_fake_int = 0;
 
 /*  TOP  */
 #ifdef Top
@@ -45,14 +44,22 @@ API_SCILAB_IMPEXP int api_Lhs(int* _piKey);
 /*  CheckRhs  */
 #ifdef CheckRhs
 #undef CheckRhs
-#define CheckRhs(a,b) api_CheckRhs(a,b, _piKey)
+#define CheckRhs(a,b) \
+	if(api_CheckRhs(a,b, _piKey) == 0) \
+	{ \
+		return 1; \
+	}
 #endif
 API_SCILAB_IMPEXP int api_CheckRhs(int _iMin, int _iMax, int* _piKey);
 
 /*  CheckLhs  */
 #ifdef CheckLhs
 #undef CheckLhs
-#define CheckLhs(a,b) api_CheckLhs(a,b, _piKey)
+#define CheckLhs(a,b) \
+	if(api_CheckLhs(a,b, _piKey) == 0) \
+	{ \
+		return 1; \
+	}
 #endif
 API_SCILAB_IMPEXP int api_CheckLhs(int _iMin, int _iMax, int* _piKey);
 
@@ -68,6 +75,11 @@ API_SCILAB_IMPEXP int* api_LhsVar(int _iVal);
 #define PutLhsVar();
 #endif
 
+#ifdef OverLoad
+#undef OverLoad
+#define OverLoad(x) api_OverLoad(x)
+#endif
+API_SCILAB_IMPEXP void api_OverLoad(int _iVal);
 
 #ifdef __cplusplus
 }

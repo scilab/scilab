@@ -14,14 +14,14 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "api_scilab.h"
-
+#include "api_oldstack.h"
 
 int ceil_double(int* _piAddress, int*_piKey);
-int ceil_poly(int* _piAddress);
+int ceil_poly(int* _piAddress, int* _piKey);
 int ceil_int(int* _piAddress);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ceil) (char *fname, int* _piKey)
+int sci_ceil(char *fname, int* _piKey)
 {
 	int iRet			= 0;
 
@@ -42,13 +42,13 @@ int C2F(sci_ceil) (char *fname, int* _piKey)
 		iRet = ceil_double(piAddr, _piKey);
 		break;
 	case sci_poly : 
-		iRet = ceil_poly(piAddr);
+		iRet = ceil_poly(piAddr, _piKey);
 		break;
 	case sci_ints : 
 		iRet = ceil_int(piAddr);
 		break;
 	default : 
-		OverLoad(1);
+//		OverLoad(1);
 		return 0;
 	}
 
@@ -110,7 +110,7 @@ int ceil_double(int* _piAddress, int* _piKey)
 	return 0;
 }
 
-int ceil_poly(int* _piAddress)
+int ceil_poly(int* _piAddress, int* _piKey)
 {
 	int i,j;
 	int iRet							= 0;

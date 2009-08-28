@@ -49,7 +49,7 @@ namespace types
 		ImplicitList(double _dblStart, double _dblEnd);
 		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
-		ImplicitList* getAsList(void) { return this; }
+		ImplicitList* getAsImplicitList(void) { return this; }
 		virtual				RealType getType(void) { return RealImplicitList; }
 
 		double				start_get();

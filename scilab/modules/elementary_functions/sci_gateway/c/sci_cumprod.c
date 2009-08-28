@@ -15,8 +15,9 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
-int C2F(sci_cumprod) (char *fname, int* _piKey)
+int sci_cumprod(char *fname, int* _piKey)
 {
 	int i;
 	int iRet							= 0;

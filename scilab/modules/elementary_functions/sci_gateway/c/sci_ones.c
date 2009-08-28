@@ -16,8 +16,9 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ones) (char *fname, int* _piKey)
+int sci_ones(char *fname, int* _piKey)
 {
 	int iRet					= 0;
 	int iRows					= 0;
@@ -43,7 +44,7 @@ int C2F(sci_ones) (char *fname, int* _piKey)
 	}
 	else if(Rhs <= 0)
 	{
-		Rhs = 0;
+		//Rhs = 0;
 		iRows = 1;
 		iCols = 1;
 	}

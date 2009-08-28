@@ -109,19 +109,19 @@ namespace types
   /* Root class */
   
   static Function::ReturnValue
-  new_instance(typed_list &in, int *_piRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
+  new_instance(typed_list &in, int iRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
   {
     Class *kls = dynamic_cast<Class*>(self->object_ref_get());
     Instance *inst = kls->create_instance(in);
     *_piRetCount = 1;
     out.push_back(ObjectMatrix::create_standard_ref(inst));
-    return Function::AllGood;
+    return Function::OK;
   }
   
   static Function::ReturnValue
-  empty_constructor(typed_list &, int *, typed_list &, ObjectMatrix *, ObjectMatrix *)
+  empty_constructor(typed_list &, int, typed_list &, ObjectMatrix *, ObjectMatrix *)
   {
-    return Function::AllGood;
+    return Function::OK;
   }
   
   Class *

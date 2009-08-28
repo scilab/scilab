@@ -18,7 +18,10 @@
 #include "../../../sparse/includes/gw_sparse.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
+
+int func_comp(char* fname, int _iMini, int* _piKey);
 
 int compare_list(int* _piAddress, int _iIsMini);
 int compare_sparse(int* _piAddress, int _iIsMini);
@@ -26,21 +29,26 @@ int compare_double(int _iIsMini, int* _piKey);
 int compare_double_inside(int* _piAddress, int _iIsMini, int _iMode, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_maxi) (char *fname, int* _piKey)
+int sci_maxi(char *fname, int* _piKey)
+{
+	return func_comp(fname, 0, _piKey);
+}
+
+int sci_mini(char *fname, int* _piKey)
+{
+	return func_comp(fname, 1, _piKey);
+}
+
+
+int func_comp(char* fname, int _iMini, int* _piKey)
 {
 	int i;
 	int iRet			= 0;
 	int iMode			= 0;
-	int iMini			= 0;
 
 	int *piAddr1		= NULL;
 
 	CheckLhs(1,2);
-
-	if(Fin == 17)
-	{
-		iMini = 1;
-	}
 
 	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
 	if(iRet)
@@ -74,7 +82,7 @@ int C2F(sci_maxi) (char *fname, int* _piKey)
 	case sci_matrix :
 		if(Rhs == 1)
 		{
-			iRet = compare_double_inside(piAddr1, iMini, iMode, _piKey);
+			iRet = compare_double_inside(piAddr1, _iMini, iMode, _piKey);
 		}
 		else
 		{
@@ -93,7 +101,7 @@ int C2F(sci_maxi) (char *fname, int* _piKey)
 					return 0;
 				}
 			}
-			iRet = compare_double(iMini, _piKey);
+			iRet = compare_double(_iMini, _piKey);
 			if(iRet)
 			{
 				return 1;
@@ -101,16 +109,15 @@ int C2F(sci_maxi) (char *fname, int* _piKey)
 		}
 		break;
 	case sci_list :
-		iRet = compare_list(piAddr1, iMini);
+		iRet = compare_list(piAddr1, _iMini);
 		if(iRet)
 		{
 			return 1;
 		}
 		break;
 	case sci_sparse:
-		C2F(ref2val)();
 		Fin -= 6; //Ugly !!!
-		if(iMini)
+		if(_iMini)
 			C2F(sci_spmin)(fname, _piKey);
 		else
 			C2F(sci_spmax)(fname, _piKey);
@@ -192,6 +199,11 @@ int compare_double(int _iIsMini, int* _piKey)
 			}
 		}
 	}//for
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
 
 	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet1, _piKey);
 	if(iRet)
@@ -221,8 +233,15 @@ int compare_double(int _iIsMini, int* _piKey)
 		int iInc				= 0;
 		int iIndex2			= 0;
 		int iIndex3			= 0;
+		int* piAddrChk	= NULL;
 
-		iRet = getMatrixOfDouble(piAddr, &iCurRows, &iCurCols, &pdblCur);
+		iRet = getVarAddressFromPosition(iVar, &piAddrChk, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getMatrixOfDouble(piAddrChk, &iCurRows, &iCurCols, &pdblCur);
 		if(iRet)
 		{
 			return 1;
@@ -233,7 +252,7 @@ int compare_double(int _iIsMini, int* _piKey)
 		else
 			iInc = 1;
 
-		if(_iIsMini == 0)
+		if(_iIsMini == 1)
 		{
 			int k = 0;
 			for(j = 0 ; j < iRows * iCols; j++)

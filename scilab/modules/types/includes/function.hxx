@@ -18,6 +18,9 @@
 #include "types.hxx"
 #include <map>
 
+#ifdef _MSC_VER
+#pragma warning(disable: 4251)
+#endif
 namespace types
 {
   class EXTERN_TYPES Function : public InternalType
@@ -25,19 +28,18 @@ namespace types
   public :
     enum ReturnValue
     {
-      AllGood,
-      WrongParamNumber,
-      WrongParamType
+      OK,
+      Error
     };
 
     Function * 	getAsFunction(void);
     RealType getType(void) { return RealFunction; }
 
-    typedef ReturnValue (*GW_FUNC)(typed_list &in, int* _piRetCount, typed_list &out); 
+    typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
     typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
     void					whoAmI();
-    virtual ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
+    virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
 
     Function() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
@@ -58,7 +60,7 @@ namespace types
   {
   public :
     WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
-    ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
+    ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   private :
     OLDGW_FUNC m_pOldFunc;
   };
@@ -72,20 +74,6 @@ namespace types
 
 		GatewayStruct(){};
 		~GatewayStruct(){};
-	};
-
-	class EXTERN_TYPES GatewayParam
-	{
-		static GatewayParam* me;
-
-		std::map<int*, GatewayStruct*> m_GWList;
-
-	public :
-		GatewayParam(){};
-		static GatewayParam* getInstance(void);
-
-		GatewayStruct*	get(int* pKey) const;
-		bool put(int* _pKey, GatewayStruct* _pParam);
 	};
 }
 

@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 void vKronR(	double* _pdblDataIn1, int _iIncIn1, int _iRowsIn1, int _iColsIn1,
 				double* _pdblDataIn2, int _iIncIn2, int _iRowsIn2, int _iColsIn2,
@@ -32,7 +33,7 @@ extern int C2F(dcopy)();
 extern int C2F(dscal)();
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_kron) (char *fname,int* _piKey)
+int sci_kron(char *fname,int* _piKey)
 {
 	int iRet						= 0;
 

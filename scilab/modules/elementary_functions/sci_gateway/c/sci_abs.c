@@ -47,7 +47,7 @@ int sci_abs(char *fname, int* _piKey)
 		iRet = abs_sparse(piAddr, _piKey);
 		break;
 	default:
-		//OverLoad(1);
+		OverLoad(1);
 		break;
 	}
 

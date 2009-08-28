@@ -17,11 +17,12 @@
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "api_oldstack.h"
 
 static int getMode(int _iPos, char *_pcMode, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_dsearch) (char *fname, int* _piKey)
+int sci_dsearch(char *fname, int* _piKey)
 {
 	int i;
 	int iRet								= 0;
