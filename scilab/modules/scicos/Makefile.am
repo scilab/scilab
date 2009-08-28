@@ -117,6 +117,7 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/time/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
