@@ -16,7 +16,7 @@
 /* desc : interface for rotate_axes routine                               */
 /*------------------------------------------------------------------------*/
 
-#include "sci_rotate_axes.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "Interaction.h"
