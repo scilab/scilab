@@ -40,7 +40,6 @@ src/fortran/mpdiag.f \
 src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
-src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
