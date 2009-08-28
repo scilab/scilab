@@ -30,7 +30,7 @@
           xml:id="XcosMenuHelp">
   <refnamediv>
     <refname>Help</refname>
-    <refpurpose>Call the help browser for the select object or menu</refpurpose>
+    <refpurpose>Menu: Call the help browser for the select object or menu</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

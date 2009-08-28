@@ -29,7 +29,7 @@
           xml:id="XcosMenuDelete">
   <refnamediv>
     <refname>Delete</refname>
-    <refpurpose>Delete selected objects in the diagram editor.</refpurpose>
+    <refpurpose>Menu: Delete selected objects in the diagram editor.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -41,14 +41,15 @@
       then activate this menu.  It is also possible to first activate
       the menu and then to select the object to be deleted.
     </para>
+    <para>
       When a block is deleted all the connected links are also
       deleted. In a similar way when a link is deleted all the links
       issued from this links are also deleted. This mechanism insure
       that no unconnected links may exist.
-
-   <para> 
-       The [Delete] or [Backspace] as well as the [d] key are
-       equivalent of the <literal>Delete</literal> menu.
+    </para>
+    <para> 
+      The <literal>[Delete]</literal> or <literal>[Backspace]</literal> as well as the <literal>[d]</literal> key are
+      equivalent of the <literal>Delete</literal> menu.
     </para>
 
   </refsection>

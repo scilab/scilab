@@ -30,7 +30,7 @@
           xml:id="XcosMenuContext">
   <refnamediv>
     <refname>Context</refname>
-    <refpurpose>Defines diagram symbolic parameter values.</refpurpose>
+    <refpurpose>Menu: Defines diagram symbolic parameter values.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

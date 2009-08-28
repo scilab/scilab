@@ -30,7 +30,7 @@
           xml:id="XcosMenuExport">
   <refnamediv>
     <refname>Export</refname>
-    <refpurpose>Export current Scicos diagram  in various graphic formats.</refpurpose>
+    <refpurpose>Menu: Export current Scicos diagram  in various graphic formats.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

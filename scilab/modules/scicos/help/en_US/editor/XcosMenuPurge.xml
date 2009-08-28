@@ -30,7 +30,7 @@
           xml:id="XcosMenuPurge">
   <refnamediv>
     <refname>Purge</refname>
-    <refpurpose>Clean the Scicos data structure</refpurpose>
+    <refpurpose>Menu: Clean the Scicos data structure</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

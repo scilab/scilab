@@ -30,7 +30,7 @@
           xml:id="XcosMenuPaste">
   <refnamediv>
     <refname>Paste</refname>
-    <refpurpose>Paste the content of the Scicos Clipboard in the current diagram.</refpurpose>
+    <refpurpose>Menu: Paste the content of the Scicos Clipboard in the current diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuNew">
   <refnamediv>
     <refname>New</refname>
-    <refpurpose>Open an empty diagram in the current window</refpurpose>
+    <refpurpose>Menu: Open an empty diagram in the current window</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

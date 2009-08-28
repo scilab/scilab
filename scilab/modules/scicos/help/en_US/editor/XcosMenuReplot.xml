@@ -30,7 +30,7 @@
           xml:id="XcosMenuReplot">
   <refnamediv>
     <refname>Replot</refname>
-    <refpurpose>Replot the contents of the current edition window.</refpurpose>
+    <refpurpose>Menu: Replot the contents of the current edition window.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

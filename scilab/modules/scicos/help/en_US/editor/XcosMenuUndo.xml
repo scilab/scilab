@@ -30,7 +30,7 @@
           xml:id="XcosMenuUndo">
   <refnamediv>
     <refname>Undo</refname>
-    <refpurpose>Undo the last edit operation.</refpurpose>
+    <refpurpose>Menu: Undo the last edit operation.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

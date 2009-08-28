@@ -30,7 +30,7 @@
           xml:id="XcosMenuPal_editor">
   <refnamediv>
     <refname>Pal_editor</refname>
-    <refpurpose>Manage the list of palettes</refpurpose>
+    <refpurpose>Menu: Manage the list of palettes</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

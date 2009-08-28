@@ -30,7 +30,7 @@
           xml:id="XcosMenuIdentification">
   <refnamediv>
     <refname>Identification</refname>
-    <refpurpose>Define a Scicos  Block or link identificator.</refpurpose>
+    <refpurpose>Menu: Define a Scicos  Block or link identificator.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuCompile">
   <refnamediv>
     <refname>Compile</refname>
-    <refpurpose>Compile the block diagram</refpurpose>
+    <refpurpose>Menu: Compile the block diagram</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuSave_as_Palette">
   <refnamediv>
     <refname>Save_as_Palette</refname>
-    <refpurpose>Save the current Scicos diagram as a palette.</refpurpose>
+    <refpurpose>Menu: Save the current Scicos diagram as a palette.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

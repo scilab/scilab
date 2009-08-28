@@ -30,7 +30,7 @@
           xml:id="XcosMenuAnalyze_Diagram">
   <refnamediv>
     <refname>Analyze_Diagram</refname>
-    <refpurpose>Simple diagram verification</refpurpose>
+    <refpurpose>Menu: Simple diagram verification</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

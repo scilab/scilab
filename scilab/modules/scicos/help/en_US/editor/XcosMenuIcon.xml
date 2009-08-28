@@ -30,7 +30,7 @@
           xml:id="XcosMenuIcon">
   <refnamediv>
     <refname>Icon</refname>
-    <refpurpose>Edit the graphic instructions that draw the block icon</refpurpose>
+    <refpurpose>Menu: Edit the graphic instructions that draw the block icon</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

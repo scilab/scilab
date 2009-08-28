@@ -30,7 +30,7 @@
           xml:id="XcosMenuAdd_new_block">
   <refnamediv>
     <refname>Add_new_block</refname>
-    <refpurpose>adds a newly defined block</refpurpose>
+    <refpurpose>Menu: adds a newly defined block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuOpen">
   <refnamediv>
     <refname>Open</refname>
-    <refpurpose>Load a previously saved Scicos diagram</refpurpose>
+    <refpurpose>Menu: Load a previously saved Scicos diagram</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

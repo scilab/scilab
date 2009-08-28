@@ -30,7 +30,7 @@
           xml:id="XcosMenuIcon_Editor">
   <refnamediv>
     <refname>Icon_Editor</refname>
-    <refpurpose>Start a graphic editor for a block icon</refpurpose>
+    <refpurpose>Menu: Start a graphic editor for a block icon</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

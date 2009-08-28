@@ -30,7 +30,7 @@
           xml:id="XcosMenuPal_Tree">
   <refnamediv>
     <refname>Pal_Tree</refname>
-    <refpurpose>Tree widget for palette and block selection</refpurpose>
+    <refpurpose>Menu: Tree widget for palette and block selection</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

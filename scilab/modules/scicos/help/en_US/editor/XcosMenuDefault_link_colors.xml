@@ -30,7 +30,7 @@
           xml:id="XcosMenuDefault_link_colors">
   <refnamediv>
     <refname>Default_link_colors</refname>
-    <refpurpose>Set the colors used to draw the newly created links</refpurpose>
+    <refpurpose>Menu: Set the colors used to draw the newly created links</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

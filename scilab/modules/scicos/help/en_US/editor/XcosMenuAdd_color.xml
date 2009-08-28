@@ -30,7 +30,7 @@
           xml:id="XcosMenuAdd_color">
   <refnamediv>
     <refname>Add_color</refname>
-    <refpurpose>Adds a color for the Scicos editor color map</refpurpose>
+    <refpurpose>Menu: Adds a color for the Scicos editor color map</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

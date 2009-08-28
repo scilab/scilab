@@ -30,7 +30,7 @@
           xml:id="XcosMenuSet_grid">
   <refnamediv>
     <refname>Set_grid</refname>
-    <refpurpose>Set the grid step size and its color.</refpurpose>
+    <refpurpose>Menu: Set the grid step size and its color.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

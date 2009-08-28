@@ -30,7 +30,7 @@
           xml:id="XcosMenuDuplicate">
   <refnamediv>
     <refname>Duplicate</refname>
-    <refpurpose>Makes a Copy of selected block or text in the active editor window.</refpurpose>
+    <refpurpose>Menu: Makes a Copy of selected block or text in the active editor window.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

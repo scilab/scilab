@@ -30,7 +30,7 @@
           xml:id="XcosMenuLoad_as_Palette">
   <refnamediv>
     <refname>Load_as_Palette</refname>
-    <refpurpose>Open a Scicos file as a palette</refpurpose>
+    <refpurpose>Menu: Open a Scicos file as a palette</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

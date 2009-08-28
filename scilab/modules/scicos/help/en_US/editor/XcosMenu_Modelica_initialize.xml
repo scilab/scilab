@@ -30,7 +30,7 @@
           xml:id="XcosMenuModelica_initialize">
   <refnamediv>
     <refname>Modelica_initialize</refname>
-    <refpurpose>Opens the Modelica implicit model initialization GUI.</refpurpose>
+    <refpurpose>Menu: Opens the Modelica implicit model initialization GUI.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

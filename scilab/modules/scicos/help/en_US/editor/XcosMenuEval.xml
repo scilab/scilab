@@ -30,7 +30,7 @@
           xml:id="XcosMenuEval">
   <refnamediv>
     <refname>Eval</refname>
-    <refpurpose>(re)-evaluate the Scicos block parameters</refpurpose>
+    <refpurpose>Menu: (re)-evaluate the Scicos block parameters</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

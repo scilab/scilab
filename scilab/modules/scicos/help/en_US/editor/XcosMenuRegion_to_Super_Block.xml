@@ -30,7 +30,7 @@
           xml:id="XcosMenuRegion_to_Super_Block">
   <refnamediv>
     <refname>Region_to_Super_Block</refname>
-    <refpurpose>Form a Super Block with a part of the current diagram.</refpurpose>
+    <refpurpose>Menu: Form a Super Block with a part of the current diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -46,8 +46,8 @@
 	    First <link linkend="XcosSelect">select</link> the
           desired blocks (the internal links will be automatically
           added) then activate the
-          <literal>Region to Super Block</literal> menu
-	  </para>.
+          <literal>Region to Super Block</literal> menu.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>

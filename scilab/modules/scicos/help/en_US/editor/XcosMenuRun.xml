@@ -30,7 +30,7 @@
           xml:id="XcosMenuRun">
   <refnamediv>
     <refname>Run</refname>
-    <refpurpose>Start the simulation of the current Scicos diagram</refpurpose>
+    <refpurpose>Menu: Start the simulation of the current Scicos diagram</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

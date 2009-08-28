@@ -30,7 +30,7 @@
           xml:id="XcosMenuDemos">
   <refnamediv>
     <refname>Demos</refname>
-    <refpurpose>Scicos demonstrations menu</refpurpose>
+    <refpurpose>Menu: Scicos demonstrations menu</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

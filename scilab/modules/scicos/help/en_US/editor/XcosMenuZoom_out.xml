@@ -30,7 +30,7 @@
           xml:id="XcosMenuZoom_out">
   <refnamediv>
     <refname>Zoom_out</refname>
-    <refpurpose>Zoom diagram out</refpurpose>
+    <refpurpose>Menu: Zoom diagram out</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

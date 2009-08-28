@@ -30,7 +30,7 @@
           xml:id="XcosMenuCustomize_Mask">
   <refnamediv>
     <refname>Customize_Mask</refname>
-    <refpurpose>Customize the masked Super block parameter setting dialog.</refpurpose>
+    <refpurpose>Menu: Customize the masked Super block parameter setting dialog.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

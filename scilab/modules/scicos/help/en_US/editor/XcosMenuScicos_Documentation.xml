@@ -30,7 +30,7 @@
           xml:id="XcosMenuScicos_Documentation">
   <refnamediv>
     <refname>Scicos_Documentation</refname>
-    <refpurpose>Opens the Scicos help pages into the help browser. </refpurpose>
+    <refpurpose>Menu: Opens the Scicos help pages into the help browser. </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

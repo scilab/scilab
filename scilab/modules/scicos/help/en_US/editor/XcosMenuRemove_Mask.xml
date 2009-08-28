@@ -30,7 +30,7 @@
           xml:id="XcosMenuRemove_Mask">
   <refnamediv>
     <refname>Remove_Mask</refname>
-    <refpurpose>Unmask the internal structure of a Super Block.</refpurpose>
+    <refpurpose>Menu: Unmask the internal structure of a Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -52,7 +52,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="????"> ????</link> </member>
+      <member> <link linkend="XcosMenuCreate_Mask">Create_Mask</link> </member>
      </simplelist>
    </refsection>
 </refentry>

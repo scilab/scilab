@@ -30,7 +30,7 @@
           xml:id="XcosMenuCopy">
   <refnamediv>
     <refname>Copy</refname>
-    <refpurpose>Copy  editor objects in the Scicos clipboard.</refpurpose>
+    <refpurpose>Menu: Copy  editor objects in the Scicos clipboard.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

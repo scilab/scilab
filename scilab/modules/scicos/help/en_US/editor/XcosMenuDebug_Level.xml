@@ -30,7 +30,7 @@
           xml:id="XcosMenuDebug_Level">
   <refnamediv>
     <refname>Debug_Level</refname>
-    <refpurpose>Set the Scicos diagram debugging level</refpurpose>
+    <refpurpose>Menu: Set the Scicos diagram debugging level</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

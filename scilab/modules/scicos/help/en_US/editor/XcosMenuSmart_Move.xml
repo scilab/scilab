@@ -30,7 +30,7 @@
           xml:id="XcosMenuSmart_Move">
   <refnamediv>
     <refname>Smart_Move</refname>
-    <refpurpose>Move object keeping links segments horizontal and vertical. </refpurpose>
+    <refpurpose>Menu: Move object keeping links segments horizontal and vertical. </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

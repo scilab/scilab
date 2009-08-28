@@ -30,7 +30,7 @@
           xml:id="XcosMenuCalc">
   <refnamediv>
     <refname>Calc</refname>
-    <refpurpose>Suspends Scicos editor</refpurpose>
+    <refpurpose>Menu: Suspends Scicos editor</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

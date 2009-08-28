@@ -30,7 +30,7 @@
           xml:id="XcosMenuDetails">
   <refnamediv>
     <refname>Details</refname>
-    <refpurpose>Scicos editor objects data structure viewer</refpurpose>
+    <refpurpose>Menu: Scicos editor objects data structure viewer</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

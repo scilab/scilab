@@ -30,7 +30,7 @@
           xml:id="XcosMenuRename">
   <refnamediv>
     <refname>Rename</refname>
-    <refpurpose>Rename a diagram or a Super Block</refpurpose>
+    <refpurpose>Menu: Rename a diagram or a Super Block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

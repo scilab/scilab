@@ -30,7 +30,7 @@
           xml:id="XcosMenuFlip">
   <refnamediv>
     <refname>Flip</refname>
-    <refpurpose>Flip the regular port of a Scicos block</refpurpose>
+    <refpurpose>Menu: Flip the regular port of a Scicos block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

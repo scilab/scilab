@@ -30,7 +30,7 @@
           xml:id="XcosMenuAvailable_Parameters">
   <refnamediv>
     <refname>Available_Parameters</refname>
-    <refpurpose>Displays the context variables that can be used in the
+    <refpurpose>Menu: Displays the context variables that can be used in the
     current level of the diagram hierarchy.</refpurpose>
   </refnamediv>
   <refsection>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuFit_diagram_to_figure">
   <refnamediv>
     <refname>Fit_diagram_to_figure</refname>
-    <refpurpose>Fit a Scicos diagram to the associated window size.</refpurpose>
+    <refpurpose>Menu: Fit a Scicos diagram to the associated window size.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

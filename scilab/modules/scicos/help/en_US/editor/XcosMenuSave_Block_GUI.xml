@@ -30,7 +30,7 @@
           xml:id="XcosMenuSave_Block_GUI">
   <refnamediv>
     <refname>Save_Block_GUI</refname>
-    <refpurpose>Create the interfacing function for a masked Super Block.</refpurpose>
+    <refpurpose>Menu: Create the interfacing function for a masked Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

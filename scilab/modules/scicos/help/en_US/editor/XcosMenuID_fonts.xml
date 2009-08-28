@@ -30,7 +30,7 @@
           xml:id="XcosMenuID_fonts">
   <refnamediv>
     <refname>ID_fonts</refname>
-    <refpurpose>Set font used to write ID's</refpurpose>
+    <refpurpose>Menu: Set font used to write ID's</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

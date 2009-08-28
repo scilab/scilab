@@ -30,7 +30,7 @@
           xml:id="XcosMenuCut">
   <refnamediv>
     <refname>Cut</refname>
-    <refpurpose>Remove editor objects and put them into the Scicos clipboard.</refpurpose>
+    <refpurpose>Menu: Remove editor objects and put them into the Scicos clipboard.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

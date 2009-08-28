@@ -30,7 +30,7 @@
           xml:id="XcosMenuExit_Scicos">
   <refnamediv>
     <refname>Exit_Scicos</refname>
-    <refpurpose>Close all the opened scicos editors</refpurpose>
+    <refpurpose>Menu: Close all the opened scicos editors</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

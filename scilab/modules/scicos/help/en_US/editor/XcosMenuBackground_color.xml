@@ -30,7 +30,7 @@
           xml:id="XcosMenuBackground_color">
   <refnamediv>
     <refname>Background_color</refname>
-    <refpurpose>Change the background and default foreground color of the diagram.</refpurpose>
+    <refpurpose>Menu: Change the background and default foreground color of the diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

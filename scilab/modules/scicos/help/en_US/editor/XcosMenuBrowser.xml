@@ -30,7 +30,7 @@
           xml:id="XcosMenuBrowser">
   <refnamediv>
     <refname>Browser</refname>
-    <refpurpose>Diagram tree browser</refpurpose>
+    <refpurpose>Menu: Diagram tree browser</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

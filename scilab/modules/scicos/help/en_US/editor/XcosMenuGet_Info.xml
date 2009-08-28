@@ -30,7 +30,7 @@
           xml:id="XcosMenuGet_Info">
   <refnamediv>
     <refname>Get_Info</refname>
-    <refpurpose>Display information on the selected Scicos object.</refpurpose>
+    <refpurpose>Menu: Display information on the selected Scicos object.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

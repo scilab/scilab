@@ -30,7 +30,7 @@
           xml:id="XcosMenuResize">
   <refnamediv>
     <refname>Resize</refname>
-    <refpurpose> Change the size of a Scicos block</refpurpose>
+    <refpurpose>Menu:  Change the size of a Scicos block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

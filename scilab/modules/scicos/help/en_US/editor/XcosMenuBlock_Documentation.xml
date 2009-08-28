@@ -30,7 +30,7 @@
           xml:id="XcosMenuBlock_Documentation">
   <refnamediv>
     <refname>Block_Documentation</refname>
-    <refpurpose>Set or displays the user documentation for the selected block</refpurpose>
+    <refpurpose>Menu: Set or displays the user documentation for the selected block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -29,7 +29,7 @@
           xml:id="XcosMenuActivate_Scilab_Window">
   <refnamediv>
     <refname>Activate_Scilab_Window</refname>
-    <refpurpose>Preserve editor state and return to Scilab</refpurpose>
+    <refpurpose>Menu: Preserve editor state and return to Scilab</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

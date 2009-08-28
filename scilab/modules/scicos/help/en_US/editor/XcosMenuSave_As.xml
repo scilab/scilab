@@ -30,7 +30,7 @@
           xml:id="XcosMenuSave_As">
   <refnamediv>
     <refname>Save_As</refname>
-    <refpurpose>Save current diagram into a file with user defined path</refpurpose>
+    <refpurpose>Menu: Save current diagram into a file with user defined path</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

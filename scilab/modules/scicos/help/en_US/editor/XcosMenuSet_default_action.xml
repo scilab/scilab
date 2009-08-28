@@ -30,7 +30,7 @@
           xml:id="XcosMenuSet_default_action">
   <refnamediv>
     <refname>Set_default_action</refname>
-    <refpurpose>Set the link edition mode</refpurpose>
+    <refpurpose>Menu: Set the link edition mode</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

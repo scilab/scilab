@@ -30,7 +30,7 @@
           xml:id="XcosMenuRegion_to_Palette">
   <refnamediv>
     <refname>Region_to_Palette</refname>
-    <refpurpose>Form a Palette with a part of the current diagram.</refpurpose>
+    <refpurpose>Menu: Forms a Palette with a part of the current diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -46,8 +46,8 @@
 	    First <link linkend="XcosSelect">select</link> the
           desired blocks (the internal links will be automatically
           added) then activate the
-          <literal>Region to Palette</literal> menu
-	  </para>.
+          <literal>Region to Palette</literal> menu.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>

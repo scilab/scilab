@@ -30,7 +30,7 @@
           xml:id="XcosMenuRotate_Left">
   <refnamediv>
     <refname>Rotate_Left</refname>
-    <refpurpose>Turn blocks  45 degree on the left</refpurpose>
+    <refpurpose>Menu: Turn blocks  45 degree on the left</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

@@ -30,7 +30,7 @@
           xml:id="XcosMenuCreate_Atomic">
   <refnamediv>
     <refname>Create_Atomic</refname>
-    <refpurpose>Transform a regular Super Block into an atomic one</refpurpose>
+    <refpurpose>Menu: Transform a regular Super Block into an atomic one</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

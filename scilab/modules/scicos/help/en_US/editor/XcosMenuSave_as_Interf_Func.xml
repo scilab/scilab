@@ -30,7 +30,7 @@
           xml:id="XcosMenuSave_as_Interf_Func">
   <refnamediv>
     <refname>Save_as_Interf_Func</refname>
-    <refpurpose>Save the diagram as a new Scicos block.</refpurpose>
+    <refpurpose>Menu: Save the diagram as a new Scicos block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

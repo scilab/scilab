@@ -30,7 +30,7 @@
           xml:id="XcosMenuPalettes">
   <refnamediv>
     <refname>Palettes</refname>
-    <refpurpose>Open a palette selection widget</refpurpose>
+    <refpurpose>Menu: Open a palette selection widget</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

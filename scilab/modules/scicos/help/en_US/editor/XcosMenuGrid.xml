@@ -30,7 +30,7 @@
           xml:id="XcosMenuGrid">
   <refnamediv>
     <refname>Grid</refname>
-    <refpurpose>Show/hide a grid in the current Scicos diagram.</refpurpose>
+    <refpurpose>Menu: Show/hide a grid in the current Scicos diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

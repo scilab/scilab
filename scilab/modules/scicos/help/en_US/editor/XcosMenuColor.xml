@@ -30,7 +30,7 @@
           xml:id="XcosMenuColor">
   <refnamediv>
     <refname>Color</refname>
-    <refpurpose>Change a block background color or a link color</refpurpose>
+    <refpurpose>Menu: Change a block background color or a link color</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

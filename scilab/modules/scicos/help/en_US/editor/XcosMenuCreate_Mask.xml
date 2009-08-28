@@ -30,7 +30,7 @@
           xml:id="XcosMenuCreate_Mask">
   <refnamediv>
     <refname>Create_Mask</refname>
-    <refpurpose>Mask the internal structure of a Super Block.</refpurpose>
+    <refpurpose>Menu: Mask the internal structure of a Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

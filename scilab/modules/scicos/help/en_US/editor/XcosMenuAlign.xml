@@ -30,7 +30,7 @@
           xml:id="XcosMenuAlign">
   <refnamediv>
     <refname>Align</refname>
-    <refpurpose>Aligns block ports</refpurpose>
+    <refpurpose>Menu: Aligns block ports</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

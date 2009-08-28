@@ -30,7 +30,7 @@
           xml:id="XcosMenuUp_To_Main_Diagram">
   <refnamediv>
     <refname>Up_To_Main_Diagram</refname>
-    <refpurpose>Opens the main diagram.</refpurpose>
+    <refpurpose>Menu: Opens the main diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

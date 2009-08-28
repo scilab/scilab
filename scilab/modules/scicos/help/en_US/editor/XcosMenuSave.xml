@@ -30,7 +30,7 @@
           xml:id="XcosMenuSave">
   <refnamediv>
     <refname>Save</refname>
-    <refpurpose>Save the block diagram in the default file.</refpurpose>
+    <refpurpose>Menu: Save the block diagram in the default file.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

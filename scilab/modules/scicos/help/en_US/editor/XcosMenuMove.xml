@@ -30,7 +30,7 @@
           xml:id="XcosMenuMove">
   <refnamediv>
     <refname>Move</refname>
-    <refpurpose>Move a block in the active editor Scicos window</refpurpose>
+    <refpurpose>Menu: Move a block in the active editor Scicos window</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

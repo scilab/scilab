@@ -30,7 +30,7 @@
           xml:id="XcosMenuCode_Generation">
   <refnamediv>
     <refname>Code_Generation</refname>
-    <refpurpose>Generates a C Code simulation function for  the selected super block.</refpurpose>
+    <refpurpose>Menu: Generates a C Code simulation function for  the selected super block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

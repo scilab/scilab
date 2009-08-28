@@ -30,7 +30,7 @@
           xml:id="XcosMenuQuit">
   <refnamediv>
     <refname>Quit</refname>
-    <refpurpose>Close the current Scicos diagram</refpurpose>
+    <refpurpose>Menu: Close the current Scicos diagram</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

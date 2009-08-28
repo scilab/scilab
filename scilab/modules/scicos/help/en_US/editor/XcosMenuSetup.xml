@@ -30,7 +30,7 @@
           xml:id="XcosMenuSetup">
   <refnamediv>
     <refname>Setup</refname>
-    <refpurpose>Set simulation related parameters.</refpurpose>
+    <refpurpose>Menu: Set simulation related parameters.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

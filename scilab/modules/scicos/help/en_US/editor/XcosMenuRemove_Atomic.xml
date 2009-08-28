@@ -30,7 +30,7 @@
           xml:id="XcosMenuRemove_Atomic">
   <refnamediv>
     <refname>Remove Atomic</refname>
-    <refpurpose>Transform an atomic  Super Block into a regular one</refpurpose>
+    <refpurpose>Menu: Transform an atomic  Super Block into a regular one</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

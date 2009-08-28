@@ -30,7 +30,7 @@
           xml:id="XcosMenuShow_Block_Shadow">
   <refnamediv>
     <refname>Show_Block_Shadow</refname>
-    <refpurpose>Toggle 3D shape for Scicos blocks.</refpurpose>
+    <refpurpose>Menu: Toggle 3D shape for Scicos blocks.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

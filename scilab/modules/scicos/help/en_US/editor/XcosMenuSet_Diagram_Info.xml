@@ -30,7 +30,7 @@
           xml:id="XcosMenuSet_Diagram_Info">
   <refnamediv>
     <refname>Set_Diagram_Info</refname>
-    <refpurpose>Set user's diagram information.</refpurpose>
+    <refpurpose>Menu: Set user's diagram information.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
