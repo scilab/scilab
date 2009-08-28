@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Create_Atomic">
+          xml:id="XcosMenuCreate_Atomic">
   <refnamediv>
-    <refname>XcosMenu_Create_Atomic</refname>
+    <refname>Create_Atomic</refname>
     <refpurpose>Transform a regular Super Block into an atomic one</refpurpose>
   </refnamediv>
   <refsection>
@@ -44,12 +44,13 @@
       elementary block)
     </para>
     <para>
-      This menu applies to a single selected Super Block, transforming
+      This menu applies to a single <link
+      linkend="XcosSelect">selected</link> Super Block, transforming
       it into an atomic superblock.
     </para>
     <para>
       In the current version the transformation to an atomic super
-      block uses the <link linkend="XcosMenu_Code_Generation">code generation
+      block uses the <link linkend="XcosMenuCode_Generation">code generation
       tool</link>.
     </para>
   </refsection>
@@ -74,7 +75,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="SUPER_f">Super Block</link> </member>
-      <member> <link linkend="XcosMenu_Remove_Atomic">Remove_Atomic</link> </member>
+      <member> <link linkend="XcosMenuRemove_Atomic">Remove_Atomic</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Code_Generation">
+          xml:id="XcosMenuCode_Generation">
   <refnamediv>
-    <refname>XcosMenu_Code_Generation</refname>
+    <refname>Code_Generation</refname>
     <refpurpose>Generates a C Code simulation function for  the selected super block.</refpurpose>
   </refnamediv>
   <refsection>
@@ -39,8 +39,9 @@
       a  <link linkend="SUPER_f">Super Block</link>.
     </para>
     <para>
-      The code generation is obtained simply by selecting a Super block  and
-      then the <literal>Code Generation</literal> menu.
+      The code generation is obtained simply by <link
+      linkend="XcosSelect">selecting</link> a Super block
+      and then the <literal>Code Generation</literal> menu.
     </para>
     <para>
       If the Super Block satisfies the required conditions, a dialog box
@@ -75,6 +76,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="SUPER_f">Super Block</link> </member>
+      <member> <link linkend="XcosSelect">Select</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_About_Scicos">
+          xml:id="XcosMenuAbout_Scicos">
   <refnamediv>
-    <refname>XcosMenu_About_Scicos</refname>
+    <refname>About_Scicos</refname>
     <refpurpose>Display useful informations about Scicos</refpurpose>
   </refnamediv>
   <refsection>

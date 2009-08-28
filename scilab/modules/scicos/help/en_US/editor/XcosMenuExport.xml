@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Export">
+          xml:id="XcosMenuExport">
   <refnamediv>
-    <refname>XcosMenu_Export</refname>
+    <refname>Export</refname>
     <refpurpose>Export current Scicos diagram  in various graphic formats.</refpurpose>
   </refnamediv>
   <refsection>
@@ -49,7 +49,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Export_All">Export_All</link> </member>
+      <member> <link linkend="XcosMenuExport_All">Export_All</link> </member>
      </simplelist>
    </refsection>
 </refentry>

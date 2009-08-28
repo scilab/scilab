@@ -27,31 +27,36 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Copy">
+          xml:id="XcosMenuCopy">
   <refnamediv>
-    <refname>XcosMenu_Copy</refname>
+    <refname>Copy</refname>
     <refpurpose>Copy  editor objects in the Scicos clipboard.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
       <literal>Copy</literal> is used to place a copy of the selected
-      object(s) in the clipboard. The user must first select the
-      desired objects then execute the <literal>Copy</literal> menu
+      object(s) in the clipboard. The user must first <link linkend="XcosSelect">select</link> the
+      desired objects 
+      then he has to execute the <literal>Copy</literal> menu
     </para>
     <para> 
        The CTRL-C key is an equivalent of the <literal>Copy</literal> menu.
     </para>
-     <para> 
-       It is not possible to copy a single link, but if the selected
-       objects contains blocks and links, the internal links (links connecting selected
-       blocks) will also be copied.
-     </para>
+    <para> 
+      It is not possible to copy a single link, but if the selected
+      objects contains blocks and links, the internal links (links connecting selected
+      blocks) will also be copied.
+    </para>
+    <para> 
+
+    </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Paste">Paste</link> </member>
+      <member> <link linkend="XcosMenuPaste">Paste</link> </member>
+      <member> <link linkend="XcosSelect">Select</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Fit_diagram_to_figure">
+          xml:id="XcosMenuFit_diagram_to_figure">
   <refnamediv>
-    <refname>XcosMenu_Fit_diagram_to_figure</refname>
+    <refname>Fit_diagram_to_figure</refname>
     <refpurpose>Fit a Scicos diagram to the associated window size.</refpurpose>
   </refnamediv>
   <refsection>
@@ -43,8 +43,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Zoom_in">Zoom_in</link> </member>
-      <member> <link linkend="XcosMenu_Zoom_out">Zoom_out</link> </member>
+      <member> <link linkend="XcosMenuZoom_in">Zoom_in</link> </member>
+      <member> <link linkend="XcosMenuZoom_out">Zoom_out</link> </member>
      </simplelist>
    </refsection>
 </refentry>

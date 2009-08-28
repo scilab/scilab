@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Add_new_block">
+          xml:id="XcosMenuAdd_new_block">
   <refnamediv>
-    <refname>XcosMenu_Add_new_block</refname>
+    <refname>Add_new_block</refname>
     <refpurpose>adds a newly defined block</refpurpose>
   </refnamediv>
   <refsection>
@@ -46,9 +46,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Palettes">Palettes</link> </member>
-      <member> <link linkend="XcosMenu_Pal_Tree">Pal_Tree</link> </member>
-      <member> <link linkend="XcosMenu_Pal_editor">Pal_editor</link> </member>
+      <member> <link linkend="XcosMenuPalettes">Palettes</link> </member>
+      <member> <link linkend="XcosMenuPal_Tree">Pal_Tree</link> </member>
+      <member> <link linkend="XcosMenuPal_editor">Pal_editor</link> </member>
      </simplelist>
    </refsection>
 </refentry>

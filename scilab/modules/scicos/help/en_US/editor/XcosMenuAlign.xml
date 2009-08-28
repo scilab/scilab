@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Align">
+          xml:id="XcosMenuAlign">
   <refnamediv>
-    <refname>XcosMenu_Align</refname>
+    <refname>Align</refname>
     <refpurpose>Aligns block ports</refpurpose>
   </refnamediv>
   <refsection>
@@ -55,9 +55,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Grid">Grid</link> </member>
-      <member> <link linkend="XcosMenu_Move">Move</link> </member>
-      <member> <link linkend="XcosMenu_Smart_Move">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
+      <member> <link linkend="XcosMenuMove">Move</link> </member>
+      <member> <link linkend="XcosMenuSmart_Move">Smart_Move</link> </member>
      </simplelist>
    </refsection>
 </refentry>

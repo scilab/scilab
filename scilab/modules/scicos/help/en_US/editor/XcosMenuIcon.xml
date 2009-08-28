@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Icon">
+          xml:id="XcosMenuIcon">
   <refnamediv>
-    <refname>XcosMenu_Icon</refname>
+    <refname>Icon</refname>
     <refpurpose>Edit the graphic instructions that draw the block icon</refpurpose>
   </refnamediv>
   <refsection>
@@ -45,7 +45,7 @@
       you to enter Scilab instructions used to draw the icon.
       </para>
       <para>
-      You may use the <link linkend="XcosMenu_Icon_Editor">Icon
+      You may use the <link linkend="XcosMenuIcon_Editor">Icon
       Editor</link> menu to generate the Scilab instructions. The
       bottom left coordinates of the icon is given by the
       <literal>orig=[x,y]</literal> variable while the width and
@@ -56,7 +56,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Icon_Editor">Icon Editor</link> </member>
+      <member> <link linkend="XcosMenuIcon_Editor">Icon Editor</link> </member>
      </simplelist>
    </refsection>
 </refentry>

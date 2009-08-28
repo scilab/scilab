@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Context">
+          xml:id="XcosMenuContext">
   <refnamediv>
-    <refname>XcosMenu_Context</refname>
+    <refname>Context</refname>
     <refpurpose>Defines diagram symbolic parameter values.</refpurpose>
   </refnamediv>
   <refsection>
@@ -54,7 +54,7 @@
     <para>
 	If you change the value of a symbolic Scicos parameters in the
 	context, all the blocks are updated (<link
-	linkend="XcosMenu_Eval">Eval</link> is automatically performed).
+	linkend="XcosMenuEval">Eval</link> is automatically performed).
     </para>
   </refsection>
   <refsection>
@@ -64,7 +64,7 @@
       variables to define symbolic parameters:  particular values of
       symbolic parameters may change some diagram properties such as
       input output direct transfert and consequently imply a
-      recompilation of the diagram (see <link linkend="XcosMenu_Compile">Compile</link>).
+      recompilation of the diagram (see <link linkend="XcosMenuCompile">Compile</link>).
 
     </para>
     <para>
@@ -79,8 +79,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Eval">Eval</link> </member>
-      <member> <link linkend="XcosMenu_Available_Parameters">Available_Parameters</link> </member>
+      <member> <link linkend="XcosMenuEval">Eval</link> </member>
+      <member> <link linkend="XcosMenuAvailable_Parameters">Available_Parameters</link> </member>
       <member> <link linkend="scicos_simulate">scicos_simulate</link> </member>
      </simplelist>
    </refsection>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Block_Documentation">
+          xml:id="XcosMenuBlock_Documentation">
   <refnamediv>
-    <refname>XcosMenu_Block_Documentation</refname>
+    <refname>Block_Documentation</refname>
     <refpurpose>Set or displays the user documentation for the selected block</refpurpose>
   </refnamediv>
   <refsection>
@@ -62,6 +62,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="scicos_block">scicos block data structure</link> </member>
+      <member> <link linkend="XcosSelect">Select</link> </member>
      </simplelist>
    </refsection>
 </refentry>

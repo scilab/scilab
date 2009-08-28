@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Default_link_colors">
+          xml:id="XcosMenuDefault_link_colors">
   <refnamediv>
-    <refname>XcosMenu_Default_link_colors</refname>
+    <refname>Default_link_colors</refname>
     <refpurpose>Set the colors used to draw the newly created links</refpurpose>
   </refnamediv>
   <refsection>
@@ -42,8 +42,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Add_Color">Add_Color</link> </member>
-      <member> <link linkend="XcosMenu_Background_color">Background_color</link> </member>
+      <member> <link linkend="XcosMenuAdd_Color">Add_Color</link> </member>
+      <member> <link linkend="XcosMenuBackground_color">Background_color</link> </member>
      </simplelist>
    </refsection>
 </refentry>

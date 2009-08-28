@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Analyze_Diagram">
+          xml:id="XcosMenuAnalyze_Diagram">
   <refnamediv>
-    <refname>XcosMenu_Analyze_Diagram</refname>
+    <refname>Analyze_Diagram</refname>
     <refpurpose>Simple diagram verification</refpurpose>
   </refnamediv>
   <refsection>
@@ -42,7 +42,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Compile">Compile</link> </member>
+      <member> <link linkend="XcosMenuCompile">Compile</link> </member>
      </simplelist>
    </refsection>
 </refentry>

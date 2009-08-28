@@ -27,21 +27,21 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Color">
+          xml:id="XcosMenuColor">
   <refnamediv>
-    <refname>XcosMenu_Color</refname>
+    <refname>Color</refname>
     <refpurpose>Change a block background color or a link color</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
       To change the background color of blocks or links , you can
-      proceed in two different ways: either you first select the
-      elements (blocks or links) then activate the
-      <literal>Color</literal> menu or you first activate the menu
-      then click on the desired object.  A color selection popup will
-      appear. Once the color has been selected it is applied to the
-      selected objects.
+      proceed in two different ways: either you first <link
+      linkend="XcosSelect">select</link> the elements (blocks or
+      links) then activate the <literal>Color</literal> menu or you
+      first activate the menu then click on the desired object.  A
+      color selection popup will appear. Once the color has been
+      selected it is applied to the selected objects.
     </para>
     <para>
       Note that changing the color of a link also changes the color of
@@ -51,8 +51,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Background_color">Background_color</link> </member>
-      <member> <link linkend="XcosMenu_Add_color">Add_color</link> </member>
+      <member> <link linkend="XcosMenuBackground_color">Background_color</link> </member>
+      <member> <link linkend="XcosMenuAdd_color">Add_color</link> </member>
      </simplelist>
    </refsection>
 </refentry>

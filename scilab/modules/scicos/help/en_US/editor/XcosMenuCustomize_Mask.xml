@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Customize_Mask">
+          xml:id="XcosMenuCustomize_Mask">
   <refnamediv>
-    <refname>XcosMenu_Customize_Mask</refname>
+    <refname>Customize_Mask</refname>
     <refpurpose>Customize the masked Super block parameter setting dialog.</refpurpose>
   </refnamediv>
   <refsection>
@@ -40,15 +40,16 @@
       dialog box can be set by this menu.
     </para>
     <para>
-      This menu applies to a single selected masked Super Block.
+      This menu applies to a single <link
+      linkend="XcosSelect">selected</link> masked Super Block.
     </para>
 
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Create_Mask">Create_Mask</link> </member>
-      <member> <link linkend="XcosMenu_Save_Block_GUI">Save_Block_GUI</link> </member>
+      <member> <link linkend="XcosMenuCreate_Mask">Create_Mask</link> </member>
+      <member> <link linkend="XcosMenuSave_Block_GUI">Save_Block_GUI</link> </member>
      </simplelist>
    </refsection>
 </refentry>

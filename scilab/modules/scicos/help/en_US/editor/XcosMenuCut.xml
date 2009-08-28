@@ -27,18 +27,18 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Cut">
+          xml:id="XcosMenuCut">
   <refnamediv>
-    <refname>XcosMenu_Cut</refname>
+    <refname>Cut</refname>
     <refpurpose>Remove editor objects and put them into the Scicos clipboard.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      <literal>Cut</literal> menu is used to remove the selected
-      objects from the diagram and keep a copy in the clipboard. The
-      user must first select the desired objects then execute the
-      <literal>Cut</literal> menu.
+      <literal>Cut</literal> menu is used to remove the <link
+      linkend="XcosSelect">selected</link> objects from the diagram
+      and keep a copy in the clipboard. The user must first select the
+      desired objects then execute the <literal>Cut</literal> menu.
     </para>
     <para> 
        The CTRL-x key is an equivalent of the <literal>Cut</literal> menu.
@@ -54,9 +54,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Copy">Copy</link> </member>
-      <member> <link linkend="XcosMenu_Paste">Paste</link> </member>
-      <member> <link linkend="XcosMenu_Delete">Delete</link> </member>
+      <member> <link linkend="XcosMenuCopy">Copy</link> </member>
+      <member> <link linkend="XcosMenuPaste">Paste</link> </member>
+      <member> <link linkend="XcosMenuDelete">Delete</link> </member>
      </simplelist>
    </refsection>
 </refentry>

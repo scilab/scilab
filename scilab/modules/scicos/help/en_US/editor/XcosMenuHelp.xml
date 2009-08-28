@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Help">
+          xml:id="XcosMenuHelp">
   <refnamediv>
-    <refname>XcosMenu_Help</refname>
+    <refname>Help</refname>
     <refpurpose>Call the help browser for the select object or menu</refpurpose>
   </refnamediv>
   <refsection>
@@ -42,7 +42,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Scicos_Documentation">Scicos_Documentation</link> </member>
+      <member> <link linkend="XcosMenuScicos_Documentation">Scicos_Documentation</link> </member>
      </simplelist>
    </refsection>
 </refentry>

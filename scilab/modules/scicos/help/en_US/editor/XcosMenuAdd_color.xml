@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Add_color">
+          xml:id="XcosMenuAdd_color">
   <refnamediv>
-    <refname>XcosMenu_Add_color</refname>
+    <refname>Add_color</refname>
     <refpurpose>Adds a color for the Scicos editor color map</refpurpose>
   </refnamediv>
   <refsection>
@@ -42,7 +42,7 @@
    <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Background_color">Background_color</link> </member>
+      <member> <link linkend="XcosMenuBackground_color">Background_color</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Exit_Scicos">
+          xml:id="XcosMenuExit_Scicos">
   <refnamediv>
-    <refname>XcosMenu_Exit_Scicos</refname>
+    <refname>Exit_Scicos</refname>
     <refpurpose>Close all the opened scicos editors</refpurpose>
   </refnamediv>
   <refsection>
@@ -44,9 +44,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Quit">Quit</link> </member>
-      <member> <link linkend="XcosMenu_Save">Save</link> </member>
-      <member> <link linkend="XcosMenu_SaveAs">SaveAs</link> </member>
+      <member> <link linkend="XcosMenuQuit">Quit</link> </member>
+      <member> <link linkend="XcosMenuSave">Save</link> </member>
+      <member> <link linkend="XcosMenuSaveAs">SaveAs</link> </member>
      </simplelist>
    </refsection>
 </refentry>

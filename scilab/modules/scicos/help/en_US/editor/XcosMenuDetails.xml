@@ -27,17 +27,18 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Details">
+          xml:id="XcosMenuDetails">
   <refnamediv>
-    <refname>XcosMenu_Details</refname>
+    <refname>Details</refname>
     <refpurpose>Scicos editor objects data structure viewer</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      This item can be applied to a block, link or text. It can also be
-      applied to the diagram. In either case, it displays the content of
-      the Scilab data structure defining the object.
+      This item can be applied to a <link
+      linkend="XcosSelect">selected</link> block, link or text. It can
+      also be applied to the diagram. In either case, it displays the
+      content of the Scilab data structure defining the object.
     </para>
   </refsection>
   <refsection>

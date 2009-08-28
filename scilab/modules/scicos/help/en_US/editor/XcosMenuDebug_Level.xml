@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Debug_Level">
+          xml:id="XcosMenuDebug_Level">
   <refnamediv>
-    <refname>XcosMenu_Debug_Level</refname>
+    <refname>Debug_Level</refname>
     <refpurpose>Set the Scicos diagram debugging level</refpurpose>
   </refnamediv>
   <refsection>
@@ -68,7 +68,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_DEBUG_SCICOS">Debug Block</link> </member>
+      <member> <link linkend="XcosMenuDEBUG_SCICOS">Debug Block</link> </member>
      </simplelist>
    </refsection>
 </refentry>

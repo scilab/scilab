@@ -26,9 +26,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Delete">
+          xml:id="XcosMenuDelete">
   <refnamediv>
-    <refname>XcosMenu_Delete</refname>
+    <refname>Delete</refname>
     <refpurpose>Delete selected objects in the diagram editor.</refpurpose>
   </refnamediv>
   <refsection>
@@ -36,10 +36,10 @@
    
 
     <para>
-      To delete editors objects ( blocks links or texts), select the
-      desired objects then activate this menu.  It is also possible to
-      first activate the menu and then to select the object to be
-      deleted.
+      To delete editors objects ( blocks links or texts), <link
+      linkend="XcosSelect">select</link> the desired objects
+      then activate this menu.  It is also possible to first activate
+      the menu and then to select the object to be deleted.
     </para>
       When a block is deleted all the connected links are also
       deleted. In a similar way when a link is deleted all the links
@@ -55,8 +55,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Cut">Cut</link> </member>
-      <member> <link linkend="XcosMenu_Undo">Undo</link> </member>
+      <member> <link linkend="XcosMenuCut">Cut</link> </member>
+      <member> <link linkend="XcosMenuUndo">Undo</link> </member>
      </simplelist>
    </refsection>
 </refentry>

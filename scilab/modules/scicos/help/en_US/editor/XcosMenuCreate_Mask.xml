@@ -27,15 +27,16 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Create_Mask">
+          xml:id="XcosMenuCreate_Mask">
   <refnamediv>
-    <refname>XcosMenu_Create_Mask</refname>
+    <refname>Create_Mask</refname>
     <refpurpose>Mask the internal structure of a Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      This menu applies only to a single selected <link
+      This menu applies only to a single <link
+      linkend="XcosSelect">selected</link> <link
       linkend="SUPER_f">Super Block</link>, transforming it into a
       block that behaves as basic block for the
       <literal>Open/Set</literal> menu. Its internal structure is not
@@ -48,19 +49,19 @@
       parameters inside the Super block that are not defined in the
       appropriate contexts within the Super Block. The dialog box can
       be customized using the <link
-      linkend="XcosMenu_Customize_Mask">Customize_Mask</link> menu.
+      linkend="XcosMenuCustomize_Mask">Customize_Mask</link> menu.
     </para>
     <para>
       If one wants to inspect  the internal definition of a masked super block it must remove the block mask with the 
-      <link linkend="XcosMenu_Remove_Mask">Remove_Mask</link> menu.
+      <link linkend="XcosMenuRemove_Mask">Remove_Mask</link> menu.
     </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Customize_Mask">Customize_Mask</link> </member>
-      <member> <link linkend="XcosMenu_Remove_Mask">Remove_Mask</link> </member>
-      <member> <link linkend="XcosMenu_Create_Atomic">Create_Atomic</link> </member>
+      <member> <link linkend="XcosMenuCustomize_Mask">Customize_Mask</link> </member>
+      <member> <link linkend="XcosMenuRemove_Mask">Remove_Mask</link> </member>
+      <member> <link linkend="XcosMenuCreate_Atomic">Create_Atomic</link> </member>
      </simplelist>
    </refsection>
 </refentry>

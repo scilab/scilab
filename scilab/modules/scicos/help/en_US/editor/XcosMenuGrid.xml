@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Grid">
+          xml:id="XcosMenuGrid">
   <refnamediv>
-    <refname>XcosMenu_Grid</refname>
+    <refname>Grid</refname>
     <refpurpose>Show/hide a grid in the current Scicos diagram.</refpurpose>
   </refnamediv>
   <refsection>
@@ -47,9 +47,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Set_Grid">Set_Grid</link> </member>
-      <member> <link linkend="XcosMenu_Align">Align</link> </member>
-      <member> <link linkend="XcosMenu_Smart_Move">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuSet_Grid">Set_Grid</link> </member>
+      <member> <link linkend="XcosMenuAlign">Align</link> </member>
+      <member> <link linkend="XcosMenuSmart_Move">Smart_Move</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Browser">
+          xml:id="XcosMenuBrowser">
   <refnamediv>
-    <refname>XcosMenu_Browser</refname>
+    <refname>Browser</refname>
     <refpurpose>Diagram tree browser</refpurpose>
   </refnamediv>
   <refsection>

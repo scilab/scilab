@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Eval">
+          xml:id="XcosMenuEval">
   <refnamediv>
-    <refname>XcosMenu_Eval</refname>
+    <refname>Eval</refname>
     <refpurpose>(re)-evaluate the Scicos block parameters</refpurpose>
   </refnamediv>
   <refsection>
@@ -43,12 +43,12 @@
     </para>
     <para> 
       Select this menu item to have them re-evaluated according to new
-      values of <link linkend="XcosMenu_Context">Scicos context</link> or
+      values of <link linkend="XcosMenuContext">Scicos context</link> or
       Scilab variables.
     </para>
     <para> 
       When a formal variable definition is changed in the <link
-      linkend="XcosMenu_Context">Scicos context</link> the parameters of each
+      linkend="XcosMenuContext">Scicos context</link> the parameters of each
       bloks are automatically re-evaluated, so the
       <literal>Eval</literal> menu has only to be used in special
       cases (use of variables defined in the Scilab environment, ...)
@@ -58,7 +58,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Context">Context</link> </member>
+      <member> <link linkend="XcosMenuContext">Context</link> </member>
       <member> <link linkend="scicos_graphics">scicos_graphics</link> </member>
      </simplelist>
    </refsection>

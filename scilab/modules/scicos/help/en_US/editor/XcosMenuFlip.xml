@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Flip">
+          xml:id="XcosMenuFlip">
   <refnamediv>
-    <refname>XcosMenu_Flip</refname>
+    <refname>Flip</refname>
     <refpurpose>Flip the regular port of a Scicos block</refpurpose>
   </refnamediv>
   <refsection>
@@ -41,7 +41,7 @@
       output event ports which are numbered from left to right.
     </para>
     <para>
-      User can either select one or veral blocks and then activate the
+      User can either <link linkend="XcosSelect">select</link> one or several blocks and then activate the
       <literal>Flip</literal> menu or select the
       <literal>Flip</literal> menu first and then select the desired
       block.
@@ -53,8 +53,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Rotate_Left">Rotate_Left</link> </member>
-      <member> <link linkend="XcosMenu_Rotate_Right">Rotate_Right</link> </member>
+      <member> <link linkend="XcosMenuRotate_Left">Rotate_Left</link> </member>
+      <member> <link linkend="XcosMenuRotate_Right">Rotate_Right</link> </member>
      </simplelist>
    </refsection>
 </refentry>

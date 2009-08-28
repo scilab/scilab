@@ -27,9 +27,9 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenu_Duplicate">
+          xml:id="XcosMenuDuplicate">
   <refnamediv>
-    <refname>XcosMenu_Duplicate</refname>
+    <refname>Duplicate</refname>
     <refpurpose>Makes a Copy of selected block or text in the active editor window.</refpurpose>
   </refnamediv>
   <refsection>
@@ -65,9 +65,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenu_Copy">Copy</link> </member>
-      <member> <link linkend="XcosMenu_Paste">Paste</link> </member>
-      <member> <link linkend="XcosMenu_Undo">Undo</link> </member>
+      <member> <link linkend="XcosMenuCopy">Copy</link> </member>
+      <member> <link linkend="XcosMenuPaste">Paste</link> </member>
+      <member> <link linkend="XcosMenuUndo">Undo</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <Serge.Steer@inria.fr>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosSelect">
+  <refnamediv>
+    <refname>Select</refname>
+    <refpurpose>How to select objects in Scicos editor.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Many Scicos GUI menus operates on selected objects.
+    </para>
+    <para>
+      To select a single object (Block, Link or Text) in the current
+      Scicos window it is enough to press the left mouse button over
+      it. 
+    </para>
+    <para>
+      Selected objects are displayed with small square grips
+      drawn at the block corners and at the link boundaries and
+      intermediate points.
+   </para>
+    <para>
+      To select several objects it is either possible to process
+      as above for each object pressing the [CTRL] key or to drag a
+      rectangle over the desired objects: press left on a point which
+      is not over an object to select the corner of the rectangle then
+      drag the mouse to make the rectangle include all the desired
+      objects and release the mouse button.
+    </para>
+    <para>
+      Both methods can be combined to produce the desired selection.
+    </para>
+    <para>
+      Internal links (links going from a selected block to another
+      selected block) are automatically included in the selection.
+    </para>
+  </refsection>
+
+</refentry>
