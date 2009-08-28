@@ -688,7 +688,7 @@ int C2F(crebmat)(char *fname,int *lw,int *m,int *n,int *lr,unsigned long fname_l
   if ( C2F(crebmati)(fname, Lstk(*lw ), m, n, lr, &c_true, fname_len)== FALSE)
     return FALSE ;
 
-  ix1 = *lr + *m * *n + 2;
+  ix1 = *lr + *m * *n + 3;
   *Lstk(*lw +1) = sadr(ix1);
   return TRUE;
 } 
@@ -706,7 +706,7 @@ int C2F(fakecrebmat)(int *lw,int *m,int *n,int *lr)
   }
   if ( C2F(crebmati)("crebmat", Lstk(*lw ), m, n, lr, &c_false, 7L)== FALSE)
     return FALSE ;
-  *Lstk(*lw +1) = sadr( *lr + *m * *n + 2);
+  *Lstk(*lw +1) = sadr( *lr + *m * *n + 3);
   return TRUE;
 } 
 

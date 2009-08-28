@@ -138,15 +138,19 @@ modulename=optimization
 libscioptimization_la_rootdir = $(mydatadir)
 libscioptimization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
+#### m2sci : Macros ####
+MACROSDIRSEXT =  macros/neldermead \
+	macros/optimbase \
+	macros/optimsimplex
 
-####�optimization : init scripts ####
+####optimization : init scripts ####
 libscioptimization_la_etcdir = $(mydatadir)/etc
 libscioptimization_la_etc_DATA = etc/optimization.quit etc/optimization.start
 
-####�optimization : gateway declaration ####
+####optimization : gateway declaration ####
 libscioptimization_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
-####�optimization : include files ####
+####optimization : include files ####
 libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
