@@ -46,31 +46,31 @@
           <para>a vector of string</para>
           <itemizedlist>
             <listitem>
-              <para>no_check_ref</para>
+              <para>no_check_ref : does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
               <para>no_check_error_output</para>
             </listitem>
             <listitem>
-              <para>create_ref</para>
+              <para>create_ref : create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
-              <para>list</para>
+              <para>list : does not perform the tests but displays a list of available tests</para>
             </listitem>
             <listitem>
-              <para>help</para>
+              <para>help : display some examples about how to use this command</para>
             </listitem>
             <listitem>
-              <para>mode_nw</para>
+              <para>mode_nw : add the "-nw" option to the launch</para>
             </listitem>
             <listitem>
-              <para>mode_nwni</para>
+              <para>mode_nwni : add the "-nwni" option to the launch</para>
             </listitem>
             <listitem>
-              <para>nonreg_test</para>
+              <para>nonreg_test : runs only the non-regression tests, skipping unit tests</para>
             </listitem>
             <listitem>
-              <para>unit_test</para>
+              <para>unit_test : runs only the unit tests, skipping non-regression tests</para>
             </listitem>
             <listitem>
               <para>skip_tests</para>
@@ -79,6 +79,114 @@
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+   Search for .tst files in the unit test and non-regression test library
+   execute them, and display a report about success of failures.
+   The .tst files are searched in directories SCI+"/modules/*/tests/unit_tests"
+   and SCI+"/modules/*/tests/nonreg_tests".
+   Whenever a test is executed, a .dia file is generated which contains 
+   the full list of commands executed along with message which appears in the
+   console. When the script is done, the .dia file is compared with 
+   the .dia.ref file which is expected to be in the same directory 
+   as the .tst file. If the two file are different, the test fails.
+   </para>
+   <para>
+   Special tags may be inserted in the .tst file, which help to 
+   control the processing of the corresponding test. These tags
+   are expected to be found in Scilab comments.
+   </para>
+    <para>
+   These are the available tags :
+   <itemizedlist>
+     <listitem>
+       <para>
+       &#60;-- INTERACTIVE TEST --&#62;
+       This test will be skipped because it is interactive.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- NOT FIXED --&#62;
+       This test will be skipped because it is a known, but unfixed bug.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- TEST WITH GRAPHIC --&#62;
+       This test will not be executed if the option "mode_nwni" is used.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- NO TRY CATCH --&#62;
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- NO CHECK ERROR OUTPUT --&#62;
+       The error output file is not checked
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- NO CHECK REF --&#62;
+       The .dia and the .dia.ref files are not compared.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- ENGLISH IMPOSED --&#62;
+       This test will be executed with the -l en_US option.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- FRENCH IMPOSED --&#62;
+       This test will be executed with the -l fr_FR option.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- JVM NOT MANDATORY --&#62;
+       This test will be executed with the nwni mode by default.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- WINDOWS ONLY --&#62;
+       If the operating system isn't Windows, the test is skipped.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- UNIX ONLY --&#62;
+       If the operating system isn't an unix OS, the test is skipped.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- LINUX ONLY --&#62;
+       If the operating system isn't Linux, the test is skipped.
+       </para>
+       </listitem>
+       <listitem>
+       <para>
+       &#60;-- MACOSX ONLY --&#62;
+       If the operating system isn't MacOSX, the test is skipped.
+       </para>
+       </listitem>
+     </itemizedlist>
+   </para>
+   
+    <para>
+   Each test is executed in a separated process, created with the "host" command.
+   That enables the current command to continue, even if the test as
+   created an unstable environment. It also enables the tests to be 
+   independent from one another.
+   </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -95,6 +203,7 @@ test_run('core',[]);
 test_run(['core','string']);
 
 // Launch one or several test in a specified module
+test_run('core','trycatch');
 test_run('core',['trycatch','opcode']);
 
 // Options
@@ -112,10 +221,32 @@ test_run([],[],['no_check_ref','mode_nw']);
 test_run('boolean','bug_2799','no_check_error_output');
    </programlisting>
   </refsection>
+
+  <refsection>
+    <title>Internal Design</title>
+    <para>
+    The tests are performed in the temporary directory, not in the directory 
+    which originaly contain the tests files.
+    The .tst file is copied into the temporary directory, the test is performed
+    and the .dia.ref is copied back into the original location.
+    </para>
+
+    <para>
+    The .tst script is not run as is. Instead, a header and a footer are 
+    inserted at the beginning and at the end of the .tst at the time 
+    the script is copied into the temporary directory.
+    The role of this modification is to redirect the output messages
+    into the .dia file, so that the user can have a log file once the test
+    is performed.
+    </para>
+
+  </refsection>
+
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">
       <member>PM</member>
+      <member>Michael Baudin</member>
     </simplelist>
   </refsection>
 </refentry>
