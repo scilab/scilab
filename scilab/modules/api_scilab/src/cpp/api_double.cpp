@@ -192,6 +192,50 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
 	return 0;
 }
 
+int createMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piKey)
+{
+	int i;
+	double *pdblReal	= NULL;
+
+	int iOne					= 1;
+	int iSize					= _iRows * _iCols;
+
+	int iRet = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	for(i = 0 ; i < iSize ; i++)
+	{
+		pdblReal[i] = _piReal[i];
+	}
+	return 0;
+}
+
+int createComplexMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg, int* _piKey)
+{
+	int i;
+	double *pdblReal	= NULL;
+	double *pdblImg		= NULL;
+
+	int iOne					= 1;
+	int iSize					= _iRows * _iCols;
+
+	int iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	for(i = 0 ; i < iSize ; i++)
+	{
+		pdblReal[i] = _piReal[i];
+		pdblImg[i]	= _piImg[i];
+	}
+	return 0;
+}
+
 int createComplexZMatrixOfDouble(int _iVar, int _iRows, int _iCols, doublecomplex* _pdblData, int* _piKey)
 {
 	int iRet						= 0;

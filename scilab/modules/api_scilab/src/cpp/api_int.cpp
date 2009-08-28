@@ -20,20 +20,19 @@
 
 #include "CallScilab.h"
 #include "stack-c.h"
+#include "alltypes.hxx"
+
+using namespace types;
 
 int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)
 {
-	if(_piAddress == NULL)
+	Int* pi = ((InternalType*)_piAddress)->getAsInt();
+	if(pi == NULL)
 	{
 		return 1;
 	}
 
-	if(_piAddress[0] != sci_ints)
-	{
-		return 1;
-	}
-
-	*_piPrecision = _piAddress[3];
+	*_piPrecision = (int)pi->getIntType();
 	return 0;
 }
 
@@ -69,33 +68,25 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
 
 int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
 {
-	int iPrec		= 0;
-	int iRet		= 0;
-
-	if(_piAddress == NULL)
+	Int* pi = ((InternalType*)_piAddress)->getAsInt();
+	if(pi == NULL)
 	{
 		return 1;
 	}
 
-	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
-	if(iPrec != _iPrecision || iRet)
-	{
-		return 1;
-	}
+	*_piRows	= pi->rows_get();
+	*_piCols	= pi->cols_get();
 
-	*_piRows = _piAddress[1];
-	*_piCols = _piAddress[2];
-
-	*_piData	= (void*)(_piAddress + 4);
+	*_piData = pi->data_get();
 	return 0;
 }
 
-int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)
+int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8, int* _piKey)
 {
 	unsigned char *pucData8		= NULL;
 	int iSize									= _iRows * _iCols;
 
-	int iRet = allocMatrixOfUnsignedInteger8(_iVar, _iRows, _iCols, &pucData8);
+	int iRet = allocMatrixOfUnsignedInteger8(_iVar, _iRows, _iCols, &pucData8, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -105,12 +96,12 @@ int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned c
 	return 0;
 }
 
-int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)
+int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16, int* _piKey)
 {
 	unsigned short *psData16	= NULL;
 	int iSize									= _iRows * _iCols;
 
-	int iRet = allocMatrixOfUnsignedInteger16(_iVar, _iRows, _iCols, &psData16);
+	int iRet = allocMatrixOfUnsignedInteger16(_iVar, _iRows, _iCols, &psData16, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -120,12 +111,12 @@ int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned 
 	return 0;
 }
 
-int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)
+int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32, int* _piKey)
 {
 	unsigned int *piData32	= NULL;
 	int iSize			= _iRows * _iCols;
 
-	int iRet = allocMatrixOfUnsignedInteger32(_iVar, _iRows, _iCols, &piData32);
+	int iRet = allocMatrixOfUnsignedInteger32(_iVar, _iRows, _iCols, &piData32, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -135,12 +126,29 @@ int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned 
 	return 0;
 }
 
-int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8)
+#ifdef __SCILAB_INT64__
+int createMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long* _pullData64, int* _piKey)
+{
+	unsigned long long *pullData64	= NULL;
+	int iSize												= _iRows * _iCols;
+
+	int iRet = allocMatrixOfUnsignedInteger64(_iVar, _iRows, _iCols, &pullData64, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	memcpy(pullData64, pullData64, sizeof(unsigned long long) * iSize);
+	return 0;
+}
+#endif
+
+int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8, int* _piKey)
 {
 	char *pcData8	= NULL;
 	int iSize			= _iRows * _iCols;
 
-	int iRet = allocMatrixOfInteger8(_iVar, _iRows, _iCols, &pcData8);
+	int iRet = allocMatrixOfInteger8(_iVar, _iRows, _iCols, &pcData8, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -150,12 +158,12 @@ int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8)
 	return 0;
 }
 
-int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
+int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16, int* _piKey)
 {
 	short *psData16	= NULL;
 	int iSize			= _iRows * _iCols;
 
-	int iRet = allocMatrixOfInteger16(_iVar, _iRows, _iCols, &psData16);
+	int iRet = allocMatrixOfInteger16(_iVar, _iRows, _iCols, &psData16, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -165,12 +173,12 @@ int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
 	return 0;
 }
 
-int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32)
+int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32, int* _piKey)
 {
 	int *piData32	= NULL;
 	int iSize			= _iRows * _iCols;
 
-	int iRet = allocMatrixOfInteger32(_iVar, _iRows, _iCols, &piData32);
+	int iRet = allocMatrixOfInteger32(_iVar, _iRows, _iCols, &piData32, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -181,12 +189,12 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32)
 }
 
 #ifdef __SCILAB_INT64__
-int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64)
+int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllData64, int* _piKey)
 {
 	long long  *pllData64	= NULL;
 	int iSize							= _iRows * _iCols;
 
-	int iRet = allocMatrixOfInteger64(_iVar, _iRows, _iCols, &pllData64);
+	int iRet = allocMatrixOfInteger64(_iVar, _iRows, _iCols, &pllData64, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -197,19 +205,11 @@ int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _pllDa
 }
 #endif
 
-int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
+int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8, int* _piKey)
 {
-	int *piAddr		= NULL;
 	char *pcData8	= NULL;
 
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT8, _iRows, _iCols, (void**)&pcData8);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_INT8, _iRows, _iCols, (void**)&pcData8, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -219,19 +219,11 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
 	return 0;
 }
 
-int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
+int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16, int* _piKey)
 {
-	int *piAddr			= NULL;
 	short *psData16	= NULL;
 
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT16, _iRows, _iCols, (void**)&psData16);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_INT16, _iRows, _iCols, (void**)&psData16, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -241,19 +233,11 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
 	return 0;
 }
 
-int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)
+int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, int* _piKey)
 {
-	int *piAddr		= NULL;
 	int *piData32	= NULL;
 
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&piData32);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_INT32, _iRows, _iCols, (void**)&piData32, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -264,25 +248,26 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)
 }
 
 #ifdef __SCILAB_INT64__
-int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piData64)
+int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piData64, int* _piKey)
 {
-	return 1;
-}
-#endif
+	long long *pllData64	= NULL;
 
-int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)
-{
-	int *piAddr		= NULL;
-	unsigned char *pucData8	= NULL;
-
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_INT64, _iRows, _iCols, (void**)&pllData64, _piKey);
 	if(iRet)
 	{
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT8, _iRows, _iCols, (void**)&pucData8);
+	*_piData64	= pllData64;
+	return 0;
+}
+#endif
+
+int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8, int* _piKey)
+{
+	unsigned char *pucData8	= NULL;
+
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_UINT8, _iRows, _iCols, (void**)&pucData8, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -292,19 +277,11 @@ int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned ch
 	return 0;
 }
 
-int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)
+int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16, int* _piKey)
 {
-	int *piAddr			= NULL;
 	unsigned short *pusData16	= NULL;
 
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_UINT16, _iRows, _iCols, (void**)&pusData16);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_UINT16, _iRows, _iCols, (void**)&pusData16, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -314,19 +291,11 @@ int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned s
 	return 0;
 }
 
-int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)
+int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32, int* _piKey)
 {
-	int *piAddr		= NULL;
 	unsigned int *puiData32	= NULL;
 
-	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
-	if(iRet)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void**)&puiData32);
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_UINT32, _iRows, _iCols, (void**)&puiData32, _piKey);
 	if(iRet)
 	{
 		return 1;
@@ -337,27 +306,42 @@ int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned i
 }
 
 #ifdef __SCILAB_INT64__
-int allocMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long** _pullData64)
+int allocMatrixOfUnsignedInteger64(int _iVar, int _iRows, int _iCols, unsigned long long** _pullData64, int* _piKey)
 {
-	return 1;
+	unsigned long long *pullData64	= NULL;
+
+	int iRet = allocCommonMatrixOfInteger(_iVar, SCI_UINT64, _iRows, _iCols, (void**)&pullData64, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	*_pullData64	= pullData64;
+	return 0;
 }
 #endif
 
-int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** pvData)
+int allocCommonMatrixOfInteger(int _iVar, int _iPrecision, int _iRows, int _iCols, void** _pvData, int* _piKey)
 {
-	int iNewPos			= Top - Rhs + _iVar;
-	int iAddr				= *Lstk(iNewPos);
+	GatewayStruct *pStr =  (GatewayStruct*)_piKey;
+	int iNewPos					= _iVar - (int)pStr->m_pin->size() - 1;
 
-	int iRate				= (sizeof(double) / (_iPrecision % 10));
-	int iSize				= _iRows * _iCols;
-	int iDouble			= iSize / iRate;
-	int iMod				= (iSize % iRate) == 0 ? 0 : 1;
-	int iTotalSize	= iDouble + iMod;
+	Int *pi							= NULL;
 
+	if(iNewPos < 0 /*|| iNewPos > *pStr->m_piRetCount*/)
+	{
+		return 1;
+	}
 
-	fillCommonMatrixOfInteger(_piAddress, _iPrecision, _iRows, _iCols, pvData);
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
-	updateLstk(iNewPos, iAddr + 4, iTotalSize );
+	pi = new Int(_iRows, _iCols, (Int::IntType)_iPrecision);
+	*_pvData = pi->data_get();
+
+	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
+	{
+		pStr->m_pout->push_back(NULL);
+	}
+
+	(*pStr->m_pout)[iNewPos] = pi;
 	return 0;
 }
 

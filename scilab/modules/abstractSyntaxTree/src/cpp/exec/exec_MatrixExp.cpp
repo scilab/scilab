@@ -248,7 +248,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			poResult = new UInt(_iRows, _iCols);
 			break;
 		case GenericType::RealInt :
-			poResult = new Int(_iRows, _iCols);
+			poResult = new Int(_iRows, _iCols, _poSource->getAsInt()->getIntType());
 			break;
 		case GenericType::RealString :
 			poResult = new String(_iRows, _iCols);

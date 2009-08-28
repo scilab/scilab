@@ -95,6 +95,9 @@ API_SCILAB_IMPEXP int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, do
  */
 API_SCILAB_IMPEXP int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int* _piKey);
 
+API_SCILAB_IMPEXP int createMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piKey);
+API_SCILAB_IMPEXP int createComplexMatrixOfDoubleFromInteger(int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg, int* _piKey);
+
 /**
  * Get double variable data
  * @param[in] _iVar variable number

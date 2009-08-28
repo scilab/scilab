@@ -688,7 +688,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfInteger8(Rhs + 1, _iRowsRet, _iColsRet, pcData);
+		iRet = createMatrixOfInteger8(Rhs + 1, _iRowsRet, _iColsRet, pcData, _piKey);
 		break;
 	case SCI_UINT8 :
 		iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucData);
@@ -696,7 +696,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfUnsignedInteger8(Rhs + 1, _iRowsRet, _iColsRet, pucData);
+		iRet = createMatrixOfUnsignedInteger8(Rhs + 1, _iRowsRet, _iColsRet, pucData, _piKey);
 		break;
 	case SCI_INT16 :
 		iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psData);
@@ -704,7 +704,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfInteger16(Rhs + 1, _iRowsRet, _iColsRet, psData);
+		iRet = createMatrixOfInteger16(Rhs + 1, _iRowsRet, _iColsRet, psData, _piKey);
 		break;
 	case SCI_UINT16 :
 		iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusData);
@@ -712,7 +712,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfUnsignedInteger16(Rhs + 1, _iRowsRet, _iColsRet, pusData);
+		iRet = createMatrixOfUnsignedInteger16(Rhs + 1, _iRowsRet, _iColsRet, pusData, _piKey);
 		break;
 	case SCI_INT32 :
 		iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piData);
@@ -720,7 +720,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfInteger32(Rhs + 1, _iRowsRet, _iColsRet, piData);
+		iRet = createMatrixOfInteger32(Rhs + 1, _iRowsRet, _iColsRet, piData, _piKey);
 		break;
 	case SCI_UINT32 :
 		iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiData);
@@ -728,7 +728,7 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 		{
 			return 1;
 		}
-		iRet = createMatrixOfUnsignedInteger32(Rhs + 1, _iRowsRet, _iColsRet, puiData);
+		iRet = createMatrixOfUnsignedInteger32(Rhs + 1, _iRowsRet, _iColsRet, puiData, _piKey);
 		break;
 	default :
 		return 1;

@@ -27,12 +27,12 @@
 #include "api_internal_sparse.h"
 #include "api_internal_boolean_sparse.h"
 #include "api_internal_pointer.h"
-#include "api_list.h"
 #include "api_string.h"
 #include "api_boolean.h"
 #include "api_int.h"
 #include "api_boolean_sparse.h"
 #include "api_pointer.h"
+#include "api_list.h"
 
 //internal functions
 static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAddress);
@@ -1620,6 +1620,13 @@ int createMatrixOfInteger32InNamedList(char* _pstName, int* _piParent, int _iIte
 {
 	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
+
+#ifdef __SCILAB_INT64__
+int createMatrixOfInteger64InNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, long long* _pllData)
+{
+	return createCommonMatrixOfIntegerInNamedList(_pstName, _piParent, _iItemPos, SCI_INT64, _iRows, _iCols, _pllData);
+}
+#endif
 
 static int readCommonMatrixOfIntgerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void* _pvData)
 {
