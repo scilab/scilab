@@ -20,10 +20,10 @@ namespace types
   class Method: public Function
   {
   public:
-    typedef Function::ReturnValue (*GW_METH)(typed_list &in, int* _piRetCount, typed_list &out,
+    typedef Function::ReturnValue (*GW_METH)(typed_list &in, int iRetCount, typed_list &out,
                                              ObjectMatrix *p_this, ObjectMatrix *p_super);
   
-    Function::ReturnValue call(typed_list &in, int* _piRetCount, typed_list &out);
+    Function::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
   
     Method(GW_METH p_callback): Function(), m_callback(p_callback) {}
     virtual ~Method() {}

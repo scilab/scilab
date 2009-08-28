@@ -258,14 +258,14 @@ namespace types
     InternalType *arg;
     va_list ap;
     typed_list args, out;
-    int retcount;
+    int retcount = 1;
     
     va_start(ap, level);
     while((arg = va_arg(ap, InternalType*)) != NULL)
       args.push_back(arg);
     va_end(ap);
     
-    if(m.call(args, &retcount, out) == Function::OK)
+    if(m.call(args, retcount, out) == Function::OK)
       return out[0];
     else
       return NULL;

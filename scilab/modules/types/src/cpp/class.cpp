@@ -95,13 +95,13 @@ namespace types
   Class::create_instance(typed_list &p_constructor_args)
   {
     typed_list out_args;
-    int nArgsOut;
+    int nArgsOut = 0;
     Instance *res = create_instance();
     
     InternalType *tmp = res->get("%constructor", res, NULL);
     Function *constructor = dynamic_cast<Function*>(tmp);
     if(constructor)
-      constructor->call(p_constructor_args, &nArgsOut, out_args);
+      constructor->call(p_constructor_args, nArgsOut, out_args);
     
     return res;
   }
@@ -113,7 +113,6 @@ namespace types
   {
     Class *kls = dynamic_cast<Class*>(self->object_ref_get());
     Instance *inst = kls->create_instance(in);
-    *_piRetCount = 1;
     out.push_back(ObjectMatrix::create_standard_ref(inst));
     return Function::OK;
   }

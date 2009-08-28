@@ -25,7 +25,7 @@ namespace types
     
     Function::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
     virtual Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out) {
-      return m_func->call(in, _piRetCount, out);
+      return m_func->call(in, iRetCount, out);
     }
   
   protected:

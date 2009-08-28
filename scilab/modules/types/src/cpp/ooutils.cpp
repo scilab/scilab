@@ -32,7 +32,7 @@ namespace types
     symbol::Context *ctx = symbol::Context::getInstance();
     ObjectMatrix *thisref = dynamic_cast<ObjectMatrix*>(ctx->get(symbol::Symbol("this")));
     ObjectMatrix *superref = dynamic_cast<ObjectMatrix*>(ctx->get(symbol::Symbol("super")));
-    return m_callback(in, _piRetCount, out, thisref, superref);
+    return m_callback(in, iRetCount, out, thisref, superref);
   }
   
   /** Bound method, object and setter */
@@ -61,7 +61,7 @@ namespace types
     ctx->put(symbol::Symbol("this"), *m_this);
     ctx->put(symbol::Symbol("super"), *m_super);
     
-    ret = inner_call(in, _piRetCount, out);
+    ret = inner_call(in, iRetCount, out);
     
     ctx->scope_end();
     
@@ -72,7 +72,7 @@ namespace types
   BoundGetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
     // push value = slot->value
-    return inner_call(in, _piRetCount, out);
+    return inner_call(in, iRetCount, out);
   }
   
   Function::ReturnValue
@@ -80,7 +80,7 @@ namespace types
   {
     Function::ReturnValue ret;
     // push value = slot->value
-    ret = inner_call(in, _piRetCount, out);
+    ret = inner_call(in, iRetCount, out);
     // Retrieve value and put it to slot->value
     return ret;
   }
