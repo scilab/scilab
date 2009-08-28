@@ -12,7 +12,7 @@
 
 #ifndef __GETUIOBJECTVISIBLE_H__
 #define __GETUIOBJECTVISIBLE_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol or uimenu
  * @return true if the status is got without error
  */
-int GetUiobjectVisible(sciPointObj * pobj);
+GUI_IMPEXP int GetUiobjectVisible(sciPointObj * pobj);
 
 #endif /* !__GETUIOBJECTVISIBLE_H__ */

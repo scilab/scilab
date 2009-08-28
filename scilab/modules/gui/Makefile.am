@@ -329,11 +329,6 @@ includes/ListBox.h \
 includes/PopupMenu.h \
 includes/PushButton.h \
 includes/RadioButton.h \
-includes/sci_mpopup.h \
-includes/sci_uicontextmenu.h \
-includes/sci_uicontrol.h \
-includes/sci_uimenu.h \
-includes/sci_uiwait.h \
 includes/SetUicontrolBackgroundColor.h \
 includes/SetUicontrolFontAngle.h \
 includes/SetUicontrolFontName.h \
@@ -361,17 +356,14 @@ includes/SetUiobjectEnable.h \
 includes/SetUimenuChecked.h \
 includes/Slider.h \
 includes/TerminateGui.h \
-includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
-includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
 includes/CallJuigetfile.hxx \
-src/jni/Juigetfile.hxx \
-includes/sci_uigetfile.h \
+includes/dynlib_gui.h \
 includes/CallJuigetfile.h
 
 #### gui : icons files ####

@@ -12,7 +12,7 @@
 
 #ifndef __GET_UIOBJECT_FOREGROUNDCOLOR_H__
 #define __GET_UIOBJECT_FOREGROUNDCOLOR_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return true if the color has been correcty got
  */
-int GetUiobjectForegroundColor(sciPointObj * pobj);
+GUI_IMPEXP int GetUiobjectForegroundColor(sciPointObj * pobj);
 
 #endif /* __GET_UIOBJECT_FOREGROUNDCOLOR_H__ */

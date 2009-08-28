@@ -11,7 +11,7 @@
  *
  */
 
-#include "sci_exportUI.h"
+#include "gw_gui.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
