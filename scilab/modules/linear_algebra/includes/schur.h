@@ -14,6 +14,7 @@
 #ifndef __SCHUR_H__
 #define __SCHUR_H__
 
+#include "dynlib_linear_algebra.h"
 #include "machine.h"
 #include "linear_FTables.h"
 
@@ -30,7 +31,7 @@ typedef int * (*schself)(ARGS_schsel);
  * @param beta
  * @return
  */
-int *C2F(schsel)(double *alpha, double *beta);
+LINEAR_ALGEBRA_IMPEXP int *C2F(schsel)(double *alpha, double *beta);
 
 /** 
  * fixes the function associated to name 
@@ -38,11 +39,11 @@ int *C2F(schsel)(double *alpha, double *beta);
  * @param name
  * @param rep
  */
-void C2F(setschsel)(int *len, char *name, int *rep);
+LINEAR_ALGEBRA_IMPEXP void C2F(setschsel)(int *len, char *name, int *rep);
 
 /**************** schsel ***************/
-extern void C2F(sb02mv)(ARGS_schsel);
-extern void C2F(sb02mw)(ARGS_schsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(sb02mv)(ARGS_schsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(sb02mw)(ARGS_schsel);
  
 FTAB FTab_schsel[] ={
 {"sb02mv", (voidf)  C2F(sb02mv)},
@@ -61,7 +62,7 @@ FTAB FTab_schsel[] ={
  * @param beta
  * @return <ReturnValue>
  */
-int *C2F(gshsel)(double *alphar, double *alphai, double *beta);
+LINEAR_ALGEBRA_IMPEXP int *C2F(gshsel)(double *alphar, double *alphai, double *beta);
 
 /**
  *  fixes the function associated to name 
@@ -70,7 +71,7 @@ int *C2F(gshsel)(double *alphar, double *alphai, double *beta);
  * @param name  
  * @param rep   
  */
-void C2F(setgshsel)(int *len, char *name, int *rep);
+LINEAR_ALGEBRA_IMPEXP void C2F(setgshsel)(int *len, char *name, int *rep);
 
 
 /***********************************
@@ -84,7 +85,7 @@ void C2F(setgshsel)(int *len, char *name, int *rep);
  * @param beta
  * @return <ReturnValue>
  */
-int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+LINEAR_ALGEBRA_IMPEXP int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
 
 /**
  *  fixes the function associated to name 
@@ -93,7 +94,7 @@ int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
  * @param name  
  * @param rep   
  */
-void C2F(setgzhsel)(int *len, char *name, int *rep);
+LINEAR_ALGEBRA_IMPEXP void C2F(setgzhsel)(int *len, char *name, int *rep);
 
 /***********************************
 * Search Table for gschur uses : gzhsel
@@ -105,7 +106,7 @@ void C2F(setgzhsel)(int *len, char *name, int *rep);
  * @param beta
  * @return <ReturnValue>
  */
-int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
+LINEAR_ALGEBRA_IMPEXP int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
 
 /**
  *  fixes the function associated to name 
@@ -114,7 +115,7 @@ int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta);
  * @param name  
  * @param rep   
  */
-void C2F(setgzhsel)(int *len, char *name, int *rep);
+LINEAR_ALGEBRA_IMPEXP void C2F(setgzhsel)(int *len, char *name, int *rep);
 
 
 /***********************************
@@ -126,7 +127,7 @@ void C2F(setgzhsel)(int *len, char *name, int *rep);
  * @param alpha 
  * @return <ReturnValue>
  */
-int *C2F(zchsel)(doublecmplx *alpha);
+LINEAR_ALGEBRA_IMPEXP int *C2F(zchsel)(doublecmplx *alpha);
 
 /**
  *  fixes the function associated to name 
@@ -135,7 +136,7 @@ int *C2F(zchsel)(doublecmplx *alpha);
  * @param name  
  * @param rep   
  */
- void C2F(setzchsel)(int *len, char *name, int *rep);
+ LINEAR_ALGEBRA_IMPEXP void C2F(setzchsel)(int *len, char *name, int *rep);
 
 /***********************************
 * Search Table for schur uses : fschur
@@ -151,7 +152,7 @@ int *C2F(zchsel)(doublecmplx *alpha);
  * @param p 
  * @return <ReturnValue>
  */
-int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p);
+LINEAR_ALGEBRA_IMPEXP int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p);
 
 /**
  *  fixes the function associated to name 
@@ -159,7 +160,7 @@ int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p);
  * @param name  
  * @param rep   
  */
-void C2F(setfschur)(char *name, int *rep);
+LINEAR_ALGEBRA_IMPEXP void C2F(setfschur)(char *name, int *rep);
 
 
 
@@ -172,8 +173,8 @@ typedef int * (*zchself)(ARGS_zchsel);
 
 
 /**************** zchsel ***************/
-extern void C2F(zb02mv)(ARGS_zchsel);
-extern void C2F(zb02mw)(ARGS_zchsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(zb02mv)(ARGS_zchsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(zb02mw)(ARGS_zchsel);
  
 FTAB FTab_zchsel[] ={
 {"zb02mv", (voidf)  C2F(zb02mv)},

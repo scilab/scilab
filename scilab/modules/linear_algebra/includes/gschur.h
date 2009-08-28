@@ -14,6 +14,7 @@
 #ifndef __GSCHUR_H__
 #define __GSCHUR_H__
 
+#include "dynlib_linear_algebra.h"
 #include "AddFunctionInTable.h"
 #include "linear_FTables.h"
 
@@ -26,8 +27,8 @@
 typedef int * (*gzhself)(ARGS_gzhsel);
 
 /**************** gzhsel ***************/
-extern void C2F(zb02ow)(ARGS_gzhsel);
-extern void C2F(zb02ox)(ARGS_gzhsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(zb02ow)(ARGS_gzhsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(zb02ox)(ARGS_gzhsel);
  
 FTAB FTab_gzhsel[] ={
 {"zb02ow", (voidf)  C2F(zb02ow)},
@@ -44,8 +45,8 @@ typedef int * (*gshself)(ARGS_gshsel);
 
 
 /**************** gshsel ***************/
-extern void C2F(sb02ow)(ARGS_gshsel);
-extern void C2F(sb02ox)(ARGS_gshsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(sb02ow)(ARGS_gshsel);
+LINEAR_ALGEBRA_IMPEXP void C2F(sb02ox)(ARGS_gshsel);
  
 FTAB FTab_gshsel[] ={
 {"sb02ow", (voidf)  C2F(sb02ow)},

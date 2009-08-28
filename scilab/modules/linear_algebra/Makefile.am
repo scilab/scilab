@@ -126,6 +126,9 @@ libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xm
 libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h \
-includes/issymmetric.h
+includes/issymmetric.h \
+includes/dynlib_linear_algebra.h \
+includes/gschur.h \
+includes/schur.h
 
 include $(top_srcdir)/Makefile.incl.am
