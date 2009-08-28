@@ -1,14 +1,14 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/
 #include "gw_core.h"
 #include "stack-c.h"
@@ -21,12 +21,35 @@
 #include "searchmacroinlibraries.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
+extern int C2F(whereismacro)(); 
+/*--------------------------------------------------------------------------*/
 int sci_whereis(char *fname,unsigned long fname_len)
 {
 	int *piAddressVarOne = NULL;
 
+	/* Check the number of input argument */
+	CheckRhs(1,1); 
+
+	/* Check the number of output argument */
+	CheckLhs(1,1);
+
 	getVarAddressFromPosition(1, &piAddressVarOne);
-	if (getVarType(piAddressVarOne) == sci_strings)
+
+	if ( (getVarType(piAddressVarOne) == sci_u_function) || (getVarType(piAddressVarOne) == sci_c_function) )
+	{
+		int m = 0, n = 0;
+
+		getVarDimension(piAddressVarOne, &m, &n);
+		if ( (m != n) && (n != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A function-name expected.\n"),fname,1);
+			return 0;
+		}
+
+		/* to rewrite with new API when it will be possible */
+		C2F(whereismacro)();
+	}
+	else if (getVarType(piAddressVarOne) == sci_strings)
 	{
 		char *pStVarOne = NULL;
 		int lenStVarOne = 0;
