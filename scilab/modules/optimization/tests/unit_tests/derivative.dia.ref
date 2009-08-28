@@ -6,7 +6,6 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -26,7 +25,7 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
 //
 // assert_equal --
@@ -41,14 +40,12 @@ function flag = assert_equal ( computed , expected )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
 // 1. Test with a scalar function
 function y = myfunction (x)
   y = x*x;
 endfunction
-
 x = 1.0;
 expected = 2.0;
 // 1.1 With default parameters
@@ -63,7 +60,6 @@ assert_close ( computed , expected , 1.e-11 );
 // 1.4 Test order 4
 computed = derivative(myfunction,x,order=4);
 assert_close ( computed , expected , %eps );
-
 // 1.5 Compute second derivative at the same time
 Jexpected = 2.0;
 Hexpected = 2.0;
@@ -82,7 +78,6 @@ assert_close ( Hcomputed , Hexpected , %eps );
 [Jcomputed , Hcomputed] = derivative(myfunction,x,order=4);
 assert_close ( Jcomputed , Jexpected , %eps );
 assert_close ( Hcomputed , Hexpected , 1.e-11 );
-
 // 2. Test with a vector function
 function y = myfunction2 (x)
   y = x(1)*x(1) + x(2)+ x(1)*x(2);
@@ -102,7 +97,6 @@ assert_close ( computed , expected , 1.e-10 );
 // 2.4 Test order 4
 computed = derivative(myfunction2,x,order=4);
 assert_close ( computed , expected , %eps );
-
 // 2.5 Compute second derivative at the same time
 Jexpected = [4.0 2.0];
 Hexpected = [2.0 1.0 1.0 0];
@@ -121,7 +115,6 @@ assert_close ( Hcomputed , Hexpected , %eps );
 [Jcomputed , Hcomputed] = derivative(myfunction2,x,order=4);
 assert_close ( Jcomputed , Jexpected , %eps );
 assert_close ( Hcomputed , Hexpected , 1.e-10 );
-
 // 3. Test H_form
 // 3.1 Test H_form="default"
 Jexpected = [4.0 2.0];
@@ -143,10 +136,19 @@ Hexpected = [2.0 1.0
 [Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form='hypermat');
 assert_close ( Jcomputed , Jexpected , 1.e-10 );
 assert_close ( Hcomputed , Hexpected , %eps );
-
 // 4. Test verbose
 [Jcomputed , Hcomputed] = derivative(myfunction2 , x , verbose = 1);
+h = 6.055454e-006
 
+order = 2
+
+H_form = default
+
+Q = 
+
+ 
+    1.    0.  
+    0.    1.  
 // 5. Test h parameter
 // Test a case where the default step h is very small ~ 1.e-9,
 // but, because the function is very flat in the neighbourhood of the 
@@ -159,12 +161,13 @@ function y = myfunction3 (x)
 endfunction
 x = 1.0;
 h = 6.055454e-006
+ h  =
+ 
+    0.0000061  
 Jexpected = (2/myn) * x^(2/myn-1);
 Hexpected = (2/myn) * (2/myn-1) * x^(2/myn-2);
 [Jcomputed , Hcomputed] = derivative(myfunction3 , x , h = 1.e-4 , order = 1 );
 assert_close ( Jcomputed , Jexpected , 1.e-4 );
 assert_close ( Hcomputed , Hexpected , 1.e-3 );
-
 // 6. Test Q parameter
 // TODO !
-
