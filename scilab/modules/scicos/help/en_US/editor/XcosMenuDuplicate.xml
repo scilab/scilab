@@ -54,8 +54,9 @@
       <varlistentry>
         <term>.</term>
         <listitem>
-          <para>Or select first the object to
-	  be copied and then activating the <literal>Duplicate</literal></para>
+          <para>Or <link linkend="XcosSelect">select</link> first the
+          object to be copied and then activating the
+          <literal>Duplicate</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>

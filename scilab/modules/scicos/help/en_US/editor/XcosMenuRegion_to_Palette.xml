@@ -30,23 +30,51 @@
           xml:id="XcosMenuRegion_to_Palette">
   <refnamediv>
     <refname>Region_to_Palette</refname>
-    <refpurpose>??????</refpurpose>
+    <refpurpose>Form a Palette with a part of the current diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      This menu allows to transform a rectangular region of the
-      current diagram by a palette block.
-      Click  on a corner of the region, drag an click left to
-      fix the region (left click cancels selection).
-      </para><para>
-      Region is replaced by a palette block and links are deleted.
+      To form a palette with a part of the current diagram it is
+      possible to follow to different ways:
     </para>
+    <variablelist>
+      <varlistentry>
+	<term>.</term>
+        <listitem>
+          <para>
+	    First <link linkend="XcosSelect">select</link> the
+          desired blocks (the internal links will be automatically
+          added) then activate the
+          <literal>Region to Palette</literal> menu
+	  </para>.
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>.</term>
+        <listitem>
+          <para>
+	    First activate the <literal>Region to Palette</literal>
+	    menu, then select a rectangular area around the desired
+	    blocks (press left on a point which is not over an object
+	    to select the corner of the rectangle then drag the mouse
+	    to make the rectangle include all the desired objects and
+	    release the mouse button).
+	    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+      <para>
+      Selected region is replaced by a <link
+      linkend="PAL_f">Palette Block</link> and links are removed.
+    </para>
+
+
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="????"> ????</link> </member>
+      <member> <link linkend="PAL_f">Palette Block</link> </member>
      </simplelist>
    </refsection>
 </refentry>
