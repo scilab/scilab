@@ -54,7 +54,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private boolean indentInprogress = false;
     
     private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\", 
-    									"=", "\\+=", "-=", "\\*=", "/=", "\\++", "--", "!=", 
+    									"=", "\\+=", "-=", "\\*=", "/=", "\\++", "--", "!=", "~=", 
     									"\\||", "&&", "!", "&", "\\|", "\\^", "<<", ">>", ">>>>"};
     
     //'controls' is now under the name of 'commands'
@@ -228,12 +228,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	//ATTENTION : - reucperation des operateurs sur une meme ligne
 	//            - si une ligne ne commence pas avec un operateur mais qu'elle en contient un 
-	//            - gestion des comment /* */
+	//            - gestion des commentaire /* */
 	//			  - erreur d'indentation si ",end", ne reconnait pas le "end"
 	//			  - erreur d'indentation, ne prend pas en compte l'indentation precedente
 	//			  - erreur d'indentation si on a des lignes vides entre 2 lignes de texte
+	//			  - 'case' non traite
+	//			  - si on retouve un mot cle command qui n'est pas utiliser en tant que tel 
+	//			    (ex: error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));)
+	//				ici le 'for' est interpreter comme une commande, donc il y a indentation
     }
-    
     
     public void colorize() {
     	//Get all Scilab keywords to be colorized
@@ -287,7 +290,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     	this.setParagraphAttributes(0, this.getLength(), this.getStyle("Default"), true);
     	this.addUndoableEditListener(undo);
     }
-
     
     /*
      * Colorize <pattern> with <style>
@@ -342,7 +344,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
     public void insertUpdate(DocumentEvent e) {
 	// TODO Auto-generated method stub
-	System.err.println("Calling insertUpdate");
+	//System.err.println("Calling insertUpdate");
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		//resetStyle();
@@ -357,7 +359,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     }
 
     public void removeUpdate(DocumentEvent e) {
-	System.err.println("Calling removeUpdate");
+	//System.err.println("Calling removeUpdate");
 	SwingUtilities.invokeLater(new Runnable() {
 	    public void run() {
 		//resetStyle();
@@ -399,6 +401,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	//If the text is a comment we don't indent
 	text = manageTextWithComment(text);
+	
+	String toto = manageQuotationText(text);
 
 	Vector<String> v = new Vector<String>();
 	Vector<String> op = new Vector<String>();
@@ -506,6 +510,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	return opMatch;
     }
 
+    
+    
     public String manageTextWithComment(String text) {
 
 	String noCommentText = null;
@@ -520,7 +526,132 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	//TODO Later(Scilab 6), we will manage /* */ comments
 	return noCommentText;
     }
+    
+    /*******************************************************************************************************************/
+    
+    private String cleanText;
+    private int[] quotationsBoundaries, commentsBoundaries, keywordsBoundaries;
+    
+    public String manageQuotationText(String text) {
+    	cleanText = text;
+    	
+    	String noQuotationText = null;
+    	
+    	Pattern[] quotationsPatterns= new Pattern[1];
+    	Pattern[] commentsPatterns= new Pattern[1];
+    	Pattern[] keywordsPatterns= new Pattern[1];
+    	quotationsPatterns[0]= Pattern.compile("[\'\"][^\'\"]*[\'\"]", Pattern.DOTALL);
+    	commentsPatterns[0]= Pattern.compile("//[^\n]*", Pattern.DOTALL);
+    	keywordsPatterns[0]= Pattern.compile("\\bif\\b", Pattern.DOTALL);
+    	parse(quotationsPatterns, commentsPatterns, keywordsPatterns);
+    	
+    	return noQuotationText;
+    }
+    
+    public void parse(Pattern[] quotations, Pattern[] comments, Pattern[] keywords){
+    	System.err.println("=================================== quotations: ===========================");
+    	quotationsBoundaries= findNotIn(quotations, null);
+    	System.err.println("=================================== comments: ===========================");
+    	commentsBoundaries= findNotIn(comments, quotationsBoundaries);
+    	System.err.println("=================================== keywords: ===========================");
+    	keywordsBoundaries= findNotIn(keywords, concatenateArrays(quotationsBoundaries, commentsBoundaries));
+    	//System.arraycopy(quotationsBoundaries, 0, quotationsBoundaries, 0, 0);
+    }
+    
+     private void OrganizeBoundaries(Vector<Integer> quotationsBoundaries, Vector<Integer> commentsBoundaries, Vector<Integer>keywordsBoundaries) {
 
+    	//Quotation into comment
+    	for(int i=0; i < commentsBoundaries.size(); i=i+2){
+
+    		for(int j=0; j < quotationsBoundaries.size(); j=j+2){
+    			
+    			if((quotationsBoundaries.elementAt(j) > commentsBoundaries.elementAt(i)) && (quotationsBoundaries.elementAt(j) < commentsBoundaries.elementAt(i+1))) {
+    				if(quotationsBoundaries.elementAt(j+1) > commentsBoundaries.elementAt(i) && quotationsBoundaries.elementAt(j+1) < commentsBoundaries.elementAt(i+1)) {
+    					quotationsBoundaries.removeElementAt(j);
+    					quotationsBoundaries.removeElementAt(j+1);
+    				}
+    			}
+    		}
+    	}
+
+    	System.err.println("----- QUOTATIONS: ----- ");	
+    	for(int i=0; i < quotationsBoundaries.size(); ++i){
+    		System.err.println("quotation: " + quotationsBoundaries.elementAt(i));
+    	}
+
+    	System.err.println("----- COMMENTS: ----- ");	
+    	for(int i=0; i < commentsBoundaries.size(); ++i){
+    		System.err.println("comments: " + commentsBoundaries.elementAt(i));
+    	}
+
+    	System.err.println("----- KEYWORDS: ----- ");	
+    	for(int i=0; i < keywordsBoundaries.size(); ++i){
+    		System.err.println("keywords: " + keywordsBoundaries.elementAt(i));
+    	}
+
+    }
+    
+    
+    
+    
+    
+    public int[] concatenateArrays(int[]a, int[]b){
+    	int[]res= new int[a.length+b.length];
+    	int i=0;
+    	for(int j=0; j!= a.length; ++j, ++i){
+    		res[i]=a[j];
+    	}
+    	for(int j=0; j!= b.length; ++j, ++i){
+    		res[i]=b[j];
+    	}
+    	return res;
+    }
+
+    private int[] findNotIn(Pattern[] targets, int[] exclusionBoundaries){
+    	Vector tmpB= new Vector();
+    	for(int i=0; i!= targets.length; ++i){
+    		Matcher matcher = targets[i].matcher(cleanText);
+    		while(matcher.find()){
+    			System.err.println("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start())+" : |" +
+    								cleanText.substring(matcher.start(),matcher.end())+"|");
+    			
+    			if(exclusionBoundaries.length > 1){
+    				for (int j = 0; j < exclusionBoundaries.length; j++) {
+    					System.out.println("^^^^^exclusionBoundaries: " + exclusionBoundaries[j]);
+    				}
+    			}
+    			
+    			if(notIn(matcher.start(), exclusionBoundaries) && notIn(matcher.end(), exclusionBoundaries)){
+    				tmpB.add(new Integer(matcher.start()));	
+    				tmpB.add(new Integer(matcher.end()));
+    			}
+    		}
+    	}
+    	return arrayFromVector(tmpB);
+    }
+    // to be more efficient, we should keep boundaries sorted after concatenete and use dichotomy to find gretest begin < pos
+    // notIn iff corresponding end <  pos
+    private boolean notIn(int pos, int[] boundaries){
+    	if(boundaries == null) return true;
+    	for(int i=0; i!= boundaries.length; i+=2){
+    		if ((pos > boundaries[i]) && (pos< boundaries[i+1])){
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+
+    private int[] arrayFromVector(Vector v){
+    	int[] res= new int [v.size()];
+    	for(int i=0; i!= res.length; ++i){
+    		res[0]= ((Integer)v.elementAt(i)).intValue();
+    	}
+    	return res;
+    }
+
+    
+    /***************************************************************************************************************************/
+    
     public int[] readText(int s, int e) {
 	int startOffset;
 	int endOffset;
