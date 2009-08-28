@@ -208,7 +208,9 @@ am__objects_2 = libscielementary_functions_la-dgesl.lo \
 	libscielementary_functions_la-spofa.lo \
 	libscielementary_functions_la-wgeco.lo \
 	libscielementary_functions_la-wgefa.lo \
-	libscielementary_functions_la-wgesl.lo
+	libscielementary_functions_la-wgesl.lo \
+	libscielementary_functions_la-dpofa.lo \
+	libscielementary_functions_la-util.lo
 am__objects_3 = libscielementary_functions_la-balbak.lo
 am__objects_4 = libscielementary_functions_la-sci_tools.lo \
 	libscielementary_functions_la-finite.lo \
@@ -323,7 +325,6 @@ am__objects_5 = libscielementary_functions_la-psi.lo \
 	libscielementary_functions_la-rcopy.lo \
 	libscielementary_functions_la-wdpow.lo \
 	libscielementary_functions_la-orthes.lo \
-	libscielementary_functions_la-wnrm2.lo \
 	libscielementary_functions_la-waxpy.lo \
 	libscielementary_functions_la-coef.lo \
 	libscielementary_functions_la-dwdiv.lo \
@@ -843,6 +844,7 @@ src/fortran/slatec/pchim.f
 
 LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/wpade.f \
+	src/fortran/linpack/util.f \
 	src/fortran/linpack/wcopy.f \
 	src/fortran/linpack/dgefa.f \
 	src/fortran/linpack/dgbfa.f \
@@ -855,7 +857,9 @@ LINPACK_SOURCES = src/fortran/linpack/dgesl.f \
 	src/fortran/linpack/spofa.f \
 	src/fortran/linpack/wgeco.f \
 	src/fortran/linpack/wgefa.f \
-	src/fortran/linpack/wgesl.f   
+	src/fortran/linpack/wgesl.f \
+	src/fortran/linpack/dpofa.f \
+	src/fortran/linpack/util.f
 
 ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 src/fortran/psi.f \
@@ -950,7 +954,6 @@ src/fortran/cerr.f \
 src/fortran/rcopy.f \
 src/fortran/wdpow.f \
 src/fortran/orthes.f \
-src/fortran/wnrm2.f \
 src/fortran/waxpy.f \
 src/fortran/coef.f \
 src/fortran/dwdiv.f \
@@ -2218,6 +2221,12 @@ libscielementary_functions_la-wgefa.lo: src/fortran/linpack/wgefa.f
 libscielementary_functions_la-wgesl.lo: src/fortran/linpack/wgesl.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wgesl.lo `test -f 'src/fortran/linpack/wgesl.f' || echo '$(srcdir)/'`src/fortran/linpack/wgesl.f
 
+libscielementary_functions_la-dpofa.lo: src/fortran/linpack/dpofa.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-dpofa.lo `test -f 'src/fortran/linpack/dpofa.f' || echo '$(srcdir)/'`src/fortran/linpack/dpofa.f
+
+libscielementary_functions_la-util.lo: src/fortran/linpack/util.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-util.lo `test -f 'src/fortran/linpack/util.f' || echo '$(srcdir)/'`src/fortran/linpack/util.f
+
 libscielementary_functions_la-balbak.lo: src/fortran/eispack/balbak.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-balbak.lo `test -f 'src/fortran/eispack/balbak.f' || echo '$(srcdir)/'`src/fortran/eispack/balbak.f
 
@@ -2496,9 +2505,6 @@ libscielementary_functions_la-wdpow.lo: src/fortran/wdpow.f
 
 libscielementary_functions_la-orthes.lo: src/fortran/orthes.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-orthes.lo `test -f 'src/fortran/orthes.f' || echo '$(srcdir)/'`src/fortran/orthes.f
-
-libscielementary_functions_la-wnrm2.lo: src/fortran/wnrm2.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-wnrm2.lo `test -f 'src/fortran/wnrm2.f' || echo '$(srcdir)/'`src/fortran/wnrm2.f
 
 libscielementary_functions_la-waxpy.lo: src/fortran/waxpy.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-waxpy.lo `test -f 'src/fortran/waxpy.f' || echo '$(srcdir)/'`src/fortran/waxpy.f

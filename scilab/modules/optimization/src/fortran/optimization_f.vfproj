@@ -94,7 +94,7 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\dcube.f"/>
 		<File RelativePath=".\ddd2.f"/>
 		<File RelativePath=".\minpack\dogleg.f"/>
-		<File RelativePath=".\dpmpar.f"/>
+		<File RelativePath=".\minpack\dpmpar.f"/>
 		<File RelativePath=".\dpofa.f"/>
 		<File RelativePath=".\minpack\enorm.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-fsolve.f"/>
