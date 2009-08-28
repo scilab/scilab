@@ -15,16 +15,15 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
-#define LOCALIZATION_TAB_SIZE 7
+#define LOCALIZATION_TAB_SIZE 6
 static gw_generic_table Tab[LOCALIZATION_TAB_SIZE]=
 {
-	{C2F(sci_setlanguage),"setlanguage"},
-	{C2F(sci_getlanguage),"getlanguage"},
-	{C2F(sci_getdefaultlanguage),"getdefaultlanguage"},
-	{C2F(sci_gettext),"gettext"},
-	{C2F(sci_gettext),"_"},
-	{C2F(sci_dgettext),"dgettext"},
-	{C2F(sci_setdefaultlanguage),"setdefaultlanguage"}
+	{sci_setlanguage,"setlanguage"},
+	{sci_getlanguage,"getlanguage"},
+	{sci_getdefaultlanguage,"getdefaultlanguage"},
+	{sci_gettext,"gettext"},
+	{sci_dgettext,"dgettext"},
+	{sci_setdefaultlanguage,"setdefaultlanguage"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_localization(void)
