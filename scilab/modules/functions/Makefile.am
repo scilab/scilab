@@ -3,12 +3,12 @@
 ### DIGITEO - Scilab 2009
 ##########
 
-FUNCTIONS__C_SOURCES = src/c/getmacroslist.c \
+FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
 	src/c/searchmacroinlibraries.c
 
-FUNCTIONS__FORTRAN_SOURCES = 
+FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
@@ -41,7 +41,7 @@ pkglib_LTLIBRARIES = libscifunctions.la
 
 libscifunctions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscifunctions_la_SOURCES = $(FUNCTIONS__C_SOURCES) $(FUNCTIONS__FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
