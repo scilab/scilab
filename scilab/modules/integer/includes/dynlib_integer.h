@@ -24,5 +24,5 @@
 #define INTEGER_IMPEXP
 #endif
 
-#endif /* __DYNLIB_HISTORY_MANAGER_H__ */
+#endif /* __DYNLIB_INTEGER_H__ */
 /*--------------------------------------------------------------------------*/ 
