@@ -6,6 +6,7 @@
 	ProjectGUID="{1D219098-007C-4F76-9AE6-271ABBB7D393}"
 	RootNamespace="optimization_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -460,10 +461,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dpofa.c"
-				>
-			</File>
-			<File
 				RelativePath=".\minpack\enorm.c"
 				>
 			</File>
@@ -776,10 +773,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\util.c"
-				>
-			</File>
-			<File
 				RelativePath=".\writebuf.c"
 				>
 			</File>
@@ -865,10 +858,6 @@
 			</File>
 			<File
 				RelativePath=".\minpack\dpmpar.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dpofa.f"
 				>
 			</File>
 			<File
@@ -1181,10 +1170,6 @@
 			</File>
 			<File
 				RelativePath=".\strang.f"
-				>
-			</File>
-			<File
-				RelativePath=".\util.f"
 				>
 			</File>
 			<File

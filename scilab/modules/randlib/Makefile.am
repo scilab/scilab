@@ -26,7 +26,6 @@ src/fortran/gennch.f \
 src/fortran/genmn.f \
 src/fortran/phrtsd.f \
 src/fortran/ignnbn.f \
-src/fortran/lennob.f \
 src/fortran/genf.f \
 src/fortran/genunf.f \
 src/fortran/genexp.f \

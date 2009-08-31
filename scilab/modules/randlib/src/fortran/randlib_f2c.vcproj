@@ -449,10 +449,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lennob.c"
-				>
-			</File>
-			<File
 				RelativePath=".\phrtsd.c"
 				>
 			</File>
@@ -526,10 +522,6 @@
 			</File>
 			<File
 				RelativePath=".\ignnbn.f"
-				>
-			</File>
-			<File
-				RelativePath=".\lennob.f"
 				>
 			</File>
 			<File
