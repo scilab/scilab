@@ -297,9 +297,10 @@ namespace ast
 
 			pMacro->m_body->accept(*execFunc);
 
+			int iCount = 0;
 			for (i = pMacro->m_outputArgs->begin(); i != pMacro->m_outputArgs->end(); i++)
 			{
-				result_set(symbol::Context::getInstance()->get((*i)));
+				result_set(iCount++, symbol::Context::getInstance()->get((*i)));
 			}
 			
 			//close the current scope

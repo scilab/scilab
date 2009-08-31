@@ -343,42 +343,42 @@ namespace types
 		return 0;
 	}
 
-	bool Int::data_set(char *_pcData)
+	inline bool Int::data_set(char *_pcData)
 	{
 		return data_set(Type8, _pcData);
 	}
 
-	bool Int::data_set(unsigned char *_pucData)
+	inline bool Int::data_set(unsigned char *_pucData)
 	{
 		return data_set(TypeUnsigned8, _pucData);
 	}
 
-	bool Int::data_set(short *_psData)
+	inline bool Int::data_set(short *_psData)
 	{
 		return data_set(Type16, _psData);
 	}
 
-	bool Int::data_set(unsigned short *_pusData)
+	inline bool Int::data_set(unsigned short *_pusData)
 	{
 		return data_set(TypeUnsigned16, _pusData);
 	}
 
-	bool Int::data_set(int *_piData)
+	inline bool Int::data_set(int *_piData)
 	{
 		return data_set(Type32, _piData);
 	}
 
-	bool Int::data_set(unsigned int *_puiData)
+	inline bool Int::data_set(unsigned int *_puiData)
 	{
 		return data_set(TypeUnsigned32, _puiData);
 	}
 
-	bool Int::data_set(long long *_pllData)
+	inline bool Int::data_set(long long *_pllData)
 	{
 		return data_set(Type64, _pllData);
 	}
 
-	bool Int::data_set(unsigned long long *_pullData)
+	inline bool Int::data_set(unsigned long long *_pullData)
 	{
 		return data_set(TypeUnsigned64, _pullData);
 	}

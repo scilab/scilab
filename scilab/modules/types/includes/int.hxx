@@ -56,14 +56,14 @@ namespace types
 		/*data management*/
 		void*									data_get(void) const;
 
-		bool									data_set(char *_pcData);
-		bool									data_set(unsigned char *_pucData);
-		bool									data_set(short *_psData);
-		bool									data_set(unsigned short *_pusData);
-		bool									data_set(int *_piData);
-		bool									data_set(unsigned int *_puiData);
-		bool									data_set(long long *_pllData);
-		bool									data_set(unsigned long long *_pullData);
+		inline bool						data_set(char *_pcData);
+		inline bool						data_set(unsigned char *_pucData);
+		inline bool						data_set(short *_psData);
+		inline bool						data_set(unsigned short *_pusData);
+		inline bool						data_set(int *_piData);
+		inline bool						data_set(unsigned int *_puiData);
+		inline bool						data_set(long long *_pllData);
+		inline bool						data_set(unsigned long long *_pullData);
 
 		bool									data_set(int _iRows, int _iCols, char _cData);
 		bool									data_set(int _iRows, int _iCols, unsigned char _ucData);
