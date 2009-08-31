@@ -11,8 +11,8 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
-#ifndef __DYNLIB_INTEGER_H__
-#define __DYNLIB_INTEGER_H__
+#ifndef __DYNLIB_MATIO_H__
+#define __DYNLIB_MATIO_H__
 
 #ifdef _MSC_VER
 #ifdef MATIO_EXPORTS
