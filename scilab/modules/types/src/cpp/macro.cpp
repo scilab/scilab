@@ -11,6 +11,8 @@
 */
 
 #include "macro.hxx"
+#include "context.hxx"
+#include "execvisitor.hxx"
 
 namespace types
 {
@@ -18,12 +20,13 @@ namespace types
 	/*--------------*/
 	/*	Contructor  */
 	/*--------------*/
-	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body)
+	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body):
+		Callable(),
+		m_stName(_stName),
+		m_inputArgs(&_inputArgs),
+		m_outputArgs(&_outputArgs),
+		m_body(&_body)
 	{
-		m_stName			= _stName;
-		m_inputArgs		= &_inputArgs;
-		m_outputArgs	= &_outputArgs;
-		m_body				= &_body;
 	}
 
 	/*--------------*/
@@ -43,5 +46,50 @@ namespace types
 	{ 
 		return RealMacro; 
 	}
+	
+	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out)
+	{
+		//check excepted and input/output parameters numbers
+		if(in.size() != m_inputArgs->size())
+		{
+			return Callable::WrongParamNumber;
+		}
+		if(_iRetCount > m_outputArgs->size())
+		{
+			if(_iRetCount == 1)
+			{
+				out.push_back(NULL);
+			}
+			else
+			{
+				return Callable::WrongReturnNumber;
+			}
+		}
+		
+		std::list<symbol::Symbol>::const_iterator i;
+		typed_list::const_iterator j;
+		ast::ExecVisitor execFunc;
 
+		//open a new scope
+		symbol::Context *pContext = symbol::Context::getInstance();
+		symbol::Context::getInstance()->scope_begin();
+
+		//assign value to variable in the new context
+		for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
+		{
+			symbol::Context::getInstance()->put(*i, **j);
+		}
+
+		m_body->accept(execFunc);
+
+		for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+		{
+			out.push_back(symbol::Context::getInstance()->get(*i));
+		}
+		
+		//close the current scope
+		symbol::Context::getInstance()->scope_end();
+		
+		return Callable::OK;
+	}
 }

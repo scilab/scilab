@@ -214,13 +214,12 @@ namespace ast
 		std::list<Exp *>::const_iterator	i;
 
 		e.name_get().accept(*execFunc);
-		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
+		if(execFunc->result_get() != NULL && execFunc->result_get()->isCallable())
 		{//function call
-			Function *pF = execFunc->result_get()->getAsFunction();
+			Callable *pCall = execFunc->result_get()->getAsCallable();
 			types::typed_list out;
 			types::typed_list in;
-
-
+			
 			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
@@ -229,9 +228,10 @@ namespace ast
 				(*i)->accept (*execVar[j]);
 				in.push_back(execVar[j]->result_get());
 			}
-
-			Function::ReturnValue Ret = pF->call(in, (int)expected_size_get(), out);
-			if(Ret == Function::OK)
+			
+			Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+			
+			if(Ret == Callable::OK)
 			{
 				if(out.size() != expected_size_get())
 				{
@@ -246,29 +246,7 @@ namespace ast
 					result_set(i, out[i]);
 				}
 			}
-
-
-			for (j = 0; j < e.args_get().size(); j++)
-			{
-				delete execVar[j];
-			}
-			delete[] execVar;
-
-			if(e.is_verbose() && Ret == Function::OK)
-			{
-			  std::ostringstream ostr;
-			  ostr <<  out.front()->toString(10,75) << std::endl;
-			  YaspWrite((char *) ostr.str().c_str());
-			}
-		}
-		else if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealMacro)
-		{
-			Macro* pMacro	= execFunc->result_get()->getAsMacro();
-			std::list<symbol::Symbol>::const_iterator	i;
-			std::list<ast::Exp *>::const_iterator	j;
-
-			//check excepted and input parameters numbers
-			if(e.args_get().size() != pMacro->m_inputArgs->size())
+			else if(Ret == Callable::WrongParamNumber)
 			{
 				std::ostringstream os;
 				char szError[bsiz];
@@ -281,30 +259,33 @@ namespace ast
 				string szErr(os.str());
 				throw szErr;
 			}
-
-			//open a new scope
-			symbol::Context *pContext = symbol::Context::getInstance();
-			symbol::Context::getInstance()->scope_begin();
-
-			//assign value to variable in the new context
-			for (i = pMacro->m_inputArgs->begin(), j = e.args_get().begin(); j != e.args_get().end (); j++,i++)
+			else if(Ret == Callable::WrongReturnNumber)
 			{
-				ExecVisitor *execVar2	= new ast::ExecVisitor();
-				(*j)->accept(*execVar2);
-				symbol::Context::getInstance()->put((*i), *execVar2->result_get());
-				delete execVar2;
+				std::ostringstream os;
+				char szError[bsiz];
+#ifdef _MSC_VER
+				sprintf_s(szError, bsiz, _("Wrong number of output arguments\n"));
+#else
+				sprintf(szError, _("Wrong number of output arguments\n"));
+#endif
+				os << szError;
+				string szErr(os.str());
+				throw szErr;
 			}
 
-			pMacro->m_body->accept(*execFunc);
-
-			int iCount = 0;
-			for (i = pMacro->m_outputArgs->begin(); i != pMacro->m_outputArgs->end(); i++)
-			{
-				result_set(iCount++, symbol::Context::getInstance()->get((*i)));
-			}
 			
-			//close the current scope
-			symbol::Context::getInstance()->scope_end();
+			for (j = 0; j < e.args_get().size(); j++)
+			{
+				delete execVar[j];
+			}
+			delete[] execVar;
+
+			if(e.is_verbose() && Ret == Callable::OK && out.front())
+			{
+			  std::ostringstream ostr;
+			  ostr <<  out.front()->toString(10,75) << std::endl;
+			  YaspWrite((char *) ostr.str().c_str());
+			}
 		}
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
