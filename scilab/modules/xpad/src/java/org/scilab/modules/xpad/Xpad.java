@@ -65,11 +65,13 @@ import org.scilab.modules.xpad.actions.PasteAction;
 import org.scilab.modules.xpad.actions.PrintAction;
 import org.scilab.modules.xpad.actions.PrintPreviewAction;
 import org.scilab.modules.xpad.actions.RedoAction;
+import org.scilab.modules.xpad.actions.ResetFontAction;
 import org.scilab.modules.xpad.actions.SaveAction;
 import org.scilab.modules.xpad.actions.SaveAsAction;
 import org.scilab.modules.xpad.actions.ScilabStyleAction;
 import org.scilab.modules.xpad.actions.SelectAllAction;
 import org.scilab.modules.xpad.actions.SetColorsAction;
+import org.scilab.modules.xpad.actions.SetFontAction;
 import org.scilab.modules.xpad.actions.ShowToolBarAction;
 import org.scilab.modules.xpad.actions.TextStyleAction;
 import org.scilab.modules.xpad.actions.UTF8EncodingAction;
@@ -78,6 +80,8 @@ import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class Xpad extends SwingScilabTab implements Tab { 
 
@@ -98,11 +102,20 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
     
     private static Xpad launchXpad() {
+    ConfigXpadManager.createUserCopy();	
+    	
 	Window mainWindow = ScilabWindow.createWindow();
 	Xpad editor = new Xpad(mainWindow);
 
 	mainWindow.setTitle("Xpad");
 	mainWindow.addTab(editor);
+	
+	// Set Xpad Window position /size 
+	mainWindow.setPosition( ConfigXpadManager.getMainWindowPosition());
+	mainWindow.setDims(ConfigXpadManager.getMainWindowSize());
+	
+	
+	
 
 	MenuBar menuBar = ScilabMenuBar.createMenuBar();
 	//Create FILE menubar
@@ -160,6 +173,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	viewMenu.add(new WordWrapAction(editor));
 	viewMenu.add(new LineNumbersAction(editor));
 	viewMenu.add(new SetColorsAction(editor));
+	viewMenu.add(new SetFontAction(editor));
+	viewMenu.add(new ResetFontAction(editor));
 	menuBar.add(viewMenu);
 	
 	// Create DOCUMENT MenuBar
@@ -215,8 +230,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 	JScrollPane scrollingText = new JScrollPane(textPane);
 	this.setContentPane(scrollingText);
 	textPane.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
-	textPane.setFont(new Font("monospaced", Font.PLAIN, 14));
-	textPane.setBackground(Color.WHITE);
+	textPane.setFont(ConfigXpadManager.getFont());
+
+	textPane.setBackground(ConfigXpadManager.getXpadBackgroundColor());
 	textPane.setCaretColor(Color.BLACK);
 	textPane.setStyledDocument(new ScilabStyleDocument());
 	textPane.setCharacterAttributes(textPane.getStyle("Default"), true);

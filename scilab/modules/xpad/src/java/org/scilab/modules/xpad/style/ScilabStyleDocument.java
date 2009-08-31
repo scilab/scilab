@@ -13,6 +13,7 @@
 package org.scilab.modules.xpad.style;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -29,6 +30,7 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
 
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.ScilabKeywords;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
@@ -52,6 +54,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private boolean autoColorize = true;
     private boolean colorizeInprogress = false;
     private boolean indentInprogress = false;
+
+    /*if you want to add a new style just add it in the xml*/
+    private ArrayList<String> listStylesName ;
+    //private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
     
     private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\", 
     									"=", "\\+=", "-=", "\\*=", "/=", "\\++", "--", "!=", "~=", 
@@ -75,56 +81,38 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
     private final String TABULATION = "  ";
     
     private Style defaultStyle;
-    private Style operatorStyle;
-    private Style commandStyle;
-    private Style stringStyle;
-    private Style boolStyle;
-    private Style commentStyle;
-    private Style functionStyle;
-    private Style macroStyle;
 
 
-    private final void DEBUG(String msg) {
-	System.err.println("[DEBUG] "+msg);
-    }
+    //private final void DEBUG(String msg) {
+	//System.err.println("[DEBUG] "+msg);;
+    //}
 
-    public ScilabStyleDocument() {
-	super();
-	addDocumentListener(this);
-	addUndoableEditListener(undo);
-	/*Style */defaultStyle = this.addStyle("Default", null);
-	StyleConstants.setBold(defaultStyle, false);
-	StyleConstants.setForeground(defaultStyle, Color.BLACK);
-	StyleConstants.setFontSize(defaultStyle, 16);
-	StyleConstants.setLeftIndent(defaultStyle, 0);
-
-	/*Style */operatorStyle = this.addStyle("Operator", defaultStyle);
-	StyleConstants.setBold(operatorStyle, true);
-	StyleConstants.setForeground(operatorStyle, Color.RED);
-
-	/*Style */commandStyle = this.addStyle("Command", defaultStyle);
-	StyleConstants.setBold(commandStyle, true);
-	StyleConstants.setForeground(commandStyle, Color.CYAN);
-
-	/*Style */stringStyle = this.addStyle("String", defaultStyle);
-	StyleConstants.setBold(stringStyle, true);
-	StyleConstants.setForeground(stringStyle, Color.BLUE);
-
-	/*Style */boolStyle = this.addStyle("Bool", defaultStyle);
-	StyleConstants.setBold(boolStyle, true);
-	StyleConstants.setForeground(boolStyle, Color.YELLOW);
-
-	/*Style */commentStyle = this.addStyle("Comment", defaultStyle);
-	StyleConstants.setBold(commentStyle, true);
-	StyleConstants.setForeground(commentStyle, Color.GREEN);
+	public ScilabStyleDocument() {
+		super();
 	
-	/*Style */functionStyle = this.addStyle("Function", defaultStyle);
-	StyleConstants.setBold(functionStyle, true);
-	StyleConstants.setForeground(functionStyle, Color.PINK);
+		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
+		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold()  ;
+		listStylesName  =  ConfigXpadManager.getAllStyleName();
+		
+		addDocumentListener(this);
+		addUndoableEditListener(undo);
 	
-	/*Style */macroStyle = this.addStyle("Macro", defaultStyle);
-	StyleConstants.setBold(macroStyle, true);
-	StyleConstants.setForeground(macroStyle, Color.ORANGE);
+		/*Style */defaultStyle = this.addStyle("Default", null);
+		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
+		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName() );
+		StyleConstants.setForeground(defaultStyle, stylesColorsTable.get("Default"));
+		StyleConstants.setFontSize(defaultStyle, ConfigXpadManager.getFontSize());
+		StyleConstants.setLeftIndent(defaultStyle, 0);
+
+		/* set default style settings*/
+		/*that way if we want to had a new style, we just need to had an element to the xml*/
+		for(int i = 0 ; i < listStylesName.size() ; ++i)
+		{
+			Style otherStyle = this.addStyle(listStylesName.get(i), defaultStyle);
+			StyleConstants.setBold(otherStyle, stylesIsBoldTable.get(listStylesName.get(i)));
+			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
+		}
+		
 	
     }
 
