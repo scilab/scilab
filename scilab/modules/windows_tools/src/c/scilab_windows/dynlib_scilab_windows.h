@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2009 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,18 +11,18 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
-#ifndef __SETSCILABENVIRONMENTVARIABLES_H__
-#define __SETSCILABENVIRONMENTVARIABLES_H__
+#ifndef __DYNLIB_SCILAB_WINDOWS_H__
+#define __DYNLIB_SCILAB_WINDOWS_H__
 
-#include "dynlib_scilab_windows.h"
+#ifdef _MSC_VER
+#ifdef SCILAB_WINDOWS_EXPORTS
+#define SCILAB_WINDOWS_IMPEXP __declspec(dllexport)
+#else
+#define SCILAB_WINDOWS_IMPEXP __declspec(dllimport)
+#endif
+#else
+#define SCILAB_WINDOWS_IMPEXP
+#endif
 
-/**
-* Set Some environment variables for Scilab (Windows)
-* @param[in] default path of scilab
-*/
-SCILAB_WINDOWS_IMPEXP void SetScilabEnvironmentVariables(char *DefaultSCIPATH);
-
-SCILAB_WINDOWS_IMPEXP void SciEnvForWindows(void);
-
-#endif /* __SETSCILABENVIRONMENTVARIABLES_H__ */
+#endif /* __DYNLIB_SCILAB_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/ 
