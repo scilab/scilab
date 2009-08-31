@@ -2,7 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="mce_display" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="neldermead_overview" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
