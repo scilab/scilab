@@ -6,8 +6,8 @@
 // =============================================================================
 
 utdir = SCI+"/modules/optimization/tests/unit_tests/neldermead"
-exec(utdir+"/mtlb_fminsearch.tst")
-exec(utdir+"/mtlb_optimset.tst")
+exec(utdir+"/fminsearch.tst")
+exec(utdir+"/optimset.tst")
 exec(utdir+"/neldermead_configure.tst")
 exec(utdir+"/neldermead_display.tst")
 exec(utdir+"/neldermead_mckinnon.tst")

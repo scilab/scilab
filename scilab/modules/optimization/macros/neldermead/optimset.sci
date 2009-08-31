@@ -8,14 +8,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// mtlb_optimset --
+// optimset --
 //   Emulate the optimset command of Matlab.
 // Usage:
-//   options = mtlb_optimset ()
-//   options = mtlb_optimset ('TolX',1e-4)
-//   options = mtlb_optimset (options,'TolX',1e-4)
+//   options = optimset ()
+//   options = optimset ('TolX',1e-4)
+//   options = optimset (options,'TolX',1e-4)
 //
-function options = mtlb_optimset (varargin)
+function options = optimset (varargin)
   [lhs,rhs]=argn();
   //mprintf("lhs\n");
   //disp(lhs);
@@ -27,7 +27,7 @@ function options = mtlb_optimset (varargin)
     // name of a method.
     //
     method = varargin(1);
-    options = mtlb_optimset_method ( method );
+    options = optimset_method ( method );
   elseif modulo(rhs,2)<>0 then
     //
     // If the number of arguments is odd,
@@ -42,7 +42,7 @@ function options = mtlb_optimset (varargin)
     // ivar is a counter of the input arguments
     ivar = 1;
   else
-    options = mtlb_optimset_new ();
+    options = optimset_new ();
     // ivar is a counter of the input arguments
     ivar = 0;
   end
@@ -58,18 +58,18 @@ function options = mtlb_optimset (varargin)
     //mprintf("Argument #%d\n",ivar);
     //mprintf("key = %s\n",key);
     //mprintf("value = %s\n",string(value)); // One cannot display a function.
-    options = mtlb_optimset_configure (options,key,value);
+    options = optimset_configure (options,key,value);
   end
 endfunction
 //
-// mtlb_optimset_configure --
+// optimset_configure --
 //   Configure the given key with the given value.
 // Arguments
 //   options : a optimset struct
 //   key : a string, the key to configure
 //   value : the value
 //
-function options = mtlb_optimset_configure ( options , key , value )
+function options = optimset_configure ( options , key , value )
     select key
     case "Display" then
       options.Display = value;
@@ -93,10 +93,10 @@ function options = mtlb_optimset_configure ( options , key , value )
     end
 endfunction
 //
-// mtlb_optimset_new --
+// optimset_new --
 //   Returns an empty optimset struct
 //
-function options = mtlb_optimset_new ()
+function options = optimset_new ()
     options = struct(...
       "Display" ,[],...
       "FunValCheck" ,[],...
@@ -109,21 +109,21 @@ function options = mtlb_optimset_new ()
       );
 endfunction
 //
-// mtlb_optimset_method --
+// optimset_method --
 //   Returns an optimset struct which content is the default 
 //   settings for the given method.
 // Arguments
 //   method : a string, the name of the method
 //
-function options = mtlb_optimset_method ( method )
-    options = mtlb_optimset_new ();
+function options = optimset_method ( method )
+    options = optimset_new ();
     select method
     case "fminsearch" then
-      options = mtlb_optimset_configure ( options , "Display" , "notify" );
-      options = mtlb_optimset_configure ( options , "MaxFunEvals" , "200*numberofvariables" );
-      options = mtlb_optimset_configure ( options , "MaxIter" , "200*numberofvariables" );
-      options = mtlb_optimset_configure ( options , "TolFun" , 1.e-4 );
-      options = mtlb_optimset_configure ( options , "TolX" , 1.e-4 );
+      options = optimset_configure ( options , "Display" , "notify" );
+      options = optimset_configure ( options , "MaxFunEvals" , "200*numberofvariables" );
+      options = optimset_configure ( options , "MaxIter" , "200*numberofvariables" );
+      options = optimset_configure ( options , "TolFun" , 1.e-4 );
+      options = optimset_configure ( options , "TolX" , 1.e-4 );
     else
       errmsg = sprintf("Unknown method %s",method)
       error(errmsg)

@@ -43,7 +43,7 @@
   <refsection>
     <title>Design</title>
 
-    <para>The internal design of the system is based on the following
+    <para>This package provides the following
     components :</para>
 
     <itemizedlist>
@@ -72,8 +72,8 @@
       </listitem>
     </itemizedlist>
 
-    <para>The current toolbox is based on (and therefore requires) the
-    following toolboxes </para>
+    <para>The current component is based on the
+    following components </para>
 
     <itemizedlist>
       <listitem>

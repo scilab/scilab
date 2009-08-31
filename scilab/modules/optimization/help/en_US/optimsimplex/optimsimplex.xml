@@ -68,9 +68,10 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
   <refsection>
     <title>Purpose</title>
 
-    <para>The goal of this toolbox is to provide a building block for
-    optimization algorithms based on a simplex. That Optimsimplex package may
-    be used in the following optimization methods :<itemizedlist>
+    <para>
+      The goal of this component is to provide a building block for
+      optimization algorithms based on a simplex. The optimsimplex package may
+      be used in the following optimization methods :<itemizedlist>
         <listitem>
           <para>the Spendley et al. simplex method,</para>
         </listitem>
@@ -85,7 +86,9 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
 
         <listitem>
           <para>the multi-dimensional search by Virginia Torczon,</para>
+        </listitem>
 
+        <listitem>
           <para>etc ...</para>
         </listitem>
       </itemizedlist></para>

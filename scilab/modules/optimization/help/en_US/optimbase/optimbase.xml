@@ -51,10 +51,11 @@ this = optimbase_stoplog ( this , msg )
   <refsection>
     <title>Purpose</title>
 
-    <para>The goal of this toolbox is to provide a building block for
-    optimization methods. The goal is to provide a building block for a large
-    class of specialized optimization methods. This component manages
-    <itemizedlist>
+    <para>
+      The goal of this component is to provide a building block for
+      optimization methods. The goal is to provide a building block for a large
+      class of specialized optimization methods. This component manages
+      <itemizedlist>
         <listitem>
           <para>the number of variables,</para>
         </listitem>

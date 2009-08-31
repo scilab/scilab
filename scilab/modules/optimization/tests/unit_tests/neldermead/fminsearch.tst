@@ -46,7 +46,7 @@ endfunction
 function y = banana (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
-[x , fval , exitflag , output] = mtlb_fminsearch ( banana , [-1.2 1] );
+[x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] );
 assert_close ( x , [1.000022021783570   1.000042219751772], 1e-4 );
 assert_close ( fval , 0.0 , 1e-4 );
 assert_equal ( output.iterations , 85 );
