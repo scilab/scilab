@@ -3,6 +3,7 @@
 * Copyright (C) 2007 - INRIA - Jean-Baptiste SILVY
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2007 - INRIA - Cong WU
+* Copyright (C) 2009 - INRIA - Antoine ELIAS
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -42,6 +43,16 @@ of error
 */
 #define CreateVarFromPtrNoCheck(n,ct,mx,nx,lx) C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(void *)lx,1L)
 #define CreateVarNoCheck(n,ct,mx,nx,lx) C2F(createvar)((c_local=n,&c_local),ct,mx,nx,(void *)lx, 1L)
+
+int getVarString(int* _piAddress, char*** _pstData, int* _piRows, int* _piCols);
+int checkInputValue(char* _pstInput, const char** _pcstRef, int _iRefCount);
+char* getWayType(int* _piAddress);
+char* getProcessType(int* _piAddress);
+int computeIndiceDim(const char* _pcstProcess, int _iRowsIn, int _iColsIn,  int* _piRowsOut, int* _piColsOut);
+
+int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
+int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
+int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey);
 /*--------------------------------------------------------------------------*/
 static int gsort_complex(char *fname, char *mode, char *order);
 /*--------------------------------------------------------------------------*/
@@ -51,19 +62,10 @@ int sci_gsort(char *fname, int* _piKey)
 
 	int iRows1							= 0;
 	int iCols1							= 0;
+
 	int* piAddr1						= NULL;
-
-	int iRows2							= 0;
-	int iCols2							= 0;
 	int* piAddr2						= NULL;
-	int piLen2[1];
-	char *pstProcess[1];
-
-	int iRows3							= 0;
-	int iCols3							= 0;
 	int* piAddr3						= NULL;
-	int piLen3[1];
-	char *pstWay[1];
 
 	const char* pcstProcess	= g_pcstProcessGlobal;
 	const char* pcstWay			= g_pcstWayDec;
@@ -79,47 +81,11 @@ int sci_gsort(char *fname, int* _piKey)
 			return 1;
 		}
 
-		if(getVarType(piAddr2) != sci_strings)
+		pcstProcess = getProcessType(piAddr2); 
+		if(pcstProcess == NULL)
 		{
 			return 1;
 		}
-
-		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		if(iRows2 != 1 || iCols2 != 1)
-		{
-			return 1;
-		}
-
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, piLen2, NULL);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		pstProcess[0] = (char*)malloc(sizeof(char) * (piLen2[0] + 1)); //+1 for null termination
-		iRet = getMatrixOfString(piAddr2, &iRows2, &iCols2, piLen2, pstProcess);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		if(	strcmp(pstProcess[0], g_pcstProcessGlobal) != 0		&& 
-				strcmp(pstProcess[0], g_pcstProcessRow) != 0			&&
-				strcmp(pstProcess[0], g_pcstProcessCol) != 0			&& 
-				strcmp(pstProcess[0], g_pcstProcessListRow) != 0	&& 
-				strcmp(pstProcess[0], g_pcstProcessListCol) != 0)
-		{
-			return 1;
-		}
-
-		pcstProcess = pstProcess[0];
-
-		free(pstProcess[0]);
 	}
 
 	if(Rhs == 3)
@@ -130,44 +96,11 @@ int sci_gsort(char *fname, int* _piKey)
 			return 1;
 		}
 
-		if(getVarType(piAddr3) != sci_strings)
+		pcstWay = getWayType(piAddr3); 
+		if(pcstWay == NULL)
 		{
 			return 1;
 		}
-
-		iRet = getVarDimension(piAddr3, &iRows3, &iCols3);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		if(iRows3 != 1 || iCols3 != 1)
-		{
-			return 1;
-		}
-
-		iRet = getMatrixOfString(piAddr3, &iRows3, &iCols3, piLen3, NULL);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		pstWay[0] = (char*)malloc(sizeof(char) * (piLen3[0] + 1)); //+1 for null termination
-		iRet = getMatrixOfString(piAddr3, &iRows3, &iCols3, piLen3, pstWay);
-		if(iRet)
-		{
-			return 1;
-		}
-
-		if(	strcmp(pstWay[0], g_pcstWayDec) != 0	&& 
-				strcmp(pstWay[0], g_pcstWayInc) != 0)
-		{
-			return 1;
-		}
-
-		pcstWay = pstWay[0];
-
-		free(pstWay[0]);
 	}
 
 	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
@@ -179,15 +112,20 @@ int sci_gsort(char *fname, int* _piKey)
 	switch(getVarType(piAddr1))
 	{
 	case sci_matrix : 
+		gsort_double(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	case sci_strings : 
+		gsort_string(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	case sci_ints : 
+		gsort_int(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	default :
 		return 1;
 	}
 
+	//create output vars
+	return 0;
 /*
 	char iord[2] ;
 	char typex[10];
@@ -477,11 +415,518 @@ int sci_gsort(char *fname, int* _piKey)
 	return 0;
 */
 } 
-/*-----------------------------------------------------------------------------------*/
+
+
+int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+{
+	int iRet							= 0;
+	int iRows							= 0;
+	int iCols							= 0;
+	int iRowsInd					= 0;
+	int iColsInd					= 0;
+	double* pdblReal			= NULL;
+	double* pdblRealOut1	= NULL;
+	double* pdblRealOut2	= NULL;
+	int *piInd						= NULL;
+	int iRhs2							= Rhs > 2;
+
+	if(isVarComplex(_piAddress))
+	{
+		OverLoad(1);
+		return 0;
+	}
+	iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(iRows == 0 && iCols == 0)
+	{
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblReal, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(Lhs == 2)
+		{
+			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblReal, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealOut1, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	memcpy(pdblRealOut1, pdblReal, sizeof(double) * iRows * iCols);
+	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+	C2F(gsortd)(pdblRealOut1, piInd , &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+
+	if(Lhs == 2)
+	{
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		if(iRet)
+		{
+			free(piInd);
+			return 1;
+		}
+	}
+
+	free(piInd);
+	return 0;
+}
+
+int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+{
+	int iRet				= 0;
+	int iRows				= 0;
+	int iCols				= 0;
+	int iRowsInd		= 0;
+	int iColsInd		= 0;
+	int iRhs2				= Rhs > 2;
+
+	int* piInd			= NULL;
+	char** pstData	= NULL;
+
+	iRet = getVarString(_piAddress, &pstData, &iRows, &iCols);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+	C2F(gsorts)(pstData, piInd, &iRhs2, &iRows,&iCols, (char*)_pcstProcess, (char*)_pcstWay);
+	
+	iRet = createMatrixOfString(Rhs + 1, iRows, iCols, pstData, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(Lhs == 2)
+	{
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		if(iRet)
+		{
+			free(piInd);
+			return 1;
+		}
+	}
+	
+	free(piInd);
+	return 0;
+}
+
+int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, int* _piKey)
+{
+	int iRet			= 0;
+	int iRows			= 0;
+	int iCols			= 0;
+	int iRowsInd	= 0;
+	int iColsInd	= 0;
+	int iPrec			= 0;
+	int iRhs2			= Rhs > 2;
+
+	int* piInd		= NULL;
+
+	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
+
+	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
+	switch(iPrec)
+	{
+	case SCI_INT8 : 
+		{
+			char* pcDataIn		= NULL;
+			char* pcDataOut		= NULL;
+			iRet = getMatrixOfInteger8(_piAddress, &iRows, &iCols, &pcDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfInteger8(Rhs + 1, iRows, iCols, &pcDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(pcDataOut, pcDataIn, sizeof(char) * iRows * iCols);
+			C2F(gsortchar)(pcDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	case SCI_UINT8 : 
+		{
+			unsigned char* pucDataIn		= NULL;
+			unsigned char* pucDataOut		= NULL;
+			iRet = getMatrixOfUnsignedInteger8(_piAddress, &iRows, &iCols, &pucDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfUnsignedInteger8(Rhs + 1, iRows, iCols, &pucDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(pucDataOut, pucDataIn, sizeof(unsigned char) * iRows * iCols);
+			C2F(gsortuchar)(pucDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	case SCI_INT16 : 
+		{
+			short* psDataIn		= NULL;
+			short* psDataOut	= NULL;
+			iRet = getMatrixOfInteger16(_piAddress, &iRows, &iCols, &psDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfInteger16(Rhs + 1, iRows, iCols, &psDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(psDataOut, psDataIn, sizeof(short) * iRows * iCols);
+			C2F(gsortshort)(psDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	case SCI_UINT16 : 
+		{
+			unsigned short* pusDataIn		= NULL;
+			unsigned short* pusDataOut	= NULL;
+			iRet = getMatrixOfUnsignedInteger16(_piAddress, &iRows, &iCols, &pusDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfUnsignedInteger16(Rhs + 1, iRows, iCols, &pusDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(pusDataOut, pusDataIn, sizeof(unsigned short) * iRows * iCols);
+			C2F(gsortushort)(pusDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	case SCI_INT32 : 
+		{
+			int* piDataIn		= NULL;
+			int* piDataOut	= NULL;
+			iRet = getMatrixOfInteger32(_piAddress, &iRows, &iCols, &piDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfInteger32(Rhs + 1, iRows, iCols, &piDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(piDataOut, piDataIn, sizeof(int) * iRows * iCols);
+			C2F(gsortint)(piDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	case SCI_UINT32 : 
+		{
+			unsigned int* puiDataIn		= NULL;
+			unsigned int* puiDataOut	= NULL;
+			iRet = getMatrixOfUnsignedInteger32(_piAddress, &iRows, &iCols, &puiDataIn);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			iRet = allocMatrixOfUnsignedInteger32(Rhs + 1, iRows, iCols, &puiDataOut, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			memcpy(puiDataOut, puiDataIn, sizeof(unsigned int) * iRows * iCols);
+			C2F(gsortuint)(puiDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			break;
+		}
+	default : 
+		return 1;
+	}
+	return 0;
+/*
+	int lr;
+	lr=Im.it;
+	// next CreateVar and corresponding copy not needed if arg1 is not passed by reference 
+	if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr)) 
+	{
+		if (indices) {FREE(indices); indices = NULL;}
+			return 0;
+	}
+
+	switch(Im.it) // Type defined in stack-c.h 
+	{
+		case I_CHAR :
+		{
+			char *matrix = Im.D;
+			char *tmp_matrix = (char*) istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+
+		case I_INT32 :
+		{
+			int *matrix = Im.D;
+			int *tmp_matrix = istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+		case I_UCHAR :
+		{
+			unsigned char *matrix = Im.D;
+			unsigned char *tmp_matrix = (unsigned char*) istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortuchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+		case I_INT16 :
+		{
+			short *matrix = Im.D;
+			short *tmp_matrix = (short*) istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortshort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+		case I_UINT16 :
+		{
+			unsigned short *matrix = Im.D;
+			unsigned short *tmp_matrix = (short*) istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortushort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+		case I_UINT32 :
+		{
+			unsigned int *matrix = Im.D;
+			unsigned int *tmp_matrix = (unsigned int *)istk(lr);
+			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
+			C2F(gsortuint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
+		}
+		break;
+		default:
+			if (indices) {FREE(indices); indices = NULL;}
+			Scierror(999,_("%s: Wrong type for input argument #%d: Unknown type.\n"),fname,1);
+			return 0;
+	}
+
+	LhsVar(1) = Rhs + 1 ;
+
+	if (Lhs == 2)
+	{
+	if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) 
+	{
+	if (indices) {FREE(indices); indices = NULL;}
+	return 0;
+	}
+	LhsVar(2)= Rhs+2 ;
+	}
+	if (indices) {FREE(indices); indices = NULL;}
+	C2F(putlhsvar)();
+*/
+}
+
 static int gsort_complex(char *fname, char *mode, char *order)
 {
 	int lw = 0;
 	C2F(overload)(&lw, "gsort", (unsigned long)strlen("gsort"));
+	return 0;
+}
+/*-----------------------------------------------------------------------------------*/
+
+char* getWayType(int* _piAddress)
+{
+	int iRet					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+	char** pstWay = NULL;
+
+	const char* pcstRef[2] = {g_pcstWayDec,g_pcstWayInc};
+	iRet = getVarString(_piAddress, &pstWay, &iRows, &iCols);
+	if(iRet)
+	{
+		return NULL;
+	}
+
+	if(iRows == 1 && iCols == 1)
+	{
+		iRet = checkInputValue(pstWay[0], pcstRef, 2);
+	}
+	else
+	{
+		iRet = 1;
+	}
+
+	if(iRet)
+	{
+		int i;
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			free(pstWay[i]);
+		}
+		free(pstWay);
+		return NULL;
+	}
+	return pstWay[0];
+}
+
+char* getProcessType(int* _piAddress)
+{
+	int iRet					= 0;
+	int iRows					= 0;
+	int iCols					= 0;
+	char** pstProcess = NULL;
+
+	const char* pcstRef[5] = {g_pcstProcessGlobal,g_pcstProcessRow,g_pcstProcessCol,g_pcstProcessListRow,g_pcstProcessListCol};
+	iRet = getVarString(_piAddress, &pstProcess, &iRows, &iCols);
+	if(iRet)
+	{
+		return NULL;
+	}
+
+	if(iRows == 1 && iCols == 1)
+	{
+		iRet = checkInputValue(pstProcess[0], pcstRef, 5);
+	}
+	else
+	{
+		iRet = 1;
+	}
+
+	if(iRet)
+	{
+		int i;
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			free(pstProcess[i]);
+		}
+		free(pstProcess);
+		return NULL;
+	}
+	return pstProcess[0];
+}
+
+int getVarString(int* _piAddress, char*** _pstData, int* _piRows, int* _piCols)
+{
+	int i;
+	int iRet				= 0;
+	int iRows				= 0;
+	int iCols				= 0;
+	int *piLen			= NULL;
+
+	if(getVarType(_piAddress) != sci_strings)
+	{
+		return 1;
+	}
+
+	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, NULL, NULL);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piLen = (int*)malloc(sizeof(int) * iRows * iCols);
+	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	*_pstData = (char**)malloc(sizeof(char*) * iRows * iCols);
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		(*_pstData)[i] = (char*)malloc(sizeof(char) * (piLen[i] + 1)); //+1 for null termination
+	}
+
+	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, *_pstData);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	*_piRows = iRows;
+	*_piCols = iCols;
+	return 0;
+}
+
+int checkInputValue(char* _pstInput, const char** _pcstRef, int _iRefCount)
+{
+	int i;
+	for(i = 0 ; i < _iRefCount ; i++)
+	{
+		if(strcmp(_pstInput, _pcstRef[i]) == 0)
+		{//find
+			return 0;
+		}
+	}
+	//not find
+	return 1;
+}
+
+int computeIndiceDim(const char* _pcstProcess, int _iRowsIn, int _iColsIn,  int* _piRowsOut, int* _piColsOut)
+{
+	if(strcmp(_pcstProcess, g_pcstProcessListRow) == 0)
+	{
+		*_piRowsOut = _iRowsIn;
+		*_piColsOut = 1;
+	}
+	else if(strcmp(_pcstProcess, g_pcstProcessListCol) == 0)
+	{
+		*_piRowsOut = 1;
+		*_piColsOut = _iColsIn;
+	}
+	else
+	{
+		*_piRowsOut = _iRowsIn;
+		*_piColsOut = _iColsIn;
+	}
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

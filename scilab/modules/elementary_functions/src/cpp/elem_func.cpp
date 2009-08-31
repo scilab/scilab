@@ -37,6 +37,7 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("eye", &sci_eye, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("floor", &sci_floor, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("frexp", &sci_frexp, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("gsort", &sci_gsort, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("imag", &sci_imag, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("imult", &sci_imult, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("int", &sci_int, "elementary_function"));

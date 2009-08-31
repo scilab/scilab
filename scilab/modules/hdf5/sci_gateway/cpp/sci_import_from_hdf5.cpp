@@ -20,12 +20,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "api_scilab.h"
 #include "../../call_scilab/includes/CallScilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
 #include "stack-def.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 }
 
 
@@ -402,18 +403,17 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	case SCI_INT64 : 
 		{
 #ifdef __SCILAB_INT64__
-			char* pcData	= NULL;
-			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
-			iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pcData);
+			long long* pllData	= NULL;
+			pllData = (long long*)malloc(sizeof(long long) * iRows * iCols);
+			iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pllData);
 			if(iRet)
 			{
 				return false;
 			}
 
-			iRet = createNamedMatrixOfInteger8( _pstVarname, iRows, iCols, pcData);
 			if(_piAddress == NULL)
 			{
-				iRet = createNamedMatrixOfInteger8( _pstVarname, iRows, iCols, pcData);
+				iRet = createNamedMatrixOfInteger64( _pstVarname, iRows, iCols, pllData);
 			}
 			else
 			{

@@ -139,42 +139,10 @@ namespace symbol
 				}
 				else if((*it_scope).second->isInt())
 				{
-					Int *pi = (*it_scope).second->getAsInt();
-					ostr << "( " << pi->rows_get() << ", " << pi->cols_get() << " )" << std::endl;
-					int iCols = pi->cols_get();
-					int iRows = pi->rows_get();
-					if(iRows == 1 && iCols == 1)
-					{
-						ostr << pi->real_get(0,0);
-						if(pi->isComplex())
-						{
-							ostr << (pi->img_get(0,0) < 0 ? " " : " +") << pi->img_get(0,0) << "i";
-						}
-
-						ostr << std::endl;
-					}
-					else
-					{
-						ostr << "[ ";
-						for(int r = 0 ; r < iRows ; r++)
-						{
-							for(int c = 0 ; c < iCols ; c++)
-							{
-								ostr << pi->real_get(r, c);
-								if(pi->isComplex())
-								{
-									ostr << (pi->img_get(r, c) < 0 ? " " : " +") << pi->img_get(r, c) << "i";
-								}
-
-								if((c + 1) != iCols || (r + 1) != iRows)
-								{
-									ostr << " , ";
-								}
-							}
-							ostr  << std::endl;
-						}
-						ostr << " ]" << std::endl;
-					}
+					Double *pdbl = (*it_scope).second->getAsDouble();
+					ostr << pdbl->DimToString() << std::endl;
+					ostr << pdbl->toString(10, 75);
+					ostr << std::endl;
 				}
 				else if((*it_scope).second->isString())
 				{
