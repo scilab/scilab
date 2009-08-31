@@ -466,10 +466,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\polynomials_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>
