@@ -11,13 +11,19 @@
 */
 
 /*--------------------------------------------------------------------------*/ 
-#ifndef __PROMPTECHO_H__
-#define __PROMPTECHO_H__
+#ifndef __DYNLIB_SHELL_H__
+#define __DYNLIB_SHELL_H__
 
-#include "machine.h"
-#include "dynlib_shell.h"
+#ifdef _MSC_VER
+#ifdef SCISHELL_EXPORTS
+#define SHELL_IMPEXP __declspec(dllexport)
+#else
+#define SHELL_IMPEXP __declspec(dllimport)
+#endif
+#else
+#define SHELL_IMPEXP
+#endif
 
-SHELL_IMPEXP int C2F(promptecho)(int *lunit, char *string, int *strl,int string_len);
-
-#endif /* __PROMPTECHO_H__ */
+#endif /* __DYNLIB_SHELL_H__ */
 /*--------------------------------------------------------------------------*/ 
+
