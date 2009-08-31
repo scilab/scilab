@@ -80,6 +80,10 @@ namespace types
     /* Bool */
     bool isBool(void) { return (getType() == RealBool); }
     virtual Bool* getAsBool(void) { return NULL; }
+    
+    /* Callable */
+    virtual bool isCallable(void) { return false; }
+    virtual Callable* getAsCallable(void) { return NULL; }
 
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
