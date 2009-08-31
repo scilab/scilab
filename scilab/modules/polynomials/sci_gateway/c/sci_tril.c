@@ -12,13 +12,12 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_polynomials.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intptriu)(int *job,int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ptril)(char *fname,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_ptril)(char *fname,unsigned long fname_len)
+int sci_ptril(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	int job=0;

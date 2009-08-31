@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsimp)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_simp)(char *fname,unsigned long fname_len)
+int sci_simp(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intsimp)(id);
