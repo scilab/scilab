@@ -13,21 +13,17 @@
 #ifndef __GW_OPTIM__
 #define __GW_OPTIM__
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
+#include "dynlib_optimization.h"
 #include "api_common.h"
 /*--------------------------------------------------------------------------*/
-int gw_optimization(void);
+OPTIMIZATION_IMPEXP int gw_optimization(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_optim) (char *fname,unsigned long fname_len);
-int C2F(sci_semidef) (char *fname,unsigned long fname_len);
-int C2F(sci_fsolve) (char *fname,unsigned long fname_len);
-int C2F(sci_sqrsolve) (char *fname,unsigned long fname_len);
-int C2F(sci_qld) (char *fname,unsigned long fname_len);
-int C2F(intlsqrsolve) (char *fname,unsigned long fname_len);
-int C2F(scioptim) (char *fname,unsigned long fname_len);
-int C2F(scisolv)  (char *fname,unsigned long fname_len);
-int C2F(scisemidef)(char *fname,unsigned long fname_len);
-int C2F(sci_qp_solve)(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_optim(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_semidef(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_fsolve(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_sqrsolve(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_qld(char *fname,unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/
