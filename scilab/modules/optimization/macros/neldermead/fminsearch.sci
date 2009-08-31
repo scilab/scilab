@@ -81,7 +81,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   status = neldermead_get(nm,"-status");
   select status
   case "maxiter" then
-    exitflag = 0;
+    exitflag = -1;
   case "maxfuneval" then
     exitflag = 0;
   case "tolsizedeltafv" then
@@ -99,8 +99,10 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   output.funcCount = neldermead_get(nm,"-funevals");
   output.iterations = neldermead_get(nm,"-iterations");
   output.message = sprintf("%s\n%s\n%s", "Optimization terminated:",...
-    "the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04",...
-    "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04");
+    "the current x satisfies the termination criteria using OPTIONS.TolX of %e",...
+    TolX,...
+    "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of %e",...
+    TolFun);
   nm = neldermead_destroy(nm);
   clear nm;
 endfunction
