@@ -450,10 +450,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\metanet_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>
