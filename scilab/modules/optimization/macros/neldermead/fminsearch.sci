@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 //
-// mtlb_fminsearch --
+// fminsearch --
 //   Emulate the fminsearch command of Matlab.
 //   Search the minimum with Nelder-Mead algorithm.
 //   [x,fval,exitflag,output] = fminsearch(fun,x0,options)
@@ -17,9 +17,9 @@
 //   x0 : a row vector with dimension n where n is the number of parameters
 //        to optimize.
 //        Initial guess for optimization algorithm.
-//  options : an optional struct, as provided by mtlb_optimset
+//  options : an optional struct, as provided by optimset
 //
-function [x,fval,exitflag,output] = mtlb_fminsearch ( varargin )
+function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then
     errmsg = sprintf("Unexpected number of arguments : %d provided while 2 or 3 are expected.",rhs);
@@ -30,7 +30,7 @@ function [x,fval,exitflag,output] = mtlb_fminsearch ( varargin )
   if rhs==2 then
     // No options on the command line
     // Set default values
-    options = mtlb_optimset ("fminsearch");
+    options = optimset ("fminsearch");
   elseif rhs==3 then
     // One options struc on the command line : use it !
     options = varargin(3);
