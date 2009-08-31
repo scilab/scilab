@@ -13,12 +13,14 @@
 #ifndef  __IPMPAR1_H__
 #define __IPMPAR1_H__
 
+#include "dynlib_statistics.h"
+
 #include "machine.h"
 
 /**
  * TODO : add comment
  * @return
  */
-int C2F(largestint)(void);
+STATISTICS_IMPEXP int C2F(largestint)(void);
 
 #endif /* __IPMPAR1_H__ */
