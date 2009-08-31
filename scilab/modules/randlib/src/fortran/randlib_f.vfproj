@@ -84,7 +84,6 @@ lib /DEF:&quot;$(InputDir)randlib_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X
 		<File RelativePath=".\genprm.f"/>
 		<File RelativePath=".\genunf.f"/>
 		<File RelativePath=".\ignnbn.f"/>
-		<File RelativePath=".\lennob.f"/>
 		<File RelativePath=".\phrtsd.f"/>
 		<File RelativePath=".\setgmn.f"/>
 		<File RelativePath=".\snorm.f"/></Filter>
