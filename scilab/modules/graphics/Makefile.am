@@ -459,7 +459,6 @@ includes/InitObjects.h \
 includes/Format.h \
 includes/Interaction.h \
 includes/HandleManagement.h \
-includes/XsetXgetParameters.h \
 includes/WindowList.h \
 includes/PloEch.h \
 includes/DrawObjects.h \

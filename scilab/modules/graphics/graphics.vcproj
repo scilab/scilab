@@ -2083,7 +2083,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\XsetXgetParameters.h"
+				RelativePath=".\src\c\XsetXgetParameters.h"
 				>
 			</File>
 		</Filter>
