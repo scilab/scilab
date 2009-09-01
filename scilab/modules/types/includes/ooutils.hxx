@@ -17,22 +17,22 @@
 
 namespace types
 {
-  class Method: public Function
+  class Method: public Callable
   {
   public:
-    typedef Function::ReturnValue (*GW_METH)(typed_list &in, int iRetCount, typed_list &out,
+    typedef Callable::ReturnValue (*GW_METH)(typed_list &in, int iRetCount, typed_list &out,
                                              ObjectMatrix *p_this, ObjectMatrix *p_super);
   
-    Function::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
+    Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
   
-    Method(GW_METH p_callback): Function(), m_callback(p_callback) {}
+    Method(GW_METH p_callback): Callable(), m_callback(p_callback) {}
     virtual ~Method() {}
   
   protected:
     GW_METH m_callback;
   };
   
-  extern Function *ro_setter;
+  extern Callable *ro_setter;
 }
 
 #endif /* !__OOUTILS_HXX__ */

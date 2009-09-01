@@ -15,7 +15,7 @@
 
 #include <map>
 #include <string>
-#include "function.hxx"
+#include "callable.hxx"
 
 namespace types
 {
@@ -39,8 +39,8 @@ namespace types
    */
   struct PropertySlot: public Slot
   {
-    Function *getter;
-    Function *setter;
+    Callable *getter;
+    Callable *setter;
     InternalType *default_value;
     
     PropertySlot(): Slot(), getter(NULL), setter(NULL), default_value(NULL) {}
@@ -61,7 +61,7 @@ namespace types
    */
   struct MethodSlot: public Slot
   {
-    Function *func;
+    Callable *func;
     
     MethodSlot(): Slot(), func(NULL) {}
     
@@ -129,13 +129,13 @@ namespace types
      *   getter, setter and p_default will be destroyed with this object ;
      * clone them if you may need it later.
      */
-    void install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Function *getter, Function *setter);
+    void install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *getter, Callable *setter);
     
     /** Install a method on the object.
      *   func will be destroyed with this object ;* clone them if you may need
      * it later.
      */
-    void install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Function *p_func);
+    void install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
     
     /** Get the parent object */
     Object *super() { return m_isa; }
@@ -181,10 +181,10 @@ namespace types
     // Call the function as a method (setting this and super). VaArgs: null
     // terminated list of InternalType*. Returns only the first return value of
     // the real function.
-    InternalType *do_call(Function *func, Object *level,...);
+    InternalType *do_call(Callable *func, Object *level,...);
     
     // Returns the bound method
-    InternalType *do_bind(Function *func, Object *level);
+    InternalType *do_bind(Callable *func, Object *level);
   
   protected:
     typedef std::map<std::string, Slot&>::iterator SlotsIterator;

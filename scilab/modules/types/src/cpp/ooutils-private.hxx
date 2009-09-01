@@ -17,19 +17,19 @@
 
 namespace types
 {
-  class BoundMethod: public Function
+  class BoundMethod: public Callable
   {
   public:
-    BoundMethod(Function *p_func, Object *p_self, Object *p_level = NULL);
+    BoundMethod(Callable *p_func, Object *p_self, Object *p_level = NULL);
     virtual ~BoundMethod();
     
-    Function::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
-    virtual Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out) {
+    Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
+    virtual Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out) {
       return m_func->call(in, iRetCount, out);
     }
   
   protected:
-    Function *m_func;
+    Callable *m_func;
     ObjectMatrix *m_this;
     ObjectMatrix *m_super;
   };
@@ -41,7 +41,7 @@ namespace types
       BoundMethod(p_slot->getter, p_self, p_level), m_slot(p_slot) {}
     virtual ~BoundGetter();
     
-    Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
+    Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   
   protected:
     PropertySlot *m_slot;
@@ -54,15 +54,15 @@ namespace types
       BoundMethod(p_slot->setter, p_self, p_level), m_slot(p_slot) {}
     virtual ~BoundSetter();
     
-    Function::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
+    Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   
   protected:
     PropertySlot *m_slot;
   };
   
   /* Methods of root object */
-  Function::ReturnValue install_property(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
-  Function::ReturnValue install_method(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
+  Callable::ReturnValue install_property(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
+  Callable::ReturnValue install_method(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*);
 }
 
 #endif /* !__OOUTILS_PRIVATE_HXX__ */

@@ -20,7 +20,7 @@
 namespace types
 {
   void
-  Object::install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Function *p_getter, Function *p_setter)
+  Object::install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
   {
     SlotsIterator it = m_slots.find(p_slotName);
     if(it != m_slots.end())
@@ -36,7 +36,7 @@ namespace types
   }
   
   void
-  Object::install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Function *p_func)
+  Object::install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
   {
     SlotsIterator it = m_slots.find(p_slotName);
     if(it != m_slots.end())
@@ -252,7 +252,7 @@ namespace types
   }
   
   InternalType *
-  Object::do_call(Function *func, Object *level,...)
+  Object::do_call(Callable *func, Object *level,...)
   {
     BoundMethod m(func, this, level);
     InternalType *arg;
@@ -265,14 +265,14 @@ namespace types
       args.push_back(arg);
     va_end(ap);
     
-    if(m.call(args, retcount, out) == Function::OK)
+    if(m.call(args, retcount, out) == Callable::OK)
       return out[0];
     else
       return NULL;
   }
   
   InternalType *
-  Object::do_bind(Function *func, Object *level)
+  Object::do_bind(Callable *func, Object *level)
   {
     return new BoundMethod(func, this, level);
   }

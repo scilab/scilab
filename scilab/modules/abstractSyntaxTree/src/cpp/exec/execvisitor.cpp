@@ -793,7 +793,7 @@ namespace ast
 			PropertyDec *pdec = dynamic_cast<PropertyDec*>(sdec);
 			if(pdec != NULL)
 			{
-				Function *setter = NULL;
+				Callable *setter = NULL;
 				InternalType *def = NULL;
 				if(pdec->default_get())
 				{
@@ -847,7 +847,7 @@ namespace ast
 					out.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
 				}
 				
-				/*Function *code = new types::Macro(in, out, const_cast<Exp&>(mdec->body_get()));
+				Callable *code = new types::Macro("", in, out, (SeqExp&)mdec->body_get());
 				
 				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
 				{
@@ -880,7 +880,7 @@ namespace ast
 						kls->install_method(sdec->name_get().name_get(), vis, code);
 					else
 						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
-				}*/
+				}
 			}
 		}
 		

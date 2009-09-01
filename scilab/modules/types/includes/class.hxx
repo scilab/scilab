@@ -25,8 +25,8 @@ namespace types
   
     Instance *create_instance(typed_list &p_constructor_args);
   
-    void install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Function *getter, Function *setter);
-    void install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Function *p_func);
+    void install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *getter, Callable *setter);
+    void install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
     
     Slot *resolv_instance_slot(const std::string &p_slotName);
     

@@ -55,6 +55,8 @@ namespace types
     bool is_super() const { return m_startptr != NULL; }
     bool is_standard_ref() const { return m_iSize == 1 && m_lvptr == NULL && m_startptr == NULL; }
     
+    InternalType *clone();
+    
   private:
     ObjectMatrix(Object *p_optr, Object *p_lvptr, Object *p_startptr):
       GenericType(), 

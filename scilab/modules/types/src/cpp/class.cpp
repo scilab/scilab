@@ -38,7 +38,7 @@ namespace types
   }
   
   void
-  Class::install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Function *p_getter, Function *p_setter)
+  Class::install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
   {
     if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
     {
@@ -56,7 +56,7 @@ namespace types
   }
   
   void
-  Class::install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Function *p_func)
+  Class::install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
   {
     if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
     {
@@ -99,7 +99,7 @@ namespace types
     Instance *res = create_instance();
     
     InternalType *tmp = res->get("%constructor", res, NULL);
-    Function *constructor = dynamic_cast<Function*>(tmp);
+    Callable *constructor = dynamic_cast<Callable*>(tmp);
     if(constructor)
       constructor->call(p_constructor_args, nArgsOut, out_args);
     
@@ -108,19 +108,19 @@ namespace types
   
   /* Root class */
   
-  static Function::ReturnValue
-  new_instance(typed_list &in, int iRetCount, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
+  static Callable::ReturnValue
+  new_instance(typed_list &in, int, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
   {
     Class *kls = dynamic_cast<Class*>(self->object_ref_get());
     Instance *inst = kls->create_instance(in);
     out.push_back(ObjectMatrix::create_standard_ref(inst));
-    return Function::OK;
+    return Callable::OK;
   }
   
-  static Function::ReturnValue
+  static Callable::ReturnValue
   empty_constructor(typed_list &, int, typed_list &, ObjectMatrix *, ObjectMatrix *)
   {
-    return Function::OK;
+    return Callable::OK;
   }
   
   Class *

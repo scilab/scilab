@@ -222,4 +222,15 @@ namespace types
   {
     return new ObjectMatrix(p_self, NULL, NULL);
   }
+  
+  InternalType *
+  ObjectMatrix::clone()
+  {
+    if(m_iSize == 1)
+      return ObjectMatrix::create_standard_ref(m_optr[0]);
+    
+    ObjectMatrix *ret = new ObjectMatrix(m_iRows, m_iCols);
+    ret->insert(0, 0, this);
+    return ret;
+  }
 }

@@ -18,15 +18,15 @@
 namespace types
 {
   /** Public utils */
-  static Function::ReturnValue
-  ro_setter_func(typed_list &, int, typed_list &out)
+  static Callable::ReturnValue
+  ro_setter_func(typed_list&, int, typed_list&, ObjectMatrix*, ObjectMatrix*)
   {
     throw std::string("Read-only property");
   }
   
-  Function *ro_setter = new Function("", ro_setter_func, "");
+  Callable *ro_setter = new Method(ro_setter_func);
 
-  Function::ReturnValue
+  Callable::ReturnValue
   Method::call(typed_list &in, int iRetCount, typed_list &out)
   {
     symbol::Context *ctx = symbol::Context::getInstance();
@@ -36,7 +36,7 @@ namespace types
   }
   
   /** Bound method, object and setter */
-  BoundMethod::BoundMethod(Function *p_func, Object *p_self, Object *p_level)
+  BoundMethod::BoundMethod(Callable *p_func, Object *p_self, Object *p_level)
     : m_func(p_func), m_this(NULL), m_super(NULL)
   {
     if(p_level == NULL)
@@ -51,10 +51,10 @@ namespace types
     delete m_super;
   }
   
-  Function::ReturnValue
+  Callable::ReturnValue
   BoundMethod::call(typed_list &in, int iRetCount, typed_list &out)
   {
-    Function::ReturnValue ret;
+    Callable::ReturnValue ret;
     symbol::Context *ctx = symbol::Context::getInstance();
     
     ctx->scope_begin();
@@ -68,17 +68,17 @@ namespace types
     return ret;
   }
   
-  Function::ReturnValue
+  Callable::ReturnValue
   BoundGetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
     // push value = slot->value
     return inner_call(in, iRetCount, out);
   }
   
-  Function::ReturnValue
+  Callable::ReturnValue
   BoundSetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
-    Function::ReturnValue ret;
+    Callable::ReturnValue ret;
     // push value = slot->value
     ret = inner_call(in, iRetCount, out);
     // Retrieve value and put it to slot->value
@@ -86,23 +86,23 @@ namespace types
   }
   
   /** Root object */
-  Function::ReturnValue
+  Callable::ReturnValue
   install_property(typed_list &in, int, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;
     InternalType *def = NULL;
-    Function *getter = NULL;
-    Function *setter = NULL;
+    Callable *getter = NULL;
+    Callable *setter = NULL;
     
     if(in.size() > 1)
       visibility = dynamic_cast<String*>(in[1]);
     if(in.size() > 2)
       def = in[2];
     if(in.size() > 3)
-      getter = dynamic_cast<Function*>(in[3]);
+      getter = dynamic_cast<Callable*>(in[3]);
     if(in.size() > 4)
-      setter = dynamic_cast<Function*>(in[4]);
+      setter = dynamic_cast<Callable*>(in[4]);
     
     Slot::Visibility svisib = Slot::PUBLIC;
     if(visibility != NULL)
@@ -117,20 +117,20 @@ namespace types
     
     self->object_ref_get()->install_property(name->string_get(0,0), svisib, def, getter, setter);
     
-    return Function::OK;
+    return Callable::OK;
   }
   
-  Function::ReturnValue
+  Callable::ReturnValue
   install_method(typed_list &in, int, typed_list &, ObjectMatrix *self, ObjectMatrix *)
   {
     String *name = dynamic_cast<String*>(in[0]);
     String *visibility = NULL;
-    Function *func = NULL;
+    Callable *func = NULL;
     
     if(in.size() > 1)
       visibility = dynamic_cast<String*>(in[1]);
     if(in.size() > 2)
-      func = dynamic_cast<Function*>(in[2]);
+      func = dynamic_cast<Callable*>(in[2]);
     
     Slot::Visibility svisib = Slot::PUBLIC;
     if(visibility != NULL)
@@ -145,6 +145,6 @@ namespace types
     
     self->object_ref_get()->install_method(name->string_get(0,0), svisib, func);
     
-    return Function::OK;
+    return Callable::OK;
   }
 }
