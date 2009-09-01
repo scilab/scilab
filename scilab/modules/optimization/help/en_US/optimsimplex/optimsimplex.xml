@@ -193,7 +193,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
 
     <variablelist>
       <varlistentry>
-        <term>[ newobj , data ] = optimoptimsimplex_new ( coords , fun , data )</term>
+        <term>[ newobj , data ] = optimsimplex_new ( coords , fun , data )</term>
 
         <listitem>
           <para>Creates a new simplex object. All input arguments are
@@ -261,7 +261,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimoptimsimplex_destroy (this)</term>
+        <term>this = optimsimplex_destroy (this)</term>
 
         <listitem>
           <para>Destroy the given object.</para>
@@ -279,7 +279,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimoptimsimplex_axes ( this , x0 , fun , len , data
+        <term>[ this , data ] = optimsimplex_axes ( this , x0 , fun , len , data
         )</term>
 
         <listitem>
@@ -353,7 +353,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimoptimsimplex_pfeffer ( this , x0 , fun , deltausual
+        <term>[ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual
         , deltazero , data )</term>
 
         <listitem>
@@ -435,7 +435,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimoptimsimplex_randbounds ( this , x0 , fun ,
+        <term>[ this , data ] = optimsimplex_randbounds ( this , x0 , fun ,
         boundsmin , boundsmax , nbpoints , data )</term>
 
         <listitem>
@@ -529,7 +529,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimoptimsimplex_spendley ( this , x0 , fun , len ,
+        <term>[ this , data ] = optimsimplex_spendley ( this , x0 , fun , len ,
         data )</term>
 
         <listitem>
@@ -602,7 +602,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimoptimsimplex_setall ( this , simplex )</term>
+        <term>this = optimsimplex_setall ( this , simplex )</term>
 
         <listitem>
           <para>Set all the coordinates and and the function values of all the
@@ -647,7 +647,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimoptimsimplex_setallfv ( this , fv )</term>
+        <term>this = optimsimplex_setallfv ( this , fv )</term>
 
         <listitem>
           <para>Set all the function values of all the vertices. The vertex #k
@@ -674,7 +674,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimoptimsimplex_setallx ( this , x )</term>
+        <term>this = optimsimplex_setallx ( this , x )</term>
 
         <listitem>
           <para>Set all the coordinates of all the vertices. The vertex #k is
@@ -1700,6 +1700,40 @@ s1 = optimsimplex_destroy ( s1 );
   </refsection>
 
   <refsection>
+    <title>Initial simplex strategies</title>
+    <para>
+      In this section, we analyse the various initial simplex which are provided in this 
+      component.
+    </para>
+    <para>
+      It is known that direct search methods based on simplex designs are very 
+      sensitive to the initial simplex. This is why the current component 
+      provides various ways to create such an initial simplex.
+    </para>
+
+    <para>
+      The first historical simplex-based algorithm is the one presented in 
+      "Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation" by W. Spendley, G. R. Hext and F. R. Himsworth.
+      The optimsimplex_spendley function creates the regular simplex which is presented in
+      this paper.
+    </para>
+
+    
+    <para>
+      The method used in the optimsimplex_randbounds function is due to M.J. Box
+      in "A New Method of Constrained Optimization and a Comparison With
+      Other Methods". 
+    </para>
+
+    <para>
+      Pfeffer's method is an heuristic which is presented in "Global Optimization Of Lennard-Jones Atomic Clusters" by
+      Ellen Fan. It is due to L. Pfeffer at Stanford and it is used in fminsearch.
+    </para>
+    
+  </refsection>
+
+  <refsection>
     <title>Authors</title>
 
     <para>Michael Baudin, 2008-2009</para>
@@ -1708,48 +1742,75 @@ s1 = optimsimplex_destroy ( s1 );
   <refsection>
     <title>Bibliography</title>
 
-    <para>&#8220;Sequential Application of Simplex Designs in Optimisation and
-    Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
-    F. R., American Statistical Association and American Society for Quality,
-    1962</para>
+    <para>
+      &#8220;Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
+      F. R., American Statistical Association and American Society for Quality,
+      1962
+    </para>
 
-    <para>"A Simplex Method for Function Minimization", Nelder, J. A. and
-    Mead, R. The Computer Journal, January, 1965, 308--313</para>
+    <para>
+      "A Simplex Method for Function Minimization", Nelder, J. A. and
+      Mead, R. The Computer Journal, January, 1965, 308--313
+    </para>
 
-    <para>"A New Method of Constrained Optimization and a Comparison With
-    Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
-    British Computer Society</para>
+    <para>
+      "A New Method of Constrained Optimization and a Comparison With
+      Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
+      British Computer Society
+    </para>
 
-    <para>"Iterative Methods for Optimization", C.T. Kelley, 1999, Chapter 6.,
-    section 6.2</para>
+    <para>
+      "Iterative Methods for Optimization", C.T. Kelley, 1999, Chapter 6.,
+      section 6.2
+    </para>
 
-    <para>"Compact Numerical Methods For Computers - Linear Algebra and
-    Function Minimization", J.C. Nash, 1990, Chapter 14. Direct Search
-    Methods</para>
+    <para>
+      "Compact Numerical Methods For Computers - Linear Algebra and
+      Function Minimization", J.C. Nash, 1990, Chapter 14. Direct Search
+      Methods
+    </para>
 
-    <para>"Sequential Application of Simplex Designs in Optimisation and
-    Evolutionary Operation", W. Spendley, G. R. Hext, F. R. Himsworth,
-    Technometrics, Vol. 4, No. 4 (Nov., 1962), pp. 441-461, Section 3.1</para>
+    <para>
+      "Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation", W. Spendley, G. R. Hext, F. R. Himsworth,
+      Technometrics, Vol. 4, No. 4 (Nov., 1962), pp. 441-461, Section 3.1
+    </para>
 
-    <para>"A New Method of Constrained Optimization and a Comparison With
-    Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
-    British Computer Society</para>
+    <para>
+      "A New Method of Constrained Optimization and a Comparison With
+      Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
+      British Computer Society
+    </para>
 
-    <para>&#8220;Detection and Remediation of Stagnation in the Nelder--Mead
-    Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
-    Optimization, Kelley,, C. T., 1999</para>
+    <para>
+      &#8220;Detection and Remediation of Stagnation in the Nelder--Mead
+      Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
+      Optimization, Kelley,, C. T., 1999
+    </para>
 
-    <para>" Multi-Directional Search: A Direct Search Algorithm for Parallel
-    Machines", by E. Boyd, Kenneth W. Kennedy, Richard A. Tapia, Virginia
-    Joanne Torczon,, Virginia Joanne Torczon, 1989, Phd Thesis, Rice
-    University</para>
+    <para>
+      " Multi-Directional Search: A Direct Search Algorithm for Parallel
+      Machines", by E. Boyd, Kenneth W. Kennedy, Richard A. Tapia, Virginia
+      Joanne Torczon,, Virginia Joanne Torczon, 1989, Phd Thesis, Rice
+      University
+    </para>
 
-    <para>"Grid Restrained Nelder-Mead Algorithm", Árpád B&#361;rmen, Janez
-    Puhan, Tadej Tuma, Computational Optimization and Applications, Volume 34
-    , Issue 3 (July 2006), Pages: 359 - 375</para>
+    <para>
+      "Grid Restrained Nelder-Mead Algorithm", Árpád B&#361;rmen, Janez
+      Puhan, Tadej Tuma, Computational Optimization and Applications, Volume 34
+      , Issue 3 (July 2006), Pages: 359 - 375
+    </para>
 
-    <para>"A convergent variant of the Nelder-Mead algorithm", C. J. Price, I.
-    D. Coope, D. Byatt, Journal of Optimization Theory and Applications,
-    Volume 113 , Issue 1 (April 2002), Pages: 5 - 19,</para>
+    <para>
+      "A convergent variant of the Nelder-Mead algorithm", C. J. Price, I.
+      D. Coope, D. Byatt, Journal of Optimization Theory and Applications,
+      Volume 113 , Issue 1 (April 2002), Pages: 5 - 19,
+    </para>
+
+    <para>
+      "Global Optimization Of Lennard-Jones Atomic Clusters",
+      Ellen Fan, Thesis, February 26, 2002, McMaster University
+    </para>
   </refsection>
 </refentry>
