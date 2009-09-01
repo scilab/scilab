@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="optimset" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>optimset</refname>
+
+    <refpurpose>Configures and returns an optimization data structure.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      options = optimset ()
+      options = optimset ( funname )
+      options = optimset ( key , value )
+      options = optimset ( key1 , value1 , key2 , value2, ... )
+      options = optimset ( oldoptions , key , value )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      This function creates or updates a data structure which can
+      be used on modify the behaviour of optimization methods.
+      The goal of this function is to manage the "options" data structure,
+      which is a struct with a set of fields (for example, "MaxFunEvals", "MaxIter", etc...).
+      The user can create a new structure with empty fields or create 
+      a new structure with default fields which correspond to a particular 
+      algorithm.
+      The user can also configure each field and set it to a particular value.
+      Finally, the user pass the structure to an optimization function 
+      so that the algorithm uses the options configured by the user.
+    </para>
+
+    <para>
+        In the following, we analyse the various ways to call the optimset
+        function.
+      </para>
+
+    <para>
+      The following calling sequence
+      <programlisting role="example">
+      options = optimset ()
+    </programlisting>
+      creates a new data structure where the fields have been set to the empty matrix (i.e. []).
+    </para>
+
+    <para>
+      The following calling sequence
+      <programlisting role="example">
+        options = optimset ( funname )
+      </programlisting>
+      creates a new data structure where the default parameters which correspond to
+      the "funname" function have been set. For example,
+      <programlisting role="example">
+        options = optimset ( "fminsearch" )
+      </programlisting>
+      returns a new data structure where the default parameters which correspond to 
+      the "fminsearch" function have been set.
+    </para>
+
+    <para>
+      The following calling sequence
+      <programlisting role="example">
+        options = optimset ( oldoptions , key , value )
+      </programlisting>
+      creates a new data structure where all fields from the "oldoptions" 
+      structure have been copied, except the field corresponding to the "key",
+      which has been set to "value".
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>
+            A struct which contains the following fields.
+            By default, all fields are empty. Specific settings
+            are associated with a particular function name.
+          </para>
+          <variablelist>
+            <varlistentry>
+              <term>options.Display</term>
+
+              <listitem>
+                <para>
+                  The verbose level.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.FunValCheck</term>
+
+              <listitem>
+                <para>
+                  A boolean to enable the checking of function values.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.MaxFunEvals</term>
+
+              <listitem>
+                <para>
+                  The maximum number of evaluations of the cost function.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.MaxIter</term>
+
+              <listitem>
+                <para>
+                  The maximum number of iterations. 
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.OutputFcn</term>
+
+              <listitem>
+                <para>
+                  A function which is called at each iteration to print out intermediate 
+                  state of the optimization algorithm (for example into a log file).
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.PlotFcns</term>
+
+              <listitem>
+                <para>
+                  A function which is called at each iteration to plot the intermediate
+                  state of the optimization algorithm (for example into a 2D graphic).
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.TolFun</term>
+
+              <listitem>
+                <para>
+                  The absolute tolerance on function value.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>options.TolX</term>
+
+              <listitem>
+                <para>
+                  The absolute tolerance on the variable x.
+                </para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>funname</term>
+
+        <listitem>
+          <para>
+            A string containing the name of an optimization function which
+            takes the options structure as input argument. Currently, the only
+            possible value is "fminsearch".
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>key</term>
+
+        <listitem>
+          <para>
+            A string associated with a field of the options data structure.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>value</term>
+
+        <listitem>
+          <para>The value corresponding to the key.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Design</title>
+    <para>
+      Most optimization algorithms require many algorithmic
+      parameters such as the number of iterations or the number of
+      function evaluations. If these parameters are given to the optimization
+      function as input parameters, this forces both the user and the
+      developper to manage many input parameters. For example, the "optim" function
+      provides more than 20 input arguments. The goal of the optimset function
+      is to simplify the management of input arguments, by gathering
+      all the parameters into a single data structure.
+    </para>
+
+    <para>
+      While the current implementation of the "optimset" function only supports
+      the fminsearch function, it is designed to be extended to as many
+      optimization function as required. Because all optimization algorithms
+      do not require the same parameters, the data structure aims at remaining
+      flexible. But, most of the time, most parameters are the same from
+      algorithm to algorithm, for example, the tolerance parameters which
+      drive the termination criteria are often the same, even if the
+      termination criteria itself is not the same.
+    </para>
+  </refsection>
+
+
+  <refsection>
+    <title>Example #1</title>
+
+    <para>
+      In the following example, we create an empty optimization structure.
+    </para>
+
+    <programlisting role="example">
+      op = optimset ()
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #2</title>
+
+    <para>
+      In the following example, we create an optimization structure
+      with all fields set to specific settings.
+    </para>
+
+    <programlisting role="example">
+      op = optimset (...
+      "Display","iter",...
+      "FunValCheck","on",...
+      "MaxFunEvals",100,...
+      "MaxIter",110,...
+      "OutputFcn",myoutputfun,...
+      "PlotFcns",myplotfun,...
+      "TolFun",1.e-12,...
+      "TolX",1.e-13...
+      )
+    </programlisting>
+  </refsection>
+
+  
+  <refsection>
+    <title>Example #3</title>
+
+    <para>
+      In the following example, we create an optimization structure
+      with all fields set to the default settings for the "fminsearch"
+      optimization function.
+    </para>
+
+    <programlisting role="example">
+      op = optimset ("fminsearch")
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin, 2008-2009</para>
+  </refsection>
+
+</refentry>
