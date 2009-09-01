@@ -34,69 +34,71 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.ScilabKeywords;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
-    String sb = "";
-    int startPoint = 0;
 
-    private UndoManager undo = new UndoManager() {
-	public void undoableEditHappened(UndoableEditEvent e) {
-//	    System.out.println("UndoableEditEvent ="+e.getClass().getCanonicalName());
-//	    System.out.println("UndoableEdit ="+e.getEdit().toString());
-//	    System.out.println("Source = "+e.getSource().toString());
-//	    System.out.println("filter = "+(e.getEdit() instanceof AttributeUndoableEdit));
-	    //			if(e.getEdit().getPresentationName().compareTo("addition") == 0
-	    //					|| e.getEdit().getPresentationName().compareTo("deletion") == 0) {
-	    undo.addEdit(e.getEdit());
-	    //			}
-	}
-    };
+	private UndoManager undo = new UndoManager() {
+		public void undoableEditHappened(UndoableEditEvent e) {
+			//	    System.out.println("UndoableEditEvent ="+e.getClass().getCanonicalName());
+			//	    System.out.println("UndoableEdit ="+e.getEdit().toString());
+			//	    System.out.println("Source = "+e.getSource().toString());
+			//	    System.out.println("filter = "+(e.getEdit() instanceof AttributeUndoableEdit));
+			//			if(e.getEdit().getPresentationName().compareTo("addition") == 0
+			//					|| e.getEdit().getPresentationName().compareTo("deletion") == 0) {
+			undo.addEdit(e.getEdit());
+			//			}
+		}
+	};
 
-    private boolean autoIndent = false;
-    private boolean autoColorize = true;
-    private boolean colorizeInprogress = false;
-    private boolean indentInprogress = false;
+	private boolean autoIndent = false;
+	private boolean autoColorize = true;
+	private boolean colorizeInprogress = false;
+	private boolean indentInprogress = false;
 
-    /*if you want to add a new style just add it in the xml*/
+	/*if you want to add a new style just add it in the xml*/
     private ArrayList<String> listStylesName ;
     //private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
     
-    private final String[] operators = {"==", "<", ">", "<=", ">=", "\\+", "-", "\\*", "/", "\\\\", 
-    									"=", "\\+=", "-=", "\\*=", "/=", "\\++", "--", "!=", "~=", 
-    									"\\||", "&&", "!", "&", "\\|", "\\^", "<<", ">>", ">>>>"};
-    
-    //'controls' is now under the name of 'commands'
-    //private String[] controls = {"if ", "while ", "for ", " then", "else", "do", "case ", "end", "function", "endfunction"};
-    private String[] commands;
-    private String[] functions;
-    private String[] macros;
-    private final String[] strings = {"(\"|')[^{\n}]*?(\"|')"};
-    private final String[] bools = {"%T", "%F", "%t", "%f"};
-    private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
 
-    //Warning operators should be define in this order!
-    private final String inInstruction = "elseif|else|if|while|for|do|function";
-    private final String outInstruction = "endfunction|end";
+	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
+	private final String[] bools = {"%T", "%F", "%t", "%f"};
+	private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
+	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
+										"\\./", "\\.\\\\", "\\.\\^", 
+										"\\.\\*\\.", "\\./\\.", "\\.\\\\\\.",
+										"==", "<", ">", "<=", ">=", "~=", "@=",
+										"&", "\\|", "@", "~",
+										"\\.\\.[\\.]*"};
+	
+	//Warning operators should be define in this order!
+	private final String inInstruction = "elseif|else|if|while|for|do|function";
+	private final String outInstruction = "endfunction|end";
 
-    private final String IN = "IN";
-    private final String OUT = "OUT";
-    private final String TABULATION = "  ";
-    
-    private Style defaultStyle;
+	private final String IN = "IN";
+	private final String OUT = "OUT";
+	private final String TABULATION = "  ";
 
+	private Style defaultStyle;
+	private Style operatorStyle;
+	private Style commandStyle;
+	private Style quotationStyle;
+	private Style boolStyle;
+	private Style commentStyle;
+	private Style functionStyle;
+	private Style macroStyle;
+	
 
-    //private final void DEBUG(String msg) {
-	//System.err.println("[DEBUG] "+msg);;
-    //}
+	private final void DEBUG(String msg) {
+		System.err.println("[DEBUG] "+msg);
+	}
 
 	public ScilabStyleDocument() {
 		super();
-	
+
 		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold()  ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
-		
+
 		addDocumentListener(this);
 		addUndoableEditListener(undo);
-	
 		/*Style */defaultStyle = this.addStyle("Default", null);
 		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
 		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName() );
@@ -106,623 +108,634 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		/* set default style settings*/
 		/*that way if we want to had a new style, we just need to had an element to the xml*/
-		for(int i = 0 ; i < listStylesName.size() ; ++i)
-		{
+		for(int i = 0 ; i < listStylesName.size() ; ++i) {
 			Style otherStyle = this.addStyle(listStylesName.get(i), defaultStyle);
 			StyleConstants.setBold(otherStyle, stylesIsBoldTable.get(listStylesName.get(i)));
 			StyleConstants.setForeground(otherStyle, stylesColorsTable.get(listStylesName.get(i)));
 		}
+	}
+
+	/**
+	 * DOCUMENT COLORISATION START
+	 */
+	public void colorize() {
+		// Scilab keywords to be colored
+		Hashtable<String, String[]> keywords = getScilabKeywords();    	
+		String[] commands = (String[])keywords.get("command");
+		String[] functions = (String[])keywords.get("function");
+		String[] macros = (String[])keywords.get("macro");
 		
-	
-    }
-
-    public void indent(int start, int end) {
-	if (!indentInprogress) {
-	    indentInprogress = true;
-	    resetStyle();
-	    try {
-		//Get the correct starting line to indent
-		int[] interval = new int[2];
-		interval = readText(start, end);
-		//Here start the text indentation
-		applyIndent(interval[0], interval[1]);
-	    } catch (BadLocationException e) {
-		e.printStackTrace();
-	    }
-	}
-	indentInprogress = false;
-    }
-
-    public void applyIndent(int start, int end) throws BadLocationException {
-
-	int startOffset;
-	int endOffset;
-	String textLine = "";
-	Vector<String> opList;
-	String indentedText = "";
-	String tab = "";
-	boolean opMatch = false;
-
-	//We read the document
-	for (int i = start; i < end;) {
-	    //Get start & end position for a line
-	    startOffset = this.getParagraphElement(i).getStartOffset();
-	    endOffset = this.getParagraphElement(i).getEndOffset();
-
-	    try {
-		//Get the document line by line (start position, line size)
-		textLine = this.getText(startOffset, endOffset - startOffset);
-	    } catch (BadLocationException e) {
-		e.printStackTrace();
-	    }
-	    //Step to next line
-	    i = endOffset;
-
-	    //Remove space(s) located at the beginning of the given line
-	    textLine = removeFirstSpace(textLine);
-
-	    //Get operators for a given line
-	    opList = getOperatorList(textLine);
-
-	    //Check if in one line all operators are matching,
-	    //so we can know if the next line needs indentation or not
-	    //ex: if %T then function foo(1) endfunction end => doesn't need indentation
-	    opMatch = matchingOperators(opList);
-
-	    //Operator found in the given line
-	    if (opList.size() > 0) {
-		//If we have 'IN' operator
-		if (opList.elementAt(0).equals(IN) && opMatch == false) {
-		    //No indentation in case of 'else' or 'elseif'
-		    if ((opList.elementAt(1).toLowerCase().equals("else")) || (opList.elementAt(1).toLowerCase().equals("elseif"))) {
-			if (indentedText.length() >= 2) {
-			    indentedText = indentedText.substring(0, indentedText.length()-2);
+		// Regexp for Scilab keywords  (for commands, functions & macros) 
+		for (int i = 0; i < commands.length; i++) {
+			commands[i] = "\\b" + commands[i] + "\\b"; 
+		}    	
+		for (int i = 0; i < functions.length; i++) {
+			functions[i] = "\\b" + functions[i] + "\\b"; 
+		}    	
+		for (int i = 0; i < macros.length; i++) {
+			macros[i] = "\\b" + macros[i] + "\\b"; 
+		}
+		
+		// We parse all words which are susceptible to be colored
+		Vector<Vector<Integer>> boundaries_list = new Vector<Vector<Integer>>();
+		boundaries_list = parse(bools, commands, comments, functions, macros, operators, quotations);
+		
+		if (!colorizeInprogress) {
+			colorizeInprogress = true;
+			this.removeUndoableEditListener(undo);
+			this.addUndoableEditListener(null);
+			resetStyle();
+			try {
+				applyStyle(boundaries_list.elementAt(0), getStyle("Bool"));
+				applyStyle(boundaries_list.get(1), getStyle("Command"));
+				applyStyle(boundaries_list.get(2), getStyle("Function"));
+				applyStyle(boundaries_list.get(3), getStyle("Macro"));
+				applyStyle(boundaries_list.get(4), getStyle("Operator"));
+				applyStyle(boundaries_list.get(5), getStyle("String"));
+				applyStyle(boundaries_list.get(6), getStyle("Comment"));
+				
+			} catch (BadLocationException e) {
+				e.printStackTrace();
 			}
-		    } else {
-			tab += TABULATION;
-		    }
-		    indentedText += textLine;
-
-		    //If we have "OUT' operator
-		} else if (opList.elementAt(0).equals(OUT)) {
-		    if (indentedText.length() >= 2 && tab.length() >= 2) {
-			indentedText = indentedText.substring(0, indentedText.length()-2);
-			tab = tab.substring(0, tab.length()-2);
-		    }
-		    indentedText += textLine;
-
-		    //Line got operators and they match, so no need of indentation
-		} else {
-		    indentedText += textLine;
+			finally {
+				this.addUndoableEditListener(undo);
+				colorizeInprogress = false;
+			}
 		}
-		//Line without operator
-	    } else {
-		indentedText += textLine;
-	    }
-
-	    //Add the indentation
-	    indentedText += tab;
-
-	    opList.clear();
-	    opMatch = false;
 	}
 
-	//Remove the last line
-	indentedText = indentedText.trim();
-	//Display the indentation
-	this.replace(start, end-start, indentedText, null);
-
-	//System.out.println(indentedText);
-
-	//ATTENTION : - reucperation des operateurs sur une meme ligne
-	//            - si une ligne ne commence pas avec un operateur mais qu'elle en contient un 
-	//            - gestion des commentaire /* */
-	//			  - erreur d'indentation si ",end", ne reconnait pas le "end"
-	//			  - erreur d'indentation, ne prend pas en compte l'indentation precedente
-	//			  - erreur d'indentation si on a des lignes vides entre 2 lignes de texte
-	//			  - 'case' non traite
-	//			  - si on retouve un mot cle command qui n'est pas utiliser en tant que tel 
-	//			    (ex: error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));)
-	//				ici le 'for' est interpreter comme une commande, donc il y a indentation
-    }
-    
-    public void colorize() {
-    	//Get all Scilab keywords to be colorized
-    	Hashtable<String, String[]>keywords = getScilabKeywords();
-    	
-    	commands = (String[])keywords.get("command");
-    	functions = (String[])keywords.get("function");
-    	macros = (String[])keywords.get("macro");
-    	
-    	//We mark the boundary of each regexp (for commands, functions & macros) 
-    	for (int i = 0; i < commands.length; i++) {
-    		commands[i] = "\\b" + commands[i] + "\\b"; 
-		}
-    	
-    	for (int i = 0; i < functions.length; i++) {
-    		functions[i] = "\\b" + functions[i] + "\\b"; 
-		}
-    	
-    	for (int i = 0; i < macros.length; i++) {
-    		macros[i] = "\\b" + macros[i] + "\\b"; 
-		}
-    	
-	if (!colorizeInprogress) {
-	    colorizeInprogress = true;
-	    this.removeUndoableEditListener(undo);
-	    this.addUndoableEditListener(null);
-	    resetStyle();
-	    try {
-	    applyStyle(macros, getStyle("Macro"));	
-	    applyStyle(functions, getStyle("Function"));
-		applyStyle(operators, getStyle("Operator"));
-		applyStyle(commands, getStyle("Command"));		
-		applyStyle(strings, getStyle("String"));
-		applyStyle(bools, getStyle("Bool"));
-		applyStyle(comments, getStyle("Comment"));
-	    } catch (BadLocationException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    finally {
+	private void resetStyle() {
+		// Reset Color
+		this.removeUndoableEditListener(undo);
+		this.setCharacterAttributes(0, this.getLength(), this.getStyle("Default"), true);
+		this.setParagraphAttributes(0, this.getLength(), this.getStyle("Default"), true);
 		this.addUndoableEditListener(undo);
-		colorizeInprogress = false;
-	    }
 	}
-    }
-    
-    private void resetStyle() {
-    	// Reset Color
-    	this.removeUndoableEditListener(undo);
-    	this.setCharacterAttributes(0, this.getLength(), this.getStyle("Default"), true);
-    	this.setParagraphAttributes(0, this.getLength(), this.getStyle("Default"), true);
-    	this.addUndoableEditListener(undo);
-    }
-    
-    /*
-     * Colorize <pattern> with <style>
-     */
-    private void applyStyle(String[] words, Style style) throws BadLocationException {
-    	for(int i = 0 ; i < words.length ; i++)
-    	{
-    		Pattern pattern = Pattern.compile(words[i], Pattern.MULTILINE);
-    		Matcher matcher = pattern.matcher(this.getText(0, this.getLength()));
 
-    		while(matcher.find()) {
-    			//DEBUG("Apply Style : "+style.getName());
-    			//DEBUG("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start()));
-    			//DEBUG("Text : "+this.getText(matcher.start(), matcher.end()-matcher.start()));
-    			this.setCharacterAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
-    			this.setParagraphAttributes(matcher.start(), matcher.end()-matcher.start(), style, false);
-    		}
-    	}
-    }
-
-    public Vector<Integer> findWord(String word) {
-	String fullText = getFullDocument();
-	int lastIndex = 0;
-	int wordSize = word.length();
-
-	Vector<Integer> offsetList = new Vector<Integer>();
-
-	//If we don't give any word to find
-	if ( (word == null) || (word.equals("")) ) {
-	    System.out.println("Word is null or empty");;
-	} else {
-	    //We find matching words
-	    while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
-		int endIndex = lastIndex + wordSize;
-
-		offsetList.add(lastIndex);		    	
-
-		lastIndex = endIndex;
-	    }
+	private void applyStyle(Vector<Integer> boundaries, Style style) throws BadLocationException {
+		for(int i = 0 ; i < boundaries.size() ; i=i+2)	{
+			this.setCharacterAttributes(boundaries.elementAt(i), boundaries.elementAt(i+1)-boundaries.elementAt(i), style, false);
+			this.setParagraphAttributes(boundaries.elementAt(i), boundaries.elementAt(i+1)-boundaries.elementAt(i), style, false);
+		}
 	}
-	return offsetList;
-    }
-    public void changedUpdate(DocumentEvent e) {
-	// TODO Auto-generated method stub
-//	System.err.println("Calling changedUpdate "+e.toString());
-//	SwingUtilities.invokeLater(new Runnable() {
-//	    public void run() {
-//		//colorize(); 
-//	    }
-//	});
-    }
-
-    public void insertUpdate(DocumentEvent e) {
-	// TODO Auto-generated method stub
-	//System.err.println("Calling insertUpdate");
-	SwingUtilities.invokeLater(new Runnable() {
-	    public void run() {
-		//resetStyle();
-		if (autoIndent) {
-		    //indent();
-		}
-		if (autoColorize) {
-		    colorize();
-		}
-	    }
-	});  
-    }
-
-    public void removeUpdate(DocumentEvent e) {
-	//System.err.println("Calling removeUpdate");
-	SwingUtilities.invokeLater(new Runnable() {
-	    public void run() {
-		//resetStyle();
-		if (autoIndent) {
-		    //indent();
-		}
-		if (autoColorize) {
-		    colorize(); 
-		}
-	    }
-	});      
-    }
-
-    public void setAutoIndent(boolean b) {
-	//DEBUG("setAutoIndent("+b+")");
-	autoIndent = b;
-    }
-  
-    public boolean getAutoIndent() {
-	//DEBUG("getAutoIndent("+autoIndent+")");
-	return autoIndent;
-    }
-    
-    public void setColorize(boolean b) {
-	//DEBUG("setColorize("+b+")");
-	autoColorize = b;
-    }
-    
-    public boolean getColorize() {
-	//DEBUG("setColorize("+autoColorize+")");
-	return autoColorize;
-    }
-
-    public UndoManager getUndoManager() {
-	return undo;
-    }
-
-    public Vector<String> getOperatorList(String text) {
-
-	//If the text is a comment we don't indent
-	text = manageTextWithComment(text);
 	
-	String toto = manageQuotationText(text);
-
-	Vector<String> v = new Vector<String>();
-	Vector<String> op = new Vector<String>();
-	Vector<String> inout = new Vector<String>();
-
-	//Remove line separator for each line
-	String sep = System.getProperty("line.separator"); 
-	text = text.replaceAll(sep," ");
-
-	//Getting word one by one for each line
-	String[] word = text.split(" ");
-	int[] wordSize = new int[word.length];
-
-	//Find regular expressions
-	Pattern beginPattern = Pattern.compile(inInstruction, Pattern.DOTALL);
-	Pattern endPattern = Pattern.compile(outInstruction, Pattern.DOTALL);
-	Matcher beginMatcher;
-	Matcher endMatcher;
-
-	for(int j=0; j<word.length; j++) {
-	    //Get word size
-	    wordSize[j] = word[j].length();
-
-	    //Looking for begin patterns
-	    beginMatcher = beginPattern.matcher(word[j]);
-	    endMatcher = endPattern.matcher(word[j]);
-
-	    while (beginMatcher.find()) {
-		if (wordSize[j] == (beginMatcher.end()-beginMatcher.start())) {
-		    inout.addElement(IN);
-		    op.addElement(word[j]);
-		}
-	    }
-	    //Looking for end patterns
-	    while (endMatcher.find()) {
-		if (wordSize[j] == (endMatcher.end()-endMatcher.start())) {
-		    inout.addElement(OUT);
-		    op.addElement(word[j]);
-		}
-
-		//Manage 'end;' & 'endfunction;'
-		if (word[j].startsWith("end;") || word[j].startsWith("endfunction;")) {
-		    inout.addElement(OUT);
-		    op.addElement(word[j]);
-		}
-	    }
-	}
-	v.addAll(inout);
-	v.addAll(op);
-
-	return v;
-    }
-
-    public String removeFirstSpace(String line) {
-	int del = 0;
-
-	for (int j = 0; j < line.length(); j++) {
-	    if ((line.charAt(j) == '\t') || (line.charAt(j) == ' ')) {
-		del++;
-	    } else {
-		break;
-	    }				
-	}			
-	line = line.substring(del, line.length());			
-	del = 0;
-
-	return line;
-    }
-
-    public boolean matchingOperators(Vector<String> opList) {
-
-	Vector<String> inOP = new Vector<String>();
-	Vector<String> outOP = new Vector<String>();
-	boolean opMatch = false;
-
-	for (int j = 0; j < opList.size()/2; j++) {
-	    if (opList.elementAt(j).equals(IN)) {
-		inOP.add(opList.elementAt(opList.size()/2 + j));
-	    }
-	    if (opList.elementAt(j).equals(OUT)) {
-		outOP.add(opList.elementAt(opList.size()/2 + j));
-	    }
+	public boolean getColorize() {
+		//DEBUG("setColorize("+autoColorize+")");
+		return autoColorize;
 	}
 
-	Collections.reverse(outOP);
+	public void setColorize(boolean b) {
+		//DEBUG("setColorize("+b+")");
+		autoColorize = b;
+	}
+	/**
+	 * DOCUMENT COLORISATION END
+	 */
+	
+	
+	public void indent(int start, int end) {
+		if (!indentInprogress) {
+			indentInprogress = true;
+			resetStyle();
+			try {
+				//Get the correct starting line to indent
+				int[] interval = new int[2];
+				interval = readText(start, end);
+				//Here start the text indentation
+				applyIndent(interval[0], interval[1]);
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		indentInprogress = false;
+	}
 
-	if (inOP.size() == outOP.size()) {
-	    for (int j = 0; j < inOP.size(); j++) {
+	public void applyIndent(int start, int end) throws BadLocationException {
 
-		if (inOP.elementAt(j).toLowerCase().equals("function")) {
-		    if (outOP.elementAt(j).toLowerCase().equals("endfunction")) {
-			opMatch = true;
-		    } else {
+		int startOffset;
+		int endOffset;
+		String textLine = "";
+		Vector<String> opList;
+		String indentedText = "";
+		String tab = "";
+		boolean opMatch = false;
+
+		//We read the document
+		for (int i = start; i < end;) {
+			//Get start & end position for a line
+			startOffset = this.getParagraphElement(i).getStartOffset();
+			endOffset = this.getParagraphElement(i).getEndOffset();
+
+			try {
+				//Get the document line by line (start position, line size)
+				textLine = this.getText(startOffset, endOffset - startOffset);
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+			//Step to next line
+			i = endOffset;
+
+			//Remove space(s) located at the beginning of the given line
+			textLine = removeFirstSpace(textLine);
+
+			//Get operators for a given line
+			opList = getOperatorList(textLine);
+
+			//Check if in one line all operators are matching,
+			//so we can know if the next line needs indentation or not
+			//ex: if %T then function foo(1) endfunction end => doesn't need indentation
+			opMatch = matchingOperators(opList);
+
+			//Operator found in the given line
+			if (opList.size() > 0) {
+				//If we have 'IN' operator
+				if (opList.elementAt(0).equals(IN) && opMatch == false) {
+					//No indentation in case of 'else' or 'elseif'
+					if ((opList.elementAt(1).toLowerCase().equals("else")) || (opList.elementAt(1).toLowerCase().equals("elseif"))) {
+						if (indentedText.length() >= 2) {
+							indentedText = indentedText.substring(0, indentedText.length()-2);
+						}
+					} else {
+						tab += TABULATION;
+					}
+					indentedText += textLine;
+
+					//If we have "OUT' operator
+				} else if (opList.elementAt(0).equals(OUT)) {
+					if (indentedText.length() >= 2 && tab.length() >= 2) {
+						indentedText = indentedText.substring(0, indentedText.length()-2);
+						tab = tab.substring(0, tab.length()-2);
+					}
+					indentedText += textLine;
+
+					//Line got operators and they match, so no need of indentation
+				} else {
+					indentedText += textLine;
+				}
+				//Line without operator
+			} else {
+				indentedText += textLine;
+			}
+
+			//Add the indentation
+			indentedText += tab;
+
+			opList.clear();
 			opMatch = false;
-		    }
+		}
+
+		//Remove the last line
+		indentedText = indentedText.trim();
+		//Display the indentation
+		this.replace(start, end-start, indentedText, null);
+
+		//System.out.println(indentedText);
+
+		//ATTENTION : - reucperation des operateurs sur une meme ligne
+		//            - si une ligne ne commence pas avec un operateur mais qu'elle en contient un 
+		//            - gestion des commentaire /* */
+		//			  - erreur d'indentation si ",end", ne reconnait pas le "end"
+		//			  - erreur d'indentation, ne prend pas en compte l'indentation precedente
+		//			  - erreur d'indentation si on a des lignes vides entre 2 lignes de texte
+		//			  - 'case' non traite
+		//			  - si on retouve un mot cle command qui n'est pas utiliser en tant que tel 
+		//			    (ex: error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));)
+		//				ici le 'for' est interpreter comme une commande, donc il y a indentation
+		//			  - analyser la ligne du document qui est modifie et non plus le document en entier pour la colorisation
+		//				dans le cas d'une quotation ou commentaire(/* */) analyser le document en entier
+	}
+
+	public Vector<Integer> findWord(String word) {
+
+		String fullText = getFullDocument();
+		int lastIndex = 0;
+		int wordSize = word.length();
+
+		Vector<Integer> offsetList = new Vector<Integer>();
+
+		//If we don't give any word to find
+		if ( (word == null) || (word.equals("")) ) {
+			System.out.println("Word is null or empty");;
 		} else {
-		    if (outOP.elementAt(j).toLowerCase().equals("end")) {
-			opMatch = true;							
-		    } else {
-			opMatch = false;
-		    }
+			//We find matching words
+			while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
+				int endIndex = lastIndex + wordSize;
+
+				offsetList.add(lastIndex);		    	
+
+				lastIndex = endIndex;
+			}
 		}
-	    }
-	}
-	return opMatch;
-    }
-
-    
-    
-    public String manageTextWithComment(String text) {
-
-	String noCommentText = null;
-	int pos = 0;
-
-	if (text.contains("//")) {
-	    pos = text.indexOf("//");
-	    noCommentText = text.substring(0, pos);
-	} else {
-	    noCommentText = text;
-	}
-	//TODO Later(Scilab 6), we will manage /* */ comments
-	return noCommentText;
-    }
-    
-    /*******************************************************************************************************************/
-    
-    private String cleanText;
-    private int[] quotationsBoundaries, commentsBoundaries, keywordsBoundaries;
-    
-    public String manageQuotationText(String text) {
-    	cleanText = text;
-    	
-    	String noQuotationText = null;
-    	
-    	Pattern[] quotationsPatterns= new Pattern[1];
-    	Pattern[] commentsPatterns= new Pattern[1];
-    	Pattern[] keywordsPatterns= new Pattern[1];
-    	quotationsPatterns[0]= Pattern.compile("[\'\"][^\'\"]*[\'\"]", Pattern.DOTALL);
-    	commentsPatterns[0]= Pattern.compile("//[^\n]*", Pattern.DOTALL);
-    	keywordsPatterns[0]= Pattern.compile("\\bif\\b", Pattern.DOTALL);
-    	parse(quotationsPatterns, commentsPatterns, keywordsPatterns);
-    	
-    	return noQuotationText;
-    }
-    
-    public void parse(Pattern[] quotations, Pattern[] comments, Pattern[] keywords){
-    	System.err.println("=================================== quotations: ===========================");
-    	quotationsBoundaries= findNotIn(quotations, null);
-    	System.err.println("=================================== comments: ===========================");
-    	commentsBoundaries= findNotIn(comments, quotationsBoundaries);
-    	System.err.println("=================================== keywords: ===========================");
-    	keywordsBoundaries= findNotIn(keywords, concatenateArrays(quotationsBoundaries, commentsBoundaries));
-    	//System.arraycopy(quotationsBoundaries, 0, quotationsBoundaries, 0, 0);
-    }
-    
-     private void OrganizeBoundaries(Vector<Integer> quotationsBoundaries, Vector<Integer> commentsBoundaries, Vector<Integer>keywordsBoundaries) {
-
-    	//Quotation into comment
-    	for(int i=0; i < commentsBoundaries.size(); i=i+2){
-
-    		for(int j=0; j < quotationsBoundaries.size(); j=j+2){
-    			
-    			if((quotationsBoundaries.elementAt(j) > commentsBoundaries.elementAt(i)) && (quotationsBoundaries.elementAt(j) < commentsBoundaries.elementAt(i+1))) {
-    				if(quotationsBoundaries.elementAt(j+1) > commentsBoundaries.elementAt(i) && quotationsBoundaries.elementAt(j+1) < commentsBoundaries.elementAt(i+1)) {
-    					quotationsBoundaries.removeElementAt(j);
-    					quotationsBoundaries.removeElementAt(j+1);
-    				}
-    			}
-    		}
-    	}
-
-    	System.err.println("----- QUOTATIONS: ----- ");	
-    	for(int i=0; i < quotationsBoundaries.size(); ++i){
-    		System.err.println("quotation: " + quotationsBoundaries.elementAt(i));
-    	}
-
-    	System.err.println("----- COMMENTS: ----- ");	
-    	for(int i=0; i < commentsBoundaries.size(); ++i){
-    		System.err.println("comments: " + commentsBoundaries.elementAt(i));
-    	}
-
-    	System.err.println("----- KEYWORDS: ----- ");	
-    	for(int i=0; i < keywordsBoundaries.size(); ++i){
-    		System.err.println("keywords: " + keywordsBoundaries.elementAt(i));
-    	}
-
-    }
-    
-    
-    
-    
-    
-    public int[] concatenateArrays(int[]a, int[]b){
-    	int[]res= new int[a.length+b.length];
-    	int i=0;
-    	for(int j=0; j!= a.length; ++j, ++i){
-    		res[i]=a[j];
-    	}
-    	for(int j=0; j!= b.length; ++j, ++i){
-    		res[i]=b[j];
-    	}
-    	return res;
-    }
-
-    private int[] findNotIn(Pattern[] targets, int[] exclusionBoundaries){
-    	Vector tmpB= new Vector();
-    	for(int i=0; i!= targets.length; ++i){
-    		Matcher matcher = targets[i].matcher(cleanText);
-    		while(matcher.find()){
-    			System.err.println("Match Found : "+(matcher.start())+","+( matcher.end()-matcher.start())+" : |" +
-    								cleanText.substring(matcher.start(),matcher.end())+"|");
-    			
-    			if(exclusionBoundaries.length > 1){
-    				for (int j = 0; j < exclusionBoundaries.length; j++) {
-    					System.out.println("^^^^^exclusionBoundaries: " + exclusionBoundaries[j]);
-    				}
-    			}
-    			
-    			if(notIn(matcher.start(), exclusionBoundaries) && notIn(matcher.end(), exclusionBoundaries)){
-    				tmpB.add(new Integer(matcher.start()));	
-    				tmpB.add(new Integer(matcher.end()));
-    			}
-    		}
-    	}
-    	return arrayFromVector(tmpB);
-    }
-    // to be more efficient, we should keep boundaries sorted after concatenete and use dichotomy to find gretest begin < pos
-    // notIn iff corresponding end <  pos
-    private boolean notIn(int pos, int[] boundaries){
-    	if(boundaries == null) return true;
-    	for(int i=0; i!= boundaries.length; i+=2){
-    		if ((pos > boundaries[i]) && (pos< boundaries[i+1])){
-    			return false;
-    		}
-    	}
-    	return true;
-    }
-
-    private int[] arrayFromVector(Vector v){
-    	int[] res= new int [v.size()];
-    	for(int i=0; i!= res.length; ++i){
-    		res[0]= ((Integer)v.elementAt(i)).intValue();
-    	}
-    	return res;
-    }
-
-    
-    /***************************************************************************************************************************/
-    
-    public int[] readText(int s, int e) {
-	int startOffset;
-	int endOffset;
-	String textLine = "";
-	String text = "";
-	Vector<Integer> min = new Vector<Integer>();
-	Vector<Integer> max = new Vector<Integer>();
-	int[] interval = new int[2];
-
-	//We read the document
-	for (int i = 0; i < this.getLength();) {
-	    startOffset = this.getParagraphElement(i).getStartOffset();
-	    endOffset = this.getParagraphElement(i).getEndOffset();
-	    min.add(startOffset);
-	    max.add(endOffset);
-
-	    try {
-		//Get the document line by line
-		textLine = this.getText(startOffset, endOffset - startOffset);
-	    } catch (BadLocationException ex) {
-		ex.printStackTrace();
-	    }
-	    i = endOffset;
-	    text += textLine;
+		return offsetList;
 	}
 
-	//If we only select a part of a line
-	for (int i = 0; i < min.size(); i++) {
-	    if (s > min.elementAt(i)) {
-		interval[0] = min.elementAt(i);
-	    }
+	public void changedUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		//	System.err.println("Calling changedUpdate "+e.toString());
+		//	SwingUtilities.invokeLater(new Runnable() {
+		//	    public void run() {
+		//		//colorize(); 
+		//	    }
+		//	});
 	}
-	for (int i = 0; i < max.size(); i++) {
-	    if (e > max.elementAt(i)) {
-		interval[1] = max.elementAt(i);
-		interval[1] = interval[1] - 1 ;
-	    }
+
+	public void insertUpdate(DocumentEvent e) {
+		// TODO Auto-generated method stub
+		//System.err.println("Calling insertUpdate");
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				//resetStyle();
+				if (autoIndent) {
+					//indent();
+				}
+				if (autoColorize) {
+					colorize();
+				}
+			}
+		});  
 	}
-	return interval;
-    }
 
-    public String getFullDocument() {
-	int startOffset;
-	int endOffset;
-	String textLine = "";
-	String text = "";
-
-	//We read the document and put the document into the String text
-	for (int i = 0; i < this.getLength();) {
-	    startOffset = this.getParagraphElement(i).getStartOffset();
-	    endOffset = this.getParagraphElement(i).getEndOffset();
-
-	    try {
-		//Get the document line by line
-		textLine = this.getText(startOffset, endOffset - startOffset).toLowerCase();
-	    } catch (BadLocationException ex) {
-		ex.printStackTrace();
-	    }
-	    i = endOffset;
-	    text += textLine;
+	public void removeUpdate(DocumentEvent e) {
+		//System.err.println("Calling removeUpdate");
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				//resetStyle();
+				if (autoIndent) {
+					//indent();
+				}
+				if (autoColorize) {
+					colorize(); 
+				}
+			}
+		});      
 	}
-	return text;
-    }
-    
-    public Hashtable<String, String[]> getScilabKeywords() {
-    	//Get all Scilab keywords with SWIG
-    	String[] commands =  ScilabKeywords.GetCommandsName();
-    	String[] functions =  ScilabKeywords.GetFunctionsName();
-    	String[] macros =  ScilabKeywords.GetMacrosName();
-    	//String[] variables =  ScilabKeywords.GetVariablesName();
-    	
-    	Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
-    	
-    	for (int i = 0; i < commands.length; i++) {
+
+	public void setAutoIndent(boolean b) {
+		//DEBUG("setAutoIndent("+b+")");
+		autoIndent = b;
+	}
+
+	public boolean getAutoIndent() {
+		//DEBUG("getAutoIndent("+autoIndent+")");
+		return autoIndent;
+	}
+
+
+
+	public UndoManager getUndoManager() {
+		return undo;
+	}
+
+
+	public Vector<String> getOperatorList(String text) {
+
+		//If the text is a comment we don't indent
+		text = manageTextWithComment(text);
+
+		Vector<String> v = new Vector<String>();
+		Vector<String> op = new Vector<String>();
+		Vector<String> inout = new Vector<String>();
+
+		//Remove line separator for each line
+		String sep = System.getProperty("line.separator"); 
+		text = text.replaceAll(sep," ");
+
+		//Getting word one by one for each line
+		String[] word = text.split(" ");
+		int[] wordSize = new int[word.length];
+
+		//Find regular expressions
+		Pattern beginPattern = Pattern.compile(inInstruction, Pattern.DOTALL);
+		Pattern endPattern = Pattern.compile(outInstruction, Pattern.DOTALL);
+		Matcher beginMatcher;
+		Matcher endMatcher;
+
+		for(int j=0; j<word.length; j++) {
+			//Get word size
+			wordSize[j] = word[j].length();
+
+			//Looking for begin patterns
+			beginMatcher = beginPattern.matcher(word[j]);
+			endMatcher = endPattern.matcher(word[j]);
+
+			while (beginMatcher.find()) {
+				if (wordSize[j] == (beginMatcher.end()-beginMatcher.start())) {
+					inout.addElement(IN);
+					op.addElement(word[j]);
+				}
+			}
+			//Looking for end patterns
+			while (endMatcher.find()) {
+				if (wordSize[j] == (endMatcher.end()-endMatcher.start())) {
+					inout.addElement(OUT);
+					op.addElement(word[j]);
+				}
+
+				//Manage 'end;' & 'endfunction;'
+				if (word[j].startsWith("end;") || word[j].startsWith("endfunction;")) {
+					inout.addElement(OUT);
+					op.addElement(word[j]);
+				}
+			}
+		}
+		v.addAll(inout);
+		v.addAll(op);
+
+		return v;
+	}
+
+	public String removeFirstSpace(String line) {
+		int del = 0;
+
+		for (int j = 0; j < line.length(); j++) {
+			if ((line.charAt(j) == '\t') || (line.charAt(j) == ' ')) {
+				del++;
+			} else {
+				break;
+			}				
+		}			
+		line = line.substring(del, line.length());			
+		del = 0;
+
+		return line;
+	}
+
+
+	public boolean matchingOperators(Vector<String> opList) {
+
+		Vector<String> inOP = new Vector<String>();
+		Vector<String> outOP = new Vector<String>();
+		boolean opMatch = false;
+
+		for (int j = 0; j < opList.size()/2; j++) {
+			if (opList.elementAt(j).equals(IN)) {
+				inOP.add(opList.elementAt(opList.size()/2 + j));
+			}
+			if (opList.elementAt(j).equals(OUT)) {
+				outOP.add(opList.elementAt(opList.size()/2 + j));
+			}
+		}
+
+		Collections.reverse(outOP);
+
+		if (inOP.size() == outOP.size()) {
+			for (int j = 0; j < inOP.size(); j++) {
+
+				if (inOP.elementAt(j).toLowerCase().equals("function")) {
+					if (outOP.elementAt(j).toLowerCase().equals("endfunction")) {
+						opMatch = true;
+					} else {
+						opMatch = false;
+					}
+				} else {
+					if (outOP.elementAt(j).toLowerCase().equals("end")) {
+						opMatch = true;							
+					} else {
+						opMatch = false;
+					}
+				}
+			}
+		}
+		return opMatch;
+	}
+
+
+	public String manageTextWithComment(String text) {
+
+		String noCommentText = null;
+		int pos = 0;
+
+		if (text.contains("//")) {
+			pos = text.indexOf("//");
+			noCommentText = text.substring(0, pos);
+		} else {
+			noCommentText = text;
+		}
+		//TODO Later(Scilab 6), we will manage /* */ comments
+		return noCommentText;
+	}
+
+	public int[] readText(int s, int e) {
+		int startOffset;
+		int endOffset;
+		String textLine = "";
+		String text = "";
+		Vector<Integer> min = new Vector<Integer>();
+		Vector<Integer> max = new Vector<Integer>();
+		int[] interval = new int[2];
+
+		//We read the document
+		for (int i = 0; i < this.getLength();) {
+			startOffset = this.getParagraphElement(i).getStartOffset();
+			endOffset = this.getParagraphElement(i).getEndOffset();
+			min.add(startOffset);
+			max.add(endOffset);
+
+			try {
+				//Get the document line by line
+				textLine = this.getText(startOffset, endOffset - startOffset);
+			} catch (BadLocationException ex) {
+				ex.printStackTrace();
+			}
+			i = endOffset;
+			text += textLine;
+		}
+
+		//If we only select a part of a line
+		for (int i = 0; i < min.size(); i++) {
+			if (s > min.elementAt(i)) {
+				interval[0] = min.elementAt(i);
+			}
+		}
+		for (int i = 0; i < max.size(); i++) {
+			if (e > max.elementAt(i)) {
+				interval[1] = max.elementAt(i);
+				interval[1] = interval[1] - 1 ;
+			}
+		}
+		return interval;
+	}
+
+
+	public String getFullDocument() {
+		int startOffset;
+		int endOffset;
+		String textLine = "";
+		String text = "";
+
+		//We read the document and put the document into the String text
+		for (int i = 0; i < this.getLength();) {
+			startOffset = this.getParagraphElement(i).getStartOffset();
+			endOffset = this.getParagraphElement(i).getEndOffset();
+
+			try {
+				//Get the document line by line
+				textLine = this.getText(startOffset, endOffset - startOffset).toLowerCase();
+			} catch (BadLocationException ex) {
+				ex.printStackTrace();
+			}
+			i = endOffset;
+			text += textLine;
+		}
+		return text;
+	}
+
+	public Hashtable<String, String[]> getScilabKeywords() {
+		//Get all Scilab keywords with SWIG
+		String[] commands =  ScilabKeywords.GetCommandsName();
+		String[] functions =  ScilabKeywords.GetFunctionsName();
+		String[] macros =  ScilabKeywords.GetMacrosName();
+		//String[] variables =  ScilabKeywords.GetVariablesName();
+
+		Hashtable<String, String[]> keywords = new Hashtable<String, String[]>();
+
+		for (int i = 0; i < commands.length; i++) {
 			keywords.put("command", commands);
 		}
-    	for (int i = 0; i < functions.length; i++) {
+		for (int i = 0; i < functions.length; i++) {
 			keywords.put("function", functions);
 		}
-    	for (int i = 0; i < macros.length; i++) {
+		for (int i = 0; i < macros.length; i++) {
 			keywords.put("macro", macros);
 		}
-    	return keywords;
-    }
+		return keywords;
+	}
 
+	private Vector<Vector<Integer>> parse(String[] bools, String[] commands, String[] comments, 
+					   String[] functions, String[]	macros, String[] operators, String[] quotations) {
+
+		Vector<Integer> boolsBoundaries, commandsBoundaries, 
+						commentsBoundaries, functionsBoundaries, 
+						macrosBoundaries, operatorsBoundaries, 
+						quotationsBoundaries;
+		
+		Vector<Vector<Integer>> boundaries_list = new Vector<Vector<Integer>>();
+		
+		boolsBoundaries = findBoundaries(bools);
+		commandsBoundaries = findBoundaries(commands);
+		commentsBoundaries = findBoundaries(comments);
+		functionsBoundaries = findBoundaries(functions);
+		macrosBoundaries = findBoundaries(macros);
+		operatorsBoundaries = findBoundaries(operators);
+		quotationsBoundaries = findBoundaries(quotations);		
+
+
+		boundaries_list = organizeBoundaries(boolsBoundaries, commandsBoundaries, commentsBoundaries, functionsBoundaries, 
+				macrosBoundaries, operatorsBoundaries, quotationsBoundaries);
+		
+		return boundaries_list;
+	}
+
+	private Vector<Integer> findBoundaries(String[] keyword) {
+
+		Pattern pattern;
+		Matcher matcher = null;
+		Vector<Integer> bound = new Vector<Integer>();
+
+		for(int i = 0 ; i < keyword.length ; i++)	{
+			pattern = Pattern.compile(keyword[i], Pattern.DOTALL);
+			try {
+				matcher = pattern.matcher(this.getText(0, this.getLength()));
+				while(matcher.find()){
+					//System.err.println("Match Found : "+(matcher.start())+","+(matcher.end()/*-matcher.start()*/));
+					bound.add(new Integer(matcher.start()));	
+					bound.add(new Integer(matcher.end()));
+				}
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		return bound;
+	}
+
+	private Vector<Vector<Integer>> organizeBoundaries(Vector<Integer> boolsBoundaries, Vector<Integer> commandsBoundaries,
+			Vector<Integer> commentsBoundaries, Vector<Integer> functionsBoundaries, 
+			Vector<Integer> macrosBoundaries, Vector<Integer> operatorsBoundaries, 
+			Vector<Integer> quotationsBoundaries) {
+
+		Vector<Integer> tmp_comm_and_quot = new Vector<Integer>();
+		Vector<Vector<Integer>> vector_list = new Vector<Vector<Integer>>();
+		
+		// Remove comments which are into quotations
+		commentsBoundaries = startNotIn(commentsBoundaries, quotationsBoundaries);
+		// Remove quotations which are into comments
+		quotationsBoundaries = startNotIn(quotationsBoundaries, commentsBoundaries);
+		
+		// Union of comments & quotations to remove keywords
+		tmp_comm_and_quot.addAll(commentsBoundaries);
+		tmp_comm_and_quot.addAll(quotationsBoundaries);
+
+		// Remove keywords which are into comments & quotations
+		boolsBoundaries = strictlyNotIn(boolsBoundaries, tmp_comm_and_quot);
+		commandsBoundaries = strictlyNotIn(commandsBoundaries, tmp_comm_and_quot);
+		functionsBoundaries = strictlyNotIn(functionsBoundaries, tmp_comm_and_quot);
+		macrosBoundaries = strictlyNotIn(macrosBoundaries, tmp_comm_and_quot);
+		operatorsBoundaries = strictlyNotIn(operatorsBoundaries, tmp_comm_and_quot);
+		
+		vector_list.add(boolsBoundaries);
+		vector_list.add(commandsBoundaries);
+		vector_list.add(functionsBoundaries);
+		vector_list.add(macrosBoundaries);
+		vector_list.add(operatorsBoundaries);
+		vector_list.add(quotationsBoundaries);
+		vector_list.add(commentsBoundaries);
+		
+		return vector_list;
+	}
+
+	private Vector<Integer> strictlyNotIn(Vector<Integer> v1, Vector<Integer> v2) {
+		int v1_start = 0;
+		int v1_end = 0;
+		int v2_start = 0;
+		int v2_end = 0;
+
+		Vector<Integer> vector_strictlyNotIn = new Vector<Integer>();
+
+		// Remove interval from v1 which are include in interval of v2
+		for(int i=0; i < v1.size(); i=i+2) {
+			boolean dropMe = false;
+			v1_start = v1.elementAt(i);
+			v1_end = v1.elementAt(i+1);
+
+			for(int j=0; j < v2.size(); j=j+2) {
+				v2_start = v2.elementAt(j);
+				v2_end = v2.elementAt(j+1);
+
+				if(((v1_start >= v2_start) && (v1_start <= v2_end)) && ((v1_end >= v2_start) && (v1_end <= v2_end))) {
+					dropMe = true;
+				}
+			}
+			if (!dropMe) {
+				vector_strictlyNotIn.addElement(v1.elementAt(i));
+				vector_strictlyNotIn.addElement(v1.elementAt(i+1));
+			}
+		}
+		return vector_strictlyNotIn;
+	}
+	
+	private Vector<Integer> startNotIn(Vector<Integer> v1, Vector<Integer> v2) {
+		int v1_start = 0;
+		int v2_start = 0;
+		int v2_end = 0;
+		Vector<Integer> vector_startNotIn = new Vector<Integer>();
+		
+		for(int i=0; i < v1.size(); i=i+2) {
+			boolean dropMe = false;
+			v1_start = v1.elementAt(i);
+
+			for(int j=0; j < v2.size(); j=j+2) {
+				v2_start = v2.elementAt(j);
+				v2_end = v2.elementAt(j+1);
+
+				if(((v1_start >= v2_start) && (v1_start <= v2_end))) {
+					dropMe = true;
+				}
+			}
+			if (!dropMe) {
+				vector_startNotIn.addElement(v1.elementAt(i));
+				vector_startNotIn.addElement(v1.elementAt(i+1));
+			}
+		}
+		return vector_startNotIn;
+	}
 }
