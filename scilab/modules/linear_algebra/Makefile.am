@@ -88,6 +88,7 @@ sci_gateway/c/sci_zheev.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
