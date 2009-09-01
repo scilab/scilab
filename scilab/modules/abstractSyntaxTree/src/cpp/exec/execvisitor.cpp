@@ -309,7 +309,7 @@ namespace ast
 			}
 			delete[] execVar;
 
-			if(e.is_verbose() && Ret == Function::OK && out.front())
+			if(e.is_verbose() && Ret == Callable::OK && out.front())
 			{
 			  std::ostringstream ostr;
 			  ostr <<  out.front()->toString(10,75) << std::endl;
