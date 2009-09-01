@@ -613,7 +613,8 @@ am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scoBase.h includes/scoGetProperty.h \
 	includes/scoMemoryScope.h includes/scoMisc.h \
 	includes/scoSetProperty.h includes/scoWindowScope.h \
-	includes/blocks.h includes/affich.h
+	includes/blocks.h includes/affich.h \
+	includes/dynlib_scicos_blocks.h
 libsciscicos_blocks_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_blocks_la_include_HEADERS)
 ETAGS = etags
@@ -1353,7 +1354,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@includes/scoSetProperty.h \
 @SCICOS_TRUE@includes/scoWindowScope.h \
 @SCICOS_TRUE@includes/blocks.h \
-@SCICOS_TRUE@includes/affich.h
+@SCICOS_TRUE@includes/affich.h \
+@SCICOS_TRUE@includes/dynlib_scicos_blocks.h
 
 
 #### scicos_blocks : MACROS ####
