@@ -15,7 +15,9 @@
 #ifndef __ADDTOCLASSPATH_H__
 #define __ADDTOCLASSPATH_H__
 
+#include "dynlib_jvm.h"
 #include "BOOL.h" /* BOOL */
+
 
 
 typedef enum { STARTUP = 0,
@@ -30,7 +32,7 @@ typedef enum { STARTUP = 0,
 * @param a new path to add
 * @return TRUE or FALSE
 */
-BOOL addToClasspath(char *classpathstring, typeOfLoad load);
+JVM_IMPEXP BOOL addToClasspath(char *classpathstring, typeOfLoad load);
 
 #endif /* __ADDTOCLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

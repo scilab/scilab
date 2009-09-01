@@ -19,9 +19,8 @@
 
 #include <stdio.h>
 
-#include "sci_plot3d.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
-#include "sci_demo.h"
 #include "BuildObjects.h"
 #include "GetCommandArg.h"
 #include "MALLOC.h"

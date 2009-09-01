@@ -11,6 +11,7 @@
  *
  */
 
+#include "gw_spreadsheet.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

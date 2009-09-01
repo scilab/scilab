@@ -22,8 +22,8 @@
 #include <tcl.h>
 #include <tk.h>
 
+#include "dynlib_tclsci.h"
 #include "stack-c.h"
-#include "version.h"
 
 #include "MALLOC.h"
 

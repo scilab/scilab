@@ -18,11 +18,12 @@
 extern "C" {
 #endif
 
+#include "dynlib_gui.h"
 /**
  * Call the graphic export GUI
  * @param figreId id of the figure to export
  */
-int exportUserInterface(int figureId);
+GUI_IMPEXP int exportUserInterface(int figureId);
 
 #ifdef __cplusplus
 }

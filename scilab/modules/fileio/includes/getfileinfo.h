@@ -14,12 +14,13 @@
 #define __GETFILEINFO_H__
 
 #include <stdio.h>
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
 * get file info in the files table
 */
-void C2F(getfileinfo)(int *fd, FILE *fa, int *swap, int *type, int *mode, char *filename, int *lf, int *ierr);
+FILEIO_IMPEXP void C2F(getfileinfo)(int *fd, FILE *fa, int *swap, int *type, int *mode, char *filename, int *lf, int *ierr);
 
 #endif /* __GETFILEINFO_H__ */
 

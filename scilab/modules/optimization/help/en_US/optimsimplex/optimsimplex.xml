@@ -2,7 +2,7 @@
 <!--
  * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="montecarlo_run" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="optimsimplex" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@
   </info>
 
   <refnamediv>
-    <refname>simplex</refname>
+    <refname>optimsimplex</refname>
 
     <refpurpose>Manage a simplex with arbitrary number of points.</refpurpose>
   </refnamediv>
@@ -22,55 +22,56 @@
   <refsynopsisdiv>
     <title>SYNOPSIS</title>
 
-    <synopsis>[ newobj , data ] = simplex_new ( coords , fun , data )
-this = simplex_destroy (this)
-[ this , data ] = simplex_axes ( this , x0 , fun , len , data )
-[ this , data ] = simplex_pfeffer ( this , x0 , fun , deltausual , deltazero , data )
-[ this , data ] = simplex_randbounds ( this , x0 , fun , boundsmin , boundsmax , nbpoints  , data )
-[ this , data ] = simplex_spendley ( this , x0 , fun , len , data )
-this = simplex_setall ( this , simplex )
-this = simplex_setallfv ( this , fv )
-this = simplex_setallx ( this , x )
-this = simplex_setfv ( this , ive , fv )
-this = simplex_setn ( this , n )
-this = simplex_setnbve ( this , nbve )
-this = simplex_setve ( this , ive , fv , x )
-this = simplex_setx ( this , ive , x )
-simplex = simplex_getall ( this )
-fv = simplex_getallfv ( this )
-x = simplex_getallx ( this )
-fv = simplex_getfv ( this , ive )
-n = simplex_getn ( this )
-n = simplex_getnbve ( this )
-vertex = simplex_getve ( this , ive )
-x = simplex_getx ( this , ive )
-sicenter = simplex_center ( this )
-simplex_check ( this )
-[ this , data ] = simplex_computefv ( this , fun , data )
-df = simplex_deltafv ( this )
-dfm = simplex_deltafvmax ( this )
-m = simplex_dirmat ( this )
-sd = simplex_fvmean ( this )
-sd = simplex_fvstdev ( this )
-[ g , data ] = simplex_gradientfv ( this , fun , method , data )
-g = simplex_gradforward ( this )
-[ g , data ] = simplex_gradcentered ( this , fun , data )
-[ ns , data ] = simplex_oriented ( this , fun , data )
-simplex_print ( this )
-[ r , data ] = simplex_reflect ( this , fun , data )
-[ this , data ] = simplex_shrink ( this , fun , sigma , data )
-ssize = simplex_size ( this , method )
-this = simplex_sort ( this )
-str = simplex_tostring ( this )
-cen = simplex_xbar ( this , iexcl )</synopsis>
+    <synopsis>[ newobj , data ] = optimsimplex_new ( coords , fun , data )
+this = optimsimplex_destroy (this)
+[ this , data ] = optimsimplex_axes ( this , x0 , fun , len , data )
+[ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual , deltazero , data )
+[ this , data ] = optimsimplex_randbounds ( this , x0 , fun , boundsmin , boundsmax , nbpoints  , data )
+[ this , data ] = optimsimplex_spendley ( this , x0 , fun , len , data )
+this = optimsimplex_setall ( this , simplex )
+this = optimsimplex_setallfv ( this , fv )
+this = optimsimplex_setallx ( this , x )
+this = optimsimplex_setfv ( this , ive , fv )
+this = optimsimplex_setn ( this , n )
+this = optimsimplex_setnbve ( this , nbve )
+this = optimsimplex_setve ( this , ive , fv , x )
+this = optimsimplex_setx ( this , ive , x )
+simplex = optimsimplex_getall ( this )
+fv = optimsimplex_getallfv ( this )
+x = optimsimplex_getallx ( this )
+fv = optimsimplex_getfv ( this , ive )
+n = optimsimplex_getn ( this )
+n = optimsimplex_getnbve ( this )
+vertex = optimsimplex_getve ( this , ive )
+x = optimsimplex_getx ( this , ive )
+sicenter = optimsimplex_center ( this )
+optimsimplex_check ( this )
+[ this , data ] = optimsimplex_computefv ( this , fun , data )
+df = optimsimplex_deltafv ( this )
+dfm = optimsimplex_deltafvmax ( this )
+m = optimsimplex_dirmat ( this )
+sd = optimsimplex_fvmean ( this )
+sd = optimsimplex_fvstdev ( this )
+[ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
+g = optimsimplex_gradforward ( this )
+[ g , data ] = optimsimplex_gradcentered ( this , fun , data )
+[ ns , data ] = optimsimplex_oriented ( this , fun , data )
+optimsimplex_print ( this )
+[ r , data ] = optimsimplex_reflect ( this , fun , data )
+[ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
+ssize = optimsimplex_size ( this , method )
+this = optimsimplex_sort ( this )
+str = optimsimplex_tostring ( this )
+cen = optimsimplex_xbar ( this , iexcl )</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Purpose</title>
 
-    <para>The goal of this toolbox is to provide a building block for
-    optimization algorithms based on a simplex. That Optimsimplex package may
-    be used in the following optimization methods :<itemizedlist>
+    <para>
+      The goal of this component is to provide a building block for
+      optimization algorithms based on a simplex. The optimsimplex package may
+      be used in the following optimization methods :<itemizedlist>
         <listitem>
           <para>the Spendley et al. simplex method,</para>
         </listitem>
@@ -85,7 +86,9 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
 
         <listitem>
           <para>the multi-dimensional search by Virginia Torczon,</para>
+        </listitem>
 
+        <listitem>
           <para>etc ...</para>
         </listitem>
       </itemizedlist></para>
@@ -173,14 +176,14 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
     simplex gradient can be computed with a order 1 forward formula and with a
     order 2 centered formula.</para>
 
-    <para>The simplex_new function allows to create a simplex. If vertices
+    <para>The optimsimplex_new function allows to create a simplex. If vertices
     coordinates are given, there are registered in the simplex. If a function
-    is provided, it is evaluated at each vertex. The simplex_destroy function
+    is provided, it is evaluated at each vertex. The optimsimplex_destroy function
     destroys the object and frees internal memory. Several functions allow to
     create a simplex with special shapes, including axes-by-axes
-    (simplex_axes), regular (simplex_spendley), randomized bounds simplex with
-    arbitrary k vertices (simplex_randbounds) and an heuristical small
-    variation around a given point (simplex_pfeffer).</para>
+    (optimsimplex_axes), regular (optimsimplex_spendley), randomized bounds simplex with
+    arbitrary k vertices (optimsimplex_randbounds) and an heuristical small
+    variation around a given point (optimsimplex_pfeffer).</para>
   </refsection>
 
   <refsection>
@@ -190,7 +193,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
 
     <variablelist>
       <varlistentry>
-        <term>[ newobj , data ] = simplex_new ( coords , fun , data )</term>
+        <term>[ newobj , data ] = optimsimplex_new ( coords , fun , data )</term>
 
         <listitem>
           <para>Creates a new simplex object. All input arguments are
@@ -258,7 +261,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_destroy (this)</term>
+        <term>this = optimsimplex_destroy (this)</term>
 
         <listitem>
           <para>Destroy the given object.</para>
@@ -276,7 +279,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_axes ( this , x0 , fun , len , data
+        <term>[ this , data ] = optimsimplex_axes ( this , x0 , fun , len , data
         )</term>
 
         <listitem>
@@ -350,7 +353,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_pfeffer ( this , x0 , fun , deltausual
+        <term>[ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual
         , deltazero , data )</term>
 
         <listitem>
@@ -432,7 +435,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_randbounds ( this , x0 , fun ,
+        <term>[ this , data ] = optimsimplex_randbounds ( this , x0 , fun ,
         boundsmin , boundsmax , nbpoints , data )</term>
 
         <listitem>
@@ -526,7 +529,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_spendley ( this , x0 , fun , len ,
+        <term>[ this , data ] = optimsimplex_spendley ( this , x0 , fun , len ,
         data )</term>
 
         <listitem>
@@ -599,7 +602,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setall ( this , simplex )</term>
+        <term>this = optimsimplex_setall ( this , simplex )</term>
 
         <listitem>
           <para>Set all the coordinates and and the function values of all the
@@ -644,7 +647,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setallfv ( this , fv )</term>
+        <term>this = optimsimplex_setallfv ( this , fv )</term>
 
         <listitem>
           <para>Set all the function values of all the vertices. The vertex #k
@@ -671,7 +674,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setallx ( this , x )</term>
+        <term>this = optimsimplex_setallx ( this , x )</term>
 
         <listitem>
           <para>Set all the coordinates of all the vertices. The vertex #k is
@@ -698,7 +701,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setfv ( this , ive , fv )</term>
+        <term>this = optimsimplex_setfv ( this , ive , fv )</term>
 
         <listitem>
           <para>Set the function value at given index and // returns an
@@ -733,7 +736,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setn ( this , n )</term>
+        <term>this = optimsimplex_setn ( this , n )</term>
 
         <listitem>
           <para>Set the dimension of the space of the simplex.</para>
@@ -759,7 +762,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setnbve ( this , nbve )</term>
+        <term>this = optimsimplex_setnbve ( this , nbve )</term>
 
         <listitem>
           <para>Set the number of vertices of the simplex.</para>
@@ -785,7 +788,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setve ( this , ive , fv , x )</term>
+        <term>this = optimsimplex_setve ( this , ive , fv , x )</term>
 
         <listitem>
           <para>Sets the coordinates of the vertex and the function value at
@@ -828,7 +831,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_setx ( this , ive , x )</term>
+        <term>this = optimsimplex_setx ( this , ive , x )</term>
 
         <listitem>
           <para>Set the coordinates of the vertex at given index, as a column
@@ -863,7 +866,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>simplex = simplex_getall ( this )</term>
+        <term>simplex = optimsimplex_getall ( this )</term>
 
         <listitem>
           <para>Returns all the coordinates of all the vertices and the
@@ -905,7 +908,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>fv = simplex_getallfv ( this )</term>
+        <term>fv = optimsimplex_getallfv ( this )</term>
 
         <listitem>
           <para>Returns all the function values of all the vertices, as a
@@ -933,7 +936,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>x = simplex_getallx ( this )</term>
+        <term>x = optimsimplex_getallx ( this )</term>
 
         <listitem>
           <para>Returns all the coordinates of all the vertices.</para>
@@ -962,7 +965,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>fv = simplex_getfv ( this , ive )</term>
+        <term>fv = optimsimplex_getfv ( this , ive )</term>
 
         <listitem>
           <para>Returns the function value at given index</para>
@@ -988,7 +991,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>n = simplex_getn ( this )</term>
+        <term>n = optimsimplex_getn ( this )</term>
 
         <listitem>
           <para>Returns the dimension of the space of the simplex</para>
@@ -1006,7 +1009,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>n = simplex_getnbve ( this )</term>
+        <term>n = optimsimplex_getnbve ( this )</term>
 
         <listitem>
           <para>Returns the number of vertices in the simplex.</para>
@@ -1024,7 +1027,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>vertex = simplex_getve ( this , ive )</term>
+        <term>vertex = optimsimplex_getve ( this , ive )</term>
 
         <listitem>
           <para>Returns the vertex at given index as a tlist, with fields n, x
@@ -1051,7 +1054,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>x = simplex_getx ( this , ive )</term>
+        <term>x = optimsimplex_getx ( this , ive )</term>
 
         <listitem>
           <para>Returns the coordinates of the vertex at given index, as a
@@ -1078,7 +1081,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>sicenter = simplex_center ( this )</term>
+        <term>sicenter = optimsimplex_center ( this )</term>
 
         <listitem>
           <para>Returns the center of the given simplex</para>
@@ -1096,7 +1099,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>simplex_check ( this )</term>
+        <term>optimsimplex_check ( this )</term>
 
         <listitem>
           <para>Check the consistency of the internal data. Generates an error
@@ -1115,7 +1118,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_computefv ( this , fun , data )</term>
+        <term>[ this , data ] = optimsimplex_computefv ( this , fun , data )</term>
 
         <listitem>
           <para>Set the values of the function at vertices points.</para>
@@ -1168,7 +1171,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>df = simplex_deltafv ( this )</term>
+        <term>df = optimsimplex_deltafv ( this )</term>
 
         <listitem>
           <para>Returns the vector of difference of function values with
@@ -1187,7 +1190,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>dfm = simplex_deltafvmax ( this )</term>
+        <term>dfm = optimsimplex_deltafvmax ( this )</term>
 
         <listitem>
           <para>Returns the difference of function value between the high and
@@ -1209,7 +1212,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>m = simplex_dirmat ( this )</term>
+        <term>m = optimsimplex_dirmat ( this )</term>
 
         <listitem>
           <para>Returns the n x n matrix of simplex directions i.e. the matrix
@@ -1229,7 +1232,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>sd = simplex_fvmean ( this )</term>
+        <term>sd = optimsimplex_fvmean ( this )</term>
 
         <listitem>
           <para>Returns the mean of the function value on the simplex.</para>
@@ -1247,7 +1250,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>sd = simplex_fvstdev ( this )</term>
+        <term>sd = optimsimplex_fvstdev ( this )</term>
 
         <listitem>
           <para>Returns the standard deviation of the function value on the
@@ -1266,7 +1269,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ g , data ] = simplex_gradientfv ( this , fun , method , data
+        <term>[ g , data ] = optimsimplex_gradientfv ( this , fun , method , data
         )</term>
 
         <listitem>
@@ -1334,7 +1337,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ ns , data ] = simplex_oriented ( this , fun , data )</term>
+        <term>[ ns , data ] = optimsimplex_oriented ( this , fun , data )</term>
 
         <listitem>
           <para>Returns a new oriented simplex, in sorted order. The new
@@ -1391,7 +1394,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>simplex_print ( this )</term>
+        <term>optimsimplex_print ( this )</term>
 
         <listitem>
           <para>Display the current simplex, with coordinates and function
@@ -1410,7 +1413,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ r , data ] = simplex_reflect ( this , fun , data )</term>
+        <term>[ r , data ] = optimsimplex_reflect ( this , fun , data )</term>
 
         <listitem>
           <para>Returns a new simplex by reflexion of current simplex, by
@@ -1465,7 +1468,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = simplex_shrink ( this , fun , sigma , data
+        <term>[ this , data ] = optimsimplex_shrink ( this , fun , sigma , data
         )</term>
 
         <listitem>
@@ -1530,7 +1533,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>ssize = simplex_size ( this , method )</term>
+        <term>ssize = optimsimplex_size ( this , method )</term>
 
         <listitem>
           <para>Returns the size of the simplex.</para>
@@ -1539,7 +1542,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
           requires 2 nested loops over the vertices.</para>
 
           <para>The sigmaminus (resp. sigmamplus) size is the minimum (resp.
-          maximum) length of the vector from the given vertex to the first
+          maximum) length of the vector from each vertex to the first
           vertex. It requires one loop over the vertices.</para>
 
           <para>The "Nash" size is the sum of the norm of the length of the
@@ -1569,7 +1572,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>this = simplex_sort ( this )</term>
+        <term>this = optimsimplex_sort ( this )</term>
 
         <listitem>
           <para>Sorts the simplex with increasing function value order so that
@@ -1588,7 +1591,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>str = simplex_tostring ( this )</term>
+        <term>str = optimsimplex_tostring ( this )</term>
 
         <listitem>
           <para>Returns the current simplex as a string.</para>
@@ -1606,7 +1609,7 @@ cen = simplex_xbar ( this , iexcl )</synopsis>
       </varlistentry>
 
       <varlistentry>
-        <term>cen = simplex_xbar ( this , iexcl )</term>
+        <term>cen = optimsimplex_xbar ( this , iexcl )</term>
 
         <listitem>
           <para>Returns the center of n vertices, by excluding the vertex with
@@ -1650,11 +1653,11 @@ coords = [
 0.0 1.0 0.0
 0.0 0.0 1.0
 ];
-s1 = simplex_new ( coords );
-computed = simplex_getallx ( s1 );
-computed = simplex_getn(s1);
-computed = simplex_getnbve (s1);
-s1 = simplex_destroy(s1);
+s1 = optimsimplex_new ( coords );
+computed = optimsimplex_getallx ( s1 );
+computed = optimsimplex_getn(s1);
+computed = optimsimplex_getnbve (s1);
+s1 = optimsimplex_destroy(s1);
     </programlisting>
   </refsection>
 
@@ -1677,10 +1680,10 @@ endfunction
 
 mydude = tlist(["T_MYSTUFF","nb"]);
 mydude.nb = 0;
-s1 = simplex_new ();
-[ s1 , mydude ] = simplex_randbounds ( s1 , x0 = [-1.2 1.0], fun = mycostf, ...
+s1 = optimsimplex_new ();
+[ s1 , mydude ] = optimsimplex_randbounds ( s1 , x0 = [-1.2 1.0], fun = mycostf, ...
   boundsmin = [-5.0 -5.0] , boundsmax = [5.0 5.0], nbve=5 , data = mydude );
-s1 = simplex_destroy ( s1 );
+s1 = optimsimplex_destroy ( s1 );
 
     </programlisting>
   </refsection>
@@ -1697,6 +1700,40 @@ s1 = simplex_destroy ( s1 );
   </refsection>
 
   <refsection>
+    <title>Initial simplex strategies</title>
+    <para>
+      In this section, we analyse the various initial simplex which are provided in this 
+      component.
+    </para>
+    <para>
+      It is known that direct search methods based on simplex designs are very 
+      sensitive to the initial simplex. This is why the current component 
+      provides various ways to create such an initial simplex.
+    </para>
+
+    <para>
+      The first historical simplex-based algorithm is the one presented in 
+      "Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation" by W. Spendley, G. R. Hext and F. R. Himsworth.
+      The optimsimplex_spendley function creates the regular simplex which is presented in
+      this paper.
+    </para>
+
+    
+    <para>
+      The method used in the optimsimplex_randbounds function is due to M.J. Box
+      in "A New Method of Constrained Optimization and a Comparison With
+      Other Methods". 
+    </para>
+
+    <para>
+      Pfeffer's method is an heuristic which is presented in "Global Optimization Of Lennard-Jones Atomic Clusters" by
+      Ellen Fan. It is due to L. Pfeffer at Stanford and it is used in fminsearch.
+    </para>
+    
+  </refsection>
+
+  <refsection>
     <title>Authors</title>
 
     <para>Michael Baudin, 2008-2009</para>
@@ -1705,48 +1742,75 @@ s1 = simplex_destroy ( s1 );
   <refsection>
     <title>Bibliography</title>
 
-    <para>&#8220;Sequential Application of Simplex Designs in Optimisation and
-    Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
-    F. R., American Statistical Association and American Society for Quality,
-    1962</para>
+    <para>
+      &#8220;Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation&#8221;, Spendley, W. and Hext, G. R. and Himsworth,
+      F. R., American Statistical Association and American Society for Quality,
+      1962
+    </para>
 
-    <para>"A Simplex Method for Function Minimization", Nelder, J. A. and
-    Mead, R. The Computer Journal, January, 1965, 308--313</para>
+    <para>
+      "A Simplex Method for Function Minimization", Nelder, J. A. and
+      Mead, R. The Computer Journal, January, 1965, 308--313
+    </para>
 
-    <para>"A New Method of Constrained Optimization and a Comparison With
-    Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
-    British Computer Society</para>
+    <para>
+      "A New Method of Constrained Optimization and a Comparison With
+      Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
+      British Computer Society
+    </para>
 
-    <para>"Iterative Methods for Optimization", C.T. Kelley, 1999, Chapter 6.,
-    section 6.2</para>
+    <para>
+      "Iterative Methods for Optimization", C.T. Kelley, 1999, Chapter 6.,
+      section 6.2
+    </para>
 
-    <para>"Compact Numerical Methods For Computers - Linear Algebra and
-    Function Minimization", J.C. Nash, 1990, Chapter 14. Direct Search
-    Methods</para>
+    <para>
+      "Compact Numerical Methods For Computers - Linear Algebra and
+      Function Minimization", J.C. Nash, 1990, Chapter 14. Direct Search
+      Methods
+    </para>
 
-    <para>"Sequential Application of Simplex Designs in Optimisation and
-    Evolutionary Operation", W. Spendley, G. R. Hext, F. R. Himsworth,
-    Technometrics, Vol. 4, No. 4 (Nov., 1962), pp. 441-461, Section 3.1</para>
+    <para>
+      "Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation", W. Spendley, G. R. Hext, F. R. Himsworth,
+      Technometrics, Vol. 4, No. 4 (Nov., 1962), pp. 441-461, Section 3.1
+    </para>
 
-    <para>"A New Method of Constrained Optimization and a Comparison With
-    Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
-    British Computer Society</para>
+    <para>
+      "A New Method of Constrained Optimization and a Comparison With
+      Other Methods", M. J. Box, The Computer Journal 1965 8(1):42-52, 1965 by
+      British Computer Society
+    </para>
 
-    <para>&#8220;Detection and Remediation of Stagnation in the Nelder--Mead
-    Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
-    Optimization, Kelley,, C. T., 1999</para>
+    <para>
+      &#8220;Detection and Remediation of Stagnation in the Nelder--Mead
+      Algorithm Using a Sufficient Decrease Condition&#8221;, SIAM J. on
+      Optimization, Kelley,, C. T., 1999
+    </para>
 
-    <para>" Multi-Directional Search: A Direct Search Algorithm for Parallel
-    Machines", by E. Boyd, Kenneth W. Kennedy, Richard A. Tapia, Virginia
-    Joanne Torczon,, Virginia Joanne Torczon, 1989, Phd Thesis, Rice
-    University</para>
+    <para>
+      " Multi-Directional Search: A Direct Search Algorithm for Parallel
+      Machines", by E. Boyd, Kenneth W. Kennedy, Richard A. Tapia, Virginia
+      Joanne Torczon,, Virginia Joanne Torczon, 1989, Phd Thesis, Rice
+      University
+    </para>
 
-    <para>"Grid Restrained Nelder-Mead Algorithm", Árpád B&#361;rmen, Janez
-    Puhan, Tadej Tuma, Computational Optimization and Applications, Volume 34
-    , Issue 3 (July 2006), Pages: 359 - 375</para>
+    <para>
+      "Grid Restrained Nelder-Mead Algorithm", Árpád B&#361;rmen, Janez
+      Puhan, Tadej Tuma, Computational Optimization and Applications, Volume 34
+      , Issue 3 (July 2006), Pages: 359 - 375
+    </para>
 
-    <para>"A convergent variant of the Nelder-Mead algorithm", C. J. Price, I.
-    D. Coope, D. Byatt, Journal of Optimization Theory and Applications,
-    Volume 113 , Issue 1 (April 2002), Pages: 5 - 19,</para>
+    <para>
+      "A convergent variant of the Nelder-Mead algorithm", C. J. Price, I.
+      D. Coope, D. Byatt, Journal of Optimization Theory and Applications,
+      Volume 113 , Issue 1 (April 2002), Pages: 5 - 19,
+    </para>
+
+    <para>
+      "Global Optimization Of Lennard-Jones Atomic Clusters",
+      Ellen Fan, Thesis, February 26, 2002, McMaster University
+    </para>
   </refsection>
 </refentry>

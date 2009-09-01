@@ -12,7 +12,7 @@
 
 #ifndef __SETUICONTROLPOSITION_H__
 #define __SETUICONTROLPOSITION_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "SetProperty.h"
 
@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUicontrolPosition(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolPosition(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif

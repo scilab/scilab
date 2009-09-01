@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="fminsearch" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 16-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fminsearch</refname>
+
+    <refpurpose>Computes the unconstrained minimimum of given function with
+    the Nelder-Mead algorithm.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>SYNOPSIS</title>
+
+    <synopsis>
+      x = fminsearch ( costf , x0 )
+      x = fminsearch ( costf , x0 , options )
+      [x,fval,exitflag,output] = fminsearch ( costf , x0 , options )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function searches for the unconstrained minimum of a given cost
+    function.</para>
+
+    <para>The provided algorithm is a direct search algorithm, i.e. an
+    algorithm which does not use the derivative of the cost function. It is
+    based on the update of a simplex, which is a set of k&gt;=n+1 vertices,
+    where each vertex is associated with one point and one function value.
+    This algorithm is the Nelder-Mead algorithm.</para>
+
+    <para>This function is based on a specialized use of the more general
+    neldermead component. Users which want to have a more flexible solution
+    based on direct search algorithms should consider using the neldermead
+    component instead of the fminsearch function.</para>
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>costf</term>
+
+        <listitem>
+          <para>The cost function.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>The initial guess.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>A struct which contains configurable options of the algorithm
+          (see below for details).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>The minimum.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fval</term>
+
+        <listitem>
+          <para>The minimum function value.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>exitflag</term>
+
+        <listitem>
+          <para>The flag associated with exist status of the algorithm.</para>
+
+          <para>The following values are available.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>-1</term>
+
+              <listitem>
+                <para>The maximum number of iterations has been
+                reached.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>0</term>
+
+              <listitem>
+                <para>The maximum number of function evaluations has been
+                reached.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>1</term>
+
+              <listitem>
+                <para>The tolerance on the simplex size and function value
+                delta has been reached. This signifies that the algorithm has
+                converged, probably to a solution of the problem.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>output</term>
+
+        <listitem>
+          <para>A struct which stores detailed information about the exit of
+          the algorithm. This struct contains the following fields.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>output.algorithm</term>
+
+              <listitem>
+                <para>A string containing the definition of the algorithm
+                used, i.e. 'Nelder-Mead simplex direct search'.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.funcCount</term>
+
+              <listitem>
+                <para>The number of function evaluations.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.iterations</term>
+
+              <listitem>
+                <para>The number of iterations.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>output.message</term>
+
+              <listitem>
+                <para>A string containing a termination message.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Options</title>
+
+    <para>In this section, we describe the options input argument which have
+    an effect on the algorithm used by fminsearch.</para>
+
+    <para>The options input argument is a data structure which drives the
+    behaviour of fminsearch. It allows to handle several options in a
+    consistent and simple interface, without the problem of managing many
+    input arguments.</para>
+
+    <para>The fminsearch function is sensitive to the following
+    options.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>options.MaxIter</term>
+
+        <listitem>
+          <para>The maximum number of iterations. The default is 200 * n,
+          where n is the number of variables.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.MaxFunEvals</term>
+
+        <listitem>
+          <para>The maximum number of evaluations of the cost function. The
+          default is 200 * n, where n is the number of variables.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.TolFun</term>
+
+        <listitem>
+          <para>The absolute tolerance on function value. The default value is
+          1.e-4.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options.TolX</term>
+
+        <listitem>
+          <para>The absolute tolerance on simplex size. The default value is
+          1.e-4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Termination criteria</title>
+
+    <para>In this section, we describe the termination criteria used by
+    fminsearch.</para>
+
+    <para>The criteria is based on the following variables:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ssize</term>
+
+        <listitem>
+          <para>the current simplex size,</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>shiftfv</term>
+
+        <listitem>
+          <para>the absolute value of the difference of function value between
+          the highest and lowest vertices.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>If both the following conditions</para>
+
+    <programlisting role="example">ssize &lt; options.TolX</programlisting>
+
+    <para>and</para>
+
+    <programlisting role="example">shiftfv &lt; options.TolFun</programlisting>
+
+    <para>are true, then the iterations stop.</para>
+
+    <para>The size of the simplex is computed using the "sigmaplus" method of
+    the optimsimplex component. The "sigmamplus" size is the maximum length of
+    the vector from each vertex to the first vertex. It requires one loop over
+    the vertices of the simplex.</para>
+  </refsection>
+
+  <refsection>
+    <title>The initial simplex</title>
+
+    <para>The fminsearch algorithm uses a special initial simplex, which is an
+    heuristic depending on the initial guess. The strategy chosen by
+    fminsearch corresponds to the -simplex0method flag of the neldermead
+    component, with the "pfeffer" method. It is associated with the
+    -simplex0deltausual = 0.05 and -simplex0deltazero = 0.0075 parameters.
+    Pfeffer's method is an heuristic which is presented in "Global
+    Optimization Of Lennard-Jones Atomic Clusters" by Ellen Fan. It is due to
+    L. Pfeffer at Stanford. See in the help of optimsimplex for more
+    details.</para>
+  </refsection>
+
+  <refsection>
+    <title>The number of iterations</title>
+
+    <para>In this section, we present the default values for the number of
+    iterations in fminsearch.</para>
+
+    <para>The <parameter>options</parameter> input argument is an optionnal
+    data structure which can contain the
+    <parameter>options.MaxIter</parameter> field. It stores the maximum number
+    of iterations. The default value is 200n, where n is the number of
+    variables. The factor 200 has not been chosen by chance, but is the result
+    of experiments performed against quadratic functions with increasing space
+    dimension.</para>
+
+    <para>This result is presented in "Effect of dimensionality on the
+    nelder-mead simplex method" by Lixing Han and Michael Neumann. This paper
+    is based on Lixing Han's PhD, "Algorithms in Unconstrained Optimization".
+    The study is based on numerical experiment with a quadratic function where
+    the number of terms depends on the dimension of the space (i.e. the number
+    of variables). Their study shows that the number of iterations required to
+    reach the tolerance criteria is roughly 100n. Most iterations are based on
+    inside contractions. Since each step of the Nelder-Mead algorithm only
+    require one or two function evaluations, the number of required function
+    evaluations in this experiment is also roughly 100n.</para>
+  </refsection>
+
+  <refsection>
+    <title>Example</title>
+
+    <para>In the following example, we use the fminsearch function to compute
+    the minimum of the Rosenbrock function. We first define the function
+    "banana", and then use the fminsearch function to search the minimum,
+    starting with the initial guess [-1.2 1.0].</para>
+
+    <programlisting role="example">
+      function y = banana (x)
+      y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+      endfunction
+      [x , fval , exitflag , output] = fminsearch ( banana , [-1.2 1] );
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+
+    <para>"Sequential Application of Simplex Designs in Optimisation and
+    Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth, F.
+    R., American Statistical Association and American Society for Quality,
+    1962</para>
+
+    <para>"A Simplex Method for Function Minimization", Nelder, J. A. and
+    Mead, R., The Computer Journal, 1965</para>
+
+    <para>"Iterative Methods for Optimization", C. T. Kelley, SIAM Frontiers
+    in Applied Mathematics, 1999</para>
+
+    <para>"Algorithm AS47 - Function minimization using a simplex procedure",
+    O'Neill, R., Applied Statistics, 1971</para>
+
+    <para>"Effect of dimensionality on the nelder-mead simplex method", Lixing
+    Han and Michael Neumann, Optimization Methods and Software, 21, 1, 1--16,
+    2006.</para>
+
+    <para>"Algorithms in Unconstrained Optimization", Lixing Han, Ph.D., The
+    University of Connecticut, 2000.</para>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Michael Baudin, 2008-2009</para>
+  </refsection>
+
+  <refsection>
+    <title>Acknowledgements</title>
+
+    <para>Michael Baudin would like to thank Lixing Han, who kindly sent his
+    PhD thesis.</para>
+  </refsection>
+</refentry>

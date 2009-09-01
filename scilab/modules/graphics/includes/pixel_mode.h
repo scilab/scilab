@@ -19,21 +19,23 @@
 #ifndef _PIXEL_MODE_H_
 #define _PIXEL_MODE_H_
 
+#include "dynlib_graphics.h"
+
 /**
  * return the number of different pixel drawing modes.
  */
-int getNbPixelModes( void ) ;
+GRAPHICS_IMPEXP int getNbPixelModes( void ) ;
 
 /**
  * Get the name of pixel mode number index.
  */
-char * getPixelMode( int ind ) ;
+GRAPHICS_IMPEXP char * getPixelMode( int ind ) ;
 
 /**
  * Look for a pixel mode of name modeName and return its index.
  * If none has been found, return -1. Another negative value is returned
  * if an error occured.
  */
-int getPixelModeIndex( const char * modeName ) ;
+GRAPHICS_IMPEXP int getPixelModeIndex( const char * modeName ) ;
 
 #endif

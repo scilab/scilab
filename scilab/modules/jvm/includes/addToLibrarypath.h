@@ -16,13 +16,14 @@
 #define __ADDTOLIBRARYPATH_H__
 
 #include "BOOL.h" /* BOOL */
+#include "dynlib_jvm.h"
 
 /**
 * add a path to java.library.path
 * @param a new path to add
 * @return TRUE or FALSE
 */
-BOOL addToLibrarypath(char *librarypathstring);
+JVM_IMPEXP BOOL addToLibrarypath(char *librarypathstring);
 
 #endif /* __ADDTOLIBRARYPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

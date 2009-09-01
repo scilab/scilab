@@ -22,6 +22,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "libinter.h"
 
 /* Table of constant values */
 

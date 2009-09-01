@@ -19,11 +19,11 @@
 #define SYMBOLIC_TAB_SIZE 5
 static gw_generic_table Tab[SYMBOLIC_TAB_SIZE]=
 {
-{C2F(sci_addf),"addf"},
-{C2F(sci_subf),"subf"},
-{C2F(sci_mulf),"mulf"},
-{C2F(sci_ldivf),"ldivf"},
-{C2F(sci_rdivf),"rdivf"}
+{sci_addf,"addf"},
+{sci_subf,"subf"},
+{sci_mulf,"mulf"},
+{sci_ldivf,"ldivf"},
+{sci_rdivf,"rdivf"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_symbolic(void)

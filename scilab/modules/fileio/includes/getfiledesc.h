@@ -13,6 +13,7 @@
 #ifndef __GETFILEDESC_H__
 #define __GETFILEDESC_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
@@ -20,7 +21,7 @@
 * @param fd (id)
 * @param[out] fd (-1 error)
 */
-void C2F(getfiledesc)(int *fd); 
+FILEIO_IMPEXP void C2F(getfiledesc)(int *fd); 
 
 #endif /* __GETFILEDESC_H__ */
 /*--------------------------------------------------------------------------*/

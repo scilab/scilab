@@ -17,8 +17,7 @@
 #include <string.h>
 #include "stack-c.h"
 #include "basout.h"
-/*--------------------------------------------------------------------------*/
-int C2F(out)(char *str,long int str_len);
+#include "libinter.h"
 /*--------------------------------------------------------------------------*/
 int C2F(out)(char *str,long int str_len)
 {

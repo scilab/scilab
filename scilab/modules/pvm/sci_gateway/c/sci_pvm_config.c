@@ -25,7 +25,7 @@
 /******************************************
  * SCILAB function : pvm_config, fin = 9
  ******************************************/
-int intspvm_config(char *fname,unsigned long fname_len)
+int sci_pvm_config(char *fname,unsigned long fname_len)
 {
   int un=1;
   int nhost,narch,*pdtid,*pspeed,ne3,info,*work;

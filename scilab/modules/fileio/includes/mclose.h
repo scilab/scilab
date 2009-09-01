@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __MCLOSE_H__
 #define __MCLOSE_H__
-
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /*--------------------------------------------------------------------------*/
@@ -25,7 +25,7 @@
 * the current file if *id = -1 
 * all opened file if *id = -2 
 */
-void C2F(mclose) (int *fd, double *res);
+FILEIO_IMPEXP void C2F(mclose) (int *fd, double *res);
 
 #endif /* __MCLOSE_H__ */
 /*--------------------------------------------------------------------------*/

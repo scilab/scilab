@@ -16,7 +16,7 @@
 /* desc : interface for xfpoly routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xfpoly.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "DrawObjects.h"
 #include "sciCall.h"

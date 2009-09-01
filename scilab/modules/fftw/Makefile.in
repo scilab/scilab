@@ -152,13 +152,8 @@ libscifftw_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscifftw_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_root_DATA) \
 	$(libscifftw_la_sci_gateway_DATA)
-am__libscifftw_la_include_HEADERS_DIST =  \
-	includes/sci_loadfftwlibrary.h \
-	includes/sci_fftwlibraryisloaded.h \
-	includes/sci_disposefftwlibrary.h includes/sci_fftw_flags.h \
-	includes/gw_fftw.h includes/sci_fftw.h \
-	includes/sci_get_fftw_wisdom.h includes/sci_set_fftw_wisdom.h \
-	includes/sci_fftw_forget_wisdom.h includes/with_fftw.h
+am__libscifftw_la_include_HEADERS_DIST = includes/gw_fftw.h \
+	includes/dynlib_fftw.h includes/with_fftw.h
 libscifftw_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscifftw_la_include_HEADERS)
 ETAGS = etags
@@ -278,6 +273,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -439,15 +435,8 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 #### fftw : include files ####
 @FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)/fftw
-@FFTW_TRUE@libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
-@FFTW_TRUE@includes/sci_fftwlibraryisloaded.h \
-@FFTW_TRUE@includes/sci_disposefftwlibrary.h \
-@FFTW_TRUE@includes/sci_fftw_flags.h \
-@FFTW_TRUE@includes/gw_fftw.h \
-@FFTW_TRUE@includes/sci_fftw.h \
-@FFTW_TRUE@includes/sci_get_fftw_wisdom.h \
-@FFTW_TRUE@includes/sci_set_fftw_wisdom.h \
-@FFTW_TRUE@includes/sci_fftw_forget_wisdom.h \
+@FFTW_TRUE@libscifftw_la_include_HEADERS = includes/gw_fftw.h \
+@FFTW_TRUE@includes/dynlib_fftw.h \
 @FFTW_TRUE@includes/with_fftw.h
 
 

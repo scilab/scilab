@@ -15,6 +15,7 @@
 #define __SCIPRINT_FULL_H__
 
 #include <stdarg.h>
+#include "dynlib_output_stream.h"
 
 /**
 * sciprint geared towards long strings (>MAXPRINTF) 
@@ -23,7 +24,7 @@
 * @param fmt Format of the format string
 * @param ...
 */
-void sciprint_full(char *fmt,...) ;
+OUTPUT_STREAM_IMPEXP void sciprint_full(char *fmt,...) ;
 
 #endif /* __SCIPRINT_FULL_H__ */
 /*--------------------------------------------------------------------------*/ 

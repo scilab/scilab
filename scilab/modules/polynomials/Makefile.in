@@ -104,10 +104,10 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	dpsimp.lo dmp2pm.lo dmpext.lo wpmul.lo bezstp.lo wmpad.lo \
 	dprxc.lo quadsd.lo wmpadj.lo dmpmu.lo wpmul1.lo wmpcnc.lo \
 	mptri.lo horner.lo idegre.lo fxshfr.lo mpdiag.lo matra.lo \
-	dmpcle.lo rpoly.lo wmptld.lo wpodiv.lo wdmpmu.lo wmptra.lo \
-	wmpins.lo mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo \
-	dmpad.lo nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo \
-	impcnc.lo wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
+	dmpcle.lo rpoly.lo wpodiv.lo wdmpmu.lo wmptra.lo wmpins.lo \
+	mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo dmpad.lo \
+	nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo impcnc.lo \
+	wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
 	writebufsfact.lo
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
@@ -283,6 +283,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -427,7 +428,6 @@ src/fortran/mpdiag.f \
 src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
-src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
@@ -518,7 +518,9 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 #### polynomials : include files ####
 libscipolynomials_la_includedir = $(pkgincludedir)/polynomials
-libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
+libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h \
+includes/dynlib_polynomials.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -928,9 +930,6 @@ dmpcle.lo: src/fortran/dmpcle.f
 
 rpoly.lo: src/fortran/rpoly.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rpoly.lo `test -f 'src/fortran/rpoly.f' || echo '$(srcdir)/'`src/fortran/rpoly.f
-
-wmptld.lo: src/fortran/wmptld.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmptld.lo `test -f 'src/fortran/wmptld.f' || echo '$(srcdir)/'`src/fortran/wmptld.f
 
 wpodiv.lo: src/fortran/wpodiv.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wpodiv.lo `test -f 'src/fortran/wpodiv.f' || echo '$(srcdir)/'`src/fortran/wpodiv.f

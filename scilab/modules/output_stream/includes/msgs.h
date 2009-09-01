@@ -11,6 +11,10 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#ifndef __MSGS_H__
+#define __MSGS_H__
+
+#include "dynlib_output_stream.h"
 
 /**
  * @TODO : comment
@@ -19,4 +23,6 @@
  * @param ierr  
  * @return <ReturnValue>
  */
-int C2F(msgs)(int *n, int *ierr);
+OUTPUT_STREAM_IMPEXP int C2F(msgs)(int *n, int *ierr);
+
+#endif /* __MSGS_H__ */

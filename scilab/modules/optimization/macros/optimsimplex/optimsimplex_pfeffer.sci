@@ -18,6 +18,9 @@
 //   deltausual : the absolute delta for non-zero values
 //   deltazero : the absolute delta for zero values
 //   data : user-defined data
+// References
+//   "Global Optimization Of Lennard-Jones Atomic Clusters"
+//   Ellen Fan, Thesis, February 26, 2002, McMaster University
 //
 function [ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual , deltazero , data )
    if (~isdef('deltausual','local')) then

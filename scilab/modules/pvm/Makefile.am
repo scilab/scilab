@@ -87,7 +87,8 @@ libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 #### pvm : include files ####
 libscipvm_la_includedir=$(pkgincludedir)/pvm
 libscipvm_la_include_HEADERS = includes/gw_pvm.h \
-includes/with_pvm.h
+includes/with_pvm.h \
+includes/dynlib_pvm.h
 
 
 include $(top_srcdir)/Makefile.incl.am
@@ -106,6 +107,7 @@ libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
 
 libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/
 
 modulename=pvm

@@ -13,6 +13,7 @@
 #ifndef __CLEARCONSOLEPART_H__
 #define __CLEARCONSOLEPART_H__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_console.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
@@ -20,7 +21,7 @@
 * @param nblines numbers of lines -1 --> all
 * @return a boolean
 */
-BOOL ClearConsolePart(int nbLines);
+CONSOLE_IMPEXP BOOL ClearConsolePart(int nbLines);
 /*--------------------------------------------------------------------------*/
 #endif /*__CLEARCONSOLEPART_H__ */
 

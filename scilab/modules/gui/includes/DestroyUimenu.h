@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h" /* sciPointObj */
 
 
@@ -19,4 +19,4 @@
  * @param sciPointObj * pthis pointer to the object structure
  * @return execution status
  */
-int DestroyUimenu (sciPointObj * pthis);
+GUI_IMPEXP int DestroyUimenu (sciPointObj * pthis);

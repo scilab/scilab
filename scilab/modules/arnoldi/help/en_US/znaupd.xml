@@ -12,7 +12,7 @@
   </info>
 
   <refnamediv>
-    <refname>dsaupd</refname>
+    <refname>znaupd</refname>
 
     <refpurpose>Interface for the Implicitly Restarted Arnoldi Iteration, to
     compute a few eigenpairs of a complex linear operator OP with respect to a
