@@ -764,6 +764,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 # Without the GUI module 
 libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
@@ -787,7 +788,6 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 #### gui : include files ####
 libscigui_la_includedir = $(pkgincludedir)/gui
 libscigui_la_include_HEADERS = includes/gw_gui.h \
-includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
