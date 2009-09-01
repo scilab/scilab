@@ -154,6 +154,6 @@ libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
 libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optimization.h \
 includes/dynlib_optimization.h \
-includes/sp.h 
+includes/spd.h 
 
 include $(top_srcdir)/Makefile.incl.am

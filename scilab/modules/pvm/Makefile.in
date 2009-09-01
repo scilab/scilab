@@ -481,6 +481,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
 @PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+@PVM_FALSE@-I$(srcdir)/includes/ \
 @PVM_FALSE@-I$(top_srcdir)/modules/output_stream/includes/
 
 @PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ \

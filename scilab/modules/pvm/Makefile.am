@@ -107,6 +107,7 @@ libscipvm_la_LIBADD = \
 	$(top_builddir)/modules/core/libscicore.la
 
 libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/
 
 modulename=pvm
