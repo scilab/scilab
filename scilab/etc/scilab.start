@@ -131,16 +131,13 @@ end
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  startup_path = SCIHOME + filesep();
-
-  if (fileinfo(startup_path+'.scilab') <> []) then
-    exec(startup_path+'.scilab',-1);
+  if (fileinfo(SCIHOME + filesep() + '.scilab') <> []) then
+    exec(SCIHOME + filesep() + '.scilab',-1);
   else
-    if (fileinfo(startup_path+'scilab.ini') <> []) then
-      exec(startup_path+'scilab.ini',-1);
+    if (fileinfo(SCIHOME + filesep() + 'scilab.ini') <> []) then
+      exec(SCIHOME + filesep() + 'scilab.ini',-1);
     end
   end
-  clear startup ierr startup_path
 
   // working dir startup (if any)
   if (SCIHOME <> getcwd()) then
@@ -153,7 +150,6 @@ if sciargs()<>'-nouserstartup' then
     end
   end
 end
-clear startup ierr
 
 // Detects if the bug 3443  ====================================
 // ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
