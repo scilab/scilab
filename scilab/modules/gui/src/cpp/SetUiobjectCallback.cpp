@@ -82,8 +82,8 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
         }
 
       // Set the new callback
-      pUIMENU_FEATURE(sciObj)->callback = new char[strlen(getStringFromStack(stackPointer)) + 1];
-      strcpy(pUIMENU_FEATURE(sciObj)->callback, getStringFromStack(stackPointer));
+      pUIMENU_FEATURE(sciObj)->callback = new char[strlen(cbString) + 1];
+      strcpy(pUIMENU_FEATURE(sciObj)->callback, cbString);
 
       pUIMENU_FEATURE(sciObj)->callbackType = cbType;
 
