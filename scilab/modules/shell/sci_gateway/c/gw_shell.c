@@ -18,10 +18,10 @@
 #define SHELL_TAB_SIZE 5
 static gw_generic_table Tab[SHELL_TAB_SIZE]=
 {
-{C2F(sci_clc),"clc"},
-{C2F(sci_tohome),"tohome"},
-{C2F(sci_lines),"lines"},
-{C2F(sci_prompt),"prompt"},
+{sci_clc,"clc"},
+{sci_tohome,"tohome"},
+{sci_lines,"lines"},
+{sci_prompt,"prompt"},
 {sci_iswaitingforinput,"iswaitingforinput"}
 };
 /*--------------------------------------------------------------------------*/

@@ -31,6 +31,9 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
+* Symbols in dlls are explicitly exported on Windows.
+  In previous versions of scilab all symbols were exported.
+
 * modelicac (scicos) built with Ocaml 3.11.0 on Windows
 
 * blas, lapack, arpack libraries moved as pre-requirements (Windows)
@@ -188,6 +191,13 @@ Java/Scilab API:
 
  - SciInteger class added  
 
+
+Optimization:
+=============
+ - Created neldermead component for simplex-based direct search optimization
+ - Created optimbase component to build optimization algorithms
+ - Created optimsimplex component to build direct search algorithms
+ - Created fminsearch optimization function
  
 Bug fixes:
 ==========

@@ -16,7 +16,7 @@
 /* desc : interface for xdel routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xdel.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "DestroyObjects.h"
 #include "GetProperty.h"

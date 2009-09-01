@@ -14,32 +14,34 @@
 #ifndef SCI_OTHER_GEN
 #define SCI_OTHER_GEN
 
+#include "dynlib_randlib.h"
+
 /* header for the Mersenne Twister */
-unsigned long randmt(void);
-int set_state_mt_simple(double s);
-int set_state_mt(double seed_array[]);
-void get_state_mt(double state[]);
+RANDLIB_IMPEXP unsigned long randmt(void);
+RANDLIB_IMPEXP int set_state_mt_simple(double s);
+RANDLIB_IMPEXP int set_state_mt(double seed_array[]);
+RANDLIB_IMPEXP void get_state_mt(double state[]);
 
 /* header for kiss */
-unsigned long kiss(void);
-int set_state_kiss(double g1, double g2, double g3, double g4);
-void get_state_kiss(double g[]);
+RANDLIB_IMPEXP unsigned long kiss(void);
+RANDLIB_IMPEXP int set_state_kiss(double g1, double g2, double g3, double g4);
+RANDLIB_IMPEXP void get_state_kiss(double g[]);
 
 /* header for clcg2 */
-unsigned long clcg2(void);
-int set_state_clcg2(double g1, double g2);
-void get_state_clcg2(double g[]);
+RANDLIB_IMPEXP unsigned long clcg2(void);
+RANDLIB_IMPEXP int set_state_clcg2(double g1, double g2);
+RANDLIB_IMPEXP void get_state_clcg2(double g[]);
 
 /* header for scilab urand */
-unsigned long urandc(void);
-int set_state_urand(double g);
-void get_state_urand(double g[]);
+RANDLIB_IMPEXP unsigned long urandc(void);
+RANDLIB_IMPEXP int set_state_urand(double g);
+RANDLIB_IMPEXP void get_state_urand(double g[]);
 
 /* header for scilab fsultra */
-unsigned long fsultra(void);
-int set_state_fsultra(double g[]);
-int set_state_fsultra_simple(double g1,double g2);
-void get_state_fsultra(double g[]);
+RANDLIB_IMPEXP unsigned long fsultra(void);
+RANDLIB_IMPEXP int set_state_fsultra(double g[]);
+RANDLIB_IMPEXP int set_state_fsultra_simple(double g1,double g2);
+RANDLIB_IMPEXP void get_state_fsultra(double g[]);
 
 #endif /** SCI_OTHER_GEN   **/
 

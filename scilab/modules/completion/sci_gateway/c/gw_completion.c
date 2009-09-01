@@ -17,7 +17,7 @@
 #define COMPLETION_TAB_SIZE 1
 static gw_generic_table Tab[COMPLETION_TAB_SIZE]=
 {
-{C2F(sci_completion),"completion"}
+{sci_completion,"completion"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_completion(void)

@@ -10,10 +10,12 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_semidef)(char *fname,unsigned long fname_len)
+extern int C2F(scisemidef)(); /* FORTRAN subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_semidef(char *fname,unsigned long fname_len)
 {
 	C2F(scisemidef)(fname,fname_len);
 	return 0;

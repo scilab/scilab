@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 #include <stdio.h>
 /*------------------------------------------------------------------------*/
-#include "sci_set.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "HandleManagement.h"

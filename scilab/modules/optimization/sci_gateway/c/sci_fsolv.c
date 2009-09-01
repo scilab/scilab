@@ -10,7 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -28,7 +28,9 @@ __declspec (dllexport) struct {
 
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fsolve)(char *fname,unsigned long fname_len)
+extern int C2F(scisolv)(); /* FORTRAN subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_fsolve(char *fname,unsigned long fname_len)
 {
 	C2F(scisolv)(fname,fname_len);
 	return 0;

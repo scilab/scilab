@@ -22,8 +22,9 @@
 
 #ifndef __ISSYMMETRIC__
 #define __ISSYMMETRIC__
-
+#include "dynlib_linear_algebra.h"
 #include "stack-c.h"
+
 
 #define SYMMETRIC	1
 #define NOT_SYMMETRIC	0
@@ -32,6 +33,6 @@
 ** Check wether or not a Matrix is Symmetric.
 */
 
-int C2F(issymmetric)(int *stackPosition);
+LINEAR_ALGEBRA_IMPEXP int C2F(issymmetric)(int *stackPosition);
 
 #endif /* !__ISSYMMETRIC__ */

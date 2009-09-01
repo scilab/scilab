@@ -15,15 +15,17 @@
 #include "stack-c.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-#define CHAR(x)         (cstk(x))
-#define INT(x)  	(istk(x))
-#define DOUBLE(x)	( stk(x))
-#define CMPLX(x)	(zstk(x))
+extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which, 
+		       int * nev, double * tol, doublecomplex * resid, 
+		       int * ncv, doublecomplex * v, int * ldv, int * iparam,
+		       int * ipntr, doublecomplex * workd, 
+		       doublecomplex * workl, int * lworkl, double * rwork, 
+		       int * info);
 /*--------------------------------------------------------------------------*/
-extern int C2F(znaupd)();
-/*--------------------------------------------------------------------------*/
-int C2F(intznaupd)(char *fname,unsigned long fname_len)
+int sci_znaupd(char *fname,unsigned long fname_len)
 {
   int IDO,   mIDO,   nIDO,    pIDO;
   int BMAT,  mBMAT,  nBMAT,   pBMAT;
@@ -43,42 +45,104 @@ int C2F(intznaupd)(char *fname,unsigned long fname_len)
 
   int minlhs=1, minrhs=15, maxlhs=9, maxrhs=15;
   int LDV, LWORKL;
+  int sizeWORKL = 0;
 
-  CheckRhs(minrhs,maxrhs);  CheckLhs(minlhs,maxlhs);
+  CheckRhs(minrhs,maxrhs);  
+  CheckLhs(minlhs,maxlhs);
 
   /*                                                  VARIABLE = NUMBER   */
-  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mIDO,    &nIDO,    &pIDO);           IDO  =  1;
-  GetRhsVar( 2,STRING_DATATYPE, &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  2;
-  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);             N    =  3;
-  GetRhsVar( 4,STRING_DATATYPE, &mWHICH,  &nWHICH,  &pWHICH);       WHICH  =  4;
+  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mIDO,    &nIDO,    &pIDO);            IDO =  1;
+  GetRhsVar( 2,STRING_DATATYPE,            &mBMAT,   &nBMAT,   &pBMAT);          BMAT =  2;
+  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);                N =  3;
+  GetRhsVar( 4,STRING_DATATYPE,            &mWHICH,  &nWHICH,  &pWHICH);        WHICH =  4;
   GetRhsVar( 5,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);            NEV =  5;
-  GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE, &mTOL,    &nTOL,    &pTOL);            TOL =  6;
+  GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE,  &mTOL,    &nTOL,    &pTOL);            TOL =  6;
   GetRhsVar( 7,MATRIX_OF_COMPLEX_DATATYPE, &mRESID,  &nRESID,  &pRESID);        RESID =  7;
   GetRhsVar( 8,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);            NCV =  8;
-  GetRhsVar( 9,MATRIX_OF_COMPLEX_DATATYPE, &mV,      &nV,      &pV);               V  =  9;
+  GetRhsVar( 9,MATRIX_OF_COMPLEX_DATATYPE, &mV,      &nV,      &pV);                V =  9;
   GetRhsVar(10,MATRIX_OF_INTEGER_DATATYPE, &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 10;
-  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);       IPNTR  = 11;
-  GetRhsVar(12,MATRIX_OF_COMPLEX_DATATYPE, &mWORKD,  &nWORKD,  &pWORKD);       WORKD  = 12;
-  GetRhsVar(13,MATRIX_OF_COMPLEX_DATATYPE, &mWORKL,  &nWORKL,  &pWORKL);       WORKL  = 13;
-  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE, &mRWORK,  &nRWORK,  &pRWORK);       RWORK  = 14;
+  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);        IPNTR = 11;
+  GetRhsVar(12,MATRIX_OF_COMPLEX_DATATYPE, &mWORKD,  &nWORKD,  &pWORKD);        WORKD = 12;
+  GetRhsVar(13,MATRIX_OF_COMPLEX_DATATYPE, &mWORKL,  &nWORKL,  &pWORKL);        WORKL = 13;
+  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE,  &mRWORK,  &nRWORK,  &pRWORK);        RWORK = 14;
   GetRhsVar(15,MATRIX_OF_INTEGER_DATATYPE, &mINFO,   &nINFO,   &pINFO);          INFO = 15;
 
   LWORKL = mWORKL*nWORKL;   LDV=Max(1,*istk(pN));
+
+  /* Check some sizes */
+  if (mIPARAM*nIPARAM!=11)
+    {
+      Scierror(999,_("%s: %s must be an array of size %d"),fname, "IPARAM", 11);
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
+
+  if (mIPNTR*nIPNTR!=14)
+    {
+      Scierror(999,_("%s: %s must be an array of size %d"),fname, "IPNTR", 14);
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
+
+  if (mRESID*nRESID!=*istk(pN))
+    {
+      Scierror(999,_("%s: %s must be an array of size %d"),fname, "RESID", *istk(pN));
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
+    
+  if ((mV!=*istk(pN))&&(nV!=*istk(pNCV)))
+    {
+      Scierror(999,_("%s: %s must be a matrix of size %dx%d"),fname, "V", *istk(pN),*istk(pNCV));
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
+
+  if (mWORKD*nWORKD!=3 * *istk(pN))
+    {
+      Scierror(999,_("%s: %s must be an array of size %d"),fname, "WORKD", 3* *istk(pN));
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
+
+  sizeWORKL = 3 * *istk(pN) * *istk(pN) + 6 * *istk(pNCV);
+
+  if (mWORKL*nWORKL!=sizeWORKL)
+    {
+      Scierror(999,_("%s: %s must be an array of size %d"),fname, "WORKL", sizeWORKL);
+      LhsVar(1) = 0;
+      PutLhsVar();
+      return 0;
+    }
 
   C2F(znaupd)(istk(pIDO), cstk(pBMAT), istk(pN),
 	      cstk(pWHICH), istk(pNEV), stk(pTOL),
               zstk(pRESID), istk(pNCV), zstk(pV), &LDV,
               istk(pIPARAM), istk(pIPNTR), zstk(pWORKD),
-              zstk(pWORKL), &LWORKL, stk(pRWORK), istk(pINFO), 1L, 2L);
+              zstk(pWORKL), &LWORKL, stk(pRWORK), istk(pINFO));
 
   if (*istk(pINFO) < 0) {
     C2F(errorinfo)("znaupd", istk(pINFO), 6L);
     return 0;
   }
-  LhsVar(1)=IDO;    LhsVar(2)=RESID; LhsVar(3)=V;
-  LhsVar(4)=IPARAM; LhsVar(5)=IPNTR;
-  LhsVar(6)=WORKD;  LhsVar(7)=WORKL; LhsVar(8)=RWORK; LhsVar(9)=INFO;
+
+  LhsVar(1) = IDO;    
+  LhsVar(2) = RESID; 
+  LhsVar(3) = V;
+  LhsVar(4) = IPARAM; 
+  LhsVar(5) = IPNTR;
+  LhsVar(6) = WORKD;  
+  LhsVar(7) = WORKL; 
+  LhsVar(8) = RWORK; 
+  LhsVar(9) = INFO;
+
   PutLhsVar();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

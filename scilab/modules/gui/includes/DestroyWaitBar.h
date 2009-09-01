@@ -13,6 +13,7 @@
 #ifndef __DESTROY_WAITBAR_H__
 #define __DESTROY_WAITBAR_H__
 
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,6 +22,6 @@
  *
  * @param pobj Scilab object corresponding to the WaitBar
  */
-void DestroyWaitBar(sciPointObj * pobj);
+GUI_IMPEXP void DestroyWaitBar(sciPointObj * pobj);
 
 #endif

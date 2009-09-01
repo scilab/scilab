@@ -17,12 +17,13 @@
 #ifndef _PLOT2D_H_
 #define _PLOT2D_H_
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 
-int re_index_brect(double * brect, double * drect);
+GRAPHICS_IMPEXP int re_index_brect(double * brect, double * drect);
 
-BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
+GRAPHICS_IMPEXP BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);
 
-int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2);
+GRAPHICS_IMPEXP int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *style,char *strflag,char *legend,double *brect,int *aaint,BOOL flagNax, int lstr1,int lstr2);
 
 #endif /* _PLOT2D_H_ */

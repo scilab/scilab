@@ -1,8 +1,0 @@
-LIBRARY    scigraphic_export.dll
-
-
-EXPORTS
-
-; --------------------------------------- 
-; scigraphic_export
-; --------------------------------------- 

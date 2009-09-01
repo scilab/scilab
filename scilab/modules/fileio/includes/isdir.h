@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __ISDIR_H__
 #define __ISDIR_H__
-
+#include "dynlib_fileio.h"
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -20,7 +20,7 @@
 * @param path the directory
 * @return if the directory exists (TRUE) or not (FALSE)
 */
-BOOL isdir(const char *path);
+FILEIO_IMPEXP BOOL isdir(const char *path);
 
 #endif /* __ISDIR_H__ */
 /*--------------------------------------------------------------------------*/ 

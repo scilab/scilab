@@ -1022,6 +1022,8 @@ Bug fixes:
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
 
+* bug 4761 fixed - memory leak in grep and regexp.
+
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.

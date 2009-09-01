@@ -17,7 +17,7 @@
 /* desc : interface for delete routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_delete.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"

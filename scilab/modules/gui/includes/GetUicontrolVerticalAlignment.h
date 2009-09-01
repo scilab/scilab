@@ -12,7 +12,7 @@
 
 #ifndef __GET_UICONTROL_VERTICALALIGNMENT_H__
 #define __GET_UICONTROL_VERTICALALIGNMENT_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return true if the vertical alignment property has been correcty got
  */
-int GetUicontrolVerticalAlignment(sciPointObj * pobj);
+GUI_IMPEXP int GetUicontrolVerticalAlignment(sciPointObj * pobj);
 
 #endif /* __GET_UICONTROL_VERTICALALIGNMENT_H__ */
