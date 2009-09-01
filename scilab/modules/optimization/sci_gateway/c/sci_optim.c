@@ -10,7 +10,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/ 
-#include "gw_optim.h"
+#include "gw_optimization.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
@@ -30,7 +30,9 @@ __declspec (dllexport) struct {
 } C2F(fprf2c);
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_optim)(char *fname,unsigned long fname_len)
+extern int C2F(scioptim)(); /* FORTRAN subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_optim(char *fname,unsigned long fname_len)
 {
 	C2F(scioptim)(fname,fname_len);
 	return 0;

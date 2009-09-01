@@ -82,6 +82,7 @@ libscirandlib_la_includedir=$(pkgincludedir)/randlib
 libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h \
-includes/gw_randlib.h
+includes/gw_randlib.h \
+includes/dynlib_randlib.h
 
 include $(top_srcdir)/Makefile.incl.am

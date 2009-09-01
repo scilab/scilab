@@ -76,7 +76,8 @@ libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 #### umfpack : include files ####
 libsciumfpack_la_includedir=$(pkgincludedir)/umfpack
 libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
-includes/with_umfpack.h
+includes/with_umfpack.h \
+includes/dynlib_umfpack.h
 
 else
 

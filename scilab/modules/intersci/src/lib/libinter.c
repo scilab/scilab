@@ -12,6 +12,7 @@
 
 #include <string.h>
 
+#include "dynlib_intersci.h"
 #include "MALLOC.h"
 #include "../../../string/includes/men_Sutils.h"
 #include "stack-c.h"

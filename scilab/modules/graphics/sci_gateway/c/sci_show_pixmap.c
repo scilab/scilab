@@ -15,7 +15,7 @@
 /* desc : interface for show_pixmap routine                               */
 /*------------------------------------------------------------------------*/
 
-#include "sci_show_pixmap.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"

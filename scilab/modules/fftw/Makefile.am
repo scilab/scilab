@@ -63,15 +63,8 @@ libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 #### fftw : include files ####
 libscifftw_la_includedir=$(pkgincludedir)/fftw
-libscifftw_la_include_HEADERS = includes/sci_loadfftwlibrary.h \
-includes/sci_fftwlibraryisloaded.h \
-includes/sci_disposefftwlibrary.h \
-includes/sci_fftw_flags.h \
-includes/gw_fftw.h \
-includes/sci_fftw.h \
-includes/sci_get_fftw_wisdom.h \
-includes/sci_set_fftw_wisdom.h \
-includes/sci_fftw_forget_wisdom.h \
+libscifftw_la_include_HEADERS = includes/gw_fftw.h \
+includes/dynlib_fftw.h \
 includes/with_fftw.h
 
 else

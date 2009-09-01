@@ -16,7 +16,7 @@
 /* desc : interface for xstring routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xstring.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "sciCall.h"
 #include "MALLOC.h"

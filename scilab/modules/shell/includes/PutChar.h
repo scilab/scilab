@@ -11,9 +11,10 @@
  */
 /*--------------------------------------------------------------------------*/
 
+#include "dynlib_shell.h"
 /**
  * @TODO : add comment
  *
  * @param c 
  */
-void PutChar(int c);
+SHELL_IMPEXP void PutChar(int c);

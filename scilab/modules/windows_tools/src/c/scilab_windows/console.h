@@ -13,55 +13,55 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __CONSOLE_H__
 #define __CONSOLE_H__
-
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h"
 
 /**
 * Update Colors of console
 */
-void UpdateConsoleColors(void);
+SCILAB_WINDOWS_IMPEXP void UpdateConsoleColors(void);
 
 /**
 * Save colors before  creation
 */
-void SaveConsoleColors(void);
+SCILAB_WINDOWS_IMPEXP void SaveConsoleColors(void);
 
 /**
 * Restore colors of console
 */
-void RestoreConsoleColors(void);
+SCILAB_WINDOWS_IMPEXP void RestoreConsoleColors(void);
 
 /**
 * Restore Exit button 
 */
-void RestoreExitButton(void);
+SCILAB_WINDOWS_IMPEXP void RestoreExitButton(void);
 
 /**
 * Rename Scilab Console  with correct name
 */
-void RenameConsole(void);
+SCILAB_WINDOWS_IMPEXP void RenameConsole(void);
 
 /**
 * Create Scilab Console
 */
-void CreateScilabConsole(BOOL ShowBanner);
+SCILAB_WINDOWS_IMPEXP void CreateScilabConsole(BOOL ShowBanner);
 
 /**
 * Close Scilab Console
 */
-void CloseScilabConsole(void);
+SCILAB_WINDOWS_IMPEXP void CloseScilabConsole(void);
 
 /**
 * get scilex console name
 * @return a name
 */
-char *getScilexConsoleName(void);
+SCILAB_WINDOWS_IMPEXP char *getScilexConsoleName(void);
 
 /* return colums size of screen console */
-int getXConsoleScreenSize(void);
+SCILAB_WINDOWS_IMPEXP int getXConsoleScreenSize(void);
 
 /* return lines size of screen console */
-int getYConsoleScreenSize(void);
+SCILAB_WINDOWS_IMPEXP int getYConsoleScreenSize(void);
 
 #endif /* __CONSOLE_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -15,6 +15,7 @@
 #define __ERROR_H__
 
 #include "machine.h" /* C2F */
+#include "dynlib_output_stream.h"
 
 /* routine used by fortran */
 
@@ -23,7 +24,7 @@
 * @param[in]  n : error number 
 * @return 0
 */
-int C2F(error)(int *n);
+OUTPUT_STREAM_IMPEXP int C2F(error)(int *n);
 
 
 /**
@@ -31,7 +32,7 @@ int C2F(error)(int *n);
 * as Scierror uses default message associated to 'n'
 * @param n error code
 */
-void SciError(int n);
+OUTPUT_STREAM_IMPEXP void SciError(int n);
 
 
 #endif /* __ERROR_H__ */

@@ -10,10 +10,17 @@
  *
  */
 
+#ifndef __SETENVTCL_H__
+#define __SETENVTCL_H__
+
+#include "dynlib_tclsci.h"
+
 /**
  * TODO : comment
  * @param string
  * @param value
  * @return
  */
-int setenvtcl(char *string,char *value);
+TCLSCI_IMPEXP int setenvtcl(char *string,char *value);
+
+#endif /* __SETENVTCL_H__ */

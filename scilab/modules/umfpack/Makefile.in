@@ -160,7 +160,7 @@ libsciumfpack_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsciumfpack_la_etc_DATA) $(libsciumfpack_la_root_DATA) \
 	$(libsciumfpack_la_sci_gateway_DATA)
 am__libsciumfpack_la_include_HEADERS_DIST = includes/gw_umfpack.h \
-	includes/with_umfpack.h
+	includes/with_umfpack.h includes/dynlib_umfpack.h
 libsciumfpack_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciumfpack_la_include_HEADERS)
 ETAGS = etags
@@ -456,7 +456,8 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 #### umfpack : include files ####
 @UMFPACK_TRUE@libsciumfpack_la_includedir = $(pkgincludedir)/umfpack
 @UMFPACK_TRUE@libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
-@UMFPACK_TRUE@includes/with_umfpack.h
+@UMFPACK_TRUE@includes/with_umfpack.h \
+@UMFPACK_TRUE@includes/dynlib_umfpack.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

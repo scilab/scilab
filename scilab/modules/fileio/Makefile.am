@@ -157,6 +157,7 @@ includes/mseek.h \
 includes/deleteafile.h \
 includes/readline.h \
 includes/cluni0.h \
+includes/dynlib_fileio.h \
 includes/scicurdir.h
 
 include $(top_srcdir)/Makefile.incl.am

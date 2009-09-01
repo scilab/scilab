@@ -14,13 +14,14 @@
 #ifndef __INITIALIZEWINDOWS_TOOLS_H__
 #define __INITIALIZEWINDOWS_TOOLS_H__
 
+#include "dynlib_windows_tools.h"
 #include "BOOL.h" /* BOOL */
 
 /**
 * Initialize Windows_tools module
 * @return TRUE or FALSE
 */
-BOOL InitializeWindows_tools(void);
+WINDOWS_TOOLS_IMPEXP BOOL InitializeWindows_tools(void);
 
 #endif /* __INITIALIZEWINDOWS_TOOLS_H__ */
 /*--------------------------------------------------------------------------*/ 

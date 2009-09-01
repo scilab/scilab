@@ -12,20 +12,22 @@
 
 #ifndef __CALLSCILAB__
 #define __CALLSCILAB__
-#include "machine.h"
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /*--------------------------------------------------------------------------*/
+#include "dynlib_call_scilab.h"
+#include "machine.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 /**
  * Disable TCL/TK and graphic interfaces 
  * Scilab no GUI no TCL/TK "kernel mode" 
 */
-void DisableInteractiveMode(void);
+CALL_SCILAB_IMPEXP void DisableInteractiveMode(void);
 
 /**
  * Initialize Scilab
@@ -34,21 +36,21 @@ void DisableInteractiveMode(void);
  * @param Stacksize : Default --> NULL 
  * @return TRUE if it is OK else FALSE
 */
-BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
+CALL_SCILAB_IMPEXP BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize);
 
 /**
  * Terminate Scilab
  * @param ScilabQuit path & filename of scilab.quit : Default --> NULL 
  * @return TRUE if it is OK else FALSE 
 */
-BOOL TerminateScilab(char *ScilabQuit);
+CALL_SCILAB_IMPEXP BOOL TerminateScilab(char *ScilabQuit);
 
 /**
  * Send a job to scilab 
  * @param job the Scilab Job
  * @return error code operation 0 : OK
 */
-int SendScilabJob(char *job); 
+CALL_SCILAB_IMPEXP int SendScilabJob(char *job); 
 
 /**
  * Send jobs to scilab 
@@ -60,7 +62,7 @@ int SendScilabJob(char *job);
  * @endcode
  * @return last error code operation 0 : OK
 **/
-int SendScilabJobs(char **jobs,int numberjobs);
+CALL_SCILAB_IMPEXP int SendScilabJobs(char **jobs,int numberjobs);
 
 /**
  * Returns last job send to scilab by SendScilabJobs or SendScilabJob
@@ -82,18 +84,18 @@ int SendScilabJobs(char **jobs,int numberjobs);
  * @endcode
  * @return 
 **/
-BOOL GetLastJob(char *JOB,int nbcharsJOB);
+CALL_SCILAB_IMPEXP BOOL GetLastJob(char *JOB,int nbcharsJOB);
 
 /**
 * This procedure is the entry point to Scilab's event loop 
 */
-void ScilabDoOneEvent(void);
+CALL_SCILAB_IMPEXP void ScilabDoOneEvent(void);
 
 /**
  * Get the information is a graphic windows is opened or not
  * @Return Returns TRUE if a graphic windows is opened 
 */
-int ScilabHaveAGraph(void);
+CALL_SCILAB_IMPEXP int ScilabHaveAGraph(void);
 
 /********************* DATATYPES MANAGEMENT FUNCTIONS ************/
 

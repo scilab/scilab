@@ -112,6 +112,7 @@ includes/stricmp.h includes/strsubst.h \
 includes/code2str.h \
 includes/NumTokens.h \
 includes/StringConvert.h \
-includes/scistrtostr.h
+includes/scistrtostr.h \
+includes/dynlib_string.h
 
 include $(top_srcdir)/Makefile.incl.am

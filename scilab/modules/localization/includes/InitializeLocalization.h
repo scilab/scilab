@@ -12,10 +12,10 @@
 
 #ifndef __INITIALIZELOCALIZATION_H__
 #define __INITIALIZELOCALIZATION_H__
-
+#include "dynlib_localization.h"
 #include "BOOL.h"
 
-BOOL InitializeLocalization(void);
+LOCALIZATION_IMPEXP BOOL InitializeLocalization(void);
 
 #endif /* __INITIALIZELOCALIZATION_H__ */
 /*--------------------------------------------------------------------------*/ 

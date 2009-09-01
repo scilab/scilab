@@ -88,6 +88,7 @@ sci_gateway/c/sci_zheev.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
@@ -126,6 +127,9 @@ libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xm
 libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h \
-includes/issymmetric.h
+includes/issymmetric.h \
+includes/dynlib_linear_algebra.h \
+includes/gschur.h \
+includes/schur.h
 
 include $(top_srcdir)/Makefile.incl.am

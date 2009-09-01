@@ -12,13 +12,13 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __MTELL_H__
 #define __MTELL_H__
-
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
 * tell function 
 */
-void C2F(mtell) (int *fd, double *offset, int *err);
+FILEIO_IMPEXP void C2F(mtell) (int *fd, double *offset, int *err);
 
 #endif /* __MTELL_H__ */
 /*--------------------------------------------------------------------------*/

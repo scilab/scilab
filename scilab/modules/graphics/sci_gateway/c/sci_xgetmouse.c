@@ -18,7 +18,7 @@
 /* desc : interface for sci_xgetmouse routine                             */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xgetmouse.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h" /* sciGetNum */
 #include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */

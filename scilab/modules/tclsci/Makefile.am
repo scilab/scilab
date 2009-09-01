@@ -255,10 +255,11 @@ includes/TCL_Global.h \
 includes/ScilabEval.h \
 includes/gw_tclsci.h \
 includes/InitializeTclTk.h \
-includes/sci_TCL_SetVar.h \
 includes/TerminateTclTk.h \
 includes/GlobalTclInterp.h \
-includes/withtk.h
+includes/withtk.h \
+includes/dynlib_tclsci.h
+
 
 include $(top_srcdir)/Makefile.incl.am
 

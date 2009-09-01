@@ -12,13 +12,13 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __DELFILE_H__
 #define __DELFILE_H__
-
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
 * delete a file in the files table
 */
-void C2F(delfile)(int *fd);
+FILEIO_IMPEXP void C2F(delfile)(int *fd);
 
 #endif /* __DELFILE_H__ */
 /*--------------------------------------------------------------------------*/

@@ -16,8 +16,7 @@
 /* desc : interface for matplot1 routine                                  */
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
-#include "sci_matplot.h"
-#include "sci_demo.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 
 /*--------------------------------------------------------------------------*/

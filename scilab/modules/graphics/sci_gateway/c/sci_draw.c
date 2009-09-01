@@ -16,7 +16,7 @@
 /* desc : interface for draw routine                                      */
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
-#include "sci_draw.h"
+#include "gw_graphics.h"
 #include "HandleManagement.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
