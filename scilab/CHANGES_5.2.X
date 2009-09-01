@@ -1,10 +1,13 @@
                Changes between version 5.1.X and 5.2.0 of Scilab
                =================================================
 
-Scilab toolboxes features:
-==========================
 
-* A new API called api_scilab is available. This C API has many advantages:
+Extend of Scilab :
+==================
+
+* A new API called api_scilab is available. This API provides functions to
+  read/write data from/to Scilab memory.
+  It provides many advantages:
   - manages all Scilab data types
   - consistency over all data types
   - will be maintained over future versions of Scilab
