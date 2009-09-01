@@ -93,7 +93,9 @@ endif
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 
-libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(srcdir)/includes/ 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -112,6 +114,6 @@ libscigraphic_export_la_sci_gateway_DATA = sci_gateway/graphic_export_gateway.xm
 #### graphic_export : include files ####
 libscigraphic_export_la_includedir=$(pkgincludedir)/graphic_export
 libscigraphic_export_la_include_HEADERS = includes/gw_graphic_export.h \
-includes/dynlib_grahic_export.h
+includes/dynlib_graphic_export.h
 
 include $(top_srcdir)/Makefile.incl.am
