@@ -611,7 +611,7 @@ if test "$rest" = "yes"; then
     fi
 
     case $sciarg in
-      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni|--debug|--context-dump|--display-tree|--parse-trace|--timed|--exec|--help)
+      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni|--debug|--context-dump|--display-tree|--parse-trace|--timed|--no-exec|--help)
 	      ;;
       -psn_*)
 	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
