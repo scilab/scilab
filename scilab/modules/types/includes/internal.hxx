@@ -48,7 +48,8 @@ namespace types
 			RealInternal,
 			RealFunction,
 			RealMacro,
-			RealPoly
+			RealPoly,
+			RealSinglePoly
     };
 
 		virtual ~InternalType(){};
@@ -72,10 +73,6 @@ namespace types
     bool isInt(void) { return (getType() == RealInt); }
     virtual Int* getAsInt(void) { return NULL; }
 
-    /* UInt */
-    bool isUInt(void) { return (getType() == RealUInt); }
-    virtual UInt* getAsUInt(void) { return NULL; }
-
     /* Bool */
     bool isBool(void) { return (getType() == RealBool); }
     virtual Bool* getAsBool(void) { return NULL; }
@@ -95,6 +92,10 @@ namespace types
 		bool isPoly(void) { return (getType() == RealPoly); }
 		virtual MatrixPoly* getAsPoly(void) { return NULL; }
 
+    /* Single Poly */
+		bool isSinglePoly(void) { return (getType() == RealSinglePoly); }
+    virtual Poly* getAsSinglePoly(void) { return NULL; }
+
 		virtual std::string	toString(int _iPrecison, int _iLineLen){return "Internal";}
 		virtual InternalType* clone(void) { return NULL; }
 
@@ -105,6 +106,9 @@ namespace types
 		bool	isDeletable(){return m_bAllowDelete;}
 		bool	isRef(int _iRef = 0){return m_iRef > _iRef;}
 
+
+		virtual bool operator==(const InternalType& it){return (getType() == ((InternalType*)&it)->getType());}
+		virtual bool operator!=(const InternalType& it){return !(*this == it);}
   protected :
     InternalType() {
 			m_iRef = 0;

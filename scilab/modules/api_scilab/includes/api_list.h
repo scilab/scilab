@@ -16,14 +16,15 @@
 extern "C" {
 #endif
 
+#include "version.h"
+#include "dynlib_api_scilab.h"
+#include "doublecomplex.h"
+
 #if SCI_VERSION_MAJOR > 5
 	#define __SCILAB_INT64__
 #endif
 
-#include "dynlib_api_scilab.h"
-#include "doublecomplex.h"
-
-/**********************/
+	/**********************/
 /*   list functions   */
 /**********************/
 

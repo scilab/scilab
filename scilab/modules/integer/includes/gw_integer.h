@@ -19,14 +19,8 @@
 /*--------------------------------------------------------------------------*/ 
 int gw_integer(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sciint32)(char *fname,unsigned long fname_len);
-int C2F(sciint16)(char *fname,unsigned long fname_len);
-int C2F(sciint8)(char *fname,unsigned long fname_len);
 int C2F(sciinttype)(char *fname,unsigned long fname_len);
 int C2F(scidouble)(char *fname,unsigned long fname_len);
-int C2F(sciuint32)(char *fname,unsigned long fname_len);
-int C2F(sciuint16)(char *fname,unsigned long fname_len);
-int C2F(sciuint8)(char *fname,unsigned long fname_len);
 int C2F(scimgeti)(char *fname,unsigned long fname_len);
 int C2F(sciimput)(char *fname,unsigned long fname_len);
 int C2F(sciiconvert)(char *fname,unsigned long fname_len);
@@ -44,6 +38,17 @@ int C2F(sciip)(char *fname,unsigned long fname_len);
 int C2F(sciimatrix)(char *fname,unsigned long fname_len);
 int C2F(sciiprod)(char *fname,unsigned long fname_len);
 int C2F(sciicumprod)(char *fname,unsigned long fname_len);
+
+//YaSp
+int sci_int8(char *fname,int* _piKey);
+int sci_uint8(char *fname,int* _piKey);
+int sci_int16(char *fname,int* _piKey);
+int sci_uint16(char *fname,int* _piKey);
+int sci_int32(char *fname,int* _piKey);
+int sci_uint32(char *fname,int* _piKey);
+int sci_int64(char *fname,int* _piKey);
+int sci_uint64(char *fname,int* _piKey);
+
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_INTEGER__ */
 /*--------------------------------------------------------------------------*/

@@ -31,27 +31,27 @@ namespace types
       TypeUnsigned64 = 18
 		};
 
-    Int(char _cData);
-    Int(unsigned char _ucData);
-    Int(short _sData);
-    Int(unsigned short _usData);
-    Int(int _iData);
-    Int(unsigned int _uiData);
-    Int(long long _llData);
-    Int(unsigned long long _ullData);
+													Int(char _cData);
+													Int(unsigned char _ucData);
+													Int(short _sData);
+													Int(unsigned short _usData);
+													Int(int _iData);
+													Int(unsigned int _uiData);
+													Int(long long _llData);
+													Int(unsigned long long _ullData);
 
-		Int(int _iRows, int _iCols, IntType _itType);
+													Int(int _iRows, int _iCols, IntType _itType);
 
-		Int(int _iRows, int _iCols, char* _pcData);
-		Int(int _iRows, int _iCols, unsigned char* _pucData);
-		Int(int _iRows, int _iCols, short* _psData);
-		Int(int _iRows, int _iCols, unsigned short* _pusData);
-		Int(int _iRows, int _iCols, int* _piData);
-		Int(int _iRows, int _iCols, unsigned int* _puiData);
-		Int(int _iRows, int _iCols, long long* _pllData);
-		Int(int _iRows, int _iCols, unsigned long long* _pullData);
+													Int(int _iRows, int _iCols, char* _pcData);
+													Int(int _iRows, int _iCols, unsigned char* _pucData);
+													Int(int _iRows, int _iCols, short* _psData);
+													Int(int _iRows, int _iCols, unsigned short* _pusData);
+													Int(int _iRows, int _iCols, int* _piData);
+													Int(int _iRows, int _iCols, unsigned int* _puiData);
+													Int(int _iRows, int _iCols, long long* _pllData);
+													Int(int _iRows, int _iCols, unsigned long long* _pullData);
 
-		virtual ~Int();
+		virtual								~Int();
 
 		/*data management*/
 		void*									data_get(void) const;
@@ -94,7 +94,18 @@ namespace types
 		IntType								getIntType(void);
 
 		string								toString(int _iPrecision, int _iLineLen);
+		string								toString8(int _iPrecision, int _iLineLen);
+		string								toString16(int _iPrecision, int _iLineLen);
+		string								toString32(int _iPrecision, int _iLineLen);
+		string								toString64(int _iPrecision, int _iLineLen);
 
+		string								toStringUnsigned8(int _iPrecision, int _iLineLen);
+		string								toStringUnsigned16(int _iPrecision, int _iLineLen);
+		string								toStringUnsigned32(int _iPrecision, int _iLineLen);
+		string								toStringUnsigned64(int _iPrecision, int _iLineLen);
+
+		bool									operator==(const InternalType& it);
+		bool									operator!=(const InternalType& it);
   protected :
 		RealType							getType(void);
 

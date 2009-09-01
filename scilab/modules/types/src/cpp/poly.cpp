@@ -89,6 +89,11 @@ namespace types
 		}
 	}
 
+	Poly* Poly::getAsSinglePoly(void)
+	{
+		return this;
+	}
+
 	int Poly::rank_get()
 	{
 		return m_iRank;
@@ -219,7 +224,7 @@ namespace types
 
 	GenericType::RealType Poly::getType(void)
 	{
-		return RealPoly;
+		return RealSinglePoly;
 	}
 
 	bool Poly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI)
@@ -335,7 +340,7 @@ namespace types
 			{
 				int iWidth = 0, iPrec = 0;
 				bool bFP = false; // FloatingPoint
-				GetFormat(_pdblVal[i], _iPrecision, &iWidth, &iPrec, &bFP);
+				GetDoubleFormat(_pdblVal[i], _iPrecision, &iWidth, &iPrec, &bFP);
 
 				if(iLen + iWidth + 2 >= _iLineLen)
 				{//flush
@@ -359,7 +364,7 @@ namespace types
 					ostemp.str("\x00"); //reset stream
 					Add_Space(&ostemp, 12); //take from scilab ... why not ...
 				}
-				Add_Value(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
+				AddDoubleValue(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
 			
 				if(i != 0)
 				{
@@ -399,6 +404,47 @@ namespace types
 
 		delete[] piIndexExp;
 		return;
+	}
+
+	bool Poly::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealSinglePoly)
+		{
+			return false;
+		}
+
+		Poly* pP = pIT->getAsSinglePoly();
+
+		if(rank_get() != pP->rank_get())
+		{
+			return false;
+		}
+
+		double* pR1 = coef_real_get();
+		double *pR2 = pP->coef_real_get();
+
+		if(memcmp(pR1, pR2, sizeof(double) * rank_get()) != 0)
+		{
+			return false;
+		}
+
+		if(isComplex())
+		{
+			double* pI1 = coef_img_get();
+			double *pI2 = pP->coef_img_get();
+
+			if(memcmp(pI1, pI2, sizeof(double) * rank_get()) != 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool Poly::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
 	}
 }
 

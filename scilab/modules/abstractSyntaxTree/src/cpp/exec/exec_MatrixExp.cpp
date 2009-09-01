@@ -244,9 +244,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 		case GenericType::RealBool :
 			poResult = new Bool(_iRows, _iCols);
 			break;
-		case GenericType::RealUInt :
-			poResult = new UInt(_iRows, _iCols);
-			break;
 		case GenericType::RealInt :
 			poResult = new Int(_iRows, _iCols, _poSource->getAsInt()->getIntType());
 			break;

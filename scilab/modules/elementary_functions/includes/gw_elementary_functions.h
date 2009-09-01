@@ -27,7 +27,6 @@ int C2F(sci_chinesehat)(char *fname,unsigned long fname_len);
 int C2F(sci_testmatrix)(char *fname,unsigned long fname_len);
 int C2F(sci_zeros)(char *fname,unsigned long fname_len);
 int C2F(sci_tan)(char *fname,unsigned long fname_len);
-int C2F(sci_isequal)(char *fname,unsigned long fname_len);
 int C2F(sci_spones)(char *fname,unsigned long fname_len);
 int C2F(sci_isequalbitwise)(char *fname, unsigned long fname_len);
 int C2F(sci_sort)(char *fname, unsigned long fname_len);
@@ -56,6 +55,7 @@ int sci_gsort(char *fname, int* _piKey);
 int sci_imag(char *fname, int* _piKey);
 int sci_imult(char *fname, int* _piKey);
 int sci_int(char *fname, int* _piKey);
+//int sci_isequal(char *fname, int* _piKey); C++ interface
 int sci_isreal(char *fname, int* _piKey);
 int sci_kron(char *fname, int* _piKey);
 int sci_log(char *fname, int* _piKey);

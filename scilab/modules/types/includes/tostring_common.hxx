@@ -24,14 +24,22 @@ using namespace std;
 #define NO_SIGN											"  "
 #define MINUS_STRING								"- "
 #define PLUS_STRING									"+ "
+#define MINUS_STRING_INT						" -"
 #define SYMBOL_I										"i"
 
-void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
+/*int*/
+void GetIntFormat(long long _llVal, int *_piWidth);
+void AddIntValue(ostringstream *_postr, long long _llVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true);
+
+/*double*/
+void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
 void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true);
-void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
+void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true);
+void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
+void PrintDoubleVar(ostringstream *_postr,  double _dblVal);
+
+/*Common*/
 void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 void Add_Space(ostringstream *_postr, int _iSpace);
-void Print_Var(ostringstream *_postr,  double _dblVal);
 
 #endif /* __TOSTRING_COMMON_HXX__ */

@@ -42,6 +42,7 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("imult", &sci_imult, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("int", &sci_int, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("isreal", &sci_isreal, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("isequal", &sci_isequal, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("kron", &sci_kron, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("log", &sci_log, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("log1p", &sci_log1p, "elementary_function"));

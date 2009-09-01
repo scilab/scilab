@@ -339,4 +339,33 @@ namespace types
 		ostr << std::endl;
 		return ostr.str();
 	}
+
+	bool Bool::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealBool)
+		{
+			return false;
+		}
+
+		Bool* pb = pIT->getAsBool();
+
+		if(pb->rows_get() != rows_get() || pb->cols_get() != cols_get())
+		{
+			return false;
+		}
+
+		bool* pbool = pb->bool_get();
+
+		if(memcmp(m_pbData, pbool, size_get() * sizeof(bool)) != 0)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	bool Bool::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
+	}
 }

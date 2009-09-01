@@ -19,7 +19,6 @@ namespace types
   class Double;
   class Float;
   class Int;
-	class UInt;
   class Bool;
 	class MatrixType;
 	class GenericType;

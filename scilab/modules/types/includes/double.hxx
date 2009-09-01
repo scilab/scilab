@@ -22,13 +22,13 @@ namespace types
 	class EXTERN_TYPES Double : public GenericType
 	{
   public :
-		virtual ~Double();
+		virtual				~Double();
 
-		Double(double _dblReal);
-		Double(double _dblReal, double _dblImg);
-    Double(int _iRows, int _iCols, bool _bComplex = false);
-    Double(int _iRows, int _iCols, double **_pdblReal);
-    Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+									Double(double _dblReal);
+									Double(double _dblReal, double _dblImg);
+									Double(int _iRows, int _iCols, bool _bComplex = false);
+									Double(int _iRows, int _iCols, double **_pdblReal);
+									Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
 		/*data management*/
 		double*				real_get() const;
@@ -58,6 +58,8 @@ namespace types
 		Double*				resize(int _iNewRows, int _iNewCols);
 		bool					insert(int _iRows, int _iCols, Double *_poSource);
 
+		bool					operator==(const InternalType& it);
+		bool					operator!=(const InternalType& it);
 
   protected :
 		RealType			getType(void);
@@ -71,9 +73,9 @@ namespace types
 		void					CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
   private :
-    double	*m_pdblReal;
-    double	*m_pdblImg;
-		bool		m_bComplex;
+    double*				m_pdblReal;
+    double*				m_pdblImg;
+		bool					m_bComplex;
 	};
 }
 

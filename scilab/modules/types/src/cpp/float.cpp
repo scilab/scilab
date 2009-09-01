@@ -321,5 +321,47 @@ namespace types
 
 		return true;	
 	}
+
+	bool Float::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealFloat)
+		{
+			return false;
+		}
+
+		Float* pf = pIT->getAsFloat();
+
+		if(pf->rows_get() != rows_get() || pf->cols_get() != cols_get())
+		{
+			return false;
+		}
+
+		if(pf->isComplex() != isComplex())
+		{
+			return false;
+		}
+
+		float *pfReal = pf->real_get();
+		if(memcmp(m_pfReal, pfReal, size_get() * sizeof(float)) != 0)
+		{
+			return false;
+		}
+
+		if(isComplex())
+		{
+			float *pfImg = pf->img_get();
+			if(memcmp(m_pfImg, pfImg, size_get() * sizeof(float)) != 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool Float::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
+	}
 }
 

@@ -10,7 +10,11 @@
 *
 */
 
+#include <sstream>
 #include "int.hxx"
+#include "tostring_common.hxx"
+
+using namespace std;
 
 namespace types
 {
@@ -554,49 +558,1016 @@ namespace types
 
 	string Int::toString(int _iPrecision, int _iLineLen)
 	{
-/*		Int *pi = (*it_scope).second->getAsInt();
-		ostr << "( " << pi->rows_get() << ", " << pi->cols_get() << " )" << std::endl;
-		int iCols = pi->cols_get();
-		int iRows = pi->rows_get();
-		if(iRows == 1 && iCols == 1)
+		string str;
+
+		switch(m_itType)
 		{
-			ostr << pi->real_get(0,0);
-			if(pi->isComplex())
+		case Type8 :
+			str = toString8(_iPrecision, _iLineLen);
+			break;
+		case TypeUnsigned8 :
+			str = toStringUnsigned8(_iPrecision, _iLineLen);
+			break;
+		case Type16 :
+			str = toString16(_iPrecision, _iLineLen);
+			break;
+		case TypeUnsigned16 :
+			str = toStringUnsigned16(_iPrecision, _iLineLen);
+			break;
+		case Type32 :
+			str = toString32(_iPrecision, _iLineLen);
+			break;
+		case TypeUnsigned32 :
+			str = toStringUnsigned32(_iPrecision, _iLineLen);
+			break;
+		case Type64 :
+			str = toString64(_iPrecision, _iLineLen);
+			break;
+		case TypeUnsigned64 :
+			str = toStringUnsigned64(_iPrecision, _iLineLen);
+			break;
+		default :
+			// Oo
+			break;
+		}
+
+		return str;
+	}
+
+	string Int::toString8(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_pcData[0], &iWidth);
+			AddIntValue(&ostr, m_pcData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
 			{
-				ostr << (pi->img_get(0,0) < 0 ? " " : " +") << pi->img_get(0,0) << "i";
+				int iWidth = 0;
+				GetIntFormat(m_pcData[i], &iWidth);
+				AddIntValue(&ostr, m_pcData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pcData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_pcData[i], iWidth);
 			}
 
-			ostr << std::endl;
-		}
-		else
-		{
-			ostr << "[ ";
-			for(int r = 0 ; r < iRows ; r++)
+			if(iLastVal != 0)
 			{
-				for(int c = 0 ; c < iCols ; c++)
-				{
-					ostr << pi->real_get(r, c);
-					if(pi->isComplex())
-					{
-						ostr << (pi->img_get(r, c) < 0 ? " " : " +") << pi->img_get(r, c) << "i";
-					}
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
 
-					if((c + 1) != iCols || (r + 1) != iRows)
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_pcData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
 					{
-						ostr << " , ";
+						piSize[iCols1] = iCurrentLen;
 					}
 				}
-				ostr  << std::endl;
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_pcData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_pcData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
 			}
-			ostr << " ]" << std::endl;
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_pcData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_pcData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
 		}
-*/
-		return "TODO Int print\n";
+		return ostr.str();
+	}
+
+	string Int::toString16(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_psData[0], &iWidth);
+			AddIntValue(&ostr, m_psData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_psData[i], &iWidth);
+				AddIntValue(&ostr, m_psData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_psData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_psData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_psData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_psData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_psData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_psData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_psData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toString32(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_piData[0], &iWidth);
+			AddIntValue(&ostr, m_piData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_piData[i], &iWidth);
+				AddIntValue(&ostr, m_piData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_piData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_piData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_piData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_piData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_piData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_piData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_piData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toString64(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_pllData[0], &iWidth);
+			AddIntValue(&ostr, m_pllData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pllData[i], &iWidth);
+				AddIntValue(&ostr, m_pllData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pllData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_pllData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_pllData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_pllData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_pllData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_pllData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_pllData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toStringUnsigned8(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_pucData[0], &iWidth);
+			AddIntValue(&ostr, m_pucData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pucData[i], &iWidth);
+				AddIntValue(&ostr, m_pucData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pucData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_pucData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_pucData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_pucData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_pucData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_pucData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_pucData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toStringUnsigned16(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_pusData[0], &iWidth);
+			AddIntValue(&ostr, m_pusData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pusData[i], &iWidth);
+				AddIntValue(&ostr, m_pusData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pusData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_pusData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_pusData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_pusData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_pusData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_pusData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_pusData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toStringUnsigned32(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_puiData[0], &iWidth);
+			AddIntValue(&ostr, m_puiData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_puiData[i], &iWidth);
+				AddIntValue(&ostr, m_puiData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_puiData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_puiData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_puiData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_puiData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_puiData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_puiData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_puiData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
+	}
+
+	string Int::toStringUnsigned64(int _iPrecision, int _iLineLen)
+	{
+		ostringstream ostr;
+		if(cols_get() == 1 && rows_get() == 1)
+		{//scalar
+			int iWidth = 0;
+			GetIntFormat(m_pullData[0], &iWidth);
+			AddIntValue(&ostr, m_pullData[0], iWidth);
+			ostr << endl;
+		}
+		else if(cols_get() == 1)
+		{//column vector
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pullData[i], &iWidth);
+				AddIntValue(&ostr, m_pullData[i], iWidth);
+				ostr << endl;
+			}
+		}
+		else if(rows_get() == 1)
+		{//row vector
+			ostringstream ostemp;
+			int iLastVal = 0;
+
+			for(int i = 0 ; i < cols_get() ; i++)
+			{
+				int iWidth = 0;
+				GetIntFormat(m_pullData[i], &iWidth);
+				int iLen = iWidth + (int)ostemp.str().size();
+				if(iLen > _iLineLen)
+				{//Max length, new line
+					ostr << endl << "       column " << iLastVal + 1 << " to " << i << endl << endl;
+					ostr << ostemp.str() << endl;
+					ostemp.str("\x00");
+					iLastVal = i;
+				}
+
+				AddIntValue(&ostemp, m_pullData[i], iWidth);
+			}
+
+			if(iLastVal != 0)
+			{
+				ostr << endl << "       column " << iLastVal + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostemp << endl;
+			ostr << ostemp.str();
+		}
+		else // matrix
+		{
+			ostringstream ostemp;
+			int iLastVal = 0;
+			int iLen = 0;
+			int iLastCol = 0;
+
+			//Array with the max printed size of each col
+			int *piSize = new int[cols_get()];
+			memset(piSize, 0x00, cols_get() * sizeof(int));
+
+			//compute the row size for padding for each printed bloc.
+			for(int iCols1 = 0 ; iCols1 < cols_get() ; iCols1++)
+			{
+				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
+				{
+					int iWidth			= 0;
+					int iCurrentLen = 0;
+
+					GetIntFormat(m_pullData[iCols1 * rows_get() + iRows1], &iWidth);
+					iCurrentLen	= iWidth ;
+
+					if(iCurrentLen > piSize[iCols1])
+					{
+						piSize[iCols1] = iCurrentLen;
+					}
+				}
+
+				if(iLen + piSize[iCols1] + SIGN_LENGTH > _iLineLen)
+				{//find the limit, print this part
+					for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+					{
+						for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+						{
+							int iWidth	= 0;
+							GetIntFormat(m_pullData[iCols2 * rows_get() + iRows2], &iWidth);
+							AddIntValue(&ostemp, m_pullData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+						}
+						ostemp << endl;
+					}
+					iLen = 0;
+					ostr << endl << "       column " << iLastCol + 1 << " to " << iCols1 << endl << endl;;
+					ostr << ostemp.str();
+					ostemp.str("");
+					iLastCol = iCols1;
+
+				}
+				iLen += piSize[iCols1] + SIGN_LENGTH;
+			}
+
+			for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
+			{
+				for(int iCols2 = iLastCol ; iCols2 < cols_get() ; iCols2++)
+				{
+					int iWidth			= 0;
+					GetIntFormat(m_pullData[iCols2 * rows_get() + iRows2], &iWidth);
+					AddIntValue(&ostemp, m_pullData[iCols2 * rows_get() + iRows2], piSize[iCols2]);
+				}
+				ostemp << endl;
+			}
+			if(iLastCol != 0)
+			{
+				ostr << endl << "       column " << iLastCol + 1 << " to " << cols_get() << endl << endl;
+			}
+			ostr << ostemp.str();
+		}
+		return ostr.str();
 	}
 
 	Int::IntType Int::getIntType(void)
 	{
 		return m_itType;
+	}
+
+	bool Int::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealInt)
+		{
+			return false;
+		}
+
+		Int* pi = pIT->getAsInt();
+
+		if(pi->getIntType() != getIntType())
+		{
+			return false;
+		}
+
+		if(pi->rows_get() != rows_get() || pi->cols_get() != cols_get())
+		{
+			return false;
+		}
+
+		void *pv1 = data_get();
+		void *pv2 = pi->data_get();
+		if(memcmp(pv1, pv2, size_get() * (m_itType % 10)) != 0)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	bool Int::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
 	}
 }
 

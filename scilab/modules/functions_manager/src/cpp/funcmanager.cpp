@@ -267,6 +267,7 @@ bool FuncManager::CreateModuleList(void)
 	bool bRet = true;
 	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("integer", &IntegerModule::Load));
 	return bRet;
 }
 

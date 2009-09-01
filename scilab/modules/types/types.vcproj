@@ -362,10 +362,6 @@
 				RelativePath=".\src\cpp\types.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\src\cpp\uint.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -430,10 +426,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\types.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\uint.hxx"
 				>
 			</File>
 		</Filter>

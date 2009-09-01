@@ -64,7 +64,7 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL ,""}, //number_properties
 	{NULL ,""}, //nearfloat
 	{NULL ,""}, //dsearch
-	{C2F(sci_isequal),"isequal"},
+	{NULL, ""},
 	{C2F(sci_spones),"spones"},
 	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},

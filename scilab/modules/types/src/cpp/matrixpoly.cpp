@@ -799,5 +799,42 @@ namespace types
 		return true;
 	}
 
+	bool MatrixPoly::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealPoly)
+		{
+			return false;
+		}
+
+		MatrixPoly* pM = pIT->getAsPoly();
+
+		if(pM->rows_get() != rows_get() || pM->cols_get() != cols_get())
+		{
+			return false;
+		}
+
+		if(pM->isComplex() != isComplex())
+		{
+			return false;
+		}
+
+		for(int i = 0 ; i < size_get() ; i++)
+		{
+			Poly* p1 = poly_get(i);
+			Poly* p2 = pM->poly_get(i);
+
+			if(*p1 != *p2)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool MatrixPoly::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
+	}
 }
 

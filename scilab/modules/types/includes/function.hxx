@@ -29,6 +29,7 @@ namespace types
     enum ReturnValue
     {
       OK,
+			OK_NoResult,
       Error
     };
 
