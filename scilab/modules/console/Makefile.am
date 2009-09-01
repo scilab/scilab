@@ -113,7 +113,7 @@ includes/InitializeConsole.h \
 includes/PromptToHome.h \
 includes/ScilabLinesUpdate.h \
 includes/SetConsolePrompt.h \
-includes/ConsoleIsWaitingForInput.h \
+includes/ConsoleIsWaitingForInput.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, add USEANT=1
