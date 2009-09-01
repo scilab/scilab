@@ -23,6 +23,7 @@ namespace types
 	class MatrixType;
 	class GenericType;
 	class ImplicitList;
+	class Callable;
 	class Function;
 	class Macro;
 	class Dollar;

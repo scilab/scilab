@@ -16,6 +16,7 @@
 #include <string>
 #include <cstdio>
 #include "types.hxx"
+#include "callable.hxx"
 #include <map>
 
 #ifdef _MSC_VER
@@ -23,16 +24,9 @@
 #endif
 namespace types
 {
-  class EXTERN_TYPES Function : public InternalType
+  class EXTERN_TYPES Function : public Callable
   {
   public :
-    enum ReturnValue
-    {
-      OK,
-			OK_NoResult,
-      Error
-    };
-
     Function * 	getAsFunction(void);
     RealType getType(void) { return RealFunction; }
 
@@ -42,7 +36,7 @@ namespace types
     void					whoAmI();
     virtual ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
 
-    Function() {};
+    Function():Callable() {};
     Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);
     virtual ~Function();
     //private:

@@ -27,6 +27,7 @@
 #include "double.hxx"
 #include "float.hxx"
 #include "bool.hxx"
+#include "callable.hxx"
 #include "function.hxx"
 #include "poly.hxx"
 #include "matrixpoly.hxx"

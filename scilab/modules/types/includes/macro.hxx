@@ -14,30 +14,25 @@
 #define __MACRO_HXX__
 
 #include <list>
+#include "callable.hxx"
 #include "types.hxx"
 #include "symbol.hxx"
 #include "seqexp.hxx"
 
 namespace types
 {
-  class EXTERN_TYPES Macro : public InternalType
+  class EXTERN_TYPES Macro : public Callable
   {
   public :
-    enum ReturnValue
-    {
-      AllGood,
-      WrongParamNumber,
-      WrongParamType
-    };
-
 		Macro *getAsMacro(void);
     RealType getType(void);
 
     void whoAmI();
 
-		Macro(){};
+		Macro(): Callable(){};
 		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
 		virtual ~Macro(){};
+                ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   
   public :
     std::list<symbol::Symbol>	*m_inputArgs;
