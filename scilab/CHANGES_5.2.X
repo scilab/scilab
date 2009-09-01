@@ -1,6 +1,26 @@
                Changes between version 5.1.X and 5.2.0 of Scilab
                =================================================
 
+Scilab toolboxes features:
+==========================
+
+* A new API called api_scilab is available. This C API has many advantages:
+  - manages all Scilab data types
+  - consistency over all data types
+  - will be maintained over future versions of Scilab
+  - fully documented
+  - fully tested by unitary tests
+
+  Note that all other Scilab API (straight access to the Scilab stack, stack1,
+  stack2 and stack3) will be maintained in the Scilab 5.X familly but most of
+  them will be dropped in the 6 family.
+
+
+* In the enum sci_types which list all Scilab datatypes, the type 
+  "sci_lufact_pointer" has been renamed to "sci_pointer".
+  A define of "sci_lufact_pointer" on "sci_pointer" has been added to backward
+  compabilities.
+
 Compilation:
 ============
 
