@@ -128,7 +128,6 @@ static int GREP_NEW(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 		{
 			int Output_Start = 0;
 			int Output_End = 0;
-			save = (char *)MALLOC( sizeof(char) * ( strlen(Inputs_param_two[x]) +1) );
 			save = strdup(Inputs_param_two[x]);
 			answer = pcre_private(Inputs_param_one[y],save,&Output_Start,&Output_End);
 
