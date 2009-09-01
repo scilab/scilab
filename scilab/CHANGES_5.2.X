@@ -168,6 +168,10 @@ Optimization:
  - Created optimsimplex component to build direct search algorithms
  - Created fminsearch optimization function
  
+Linear algebra
+=============
+ - Clarified documentation for lu function.
+
 Bug fixes:
 ==========
 
