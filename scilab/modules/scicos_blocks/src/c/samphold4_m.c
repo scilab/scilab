@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void samphold4_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void samphold4_m(scicos_block *block,int flag)
 {
 	/* c     Copyright INRIA
 

@@ -27,10 +27,11 @@
 #include "cvstr.h"
 #include "mget.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 static int worldsize(char type[4]);
 /*--------------------------------------------------------------------------*/ 
-void readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+SCICOS_BLOCKS_IMPEXP void readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
      /*
      ipar[1]   = lfil : file name length

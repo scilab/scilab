@@ -29,6 +29,7 @@
 #ifndef __SCO_MEMORYSCOPE_H__
 #define __SCO_MEMORYSCOPE_H__
 
+#include "dynlib_scicos_blocks.h"
 #include"scoBase.h"
 
 /**
@@ -38,21 +39,21 @@
 \param number_of_subwin Number of Subwin in the whole Scope
 \param number_of_curves_by_subwin Number of Curves for the subwin[i]
 */
-void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin);
+SCICOS_BLOCKS_IMPEXP void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin);
 
 /**
 \brief Retrieve the whole ScopeMemory and put in the pScopeMemory
 \param block a pointer on a scicos_block, typically the bloc in agument of the computational function
 \param pScopeMemory a pointer on a pointer of a ScopeMemory, typically &pScopeMemory where pScopeMemory is a ScopeMemory *
 */
-void scoRetrieveScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory);
+SCICOS_BLOCKS_IMPEXP void scoRetrieveScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory);
 
 /**
 \brief Free the ScopeMemory which has been allocated by scicos_malloc in the scoInitScopeMemory
 \param block a pointer on a scicos_block, typically the bloc in agument of the computational function
 \param pScopeMemory a pointer on a pointer of a ScopeMemory, typically &pScopeMemory where pScopeMemory is a ScopeMemory *
 */
-void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory);
+SCICOS_BLOCKS_IMPEXP void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory);
 
 /**
 \brief Realloc to extend the size of the longdraw in the memory
@@ -61,6 +62,6 @@ void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory);
 \param buffer_size Buffer size which would be added to the longdraw
 \param plus An other buffer size which is a security
 */
-void scoReallocLongDraw(scoGraphicalObject pLongDraw, int NbrPtsLong, int buffer_size, int plus);
+SCICOS_BLOCKS_IMPEXP void scoReallocLongDraw(scoGraphicalObject pLongDraw, int NbrPtsLong, int buffer_size, int plus);
 
 #endif

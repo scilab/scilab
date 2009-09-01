@@ -21,12 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
 extern double atanh(double x);
 #endif
 /*--------------------------------------------------------------------------*/ 
-void atanh_blk(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void atanh_blk(scicos_block *block,int flag)
 {
   int j = 0;
   if(flag==1){

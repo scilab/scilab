@@ -21,13 +21,14 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /*     February 2008 */
 /* Scicos block simulator */
 /*--------------------------------------------------------------------------*/ 
 #define NX      block->outsz[0]
 /*--------------------------------------------------------------------------*/ 
-void constraint_c(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void constraint_c(scicos_block *block,int flag)
 {
   double *y = NULL,*y2 = NULL,*u = NULL;
   int i = 0;

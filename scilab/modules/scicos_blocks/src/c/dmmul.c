@@ -23,6 +23,7 @@
 #include <stdio.h> /* printf */
 #endif
 #include "scicos_math.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /* Table of constant values */
 static double c_b4 = 1.;
@@ -34,7 +35,7 @@ static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alp
 static long int lsame(char *ca, char *cb);
 static int xerbla(char *srname, int *info);
 /*--------------------------------------------------------------------------*/ 
-int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
+SCICOS_BLOCKS_IMPEXP int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
 	  int *nc, int *l, int *m, int *n)
 {
   int a_dim1 = 0, a_offset = 0, b_dim1 = 0, b_offset = 0, c_dim1 = 0, c_offset = 0;

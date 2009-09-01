@@ -23,8 +23,9 @@
 #include "scicos_block.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void edgetrig(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void edgetrig(scicos_block *block,int flag)
 {
   double z= block->z[0],u=block->inptr[0][0];
   if(flag==2||flag==6){

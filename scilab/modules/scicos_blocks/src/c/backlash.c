@@ -22,8 +22,10 @@
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/ 
-void backlash(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void backlash(scicos_block *block,int flag)
 { 
   double* rw = NULL,t  = 0.;
   if (flag == 4){/* the workspace is used to store previous values */

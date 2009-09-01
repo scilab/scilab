@@ -19,7 +19,9 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
-void zcross2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+#include "dynlib_scicos_blocks.h"
+
+SCICOS_BLOCKS_IMPEXP void zcross2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	ipar,nipar,u,nu,g,ng)
 
 int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,*nu,*ng;

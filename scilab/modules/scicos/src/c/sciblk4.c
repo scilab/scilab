@@ -24,6 +24,7 @@
 #include "stack-c.h"
 #include "scicos_block4.h"
 #include "Scierror.h"
+#include "scicos.h"
 #include "sciblk4.h"
 #include "import.h"
 #include "createblklist.h"

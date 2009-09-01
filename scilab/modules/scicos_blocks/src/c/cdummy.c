@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h> /* sin */
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void cdummy(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void cdummy(scicos_block *block,int flag)
 /*------------------------------------------------
  *     Scicos block simulator 
  *     Dummy state space x'=sin(t)

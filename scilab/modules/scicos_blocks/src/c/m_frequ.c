@@ -20,9 +20,13 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void m_frequ(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void m_frequ(scicos_block *block,int flag)
 {
   double *mat = NULL;
   double *Dt = NULL;

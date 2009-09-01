@@ -21,10 +21,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(wmmul)();
 /*--------------------------------------------------------------------------*/ 
-void matzmul_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matzmul_m(scicos_block *block,int flag)
 {
 	int mu1=GetInPortRows(block,1);
 	int mu2=GetInPortRows(block,2);

@@ -19,7 +19,9 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
-void switchn(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+#include "dynlib_scicos_blocks.h"
+
+SCICOS_BLOCKS_IMPEXP void switchn(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 
 int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;

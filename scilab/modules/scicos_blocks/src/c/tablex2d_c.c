@@ -23,6 +23,7 @@
 #include "scicos_block4.h"
 #include "scicos_indexfinder.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 #define InterpExtrap    0
 #define InterpEndValue  1
@@ -32,7 +33,7 @@
 /*--------------------------------------------------------------------------*/ 
 double computeZ(double *X, double *Y, double *Z, int nx, int ny, int EXTRM, double x, double y);
 /*--------------------------------------------------------------------------*/ 
-void tablex2d_c(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void tablex2d_c(scicos_block *block,int flag)
 {
 	double *y = NULL, *u1 = NULL, *u2 = NULL;
 	double *X = NULL, *Y = NULL, *Z = NULL;

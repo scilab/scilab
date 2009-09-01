@@ -23,7 +23,11 @@
 #include <math.h>
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(zlacpy)();
 extern int C2F(zgetrf)();
@@ -50,7 +54,7 @@ typedef struct
 	double *yrT,*yiT;
 } mat_bksl_struct ;
 /*--------------------------------------------------------------------------*/ 
-void matz_div(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_div(scicos_block *block,int flag)
 {
 	double *u1r = NULL,*u1i = NULL;
 	double *u2r = NULL,*u2i = NULL;

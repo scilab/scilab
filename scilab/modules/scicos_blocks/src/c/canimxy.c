@@ -37,11 +37,12 @@
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   /* Declarations*/
   int i = 0;
@@ -198,7 +199,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void canimxy(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void canimxy(scicos_block * block, int flag)
 {
   /*Declarations*/
   ScopeMemory * pScopeMemory = NULL;

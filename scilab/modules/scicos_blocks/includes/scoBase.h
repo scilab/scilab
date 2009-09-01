@@ -34,6 +34,8 @@
 
 #include "machine.h"
 
+#include "dynlib_scicos_blocks.h"
+
 /*Graphic Library*/
 #include "SetProperty.h"
 #include "GetProperty.h"

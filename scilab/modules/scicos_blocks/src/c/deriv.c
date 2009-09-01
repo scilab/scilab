@@ -22,8 +22,11 @@
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/ 
-void deriv(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void deriv(scicos_block *block,int flag)
 { 
   double* rw = NULL;
   double t = 0.,dt = 0.;

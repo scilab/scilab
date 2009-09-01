@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void bit_set_32(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void bit_set_32(scicos_block *block,int flag)
 {
   int n,m,i;
   long *opar;

@@ -33,6 +33,7 @@
 #include "scoSetProperty.h"
 #include "sciprint.h"
 #include "HandleManagement.h"
+#include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

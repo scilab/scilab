@@ -22,13 +22,15 @@
 #include <stdio.h>
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
-#include "../../../linear_algebra/includes/issymmetric.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dlacpy)();
 extern int C2F(dgeev)();
 extern int C2F(dlaset)();
-extern int C2F(issymmetric)();
 extern int C2F(dsyev)();
 /*--------------------------------------------------------------------------*/ 
 typedef struct
@@ -43,7 +45,7 @@ typedef struct
 	double *dwork1;
 } mat_vps_struct ;
 /*--------------------------------------------------------------------------*/ 
-void mat_vpv(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mat_vpv(scicos_block *block,int flag)
 {
  double *u = NULL;
  double *y1 = NULL;

@@ -21,11 +21,13 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <stdio.h>
+#include "scicos.h"
 #include "scicos_block4.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void matmul2_e(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matmul2_e(scicos_block *block,int flag)
 {
  if (flag==1){
   int i = 0;

@@ -32,6 +32,7 @@
 #include "scoBase.h"
 #include "scoWindowScope.h"
 #include "scoMemoryScope.h"
+#include "scicos.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"

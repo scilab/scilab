@@ -38,12 +38,15 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   int i = 0; //As usual
   int * ipar = NULL; //Integer Parameters
@@ -105,7 +108,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cmatview(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cmatview(scicos_block * block, int flag)
 {
   /* Declarations */
   ScopeMemory * pScopeMemory = NULL;

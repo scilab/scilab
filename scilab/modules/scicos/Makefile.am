@@ -167,7 +167,9 @@ includes/gw_scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
 includes/scicos_malloc.h \
-includes/scicos_math.h
+includes/scicos_math.h \
+includes/import.h \
+includes/dynlib_scicos.h
 
 #### scicos : cosf files ####
 libsciscicos_la_cosfdir=$(mydatadir)

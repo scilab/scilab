@@ -21,12 +21,14 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <stdio.h>
+#include "scicos.h"
 #include "scicos_block4.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void summation_ui16e(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void summation_ui16e(scicos_block *block,int flag)
 {
 	if((flag==1)|(flag==6)) 
 	{

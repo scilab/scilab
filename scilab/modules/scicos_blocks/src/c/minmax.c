@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void minmax(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void minmax(scicos_block *block,int flag)
 { 
 	/*ipar[0]=1 -> min,  ipar[0]=2 -> max */
 

@@ -20,13 +20,17 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /*    Copyright INRIA
  *    Scicos block simulator
  *    event delay with discrete counter
  */
-void evtdly4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void evtdly4(scicos_block *block,int flag)
 {
   double t = 0.;
   long long int *i = NULL;

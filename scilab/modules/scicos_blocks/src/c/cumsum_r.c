@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void cumsum_r(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void cumsum_r(scicos_block *block,int flag)
 {
   double *u = NULL;
   double *y = NULL;

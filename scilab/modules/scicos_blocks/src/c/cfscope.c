@@ -29,20 +29,24 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
+#include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(getouttb)();
 /*--------------------------------------------------------------------------*/ 
 /** \fn cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
 
   double *rpar = NULL;
@@ -122,7 +126,7 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cfscope(scicos_block * block,int flag)
+SCICOS_BLOCKS_IMPEXP void cfscope(scicos_block * block,int flag)
 {
   ScopeMemory * pScopeMemory = NULL;
   scoGraphicalObject pShortDraw;

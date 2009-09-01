@@ -20,13 +20,17 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "localization.h"
+#include "scicos.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /* A swithcing mechansim for building hybrid automata */
 /* Masoud Najafi, 2007, INRIA */
 
-void automat(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block,int flag)
 {
   double *y0 = NULL, *y1 = NULL, *ui = NULL;
   double* g = block->g;

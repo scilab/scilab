@@ -22,8 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void extract_bit_32_LSB(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void extract_bit_32_LSB(scicos_block *block,int flag)
 {
    int i= 0,maxim = 0;
    long *y,*u,ref,n;

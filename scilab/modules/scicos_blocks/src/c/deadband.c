@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void deadband(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void deadband(scicos_block *block,int flag)
 {
 	/* rpar[0]:upper limit,  rpar[1]:lower limit */
   if (flag==1){

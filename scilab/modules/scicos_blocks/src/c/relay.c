@@ -21,8 +21,9 @@
 /* Copyright INRIA */
 /*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void relay(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+SCICOS_BLOCKS_IMPEXP void relay(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 
 int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;

@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void matmul_i16n(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matmul_i16n(scicos_block *block,int flag)
 {
 	if ((flag==1)|(flag==6)) 
 	{

@@ -488,7 +488,8 @@ includes/scoMisc.h \
 includes/scoSetProperty.h \
 includes/scoWindowScope.h \
 includes/blocks.h \
-includes/affich.h
+includes/affich.h \
+includes/dynlib_scicos_blocks.h
 
 
 #### scicos_blocks : MACROS ####

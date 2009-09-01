@@ -22,7 +22,11 @@
 #include <stdio.h>
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(zgesvd)();
 extern int C2F(dlaset)();
@@ -38,7 +42,7 @@ typedef struct
 	double *rwork;
 } mat_sdv_struct ;
 /*--------------------------------------------------------------------------*/ 
-void matz_svd(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_svd(scicos_block *block,int flag)
 {
 	double *ur = NULL,*ui = NULL;
 	double *y1r = NULL,*y2r = NULL,*y3r = NULL;

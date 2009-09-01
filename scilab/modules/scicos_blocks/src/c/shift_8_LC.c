@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void shift_8_LC(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void shift_8_LC(scicos_block *block,int flag)
 {
 	int i = 0, j = 0;
 	int mu = GetInPortRows(block,1);

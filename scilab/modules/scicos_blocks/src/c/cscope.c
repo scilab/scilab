@@ -30,6 +30,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "CurrentObjectsManagement.h"
+#include "scicos.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
 #include "scoMisc.h"
@@ -37,12 +38,15 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   int i = 0;
   double *rpar = NULL;
@@ -121,7 +125,7 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cscope(scicos_block * block,int flag)
+SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block,int flag)
 {
   ScopeMemory * pScopeMemory = NULL;
   int i = 0;

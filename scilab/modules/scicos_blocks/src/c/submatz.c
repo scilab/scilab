@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void submatz(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void submatz(scicos_block *block,int flag)
 {
 	int i = 0,j = 0;
 

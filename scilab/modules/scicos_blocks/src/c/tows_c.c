@@ -30,8 +30,12 @@
 #include "mput.h"
 #include "mclose.h"
 #include "cluni0.h"
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(namstr)();
 /*--------------------------------------------------------------------------*/ 
@@ -91,7 +95,7 @@ typedef struct {
 	void *workt;
 } towork_struct ;
 /*--------------------------------------------------------------------------*/ 
-void tows_c(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 /* Copyright INRIA */
 /* Put a typed vector in a scilab file.
 * Independant platform.

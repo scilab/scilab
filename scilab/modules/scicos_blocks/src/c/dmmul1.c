@@ -19,12 +19,13 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
+#include "dynlib_scicos_blocks.h"
 /* Table of constant values */
 static int c__1 = 1;
 /*--------------------------------------------------------------------------*/ 
 double ddot(int *n, double *dx, int *incx, double *dy, int *incy);
 /*--------------------------------------------------------------------------*/ 
-int dmmul1(double *a, int *na, double *b, int *nb, double *c__, 
+SCICOS_BLOCKS_IMPEXP int dmmul1(double *a, int *na, double *b, int *nb, double *c__, 
 	   int *nc, int *l, int *m, int *n)
 {
   /* System generated locals */

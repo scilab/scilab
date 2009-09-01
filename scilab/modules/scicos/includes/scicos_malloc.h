@@ -22,7 +22,9 @@
 #ifndef __SCICOS_MALLOC_H__
 #define __SCICOS_MALLOC_H__
 
-void *scicos_malloc();
+#include "dynlib_scicos.h"
+
+SCICOS_IMPEXP void *scicos_malloc(size_t size);
 
 #endif /*__SCICOS_MALLOC_H__*/
 

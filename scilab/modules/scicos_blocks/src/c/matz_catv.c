@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void matz_catv(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_catv(scicos_block *block,int flag)
 {
 	int nu = GetInPortCols(block,1); 
 	double *yr = GetRealOutPortPtrs(block,1);

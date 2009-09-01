@@ -24,6 +24,7 @@
 #include <string.h>
 #include <math.h>
 #include "stack-c.h"
+#include "scicos.h"
 #include "sciprint.h"
 #include "cvstr.h"
 #include "MALLOC.h"
@@ -34,6 +35,9 @@
 #include "scicos_block4.h"
 #include "scicos_evalhermite.h"
 #include "localization.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 #define Fnlength  block->ipar[0]
 #define FName     block->ipar[1]
@@ -79,7 +83,7 @@ typedef struct {
   double *workt;
 } fromwork_struct ;
 /*--------------------------------------------------------------------------*/ 
-void fromws_c(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block,int flag)
 {
   double t = 0.,y1 = 0.,y2 = 0.,t1 = 0.,t2 = 0.,r = 0.;
   double *spline = NULL, *A_d = NULL, *A_sd = NULL, *qdy = NULL;

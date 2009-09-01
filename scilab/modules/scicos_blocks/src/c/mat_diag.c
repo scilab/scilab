@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void mat_diag(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mat_diag(scicos_block *block,int flag)
 {
 	int mu = 0,i = 0,ii = 0;
 	double *u1 = GetRealInPortPtrs(block,1);

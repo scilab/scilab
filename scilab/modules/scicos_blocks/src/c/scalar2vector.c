@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void scalar2vector(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void scalar2vector(scicos_block *block,int flag)
 {
 	int i;
 	if(flag==1)

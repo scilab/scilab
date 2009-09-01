@@ -19,9 +19,11 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
+#include "scicos.h"
+#include "dynlib_scicos_blocks.h"
 #include "scicos_block4.h"
 /*--------------------------------------------------------------------------*/ 
-void scicosexit(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void scicosexit(scicos_block *block,int flag)
 {
 	if (flag==1) end_scicos_sim();
 }

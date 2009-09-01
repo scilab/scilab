@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void matz_reshape(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_reshape(scicos_block *block,int flag)
 {
 	int xu = GetOutPortRows(block,1);
 	int vu = GetOutPortCols(block,1);

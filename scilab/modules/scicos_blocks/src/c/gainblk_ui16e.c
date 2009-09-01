@@ -20,12 +20,14 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "scicos.h"
 #include "scicos_block4.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void gainblk_ui16e(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void gainblk_ui16e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)){
   int i = 0,j = 0,l = 0,ji = 0,jl = 0,il = 0;

@@ -22,8 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void extract_bit_8_UH1(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void extract_bit_8_UH1(scicos_block *block,int flag)
 {
    int i = 0, maxim = 0;
    char *y = 0,*u = 0,ref = 0,n = 0;

@@ -22,8 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void bit_set_8(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void bit_set_8(scicos_block *block,int flag)
 {
   int n = 0,m = 0,i = 0;
   char *opar = NULL;

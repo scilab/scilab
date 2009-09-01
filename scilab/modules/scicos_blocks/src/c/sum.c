@@ -19,7 +19,9 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/ 
-void sum(int *flag,int *nevprt,double *t,double xd[],double x[],int *nx,double z[],int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
+#include "dynlib_scicos_blocks.h"
+
+SCICOS_BLOCKS_IMPEXP void sum(int *flag,int *nevprt,double *t,double xd[],double x[],int *nx,double z[],int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
 	       int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout)
 {
 	int n = outsz[0]; /* insz[0]==insz[1] .. ==insz[*nin]== outsz[0] */

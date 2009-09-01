@@ -21,13 +21,16 @@
 /*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int s;
 } dol_struct ;
 /*--------------------------------------------------------------------------*/ 
-void dollar4_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void dollar4_m(scicos_block *block,int flag)
 {
   /* c     Copyright INRIA
      

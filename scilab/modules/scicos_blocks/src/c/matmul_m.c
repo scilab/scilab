@@ -21,11 +21,12 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
 /*--------------------------------------------------------------------------*/ 
-void matmul_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matmul_m(scicos_block *block,int flag)
 {
   double *u1;
   double *u2;

@@ -34,6 +34,7 @@
 #define NULL 0
 #endif
 
+#include "dynlib_scicos_blocks.h"
 #include "scicos_math.h"
 
 typedef void (*voidg)();
@@ -124,18 +125,9 @@ typedef struct {
 #define ReInitialization 6
 
 /* utility function for block declaration */
-void do_cold_restart();
-int get_phase_simulation();
-double get_scicos_time();
-int get_block_number();
-void set_block_error(int);
 int get_block_error(void);
-void end_scicos_sim();
-void set_pointer_xproperty(int* pointer);
 int* get_pointer_xproperty();
 int get_npointer_xproperty();
-void * scicos_malloc(size_t);
-void scicos_free(void *p);
 double Get_Jacobian_cj(void);
 double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);
@@ -150,8 +142,6 @@ int fx_( double *, double *);
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
 int write_xml_states(int,const char *, char **, double *);
 
-
-void Coserror(char *fmt,...);
 
 
 /* Define scicos simulator data type number (_N) */

@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void  signum(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void  signum(scicos_block *block,int flag)
 {
 	int i = 0, j = 0;
 	if (flag==1)

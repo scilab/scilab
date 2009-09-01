@@ -22,8 +22,9 @@
 #include <memory.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void selector_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void selector_m(scicos_block *block,int flag)
 {
 	void *u = NULL;
 	void *y = NULL;

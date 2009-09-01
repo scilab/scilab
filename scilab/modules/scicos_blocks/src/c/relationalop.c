@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void relationalop(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void relationalop(scicos_block *block,int flag)
 {
 	int i = block->ipar[0];
 	if(flag==1)

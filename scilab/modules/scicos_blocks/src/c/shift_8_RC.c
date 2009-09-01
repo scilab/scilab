@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void shift_8_RC(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void shift_8_RC(scicos_block *block,int flag)
 {
 	char v; 
 	int i = 0,j = 0;

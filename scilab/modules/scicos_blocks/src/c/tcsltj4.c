@@ -23,11 +23,12 @@
 #include "MALLOC.h"
 #include "machine.h" /* C2F */
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
 /*--------------------------------------------------------------------------*/ 
-void tcsltj4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void tcsltj4(scicos_block *block,int flag)
 {
 	/* Copyright INRIA
 

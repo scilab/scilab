@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "machine.h"
 #include "import.h"
+#include "scicos.h"
 #include "cvstr.h"
 /*--------------------------------------------------------------------------*/
 extern struct {int kfun;} C2F(curblk);

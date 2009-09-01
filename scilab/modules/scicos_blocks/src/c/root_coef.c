@@ -21,10 +21,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dprxc)();
 /*--------------------------------------------------------------------------*/ 
-void root_coef(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void root_coef(scicos_block *block,int flag)
 {
 	int mu = GetInPortRows(block,1);
 	double *u = GetRealInPortPtrs(block,1);

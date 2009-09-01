@@ -23,8 +23,9 @@
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void summation_ui32s(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void summation_ui32s(scicos_block *block,int flag)
 {
 	if((flag==1)|(flag==6)) 
 	{

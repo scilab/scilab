@@ -22,10 +22,11 @@
 #include <math.h>
 #include "machine.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(wsqrt)();
 /*--------------------------------------------------------------------------*/ 
-void matz_sqrt(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_sqrt(scicos_block *block,int flag)
 {
 	if (flag==1)
 	{

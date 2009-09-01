@@ -21,10 +21,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "machine.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(mtran)();
 /*--------------------------------------------------------------------------*/ 
-void mathermit_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mathermit_m(scicos_block *block,int flag)
 {
   int i = 0;
 

@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void submat(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void submat(scicos_block *block,int flag)
 {
 	int mu = GetInPortRows(block,1);
 	int nu = GetInPortCols(block,1);

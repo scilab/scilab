@@ -20,9 +20,11 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void relational_op_i16(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void relational_op_i16(scicos_block *block,int flag)
 {
 	int m = GetInPortRows(block,1);
 	int n = GetInPortCols(block,1);

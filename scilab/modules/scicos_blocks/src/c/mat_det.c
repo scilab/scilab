@@ -22,7 +22,11 @@
 #include <stdio.h>
 #include "machine.h"
 #include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dgetrf)();
 /*--------------------------------------------------------------------------*/ 
@@ -32,7 +36,7 @@ typedef struct
     double *wrk;
 } mat_det_struct ;
 /*--------------------------------------------------------------------------*/ 
-void mat_det(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mat_det(scicos_block *block,int flag)
 {
  double *u = NULL;
  double *y = NULL;

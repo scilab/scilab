@@ -22,8 +22,9 @@
 #include <memory.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void foriterator(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void foriterator(scicos_block *block,int flag)
 { 
   void *y = NULL,*u = NULL,*z = NULL;
   int *ipar = NULL;

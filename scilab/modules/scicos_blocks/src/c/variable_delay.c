@@ -24,8 +24,11 @@
 #include "sciprint.h"
 #include "scicos_block.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/ 
-void variable_delay(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void variable_delay(scicos_block *block,int flag)
 {
 	/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */
 	double* pw = NULL, del = 0.,t = 0.,td = 0.;

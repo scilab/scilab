@@ -22,8 +22,9 @@
 #include <math.h>
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void logicalop_ui32(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void logicalop_ui32(scicos_block *block,int flag)
 {
   int i = 0,m = 0,n = 0,nin = 0,k = 0,j = 0,l = 0;
   int *ipar = NULL;

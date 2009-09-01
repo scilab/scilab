@@ -21,10 +21,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(wprxc)();
 /*--------------------------------------------------------------------------*/ 
-void rootz_coef(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void rootz_coef(scicos_block *block,int flag)
 {
 	int mu = GetInPortRows(block,1);
 

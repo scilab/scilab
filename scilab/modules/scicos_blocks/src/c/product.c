@@ -21,8 +21,9 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void product(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void product(scicos_block *block,int flag)
 {
 	int j = 0, k = 0;
 

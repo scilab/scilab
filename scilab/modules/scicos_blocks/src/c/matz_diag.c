@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void matz_diag(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_diag(scicos_block *block,int flag)
 {
 	int mu = GetInPortRows(block,1);
 

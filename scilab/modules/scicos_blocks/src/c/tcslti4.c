@@ -23,11 +23,12 @@
 #include <memory.h>
 #include "machine.h"
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
 /*--------------------------------------------------------------------------*/ 
-void tcslti4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void tcslti4(scicos_block *block,int flag)
 {
 	/* Copyright INRIA
 

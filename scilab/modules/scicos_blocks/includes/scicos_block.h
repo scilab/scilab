@@ -22,14 +22,7 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
-/**
-* Add header of scicos_malloc
-* scicos_free HERE
-* to do modify dynamic link with scicos
-*/
-
-extern void * scicos_malloc();
-extern void scicos_free(void *p);
+#include "dynlib_scicos_blocks.h"
 
 typedef void (*voidg)();
 

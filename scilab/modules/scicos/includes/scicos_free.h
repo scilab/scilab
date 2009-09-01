@@ -22,7 +22,9 @@
 #ifndef __SCICOS_FREE_H__
 #define __SCICOS_FREE_H__
 
-void scicos_free(void *p);
+#include "dynlib_scicos.h"
+
+SCICOS_IMPEXP void scicos_free(void *p);
 
 #endif /*__SCICOS_FREE_H__*/
 

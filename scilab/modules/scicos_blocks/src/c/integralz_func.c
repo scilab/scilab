@@ -20,10 +20,12 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "scicos.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void  integralz_func(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void  integralz_func(scicos_block *block,int flag)
 {
  int i = 0;
  double *ur = NULL,*ui = NULL;

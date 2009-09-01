@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void mat_sumc(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mat_sumc(scicos_block *block,int flag)
 {
 	int j = 0;
 

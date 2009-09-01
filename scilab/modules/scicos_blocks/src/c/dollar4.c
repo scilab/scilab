@@ -20,8 +20,9 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void dollar4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void dollar4(scicos_block *block,int flag)
 {
   /* c     Copyright INRIA
      

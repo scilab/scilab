@@ -21,11 +21,12 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
 #include "machine.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
 /*--------------------------------------------------------------------------*/ 
-void csslti4(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void csslti4(scicos_block *block,int flag)
 {
   /*  Copyright INRIA
 

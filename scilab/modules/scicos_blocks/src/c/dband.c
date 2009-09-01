@@ -23,6 +23,7 @@
 #include <math.h>
 #include "core_math.h"
 #include "scicos.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /*------------------------------------------------
  *     Scicos block simulator 
@@ -37,7 +38,7 @@
  *     DB(i)=rpar(i) 
  *------------------------------------------------*/
 
-void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec, 
+SCICOS_BLOCKS_IMPEXP void dband (flag, nevprt, t, xd, x, nx, z, nz, tvec, 
 	    ntvec, rpar, nrpar, ipar, nipar, u, nu, y, ny)
             int *flag, *nevprt,*nx,*nz,*nrpar, *ipar, *nipar,*ntvec,*nu,*ny;
             double *t, *xd, *x, *z, *tvec, *rpar, *u, *y;

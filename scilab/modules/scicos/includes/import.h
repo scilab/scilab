@@ -21,6 +21,10 @@
 #ifndef __IMPORT_H__
 #define __IMPORT_H__
 
+#include "machine.h"
+
+#include "dynlib_scicos.h"
+
 #include "scicos_block4.h"
 
 typedef struct
@@ -105,7 +109,14 @@ typedef struct {
 	double *xd;           /* 73 - derivative of continuous state */
 } ScicosImport;
 
-ScicosImport* getscicosimportptr(void);
-int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv);
+SCICOS_IMPEXP ScicosImport* getscicosimportptr(void);
+
+SCICOS_IMPEXP int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv);
+
+SCICOS_IMPEXP void C2F(getouttb)(int *nsize,int *nvec,double *outtc);
+
+SCICOS_IMPEXP void C2F(getlabel)(int *kfun, char *label,int *n);
+
+SCICOS_IMPEXP int C2F(getscilabel)(int *kfun, int label[], int *n);
 
 #endif /* __IMPORT_H__ */

@@ -90,7 +90,6 @@ void C2F(affichup)( double * textIndex,
                     char * value,
                     int valueLength)
 {
- int nbRow,nbCol;
   /* First step, retreive text handle */
   /* For now we got the index of the block coupound within the axes children */
   sciPointObj * pText = getAffichTextObject((int) *winNum, ((int) *textIndex) - 1);

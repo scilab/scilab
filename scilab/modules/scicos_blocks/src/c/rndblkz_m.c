@@ -23,10 +23,11 @@
 #include "machine.h"
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern double C2F(urand)();
 /*--------------------------------------------------------------------------*/ 
-void rndblkz_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void rndblkz_m(scicos_block *block,int flag)
 {
 	double *y_r = NULL;
 	double *y_i = NULL;

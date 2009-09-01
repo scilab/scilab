@@ -90,7 +90,7 @@ typedef struct {
 		    when updating mode variables during initialization */
 } *UserData;
 
-IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
+SCICOS_IMPEXP SCSPTR_struct C2F(scsptr);
 /*--------------------------------------------------------------------------*/
 
 #define freeall					\
@@ -194,15 +194,15 @@ static int AJacobian_block = 0;
  * multiple declaration of the variable and linkers were complaining about duplicate
  * symbols
  */
-COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
-IMPORT_SCICOS RTFACTOR_struct C2F(rtfactor);
-IMPORT_SCICOS  SOLVER_struct C2F(cmsolver);
-IMPORT_SCICOS CURBLK_struct C2F(curblk);
-IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
-IMPORT_SCICOS COSHLT_struct C2F(coshlt);
-IMPORT_SCICOS DBCOS_struct C2F(dbcos);
-IMPORT_SCICOS COSTOL_struct C2F(costol);
-IMPORT_SCICOS COSERR_struct coserr;
+SCICOS_IMPEXP COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
+SCICOS_IMPEXP RTFACTOR_struct C2F(rtfactor);
+SCICOS_IMPEXP SOLVER_struct C2F(cmsolver);
+SCICOS_IMPEXP CURBLK_struct C2F(curblk);
+SCICOS_IMPEXP COSDEBUG_struct C2F(cosdebug);
+SCICOS_IMPEXP COSHLT_struct C2F(coshlt);
+SCICOS_IMPEXP DBCOS_struct C2F(dbcos);
+SCICOS_IMPEXP COSTOL_struct C2F(costol);
+SCICOS_IMPEXP COSERR_struct coserr;
 /*--------------------------------------------------------------------------*/
 static void FREE_blocks();
 static void cosini(double *told);
@@ -4397,12 +4397,12 @@ static int scicos_setmode(double *W,double *x,double *told,int *jroot,double tto
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-int get_phase_simulation()
+int get_phase_simulation(void)
 {
   return phase;
 }
 /*--------------------------------------------------------------------------*/
-void do_cold_restart()
+void do_cold_restart(void)
 {
   hot = 0;
 }
@@ -4410,7 +4410,7 @@ void do_cold_restart()
 /* get_scicos_time : return the current
  * simulation time
  */
-double get_scicos_time()
+double get_scicos_time(void)
 {
   return scicos_time;
 }
@@ -4418,7 +4418,7 @@ double get_scicos_time()
 /* get_block_number : return the current
  * block number
  */
-int get_block_number()
+int get_block_number(void)
 {
   return C2F(curblk).kfun;
 }

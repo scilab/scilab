@@ -21,7 +21,11 @@
 /*--------------------------------------------------------------------------*/ 
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(riccsl)();
 extern int C2F(riccms)();
@@ -40,7 +44,7 @@ typedef struct
 	double *Ferr;
 } ricc_struct ;
 /*--------------------------------------------------------------------------*/ 
-void ricc_m(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void ricc_m(scicos_block *block,int flag)
 {
 	double *u1 = NULL;
 	double *u2 = NULL;

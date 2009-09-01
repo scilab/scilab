@@ -28,8 +28,9 @@
 #include "cvstr.h"
 #include "mget.h"
 #include "localization.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+SCICOS_BLOCKS_IMPEXP void readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 			ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 			/*
 			ipar[1]   = lfil : file name length

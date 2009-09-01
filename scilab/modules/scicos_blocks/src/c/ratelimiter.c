@@ -22,8 +22,11 @@
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
+#include "scicos_free.h"
+#include "scicos_malloc.h"
 /*--------------------------------------------------------------------------*/ 
-void ratelimiter(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void ratelimiter(scicos_block *block,int flag)
 {
 	/*  rpar[0]=rising rate limit, rpar[1]=falling rate limit */
 	double* pw = NULL;

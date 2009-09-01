@@ -22,7 +22,11 @@
 #include <stdio.h>
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
 #include "scicos_block4.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(zgetrf)();
 extern int C2F(zgetri)();
@@ -34,7 +38,7 @@ typedef struct
 	double *LX;
 } mat_inv_struct ;
 /*--------------------------------------------------------------------------*/ 
-void matz_inv(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void matz_inv(scicos_block *block,int flag)
 {
 	double *ur = NULL;
 	double *yr = NULL;

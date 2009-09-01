@@ -22,9 +22,13 @@
 #include <stdio.h>
 #include <memory.h>
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "scicos.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void assignment(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void assignment(scicos_block *block,int flag)
 {
   int my = 0,ny = 0,so = 0;
   double *out0 = NULL;

@@ -23,7 +23,11 @@
 #include <math.h>
 #include "machine.h" /* C2F */
 #include "MALLOC.h"
+#include "scicos.h"
 #include "scicos_block4.h"
+#include "scicos_malloc.h"
+#include "scicos_free.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dexpm1)();
 /*--------------------------------------------------------------------------*/ 
@@ -33,7 +37,7 @@ typedef struct
 	double *dwork;
 } mat_exp_struct ;
 /*--------------------------------------------------------------------------*/ 
-void mat_expm(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void mat_expm(scicos_block *block,int flag)
 {
  double *u = NULL;
  double *y = NULL;

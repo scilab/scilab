@@ -20,9 +20,10 @@
 */
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "dynlib_scicos_blocks.h"
 #include "scicos_block.h"
 /*--------------------------------------------------------------------------*/ 
-void  absolute_value(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void  absolute_value(scicos_block *block,int flag)
 {
   int i = 0,j = 0;
   if (flag==1){

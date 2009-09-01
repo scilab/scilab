@@ -22,8 +22,9 @@
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
-void bounce_ball(scicos_block *block,int flag)
+SCICOS_BLOCKS_IMPEXP void bounce_ball(scicos_block *block,int flag)
 {
   int nevprt = 0,nx = 0,*ipar = NULL;
   int *outsz = NULL;

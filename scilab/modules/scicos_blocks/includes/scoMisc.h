@@ -29,6 +29,7 @@
 #ifndef __SCO_MISC_H__
 #define __SCO_MISC_H__
 
+#include "dynlib_scicos_blocks.h"
 #include"scoBase.h"
 
 /**
@@ -36,10 +37,10 @@
 \param pScopeMemory a pointer on a ScopeMemory
 \param code_error a code error (see in the function to determine the right number for the moment)
 */
-void scoScopeError(ScopeMemory * pScopeMemory, int code_error);
+SCICOS_BLOCKS_IMPEXP void scoScopeError(ScopeMemory * pScopeMemory, int code_error);
 
 /**
 */
-int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
+SCICOS_BLOCKS_IMPEXP int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
 			  sciPointObj *pobj_2, sciPointObj *pparent_2);
 #endif

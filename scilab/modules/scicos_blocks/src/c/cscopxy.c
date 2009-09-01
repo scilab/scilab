@@ -38,11 +38,12 @@
 #include "DrawingBridge.h"
 #include "SetJavaProperty.h"
 #include "MALLOC.h"
+#include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
-void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
+SCICOS_BLOCKS_IMPEXP void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
 {
   int * ipar = NULL; //Integer Parameters
   int color_flag = 0; //Flag on Color
@@ -121,7 +122,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
     \param block A pointer to a scicos_block
     \param flag An int which indicates the state of the block (init, update, ending)
 */
-void cscopxy(scicos_block * block, int flag)
+SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 {
   /* Declarations*/
   ScopeMemory * pScopeMemory = NULL;
