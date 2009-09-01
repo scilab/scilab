@@ -103,6 +103,9 @@ Bug fixes:
 ==========
  * bug 336  fixed - pspect and cspec help pages improved
 
+ * bug 667  fixed - scilab.start-file causes an initialization error when you 
+                    use predef('all') in a user startup file.
+
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
  * bug 2042 fixed - copy function altered axes properties.

@@ -9,9 +9,10 @@
 
 //
 // optimset --
-//   Emulate the optimset command of Matlab.
+//   Configures and returns an optimization data structure.
 // Usage:
 //   options = optimset ()
+//   options = optimset ( funname )
 //   options = optimset ('TolX',1e-4)
 //   options = optimset (options,'TolX',1e-4)
 //
