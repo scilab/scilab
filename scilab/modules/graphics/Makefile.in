@@ -1234,7 +1234,12 @@ tcl/ged/images/text.gif
 
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/graphics/includes/ \
 -I$(top_srcdir)/modules/renderer/includes/ \
+-I$(top_srcdir)/modules/graphics/src/cpp \
+-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty \
+-I$(top_srcdir)/libs/hashtable/ \
+-I$(top_srcdir)/libs/doublylinkedlist/includes \
 -I$(top_srcdir)/modules/api_scilab/includes/ \
 -Iincludes/ \
 -I$(top_srcdir)/libs/doublylinkedlist/includes/
