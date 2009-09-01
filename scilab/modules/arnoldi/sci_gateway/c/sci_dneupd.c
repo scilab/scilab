@@ -86,81 +86,61 @@ int sci_dneupd(char *fname,unsigned long fname_len)
   /* Check some sizes */
   if (mIPARAM*nIPARAM!=11)
     {
-      Scierror(999,_("%s: %s must be an array of size %d"),fname, "IPARAM", 11);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "IPARAM", 11);
       return 0;
     }
 
   if (mIPNTR*nIPNTR!=14)
     {
-      Scierror(999,_("%s: %s must be an array of size %d"),fname, "IPNTR", 14);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "IPNTR", 14);
       return 0;
     }
 
   if (mRESID*nRESID!=*istk(pN))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"),fname, "RESID", *istk(pN));
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "RESID", *istk(pN));
       return 0;
     }
 
   if (mWORKD*nWORKD!=3 * *istk(pN))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"),fname, "WORKD", 3* *istk(pN));
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "WORKD", 3* *istk(pN));
       return 0;
     }
 
   if (mSELECT*nSELECT!=*istk(pNCV))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"), fname, "SELECT", *istk(pNCV));
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "SELECT", *istk(pNCV));
       return 0;
     }
 
   if (mDr*nDr!=(*istk(pNEV)+1))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"), fname, "Dr", *istk(pNEV) + 1);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "Dr", *istk(pNEV) + 1);
       return 0;
     }
 
   if (mDi*nDi!=(*istk(pNEV)+1))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"), fname, "Di", *istk(pNEV) + 1);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "Di", *istk(pNEV) + 1);
       return 0;
     }
 
   if ((mZ!=*istk(pN))&&(nZ!=*istk(pNEV)+1))
     {
-      Scierror(999,_("%s: %s must be a matrix of size %dx%d"), fname, "Z", *istk(pN), *istk(pNEV) + 1);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be a matrix of size %dx%d\n"), fname, "Z", *istk(pN), *istk(pNEV) + 1);
       return 0;
     }
 
   if (mWORKev*nWORKev!=3 * *istk(pNCV))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"), fname, "WORKev", 3 * *istk(pNCV));
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "WORKev", 3 * *istk(pNCV));
       return 0;
     }
 
   if ((mV!=*istk(pN))&&(mV!=*istk(pNCV)))
     {
-      Scierror(999,_("%s: %s must be a matrix of size %dx%d"), fname, "V", *istk(pN),*istk(pNCV));
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be a matrix of size %dx%d\n"), fname, "V", *istk(pN),*istk(pNCV));
       return 0;
     }
 
@@ -168,9 +148,7 @@ int sci_dneupd(char *fname,unsigned long fname_len)
 
   if ((mWORKL*nWORKL!=sizeWORKL))
     {
-      Scierror(999,_("%s: %s must be an array of size %d"), fname, "WORKL", sizeWORKL);
-      LhsVar(1) = 0;
-      PutLhsVar();
+      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "WORKL", sizeWORKL);
       return 0;
     }
 
