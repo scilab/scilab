@@ -157,6 +157,13 @@ Java/Scilab API:
  - uses new C API functions to write & read datas (internal for javasci)
  - SciInteger class added  
 
+
+Optimization:
+=============
+ - Created neldermead component for simplex-based direct search optimization
+ - Created optimbase component to build optimization algorithms
+ - Created optimsimplex component to build direct search algorithms
+ - Created fminsearch optimization function
  
 Bug fixes:
 ==========
