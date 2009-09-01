@@ -72,7 +72,7 @@ public class ConfigXpadManager {
 	private static final String PROFILE = "Profile";
 	private static final String XPAD_CONFIG_FILE = System.getenv("SCI") + "/modules/xpad/etc/configuration_xpad.xml";
 	
-	private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/configuration.xml";
+	private static final String USER_XPAD_CONFIG_FILE = GuiManagement.getSCIHOME() + "/configuration_xpad.xml";
 	private static final int PLAIN = 0;
 	private static final int BOLD =  1;
 	private static final int ITALIC = 2;
@@ -97,11 +97,11 @@ public class ConfigXpadManager {
 	 */
 	public static void createUserCopy() {
 		/*TODO*/
-		
 		File fileConfig = new File(USER_XPAD_CONFIG_FILE);
 		if ( !fileConfig.exists() || (fileConfig.length() == 0) ) {
 			/* Create a local copy of the configuration file */
 			copyFile(new File(XPAD_CONFIG_FILE), new File(USER_XPAD_CONFIG_FILE));
+			
 		}
 	}
 	/**
