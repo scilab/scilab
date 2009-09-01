@@ -6,6 +6,9 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
+* Symbols in dlls are explicitly exported on Windows.
+  In previous versions of scilab all symbols were exported.
+
 * modelicac (scicos) built with Ocaml 3.11.0 on Windows
 
 * blas, lapack, arpack libraries moved as pre-requirements (Windows)
