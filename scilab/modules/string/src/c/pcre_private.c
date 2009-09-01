@@ -287,6 +287,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 	if (offsets == NULL)
 	{
+		if (buffer) {FREE(buffer); buffer = NULL;}
 		return NOT_ENOUGH_MEMORY_FOR_VECTOR;
 	}
 	/* Main loop */
@@ -318,7 +319,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 
 	if (isalnum(delimiter) || delimiter == '\\')
     {
-		FREE(back_p);
+		if (buffer) {FREE(buffer); buffer = NULL;}
+		if (offsets) {FREE(offsets); offsets = NULL;}
+		if (back_p) {FREE(back_p); back_p = NULL;}
 		return DELIMITER_NOT_ALPHANUMERIC;
     }
 
@@ -334,7 +337,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 	/* If the delimiter can't be found, it's a syntax error */
 	if(*pp == 0)
 	{
-		FREE(back_p);
+		if (buffer) {FREE(buffer); buffer = NULL;}
+		if (offsets) {FREE(offsets); offsets = NULL;}
+		if (back_p) {FREE(back_p); back_p = NULL;}
 		return CAN_NOT_COMPILE_PATTERN;
 	}
 
@@ -437,7 +442,11 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		if (re == NULL)
 		{
 		    SKIP_DATA:
-			FREE(back_p);
+			if (buffer) {FREE(buffer); buffer = NULL;}
+			if (offsets) {FREE(offsets); offsets = NULL;}
+			if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+			if (extra) {FREE(extra); extra = NULL;}
+			if (back_p) {FREE(back_p); back_p = NULL;}
 			return CAN_NOT_COMPILE_PATTERN;
 		}
 		true_size = ((real_pcre *)re)->size;
@@ -596,7 +605,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					if (n > size_offsets_max)
 					{
 						size_offsets_max = n;
-						FREE(offsets);
+						if (offsets){FREE(offsets);}
 						use_offsets = offsets = (int *)MALLOC(size_offsets_max * sizeof(int));
 					}
 					use_size_offsets = n;
@@ -651,7 +660,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 		len = (int)(q - buffer);
 		if ((all_use_dfa || use_dfa) && find_match_limit)
 		{
-			FREE(p);
+			if (buffer) {FREE(buffer); buffer = NULL;}
+			if (offsets) {FREE(offsets); offsets = NULL;}
+			if (p) {FREE(p); p = NULL;}
+			if (re) { (*pcre_free)(re); re = NULL;}
+			if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+			if (extra) {FREE(extra); extra = NULL;}
+
 			return LIMIT_NOT_RELEVANT_FOR_DFA_MATCHING;
 		}
 		/* Handle matching via the POSIX interface, which does not
@@ -715,7 +730,13 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				/* This is a check against a lunatic return value. */
 				if (count > maxcount)
 				{
-					FREE(back_p);
+					if (buffer) {FREE(buffer); buffer = NULL;}
+					if (offsets) {FREE(offsets); offsets = NULL;}
+					if (re) { (*pcre_free)(re); re = NULL;}
+					if (tables) { (*pcre_free)((void*)tables); tables = NULL;}
+					if (extra) {FREE(extra); extra = NULL;}
+					if (back_p) {FREE(back_p);back_p = NULL;}
+
 					return TOO_BIG_FOR_OFFSET_SIZE;
 				}
 
@@ -725,22 +746,23 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 					{
 						*Output_Start=use_offsets[i];
 						*Output_End=use_offsets[i+1];
-						if (buffer) FREE(buffer);
+						if (buffer) {FREE(buffer); buffer = NULL;}
 
 						/* use_offsets = offsets no need to free use_offsets if we free offsets */
-						if (offsets) FREE(offsets);
+						if (offsets) {FREE(offsets); offsets = NULL;}
 
 						/* "re" allocated by pcre_compile (better to use free function associated)*/
-						if (re) (*pcre_free)(re);
+						if (re) { (*pcre_free)(re); re = NULL;}
 
-						if (extra) FREE(extra);
+						if (extra) {FREE(extra); extra = NULL;}
 						if (tables)
 						{
 							/* "tables" allocated by pcre_maketables (better to use free function associated to pcre)*/
 							(*pcre_free)((void *)tables);
+							tables = NULL;
 							setlocale(LC_CTYPE, "C");
 						}
-						if (back_p) FREE(back_p);
+						if (back_p) {FREE(back_p); back_p = NULL;}
 						return PCRE_FINISHED_OK;
 					}
 				}
@@ -785,14 +807,22 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 				{
 					if (gmatched == 0) 
 					{
-						if (p) FREE(back_p);
+						if (tables) { (*pcre_free)((void *)tables); tables = NULL; }
+						if (re) { (*pcre_free)((void *)re); re = NULL; }
+						if (buffer) {FREE(buffer); buffer = NULL;}
+						if (offsets) {FREE(offsets); offsets = NULL;}
+						if (p) {FREE(back_p); back_p = NULL;}
 						return NO_MATCH;
 					}
 				}
 
 				if (count == PCRE_ERROR_MATCHLIMIT )
 				{
-					FREE(back_p);
+					if (tables) { (*pcre_free)((void *)tables); tables = NULL; }
+					if (re) { (*pcre_free)((void *)re); re = NULL; }
+					if (buffer) {FREE(buffer); buffer = NULL;}
+					if (offsets) {FREE(offsets); offsets = NULL;}
+					if (back_p){FREE(back_p); back_p = NULL;}
 					return MATCH_LIMIT;
 				}
 				break;  /* Out of loop */
@@ -827,13 +857,17 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
         }
 	}  /* End of loop for /g and /G */
 
-	FREE(back_p);
+	if (re) {(*pcre_free)(re); re = NULL;}
+	if (extra) {FREE(extra); extra = NULL;}
+	if (tables) {(*pcre_free)((void *)tables); tables = NULL;}
+
+	FREE(back_p); back_p = NULL;
     continue;
     }    /* End of loop for data lines */
   }
 	
-	FREE(buffer);
-	FREE(offsets);
+	if (buffer) {FREE(buffer); buffer = NULL;}
+	if (offsets) {FREE(offsets); offsets = NULL;}
 
 	return PCRE_EXIT;
 }
