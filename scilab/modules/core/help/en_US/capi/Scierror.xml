@@ -80,9 +80,9 @@
     <para>In this example, the C gateway function prints an error message and
     returns the error level 133.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
-#include &lt;Scierror.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <Scierror.h>
 
 int sci_myscierror(char * fname)
 {
@@ -90,7 +90,7 @@ int sci_myscierror(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

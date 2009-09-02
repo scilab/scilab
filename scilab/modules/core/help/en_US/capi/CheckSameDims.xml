@@ -95,8 +95,8 @@
     and prints the integer corresponding to the type of the variable sent as
     parameter in the Scilab console.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_check_properties(char * fname)
 {
@@ -105,14 +105,14 @@ int sci_check_properties(char * fname)
 
   CheckRhs(2,2);
 
-  GetRhsVar(1, "d", &amp;m1, &amp;n1, &amp;l1);
-  GetRhsVar(2, "d", &amp;m2, &amp;n2, &amp;l2);
+  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(2, "d", &m2, &n2, &l2);
 
   CheckSameDims(1,2,m1,n1,m2,n2); // Check that both vectors have the same size
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

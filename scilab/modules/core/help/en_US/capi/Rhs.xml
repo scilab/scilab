@@ -52,9 +52,9 @@
     the number of input arguments detected in the calling Scilab
     function.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
-#include &lt;sciprint.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <sciprint.h>
 
 int sci_myrhs(char * fname)
 {
@@ -62,7 +62,7 @@ int sci_myrhs(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

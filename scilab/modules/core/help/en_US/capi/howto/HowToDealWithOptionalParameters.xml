@@ -28,16 +28,16 @@
   <refsection>
     <title>The C function</title>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int ex2c(double * a, int * ma, int * na,
          double * b, int * mb, int * nb) 
 {
   int i;
 
-  for(i=0;i&lt;(*ma)*(*na);i++) a[i] = 2*a[i];
-  for(i=0;i&lt;(*mb)*(*nb);i++) b[i] = 3*b[i];
+  for(i=0;i<(*ma)*(*na);i++) a[i] = 2*a[i];
+  for(i=0;i<(*mb)*(*nb);i++) b[i] = 3*b[i];
 
   return(0);
 }
@@ -62,7 +62,7 @@ int sci_optional_parameters(char * fname)
   CheckLhs(minlhs,maxlhs);
 
   // first non optional argument
-  GetRhsVar( 1, "c", &amp;m1, &amp;n1, &amp;l1);
+  GetRhsVar( 1, "c", &m1, &n1, &l1);
   
   if (get_optionals(fname,opts)==0) return 0;
 
@@ -88,7 +88,7 @@ int sci_optional_parameters(char * fname)
       opts[0].position = iopos;
       opts[0].m = 1; opts[0].n = 1; 
       opts[0].type = "d";
-      CreateVar(opts[0].position, opts[0].type, &amp;opts[0].m, &amp;opts[0].n, &amp;opts[0].l);
+      CreateVar(opts[0].position, opts[0].type, &opts[0].m, &opts[0].n, &opts[0].l);
       *stk(opts[0].l) = 99.0;
     }
 
@@ -98,12 +98,12 @@ int sci_optional_parameters(char * fname)
       opts[1].position = iopos;
       opts[1].m = 1; opts[1].n = 1;
       opts[1].type = "d";
-      CreateVar(opts[1].position, opts[1].type, &amp;opts[1].m, &amp;opts[1].n, &amp;opts[1].l);
+      CreateVar(opts[1].position, opts[1].type, &opts[1].m, &opts[1].n, &opts[1].l);
       *stk(opts[1].l) = 3;
     }
 
-  ex2c(stk(opts[0].l),&amp;opts[0].m,&amp;opts[0].n,
-       stk(opts[1].l),&amp;opts[1].m,&amp;opts[1].n);
+  ex2c(stk(opts[0].l),&opts[0].m,&opts[0].n,
+       stk(opts[1].l),&opts[1].m,&opts[1].n);
 
   // return the first argument (unchanged ) then v1 and v2
 
@@ -113,7 +113,7 @@ int sci_optional_parameters(char * fname)
 
   return 0;
 }
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "optional_parameters.c".</para>
 
@@ -130,7 +130,7 @@ int sci_optional_parameters(char * fname)
   <refsection>
     <title>The builder script</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // This is the builder.sce 
 // must be run from this directory 
 
@@ -149,7 +149,7 @@ cflags  = "";
 fflags  = "";
 
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "builder.sce".</para>
 
@@ -161,16 +161,16 @@ ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
 
     <para>To build this function, we just need to to:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 exec builder.sce;
- </programlisting>
+ ]]></programlisting>
 
     <para>Now we are able to test our new C function. First, let's load this
     new function in scilab:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 exec loader.sce; 
- </programlisting>
+ ]]></programlisting>
 
     <para>The script loader.sce is normally automatically built by
     builder.sce.</para>
@@ -181,7 +181,7 @@ exec loader.sce;
 
     <para>We now write a simple example to test our new functions.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // Example with optional argument specified with the 'arg=value syntax'
 // [a,b,c] = ex12c(x1, [v1 = arg1, v2 = arg2]), arg1 default value 99
 //                                              arg2 default value 3
@@ -199,14 +199,14 @@ disp('a = ' + a + ' b = ' + string(b) + ' c = ' + string(c));
 
 [a,b,c] = optional_parameters('test',v2=8,v1=[10]);
 disp('a = ' + a + ' b = ' + string(b) + ' c = ' + string(c));
-  </programlisting>
+ ]]></programlisting>
 
     <para>The script must be saved as "optional_parameters.sce".</para>
 
     <para>Let's run our scripts and see what is the result:</para>
 
-    <programlisting> 
---&gt;exec builder.sce;
+    <programlisting role = ""><![CDATA[  
+-->;exec builder.sce;
    Génère un fichier gateway
    Génère un fichier loader
    Génère un Makefile : Makelib
@@ -214,11 +214,11 @@ disp('a = ' + a + ' b = ' + string(b) + ' c = ' + string(c));
    Compilation de optional_parameters.c
    Construction de la bibliothèque partagée (soyez patient)
  
---&gt;exec loader.sce;
+-->;exec loader.sce;
 Bibliothèque partagée chargée.
 Link done.
  
---&gt;exec optional_parameters.sce;
+-->;exec optional_parameters.sce;
 number of optional parameters = 0
 first optional parameters = 2
 FindOpt(v1) = 0
@@ -248,7 +248,7 @@ parameter 2 is optional: v2
 parameter 3 is optional: v1
  
  a = test b = 20 c = 24  
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

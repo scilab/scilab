@@ -143,15 +143,15 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_myones(char * fname)
 {
   int m_row, n_col, l_pos;
   
   m_row = 1; n_col = 1; // We create a scalar
-  CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &amp;m_row, &amp;n_col, &amp;l_pos);
+  CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &m_row, &n_col, &l_pos);
 
   *istk(l_pos) = 1;
 
@@ -159,7 +159,7 @@ int sci_myones(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
