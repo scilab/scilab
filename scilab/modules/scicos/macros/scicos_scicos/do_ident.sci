@@ -64,13 +64,10 @@ function scs_m = do_ident(scs_m)
 
     if ok then
       objet.graphics.id = stripblanks(identification); //** update the identification structure
-      //gr_k = o_size(1) - numero_objet + 1 ; //** semi empirical equation :)
       gr_k = get_gri(numero_objet, o_size(1));
       drawlater();
         update_gr(gr_k, objet);
-        //** draw(gh_curwin.children);
         drawnow(); 
-        //** show_pixmap() ; //** not useful on Scilab 5
       scs_m.objs(numero_objet) = objet ; //** update the object data structure
     end
     //**----------------------------

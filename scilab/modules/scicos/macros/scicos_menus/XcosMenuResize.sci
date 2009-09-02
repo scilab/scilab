@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Resize_()
+function XcosMenuResize()
 
   scs_m_save = scs_m     ;
 

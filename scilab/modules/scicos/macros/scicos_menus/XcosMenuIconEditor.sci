@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function IconEditor_()
+function XcosMenuIconEditor()
   scs_m_save = scs_m    ;
   nc_save = needcompile ;
   enable_undo = %t      ;
@@ -31,6 +31,5 @@ function IconEditor_()
   edited = %t ;
 
   drawnow(); //** re-draw the graphic object and show on screen
-  //** show_pixmap() ; //** not useful on Scilab 5      
 
 endfunction

@@ -47,10 +47,7 @@ function scs_m=do_placeindiagram(scs_m,blk)
     dx = xm - %xc ; dy = ym - %yc ;
     drawlater();
     move (gh_blk , [dx dy]);
-    //** draw(gh_blk.parent);
     drawnow();
-    //** show_pixmap() ; //** not useful on Scilab 5
-
     %xc = xm ;%yc = ym ; //** position update
 
   end //** ---> of the while loop

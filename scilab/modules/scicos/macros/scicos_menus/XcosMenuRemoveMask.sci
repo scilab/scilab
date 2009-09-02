@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function RemoveMask_()
+function XcosMenuRemoveMask()
 Cmenu=[];%pt=[];
 if size(Select,1)<>1 | curwin<>Select(1,2) then
    return

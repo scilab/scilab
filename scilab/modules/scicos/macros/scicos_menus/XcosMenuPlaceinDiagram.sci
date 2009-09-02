@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function PlaceinDiagram_()
+function XcosMenuPlaceinDiagram()
   Cmenu=[]
   global scs_m_palettes
   //-- %pa_ = TCL_GetVar('blko');
@@ -33,7 +33,7 @@ function PlaceinDiagram_()
   if size(%pa_)==1 then
     global ClipboardPal
     ClipboardPal = %pa_(1)
-    Cmenu = 'Palettes'
+    Cmenu = 'XcosMenuPalettes'
   else
     scs_m = do_placeindiagram(scs_m,scs_m_palettes(scs_full_path(%pa_)))
   end

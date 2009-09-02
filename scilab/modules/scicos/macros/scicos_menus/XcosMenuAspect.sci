@@ -19,12 +19,12 @@
 // See the file ../license.txt
 //
 
-function Aspect_()
+function XcosMenuAspect()
 //
   Cmenu=[]
   [edited,options]=do_options(scs_m.props.options,'3D')
   scs_m.props.options=options
   
-  if edited then Cmenu='Replot',end
+  if edited then Cmenu='XcosMenuReplot',end
   
 endfunction

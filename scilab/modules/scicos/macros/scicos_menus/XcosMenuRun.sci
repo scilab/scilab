@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Run_()
+function XcosMenuRun()
     nc_save = 4  ; 
     Cmenu   = [] ;
     ok = %t      ;

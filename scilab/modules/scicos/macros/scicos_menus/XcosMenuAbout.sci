@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function AboutScicos_()
+function XcosMenuAboutScicos()
   Cmenu=[] ; %pt=[];
     messagebox([strsubst(get_scicos_version(),"scicos","Scicos -")+"-";...
              "For more information visit:";...

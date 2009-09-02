@@ -23,9 +23,10 @@ function EnableAllMenus()
   //** Serge Steer Sept 2009, use the uimenu properties instead of setmenu
   curf=gcf(); //preserve current figure
   for win=intersect(winsid(),[inactive_windows(2);curwin]')
-    for c=get(scf(win),'children')'
-      if c.type=='uimenu'&c.Tag<>'XcosMenuStop' then 
-	c.Enable = "on";
+    C=get(scf(win),'children')
+    for k=1:size(C,'*')
+      if C(k).type=='uimenu'&C(k).Tag<>'XcosMenuStop' then 
+	C(k).Enable = "on";
       end
     end
   end

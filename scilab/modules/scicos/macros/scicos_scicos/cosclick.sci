@@ -37,7 +37,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   if ~or( winsid()==curwin ) then //**                                                     //
     //** disp("...cosclic.sci: fast Select then CloseWindow...|:"); pause; //** debug only //
     win = curwin   ;
-    Cmenu = "Quit" ; 
+    Cmenu = "XcosMenuQuit" ; 
     return         ; //** EXIT Point //
   end   
   //**----------------------------------------------------------------------------//
@@ -66,7 +66,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   //** The window has been closed 
     
     if win==curwin then  //** in the current window ? 
-      Cmenu = "Quit" ;     
+      Cmenu = "XcosMenuQuit" ;     
     else                 //** not the current window 
       Cmenu = []    ;
       %pt   = []    ;
@@ -95,16 +95,16 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       cmd = 'Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
     
     elseif (btn==0) then
-      cmd = 'Cmenu = '"MoveLink'"'
+      cmd = 'Cmenu = '"XcosMenuMoveLink'"'
     
     elseif (btn==3) then
-      cmd='Cmenu=''SelectLink''' //** indirect call via commands 
+      cmd='Cmenu=''XcosMenuSelectLink''' //** indirect call via commands 
     
     elseif (btn==10) then 
-      cmd='Cmenu='"Open/Set'"'
+      cmd='Cmenu='"XcosMenuOpenSet'"'
     
     elseif or(btn==[2 5 12]) then
-      cmd='Cmenu = '"Popup'"';
+      cmd='Cmenu = '"XcosMenuPopup'"';
     
     elseif (btn>=32) & (btn<288)
       //09/10/2007, Alan's patch search in %scicos_short 
@@ -114,16 +114,16 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
           ind=ind($)
           cmd='Cmenu='''+%scicos_short(ind,2)+''''
         else
-          cmd='Cmenu=''SelectLink'''//** indirect call via commands for shortcut
+          cmd='Cmenu=''XcosMenuSelectLink'''//** indirect call via commands for shortcut
         end
       else
-        cmd='Cmenu=''SelectLink'''
+        cmd='Cmenu=''XcosMenuSelectLink'''
       end
     
      elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress]
-      cmd='Cmenu = '"Smart Move'"'; //** Smart Move 
+      cmd='Cmenu = '"XcosMenuSmartMove'"'; //** Smart Move 
      else
-      cmd='Cmenu=''SelectLink'''
+      cmd='Cmenu=''XcosMenuSelectLink'''
     end
     //**----------------------------------------------------------------------------
 
@@ -134,18 +134,18 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   
   //** -----------------------------------------------------------
   elseif (btn==3) then //** Single click : Left Mouse Button : no window check         
-    Cmenu = "SelectLink" ; //** direct command: "Link" or selection of a block 
+    Cmenu = "XcosMenuSelectLink" ; //** direct command: "Link" or selection of a block 
     
   //** -----------------------------------------------------------
   elseif (btn==0) then //** Press button : Left Mouse Button : no window check 
-    Cmenu = "MoveLink"   ; //** Normal Move
+    Cmenu = "XcosMenuMoveLink"   ; //** Normal Move
 
   elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress] 
-    Cmenu = "Smart Move"   ; //** Smart Move
+    Cmenu = "XcosMenuSmartMove"   ; //** Smart Move
   
   //**-------------------------------------------------------------    
   elseif (btn==10) & (win==curwin) then //** "Left Mouse Double Click" in the current Scicos window
-    Cmenu="Open/Set"  //** Possible cases : 1 - Void (empty)
+    Cmenu="XcosMenuOpenSet"  //** Possible cases : 1 - Void (empty)
                       //**                  2 - Block
                       //**                  3 - Link
                       //**                  4 - Super Block
@@ -156,9 +156,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     //** if jj is NOT empty means that you are in a Palette or in a Navigator  
     if jj <> [] then
       if or(windows(jj,1)==100000) then
-        Cmenu = "Open/Set"  //double click in the navigator: mode open-set --> Navigator Window
+        Cmenu = "XcosMenuOpenSet"  //double click in the navigator: mode open-set --> Navigator Window
        else
-	Cmenu = "Duplicate" //** Double Click In a Palette windows ---> jump to Duplicate  
+	Cmenu = "XcosMenuDuplicate" //** Double Click In a Palette windows ---> jump to Duplicate  
       end
     else
       Cmenu=[]; %pt=[]; //** otherwise, clear state variable
@@ -168,7 +168,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   
   //**--------------------- RIGHT MOUSE BUTTON -> POPUP -------------------------------------
   elseif or( btn==[2 5 12] ) then  //** any RIGHT mouse button events (click, press, d.click)
-    Cmenu = "Popup";               //** means a popup request 
+    Cmenu = "XcosMenuPopup";               //** means a popup request 
     return         ; //** --> EXIT to 'Popup' execution 
   //**---------------------------------------------------------------------------------------    
   
@@ -203,30 +203,30 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
         
     // [CRTL]+[x] --> Cut
     if (btn==1120) then //** [CRTL]+[x] --> Cut
-      Cmenu="Cut"; %pt=[];
+      Cmenu="XcosMenuCut"; %pt=[];
     
     elseif (btn==1099) then            //** [CTRL]+[c] --> Copy
-      Cmenu="Copy"; %pt=[];
+      Cmenu="XcosMenuCopy"; %pt=[];
     
     elseif (btn==1118) then            //** [CTRL]+[v] --> Paste 
-      Cmenu="Paste"; %pt = [xc,yc] ;   //** acquire the position for the "Paste"
+      Cmenu="XcosMenuPaste"; %pt = [xc,yc] ;   //** acquire the position for the "Paste"
     
     elseif (btn==127)| (btn==8) then  //** [Delete] or [backspace]key 
-      Cmenu="Delete"; %pt=[];
+      Cmenu="XcosMenuDelete"; %pt=[];
     
     //** ----- Mouse + Keyb. combos ---------------------------  
     elseif (btn==1003) then  //** [CTRL]+[Left btn click] 
-      Cmenu="CtrlSelect";    //** Multiple, additive object selection 
+      Cmenu="XcosMenuCtrlSelect";    //** Multiple, additive object selection 
     
     elseif (btn==1122) then                //**  [CTRL]+[z] --> Undo 
-      Cmenu="Undo";
+      Cmenu="XcosMenuUndo";
     //**-------------------------------------------------------
     
     elseif (btn==1115) then                //** [CRTL]+[s] --> Save the diagram 
-      Cmenu="Save";
+      Cmenu="XcosMenuSave";
 
     elseif (btn==1097) then                //** [CRTL]+[a] --> Select all 
-      Cmenu="Select All";
+      Cmenu="XcosMenuSelectAll";
 
     
     //**-------------------------------------------------------

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Setgrid_()
+function XcosMenuSetgrid()
 
   xinfo('Set grid')
   if exists('%scicos_with_grid') then

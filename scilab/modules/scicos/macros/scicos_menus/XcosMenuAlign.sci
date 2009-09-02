@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Align_()
+function XcosMenuAlign()
 //** Align unconnected blocks 
 //** 24/06/2009: Serge Steer  not to take care of selected blocs  
 

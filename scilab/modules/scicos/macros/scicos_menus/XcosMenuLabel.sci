@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Label_()
+function XcosMenuLabel()
     scs_m_save=scs_m;nc_save=needcompile;enable_undo=%t
     [%mod,scs_m]=do_label(%pt,scs_m)
     edited=edited|%mod

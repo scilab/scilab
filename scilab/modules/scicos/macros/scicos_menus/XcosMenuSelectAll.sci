@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SelectAll_()
+function XcosMenuSelectAll()
 //** BEWARE : This function works ONLY in diagram but not in palettes !
 
 Cmenu=[]; %pt=[];

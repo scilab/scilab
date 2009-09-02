@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SaveasInterfFunc_()
+function XcosMenuSaveasInterfFunc()
 
     Cmenu = []
     ok = %f

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function ShowBlockShadow_()
+function XcosMenuShowBlockShadow()
 //
 //
   Cmenu=[] ;
@@ -32,10 +32,8 @@ function ShowBlockShadow_()
     gh_axes = gca()       ; 
     //** Clear the graphic window WITHOUT changing his pamaters ! :)
     drawlater() ;
-      delete(gh_axes.children) ; //** wipe out all the temp graphics object
-      drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
-    //** drawnow(); //** re-draw the graphic object and show on screen
-    //** show_pixmap() ;
+    delete(gh_axes.children) ; //** wipe out all the temp graphics object
+    drawobjs(scs_m, gh_curwin) ;   //** re-create all the graphics object
     Cmenu = [] ; %pt = [];
   end
 

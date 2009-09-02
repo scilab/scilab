@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function AvailableParameters_()
+function XcosMenuAvailableParameters()
 //
   Cmenu=[]
   //**

@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function AnalyzeDiagram_()
+function XcosMenuAnalyzeDiagram()
   Cmenu = [] ; 
   if needcompile>0 then 
     messagebox("You must first compile the diagram.","modal")

@@ -48,9 +48,9 @@ if %diagram_open then //** %diagram_open is a global variable that signal if the
 
   Cmenu = check_edge(o, Cmenu, %pt);
 
-  if Cmenu==("Link") then
+  if Cmenu=="XcosMenuLink" then
     //we have clicked near a port
-    [Cmenu] = resume("Link") ; //** EXIT with Link operation
+    [Cmenu] = resume("XcosMenuLink") ; //** EXIT with Link operation
   end
 
 end
@@ -122,7 +122,7 @@ if typeof(o)=="Block" then
 
     curwin = lastwin ;
     if (~(or(curwin==winsid()))) then
-          Cmenu = resume("Open/Set"); //** if the curwin is not present
+          Cmenu = resume("XcosMenuOpenSet"); //** if the curwin is not present
     end
 
     gh_curwin = scf(curwin);
@@ -316,7 +316,7 @@ if typeof(o)=="Block" then
 //**---------------------- Link -------------------------------------------------
 elseif typeof(o)=="Link" then
 
-  [Cmenu] = resume("Link")
+  [Cmenu] = resume("XcosMenuLink")
 
 //**---------------------- Text -------------------------------------------------
 elseif typeof(o)=="Text" then

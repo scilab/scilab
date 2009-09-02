@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SaveBlockGUI_()
+function XcosMenuSaveBlockGUI()
 //** 25/06/2009 : Serge Steer, 
 //   -fix a bug un case there are selected objects in other windows  
   K=find(Select(:,2)==curwin)

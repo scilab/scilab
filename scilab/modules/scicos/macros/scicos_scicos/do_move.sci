@@ -57,9 +57,9 @@ function [scs_m] = do_move(%pt, scs_m)
   if k==[] then
     return
   end ; //** if NO object found -> exit
-  Cmenu = check_edge(scs_m.objs(k),"Smart Move",%pt);
-  if Cmenu=="Link" then
-     Cmenu=resume("Smart Link")
+  Cmenu = check_edge(scs_m.objs(k),"XcosMenuSmartMove",%pt);
+  if Cmenu=="XcosMenuLink" then
+     Cmenu=resume("XcosMenuSmartLink")
   end
 
   scs_m_save = scs_m ; //** save the diagram
@@ -93,7 +93,7 @@ function [scs_m] = do_move(%pt, scs_m)
    //**-------------------------------------------------------
   end
 
-  if Cmenu=="Quit" then
+  if Cmenu=="XcosMenuQuit" then
        //** active window has been closed
        [%win,Cmenu] = resume(%win,Cmenu) ;
   end
@@ -401,7 +401,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
       if or(rep(3)==[0,2,3,5,-5]) then
           break ; //** ---> EXIT point of the while
       elseif rep(3)==-1000 then //active window has been closed
-	  [%win,Cmenu] = resume(curwin,'Quit')
+	  [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
       end
 
       delta_x = rep(1) - xo_mouse ; //** compute delta positions
@@ -430,7 +430,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win,Cmenu] = resume(curwin,"Quit") ;
+        [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
     end
 
     // update  block
@@ -513,7 +513,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
       rep = xgetmouse([%t,%t]); //** get new position
 
       if rep(3)==-1000 then //** active window has been closed
-	[%win,Cmenu] = resume(curwin,"Quit")
+	[%win,Cmenu] = resume(curwin,"XcosMenuQuit")
       end
 
       delta_x = rep(1) - xc ; delta_y = rep(2) - yc ; //** calc the differential position because
@@ -530,7 +530,7 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win,Cmenu] = resume(curwin,'Quit') ;
+        [%win,Cmenu] = resume(curwin,'XcosMenuQuit') ;
     end
 
     // update and draw block
@@ -624,7 +624,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
 	if rep(3)==-1000 then // active window has been closed
-	  [%win,Cmenu] = resume(curwin,"Quit")
+	  [%win,Cmenu] = resume(curwin,"XcosMenuQuit")
 	end
 	
         xc1 = rep(1) ; //** acquire muse coordinate
@@ -639,7 +639,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       //** accidental window closing protection 
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	[%win,Cmenu] = resume(curwin,"Quit") ; 
+	[%win,Cmenu] = resume(curwin,"XcosMenuQuit") ; 
       end
       
       //** update link data structure 
@@ -656,7 +656,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       //** link comes from a split
       scs_m = movelink2(scs_m) ; //** ok
     
-      if Cmenu=="Quit" then 
+      if Cmenu=="XcosMenuQuit" then 
         [%win,Cmenu] = resume(curwin,Cmenu)
       end
     
@@ -687,7 +687,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
         rep = xgetmouse([%t,%t]); //** wait for user movement :)
 	
 	if rep(3)==-1000 then //active window has been closed
-	  [%win,Cmenu] = resume(curwin,'Quit')
+	  [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
 	end
 
 	xc1 = rep(1) ; 
@@ -703,7 +703,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       //** window closing protection 
       gh_figure = gcf();
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	[%win,Cmenu] = resume(curwin,"Quit") ;
+	[%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
       end
 
       //** link data structure update 
@@ -723,7 +723,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
          //** 
       scs_m = movelink3(scs_m) ; //** see below in the code
 
-      if Cmenu=="Quit" then
+      if Cmenu=="XcosMenuQuit" then
         [%win,Cmenu] = resume(curwin,Cmenu)
       end
 
@@ -747,7 +747,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
       rep = xgetmouse([%t,%t]);
 
       if rep(3)==-1000 then // active window has been closed
-	[%win,Cmenu]=resume(curwin,'Quit')
+	[%win,Cmenu]=resume(curwin,'XcosMenuQuit')
       end
 
       xc1 = rep(1) ;
@@ -762,7 +762,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-	 [%win,Cmenu] = resume(curwin,"Quit") ;
+	 [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
     end
 
     //** update data structure 
@@ -780,7 +780,7 @@ function scs_m = movelink(scs_m, k, xc, yc, wh)
 
     scs_m = movelink4(scs_m) ; //** see below in the code
 
-    if Cmenu=="Quit" then
+    if Cmenu=="XcosMenuQuit" then
       [%win,Cmenu] = resume(curwin,Cmenu)
     end
 
@@ -828,7 +828,7 @@ function scs_m = movelink4(scs_m)
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu] = resume(curwin,'Quit')
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
     end
 
     xc1 = rep(1); yc1 = rep(2)
@@ -846,7 +846,7 @@ function scs_m = movelink4(scs_m)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit') ;
   end
 
 
@@ -897,7 +897,7 @@ function scs_m = movelink1(scs_m)
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu]=resume(curwin,'Quit')
+      [%win,Cmenu]=resume(curwin,'XcosMenuQuit')
     end
 
     xc1 = rep(1); yc1 = rep(2) ; //** acquire muse coordinate
@@ -915,7 +915,7 @@ function scs_m = movelink1(scs_m)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,"Quit") ;
+      [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
   end
 
   if and(rep(3)<>[2 5]) then
@@ -1028,7 +1028,7 @@ function scs_m = movelink2(scs_m)
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
-	[%win,Cmenu] = resume(curwin,"Quit") ;
+	[%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
     end
     
     xc1 = rep(1); yc1 = rep(2); //** acquire muse coordinate
@@ -1045,7 +1045,7 @@ function scs_m = movelink2(scs_m)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,"Quit") ;
+      [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
   end
 
   if and(rep(3)<>[2 5]) then //** if valid move
@@ -1150,7 +1150,7 @@ function scs_m = movelink3(scs_m)
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu]=resume(curwin,'Quit')
+      [%win,Cmenu]=resume(curwin,'XcosMenuQuit')
     end
   
     xc1 = rep(1); yc1 = rep(2)
@@ -1167,7 +1167,7 @@ function scs_m = movelink3(scs_m)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit') ;
   end
 
   //** xpolys(xx(1:$-2),yy(1:$-2),ct(1))//erase rest of the link
@@ -1251,7 +1251,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
     rep = xgetmouse([%t,%t]); //** wait for user movement :)
 
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu]=resume(curwin,'Quit')
+      [%win,Cmenu]=resume(curwin,'XcosMenuQuit')
     end
 
     xc1 = rep(1); yc1 = rep(2) ;
@@ -1266,7 +1266,7 @@ function scs_m = movecorner(scs_m,k,xc,yc,wh)
   end
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit') ;
   end
 
   eps = 16 ;

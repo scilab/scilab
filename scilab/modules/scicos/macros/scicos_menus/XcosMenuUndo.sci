@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Undo_()
+function XcosMenuUndo()
 
     Cmenu = [] ;
     %pt = [];
@@ -40,7 +40,7 @@ function Undo_()
          for i=1:size(supers)
             Scicos_commands=[Scicos_commands;
          	 '%diagram_path_objective='+sci2exp(supers(i))+';%scicos_navig=1';
-                 'Cmenu='"Replot'"']
+                 'Cmenu='"XcosMenuReplot'"']
          end
          enable_undo = %f ; //** "Undo" is a single level function 
       end
@@ -49,7 +49,7 @@ function Undo_()
          scs_m = scs_m_save ; //** recover the previous diagram
 	 Select = [] ; //** unselect object  
          needcompile = nc_save ;
-         Cmenu='Replot'     
+         Cmenu='XcosMenuReplot'     
          enable_undo = %f ; //** "Undo" is a single level function 
     else
       messagebox('No more undo available.','modal')

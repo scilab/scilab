@@ -24,7 +24,7 @@
 // See the file ../license.txt
 //
 
-function CodeGeneration_()
+function XcosMenuCodeGeneration()
 // Copyright INRIA
 //
 // Last update : 14/12/08 
@@ -63,14 +63,14 @@ function CodeGeneration_()
             Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
                              '[alreadyran,%cpr]=do_terminate();'+...
                              '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-                             '%pt='+sci2exp(%pt)+';Cmenu='"Code Generation"'';]
+                             '%pt='+sci2exp(%pt)+';Cmenu='"XcosMenuCodeGeneration"'';]
 
          //## test to know if the precompilation of that sblock have been done
          elseif ( isequal(scs_m_top,[]) | isequal(scs_m_top,list()) ) then
             Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
                              'global scs_m_top; scs_m_top=adjust_all_scs_m(scs_m,'+sci2exp(k)+');'+...
                              '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-                             '%pt='+sci2exp(%pt)+';Cmenu='"Code Generation"'';]
+                             '%pt='+sci2exp(%pt)+';Cmenu='"XcosMenuCodeGeneration"'';]
 
          else
             // Got to target sblock.
@@ -97,10 +97,10 @@ function CodeGeneration_()
                                 'funcprot(ppprot);clear ppprot;';
                                'if ierr<> 0 then messagebox(''Cannot load the '''''+gui_path+''''' file'',''modal'');end';
                                 '%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1;'
-                               'Cmenu='"Replot'"']
+                               'Cmenu='"XcosMenuReplot'"']
             else
               if ok<>-1 then
-                Cmenu = "Open/Set"
+                Cmenu = "XcosMenuOpenSet"
               end
             end
             //## remove variables
@@ -141,7 +141,7 @@ function CodeGeneration_()
 
        edited      = %t ;
        needcompile = 4  ;
-       Cmenu       = "Replot"
+       Cmenu       = "XcosMenuReplot"
 
        //## remove variables
        clear XX YY flgcdgen k szclkINTemp freof gui_path

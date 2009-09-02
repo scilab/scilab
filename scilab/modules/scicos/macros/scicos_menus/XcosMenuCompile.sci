@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Compile_()
+function XcosMenuCompile()
     nc_save = 4  ;
     Cmenu   = [] ;
     needcompile = 4; 

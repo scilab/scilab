@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SetDiagramInfo_()
+function XcosMenuSetDiagramInfo()
     
     Cmenu = [] ;
     

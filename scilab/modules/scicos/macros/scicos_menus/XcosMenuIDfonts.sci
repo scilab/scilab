@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function IDfonts_()
+function XcosMenuIDfonts()
 
     Cmenu = [] ;
 
@@ -28,7 +28,7 @@ function IDfonts_()
     scs_m.props.options = options ;
 
     if edited then //** if modified force a Replot :)
-      // Acquire the current clicked window and put to "on" the pixmap mode
+      // Acquire the current clicked window 
       gh_curwin = scf(%win) ;
       gh_axes = gca(); 
 

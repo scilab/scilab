@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Navigator_()
+function XcosMenuNavigator()
     [%Tree,windows]=do_navigator(scs_m,windows)
     Cmenu=[]
 endfunction

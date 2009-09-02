@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Nyquist_()
+function XcosMenuNyquist()
     syst=analyse(scs_m)
     %sl=bloc2ss(syst)
     xset('window',curwin+1);xbasc()

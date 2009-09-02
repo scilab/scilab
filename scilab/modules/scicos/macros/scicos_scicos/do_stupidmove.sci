@@ -63,7 +63,7 @@ function [scs_m] = do_stupidmove(%pt,Select,scs_m)
   //**------------------------------------------------------------------
 
   //** check if the windows was find closed by the previous function calls 
-  if Cmenu=="Quit" then
+  if Cmenu=="XcosMenuQuit" then
     //active window has been closed
     [%win,Cmenu] = resume(%win, Cmenu) ; //** EXIT point 
   end
@@ -181,15 +181,12 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     //** --------------------------------------------
 
     gh_blk.children.data = [X_start,Y_start ; x1, y1 ; X_end, Y_end ];
-    //** draw(gh_curwin.children);
     drawnow();
-    //** show_pixmap() ; //** not useful on Scilab 5
-
     rep = xgetmouse([%t,%t]); //** 
 
     gh_figure = gcf();
     if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-         [%win,Cmenu] = resume(curwin,"Quit") ;
+         [%win,Cmenu] = resume(curwin,"XcosMenuQuit") ;
     end
 
     //**--------------------------------
@@ -213,7 +210,7 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
 
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-      [%win,Cmenu] = resume(curwin,'Quit') ;
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit') ;
   end
 
   if %scicos_debug_gr then
@@ -246,21 +243,16 @@ function scs_m = stupid_movecorner(scs_m, k, xc, yc, wh)
     
     //** update the graphics object with the last link geometrical correction 
     drawlater();
-     gh_blk.children.data = [xx , yy];
-     //** draw(gh_blk.parent);
-     drawnow();
-     //** show_pixmap() ; //** not useful on Scilab 5
-    
+    gh_blk.children.data = [xx , yy];
+    drawnow();
     o.xx = xx; o.yy = yy ;
     scs_m.objs(k)=o ; //** update the scs_m data structure
 
   else //** restore original position of link in figure
     
     drawlater();
-     gh_blk.children.data = ini_data;
-     //** draw(gh_blk.parent);
-     drawnow();
-     //** show_pixmap() ; //** not useful on Scilab 5
+    gh_blk.children.data = ini_data;
+    drawnow();
     
     //** DO NOT update the scs_m datastructure ! ;)
   

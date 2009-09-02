@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function LoadasPalette_()
+function XcosMenuLoadasPalette()
 
     Cmenu = [] ;
     [palettes,windows] = do_load_as_palette(palettes, windows) ;

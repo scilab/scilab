@@ -19,8 +19,8 @@
 // See the file ../license.txt
 //
 
-function Eval_()
-    Cmenu='Replot'
+function XcosMenuEval()
+    Cmenu='XcosMenuReplot'
 
     %now_win=xget('window')
 

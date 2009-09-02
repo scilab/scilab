@@ -104,11 +104,11 @@ function java = crlist(scs_m, Path, java)
 	  ind = find(titre2==GIF);
 	  if ind<>[] then
 	    //** a valid icon (GIF) is found
-	    java = concatTree(java, createNode(titre2, GIFT(ind), "global %pa_;%pa_="""+path+""";Cmenu=''PlaceinDiagram''"));
+	    java = concatTree(java, createNode(titre2, GIFT(ind), "global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''"));
 
 	  else
 	    //** NO icon is found: use the block's name
-	    java = concatTree(java, createNode(titre2, "default", "global %pa_;%pa_="""+path+""";Cmenu=''PlaceinDiagram''"));
+	    java = concatTree(java, createNode(titre2, "default", "global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''"));
 
 	  end
 	end

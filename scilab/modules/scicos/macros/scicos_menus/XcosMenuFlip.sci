@@ -21,7 +21,7 @@
 // See the file ../license.txt
 //
 
-function Flip_()
+function XcosMenuFlip()
 //** Alan/Simone 13/12/06 : Replot no more needed
    scs_m_save = scs_m    ; //** save the old diagram for "undo" operation 
    nc_save = needcompile ; //** save the old diagram state

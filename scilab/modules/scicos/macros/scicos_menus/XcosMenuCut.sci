@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Cut_()
+function XcosMenuCut()
 // ** Serge Steer 24/06/2009
 //  - Allow to cut element which was not previusly selected (to be
 //    coherent with delete)

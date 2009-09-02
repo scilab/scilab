@@ -19,9 +19,9 @@
 // See the file ../license.txt
 //
 
-function Context_()
+function XcosMenuContext()
 
-  Cmenu   = 'Replot' ; //** is it really necessary ?
+  Cmenu   = 'XcosMenuReplot' ; //** is it really necessary ?
   context = scs_m.props.context
   //## set param of scstxtedit
   txtedit = scicos_txtedit(clos = 0,...
@@ -40,7 +40,7 @@ function Context_()
     [rep,Quit] = scstxtedit(context,txtedit);
 
     if ~or(winsid()==%now_win) then 
-      Cmenu="Quit",
+      Cmenu="XcosMenuQuit",
       txtedit.clos=1
       messagebox('Diagram has been closed. That context is no more valid.','modal')
       [rep,Quit] = scstxtedit(context,txtedit);

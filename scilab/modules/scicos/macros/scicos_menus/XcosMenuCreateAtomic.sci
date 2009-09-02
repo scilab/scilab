@@ -18,12 +18,12 @@
 //
 // See the file ../license.txt
 //
-function CreateAtomic_()
+function XcosMenuCreateAtomic()
 // Copyright INRIA
 if alreadyran then
   Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
       '[alreadyran,%cpr]=do_terminate();%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-      'Select='+sci2exp(Select)+';Cmenu='"Create Atomic'"';]
+      'Select='+sci2exp(Select)+';Cmenu='"XcosMenuCreateAtomic'"';]
   //return
 else
   Cmenu=[];%pt=[];

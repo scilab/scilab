@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function RotateLeft_()
+function XcosMenuRotateLeft()
 //** Al@n
 
     scs_m_save = scs_m ;

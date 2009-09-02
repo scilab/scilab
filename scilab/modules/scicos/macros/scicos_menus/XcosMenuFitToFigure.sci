@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function Fitdiagramtofigure_()
+function XcosMenuFitdiagramtofigure()
 //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
    Cmenu = [];
    xinfo("Fit diagram to figure");

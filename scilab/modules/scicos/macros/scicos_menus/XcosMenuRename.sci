@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Rename_()
+function XcosMenuRename()
 
     Cmenu = [] ;
     [scs_m,edited] = do_rename(scs_m) ;

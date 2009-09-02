@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function CtrlSelect_()
+function XcosMenuCtrlSelect()
   Cmenu=[];
   if windows(find(%win==windows(:,2)),1)==100000 then
     %pt=[]

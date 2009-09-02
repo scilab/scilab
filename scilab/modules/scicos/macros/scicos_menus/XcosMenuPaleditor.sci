@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Paleditor_()
+function XcosMenuPaleditor()
 
     Cmenu = [] ;
     

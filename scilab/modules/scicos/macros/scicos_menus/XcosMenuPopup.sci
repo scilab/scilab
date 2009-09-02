@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Popup_()
+function XcosMenuPopup()
 
 //** This function uses the "%scicos_lhb_list(state_var) data strucuture
 //** defined inside [auto/scicos.sci]
@@ -215,10 +215,9 @@ end //** ... of single / multiple selection switch
   //** restore the state for palette window
 
   if state_pal==1 then //** inside a palette window
-     //** force the proprieties of the palette windows:
+     //** force the properties of the palette windows:
      //** the user should be capable to change the size
      gh_curwin.auto_resize = "on"       ; //**
-     gh_curwin.pixmap      = "off"      ;
      gh_curwin.immediate_drawing = "on" ;
   end
 

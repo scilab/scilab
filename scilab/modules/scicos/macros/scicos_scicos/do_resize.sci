@@ -39,7 +39,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
     K   = Select(:,1)';
     %pt = [] ;
     if size(K,'*')>1 | %win<>Select(1,2) then
-      messagebox("Only one block can be selected in current window for this operation.",'modal')
+      messagebox(_("Only one block can be selected in current window for this operation."),'modal')
       Cmenu=[]; %pt=[]; return ; //** ---> EXIT
     end
   end
@@ -63,7 +63,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
       sz       = graphics.sz   ;
       orig     = graphics.orig ;
 
-      [ok,w,h] = getvalue('Set Block sizes',['width';'height'],..
+      [ok,w,h] = getvalue(_("Set Block sizes"),[_("width");_("height")],..
 	  	           list('vec',1,'vec',1),string(sz(:)))
       //** in case of valid (w,h)
       if ok  then
@@ -83,7 +83,7 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
       Thick = pos(1) ;
       Type  = pos(2) ;
       //** open a dialog box to edit
-      [ok,Thick,Type] = getvalue('Link parameters',['Thickness';'Type'],..
+      [ok,Thick,Type] = getvalue(_("Link parameters"),[_("Thickness");_("Type")],..
 			          list('vec','1','vec',1),[string(Thick);string(Type)])
       if ok then
 	edited = or(scs_m.objs(K).thick<>[Thick,Type]) ; //** set flag if the parm are edited
@@ -95,14 +95,12 @@ function [%pt, scs_m] = do_resize(%pt, scs_m)
           o_size = size(gh_axes.children); 
           gr_k = get_gri(K, o_size(1)) ; 
           gh_axes.children(gr_k).children(1).thickness = maxi(scs_m.objs(K).thick(1) , 1) * maxi(scs_m.objs(K).thick(2), 1) ;
-          //** draw(gh_curwin.children);
         drawnow(); 
-        //** show_pixmap() ; //** not useful on Scilab 5
       end
 
     else
     //** nor Block nor Link
-      messagebox("Resize is allowed only for Blocks or Links.",'modal')
+      messagebox(_("Resize is allowed only for Blocks or Links."),'modal')
     end
 
   else

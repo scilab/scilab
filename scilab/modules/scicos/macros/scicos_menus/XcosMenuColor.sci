@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Color_()
+function XcosMenuColor()
     
     scs_m_save = scs_m    ;
     nc_save = needcompile ;

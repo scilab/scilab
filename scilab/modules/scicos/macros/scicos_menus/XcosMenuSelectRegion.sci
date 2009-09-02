@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function SelectRegion_()
+function XcosMenuSelectRegion()
 //** 10 July 2006: find a
 //** xx/01/07 : Alan - review (introduce rubberbox here)
 //**            Objects must be totally included in

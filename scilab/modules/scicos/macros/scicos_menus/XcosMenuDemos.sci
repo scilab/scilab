@@ -19,16 +19,12 @@
 // See the file ../license.txt
 //
 
-function Demos_()
-//
-   
-      //** demos_dir = SCI+"/demos/scicos";
-      //** chdir(demos_dir)  ;  
+function XcosMenuDemos()
       
       global %scicos_demo_mode ; 
       
       %scicos_demo_mode = 1    ; 
       
-      Cmenu = "Open" ; 
+      Cmenu = "XcosMenuOpen" ; 
     
 endfunction

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Replot_()
+function XcosMenuReplot()
 
     Cmenu = [] ;
     %pt   = [] ;

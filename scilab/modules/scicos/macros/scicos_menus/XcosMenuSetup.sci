@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Setup_()
+function XcosMenuSetup()
     Cmenu=[]
     %wpar=do_setup(scs_m.props)
     %scicos_solver=%wpar.tol(6)

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SelectLink_()
+function XcosMenuSelectLink()
   //** This function is called after a single left click 
 
   Select=[]; 

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function MoveLink_()
+function XcosMenuMoveLink()
 
 //** This function is activated by PRESSING the LEFT mouse buttom 
  
@@ -45,10 +45,10 @@ function MoveLink_()
     end
     
     if %kk<>[] then //** press over a valid block 
-        Cmenu="Duplicate"
+        Cmenu="XcosMenuDuplicate"
         Select=[%kk,%win]
     else           //** press in the void   
-        Cmenu="SelectRegion"
+        Cmenu="XcosMenuSelectRegion"
         Select=[];
     end
   
@@ -65,11 +65,11 @@ function MoveLink_()
 			   //**--------------------------------------------------------------
       if ObjSel<=1 then //** with zero or one object already selected 
         
-	Cmenu = check_edge(scs_m.objs(%kk),"Move",%pt);
-	//** N.B. if the click is over an output port [Cmenu = "Link"]       
+	Cmenu = check_edge(scs_m.objs(%kk),"XcosMenuMove",%pt);
+	//** N.B. if the click is over an output port [Cmenu = "XcosMenuLink"]       
         
-	if Cmenu=="Link" then
-	  Select = []; //** Execute "Link" : deselct any previously selected object
+	if Cmenu=="XcosMenuLink" then
+	  Select = []; //** Execute "Link" : deselect any previously selected object
 	else 
 	  Select = [%kk, %win]; //** Execute "Move" with the object selected 
 	end 
@@ -77,10 +77,10 @@ function MoveLink_()
       else //** more than one object is selected 
         SelectedObjs = Select(:,1)'; //** isolate the object column and put in a row 
 	if or(%kk==SelectedObjs) then //** check if the user want to move the aggregate
-	  Cmenu = "Move";
+	  Cmenu = "XcosMenuMove";
 	  //** Select information is preserved    
 	else
-	  Cmenu  = "Move";
+	  Cmenu  = "XcosMenuMove";
 	  Select = [%kk, %win]; //** user want to move only the object in the focus
 	end 
 	
@@ -89,7 +89,7 @@ function MoveLink_()
       
     else //** if the press is in the void of the current window 
 
-      Cmenu = "SelectRegion" ; //** "SelectRegion" will be called later 
+      Cmenu = "XcosMenuSelectRegion" ; //** "SelectRegion" will be called later 
       %ppt = []; Select = [] ; 
 
     end

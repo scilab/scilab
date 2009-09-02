@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function  Documentation_()
+function  XcosMenuDocumentation()
     scs_m = do_doc(scs_m,%pt)
     Cmenu=[];%pt=[]
 endfunction

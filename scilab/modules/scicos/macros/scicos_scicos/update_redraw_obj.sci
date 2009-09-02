@@ -34,9 +34,7 @@ if length(path)==2 then
      o_size = size(gh_axes.children);
      gr_k = get_gri(path(2), o_size(1)) ; //** semi empirical equation :)
      update_gr(gr_k, o) //** update the graphics data structure only of the last object 
-     //** draw(gh_curwin.children); //** update the graphics window  //** show the diagram 
      drawnow(); 
-     //** show_pixmap() ; 
   else
     //** ---------------- BLOCK ------------------------
     //** the BLOCK and connected links are updated here 

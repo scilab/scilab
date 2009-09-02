@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function OpenSet_()
+function XcosMenuOpenSet()
 
   global inactive_windows
 
@@ -125,7 +125,7 @@ function OpenSet_()
     //to force the creation of a Link  
     
     //** this POC potentially dangerous !!!
-    if Cmenu=="Link" then
+    if Cmenu=="XcosMenuLink" then
       %pt = [%xc, %yc]   ;
       super_path($) = [] ;
       return ; //** ---> EXIT point

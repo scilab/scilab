@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Purge_()
+function XcosMenuPurge()
 
     Cmenu = [] ;
     %pt = []   ;
@@ -27,5 +27,5 @@ function Purge_()
     scs_m = do_purge(scs_m);
     needcompile = 4;
     edited = %t ;
-    Cmenu = "Replot" ; 
+    Cmenu = "XcosMenuReplot" ; 
 endfunction

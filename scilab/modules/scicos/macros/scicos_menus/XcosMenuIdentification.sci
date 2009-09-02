@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Identification_()
+function XcosMenuIdentification()
 
   scs_m = do_ident(scs_m)
   Cmenu = [] ; %pt = [];

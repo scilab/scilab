@@ -19,13 +19,11 @@
 // See the file ../license.txt
 //
 
-function Export_()
+function XcosMenuExport()
 
   do_export(scs_m) ;
   
   scf(gh_current_window); 
   drawnow(); 
-  //** show_pixmap() ; //** not useful on Scilab 5
-
   Cmenu=[]   ;
 endfunction

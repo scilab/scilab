@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function BrowseTo_()
+function XcosMenuBrowseTo()
 global %scicos_navig
 global %diagram_path_objective
 Cmenu=[]

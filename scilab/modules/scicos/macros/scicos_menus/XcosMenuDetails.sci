@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Details_()
+function XcosMenuDetails()
 
   Cmenu = [] ; 
   do_details(Select);

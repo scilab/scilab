@@ -18,11 +18,11 @@
 //
 // See the file ../license.txt
 //
-function RemoveAtomic_()
+function XcosMenuRemoveAtomic()
 if alreadyran then
   Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
       '[alreadyran,%cpr]=do_terminate();%diagram_path_objective='+sci2exp(super_path)+';%scicos_navig=1';
-      'Select='+sci2exp(Select)+';Cmenu='"Remove Atomic"'';]
+      'Select='+sci2exp(Select)+';Cmenu='"XcosMenuRemoveAtomic"'';]
 else
 Cmenu=[];%pt=[];
 if size(Select,1)<>1 | curwin<>Select(1,2) then

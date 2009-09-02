@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Shortcuts_()
+function XcosMenuShortcuts()
 
 %rr=lines()
 %scicos_short
@@ -38,7 +38,7 @@ messagebox(mess,_("Defined shortcuts"),'info',_("Close"))
 xinfo('Select an item in a menu to set shortcut')
 EnableAllMenus()
 [btn,%pt,cwin,Cmenu]=cosclick()
-if Cmenu<>'Quit' then
+if Cmenu<>'XcosMenuQuit' then
   %okay=%f
   if Cmenu<>[] then
     %koko=find(%scicos_short(:,2)==Cmenu)

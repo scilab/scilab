@@ -19,12 +19,12 @@
 // See the file ../license.txt
 //
 
-function TkPopup_()
+function XcosMenuTkPopup()
   Select=[]
 
-  Cmenu = mpopup(list('Place in Diagram','Help','Details')) 
-  if Cmenu=='Place in Diagram' then  
-    Cmenu='PlaceinDiagram',
+  Cmenu = mpopup(list(_("Place in Diagram"),_("Help"),_("Details"))) 
+  if Cmenu==_("Place in Diagram") then  
+    Cmenu='XcosMenuPlaceinDiagram',
   elseif  Cmenu=='Help' then
     Cmenu=[]
     global scs_m_palettes

@@ -20,7 +20,7 @@
 // See the file ../license.txt
 //
 
-function Link_()
+function XcosMenuLink()
 
 //** 28 Nov 2008 : begin with the "Simulink like" (SL) mode 
   

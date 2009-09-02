@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function ExportAll_()
+function XcosMenuExportAll()
 
   Cmenu = []
 

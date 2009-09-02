@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Modelica_()
+function XcosMenuModelica()
   Cmenu=[]
   xinfo('Click on a Implcit Superblock '+..
 	' to obtain a modelica block ! ')

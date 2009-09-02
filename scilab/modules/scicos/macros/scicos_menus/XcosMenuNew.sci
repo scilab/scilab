@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function New_()
+function XcosMenuNew()
 
     Cmenu = [] ; //** clear previous command 
     
@@ -42,7 +42,7 @@ function New_()
       scs_m = scicos_diagram(version=get_scicos_version()) ; //** create a empty diagram 
       %wpar = scs_m.props ; 
       %zoom  = 1.4        ; //** original value by Ramine
-      Cmenu  = "Replot"   ; //** force a Replot of the New (empty) diagram
+      Cmenu  = "XcosMenuReplot"   ; //** force a Replot of the New (empty) diagram
       edited = %f         ; //** not edited    
     end
 endfunction

@@ -19,8 +19,8 @@
 // See the file ../license.txt
 //
 
-function ExitScicos_()
+function XcosMenuExitScicos()
   Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
-			 'Cmenu='"Quit'";%scicos_navig=[]'
+			 'Cmenu='"XcosMenuQuit'";%scicos_navig=[]'
 	      	  ]
 endfunction

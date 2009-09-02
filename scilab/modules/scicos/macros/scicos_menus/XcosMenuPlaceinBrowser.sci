@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function PlaceinBrowser_()
+function XcosMenuPlaceinBrowser()
   Cmenu=[]
   %superpath='root,'+strcat(string(super_path),',')
   %superpath1='root,'+strcat(string(super_path(1)),',')

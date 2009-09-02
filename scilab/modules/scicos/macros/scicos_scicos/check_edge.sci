@@ -76,7 +76,7 @@ function Cmenu = check_edge(o, Cmenu, %pt)
         if or((%xc-%xout).^2+(%yc-%yout).^2 <(%xc-%center(1)).^2+...
               (%yc-%center(2)).^2) then
           //we have clicked near a port
-          Cmenu = "Link" 
+          Cmenu = "XcosMenuLink" 
         end
       
       end //** avoid "Link from a Split"

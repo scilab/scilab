@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Delete_()
+function XcosMenuDelete()
   
   [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select)
   

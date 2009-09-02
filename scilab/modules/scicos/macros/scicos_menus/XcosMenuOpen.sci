@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Open_()
+function XcosMenuOpen()
 //
 //
 //** Open a saved diagram

@@ -43,7 +43,7 @@
       used to save Scilab graphics.  Such files can be reloaded in
       Scilab using the <link linkend="load">load</link> function and
       regenerate a Scilab graphic window. The Scilab graphic editor
-      and function can then be used to modify this graphic.
+      and functions can then be used to modify this graphic.
     </para>
   </refsection>
   <refsection>

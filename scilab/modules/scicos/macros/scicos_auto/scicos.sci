@@ -65,12 +65,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   // Define Scicos data tables ===========================================
   if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
      ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+     ~isdef("modelica_libs") | ..
      ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
      ~isdef("%scicos_contrib") | ~isdef("%scicos_libs") ) then
 
     [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
-     %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
+     modelica_libs,scicos_pal_libs, ...
      %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif, ...
      %scicos_contrib,%scicos_libs] = initial_scicos_tables();
      clear initial_scicos_tables
@@ -148,14 +148,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   //**-----------------------------------------------------------------------------------------------
   if ~super_block then
 
-    // Check and define SCICOS palette , menu , shortcut , display mode , palette libraries
+    // Check and define SCICOS palette , menu , shortcut ,  palette libraries
     if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 | ...
-	  exists('%scicos_display_mode')==0 | exists('scicos_pal_libs')==0 | ...
+	  exists('scicos_pal_libs')==0 | ...
 	  exists('%scicos_lhb_list')==0 | exists('%CmenuTypeOneVector')==0 | ...
           exists('%scicos_gif')==0 | exists('%scicos_contrib')==0  then
 
       [scicos_pal_d, %scicos_menu_d, %scicos_short_d, %scicos_help_d,...
-       %scicos_display_mode_d, modelica_libs_d, scicos_pal_libs_d,...
+        modelica_libs_d, scicos_pal_libs_d,...
        %scicos_lhb_list_d, %CmenuTypeOneVector_d, %scicos_gif_d,...
        %scicos_contrib_d ] = initial_scicos_tables() ;
 
@@ -177,11 +177,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       if exists('%scicos_help')==0 then
 	messagebox(["%scicos_help not defined"; "using default values"],"modal")
 	%scicos_help = %scicos_help_d ;
-      end
-
-      if exists('%scicos_display_mode')==0 then
-	messagebox(["%scicos_display_mode not defined"; "using default values"],"modal")
-	%scicos_display_mode = %scicos_display_mode_d ;
       end
 
       if exists('modelica_libs')==0 then
@@ -295,7 +290,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       scicos_pal = gunique(scicos_pal,scicos_paltmp); //** remove the duplicate item(s) in the palette
       //** check is given palettes paths are still valid
       scicos_pal = check_palettes_paths(scicos_pal)
-
     end
 
     //** load - if present - the used defined local shortcut
@@ -304,7 +298,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   end
   //**----------------------------------------------------------------------------------
 
-  //** Scilab 5 patch for font handling. This patch fif the "Symbol" font issue
+  //** Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
   //**
   if ~super_block then
     scilab5fonts = xlfont() ; //** recover the full font list
@@ -365,51 +359,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     //**----------------------- Dynamic menu and shortcut preparation -----------------------------------------
     //**
     %cor_item_exec = []; //** init
-
     //** scan all the "%scicos_menu" an load "%cor_item_exec" ; dispose the first string (2:$) because
     //** is the name of the dynamic menu
     for %Y=1 : length(%scicos_menu)
-      %cor_item_exec = [%cor_item_exec, %scicos_menu(%Y)(2:$)] ;
+      %cor_item_exec = [%cor_item_exec; %scicos_menu(%Y)(2:$,[2 1])] ;
     end
 
-    %cor_item_exec = %cor_item_exec'; //** transpose the vector
-    %R = %cor_item_exec;
-    %R = stripblanks(%R)+'_' ; //** delete all the blanks and add an underscore at the end "Save As PAlette" -> "SaveAsPalette_"
-    %R = strsubst(%R,'/','') ; //** delete "/"
-    %R = strsubst(%R,' ','') ; //** delete " "
-    %R = strsubst(%R,'.','') ; //** delete "."
-    %R = strsubst(%R,'-','') ; //** delete "-"
-    %cor_item_exec = [%cor_item_exec, %R]; //** create the two column matrix [<MenuName> <FunctionToCall>]
-
-    // add fixed menu items not visible
-    %cor_item_exec = [%cor_item_exec;
-		      _('Link')        ,    'Link_'           ;
-		      _('Open/Set')    ,    'OpenSet_'        ;
-		      _('MoveLink')    ,    'MoveLink_'       ;
-		      _('SelectLink')  ,    'SelectLink_'     ;
-		      _('CtrlSelect')  ,    'CtrlSelect_'     ;
-		      _('SelectRegion'),    'SelectRegion_'   ;
-		      _('Popup')       ,    'Popup_'          ;
-		      _('PlaceinDiagram'),  'PlaceinDiagram_' ;
-		      _('TkPopup')     ,    'TkPopup_'        ;
-		      _('BrowseTo')    ,    'BrowseTo_'       ;
-		      _('Place in Browser'), 'PlaceinBrowser_';
-		      _('Select All'),       'SelectAll_'
-		     ];
-
-    menus = tlist('xxx');
-
-    for %Y=1:length(%scicos_menu)
-      menus(1)  = [menus(1), %scicos_menu(%Y)(1)];
-      menus($+1)= %scicos_menu(%Y)(2:$);
-    end
-
-    for %Y=1:length(%scicos_menu)
-      %R = %scicos_menu(%Y);
-      %w = 'menus('''+%R(1)+''')('+ string(1:(size(%R,'*')-1)) + ')';
-      execstr(%R(1)+ '=%w;');
-    end
-
+  
+ 
     //----------------------------------------------------------------
     // single key shortcut: keyboard definition
     %tableau = emptystr([1:100]);
@@ -436,63 +393,24 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     palettes = list();
     noldwin = 0      ;
     windows = [1 curwin] ;
-    pixmap = %scicos_display_mode ; //** obsolete: the pixmap is "on" as default
 
+    //Define some generic functions used by Scicos
+    prot = funcprot();funcprot(0);
+    //** allows to write inside the figure "user_data" field
+    %diagram_i_h = generic_i_h 
+    
+    getfile  = uigetfile ; //** brand new aliases
+    savefile = uiputfile ;
 
-    // ** Bruno
-    // Force sci_gui_mode to 1
-    // Scicos does not absolutely need Tk
-    // Except for some Screen Size
-    // will be improved soon
-    //
+    mpopup = createpopup ;
+    mdialog = x_mdialog  ;
 
-    //if ~exists('%scicos_gui_mode') then
-      //if with_tk() then
-        %scicos_gui_mode = 1
-      //else
-       // %scicos_gui_mode = 0
-      //end
-    //end
+    getvalue=scicos_getvalue
+    choose=x_choose
+ 
+    funcprot(prot);
 
-    %diagram_i_h = generic_i_h //** allows to write inside the "user_data" field
-                               //** of the graphics windows
-
-    if %scicos_gui_mode==1 then
-      //** scicos is active in graphical mode
-      prot = funcprot();
-      funcprot(0);
-
-      getfile  = uigetfile ; //** brand new aliases
-      savefile = uigetfile ;
-
-      mpopup = createpopup ;
-      mdialog = x_mdialog  ;
-
-      //** In Scilab 4.1.2 "getvalue  = tk_getvalue ;"
-      //** In scilab 5 we use "modules/scicos/macros/scicos_util/getvalue.sci"
-      //** by Alan Layec, modified in order to accept string, etc.
-
-      if MSDOS then
-	//** Windows
-	choose    = tk_scicos_choose ; //** please check with Allan Cornet
-       else
-        //** Linux
- 	deff('x = choose(varargin)', 'x = x_choose(varargin(1:$))');
-      end
-
-      funcprot(prot);
-
-    else
-      //** Scicos works in "text mode"
-      disp("Scicos in text mode is not supported");
-      //** RAMINE : TEXT MODE is not supported !
-      // deff('x=getfile(varargin)','x=xgetfile(varargin(1:$))');
-      // savefile = getfile;
-      // deff('Cmenu=mpopup(x)','Cmenu=[]')
-      // deff('x=choose(varargin)','x=x_choose(varargin(1:$))');
-    end //** of %scicos_gui_mode
-
-    //
+  
 
   else //** super block case
 
@@ -548,7 +466,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     scs_m.props.context = ' ' ; //** put the variable to empty state
 
   end
-  //** ---------- End of "Contex" handling and evaluation -----------
+  //** ---------- End of "Context" handling and evaluation -----------
   //**
 
   //** Begin of the Main command interpreter loop
@@ -576,7 +494,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     gh_current_window = gcf() ; //** get the current graphics window
 
     if (gh_current_window.user_data==[]) | (~isequalbitwise(gh_current_window.user_data(1),scs_m)) then
-       %zoom = restore(gh_current_window) ;
+       %zoom = restore(gh_current_window,%scicos_menu, ~super_block) ;
        execstr('drawobjs(scs_m)', 'errcatch') ;
      else
        Select = gh_current_window.user_data(2) ;
@@ -596,7 +514,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
   end
-  exec(restore_menu,-1);
+//  exec(restore_menu,-1);
 
 //** --- End of initialization -----------------------------------------------------------
 
@@ -606,7 +524,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
   //** -------------    M A I N    L O O P  -----------------------------
   //** --------- Command Interpreter / State Machine ------------
-  while ( Cmenu <> "Quit" & Cmenu <> "Leave"  ) //** Cmenu -> exit from Scicos
+  while ( Cmenu <> "XcosMenuQuit" & Cmenu <> "XcosMenuLeave"  ) //** Cmenu -> exit from Scicos
 
     //** Dynamic stacksize for very big diagram           //
     [%stack] = stacksize()                                //
@@ -659,7 +577,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       end
     end
 
-    if Cmenu=="Quit" then
+    if Cmenu=="XcosMenuQuit" then
         break ; //** EXIT point ...
     end
 
@@ -678,16 +596,16 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
              drawnow() ;
           end
 
-          if Cmenu=="OpenSet" then
+          if Cmenu=="XcosMenuOpenSet" then
 	    ierr=0
-	    execstr('ierr=exec(OpenSet_,''errcatch'',-1)')
+	    execstr('ierr=exec(XcosMenuOpenSet,''errcatch'',-1)')
             //execstr('exec(OpenSet_,-1)')
 	    //**---------------------------------------------------
 	    if ierr<>0 then messagebox(lasterror(),"modal"),end
 	    if isequal(%diagram_path_objective,super_path) then // must add after testing &%scicos_navig<>[]
 	      if ~or(curwin==winsid()) then
 		gh_current_window = scf(curwin);
-                %zoom = restore(gh_current_window);
+                %zoom = restore(gh_current_window,%scicos_menu, ~super_block);
                 execstr('drawobjs(scs_m)', 'errcatch') ;
 		%scicos_navig =[];
 		Select_back   =[];
@@ -701,7 +619,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 		%diagram_path_objective = [] ;
 	      end
 	    end
-	  elseif Cmenu=="Quit" then
+	  elseif Cmenu=="XcosMenuQuit" then
 	    do_exit() ;
 	    return ;
 	  end
@@ -718,7 +636,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       if ~or(curwin==winsid()) then
 	gh_current_window = scf(curwin);
-        %zoom = restore(gh_current_window)
+        %zoom = restore(gh_current_window,%scicos_menus, ~super_block)
         execstr('drawobjs(scs_m)', 'errcatch') ;
 	Select_back = [] ;
         Select      = [] ;
@@ -760,10 +678,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
 	//** I'm not ready to exec a command: I need more information using cosclik()
         EnableAllMenus()
-	 [btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
+	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
         DisableAllMenus()
 
-	if (Cmenu_n=="SelectLink" | Cmenu_n=="MoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
+	if (Cmenu_n=="XcosMenuSelectLink" | Cmenu_n=="XcosMenuMoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
 	else
 	  if Cmenu_n<>[] then Cmenu = Cmenu_n; end
@@ -781,16 +699,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  Select_back = Select; //** save the selected object list
           ierr = 0
 
-          //** exec(path [,mode]) executes sequentialy the scilab instructions contained in the file given by path with
-          //** an optional execution mode mode .
-          //**            0 : the default value
-          //**           -1 : nothing is printed
-          //**            1 : echo of each command line
-          //**            2 : prompt --> is printed
-          //**            3 : echoes + prompts
-          //**            4 : stops before each prompt. Execution resumes after a carriage return.
-          //**            7 : stops + prompts + echoes : useful mode for demos.
-
           //** Used for AGGRESSIVE DEBUG ONLY -->
 	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
 
@@ -802,14 +710,11 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	       execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
 
 	  if ierr > 0 then
-	    Cmenu = "Replot"
+	    Cmenu = "XcosMenuReplot"
 	    Select_back = [];
             Select = [] ;
-	    terr = ["I recovered from the following error:";
-		     lasterror();
-		    'in '+%cor_item_exec(%koko,2)'+' action.'];
-	    mprintf('%s\n',terr);
-
+	    messagebox([msprintf(_("I recovered from the following error:\n in %s action.\n"),%cor_item_exec(%koko,2))
+		    lasterror()],'Error','modal')
 	  elseif or(curwin==winsid()) then
 	    gh_current_window = scf(curwin);
 
@@ -839,7 +744,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   end //**--->  end of the while loop: exit with the 'Quit' OR 'Leave' commands
 
   //** if you are exited from the main loop with 'Quit'
-  if Cmenu=="Quit" then
+  if Cmenu=="XcosMenuQuit" then
     //**  -------------- 'Quit' ------------------------------------
     //**  Quit exit from suberblock or go back to Scilab command line
     do_exit() ;
@@ -857,11 +762,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       mdelete(TMPDIR+'/BackupSave.cos') // no backup needed
       mdelete(TMPDIR+'/BackupInfo')
-      //close TCL windows
-      //TCL_EvalStr('catch {destroy .palettes}')
-      //TCL_EvalStr('catch {destroy .ss}')
-      //TCL_EvalStr('catch {destroy .scsTree}')
-      // clear all globals defore leaving
       clearglobal Clipboard
       clearglobal Scicos_commands
       clearglobal %tableau
@@ -879,7 +779,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
     end
 
-  elseif Cmenu=="Leave" then
+  elseif Cmenu=="XcosMenuLeave" then
    //**  -------------- 'Leave' ------------------------------------
    //**  "Leave" go to Scilab leaving Scicos active in the background
    //**  and use "seteventhandler" do to the job

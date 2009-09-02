@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Addnewblock_()
+function XcosMenuAddnewblock()
     Cmenu=[]// here because Cmenu Quit can come out
     [scs_m,%fct]=do_addnew(scs_m)
     if %fct<>[] then 

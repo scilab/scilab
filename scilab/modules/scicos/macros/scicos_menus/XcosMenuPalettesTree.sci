@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function PalTree_()
+function XcosMenuPalTree()
 
   Cmenu = [] ;
 

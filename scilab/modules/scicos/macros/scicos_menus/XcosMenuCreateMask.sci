@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function CreateMask_()
+function XcosMenuCreateMask()
 //** 25/06/2009 : Serge Steer, 
 //   - check selection against curwin
 //   - add a message in case of multiple selection

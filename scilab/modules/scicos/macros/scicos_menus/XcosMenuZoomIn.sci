@@ -23,7 +23,7 @@
 // See the file ../license.txt
 //
 
-function Zoomin_()
+function XcosMenuZoomin()
 //** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
 //**                geometrical correction (Ramine)
     Cmenu = [];

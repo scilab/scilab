@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function Modelicainitialize_()
+function XcosMenuModelicainitialize()
 // Copyright INRIA
   Cmenu=[]
 

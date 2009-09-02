@@ -19,9 +19,9 @@
 // See the file ../license.txt
 //
 
-function Duplicate_()
+function XcosMenuDuplicate()
 
-  Cmenu = []; // Cmenu Quit can come out
+  Cmenu = []; // Cmenu XcosMenuQuit can come out
 
   [scs_m,needcompile,Select] = do_duplicate(%pt, scs_m, needcompile,Select) ;
   

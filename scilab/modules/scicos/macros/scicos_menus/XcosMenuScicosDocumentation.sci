@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function ScicosDocumentation_()
+function XcosMenuScicosDocumentation()
 
   if execstr('help(''scicos'');' , 'errcatch') <>0 then
      messagebox("No help available.",'modal');

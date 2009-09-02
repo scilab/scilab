@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Palettes_()
+function XcosMenuPalettes()
 
  Cmenu = [] ;
  %pt = []   ; 

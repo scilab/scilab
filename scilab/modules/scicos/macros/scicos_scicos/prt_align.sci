@@ -136,15 +136,12 @@ function [scs_m] = prt_align(scs_m)
   gh_k   = get_gri(k2,o_size(1)) ; 
   gh_blk = gh_axes.children(gh_k); //** new
 
-  drawlater(); //** new
-
-    diff_x = orig2(1)-graphics2.orig(1);
-    diff_y = orig2(2)-graphics2.orig(2);
-
-    move(gh_blk,[diff_x,diff_y]);  //** ..because "move()" works only in differential
-    //** draw(gh_blk.parent);
-    drawnow();
-    //** show_pixmap() ; //** not useful on Scilab 5 
+  //** ..because "move()" works only in differential
+  diff_x = orig2(1)-graphics2.orig(1);
+  diff_y = orig2(2)-graphics2.orig(2);
+  drawlater(); 
+  move(gh_blk,[diff_x,diff_y]);  
+  drawnow();
 
   graphics2.orig = orig2 ;
   o2.graphics    = graphics2 ;

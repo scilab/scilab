@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function GetInfo_()
+function XcosMenuGetInfo()
 
     do_block_info(%pt,scs_m) ;
     Cmenu = [] ;

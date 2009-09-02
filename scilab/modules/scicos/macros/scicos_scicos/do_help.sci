@@ -144,16 +144,17 @@ end //** of the No Selection / Selection case
     help(name);
     
   else //** nm==1 ; 
+    help('XcosMenu'+strsubst(name,' ','_'))
 
-    if execstr('mess = %scicos_help.menu(name)' , 'errcatch') <>0 then
-      if execstr('mess = %scicos_help(name)' , 'errcatch') <>0 then
-        mess = "No help available on this topic. Sorry.";
-      end
-    end
+//     if execstr('mess = %scicos_help.menu(name)' , 'errcatch') <>0 then
+//       if execstr('mess = %scicos_help(name)' , 'errcatch') <>0 then
+//         mess = "No help available on this topic. Sorry.";
+//       end
+//     end
   
-    messagebox(mess,'modal'); //** show the message   
+//     messagebox(mess,'modal'); //** show the message   
   
-  end 
+   end 
   
 endfunction
 

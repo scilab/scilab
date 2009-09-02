@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SaveAs_()
+function XcosMenuSaveAs()
   Cmenu=[]
 
   //** Inside a super block 

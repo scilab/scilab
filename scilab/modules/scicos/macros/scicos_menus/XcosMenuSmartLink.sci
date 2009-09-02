@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function SmartLink_()
+function XcosMenuSmartLink()
 // Copyright INRIA
 
   [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,%t);

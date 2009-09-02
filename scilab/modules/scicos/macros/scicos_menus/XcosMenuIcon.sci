@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Icon_()
+function XcosMenuIcon()
 //
 // Icon :  edit a block icon
 // 

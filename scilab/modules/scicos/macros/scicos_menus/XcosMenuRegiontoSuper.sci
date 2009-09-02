@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function RegiontoSuperBlock_()
+function XcosMenuRegiontoSuperBlock()
 
 //** Very complex and critical functions inside : handle with care ;)     
 
@@ -52,7 +52,7 @@ function RegiontoSuperBlock_()
 	//** much slower that the "old" standard mode.     
   end
   
-  Cmenu='Replot'; %pt=[];
+  Cmenu='XcosMenuReplot'; %pt=[];
 
 endfunction
 

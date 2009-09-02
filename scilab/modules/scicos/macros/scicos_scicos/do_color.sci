@@ -122,7 +122,6 @@ function scs_m = do_color(%win, %pt, scs_m)
   end
 
   drawnow(); //** force a redraw 
-  //** show_pixmap() ; //** not useful on Scilab 5
 
 endfunction
 

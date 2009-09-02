@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Calc_()
+function XcosMenuCalc()
 //**    
 
     Cmenu = [] ;
@@ -31,6 +31,6 @@ function Calc_()
       pause ; //** recurse in the Scilab command line 
 //    enablemenus(); 
     
-    Cmenu ="Replot" ; //** force a Replot of the diagram 
+    Cmenu ="XcosMenuReplot" ; //** force a Replot of the diagram 
     
 endfunction

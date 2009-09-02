@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function Setdefaultaction_()
+function XcosMenuSetdefaultaction()
 // Copyright INRIA
   xinfo('Set Default Action')
   if %scicos_action==%f then repp=2, else repp=1, end

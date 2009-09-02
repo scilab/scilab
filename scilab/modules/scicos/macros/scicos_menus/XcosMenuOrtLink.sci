@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function OrtLink_()
+function XcosMenuOrtLink()
 //** 28 Nov 2008 : First attempt to implement a menu option switch 
 //**               for SL mode editor 
 

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Paste_()
+function XcosMenuPaste()
 
 //** 02 May 2007: Update the paste operation with "Replace" (paste over) operation 
 //** 10 Aug. 2007 : updated function 
@@ -37,50 +37,50 @@ function Paste_()
   gh_axes = gca(); 
   drawlater(); //** put in "drawlater" mode 
   
-//** Select : matrix of selected object
-//** Each line is:  [object_id win_id] : "object_id" is the same INDEX used in "scs_m.obj"
-//**                                 and "win_id"    is the Scilab window id.
-//** Multiple selection is permitted: each object is a line of the matrix.  
+  //** Select : matrix of selected object
+  //** Each line is:  [object_id win_id] : "object_id" is the same INDEX used in "scs_m.obj"
+  //**                                 and "win_id"    is the Scilab window id.
+  //** Multiple selection is permitted: each object is a line of the matrix.  
 
-//** Check for "Replace" or "Paste in the void" datastrucure 
-   
-if and(size(Select)==[1,2]) then //** only one object selected 
+  //** Check for "Replace" or "Paste in the void" datastrucure 
   
-  Sel_obj = scs_m.objs(Select(1,1)) ; 
-  
-  if (typeof(Clipboard)=="Block" & typeof(Sel_obj)=="Block")
-   //** ready for "Replace" operation 
-   
-   // This case is used when trying to replace a block by itself
-   // It does a duplicate to be Simulink/Dymola compatible
-   if and(Clipboard.graphics.sz   == Sel_obj.graphics.sz)  & ...
-	 (Clipboard.graphics.orig == Sel_obj.graphics.orig) then
-      scs_m_save = scs_m    ;
-      nc_save = needcompile ;
-     
-      blk = Clipboard ;
-      blk.graphics.orig = Clipboard.graphics.orig+Clipboard.graphics.sz/2 ;
-      scs_m.objs($+1) = blk //** add the object at the top 
-      drawobj(blk); //** draw the single object 
-      edited = %t
-      enable_undo = %t
-      Select = [size(scs_m.objs), %win]; //** it's a really dirty trick ;)
-                                         //** because the pasted object is the last ;)
-     else
-      //** the true replace operation is there 
-      [scs_m, needcompile] = do_replace(scs_m, needcompile, Clipboard, Select);
-   end
-   
-  else
-   messagebox(["Paste -> Source / Destination incompatible"],'modal');
-   Cmenu=[]; %pt = []; %ppt = [] ; return ; //** EXIT point 
-  end
-  
-else //** no object is selected for "Paste": paste object in the void    
+  if and(size(Select)==[1,2]) then //** only one object selected 
+    
+    Sel_obj = scs_m.objs(Select(1,1)) ; 
+    
+    if (typeof(Clipboard)=="Block" & typeof(Sel_obj)=="Block")
+      //** ready for "Replace" operation 
+      
+      // This case is used when trying to replace a block by itself
+      // It does a duplicate to be Simulink/Dymola compatible
+      if and(Clipboard.graphics.sz   == Sel_obj.graphics.sz)  & ...
+	    (Clipboard.graphics.orig == Sel_obj.graphics.orig) then
+	scs_m_save = scs_m    ;
+	nc_save = needcompile ;
+	
+	blk = Clipboard ;
+	blk.graphics.orig = Clipboard.graphics.orig+Clipboard.graphics.sz/2 ;
+	scs_m.objs($+1) = blk //** add the object at the top 
+	drawobj(blk); //** draw the single object 
+	edited = %t
+	enable_undo = %t
+	Select = [size(scs_m.objs), %win]; //** it's a really dirty trick ;)
+					   //** because the pasted object is the last ;)
+      else
+	//** the true replace operation is there 
+	[scs_m, needcompile] = do_replace(scs_m, needcompile, Clipboard, Select);
+      end
+      
+    else
+      messagebox(["Paste -> Source / Destination incompatible"],'modal');
+      Cmenu=[]; %pt = []; %ppt = [] ; return ; //** EXIT point 
+    end
+    
+  else //** no object is selected for "Paste": paste object in the void    
     
     
     if typeof(Clipboard)=="Block" | typeof(Clipboard)=="Text" then
-    //** It is a single object (block or text)     
+      //** It is a single object (block or text)     
       scs_m_save = scs_m       ; //** save diagram and state 
       nc_save    = needcompile ; //** for undo operation 
       
@@ -101,12 +101,12 @@ else //** no object is selected for "Paste": paste object in the void
       enable_undo = %t
       Select = [size(scs_m.objs),%win]; //** it's a really dirty trick ;)
                                         //** because the pasted object is the last ;)
-    
+					
     elseif  typeof(Clipboard)=="diagram" then
-    //**  It is a complete Scicos Diagram (Block, Text and Link)  
+      //**  It is a complete Scicos Diagram (Block, Text and Link)  
       
       reg = Clipboard;   
-            
+      
       //**-------------------------------------------------------------------------------
       //** if %ppt==[] means that the usesr has NOT specified a destination for the paste 
       if %ppt==[] then
@@ -122,17 +122,17 @@ else //** no object is selected for "Paste": paste object in the void
 	      %ppt(1)=min(%ppt(1), Clipboard.objs(i).graphics.orig(1));
 	      %ppt(2)=min(%ppt(2), Clipboard.objs(i).graphics.orig(2));
 	    end
-	  
+	    
 	  end
-	
+	  
 	end //**... for loop 
-	      
+	
       end //** ppt is void 
       
       %ppt = %ppt + 10 // (x,y) decalage, a modifier
 
       //**--------------------------------------------------------------------------------
-   
+      
       if size(reg.objs)>=1 then
 	Select = []; //** clear the data structure
 	scs_m_save = scs_m
@@ -154,7 +154,7 @@ else //** no object is selected for "Paste": paste object in the void
 	    [from,to] = (o.from,o.to)
 	    o.from(1) =  o.from(1) + n ;
 	    o.to(1)   =  o.to(1) + n  ;
-	  
+	    
 	  elseif typeof(o)=="Block" then
 	    o.graphics.orig(1) = o.graphics.orig(1)-rect(1)+xc
 	    o.graphics.orig(2) = o.graphics.orig(2)-rect(2)+yc
@@ -166,7 +166,7 @@ else //** no object is selected for "Paste": paste object in the void
 	    o.graphics.pein(k_conn)=o.graphics.pein(k_conn)+n
 	    k_conn=find(o.graphics.peout>0)
 	    o.graphics.peout(k_conn)=o.graphics.peout(k_conn)+n
-	  
+	    
 	  elseif typeof(o)=="Text" then
 	    o.graphics.orig(1) = o.graphics.orig(1)-rect(1)+xc
 	    o.graphics.orig(2) = o.graphics.orig(2)-rect(2)+yc
@@ -174,28 +174,24 @@ else //** no object is selected for "Paste": paste object in the void
 	  
 	  scs_m.objs($+1) = o ; 
 	  Select = [Select ; size(scs_m.objs) , %win]; //** it's a really dirty trick ;)
-                        //** because the pasted object is the last ;)
-	  
+						       //** because the pasted object is the last ;)
+						       
 	  drawobj(o);   //** draw the object 
-	
+						       
 	end
 	//**------------------------------------------------------
 	needcompile = 4 ;
 	enable_undo = %t;
 	edited = %t     ;
-      
+	
       end //** a diagram is pasted  
-    
+      
     end //** object type 
-  
-  drawnow(); //** put the objects on the screen
-  //** show_pixmap() ; //** not useful on Scilab 5 
-  
- end //** valid Paste as "replace" or "in the void"
+    
+    drawnow(); //** put the objects on the screen
+    
+  end //** valid Paste as "replace" or "in the void"
   
   Cmenu = []; %pt = []; 
-  
-  
-  //** %ppt = [] ;
   
 endfunction

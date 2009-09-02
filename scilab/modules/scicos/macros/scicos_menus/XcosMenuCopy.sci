@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Copy_()
+function XcosMenuCopy()
 
   if size(Select,1)>1 then
     //** ... more than a single object

@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function Move_()
+function XcosMenuMove()
 
   Cmenu = []; //** NB : preserve %pt information 
 
@@ -30,7 +30,7 @@ function Move_()
   if Select<>[] then
      if find(Select(:,2)<>curwin)<>[] then
        Select=[]
-       Cmenu = "Move"
+       Cmenu = "XcosMenuMove"
        return
      end
   end

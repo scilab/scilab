@@ -1,4 +1,4 @@
-function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_initial_scicos_menus()
+function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_initial_xcos_menus()
   
   //**-----------------------------------------------------------------------
   //**----------------------------- Menubar menus ------------------------
@@ -8,106 +8,121 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 // Id is used for the help and the callback, the label is the string that
 // appears in the GUI.
 // The Ids must be valid Scilab variable names
-  File     = ['XcosMenuFile',_("File"); 
-	      'XcosMenuNew',_("New");
-	      'XcosMenuOpen',_("Open");
-	      'XcosMenuSave',_("Save");
-	      'XcosMenuSaveAs',_("Save As");
-	      'XcosMenuSaveAsInterfFunc',_("Save as Interf Func");
-  	      'XcosMenuExport',_("Export");
-  	      'XcosMenuExportAll',_("Export All");
-	      'XcosMenuExitScicos',_("Exit Scicos");
-	      'XcosMenuQuit', _("Quit")];
+  
+  File     = ['XcosMenuFile',                 _("File"); 
+	      'XcosMenuNew',                  _("New");
+	      'XcosMenuOpen',                 _("Open");
+	      'XcosMenuSave',                 _("Save");
+	      'XcosMenuSaveAs',               _("Save As");
+	      'XcosMenuSaveAsInterfFunc',     _("Save as Interf Func");
+  	      'XcosMenuExport',               _("Export");
+  	      'XcosMenuExportAll',            _("Export All");
+	      'XcosMenuExitScicos',           _("Exit");
+	      'XcosMenuQuit',                 _("Quit")];
 
-  Diagram  = ['XcosMenuDiagram',_("Diagram");
-	      'XcosMenuReplot',_("Replot");
-	      'XcosMenuRename',_("Rename");
-	      'XcosMenuPurge',_("Purge");
-	      'XcosMenuSetDiagramInfo',_("Set Diagram Info");
-	      'XcosMenuRegionToSuper',_("Region to Super Block");
-              'XcosMenuUpToMain',_("Up To Main Diagram");
-	      'XcosMenuContext', _("Context")];
+  Diagram  = ['XcosMenuDiagram',              _("Diagram");
+	      'XcosMenuReplot',               _("Replot");
+	      'XcosMenuRename',               _("Rename");
+	      'XcosMenuPurge',                _("Purge");
+	      'XcosMenuSetDiagramInfo',       _("Set Diagram Info");
+	      'XcosMenuRegionToSuper',        _("Region to Super Block");
+              'XcosMenuUpToMain',             _("Up To Main Diagram");
+	      'XcosMenuContext',              _("Context")];
 
-  Palette  = ['XcosMenuPalette',_("Palette");
-              'XcosMenuPalettes',_("Palettes");
-	      'XcosMenuPalEditor',_("Pal editor");
-	      'XcosMenuRegionToPalette',_("Region to Palette");
-	      'XcosMenuLoadAsPalette',_("Load as Palette");
-	      'XcosMenuSaveAsPalette',_("Save as Palette");
-              'XcosMenuPalettesTree',_("Palettes Tree")];
+  Palette  = ['XcosMenuPalette',              _("Palette");
+              'XcosMenuPalettes',             _("Palettes");
+	      'XcosMenuPalEditor',            _("Pal editor");
+	      'XcosMenuRegionToPalette',      _("Region to Palette");
+	      'XcosMenuLoadAsPalette',        _("Load as Palette");
+	      'XcosMenuSaveAsPalette',        _("Save as Palette");
+              'XcosMenuPalettesTree',         _("Palettes Tree")];
 
-  Edit     = ['XcosMenuEdit',_("Edit");
-              'XcosMenuUndo',_("Undo");
-	      'XcosMenuCut',_("Cut");
-	      'XcosMenuCopy',_("Copy");
-	      'XcosMenuPaste',_("Paste");
-	      'XcosMenuDuplicate',_("Duplicate");
-	      'XcosMenuDelete',_("Delete");
-	      'XcosMenuMove',_("Move");
-	      'XcosMenuSmartMove',_("Smart Move");
-	      'XcosMenuOpenSet',_("Open/Set");
-	      'XcosMenuAlign',_("Align");
-	      'XcosMenuFlip',_("Flip");
-	      'XcosMenuRotateLeft',_("Rotate Left");
-	      'XcosMenuRotateRight',_("Rotate Right");
-	      'XcosMenuAddNewBlock',_("Add new block");
-	      'XcosMenuBlockDocumentation'_("Block Documentation");
-	      'XcosMenuLabel',_("Label")];
+  Edit     = ['XcosMenuEdit',                 _("Edit");
+              'XcosMenuUndo',                 _("Undo");
+	      'XcosMenuCut',                  _("Cut");
+	      'XcosMenuCopy',                 _("Copy");
+	      'XcosMenuPaste',                _("Paste");
+	      'XcosMenuDuplicate',            _("Duplicate");
+	      'XcosMenuDelete',               _("Delete");
+	      'XcosMenuMove',                 _("Move");
+	      'XcosMenuSmartMove',            _("Smart Move");
+	      'XcosMenuOpenSet',              _("Open/Set");
+	      'XcosMenuAlign',                _("Align");
+	      'XcosMenuFlip',                 _("Flip");
+	      'XcosMenuRotateLeft',           _("Rotate Left");
+	      'XcosMenuRotateRight',          _("Rotate Right");
+	      'XcosMenuAddNewBlock',          _("Add new block");
+	      'XcosMenuBlockDocumentation'    _("Block Documentation");
+	      'XcosMenuLabel',                _("Label")];
 
-  View     = ['XcosMenuView',_("View");
-              'XcosMenuZoomIn',_("Zoom in");
-	      'XcosMenuZoomOut',_("Zoom out");
-              'XcosMenuFitToFigure',_("Fit diagram to figure");
-  	      'XcosMenuWindowParameters',_("Default window parameters");
-              'XcosMenuDefinedVariables',_("Available Parameters");
-              'XcosMenuGrid',_("Grid")];
+  View     = ['XcosMenuView',                 _("View");
+              'XcosMenuZoomIn',               _("Zoom in");
+	      'XcosMenuZoomOut',              _("Zoom out");
+              'XcosMenuFitToFigure',          _("Fit diagram to figure");
+  	      'XcosMenuWindowParameters',     _("Default window parameters");
+              'XcosMenuDefinedVariables',     _("Available Parameters");
+              'XcosMenuGrid',                 _("Toggle grid")];
 
-  Simulate = ['XcosMenuSimulate',_("Simulate");
-              'XcosMenuSetup',_("Setup");
-	      'XcosMenuCompile',_("Compile");
-	      'XcosMenuModelicaInit',_("Modelica initialize");
-	      'XcosMenuEval',_("Eval");
-	      'XcosMenuAnalyzeDiagram',_("Analyze Diagram");
-	      'XcosMenuDebugLevel',_("Debug Level");
-	      'XcosMenuRun',_("Run")];
+  Simulate = ['XcosMenuSimulate',             _("Simulate");
+              'XcosMenuSetup',                _("Setup");
+	      'XcosMenuCompile',              _("Compile");
+	      'XcosMenuModelicaInit',         _("Modelica initialize");
+	      'XcosMenuEval',                 _("Eval");
+	      'XcosMenuAnalyzeDiagram',       _("Analyze Diagram");
+	      'XcosMenuDebugLevel',           _("Debug Level");
+	      'XcosMenuRun',                  _("Run")];
 
-  Format   = ['XcosMenuFormat',_("Format");
-              'XcosMenuSetDefaultAction',_("Set default action");
-              'XcosMenuSetGrid',_("Set grid");
-   	      'XcosMenuAddColor',_("Add color");
-	      'XcosMenuDefaultLinkColor',_("Default link colors");
-	      'XcosMenuColor',_("Color");
-	      'XcosMenuBackgroundColor',_("Background color");
-	      'XcosMenuShowBlockShadow',_("Show Block Shadow");
-	      'XcosMenuOrtLink',_("Ort Link");
-	      'XcosMenuResize',_("Resize");
-	      'XcosMenuIdentification',_("Identification");
-	      'XcosMenuSetIDFonts',_("ID fonts");
-	      'XcosMenuIcon',_("Icon");
-	      'XcosMenuIconEditor',_("Icon Editor")];
+  Format   = ['XcosMenuFormat',               _("Format");
+              'XcosMenuSetDefaultAction',     _("Set default action");
+              'XcosMenuSetGrid',              _("Set grid");
+   	      'XcosMenuAddColor',             _("Add color");
+	      'XcosMenuDefaultLinkColor',     _("Default link colors");
+	      'XcosMenuColor',                _("Color");
+	      'XcosMenuBackgroundColor',      _("Background color");
+	      'XcosMenuShowBlockShadow',      _("Show Block Shadow");
+	      'XcosMenuOrtLink',              _("Ort Link");
+	      'XcosMenuResize',               _("Resize");
+	      'XcosMenuIdentification',       _("Identification");
+	      'XcosMenuSetIDFonts',           _("ID fonts");
+	      'XcosMenuIcon',                 _("Icon");
+	      'XcosMenuIconEditor',           _("Icon Editor")];
 
-  Tools    = ['XcosMenuTools',_("Tools");
-              'XcosMenuCreateMask',_("Create Mask");
-              'XcosMenuRemoveMask',_("Remove Mask");
-              'XcosMenuCustomizeMask',_("Customize Mask");
-              'XcosMenuSaveBlockGUI',_("Save Block GUI");
-	      'XcosMenuCreateAtomic',_("Create Atomic");
-	      'XcosMenuRemoveAtomic',_("Remove Atomic");
-              'XcosMenuGetInfo',_("Get Info");
-              'XcosMenuDetails',_("Details");
-              'XcosMenuBrowser',_("Browser");
-	      'XcosMenuCodeGeneration',_("Code Generation");
-	      'XcosMenuShortcuts',_("Shortcuts");
-	      'XcosMenuActivateScilabWindow',_("Activate Scilab Window");
-	      'XcosMenuCalc',_("Calc")];
+  Tools    = ['XcosMenuTools',                _("Tools");
+              'XcosMenuCreateMask',           _("Create Mask");
+              'XcosMenuRemoveMask',           _("Remove Mask");
+              'XcosMenuCustomizeMask',        _("Customize Mask");
+              'XcosMenuSaveBlockGUI',         _("Save Block GUI");
+	      'XcosMenuCreateAtomic',         _("Create Atomic");
+	      'XcosMenuRemoveAtomic',         _("Remove Atomic");
+              'XcosMenuGetInfo',              _("Get Info");
+              'XcosMenuDetails',              _("Details");
+              'XcosMenuBrowser',              _("Browser");
+	      'XcosMenuCodeGeneration',       _("C Code Generation");
+	      'XcosMenuShortcuts',            _("Shortcuts");
+	      'XcosMenuActivateScilab',       _("Activate Scilab Window");
+	      'XcosMenuCalc',                 _("Calc")];
 
-  Help     = ['?',_("?");
-              'XcosMenuHelp',_("Help");
-              'XcosMenuScicosDocumentation',_("Scicos Documentation");
-	      'XcosMenuDemos',_("Demos");
-	      'XcosMenuAboutScicos',_("About Scicos")];
+  Help     = ['?',                            _("?");
+              'XcosMenuHelp',                 _("Help");
+              'XcosMenuScicosDocumentation',  _("Scicos Documentation");
+	      'XcosMenuDemos',                _("Demos");
+	      'XcosMenuAboutScicos',          _("About Scicos")];
 
-  scicos_menu = list(File,Diagram,Palette,Edit,View,Simulate,Format,Tools,Help);
+  //The Unvisible "Menus" are actions used internally but not displayed
+  //neither in the menubar nor in contextual menus
+  Unvisible= ['XcosMenuLink',                 _("Link")            
+	      'XcosMenuMoveLink',             _("MoveLink ")       
+	      'XcosMenuSelectLink',           _("SelectLink  ")    
+	      'XcosMenuCtrlSelect',           _("CtrlSelect")      
+	      'XcosMenuSelectRegion',         _("SelectRegion")    
+	      'XcosMenuPopup',                _("Popup")           
+	      'XcosMenuPlaceinDiagram',       _("PlaceinDiagram")  
+	      'XcosMenuTkPopup',              _("TkPopup ")        
+	      'XcosMenuBrowseTo',             _("BrowseTo")        
+	      'XcosMenuPlaceinBrowser',       _("PlaceinBrowser")  
+	      'XcosMenuSelectAll',            _("SelectAll") ]       
+
+  scicos_menu = list(File,Diagram,Palette,Edit,View,Simulate,Format,Tools,Help,Unvisible);
 
   //**-----------------------------------------------------------------------
   //**----------------------------- Contextual menus ------------------------
