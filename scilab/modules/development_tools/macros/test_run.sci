@@ -102,9 +102,6 @@
 
 function test_run(varargin)
 	
-	gstacksize(5000000);
-	stacksize(5000000);
-	
 	lhs = argn(1);
 	rhs = argn(2);
 	
@@ -160,6 +157,13 @@ function test_run(varargin)
 		end
 		
 	end
+	
+	// =======================================================
+	// Stacksize management
+	// =======================================================
+	
+	gstacksize(10000000);
+	stacksize(10000000);
 	
 	// =======================================================
 	// Gestion des tests à lancer
@@ -237,6 +241,7 @@ function test_run(varargin)
 		test_mat   = varargin(2);
 		
 		if ((or(size(module_in) <> [1,1])) & (test_mat <> [])) then
+			
 			example = test_examples();
 			err     = ["" ; msprintf(gettext("%s: Wrong size for input argument."),"test_run") ; "" ; example ];
 			printf("%s\n",err);
@@ -373,7 +378,6 @@ function test_run(varargin)
 		clearglobal testsuite;
 		return;
 	end
-	
 	
 endfunction
 
@@ -652,6 +656,8 @@ function st = st_new()
 	st.cmd           = "";
 	
 	st.content       = "";
+	
+	st.status        = status_new();
 	
 endfunction
 
