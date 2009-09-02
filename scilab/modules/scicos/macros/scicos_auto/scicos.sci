@@ -55,7 +55,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   noguimode = find(sciargs()=="-nogui");
   if (noguimode <>[]) then
     clear noguimode
-    warning(" Scilab in no gui mode : Scicos unavailable");
+    warning(_(" Scilab is in no gui mode : Scicos is unavailable"));
     abort ; //** EXIT form Scicos ()
   end;
 
@@ -160,51 +160,52 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
        %scicos_contrib_d ] = initial_scicos_tables() ;
 
       if exists('scicos_pal')==0 then
-	messagebox(["scicos_pal not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("scicos_pal not defined\ndefault palettes will be used.")),"modal")
 	scicos_pal = scicos_pal_d ;
       end
 
       if exists('%scicos_menu')==0 then
-	messagebox(["%scicos_menu not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("%%scicos_menu not defined\ndefault menu will be used.")),"modal")
 	%scicos_menu = %scicos_menu_d ;
       end
 
       if exists('%scicos_short')==0 then
-	messagebox(["%scicos_short not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("%%scicos_short not defined\ndefault shortcuts will be used.")),"modal")
 	%scicos_short = %scicos_short_d ;
       end
 
-      if exists('%scicos_help')==0 then
-	messagebox(["%scicos_help not defined"; "using default values"],"modal")
-	%scicos_help = %scicos_help_d ;
-      end
+//      if exists('%scicos_help')==0 then
+//	messagebox(["%%scicos_help not defined"; "using default values"],"modal")
+//	%scicos_help = %scicos_help_d ;
+//      end
 
       if exists('modelica_libs')==0 then
-	messagebox(["modelica_libs not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("modelica_libs not defined\ndefault Modelica libraries will be used.")),"modal")
 	modelica_libs = modelica_libs_d ;
       end
 
       if exists('scicos_pal_libs')==0 then
-	messagebox(["scicos_pal_libs not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("scicos_pal_libs not defined\ndefault palette libraries will be used.")),"modal")
 	scicos_pal_libs = scicos_pal_libs_d ;
       end
 
       if exists('%scicos_lhb_list')==0 then
-	messagebox(["%scicos_lhb_list not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("%%scicos_lhb_list not defined\ndefault contextual menus will be used.")),"modal")
 	%scicos_lhb_list = %scicos_lhb_list_d ;
       end
 
       if exists('%CmenuTypeOneVector')==0 then
-	messagebox(["%CmenuTypeOneVector not defined"; "using default values"],"modal")
+	messagebox(msprintf(_("%%CmenuTypeOneVector not defined\ndefault type one menus will be used.")),"modal")
 	%CmenuTypeOneVector = %CmenuTypeOneVector_d ;
       end
 
       if exists('%scicos_gif')==0 then
-        messagebox(["%scicos_gif not defined"; "using default values"],"messagebox")
+	messagebox(msprintf(_("%%scicos_gif not defined\ndefault block icons will be used.")),"modal")
         %scicos_gif = %scicos_gif_d ;
       end
 
       if exists('%scicos_contrib')==0 then
+	messagebox(msprintf(_("%%scicos_contrib not defined\nno contributed part will be used.")),"modal")
         messagebox(["%scicos_contrib not defined"; "using default values"],"modal")
         %scicos_contrib = %scicos_contrib_d ;
       end
@@ -351,7 +352,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   //
 
   if typeof(scs_m)<>'diagram' then
-    error("First argument must be a Scicos diagram");
+    error(msprintf(_("%s: First argument must be a Scicos diagram data structure\n"),'scicos'));
   end
 
   if ~super_block then
@@ -445,7 +446,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     //end of for backward compatibility for scifunc
 
     if ierr  <>0 then
-      messagebox(['Error occur when evaluating context:' lasterror() ],"modal") ;
+      messagebox([_("An error occur when evaluating context:"); lasterror() ],"modal") ;
     else
       deff('%fonct()',scs_m.props.context)
       %outfun = macrovar(%fonct);
@@ -802,8 +803,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
     if ~ok then
-      messagebox(["Problem saving a backup; I cannot activate Scilab.";
-	       "Save your diagram scs_m manually."],"modal");
+      messagebox(msprintf(_("Problem saving a backup; I cannot activate Scilab\n"+..
+			    "Save your diagram scs_m manually.")),"modal");
       pause ;
     end
 
@@ -818,12 +819,12 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
     save(TMPDIR+'/AllWindows',AllWindows)
     //   scf(0)  // to protect scicos windows when in Scilab
-    mprintf('%s\n','To reactivate Scicos, click on a diagram or type '"scicos();'"')
+    mprintf(_("To reactivate Scicos, click on a diagram or type ""scicos();""\n"))
 
 
     if edited then
-      mprintf("%s\n","Your diagram is not saved. Do not quit Scilab or "+...
-	      "open a new Scicos diagram before returning to Scicos.")
+      mprintf(_("Your diagram is not saved. Do not quit Scilab or "+...
+	      "open a new Scicos diagram before returning to Scicos."))
     end
     // prepare from and to workspace stuff
 
@@ -892,11 +893,11 @@ function scicos_pal = check_palettes_paths(scicos_pal)
   if toremove<>[] then
     rmpal=scicos_pal(toremove,:)
     rmpal(:,1)=part(rmpal(:,1),1:max(length(rmpal(:,1))))
-    messagebox(['Following palette(s) ignored (associated file(s) no more exist):';
-	     ' '
-	     rmpal(:,1)+':  '+rmpal(:,2)
-	     ' '
-	     ' To avoid this message, please update the ""'+pwd()+filesep()+'.scicos_pal"" file'],"modal")
+    messagebox([_("Following palette(s) ignored (associated file(s) no more exist):");
+		' '
+		rmpal(:,1)+':  '+rmpal(:,2)
+		' '
+		msprintf(_("To avoid this message, please update the ""%s.scicos_pal"" file."),pwd()+filesep())],"modal")
     scicos_pal(toremove,:)=[];
   end
 endfunction
