@@ -48,8 +48,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = false;
-	private boolean autoColorize = true;
+	private boolean autoIndent = true;
+	private boolean autoColorize = false;
 	private boolean colorizeInprogress = false;
 	private boolean indentInprogress = false;
 
@@ -188,16 +188,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT INDENTATION START
 	 */
-	public void indent(int start, int end) {
+	public void indent(/*int start, int end*/) {
 		if (!indentInprogress) {
 			indentInprogress = true;
 			resetStyle();
 			try {
 				//Get the correct starting line to indent
-				int[] interval = new int[2];
-				interval = readText(start, end);
+				//int[] interval = new int[2];
+				//interval = readText(start, end);
+				//interval = readText(0, this.getLength());
+				
 				//Here start the text indentation
-				applyIndent(interval[0], interval[1]);
+				//applyIndent(interval[0], interval[1]);
+				applyIndent(0, this.getLength());
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
@@ -237,6 +240,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 			// Get operators for a given line
 			opList = getOperatorList2(textLine);
+			
+/*			for (int j = 0; j < opList.size(); j++) {
+				System.out.println("COMMANDS: " + opList.elementAt(j));
+			}*/
 			
 			// Check if in one line all operators are matching,
 			// so we can know if the next line needs indentation or not
@@ -361,12 +368,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 
 
-
-
-
-
-
-
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
 		//	System.err.println("Calling changedUpdate "+e.toString());
@@ -384,7 +385,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			public void run() {
 				//resetStyle();
 				if (autoIndent) {
-					//indent();
+					indent();
 				}
 				if (autoColorize) {
 					colorize();
@@ -399,7 +400,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			public void run() {
 				//resetStyle();
 				if (autoIndent) {
-					//indent();
+					indent();
 				}
 				if (autoColorize) {
 					colorize(); 
@@ -619,6 +620,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return noCommentText;
 	}
 
+	
 	public int[] readText(int s, int e) {
 		int startOffset;
 		int endOffset;

@@ -23,10 +23,10 @@ public class IndentAction extends DefaultAction {
 	
 	public void doAction() {
 		
-		int start = getEditor().getTextPane().getSelectionStart();
-		int end = getEditor().getTextPane().getSelectionEnd();
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(start, end);
-		getEditor().getTextPane().setSelectionStart(start);
+		//int start = getEditor().getTextPane().getSelectionStart();
+		//int end = getEditor().getTextPane().getSelectionEnd();
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(/*start, end*/);
+		//getEditor().getTextPane().setSelectionStart(/*start*/);
 		getEditor().getTextPane().setSelectionEnd(getEditor().getTextPane().getCaretPosition());
 		//((ScilabStyleDocument) _editor.getStyledDocument()).indent();
 	}
