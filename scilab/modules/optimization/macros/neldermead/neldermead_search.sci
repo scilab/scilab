@@ -62,7 +62,7 @@ function this = neldermead_algo ( this )
     case "box" then
       this = neldermead_box (this);
     else
-      errmsg = sprintf("Unknown -method %s",this.method)
+      errmsg = msprintf(gettext("%s: Unknown -method %s"), "neldermead_algo", this.method)
       error(errmsg)
     end
 endfunction
@@ -104,7 +104,7 @@ function this = neldermead_variable ( this )
   simplex = this.simplex0;
   n = optimbase_cget ( this.optbase , "-numberofvariables" );
   if (n==0) then
-    errmsg = sprintf("The number of variable is zero.")
+    errmsg = msprintf(gettext("%s: The number of variable is zero."), "neldermead_variable")
     error(errmsg)
   end
   fvinitial = optimbase_get ( this.optbase , "-fx0" );
@@ -529,7 +529,7 @@ function [ this , istorestart ] = neldermead_istorestart ( this )
   case "kelley"
     [ this , istorestart ] = neldermead_isrkelley ( this )
   else
-    errmsg = sprintf("Unknown restart method %s",this.restartmethod)
+    errmsg = msprintf(gettext("%s: Unknown restart method %s"),"neldermead_istorestart", this.restartmethod)
     error(errmsg)
   end
 endfunction
@@ -612,7 +612,7 @@ function this = neldermead_startup (this)
   if ( hasbounds ) then
     [ this.optbase , isok ] = optimbase_checkbounds ( this.optbase );
     if ( ~isok ) then
-      error ( "Bounds are not consistent." )
+      error ( msprintf(gettext("%s: Bounds are not consistent."), "neldermead_startup" ))
     end
   end
   x0 = optimbase_cget ( this.optbase , "-x0" );
@@ -646,13 +646,13 @@ function this = neldermead_startup (this)
       this.boxnbpointseff = this.boxnbpoints;
     end
     if ( ~hasbounds ) then
-      error ( "Randomized bounds initial simplex is not available without bounds." )
+      error ( msprintf(gettext("%s: Randomized bounds initial simplex is not available without bounds." ), "neldermead_startup"))
     end
     [ simplex0 , this ] = optimsimplex_randbounds ( simplex0 , x0' , ...
       neldermead_costf , this.optbase.boundsmin , this.optbase.boundsmax , ...
       this.boxnbpointseff  , this );
   else
-    errmsg = sprintf("Unknown -simplex0method : %s",this.simplex0method);
+    errmsg = msprintf(gettext("%s: Unknown -simplex0method : %s"), "neldermead_startup", this.simplex0method);
     error(errmsg);
   end
   //
@@ -668,9 +668,8 @@ function this = neldermead_startup (this)
         ive , nbve ));
       [ this , status , xp ] = _scaleinconstraints ( this , x , x0 );
       if ( ~status ) then
-        errmsg = sprintf("Impossible to scale the vertex #%d/%d at ["+...
-          strcat(string(x)," ")+"] into inequality constraints", ...
-          ive , nbve );
+        errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), ...
+          "neldermead_startup", ive , nbve , strcat(string(x)," "));
         error(errmsg);
       end
       if ( or ( x <> xp ) ) then

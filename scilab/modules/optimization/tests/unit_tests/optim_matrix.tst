@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
 //
 // optim_matrix.tst --
 //   Test the optim command when the optimized unknown is a matrix.

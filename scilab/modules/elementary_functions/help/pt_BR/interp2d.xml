@@ -95,14 +95,14 @@
     ds/dy, d2s/dxx, d2s/dxy, d2s/dyy</emphasis> se necessário) em
     <emphasis>(xp(i),yp(i))</emphasis> :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
       zp(i) = s(xp(i),yp(i))   
       dzpdx(i) = ds/dx(xp(i),yp(i))
       dzpdy(i) = ds/dy(xp(i),yp(i))  
       d2zpdxx(i) = d2s/dx2(xp(i),yp(i))
       d2zpdxy(i) = d2s/dxdy(xp(i),yp(i))  
       d2zpdyy(i) = d2s/dy2(xp(i),yp(i))
-         </programlisting>
+ ]]></programlisting>
 
     <para>O parâmetro <literal>out_mode</literal> define a regra de avaliação
     para extrapolação, i.e., para <emphasis>(xp(i),yp(i)) fora de
@@ -131,10 +131,10 @@
         <listitem>
           <para>Extrapolação definida como segue :</para>
 
-          <programlisting>
+          <programlisting role = ""><![CDATA[ 
      s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
                            em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
-         </programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -160,7 +160,7 @@
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // veja os exemplos de splin2d
 
 // este exemplo mostra características de extrapolações diferentes
@@ -180,19 +180,19 @@ zz3 = interp2d(XX,YY, x, y, C, "periodic");
 zz4 = interp2d(XX,YY, x, y, C, "natural");
 xbasc()
 subplot(2,2,1)
-  plot3d(xx, yy, zz1, flag=[2 6 4])
-  xtitle("Extrapolação com o outmode C0")
+plot3d(xx, yy, zz1, flag=[2 6 4])
+xtitle("Extrapolação com o outmode C0")
 subplot(2,2,2)
-  plot3d(xx, yy, zz2, flag=[2 6 4])
-  xtitle("Extrapolação com o outmode by_zero")
+plot3d(xx, yy, zz2, flag=[2 6 4])
+xtitle("Extrapolação com o outmode by_zero")
 subplot(2,2,3)
-  plot3d(xx, yy, zz3, flag=[2 6 4])
-  xtitle("Extrapolação com o outmode periodic")
+plot3d(xx, yy, zz3, flag=[2 6 4])
+xtitle("Extrapolação com o outmode periodic")
 subplot(2,2,4)
-  plot3d(xx, yy, zz4, flag=[2 6 4])
-  xtitle("Extrapolação com o outmode natural")
+plot3d(xx, yy, zz4, flag=[2 6 4])
+xtitle("Extrapolação com o outmode natural")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

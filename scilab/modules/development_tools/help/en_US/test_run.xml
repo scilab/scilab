@@ -191,34 +191,75 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example">
+
 // Launch all tests
+// =============================================
+
 test_run();
 test_run([]);
 test_run([],[]);
 
-// Test one or several module
-test_run('core');
-test_run(SCI+'/modules/core');
-test_run('core',[]);
-test_run(['core','string']);
 
-// Launch one or several test in a specified module
-test_run('core','trycatch');
-test_run('core',['trycatch','opcode']);
+// Test one or several module
+// =============================================
+
+// Test one module
+test_run('time');
+
+// Test several modules
+test_run(['time','string']);
+
+// Test a submodule
+test_run(['optimization|neldermead']);
+
+// Refer to a module by its path
+test_run(SCI+'/modules/core');
+
+
+// Launch a specific test
+// =============================================
+
+// One specific test
+test_run('time','datenum');
+
+// Several tests
+test_run('time',['datenum';'calendar']);
+
+
+
+// Skip some tests
+// =============================================
+
+test_run('time',['datenum';'calendar'],'skip_tests');
+
 
 // Options
+// =============================================
 
-test_run([],[],'no_check_ref');
+// does not check if the .dia and .dia.ref are equal
+test_run('time','datenum','no_check_ref');
+
+// Create the .dia.ref file and does not check if the .dia and .dia.ref are equal
 test_run([],[],'create_ref');
-test_run([],[],'list');
-test_run([],[],'help');
-test_run([],[],'nonreg_test');
-test_run([],[],'unit_test');
 
-test_run([],[],['no_check_ref','mode_nw']);
+// Does not perform the tests but displays a list of available tests
+test_run([],[],'list');
+
+// Display some examples about how to use this command
+test_run([],[],'help');
+
+// Runs only the non-regression tests, skipping unit tests
+test_run([],[],'nonreg_test');
+
+// Runs only the unit tests, skipping non-regression tests
+test_run([],[],'unit_test');
 
 // Do not check the error output (std err)
 test_run('boolean','bug_2799','no_check_error_output');
+
+// Combine several options
+test_run([],[],['no_check_ref','mode_nw']);
+
    </programlisting>
   </refsection>
 
@@ -245,7 +286,7 @@ test_run('boolean','bug_2799','no_check_error_output');
   <refsection>
     <title>Authors</title>
     <simplelist type="vert">
-      <member>PM</member>
+      <member>Pierre Maréchal</member>
       <member>Michael Baudin</member>
     </simplelist>
   </refsection>

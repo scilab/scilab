@@ -59,10 +59,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-       x=linspace(0.01,4,200);x=[-x($:-1:1) %nan x];
-       clf();plot(x,csch(x))
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+x=linspace(0.01,4,200);x=[-x($:-1:1) %nan x];
+clf();plot(x,csch(x))
+ ]]></programlisting>
   </refsection>
 
   <refsection>

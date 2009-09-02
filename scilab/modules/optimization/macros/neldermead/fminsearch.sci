@@ -35,7 +35,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     // One options struc on the command line : use it !
     options = varargin(3);
   else
-    errmsg = sprintf("Unexpected error.");
+    errmsg = msprintf(gettext("%s: Unexpected number of input arguments %d instead of 2 to 3."), "fminsearch", rhs);
     error(errmsg)
   end
   // Compute options from the options struct
@@ -87,7 +87,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   case "tolsizedeltafv" then
     exitflag = 1;
   else
-    errmsg = sprintf("Unknown status %s",status)
+    errmsg = msprintf(gettext("%s: Unknown status %s"), "fminsearch", status)
     error(errmsg)
   end
   output = struct(...

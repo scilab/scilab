@@ -42,13 +42,13 @@ A.*.B</synopsis>
     <literal>B</literal>. A matriz resultante tem a seguinte forma de blocos:
     </para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
               | A(1,1) B ..... A(1,n) B |
               |   .              .      |
     A .*. B = |   .              .      |   
               |   .              .      |
               | A(m,1) B ..... A(m,n) B |
-    </programlisting>
+ ]]></programlisting>
 
     <para>Se <literal>A</literal> é uma matriz <literal>m x n</literal> e
     <literal>B</literal> é uma matriz <literal>p x q</literal> , então
@@ -62,15 +62,13 @@ A.*.B</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
 A(1,1)=%i;
 kron(A,A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

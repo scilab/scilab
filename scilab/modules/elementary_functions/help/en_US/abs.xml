@@ -67,8 +67,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 abs([1,%i,-1,-%i,1+%i])
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

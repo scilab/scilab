@@ -53,20 +53,16 @@
     64 bits prescritos por IEEE 754). Números de <literal>F</literal> são da
     forma: </para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
      sign * m * b^e
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>e</literal> é o expoente e <literal>m</literal> a
     mantissa:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
      m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>d_i</literal> os dígitos estão em <literal>[0,
     b-1]</literal> e <literal>e</literal> em <literal>[emin, emax]</literal>,
@@ -175,12 +171,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 b = number_properties("radix")
 eps = number_properties("eps")
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
