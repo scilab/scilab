@@ -36,7 +36,6 @@ public class ScilabDisplayTree {
 		String[][] treeShape = new String[treeData.length][3];
 		StringTokenizer st;
 		int depth = 0;		
-		int point_index = 0;
 
 		for (int i = 0; i < treeData.length; i++) {
 
@@ -54,8 +53,7 @@ public class ScilabDisplayTree {
 				if (depth == 0) {
 					treeShape[i][2] = "root";
 				} else {
-					point_index = treeData[i].lastIndexOf(".");
-					treeShape[i][2] = treeData[i].substring(0, point_index);
+					treeShape[i][2] = treeData[i].substring(0, treeData[i].length() -2);
 				} 
 			}
 		}
@@ -98,7 +96,6 @@ public class ScilabDisplayTree {
 	 * @return ScilabTree
 	 */
 	public static ScilabTree createTree(String[][] myShapedTree) {
-
 		ScilabTree tree = null;
 		Hashtable<String, ScilabTree> treeVsPosition = new Hashtable<String, ScilabTree>();
 
