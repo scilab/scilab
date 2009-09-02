@@ -39,8 +39,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![ 
-CDATA[bOK=configure_msvc()
+    <programlisting role="example"><![CDATA[ 
+bOK=configure_msvc()
  ]]></programlisting>
   </refsection>
   <refsection>
