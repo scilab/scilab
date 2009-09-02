@@ -41,11 +41,16 @@
     based on the update of a simplex, which is a set of k&gt;=n+1 vertices,
     where each vertex is associated with one point and one function value.
     This algorithm is the Nelder-Mead algorithm.</para>
+  </refsection>
 
-    <para>This function is based on a specialized use of the more general
-    neldermead component. Users which want to have a more flexible solution
-    based on direct search algorithms should consider using the neldermead
-    component instead of the fminsearch function.</para>
+  <refsection>
+    <title>Design</title>
+    <para>
+      This function is based on a specialized use of the more general
+      <link linkend="neldermead">neldermead</link> component. Users which want to have a more flexible solution
+      based on direct search algorithms should consider using the neldermead
+      component instead of the fminsearch function.
+    </para>
   </refsection>
 
   <refsection>
@@ -357,9 +362,38 @@
   </refsection>
 
   <refsection>
+    <title>TODO</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>unit tests</term>
+
+        <listitem>
+          <para>add more unit tests for fminsearch, especially the management
+          of the options provided by optimset().
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>demo with an output function</term>
+
+        <listitem>
+          <para>
+            add a demo with an interactive output function, which
+            draws the plot during the optimization.
+          </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2009</para>
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+    <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
   <refsection>
@@ -367,5 +401,23 @@
 
     <para>Michael Baudin would like to thank Lixing Han, who kindly sent his
     PhD thesis.</para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="neldermead">neldermead</link>
+      </member>
+
+      <member>
+        <link linkend="optimset">optimset</link>
+      </member>
+
+      <member>
+        <link linkend="optimget">optimget</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

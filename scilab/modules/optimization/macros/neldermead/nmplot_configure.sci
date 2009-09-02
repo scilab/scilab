@@ -25,7 +25,7 @@ function this = nmplot_configure (this,key,value)
   case "-sigmafn" then
     this.sigmafn = value;
   case "-outputcommand" then
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s"), "nmplot_configure", key)
     error(errmsg)
   else
     this.nmbase = neldermead_configure ( this.nmbase , key , value )
