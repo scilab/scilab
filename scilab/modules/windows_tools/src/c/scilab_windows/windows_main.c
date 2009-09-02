@@ -44,7 +44,7 @@ static int  memory = MIN_STACKSIZE;
 /*--------------------------------------------------------------------------*/ 
 extern int sci_show_banner ; 
 /*--------------------------------------------------------------------------*/ 
-int WINAPI Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
+int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, int iCmdShow)
 {
 	int i=0;
 	BOOL ShortCircuitExec=FALSE;

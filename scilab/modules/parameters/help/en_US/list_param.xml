@@ -77,12 +77,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-   mylist = init_param();
-   mylist = add_param(mylist,'minbound',[0 0 0]);
-   mylist = add_param(mylist,'maxbound',[1 1 1]);
-   disp(list_param(mylist));
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+mylist = add_param(mylist,'maxbound',[1 1 1]);
+disp(list_param(mylist));
+ ]]></programlisting>
   </refsection>
 
   <refsection>

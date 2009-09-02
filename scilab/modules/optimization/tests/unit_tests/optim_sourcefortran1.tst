@@ -4,8 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-//
+
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
 //   in the case where the cost function is provided as a Fortran 

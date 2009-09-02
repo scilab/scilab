@@ -170,7 +170,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=linspace(0,3,20);
 y=x^2;
 xx=linspace(0,3,100);
@@ -180,7 +180,7 @@ yy3=interp1(x,y,xx,'nearest');
 plot(xx,[yy1;yy2;yy3],x,y,'*')
 xtitle('interpolation of square function')
 legend(['linear','spline','nearest'],a=2)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

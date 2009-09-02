@@ -22,7 +22,7 @@ function this = neldermead_configure (this,key,value)
     case "box" then
       this.method = "box";
     else
-      errmsg = sprintf("Unknown method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown method %s"),"neldermead_configure",value);
       error(errmsg);
     end
   case "-coords0" then
@@ -40,7 +40,7 @@ function this = neldermead_configure (this,key,value)
     case "randbounds" then
       this.simplex0method = "randbounds";
     else
-      errmsg = sprintf("Unknown -simplex0method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown -simplex0method %s"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-simplex0length" then
@@ -66,7 +66,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolfstdeviationmethod = value;
     else
-      errmsg = sprintf("Unknown tolerance on function standard deviation method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown tolerance on function standard deviation method %s"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-tolsimplexizeabsolute" then
@@ -80,7 +80,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolsimplexizemethod = value;
     else
-      errmsg = sprintf("Unknown tolerance on simplex size method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size method %s"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-toldeltafv" then
@@ -92,7 +92,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolssizedeltafvmethod = value;
     else
-      errmsg = sprintf("Unknown tolerance on simplex size and delta function value method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size and delta function value method %s"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-restartmax" then

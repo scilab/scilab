@@ -67,7 +67,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x = -1:0.1:1;
 y = -1:0.1:1;
 
@@ -80,7 +80,7 @@ for i=1:size(X,1)
 end
 
 surf(X,Y,Z)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

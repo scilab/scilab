@@ -57,12 +57,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[1,2,3+%i];
 log(exp(x))  //element-wise
 2^x
 exp(x*log(2))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

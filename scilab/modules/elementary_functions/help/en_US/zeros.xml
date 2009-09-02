@@ -114,11 +114,11 @@ y=zeros(m1,m2,..)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 zeros(3)
 zeros(3,3)
 zeros(2,3,2)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

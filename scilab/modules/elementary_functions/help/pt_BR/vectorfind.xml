@@ -86,17 +86,15 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-      alr=[1,2,2;
-	   1,2,1;
-	   1,1,2;
-	   1,1,1;
-	   1,2,1];
-      ind = vectorfind(alr,[1,2,1],'r')
-      ind = vectorfind(string(alr),string([1,2,1]),'r')
-  
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1;
+     1,2,1];
+ind = vectorfind(alr,[1,2,1],'r')
+ind = vectorfind(string(alr),string([1,2,1]),'r')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

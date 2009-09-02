@@ -9,11 +9,14 @@
 
 //
 // optimset --
-//   Emulate the optimset command of Matlab.
+//   Configures and returns an optimization data structure.
 // Usage:
 //   options = optimset ()
-//   options = optimset ('TolX',1e-4)
-//   options = optimset (options,'TolX',1e-4)
+//   options = optimset ( funname )
+//   options = optimset ( key , value )
+//   options = optimset ( key1 , value1 , key2 , value2 , ... )
+//   options = optimset ( options , key , value )
+//   options = optimset ( options , key1 , value1 , key2 , value2 , ... )
 //
 function options = optimset (varargin)
   [lhs,rhs]=argn();
@@ -21,29 +24,44 @@ function options = optimset (varargin)
   //disp(lhs);
   //mprintf("rhs\n");
   //disp(rhs);
-  if rhs==1 then
+  if rhs == 0 then
+    options = optimset_new ();
+    return
+  elseif rhs==1 then
     //
+    //   options = optimset ( funname )
     // If there is only one argument, it is expected to be the
     // name of a method.
     //
     method = varargin(1);
     options = optimset_method ( method );
-  elseif modulo(rhs,2)<>0 then
+    return
+  end
+  // Set the options variable
+  if modulo(rhs,2)<>0 then
     //
+    //   options = optimset ( options , key , value )
+    //   options = optimset ( options , key1 , value1 , key2 , value2 , ... )
     // If the number of arguments is odd,
     // the first argument is expected to be a optimset struct.
     //
     options = varargin(1);
     t1 = typeof(options);
     if t1<>"st" then
-      errmsg = sprintf("Odd number of arguments : the first argument is expected to be a struct, but is a %s",t1);
+      errmsg = msprintf(gettext("%s: Odd number of arguments : the first argument is expected to be a struct, but is a %s"), "optimset", t1);
       error(errmsg)
     end
-    // ivar is a counter of the input arguments
+  else
+    //   options = optimset ( key , value )
+    //   options = optimset ( key1 , value1 , key2 , value2 , ... )
+    // Number of input argument is even.
+    options = optimset_new ();
+  end
+  // Set ivar : index of input variable.
+  // The variable ivar allows to make a loop over input arguments.
+  if modulo(rhs,2)<>0 then
     ivar = 1;
   else
-    options = optimset_new ();
-    // ivar is a counter of the input arguments
     ivar = 0;
   end
   //
@@ -88,7 +106,7 @@ function options = optimset_configure ( options , key , value )
     case "TolX" then
       options.TolX = value;
     else
-      errmsg = sprintf("Unknown key %s",key)
+      errmsg = msprintf(gettext("%s: Unknown key %s"), "optimset", key)
       error(errmsg)
     end
 endfunction
@@ -125,7 +143,7 @@ function options = optimset_method ( method )
       options = optimset_configure ( options , "TolFun" , 1.e-4 );
       options = optimset_configure ( options , "TolX" , 1.e-4 );
     else
-      errmsg = sprintf("Unknown method %s",method)
+      errmsg = msprintf(gettext("%s: Unknown method %s"), "optimset", method)
       error(errmsg)
     end
 endfunction

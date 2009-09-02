@@ -37,9 +37,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
