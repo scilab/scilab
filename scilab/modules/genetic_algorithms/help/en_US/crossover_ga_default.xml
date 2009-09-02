@@ -107,9 +107,11 @@
     combination. The crossed individuals are computed with the following
     equations :</para>
 
-    <programlisting>mix = (1 + 2*Beta)*rand(1,1) - Beta;
+    <programlisting role=""><![CDATA[ 
+mix = (1 + 2*Beta)*rand(1,1) - Beta;
 Crossed_Indiv1 =     mix*Indiv1 + (1-mix)*Indiv2;
-Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;</programlisting>
+Crossed_Indiv2 = (1-mix)*Indiv1 +     mix*Indiv2;
+ ]]></programlisting>
 
     <para>The Beta parameter should be set to a positive value. If Beta is set
     to 0, the resulting crossover is a simple convexe combination between the

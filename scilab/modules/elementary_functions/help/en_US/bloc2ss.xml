@@ -65,17 +65,17 @@
     be the string <literal>'blocd'</literal>. Each other element of this list
     is itself a list of one the following types :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 list('transfer','name_of_linear_system')
-     </programlisting>
+ ]]></programlisting>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 list('link','name_of_link',
              [number_of_upstream_box,upstream_box_port],
              [downstream_box_1,downstream_box_1_portnumber],
              [downstream_box_2,downstream_box_2_portnumber],
              ...)
-     </programlisting>
+ ]]></programlisting>
 
     <para>The strings <literal>'transfer'</literal> and
     <literal>'links'</literal> are keywords which indicate the type of element
@@ -120,7 +120,7 @@ list('link','name_of_link',
     <literal>S2</literal> to the output (port 0 of fictitious block -1,
     omitted) and to (input)port 2 of the adder.</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;
 
@@ -130,16 +130,16 @@ l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
 l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
 
 //Links
-// Inputs  -1 --&gt; input 1
+// Inputs  -1 --> input 1
 l=l+1;syst(l)=list('link','U1',[-1],[n_adder,1]);
 
 // Internal 
 l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
 
-// Outputs // -1 -&gt; output 1
+// Outputs // -1 -> output 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
-       </programlisting>
+ ]]></programlisting>
 
     <para>With <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> the result
     of the evaluation call <literal>sl=bloc2ss(syst);</literal> is a
@@ -147,7 +147,7 @@ l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
 
     <para>[2] LFT example</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[ 
 //Initialization
 syst=list('blocd'); l=1;
 
@@ -162,18 +162,18 @@ l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
 l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
 l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
-       </programlisting>
+ ]]></programlisting>
 
     <para>With</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[ 
 P=syslin('c',A,B,C,D);
 P11=P(1,1); 
 P12=P(1,2);
 P21=P(2,1); 
 P22=P(2,2);
 K=syslin('c',Ak,Bk,Ck,Dk);
-     </programlisting>
+ ]]></programlisting>
 
     <para><literal>bloc2exp(syst)</literal> returns the evaluation the lft of
     <literal>P</literal> and <literal>K</literal>.</para>

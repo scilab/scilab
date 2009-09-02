@@ -89,10 +89,10 @@
     case, that is, for each X(i) search in which of the n-1 intervals it
     falls, the intervals being defined by:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 I1 = [val(1), val(2)]
-Ik = (val(k), val(k+1)] for 1 &lt; k &lt;= n-1 ; 
- </programlisting>
+Ik = (val(k), val(k+1)] for 1 < k <= n-1 ; 
+ ]]></programlisting>
 
     <para>and:</para>
 
@@ -159,7 +159,7 @@ Ik = (val(k), val(k+1)] for 1 &lt; k &lt;= n-1 ;
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example #1 (elementary stat for U(0,1))
 m = 50000 ; n = 10;
 X = grand(m,1,"def");
@@ -201,7 +201,7 @@ xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000")
 xtitle("an Hermite piecewise polynomial")
 // NOTE : you can verify by adding these ones : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

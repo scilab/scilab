@@ -58,9 +58,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 asin(sin([1,0,%i]))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -36,13 +36,14 @@ function this = neldermead_updatesimp ( this )
       this.boxnbpointseff = this.boxnbpoints
     end
     if ( ~hasbounds ) then
-      error ( "Randomized bounds initial simplex is not available without bounds." )
+      errmsg = msprintf ( gettext("%s: Randomized bounds initial simplex is not available without bounds." ) , "neldermead_updatesimp" )
+      error ( errmsg )
     end
     [ simplex0 , this ] = optimsimplex_randbounds ( simplex0 , xopt' , ...
       neldermead_costf , this.optbase.boundsmin , this.optbase.boundsmax , ...
       this.boxnbpointseff  , this )
   else
-    errmsg = sprintf("Unknown restart simplex method %s",this.restartsimplexmethod)
+    errmsg = msprintf(gettext("%s: Unknown restart simplex method %s"), "neldermead_updatesimp", this.restartsimplexmethod)
     error(errmsg)
   end
   //
@@ -65,9 +66,8 @@ function this = neldermead_updatesimp ( this )
         ive , nbve ));
       [ this , status , xp ] = _scaleinconstraints ( this , x , xopt )
       if ( ~status ) then
-        errmsg = sprintf("Impossible to scale the vertex #%d/%d at ["+...
-          strcat(string(x)," ")+"] into inequality constraints", ...
-          ive , nbve );
+        errmsg = msprintf(gettext("Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), "neldermead_updatesimp", ...
+          ive , nbve , strcat(string(x)," "));
         error(errmsg);
       end
       if ( or(x <> xp) ) then

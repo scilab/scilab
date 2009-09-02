@@ -62,10 +62,10 @@
     case, this function can compute the two matrices <literal>X,Y</literal> of
     size <emphasis>nx x ny</emphasis> such that :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 X(i,j) = x(i)   for all i in [1,nx]
 Y(i,j) = y(j)       and j in [1,ny]
- </programlisting>
+ ]]></programlisting>
 
     <para>and the evaluation may be done with <literal>Z=f(X,Y)</literal> (at
     the condition that you have coded <literal>f</literal> for evaluation on
@@ -78,27 +78,27 @@ Y(i,j) = y(j)       and j in [1,ny]
     length nx, ny and nz, <literal>X,Y,Z</literal> are 3 hypermatrices of size
     <emphasis>nx x ny x nz</emphasis> such that :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 X(i,j,k) = x(i)  
 Y(i,j,k) = y(j)   for all (i,j,k) in [1,nx]x[1,ny]x[1,nz]
 Z(i,j,k) = z(k)
- </programlisting>
+ ]]></programlisting>
 
     <para>In the general case of m input arguments <literal>x1, x2, ..,
     xm</literal>, then the m output arguments <literal>X1, X2, ..,
     Xm</literal> are hypermatrices of size <emphasis>nx1 x nx2 x ... x
     nxm</emphasis> and :</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 Xj(i1,i2,...,ij,...,im) = xj(ij)   
 for all (i1,i2,...,im) in [1,nx1]x[1,nx2]x...x[1,nxm]  
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[  
 // create a simple 2d grid
 nx = 40; ny = 40;
 x = linspace(-1,1,nx);
@@ -137,7 +137,7 @@ end
 xbasc()
 plot3d(XF,YF,ZF, flag=[0 6 3], leg="X@Y@Z")
 xtitle("A 3d grid !"); xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

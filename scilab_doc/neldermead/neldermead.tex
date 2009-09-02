@@ -1,0 +1,172 @@
+%
+% neldermead.tex --
+%   Some notes about Nelder-Mead algorithms.
+%
+% Copyright 2008-2009 Michael Baudin
+%
+\documentclass[12pt]{report}
+
+%% Good fonts for PDF
+\usepackage[cyr]{aeguill}
+
+%% Package for page headers
+\usepackage{fancyhdr}
+
+%% Package to include graphics
+%% Comment for DVI
+\usepackage[pdftex]{graphicx}
+
+%% Figures formats: jpeg or pdf
+%% Comment for DVI
+\DeclareGraphicsExtensions{.jpg,.pdf}
+
+%% Package to create Hyperdocuments
+%% Comment for DVI
+\usepackage[pdftex,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+%% Package to control printed area size
+\usepackage{anysize}
+%% ...by defining margins {left}{right}{top}{bottom}
+\marginsize{22mm}{14mm}{12mm}{25mm}
+
+%% Package used to include a bibliography
+\usepackage{natbib}
+
+%% R for real numbers
+\usepackage{amssymb}
+
+%% User defined commands
+
+%% Figure reference
+\newcommand{\figref}[1]{figure~\ref{#1}}
+
+%% Equation reference
+\newcommand{\Ref}[1]{(\ref{#1})}
+
+%% Emphasize a word or a group of words
+\newcommand{\empha}[1]{\textit{\textbf{#1}}}
+
+%% Derivation operators
+\newcommand{\D}{\partial}
+\newcommand{\Dt}{\partial_t}
+\newcommand{\Dx}{\partial_x}
+\newcommand{\Dy}{\partial_y}
+
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+
+\usepackage{url}
+
+% Scilab macros
+\newcommand{\scimacro}[1]{\textit{#1}}
+\newcommand{\scicommand}[1]{\textit{#1}}
+
+% To highlight source code
+\usepackage{listings}
+
+\usepackage{algorithmic}
+
+% To allow one bibliograph by chapter
+%\usepackage[sectionbib]{chapterbib}
+\usepackage{url}
+
+% Maths shortcuts 
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+\begin{document}
+%% User defined page headers
+\pagestyle{fancyplain}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter. #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection. #1}}
+\lhead[]{\fancyplain{}{\bfseries\leftmark}}
+\rhead[]{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+%% User defined figure legends
+\makeatletter
+\def\figurename{{\protect\sc \protect\small\bfseries Fig.}}
+\def\f@ffrench{\protect\figurename\space{\protect\small\bf \thefigure}\space}
+\let\fnum@figure\f@ffrench%
+\let\captionORI\caption
+\def\caption#1{\captionORI{\rm\small #1}}
+\makeatother
+
+%% First page
+\thispagestyle{empty}
+{
+\begin{center}
+%% Comment for DVI
+\includegraphics[height=40mm]{scilab_logo}
+\vskip5cm
+
+%% Empty space between the box and the text
+\fboxsep6mm
+%% Box thickness
+\fboxrule1.3pt
+\Huge
+$$\fbox{$
+  \begin{array}{c}
+  \textbf{Nelder-Mead}\\
+  \textbf{Toolbox Manual}
+  \end{array}
+  $}
+$$
+\end{center}
+\vskip8cm
+
+\normalsize
+
+\begin{flushright}
+Version 0.1 \\
+March 2009
+\end{flushright}
+
+\begin{flushright}
+Micha\"el BAUDIN
+\end{flushright}
+
+\clearpage
+
+%% Table of contents
+\renewcommand{\baselinestretch}{1.30}\small \normalsize
+
+\tableofcontents
+
+\renewcommand{\baselinestretch}{1.18}\small \normalsize
+
+\include{introduction}
+
+\include{overview}
+
+\include{installation}
+
+\include{validation}
+
+\include{conclusion}
+
+\include{acknowledgments}
+
+\clearpage
+
+%% Appendix
+\appendix
+\include{nmbibliography}
+
+\include{implementations}
+
+\include{section-simplex}
+
+\include{method-spendley}
+
+\include{method-neldermead}
+
+
+%% Bibliography
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{neldermead}
+
+\end{document}
+

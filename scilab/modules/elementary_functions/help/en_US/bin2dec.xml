@@ -68,7 +68,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example 1 :
 // '1010110' : is the binary representation of 86 
 str='1010110';
@@ -79,7 +79,7 @@ y=bin2dec(str)
 // '1010010' : is the binary representation of 82
 str=['1011011'; '1010010']
 y=bin2dec(str)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

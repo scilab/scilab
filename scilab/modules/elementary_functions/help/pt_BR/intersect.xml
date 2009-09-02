@@ -133,8 +133,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=round(5*rand(10,1));
 B=round(5*rand(7,1));
 
@@ -161,8 +160,7 @@ B = [1,0,1;
 
 [v,ka,kb] = intersect(A,B,'c')
 A(:,ka)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -51,7 +51,7 @@
     </itemizedlist>
   </refsection>
   <refsection>
-    <title>Example of image inclusion</title>
+    <title>Example of image inclusion (PNG format)</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -60,9 +60,19 @@
       </inlinemediaobject>
     </para>
   </refsection>
+  <refsection>
+    <title>Example of image inclusion (SVG format)</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/fac3d.svg" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
   
   <refsection>
-    <title>Example of MathML inclusion : separate file</title>
+    <title>Example of MathML inclusion: separate file</title>
     <para>
       <informalequation>
         <mediaobject>
@@ -75,7 +85,20 @@
   </refsection>
   
   <refsection>
-    <title>Example of MathML inclusion : Inline</title>
+    <title>Example of T<subscript>E</subscript>X inclusion: separate file</title>
+    <para>
+      <informalequation>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../tex/math.tex" />
+          </imageobject>
+        </mediaobject>
+      </informalequation>
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Example of MathML inclusion: Inline</title>
     <para>
       <informalequation>
         <mediaobject>
@@ -231,12 +254,10 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-    
 // Comments
 b = 2;
 c = 3;
 a = example_1_function_1(b,c);
-    
   ]]></programlisting>
   </refsection>
   <refsection>

@@ -92,7 +92,7 @@ y=char(st1,st2,st3,....)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Example with a hypermatrix of ascii codes :
 x=hypermat([4,2,3],61:84);
 y=char(x)
@@ -108,7 +108,7 @@ size(y)
 
 //all strings rows are completed by 'blanks' to have the same length : 6
 length(y)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

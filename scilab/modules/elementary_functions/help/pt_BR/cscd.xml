@@ -64,10 +64,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-       csc(%pi/4)
-       cscd(90)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+csc(%pi/4)
+cscd(90)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
