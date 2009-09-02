@@ -170,8 +170,8 @@ int int_poly(int* _piAddress, int* _piKey)
 		{
 			for(j = 0 ; j < piCoeff[i] ; j++)
 			{
-				pdblRealRet[i][j] = pdblReal[i][j];
-				pdblImgRet[i][j]	= pdblImg[i][j];
+				pdblRealRet[i][j] = (double)(int)pdblReal[i][j];
+				pdblImgRet[i][j]	= (double)(int)pdblImg[i][j];
 			}
 		}
 
@@ -215,7 +215,7 @@ int int_poly(int* _piAddress, int* _piKey)
 		{
 			for(j = 0 ; j < piCoeff[i] ; j++)
 			{
-				pdblRealRet[i][j] = pdblReal[i][j];
+				pdblRealRet[i][j] = (double)(int)pdblReal[i][j];
 			}
 		}
 

@@ -14,37 +14,59 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "Scierror.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
 /*--------------------------------------------------------------------------*/
-int sum_matrix(int _iMode);
-int sum_sparse();
+int sum_matrix(int* _piAddress, int _iMode, int* _piKey);
+int sum_sparse(int* _piAddress, int* _piKey);
 
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sum) (char *fname,unsigned long fname_len)
+int sci_sum(char *fname, int* _piKey)
 {
-	int iType				= 0;
-	int iMode				= 0;
-
+	int iRet		= 0;
+	int iMode		= 0;
+	int* piAddr = NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	iType = GetType(1);
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
 
-	switch(iType)
+	//manage "c", "r", "m"
+	if(Rhs == 2)
+	{
+		int *piAddr2		= NULL;
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getProcessMode(piAddr2, piAddr, &iMode);
+		if(iRet)
+		{
+			return 1;
+		}
+	}
+
+	switch(getVarType(piAddr))
 	{
 	case sci_matrix :
-		if(Rhs == 2)
-			iMode = iGetOrient(2);
-		sum_matrix(iMode);
+		iRet = sum_matrix(piAddr, iMode, _piKey);
 		break;
 	case sci_poly :
+		//call psum in poly module
 		break;
 	case sci_sparse :
-		if(Rhs == 2)
-			iMode = iGetOrient(2);
 		if(iMode == 0)
-			sum_sparse();
+		{
+			iRet = sum_sparse(piAddr, _piKey);
+		}
 		else
 		{
 			OverLoad(1);
@@ -55,10 +77,18 @@ int C2F(sci_sum) (char *fname,unsigned long fname_len)
 		OverLoad(1);
 		break;
 	}
+
+	if(iRet)
+	{
+		return 1;
+	}
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 
-int sum_sparse()
+int sum_sparse(int* _piAddress, int* _piKey)
 {
 	int iRows				= 0;
 	int iCols				= 0;
@@ -100,93 +130,109 @@ int sum_sparse()
 		ddmsums(BY_ALL, pdblReal, iTotalElem, 1, pReturnRealData);
 	}
 
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
-
 	free(piElemByRow);
 	free(piColByRow);
 	return 0;
 }
 
-int sum_matrix(int _iMode)
+int sum_matrix(int* _piAddress, int _iMode, int* _piKey)
 {
-	int iRows				= 0;
-	int iCols				= 0;
-	int iReturnRows			= 0;
-	int iReturnCols			= 0;
-	int iRealData			= 0;
-	int iImgData			= 0;
-	int iIndex				= 0;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
 
 	double *pdblReal		= NULL;
 	double *pdblImg			= NULL;
-	double *pReturnRealData	= NULL;
-	double *pReturnImgData	= NULL;
 
-	if(iIsComplex(1))
+	int iRowsOut				= 0;
+	int iColsOut				= 0;
+
+	double *pdblRealRet	= NULL;
+	double *pdblImgRet	= NULL;
+
+	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	if(iRet)
 	{
-		int iComplex	= 1;
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-		pdblReal		= stk(iRealData);
-		pdblImg			= stk(iImgData);
-	}
-	else
-	{
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pdblReal		= stk(iRealData);
+		return 1;
 	}
 
 	if(iRows * iCols == 0)
 	{
 		if(_iMode == BY_ALL)
 		{
-			iAllocMatrixOfDouble(Rhs + 1, 1, 1, &pReturnRealData);
-			pReturnRealData[0]	= 0;
-			LhsVar(1)			= Rhs + 1;
-			PutLhsVar();
+			iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			pdblRealRet[0]	= 0;
 			return 0;
 		}
 		else
 		{
-			iAllocMatrixOfDouble(Rhs + 1, 0, 0, &pReturnRealData);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
+			iRet = allocMatrixOfDouble(Rhs + 1, 0,0, &pdblRealRet, _piKey);
+			if(iRet)
+			{
+				return 1;
+			}
 			return 0;
 		}
 	}
 
+	if(isVarComplex(_piAddress))
+	{
+		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+	}
+	else
+	{
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+	}
+
+	if(iRet)
+	{
+		return 1;
+	}
+	
 	switch(_iMode)
 	{
 	case BY_ROWS :
-		iReturnRows	= 1;
-		iReturnCols	= iCols;
+		iRowsOut	= 1;
+		iColsOut	= iCols;
 		break;
 	case BY_COLS :
-		iReturnRows	= iRows;
-		iReturnCols	= 1;
+		iRowsOut	= iRows;
+		iColsOut	= 1;
 		break;
 	case BY_ALL :
-		iReturnRows	= 1;
-		iReturnCols	= 1;
+		iRowsOut	= 1;
+		iColsOut	= 1;
 		break;
 	default :
 		Error(17);
 		return 0;
 	}
 
-	if(iIsComplex(1))
+	if(isVarComplex(_piAddress))
 	{
-		iAllocComplexMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData, &pReturnImgData);
-		zdmsums(_iMode, pdblReal, pdblImg, iRows, iCols, pReturnRealData, pReturnImgData);
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblRealRet, &pdblImgRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		zdmsums(_iMode, pdblReal, pdblImg, iRows, iCols, pdblRealRet, pdblImgRet);
 	}
 	else
 	{
-		iAllocMatrixOfDouble(Rhs + 1, iReturnRows, iReturnCols, &pReturnRealData);
-		ddmsums(_iMode, pdblReal, iRows, iCols, pReturnRealData);
-	}
+		iRet = allocMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblRealRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
 
-	LhsVar(1) = Rhs + 1;
-	PutLhsVar();
+		ddmsums(_iMode, pdblReal, iRows, iCols, pdblRealRet);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

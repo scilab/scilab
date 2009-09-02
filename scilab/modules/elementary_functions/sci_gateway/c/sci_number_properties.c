@@ -31,7 +31,10 @@ int sci_number_properties(char *fname, int* _piKey)
 	char **pstData	= NULL;
 	int* piAddr			= NULL;
 
-	double *pdblRet	= NULL;
+	double dblRet		= 0;
+	int bRet				= 0;
+
+	int bBoolFlag		= 0;
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -79,40 +82,56 @@ int sci_number_properties(char *fname, int* _piKey)
 		return 1;
 	}
 
-	iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRet, _piKey);
-	//pReturnData = (double*)malloc(sizeof(double));
-
 	if(strcmp(pstData[0], "eps") == 0)
-		pdblRet[0]	= F2C(dlamch)("e",1L);
+	{
+		dblRet	= F2C(dlamch)("e",1L);
+	}
 	else if(strcmp(pstData[0], "huge") == 0)
-		pdblRet[0]	= F2C(dlamch)("oe",1L);
+	{
+		dblRet	= F2C(dlamch)("oe",1L);
+	}
 	else if(strcmp(pstData[0], "tiny") == 0)
-		pdblRet[0]	= F2C(dlamch)("u",1L);
+	{
+		dblRet	= F2C(dlamch)("u",1L);
+	}
 	else if(strcmp(pstData[0], "radix") == 0)
-		pdblRet[0]	= F2C(dlamch)("b",1L);
+	{
+		dblRet	= F2C(dlamch)("b",1L);
+	}
 	else if(strcmp(pstData[0], "digits") == 0)
-		pdblRet[0]	= F2C(dlamch)("n",1L);
+	{
+		dblRet	= F2C(dlamch)("n",1L);
+	}
 	else if(strcmp(pstData[0], "minexp") == 0)
-		pdblRet[0]	= F2C(dlamch)("m",1L);
+	{
+		dblRet	= F2C(dlamch)("m",1L);
+	}
 	else if(strcmp(pstData[0], "maxexp") == 0)
-		pdblRet[0]	= F2C(dlamch)("l",1L);
+	{
+		dblRet	= F2C(dlamch)("l",1L);
+	}
 	else if(strcmp(pstData[0], "denorm") == 0)
 	{
+		bBoolFlag = 1;
 		if(F2C(dlamch)("u",1L) / F2C(dlamch)("b",1L) > 0)
-			pdblRet[0]	= 1;
+		{
+			bRet	= 1;
+		}
 		else
-			pdblRet[0]	= 0;
+		{
+			bRet	= 0;
+		}
 	}
 	else if(strcmp(pstData[0], "tiniest") == 0)
 	{
 		double dblRadix	= F2C(dlamch)("b",1L);
-		pdblRet[0]	= F2C(dlamch)("u",1L);
+		dblRet	= F2C(dlamch)("u",1L);
 
-		if(pdblRet[0] / dblRadix != 0)
+		if(dblRet	/ dblRadix != 0)
 		{//denormalised number are used
 			int iDigits = (int)F2C(dlamch)("n",1L);
 			for(i = 1 ; i < iDigits ; i++)
-				pdblRet[0] /= dblRadix;
+				dblRet	/= dblRadix;
 		}
 	}
 	else
@@ -120,6 +139,20 @@ int sci_number_properties(char *fname, int* _piKey)
 		sciprint(_("%s: unknown property kind.\n"), fname);
 		Error(999);
 		return 0;
+	}
+
+	if(bBoolFlag)
+	{
+		iRet = createMatrixOfBoolean(Rhs + 1, 1, 1, &bRet, _piKey);
+	}
+	else
+	{
+		iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblRet, _piKey);
+	}
+
+	if(iRet)
+	{
+		return 1;
 	}
 
 	free(piLen);

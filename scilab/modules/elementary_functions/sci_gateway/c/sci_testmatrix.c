@@ -14,41 +14,46 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "Scierror.h"
-
-#define _NEW_TONIO_
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
 #define MAGI_LETTER		'm'
 #define FRK_LETTER		'f'
 #define HILB_LETTER		'h'
 
+char getGenerateMode(int* _piAddress);
+
 /*--------------------------------------------------------------------------*/
-extern int C2F(inttestmatrix) (int *id);
-extern int C2F(magic)();
-/*--------------------------------------------------------------------------*/
-int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
+int sci_testmatrix(char *fname, int* _piKey)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows				= 0;
-	int iCols				= 0;
-	int iRealData			= 0;
-	char cMode				= 0;
-	int iVal				= 0;
+	int iRet						= 0;
 
-	double *pReturnRealData = NULL;
-	char **szRealData		= NULL;
+	int iRows1					= 0;
+	int iCols1					= 0;
+	int* piAddr1				= NULL;
+	char cMode					= 0;
+
+
+	int iRows2					= 0;
+	int iCols2					= 0;
+	int* piAddr2				= NULL;
+	int iDim						= 0;
+
+	double *pdblRealRet = NULL;
 	
-
 	CheckRhs(2,2);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_strings)
+	/*check input 1*/
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
+	if(iRet)
 	{
-		Error(55);
-		return 0;
+		return 1;
 	}
 
-	GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
+	cMode = getGenerateMode(piAddr1);
+
+/*	GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
 	cMode = (int)*szRealData[0];
 
 	if(iIsComplex(2))
@@ -85,9 +90,42 @@ int C2F(sci_testmatrix) (char *fname,unsigned long fname_len)
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-#else
-	C2F(inttestmatrix)(id);
-#endif
-	return 0;
+*/	return 0;
+}
+
+char getGenerateMode(int* _piAddress)
+{
+	int iRet		= 0;
+	int iRows		= 0;
+	int iCols		= 0;
+	int piLen[1];
+
+	char* pstData[1];
+
+	if(getVarType(_piAddress) != sci_strings)
+	{
+		return 0;
+	}
+
+	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	if(iRet || iRows != 1 || iCols != 1)
+	{
+		return 0;
+	}
+
+	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
+	if(iRet)
+	{
+		return 0;
+	}
+
+	pstData[0] = malloc(sizeof(char) * (piLen[0] + 1));//+1 for null termination
+	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, (char**)pstData);
+	if(iRet)
+	{
+		return 0;
+	}
+	
+	return pstData[0][0];
 }
 /*--------------------------------------------------------------------------*/

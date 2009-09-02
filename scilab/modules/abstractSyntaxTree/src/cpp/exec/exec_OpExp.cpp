@@ -717,7 +717,7 @@ namespace ast
 			break;
 		}
 
-		if(e.is_verbose())
+		if(pResult != NULL && e.is_verbose())
 		{
 		  YaspWrite((char *) pResult->toString(10,75).c_str());
 		  YaspWrite("\n");

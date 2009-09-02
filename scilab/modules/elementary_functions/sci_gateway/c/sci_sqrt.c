@@ -13,93 +13,104 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-extern int C2F(intsqrt) (int *id);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_sqrt) (char *fname,unsigned long fname_len)
+int sci_sqrt(char *fname,int* _piKey)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows			= 0;
-	int iCols			= 0;
-	int iRealData		= 0;
-	int iImgData		= 0;
-	int iComplex		= 0;
-	int iIndex			= 0;
-	int iComplexCase	= 0;
+	int i;
+	int iRet						= 0;
+	int iComplex				= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+	int* piAddr					= NULL;
 
-	double *pRealData		= NULL;
-	double *pImgData		= NULL;
-	double *pReturnRealData	= NULL;
-	double *pReturnImgdata	= NULL;
+	double* pdblReal		= NULL;
+	double* pdblImg			= NULL;
+	double* pdblRealRet	= NULL;
+	double* pdblImgRet	= NULL;
+
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	if(GetType(1) != sci_matrix)
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	if(getVarType(piAddr) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
 	}
 
-	iComplex = iIsComplex(Rhs);
+	if(isVarComplex(piAddr))
+	{
+		iComplex = 1;
+		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
+	}
+	else
+	{
+		iComplex = 0;
+		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
+	}
+
+	for(i = 0 ; i < iRows * iCols && iComplex == 0 ; i++)
+	{
+		if(pdblReal[i] < 0)
+		{
+			iComplex = 1;
+		}
+	}
+
 	if(iComplex)
 	{
-		GetRhsCVar(Rhs, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-		pRealData	= stk(iRealData);
-		pImgData	= stk(iImgData);
-		iComplexCase = 1;
-	}
-	else
-	{
-		GetRhsVar(Rhs, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pRealData	= stk(iRealData);
-		iComplexCase = 0;
-	}
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
 
-	for(iIndex = 0 ; iIndex < iRows * iCols && iComplexCase == 0 ; iIndex++)
-	{
-		if(pRealData[iIndex] < 0)
-			iComplexCase = 1;
-	}
-
-	if(iComplexCase == 0)
-	{
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData);
-		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
-
-		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-			pReturnRealData[iIndex] = dsqrts(pRealData[iIndex]);
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnRealData);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
-	}
-	else
-	{
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnRealData, &pReturnImgdata);
-		//pReturnRealData = (double*)malloc(sizeof(double) * iRows * iCols);
-		//pReturnImgdata	= (double*)malloc(sizeof(double) * iRows * iCols);
-
-		if(iComplex == 0)
-			for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-				zsqrts(pRealData[iIndex], 0, &pReturnRealData[iIndex], &pReturnImgdata[iIndex]);
+		if(isVarComplex(piAddr))
+		{
+			for(i = 0 ; i < iRows * iCols ; i++)
+			{
+				zsqrts(pdblReal[i], pdblImg[i], &pdblRealRet[i], &pdblImgRet[i]);
+			}
+		}
 		else
-			for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-				zsqrts(pRealData[iIndex], pImgData[iIndex], &pReturnRealData[iIndex], &pReturnImgdata[iIndex]);
-
-		//CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplexCase, &iRows, &iCols, &pReturnRealData, &pReturnImgdata);
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
-		//free(pReturnRealData);
-		//free(pReturnImgdata);
+		{
+			for(i = 0 ; i < iRows * iCols ; i++)
+			{
+				zsqrts(pdblReal[i], 0, &pdblRealRet[i], &pdblImgRet[i]);
+			}
+		}
 	}
-#else
-	C2F(intsqrt)(id);
-#endif
+	else
+	{
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		for(i = 0 ; i < iRows * iCols ; i++)
+		{
+			pdblRealRet[i] = dsqrts(pdblReal[i]);
+		}
+	}
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

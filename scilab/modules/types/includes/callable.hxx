@@ -29,9 +29,7 @@ namespace types
     enum ReturnValue
     {
       OK,
-      WrongParamNumber, /* TODO: why Tonio replaced WrongParam* by Error in Function and not in Macro */
-      WrongParamType,
-      WrongReturnNumber,
+			OK_NoResult,
       Error
     };
 

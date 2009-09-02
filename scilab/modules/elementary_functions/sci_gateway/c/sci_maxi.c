@@ -67,13 +67,10 @@ int func_comp(char* fname, int _iMini, int* _piKey)
 			return 1;
 		}
 
-		if(getVarType(piAddr2) == sci_strings)
+		iRet = getProcessMode(piAddr2, piAddr1, &iMode);
+		if(iRet)
 		{
-			iRet = getProcessMode(piAddr2, piAddr1, &iMode);
-			if(iRet)
-			{
-				return 1;
-			}
+			return 1;
 		}
 	}
 

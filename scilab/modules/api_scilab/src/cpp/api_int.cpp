@@ -51,6 +51,11 @@ int getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, un
 	return getCommonMatrixOfInteger(_piAddress, SCI_UINT32, _piRows, _piCols, (void**)_puiData32);
 }
 
+int getMatrixOfUnsignedInteger64(int* _piAddress, int* _piRows, int* _piCols, unsigned long long** _pullData64)
+{
+	return getCommonMatrixOfInteger(_piAddress, SCI_UINT64, _piRows, _piCols, (void**)_pullData64);
+}
+
 int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _pcData8)
 {
 	return getCommonMatrixOfInteger(_piAddress, SCI_INT8, _piRows, _piCols, (void**)_pcData8);
@@ -66,10 +71,31 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
 	return getCommonMatrixOfInteger(_piAddress, SCI_INT32, _piRows, _piCols, (void**)_piData32);
 }
 
+int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _pllData64)
+{
+	return getCommonMatrixOfInteger(_piAddress, SCI_INT64, _piRows, _piCols, (void**)_pllData64);
+}
+
 int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
 {
-	Int* pi = ((InternalType*)_piAddress)->getAsInt();
+	if(_piAddress == NULL)
+	{
+		return 1;
+	}
+
+	InternalType* pIT = ((InternalType*)_piAddress);
+	if(pIT->getType() != GenericType::RealInt)
+	{
+		return 1;
+	}
+
+	Int* pi	= pIT->getAsInt();
 	if(pi == NULL)
+	{
+		return 1;
+	}
+
+	if(pi->getIntType() != _iPrecision)
 	{
 		return 1;
 	}

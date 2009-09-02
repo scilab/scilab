@@ -24,9 +24,9 @@ namespace types
 	class EXTERN_TYPES MatrixPoly : public GenericType
 	{
   public :
-		MatrixPoly();
-		MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
-		virtual ~MatrixPoly();
+									MatrixPoly();
+									MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
+		virtual				~MatrixPoly();
 
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);
@@ -56,8 +56,11 @@ namespace types
 		string				GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
 
 
-
 		MatrixPoly&		operator= (MatrixPoly& poPoly);
+
+		bool					operator==(const InternalType& it);
+		bool					operator!=(const InternalType& it);
+
 	private :
 		Poly*					m_poPolyMatrix;
 		bool					m_bComplex;

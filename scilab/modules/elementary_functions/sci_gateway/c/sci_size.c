@@ -18,23 +18,22 @@
 #include "Scierror.h"
 #include "api_oldstack.h"
 
-int size_matrix(int* _piAddress, int _iMode);
-int size_list(int* _piAddress);
+int size_matrix(int* _piAddress, int _iMode, int* _piKey);
+int size_list(int* _piAddress, int* _piKey);
 
 extern int C2F(intsize)(int* id);
 /*--------------------------------------------------------------------------*/
 int sci_size(char *fname, int* _piKey)
 {
-	int iRet		= 0;
-	int iMode		= 0;
+	int iRet = 0;
+
 	int* piAddr	= NULL;
 
-	static int id[6];
-	C2F(intsize)(id);
-	return 0;
-/*
+	int iMode = -1;
+
+	/*check inputs*/
 	CheckRhs(1,2);
-	CheckLhs(1,2);
+	CheckLhs(1,1000000);
 
 	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
 	if(iRet)
@@ -42,51 +41,68 @@ int sci_size(char *fname, int* _piKey)
 		return 1;
 	}
 
-	if(Rhs == 2)
+	if(Rhs > 1)
 	{
-		if(Lhs == 2)
+		int* piAddr2 = NULL;
+
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
 		{
-			Error(41);
-			return 0;
+			return 1;
 		}
-		iRet = getProcessMode(2, piAddr, &iMode);
+
+		iRet = getProcessMode(piAddr2, piAddr, &iMode);
 		if(iRet)
 		{
 			return 1;
 		}
 	}
+
 	switch(getVarType(piAddr))
 	{
-	case sci_list  :
-	case sci_tlist :
-	case sci_mlist :
-		if(Rhs != 1)
-		{
-			Error(39);
-			return 0;
-		}
-		iRet = size_list(piAddr);
-		break;
 	case sci_matrix :
 	case sci_poly :
 	case sci_boolean :
 	case sci_sparse :
 	case sci_boolean_sparse :
-	case sci_matlab_sparse :
 	case sci_ints :
-	case sci_handles :
 	case sci_strings :
-		iRet = size_matrix(piAddr, iMode);
+		if(Rhs == 2 && Lhs != 1)
+		{
+			Error(41);
+			return 1;
+		}
+
+		iRet = size_matrix(piAddr, iMode, _piKey);
 		break;
-	default:
-		OverLoad(1);
+	case sci_list :
+	case sci_tlist :
+	case sci_mlist :
+		if(Rhs != 1 || Lhs != 1)
+		{
+			Error(39);
+			return 1;
+		}
+		iRet = size_list(piAddr, _piKey);
+		break;
+	}
+
+	if(iRet)
+	{
+		return 1;
 	}
 
 	PutLhsVar();
 	return 0;
-*/	}
+/*
+	static int id[6];
+	C2F(intsize)(id);
+	return 0;
+*/
 
-int size_list(int* _piAddress)
+	}
+
+int size_list(int* _piAddress, int* _piKey)
 {
 	//int iIndex			= 0;
 	//int iItemNumber		= 0;
@@ -129,67 +145,72 @@ int size_list(int* _piAddress)
 	return 0;
 }
 
-int size_matrix(int* _piAddress, int _iMode)
+int size_matrix(int* _piAddress, int _iMode, int* _piKey)
 {
-	//int iRet		= 0;
-	//int iRows		= 0;
-	//int iCols		= 0;
+	int iRet		= 0;
+	int iRows		= 0;
+	int iCols		= 0;
 
-	//iRet = getVarDimension(_piAddress, &iRows, &iCols);
-	//if(iRows)
-	//{
-	//	return 1;
-	//}
+	int iRowsOut	= 1;
+	int iColsOut	= 0;
 
-	//if(Lhs == 2)
-	//{
-	//	double dblRows	= iRows;
-	//	double dblCols	= iCols;
-	//	iRet = createMatrixOfDouble(Rhs + 1, 1, 1, &dblRows);
-	//	if(iRet)
-	//	{
-	//		return 1;
-	//	}
-	//	LhsVar(1) = Rhs + 1;
+	double pdblReal[2] = {0,0};
 
-	//	iRet = createMatrixOfDouble(Rhs + 2, 1, 1, &dblCols);
-	//	if(iRet)
-	//	{
-	//		return 1;
-	//	}
-	//	LhsVar(2) = Rhs + 2;
-	//}
-	//else
-	//{//take care of _iMode
+	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	if(iRet)
+	{
+		return 1;
+	}
 
-	//	if(Rhs == 1)
-	//	{
-	//		iRet = allocMatrixOfDouble(Rhs + 1, 1, 2, &pdblVal);
-	//	}
-	//	else
-	//	{
-	//		double* pdblVal		= NULL;
-	//		
-	//		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblVal);
-	//		if(iRet)
-	//		{
-	//			return 1;
-	//		}
+	if(Lhs == 1)
+	{
+		switch(_iMode)
+		{
+		case BY_MTLB : 
+			iColsOut = 2;
+			pdblReal[0] = iRows;
+			pdblReal[1] = iCols;
+			break;
+		case BY_ROWS : 
+			iColsOut = 1;
+			pdblReal[0] = iRows;
+			break;
+		case BY_COLS : 
+			iColsOut = 1;
+			pdblReal[0] = iCols;
+			break;
+		case BY_ALL : 
+			iColsOut = 1;
+			pdblReal[0] = iRows * iCols;
+			break;
+		}
+		
+		iRet = createMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, pdblReal, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
 
-	//		switch(_iMode)
-	//		{
-	//			case BY_ROWS :
-	//				pdblVal[0] = iCols;
-	//				break;
-	//			case BY_COLS :
-	//				pdblVal[0] = iRows;
-	//				break;
-	//			default : //BY_ALL
-	//				pdblVal[0] = iRows * iCols;
-	//				break;
-	//		}
-	//	}
-	//}
+		LhsVar(1) = Rhs + 1;
+	}
+	else
+	{
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &iRows, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, 1, 1, &iCols, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		LhsVar(1) = Rhs + 1;
+		LhsVar(2) = Rhs + 2;
+	}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

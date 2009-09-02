@@ -362,10 +362,6 @@
 				RelativePath=".\src\cpp\types.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\src\cpp\uint.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -382,6 +378,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\bool.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\callable.hxx"
 				>
 			</File>
 			<File
@@ -432,10 +432,6 @@
 				RelativePath=".\includes\types.hxx"
 				>
 			</File>
-			<File
-				RelativePath=".\includes\uint.hxx"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -444,7 +440,15 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\bin\abstractSyntaxTree.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\symbol.lib"
 			>
 		</File>
 	</Files>

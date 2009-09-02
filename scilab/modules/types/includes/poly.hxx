@@ -24,13 +24,14 @@ namespace types
 	class EXTERN_TYPES Poly : public GenericType
 	{
   public :
-		Poly();
-		Poly(double** _pdblCoefR, int _iRank);
-		Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
-		Poly(Double** _poCoefR, int _iRank);
-		virtual ~Poly();
+									Poly();
+									Poly(double** _pdblCoefR, int _iRank);
+									Poly(double** _pdblCoefR, double** _pdblcoefI, int _iRank);
+									Poly(Double** _poCoefR, int _iRank);
+		virtual				~Poly();
 
 
+		Poly*					getAsSinglePoly(void);
 		/*Config management*/
     void					whoAmI();
 		bool					isComplex();
@@ -50,6 +51,8 @@ namespace types
 		void					toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 		void					toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 
+		bool					operator==(const InternalType& it);
+		bool					operator!=(const InternalType& it);
   protected :
 		RealType			getType(void);
 
@@ -58,9 +61,9 @@ namespace types
 
 
   private :
-		bool m_bComplex;
-		Double *m_pdblCoef;
-		int m_iRank;
+		bool					m_bComplex;
+		Double*				m_pdblCoef;
+		int						m_iRank;
 	};
 }
 

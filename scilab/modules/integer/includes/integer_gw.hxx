@@ -10,7 +10,21 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
-#include "../../integer/includes/integer_gw.hxx"
+#ifndef __INTEGER_GW_HXX__
+#define __INTEGER_GW_HXX__
 
+#include "funcmanager.hxx"
+#include "context.hxx"
+
+#include "dynlib_integer_gw.h"
+
+class IntegerModule
+{
+private :
+	IntegerModule(){};
+	~IntegerModule(){};
+public :
+	INTEGER_GW_IMPEXP static bool Load();
+};
+
+#endif /* __INTEGER_GW_HXX__ */

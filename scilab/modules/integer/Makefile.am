@@ -86,7 +86,12 @@ src/fortran/i_cumprod.f \
 src/fortran/i_cumsum.f \
 src/fortran/i_kron.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
+GATEWAY_C_SOURCES = \ 
+				sci_gateway/c/gw_integer.c \
+				sci_gateway/c/sci_int.c
+
+# List of the cpp files
+INTEGER_CPP_SOURCES = 	src/cpp/integer_gw.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
@@ -114,18 +119,29 @@ sci_gateway/fortran/sci_i_triu.f \
 sci_gateway/fortran/sci_i_min.f \
 sci_gateway/fortran/sci_inttype.f
 
-libsciinteger_la_CFLAGS=  	-I$(srcdir)/includes/ \
+libsciinteger_la_CFLAGS=  \
+				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/
 
+libsciinteger_la_CPPFLAGS= \
+			 	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/symbol/includes/ \
+				-I$(top_srcdir)/modules/operations/includes/ \
+				-I$(top_srcdir)/modules/functions_manager/includes/ \
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+				-I$(top_srcdir)/modules/types/includes/
+				
 pkglib_LTLIBRARIES = libsciinteger.la
 
 libsciinteger_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciinteger_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(INTEGER_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la

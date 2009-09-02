@@ -112,308 +112,24 @@ int sci_gsort(char *fname, int* _piKey)
 	switch(getVarType(piAddr1))
 	{
 	case sci_matrix : 
-		gsort_double(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_double(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	case sci_strings : 
-		gsort_string(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_string(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	case sci_ints : 
-		gsort_int(piAddr1, pcstProcess, pcstWay, _piKey);
+		iRet = gsort_int(piAddr1, pcstProcess, pcstWay, _piKey);
 		break;
 	default :
 		return 1;
 	}
 
-	//create output vars
+	if(iRet)
+	{
+		return 1;
+	}
+
 	return 0;
-/*
-	char iord[2] ;
-	char typex[10];
-	SciIntMat Im;
-	int Type = 0;
-	char **S = NULL;
-	int m1 = 0,n1 = 0,l1 = 0 ;
-	int m2 = 0,n2 = 0,l2 = 0 ;
-	int m3 = 0,n3 = 0,l3 = 0 ;
-	int ind_m1 = 0, ind_n1 = 0, ind_l1 =0;
-	int *indices = NULL;
-	int iflag = 0;
-	int i;
-
-	iord[0] = DECREASE_COMMAND; 
-	iord[1]='\0';
-
-	typex[0] = GLOBAL_SORT; 
-	typex[1] = '\0';
-
-	Rhs = Max(0, Rhs);
-
-	if (Rhs >= 1)
-	{
-		Type=VarType(1);
-		switch (Type)
-		{
-		case sci_strings :
-			GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&S);
-			break;
-		case sci_matrix :
-			{
-#define COMPLEX 1
-				int *header = NULL;
-				int Cmplx = 0; 
-				header = (int *) GetData(1);   
-				Cmplx=header[3];
-
-				if (Cmplx == COMPLEX)
-				{
-					return gsort_complex(fname, typex, iord);
-				}
-				else
-				{
-					GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-					if ( (m1 * n1) == 0 ) // [] returns []
-					{
-						int m = 0, n = 0, l = 0;
-						CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-						LhsVar(1) = Rhs+1 ;
-						if (Lhs == 2)
-						{
-							CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m,&n,&l);
-							LhsVar(2) = Rhs+2 ;
-						}
-						C2F(putlhsvar)();
-						return 0;
-					}
-				}
-			}
-			break;
-		case sci_ints:
-			GetRhsVar(1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&Im);
-			break;
-		default :
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real, complex, int matrix or matrix of strings expected.\n"),fname,2);
-			return 0;
-			break;
-		}
-	}
-
-	if (Rhs == 3)
-	{
-		GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
-		CheckLength(3,m3,1);
-		if ( (*cstk(l3) != INCREASE_COMMAND) && (*cstk(l3) != DECREASE_COMMAND) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"i","d");
-			return 0;
-		}
-		iord[0] = *cstk(l3);
-	}
-
-	if (Rhs >= 2)
-	{
-		char c;
-		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-		if ( m2 == 0 )
-		{
-			Scierror(999,_("%s: Wrong size for input argument #%d: Non-empty string expected.\n"),fname,2);
-			return 0;
-		}
-		c = *cstk(l2);
-		if ( (c != ROW_SORT) && (c != COLUMN_SORT) && (c != GLOBAL_SORT) && (c != LIST_SORT) )
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),fname,2,"r","c","g","lr","lc");
-			return 0;
-		}
-		strcpy(typex,cstk(l2));
-	}
-
-	if ( typex[0] == LIST_SORT) 
-	{
-		if (typex[1] == ROW_SORT) 
-		{
-			ind_m1 = m1;
-			ind_n1 = 1;
-			ind_l1 = 0;
-			if (ind_m1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_m1));   // Only return in row
-		}
-		else if (typex[1] == COLUMN_SORT) 
-		{
-			ind_m1 = 1;
-			ind_n1 = n1;
-			ind_l1 = 0;
-			if (ind_n1 != 0) indices = (int*)MALLOC(sizeof(int)*(ind_n1));  //Only return in col 
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong value for input argument #%d.\n"),fname,2);
-			return 0;
-		}
-	}
-	else 
-	{
-		ind_m1 = m1;
-		ind_n1 = n1;
-		ind_l1 = 0;
-		if ( ind_m1*ind_n1 != 0 )indices = (int*)MALLOC(sizeof(int)*(ind_m1*ind_n1));  // return a matrix
-	}
-
-	if (Lhs == 2) iflag = 1; 
-	else iflag = 0;
-
-	switch (Type)
-	{
-	case sci_matrix:
-		{
-			if ( m1*n1 != 0 ) 
-			{
-				int lr;
-				double *matrix = stk(l1);
-				double *tmp_matrix = NULL;
-				// next CreateVar and corresponding copy not needed if arg1 is not passed by reference 
-				if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&lr)) 
-				{
-					if (indices) {FREE(indices); indices = NULL;}
-					return 0;
-				}
-
-				tmp_matrix = stk(lr);
-				for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-
-				C2F(gsortd)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				LhsVar(1)= Rhs+1 ;
-
-				if (Lhs == 2)
-				{
-					if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) 
-					{
-						if (indices) {FREE(indices); indices = NULL;}
-						return 0;
-					}
-					LhsVar(2)= Rhs+2 ;
-				}
-				C2F(putlhsvar)();
-				if (indices) {FREE(indices); indices = NULL;}
-			}
-		}
-		break;
-
-	case sci_ints:               
-		{
-			int lr;
-			lr=Im.it;
-			// next CreateVar and corresponding copy not needed if arg1 is not passed by reference 
-			if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr)) 
-			{
-				if (indices) {FREE(indices); indices = NULL;}
-				return 0;
-			}
-
-			switch(Im.it) // Type defined in stack-c.h 
-			{
-			case I_CHAR :
-				{
-					char *matrix = Im.D;
-					char *tmp_matrix = (char*) istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-
-			case I_INT32 :
-				{
-					int *matrix = Im.D;
-					int *tmp_matrix = istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-			case I_UCHAR :
-				{
-					unsigned char *matrix = Im.D;
-					unsigned char *tmp_matrix = (unsigned char*) istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortuchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-			case I_INT16 :
-				{
-					short *matrix = Im.D;
-					short *tmp_matrix = (short*) istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortshort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-			case I_UINT16 :
-				{
-					unsigned short *matrix = Im.D;
-					unsigned short *tmp_matrix = (short*) istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortushort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-			case I_UINT32 :
-				{
-					unsigned int *matrix = Im.D;
-					unsigned int *tmp_matrix = (unsigned int *)istk(lr);
-					for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-					C2F(gsortuint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-				}
-				break;
-			default:
-				if (indices) {FREE(indices); indices = NULL;}
-				Scierror(999,_("%s: Wrong type for input argument #%d: Unknown type.\n"),fname,1);
-				return 0;
-			}
-
-			LhsVar(1) = Rhs + 1 ;
-
-			if (Lhs == 2)
-			{
-				if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) 
-				{
-					if (indices) {FREE(indices); indices = NULL;}
-					return 0;
-				}
-				LhsVar(2)= Rhs+2 ;
-			}
-			if (indices) {FREE(indices); indices = NULL;}
-			C2F(putlhsvar)();
-		}
-		break;
-
-	case sci_strings:
-		{
-			C2F(gsorts)(S,indices,&iflag,&m1,&n1,typex,iord);
-			if (!CreateVarFromPtrNoCheck(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m1, &n1, S)) 
-			{
-				if (indices) {FREE(indices); indices = NULL;}
-				return 0;
-			}
-			LhsVar(1)=Rhs+1;
-
-			if (Lhs == 2)
-			{
-				if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) 
-				{
-					if (indices) {FREE(indices); indices = NULL;}
-					return 0;
-				}
-				LhsVar(2)= Rhs+2 ;
-			}
-			C2F(putlhsvar)();
-			if (indices) {FREE(indices); indices = NULL;}
-			freeArrayOfString(S,m1*n1);
-		}
-		break;
-
-	default:
-		if (indices) {FREE(indices); indices = NULL;}
-		Scierror(999,_("%s: Wrong type for input argument #%d.\n"),fname,1);
-		return 0;
-		break;
-	}
-	return 0;
-*/
 } 
 
 
@@ -428,7 +144,7 @@ int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	double* pdblRealOut1	= NULL;
 	double* pdblRealOut2	= NULL;
 	int *piInd						= NULL;
-	int iRhs2							= Rhs > 2;
+	int iLhs2							= Lhs == 2;
 
 	if(isVarComplex(_piAddress))
 	{
@@ -474,7 +190,7 @@ int	gsort_double(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	}
 
 	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
-	C2F(gsortd)(pdblRealOut1, piInd , &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+	C2F(gsortd)(pdblRealOut1, piInd , &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 
 	if(Lhs == 2)
 	{
@@ -497,7 +213,7 @@ int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	int iCols				= 0;
 	int iRowsInd		= 0;
 	int iColsInd		= 0;
-	int iRhs2				= Rhs > 2;
+	int iLhs2				= Lhs == 2;
 
 	int* piInd			= NULL;
 	char** pstData	= NULL;
@@ -515,7 +231,7 @@ int	gsort_string(int * _piAddress, const char* _pcstProcess, const char* _pcstWa
 	}
 
 	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
-	C2F(gsorts)(pstData, piInd, &iRhs2, &iRows,&iCols, (char*)_pcstProcess, (char*)_pcstWay);
+	C2F(gsorts)(pstData, piInd, &iLhs2, &iRows,&iCols, (char*)_pcstProcess, (char*)_pcstWay);
 	
 	iRet = createMatrixOfString(Rhs + 1, iRows, iCols, pstData, _piKey);
 	if(iRet)
@@ -545,9 +261,15 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 	int iRowsInd	= 0;
 	int iColsInd	= 0;
 	int iPrec			= 0;
-	int iRhs2			= Rhs > 2;
+	int iLhs2			= Lhs == 2;
 
 	int* piInd		= NULL;
+
+	iRet = getVarDimension(_piAddress, &iRows, &iCols);
+	if(iRet)
+	{
+		return 1;
+	}
 
 	iRet = computeIndiceDim(_pcstProcess, iRows, iCols, &iRowsInd, &iColsInd);
 	if(iRet)
@@ -558,6 +280,11 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 	piInd = (int*)malloc(sizeof(int) * iRowsInd * iColsInd);
 
 	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
+	if(iRet)
+	{
+		return 1;
+	}
+
 	switch(iPrec)
 	{
 	case SCI_INT8 : 
@@ -577,7 +304,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(pcDataOut, pcDataIn, sizeof(char) * iRows * iCols);
-			C2F(gsortchar)(pcDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortchar)(pcDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	case SCI_UINT8 : 
@@ -597,7 +324,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(pucDataOut, pucDataIn, sizeof(unsigned char) * iRows * iCols);
-			C2F(gsortuchar)(pucDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortuchar)(pucDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	case SCI_INT16 : 
@@ -617,7 +344,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(psDataOut, psDataIn, sizeof(short) * iRows * iCols);
-			C2F(gsortshort)(psDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortshort)(psDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	case SCI_UINT16 : 
@@ -637,7 +364,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(pusDataOut, pusDataIn, sizeof(unsigned short) * iRows * iCols);
-			C2F(gsortushort)(pusDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortushort)(pusDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	case SCI_INT32 : 
@@ -657,7 +384,7 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(piDataOut, piDataIn, sizeof(int) * iRows * iCols);
-			C2F(gsortint)(piDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortint)(piDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	case SCI_UINT32 : 
@@ -677,94 +404,25 @@ int	gsort_int(int * _piAddress, const char* _pcstProcess, const char* _pcstWay, 
 			}
 
 			memcpy(puiDataOut, puiDataIn, sizeof(unsigned int) * iRows * iCols);
-			C2F(gsortuint)(puiDataOut, piInd, &iRhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
+			C2F(gsortuint)(puiDataOut, piInd, &iLhs2, &iRows, &iCols, (char*)_pcstProcess, (char*)_pcstWay);
 			break;
 		}
 	default : 
 		return 1;
 	}
+
+	if(Lhs == 2)
+	{
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRowsInd, iColsInd, piInd, _piKey);
+		if(iRet)
+		{
+			free(piInd);
+			return 1;
+		}
+	}
+
+	free(piInd);
 	return 0;
-/*
-	int lr;
-	lr=Im.it;
-	// next CreateVar and corresponding copy not needed if arg1 is not passed by reference 
-	if (!CreateVarNoCheck(Rhs+1,MATRIX_OF_VARIABLE_SIZE_INTEGER_DATATYPE,&m1,&n1,&lr)) 
-	{
-		if (indices) {FREE(indices); indices = NULL;}
-			return 0;
-	}
-
-	switch(Im.it) // Type defined in stack-c.h 
-	{
-		case I_CHAR :
-		{
-			char *matrix = Im.D;
-			char *tmp_matrix = (char*) istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-
-		case I_INT32 :
-		{
-			int *matrix = Im.D;
-			int *tmp_matrix = istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-		case I_UCHAR :
-		{
-			unsigned char *matrix = Im.D;
-			unsigned char *tmp_matrix = (unsigned char*) istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortuchar)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-		case I_INT16 :
-		{
-			short *matrix = Im.D;
-			short *tmp_matrix = (short*) istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortshort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-		case I_UINT16 :
-		{
-			unsigned short *matrix = Im.D;
-			unsigned short *tmp_matrix = (short*) istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortushort)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-		case I_UINT32 :
-		{
-			unsigned int *matrix = Im.D;
-			unsigned int *tmp_matrix = (unsigned int *)istk(lr);
-			for (i = 0;i< m1*n1; i++) tmp_matrix[i] = matrix[i];
-			C2F(gsortuint)(tmp_matrix,indices,&iflag,&m1,&n1,typex,iord);
-		}
-		break;
-		default:
-			if (indices) {FREE(indices); indices = NULL;}
-			Scierror(999,_("%s: Wrong type for input argument #%d: Unknown type.\n"),fname,1);
-			return 0;
-	}
-
-	LhsVar(1) = Rhs + 1 ;
-
-	if (Lhs == 2)
-	{
-	if (!CreateVarFromPtrNoCheck(Rhs+2,MATRIX_OF_INTEGER_DATATYPE,&ind_m1,&ind_n1,&indices)) 
-	{
-	if (indices) {FREE(indices); indices = NULL;}
-	return 0;
-	}
-	LhsVar(2)= Rhs+2 ;
-	}
-	if (indices) {FREE(indices); indices = NULL;}
-	C2F(putlhsvar)();
-*/
 }
 
 static int gsort_complex(char *fname, char *mode, char *order)

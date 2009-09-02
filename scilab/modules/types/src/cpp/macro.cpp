@@ -52,20 +52,9 @@ namespace types
 		//check excepted and input/output parameters numbers
 		if(in.size() != m_inputArgs->size())
 		{
-			return Callable::WrongParamNumber;
+			return Callable::Error;
 		}
-		if(_iRetCount > m_outputArgs->size())
-		{
-			if(_iRetCount == 1)
-			{
-				out.push_back(NULL);
-			}
-			else
-			{
-				return Callable::WrongReturnNumber;
-			}
-		}
-		
+
 		std::list<symbol::Symbol>::const_iterator i;
 		typed_list::const_iterator j;
 		ast::ExecVisitor execFunc;

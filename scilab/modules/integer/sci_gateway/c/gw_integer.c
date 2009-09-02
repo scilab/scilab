@@ -30,14 +30,14 @@ static int C2F(scivoid)(char *fname,unsigned long fname_len)
 #define INTEGER_TAB_SIZE 25
 static gw_generic_table Tab[INTEGER_TAB_SIZE]=
 {
-  {C2F(sciint32),"int32"},
-  {C2F(sciint16),"int16"},
-  {C2F(sciint8),"int8"},
+  {NULL, ""}, //int32
+  {NULL, ""}, //int16
+  {NULL, ""}, //int8
   {C2F(sciinttype),"inttype"},
   {C2F(scidouble),"double"},
-  {C2F(sciuint32),"uint32"},
-  {C2F(sciuint16),"uint16"},
-  {C2F(sciuint8),"uint8"},
+  {NULL, ""}, //uint32
+  {NULL, ""}, //uint16
+  {NULL, ""}, //uint8
   {C2F(scimgeti),"mgeti"},
   {C2F(scivoid),"sci_void"},
   {C2F(sciimput),"%i_mput"},

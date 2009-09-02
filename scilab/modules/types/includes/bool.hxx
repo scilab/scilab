@@ -22,11 +22,11 @@ namespace types
   class EXTERN_TYPES Bool : public GenericType
   {
   public :
-    Bool(bool _bReal);
-    Bool(int _iRows, int _iCols);
-    Bool(int _iRows, int _iCols, bool **_pbData);
-		void CreateBool(int _iRows, int _iCols, bool **_pbData);
-		virtual ~Bool();
+									Bool(bool _bReal);
+									Bool(int _iRows, int _iCols);
+									Bool(int _iRows, int _iCols, bool **_pbData);
+		void					CreateBool(int _iRows, int _iCols, bool **_pbData);
+		virtual				~Bool();
 
 		/*data management*/
 		bool*					bool_get() const;
@@ -47,6 +47,8 @@ namespace types
     Bool*					getAsBool(void);
 		string				toString(int _iPrecision, int _iLineLen);
 
+		bool					operator==(const InternalType& it);
+		bool					operator!=(const InternalType& it);
   protected :
 		RealType			getType(void);
 

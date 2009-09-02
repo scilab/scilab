@@ -14,6 +14,11 @@
 #include <math.h>
 #include "tostring_common.hxx"
 
+#ifndef _MSC_VER
+	#include <inttypes.h>
+	#define _abs64(x) llabs(x)
+#endif
+
 extern "C"
 {
 	#include "elem_common.h"
@@ -21,7 +26,31 @@ extern "C"
 
 using namespace std;
 
-void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
+void GetIntFormat(long long _llVal, int *_piWidth)
+{
+	*_piWidth = (int)(log10((double)_abs64(_llVal)) + 1);
+}
+
+void AddIntValue(ostringstream *_postr, long long _llVal, int _iWidth, bool bPrintPlusSign, bool bPrintOne)
+{
+	if(bPrintPlusSign == true)
+	{
+		*_postr << (_llVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
+	}
+	else
+	{
+		*_postr << (_llVal < 0 ? MINUS_STRING_INT : NO_SIGN);
+	}
+
+	Config_Stream(_postr, _iWidth, 0, ' ');
+
+	if(bPrintOne == true || _llVal != 1)
+	{
+		*_postr << right << _abs64(_llVal);
+	}
+}
+
+void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
 {
 
 	double dblDec				= 0;
@@ -64,8 +93,8 @@ void GetFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bo
 
 void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI)
 {
-	GetFormat(_dblR, _iPrecNeeded, _piWidthR, _piPrecR, _pbFloatingPointR);
-	GetFormat(_dblI, _iPrecNeeded, _piWidthI, _piPrecI, _pbFloatingPointI);
+	GetDoubleFormat(_dblR, _iPrecNeeded, _piWidthR, _piPrecR, _pbFloatingPointR);
+	GetDoubleFormat(_dblI, _iPrecNeeded, _piWidthI, _piPrecI, _pbFloatingPointI);
 
 	*_piTotalWidth = 0;
 	if(_dblI == 0)
@@ -97,7 +126,7 @@ void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 	}
 }
 
-void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne)
+void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -112,11 +141,11 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, b
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
 	{
-		Print_Var(_postr, _dblVal);
+		PrintDoubleVar(_postr, _dblVal);
 	}
 }
 
-void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
+void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
 {
 	ostringstream ostemp;
 	/*
@@ -147,7 +176,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//specail case if I == 1 write only i and not 1i
-				Print_Var(&ostemp, _dblI);
+				PrintDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
 			iSignLen = SIGN_LENGTH;
@@ -161,7 +190,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			Print_Var(&ostemp, _dblR);
+			PrintDoubleVar(&ostemp, _dblR);
 			iSignLen = SIGN_LENGTH;
 		}
 		else
@@ -170,7 +199,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			Print_Var(&ostemp, _dblR);
+			PrintDoubleVar(&ostemp, _dblR);
 			ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
 			//I
@@ -178,7 +207,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//special case if I == 1 write only i and not 1i
-				Print_Var(&ostemp, _dblI);
+				PrintDoubleVar(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
 			iSignLen = SIGN_LENGTH * 2;
@@ -190,7 +219,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 
 }
 
-void Print_Var(ostringstream *_postr,  double _dblVal)
+void PrintDoubleVar(ostringstream *_postr,  double _dblVal)
 {
 	if(ISNAN(_dblVal) == 1)
 	{//NaN

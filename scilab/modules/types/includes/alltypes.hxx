@@ -26,7 +26,6 @@
 #include "int.hxx"
 #include "double.hxx"
 #include "float.hxx"
-#include "uint.hxx"
 #include "bool.hxx"
 #include "callable.hxx"
 #include "function.hxx"

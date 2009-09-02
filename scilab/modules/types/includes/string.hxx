@@ -25,7 +25,7 @@ namespace types
   public :
 							String(int _iRows, int _iCols);
 							String(const char *_pcData);
-							virtual ~String();
+		virtual		~String();
 
     char**		string_get() const;
     char*			string_get(int _iRows, int _iCols) const;
@@ -40,6 +40,8 @@ namespace types
     String*		getAsString(void);
 		string		toString(int _iPrecision, int _iLineLen);
 
+		bool			operator==(const InternalType& it);
+		bool			operator!=(const InternalType& it);
   protected :
     RealType	getType();//			{ return RealString; }
 

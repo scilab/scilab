@@ -339,5 +339,38 @@ namespace types
 		}
 		return ostr.str();
 	}
+
+	bool String::operator==(const InternalType& it)
+	{
+		InternalType* pIT = (InternalType*)&it;
+		if(pIT->getType() != RealString)
+		{
+			return false;
+		}
+
+		String* pS = pIT->getAsString();
+
+		if(pS->rows_get() != rows_get() || pS->cols_get() != cols_get())
+		{
+			return false;
+		}
+
+		char **p1 = string_get();
+		char **p2 = pS->string_get();
+
+		for(int i = 0 ; i < size_get() ; i++)
+		{
+			if(strcmp(p1[i], p2[i]) != 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool String::operator!=(const InternalType& it)
+	{
+		return !(*this == it);
+	}
 }
 

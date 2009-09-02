@@ -21,11 +21,11 @@ namespace types
 	class EXTERN_TYPES Float : public GenericType
 	{
   public :
-		virtual ~Float();
-		Float(float _fReal);
-    Float(int _iRows, int _iCols, bool _bComplex = false);
-    Float(int _iRows, int _iCols, float **_pfReal);
-    Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
+		virtual				~Float();
+									Float(float _fReal);
+									Float(int _iRows, int _iCols, bool _bComplex = false);
+									Float(int _iRows, int _iCols, float **_pfReal);
+									Float(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
 
 
 		/*data management*/
@@ -60,10 +60,12 @@ namespace types
 		/*Internal "constructor*/
 		void					CreateFloat(int _iRows, int _iCols, float **_pfReal, float **_pfImg);
 
+		bool					operator==(const InternalType& it);
+		bool					operator!=(const InternalType& it);
   private :
-    float		*m_pfReal;
-    float		*m_pfImg;
-		bool		m_bComplex;
+    float*				m_pfReal;
+    float*				m_pfImg;
+		bool					m_bComplex;
 	};
 }
 
