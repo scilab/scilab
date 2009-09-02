@@ -70,11 +70,12 @@ iparam  = zeros(11,1);
 ipntr   = zeros(14,1);
 _select = zeros(ncv,1);
 d       = zeros(nev+1,1);
-resid   = zeros(nx,1); 
-v       = zeros(nx,ncv);
-workd   = zeros(3*nx+1,1); 
+resid   = zeros(nx,1) + %i; 
+v       = zeros(nx,ncv) + %i;
+workd   = zeros(3*nx+1,1) + %i; 
 workev  = zeros(3*ncv,1);
-workl   = zeros(3*ncv*ncv+6*ncv,1);
+rwork   = zeros(ncv,1);
+workl   = zeros(3*ncv*ncv+6*ncv,1) + %i;
 
 if (nx > maxn) then
   printf('Error with ZNSIMP: N is greater than MAXN.\n');
@@ -88,9 +89,9 @@ elseif (ncv > maxncv) then
 end
 
 // Build the complex test matrix
-A              = diag(10*ones(nx,1)+%i*ones(nx,1));
-A(1:$-1,1:$-1) = diag(6*ones(nx-1,1));
-A(2:$,2:$)     = diag(6*ones(nx-1,1));
+A            = diag(10*ones(nx,1)+%i*ones(nx,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(nx-1,1));
 
 // Specification of stopping rules and initial conditions before calling ZNAUPD
 //
@@ -144,7 +145,7 @@ while(iter<maxiter)
   // Repeatedly call the routine ZNAUPD and take actions indicated by parameter IDO until
   // either convergence is indicated or maxitr has been exceeded.
 
-  [ido,resid,v,iparam,ipntr,workd,workl,info_znaupd] = znaupd(ido,bmat,nx,which,nev,tol,resid,ncv,v,iparam,ipntr,workd,workl,info_znaupd);
+  [ido,resid,v,iparam,ipntr,workd,workl,info_znaupd] = znaupd(ido,bmat,nx,which,nev,tol,resid,ncv,v,iparam,ipntr,workd,workl,rwork,info_znaupd);
   
   if (ido==99) then
     // BE CAREFUL: DON'T CALL zneupd IF ido == 99 !!

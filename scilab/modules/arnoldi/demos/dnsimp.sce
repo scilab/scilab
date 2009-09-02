@@ -88,9 +88,9 @@ elseif (ncv > maxncv) then
 end
 
 // Build the test matrix
-A              = diag(10*ones(nx,1));
-A(1:$-1,1:$-1) = diag(6*ones(nx-1,1));
-A(2:$,2:$)     = diag(-6*ones(nx-1,1));
+A            = diag(10*ones(nx,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(nx-1,1));
 
 // Specification of stopping rules and initial conditions before calling DNAUPD
 //
