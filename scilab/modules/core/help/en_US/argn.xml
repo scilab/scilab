@@ -24,7 +24,7 @@ rhs=argn(2)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 function concat=myOwnFunction(name,optional)
   [lhs,rhs]=argn(0) 
   if rhs <= 1 then
@@ -35,7 +35,7 @@ function concat=myOwnFunction(name,optional)
   end
   concat=name+" "+optional
 endfunction
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -34,11 +34,9 @@
     <literal>[f,g,ind]=costfunc(x,ind)</literal> e <literal>optim</literal> (a
     primitiva de otimização de alto nível) é invocada como segue:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 optim(costfunc,...)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Aqui <literal>costfunc</literal> (a função de custo a ser minimizada
     pela primitiva <literal>optim</literal>) avalia <literal>f=f(x)</literal>
@@ -50,21 +48,17 @@ optim(costfunc,...)
     podem ser definidas em seu ambiente. Elas também podem ser colocadas em
     uma lista. Por exemplo, a função externa</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [f,g,ind]=costfunc(x,ind,a,b,c) 
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>é válida para <literal>optim</literal> se o external (função
     externa) é <literal>list(costfunc,a,b,c)</literal> e a chamada a
     <literal>optim</literal> é, então:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 optim(list(costfunc,a1,b1,c1),....
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Um external também pode ser uma rotina FORTRAN ou C: isto é
     conveniente para acelerar computações.</para>

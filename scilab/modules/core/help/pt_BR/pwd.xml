@@ -42,12 +42,10 @@ x=getcwd()</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 pwd
 x=pwd()
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

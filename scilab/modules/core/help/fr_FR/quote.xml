@@ -23,7 +23,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [1+%i, 2]'
 [1+%i, 2].'
 x='Ceci est une chaîne de caractères'

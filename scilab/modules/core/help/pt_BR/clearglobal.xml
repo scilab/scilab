@@ -54,15 +54,13 @@ clearglobal('nam1', ..,'namn')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 global a b c
 a=1;b=2;c=3;
 who('global')
 clearglobal b
 who('global')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

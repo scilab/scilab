@@ -67,19 +67,23 @@ a.*b
 
           <para>The following function foo:</para>
 
-          <programlisting>function foo
-    a=1
-    disp(a),..
-    disp('ok')
-endfunction </programlisting>
+          <programlisting role = ""><![CDATA[ 
+function foo
+  a=1
+  disp(a),..
+  disp('ok')
+endfunction
+ ]]></programlisting>
 
           <para>is equivalent to:</para>
 
-          <programlisting>function foo 
-    a=1
+          <programlisting role = ""><![CDATA[ 
+function foo 
+  a=1
 
-    disp(a),disp('ok') 
-endfunction</programlisting>
+  disp(a),disp('ok') 
+endfunction
+ ]]></programlisting>
 
           <para>The logical line formed by physical line 3 and physical line 4
           is built as if it was entirely written in the physical line 4 while
@@ -94,8 +98,7 @@ endfunction</programlisting>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //decimal point
 1.345
 
@@ -110,8 +113,7 @@ a="here I start a very long string...  //but I'm not in the mood of continuing
      - and here I go on"
 y=12..
 45
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

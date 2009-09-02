@@ -32,8 +32,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // "traditional" for loops
 n=5;
 for i = 1:n, for j = 1:n, a(i,j) = 1/(i+j-1);end;end
@@ -47,8 +46,7 @@ for j=1:n,v=a(:,j), write(6,v),end
 
 //loop on list entries
 for l=list(1,2,'example'); l,end 
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -69,15 +69,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-  //criando um simples script de demonstração
-  path=TMPDIR+'/foo.sce';
-  mputl('disp Hello',path)
-  add_demo('My first demo',path)
-  //a demonstração pode agora ser executada através do menu "Demos".
-  
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+//criando um simples script de demonstração
+path=TMPDIR+'/foo.sce';
+mputl('disp Hello',path)
+add_demo('My first demo',path)
+//a demonstração pode agora ser executada através do menu "Demos".
+ ]]></programlisting>
   </refsection>
 
   <refsection>
