@@ -14,6 +14,11 @@
 #include <math.h>
 #include "tostring_common.hxx"
 
+#ifndef _MSC_VER
+	#include <inttypes.h>
+	#define _abs64(x) llabs(x)
+#endif
+
 extern "C"
 {
 	#include "elem_common.h"

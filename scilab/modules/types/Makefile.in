@@ -72,10 +72,9 @@ libscitypes_la_LIBADD =
 am__objects_1 = libscitypes_la-types.lo libscitypes_la-int.lo \
 	libscitypes_la-string.lo libscitypes_la-double.lo \
 	libscitypes_la-bool.lo libscitypes_la-float.lo \
-	libscitypes_la-uint.lo libscitypes_la-implicitlist.lo \
-	libscitypes_la-poly.lo libscitypes_la-matrixpoly.lo \
-	libscitypes_la-tostring_common.lo libscitypes_la-function.lo \
-	libscitypes_la-macro.lo
+	libscitypes_la-implicitlist.lo libscitypes_la-poly.lo \
+	libscitypes_la-matrixpoly.lo libscitypes_la-tostring_common.lo \
+	libscitypes_la-function.lo libscitypes_la-macro.lo
 am_libscitypes_la_OBJECTS = $(am__objects_1)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
 libscitypes_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -348,7 +347,6 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp \
 			src/cpp/double.cpp \
 			src/cpp/bool.cpp \
 			src/cpp/float.cpp \
-			src/cpp/uint.cpp \
 			src/cpp/implicitlist.cpp \
 			src/cpp/poly.cpp \
 			src/cpp/matrixpoly.cpp \
@@ -467,7 +465,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-tostring_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-types.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-uint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/testTypes-test-types.Po@am__quote@
 
 .cpp.o:
@@ -532,13 +529,6 @@ libscitypes_la-float.lo: src/cpp/float.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/float.cpp' object='libscitypes_la-float.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-float.lo `test -f 'src/cpp/float.cpp' || echo '$(srcdir)/'`src/cpp/float.cpp
-
-libscitypes_la-uint.lo: src/cpp/uint.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-uint.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-uint.Tpo -c -o libscitypes_la-uint.lo `test -f 'src/cpp/uint.cpp' || echo '$(srcdir)/'`src/cpp/uint.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscitypes_la-uint.Tpo $(DEPDIR)/libscitypes_la-uint.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/uint.cpp' object='libscitypes_la-uint.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-uint.lo `test -f 'src/cpp/uint.cpp' || echo '$(srcdir)/'`src/cpp/uint.cpp
 
 libscitypes_la-implicitlist.lo: src/cpp/implicitlist.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitypes_la_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-implicitlist.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-implicitlist.Tpo -c -o libscitypes_la-implicitlist.lo `test -f 'src/cpp/implicitlist.cpp' || echo '$(srcdir)/'`src/cpp/implicitlist.cpp

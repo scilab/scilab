@@ -55,6 +55,7 @@ src/c/sub_vector.c
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = 	src/cpp/sortTemplate.cpp \
 					src/cpp/elem_func.cpp \
+					sci_gateway/cpp/sci_isequal.cpp \
 					sci_gateway/cpp/sci_cos2.cpp \
 					sci_gateway/cpp/sci_sin2.cpp
 
@@ -279,7 +280,7 @@ src/fortran/rkbesl.f \
 src/fortran/rybesl.f \
 src/fortran/old_pythag.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_isequal.c \
+GATEWAY_C_SOURCES =  \
 sci_gateway/c/sci_matrix.c \
 sci_gateway/c/sci_prod.c \
 sci_gateway/c/sci_expm.c \

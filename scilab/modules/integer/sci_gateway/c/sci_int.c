@@ -831,7 +831,7 @@ int int8_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		pcOut[i] = (char)((char*)pvIn + (iPrec % 10) * i);
+		pcOut[i] = (char)*((char*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -862,7 +862,7 @@ int uint8_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		pucOut[i] = (unsigned char)((char*)pvIn + (iPrec % 10) * i);
+		pucOut[i] = (unsigned char)*((unsigned char*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -893,7 +893,7 @@ int int16_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		psOut[i] = (short)((char*)pvIn + (iPrec % 10) * i);
+		psOut[i] = (short)*((short*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -924,7 +924,7 @@ int uint16_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		pusOut[i] = (unsigned short)((char*)pvIn + (iPrec % 10) * i);
+		pusOut[i] = (unsigned short)*((unsigned short*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -955,7 +955,7 @@ int int32_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		piOut[i] = (int)((char*)pvIn + (iPrec % 10) * i);
+		piOut[i] = (int)*((int*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -986,7 +986,7 @@ int uint32_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		puiOut[i] = (unsigned int)((char*)pvIn + (iPrec % 10) * i);
+		puiOut[i] = (unsigned int)*((unsigned int*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -1017,7 +1017,7 @@ int int64_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		pllOut[i] = (long long)((char*)pvIn + (iPrec % 10) * i);
+		pllOut[i] = (long long)*((long long*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
@@ -1048,7 +1048,7 @@ int uint64_from_int(int* _piAddress, int* _piKey)
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		pullOut[i] = (unsigned long long)((char*)pvIn + (iPrec % 10) * i);
+		pullOut[i] = (unsigned long long)*((unsigned long long*)pvIn + (iPrec % 10) * i);
 	}
 
 	return 0;
