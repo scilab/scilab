@@ -118,19 +118,19 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-    deff('y=f(x)','y=sum(x.^2)');
+    <programlisting role="example"><![CDATA[ 
+deff('y=f(x)','y=sum(x.^2)');
     
-    x0 = [2 2];
-    Proba_start = 0.7;
-    It_Pre = 100;
-    x_test = neigh_func_default(x0);
+x0 = [2 2];
+Proba_start = 0.7;
+It_Pre = 100;
+x_test = neigh_func_default(x0);
 
-    comp_t_params = init_param();
-    comp_t_params = add_param(comp_t_params,'neigh_func', neigh_func_default);
+comp_t_params = init_param();
+comp_t_params = add_param(comp_t_params,'neigh_func', neigh_func_default);
 
-    T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, comp_t_sa);
-  </programlisting>
+T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, comp_t_sa);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

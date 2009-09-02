@@ -586,6 +586,120 @@
     be more stringent than the accuracy requirements for the eigenvalue
     approximations.</para>
   </refsection>
+  
+  <refsection>
+    <title>Example</title>
+    <programlisting role="example"><![CDATA[ 
+// The following sets dimensions for this problem.
+
+nx    = 10;
+
+nev   = 3;
+ncv   = 6;
+bmat  = 'I';
+which = 'LM';
+
+maxiter = 10;
+
+// Local Arrays
+
+iparam  = zeros(11,1);
+ipntr   = zeros(14,1);
+_select = zeros(ncv,1);
+d       = zeros(nev+1,1);
+resid   = zeros(nx,1); 
+v       = zeros(nx,ncv);
+workd   = zeros(3*nx+1,1); 
+workev  = zeros(3*ncv,1);
+workl   = zeros(3*ncv*ncv+6*ncv,1);
+
+// Build the test matrix
+
+A            = diag(10*ones(nx,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(nx-1,1));
+
+tol    = 0;
+ido    = 0;
+
+ishfts = 1;
+maxitr = 300;
+mode1  = 1;
+
+iparam(1) = ishfts;
+iparam(3) = maxitr;
+iparam(7) = mode1;
+
+sigmar = 0; // the real part of the shift
+sigmai = 0; // the imaginary part of the shift
+
+// M A I N   L O O P (Reverse communication)
+
+iter = 0;
+while(iter<maxiter)
+  info_dnaupd = 0;
+  iter = iter + 1;
+  // Repeatedly call the routine DNAUPD and take actions indicated by parameter IDO until
+  // either convergence is indicated or maxitr has been exceeded.
+
+  [ido,resid,v,iparam,ipntr,workd,workl,info_dnaupd] = dnaupd(ido,bmat,nx,which,nev,tol,resid,ncv,v,iparam,ipntr,workd,workl,info_dnaupd);
+  
+  if (ido==99) then
+    // BE CAREFUL: DON'T CALL dneupd IF ido == 99 !!
+    break;
+  end
+  
+  if (ido==-1 | ido==1) then
+    // Perform matrix vector multiplication 
+    workd(ipntr(2)+1:ipntr(2)+nx) = A*workd(ipntr(1)+1:ipntr(1)+nx);
+    // L O O P   B A C K to call DNAUPD again.
+    continue
+  end
+  
+  if (info_dnaupd < 0) then
+    printf('\nError with dnaupd, info = %d\n',info_dnaupd);
+    printf('Check the documentation of dnaupd\n\n');
+  else 
+    // Post-Process using DNEUPD.
+
+    rvec    = 1;
+    howmany = 'A';
+
+    info_dneupd = 0;
+
+    [d,d(1,2),v,resid,v,iparam,ipntr,workd,workl,info_dneupd] = dneupd(rvec,howmany,_select,d,d(1,2),v,sigmar,sigmai,workev, ...
+                                                                       bmat,nx,which,nev,tol,resid,ncv,v, ...
+                                                                       iparam,ipntr,workd,workl,info_dneupd);
+
+    if (info_dneupd~=0) then
+      printf('\nError with dneupd, info = %d\n', info_dneupd);
+      printf('Check the documentation of dneupd.\n\n');
+    end
+
+    // Print additional convergence information.
+    if (info_dneupd==1) then
+      printf('\nMaximum number of iterations reached.\n\n');
+    elseif (info_dneupd==3) then
+      printf('\nNo shifts could be applied during implicit Arnoldi update, try increasing NCV.\n\n');
+    end
+  end
+end
+
+printf('\nDNSIMP\n');
+printf('======\n');
+printf('\n');
+printf('Iterations is %d\n', iter);
+printf('Size of the matrix is %d\n', nx);
+printf('The number of Ritz values requested is %d\n', nev);
+printf('The number of Arnoldi vectors generated (NCV) is %d\n', ncv);
+printf('What portion of the spectrum: %s\n', which);
+printf('The number of Implicit Arnoldi update iterations taken is %d\n', iparam(3));
+printf('The number of OP*x is %d\n', iparam(9));
+printf('The convergence criterion is %d\n', tol);
+ 
+]]>
+      </programlisting>
+    </refsection>
 
   <refsection>
     <title>Remarks</title>

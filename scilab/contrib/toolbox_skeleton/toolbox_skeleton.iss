@@ -41,6 +41,7 @@ Source: contrib\{#TOOLBOX_SKELETON}\sci_gateway\fortran\sci_fsum.c; DestDir: {ap
 Source: contrib\{#TOOLBOX_SKELETON}\src\builder_src.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\c\builder_c.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\c\csum.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\src\c\*.h; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\c\csub.c; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\c; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\builder_fortran.sce; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\fortran; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\src\fortran\fsum.f; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\src\fortran; Components: {#COMPN_TOOLBOX_SKELETON}

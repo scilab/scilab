@@ -86,63 +86,63 @@ int sci_zneupd(char *fname,unsigned long fname_len)
   /* Check some sizes */
   if (mIPARAM*nIPARAM!=11)
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "IPARAM", 11);
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPARAM", 11);
       return 0;
     }
 
   if (mIPNTR*nIPNTR!=14)
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "IPNTR", 14);
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "IPNTR", 14);
       return 0;
     }
 
   if (mRESID*nRESID!=*istk(pN))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "RESID", *istk(pN));
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "RESID", *istk(pN));
       return 0;
     }
 
   if (mWORKD*nWORKD!=3 * *istk(pN))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"),fname, "WORKD", 3* *istk(pN));
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"),fname, "WORKD", 3* *istk(pN));
       return 0;
     }
 
   if (mSELECT*nSELECT!=*istk(pNCV))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "SELECT", *istk(pNCV));
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "SELECT", *istk(pNCV));
       return 0;
     }
 
   if (mD*nD!=(*istk(pNEV)+1))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "D", *istk(pNEV) + 1);
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "D", *istk(pNEV) + 1);
       return 0;
     }
 
   if ((mZ!=*istk(pN))&&(nZ!=*istk(pNEV)+1))
     {
-      Scierror(999,_("%s: %s must be a matrix of size %dx%d\n"), fname, "Z", *istk(pN), *istk(pNEV) + 1);
+      Scierror(999,_("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "Z", *istk(pN), *istk(pNEV) + 1);
       return 0;
     }
 
   if (mWORKev*nWORKev!=3 * *istk(pNCV))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "WORKev", 3 * *istk(pNCV));
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKev", 3 * *istk(pNCV));
       return 0;
     }
 
   if ((mV!=*istk(pN))&&(mV!=*istk(pNCV)))
     {
-      Scierror(999,_("%s: %s must be a matrix of size %dx%d\n"), fname, "V", *istk(pN),*istk(pNCV));
+      Scierror(999,_("%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"), fname, "V", *istk(pN),*istk(pNCV));
       return 0;
     }
 
-  sizeWORKL = 3 * *istk(pN) * *istk(pN) + 6 * *istk(pNCV);
+  sizeWORKL = 3 * *istk(pNCV) * *istk(pNCV) + 5 * *istk(pNCV);
 
   if ((mWORKL*nWORKL!=sizeWORKL))
     {
-      Scierror(999,_("%s: %s must be an array of size %d\n"), fname, "WORKL", sizeWORKL);
+      Scierror(999,_("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "WORKL", sizeWORKL);
       return 0;
     }
 
