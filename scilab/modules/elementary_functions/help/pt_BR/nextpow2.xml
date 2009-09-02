@@ -67,13 +67,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 nextpow2(127)
 nextpow2(128)
 nextpow2(0:10)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

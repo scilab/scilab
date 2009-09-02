@@ -47,10 +47,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 sqrt([2,4])
 sqrt(-1)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

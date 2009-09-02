@@ -59,11 +59,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=linspace(1,20,200);
 x=[-x($:-1:1) %nan x];
 plot(x,acscd(x))
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -74,12 +74,10 @@ t=isequalbitwise(a,b,..)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=list(1:5,%s+1,'ABCDEFG');
 isequalbitwise(a,a)
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
