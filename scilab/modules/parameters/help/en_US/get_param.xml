@@ -95,12 +95,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 mylist = init_param();
 mylist = add_param(mylist,'minbound',[0 0 0]);
 disp(get_param(mylist,'minbound',-[1 1 1]));
 disp(get_param(mylist,'maxbound', [1 1 1]));
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
