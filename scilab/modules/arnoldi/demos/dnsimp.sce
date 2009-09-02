@@ -113,9 +113,8 @@ A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(nx-1,1));
 //      start the ARNOLDI iteration.  Setting INFO to a nonzero value on the initial call is used
 //      if you want to specify your own starting vector (This vector must be placed in RESID).
 //
-// The work array WORKL is used in DNAUPD as workspace. Its dimension LWORKL is set as illustrated below.
+// The work array WORKL is used in DNAUPD as workspace. 
 
-lworkl  = 3*ncv^2+6*ncv;
 tol     = 0;
 ido     = 0;
 
