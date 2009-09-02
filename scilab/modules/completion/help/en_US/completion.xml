@@ -70,7 +70,8 @@ r = completion(beginning_of_a_word,dictionary)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[r = completion('w')
+    <programlisting role="example"><![CDATA[ 
+r = completion('w')
 r = completion('w','functions')
 r = completion('w','commands')
 r = completion('w','variables')
@@ -83,8 +84,7 @@ r = completion('w','files')
 [functions,commands,variables,macros] = completion('w')
 [functions,commands,variables] = completion('w')
 [functions,commands] = completion('w')
-
-   ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
