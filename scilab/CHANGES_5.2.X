@@ -147,6 +147,10 @@ call_scilab module :
 * A example to call scilab from C# added.
    see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
 
+tests :
+=======
+
+* test_run() now accepts Sub-Modules (See SEP #31)
 
 char encoding bugs :
 ====================
