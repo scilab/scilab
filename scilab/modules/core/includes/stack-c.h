@@ -56,11 +56,18 @@ typedef enum {
   sci_list = 15,
   sci_tlist = 16,
   sci_mlist = 17,
-  sci_lufact_pointer = 128, /* lufact pointer */
+  sci_pointer = 128, /* pointer */
   sci_implicit_poly = 129,
   sci_intrinsic_function = 130
 
 } sci_types;
+
+ /* lufact pointer... Done for backward compatibility. 
+  *	sci_lufact_pointer has been added to be able to handle umfpack datatype
+  * Since the use of pointer data structur is very interesting for Scilab 
+  * we decided to rename it to remove the reference of the initial use.
+  */
+#define sci_lufact_pointer sci_pointer
 
 /*-------------------------------------------------
  * structure used for int matrix

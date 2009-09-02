@@ -74,11 +74,11 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 secd([180 360])
 x=-180:180;
 plot(x,secd(x))
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

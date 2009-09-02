@@ -82,11 +82,11 @@ phi=atand(y,x)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example with the second form
 x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
 atand(x)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

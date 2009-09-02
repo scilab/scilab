@@ -48,12 +48,12 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 coshm(acoshm(A))
 A(1,1)=A(1,1)+%i;
 coshm(acoshm(A))
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

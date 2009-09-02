@@ -67,11 +67,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 oct2dec(["1" "756115"; "0" "23"])
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

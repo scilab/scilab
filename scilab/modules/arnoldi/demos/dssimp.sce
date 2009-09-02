@@ -73,7 +73,7 @@ d       = zeros(nev+1,1);
 resid   = zeros(nx,1); 
 v       = zeros(nx,ncv);
 workd   = zeros(3*nx+1,1); 
-workl   = zeros(3*ncv*ncv+6*ncv,1);
+workl   = zeros(ncv*ncv+8*ncv,1);
 
 if (nx > maxn) then
   printf('Error with DSSIMP: N is greater than MAXN.\n');
@@ -87,9 +87,9 @@ elseif (ncv > maxncv) then
 end
 
 // Build the symmetric test matrix
-A              = diag(10*ones(nx,1));
-A(1:$-1,1:$-1) = diag(6*ones(nx-1,1));
-A(2:$,2:$)     = diag(6*ones(nx-1,1));
+A            = diag(10*ones(nx,1));
+A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(nx-1,1));
+A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6*ones(nx-1,1));
 
 // Specification of stopping rules and initial conditions before calling DSAUPD
 //
@@ -112,9 +112,8 @@ A(2:$,2:$)     = diag(6*ones(nx-1,1));
 //      start the ARNOLDI iteration.  Setting INFO to a nonzero value on the initial call is used
 //      if you want to specify your own starting vector (This vector must be placed in RESID).
 //
-// The work array WORKL is used in DSAUPD as workspace. Its dimension LWORKL is set as illustrated below.
+// The work array WORKL is used in DSAUPD as workspace. 
 
-lworkl  = 3*ncv^2+6*ncv;
 tol     = 0;
 ido     = 0;
 

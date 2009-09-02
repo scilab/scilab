@@ -116,7 +116,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -140,8 +140,7 @@ v=['Scilab' '2.6'
 
 gsort(v,'lr','i')
 gsort(v,'lc','i')
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

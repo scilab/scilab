@@ -57,11 +57,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    x=-30:0.1:30;
-    x(abs(x)&lt;=1)=%nan;
-    plot(x,acoth(x))
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+x=-30:0.1:30;
+x(abs(x)<=1)=%nan;
+plot(x,acoth(x))
+ ]]></programlisting>
   </refsection>
 
   <refsection>

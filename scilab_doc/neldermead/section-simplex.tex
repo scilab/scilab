@@ -1,0 +1,102 @@
+\chapter{Simplex theory}
+
+In this section, we present the various definitions connected
+to simplex algorithms. We introduce several methods to measure 
+the size of a simplex, including the oriented length. 
+We present several methods to compute an
+initial simplex, for example the regular simplex used by Spendley et al..
+We also present the simplex gradient, which is a forward or a centered 
+difference formula for the gradient of the cost function.
+The core of this section is from \cite{Kelley1999}.
+
+\section{The simplex}
+
+A \emph{simplex} $S$ in $\RR^n$ is the convex hull of $n+1$ points $S=\{\bx_i\}_{i=1,n+1}$.
+
+Box extended the Nelder-Mead algorithm to handle bound and non linear constraints \cite{Box1965}.
+To be able to manage difficult cases, he uses a \emph{complex} made of $k\geq n+1$ vertices.
+In this section, we will state clearly when the definition and results can be applied to a complex. 
+Indeed, some definitions such as the simplex gradient cannot be extended to a \emph{complex}
+and are only applicable to a \emph{simplex}.
+
+The point $\bx_i\in\RR^n$ is the $i$-th vertex of $S$. Given a function $f(\bx)\in\RR$,
+each vertex is associated with a function value $f_i = f(\bx_i)$ for $i=1,n+1$.
+In simplex algorithms, the vertex are sorted by increasing function values 
+
+\begin{eqnarray}
+\label{simplex-sortedfv}
+f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}
+\end{eqnarray}
+
+The sorting order is not precisely defined neither in Spendley's et al paper \cite{Spendley1962}
+nor in Nelder and Mead's \cite{citeulike:3009487}. 
+In \cite{lagarias:112}, the sorting rules are defined precisely to be able to 
+state a theoretical convergence result. In practical implementations, though, the 
+ordering rules have no measurable influence.
+
+Let $V$ denote the $n\times n$ matrix of simplex directions 
+
+\begin{eqnarray}
+\label{simplex-directions}
+V(S) = (\bx_2 - \bx_1, \bx_3 - \bx_1 , \ldots , \bx_{n+1} - \bx_1) = (\bv_1, \ldots , \bv_n)
+\end{eqnarray}
+
+We say that $S$ is nonsingular if the matrix of simplex directions $V(S)$ is nonsingular.
+
+
+\section{The size of the simplex}
+
+Several methods are available to compute the size of a simplex.
+In Kelley's book \cite{Kelley1999}, the author presents the diameter and the two oriented lengths.
+
+The simplex diameter $diam(S)$ is defined by 
+
+\begin{eqnarray}
+\label{simplex-diameter}
+diam(S) = \max_{i,j=1,n+1} \|\bx_i - \bx_j\|
+\end{eqnarray}
+
+In practical implementations, computing the diameter requires two nested loops over the 
+vertices of the simplex, i.e. $(n+1)^2$ operations. This is why authors generally 
+prefer to use lengths which are less expensive to compute.
+
+The two oriented lengths $\sigma_-(S)$ and $\sigma_+(S)$ are using the 
+first vertex as the reference point and are defined by 
+
+\begin{eqnarray}
+\label{simplex-sigma}
+\sigma_+(S) = \max_{i=2,n+1} \|\bx_i - \bx_1\| \qquad \textrm { and } \qquad \sigma_-(S) = \min_{i=2,n+1} \|\bx_i - \bx_1\|
+\end{eqnarray}
+
+The following inequalities are satisfied between the diameter and the maximum oriented length
+
+\begin{eqnarray}
+\label{simplex-sigma-diam}
+\sigma_+(S) \leq diam(S) \leq 2 \sigma_+(S)
+\end{eqnarray}
+
+In Nash's book \cite{nla.cat-vn1060620}, the size of the simplex $s_N(S)$ is measured
+based on the $\l-1$ norm and is defined by 
+
+\begin{eqnarray}
+\label{simplex-sizenash}
+s_N(S) = \sum_{i=2,n+1} \|\bx_i - \bx_1\|
+\end{eqnarray}
+
+where 
+
+\begin{eqnarray}
+\label{simplex-sizenash2}
+\|\bx_i - \bx_1\| = \sum_{i=1,n+1} |x_i^j - x_1^j|
+\end{eqnarray}
+
+where $x_i^j\in\RR$ is the $j$-th coordinate of the $i$-th vertex of the simplex $S$.
+
+\section{The initial simplex}
+
+TODO...
+
+\section{The simplex gradient}
+
+TODO...
+

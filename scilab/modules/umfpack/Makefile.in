@@ -443,6 +443,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/api_scilab/includes \
+@UMFPACK_FALSE@-I$(top_srcdir)/modules/umfpack/includes/ \
 @UMFPACK_FALSE@-I$(top_srcdir)/modules/output_stream/includes
 
 @UMFPACK_TRUE@libsciumfpack_la_CFLAGS = -I$(srcdir)/includes/ \
