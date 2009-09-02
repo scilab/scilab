@@ -146,7 +146,6 @@ namespace types
     // root_object is the object at the top of all super chains
     static Object *get_root_object();
   
-  private:
     // m_slots_values manipulation
     InternalType *raw_get(PropertySlot &slot);
     void raw_set(PropertySlot &slot, InternalType *value);
@@ -178,13 +177,9 @@ namespace types
     // Perform a set operation on this slot (must be a property)
     void do_set(Slot *p_slot, Object *p_level, InternalType *p_value);
     
-    // Call the function as a method (setting this and super). VaArgs: null
-    // terminated list of InternalType*. Returns only the first return value of
-    // the real function.
-    InternalType *do_call(Callable *func, Object *level,...);
-    
-    // Returns the bound method
-    InternalType *do_bind(Callable *func, Object *level);
+    // Call the function. VaArgs: null terminated list of InternalType*. 
+    // Returns only the first return value of the function.
+    InternalType *do_call(Callable &func,...);
   
   protected:
     typedef std::map<std::string, Slot&>::iterator SlotsIterator;

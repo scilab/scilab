@@ -137,7 +137,10 @@ namespace types
     {
       MethodSlot *magic = dynamic_cast<MethodSlot*>(slot);
       if(magic)
-        return p_self->do_call(magic->func, level, new String(p_slotName.c_str()), NULL);
+      {
+        BoundMethod m(magic->func, p_self, level);
+        return p_self->do_call(m, new String(p_slotName.c_str()), NULL);
+      }
     }
     
     // No magic method, error
@@ -186,7 +189,8 @@ namespace types
       MethodSlot *magic = dynamic_cast<MethodSlot*>(slot);
       if(magic)
       {
-        p_self->do_call(magic->func, level, new String(p_slotName.c_str()), p_value, NULL);
+        BoundMethod m(magic->func, p_self, level);
+        p_self->do_call(m, new String(p_slotName.c_str()), p_value, NULL);
         return;
       }
     }
@@ -223,13 +227,18 @@ namespace types
     {
       PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
       if(prop->getter)
-        return do_call(prop->getter, p_level, NULL);
+      {
+        BoundGetter m(prop, this, p_level);
+        return do_call(m, NULL);
+      }
       else
+      {
         return raw_get(*prop);
+      }
     }
     else
     {
-      return do_bind(meth->func, p_level);
+      return new BoundMethod(meth->func, this, p_level);
     }
   }
   
@@ -241,9 +250,14 @@ namespace types
     {
       PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
       if(prop->setter)
-        do_call(prop->setter, p_level, p_value, NULL);
+      {
+        BoundSetter m(prop, this, p_level);
+        do_call(m, p_value, NULL);
+      }
       else
+      {
         raw_set(*prop, p_value);
+      }
     }
     else
     {
@@ -252,29 +266,21 @@ namespace types
   }
   
   InternalType *
-  Object::do_call(Callable *func, Object *level,...)
+  Object::do_call(Callable &m,...)
   {
-    BoundMethod m(func, this, level);
     InternalType *arg;
     va_list ap;
     typed_list args, out;
-    int retcount = 1;
     
-    va_start(ap, level);
+    va_start(ap, m);
     while((arg = va_arg(ap, InternalType*)) != NULL)
       args.push_back(arg);
     va_end(ap);
     
-    if(m.call(args, retcount, out) == Callable::OK)
+    if(m.call(args, 1, out) == Callable::OK)
       return out[0];
-    else
-      return NULL;
-  }
-  
-  InternalType *
-  Object::do_bind(Callable *func, Object *level)
-  {
-    return new BoundMethod(func, this, level);
+    
+    return NULL;
   }
   
   Object *

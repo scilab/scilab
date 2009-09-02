@@ -120,7 +120,7 @@ namespace types
   static Callable::ReturnValue
   empty_constructor(typed_list &, int, typed_list &, ObjectMatrix *, ObjectMatrix *)
   {
-    return Callable::OK;
+    return Callable::OK_NoResult;
   }
   
   Class *

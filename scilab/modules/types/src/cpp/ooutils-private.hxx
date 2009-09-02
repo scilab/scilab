@@ -39,7 +39,7 @@ namespace types
   public:
     BoundGetter(PropertySlot *p_slot, Object *p_self, Object *p_level):
       BoundMethod(p_slot->getter, p_self, p_level), m_slot(p_slot) {}
-    virtual ~BoundGetter();
+    virtual ~BoundGetter() {}
     
     Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   
@@ -52,7 +52,7 @@ namespace types
   public:
     BoundSetter(PropertySlot *p_slot, Object *p_self, Object *p_level):
       BoundMethod(p_slot->setter, p_self, p_level), m_slot(p_slot) {}
-    virtual ~BoundSetter();
+    virtual ~BoundSetter() {}
     
     Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
   

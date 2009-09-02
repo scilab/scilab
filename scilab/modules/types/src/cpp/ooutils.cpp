@@ -71,17 +71,24 @@ namespace types
   Callable::ReturnValue
   BoundGetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
-    // push value = slot->value
-    return inner_call(in, iRetCount, out);
+    symbol::Context::getInstance()->put(symbol::Symbol("value"),
+        * m_this->level_ref_get()->raw_get(*m_slot)->clone());
+    return BoundMethod::inner_call(in, 1, out);
   }
   
   Callable::ReturnValue
   BoundSetter::inner_call(typed_list &in, int iRetCount, typed_list &out)
   {
     Callable::ReturnValue ret;
-    // push value = slot->value
-    ret = inner_call(in, iRetCount, out);
-    // Retrieve value and put it to slot->value
+    symbol::Symbol v_sym("value");
+    InternalType *new_val;
+    
+    symbol::Context::getInstance()->put(v_sym, 
+        * m_this->level_ref_get()->raw_get(*m_slot)->clone());
+    ret = BoundMethod::inner_call(in, 1, out);
+    new_val = out.front();
+    m_this->level_ref_get()->raw_set(*m_slot, new_val);
+    
     return ret;
   }
   
