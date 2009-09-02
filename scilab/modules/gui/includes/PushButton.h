@@ -12,7 +12,7 @@
 
 #ifndef __PUSHBUTTON_H__
 #define __PUSHBUTTON_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +21,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createPushButton(sciPointObj* sciObj);
+GUI_IMPEXP void createPushButton(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a Push Button in Scilab GUIs
@@ -29,6 +29,6 @@ void createPushButton(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsPushButtonParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsPushButtonParent(sciPointObj* sciObj);
 
 #endif /* __PUSHBUTTON_H__ */

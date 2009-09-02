@@ -14,11 +14,13 @@
 #ifndef __KILLSCILABPROCESS_H__
 #define __KILLSCILABPROCESS_H__
 
+#include "dynlib_scilab_windows.h"
+
 /**
 * Kill current scilab process
 * @param[in] exit code value
 */
-void killScilabProcess(int exitCode);
+SCILAB_WINDOWS_IMPEXP void killScilabProcess(int exitCode);
 
 #endif /* __KILLSCILABPROCESS_H__ */ 
 /*--------------------------------------------------------------------------*/

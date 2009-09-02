@@ -227,7 +227,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="wmprod.f"/>
 		<File RelativePath="wmsum.f"/>
 		<File RelativePath="wmul.f"/>
-		<File RelativePath="wnrm2.f"/>
 		<File RelativePath="wrscal.f"/>
 		<File RelativePath="wscal.f"/>
 		<File RelativePath="wshrsl.f"/>

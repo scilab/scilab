@@ -85,11 +85,11 @@ assert_close ( Hcomputed , Hexpected , 1.e-11 );
 
 // 2. Test with a vector function
 function y = myfunction2 (x)
-  y = x(1)*x(1) + x(2);
+  y = x(1)*x(1) + x(2)+ x(1)*x(2);
 endfunction
 x = [1.0 
 2.0];
-expected = [2.0 1.0];
+expected = [4.0 2.0];
 // 2.1 With default parameters
 computed = derivative(myfunction2,x);
 assert_close ( computed , expected , 1.e-10 );
@@ -104,8 +104,8 @@ computed = derivative(myfunction2,x,order=4);
 assert_close ( computed , expected , %eps );
 
 // 2.5 Compute second derivative at the same time
-Jexpected = [2.0 1.0];
-Hexpected = [2.0 0 0 0];
+Jexpected = [4.0 2.0];
+Hexpected = [2.0 1.0 1.0 0];
 [Jcomputed , Hcomputed] = derivative(myfunction2,x);
 assert_close ( Jcomputed , Jexpected , 1.e-10 );
 assert_close ( Hcomputed , Hexpected , %eps );
@@ -122,7 +122,49 @@ assert_close ( Hcomputed , Hexpected , %eps );
 assert_close ( Jcomputed , Jexpected , %eps );
 assert_close ( Hcomputed , Hexpected , 1.e-10 );
 
-// TODO : Check The H_form parameter
-// TODO : Check The h parameter
-// TODO : Check The Q parameter
+// 3. Test H_form
+// 3.1 Test H_form="default"
+Jexpected = [4.0 2.0];
+Hexpected = [2.0 1.0 1.0 0.0];
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form="default");
+assert_close ( Jcomputed , Jexpected , 1.e-10 );
+assert_close ( Hcomputed , Hexpected , %eps );
+// 3.2 Test H_form='hypermat'
+Jexpected = [4.0 2.0];
+Hexpected = [2.0 1.0
+1.0 0.0];
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form='hypermat');
+assert_close ( Jcomputed , Jexpected , 1.e-10 );
+assert_close ( Hcomputed , Hexpected , %eps );
+// 3.3 Test H_form='hypermat'
+Jexpected = [4.0 2.0];
+Hexpected = [2.0 1.0 
+1.0 0.0];
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , H_form='hypermat');
+assert_close ( Jcomputed , Jexpected , 1.e-10 );
+assert_close ( Hcomputed , Hexpected , %eps );
+
+// 4. Test verbose
+[Jcomputed , Hcomputed] = derivative(myfunction2 , x , verbose = 1);
+
+// 5. Test h parameter
+// Test a case where the default step h is very small ~ 1.e-9,
+// but, because the function is very flat in the neighbourhood of the 
+// point, a larger step ~ 1.e-4 reduces the error.
+// This means that this test cannot pass if the right step is 
+// not taken into account, therefore testing the feature "h is used correctly".
+myn = 1.e5;
+function y = myfunction3 (x)
+  y = x^(2/myn);
+endfunction
+x = 1.0;
+h = 6.055454e-006
+Jexpected = (2/myn) * x^(2/myn-1);
+Hexpected = (2/myn) * (2/myn-1) * x^(2/myn-2);
+[Jcomputed , Hcomputed] = derivative(myfunction3 , x , h = 1.e-4 , order = 1 );
+assert_close ( Jcomputed , Jexpected , 1.e-4 );
+assert_close ( Hcomputed , Hexpected , 1.e-3 );
+
+// 6. Test Q parameter
+// TODO !
 

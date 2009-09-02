@@ -295,6 +295,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -478,7 +479,8 @@ libscihistory_manager_la_includedir = $(pkgincludedir)/history_manager
 libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
 includes/HistoryManager.h \
 includes/InitializeHistoryManager.h \
-includes/TerminateHistoryManager.h
+includes/TerminateHistoryManager.h \
+includes/dynlib_history_manager.h
 
 
 #### SWIG Declaration ####

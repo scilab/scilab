@@ -20,13 +20,14 @@
 extern "C" {
 #endif
 #include "BOOL.h"
+#include "dynlib_output_stream.h"
 
 /**
  * Print
  * @param fmt Format of the format string
  * @param ...
  */
-void sciprint(char *fmt,...) ;
+OUTPUT_STREAM_IMPEXP void sciprint(char *fmt,...) ;
 
 
 /**
@@ -36,7 +37,10 @@ void sciprint(char *fmt,...) ;
 * @param[in] fmt
 * @param[in] va_list
 * @return nb characters
-*/int scivprint(char *fmt,va_list args);
+*/
+
+OUTPUT_STREAM_IMPEXP int scivprint(char *fmt,va_list args);
+
 #ifdef __cplusplus
 }
 #endif

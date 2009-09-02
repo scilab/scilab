@@ -12,7 +12,7 @@
 
 #ifndef __GET_UIMENU_LABEL_H__
 #define __GET_UIMENU_LABEL_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uimenu
  * @return the label
  */
-int GetUimenuLabel(sciPointObj * pobj);
+GUI_IMPEXP int GetUimenuLabel(sciPointObj * pobj);
 
 #endif /* __GET_UIMENU_LABEL_H__ */

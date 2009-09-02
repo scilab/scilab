@@ -111,8 +111,7 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
 	writebuf.lo
 am__objects_2 = libscilinear_algebra_la-schurtable.lo \
 	libscilinear_algebra_la-issymmetric.lo
-am__objects_3 = SELECT.lo Ex-schur.lo
-am__objects_4 = libscilinear_algebra_la-sci_backslash.lo \
+am__objects_3 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_hess.lo \
 	libscilinear_algebra_la-sci_rcond.lo \
 	libscilinear_algebra_la-sci_bdiag.lo \
@@ -136,9 +135,9 @@ am__objects_4 = libscilinear_algebra_la-sci_backslash.lo \
 	libscilinear_algebra_la-sci_zgeev.lo \
 	libscilinear_algebra_la-sci_zggev.lo \
 	libscilinear_algebra_la-sci_zheev.lo
-am__objects_5 = bschur.lo
+am__objects_4 = bschur.lo
 am_libscilinear_algebra_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5)
+	$(am__objects_3) $(am__objects_4)
 libscilinear_algebra_la_OBJECTS =  \
 	$(am_libscilinear_algebra_la_OBJECTS)
 libscilinear_algebra_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
@@ -290,6 +289,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -454,9 +454,6 @@ src/fortran/intzgeqpf3.f \
 src/fortran/writebuf.f
 
 #src/fortran/issymmetric.f
-SLICOT_SOURCES = src/slicot/SELECT.f \
-src/slicot/Ex-schur.f
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -484,6 +481,7 @@ sci_gateway/c/sci_zheev.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 libscilinear_algebra_la_CFLAGS = -I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
@@ -491,7 +489,7 @@ libscilinear_algebra_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -516,7 +514,10 @@ libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xm
 libscilinear_algebra_la_includedir = $(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h \
-includes/issymmetric.h
+includes/issymmetric.h \
+includes/dynlib_linear_algebra.h \
+includes/gschur.h \
+includes/schur.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1044,12 +1045,6 @@ intzgeqpf3.lo: src/fortran/intzgeqpf3.f
 
 writebuf.lo: src/fortran/writebuf.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebuf.lo `test -f 'src/fortran/writebuf.f' || echo '$(srcdir)/'`src/fortran/writebuf.f
-
-SELECT.lo: src/slicot/SELECT.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o SELECT.lo `test -f 'src/slicot/SELECT.f' || echo '$(srcdir)/'`src/slicot/SELECT.f
-
-Ex-schur.lo: src/slicot/Ex-schur.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
 
 bschur.lo: sci_gateway/fortran/bschur.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o bschur.lo `test -f 'sci_gateway/fortran/bschur.f' || echo '$(srcdir)/'`sci_gateway/fortran/bschur.f

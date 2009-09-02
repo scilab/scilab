@@ -421,6 +421,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dpofa.c"
+				>
+			</File>
+			<File
 				RelativePath=".\dqrdc.c"
 				>
 			</File>
@@ -446,6 +450,10 @@
 			</File>
 			<File
 				RelativePath=".\spofa.c"
+				>
+			</File>
+			<File
+				RelativePath=".\util.c"
 				>
 			</File>
 			<File
@@ -558,11 +566,19 @@
 			>
 		</File>
 		<File
+			RelativePath=".\dpofa.f"
+			>
+		</File>
+		<File
 			RelativePath="..\..\..\..\..\bin\lapack.lib"
 			>
 		</File>
 		<File
 			RelativePath="..\..\..\..\..\bin\libf2c.lib"
+			>
+		</File>
+		<File
+			RelativePath=".\util.f"
 			>
 		</File>
 	</Files>

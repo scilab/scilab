@@ -12,7 +12,7 @@
 
 #ifndef __SETUIOBJECTCALLBACK_H__
 #define __SETUIOBJECTCALLBACK_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUiobjectCallback(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
+GUI_IMPEXP int SetUiobjectCallback(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif

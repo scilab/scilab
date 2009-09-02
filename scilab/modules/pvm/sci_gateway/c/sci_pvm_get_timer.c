@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_get_timer, fin = 15
  ******************************************/
-int intspvm_get_timer(char *fname,unsigned long fname_len)
+int sci_pvm_get_timer(char *fname,unsigned long fname_len)
 {
   int un=1,l1;
   CheckRhs(0,0);

@@ -280,6 +280,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -489,7 +490,8 @@ includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h \
 includes/do_xxprintf.h \
-includes/gw_output_stream.h
+includes/gw_output_stream.h \
+includes/dynlib_output_stream.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

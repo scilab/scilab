@@ -12,7 +12,7 @@
  *
  */
 
-#include "sci_xs2ps.h"
+#include "gw_graphic_export.h"
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/

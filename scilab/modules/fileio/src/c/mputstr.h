@@ -13,12 +13,13 @@
 #ifndef __MPUTSTR_H__
 #define __MPUTSTR_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
 * write a string 
 */
-void C2F(mputstr) (int *fd, char *str, double *res, int *ierr);
+FILEIO_IMPEXP void C2F(mputstr) (int *fd, char *str, double *res, int *ierr);
 
 #endif /* __MPUTSTR_H__ */
 /*--------------------------------------------------------------------------*/

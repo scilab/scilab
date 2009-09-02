@@ -40,7 +40,6 @@ src/fortran/mpdiag.f \
 src/fortran/matra.f \
 src/fortran/dmpcle.f \
 src/fortran/rpoly.f \
-src/fortran/wmptld.f \
 src/fortran/wpodiv.f \
 src/fortran/wdmpmu.f \
 src/fortran/wmptra.f \
@@ -141,6 +140,7 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 
 #### polynomials : include files ####
 libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
-libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
+libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h \
+includes/dynlib_polynomials.h
 
 include $(top_srcdir)/Makefile.incl.am

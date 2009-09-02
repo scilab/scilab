@@ -20,6 +20,7 @@
 extern "C" {
 #endif
 #include "do_error_number.h"
+#include "dynlib_output_stream.h"
 
 
 /* 
@@ -29,7 +30,7 @@ extern "C" {
 * @param fmt
 * @param ...
 */
-int  Scierror(int iv,char *fmt,...);
+OUTPUT_STREAM_IMPEXP int  Scierror(int iv,char *fmt,...);
 
 #ifdef __cplusplus
 }

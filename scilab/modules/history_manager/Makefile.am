@@ -88,7 +88,8 @@ libscihistory_manager_la_includedir=$(pkgincludedir)/history_manager
 libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
 includes/HistoryManager.h \
 includes/InitializeHistoryManager.h \
-includes/TerminateHistoryManager.h
+includes/TerminateHistoryManager.h \
+includes/dynlib_history_manager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i
