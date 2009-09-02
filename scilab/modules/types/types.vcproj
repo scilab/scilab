@@ -440,7 +440,15 @@
 			>
 		</Filter>
 		<File
+			RelativePath="..\..\bin\abstractSyntaxTree.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\symbol.lib"
 			>
 		</File>
 	</Files>

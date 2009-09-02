@@ -18,22 +18,15 @@
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sum)(char *fname,unsigned long fname_len);
 int C2F(sci_triu)(char *fname,unsigned long fname_len);
 int C2F(sci_tril)(char *fname,unsigned long fname_len);
 int C2F(sci_rand)(char *fname,unsigned long fname_len);
-int C2F(sci_sqrt)(char *fname,unsigned long fname_len);
 int C2F(sci_chinesehat)(char *fname,unsigned long fname_len);
-int C2F(sci_testmatrix)(char *fname,unsigned long fname_len);
 int C2F(sci_zeros)(char *fname,unsigned long fname_len);
-int C2F(sci_tan)(char *fname,unsigned long fname_len);
 int C2F(sci_spones)(char *fname,unsigned long fname_len);
 int C2F(sci_isequalbitwise)(char *fname, unsigned long fname_len);
-int C2F(sci_sort)(char *fname, unsigned long fname_len);
 
 // YaSp
-int C2F(sci_size)(char *fnam, int* _piKey);
-
 int sci_abs(char *fname, int* _piKey);
 int sci_acos(char *fname, int* _piKey);
 int sci_asin(char *fname, int* _piKey);
@@ -71,6 +64,12 @@ int sci_real(char *fname, int* _piKey);
 int sci_round(char *fname, int* _piKey);
 int sci_sign(char *fname, int* _piKey);
 int sci_sin(char *fname, int* _piKey);
+int sci_size(char *fnam, int* _piKey);
+int sci_sort(char *fname, int* _piKey);
+int sci_sqrt(char *fname, int* _piKey);
+int sci_sum(char *fname, int* _piKey);
+int sci_tan(char *fname, int* _piKey);
+int sci_testmatrix(char *fname, int* _piKey);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

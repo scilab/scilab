@@ -36,7 +36,7 @@ int sci_ones(char *fname, int* _piKey)
 		int iRhs		= Rhs;
 		int iLhs		= Lhs;
 
-		SciString(&iStart,"%hm_ones", &iLhs, &iRhs);
+		//SciString(&iStart,"%hm_ones", &iLhs, &iRhs);
 
 		LhsVar(1) = 1;
 		PutLhsVar();

@@ -66,7 +66,7 @@ int sci_scimatrix(char *fname, int* _piKey)
 		int iRhs		= Rhs;
 		int iLhs		= Lhs;
 
-		SciString(&iStart,"%hm_matrix", &iLhs, &iRhs);
+		//SciString(&iStart,"%hm_matrix", &iLhs, &iRhs);
 
 		LhsVar(1) = 1;
 		PutLhsVar();
@@ -114,6 +114,10 @@ int sci_scimatrix(char *fname, int* _piKey)
 		{//trouver un moyen d'appeller %hm_matrix :(
 			return 0;
 		}
+	}
+	else if(Rhs > 3)
+	{
+		//%hm_matrix
 	}
 	else
 	{
@@ -662,17 +666,19 @@ int	matrix_string(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 
 int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 {
-	int iRet								= 0;
-	int iPrec								= 0;
-	int iRows								= 0;
-	int iCols								= 0;
+	int iRet											= 0;
+	int iPrec											= 0;
+	int iRows											= 0;
+	int iCols											= 0;
 
-	char* pcData						= NULL;
-	short* psData						= NULL;
-	int* piData							= NULL;
-	unsigned char* pucData	= NULL;
-	unsigned short* pusData	= NULL;
-	unsigned int* puiData		= NULL;
+	char* pcData									= NULL;
+	short* psData									= NULL;
+	int* piData										= NULL;
+	long long* pllData						= NULL;
+	unsigned char* pucData				= NULL;
+	unsigned short* pusData				= NULL;
+	unsigned int* puiData					= NULL;
+	unsigned long long* pullData	= NULL;
 
 	iRet = getMatrixOfIntegerPrecision(_piAddress, &iPrec);
 	if(iRet)
@@ -729,6 +735,22 @@ int matrix_int(int* _piAddress, int _iRowsRet, int _iColsRet, int* _piKey)
 			return 1;
 		}
 		iRet = createMatrixOfUnsignedInteger32(Rhs + 1, _iRowsRet, _iColsRet, puiData, _piKey);
+		break;
+	case SCI_INT64 :
+		iRet = getMatrixOfInteger64(_piAddress, &iRows, &iCols, &pllData);
+		if(iRet)
+		{
+			return 1;
+		}
+		iRet = createMatrixOfInteger64(Rhs + 1, _iRowsRet, _iColsRet, pllData, _piKey);
+		break;
+	case SCI_UINT64 :
+		iRet = getMatrixOfUnsignedInteger64(_piAddress, &iRows, &iCols, &pullData);
+		if(iRet)
+		{
+			return 1;
+		}
+		iRet = createMatrixOfUnsignedInteger64(Rhs + 1, _iRowsRet, _iColsRet, pullData, _piKey);
 		break;
 	default :
 		return 1;

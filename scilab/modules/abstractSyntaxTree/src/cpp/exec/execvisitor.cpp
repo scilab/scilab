@@ -246,25 +246,12 @@ namespace ast
 					result_set(i, out[i]);
 				}
 			}
-			else if(Ret == Callable::WrongParamNumber)
+			else if(Ret == Callable::Error)
 			{
 				std::ostringstream os;
 				char szError[bsiz];
 #ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("excepted and input parameters numbers don't match\n"));
-#else
-				sprintf(szError, _("excepted and input parameters numbers don't match\n"));
-#endif
-				os << szError;
-				string szErr(os.str());
-				throw szErr;
-			}
-			else if(Ret == Callable::WrongReturnNumber)
-			{
-				std::ostringstream os;
-				char szError[bsiz];
-#ifdef _MSC_VER
-				sprintf_s(szError, bsiz, _("Wrong number of output arguments\n"));
+				sprintf_s(szError, bsiz, _("Function call failed\n"));
 #else
 				sprintf(szError, _("Wrong number of output arguments\n"));
 #endif

@@ -17,19 +17,19 @@
 #define ELEMENTARY_FUNCTIONS_TAB_SIZE 53
 static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 {
-	{NULL ,""}, //abs
-	{NULL ,""}, //real
-	{NULL ,""}, //imag
-	{NULL ,""}, //conj
-	{NULL ,""}, //round
-	{NULL ,""}, //int
-	{NULL,""}, //size
-	{C2F(sci_sum),"sum"},
-	{NULL ,""}, //prod
-	{NULL ,""}, //diag
-	{NULL ,""}, //trui
-	{NULL ,""}, //tril
-	{NULL ,""}, //eye
+	{NULL, ""}, //abs
+	{NULL, ""}, //real
+	{NULL, ""}, //imag
+	{NULL, ""}, //conj
+	{NULL, ""}, //round
+	{NULL, ""}, //int
+	{NULL, ""}, //size
+	{NULL, ""}, //sum
+	{NULL, ""}, //prod
+	{NULL, ""}, //diag
+	{NULL, ""}, //trui
+	{NULL, ""}, //tril
+	{NULL, ""}, //eye
 	{C2F(sci_rand),"rand"},
 	{NULL ,""}, //ones
 	{NULL ,""}, //maxi
@@ -42,34 +42,34 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL ,""}, //cos
 	{NULL ,""}, //atan
 	{NULL ,""}, //exp
-	{C2F(sci_sqrt),"sqrt"},
+	{NULL ,""}, //sqrt
 	{NULL ,""}, //log
 	{C2F(sci_chinesehat),"^"},
-	{NULL ,""}, //sign
-	{NULL ,""}, //clean
-	{NULL ,""}, //floor
-	{NULL ,""}, //ceil
-	{NULL ,""}, //expm
-	{NULL ,""}, //cumsum
-	{NULL ,""}, //cumprod
-	{C2F(sci_testmatrix),"testmatrix"},
-	{NULL ,""}, //isreal
-	{NULL ,""}, //frexp
+	{NULL, ""}, //sign
+	{NULL, ""}, //clean
+	{NULL, ""}, //floor
+	{NULL, ""}, //ceil
+	{NULL, ""}, //expm
+	{NULL, ""}, //cumsum
+	{NULL, ""}, //cumprod
+	{NULL, ""}, //testmatrix
+	{NULL, ""}, //isreal
+	{NULL, ""}, //frexp
 	{C2F(sci_zeros),"zeros"},
-	{C2F(sci_tan),"tan"},
-	{NULL ,""}, //log1p
-	{NULL ,""}, //imult
-	{NULL ,""}, //asin
-	{NULL ,""}, //acos
-	{NULL ,""}, //number_properties
-	{NULL ,""}, //nearfloat
-	{NULL ,""}, //dsearch
+	{NULL, ""}, //tan
+	{NULL, ""}, //log1p
+	{NULL, ""}, //imult
+	{NULL, ""}, //asin
+	{NULL, ""}, //acos
+	{NULL, ""}, //number_properties
+	{NULL, ""}, //nearfloat
+	{NULL, ""}, //dsearch
 	{NULL, ""},
 	{C2F(sci_spones),"spones"},
 	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
-	{NULL ,""}, //matrix
-	{C2F(sci_sort),"sort"}
+	{NULL, ""}, //matrix
+	{NULL, ""} //sort -> gsort
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)
