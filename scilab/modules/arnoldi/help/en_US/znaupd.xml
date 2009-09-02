@@ -430,7 +430,7 @@
         <term>WORKL</term>
 
         <listitem>
-          <para>Complex*16 work array of length LWORKL. (OUTPUT/WORKSPACE)
+          <para>Complex*16 work array of length 3*NCV**2 + 5*NCV. (OUTPUT/WORKSPACE)
           </para>
 
           <para>Private (replicated) array on each PE or array allocated on

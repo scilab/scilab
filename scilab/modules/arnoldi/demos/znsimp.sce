@@ -70,12 +70,12 @@ iparam  = zeros(11,1);
 ipntr   = zeros(14,1);
 _select = zeros(ncv,1);
 d       = zeros(nev+1,1);
-resid   = zeros(nx,1) + %i; 
-v       = zeros(nx,ncv) + %i;
-workd   = zeros(3*nx+1,1) + %i; 
+resid   = zeros(nx,1) + 0*%i; 
+v       = zeros(nx,ncv) + 0*%i;
+workd   = zeros(3*nx+1,1) + 0*%i; 
 workev  = zeros(3*ncv,1);
 rwork   = zeros(ncv,1);
-workl   = zeros(3*ncv*ncv+6*ncv,1) + %i;
+workl   = zeros(3*ncv*ncv+5*ncv,1) + 0*%i;
 
 if (nx > maxn) then
   printf('Error with ZNSIMP: N is greater than MAXN.\n');

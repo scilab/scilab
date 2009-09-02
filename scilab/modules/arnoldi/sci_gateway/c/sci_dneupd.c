@@ -144,7 +144,7 @@ int sci_dneupd(char *fname,unsigned long fname_len)
       return 0;
     }
 
-  sizeWORKL = 3 * *istk(pN) * *istk(pN) + 6 * *istk(pNCV);
+  sizeWORKL = 3 * *istk(pNCV) * *istk(pNCV) + 6 * *istk(pNCV);
 
   if ((mWORKL*nWORKL!=sizeWORKL))
     {

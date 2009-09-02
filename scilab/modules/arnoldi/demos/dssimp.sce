@@ -73,7 +73,7 @@ d       = zeros(nev+1,1);
 resid   = zeros(nx,1); 
 v       = zeros(nx,ncv);
 workd   = zeros(3*nx+1,1); 
-workl   = zeros(3*ncv*ncv+6*ncv,1);
+workl   = zeros(ncv*ncv+8*ncv,1);
 
 if (nx > maxn) then
   printf('Error with DSSIMP: N is greater than MAXN.\n');
