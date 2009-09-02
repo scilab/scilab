@@ -30,8 +30,8 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
 
-import org.scilab.modules.xpad.utils.ConfigXpadManager;
 import org.scilab.modules.xpad.ScilabKeywords;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
 
@@ -54,9 +54,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean indentInprogress = false;
 
 	/*if you want to add a new style just add it in the xml*/
-    private ArrayList<String> listStylesName ;
-    //private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
-    
+	private ArrayList<String> listStylesName ;
+	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
+
 
 	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f"};
@@ -67,7 +67,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 										"==", "<", ">", "<=", ">=", "~=", "@=",
 										"&", "\\|", "@", "~",
 										"\\.\\.[\\.]*"};
-	
+
 	//Warning operators should be define in this order!
 	private final String inInstruction = "elseif|else|if|while|for|do|function";
 	private final String outInstruction = "endfunction|end";
@@ -77,14 +77,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private final String TABULATION = "  ";
 
 	private Style defaultStyle;
-	private Style operatorStyle;
-	private Style commandStyle;
-	private Style quotationStyle;
-	private Style boolStyle;
-	private Style commentStyle;
-	private Style functionStyle;
-	private Style macroStyle;
-	
 
 	private final void DEBUG(String msg) {
 		System.err.println("[DEBUG] "+msg);
@@ -99,7 +91,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		addDocumentListener(this);
 		addUndoableEditListener(undo);
-		/*Style */defaultStyle = this.addStyle("Default", null);
+		defaultStyle = this.addStyle("Default", null);
 		StyleConstants.setBold(defaultStyle, stylesIsBoldTable.get("Default"));
 		StyleConstants.setFontFamily(defaultStyle, ConfigXpadManager.getFont().getFontName() );
 		StyleConstants.setForeground(defaultStyle, stylesColorsTable.get("Default"));
@@ -124,7 +116,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String[] commands = (String[])keywords.get("command");
 		String[] functions = (String[])keywords.get("function");
 		String[] macros = (String[])keywords.get("macro");
-		
+
 		// Regexp for Scilab keywords  (for commands, functions & macros) 
 		for (int i = 0; i < commands.length; i++) {
 			commands[i] = "\\b" + commands[i] + "\\b"; 
@@ -135,11 +127,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		for (int i = 0; i < macros.length; i++) {
 			macros[i] = "\\b" + macros[i] + "\\b"; 
 		}
-		
+
 		// We parse all words which are susceptible to be colored
 		Vector<Vector<Integer>> boundaries_list = new Vector<Vector<Integer>>();
 		boundaries_list = parse(bools, commands, comments, functions, macros, operators, quotations);
-		
+
 		if (!colorizeInprogress) {
 			colorizeInprogress = true;
 			this.removeUndoableEditListener(undo);
@@ -153,7 +145,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				applyStyle(boundaries_list.get(4), getStyle("Operator"));
 				applyStyle(boundaries_list.get(5), getStyle("String"));
 				applyStyle(boundaries_list.get(6), getStyle("Comment"));
-				
+
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
@@ -178,7 +170,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			this.setParagraphAttributes(boundaries.elementAt(i), boundaries.elementAt(i+1)-boundaries.elementAt(i), style, false);
 		}
 	}
-	
+
 	public boolean getColorize() {
 		//DEBUG("setColorize("+autoColorize+")");
 		return autoColorize;
@@ -191,8 +183,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT COLORISATION END
 	 */
-	
-	
+
+
+	/**
+	 * DOCUMENT INDENTATION START
+	 */
 	public void indent(int start, int end) {
 		if (!indentInprogress) {
 			indentInprogress = true;
@@ -219,74 +214,91 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String indentedText = "";
 		String tab = "";
 		boolean opMatch = false;
+		
+		boolean bool_case = false;
 
-		//We read the document
+		// We read the document
 		for (int i = start; i < end;) {
-			//Get start & end position for a line
+			// Get start & end position for a line
 			startOffset = this.getParagraphElement(i).getStartOffset();
 			endOffset = this.getParagraphElement(i).getEndOffset();
 
 			try {
-				//Get the document line by line (start position, line size)
+				// Get the document line by line (start position, line size)
 				textLine = this.getText(startOffset, endOffset - startOffset);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
-			//Step to next line
+			// Step to next line
 			i = endOffset;
 
-			//Remove space(s) located at the beginning of the given line
+			// Remove space(s) located at the beginning of the given line
 			textLine = removeFirstSpace(textLine);
 
-			//Get operators for a given line
-			opList = getOperatorList(textLine);
-
-			//Check if in one line all operators are matching,
-			//so we can know if the next line needs indentation or not
-			//ex: if %T then function foo(1) endfunction end => doesn't need indentation
+			// Get operators for a given line
+			opList = getOperatorList2(textLine);
+			
+			// Check if in one line all operators are matching,
+			// so we can know if the next line needs indentation or not
+			// ex: if %T then function foo(1) endfunction end => doesn't need indentation
 			opMatch = matchingOperators(opList);
 
-			//Operator found in the given line
+			// Operator found in the given line
 			if (opList.size() > 0) {
-				//If we have 'IN' operator
+				// If we have 'IN' command
 				if (opList.elementAt(0).equals(IN) && opMatch == false) {
-					//No indentation in case of 'else' or 'elseif'
-					if ((opList.elementAt(1).toLowerCase().equals("else")) || (opList.elementAt(1).toLowerCase().equals("elseif"))) {
+					// No indentation in case of 'else' or 'elseif'
+					if ((opList.elementAt(1).toLowerCase().equals("else")) || 
+						(opList.elementAt(1).toLowerCase().equals("elseif"))) {
 						if (indentedText.length() >= 2) {
 							indentedText = indentedText.substring(0, indentedText.length()-2);
 						}
-					} else {
+					// 	If we have 'case' command
+					} else if ((opList.elementAt(1).toLowerCase().equals("case")) && bool_case == false) {
+						bool_case = true;
 						tab += TABULATION;
+					}else {
+						if (bool_case == false) {
+							tab += TABULATION;
+						} else if (indentedText.length() >= 2) {
+							indentedText = indentedText.substring(0, indentedText.length()-2);
+						}
 					}
 					indentedText += textLine;
 
-					//If we have "OUT' operator
+				// If we have "OUT' operator
 				} else if (opList.elementAt(0).equals(OUT)) {
-					if (indentedText.length() >= 2 && tab.length() >= 2) {
-						indentedText = indentedText.substring(0, indentedText.length()-2);
-						tab = tab.substring(0, tab.length()-2);
+					if (indentedText.length() >= 2 && tab.length() >= 2) {		
+						if (bool_case == false) {
+							indentedText = indentedText.substring(0, indentedText.length()-2);
+							tab = tab.substring(0, tab.length()-2);
+						} else {
+							indentedText = indentedText.substring(0, indentedText.length()-2);
+							tab = tab.substring(0, tab.length()-2);
+							bool_case = false;
+						}
 					}
 					indentedText += textLine;
 
-					//Line got operators and they match, so no need of indentation
+				// Line got operators and they match, so no need of indentation
 				} else {
 					indentedText += textLine;
 				}
-				//Line without operator
+			// Line without operator
 			} else {
 				indentedText += textLine;
 			}
-
-			//Add the indentation
+			
+			// Add the indentation
 			indentedText += tab;
 
 			opList.clear();
 			opMatch = false;
 		}
 
-		//Remove the last line
+		// Remove the last line
 		indentedText = indentedText.trim();
-		//Display the indentation
+		// Display the indentation
 		this.replace(start, end-start, indentedText, null);
 
 		//System.out.println(indentedText);
@@ -304,7 +316,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		//			  - analyser la ligne du document qui est modifie et non plus le document en entier pour la colorisation
 		//				dans le cas d'une quotation ou commentaire(/* */) analyser le document en entier
 	}
+	/**
+	 * DOCUMENT INDENTATION END
+	 */
 
+	
+	/**
+	 * FIND AND REPLACE START
+	 */
 	public Vector<Integer> findWord(String word) {
 
 		String fullText = getFullDocument();
@@ -328,6 +347,25 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		return offsetList;
 	}
+	/**
+	 * FIND AND REPLACE END
+	 */
+	
+
+	/**
+	 * UTILITARIAN FUNCTIONS START
+	 */
+
+	/**
+	 * UTILITARIAN FUNCTIONS END
+	 */
+
+
+
+
+
+
+
 
 	public void changedUpdate(DocumentEvent e) {
 		// TODO Auto-generated method stub
@@ -380,13 +418,74 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return autoIndent;
 	}
 
-
-
 	public UndoManager getUndoManager() {
 		return undo;
 	}
 
 
+	public Vector<String> getOperatorList2(String text) {
+		Vector<String> operator_list = new Vector<String>();
+		Vector<String> op = new Vector<String>();
+		
+		Vector<Integer> comments_boundaries = new Vector<Integer>();
+		Vector<Integer> quotations_boundaries = new Vector<Integer>();
+		Vector<Integer> tmp_comm_and_quot = new Vector<Integer>();
+		
+		Vector<Integer> commands_boundaries = new Vector<Integer>();
+		
+		String[] commands_in = {"if", "else", "elseif", "while", "for", "do", "case", "function"};
+		String[] commands_out = {"end", "endfunction"};
+		
+		String[] commands = {"if", "else", "elseif", "while", "for", "do", "case", "function", "end", "endfunction"};
+
+		// Regexp for Scilab commands
+		for (int i = 0; i < commands.length; i++) {
+			commands[i] = "\\b" + commands[i] + "\\b"; 
+		}
+		
+		// Find command boundaries in the given text
+		commands_boundaries = findBoundaries(commands, text);
+		
+		comments_boundaries = findBoundaries(comments, null);
+		quotations_boundaries = findBoundaries(quotations, null);			
+		// Remove comments which are into quotations
+		comments_boundaries = startNotIn(comments_boundaries, quotations_boundaries);
+		// Remove quotations which are into comments
+		quotations_boundaries = startNotIn(quotations_boundaries, comments_boundaries);
+
+		// Union of comments & quotations to remove keywords
+		tmp_comm_and_quot.addAll(comments_boundaries);
+		tmp_comm_and_quot.addAll(quotations_boundaries);
+		
+		// Remove commads which are into quotations or comments
+		commands_boundaries = strictlyNotIn(commands_boundaries, tmp_comm_and_quot);
+		
+		// Sort commands_boudaries
+		Collections.sort(commands_boundaries);
+		
+		// The function applyIndent needs a vector in this format, ex: IN,IF,OUT,END
+		for (int i = 0; i < commands_boundaries.size(); i=i+2) {
+			op.add(text.substring(commands_boundaries.elementAt(i), commands_boundaries.elementAt(i+1)));
+		}		
+		for (int i = 0; i < op.size(); i++) {
+			for (int j = 0; j < commands_in.length; j++) {
+				if (op.elementAt(i).equals(commands_in[j])) {
+					operator_list.add(IN);
+					operator_list.add(op.elementAt(i));
+				}
+			}
+			for (int j = 0; j < commands_out.length; j++) {
+				if (op.elementAt(i).equals(commands_out[j])) {
+					operator_list.add(OUT);
+					operator_list.add(op.elementAt(i));
+				}
+			}
+		}
+
+		return operator_list;
+	}
+	
+	
 	public Vector<String> getOperatorList(String text) {
 
 		//If the text is a comment we don't indent
@@ -440,6 +539,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		v.addAll(inout);
 		v.addAll(op);
+		
+		for (int i = 0; i < v.size(); i++) {
+			System.out.println("v = "+v.elementAt(i));
+		}
+		System.out.println("----------------------------------------");
 
 		return v;
 	}
@@ -602,31 +706,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	private Vector<Vector<Integer>> parse(String[] bools, String[] commands, String[] comments, 
-					   String[] functions, String[]	macros, String[] operators, String[] quotations) {
+			String[] functions, String[] macros, String[] operators, String[] quotations) {
 
 		Vector<Integer> boolsBoundaries, commandsBoundaries, 
-						commentsBoundaries, functionsBoundaries, 
-						macrosBoundaries, operatorsBoundaries, 
-						quotationsBoundaries;
-		
+		commentsBoundaries, functionsBoundaries, 
+		macrosBoundaries, operatorsBoundaries, 
+		quotationsBoundaries;
+
 		Vector<Vector<Integer>> boundaries_list = new Vector<Vector<Integer>>();
-		
-		boolsBoundaries = findBoundaries(bools);
-		commandsBoundaries = findBoundaries(commands);
-		commentsBoundaries = findBoundaries(comments);
-		functionsBoundaries = findBoundaries(functions);
-		macrosBoundaries = findBoundaries(macros);
-		operatorsBoundaries = findBoundaries(operators);
-		quotationsBoundaries = findBoundaries(quotations);		
+
+		boolsBoundaries = findBoundaries(bools, null);
+		commandsBoundaries = findBoundaries(commands, null);
+		commentsBoundaries = findBoundaries(comments, null);
+		functionsBoundaries = findBoundaries(functions, null);
+		macrosBoundaries = findBoundaries(macros, null);
+		operatorsBoundaries = findBoundaries(operators, null);
+		quotationsBoundaries = findBoundaries(quotations, null);		
 
 
 		boundaries_list = organizeBoundaries(boolsBoundaries, commandsBoundaries, commentsBoundaries, functionsBoundaries, 
 				macrosBoundaries, operatorsBoundaries, quotationsBoundaries);
-		
+
 		return boundaries_list;
 	}
 
-	private Vector<Integer> findBoundaries(String[] keyword) {
+	private Vector<Integer> findBoundaries(String[] keyword, String text) {
 
 		Pattern pattern;
 		Matcher matcher = null;
@@ -635,7 +739,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		for(int i = 0 ; i < keyword.length ; i++)	{
 			pattern = Pattern.compile(keyword[i], Pattern.DOTALL);
 			try {
-				matcher = pattern.matcher(this.getText(0, this.getLength()));
+				if (text == null) {
+					matcher = pattern.matcher(this.getText(0, this.getLength()));
+				} else {
+					matcher = pattern.matcher(text);
+				}
 				while(matcher.find()){
 					//System.err.println("Match Found : "+(matcher.start())+","+(matcher.end()/*-matcher.start()*/));
 					bound.add(new Integer(matcher.start()));	
@@ -655,12 +763,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		Vector<Integer> tmp_comm_and_quot = new Vector<Integer>();
 		Vector<Vector<Integer>> vector_list = new Vector<Vector<Integer>>();
-		
+
 		// Remove comments which are into quotations
 		commentsBoundaries = startNotIn(commentsBoundaries, quotationsBoundaries);
 		// Remove quotations which are into comments
 		quotationsBoundaries = startNotIn(quotationsBoundaries, commentsBoundaries);
-		
+
 		// Union of comments & quotations to remove keywords
 		tmp_comm_and_quot.addAll(commentsBoundaries);
 		tmp_comm_and_quot.addAll(quotationsBoundaries);
@@ -671,7 +779,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		functionsBoundaries = strictlyNotIn(functionsBoundaries, tmp_comm_and_quot);
 		macrosBoundaries = strictlyNotIn(macrosBoundaries, tmp_comm_and_quot);
 		operatorsBoundaries = strictlyNotIn(operatorsBoundaries, tmp_comm_and_quot);
-		
+
 		vector_list.add(boolsBoundaries);
 		vector_list.add(commandsBoundaries);
 		vector_list.add(functionsBoundaries);
@@ -679,7 +787,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		vector_list.add(operatorsBoundaries);
 		vector_list.add(quotationsBoundaries);
 		vector_list.add(commentsBoundaries);
-		
+
 		return vector_list;
 	}
 
@@ -712,13 +820,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		return vector_strictlyNotIn;
 	}
-	
+
 	private Vector<Integer> startNotIn(Vector<Integer> v1, Vector<Integer> v2) {
 		int v1_start = 0;
 		int v2_start = 0;
 		int v2_end = 0;
 		Vector<Integer> vector_startNotIn = new Vector<Integer>();
-		
+
 		for(int i=0; i < v1.size(); i=i+2) {
 			boolean dropMe = false;
 			v1_start = v1.elementAt(i);
