@@ -278,8 +278,7 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     public void readFile(File f) {
-	boolean colorize = ((ScilabStyleDocument) textPane.getStyledDocument()).getColorize();
-	((ScilabStyleDocument) textPane.getStyledDocument()).setColorize(false);
+	((ScilabStyleDocument) textPane.getStyledDocument()).disableUpdaters();
 	try {
 	    Scanner scanner = new Scanner(f);
 	    StringBuilder contents = new StringBuilder();
@@ -292,10 +291,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 	    JOptionPane.showMessageDialog(this, ioex.getMessage());
 	}
 	finally {
-	    ((ScilabStyleDocument) textPane.getStyledDocument()).setColorize(colorize);
-	    if (colorize) {
+	    if (((ScilabStyleDocument) textPane.getStyledDocument()).getColorize()) {
 		((ScilabStyleDocument) textPane.getStyledDocument()).colorize();
 	    }
+	    if (((ScilabStyleDocument) textPane.getStyledDocument()).getAutoIndent()) {
+		((ScilabStyleDocument) textPane.getStyledDocument()).indent();
+	    }
+	    ((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
 	}
     }
 
