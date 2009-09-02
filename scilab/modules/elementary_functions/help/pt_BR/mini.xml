@@ -93,15 +93,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 [m,n]=mini([1,3,1])
 [m,n]=mini([3,1,1],[1,3,1],[1,1,3])
 [m,n]=mini([3,-2,1],1)
 [m,n]=mini(list([3,1,1],[1,3,1],[1,1,3]))
 [m,n]=mini(list(1,3,1))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

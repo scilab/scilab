@@ -47,11 +47,11 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;2,4]
 asinhm(sinhm(A))
 A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   // cas complexe
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

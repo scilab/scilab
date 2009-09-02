@@ -75,13 +75,11 @@ t=isequal(a,b,..)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=[1 2]
 isequal(a,[1 2])
 isequal(a,1)
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

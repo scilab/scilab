@@ -101,7 +101,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [s,p]=sort(rand(1,10));
 // p est une permutation aléatoire de 1:10
 A=[1,2,5;3,4,2];
@@ -111,7 +111,7 @@ sort(v)
 sort(v')
 sort(v,'r')  // ne fait rien pour les vecteurs lignes
 sort(v,'c')
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

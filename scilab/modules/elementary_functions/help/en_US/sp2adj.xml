@@ -70,10 +70,10 @@
   <refsection>
     <title>Description</title>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 sp2adj converts a sparse matrix into its adjacency form (utility fonction).
 A =  n x m sparse matrix. xadj, adjncy, anz = adjacency representation of A i.e:
-     </programlisting>
+ ]]></programlisting>
 
     <para><literal>xadj(j+1)-xadj(j)</literal> = number of non zero entries in
     row j. <literal>adjncy</literal> = column index of the non zeros entries
@@ -87,13 +87,13 @@ A =  n x m sparse matrix. xadj, adjncy, anz = adjacency representation of A i.e:
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A = sprand(100,50,.05);
 [xadj,adjncy,anz]= sp2adj(A);
 [n,m]=size(A);
 p = adj2sp(xadj,adjncy,anz,[n,m]);
 A-p
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
