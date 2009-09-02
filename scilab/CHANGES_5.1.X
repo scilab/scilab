@@ -88,6 +88,9 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* In the documentation, the font size of the equations has been increased 
+  for a better readability.
+
 * Documentation and examples about call_scilab (BooleanManagement call_scilab
   compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
   cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement
