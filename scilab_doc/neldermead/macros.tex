@@ -1,0 +1,69 @@
+%% Good fonts for PDF
+\usepackage[cyr]{aeguill}
+
+%% Package for page headers
+\usepackage{fancyhdr}
+
+%% Package to include graphics
+%% Comment for DVI
+\usepackage[pdftex]{graphicx}
+
+%% Figures formats: jpeg or pdf
+%% Comment for DVI
+\DeclareGraphicsExtensions{.jpg,.pdf}
+
+%% Package to create Hyperdocuments
+%% Comment for DVI
+\usepackage[pdftex,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+%% Package to control printed area size
+\usepackage{anysize}
+%% ...by defining margins {left}{right}{top}{bottom}
+\marginsize{22mm}{14mm}{12mm}{25mm}
+
+%% Package used to include a bibliography
+\usepackage{natbib}
+
+%% R for real numbers
+\usepackage{amssymb}
+
+%% User defined commands
+
+%% Figure reference
+\newcommand{\figref}[1]{figure~\ref{#1}}
+
+%% Equation reference
+\newcommand{\Ref}[1]{(\ref{#1})}
+
+%% Emphasize a word or a group of words
+\newcommand{\empha}[1]{\textit{\textbf{#1}}}
+
+%% Derivation operators
+\newcommand{\D}{\partial}
+\newcommand{\Dt}{\partial_t}
+\newcommand{\Dx}{\partial_x}
+\newcommand{\Dy}{\partial_y}
+
+\newcommand{\bv}{\mathbf{v}}
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\bl}{\mathbf{l}}
+
+\usepackage{url}
+
+% Scilab macros
+\newcommand{\scifunction}[1]{\textit{#1}}
+
+% To highlight source code
+\usepackage{listings}
+
+\usepackage{algorithmic}
+
+% To allow one bibliograph by chapter
+%\usepackage[sectionbib]{chapterbib}
+\usepackage{url}
+
+% Maths shortcuts 
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+
+
