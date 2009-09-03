@@ -53,14 +53,18 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("number_properties", &sci_number_properties, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("ones", &sci_ones, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("prod", &sci_prod, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("rand", &sci_rand, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("real", &sci_real, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("round", &sci_round, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sign", &sci_sign, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("size", &sci_size, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sort", &sci_sort, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("sum", &sci_sum, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("tan", &sci_tan, "elementary_function"));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("testmatrix", &sci_testmatrix, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("tril", &sci_tril, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("zeros", &sci_zeros, "elementary_function"));
 	return true;
 }
 

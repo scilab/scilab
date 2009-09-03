@@ -14,116 +14,152 @@
 #include "stack-c.h"
 #include "basic_functions.h"
 #include "Scierror.h"
-#define _NEW_TONIO_
-/*--------------------------------------------------------------------------*/
-int tril_matrix(int _iOffset);
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
-extern int C2F(sci_ptril) (char *fname,unsigned long fname_len);
-extern int C2F(inttril)	(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tril) (char *fname,unsigned long fname_len)
+int tril_matrix(int* _piAddress, int _iOffset, int* _piKey);
+
+/*--------------------------------------------------------------------------*/
+int sci_tril(char *fname, int* _piKey)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows				= 0;
-	int iCols				= 0;
-	int iRealData			= 0;
-	int iOffset				= 0;
+	int iRet			= 0;
+	int iOffset		= 0;
+	int *piAddr1	= NULL;
 
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
+
 	if(Rhs == 2)
 	{//Get offset
-		if(GetType(2) != sci_matrix)
+		int iRows2				= 0;
+		int iCols2				= 0;
+		int* piAddr2			= 0;
+		double* pdblReal	= NULL;
+
+		iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		if(getVarType(piAddr2) != sci_matrix)
 		{
 			Error(53);
 			return 0;
 		}
 
-		if(iIsComplex(2))
+		if(isVarComplex(piAddr2))
 		{
 			Error(52);
 			return 0;
 		}
 
-		GetVarDimension(2, &iRows, &iCols);
-		if(iRows * iCols != 1)
+		iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
+		if(iRet || iRows2 != 1 || iCols2 != 1)
 		{
 			Error(89);
 			return 0;
 		}
 
-		GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		iOffset = (int)stk(iRealData)[0];
+		getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
+		iOffset = (int)pdblReal[0];
 	}
 
-	switch(GetType(1))
+	iRet = getVarAddressFromPosition(1, &piAddr1, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	switch(getVarType(piAddr1))
 	{
 	case sci_matrix :
-		tril_matrix(iOffset);
+		iRet = tril_matrix(piAddr1, iOffset, _piKey);
 		break;
 	case sci_poly :
-		C2F(sci_ptril)(fname, fname_len);
+		//call sci_ptril
+		break;
 	default : 
 		OverLoad(1);
 		break;
 	}
-#else
-	C2F(inttril)(id);
-#endif
-	return 0;
-}
 
-int tril_matrix(int _iOffset)
-{
-	int iIndex				= 0;
-	int iRows				= 0;
-	int iCols				= 0;
-	int iRealData			= 0;
-	int iImgData			= 0;
-
-	double *pReal			= NULL;
-	double *pImg			= NULL;
-
-	double *pReturnReal		= NULL;
-	double *pReturnImg		= NULL;
-
-	if(iIsComplex(1))
+	if(iRet)
 	{
-		int iComplex	= 1;
-		GetRhsCVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &iRealData, &iImgData);
-		pReal			= stk(iRealData);
-		pImg			= stk(iImgData);
-
-		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal, &pReturnImg);
-		memcpy(pReturnReal	, pReal	, sizeof(double) * iRows * iCols);
-		memcpy(pReturnImg	, pImg	, sizeof(double) * iRows * iCols);
-
-		for(iIndex = 0 ; iIndex < iCols ; iIndex++)
-		{
-			int iSize	= Min(Max(iIndex - _iOffset, 0), iRows);
-			memset(&pReturnReal[iIndex * iRows], 0x00, sizeof(double) * iSize);
-			memset(&pReturnImg[iIndex * iRows], 0x00, sizeof(double) * iSize);
-		}
-	}
-	else
-	{
-		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-		pReal			= stk(iRealData);
-
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnReal);
-		memcpy(pReturnReal	, pReal	, sizeof(double) * iRows * iCols);
-
-		for(iIndex = 0 ; iIndex < iCols ; iIndex++)
-		{
-			int iSize	= Min(Max(iIndex - _iOffset, 0), iRows);
-			memset(&pReturnReal[iIndex * iRows], 0x00, sizeof(double) * iSize);
-		}
+		return 1;
 	}
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
+	return 0;
+}
+
+int tril_matrix(int* _piAddress, int _iOffset, int* _piKey)
+{
+	int i;
+	int iRet						= 0;
+	int iRows						= 0;
+	int iCols						= 0;
+
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+
+	double *pdblRealRet	= NULL;
+	double *pdblImgRet	= NULL;
+
+	if(isVarComplex(_piAddress))
+	{
+		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = allocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, &pdblImgRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		memcpy(pdblRealRet, pdblReal, sizeof(double) * iRows * iCols);
+		memcpy(pdblImgRet	, pdblImg	, sizeof(double) * iRows * iCols);
+
+		for(i = 0 ; i < iCols ; i++)
+		{
+			int iSize	= Min(Max(i - _iOffset, 0), iRows);
+			memset(&pdblRealRet[i * iRows], 0x00, sizeof(double) * iSize);
+			memset(&pdblImgRet[i * iRows],	0x00, sizeof(double) * iSize);
+		}
+	}
+	else
+	{
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		memcpy(pdblRealRet, pdblReal, sizeof(double) * iRows * iCols);
+
+		for(i = 0 ; i < iCols ; i++)
+		{
+			int iSize	= Min(Max(i - _iOffset, 0), iRows);
+			memset(&pdblRealRet[i * iRows], 0x00, sizeof(double) * iSize);
+		}
+	}
+
 	return 0;
 }
 

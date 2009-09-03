@@ -30,7 +30,7 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL, ""}, //trui
 	{NULL, ""}, //tril
 	{NULL, ""}, //eye
-	{C2F(sci_rand),"rand"},
+	{NULL, ""}, //rand
 	{NULL ,""}, //ones
 	{NULL ,""}, //maxi
 	{NULL ,""}, //mini
@@ -55,7 +55,7 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL, ""}, //testmatrix
 	{NULL, ""}, //isreal
 	{NULL, ""}, //frexp
-	{C2F(sci_zeros),"zeros"},
+	{NULL, ""}, //zeros
 	{NULL, ""}, //tan
 	{NULL, ""}, //log1p
 	{NULL, ""}, //imult
@@ -69,7 +69,7 @@ static gw_generic_table Tab[ELEMENTARY_FUNCTIONS_TAB_SIZE] =
 	{NULL, ""}, //gsort
 	{C2F(sci_isequalbitwise),"isequalbitwise"},
 	{NULL, ""}, //matrix
-	{NULL, ""} //sort -> gsort
+	{NULL, ""} //sort
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

@@ -75,11 +75,6 @@ namespace ast
 	{
 		String *psz = new String(e.value_get().c_str());
 		result_set(psz);
-		if(e.is_verbose())
-		{
-		  YaspWrite((char *) psz->toString(10,75).c_str());
-		  YaspWrite("\n");
-		}
 	}
 
 	void ExecVisitor::visit (const CommentExp &e)
@@ -107,11 +102,11 @@ namespace ast
 	{
 		Double *pdbl = new Double(e.value_get());
 		result_set(pdbl);
-		if(e.is_verbose())
-		{
-		  YaspWrite((char *) pdbl->toString(10,75).c_str());
-		  YaspWrite("\n");
-		}
+		//if(e.is_verbose())
+		//{
+		//  YaspWrite((char *) pdbl->toString(10,75).c_str());
+		//  YaspWrite("\n");
+		//}
 	}
 
 	void ExecVisitor::visit (const BoolExp  &e)
@@ -134,7 +129,7 @@ namespace ast
 		{
 			pI->DenyDelete();
 			result_set(pI);
-			if(pI != NULL && e.is_verbose())
+			if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
 			{
 			  std::ostringstream ostr;
 			  ostr << e.name_get() << " = " << std::endl;
@@ -145,17 +140,13 @@ namespace ast
 		}
 		else
 		{
-		  std::ostringstream os;
 			char szError[bsiz];
 #ifdef _MSC_VER
 			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #else
 			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #endif
-			os << szError;
-			string szErr(os.str());
-			throw szErr;
-
+			throw string(szError);
 			//Err, SimpleVar doesn't exist in Scilab scopes.
 		}
 	}
@@ -233,12 +224,11 @@ namespace ast
 			
 			if(Ret == Callable::OK)
 			{
-				if(out.size() != expected_size_get())
+				if(out.size() < expected_size_get())
 				{
 					std::ostringstream os;
 					os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
-					string szErr(os.str());
-					throw szErr;
+					throw os.str();
 				}
 
 				for(int i = 0 ; i < out.size() ; i++)
@@ -253,11 +243,9 @@ namespace ast
 #ifdef _MSC_VER
 				sprintf_s(szError, bsiz, _("Function call failed\n"));
 #else
-				sprintf(szError, _("Wrong number of output arguments\n"));
+				sprintf(szError, _("Function call failed\n"));
 #endif
-				os << szError;
-				string szErr(os.str());
-				throw szErr;
+				throw string(szError);
 			}
 
 			
@@ -266,13 +254,6 @@ namespace ast
 				delete execVar[j];
 			}
 			delete[] execVar;
-
-			if(e.is_verbose() && Ret == Callable::OK && out.front())
-			{
-			  std::ostringstream ostr;
-			  ostr <<  out.front()->toString(10,75) << std::endl;
-			  YaspWrite((char *) ostr.str().c_str());
-			}
 		}
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
@@ -306,8 +287,7 @@ namespace ast
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
 						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
-						string szErr(os.str());
-						throw szErr;
+						throw os.str();
 					}
 
 
@@ -387,13 +367,6 @@ namespace ast
 				{
 				}
 				delete[] piDimSize;
-				if(e.is_verbose())
-				{
-				  std::ostringstream ostr;
-				  ostr <<  pResult->toString(10,75) << std::endl;
-				  YaspWrite((char *) ostr.str().c_str());
-				}
-
 			}
 			else
 			{
@@ -405,22 +378,7 @@ namespace ast
 			std::ostringstream os;
 			os << "variable must exist";
 			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
-			string szErr(os.str());
-			throw szErr;
-
-/*
-			//ASTUCE POUR BRUNO
-			string sz = dynamic_cast<const SimpleVar*>(&e.name_get())->name_get().name_get();
-
-			if(sz == "scope_begin")
-			{
-				symbol::Context::getInstance()->scope_begin();
-			}
-			else if(sz == "scope_end")
-			{
-				symbol::Context::getInstance()->scope_end();
-			}
-*/
+			throw os.str();
 		}
 		delete execFunc;
 	}
@@ -523,16 +481,58 @@ namespace ast
 		{
 			ExecVisitor *execMe = new ast::ExecVisitor();
 			(*i)->accept (*execMe);
-/*
+
 			if(execMe->result_get() != NULL)
 			{
-				InternalType *pI = execMe->result_get();
-				if(pI->isDeletable() == true)
+				if(execMe->result_get()->getAsCallable())
 				{
-					delete pI;
+					Callable *pCall = execMe->result_get()->getAsCallable();
+					types::typed_list out;
+					types::typed_list in;
+
+					Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
+
+					if(Ret == Callable::OK)
+					{
+						if(out.size() < expected_size_get())
+						{
+							std::ostringstream os;
+							os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+							throw os.str();
+						}
+
+						for(int j = 0 ; j < out.size() ; j++)
+						{
+							execMe->result_set(j, out[j]);
+						}
+					}
+					else if(Ret == Callable::Error)
+					{
+						std::ostringstream os;
+						char szError[bsiz];
+	#ifdef _MSC_VER
+						sprintf_s(szError, bsiz, _("Function call failed\n"));
+	#else
+						sprintf(szError, _("Function call failed\n"));
+	#endif
+						throw string(szError);
+					}
 				}
+
+				if(execMe->result_get()->isDeletable())
+				{
+					symbol::Context::getInstance()->put(symbol::Symbol("ans"), *execMe->result_get());
+					if((*i)->is_verbose())
+					{
+						std::ostringstream ostr;
+						ostr << "ans = " << std::endl;
+						ostr << std::endl;
+						ostr << execMe->result_get()->toString(10,75) << std::endl;
+						YaspWrite((char *)ostr.str().c_str());
+					}
+				}
+
 			}
-*/
 			delete execMe;
 		}
 	}
@@ -756,13 +756,6 @@ namespace ast
 		delete execMeStart;
 		delete execMeStep;
 		delete execMeEnd;
-
-		if(e.is_verbose())
-		{
-		  std::ostringstream ostr;
-		  ostr <<  pIL->toString(10,75) << std::endl;
-		  YaspWrite((char *) ostr.str().c_str());
-		}
 	}
 	/** \} */
 
@@ -859,14 +852,6 @@ bool bConditionState(ast::ExecVisitor *exec)
 	else
 	{
 		return false;
-
-/*
-		std::ostringstream os;
-		os << "first argument is incorrect";
-		os << " (" << e.test_get().location_get().first_line << "," << e.test_get().location_get().first_column << ")" << std::endl;
-		string szErr(os.str());
-		throw szErr;
-*/
 	}
 	return true;
 }
