@@ -27,37 +27,27 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuSaveBlockGUI">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Save_Block_GUI</refname>
+    <refpurpose>Menu: Create the interfacing function for a masked Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      This operation can only be applied to a masked block (see Create Mask operation).
+      The result, the interfacing function of this block, is saved in an .sci file, which
+      can be placed in any diagram/palette using the <link linkend="XcosMenuAddNewBlock">Add new block</link> operation.
+      The interfacing function is loaded automatically for immediate use after the operation.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
     <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
+      Note that the resulting block is not a masked block; it is a compiled super block.
     </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuAddNewBlock">Add_new_block</link> </member>
      </simplelist>
    </refsection>
 </refentry>

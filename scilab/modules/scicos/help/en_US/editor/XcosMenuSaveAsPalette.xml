@@ -27,24 +27,50 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuPalettes">
+          xml:id="XcosMenuSaveAsPalette">
   <refnamediv>
-    <refname>Palettes</refname>
-    <refpurpose>Menu: Open a palette selection widget</refpurpose>
+    <refname>Save_as_Palette</refname>
+    <refpurpose>Menu: Save the current Scicos diagram as a palette.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      Select the Palettes menu item to open a predefined palette. A
-      palette opens in a new window.
+      Any Scicos diagram may be used as a palette. 
     </para>
+    <para>
+      Select the <literal>Save as Palette</literal> menu item to save the block diagram
+      as a palette in a file. A dialog box allows choosing
+      the file which must have a .cos or .cosf extension. The palette
+      takes the name of the file (without the extension).
+      </para>
+      <para>
+	If extension is ".cosf" an ASCII  formatted save is performed
+	instead of binary save. It may take a while.
+      </para>
+      <para>
+	The <literal>.scicos_pal</literal> user file located in the user home
+	directory is updated if
+	necessary so the palette will be usable for futher Scicos diagrams.
+     </para>
+      <para>
+	The <literal>.scicos_pal</literal> file is a Scilab binary
+	file (see <link linkend="load">load</link> and <link
+	linkend="save">save</link>). It contains the value of the
+	Scilab variable <literal>scicos_pal</literal>.
+      </para>
+      <para>
+	The  <literal>scicos_pal</literal> variable is a string
+	matrix with two columns, the first column gives the name of
+	the palettes, the second the path of file (.cos or .cosf )
+	containing the palette definition
+      </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="XcosMenuLoadAsPalette">Load_as_Palette</link> </member>
+      <member> <link linkend="XcosMenuPalette">Palette</link> </member>
       <member> <link linkend="XcosMenuPalEditor">Pal_editor</link> </member>
-      <member> <link linkend="XcosMenuPalettesTree">Pal_Tree</link> </member>
      </simplelist>
    </refsection>
 </refentry>

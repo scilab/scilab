@@ -39,13 +39,13 @@
       dialog box opens.
     </para>
     <para>
-      The <link linkend="XcosMenuSave_As">Save_As</link> function also changes the diagram name.
+      The <link linkend="XcosMenuSaveAs">Save_As</link> function also changes the diagram name.
     </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuSave_As">Save_As</link> </member>
+      <member> <link linkend="XcosMenuSaveAs">Save_As</link> </member>
      </simplelist>
    </refsection>
 </refentry>

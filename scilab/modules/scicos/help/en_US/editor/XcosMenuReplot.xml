@@ -43,7 +43,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuFit_diagram_to_figure">XcosMenuFit_diagram_to_figure </link> </member>
+      <member> <link linkend="XcosMenuFitToFigure">XcosMenuFit_diagram_to_figure </link> </member>
      </simplelist>
    </refsection>
 </refentry>

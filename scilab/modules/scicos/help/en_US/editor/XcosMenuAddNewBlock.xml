@@ -27,37 +27,28 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuAddNewBlock">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Add_new_block</refname>
+    <refpurpose>Menu: adds a newly defined block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      To add a newly defined block to the current palette or diagram.
+      Select first this menu item. A dialog box will pop up
+      asking for the name of the GUI function associated
+      with the block. If this function is not already loaded
+      it was searched in the current directory. The user may then
+      click to select the desired position of the block in the current diagram.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
-    <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
-    </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuPalettes">Palettes</link> </member>
+      <member> <link linkend="XcosMenuPalettesTree">Pal_Tree</link> </member>
+      <member> <link linkend="XcosMenuPalEditor">Pal_editor</link> </member>
      </simplelist>
    </refsection>
 </refentry>

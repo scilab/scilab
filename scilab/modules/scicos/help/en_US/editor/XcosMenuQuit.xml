@@ -45,7 +45,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuExit_Scicos">Exit</link> </member>
+      <member> <link linkend="XcosMenuExitScicos">Exit</link> </member>
      </simplelist>
    </refsection>
 </refentry>

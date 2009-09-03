@@ -42,7 +42,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuScicos_Documentation">Scicos_Documentation</link> </member>
+      <member> <link linkend="XcosMenuScicosDocumentation">Scicos_Documentation</link> </member>
      </simplelist>
    </refsection>
 </refentry>

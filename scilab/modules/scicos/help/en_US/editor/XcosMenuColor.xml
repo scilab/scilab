@@ -51,8 +51,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuBackground_color">Background_color</link> </member>
-      <member> <link linkend="XcosMenuAdd_color">Add_color</link> </member>
+      <member> <link linkend="XcosMenuBackgroundColor">Background_color</link> </member>
+      <member> <link linkend="XcosMenuAddColor">Add_color</link> </member>
      </simplelist>
    </refsection>
 </refentry>

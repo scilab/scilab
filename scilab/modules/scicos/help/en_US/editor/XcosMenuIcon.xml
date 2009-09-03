@@ -45,7 +45,7 @@
       you to enter Scilab instructions used to draw the icon.
       </para>
       <para>
-      You may use the <link linkend="XcosMenuIcon_Editor">Icon
+      You may use the <link linkend="XcosMenuIconEditor">Icon
       Editor</link> menu to generate the Scilab instructions. The
       bottom left coordinates of the icon is given by the
       <literal>orig=[x,y]</literal> variable while the width and
@@ -56,7 +56,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuIcon_Editor">Icon Editor</link> </member>
+      <member> <link linkend="XcosMenuIconEditor">Icon Editor</link> </member>
      </simplelist>
    </refsection>
 </refentry>

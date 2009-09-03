@@ -27,37 +27,41 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuCreateMask">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Create_Mask</refname>
+    <refpurpose>Menu: Mask the internal structure of a Super Block.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      This menu applies only to a single <link
+      linkend="XcosSelect">selected</link> <link
+      linkend="SUPER_f">Super Block</link>, transforming it into a
+      block that behaves as basic block for the
+      <literal>Open/Set</literal> menu. Its internal structure is not
+      shown and block parameters can be set throught a simple dialog
+      box.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
     <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
+      The block parameters are identifed automatically by searching
+      all the symbolic parameters used in the definition of the block
+      parameters inside the Super block that are not defined in the
+      appropriate contexts within the Super Block. The dialog box can
+      be customized using the <link
+      linkend="XcosMenuCustomizeMask">Customize_Mask</link> menu.
     </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
+    <para>
+      If one wants to inspect  the internal definition of a masked super block it must remove the block mask with the 
+      <link linkend="XcosMenuRemoveMask">Remove_Mask</link> menu.
+    </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuCustomizeMask">Customize_Mask</link> </member>
+      <member> <link linkend="XcosMenuRemoveMask">Remove_Mask</link> </member>
+      <member> <link linkend="XcosMenuCreateAtomic">Create_Atomic</link> </member>
      </simplelist>
    </refsection>
 </refentry>

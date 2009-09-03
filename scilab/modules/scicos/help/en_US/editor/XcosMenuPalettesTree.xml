@@ -27,37 +27,23 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuPalettesTree">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Pal_Tree</refname>
+    <refpurpose>Menu: Tree widget for palette and block selection</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      An alternative to <link linkend="XcosMenuPalettes">Palettes</link> menu for accessing palettes.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
-    <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
-    </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuLoadAsPalette">Load_as_Palette</link> </member>
+      <member> <link linkend="XcosMenuPalettes">Palettes</link> </member>
+      <member> <link linkend="XcosMenuPalEditor">Pal_editor</link> </member>
      </simplelist>
    </refsection>
 </refentry>

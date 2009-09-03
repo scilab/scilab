@@ -53,7 +53,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuID_fonts">ID_fonts menu</link> </member>
+      <member> <link linkend="XcosMenuSetIDfonts">ID_fonts menu</link> </member>
      </simplelist>
    </refsection>
 </refentry>

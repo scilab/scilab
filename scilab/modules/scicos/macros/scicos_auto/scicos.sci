@@ -681,7 +681,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
         EnableAllMenus()
 	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
         DisableAllMenus()
-
+	mprintf("ici %s %s\n",sci2exp(Cmenu_n,0),sci2exp(Cmenu,0))
 	if (Cmenu_n=="XcosMenuSelectLink" | Cmenu_n=="XcosMenuMoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
 	else
@@ -692,37 +692,35 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	%win = win_n
 
       else
-
 	//** I'm ready to exec a command
-	%koko = find( Cmenu==%cor_item_exec(:,1) );
-	if size(%koko,'*') == 1 then
-
+	mprintf("la0 %s\n",sci2exp(Cmenu,0))
+	if execstr('callback='+Cmenu,'errcatch')==0
 	  Select_back = Select; //** save the selected object list
           ierr = 0
 
           //** Used for AGGRESSIVE DEBUG ONLY -->
-	  //** execstr('exec('+%cor_item_exec(%koko,2)+',1)')
+	  //** exec(callback,1)
 
           //** Used for standard DEBUG ONLY -->
-          //** disp(%cor_item_exec(%koko,2)); //** disp the current exec
-          //** execstr('exec('+%cor_item_exec(%koko,2)+',-1)'); //** nothing is printed
+          //** disp(Cmenu); //** disp the current exec
+          //** exec(callback,-1); //** nothing is printed
 
           //** RELEASE --> Please reactivate the error catcher before final release
-	       execstr('ierr=exec('+%cor_item_exec(%koko,2)+',''errcatch'',-1)')
+	  ierr=exec(callback,'errcatch',-1)
 
 	  if ierr > 0 then
 	    Cmenu = "XcosMenuReplot"
 	    Select_back = [];
             Select = [] ;
 	    messagebox([msprintf(_("I recovered from the following error:\n in %s action.\n"),%cor_item_exec(%koko,2))
-		    lasterror()],'Error','modal')
+			lasterror()],'Error','modal')
 	  elseif or(curwin==winsid()) then
 	    gh_current_window = scf(curwin);
 
             if ~isequal(Select,Select_back) then
               drawlater();
-	        selecthilite(Select_back, "off") ; // unHilite previous objects
-	        selecthilite(Select, "on") ;       // Hilite the actual selected object
+	      selecthilite(Select_back, "off") ; // unHilite previous objects
+	      selecthilite(Select, "on") ;       // Hilite the actual selected object
               drawnow();
 	    end
 
@@ -735,6 +733,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
 	else
 	  //** if the command is not valid clear the state variable
+	  messagebox(msprintf(_("Requested action: %s is not available"),Cmenu),'modal') 
 	  Cmenu = []; %pt = []
 	end //** a valid/invalid command to exec
 

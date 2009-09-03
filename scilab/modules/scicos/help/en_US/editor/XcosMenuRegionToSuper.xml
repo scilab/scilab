@@ -27,37 +27,53 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuRegionToSuper">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Region_to_Super_Block</refname>
+    <refpurpose>Menu: Form a Super Block with a part of the current diagram.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      To form a Super Block with a part of the current diagram it is
+      possible to follow to different ways:
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
-    <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
+    <variablelist>
+      <varlistentry>
+	<term>.</term>
+        <listitem>
+          <para>
+	    First <link linkend="XcosSelect">select</link> the
+          desired blocks (the internal links will be automatically
+          added) then activate the
+          <literal>Region to Super Block</literal> menu.
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>.</term>
+        <listitem>
+          <para>
+	    First activate the <literal>Region to Super
+	    Block</literal> menu, then select a rectangular area
+	    around the desired blocks (press left on a point which is
+	    not over an object to select the corner of the rectangle
+	    then drag the mouse to make the rectangle include all the
+	    desired objects and release the mouse button).
+	    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+      <para>
+      Selected region is replaced by a <link linkend="SUPER_f">Super
+      Block</link> and links are redrawn.
     </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="SUPER_f">Super Block</link> </member>
+      <member> <link linkend="XcosMenuCreateMask">Create Mask</link> </member>
      </simplelist>
    </refsection>
 </refentry>

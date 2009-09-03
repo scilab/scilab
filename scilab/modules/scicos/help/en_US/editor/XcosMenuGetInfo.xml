@@ -27,37 +27,30 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuGetInfo">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Get_Info</refname>
+    <refpurpose>Menu: Display information on the selected Scicos object.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      This menu allows user to obtain information on an object (block
+      link or text) and on its connection with other diagram objects.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
     <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
+      The user can either  <link linkend="XcosSelect">select</link>  an object  and then activate the
+      menu or select the menu and then left click on the desired
+      object.
     </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
+    <para>
+      The <literal>[i] </literal> keybord key is a shortcut for this menu.
+   </para>
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuDetails">Details</link> </member>
      </simplelist>
    </refsection>
 </refentry>

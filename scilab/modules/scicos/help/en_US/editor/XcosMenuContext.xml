@@ -80,7 +80,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member> <link linkend="XcosMenuEval">Eval</link> </member>
-      <member> <link linkend="XcosMenuAvailable_Parameters">Available_Parameters</link> </member>
+      <member> <link linkend="XcosMenuDefinedVariables">Available_Parameters</link> </member>
       <member> <link linkend="scicos_simulate">scicos_simulate</link> </member>
      </simplelist>
    </refsection>

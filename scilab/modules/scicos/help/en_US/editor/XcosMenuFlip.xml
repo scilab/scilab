@@ -53,8 +53,8 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuRotate_Left">Rotate_Left</link> </member>
-      <member> <link linkend="XcosMenuRotate_Right">Rotate_Right</link> </member>
+      <member> <link linkend="XcosMenuRotateLeft">Rotate_Left</link> </member>
+      <member> <link linkend="XcosMenuRotateRight">Rotate_Right</link> </member>
      </simplelist>
    </refsection>
 </refentry>

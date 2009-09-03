@@ -52,7 +52,7 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuSave_As">Save_As </link> </member>
+      <member> <link linkend="XcosMenuSaveAs">Save_As </link> </member>
       <member> <link linkend="XcosMenuLoad">Load</link> </member>
      </simplelist>
    </refsection>

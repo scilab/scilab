@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="XcosMenuCodeGeneration">
+  <refnamediv>
+    <refname>Code_Generation</refname>
+    <refpurpose>Menu: Generates a C Code simulation function for  the selected super block.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This menu allows to generate the C code of the simulation function associated with
+      a  <link linkend="SUPER_f">Super Block</link>.
+    </para>
+    <para>
+      The code generation is obtained simply by <link
+      linkend="XcosSelect">selecting</link> a Super block
+      and then the <literal>Code Generation</literal> menu.
+    </para>
+    <para>
+      If the Super Block satisfies the required conditions, a dialog box
+      pops up to ask for a block name, a directory where to put the
+      generated files and for optional libraries requested by the linker.
+    </para>
+    <para>
+      Given this information the code is generated, compiled and linked with
+      Scilab. The Super Block is automatically replaced by a new block which
+      implements the generated code. It is then possible to run the modified
+      diagram. The code for standalone use is also generated.
+    </para>
+    
+  </refsection>
+  <refsection>
+    <title>Important remarks</title>
+    <para>
+      If the super block contains continuous time states, generated C
+      code calls a fixed step ODE solver to integrate the ODE part of
+      the diagram. Consequently the behavior of the generated
+      simulation function may not be exactly similar to the original
+      super block.
+   </para>
+   <para>
+      If the super block has several activation input ports the
+      behavior of the generated simulation function may not be exactly
+      similar to the original super block due to different handling of
+      asynchronous activations.
+ </para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> <link linkend="SUPER_f">Super Block</link> </member>
+      <member> <link linkend="XcosSelect">Select</link> </member>
+     </simplelist>
+   </refsection>
+</refentry>

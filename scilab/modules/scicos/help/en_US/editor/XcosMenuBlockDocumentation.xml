@@ -27,37 +27,42 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"
           version="5.0-subset Scilab"
-          xml:id="XcosMenuAlign">
+          xml:id="XcosMenuBlockDocumentation">
   <refnamediv>
-    <refname>Align</refname>
-    <refpurpose>Menu: Aligns block ports</refpurpose>
+    <refname>Block_Documentation</refname>
+    <refpurpose>Menu: Set or displays the user documentation for the selected block</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      To obtain nice diagrams, you can align ports of different
-      blocks, vertically and horizontally. 
+      This menu allows to set or get user documentation for a block.
     </para>
-  </refsection>
-  <refsection>
-    <title>Usage</title>
     <para>
-      Select first the Align
-      menu item, then click on the first port and finally on the
-      second port.  The block corresponding to the second port is
-      moved.  
+	The user documentation can be edited and displayed by a user
+	defined function. The supplied <literal>standard_doc</literal>
+	function is proposed as default.
     </para>
-  </refsection>
-  <refsection>
-    <title>Restriction</title>
-    <para> A connected block cannot be aligned. So it is better to align blocks before connecting them.</para>
+    <para>
+      If a user documentation has been given for the selected block
+      based on <literal>standard_doc</literal>, this menu displays it
+      in as small edition widget. If no documentation exists a first
+      dialog proposes to use the <literal>standard_doc</literal>
+      function or to select another user-defined function. With the
+      <literal>standard_doc</literal> choice a small edition widget
+      opens allowing to enter the documentation.
+    </para>
+    <para> 
+      The documentation data are saved as a text array in the
+      <literal>doc</literal> field of the block (see <link
+      linkend="scicos_block">scicos block data structure</link>).
+    </para>
+
   </refsection>
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuGrid">Grid</link> </member>
-      <member> <link linkend="XcosMenuMove">Move</link> </member>
-      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
+      <member> <link linkend="scicos_block">scicos block data structure</link> </member>
+      <member> <link linkend="XcosSelect">Select</link> </member>
      </simplelist>
    </refsection>
 </refentry>

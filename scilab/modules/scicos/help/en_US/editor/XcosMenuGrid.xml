@@ -47,9 +47,9 @@
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> <link linkend="XcosMenuSet_Grid">Set_Grid</link> </member>
+      <member> <link linkend="XcosMenuSetGrid">Set_Grid</link> </member>
       <member> <link linkend="XcosMenuAlign">Align</link> </member>
-      <member> <link linkend="XcosMenuSmart_Move">Smart_Move</link> </member>
+      <member> <link linkend="XcosMenuSmartMove">Smart_Move</link> </member>
      </simplelist>
    </refsection>
 </refentry>

@@ -23,7 +23,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
 //**    
 //** btn : button / event id (numeric code)
 //** %pt : mouse position[x,y] of the event
-//** win : Scilab/Scicos windows where the event occour
+//** win : Scilab/Scicos windows where the event occur
 //** 
 
   [lhs,rhs] = argn(0) ;
@@ -34,8 +34,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   //**     - click over a Scicos window, then (very quickly)                               //
   //**     - Close the window clicking over the [X] button                                 //
   //** if the current Scicos windows is NOT present in the list of Scilab window           //
-  if ~or( winsid()==curwin ) then //**                                                     //
-    //** disp("...cosclic.sci: fast Select then CloseWindow...|:"); pause; //** debug only //
+  if ~or( winsid()==curwin ) then 
     win = curwin   ;
     Cmenu = "XcosMenuQuit" ; 
     return         ; //** EXIT Point //
@@ -43,27 +42,23 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   //**----------------------------------------------------------------------------//
   
   if rhs==1 then
-      [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
-    else
-      [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:      
+    [btn, xc, yc, win, str] = xclick(flag) //** not used now (was used in the past) 
+  else
+    [btn, xc ,yc ,win ,str ] = xclick()    //** <- This is used in the main scicos_new() loop:      
   end                                        //**    CLEAR ANY PREVIOUS
-                                             //EVENT in the queue
-  //** DEBUG ONLY
-  //** disp("...Start ....."); disp (btn, xc ,yc ,win ,str); disp("...End ......");
-
   //**--------------------------------------------------------------------------- //
 
   %pt = [xc,yc] ; //** acquire the position  
   
   //**--------------------------------------------------------------------------
-  //** cosclic() filter and command association 
+  //** cosclick() filter and command association 
   
   //**--------------------------------------------------------------------------
  
   if btn==-1000 then //** window closing check 
 
- //**------------------------------------------------------------
-  //** The window has been closed 
+    //**------------------------------------------------------------
+    //** The window has been closed 
     
     if win==curwin then  //** in the current window ? 
       Cmenu = "XcosMenuQuit" ;     
@@ -71,16 +66,15 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
       Cmenu = []    ;
       %pt   = []    ;
     end
-    
     return  //** --> EXIT  
   end
 
   //** a dynamic menu has been selected 
-  if (win==-1)&(btn==-2)&part(str,1:7)=="execstr" then
-    from = max(strindex(str,'_'))+1 ;
-    to   = max(strindex(str,'('))-1 ;
-    win  = evstr(part(str,from:to)) ;
-  end
+  //if (win==-1)&(btn==-2)&part(str,1:5)=="exec(" then
+  //  from = max(strindex(str,'_'))+1 ;
+  //  to   = max(strindex(str,'('))-1 ;
+  //  win  = evstr(part(str,from:to)) ;
+  //end
 
   
   //**----- 
@@ -90,45 +84,41 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
 
-  //**----------------------------------------------------------------------------
-   if (btn==-2) then
-      cmd = 'Cmenu='+part(str,9:length(str)-1)+';execstr(''Cmenu=''+Cmenu)'
+    //**----------------------------------------------------------------------------
     
+    if (btn==-2) then //** a dynamic menu has been selected 
+      cmd = 'Cmenu='+sci2exp(str);
     elseif (btn==0) then
       cmd = 'Cmenu = '"XcosMenuMoveLink'"'
-    
     elseif (btn==3) then
       cmd='Cmenu=''XcosMenuSelectLink''' //** indirect call via commands 
-    
     elseif (btn==10) then 
       cmd='Cmenu='"XcosMenuOpenSet'"'
-    
     elseif or(btn==[2 5 12]) then
       cmd='Cmenu = '"XcosMenuPopup'"';
-    
     elseif (btn>=32) & (btn<288)
       //09/10/2007, Alan's patch search in %scicos_short 
       if exists('%scicos_short') then
-        ind = find(ascii(btn)==%scicos_short(:,1))
-        if ind<>[] then
-          ind=ind($)
-          cmd='Cmenu='''+%scicos_short(ind,2)+''''
-        else
-          cmd='Cmenu=''XcosMenuSelectLink'''//** indirect call via commands for shortcut
-        end
+	ind = find(ascii(btn)==%scicos_short(:,1))
+	if ind<>[] then
+	  ind=ind($)
+	  cmd='Cmenu='''+%scicos_short(ind,2)+''''
+	else
+	  cmd='Cmenu=''XcosMenuSelectLink'''//** indirect call via commands for shortcut
+	end
       else
-        cmd='Cmenu=''XcosMenuSelectLink'''
+	cmd='Cmenu=''XcosMenuSelectLink'''
       end
-    
-     elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress]
+      
+    elseif (btn==1000) then //** [CTRL] + [LeftMouseButtonPress]
       cmd='Cmenu = '"XcosMenuSmartMove'"'; //** Smart Move 
-     else
+    else
       cmd='Cmenu=''XcosMenuSelectLink'''
     end
     //**----------------------------------------------------------------------------
 
     Scicos_commands = ['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
-		        cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
+		       cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
 		      ]
     return ; //** EXIT POINT for the indirect command (to be explored)
   
@@ -174,25 +164,29 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   
   elseif btn == -2 then  // Dynamic Menu (top of window) mouse selection
     win = curwin ;
-    //** the format of the 'str' callback string is :
-    //** "execstr(<Name_of_menu>_<win_id>(<menu_index>)),  e.g. "execstr(Diagram_1000(1))"
-    //** <Name_of_menu> : is the label at the top of menu selection (static label present on the window) e.g. "File"
-    //** <win_id>       : is the window id Scilab number (eg 1000 for the main SCICOS window)
-    //** <menu_index>   : is the numeric index of the menu selected (in case of multiple menu).
-    if strindex(str,'_'+string(curwin)+'(')<>[] then // str contains the information of the Scicos dynamic menu selection
-      %pt=[] ; //** empty variable: no information about mouse position inside a dynamic menu  
-      //** Cmenu is empty ( [] )
-      //**      execstr( <Diagram_1000(1)>  )
-      execstr('Cmenu='+part(str,9:length(str)-1));   //**
-      //**  Cmenu = menus('Diagram')(1)      ; //** needs explanation  
-      //**  disp (Cmenu);
-      execstr('Cmenu='+Cmenu) ;
-      //**  At the end 'Cmenu' contains the string show in the dinamic selection menu (e.g. "Replot")   
-      return ; //** ---> EXIT POINT  
-    else // click in an other dynamic menu
-      execstr(str,'errcatch'); //** error handling 
-      return ; //** ---> EXIT POINT     
-    end
+    //** the  str string contains the name of the  callback function 
+    Cmenu=str
+    %pt=[]
+    //disp(Cmenu)
+    return
+    //verifier si ce qui suit est utile (selection d'un menu dans une
+    //autre fenetre que la fenetre courante. Si necessaire remplacer le
+    //callback dans scicos_menubar par "win=xxx;Cmenu=''yyy''"
+    
+//     if strindex(str,'_'+string(curwin)+'(')<>[] then // str contains the information of the Scicos dynamic menu selection
+//       %pt=[] ; //** empty variable: no information about mouse position inside a dynamic menu  
+//       //** Cmenu is empty ( [] )
+//       //**      execstr( <Diagram_1000(1)>  )
+//       execstr('Cmenu='+part(str,9:length(str)-1));   //**
+//       //**  Cmenu = menus('Diagram')(1)      ; //** needs explanation  
+//       //**  disp (Cmenu);
+//       execstr('Cmenu='+Cmenu) ;
+//       //**  At the end 'Cmenu' contains the string show in the dynamic selection menu (e.g. "Replot")   
+//       return ; //** ---> EXIT POINT  
+//     else // click in an other dynamic menu
+//       execstr(str,'errcatch'); //** error handling 
+//       return ; //** ---> EXIT POINT     
+//     end
     
     //**-------------------------------------------------------------    
    
