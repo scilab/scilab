@@ -19,4 +19,9 @@ public class NewAction extends DefaultAction {
 	public NewAction(Xpad editor) {
 		super("New...", editor);
 	}
+
+	public void doAction() {
+	    getEditor().addEmptyTab();
+	}
+
 }

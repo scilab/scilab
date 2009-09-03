@@ -24,5 +24,6 @@ public class ExitAction extends DefaultAction {
     
     public void doAction() {
 	getEditor().getParentWindow().getAsSimpleWindow().close();
+	Xpad.closeXpad();
     }
 }
