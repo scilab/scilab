@@ -13,6 +13,7 @@
 #ifndef __DESTROY_UICONTROL_H__
 #define __DESTROY_UICONTROL_H__
 
+#include "dynlib_gui.h"
 #include "ObjectStructure.h" /* sciPointObj */
 
 
@@ -22,7 +23,7 @@
  * @param sciPointObj * pthis pointer to the object structure
  * @return execution status
  */
-int DestroyUicontrol (sciPointObj * pthis);
+GUI_IMPEXP int DestroyUicontrol (sciPointObj * pthis);
 
 #endif
 

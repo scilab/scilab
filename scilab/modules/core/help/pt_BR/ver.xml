@@ -59,8 +59,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">ver
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+ver
+ ]]></programlisting>
   </refsection>
 
   <refsection>

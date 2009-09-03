@@ -12,7 +12,7 @@
 
 #ifndef __GETUICONTROLPOSITION_H__
 #define __GETUICONTROLPOSITION_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return the position (x, y, width, height)
  */
-int GetUicontrolPosition(sciPointObj * pobj);
+GUI_IMPEXP int GetUicontrolPosition(sciPointObj * pobj);
 
 #endif

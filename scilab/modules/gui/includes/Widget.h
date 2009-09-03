@@ -12,7 +12,7 @@
 
 #ifndef __WIDGET_H__
 #define __WIDGET_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 
 /**
@@ -20,6 +20,6 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void requestWidgetFocus(sciPointObj* sciObj);
+GUI_IMPEXP void requestWidgetFocus(sciPointObj* sciObj);
 
 #endif /* __WIDGET_H__ */

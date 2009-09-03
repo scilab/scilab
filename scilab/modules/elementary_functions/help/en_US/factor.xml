@@ -68,10 +68,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=620
 y=factor(x)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

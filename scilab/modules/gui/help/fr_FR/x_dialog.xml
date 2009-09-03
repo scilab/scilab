@@ -45,7 +45,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 gain=evstr(x_dialog('valeur du gain ?','0.235'))
 x_dialog(['Methode';'entrer la periode d''echantillonnage'],'1')
 m=evstr(x_dialog('entrer une matrice 3x3',['[0 0 0';'0 0 0';'0 0 0]']))

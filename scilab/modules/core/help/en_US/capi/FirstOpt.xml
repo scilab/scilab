@@ -48,8 +48,8 @@
     <para>A more complete example is available in the directory
     SCI/modules/core/example/optional_parameters.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_optional_parameters(char * fname)
 { 
@@ -71,7 +71,7 @@ int sci_optional_parameters(char * fname)
   CheckLhs(minlhs,maxlhs);
 
   // first non optional argument
-  GetRhsVar( 1, "c", &amp;m1, &amp;n1, &amp;l1);
+  GetRhsVar( 1, "c", &m1, &n1, &l1);
   
   if (get_optionals(fname,opts)==0) return 0;
 
@@ -89,7 +89,7 @@ int sci_optional_parameters(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

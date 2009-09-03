@@ -20,7 +20,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 deff('y=test(a)',['y=sin(a)+1';
                   'y=t1(y)';
                   'y=y+1'])

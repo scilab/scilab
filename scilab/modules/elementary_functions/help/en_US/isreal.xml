@@ -73,12 +73,12 @@ t=isreal(x,eps)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 isreal([1 2])
 isreal(1+0*%i)
 isreal(1+0*%i,0)
 isreal(1+%s)
 isreal(sprand(3,3,0.1))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

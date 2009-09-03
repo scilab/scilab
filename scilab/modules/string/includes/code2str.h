@@ -15,13 +15,15 @@
 #ifndef __CODE2STR__
 #define __CODE2STR__
 
+#include "dynlib_string.h"
+
 /**
 * code2str  returns character string associated with Scilab int codes
 * @param[out] Output_Matrix vector of character 
 * @param[in] scilab codes of a string
 * @param[in] dimension of Input_Matrix
 */
-void code2str(char **Output_Matrix, int *Input_Matrix,int Dim_Input_Matrix);
+STRING_IMPEXP void code2str(char **Output_Matrix, int *Input_Matrix,int Dim_Input_Matrix);
 
 
 /**
@@ -29,7 +31,7 @@ void code2str(char **Output_Matrix, int *Input_Matrix,int Dim_Input_Matrix);
 * @param[out] Output_Matrix  vector of character int codes 
 * @param[in] Input_Matrix a character string 
 */
-void str2code(int *Output_Matrix, char **Input_Matrix);
+STRING_IMPEXP void str2code(int *Output_Matrix, char **Input_Matrix);
 
 #endif /* __CODE2STR__ */
 /*--------------------------------------------------------------------------*/

@@ -2,7 +2,7 @@
 <!--
  * Ajouter ici d'éventuels commentaires sur le fichier XML
 -->
-<refentry version="5.0-subset Scilab" xml:id="montecarlo_run" xml:lang="fr"
+<refentry version="5.0-subset Scilab" xml:id="neldermead" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -106,16 +106,16 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
         </listitem>
       </varlistentry>
 
-      <varlistentry>
-        <term>Box-Guin complex method</term>
-
-        <listitem>
-          <para>This algorithm solves an constrained optimization problem with
-          a variable sized simplex made of an arbitrary k number of vertices.
-          This is an update of Box's algorithm.</para>
-        </listitem>
-      </varlistentry>
     </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Design</title>
+
+    <para>
+      The neldermead component is built on top of the <link linkend="optimbase">optimbase</link>
+      and <link linkend="optimsimplex">optimsimplex</link> components.
+    </para>
   </refsection>
 
   <refsection>
@@ -1634,6 +1634,12 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
 
         <listitem>
           <para>add the Box-Guin algoritm as a 4th method</para>
+
+              <para>
+                This algorithm solves an constrained optimization problem with
+                a variable sized simplex made of an arbitrary k number of vertices.
+                This is an update of Box's algorithm.
+              </para>
         </listitem>
       </varlistentry>
 
@@ -1681,5 +1687,17 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     <title>Authors</title>
 
     <para>Michael Baudin, 2008-2009</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="optimbase">optimbase</link>
+      </member>
+      <member>
+        <link linkend="optimsimplex">optimsimplex</link>
+      </member>
+    </simplelist>
   </refsection>
 </refentry>

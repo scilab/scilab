@@ -17,7 +17,7 @@
 /* desc : interface for xrects routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xrects.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
 #include "sciCall.h"

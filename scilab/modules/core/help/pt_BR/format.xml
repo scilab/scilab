@@ -110,8 +110,7 @@ format(m)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=rand(1,5);
 format('v',10);x
 format(20);x
@@ -123,8 +122,7 @@ format('e',10);x
 format('v',10);x
 
 format("v")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

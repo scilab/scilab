@@ -114,21 +114,17 @@
 
     <para>Representação em espaço de estados:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,A,B,C [,D [,x0] ])
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Representa o sistema :</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
       s x  = A*x + B*u
         y  = C*x + D*u
       x(0) = x0
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>A saída de <literal>syslin</literal> é uma lista da seguinte forma:
     <literal>sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)</literal>
@@ -137,12 +133,10 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
 
     <para>Representação de matriz de transferência:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,N,D) 
 sl=syslin(dom,H)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>A saída de <literal>syslin</literal> é uma lista da seguinte forma:
     <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> ou
@@ -161,8 +155,7 @@ sl=syslin(dom,H)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   //Definição de sistema linear
 S1("A")    //Exibição da matriz A
@@ -178,8 +171,7 @@ ss2tf(S1)-S1bis
 S1bis+S2bis
 S1*S2bis
 size(S1)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -191,15 +191,17 @@
 
     <para>For example the following program:</para>
 
-    <programlisting> subroutine foof(c,a,b,n,m)
- integer n,m
- double precision a(*),b,c(*)
- do 10 i=1,m*n 
-   c(i) = sin(a(i))+b
- 10 continue
- end</programlisting>
+    <programlisting role = ""><![CDATA[ 
+subroutine foof(c,a,b,n,m)
+  integer n,m
+  double precision a(*),b,c(*)
+  do 10 i=1,m*n 
+    c(i) = sin(a(i))+b
+  10 continue
+end
+ ]]></programlisting>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 link("foof"+getdynlibext(),"foof")
 a=[1,2,3;4,5,6];b= %pi;
 [m,n]=size(a);
@@ -211,26 +213,30 @@ a=[1,2,3;4,5,6];b= %pi;
 // Outputs:
 // c is in position 1 and double with size [m,n]
 c=fort("foof",a,2,"d",b,3,"d",n,4,"i",m,5,"i","out",[m,n],1,"d");   
-    </programlisting>
+ ]]></programlisting>
 
     <para>returns the matrix <literal>c=2*a+b</literal>.</para>
 
     <para>The same example coded in C:</para>
 
-    <programlisting> void fooc(c,a,b,m,n) 
- double a[],*b,c[];
- int *m,*n;
- { 
-    double sin();
-    int i;
-    for ( i =0 ; i &lt; (*m)*(*n) ; i++) 
-        c[i] = sin(a[i]) + *b; 
- }</programlisting>
+    <programlisting role = ""><![CDATA[ 
+void fooc(c,a,b,m,n) 
+double a[],*b,c[];
+int *m,*n;
+{ 
+   double sin();
+   int i;
+   for ( i =0 ; i &lt; (*m)*(*n) ; i++) 
+       c[i] = sin(a[i]) + *b; 
+}
+]]></programlisting>
 
-    <programlisting>link("fooc"+getdynlibext(),"fooc","C") // note the third argument 
+    <programlisting role = ""><![CDATA[ 
+link("fooc"+getdynlibext(),"fooc","C") // note the third argument 
 a=[1,2,3;4,5,6];b= %pi;
 [m,n]=size(a);
-c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");    </programlisting>
+c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -12,7 +12,7 @@
 
 #ifndef __SET_UIOBJECT_FOREGROUNDCOLOR_H__
 #define __SET_UIOBJECT_FOREGROUNDCOLOR_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 
 /**
@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUiobjectForegroundColor(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUiobjectForegroundColor(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UIOBJECT_FOREGROUNDCOLOR_H__ */

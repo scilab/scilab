@@ -13,13 +13,15 @@
 #ifndef __FINDFILEEXTENSION_H__
 #define __FINDFILEEXTENSION_H__
 
+#include "dynlib_fileio.h"
+
 /**
 * Searches a path for an extension
 * @param[in] pathname
 * @return the address of the "." preceding the extension 
 * NULL character otherwise. 
 */
-char *FindFileExtension(char *filename);
+FILEIO_IMPEXP char *FindFileExtension(char *filename);
 
 #endif /* __FINDFILEEXTENSION_H__ */
 /*--------------------------------------------------------------------------*/

@@ -16,7 +16,7 @@
 /* desc : interface for xarrows routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xarrows.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "localization.h"

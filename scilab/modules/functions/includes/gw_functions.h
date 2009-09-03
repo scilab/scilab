@@ -15,19 +15,20 @@
 #ifndef __GW_FUNCTIONS_H__
 #define __GW_FUNCTIONS_H__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_functions.h"
 #include "machine.h"
 #include "api_common.h"
 /*--------------------------------------------------------------------------*/
-int gw_functions(void);
+FUNCTIONS_SCILAB_IMPEXP int gw_functions(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lib)(char *fname,unsigned long fname_len);
-int C2F(sci_deff)(char *fname,unsigned long fname_len);
-int C2F(sci_getf)(char *fname,unsigned long fname_len);
-int C2F(sci_exec)(char *fname,unsigned long fname_len);
-int C2F(sci_execstr)(char *fname,unsigned long fname_len);
-int sci_librarieslist(char *fname,unsigned long fname_len);
-int sci_libraryinfo(char *fname,unsigned long fname_len);
-int sci_whereis(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int C2F(sci_lib)(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int C2F(sci_deff)(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int C2F(sci_getf)(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int C2F(sci_exec)(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int C2F(sci_execstr)(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int sci_librarieslist(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int sci_libraryinfo(char *fname,unsigned long fname_len);
+FUNCTIONS_SCILAB_IMPEXP int sci_whereis(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

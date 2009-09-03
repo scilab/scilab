@@ -11,13 +11,14 @@
 #ifndef __FORBIDDENTOUSESCILAB_H__
 #define __FORBIDDENTOUSESCILAB_H__
 
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h" /* BOOL */
 
 /*
 * stop scilab if windows < 256 colors
 * @return TRUE or FALSE
 */
-BOOL forbiddenToUseScilab(void);
+SCILAB_WINDOWS_IMPEXP BOOL forbiddenToUseScilab(void);
 
 #endif /* __FORBIDDENTOUSESCILAB_H__ */
 /*--------------------------------------------------------------------------*/ 

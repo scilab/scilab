@@ -12,12 +12,14 @@
 #ifndef __GETMACROSLIST_H__
 #define __GETMACROSLIST_H__
 
+#include "dynlib_functions.h"
+
 /**
 * get scilab macros list
 * @param[out] size of returned array
 * @return array of strings
 */
-char **getmacroslist(int *sizearray);
+FUNCTIONS_SCILAB_IMPEXP char **getmacroslist(int *sizearray);
 
 #endif /* __GETMACROSDICTIONARY_H__ */
 /*--------------------------------------------------------------------------*/ 

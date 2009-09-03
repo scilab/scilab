@@ -20,12 +20,12 @@
 /*--------------------------------------------------------------------------*/
 #define ARNOLDI_TAB_SIZE 6
 static gw_generic_table Tab[ARNOLDI_TAB_SIZE]={
-  {C2F(intdsaupd),"dsaupd"},
-  {C2F(intdnaupd),"dnaupd"},
-  {C2F(intznaupd),"znaupd"},
-  {C2F(intdseupd),"dseupd"},
-  {C2F(intdneupd),"dneupd"},
-  {C2F(intzneupd),"zneupd"},
+  {sci_dsaupd,"dsaupd"},
+  {sci_dnaupd,"dnaupd"},
+  {sci_znaupd,"znaupd"},
+  {sci_dseupd,"dseupd"},
+  {sci_dneupd,"dneupd"},
+  {sci_zneupd,"zneupd"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_arnoldi(void)

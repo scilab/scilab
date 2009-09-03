@@ -17,7 +17,7 @@
 /* file: sci_get.c                                                        */
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
-#include "sci_get.h"
+#include "gw_graphics.h"
 /*--------------------------------------------------------------------------*/
 
 #include "stack-c.h"

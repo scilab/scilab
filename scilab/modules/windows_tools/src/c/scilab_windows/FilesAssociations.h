@@ -14,6 +14,7 @@
 #ifndef __FILEASSOCIATION_H__
 #define __FILEASSOCIATION_H__
 
+#include "dynlib_scilab_windows.h"
 #include "BOOL.h" /* BOOL */
 /*--------------------------------------------------------------------------*/
 /**
@@ -21,56 +22,56 @@
 * @param[in] a filename
 * @return TRUE or FALSE
 */
-BOOL IsAFile(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAFile(char *chainefichier);
 
 /**
 * check if it is a .bin or .sav
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsABinOrSavFile(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsABinOrSavFile(char *chainefichier);
 
 /**
 * check if it is a .graph or .graphb
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAGraphFile(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFile(char *chainefichier);
 
 /**
 * check if it is a .graph
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAGraphFilegraph(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraph(char *chainefichier);
 
 /**
 * check if it is a .graphb
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAGraphFilegraphb(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAGraphFilegraphb(char *chainefichier);
 
 /**
 * check if it is a scicos file
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAScicosFile(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFile(char *chainefichier);
 
 /**
 * check if it is a .cos
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAScicosFileCOS(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOS(char *chainefichier);
 
 /**
 * check if it is a .cosf
 * @param[in]
 * @return TRUE or FALSE
 */
-BOOL IsAScicosFileCOSF(char *chainefichier);
+SCILAB_WINDOWS_IMPEXP BOOL IsAScicosFileCOSF(char *chainefichier);
 
 /**
 * get command to do by file extension
@@ -79,14 +80,14 @@ BOOL IsAScicosFileCOSF(char *chainefichier);
 * @param[out]
 * @return TRUE or FALSE
 */
-int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
+SCILAB_WINDOWS_IMPEXP int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd);
 
 /**
 * convert (lower cases) extension
 * @param[in]
 * @return TRUE or FALSE
 */
-void ExtensionFileIntoLowerCase(char *fichier);
+SCILAB_WINDOWS_IMPEXP void ExtensionFileIntoLowerCase(char *fichier);
 
 #endif /*  __FILEASSOCIATION_H__ */
 /*--------------------------------------------------------------------------*/

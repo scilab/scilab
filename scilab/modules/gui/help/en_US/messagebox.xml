@@ -88,8 +88,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Simple example
 messagebox("Single line message")
 
@@ -104,8 +103,7 @@ messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"]
 
 // "modal" given as fifth input argument
 messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

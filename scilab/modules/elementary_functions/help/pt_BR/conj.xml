@@ -57,12 +57,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=[1+%i,-%i;%i,2*%i];
 conj(x)
 x'-conj(x)  //x'  é a matriz transposta conjugada
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

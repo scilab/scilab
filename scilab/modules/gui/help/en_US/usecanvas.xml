@@ -113,15 +113,13 @@
     </itemizedlist>
     
     <para>There is a workaround for Linux to tackle this issue, but a solution is to use a software accelerated driver. To do it, in <literal>/etc/X11/xorg.conf</literal>, look for the <emphasis role="italic">Section "Device"</emphasis> and change the option <emphasis role="italic">Driver</emphasis> to <emphasis role="italic">vesa</emphasis>: </para>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 Section "Device"
         Identifier      "Your Graphic card"
         Driver  "vesa"
 [...]
 EndSection
-
-  ]]></programlisting>
+ ]]></programlisting>
     <para>Unfortunately, this solution makes Scilab pretty slow. </para>
 
     <para>Under Windows, video cards manufacturers update regularly and <literal>pbuffers</literal> are managed. Please download recent drivers at:</para>
@@ -171,8 +169,7 @@ EndSection
 
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Example using GLJPanel (Mixing uicontrols and graphics is available)
 usecanvas(%F);
 plot2d();
@@ -184,8 +181,7 @@ usecanvas(%T);
 plot2d();
 uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
 messagebox("You can''t see any button on the figure.", "Usecanvas example", "info");
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

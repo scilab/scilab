@@ -54,7 +54,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ // See SCI/modules/javasci/examples directory]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+// See SCI/modules/javasci/examples directory
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

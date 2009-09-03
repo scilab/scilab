@@ -16,7 +16,7 @@
 #include "stack-c.h"
 #include "HistoryManager.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sethistoryfile)(char *fname,unsigned long fname_len)
+int sci_sethistoryfile(char *fname,unsigned long fname_len)
 {
 	CheckRhs(0,1) ;
 	CheckLhs(0,1) ;

@@ -58,14 +58,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then
- txt = ['ex1c.dll:',
-	       '  @echo ------------------------------------------',
+  txt = ['ex1c.dll:',
+         '  @echo ------------------------------------------',
          '  @echo From Makefile.mak',
-	       '  @echo ------------------------------------------',
-	       ' '];
+         '  @echo ------------------------------------------',
+         ' '];
   mputl(txt,TMPDIR+'/makefile.mak')
   current_dir = pwd();  
   cd TMPDIR
@@ -74,8 +73,7 @@ if MSDOS then
   //addinter(files,'foobar','foubare'); // link 
   cd(current_dir);
 end
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

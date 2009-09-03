@@ -30,17 +30,15 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+for k=1:10,K=k;if k&gt;2&amp;k&lt;=8 then continue,disp('hello'),end,k,end
 
-  for k=1:10,K=k;if k&gt;2&amp;k&lt;=8 then continue,disp('hello'),end,k,end
-
-  for j=1:2
-    x=[];
-    for k=1:10,if k&gt;j+1&amp;k&lt;=8 then continue,end,x=[x,k];end
-    x
-  end
- 
-  </programlisting>
+for j=1:2
+  x=[];
+  for k=1:10,if k&gt;j+1&amp;k&lt;=8 then continue,end,x=[x,k];end
+  x
+end
+ ]]></programlisting>
   </refsection>
 
   <refsection>

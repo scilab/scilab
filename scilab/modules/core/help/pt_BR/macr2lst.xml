@@ -263,8 +263,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //EXIBIÇÃO
 function y=foo(x,flag)
   if flag then 
@@ -275,9 +274,7 @@ function y=foo(x,flag)
 endfunction
 L=macr2lst(foo)
 fun2string(L)
-
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -14,15 +14,15 @@
 #define __GW_OUTPUT_STREAM_H__
 
 #include "api_common.h"
-
+#include "dynlib_output_stream.h"
 /*--------------------------------------------------------------------------*/
-int gw_output_stream(void);
+OUTPUT_STREAM_IMPEXP int gw_output_stream(void);
 /*--------------------------------------------------------------------------*/
-int sci_print(char *fname,unsigned long fname_len);
-int sci_mprintf(char *fname,unsigned long fname_len);
-int sci_msprintf(char *fname,unsigned long fname_len);
-int sci_disp(char *fname,unsigned long fname_len);
-int sci_diary(char *fname,unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_print(char *fname,unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_mprintf(char *fname,unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_msprintf(char *fname,unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_disp(char *fname,unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_diary(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_OUTPUT_STREAM_H__ */
 /*--------------------------------------------------------------------------*/

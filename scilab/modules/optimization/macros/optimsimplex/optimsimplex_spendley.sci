@@ -40,6 +40,7 @@ function [ this , data ] = optimsimplex_spendley ( this , x0 , fun , len , data 
   //
   for j = 2 : this.n+1
     // Note : Vectorize when possible
+    // In order to vectorize, add q everywhere, then substract p just for one diagonal term j-1
     this.x ( 1:n,j ) = x0 (1:n)' + len * q * ones(n,1)
     this.x ( j-1,j ) = this.x ( j-1,j ) - len * q + len * p
   end

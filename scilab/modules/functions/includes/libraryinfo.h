@@ -12,12 +12,14 @@
 #ifndef __LIBRARYINFO_H__
 #define __LIBRARYINFO_H__
 
+#include "dynlib_functions.h"
+
 /**
 * get path of scilab library
 * @param[in] name of scilab library
 * @return a string : path of library
 */
-char *getlibrarypath(char *libraryname);
+FUNCTIONS_SCILAB_IMPEXP char *getlibrarypath(char *libraryname);
 
 /**
 * get macros list in a scilab's library
@@ -25,7 +27,7 @@ char *getlibrarypath(char *libraryname);
 * @param[out] size of array returned
 * @return a array of string (macros list)
 */
-char **getlistmacrosfromlibrary(char *libraryname,int *sizearray);
+FUNCTIONS_SCILAB_IMPEXP char **getlistmacrosfromlibrary(char *libraryname,int *sizearray);
 
 #endif /* __LIBRARYINFO_H__ */
 /*--------------------------------------------------------------------------*/

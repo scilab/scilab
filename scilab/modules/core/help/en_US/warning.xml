@@ -24,12 +24,14 @@ mode = warning('query')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[warning('on') 
+    <programlisting role="example"><![CDATA[ 
+warning('on') 
 warning('this is a warning')
 warning('off')
 warning('this is a warning')
 warning('query')
-warning('on')]]></programlisting>
+warning('on')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -113,9 +113,9 @@
 
     <para>State-space representation:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,A,B,C [,D [,x0] ])
-     </programlisting>
+ ]]></programlisting>
 
     <para>represents the system :</para>
 
@@ -135,10 +135,10 @@ sl=syslin(dom,A,B,C [,D [,x0] ])
 
     <para>Transfer matrix representation:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 sl=syslin(dom,N,D) 
 sl=syslin(dom,H)
-     </programlisting>
+ ]]></programlisting>
 
     <para>The output of <literal>syslin</literal> is a list of the following
     form : <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> or
@@ -157,7 +157,7 @@ sl=syslin(dom,H)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[0,1;0,0];B=[1;1];C=[1,1];
 S1=syslin('c',A,B,C)   //Linear system definition
 S1("A")    //Display of A-matrix
@@ -173,7 +173,7 @@ ss2tf(S1)-S1bis
 S1bis+S2bis
 S1*S2bis
 size(S1)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -94,12 +94,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-   mylist = init_param();
-   mylist = add_param(mylist,'minbound',[0 0 0]);
-   [mylist,err] = set_param(mylist,'minbound',[1 1 1]); disp(err);
-   [mylist,err] = set_param(mylist,'maxbound',[1 1 1]); disp(err);
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+[mylist,err] = set_param(mylist,'minbound',[1 1 1]); disp(err);
+[mylist,err] = set_param(mylist,'maxbound',[1 1 1]); disp(err);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

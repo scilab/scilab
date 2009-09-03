@@ -15,6 +15,7 @@
 #ifndef __MPUTI_H__
 #define __MPUTI_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
@@ -26,7 +27,7 @@
  * @param char type[]   
  * @param ierr  
  */
-void C2F(mputi) (int *fd,int *res,int *n,char type[],int *ierr);
+FILEIO_IMPEXP void C2F(mputi) (int *fd,int *res,int *n,char type[],int *ierr);
 
 #endif /* __MPUTI_H__ */
 

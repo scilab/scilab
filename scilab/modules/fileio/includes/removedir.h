@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __REMOVEDIR_H__
 #define __REMOVEDIR_H__
-
+#include "dynlib_fileio.h"
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -20,7 +20,7 @@
 * @param path the directory
 * @return the result of the operation
 */
-BOOL removedir(char *path);
+FILEIO_IMPEXP BOOL removedir(char *path);
 
 #endif /* __REMOVEDIR_H__ */
 /*--------------------------------------------------------------------------*/ 

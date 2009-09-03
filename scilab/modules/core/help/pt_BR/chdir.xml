@@ -74,14 +74,12 @@ cd path</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 chdir(TMPDIR);
 pwd
 cd 
 cd SCI
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

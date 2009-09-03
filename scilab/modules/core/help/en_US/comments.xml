@@ -20,21 +20,18 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 g=9.81// the gravity
 
 text='a//b'
 
 function y=myfunction(x)
-// myfunction computes y=x^2+1
-// x shoud be a vector or matrix
+  // myfunction computes y=x^2+1
+  // x shoud be a vector or matrix
   y=x^2+1
 endfunction
 
 help myfunction
-
- 
  ]]></programlisting>
   </refsection>
 </refentry>
