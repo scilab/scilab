@@ -83,7 +83,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 rand('uniform');
 
 ta=[1 1 2 2 2 3 4 4 5 6 6 6 7 7 7 8 9 10 12 12 13 13 13 14 15 14 9 11 10];
@@ -96,9 +96,7 @@ g.edges.graphics.display='length';
 show_graph(g);
 [p,lp]=shortest_path(13,1,g,'length');p
 hilite_edges(p);
-
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

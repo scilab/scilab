@@ -89,8 +89,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // simple graph with different choices for the plot
 ta=[2 2 1 1 2 4 3 3 4];
 he=[2 2 3 2 3 2 1 2 1];
@@ -113,8 +112,7 @@ clf(); plot_graph(g);
 xset("thickness",4);
 clf();
 plot_graph(g);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
