@@ -109,16 +109,14 @@ gainplot(frq, repf [,comments])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s')
 h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
 gainplot(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
 clf()
 h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
 gainplot([h1;h],0.01,100,['h1';'h'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

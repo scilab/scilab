@@ -144,8 +144,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //generate data from a given linear system
 A = [ 0.5, 0.1,-0.1, 0.2;
       0.1, 0,  -0.1,-0.1;      
@@ -165,8 +164,7 @@ S=15;L=1;
 N=3;
 METH=3;TOL=-1;
 [A,C] = findAC(S,N,L,R,METH,TOL);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
