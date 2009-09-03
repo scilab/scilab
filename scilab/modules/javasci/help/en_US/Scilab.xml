@@ -92,7 +92,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[// A Scilab / Java example 
+    <programlisting role="example"><![CDATA[ 
+// A Scilab / Java example 
 // Filename: ScilabExample.java
 
 import javasci.Scilab;
@@ -110,9 +111,7 @@ public class ScilabExample {
 		Scilab.Finish();
 	}
 }
-
-]]>
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
