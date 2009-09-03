@@ -66,6 +66,11 @@ Compilation:
 
 * automake version changed (1.10.1 => 1.10.2)
 
+* autoconf version changed (2.63 => 2.64)
+
+* Fix a bug in the configure with autoconf 2.64
+
+
 Source reorganisation:
 ======================
 
