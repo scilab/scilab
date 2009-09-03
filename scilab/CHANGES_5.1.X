@@ -542,6 +542,10 @@ Bug fixes:
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
+* bug 4712 fixed - by GUI handle affectation produce an error
+
+* bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong
+
 
 
                Changes between version 5.0.X and 5.1 of Scilab
