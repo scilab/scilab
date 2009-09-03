@@ -31,6 +31,7 @@ function ssize = optimsimplex_size ( this , method )
   end
   select method
   case "Nash" then
+    // TODO : fix the formula and use norm - 1 instead of euclidian norm (check that Nash indeed use norm 1)
     ssize = 0.0;
     for iv = 2:this.nbve
       ssize = ssize + norm(this.x(:,iv) - this.x(:,1));

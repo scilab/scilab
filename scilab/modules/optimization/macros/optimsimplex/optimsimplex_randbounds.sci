@@ -34,13 +34,13 @@ function [ this , data ] = optimsimplex_randbounds ( this , x0 , fun , boundsmin
     //
     // Set points #2 to #nbve, by randomizing the bounds
     //
-    for jve = 2 : nbve 
+    for ive = 2 : nbve 
       //
       // Compute vertex coordinates, as a random number 
       // between min and max bounds.
       //
       for ix  = 1 : n
-        this.x ( ix , jve ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
+        this.x ( ix , ive ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
       end
     end
   // Compute Function Value
