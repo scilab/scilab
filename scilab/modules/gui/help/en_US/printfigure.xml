@@ -48,10 +48,10 @@ status = printfigure(figid)
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-<![CDATA[plot2d();
+    <programlisting role="example"><![CDATA[ 
+plot2d();
 printfigure(get(gcf(), "figure_id"));
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -35,11 +35,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-//m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+m=evstr(x_matrix('enter a  3x3 matrix ',rand(3,3)))
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
