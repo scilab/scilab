@@ -32,10 +32,10 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <programlisting role=""><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int createMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal)
 int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -100,10 +100,10 @@ int createComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, 
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <programlisting role=""><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal)
 int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -172,8 +172,7 @@ int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, i
         <!--Lib_name: list_createlist-->
         <!--Func_list: list_createlist-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int list_createlist(char *fname,unsigned long fname_len)
 {
     int iRet                = 0;
@@ -282,14 +281,12 @@ int list_createlist(char *fname,unsigned long fname_len)
     LhsVar(1) = 1;
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -300,8 +297,6 @@ for i = 1 : size_ref
     if typeof(l(i)) <> type_ref(i) then error("failed"), end
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
-
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>
