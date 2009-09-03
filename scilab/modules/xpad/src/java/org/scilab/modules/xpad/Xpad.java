@@ -14,7 +14,6 @@ package org.scilab.modules.xpad;
 
 import java.awt.Color;
 import java.awt.Event;
-import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +22,7 @@ import java.util.Scanner;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 import javax.swing.undo.CannotRedoException;
@@ -43,6 +43,7 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xpad.actions.ASCIIEncodingAction;
 import org.scilab.modules.xpad.actions.AboutAction;
 import org.scilab.modules.xpad.actions.AutoIndentAction;
+import org.scilab.modules.xpad.actions.CloseAction;
 import org.scilab.modules.xpad.actions.ColorizeAction;
 import org.scilab.modules.xpad.actions.CommentAction;
 import org.scilab.modules.xpad.actions.CopyAction;
@@ -80,42 +81,52 @@ import org.scilab.modules.xpad.actions.UndoAction;
 import org.scilab.modules.xpad.actions.WordWrapAction;
 import org.scilab.modules.xpad.actions.XMLStyleAction;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
-
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class Xpad extends SwingScilabTab implements Tab { 
 
     private final Window parentWindow;
-    private final JTextPane textPane;
+    private final JTabbedPane tabPane;
+
+    private static Xpad editor = null;
 
     public static void main(String[] args) {
 	xpad();
     }
 
     public static void xpad() {
-	launchXpad();
+	Xpad editor = launchXpad();
+	editor.addEmptyTab();
     }
-    
+
     public static void xpad(String filePath) {
 	Xpad editor = launchXpad();
 	editor.readFile(new File(filePath));
     }
-    
+
     private static Xpad launchXpad() {
-    ConfigXpadManager.createUserCopy();	
-    	
+	if (editor == null) {
+	    editor = createEditor();
+	}
+	return editor;
+    }
+
+    public static void closeXpad() {
+	editor = null;
+    }
+    
+    private static Xpad createEditor() {
+	ConfigXpadManager.createUserCopy();	
+
 	Window mainWindow = ScilabWindow.createWindow();
 	Xpad editor = new Xpad(mainWindow);
 
 	mainWindow.setTitle("Xpad");
 	mainWindow.addTab(editor);
-	
+
 	// Set Xpad Window position /size 
 	mainWindow.setPosition( ConfigXpadManager.getMainWindowPosition());
 	mainWindow.setDims(ConfigXpadManager.getMainWindowSize());
-	
-	
-	
 
 	MenuBar menuBar = ScilabMenuBar.createMenuBar();
 	//Create FILE menubar
@@ -131,6 +142,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 	fileMenu.add(new PageSetupAction(editor));
 	fileMenu.add(new PrintPreviewAction(editor));
 	fileMenu.add(new PrintAction(editor));
+	fileMenu.addSeparator();
+	fileMenu.add(new CloseAction(editor));
 	fileMenu.addSeparator();
 	fileMenu.add(new ExitAction(editor));
 	menuBar.add(fileMenu);
@@ -176,7 +189,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	viewMenu.add(new SetFontAction(editor));
 	viewMenu.add(new ResetFontAction(editor));
 	menuBar.add(viewMenu);
-	
+
 	// Create DOCUMENT MenuBar
 	Menu documentMenu = ScilabMenu.createMenu();
 	documentMenu.setText("Document");
@@ -196,7 +209,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	documentMenu.add(new ColorizeAction(editor));
 	documentMenu.add(new AutoIndentAction(editor));
 	menuBar.add(documentMenu);
-	
+
 	// Create EXECUTE menubar
 	Menu executeMenu = ScilabMenu.createMenu();
 	executeMenu.setText("Execute");
@@ -211,24 +224,36 @@ public class Xpad extends SwingScilabTab implements Tab {
 	helpMenu.add(new HelpAction(editor));
 	helpMenu.add(new AboutAction(editor));
 	menuBar.add(helpMenu);
-	
+
 	editor.setMenuBar(menuBar);
 	mainWindow.setTitle("XPad");
 	mainWindow.setVisible(true);
+	editor.setCallback((new ExitAction(editor)).getCallback());
 	return editor;
     }
 
     public Xpad(Window parentWindow) {
 	super("Xpad");
-	this.textPane = new JTextPane() {
+	this.parentWindow = parentWindow;
+	tabPane = new JTabbedPane();
+	this.setContentPane(tabPane);
+    }
+
+    public void closeCurrentTab() {
+	tabPane.remove(tabPane.getSelectedComponent());
+    }
+    
+    public JTextPane addTab(String title) {
+	JTextPane textPane = new JTextPane() {
 	    public boolean getScrollableTracksViewportWidth() {
 		return false;
-	  };
+	    };
 	};
-	this.parentWindow = parentWindow;
 
 	JScrollPane scrollingText = new JScrollPane(textPane);
-	this.setContentPane(scrollingText);
+	tabPane.add(title, scrollingText);
+	tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
+	this.setContentPane(tabPane);
 	textPane.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 	textPane.setFont(ConfigXpadManager.getFont());
 
@@ -237,10 +262,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 	textPane.setStyledDocument(new ScilabStyleDocument());
 	textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
-	
-	
-	/* Associate ExitAction to Tab closing */
-	setCallback((new ExitAction(this)).getCallback());
 	textPane.setFocusable(true);
 	KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Event.CTRL_MASK);
 	textPane.getInputMap().put(key, new UndoAction(this));
@@ -248,15 +269,20 @@ public class Xpad extends SwingScilabTab implements Tab {
 	textPane.getInputMap().put(key, new RedoAction(this));
 	key = KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK);
 	textPane.getInputMap().put(key, new FindAction(this));
-	
+
+	return textPane;
+    }
+
+    public JTextPane addEmptyTab() {
+	return addTab("Untitled");
     }
 
     public void setAutoIndent(boolean b) {
-	((ScilabStyleDocument) textPane.getStyledDocument()).setAutoIndent(b);
+	((ScilabStyleDocument) getTextPane().getStyledDocument()).setAutoIndent(b);
     }
 
     public void undo() {
-	UndoManager undo = ((ScilabStyleDocument) textPane.getStyledDocument()).getUndoManager();
+	UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
 	try {
 	    System.err.println("Will undo "+undo.getUndoPresentationName());
 	    undo.undo();
@@ -267,7 +293,7 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     public void redo() {
-	UndoManager redo = ((ScilabStyleDocument) textPane.getStyledDocument()).getUndoManager();
+	UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
 	try {
 	    System.err.println("Will redo "+redo.getRedoPresentationName());
 	    redo.redo();
@@ -278,19 +304,20 @@ public class Xpad extends SwingScilabTab implements Tab {
     }
 
     public void readFile(File f) {
-	((ScilabStyleDocument) textPane.getStyledDocument()).disableUpdaters();
+	/* First try to open file before creating tab */
 	try {
-	    Scanner scanner = new Scanner(f);
 	    StringBuilder contents = new StringBuilder();
+	    Scanner scanner = new Scanner(f);
 	    while (scanner.hasNextLine()) {
 		contents.append(scanner.nextLine());
 		contents.append(System.getProperty("line.separator"));
 	    }
-	    getTextPane().setText(contents.toString());
-	} catch (IOException ioex) {
-	    JOptionPane.showMessageDialog(this, ioex.getMessage());
-	}
-	finally {
+	    JTextPane textPane = addTab(f.getName()); 
+	    System.out.println("File = "+f.getAbsolutePath());
+	    textPane.setName(f.getAbsolutePath());
+
+	    ((ScilabStyleDocument) textPane.getStyledDocument()).disableUpdaters(); 
+	    textPane.setText(contents.toString());
 	    if (((ScilabStyleDocument) textPane.getStyledDocument()).getColorize()) {
 		((ScilabStyleDocument) textPane.getStyledDocument()).colorize();
 	    }
@@ -298,30 +325,32 @@ public class Xpad extends SwingScilabTab implements Tab {
 		((ScilabStyleDocument) textPane.getStyledDocument()).indent();
 	    }
 	    ((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
+	} catch (IOException ioex) {
+	    JOptionPane.showMessageDialog(this, ioex.getMessage());
 	}
     }
 
-    public JTextPane getTextPane() {
-	return textPane;
-    }
+	public JTextPane getTextPane() {
+	    return (JTextPane) ((JScrollPane) tabPane.getSelectedComponent()).getViewport().getComponent(0);
+	}
 
-    public SimpleTab getAsSimpleTab() {
-	return this;
-    }
+	public SimpleTab getAsSimpleTab() {
+	    return this;
+	}
 
-    public Window getParentWindow() {
-	return parentWindow;
-    }
+	public Window getParentWindow() {
+	    return parentWindow;
+	}
 
-    public void addInfoBar(TextBox infoBarToAdd) {
-	setInfoBar(infoBarToAdd);
-    }
+	public void addInfoBar(TextBox infoBarToAdd) {
+	    setInfoBar(infoBarToAdd);
+	}
 
-    public void addMenuBar(MenuBar menuBarToAdd) {
-	setMenuBar(menuBarToAdd);
-    }
+	public void addMenuBar(MenuBar menuBarToAdd) {
+	    setMenuBar(menuBarToAdd);
+	}
 
-    public void addToolBar(ToolBar toolBarToAdd) {
-	setToolBar(toolBarToAdd);
+	public void addToolBar(ToolBar toolBarToAdd) {
+	    setToolBar(toolBarToAdd);
+	}
     }
-}
