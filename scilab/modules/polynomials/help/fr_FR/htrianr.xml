@@ -57,7 +57,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 x=poly(0,'x');
 M=[x;x^2;2+x^3]*[1,x-2,x^4];
 [Mu,U,rk]=htrianr(M)

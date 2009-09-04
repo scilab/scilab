@@ -68,13 +68,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //exemplo polinomial
 z=poly(0,'z');
 p=(z-1/2)*(2-z)
 w=sfact(p);
 w*numer(horner(w,1/z))
+
 //exemplo matricial
 F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
 P=F1*gtild(F1,'d');  //P é simétrica
@@ -83,10 +83,11 @@ roots(det(P))
 roots(det(gtild(F,'d')))  //as raízes estáveis
 roots(det(F))             //as raízes anti-estáveis
 clean(P-F*gtild(F,'d'))
-//exemplo de uso de tempo contínuo
 
+//exemplo de uso de tempo contínuo
 s=poly(0,'s');
 p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
+
 //p(s) = polinômio em s^2 , procura por f estável tal que p=f(s)*f(-s) 
 w=horner(p,(1-s)/(1+s));  // transformação bilinear w=p((1-s)/(1+s))
 wn=numer(w);              //tomando o numerador
@@ -94,8 +95,7 @@ fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //fator e transformação de volta
 f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalização
 roots(f)    //f é estável
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) é p(s)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
