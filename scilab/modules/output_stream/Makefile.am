@@ -27,6 +27,9 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/do_xxprintf.c \
 				src/c/set_xxprintf.c
 
+OUTPUT_STREAM_CPP_SOURCES = \
+		src/cpp/yaspio.cpp
+
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
 		src/fortran/strdsp.f \
@@ -63,15 +66,23 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/operations/includes
 
+libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/core/includes \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/operations/includes
+
 pkglib_LTLIBRARIES = libscioutput_stream.la
 
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES) \ $(OUTPUT_STREAM_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
+CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
+INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
 #libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la
