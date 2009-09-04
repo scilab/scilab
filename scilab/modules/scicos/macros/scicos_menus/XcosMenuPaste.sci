@@ -48,18 +48,18 @@ function XcosMenuPaste()
     
     Sel_obj = scs_m.objs(Select(1,1)) ; 
     
-    if (typeof(Clipboard)=="Block" & typeof(Sel_obj)=="Block")
+    if (typeof(XcosClipboard)=="Block" & typeof(Sel_obj)=="Block")
       //** ready for "Replace" operation 
       
       // This case is used when trying to replace a block by itself
       // It does a duplicate to be Simulink/Dymola compatible
-      if and(Clipboard.graphics.sz   == Sel_obj.graphics.sz)  & ...
-	    (Clipboard.graphics.orig == Sel_obj.graphics.orig) then
+      if and(XcosClipboard.graphics.sz   == Sel_obj.graphics.sz)  & ...
+	    (XcosClipboard.graphics.orig == Sel_obj.graphics.orig) then
 	scs_m_save = scs_m    ;
 	nc_save = needcompile ;
 	
-	blk = Clipboard ;
-	blk.graphics.orig = Clipboard.graphics.orig+Clipboard.graphics.sz/2 ;
+	blk = XcosClipboard ;
+	blk.graphics.orig = XcosClipboard.graphics.orig+XcosClipboard.graphics.sz/2 ;
 	scs_m.objs($+1) = blk //** add the object at the top 
 	drawobj(blk); //** draw the single object 
 	edited = %t
@@ -68,7 +68,7 @@ function XcosMenuPaste()
 					   //** because the pasted object is the last ;)
       else
 	//** the true replace operation is there 
-	[scs_m, needcompile] = do_replace(scs_m, needcompile, Clipboard, Select);
+	[scs_m, needcompile] = do_replace(scs_m, needcompile, XcosClipboard, Select);
       end
       
     else
@@ -79,17 +79,17 @@ function XcosMenuPaste()
   else //** no object is selected for "Paste": paste object in the void    
     
     
-    if typeof(Clipboard)=="Block" | typeof(Clipboard)=="Text" then
+    if typeof(XcosClipboard)=="Block" | typeof(XcosClipboard)=="Text" then
       //** It is a single object (block or text)     
       scs_m_save = scs_m       ; //** save diagram and state 
       nc_save    = needcompile ; //** for undo operation 
       
       //** POSITION SHIFT 
       if %ppt==[] then
-	%ppt = Clipboard.graphics.orig + Clipboard.graphics.sz/2 ; //** automatic position shift       
+	%ppt = XcosClipboard.graphics.orig + XcosClipboard.graphics.sz/2 ; //** automatic position shift       
       end  
       
-      blk = Clipboard ; //** leave the object in the clipboard for multiple paste 
+      blk = XcosClipboard ; //** leave the object in the clipboard for multiple paste 
       
       blk.graphics.orig = %ppt ; 
       
@@ -102,25 +102,25 @@ function XcosMenuPaste()
       Select = [size(scs_m.objs),%win]; //** it's a really dirty trick ;)
                                         //** because the pasted object is the last ;)
 					
-    elseif  typeof(Clipboard)=="diagram" then
+    elseif  typeof(XcosClipboard)=="diagram" then
       //**  It is a complete Scicos Diagram (Block, Text and Link)  
       
-      reg = Clipboard;   
+      reg = XcosClipboard;   
       
       //**-------------------------------------------------------------------------------
       //** if %ppt==[] means that the usesr has NOT specified a destination for the paste 
       if %ppt==[] then
 	
-	for i=1:size(Clipboard.objs)
+	for i=1:size(XcosClipboard.objs)
 	  
-	  if typeof(Clipboard.objs(i))=="Block" then 
+	  if typeof(XcosClipboard.objs(i))=="Block" then 
 	    
 	    if %ppt==[] then
-	      %ppt(1)=Clipboard.objs(i).graphics.orig(1);
-	      %ppt(2)=Clipboard.objs(i).graphics.orig(2);
+	      %ppt(1)=XcosClipboard.objs(i).graphics.orig(1);
+	      %ppt(2)=XcosClipboard.objs(i).graphics.orig(2);
 	    else
-	      %ppt(1)=min(%ppt(1), Clipboard.objs(i).graphics.orig(1));
-	      %ppt(2)=min(%ppt(2), Clipboard.objs(i).graphics.orig(2));
+	      %ppt(1)=min(%ppt(1), XcosClipboard.objs(i).graphics.orig(1));
+	      %ppt(2)=min(%ppt(2), XcosClipboard.objs(i).graphics.orig(2));
 	    end
 	    
 	  end

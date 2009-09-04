@@ -34,7 +34,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 // !
 //--------------------------------------------------------------------------------------------
 // Copyright INRIA
-
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //** Magic Global Variable for Diagram Browser and more
   global %scicos_navig
@@ -45,6 +44,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   global next_scicos_call
   //** "0" standard scicos oblique link ; "1" SL orthogonanal links
   global SL_mode ; SL_mode = 0 ;
+  global XcosClipboard  
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -311,7 +311,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   Select = []      ; //** empty
   Select_back = [] ; //** empty
   %ppt = []; //** used to store last valid click position for "Paste" operation
-  //Clipboard = []; //** used in Copy Cut and Paste function
+  //XcosClipboard = []; //** used in Copy Cut and Paste function
    //** ------------------- GRAPHICS INITIALIZATION ---------
 
   //** This section is executed in any case
@@ -344,8 +344,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
 //** --- End of initialization -----------------------------------------------------------
 
-  global Clipboard  //** to make it possible to copy and paste from one
-                    //** super block to another
 
 
   //** -------------    M A I N    L O O P  -----------------------------
@@ -581,7 +579,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       mdelete(TMPDIR+'/BackupSave.cos') // no backup needed
       mdelete(TMPDIR+'/BackupInfo')
-      clearglobal Clipboard
+      clearglobal XcosClipboard
       clearglobal Scicos_commands
       clearglobal %tableau
       clearglobal %scicos_navig

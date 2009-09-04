@@ -46,9 +46,9 @@ function XcosMenuCut()
   scs_m_sel = do_purge( do_delete1(scs_m,del,%f) ); //** extract the structure BUT do not update the graphics 
   
   if size(scs_m_sel.objs)==1 then    //** if the structure contains ONLY a single object   
-    Clipboard = scs_m_sel.objs(1)  //** isolate the object  
+    XcosClipboard = scs_m_sel.objs(1)  //** isolate the object  
   else
-    Clipboard = scs_m_sel          //** save all the diagram 
+    XcosClipboard = scs_m_sel          //** save all the diagram 
   end
   
   //** eliminate the selected objects and connected links

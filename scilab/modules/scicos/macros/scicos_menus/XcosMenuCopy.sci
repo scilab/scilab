@@ -25,9 +25,9 @@ function XcosMenuCopy()
     //** ... more than a single object
     [pt1,win1,scs_m_sel] = get_selection2(Select,%pt,%win)
     if size(scs_m_sel.objs)==1 then
-       Clipboard = scs_m_sel.objs(1)
+       XcosClipboard = scs_m_sel.objs(1)
     else
-    	Clipboard = scs_m_sel
+    	XcosClipboard = scs_m_sel
     end
     Cmenu=[];
     // BUG Fix : Direct Paste after Select.
@@ -35,7 +35,7 @@ function XcosMenuCopy()
   elseif size(Select,1)==1
     //** single object
     [pt1,win1,o] = get_selection(Select,%pt,%win)
-    Clipboard = o ;
+    XcosClipboard = o ;
     Cmenu = [];
     // BUG Fix : Direct Paste after Select.
     Select=[];

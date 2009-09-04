@@ -28,7 +28,7 @@ function XcosMenuOpen()
   Select = []  ;  //** empty
   //** Select_back = [] ; //** empty
   //** %ppt = []; //** used to store last valid click position for "Paste" operation
-  //** Clipboard = []; //** used in Copy Cut and Paste function
+  //** XcosClipboard = []; //** used in Copy Cut and Paste function
 
   gh_curwin = scf(curwin);
 
