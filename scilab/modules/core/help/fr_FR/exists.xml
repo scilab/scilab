@@ -52,7 +52,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 deff('foo(x)',..
 ['disp([exists(''a12''),exists(''a12'',''local'')])'
  'disp([exists(''x''),exists(''x'',''local'')])'])
@@ -72,7 +72,6 @@ function go()
   level1()
 endfunction
 go()
-
  ]]></programlisting>
   </refsection>
   <refsection>

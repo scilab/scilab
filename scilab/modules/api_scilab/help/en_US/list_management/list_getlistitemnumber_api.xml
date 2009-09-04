@@ -60,8 +60,7 @@
         <!--Lib_name: common_list-->
         <!--Func_list: common_list-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int get_list_info(int* _piAddress);
 void insert_indent(void);
 
@@ -144,14 +143,12 @@ void insert_indent(void)
         sciprint("\t");
     }
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -160,7 +157,6 @@ l4 = list(l5, list(l5,l5));
 l6 = uint16([1000,2000,3000]);
 l = list(l1,l2,l3,l6,l4,l5);
 common_list(l)
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

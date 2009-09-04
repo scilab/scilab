@@ -12,22 +12,25 @@
  *
  */
 
-void CallJxclick(void);
+#include "dynlib_gui.h"
 
-int getJxclickMouseButtonNumber(void);
 
-double getJxclickXCoordinate(void);
+GUI_IMPEXP void CallJxclick(void);
 
-double getJxclickYCoordinate(void);
+GUI_IMPEXP int getJxclickMouseButtonNumber(void);
 
-int getJxclickWindowID(void);
+GUI_IMPEXP double getJxclickXCoordinate(void);
 
-char * getJxclickMenuCallback(void);
+GUI_IMPEXP double getJxclickYCoordinate(void);
+
+GUI_IMPEXP int getJxclickWindowID(void);
+
+GUI_IMPEXP char * getJxclickMenuCallback(void);
 
 /**
  * Delete the menu call back which is allocated by a C++ new.
  */
-void deleteMenuCallBack(char * menuCallBack);
+GUI_IMPEXP void deleteMenuCallBack(char * menuCallBack);
 
 #endif
 

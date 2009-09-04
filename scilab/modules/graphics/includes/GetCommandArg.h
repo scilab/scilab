@@ -20,6 +20,7 @@
 #ifndef _GET_COMMAND_ARG_H_
 #define _GET_COMMAND_ARG_H_
 
+#include "dynlib_graphics.h"
 #include "stack-c.h"
 #include "BOOL.h"
 
@@ -34,7 +35,7 @@
  * @param style 
  * @return <ReturnValue>
  */
-int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style );
+GRAPHICS_IMPEXP int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style );
 
 /**
  * @TODO add comment
@@ -45,7 +46,7 @@ int get_style_arg(char *fname,int pos, int n1,rhs_opts opts[], int ** style );
  * @param rect  
  * @return <ReturnValue>
  */
-int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect );
+GRAPHICS_IMPEXP int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect );
 
 /**
  * @TODO add comment
@@ -56,7 +57,7 @@ int get_rect_arg(char *fname,int pos,rhs_opts opts[], double ** rect );
  * @param strf  
  * @return <ReturnValue>
  */
-int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf );
+GRAPHICS_IMPEXP int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf );
 
 /**
  * @TODO add comment
@@ -67,7 +68,7 @@ int get_strf_arg(char *fname,int pos,rhs_opts opts[], char ** strf );
  * @param legend    
  * @return <ReturnValue>
  */
-int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend );
+GRAPHICS_IMPEXP int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend );
 
 /**
  * @TODO add comment
@@ -78,7 +79,7 @@ int get_legend_arg(char *fname,int pos,rhs_opts opts[], char ** legend );
  * @param labels    
  * @return <ReturnValue>
  */
-int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels );
+GRAPHICS_IMPEXP int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels );
 
 /**
  * @TODO add comment
@@ -89,7 +90,7 @@ int get_labels_arg(char *fname,int pos,rhs_opts opts[], char ** labels );
  * @param flagNax   
  * @return <ReturnValue>
  */
-int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax );
+GRAPHICS_IMPEXP int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax );
 
 /**
  * @TODO add comment
@@ -100,7 +101,7 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax );
  * @param zminmax   
  * @return <ReturnValue>
  */
-int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax );
+GRAPHICS_IMPEXP int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax );
 
 /**
  * @TODO add comment
@@ -111,7 +112,7 @@ int get_zminmax_arg(char *fname,int pos,rhs_opts opts[], double ** zminmax );
  * @param colminmax 
  * @return <ReturnValue>
  */
-int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax );
+GRAPHICS_IMPEXP int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax );
 
 /**
  * @TODO add comment
@@ -122,7 +123,7 @@ int get_colminmax_arg(char *fname,int pos,rhs_opts opts[], int ** colminmax );
  * @param colout    
  * @return <ReturnValue>
  */
-int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout );
+GRAPHICS_IMPEXP int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout );
 
 /**
  * @TODO add comment
@@ -133,7 +134,7 @@ int get_colout_arg(char *fname,int pos,rhs_opts opts[], int ** colout );
  * @param withMesh  
  * @return <ReturnValue>
  */
-int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh);
+GRAPHICS_IMPEXP int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh);
 
 /**
  * @TODO add comment
@@ -144,7 +145,7 @@ int get_with_mesh_arg(char *fname,int pos,rhs_opts opts[], BOOL * withMesh);
  * @param logFlags  
  * @return <ReturnValue>
  */
-int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags );
+GRAPHICS_IMPEXP int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags );
 
 /**
  * @TODO add comment
@@ -157,7 +158,7 @@ int get_logflags_arg(char *fname,int pos,rhs_opts opts[], char ** logFlags );
  * @param  rhs_opts opts[]  
  * @return <ReturnValue>
  */
-int get_optional_double_arg( char * fname, int pos, char * name, double ** value, int sz, rhs_opts opts[] ) ;
+GRAPHICS_IMPEXP int get_optional_double_arg( char * fname, int pos, char * name, double ** value, int sz, rhs_opts opts[] ) ;
 
 /**
  * @TODO add comment
@@ -170,7 +171,7 @@ int get_optional_double_arg( char * fname, int pos, char * name, double ** value
  * @param  rhs_opts opts[]  
  * @return <ReturnValue>
  */
-int get_optional_int_arg( char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[] ) ;
+GRAPHICS_IMPEXP int get_optional_int_arg( char * fname, int pos, char * name, int ** value, int sz, rhs_opts opts[] ) ;
 /*------------------------------------------------------------------------*/
 #define sciGetStyle(fname,pos,n1,opts,style) { if ( get_style_arg(fname,pos,n1,opts,style) == 0) { return 0 ; } }
 #define GetRect(fname,pos,opts,rect) { if ( get_rect_arg(fname,pos,opts,rect) == 0) { return 0 ; } }

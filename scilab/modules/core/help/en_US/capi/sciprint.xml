@@ -63,9 +63,9 @@
     illustrating the use of the sciprint function in the Scilab
     console.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
-#include &lt;sciprint.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <sciprint.h>
 
 int sci_mysciprint(char * fname)
 {
@@ -75,7 +75,7 @@ int sci_mysciprint(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include "TextToPrint.h"
 #include <windows.h>
 #include <Winuser.h>
 #include <shlwapi.h>
@@ -25,9 +26,7 @@
 #include "wmcopydata.h"
 #include "strdup_windows.h"
 #include "MutexClosingScilab.h"
-#include "with_module.h"
-/*--------------------------------------------------------------------------*/
-extern void PrintFile(char *filename);
+
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
 static BOOL isGoodExtension(char *chainefichier,char *ext);

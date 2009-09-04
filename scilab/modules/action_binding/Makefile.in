@@ -257,6 +257,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -421,7 +422,9 @@ libsciaction_binding_la_sci_gateway_DATA =
 
 ####�action_binding : include files ####
 libsciaction_binding_la_includedir = $(pkgincludedir)/action_binding
-libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h
+libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h \
+includes/dynlib_action_binding.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

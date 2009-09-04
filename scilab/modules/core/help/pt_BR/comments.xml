@@ -33,8 +33,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 g=9.81// a gravidade
 
 text='a//b'
@@ -46,8 +45,6 @@ function y=myfunction(x)
 endfunction
 
 help myfunction
-
- 
- </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

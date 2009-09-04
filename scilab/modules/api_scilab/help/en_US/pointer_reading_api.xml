@@ -59,8 +59,7 @@
         <!--Lib_name: pointer_reading-->
         <!--Func_list: read_pointer-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int read_pointer(char *fname,unsigned long fname_len)
 {
     int iRet    = 0;
@@ -114,19 +113,16 @@ int read_pointer(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     return 0;
 }
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 b_ref = [1,2;3,4];
 a = read_pointer();
 b = read_pointer(a);
 if or(b <> b_ref) then error("failed"), end
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

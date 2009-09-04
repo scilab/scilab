@@ -12,7 +12,7 @@
 
 #ifndef __SET_UICONTROL_BACKGROUNDCOLOR_H__
 #define __SET_UICONTROL_BACKGROUNDCOLOR_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 
 /**
@@ -25,6 +25,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true is the set has been correcty done
  */
-int SetUicontrolBackgroundColor(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+GUI_IMPEXP int SetUicontrolBackgroundColor(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
 
 #endif /* __SET_UICONTROL_BACKGROUNDCOLOR_H__ */

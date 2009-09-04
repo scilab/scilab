@@ -100,8 +100,7 @@
         <!--Lib_name: commom_read-->
         <!--Func_list: commom_read-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int iTab = 0;
 
 void insert_indent(void)
@@ -687,14 +686,12 @@ int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
 
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 function read_all()
 d = [1,2,3;4,5,6;7,8,9];commom_read(d);
 s=poly(0,"x");p=1+s+2*s^2;p = [(p * 2),(p * s + 3);(p * 2 * s ** 2 - 6),(12 - 4 * p * (- s) ** 2)];commom_read(p);
@@ -713,7 +710,6 @@ end
 commom_read(l)
 endfunction
 read_all;
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

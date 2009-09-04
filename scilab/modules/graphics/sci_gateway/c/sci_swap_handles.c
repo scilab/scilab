@@ -15,7 +15,7 @@
 /* desc : interface for swap_handles routine                              */
 /*------------------------------------------------------------------------*/
 
-#include "sci_swap_handles.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "localization.h"

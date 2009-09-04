@@ -279,6 +279,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -530,7 +531,9 @@ libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
 #### metanet : include files ####
 libscimetanet_la_includedir = $(pkgincludedir)/metanet
-libscimetanet_la_include_HEADERS = includes/gw_metanet.h
+libscimetanet_la_include_HEADERS = includes/gw_metanet.h \
+includes/dynlib_metanet.h
+
 
 #### metanet : Macros ####
 MACROSDIRSEXT = macros/editor macros/graph_tools

@@ -40,6 +40,7 @@
 #include "CallScilab.h"
 #include "recursionFunction.h"
 #include "doublecomplex.h"
+#include "libinter.h"
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
@@ -145,7 +146,7 @@ int C2F(isoptlw)(int *topk,int  *lw, char *namex, unsigned long name_len)
  * given as xx=val in the calling sequence.
  * If no such argument it returns Rhs+1.
  *--------------------------------------- */
-int C2F(firstopt)()
+int C2F(firstopt)(void)
 
 {
   int k;
@@ -182,7 +183,7 @@ int C2F(findopt)(char * str,rhs_opts opts[])
  *  top must have a correct value when using this function
  *--------------------------------------- */
 
-int C2F(numopt)()
+int C2F(numopt)(void)
 {
   int k, ret=0;
   for (k = 1; k <= Rhs ; ++k)

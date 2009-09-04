@@ -43,11 +43,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=1; b=2; Z=['a','sin(b)'] ; eval(Z)  //retorna a matriz [1,0.909];
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

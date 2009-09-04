@@ -17,8 +17,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[about()
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+about()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

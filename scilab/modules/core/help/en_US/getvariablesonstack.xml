@@ -33,11 +33,11 @@ s=getvariablesonstack('global')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[getvariablesonstack()
-  getvariablesonstack('local')
-  getvariablesonstack('global')
-
-   ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+getvariablesonstack()
+getvariablesonstack('local')
+getvariablesonstack('global')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

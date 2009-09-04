@@ -108,8 +108,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Create figure having figure_id==3
 h=figure(3);
 // Add a text uicontrol in figure 3
@@ -117,7 +116,6 @@ uicontrol(h, "style", "text", ...
              "string", "This is a figure", ...
              "position", [50 70 100 100], ...
              "fontsize",15);
-
 
 // Create figure having figure_id==1
 figure();
@@ -131,8 +129,7 @@ uicontrol("style", "text", ...
 close();
 // close figure 3
 close(h);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

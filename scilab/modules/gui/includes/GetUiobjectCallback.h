@@ -12,7 +12,7 @@
 
 #ifndef __GETUIOBJECTCALLBACK_H__
 #define __GETUIOBJECTCALLBACK_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol or uimenu
  * @return true if the callback is got without error
  */
-int GetUiobjectCallback(sciPointObj * pobj);
+GUI_IMPEXP int GetUiobjectCallback(sciPointObj * pobj);
 
 #endif

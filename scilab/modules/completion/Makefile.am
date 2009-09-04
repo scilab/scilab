@@ -80,6 +80,7 @@ libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h \
 includes/getCommonPart.h \
 includes/getPartLine.h \
+includes/dynlib_completion.h \
 includes/completeLine.h
 
 #### completion : test file ####

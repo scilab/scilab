@@ -12,7 +12,7 @@
 
 #ifndef __SETENVC_H__
 #define __SETENVC_H__
-
+#include "dynlib_io.h"
 #include "BOOL.h"
 
 /**
@@ -21,19 +21,19 @@
  * @param[in] value the value of the variable "string"
  * @return FALSE if there is a problem otherwise TRUE
  */
-BOOL setenvc(char *string,char *value);
+IO_IMPEXP BOOL setenvc(char *string,char *value);
 
 /**
  * TODO : comment 
  * @return 
  */
-int getUpdateEnvVar(void);
+IO_IMPEXP int getUpdateEnvVar(void);
 
 /**
  * TODO : comment 
  * @param val
  */
-void setUpdateEnvVar(int val);
+IO_IMPEXP void setUpdateEnvVar(int val);
 
 #endif /* __SETENVC_H__ */
 /*--------------------------------------------------------------------------*/

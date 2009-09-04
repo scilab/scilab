@@ -64,8 +64,8 @@
     <para>In this example, the C gateway function checks for a number of
     output arguments which must be between 2 and 3.</para>
 
-    <programlisting> 
-#include &lt;stack-c.h&gt;
+    <programlisting role = "example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_mychecklhs(char * fname)
 {
@@ -73,16 +73,16 @@ int sci_mychecklhs(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
 
     <para>Now, some functions testing this interface:</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [A,B] = mychecklhs(); // OK, 2 output arguments
 [A,B,C] = mychecklhs(); // OK, 3 output arguments
 [A] = mychecklhs(); // ERROR, 1 output argument
 [A,B,C,D] = mychecklhs(); // ERROR, 4 output arguments
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

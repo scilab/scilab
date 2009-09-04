@@ -127,6 +127,21 @@
 	    so simply Q' instead of inv(Q)).</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>J</term>
+        <listitem>
+          <para>approximated Jacobian</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>approximated Hessian</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 

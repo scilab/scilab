@@ -66,13 +66,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4]
 sinm(asinm(A))
 asinm(A)+%i*logm(%i*A+sqrtm(eye()-A*A))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -13,13 +13,14 @@
 #define __FROMJAVA__
 
 #include "BOOL.h"
+#include "dynlib_call_scilab.h"
 
 /**
  * <long-description>
  *
  * @param void  
  */
-void SetFromJavaToON(void);
+CALL_SCILAB_IMPEXP void SetFromJavaToON(void);
 
 /**
  * <long-description>
@@ -27,7 +28,7 @@ void SetFromJavaToON(void);
  * @param void  
  * @return <ReturnValue>
  */
-BOOL IsFromJava(void);
+CALL_SCILAB_IMPEXP BOOL IsFromJava(void);
 
 #endif /*FROMJAVA*/
 /*--------------------------------------------------------------------------*/ 

@@ -17,7 +17,7 @@
 /* desc : interface for addcb routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_addcb.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "Interaction.h"

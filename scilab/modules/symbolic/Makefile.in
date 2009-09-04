@@ -255,6 +255,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -404,7 +405,9 @@ libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml
 
 #### symbolic : include files ####
 libscisymbolic_la_includedir = $(pkgincludedir)/symbolic
-libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h
+libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h \
+includes/dynlib_symbolic.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)

@@ -13,8 +13,9 @@
 #ifndef __INTIALIZEGUI_H__
 #define __INTIALIZEGUI_H__
 #include "BOOL.h"
+#include "dynlib_gui.h"
 
-BOOL InitializeGUI(void);
+GUI_IMPEXP BOOL InitializeGUI(void);
 
 #endif /* __INTIALIZEGUI_H__ */
 /*--------------------------------------------------------------------------*/ 

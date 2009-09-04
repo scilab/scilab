@@ -83,7 +83,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then
   filename = SCI+'\bin\libscilab.dll';
 
@@ -100,7 +100,7 @@ if MSDOS then
   printf('Dll exports of %s:\n',filename);
   disp(dllinfolist);
 end
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

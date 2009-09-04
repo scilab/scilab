@@ -27,9 +27,9 @@
   <refsection>
     <title>The C function</title>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
-#include &lt;sciprint.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <sciprint.h>
 
 int sci_check_properties_1(char * fname)
 {
@@ -46,7 +46,7 @@ int sci_check_properties_1(char * fname)
   // Getting first argument //
   ////////////////////////////
 
-  GetRhsVar(1, "d", &amp;m1, &amp;n1, &amp;l1);
+  GetRhsVar(1, "d", &m1, &n1, &l1);
 
   CheckVector(1,m1,n1);   // Check that first argument is a vector
   CheckLength(1,m1*n1,4); // Check vector length
@@ -66,7 +66,7 @@ int sci_check_properties_1(char * fname)
   // Getting third argument //
   ////////////////////////////
 
-  GetRhsVar(3, "d", &amp;m3, &amp;n3, &amp;l3);
+  GetRhsVar(3, "d", &m3, &n3, &l3);
 
   CheckSameDims(1,3,m1,n1,m3,n3); // Checks that arg 1 and arg3 have same dimensions
 
@@ -74,7 +74,7 @@ int sci_check_properties_1(char * fname)
   // Getting fourth argument //
   /////////////////////////////
 
-  GetRhsVar(4,"d",&amp;m4,&amp;n4,&amp;l4);
+  GetRhsVar(4,"d",&m4,&n4,&l4);
   
   CheckScalar(4,m4,n4); // arg 4 must be scalar
 
@@ -82,7 +82,7 @@ int sci_check_properties_1(char * fname)
   // Getting fourth argument //
   /////////////////////////////
 
-  GetRhsVar(5,"d",&amp;m5,&amp;n5,&amp;l5);
+  GetRhsVar(5,"d",&m5,&n5,&l5);
   
   CheckSquare(5,m5,n5);   // square matrix
   CheckDims(5,m5,m5,5,5); // check dimensions
@@ -104,11 +104,11 @@ int sci_check_properties_2(char * fname)
   switch(VarType(1)) 
     {
     case 1: 
-      GetRhsVar(1, "d", &amp;m1, &amp;n1, &amp;l1);
+      GetRhsVar(1, "d", &m1, &n1, &l1);
       sciprint("1 is a scalar matrix\n");
       break;
     case 10:
-      GetRhsVar(1, "c", &amp;m1, &amp;n1, &amp;l1);
+      GetRhsVar(1, "c", &m1, &n1, &l1);
       sciprint("1 is a string\n");
       break;
     case 5:
@@ -120,7 +120,7 @@ int sci_check_properties_2(char * fname)
 
   return 0;
 }
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "check_properties.c".</para>
 
@@ -137,7 +137,7 @@ int sci_check_properties_2(char * fname)
   <refsection>
     <title>The builder script</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // This is the builder.sce 
 // must be run from this directory 
 
@@ -160,7 +160,7 @@ cflags  = "";
 fflags  = "";
 
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "builder.sce".</para>
 
@@ -181,16 +181,16 @@ ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
 
     <para>To build this function, we just need to to:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 exec builder.sce;
- </programlisting>
+ ]]></programlisting>
 
     <para>Now we are able to test our new C function. First, let's load this
     new function in scilab:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 exec loader.sce; 
- </programlisting>
+ ]]></programlisting>
 
     <para>The script loader.sce is normally automatically built by
     builder.sce.</para>
@@ -201,7 +201,7 @@ exec loader.sce;
 
     <para>We now write a simple example to test our new functions.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // checks arguments compatibility 
 
 check_properties_1([1;2;3;4],[3,4,5,6],[6;7;8;9],90,rand(5,5))
@@ -247,14 +247,14 @@ try
 catch
   disp(lasterror());
 end
- </programlisting>
+ ]]></programlisting>
 
     <para>The script must be saved as "check_properties.sce".</para>
 
     <para>Let's run our scripts and see what is the result:</para>
 
-    <programlisting> 
---&gt;exec builder.sce;
+    <programlisting role = ""><![CDATA[  
+-->exec builder.sce;
    Génère un fichier gateway
    Génère un fichier loader
    Génère un Makefile : Makelib
@@ -262,11 +262,11 @@ end
    Compilation de check_properties.c
    Construction de la bibliothèque partagée (soyez patient)
  
---&gt;exec loader.sce;
+-->;exec loader.sce;
 Bibliothèque partagée chargée.
 Link done.
  
---&gt;exec check_properties.sce;
+-->exec check_properties.sce;
 1 is a scalar matrix
 1 is a string
 1 is a sparse trying to overload
@@ -282,7 +282,7 @@ Link done.
  check_properties_1: fourth paramètre devrait être un scalaire   
  
  check_properties_1 : Argument numéro 5 n'a pas les bonnes dimensions (4,4),  (5,5) attendues.    
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

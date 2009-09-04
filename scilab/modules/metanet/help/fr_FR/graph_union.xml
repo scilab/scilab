@@ -60,8 +60,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ta1=[1,2,3,4,4,4,4,5,6,7,7];he1=[2,3,1,1,5,7,7,6,7,3,4];
 g1=make_graph('foo1',1,7,ta1,he1);
 g1.nodes.graphics.x= [273,271,339,384,504,513,439];
@@ -78,15 +77,12 @@ g2.nodes.graphics.name= ['H' 'I' 'J' 'K' 'A' 'B' 'C' 'D'];
 g2.nodes.graphics.display= 'name';
 w2=show_graph(g2,'new');
 
-
 g=graph_union(g1,g2);
 show_graph(g,'new');
 
 g=graph_union(g1,g2,%f);
 show_graph(g,'new');
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -244,6 +244,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -400,7 +401,8 @@ libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 #### call_scilab : include files ####
 libscicall_scilab_la_includedir = $(pkgincludedir)/call_scilab
 libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
-	includes/fromjava.h
+	includes/fromjava.h \
+	includes/dynlib_call_scilab.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

@@ -119,7 +119,8 @@ includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h \
 includes/do_xxprintf.h \
-includes/gw_output_stream.h
+includes/gw_output_stream.h \
+includes/dynlib_output_stream.h
 
 include $(top_srcdir)/Makefile.incl.am
 

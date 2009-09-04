@@ -49,11 +49,11 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
- gain=0.235;x_message('La valeur du gain est :'+string(gain))
- x_message(['matrice singuliere';'utiliser les moindres carres'])
+    <programlisting role="example"><![CDATA[ 
+gain=0.235;x_message('La valeur du gain est :'+string(gain))
+x_message(['matrice singuliere';'utiliser les moindres carres'])
 
- r=x_message(['Votre probleme est mal conditionne';
+r=x_message(['Votre probleme est mal conditionne';
              'continuer ?'],['Oui','Non'])
  ]]></programlisting>
   </refsection>

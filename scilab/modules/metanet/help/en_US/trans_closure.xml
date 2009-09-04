@@ -53,8 +53,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ta=[2 3 3 5 3 4 4 5 8];
 he=[1 2 4 2 6 6 7 7 4];
 g=make_graph('foo',1,8,ta,he);
@@ -72,7 +71,6 @@ for i=1:lim(2)
 end;
 g1.edges.graphics.foreground=edgecolor;
 show_graph(g1);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

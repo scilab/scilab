@@ -14,8 +14,9 @@
 #ifndef _TERMINATEGRAPHICS_H__
 #define _TERMINATEGRAPHICS_H__
 #include "BOOL.h"
+#include "dynlib_graphics.h"
 
-BOOL TerminateGraphics(void);
+GRAPHICS_IMPEXP BOOL TerminateGraphics(void);
 
 #endif /* _TERMINATEGRAPHICS_H__ */
 /*--------------------------------------------------------------------------*/ 

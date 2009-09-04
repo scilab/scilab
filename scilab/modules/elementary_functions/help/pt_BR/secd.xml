@@ -65,10 +65,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-        secd(90)
-        sec(%pi/2)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+secd(90)
+sec(%pi/2)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

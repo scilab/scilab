@@ -75,11 +75,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 base2dec(['ABC','0','A'],16)
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

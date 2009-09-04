@@ -87,7 +87,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // first example
 n=10;p=0.3; xbasc(); plot2d3(0:n,binomial(p,n));
 
@@ -113,7 +113,7 @@ Cnks=gamma(n+1)./(gamma(1:n+1).*gamma(n+1:-1:1));
 x=poly(0,'x');
 pr=Cnks.*horner(x.^(0:n).*(1-x)^(n:-1:0),p);
 pr-binomial(p,n)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

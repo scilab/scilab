@@ -58,9 +58,9 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 acoth(1)
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

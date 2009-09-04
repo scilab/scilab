@@ -12,7 +12,7 @@
 
 #ifndef __RADIOBUTTON_H__
 #define __RADIOBUTTON_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +21,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createRadioButton(sciPointObj* sciObj);
+GUI_IMPEXP void createRadioButton(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a RadioButton in Scilab GUIs
@@ -29,6 +29,6 @@ void createRadioButton(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsRadioButtonParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsRadioButtonParent(sciPointObj* sciObj);
 
 #endif /* __RADIOBUTTON_H__ */

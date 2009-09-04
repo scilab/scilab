@@ -64,8 +64,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_check_properties(char * fname)
 {
@@ -74,15 +74,15 @@ int sci_check_properties(char * fname)
 
   CheckRhs(2,2);
 
-  GetRhsVar(1, "d", &amp;m1, &amp;n1, &amp;l1);
-  GetRhsVar(2, "d", &amp;m2, &amp;n2, &amp;l2);
+  GetRhsVar(1, "d", &m1, &n1, &l1);
+  GetRhsVar(2, "d", &m2, &n2, &l2);
 
   // Check compatibility beetween arg 1 and arg 2. We want m1*n1 == n2 
   CheckDimProp(1,2, m1 * n1 != n2); 
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

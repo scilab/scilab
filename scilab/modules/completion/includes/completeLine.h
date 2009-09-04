@@ -13,7 +13,9 @@
 #ifndef __COMPLETE_LINE_H__
 #define __COMPLETE_LINE_H__
 
+#include "dynlib_completion.h"
 #include "BOOL.h"
+
 
 /**
 * complete line with a string 
@@ -24,7 +26,7 @@
 * @param[in] string added is path or not
 * @return line assembled
 */
-char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
+COMPLETION_IMPEXP char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 				   char *defaultPattern,BOOL stringToAddIsPath);
 
 #endif /* __COMPLETE_LINE_H__ */

@@ -25,37 +25,38 @@
 #ifndef __SCI_INIT_GRAPHICS__
 #define __SCI_INIT_GRAPHICS__
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 #include "machine.h" /* C2F */
 
-extern int C2F(graphicsmodels) (void);
-extern int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
-extern int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
-extern int sciInitGraphicMode (sciPointObj * pobj);
+GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
+GRAPHICS_IMPEXP int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */
+GRAPHICS_IMPEXP int sciInitFontContext (sciPointObj * pobj); /* INITOBJECT */
+GRAPHICS_IMPEXP int sciInitGraphicMode (sciPointObj * pobj);
 
-extern sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
+GRAPHICS_IMPEXP sciPointObj * initLabel( sciPointObj * pParentObj ) ; /* INITOBJECT */
 
-extern void reinitSubwin( void ) ;
+GRAPHICS_IMPEXP void reinitSubwin( void ) ;
 
-FigureModelData * newFigureModelData( void ) ;
-void destroyFigureModelData( FigureModelData * data ) ;
+GRAPHICS_IMPEXP FigureModelData * newFigureModelData( void ) ;
+GRAPHICS_IMPEXP void destroyFigureModelData( FigureModelData * data ) ;
 
-extern int InitFigureModel(void); /* INITOBJECT */
-extern int InitAxesModel(void);   /* INITOBJECT */
+GRAPHICS_IMPEXP int InitFigureModel(void); /* INITOBJECT */
+GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
 
-int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
+GRAPHICS_IMPEXP int initFCfromCopy(  sciPointObj * pObjSource, sciPointObj * pObjDest );
 
-int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
+GRAPHICS_IMPEXP int ResetFigureToDefaultValues(sciPointObj * pobj);  /* INITOBJECT */
 
-sciPointObj * getFigureModel( void ) ;
-sciPointObj * getAxesModel( void ) ;
-BOOL isFigureModel(sciPointObj * pObj);
-BOOL isAxesModel(sciPointObj * pObj);
-BOOL isModelObject(sciPointObj * pObj);
+GRAPHICS_IMPEXP sciPointObj * getFigureModel( void ) ;
+GRAPHICS_IMPEXP sciPointObj * getAxesModel( void ) ;
+GRAPHICS_IMPEXP BOOL isFigureModel(sciPointObj * pObj);
+GRAPHICS_IMPEXP BOOL isAxesModel(sciPointObj * pObj);
+GRAPHICS_IMPEXP BOOL isModelObject(sciPointObj * pObj);
 
-void destroyDefaultObjects( void ) ;
+GRAPHICS_IMPEXP void destroyDefaultObjects( void ) ;
 
-void sciSetDefaultColorMap(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void sciSetDefaultColorMap(sciPointObj * pFigure);
 
 #endif /* __SCI_INIT_GRAPHICS__ */

@@ -16,11 +16,10 @@
 /* desc : interface for xset routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xset.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "sci_demo.h"
 #include "DrawObjects.h"
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"

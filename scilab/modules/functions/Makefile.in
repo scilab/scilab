@@ -101,7 +101,7 @@ am__objects_1 = libscifunctions_la-getmacroslist.lo \
 	libscifunctions_la-librarieslist.lo \
 	libscifunctions_la-libraryinfo.lo \
 	libscifunctions_la-searchmacroinlibraries.lo
-am__objects_2 =
+am__objects_2 = whereis.lo
 am__objects_3 = libscifunctions_la-gw_functions.lo \
 	libscifunctions_la-sci_lib.lo libscifunctions_la-sci_deff.lo \
 	libscifunctions_la-sci_getf.lo \
@@ -263,6 +263,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -370,12 +371,12 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-FUNCTIONS__C_SOURCES = src/c/getmacroslist.c \
+FUNCTIONS_C_SOURCES = src/c/getmacroslist.c \
 	src/c/librarieslist.c \
 	src/c/libraryinfo.c \
 	src/c/searchmacroinlibraries.c
 
-FUNCTIONS__FORTRAN_SOURCES = 
+FUNCTIONS_FORTRAN_SOURCES = src/fortran/whereis.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
 sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_deff.c \
@@ -405,7 +406,7 @@ libscifunctions_la_CFLAGS = -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifunctions.la
 libscifunctions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-libscifunctions_la_SOURCES = $(FUNCTIONS__C_SOURCES) $(FUNCTIONS__FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
@@ -434,7 +435,12 @@ libscifunctions_la_sci_gateway_DATA = sci_gateway/functions_gateway.xml
 
 #### functions : include files ####
 libscifunctions_la_includedir = $(pkgincludedir)/functions
-libscifunctions_la_include_HEADERS = includes/gw_functions.h 
+libscifunctions_la_include_HEADERS = includes/gw_functions.h \
+	includes/librarieslist.h \
+	includes/libraryinfo.h \
+	includes/getmacroslist.h \
+	includes/dynlib_functions.h
+
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -701,6 +707,9 @@ libscifunctions_la-sci_libraryinfo.lo: sci_gateway/c/sci_libraryinfo.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
+
+whereis.lo: src/fortran/whereis.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o whereis.lo `test -f 'src/fortran/whereis.f' || echo '$(srcdir)/'`src/fortran/whereis.f
 
 intlib.lo: sci_gateway/fortran/intlib.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intlib.lo `test -f 'sci_gateway/fortran/intlib.f' || echo '$(srcdir)/'`sci_gateway/fortran/intlib.f

@@ -28,7 +28,7 @@
 static char *getLanguageFromAlias(char *alias);
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setdefaultlanguage)(char *fname,unsigned long fname_len)
+int sci_setdefaultlanguage(char *fname,unsigned long fname_len)
 {
 	int n1 = 0, m1 = 0, l1 = 0;
 

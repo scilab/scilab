@@ -99,6 +99,7 @@ am__objects_1 = libscistring_la-code2str.lo \
 	libscistring_la-stripblanks.lo libscistring_la-convstr.lo \
 	libscistring_la-men_Sutils.lo libscistring_la-tokens.lo \
 	libscistring_la-strcatfunction.lo \
+	libscistring_la-strsplitfunction.lo \
 	libscistring_la-partfunction.lo \
 	libscistring_la-InitializeString.lo \
 	libscistring_la-setScilabCharactersCodes.lo \
@@ -283,6 +284,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -396,6 +398,7 @@ src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
+src/c/strsplitfunction.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -493,7 +496,8 @@ includes/stricmp.h includes/strsubst.h \
 includes/code2str.h \
 includes/NumTokens.h \
 includes/StringConvert.h \
-includes/scistrtostr.h
+includes/scistrtostr.h \
+includes/dynlib_string.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -680,6 +684,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsstrrchr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsstrrev.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stripblanks.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strsplitfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strsubst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-tokens.Plo@am__quote@
 
@@ -745,6 +750,13 @@ libscistring_la-strcatfunction.lo: src/c/strcatfunction.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strcatfunction.c' object='libscistring_la-strcatfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strcatfunction.lo `test -f 'src/c/strcatfunction.c' || echo '$(srcdir)/'`src/c/strcatfunction.c
+
+libscistring_la-strsplitfunction.lo: src/c/strsplitfunction.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-strsplitfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_la-strsplitfunction.Tpo -c -o libscistring_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-strsplitfunction.Tpo $(DEPDIR)/libscistring_la-strsplitfunction.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/strsplitfunction.c' object='libscistring_la-strsplitfunction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-strsplitfunction.lo `test -f 'src/c/strsplitfunction.c' || echo '$(srcdir)/'`src/c/strsplitfunction.c
 
 libscistring_la-partfunction.lo: src/c/partfunction.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-partfunction.lo -MD -MP -MF $(DEPDIR)/libscistring_la-partfunction.Tpo -c -o libscistring_la-partfunction.lo `test -f 'src/c/partfunction.c' || echo '$(srcdir)/'`src/c/partfunction.c

@@ -90,8 +90,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // creating a directed graph with 3 nodes and 4 arcs.
 g=make_graph('foo',1,3,[1,2,3,1],[2,3,1,3]);
 
@@ -108,8 +107,7 @@ g=make_graph('foo',1,0,ta,he);
 g.nodes.graphics.x=[40,33,75,42,114,156,237,260,159];
 g.nodes.graphics.y=[7,61,43,120,145,18,36,107,107];
 show_graph(g,'new')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

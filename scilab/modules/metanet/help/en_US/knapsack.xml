@@ -155,12 +155,12 @@
 	  item i is not in the optimal solution. The matrix
 	  <literal>X</literal> can be derived from
 	  <literal>ind</literal> by </para>
-          <programlisting><![CDATA[
-          items=1:n;
-          items(ind==0)==[];
-          ind(ind==0)=[];
-          X=sparse([ind;items]',ones(n,1),[m,n])
-	  ]]></programlisting>
+          <programlisting><![CDATA[ 
+items=1:n;
+items(ind==0)==[];
+ind(ind==0)=[];
+X=sparse([ind;items]',ones(n,1),[m,n])
+ ]]></programlisting>
 	</listitem>
       </varlistentry>
    </variablelist>
@@ -180,8 +180,7 @@
  </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
 capa=[15 40 30 60];
@@ -195,8 +194,7 @@ X*weight' //sack weights
 x=sum(X,1);
 and(x<=1) //contraints check
 profit*x'==earn
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

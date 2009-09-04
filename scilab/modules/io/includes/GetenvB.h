@@ -13,6 +13,7 @@
 #ifndef __GETENVB_H__
 #define __GETENVB_H__
 
+#include "dynlib_io.h"
 /**
  * getenv + squash trailing white spaces 
  *
@@ -20,6 +21,6 @@
  * @param env   
  * @param len   
  */
-void GetenvB(char *name, char *env, int len);
+IO_IMPEXP void GetenvB(char *name, char *env, int len);
 
 #endif /* __GETENVB_H__ */

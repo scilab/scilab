@@ -123,7 +123,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2,3];
 norm(A,1)
 norm(A,'inf')
@@ -132,7 +132,7 @@ max(svd(A))-norm(A)
 
 A=sparse([1 0 0 33 -1])
 norm(A)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

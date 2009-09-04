@@ -764,11 +764,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">getsystemmetrics('SM_MOUSEPRESENT')
+    <programlisting role="example"><![CDATA[ 
+getsystemmetrics('SM_MOUSEPRESENT')
 getsystemmetrics('SM_SLOWMACHINE')
 getsystemmetrics('SM_REMOTESESSION');
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

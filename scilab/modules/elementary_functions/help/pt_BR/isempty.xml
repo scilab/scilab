@@ -66,12 +66,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=1
 isempty(a(2:$))
 isempty(find(rand(1:10)==5))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

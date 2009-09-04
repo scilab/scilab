@@ -12,15 +12,15 @@
     <para>
     Mot-clé utilisé dans une structure <literal>select ... case</literal>, à utiliser de la façon suivante :
   </para>
-    <programlisting><![CDATA[
- select expr,
-   case expr1 then instructions1,
-   case expr2 then instructions2,
-   ...
-   case exprn then instructions,
-   [else instructions],
- end
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+select expr,
+  case expr1 then instructions1,
+  case expr2 then instructions2,
+  ...
+  case exprn then instructions,
+  [else instructions],
+end
+ ]]></programlisting>
     <para>
     Notes :
   </para>
@@ -40,7 +40,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 while %t do
   n=round(10*rand(1,1))
   select n
@@ -52,7 +52,6 @@ while %t do
     break
   end
 end
-  
  ]]></programlisting>
   </refsection>
   <refsection>

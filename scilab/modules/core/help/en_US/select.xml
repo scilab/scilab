@@ -9,17 +9,15 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
-
- select expr,
-   case expr1 then instructions1,
-   case expr2 then instructions2,
-   ...
-   case exprn then instructionsn,
-   [else instructions],
- end
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+select expr,
+  case expr1 then instructions1,
+  case expr2 then instructions2,
+  ...
+  case exprn then instructionsn,
+  [else instructions],
+end
+ ]]></programlisting>
     <para>
   </para>
     <para>
@@ -40,8 +38,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 while %t do
   n=round(10*rand(1,1))
   select n
@@ -53,9 +50,7 @@ while %t do
     break
   end
 end
-  
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

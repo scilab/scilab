@@ -72,8 +72,8 @@
 
     <para>TODO: insert an example in the Scilab language</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_mysizedouble(char * fname)
 {
@@ -82,15 +82,15 @@ int sci_mysizedouble(char * fname)
   int m_out_columns_row, n_out_columns_col, l_out_columns_pos;
   int m_nop,             n_nop,             l_nop;
   
-  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_in_row, &amp;n_in_col, &amp;l_in_pos);
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m_in_row, &n_in_col, &l_in_pos);
 
   m_out_lines_row   = 1; n_out_lines_col   = 1; // We create a scalar
   m_out_columns_row = 1; n_out_columns_col = 1; // We create a scalar
   m_nop             = 1; n_nop             = 1; // We create a scalar
 
-  CreateVar(2, MATRIX_OF_INTEGER_DATATYPE, &amp;m_out_lines_row,   &amp;n_out_lines_col,   &amp;l_out_lines_pos);
-  CreateVar(3, MATRIX_OF_INTEGER_DATATYPE, &amp;m_nop,             &amp;n_nop,             &amp;l_nop);
-  CreateVar(4, MATRIX_OF_INTEGER_DATATYPE, &amp;m_out_columns_row, &amp;n_out_columns_col, &amp;l_out_columns_pos);
+  CreateVar(2, MATRIX_OF_INTEGER_DATATYPE, &m_out_lines_row,   &n_out_lines_col,   &l_out_lines_pos);
+  CreateVar(3, MATRIX_OF_INTEGER_DATATYPE, &m_nop,             &n_nop,             &l_nop);
+  CreateVar(4, MATRIX_OF_INTEGER_DATATYPE, &m_out_columns_row, &n_out_columns_col, &l_out_columns_pos);
 
   *istk(l_out_lines_pos)   = m_in_row; // the out_lines_pos parameter handles the number of lines of the matrix sent as argument
   *istk(l_nop)             = 1; // store a mere value, but will neither be used nor returned to Scilab
@@ -101,7 +101,7 @@ int sci_mysizedouble(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

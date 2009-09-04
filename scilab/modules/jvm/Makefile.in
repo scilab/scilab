@@ -275,6 +275,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -427,7 +428,8 @@ includes/addToLibrarypath.h \
 includes/catchIfJavaException.h \
 includes/getScilabObject.h \
 includes/loadBackGroundClassPath.h \
-includes/loadOnUseClassPath.h 
+includes/loadOnUseClassPath.h \
+includes/dynlib_jvm.h
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \

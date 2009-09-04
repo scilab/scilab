@@ -12,16 +12,19 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-void CallJxgetmouse(void);
 
-void CallJxgetmouseWithOptions(int withMotion, int withRelease);
+#include "dynlib_gui.h"
 
-int getJxgetmouseMouseButtonNumber(void);
+GUI_IMPEXP void CallJxgetmouse(void);
 
-int getJxgetmouseWindowsID(void);
+GUI_IMPEXP void CallJxgetmouseWithOptions(int withMotion, int withRelease);
 
-double getJxgetmouseXCoordinate(void);
+GUI_IMPEXP int getJxgetmouseMouseButtonNumber(void);
 
-double getJxgetmouseYCoordinate(void);
+GUI_IMPEXP int getJxgetmouseWindowsID(void);
+
+GUI_IMPEXP double getJxgetmouseXCoordinate(void);
+
+GUI_IMPEXP double getJxgetmouseYCoordinate(void);
 #endif
 

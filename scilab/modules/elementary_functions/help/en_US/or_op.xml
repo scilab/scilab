@@ -46,10 +46,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 [%t %t %f] | [%f %t %t]
 [%t %t %f] | %f
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -80,7 +80,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example 1 :
 // '1010110' : is the binary representation of 86 
 // '1011011' : is the binary representation of 91   
@@ -89,11 +89,10 @@
 x=86; y=91
 z=bitand(x,y)
 
-
 // example 2 :
 x=[12,45],y=[25,49]
 z=bitand(x,y)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -34,13 +34,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 [1+%i, 2]'
 [1+%i, 2].'
 x='Isto é um string'
 'Ele disse: ''Bom'''
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

@@ -25,7 +25,7 @@
 /******************************************
  * SCILAB function : pvm_tasks, fin = 8
  ******************************************/
-int intspvm_tasks (char *fname,unsigned long fname_len)
+int sci_pvm_tasks (char *fname,unsigned long fname_len)
 {
   int un=1,m1,n1,l1,where=0; 
   char  **pname;

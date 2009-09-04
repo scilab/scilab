@@ -25,9 +25,9 @@
     Sa séquence d'appel doit être de la forme : <literal>[f,g,ind]=costfunc(x,ind)</literal> et 
     <literal>optim</literal> (primitive permettant de résoudre des problèmes d'optimisation) est invoquée ainsi :
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 optim(costfunc,...)
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     Ici <literal>costfunc</literal> (la fonction coût à minimiser avec <literal>optim</literal>)
     calcule <literal>f=f(x)</literal> et <literal>g=</literal> le gradient de <literal>f</literal> en <literal>x</literal> (<literal>ind</literal> est un entier dont l'usage est précisé dans l'aide de <literal>optim</literal>).
@@ -37,16 +37,16 @@ optim(costfunc,...)
     peuvent être définies dans son environnement. Elles peuvent aussi être stockées dans une liste :
     par exemple
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 [f,g,ind]=costfunc(x,ind,a,b,c) 
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     est valide pour <literal>optim</literal> si <literal>costfunc</literal> est remplacé par <literal>list(costfunc,a,b,c)</literal>. 
     La séquence d'appel à <literal>optim</literal> est donc maintenant :
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 optim(list(costfunc,a1,b1,c1),....
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
     Un "external" peut aussi être une routine Fortran ou C : cela peut permettre d'accélérer les calculs.
   </para>

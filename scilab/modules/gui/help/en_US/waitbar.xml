@@ -60,15 +60,15 @@ waitbar(x,mes,winId)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 winId=waitbar('This is an example');
 realtimeinit(0.3);
 for j=0:0.1:1,
-    realtime(3*j);
-    waitbar(j,winId);
+  realtime(3*j);
+  waitbar(j,winId);
 end
 winclose(winId);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
