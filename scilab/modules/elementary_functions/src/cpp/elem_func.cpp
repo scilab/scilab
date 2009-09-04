@@ -11,60 +11,87 @@
 */
 
 #include "elem_func.hxx"
+#include "configvariable.hxx"
+
+#define MODULE_NAME "elementary_functions"
 extern "C"
 {
 	#include "gw_elementary_functions.h"
+	#include "findfiles.h"
 }
 
 using namespace types;
 
 bool ElemFuncModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("abs", &sci_abs, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("acos", &sci_acos, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("asin", &sci_asin, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("atan", &sci_atan, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("ceil", &sci_ceil, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("clean", &sci_clean, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("conj", &sci_conj, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("cos", &sci_cos, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("cumprod", &sci_cumprod, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("cumsum", &sci_cumsum, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("diag", &sci_diag, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("dsearch", &sci_dsearch, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("exp", &sci_exp, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("expm", &sci_expm, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("eye", &sci_eye, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("floor", &sci_floor, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("frexp", &sci_frexp, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("gsort", &sci_gsort, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("imag", &sci_imag, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("imult", &sci_imult, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("int", &sci_int, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("isreal", &sci_isreal, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("isequal", &sci_isequal, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("kron", &sci_kron, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("log", &sci_log, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("log1p", &sci_log1p, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("matrix", &sci_scimatrix, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("maxi", &sci_maxi, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("mini", &sci_mini, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("nearfloat", &sci_nearfloat, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("number_properties", &sci_number_properties, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("ones", &sci_ones, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("prod", &sci_prod, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("rand", &sci_rand, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("real", &sci_real, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("round", &sci_round, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("sign", &sci_sign, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("size", &sci_size, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("sort", &sci_sort, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("sum", &sci_sum, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("tan", &sci_tan, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("testmatrix", &sci_testmatrix, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("tril", &sci_tril, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(Function::createFunction("zeros", &sci_zeros, "elementary_function"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("abs", &sci_abs, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("acos", &sci_acos, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("asin", &sci_asin, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("atan", &sci_atan, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("ceil", &sci_ceil, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("clean", &sci_clean, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("conj", &sci_conj, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("cos", &sci_cos, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("cumprod", &sci_cumprod, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("cumsum", &sci_cumsum, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("diag", &sci_diag, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("dsearch", &sci_dsearch, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("exp", &sci_exp, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("expm", &sci_expm, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("eye", &sci_eye, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("floor", &sci_floor, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("frexp", &sci_frexp, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("gsort", &sci_gsort, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("imag", &sci_imag, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("imult", &sci_imult, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("int", &sci_int, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("isreal", &sci_isreal, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("isequal", &sci_isequal, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("kron", &sci_kron, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("log", &sci_log, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("log1p", &sci_log1p, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("matrix", &sci_scimatrix, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("maxi", &sci_maxi, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("mini", &sci_mini, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("nearfloat", &sci_nearfloat, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("number_properties", &sci_number_properties, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("ones", &sci_ones, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("prod", &sci_prod, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("rand", &sci_rand, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("real", &sci_real, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("round", &sci_round, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sign", &sci_sign, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("size", &sci_size, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sort", &sci_sort, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("sum", &sci_sum, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("tan", &sci_tan, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("testmatrix", &sci_testmatrix, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("tril", &sci_tril, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("zeros", &sci_zeros, MODULE_NAME));
+
+	//macros
+	string stPath = ConfigVariable::getInstance()->get("SCI");
+	stPath += MODULE_DIR;
+	stPath += MODULE_NAME;
+	stPath += MACRO_DIR;
+	int iSize = 0;
+	char **pstPath = findfiles((char*)stPath.c_str(), SCI_EXT, &iSize);
+
+	if(pstPath)
+	{
+		for(int i = 0 ; i < iSize ; i++)
+		{
+			string stFullPath = stPath + string(pstPath[i]);
+			string stTemp = pstPath[i];
+			size_t iPos = stTemp.find(".sci");
+			if(iPos < stTemp.size())
+			{
+				string stFullName = stTemp.substr(0,iPos);
+				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath));
+			}
+		}
+	}
 	return true;
 }
 

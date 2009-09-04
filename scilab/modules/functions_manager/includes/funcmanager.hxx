@@ -33,6 +33,9 @@
 
 using namespace std;
 
+#define MODULE_DIR  "/modules/"
+#define MACRO_DIR		"/macros/"
+#define SCI_EXT			"*.sci"
 
 //Gateway function pointer
 typedef bool (*GW_MOD)(void); 

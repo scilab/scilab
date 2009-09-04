@@ -10,8 +10,10 @@
  *
  */
 /*-----------------------------------------------------------------------------------*/ 
+#include <stdlib.h>
 #include <string.h>
 #include "gw_elementary_functions.h"
+#include "elementary_functions.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "api_scilab.h"
@@ -32,6 +34,8 @@ int sci_sort(char *fname, int* _piKey)
 	double* pdblRealRet = NULL;
 	double* pdblImgRet	= NULL;
 
+	int* piInd					= NULL;
+
 	int iMode						= 0;
 
 	CheckRhs(1,2);
@@ -43,7 +47,7 @@ int sci_sort(char *fname, int* _piKey)
 		return 1;
 	}
 
-	if(getVarType(piAddr) != sci_matrix)
+	if(getVarType(piAddr) != sci_matrix || isVarComplex(piAddr))
 	{
 		OverLoad(1);
 		return 0;
@@ -82,14 +86,14 @@ int sci_sort(char *fname, int* _piKey)
 	{
 		if(Lhs == 2)
 		{
-			iRet = allocMatrixOfDouble(Rhs + 2, 1, 1, &pdblRealRet, _piKey);
+			iRet = allocMatrixOfDouble(Rhs + 2, 0, 0, &pdblRealRet, _piKey);
 			if(iRet)
 			{
 				return 1;
 			}
 		}
 
-		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblRealRet, _piKey);
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet, _piKey);
 		if(iRet)
 		{
 			return 1;
@@ -99,15 +103,53 @@ int sci_sort(char *fname, int* _piKey)
 		PutLhsVar();
 	}
 
-	if(isVarComplex(piAddr))
+	iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+	if(iRet)
 	{
-		iRet = getComplexMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal, &pdblImg);
-	}
-	else
-	{
-		iRet = getMatrixOfDouble(piAddr, &iRows, &iCols, &pdblReal);
+		return 1;
 	}
 
+	iRet = allocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblRealRet, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	memcpy(pdblRealRet, pdblReal, sizeof(double) * iRows * iCols);
+
+	piInd = malloc(sizeof(int) * iRows * iCols);
+	switch(iMode)
+	{
+	case BY_ALL :
+		{
+			int iSize = iRows * iCols;
+			C2F(dsort)(pdblRealRet, &iSize, piInd);
+		}
+		break;
+	case BY_ROWS :
+		{
+			int i;
+			int iSize = iRows * iCols;
+			for(i = 0 ; i < iCols ; i++)
+			{
+				C2F(dsort)(&pdblRealRet[iRows * i], &iRows, &piInd[iRows * i]);
+			}
+		}
+		break;
+	}
+
+	if(Lhs == 2)
+	{
+		iRet = createMatrixOfDoubleFromInteger(Rhs + 2, iRows, iCols, piInd, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+		LhsVar(2) = Rhs + 2;
+	}
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*-----------------------------------------------------------------------------------*/

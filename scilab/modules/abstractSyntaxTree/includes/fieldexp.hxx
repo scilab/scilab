@@ -55,9 +55,10 @@ namespace ast
      ** Delete name and init (see constructor). */
     virtual ~FieldExp()
     {
-      if (_head)
-	delete _head;
-      delete _tail;
+			if (_head)
+				delete _head;
+			if(_tail)
+				delete _tail;
     }
     /** \}*/
 

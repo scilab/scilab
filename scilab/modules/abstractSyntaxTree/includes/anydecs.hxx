@@ -60,12 +60,14 @@ namespace ast
      **
      ** Free list and its content. */
     ~AnyDecs ()
-    {
-      for (typename Ds::iterator i = _decs->begin(); i != _decs->end(); ++i)
-	delete *i;
-      delete _decs;
-    }
-    /** \} */
+		{
+			for (typename Ds::iterator i = _decs->begin(); i != _decs->end(); ++i)
+			{
+				delete *i;
+			}
+			delete _decs;
+		}
+		/** \} */
 
 
     /** \name Visitors entry point.

@@ -68,6 +68,12 @@ namespace symbol
 		InternalType*	put (Symbol key, InternalType &value)
 		{
 			InternalType *pOld = (*_scope)[key];
+
+			if(pOld == &value)
+			{
+				return NULL;
+			}
+
 			if(pOld != NULL)
 			{
 				pOld->DecreaseRef();

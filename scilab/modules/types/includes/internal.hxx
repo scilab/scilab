@@ -38,6 +38,7 @@ namespace types
 			RealInternal,
 			RealFunction,
 			RealMacro,
+			RealMacroFile,
 			RealPoly,
 			RealSinglePoly
     };
@@ -79,7 +80,11 @@ namespace types
     bool isMacro(void) { return (getType() == RealMacro); }
     virtual Macro* getAsMacro(void) { return NULL; }
 
-    /* ImplicitList */
+    /* MacroFile */
+		bool isMacroFile(void) { return (getType() == RealMacroFile); }
+    virtual MacroFile* getAsMacroFile(void) { return NULL; }
+
+		/* ImplicitList */
 		bool isImplicitList(void) { return (getType() == RealImplicitList); }
 		virtual ImplicitList* getAsImplicitList(void) { return NULL; }
 

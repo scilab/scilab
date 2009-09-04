@@ -292,6 +292,7 @@ bool FuncManager::LoadFuncByModule(void)
 	map<string, GW_MOD>::const_iterator itMod;
 	for(itMod = m_ActivModuleMap.begin() ; itMod != m_ActivModuleMap.end() ; itMod++)
 	{
+		//call Load function
 		itMod->second();
 	}
 	return bRet;

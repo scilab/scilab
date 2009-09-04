@@ -53,7 +53,7 @@ namespace ast
      ** Delete expression, see constructor. */
     virtual ~TransposeExp ()
     {
-//      delete _exp;
+      delete _exp;
     }
     /** \} */
 

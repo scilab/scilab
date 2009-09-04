@@ -63,9 +63,11 @@ namespace types
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
 
-    /* Function */
+    /* Macro */
     bool isMacro(void) { return (getType() == RealMacro); }
 
+    /* MacroFile */
+		bool isMacroFile(void) { return (getType() == RealMacroFile); }
 
 		/*commun functions*/
 		int cols_get();

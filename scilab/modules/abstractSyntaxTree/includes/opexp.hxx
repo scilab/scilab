@@ -138,8 +138,8 @@ namespace ast
      ** Delete left and right, see constructor. */
     virtual ~OpExp ()
     {
-//	    delete _left;
-//	    delete _right;
+			delete _left;
+			delete _right;
     }
     /** \} */
 

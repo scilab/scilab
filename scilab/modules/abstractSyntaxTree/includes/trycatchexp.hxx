@@ -47,8 +47,8 @@ namespace ast
 
     virtual ~TryCatchExp ()
     {
-//      delete _tryme;
-//      delete _catchme;
+      delete _tryme;
+      delete _catchme;
     }
 
     /** \name Visitors entry point.
