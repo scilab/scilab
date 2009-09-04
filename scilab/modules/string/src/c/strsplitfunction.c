@@ -10,6 +10,7 @@
 *
 */
 /*----------------------------------------------------------------------------*/
+#include <string.h>
 #include "strsplitfunction.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
@@ -23,23 +24,21 @@ wchar_t **strsplitfunction(wchar_t * wcstringToSplit, double *indices, int sizeI
 	{
 		int lengthToCopy = 0;
 		int lenString = (int)wcslen(wcstringToSplit);
-		int i = 0;
-		int j = 0;
+		int i = 0, j = 0;
+		wchar_t* wcStrDest = NULL;
+		wchar_t* wcStrSrc = NULL;
 
-		/* Check 2nd input matrix position */
 		for (i = 0; i < sizeIndices; i++)
 		{
+			/* Check 2nd input matrix position */
 			if ( ((int)indices[i] <= 0) || ((int)indices[i] >= lenString) )
 			{
 				*ierr = STRSPLIT_INCORRECT_VALUE_ERROR;
 				return NULL;
 			}
-		}
 
-		/* check 2nd input order */
-		if (sizeIndices > 1)
-		{
-			for (i = 0; i < sizeIndices; i++)
+			/* check 2nd input order */
+			if (sizeIndices > 1)
 			{
 				if ( i < (sizeIndices - 1) )
 				{
@@ -73,20 +72,25 @@ wchar_t **strsplitfunction(wchar_t * wcstringToSplit, double *indices, int sizeI
 			}
 
 			splitted[i] = (wchar_t*)MALLOC(sizeof(wchar_t)*(lengthToCopy + 1));
+			wcStrDest = splitted[i];
+
 			if (splitted[i] == NULL)
 			{
 				freeArrayOfWideString(splitted, sizeIndices);
 				*ierr = STRSPLIT_MEMORY_ALLOCATION_ERROR;
 				return NULL;
 			}
-
-			wcsncpy(splitted[i], &wcstringToSplit[j], lengthToCopy);
+			wcStrSrc = &wcstringToSplit[j];
+			memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
+			wcStrDest[lengthToCopy] = 0;
 
 			j = (int)indices[i];
 		}
 
 		lengthToCopy = lenString - (int)indices[sizeIndices - 1];
 		splitted[sizeIndices] = (wchar_t*)MALLOC(sizeof(wchar_t)*(lengthToCopy + 1));
+		wcStrDest = splitted[sizeIndices];
+
 		if (splitted[sizeIndices] == NULL)
 		{
 			freeArrayOfWideString(splitted, sizeIndices + 1);
@@ -94,7 +98,9 @@ wchar_t **strsplitfunction(wchar_t * wcstringToSplit, double *indices, int sizeI
 			return NULL;
 		}
 
-		wcsncpy(splitted[sizeIndices], &wcstringToSplit[j], lengthToCopy);
+		wcStrSrc = &wcstringToSplit[j];
+		memcpy(wcStrDest, wcStrSrc, lengthToCopy * sizeof(wchar_t));
+		wcStrDest[lengthToCopy] = 0;
 	}
 	return splitted;
 }
