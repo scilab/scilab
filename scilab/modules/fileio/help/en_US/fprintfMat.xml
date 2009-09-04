@@ -64,14 +64,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 n=50;
 a=rand(n,n,'u');
 fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
 a1=fscanfMat(TMPDIR+'/Mat');
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

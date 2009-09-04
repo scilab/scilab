@@ -40,7 +40,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[filesep()]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+filesep()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
