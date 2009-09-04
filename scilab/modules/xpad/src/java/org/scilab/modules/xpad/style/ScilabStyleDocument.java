@@ -344,32 +344,322 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
      */
 
 
-    /**
+    
+     /**
      * FIND AND REPLACE START
-     */
-    public Vector<Integer> findWord(String word) {
-
-	String fullText = getFullDocument();
+     */   
+    public ArrayList<Integer[]> findWord(String word, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
+	String fullText = null ; 
 	int lastIndex = 0;
 	int wordSize = word.length();
+	ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
+	fullText = getFullDocument();
+	/*
+	if (onlySelectedLines){
+		fullText = getseletecDocumentLines(currentPosStart, currentPosEnd)
+	}else{
+		fullText = getFullDocument();
+	}*/
 
-	Vector<Integer> offsetList = new Vector<Integer>();
 
+
+
+	System.out.println(word);
+	
 	//If we don't give any word to find
 	if ( (word == null) || (word.equals("")) ) {
 	    System.out.println("Word is null or empty");;
 	} else {
-	    //We find matching words
-	    while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
-		int endIndex = lastIndex + wordSize;
-
-		offsetList.add(lastIndex);		    	
-
-		lastIndex = endIndex;
-	    }
+		
+		// prepare word for each kind of search
+		if (wholeWord){
+			word = "\\b" + word + "\\b" ;
+		}
+		if (!caseSensitive){
+			if (useRegexp || wholeWord ){
+			 word = "(?i)" + word ;
+			}
+			else{
+				fullText = fullText.toLowerCase();
+				word = word.toLowerCase();
+			}
+		}		
+		
+		
+	    //We find matching words ...
+			// ... for regexp or whole words
+		if (useRegexp || wholeWord){
+        	System.out.println ("regexp");
+            Pattern pattern = Pattern.compile(word);
+            Matcher matcher = pattern.matcher(fullText);
+            
+            while (matcher.find()) {
+            	System.out.println ("regexp found ");
+            	offsetList.add(new Integer[] {matcher.start() ,matcher.end()});
+            }
+         // ... for other case
+		}else {
+		    while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
+				int endIndex = lastIndex + wordSize;
+				offsetList.add(new Integer[] {lastIndex,endIndex} );
+				lastIndex = endIndex;
+		    }
+		}
 	}
 	return offsetList;
     }
+    /**
+     * Get the next expression matching the search after the caret current position
+     * @param word , the word or regexp to find
+     * @param currentPos, the position where the search start
+     * @param caseSensitive , whether the search is sensitive or not to case
+     * @param wholeWord  , whether the search will only look to separate word or not
+     * @param useRegexp  , whether the string to search should be interpreted as a regexp or not
+     */
+    public int[] findNextWord (String word ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
+    	String fullText = getFullDocument();
+    	int index = -1 ;
+    	int end = -1 ;
+    	
+
+    	
+    	if ( (word == null) || (word.equals("")) ) {
+    		return new int [] {-1 , -1};
+    	} else {
+    		
+    		// prepare word for each kind of search
+    		if (wholeWord){
+    			word = "\\b" + word + "\\b" ;
+    		}
+    		if (!caseSensitive){
+    			if (useRegexp || wholeWord ){
+    			 word = "(?i)" + word ;
+    			}
+    			else{
+    				fullText = fullText.toLowerCase();
+    				word = word.toLowerCase();
+    			}
+    		}		
+    		
+    	
+    	    //We find matching words ...
+			// ... for regexp or whole words
+		if (useRegexp || wholeWord){
+        	System.out.println ("regexp");
+            Pattern pattern = Pattern.compile(word);
+            Matcher matcher = pattern.matcher(fullText.substring(currentPos));
+            
+             if (matcher.find()) {
+            	 index = matcher.start()+currentPos;
+            	 end = matcher.end()+currentPos;
+             }else{
+            	 index = -1 ;
+             }
+            
+         // ... for other case
+		}else {
+        	 index = fullText.indexOf(word,currentPos);
+        	 end = index + word.length();
+		    }
+		}
+    	
+    	
+
+    	
+    	if ( index == -1 )
+    		return new int [] {-1 , -1};
+    	else
+    		return new int [] {index , end } ;
+    	
+
+    }
+    
+    public int[] findPreviousWord (String word , int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
+      	String fullText = getFullDocument();
+    	int index = -1 ;
+    	int end = -1 ;
+    	
+
+    	if ( (word != null) && (!word.equals(""))  ) {
+    		
+    		// prepare word for each kind of search
+    		if (wholeWord){
+    			word = "\\b" + word + "\\b" ;
+    		}
+    		if (!caseSensitive){
+    			if (useRegexp || wholeWord ){
+    			 word = "(?i)" + word ;
+    			}
+    			else{
+    				fullText = fullText.toLowerCase();
+    				word = word.toLowerCase();
+    			}
+    		}		
+    		
+    	
+    	    //We find matching words ...
+			// ... for regexp or whole words
+		if (useRegexp || wholeWord){
+        	System.out.println ("regexp");
+            Pattern pattern = Pattern.compile(word);
+            Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
+            
+             boolean found = false ;
+             while (matcher.find()) {
+            	 index = matcher.start();
+            	 end = matcher.end();
+            	 found = true ;
+             }
+             
+             if(!found){
+            	 index = -1 ;
+            	 end = -1;
+             }
+            
+         // ... for other case
+		}else {
+    	    index = fullText.lastIndexOf(word,currentPos-1);
+    	    end = index + word.length();
+		    }
+		}
+    	
+
+    		/*if nothing index and end will both be equal to -1*/
+    		return new int [] {index , end } ;
+    	
+
+    }
+    /**
+     * REPLACE
+     * 
+     */
+    public ArrayList<Integer[]> replaceWord(String oldWord, String newWord, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
+    	String fullText = null ; 
+    	int lastIndex = 0;
+    	int oldWordSize = oldWord.length();
+    	ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
+    	fullText = getFullDocument();
+    	/*
+    	if (onlySelectedLines){
+    		fullText = getseletecDocumentLines(currentPosStart, currentPosEnd)
+    	}else{
+    		fullText = getFullDocument();
+    	}*/
+
+
+
+
+    	//If we don't give any word to find
+    	if ( (oldWord == null) || (oldWord.equals("")) ) {
+    	    System.out.println("Word is null or empty");;
+    	} else {
+    		
+    		// prepare word for each kind of search
+    		if (wholeWord){
+    			oldWord = "\\b" + oldWord + "\\b" ;
+    		}
+    		if (!caseSensitive){
+    			if (useRegexp || wholeWord ){
+    			 oldWord = "(?i)" + oldWord ;
+    			}
+    			else{
+    				fullText = fullText.toLowerCase();
+    				oldWord = oldWord.toLowerCase();
+    			}
+    		}		
+    		
+    		
+    	    //We find matching words ...
+    			// ... for regexp or whole words
+    		if (useRegexp || wholeWord){
+            	System.out.println ("regexp");
+                Pattern pattern = Pattern.compile(oldWord);
+                Matcher matcher = pattern.matcher(fullText);
+                
+                 matcher.replaceAll(newWord);
+                
+             // ... for other case
+    		}else {
+    			
+    		    while ((lastIndex = fullText.indexOf(oldWord, lastIndex)) != -1) {
+    				int endIndex = lastIndex + newWord.length();
+    				offsetList.add(new Integer[] {lastIndex,endIndex} );
+    				
+    				try{
+    					this.replace(lastIndex,  oldWordSize, newWord, null);
+    				}catch (BadLocationException ex){
+    					System.out.println("Bad location");
+    					ex.printStackTrace();
+    				}	
+    				lastIndex = endIndex;
+    		    }
+    			
+    		}
+    	}
+    	return offsetList;
+        }
+    
+    /******/
+    
+    public int[] replaceNextWord (String oldWord,String newWord ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
+    	String fullText = getFullDocument();
+    	int index = -1 ;
+    	int end = -1 ;
+    	
+
+    	
+    	if ( (oldWord == null) || (oldWord.equals("")) ) {
+    		return new int [] {-1 , -1};
+    	} else {
+    		
+    		// prepare word for each kind of search
+    		if (wholeWord){
+    			oldWord = "\\b" + oldWord + "\\b" ;
+    		}
+    		if (!caseSensitive){
+    			if (useRegexp || wholeWord ){
+    				oldWord = "(?i)" + oldWord ;
+    			}
+    			else{
+    				fullText = fullText.toLowerCase();
+    				oldWord = oldWord.toLowerCase();
+    			}
+    		}		
+    		
+	    	
+	    	    //We find matching words ...
+				// ... for regexp or whole words
+			if (useRegexp || wholeWord){
+	        	System.out.println ("regexp");
+	            Pattern pattern = Pattern.compile(oldWord);
+	            Matcher matcher = pattern.matcher(fullText.substring(currentPos));
+	            
+	             if (matcher.find()) {
+	            	 index = matcher.start()+currentPos;
+	            	 end = matcher.end()+currentPos;
+	             }else{
+	            	 index = -1 ;
+	             }
+	            
+	         // ... for other case
+			}else {
+	        	 index = fullText.indexOf(oldWord,currentPos);
+	        	 end = index + oldWord.length();
+			}
+		}
+    	
+    	
+
+    	
+    	if ( index == -1 )
+    		return new int [] {-1 , -1};
+    	else
+    		return new int [] {index , end } ;
+    	
+
+    }
+    
+    
     /**
      * FIND AND REPLACE END
      */
@@ -688,7 +978,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	    try {
 		//Get the document line by line
-		textLine = this.getText(startOffset, endOffset - startOffset).toLowerCase();
+		textLine = this.getText(startOffset, endOffset - startOffset);
 	    } catch (BadLocationException ex) {
 		ex.printStackTrace();
 	    }
@@ -697,6 +987,30 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	return text;
     }
+    
+    public String getseletecDocumentLines(int start , int end ) {
+    	int startOffset;
+    	int endOffset;
+
+    	String text = "";
+
+    	startOffset = this.getParagraphElement(start).getStartOffset();
+    	endOffset = this.getParagraphElement(end).getEndOffset();
+    	//We read the document and put the document into the String text
+
+    	    try {
+    		//Get the document line by line
+    		text = this.getText(startOffset, endOffset - startOffset);
+    	    } catch (BadLocationException ex) {
+    		ex.printStackTrace();
+    	    }
+
+    	
+    	return text;
+        }
+    
+    
+    
 
     public Hashtable<String, String[]> getScilabKeywords() {
 	//Get all Scilab keywords with SWIG
