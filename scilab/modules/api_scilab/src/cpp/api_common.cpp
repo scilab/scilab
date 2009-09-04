@@ -490,6 +490,28 @@ int getDimFromVar(int* _piAddress, int* _piVal)
 				*_piVal = puiData[0];
 			}
 			break;
+		case SCI_INT64 :
+			{
+				long long* pllData	= NULL;
+				iRet = getMatrixOfInteger64(_piAddress, &iRows, &iCols, &pllData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = (int)pllData[0];
+			}
+			break;
+		case SCI_UINT64 :
+			{
+				unsigned long long* pullData		= NULL;
+				iRet = getMatrixOfUnsignedInteger64(_piAddress, &iRows, &iCols, &pullData);
+				if(iRet)
+				{
+					return 1;
+				}
+				*_piVal = (int)pullData[0];
+			}
+			break;
 		}
 	}
 	else

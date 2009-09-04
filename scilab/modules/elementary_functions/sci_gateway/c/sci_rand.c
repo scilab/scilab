@@ -13,250 +13,315 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 
-#define Ran1		C2F(com).ran[0]
-#define Ran2		C2F(com).ran[1]
+#define Ran1		siRandSave		//old C2F(com).ran[0]
+#define Ran2		siRandType		//old C2F(com).ran[1]
 
-//#define _NEW_TONIO_
+const char g_pstConfigInfo[] = {"info"};
+const char g_pstConfigSeed[] = {"seed"};
 
-double GetNextRandValue();
+const char g_pstTypeUniform[] = {"uniform"};
+const char g_pstTypeNormal[] = {"normal"};
+
+int setRandType(char _cType);
+double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 /*--------------------------------------------------------------------------*/
-extern int C2F(intrand) (char *fname,int *id, unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_rand) (char *fname,unsigned long fname_len)
+int sci_rand(char *fname, int* _piKey)
 {
-	static int id[6];
-#ifdef _NEW_TONIO_
-	int iRows		= 0;
-	int iCols		= 0;
-	int iRealData	= 0;
-	int iImgData	= 0;
-	int iIndex		= 0;
-	int iMode		= 0;
-	int iRan2Save	= 0;
-	int iRan2Change	= 0;
-	int iComplex	= 0;
-	double dblVal			= 0;
-	double *pReturnData		= NULL;
-	double *pdblData		= NULL;
-	CheckLhs(1,1);
+	//save state of rand function
+	static int siRandType = 0;
+	static int siRandSave = 0;
+	static int iForceInit	= 0;
+	int iRet							= 0;
+	int iRowsOut					= 0;
+	int iColsOut					= 0;
 
-	Rhs = Max(0, Rhs);
-	if(Rhs >= 3)
+	int iRandSave					= -1;
+	int* piAddr						= NULL;
+
+	if(Rhs > 3)
 	{
-		//trouver un moyen d'appeller %hm_rand :(
+		//TODO YaSp : %hm_rand
 		return 0;
 	}
 
 	if(Rhs == 0)
-	{
-		iRows = 1;
-		iCols = 1;
-		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnData);
-		//pReturnData = (double*)malloc(sizeof(double) * iRows * iCols);
+	{//rand() or rand
+		double *pdblReal = NULL;
+		iRet = allocMatrixOfDouble(Rhs + 1, 1, 1, &pdblReal, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
 
-		pReturnData[0] = GetNextRandValue();
-
-		//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&iRows, &iCols, &pReturnData);
+		pdblReal[0] = getNextRandValue(siRandType, &siRandSave, 0);
 		LhsVar(1) = Rhs + 1;
 		PutLhsVar();
-		//free(pReturnData);
 		return 0;
 	}
 
-	if(GetType(1) == sci_strings)
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
+	if(iRet)
 	{
-		char **szRealData	= 0;
-		GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
-		if(strcmp(*szRealData, "seed") == 0)
+		return 1;
+	}
+
+	switch(getVarType(piAddr))
+	{
+	case sci_matrix : // generation functions
 		{
-			CheckRhs(1,2);
-			if(Rhs == 1)
+			int *piAddrLast	= NULL;
+
+			iRet = getVarAddressFromPosition(Rhs, &piAddrLast, _piKey);
+			if(iRet)
 			{
-				iRows = 1;
-				iCols = 1;
-				iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pReturnData);
-				//pReturnData = (double*)malloc(sizeof(double) * iRows * iCols);
-				pReturnData[0] = Ran1;
-				//CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&iRows, &iCols, &pReturnData);
-				LhsVar(1) = Rhs + 1;
-				PutLhsVar();
-				//free(pReturnData);
+				return 1;
 			}
-			else
+
+			if(getVarType(piAddrLast) == sci_strings)
 			{
-				CheckRhs(2,2);
-				if(GetType(2) != sci_matrix)
+				int iRowsLast					= 0;
+				int iColsLast					= 0;
+				int iLenLast					= 0;
+				char* pstDataLast[1];
+
+				iRet = getVarDimension(piAddrLast, &iRowsLast, &iColsLast);
+				if(iRet || iRowsLast != 1 || iColsLast != 1)
 				{
-					Error(53);
+					return 1;
+				}
+
+				iRet = getMatrixOfString(piAddrLast, &iRowsLast, &iColsLast, &iLenLast, NULL);
+				if(iRet)
+				{
+					return 1;
+				}
+
+				pstDataLast[0] = malloc(sizeof(char) * (iLenLast + 1));//+1 for null termination
+				iRet = getMatrixOfString(piAddrLast, &iRowsLast, &iColsLast, &iLenLast, (char**)pstDataLast);
+				if(iRet)
+				{
+					return 1;
+				}
+				//memorize that the law has been changed
+				iRandSave = siRandType;
+				//change the law temporarily
+				siRandType = setRandType(pstDataLast[0][0]);
+			}
+
+			if(Rhs == 1 || (Rhs == 2 && iRandSave != -1)) //rand(A) or rand(A, "law")
+			{
+				if(isVarMatrixType(piAddr) == 0)
+				{
+					OverLoad(1);
 					return 0;
 				}
 
-				GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-				pdblData = stk(iRealData);
-				Ran1 = max(0, (int)pdblData[0]);
-				//Attention au repercution de ca
-				//siInit = TRUE;
-				Top--;
-				C2F(objvide)(fname, &Top, fname_len);
+				iRet = getVarDimension(piAddr, &iRowsOut, &iColsOut);
+				if(iRet)
+				{
+					return 1;
+				}
 			}
-		}
-		else if(strcmp(*szRealData, "info") == 0)
-		{
-			//char **sz;
-			char *sz;
-			int iLen = 20;
-
-			CheckRhs(1,1);
-			iRows = 1;
-			iCols = 1;
-
-//			sz = (char**)malloc(sizeof(char**)*iRows*iCols);
-//			sz[0] = (char*)malloc(sizeof(char*)*20);
-
-			if(Ran2 == 0)
+			else //rand(m,n) or rand(m,n,"law")
 			{
-				iLen = strlen("uniform");
-				iAllocMatricOfString(Rhs + 1, iRows, iCols, &iLen, &sz);
-				memcpy(sz, "uniform", iLen);
+				int* piAddr2	= NULL;
+				iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+				if(iRet)
+				{
+					return 1;
+				}
+
+				iRet = getDimFromVar(piAddr, &iRowsOut);
+				if(iRet)
+				{
+					return 1;
+				}
+
+				iRet = getDimFromVar(piAddr2, &iColsOut);
+				if(iRet)
+				{
+					return 1;
+				}
 			}
-			else if(Ran2 == 1)
+
+			if(iRowsOut == 0 || iColsOut == 0)
 			{
-				iLen = strlen("normal");
-				iAllocMatricOfString(Rhs + 1, iRows, iCols, &iLen, &sz);
-				memcpy(sz, "normal", iLen);
+				double* pdblReal = NULL;
+				iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblReal, _piKey);
+				if(iRet)
+				{
+					return 1;
+				}
 			}
-			else
+			else //generate
 			{
-				C2F(objvide)(fname, &Top, fname_len);
+				int i;
+				double* pdblReal	= NULL;
+				double* pdblImg		= NULL;
+
+				if(Rhs == 1 && isVarComplex(piAddr))
+				{
+					iRet = allocComplexMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblReal, &pdblImg, _piKey);
+				}
+				else
+				{
+					iRet = allocMatrixOfDouble(Rhs + 1, iRowsOut, iColsOut, &pdblReal, _piKey);
+				}
+
+				if(iRet)
+				{
+					return 1;
+				}
+
+				for(i = 0 ; i < iRowsOut * iColsOut ; i++)
+				{
+					pdblReal[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+					iForceInit = 0;
+				}
+
+				if(pdblImg)
+				{
+					for(i = 0 ; i < iRowsOut * iColsOut ; i++)
+					{
+						pdblImg[i] = getNextRandValue(siRandType, &siRandSave, 0);
+					}
+				}
+				if(iRandSave != -1)
+				{//restore old law
+					siRandType = iRandSave;
+				}
+			}
+		}
+		break;
+	case sci_strings : //seed, info : setup or info functions
+		{
+			int iRows						= 0;
+			int iCols						= 0;
+			int iLen						= 0;
+			char* pstData[1];
+
+			iRet = getVarDimension(piAddr, &iRows, &iCols);
+			if(iRet || iRows != 1 || iCols != 1)
+			{
+				return 1;
 			}
 
-			//iRows = 1;
-			//iCols = 1;
-			//CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, sz);
-			LhsVar(1) = Rhs + 1;
-			PutLhsVar();
-			//free(sz[0]);
-			//free(sz);
+			iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			pstData[0] = malloc(sizeof(char) * (iLen + 1));//+1 for null termination
+			iRet = getMatrixOfString(piAddr, &iRows, &iCols, &iLen, (char**)pstData);
+			if(iRet)
+			{
+				return 1;
+			}
+
+			if(strcmp(pstData[0], g_pstConfigSeed) == 0) //seed
+			{
+				if(Rhs == 1) //get
+				{
+					iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &siRandSave, _piKey);
+					if(iRet)
+					{
+						return 1;
+					}
+				}
+				else if(Rhs == 2)//set
+				{
+					int iRows2				= 0;
+					int iCols2				= 0;
+					int* piAddr2			= NULL;
+					double* pdblReal2	= NULL;
+
+					iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+					if(iRet)
+					{
+						return 1;
+					}
+					
+					iRet = getVarDimension(piAddr2, &iRows2, &iCols2);
+					if(iRet || iRows2 != 1 || iCols2 != 1 || isVarComplex(piAddr2))
+					{
+						return 1;
+					}
+
+					iRet = getMatrixOfDouble(piAddr2, &iRows2, &iCols2, &pdblReal2);
+					if(iRet)
+					{
+						return 1;
+					}
+					
+					siRandSave = (int)Max(pdblReal2[0],0);
+					iForceInit = 1;
+				}
+				else
+				{
+					return 1;
+				}
+			}
+			else if(strcmp(pstData[0], g_pstConfigInfo) == 0) //info
+			{
+				char* pstData[1];
+				if(Rhs > 1)
+				{
+					//error
+					return 1;
+				}
+				
+				if(siRandType == 0)
+				{
+					pstData[0] = (char*)g_pstTypeUniform;
+				}
+				else
+				{
+					pstData[0] = (char*)g_pstTypeNormal;
+				}
+				
+				iRet = createMatrixOfString(Rhs + 1, 1, 1, pstData, _piKey);
+				if(iRet)
+				{
+					return 1;
+				}
+			}
+			else //uniform or normal or 'g' ( 'u', 'n', 'g' )
+			{
+				siRandType = setRandType(pstData[0][0]);
+			}
 		}
-		else
-		{
-			CheckRhs(1,1);
-			Ran2 = 0;
-			if(szRealData[0][0] == 'g' || szRealData[0][0] == 'n')
-				Ran2 = 1;
-			C2F(objvide)(fname, &Top, fname_len);
-		}
-		return 0;
+		break;
+	default :
+		break;
 	}
 
-	if(GetType(Rhs) == sci_strings)
-	{
-		if(Rhs > 3)
-		{
-			//trouver un moyen d'appeller %hm_rand
-			return 0;
-		}
-		else
-		{
-			char **szRealData	= 0;
-			GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
-			iRan2Save = Ran2;
-			iRan2Change = 1;
-			Ran2 = 0;
-			if(szRealData[0][0] == 'g' || szRealData[0][0] == 'n')
-				Ran2 = 1;
-			Top -= 1;
-		}
-	}
-
-	if(Rhs - iRan2Change >= 3)
-	{
-		//trouver un moyen d'appeller %hm_rand
-		return 0;
-	}
-
-
-	if(Rhs - iRan2Change == 2)
-	{//rand(n1, n2)
-		GetDimFromVar(Top, Rhs - iRan2Change, &iCols);
-		GetDimFromVar(Top - 1, Rhs - iRan2Change - 1, &iRows);
-	}
-	else
-	{//rand(n1)
-		int iType = GetType(Top);
-		if(iType <= sci_strings)
-		{
-			GetVarDimension(Top, &iRows, &iCols);
-			if((iType <= sci_poly || iType == sci_sparse) && iIsComplex(Top))
-				iComplex = 1;
-		}
-		else
-		{
-			OverLoad(1);
-			return 0;
-		}
-	}
-
-	if(iRows == 0 || iCols == 0)
-	{
-		iRows		= 0;
-		iCols		= 0;
-		pReturnData = (double*)malloc(sizeof(double));
-
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData);
-		LhsVar(1)	= Rhs + 1;
-		PutLhsVar();
-		free(pReturnData);
-		return 0;
-	}
-
-	pReturnData = (double*)malloc(sizeof(double) * iRows * iCols);
-
-	for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-		pReturnData[iIndex] = GetNextRandValue();
-
-	if(iComplex)
-	{
-		double* pReturnImgData = (double*)malloc(sizeof(double) * iRows * iCols);
-		for(iIndex = 0 ; iIndex < iRows * iCols ; iIndex++)
-			pReturnImgData[iIndex] = GetNextRandValue();
-
-		CreateCVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iComplex, &iRows, &iCols, &pReturnData, &pReturnImgData);
-		LhsVar(1)	= Rhs + 1;
-		PutLhsVar();
-		free(pReturnData);
-		free(pReturnImgData);
-	}
-	else
-	{
-		CreateVarFromPtr(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &pReturnData);
-		LhsVar(1)	= Rhs + 1;
-		PutLhsVar();
-		free(pReturnData);
-	}
-
-
-
-#else
-	C2F(intrand)(fname,id, fname_len);
-#endif
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 
-double GetNextRandValue()
+double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
 {
-	static int siInit		= TRUE;
-	static double sdblImg	= 0;
-	static double sdblR		= 0;
-	double dblReal			= 0;
-	double dblVal			= 0;
-	double dblTemp			= 2;
+	static int siInit				= TRUE;
+	static double sdblImg		= 0;
+	static double sdblR			= 0;
+	double dblReal					= 0;
+	double dblVal						= 0;
+	double dblTemp					= 2;
 
-	if(Ran2 == 0)
+	if(_iForceInit)
 	{
-		dblVal = durands(&Ran1);
+		siInit = TRUE;
+	}
+
+	if(_iRandType == 0)
+	{
+		dblVal = durands(_piRandSave);
 	}
 	else
 	{
@@ -264,12 +329,12 @@ double GetNextRandValue()
 		{
 			while(dblTemp > 1)
 			{
-				sdblImg	= 2 * durands(&Ran1) - 1;
-				dblReal	= 2 * durands(&Ran1) - 1;
+				dblReal	= 2 * durands(_piRandSave) - 1;
+				sdblImg	= 2 * durands(_piRandSave) - 1;
 				dblTemp = dblReal * dblReal + sdblImg * sdblImg;
 			}
-			sdblR	= dsqrts(-2 * dlogs(dblTemp) / dblTemp);
-			dblVal	= dblReal * sdblR;
+			sdblR			= dsqrts(-2 * dlogs(dblTemp) / dblTemp);
+			dblVal		= dblReal * sdblR;
 		}
 		else
 		{
@@ -280,4 +345,16 @@ double GetNextRandValue()
 	return dblVal;
 }
 
+int setRandType(char _cType)
+{
+	switch(_cType)
+	{
+	case 'g' :
+	case 'n' :
+		return 1;
+		break;
+	default :
+		return 0;
+	}
+}
 /*--------------------------------------------------------------------------*/

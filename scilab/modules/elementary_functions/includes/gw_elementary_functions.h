@@ -18,11 +18,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_triu)(char *fname,unsigned long fname_len);
-int C2F(sci_tril)(char *fname,unsigned long fname_len);
-int C2F(sci_rand)(char *fname,unsigned long fname_len);
 int C2F(sci_chinesehat)(char *fname,unsigned long fname_len);
-int C2F(sci_zeros)(char *fname,unsigned long fname_len);
 int C2F(sci_spones)(char *fname,unsigned long fname_len);
 int C2F(sci_isequalbitwise)(char *fname, unsigned long fname_len);
 
@@ -60,6 +56,7 @@ int sci_nearfloat(char *fname, int* _piKey);
 int sci_number_properties(char *fname, int* _piKey);
 int sci_ones(char *fname, int* _piKey);
 int sci_prod(char *fname, int* _piKey);
+int sci_rand(char *fname, int* _piKey);
 int sci_real(char *fname, int* _piKey);
 int sci_round(char *fname, int* _piKey);
 int sci_sign(char *fname, int* _piKey);
@@ -70,6 +67,9 @@ int sci_sqrt(char *fname, int* _piKey);
 int sci_sum(char *fname, int* _piKey);
 int sci_tan(char *fname, int* _piKey);
 int sci_testmatrix(char *fname, int* _piKey);
+int sci_tril(char *fname, int* _piKey);
+int sci_triu(char *fname, int* _piKey);
+int sci_zeros(char *fname, int* _piKey);
 
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/

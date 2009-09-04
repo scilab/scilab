@@ -79,8 +79,7 @@ namespace ast
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
 							os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-							string szErr(os.str());
-							throw szErr;
+							throw os.str();
 						}
 
 						InternalType *pResult = execMe->result_get();
@@ -105,8 +104,7 @@ namespace ast
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
 						os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-						string szErr(os.str());
-						throw szErr;
+						throw os.str();
 					}
 
 					iRows += iCurRow;
@@ -166,53 +164,6 @@ namespace ast
 			}
 
 			result_set(poResult);
-			if(e.is_verbose())
-			{
-			  YaspWrite((char *) poResult->toString(10,75).c_str());
-			  YaspWrite("\n");
-			}
-/*
-			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
-			{
-				std::list<Exp *>::const_iterator	col;
-
-				//check if Cols size is always the same
-				if(iCols != -1 && iCols != (*row)->columns_get().size())
-				{
-					std::ostringstream os;
-					os << "inconsistent row/column dimensions";
-					os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
-				}
-				//store Cols size
-				iCols = (*row)->columns_get().size();
-
-				for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
-				{
-					ExecVisitor* execMe = new ast::ExecVisitor();
-					(*col)->accept (*execMe);
-
-					if(poResult == NULL)
-					{
-						poResult = AddElementToVariable(poResult, execMe->result_get(), iRows, iCols);
-					}
-					else
-					{
-						poResult = AddElementToVariable(poResult, execMe->result_get(), iCurRow, iCurCol);
-					}
-					iCurCol++;
-					delete execMe;
-				}
-				iCurCol = 0;
-				iCurRow++;
-			}
-			result_set(poResult);
-			if(e.is_verbose())
-			{
-				std::cout << poResult->toString(10,75);
-			}
-*/
 		}
 		catch(string sz)
 		{
@@ -355,12 +306,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			break;
 		case GenericType::RealPoly :
 			{
-/*
-				Double *pDbl = _poSource->getAsPoly()->poly_get(0)->coef_get();
-				pDbl->toString(10,75;
-				_poDest->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
-*/
-
 				if(_poSource->getAsPoly()->isComplex())
 				{
 					poResult->getAsPoly()->complex_set(true);

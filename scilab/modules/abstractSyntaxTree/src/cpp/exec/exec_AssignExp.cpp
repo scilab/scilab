@@ -193,8 +193,7 @@ namespace ast
 								std::ostringstream os;
 								os << "inconsistent row/column dimensions";
 								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-								string szErr(os.str());
-								throw szErr;
+								throw os.str();
 							}
 						}
 						else
@@ -204,8 +203,7 @@ namespace ast
 								std::ostringstream os;
 								os << "inconsistent row/column dimensions";
 								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-								string szErr(os.str());
-								throw szErr;
+								throw os.str();
 							}
 
 							if(pOld->size_get() >= piMaxDim[0])
@@ -228,8 +226,7 @@ namespace ast
 									std::ostringstream os;
 									os << "inconsistent row/column dimensions";
 									os << " (" << e.left_exp_get().location_get().first_line << "," << e.left_exp_get().location_get().first_column << ")" << std::endl;
-									string szErr(os.str());
-									throw szErr;
+									throw os.str();
 								}
 
 								double *pOldR = pOld->real_get();
@@ -353,8 +350,7 @@ namespace ast
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
 						os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-						string szErr(os.str());
-						throw szErr;
+						throw os.str();
 					}
 				}
 				else if(execMeR->result_get()->getType() == InternalType::RealPoly)
@@ -375,8 +371,7 @@ namespace ast
 					std::ostringstream os;
 					os << "Lhs != Rhs";
 					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
+					throw os.str();
 				}
 				
 				InternalType *pIT	=	execMeR->result_get();
@@ -404,8 +399,7 @@ namespace ast
 				{
 					std::ostringstream os;
 					os << "Incorrect assignment" << std::endl;
-					string szErr(os.str());
-					throw szErr;
+					throw os.str();
 				}
 
 
@@ -432,8 +426,7 @@ namespace ast
 				std::ostringstream os;
 				os << "unknow script form";
 				os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-				string szErr(os.str());
-				throw szErr;
+				throw os.str();
 			}
 			
 			if(bNew)

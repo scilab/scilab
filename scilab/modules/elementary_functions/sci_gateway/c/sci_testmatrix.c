@@ -22,7 +22,7 @@
 #define HILB_LETTER		'h'
 
 char getGenerateMode(int* _piAddress);
-
+int getGenerateSize(int* _piAddress);
 /*--------------------------------------------------------------------------*/
 int sci_testmatrix(char *fname, int* _piKey)
 {
@@ -51,46 +51,61 @@ int sci_testmatrix(char *fname, int* _piKey)
 		return 1;
 	}
 
+	iRet = getVarAddressFromPosition(2, &piAddr2, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
 	cMode = getGenerateMode(piAddr1);
 
-/*	GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &iRows, &iCols, &szRealData);
-	cMode = (int)*szRealData[0];
-
-	if(iIsComplex(2))
+	if(cMode == -1)
 	{
-		//voir comment on ajoute une string dans les messages d'erreur
-		//"%dth argument must be a real scalar
-		Error(51);
+		return 1;
+	}
+
+	iDim = getGenerateSize(piAddr2);
+
+
+	if(cMode != FRK_LETTER && cMode != HILB_LETTER && iDim == 2)
+	{
+		iDim = 0;
+	}
+
+	if(iDim == 0)
+	{
+		iRet = allocMatrixOfDouble(Rhs + 1, 0, 0, &pdblRealRet, _piKey);
+		if(iRet)
+		{
+			return 1;
+		}
+		LhsVar(1) = Rhs + 1;
+		PutLhsVar();
 		return 0;
 	}
 
-	GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
-	if(iRows != 1 || iCols != 1)
+	iRet = allocMatrixOfDouble(Rhs + 1, iDim, iDim, &pdblRealRet, _piKey);
+	if(iRet)
 	{
-		//voir comment on ajoute une string dans les messages d'erreur
-		//"%dth argument must be a real scalar
-		Error(51);
-		return 0;
+		return 1;
 	}
-	iVal = (int)dabss(stk(iRealData)[0]);
 
-	iAllocMatrixOfDouble(Rhs + 1, iVal, iVal, &pReturnRealData);
 	switch(cMode)
 	{
 	case FRK_LETTER :
-		franck_matrix(iVal, pReturnRealData);
+		franck_matrix(iDim, pdblRealRet);
 		break;
 	case HILB_LETTER :
-		hilb_matrix(iVal, pReturnRealData);
+		hilb_matrix(iDim, pdblRealRet);
 		break;
 	default : //Magic case and others
-		magic_matrix(iVal, pReturnRealData);
+		magic_matrix(iDim, pdblRealRet);
 		break;
 	}
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
-*/	return 0;
+	return 0;
 }
 
 char getGenerateMode(int* _piAddress)
@@ -104,28 +119,62 @@ char getGenerateMode(int* _piAddress)
 
 	if(getVarType(_piAddress) != sci_strings)
 	{
-		return 0;
+		return -1;
 	}
 
 	iRet = getVarDimension(_piAddress, &iRows, &iCols);
 	if(iRet || iRows != 1 || iCols != 1)
 	{
-		return 0;
+		return -1;
 	}
 
 	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, NULL);
 	if(iRet)
 	{
-		return 0;
+		return -1;
 	}
 
 	pstData[0] = malloc(sizeof(char) * (piLen[0] + 1));//+1 for null termination
 	iRet = getMatrixOfString(_piAddress, &iRows, &iCols, piLen, (char**)pstData);
 	if(iRet)
 	{
-		return 0;
+		return -1;
 	}
 	
 	return pstData[0][0];
+}
+
+int getGenerateSize(int* _piAddress)
+{
+	int iRet = 0;
+	int iRows = 0;
+	int iCols = 0;
+
+	double* pdblReal = NULL;
+	double* pdblImg	 = NULL;
+
+	if(getVarType(_piAddress) != sci_matrix)
+	{
+		return 0;
+	}
+
+	if(isVarComplex(_piAddress))
+	{
+		iRet = getComplexMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+	else
+	{
+		iRet = getMatrixOfDouble(_piAddress, &iRows, &iCols, &pdblReal);
+		if(iRet)
+		{
+			return 0;
+		}
+	}
+	return abs((int)pdblReal[0]);
+	
 }
 /*--------------------------------------------------------------------------*/

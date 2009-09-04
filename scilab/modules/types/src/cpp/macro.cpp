@@ -49,6 +49,7 @@ namespace types
 	
 	Callable::ReturnValue Macro::call(typed_list &in, int _iRetCount, typed_list &out)
 	{
+		ReturnValue RetVal = Callable::OK;
 		//check excepted and input/output parameters numbers
 		if(in.size() != m_inputArgs->size())
 		{
@@ -69,16 +70,25 @@ namespace types
 			symbol::Context::getInstance()->put(*i, **j);
 		}
 
-		m_body->accept(execFunc);
-
-		for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+		try
 		{
-			out.push_back(symbol::Context::getInstance()->get(*i));
+			m_body->accept(execFunc);
+
+			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
+			{
+				out.push_back(symbol::Context::getInstance()->get(*i));
+			}
+		}
+		catch(string sz)
+		{
+		  YaspWrite((char *) sz.c_str());
+		  YaspWrite("\n");
+			RetVal = Callable::Error;
 		}
 		
 		//close the current scope
 		symbol::Context::getInstance()->scope_end();
-		
-		return Callable::OK;
+
+		return RetVal;
 	}
 }

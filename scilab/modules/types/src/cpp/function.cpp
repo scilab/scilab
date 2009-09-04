@@ -67,6 +67,7 @@ namespace types
 
 	Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out) 
 	{
+		ReturnValue RetVal = Callable::OK;
 		GatewayStruct* pStr = new GatewayStruct();
 
 		pStr->m_pin = &in;
@@ -77,10 +78,10 @@ namespace types
 
 		if(iRet != 0)
 		{
-			return Error;
+			RetVal = Callable::Error;
 		}
 
 		delete pStr;
-		return OK;
+		return RetVal;
 	}
 }

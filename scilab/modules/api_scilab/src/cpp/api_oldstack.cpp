@@ -89,5 +89,5 @@ int* api_LhsVar(int _iVal)
 
 void api_OverLoad(int _iVal)
 {
-	sciprint("call overload %d", _iVal);
+	sciprint("call overload %d\n", _iVal);
 }
