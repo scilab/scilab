@@ -183,10 +183,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-      [fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(1,4,[2*%pi/10,4*%pi/10,0,0],0.02,0.001);
-      h=fact*(b0+b1*%z+b2*%z^2)./(c0+c1*%z+%z^2)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+[fact,b2,b1,b0,c1,c0,zzeros,zpoles]=syredi(1,4,[2*%pi/10,4*%pi/10,0,0],0.02,0.001);
+h=fact*(b0+b1*%z+b2*%z^2)./(c0+c1*%z+%z^2)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

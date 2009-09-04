@@ -33,10 +33,10 @@
 
     <para>And then, the filter can be represented in bode plot.</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 // analog elliptic (Bessel), order 2, cutoff 1 Hz
-Epsilon = 3;  // ripple of filter in pass band (0&lt;epsilon&lt;1)
-A       = 60; // attenuation of filter in stop band (A&gt;1)
+Epsilon = 3;  // ripple of filter in pass band (0<epsilon<1)
+A       = 60; // attenuation of filter in stop band (A<1)
 OmegaC  = 10; // pass band cut-off frequency in Hertz
 OmegaR  = 50; // stop band cut-off frequency in Hertz
 
@@ -51,7 +51,7 @@ elatf = syslin('c',num,den);
 // Plot the resulting filter
 bode(elatf,0.01,100);
 title('Analog Elliptic filter');
- </programlisting>
+ ]]></programlisting>
 
     <para>Bode plot is only suited for analog filters.</para>
 
@@ -122,7 +122,7 @@ title('Analog Elliptic filter');
     <para>For our demonstration, we will use the <link
     linkend="iir">iir</link> function.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 Order   = 2; // The order of the filter
 Fs      = 1000; // The sampling frequency
 Fcutoff = 40;   // The cutoff frequency
@@ -141,7 +141,7 @@ xtitle('Obtained Frequency Response (Magnitude)');
 subplot(2,1,2);
 plot2d(Fs*frq,phi_repf);
 xtitle('Obtained Frequency Response (Phase in degree)');
- </programlisting>
+ ]]></programlisting>
 
     <para>Here is the representation of the digital elliptic filter.</para>
 
@@ -166,7 +166,7 @@ xtitle('Obtained Frequency Response (Phase in degree)');
 
     <para>In the following examples, we will filter a gaussian noise.</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 t     = 1:1000;
@@ -180,7 +180,7 @@ xtitle('The gaussian noise','t','y');
 subplot(2,1,2);
 plot(t,y);
 xtitle('The filtered gaussian noise','t','y');
- </programlisting>
+ ]]></programlisting>
 
     <para>Here is the representation of the signal before and after
     filtering.</para>
@@ -217,7 +217,7 @@ xtitle('The filtered gaussian noise','t','y');
     <para>First, we try using the <link linkend="dscr">dscr</link> + <link
     linkend="flts">flts</link> functions.</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 n     = 1:1000; // The sample index
@@ -231,7 +231,7 @@ xtitle('The gaussian noise','n','y');
 subplot(2,1,2);
 plot(n,y);
 xtitle('The filtered gaussian noise','n','y');
- </programlisting>
+ ]]></programlisting>
 
     <para>Here is the representation of the signal before and after filtering
     using the <link linkend="dscr">dscr</link> + <link
@@ -245,7 +245,7 @@ xtitle('The filtered gaussian noise','n','y');
 
     <para>Next, we use the <link linkend="csim">csim</link> function.</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 rand('normal');
 Input = rand(1,1000); // Produce a random gaussian noise
 t     = 1:1000;
@@ -259,7 +259,7 @@ xtitle('The gaussian noise','t','y');
 subplot(2,1,2);
 plot(t,y);
 xtitle('The filtered gaussian noise','t','y');
- </programlisting>
+ ]]></programlisting>
 
     <para>Here is the representation of the signal before and after filtering
     using the <link linkend="csim">csim</link> approach.</para>
