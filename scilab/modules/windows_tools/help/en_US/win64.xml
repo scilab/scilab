@@ -31,14 +31,15 @@
   </refsection>
   <refsection>
     <title>Example</title>
-    <programlisting role="example">if MSDOS then
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
   if win64() then
     disp('Scilab built for Windows x64.');
   else
     disp('Scilab built for Windows 32 bits.');
   end
 end
-</programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

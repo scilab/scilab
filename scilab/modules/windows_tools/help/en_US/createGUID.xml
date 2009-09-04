@@ -45,10 +45,11 @@
   <refsection>
     <title>Example</title>
 
-    <programlisting role="example">if MSDOS then
-    disp(createGUID(1));
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
+  disp(createGUID(1));
 end
-</programlisting>
+ ]]></programlisting>
   </refsection>
   
   <refsection>
