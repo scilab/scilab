@@ -263,6 +263,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			all_lines_without_spaces.add(no_space_line);
 		}
 
+		boolean got_select = false;
+		int select_line = -1;
 
 		for (int i = 0; i < all_lines_without_spaces.size(); i++) {
 			// Get commands for each lines
@@ -279,9 +281,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			} else {
 				need_indentation = true;
 			}
-			System.out.println("need_indentation= "+need_indentation);
-
-
+			//System.out.println("need_indentation= "+need_indentation);
+			
+			
 			// Operator found in the given line
 			if (command_list.size() > 0) {
 				// If we have 'IN' command
@@ -291,49 +293,52 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 							(command_list.elementAt(1).toLowerCase().equals("elseif"))) {
 						if (indentedText.length() >= 2) {
 							indentedText = indentedText.substring(0, indentedText.length()-2);
-							System.out.println("indentedText1111 = "+"{"+indentedText+"}");
 						}
-						// 	If we have 'case' command
-					} else if ((command_list.elementAt(1).toLowerCase().equals("case")) && bool_case == false) {
+						// 	If we have 'select' command
+					} else if (command_list.elementAt(1).toLowerCase().equals("select")) {
+						System.out.println("NOUS AVONS UN SELECT");
+						tab += TABULATION;
+						got_select = true;
+						
+						// If we have 'case' command
+					} else if ((command_list.elementAt(1).toLowerCase().equals("case")) && 
+							   (bool_case == false) &&
+							   (got_select == true) ) {
 						bool_case = true;
 						tab += TABULATION;
-					}else {
+						
+					} else {
 						if (bool_case == false) {
 							tab += TABULATION;
 						} else if (indentedText.length() >= 2) {
 							indentedText = indentedText.substring(0, indentedText.length()-2);
-							System.out.println("indentedText22222 = "+"{"+indentedText+"}");
 						}
 					}
 					indentedText += all_lines_without_spaces.elementAt(i);
-					System.out.println("textLine22222 = "+"{"+all_lines_without_spaces.elementAt(i)+"}");
-					System.out.println("indentedText3333 = "+"{"+indentedText+"}");
 
 					// If we have "OUT' operator
 				} else if (command_list.elementAt(0).equals(OUT)) {
 					if (indentedText.length() >= 2 && tab.length() >= 2) {	
 						indentedText = indentedText.substring(0, indentedText.length()-2);
-						System.out.println("indentedText4444 = "+"{"+indentedText+"}");
 						tab = tab.substring(0, tab.length()-2);
 						if (bool_case == true) {
 							bool_case = false;
 						}
+						if (got_select == true && command_list.elementAt(1).toLowerCase().equals("end")) {
+							System.out.println("ON SUPP LA TAB");
+							tab = tab.substring(0, tab.length()-2);
+							got_select = false;
+						}
 					}
 					indentedText += all_lines_without_spaces.elementAt(i);
-					System.out.println("textLine3333 = "+"{"+all_lines_without_spaces.elementAt(i)+"}");
-					System.out.println("indentedText5555 = "+"{"+indentedText+"}");
 
 					// Line got operators and they match, so no need of indentation
 				} else {
 					indentedText += all_lines_without_spaces.elementAt(i);
-					System.out.println("textLine4444 = "+"{"+all_lines_without_spaces.elementAt(i)+"}");
-					System.out.println("indentedText6666 = "+"{"+indentedText+"}");
 				}
 				// Line without operator
 			} else {
 				indentedText += all_lines_without_spaces.elementAt(i);
-				System.out.println("textLine55555 = "+"{"+all_lines_without_spaces.elementAt(i)+"}");
-				System.out.println("indentedText77777 = "+"{"+indentedText+"}");
 			}
 
 			// Add the indentation
@@ -341,12 +346,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				indentedText += tab;
 			}
 
-			//System.out.println("indentedText8888 = "+"{"+indentedText+"}");
-
 			command_list.clear();
-			//text_to_indent = "";
 
-		} // for
+		} // end for
 
 
 		System.out.println("indentedText = "+"{"+indentedText+"}");
@@ -650,10 +652,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		Vector<Integer> commands_boundaries = new Vector<Integer>();
 
-		String[] commands_in = {"if", "else", "elseif", "while", "for", "do", "case", "function"};
+		String[] commands_in = {"if", "else", "elseif", "while", "for", "do", "select", "case", "function"};
 		String[] commands_out = {"end", "endfunction"};
 
-		String[] commands = {"if", "else", "elseif", "while", "for", "do", "case", "function", "end", "endfunction"};
+		String[] commands = {"if", "else", "elseif", "while", "for", "do", "select", "case", "function", "end", "endfunction"};
 
 		// Regexp for Scilab commands
 		for (int i = 0; i < commands.length; i++) {
