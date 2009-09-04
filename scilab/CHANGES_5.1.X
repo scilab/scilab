@@ -252,6 +252,13 @@ Bug fixes:
 
  * bug 4752 fixed - ci2exp produces erroneous code when applied to boolean matrices (; are missing)
 
+ * bug 4712 fixed - by GUI handle affectation produce an error.
+
+ * bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong.
+
+ * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
+
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
@@ -541,10 +548,6 @@ Bug fixes:
 * bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
-
-* bug 4712 fixed - by GUI handle affectation produce an error
-
-* bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong
 
 
 
