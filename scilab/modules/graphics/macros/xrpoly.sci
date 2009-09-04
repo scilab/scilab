@@ -19,7 +19,7 @@ function []=xrpoly(orig,n,r,teta)
 select rhs
  case 3 then b=eye(2,2);
  case 4 then b=[cos(teta) -sin(teta); sin(teta) cos(teta)];
- else error(39)
+ else error(msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected."), "xrpoly", 3, 4));
 end;
 //
  ang=2*%pi/n
