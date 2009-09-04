@@ -45,7 +45,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
 
