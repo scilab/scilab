@@ -367,21 +367,21 @@ public abstract class CameraGL extends ObjectGL {
 	 * 
 	 *
 	 */
-	protected void revertAxes() {
-		// to be applyed on the center of the box
+	protected void revertAxes()
+	{
 		GL gl = getGL();
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ()); // translate origin back
-
-		if (xAxisRevert) {
-			gl.glScaled(-1.0, 1.0, 1.0);
+		if(xAxisRevert | yAxisRevert | zAxisRevert)
+		{
+			// to be applyed on the center of the box
+			gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ()); // translate origin back
+			gl.glScaled(xAxisRevert?-1.0:1.0, yAxisRevert?-1.0:1.0, zAxisRevert?-1.0:1.0);
+			gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
 		}
-		if (yAxisRevert) {
-			gl.glScaled(1.0, -1.0, 1.0);
-		}
-		if (zAxisRevert) {
-			gl.glScaled(1.0, 1.0, -1.0);
-		}
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ()); // translate origin back
+		// Check the orientation of the scene.
+		if(xAxisRevert ^ yAxisRevert ^ zAxisRevert)
+			gl.glFrontFace(GL.GL_CW);
+		else
+			gl.glFrontFace(GL.GL_CCW);
 	}
 	
 	/**
