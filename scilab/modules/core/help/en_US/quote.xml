@@ -20,13 +20,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 [1+%i, 2]'
 [1+%i, 2].'
 x='This is a character string'
 'He said:''Good'''
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

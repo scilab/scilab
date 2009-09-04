@@ -66,9 +66,11 @@ end</synopsis>
     <para>Note also that <literal>try-catch</literal> is more or less similar
     to:</para>
 
-    <programlisting>if execstr("&lt;try instructions&gt;","errcatch")&lt;&gt;0 then
-  &lt;catch instructions&gt;
-end</programlisting>
+    <programlisting role = ""><![CDATA[ 
+if execstr("<try instructions>","errcatch")<>0 then
+  <catch instructions>
+end
+ ]]></programlisting>
 
     <para>It uses the same internal mechanism as <link
     linkend="errcatch">errcatch</link>. It is the reason why <link
@@ -86,7 +88,8 @@ end</programlisting>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// example 1
+    <programlisting role="example"><![CDATA[ 
+// example 1
 file_path=TMPDIR+'/wrong'
 try
   u=mopen(file_path,'r')
@@ -121,7 +124,7 @@ nestedtry(1,1)
 nestedtry("a string",1)
 nestedtry(1,"a string")
 nestedtry("a string","a string")
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

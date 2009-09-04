@@ -21,7 +21,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[getscilabmode()]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+getscilabmode()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

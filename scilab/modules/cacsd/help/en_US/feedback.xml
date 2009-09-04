@@ -53,8 +53,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 S1=ssrand(2,2,3);S2=ssrand(2,2,2);
 W=S1/.S2;
 ss2tf(S1/.S2)
@@ -67,8 +66,7 @@ W1=Bigclosed(1:2,1:2);   //W1=W (in state-space).
 ss2tf(W1)
 //Inverting
 ss2tf(S1*inv(eye()+S2*S1))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

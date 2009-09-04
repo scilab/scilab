@@ -57,8 +57,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
 g=make_graph('foo',1,8,ta,he);
@@ -68,8 +67,6 @@ show_graph(g);
 
 g2=graph_power(g,2);
 show_graph(g2,'new');
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

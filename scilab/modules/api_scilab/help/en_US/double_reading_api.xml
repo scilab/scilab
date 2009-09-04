@@ -96,8 +96,7 @@ int getComplexMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, double
         <!--Lib_name: double_reading-->
         <!--Func_list: read_double-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int read_double(char *fname,unsigned long fname_len)
 {
     int i;
@@ -173,14 +172,12 @@ int read_double(char *fname,unsigned long fname_len)
     LhsVar(1) = Rhs + 1;
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 a = [   0 1 2 3; ..
         4 5 6 7; ..
         8 9 10 11];
@@ -194,7 +191,6 @@ b2 = read_double(b);
 
 if or(a2 <> a * -1) then error("failed"), end
 if or(b2 <> (imag(b) + real(b) * %i)) then error("failed"), end
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

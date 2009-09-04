@@ -21,9 +21,6 @@ Extend of Scilab :
   Note that all other Scilab API (straight access to the Scilab stack, stack1,
   stack2 and stack3) will be maintained in the Scilab 5.X familly but most of
   them will be dropped in the 6 family.
-  
-
-
 
 * In the enum sci_types which list all Scilab datatypes, the type 
   "sci_lufact_pointer" has been renamed to "sci_pointer".
@@ -191,6 +188,15 @@ char encoding bugs :
 
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
+
+* bug 4768 fixed - strsplit returns strange results with accened characters
+
+String manipulation:
+====================
+
+* Rewrite :
+    + strsplit - SEP 26
+
 
 Java/Scilab API:
 ================

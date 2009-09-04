@@ -64,8 +64,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
 g=make_graph('foo',1,17,ta,he);
@@ -78,7 +77,6 @@ hilite_nodes(v);
 g1=subgraph(v,'nodes',g);
 w1=show_graph(g1,'new');
 
-
 v=[10 13 12 16 20 19];
 netwindow(w)
 show_graph(g);
@@ -86,8 +84,7 @@ hilite_edges(v);
 g1=subgraph(v,'edges',g);
 netwindow(w1);
 show_graph(g1);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -55,15 +55,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 g=load_graph(metanet_module_path()+'/demos/mesh100.graph');
 show_graph(g);
 save_graph(g,'mymesh100.graph');
 g=load_graph('mymesh100.graph');
 show_graph(g,'new');
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -7,16 +7,16 @@ toolbox as well as an example of use.
 \section{How to use the Toolbox}
 
 The design of the toolbox is based on the creation of 
-a new token by the \scimacro{neldermead\_new} command.
+a new token by the \scifunction{neldermead\_new} command.
 The Nelder-Mead object associated with this token can then 
-be configured with \scimacro{neldermead\_configure} and queried 
-with \scimacro{neldermead\_cget}. To be more specific, the
-\scimacro{neldermead\_configure} command allows to configure the 
+be configured with \scifunction{neldermead\_configure} and queried 
+with \scifunction{neldermead\_cget}. To be more specific, the
+\scifunction{neldermead\_configure} command allows to configure the 
 number of variables, the objective function and the initial guess.
 
-The main command of the toolbox is the \scimacro{neldermead\_search} command, which
+The main command of the toolbox is the \scifunction{neldermead\_search} command, which
 solves the optimization problem. After an optimization has been performed,
-the \scimacro{neldermead\_get} command allows to retrieve the optimum $x^\star$,
+the \scifunction{neldermead\_get} command allows to retrieve the optimum $x^\star$,
 as well as other parameters, such as the number of iterations performed, the number 
 of evaluations of the function, etc...
 

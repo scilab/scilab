@@ -47,8 +47,8 @@
   <refsection>
     <title>The C function</title>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
 
 int sci_multiply_by_two(char * fname)
 {
@@ -58,19 +58,19 @@ int sci_multiply_by_two(char * fname)
   double * pMatrix = NULL;
 
   // First, access to the input variable (a matrix of doubles)
-  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_in_var, &amp;n_in_var, &amp;l_in_var);
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m_in_var, &n_in_var, &l_in_var);
 
   // Create the returned variable (a matrix of doubles)
   m_out_var = m_in_var;
   n_out_var = n_in_var;
-  CreateVar(2, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_out_var, &amp;n_out_var, &amp;l_out_var);
+  CreateVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m_out_var, &n_out_var, &l_out_var);
 
   pMatrix = stk(l_in_var);
 
   // Perform some simple operations on the matrix
-  for(i_row=0; i_row&lt;m_in_var; i_row++)
+  for(i_row=0; i_row<m_in_var; i_row++)
     {
-      for(j_col=0; j_col&lt;n_in_var; j_col++)
+      for(j_col=0; j_col<n_in_var; j_col++)
         {
           pMatrix[i_row + j_col * m_out_var] = 2 * pMatrix[i_row + j_col * m_in_var];
         }
@@ -81,7 +81,7 @@ int sci_multiply_by_two(char * fname)
 
   return 0;
 }
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "multiply_by_two.c".</para>
 
@@ -97,7 +97,7 @@ int sci_multiply_by_two(char * fname)
   <refsection>
     <title>The builder script</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // This is the builder.sce 
 // must be run from this directory 
 
@@ -116,7 +116,7 @@ cflags  = "";
 fflags  = "";
 
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
-  </programlisting>
+ ]]></programlisting>
 
     <para>This file must be saved as "builder.sce".</para>
 
@@ -128,16 +128,16 @@ ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
 
     <para>To build this function, we just need to to:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 exec builder.sce;
- </programlisting>
+ ]]></programlisting>
 
     <para>Now we are able to test our new C function. First, let's load this
     new function in scilab:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 exec loader.sce; 
- </programlisting>
+ ]]></programlisting>
 
     <para>The script loader.sce is normally automatically built by
     builder.sce.</para>
@@ -148,20 +148,20 @@ exec loader.sce;
 
     <para>We now write a simple example to test our new function.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[  
 A = [1 2 3 4 5; 6 7 8 9 10; 11 12 13 14 15];
 
 B = multiply_by_two(A);
 
 disp(B);
-  </programlisting>
+ ]]></programlisting>
 
     <para>The script must be saved as "test.sce".</para>
 
     <para>Let's run our scripts and see what is the result:</para>
 
-    <programlisting> 
---&gt;exec builder.sce;
+    <programlisting role = ""><![CDATA[  
+-->exec builder.sce;
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
@@ -171,17 +171,17 @@ disp(B);
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
  
---&gt;exec loader.sce;
+-->exec loader.sce;
 Shared archive loaded.
 Link done.
  
---&gt;exec test.sce;
+-->exec test.sce;
  
     2.     4.     6.     8.     10.  
     12.    14.    16.    18.    20.  
     22.    24.    26.    28.    30.  
---&gt; 
- </programlisting>
+--> 
+ ]]></programlisting>
 
     <para>This simple function has produced a new matrix which corresponds to
     the matrix transmitted as an input argument and for which each element of
@@ -201,8 +201,8 @@ Link done.
     loaded into Scilab. The can be done using the link('show')
     function:</para>
 
-    <programlisting> 
---&gt;link('show')
+    <programlisting role = ""><![CDATA[ 
+-->link('show')
 Number of entry points 1.
 Shared libraries :
 [ 0 ] : 1 libraries.
@@ -210,7 +210,7 @@ Entry point lib_multiply_by_two in shared library 0.
  ans  =
  
     0.  
- </programlisting>
+ ]]></programlisting>
 
     <para>Here, in our current Scilab session, only 1 dynamic library has been
     loaded. This library has a reference number. For our library, it's "0".
@@ -240,10 +240,10 @@ Entry point lib_multiply_by_two in shared library 0.
 
     <para>This is what is done is the following example:</para>
 
-    <programlisting> 
---&gt;ulink(0)
+    <programlisting role = ""><![CDATA[  
+-->ulink(0)
  
---&gt;exec builder.sce;
+-->exec builder.sce;
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
@@ -253,16 +253,16 @@ Entry point lib_multiply_by_two in shared library 0.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
  
---&gt;exec loader.sce;
+-->exec loader.sce;
 Shared archive loaded.
 Link done.
  
---&gt;exec test.sce;
+-->exec test.sce;
  
     3.     6.     9.     12.    15.  
     18.    21.    24.    27.    30.  
     33.    36.    39.    42.    45.  
-  </programlisting>
+  ]]></programlisting>
   </refsection>
 
   <refsection>

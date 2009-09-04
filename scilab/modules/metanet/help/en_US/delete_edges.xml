@@ -62,8 +62,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //Create a graph
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 13 13 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -84,8 +83,7 @@ show_graph(gt,'new');
 g.directed=0;
 gt=delete_edges(ij,g);
 show_graph(gt,'new');
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

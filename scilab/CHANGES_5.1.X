@@ -89,6 +89,9 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* In the documentation, the font size of the equations has been increased 
+  for a better readability.
+
 * Documentation and examples about call_scilab (BooleanManagement call_scilab
   compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
   cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement
@@ -538,6 +541,10 @@ Bug fixes:
 * bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
+
+* bug 4712 fixed - by GUI handle affectation produce an error
+
+* bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong
 
 
 

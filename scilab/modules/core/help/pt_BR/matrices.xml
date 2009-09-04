@@ -22,14 +22,12 @@
     <para>Matrizes são objetos básicos definidos no Scilab. Elas podem ser
     definidas como segue:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 E=[e11,e12,...,e1n;
    e21,e22,...,e2n;
         ....
    em1,em2,...,emn];
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>As entradas <literal>eij</literal> podem ser números reais,
     complexos, polinômios, razões de polinômios, strings ou booleanos.</para>
@@ -40,15 +38,13 @@ E=[e11,e12,...,e1n;
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 E=[1,2;3,4]
 E=[%T,%F;1==1,1~=1]
 s=poly(0,'s');E=[s,s^2;1,1+s]
 E=[1/s,0;s,1/(s+1)]
 E=['A11','A12';'A21','A22']
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

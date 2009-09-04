@@ -53,10 +53,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[system_getproperty('myproperty')
-  system_setproperty('myproperty','hello')
-  system_getproperty('myproperty')
-]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+system_getproperty('myproperty')
+system_setproperty('myproperty','hello')
+system_getproperty('myproperty')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

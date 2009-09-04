@@ -128,8 +128,7 @@ addmenu(gwin,button [,submenus] [,action])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 addmenu('foo')
 foo='disp(''hello'')'
 
@@ -145,13 +144,13 @@ French_Bye='disp(''Au revoir'')'
 //C defined Callback
 // creating Callback code
 code=[ '#include ""machine.h""'
- 'void foo(char *name,int *win,int *entry)'
- '{'
- '  if (*win==-1) '
- '    sciprint(""menu %s(%i) in Scilab window selected\r\n"",name,*entry+1);'
- '  else'
- '    sciprint(""menu %s(%i) in window %i selected\r\n"",name,*entry+1,*win);'
- '}'];
+       'void foo(char *name,int *win,int *entry)'
+       '{'
+       '  if (*win==-1) '
+       '    sciprint(""menu %s(%i) in Scilab window selected\r\n"",name,*entry+1);'
+       '  else'
+       '    sciprint(""menu %s(%i) in window %i selected\r\n"",name,*entry+1,*win);'
+       '}'];
 //creating foo.c file
 dir=pwd(); chdir(TMPDIR)
 mputl(code,TMPDIR+'/foo.c');
@@ -161,8 +160,7 @@ exec('loader.sce');
 chdir(dir);
 //add menu
 addmenu('foo',['a','b','c'],list(1,'foo'))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

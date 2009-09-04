@@ -43,13 +43,11 @@ unsetmenu(gwin,button,[nsub])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-//addmenu('foo')
-//unsetmenu('foo')
-//unsetmenu('File',2)
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+addmenu('foo')
+unsetmenu('foo')
+unsetmenu('File',2)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

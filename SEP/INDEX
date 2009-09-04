@@ -24,3 +24,7 @@ SEP #24 : Introduce an easy way to manage sub chapters in the documentation
 SEP #25 : Extend "fileinfo" to manage a column vector as input argument
 SEP #26 : Extend "strsplit" to manage a column vector as input argument
 SEP #27 : Writing Scilab function uigetfile
+SEP #28 : Creating a function returning the tlist and mlist field names
+SEP #29 : Datatips
+SEP #30 : Change of header files directory in the Scilab distribution (linux)
+SEP #31 : Unit tests and submodules

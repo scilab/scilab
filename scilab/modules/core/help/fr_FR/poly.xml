@@ -77,10 +77,10 @@ premiers sont pris en compte.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    s=poly(0,"s");p=1+s+2*s^2;
-    A=rand(2,2);poly(A,"x")
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -48,23 +48,21 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Create a figure
 h=figure();
 // Put a text in the figure
 uicontrol(h, "style","text", ...
- "string","This is a figure", ...
- "position",[50 70 100 100], ...
- "fontsize",15, ...
- "tag","Alabel");
+             "string","This is a figure", ...
+             "position",[50 70 100 100], ...
+             "fontsize",15, ...
+             "tag","Alabel");
 // Find the object which "tag" value is "Alabel"
 lab=findobj("tag","Alabel");
 disp("The text of the label is """+lab.string+"""");
 // Close the figure
 close();
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

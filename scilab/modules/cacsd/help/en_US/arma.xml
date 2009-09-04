@@ -31,8 +31,7 @@
         <listitem>
           <para>this function creates a Scilab tlist which code an  Armax
   process    <literal> A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)</literal></para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 -->ar=armac([1,2],[3,4],1,1,1,sig);
  
 -->ar('a')   
@@ -43,8 +42,7 @@
  ans  =
  
     1.  
-   
-        ]]></programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>

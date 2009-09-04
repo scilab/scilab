@@ -63,12 +63,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 edit('edit')  //opens editor with text of this function
 edit('myfunction')  //opens editor for a new function
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

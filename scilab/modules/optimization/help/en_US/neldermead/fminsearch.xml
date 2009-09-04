@@ -339,26 +339,43 @@
   <refsection>
     <title>Bibliography</title>
 
-    <para>"Sequential Application of Simplex Designs in Optimisation and
-    Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth, F.
-    R., American Statistical Association and American Society for Quality,
-    1962</para>
+    <para>
+      "Sequential Application of Simplex Designs in Optimisation and
+      Evolutionary Operation", Spendley, W. and Hext, G. R. and Himsworth, F.
+      R., American Statistical Association and American Society for Quality,
+      1962
+    </para>
 
-    <para>"A Simplex Method for Function Minimization", Nelder, J. A. and
-    Mead, R., The Computer Journal, 1965</para>
+    <para>
+      "A Simplex Method for Function Minimization", Nelder, J. A. and
+      Mead, R., The Computer Journal, 1965
+    </para>
 
-    <para>"Iterative Methods for Optimization", C. T. Kelley, SIAM Frontiers
-    in Applied Mathematics, 1999</para>
+    <para>
+      "Iterative Methods for Optimization", C. T. Kelley, SIAM Frontiers
+      in Applied Mathematics, 1999
+    </para>
 
-    <para>"Algorithm AS47 - Function minimization using a simplex procedure",
-    O'Neill, R., Applied Statistics, 1971</para>
+    <para>
+      "Algorithm AS47 - Function minimization using a simplex procedure",
+      O'Neill, R., Applied Statistics, 1971
+    </para>
 
-    <para>"Effect of dimensionality on the nelder-mead simplex method", Lixing
-    Han and Michael Neumann, Optimization Methods and Software, 21, 1, 1--16,
-    2006.</para>
+    <para>
+      "Effect of dimensionality on the nelder-mead simplex method", Lixing
+      Han and Michael Neumann, Optimization Methods and Software, 21, 1, 1--16,
+      2006.
+    </para>
 
-    <para>"Algorithms in Unconstrained Optimization", Lixing Han, Ph.D., The
-    University of Connecticut, 2000.</para>
+    <para>
+      "Algorithms in Unconstrained Optimization", Lixing Han, Ph.D., The
+      University of Connecticut, 2000.
+    </para>
+
+    <para>
+      "Global Optimization Of Lennard-Jones Atomic Clusters"
+      Ellen Fan, Thesis, February 26, 2002, McMaster University
+    </para>
   </refsection>
 
   <refsection>

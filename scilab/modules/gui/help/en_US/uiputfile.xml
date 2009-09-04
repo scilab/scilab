@@ -67,15 +67,13 @@ PathFileName=uiputfile([file_mask[,dir[,boxTitle]]])
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 uiputfile(["*.bin";"*.sce";"*.cos*"])
 uiputfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
 uiputfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
 uiputfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"); 
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

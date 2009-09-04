@@ -72,8 +72,7 @@ a.*b
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //ponto decimal
 1.345
 
@@ -88,8 +87,7 @@ a=  "aqui, eu começo um  grande string... //mas não quero continuar aqui
      - e aqui eu continuo."
 y=12..
 45
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
