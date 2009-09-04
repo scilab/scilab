@@ -14,12 +14,14 @@ package org.scilab.modules.xpad;
 
 import java.awt.Color;
 import java.awt.Event;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -167,7 +169,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	editMenu.addSeparator();
 	editMenu.add(new IndentAction(editor));
 	menuBar.add(editMenu);
-
+	
 	// Create SEARCH menubar
 	Menu searchMenu = ScilabMenu.createMenu(); 
 	searchMenu.setText("Search");
@@ -224,7 +226,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	helpMenu.add(new HelpAction(editor));
 	helpMenu.add(new AboutAction(editor));
 	menuBar.add(helpMenu);
-
+	
 	editor.setMenuBar(menuBar);
 	mainWindow.setTitle("XPad");
 	mainWindow.setVisible(true);
@@ -263,7 +265,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 	textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 	textPane.setFocusable(true);
-	KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Event.CTRL_MASK);
+
+	KeyStroke key;
+	key = KeyStroke.getKeyStroke(KeyEvent.VK_Z, Event.CTRL_MASK);
 	textPane.getInputMap().put(key, new UndoAction(this));
 	key = KeyStroke.getKeyStroke(KeyEvent.VK_Y, Event.CTRL_MASK);
 	textPane.getInputMap().put(key, new RedoAction(this));

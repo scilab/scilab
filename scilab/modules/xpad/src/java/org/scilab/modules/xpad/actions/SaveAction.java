@@ -12,12 +12,15 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileWriter;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.StyleConstants;
@@ -28,7 +31,8 @@ public class SaveAction extends DefaultAction {
 
 	public SaveAction(Xpad editor) {
 		super("Save", editor);
-		setMnemonic('S');
+		//setMnemonic('S');
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {

@@ -12,11 +12,17 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class CommentAction extends DefaultAction {
 
 	public CommentAction(Xpad editor) {
 		super("Comment Selection", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SLASH, ActionEvent.CTRL_MASK));
 	}
 }

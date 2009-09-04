@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
@@ -19,6 +24,8 @@ public class IndentAction extends DefaultAction {
 	
 	public IndentAction(Xpad editor) {
 		super("Indent", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+
 	}
 	
 	public void doAction() {

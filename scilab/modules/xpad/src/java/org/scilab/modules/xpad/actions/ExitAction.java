@@ -13,13 +13,19 @@
 package org.scilab.modules.xpad.actions;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class ExitAction extends DefaultAction {
     
     public ExitAction(Xpad editor) {
         super("Exit", editor);
-        setMnemonic('X');
+        //setMnemonic('X');
+        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {

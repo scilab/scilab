@@ -12,6 +12,10 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.xpad.Xpad;
@@ -20,7 +24,8 @@ public class PasteAction extends DefaultAction {
 
     public PasteAction(Xpad editor) {
 	super("Paste", editor);
-	setMnemonic('c');
+	//setMnemonic('c');
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {

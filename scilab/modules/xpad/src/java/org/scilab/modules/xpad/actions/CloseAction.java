@@ -13,13 +13,19 @@
 package org.scilab.modules.xpad.actions;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class CloseAction extends DefaultAction {
     
     public CloseAction(Xpad editor) {
         super("Close", editor);
-        setMnemonic('W');
+        //setMnemonic('W');
+        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {
