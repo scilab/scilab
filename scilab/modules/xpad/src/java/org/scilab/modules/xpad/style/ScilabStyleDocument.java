@@ -265,27 +265,29 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		boolean got_select = false;
 		int select_line = -1;
+		
+		System.out.println(all_lines_without_spaces);
 
 		for (int i = 0; i < all_lines_without_spaces.size(); i++) {
 			// Get commands for each lines
 			command_list = getOperatorList2(all_lines_without_spaces.elementAt(i));
-
-			// Check if in one line all operators are matching,
-			// so we can know if the next line needs indentation or not
-			// ex: if %T then function foo(1) endfunction end => doesn't need indentation
-			// Warning: command_list looks like [IN, if, IN function, OUT, endfunction, OUT, end]
-			Vector<String> vector_match;			
-			vector_match = matchingOperators(command_list);			
-			if (vector_match.isEmpty()) {
-				need_indentation = false;
-			} else {
-				need_indentation = true;
-			}
-			//System.out.println("need_indentation= "+need_indentation);
-			
+			System.out.println("command_list"+command_list);
 			
 			// Operator found in the given line
 			if (command_list.size() > 0) {
+				// Check if in one line all operators are matching,
+				// so we can know if the next line needs indentation or not
+				// ex: if %T then function foo(1) endfunction end => doesn't need indentation
+				// Warning: command_list looks like [IN, if, IN function, OUT, endfunction, OUT, end]
+				Vector<String> vector_match;			
+				vector_match = matchingOperators(command_list);			
+				if (vector_match.isEmpty()) {
+					need_indentation = false;
+				} else {
+					need_indentation = true;
+				}
+				//System.out.println("need_indentation= "+need_indentation);
+				
 				// If we have 'IN' command
 				if (command_list.elementAt(0).equals(IN)) {
 					// No indentation in case of 'else' or 'elseif'
@@ -296,7 +298,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						}
 						// 	If we have 'select' command
 					} else if (command_list.elementAt(1).toLowerCase().equals("select")) {
-						System.out.println("NOUS AVONS UN SELECT");
+						//System.out.println("NOUS AVONS UN SELECT");
 						tab += TABULATION;
 						got_select = true;
 						
@@ -321,14 +323,19 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					if (indentedText.length() >= 2 && tab.length() >= 2) {	
 						indentedText = indentedText.substring(0, indentedText.length()-2);
 						tab = tab.substring(0, tab.length()-2);
-						if (bool_case == true) {
+						if (got_select == true && 
+							bool_case == true &&
+							command_list.elementAt(1).toLowerCase().equals("end")) {
+							//System.out.println("ON SUPP LA TAB");
+							tab = tab.substring(0, tab.length()-2);
+							indentedText = indentedText.substring(0, indentedText.length()-2);
+							got_select = false;
 							bool_case = false;
 						}
-						if (got_select == true && command_list.elementAt(1).toLowerCase().equals("end")) {
-							System.out.println("ON SUPP LA TAB");
-							tab = tab.substring(0, tab.length()-2);
-							got_select = false;
-						}
+//						if (bool_case == true) {
+//							bool_case = false;
+//						}
+
 					}
 					indentedText += all_lines_without_spaces.elementAt(i);
 
@@ -351,7 +358,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		} // end for
 
 
-		System.out.println("indentedText = "+"{"+indentedText+"}");
+		//System.out.println("indentedText = "+"{"+indentedText+"}");
 
 
 		// Display the indentation
@@ -360,11 +367,35 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 
+	/**
+	 * TEST
+	 */
+
+	/*
+
+//
+// function
+if toto
+foo
+end
+
+
+select x
+case 1
+toto
+case 2
+titi
+end
 
 
 
 
 
+	 */
+
+	/**
+	 * TEST
+	 */
 
 
 
@@ -659,7 +690,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		// Regexp for Scilab commands
 		for (int i = 0; i < commands.length; i++) {
-			commands[i] = "\\b" + commands[i] + "\\b"; 
+			commands[i] = "\\b" + commands[i] + "\\b";
 		}
 
 		// Find command boundaries in the given text
@@ -677,10 +708,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		tmp_comm_and_quot.addAll(quotations_boundaries);
 
 		// Remove commads which are into quotations or comments
-		commands_boundaries = strictlyNotIn(commands_boundaries, tmp_comm_and_quot);
+		commands_boundaries = startNotIn(commands_boundaries, tmp_comm_and_quot);
 
 		// Sort commands_boudaries
 		Collections.sort(commands_boundaries);
+		
+		System.out.println("comments_boundaries"+comments_boundaries);
+		System.out.println("quotations_boundaries"+quotations_boundaries);
+		System.out.println("commands_boundaries"+commands_boundaries);
+		System.out.println("tmp_comm_and_quot"+tmp_comm_and_quot);
 
 		// The function applyIndent needs a vector in this format, ex: IN,IF,OUT,END
 		for (int i = 0; i < commands_boundaries.size(); i=i+2) {
@@ -688,13 +724,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}		
 		for (int i = 0; i < op.size(); i++) {
 			for (int j = 0; j < commands_in.length; j++) {
-				if (op.elementAt(i).equals(commands_in[j])) {
+				if (op.elementAt(i).toLowerCase().equals(commands_in[j])) {
 					operator_list.add(IN);
 					operator_list.add(op.elementAt(i));
 				}
 			}
 			for (int j = 0; j < commands_out.length; j++) {
-				if (op.elementAt(i).equals(commands_out[j])) {
+				if (op.elementAt(i).toLowerCase().equals(commands_out[j])) {
 					operator_list.add(OUT);
 					operator_list.add(op.elementAt(i));
 				}
@@ -987,7 +1023,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		functionsBoundaries = strictlyNotIn(functionsBoundaries, tmp_comm_and_quot);
 		macrosBoundaries = strictlyNotIn(macrosBoundaries, tmp_comm_and_quot);
 		operatorsBoundaries = strictlyNotIn(operatorsBoundaries, tmp_comm_and_quot);
-
+		
 		vector_list.add(boolsBoundaries);
 		vector_list.add(commandsBoundaries);
 		vector_list.add(functionsBoundaries);
@@ -1025,6 +1061,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				vector_strictlyNotIn.addElement(v1.elementAt(i));
 				vector_strictlyNotIn.addElement(v1.elementAt(i+1));
 			}
+			
+			//System.out.println("vector_strictlyNotIn"+vector_strictlyNotIn);
 		}
 		return vector_strictlyNotIn;
 	}
@@ -1051,6 +1089,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				vector_startNotIn.addElement(v1.elementAt(i));
 				vector_startNotIn.addElement(v1.elementAt(i+1));
 			}
+			
+			//System.out.println("vector_startNotIn"+vector_startNotIn);
 		}
 		return vector_startNotIn;
 	}
