@@ -49,7 +49,6 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   //**--------------------------------------------------------------------------- //
 
   %pt = [xc,yc] ; //** acquire the position  
-  
   //**--------------------------------------------------------------------------
   //** cosclick() filter and command association 
   
@@ -81,11 +80,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   // If the event is a TCL event then win=[]
   global inactive_windows
   if win<>[] & find(win==inactive_windows(2))<>[] then
+    //the event occured into an incative window
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
-
+ 
     //**----------------------------------------------------------------------------
-    
     if (btn==-2) then //** a dynamic menu has been selected 
       cmd = 'Cmenu='+sci2exp(str);
     elseif (btn==0) then

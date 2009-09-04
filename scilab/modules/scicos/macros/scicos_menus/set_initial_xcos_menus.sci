@@ -1,3 +1,24 @@
+//  Scicos
+//
+//  Copyright (C) INRIA - METALAU Project <Serge.Steer@inria.fr>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+// See the file ../license.txt
+//
+
 function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_initial_xcos_menus()
   
   //**-----------------------------------------------------------------------
@@ -228,33 +249,33 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
   //** "CmenuTypeOneVector" store the list of the commands/function to be called that require both 'Cmenu' AND 'pt'
   //** menus of type 1 (require %pt)
   CmenuTypeOneVector =[
-      'RegionToSuper',         _("Press lef mouse button, drag region and release (right button to cancel)");
-      'RegionToPalette',       _("Press lef mouse button, drag region and release (right button to cancel)");
-      'SmartMove',             _("Click object to move, drag and click (left to fix, right to cancel)");
-      'Move',                  _("Click object to move, drag and click (left to fix, right to cancel)");
-      'Duplicate',             _("Click on the object to duplicate, drag, click (left to copy, right to cancel)");
-      'Align',                 _("Click on an a port, click on a port of object to be moved");
-      'Link',                  _("Drag, click left for final or intermediate points or right to cancel");
-      'SmartLink',             _("Drag, click left for final or intermediate points or right to cancel");
-      'Delete',                _("Delete: Click on the object to delete");
-      'Cut',                   _("Cut: Click on the object to cut");
-      'Flip',                  _("Click on block to be flipped");
-      'RotateLeft',            _("Click on block to be turned left");
-      'RotateRight',           _("Click on block to be turned right");
-      'OpenSet',               _("Click to open block or make a link");
-      'MoveLink',              ''                                  ; //** hidden commands
-      'SelectLink',            ''                                  ;
-      'CtrlSelect',            ''                                  ;
-      'SelectRegion',          ''                                  ;
-      'Popup',                 ''                                  ;
-      'Label',                 _("Click block to label");
-      'GetInfo',               _("Click on object  to get information on it");
-      'CodeGeneration',        _("Click on a Super Block (without activation output) to obtain a coded block!") ;
-      'Icon',                  _("Click on block to edit its icon");
-      'Color',                 _("Click on object to choose its color");
-      'Identification',        _("Click on an object to set or get identification");
-      'Resize',                _("Click block to resize");
-      'BlockDocumentation',    _("Click on a block to set or get it''s documentation")];
+      'XcosMenuRegionToSuper',         _("Press lef mouse button, drag region and release (right button to cancel)");
+      'XcosMenuRegionToPalette',       _("Press lef mouse button, drag region and release (right button to cancel)");
+      'XcosMenuSmartMove',             _("Click object to move, drag and click (left to fix, right to cancel)");
+      'XcosMenuMove',                  _("Click object to move, drag and click (left to fix, right to cancel)");
+      'XcosMenuDuplicate',             _("Click on the object to duplicate, drag, click (left to copy, right to cancel)");
+      'XcosMenuAlign',                 _("Click on an a port, click on a port of object to be moved");
+      'XcosMenuLink',                  _("Drag, click left for final or intermediate points or right to cancel");
+      'XcosMenuSmartLink',             _("Drag, click left for final or intermediate points or right to cancel");
+      'XcosMenuDelete',                _("Delete: Click on the object to delete");
+      'XcosMenuCut',                   _("Cut: Click on the object to cut");
+      'XcosMenuFlip',                  _("Click on block to be flipped");
+      'XcosMenuRotateLeft',            _("Click on block to be turned left");
+      'XcosMenuRotateRight',           _("Click on block to be turned right");
+      'XcosMenuOpenSet',               _("Click to open block or make a link");
+      'XcosMenuMoveLink',              ''                                  ; //** hidden commands
+      'XcosMenuSelectLink',            ''                                  ;
+      'XcosMenuCtrlSelect',            ''                                  ;
+      'XcosMenuSelectRegion',          ''                                  ;
+      'XcosMenuPopup',                 ''                                  ;
+      'XcosMenuLabel',                 _("Click block to label");
+      'XcosMenuGetInfo',               _("Click on object  to get information on it");
+      'XcosMenuCodeGeneration',        _("Click on a Super Block (without activation output) to obtain a coded block!") ;
+      'XcosMenuIcon',                  _("Click on block to edit its icon");
+      'XcosMenuColor',                 _("Click on object to choose its color");
+      'XcosMenuIdentification',        _("Click on an object to set or get identification");
+      'XcosMenuResize',                _("Click block to resize");
+      'XcosMenuBlockDocumentation',    _("Click on a block to set or get it''s documentation")];
 
   
 endfunction

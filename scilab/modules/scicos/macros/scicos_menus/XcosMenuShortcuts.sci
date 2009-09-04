@@ -42,7 +42,7 @@ if Cmenu<>'XcosMenuQuit' then
   %okay=%f
   if Cmenu<>[] then
     %koko=find(%scicos_short(:,2)==Cmenu)
-    if %koko<>[] then
+    if %koko<>[] then //already defined shortcut
       txt=x_mdialog(msprintf(_('Edit the short cut,\n only letters allowed')),..
 	  %scicos_short(%koko,2),%scicos_short(%koko,1))
       if txt<>[] then 
@@ -60,20 +60,21 @@ if Cmenu<>'XcosMenuQuit' then
 	end
       end
     else
-      %koko=find(%cor_item_exec(:,1)==Cmenu)
-      if %koko<>[] then
-        txt=x_mdialog(msprintf(_('Edit the short cut,\n only letters allowed')),..
-	    %cor_item_exec(%koko,1),emptystr())
+      label=XcosGetMenuLabel(Cmenu,%scicos_menu)
+      if label<>[] then
+         txt=x_mdialog(msprintf(_('Edit the short cut,\n only letters allowed')),..
+	    label,emptystr())
 	if txt<>[] then 
-	  txt=part(txt(1),1)
-	  if find(txt==%scicos_short(:,1))<>[] then
-	    messagebox(txt+_(' is already in use for ')+..
-		%scicos_short( find(txt==%scicos_short(:,1)),2) ,'modal')
-	  elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) then
-	    messagebox(txt+_(' is not a letter'),'modal')
+	  key=part(txt(1),1)
+	  k=find(txt==%scicos_short(:,1))
+	  if k<>[] then
+	    klabel=XcosGetMenuLabel(%scicos_short(k,1),%scicos_menu)
+	    messagebox(msprintf(_("The key %s is already in use for %s"),key,keylabel),'modal')
+	  elseif (ascii(txt)>122|ascii(txt)<97)&(ascii(txt)>90|ascii(txt)<65) ...
+	  then
+	    messagebox(msprintf(_("The key %s is not a valid letter"),key),'modal')
 	  else
-	    %scicos_short=[%scicos_short;..
-		[part(txt(1),1),%cor_item_exec(%koko,1)]];
+	    %scicos_short=[%scicos_short; [key,Cmenu]];
 	    %okay=%t
 	  end
 	end

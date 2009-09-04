@@ -201,7 +201,7 @@ end //** ... of single / multiple selection switch
   //** the key function call that (see "scicos.sci") call
   //-- mpopup => createpopup (Java GUI)
 
-  Cmenu = mpopup( %scicos_lhb_list(state_var) ) ; //**
+  Cmenu = mpopup(%scicos_lhb_list(state_var)) ; //**
 
   if Cmenu==[] then
        %pt  = [];

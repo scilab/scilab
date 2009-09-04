@@ -41,7 +41,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   global %diagram_path_objective
   global inactive_windows
   global Scicos_commands   // programmed commands
-
+  global %tableau          //shortcuts
+  global next_scicos_call
   //** "0" standard scicos oblique link ; "1" SL orthogonanal links
   global SL_mode ; SL_mode = 0 ;
 
@@ -62,76 +63,111 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   clear noguimode
   //**-----------------------------------------------------------------------------------------
 
-  // Define Scicos data tables ===========================================
-  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") | ~isdef("%scicos_gif") | ..
-     ~isdef("%scicos_contrib") | ~isdef("%scicos_libs") ) then
-
-    [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
-     modelica_libs,scicos_pal_libs, ...
-     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif, ...
-     %scicos_contrib,%scicos_libs] = initial_scicos_tables();
-     clear initial_scicos_tables
-   end
-  // =====================================================================
-
-
+  
   //** -------------------- Check the recurring calling level of scicos ----------------------
   [%ljunk, %mac] = where() ; //** where I am ?
   slevel = prod ( size ( find ( %mac=='scicos') ) ) ; //** "slevel" is the superblock level
   super_block = slevel > 1 ; //** ... means that the actual SCICOS is a superblock diagram
 
+  //** -------------------- Main initialization -----------------------------------------------
 
-  //** ----------------------- Scicos splash message and workspace stuff -----------------------
-  if ~super_block then
-    global next_scicos_call
-
-    //**--------------------------- Scicos splash message --------------------------------------
+  if ~super_block then  
+    //**---- Scicos splash message 
     if next_scicos_call==[] then
       next_scicos_call = 1 ;
       verscicos = get_scicos_version() ;
-      ttxxtt = ['Scicos version '+part(verscicos,7:length(verscicos)) + ' (adapted for Scilab 5 by The Scilab Consortium)'
-                'Copyright (c) 1992-2009 Metalau project INRIA'
-                'Licensed under the GNU Public License (GPL)']
-      write(%io(2),ttxxtt)
+      mprintf(_("Scicos version %s\n"+ ..
+		" (adapted for Scilab 5 by The Scilab Consortium)\n"+ ..
+                "Copyright (c) 1992-2009 Metalau project INRIA\n"+ ..
+                "Licensed under the GNU Public License (GPL)\n"),part(verscicos,7:length(verscicos)))
     end
 
-    //**---- prepare from and to workspace stuff
-    curdir = pwd() ;
-    chdir(TMPDIR)     ;
-    mkdir("Workspace");
-    chdir("Workspace");
-    %a = who("get")   ;
-    %a = %a(1:$-predef()+1);  //** exclude protected variables
+   
+    //**---- Check and define SCICOS palette , menu , shortcut ,  palette libraries
+    [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
+     %scicos_with_grid, %scs_wgrid] = initial_scicos_tables() ;
 
-    for %ij=1:size(%a,1)
-      var = %a(%ij)
-      if var<>'ans' & typeof(evstr(var))=='st' then
-	ierr = execstr('x='+var+'.values','errcatch')
-        if ierr==0 then
-	   ierr = execstr('t='+var+'.time','errcatch')
-        end
-        if ierr==0 then
-	  execstr('save('"'+var+''",x,t)')
-        end
-      end
-    end
-
-    chdir(curdir)
-    //**----- end of /prepare from and to workspace stuff
-
-    // set up navigation
+    //**---- Set up navigation
     super_path    = [] // path to the currently opened superblock
     %scicos_navig = []
     inactive_windows = list(list(),[])
     Scicos_commands = [];
-  end
-  //**----------------------------------------------------------------------------------------------
+    
+    //**---- Initialize context
+    if ~exists('%scicos_context') then
+      %scicos_context = struct() ;
+    end
+
+    //**---- Initialize  debugging editor
+    if ~exists('%scicos_debug_gr') then
+      %scicos_debug_gr = %f; //** debug mode : default is "%f"
+    end
+
+    //**---- prepare from and to workspace stuff
+    xcos_workspace_init()
+    
+    //**---- Activate Graphics editor in Scicos
+    prot = funcprot();funcprot(0);	//disable scilab function protection
+    exec(SCI+'/modules/graphics/macros/ged.sci',-1);
+    funcprot(prot)//restore scilab function protection
+
+    //**----  Check and - eventually - load the Scicos function library
+    if exists('scicos_scicoslib')==0 then
+      load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
+    end
+    
+    //**----  Load library that contains the INTERFACING functions
+    exec(loadpallibs, 1) 
+    
+    //**---- Magic Numbers
+    Main_Scicos_window = 1000 ; //** set default value of the main scicos window
+    %zoom    = 1.4      ; //** original value by Ramine
+    pal_mode = %f       ;  // Palette edition mode
+
+    //**---- Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
+    scilab5fonts = xlfont() ; //** recover the full font list
+    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one
+ 
+    
+    //---- Load user's customization files
+    //**  user defined palette relatives
+    scicos_paltmp = scicos_pal ;
+    if execstr('load(''.scicos_pal'')','errcatch')==0 then
+      //** merge and check if the load has been positive
+      scicos_pal = gunique(scicos_pal,scicos_paltmp); 
+      scicos_pal = check_palettes_paths(scicos_pal)
+    end
+    //** load - if present - the used defined shortcuts
+    execstr('load(''.scicos_short'')','errcatch') 
 
 
-  //**----------------------------------------------------------------------------------------------
+    //**---- Single key shortcut: keyboard definition
+    %tableau = emptystr([1:100]);
+    for %Y = 1 : size(%scicos_short,1)
+      %tableau(-31+ascii(%scicos_short(%Y,1)))=%scicos_short(%Y,2);
+    end
+   
+    //**---- Define some generic functions used by Scicos
+    prot = funcprot();funcprot(0);
+    //** allows to write inside the figure "user_data" field
+    %diagram_i_h = generic_i_h 
+    getfile  = uigetfile ; //** brand new aliases
+    savefile = uiputfile ;
+
+    mpopup = createpopup ;
+    mdialog = x_mdialog  ;
+
+    getvalue=scicos_getvalue
+    choose=x_choose
+    funcprot(prot);
+    
+    //**---- Set the graphic window
+    gh_Main_Scicos_window = scf(Main_Scicos_window);
+   
+  end //End of the main initialization and check
+  //**----------------------------------------------------------------------------------
+
   %diagram_open = %t     //** default choice
   if super_path<>[] then //** main diagram
     if isequal(%diagram_path_objective,super_path) then
@@ -145,123 +181,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
   end
 
-  //**-----------------------------------------------------------------------------------------------
-  if ~super_block then
-
-    // Check and define SCICOS palette , menu , shortcut ,  palette libraries
-    if exists('scicos_pal')==0 | exists('%scicos_menu')==0 | exists('%scicos_short')==0 | ...
-	  exists('scicos_pal_libs')==0 | ...
-	  exists('%scicos_lhb_list')==0 | exists('%CmenuTypeOneVector')==0 | ...
-          exists('%scicos_gif')==0 | exists('%scicos_contrib')==0  then
-
-      [scicos_pal_d, %scicos_menu_d, %scicos_short_d, %scicos_help_d,...
-        modelica_libs_d, scicos_pal_libs_d,...
-       %scicos_lhb_list_d, %CmenuTypeOneVector_d, %scicos_gif_d,...
-       %scicos_contrib_d ] = initial_scicos_tables() ;
-
-      if exists('scicos_pal')==0 then
-	messagebox(msprintf(_("scicos_pal not defined\ndefault palettes will be used.")),"modal")
-	scicos_pal = scicos_pal_d ;
-      end
-
-      if exists('%scicos_menu')==0 then
-	messagebox(msprintf(_("%%scicos_menu not defined\ndefault menu will be used.")),"modal")
-	%scicos_menu = %scicos_menu_d ;
-      end
-
-      if exists('%scicos_short')==0 then
-	messagebox(msprintf(_("%%scicos_short not defined\ndefault shortcuts will be used.")),"modal")
-	%scicos_short = %scicos_short_d ;
-      end
-
-//      if exists('%scicos_help')==0 then
-//	messagebox(["%%scicos_help not defined"; "using default values"],"modal")
-//	%scicos_help = %scicos_help_d ;
-//      end
-
-      if exists('modelica_libs')==0 then
-	messagebox(msprintf(_("modelica_libs not defined\ndefault Modelica libraries will be used.")),"modal")
-	modelica_libs = modelica_libs_d ;
-      end
-
-      if exists('scicos_pal_libs')==0 then
-	messagebox(msprintf(_("scicos_pal_libs not defined\ndefault palette libraries will be used.")),"modal")
-	scicos_pal_libs = scicos_pal_libs_d ;
-      end
-
-      if exists('%scicos_lhb_list')==0 then
-	messagebox(msprintf(_("%%scicos_lhb_list not defined\ndefault contextual menus will be used.")),"modal")
-	%scicos_lhb_list = %scicos_lhb_list_d ;
-      end
-
-      if exists('%CmenuTypeOneVector')==0 then
-	messagebox(msprintf(_("%%CmenuTypeOneVector not defined\ndefault type one menus will be used.")),"modal")
-	%CmenuTypeOneVector = %CmenuTypeOneVector_d ;
-      end
-
-      if exists('%scicos_gif')==0 then
-	messagebox(msprintf(_("%%scicos_gif not defined\ndefault block icons will be used.")),"modal")
-        %scicos_gif = %scicos_gif_d ;
-      end
-
-      if exists('%scicos_contrib')==0 then
-	messagebox(msprintf(_("%%scicos_contrib not defined\nno contributed part will be used.")),"modal")
-        messagebox(["%scicos_contrib not defined"; "using default values"],"modal")
-        %scicos_contrib = %scicos_contrib_d ;
-      end
-    end //** ... of the initialization variable
-
-
-    //**--------------------------------------------------------------
-    //** initialize the "scicos_contex" data structure (Scilab script inside SCICOS simulation)
-
-        if ~exists('%scicos_context') then
-	  %scicos_context = struct() ;
-	end
-
-	//**-----------------------------
-
-	//** initialize a "scicos_debug_gr" variable for debugging editor
-	if ~exists('%scicos_debug_gr') then
-	  %scicos_debug_gr = %f; //** debug mode : default is "%f"
-	end
-
-	//** initialize a "scicos_with_grid" variable for drawing a grid
-	if ~exists('%scicos_with_grid') then
-	  %scicos_with_grid = %f;
-	end
-	if ~exists('%scs_wgrid') then
-	  //** %scs_wgrid(1:2) : space of grid
-	  //** %scs_wgrid(3) : color
-	  %scs_wgrid = [10;10;12];
-	end
-
-	//** disable scilab function protection
-	prot = funcprot();
-	funcprot(0);
-
-
-	//** Activate Graphics editor in Scicos
-        exec(SCI+'/modules/graphics/macros/ged.sci',-1);
-
-	//** restore scilab function protection
-	funcprot(prot)
-
-	//** check and - eventually - load the Scicos function library
-	if exists('scicos_scicoslib')==0 then
-	  load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-	end
-
-	exec(loadpallibs, 1) //** load library that contains the INTERFACING functions
-
-
-  end //** end of the main if() not superblock initialization
-
-  //** ----------------------------- End the NOT-Superbloc initialization and check ----------------------
-
-  //** Magic Numbers
-  Main_Scicos_window = 1000 ; //** set default value of the main scicos window
-
+ 
   //** Initialisation
   newparameters = list() ;
   enable_undo = %f
@@ -270,47 +190,11 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   %path='./'
   %exp_dir = PWD
 
-
-  global %tableau
-
   //**----------------------------------------------------------------------------------
 
-  //** Some "magic numbers", try to load ".scicos_pal" and "scicos_short" trom the current
-  //** folder
-  //**
-  if ~super_block then
-    %zoom    = 1.4      ; //** original value by Ramine
-    pal_mode = %f       ;  // Palette edition mode
-
-    scicos_paltmp = scicos_pal ;
-
-    //** try to load the local ".scicos_pal" files that contains the user defined
-    //** palette relatives to the local directory
-    if execstr('load(''.scicos_pal'')','errcatch')==0 then
-      //** if the load has been positive
-      scicos_pal = gunique(scicos_pal,scicos_paltmp); //** remove the duplicate item(s) in the palette
-      //** check is given palettes paths are still valid
-      scicos_pal = check_palettes_paths(scicos_pal)
-    end
-
-    //** load - if present - the used defined local shortcut
-    execstr('load(''.scicos_short'')','errcatch')  // keyboard shortcuts
-
-  end
-  //**----------------------------------------------------------------------------------
-
-  //** Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
-  //**
-  if ~super_block then
-    scilab5fonts = xlfont() ; //** recover the full font list
-    xlfont(scilab5fonts(1), 1) ; //** substitute the font in position one
-  end
-  //**----------------------------------------------------------------------------------
-
-  [lhs, rhs] = argn(0) ; //** recover the arguments of "scicos(<rhs>)"
-
-  if rhs>=1 then //** scicos_new(...) is called with some arguments
-
+ 
+  if argn(2)>=1 then //the argument specifies the initial diagram to edit
+    
     if type(scs_m)==10 then // diagram is given by its filename
       %fil = scs_m ;
       alreadyran = %f
@@ -324,21 +208,17 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	%state0 = %cpr.state;
 	needcompile=0
       end
-
     else // diagram is given by its data structure
-
       if ~super_block then
 	%cpr=list(); needcompile=4 ; alreadyran=%f , %state0=list()
       end
-
     end
 
   else //** scicos() is called without arguments (AND - implicitly - is NOT a superblock)
-
-    gh_Main_Scicos_window = scf(Main_Scicos_window);
-    //** In case a back up file exists
+   //** In case a back up file exists
     ierr = execstr('load(TMPDIR+''/BackupSave.cos'')','errcatch')
     if ierr<>0 then
+      //create an empty new diagram
       scs_m = scicos_diagram(version = get_scicos_version()) ;
       %cpr = list()    ;
       needcompile = 4  ;
@@ -348,34 +228,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       load(TMPDIR+'/BackupInfo');
     end
   end
-
-  //
-
+  //Check initial diagram validity
   if typeof(scs_m)<>'diagram' then
     error(msprintf(_("%s: First argument must be a Scicos diagram data structure\n"),'scicos'));
-  end
-
-  if ~super_block then
-
-    //**----------------------- Dynamic menu and shortcut preparation -----------------------------------------
-    //**
-    %cor_item_exec = []; //** init
-    //** scan all the "%scicos_menu" an load "%cor_item_exec" ; dispose the first string (2:$) because
-    //** is the name of the dynamic menu
-    for %Y=1 : length(%scicos_menu)
-      %cor_item_exec = [%cor_item_exec; %scicos_menu(%Y)(2:$,[2 1])] ;
-    end
-
-  
- 
-    //----------------------------------------------------------------
-    // single key shortcut: keyboard definition
-    %tableau = emptystr([1:100]);
-    for %Y = 1 : size(%scicos_short,1)
-      %tableau(-31+ascii(%scicos_short(%Y,1)))=%scicos_short(%Y,2);
-    end
-    //----------------------------------------------------------------
-
   end
 
   // viewport
@@ -384,46 +239,18 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   // solver
   %scicos_solver = scs_m.props.tol(6)
 
-  //** ------- GRAPHICS INITIALIZATION: Palettes, TK functions, ---------
-  //**-------------------------- I'm NOT inside a superblock  -----------
-  if ~super_block then
-
-    gh_current_window = scf(Main_Scicos_window);
-    curwin = get ( gh_current_window, "figure_id") ;
-
+  //** ------- GRAPHICS INITIALIZATION: Palettes,  ---------
+  if ~super_block then //main diagram
+    curwin = Main_Scicos_window;
+    //curwin = get ( gh_current_window, "figure_id") ;
     palettes = list();
     noldwin = 0      ;
     windows = [1 curwin] ;
-
-    //Define some generic functions used by Scicos
-    prot = funcprot();funcprot(0);
-    //** allows to write inside the figure "user_data" field
-    %diagram_i_h = generic_i_h 
-    
-    getfile  = uigetfile ; //** brand new aliases
-    savefile = uiputfile ;
-
-    mpopup = createpopup ;
-    mdialog = x_mdialog  ;
-
-    getvalue=scicos_getvalue
-    choose=x_choose
- 
-    funcprot(prot);
-
-  
-
   else //** super block case
-
-    //** NO Pupup function definition in the super block ------------
-    //** because they are already defined
     noldwin = size(windows,1)           ;
     windows = [windows ; slevel curwin] ;
     palettes = palettes                 ;
-
   end //** end of not superblock
-
-
 
   //**------------------------- CONTEXT -----------------------
   //set context (variable definition...)
@@ -468,7 +295,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
   end
   //** ---------- End of "Context" handling and evaluation -----------
-  //**
 
   //** Begin of the Main command interpreter loop
 
@@ -515,7 +341,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     end
 
   end
-//  exec(restore_menu,-1);
 
 //** --- End of initialization -----------------------------------------------------------
 
@@ -565,11 +390,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       end //** edited section
 
-    end
-    //**... end of: Dynamic window resizing and centering ----------
-
-    //** Dynamic mark size
-    //** mark_size = int(%zoom*3.0); //** in pixel : size of the selection square markers
+    end //**... end of: Dynamic window resizing and centering ----------
 
     if %scicos_navig==[] then
       if Scicos_commands<>[] then
@@ -584,6 +405,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
     //**--------------------------------------------------------------------
     if %scicos_navig<>[] then //** navigation mode active
+      
+      //select the requested diagram or sub-diagram
+
       while %scicos_navig<>[] do
 	if ~isequal(%diagram_path_objective,super_path) then
 	  %diagram_open  = %f
@@ -591,10 +415,10 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  [Cmenu,Select] = Find_Next_Step(%diagram_path_objective, super_path)
 
 	  if or(curwin==winsid()) & ~isequal(Select,Select_back) then
-             drawlater() ;
-	       selecthilite(Select_back, "off") ; // unHilite previous objects
-	       selecthilite(Select, "on") ;       // Hilite the actual selected object
-             drawnow() ;
+	    drawlater() ;
+	    selecthilite(Select_back, "off") ; // unHilite previous objects
+	    selecthilite(Select, "on") ;       // Hilite the actual selected object
+	    drawnow() ;
           end
 
           if Cmenu=="XcosMenuOpenSet" then
@@ -628,7 +452,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	else
 	  %scicos_navig = [] ;
 	end
-      end
+      end //end  %scicos_navig<>[]
 
     else
 
@@ -637,7 +461,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       if ~or(curwin==winsid()) then
 	gh_current_window = scf(curwin);
-        %zoom = restore(gh_current_window,%scicos_menus, ~super_block)
+        %zoom = restore(gh_current_window,%scicos_menu, ~super_block)
         execstr('drawobjs(scs_m)', 'errcatch') ;
 	Select_back = [] ;
         Select      = [] ;
@@ -654,34 +478,29 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       //**--------------------------------------------------------------------
 
       //** Command classification and message retrivial
-      [CmenuType, mess] = CmType(Cmenu); //** local function: see below in this file
+      [CmenuType, mess] =  XcosGetMenuType(Cmenu); 
       xinfo(mess); //** show the message associated to the command
 
       //** ----------------- State variable filtering ----------------
       //** clear the %pt information for backward compatibility
-      //** if 'Cmenu' is empty (no command) but '%pt' is not , it is better to clear '%pt'
-
       if ( Cmenu == [] & %pt <> []  ) then %pt=[]; end
-
-      //** if 'Cmenu' is NOT empty and 'CmenuType' is "0" I don't' need '%pt' then clear '%pt'
       if ( Cmenu<> [] & CmenuType==0) then %pt=[]; end
-      	gh_current_window = scf(curwin);
-      //** if 'Cmenu' is NOT empty and 'CmenuType' is "1" and there is at least one object selected
+
+      gh_current_window = scf(curwin);
+
       if (Cmenu<>[] & CmenuType==1 & %pt==[] & Select<>[]) then
 	[%pt,%win] = get_selection(Select) //** recover the %pt and %win from 'Select'
       end
-      //** ------------------------------------------------------------------------------------
 
       //** ---------------------- Main decisional section --------------------------------------
-      //** if no command is issued "Cmenu==[]" or
-      //**    CmenuType==1 and no %pt information and no object selected
-      if ( Cmenu==[] | (CmenuType==1 & %pt==[] & Select==[]) ) then
 
+      if ( Cmenu==[] | (CmenuType==1 & %pt==[] & Select==[]) ) then
+	//** if no command is issued  or CmenuType==1 and no %pt information and no object selected
 	//** I'm not ready to exec a command: I need more information using cosclik()
         EnableAllMenus()
 	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
+
         DisableAllMenus()
-	mprintf("ici %s %s\n",sci2exp(Cmenu_n,0),sci2exp(Cmenu,0))
 	if (Cmenu_n=="XcosMenuSelectLink" | Cmenu_n=="XcosMenuMoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
 	else
@@ -693,27 +512,27 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 
       else
 	//** I'm ready to exec a command
-	mprintf("la0 %s\n",sci2exp(Cmenu,0))
-	if execstr('callback='+Cmenu,'errcatch')==0
+	if exists(Cmenu) then
 	  Select_back = Select; //** save the selected object list
           ierr = 0
 
           //** Used for AGGRESSIVE DEBUG ONLY -->
-	  //** exec(callback,1)
+	  //** exec(evstr(Cmenu),1)
 
           //** Used for standard DEBUG ONLY -->
-          //** disp(Cmenu); //** disp the current exec
-          //** exec(callback,-1); //** nothing is printed
+          disp(Cmenu); //** disp the current exec
+          //** exec(evstr(Cmenu),-1); //** nothing is printed
 
           //** RELEASE --> Please reactivate the error catcher before final release
-	  ierr=exec(callback,'errcatch',-1)
+	  ierr=exec(evstr(Cmenu),'errcatch',-1)
 
 	  if ierr > 0 then
-	    Cmenu = "XcosMenuReplot"
+	    messagebox([msprintf(_("I recovered from the following error:\n in %s action.\n"),strsubst(Cmenu,'XcosMenu',''))
+			lasterror()],'Error','modal')
 	    Select_back = [];
             Select = [] ;
-	    messagebox([msprintf(_("I recovered from the following error:\n in %s action.\n"),%cor_item_exec(%koko,2))
-			lasterror()],'Error','modal')
+	   
+	    Cmenu = "XcosMenuReplot"
 	  elseif or(curwin==winsid()) then
 	    gh_current_window = scf(curwin);
 
@@ -840,28 +659,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   end
 
 endfunction //** scicos(); end here :) : you had a good day
-//**------------------------------------------------------------------------------------
-
-
-function [itype, mess] = CmType(Cmenu)
-//** look inside "%CmenuTypeOneVector" if the command is type 1 (need both Cmenu and %pt)
-  k = find (Cmenu == %CmenuTypeOneVector(:,1));
-  if k==[] then //** if is not type 1 (empty k)
-    itype = 0 ; //** type zero
-    mess=''   ; //** set message to empty
-    return    ; //** --> EXIT point : return back
-  end
-
-  if size(k,'*')>1 then //** if found more than one command
-    messagebox('Warning '+string( size(k,'*'))+' menus have identical name '+Cmenu,"modal");
-    k = k(1); //** extract the index
-  end
-
-  itype = 1 ; //** type one
-
-  mess = %CmenuTypeOneVector(k,2) ; //** use the index to recover the message
-
-endfunction
 
 //** ----------------------------------------------------------------------------------------------------------------
 
@@ -872,14 +669,6 @@ function uni = gunique(m1,m2)
   uni = uni(-gsort(-ind),:);  //** reorder the merged palette without duplicate
 endfunction
 
-//** ----------------------------------------------------------------------------------------------------------------
-
-function restore_menu()
-  //** disp("//** [Call] restore_menu...")
-  for %Y=1:length(%scicos_menu)
-    execstr( %scicos_menu(%Y)(1)+'_'+string(curwin)+'='+%scicos_menu(%Y)(1) )
-  end
-endfunction
 
 //**---------------------------------------------------------------------------------------------------------------------
 
