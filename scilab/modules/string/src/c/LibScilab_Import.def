@@ -6,6 +6,7 @@ EXPORTS
  cha1_
  callFunctionFromGateway
  freeArrayOfString
+ freeArrayOfWideString
  gettype_
  com_
  vstk_
