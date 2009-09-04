@@ -14,6 +14,8 @@
 #include "timer.hxx"
 #include "localization.h"
 
+#include "yaspio.hxx"
+
 using std::string;
 
 bool bConditionState(ast::ExecVisitor *exec);

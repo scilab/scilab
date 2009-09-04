@@ -461,6 +461,10 @@
 				RelativePath=".\set_xxprintf.c"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\yaspio.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

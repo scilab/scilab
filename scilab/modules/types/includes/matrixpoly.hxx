@@ -21,7 +21,7 @@
 
 namespace types
 {
-	class EXTERN_TYPES MatrixPoly : public GenericType
+	class MatrixPoly : public GenericType
 	{
   public :
 									MatrixPoly();

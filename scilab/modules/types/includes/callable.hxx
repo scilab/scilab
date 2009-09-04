@@ -18,12 +18,9 @@
 #include "types.hxx"
 #include <map>
 
-#ifdef _MSC_VER
-#pragma warning(disable: 4251)
-#endif
 namespace types
 {
-  class EXTERN_TYPES Callable : public InternalType
+  class Callable : public InternalType
   {
   public :
     enum ReturnValue

@@ -25,7 +25,7 @@ namespace types
   /*
   ** Type
   */
-	class EXTERN_TYPES GenericType : public InternalType
+	class GenericType : public InternalType
   {
 
 	protected :

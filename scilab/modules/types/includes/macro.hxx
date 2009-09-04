@@ -21,7 +21,7 @@
 
 namespace types
 {
-  class EXTERN_TYPES Macro : public Callable
+  class Macro : public Callable
   {
   public :
 		Macro *getAsMacro(void);
@@ -32,7 +32,7 @@ namespace types
 		Macro(): Callable(){};
 		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
 		virtual ~Macro(){};
-                ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   
   public :
     std::list<symbol::Symbol>	*m_inputArgs;

@@ -21,7 +21,7 @@ using std::list;
 
 namespace types
 {
-	class EXTERN_TYPES Poly : public GenericType
+	class Poly : public GenericType
 	{
   public :
 									Poly();

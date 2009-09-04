@@ -14,6 +14,8 @@
 #include "context.hxx"
 #include "execvisitor.hxx"
 
+#include "yaspio.hxx"
+
 namespace types
 {
 

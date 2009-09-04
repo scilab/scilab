@@ -14,6 +14,8 @@
 #include "context.hxx"
 #include <string>
 
+#include "yaspio.hxx"
+
 using std::string;
 using ast::Exp;
 using ast::ExecVisitor;
