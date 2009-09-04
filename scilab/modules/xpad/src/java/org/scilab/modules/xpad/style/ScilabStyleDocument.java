@@ -69,7 +69,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f"};
-	private final String[] comments = {"//[^{\n}]*\n", "/\\*.*?\\*/"};
+	private final String[] comments = {"//[^{\n}]*", "/\\*.*?\\*/"};
 	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
 			"\\./", "\\.\\\\", "\\.\\^", 
 			"\\.\\*\\.", "\\./\\.", "\\.\\\\\\.",
