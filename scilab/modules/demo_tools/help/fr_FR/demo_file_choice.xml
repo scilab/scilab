@@ -40,7 +40,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 demolist=['n-pendulum','npend/npend_gateway.sce';
 	  'Wheel simulation','wheel2/wheel_gateway.sce';
 	  'Bike Simulation','bike/bike_gateway.sce';
@@ -48,7 +48,7 @@ demolist=['n-pendulum','npend/npend_gateway.sce';
 	  'DAE''S','dae/dae.dem']
 
 demo_file_choice('SCI/demos/simulation/','no');
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
