@@ -452,6 +452,69 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * DOCUMENT INDENTATION END
 	 */
 
+	
+	/**
+	 * DOCUMENT COMMENT ACTION
+	 */
+	public void commentText(int start_position, int end_position) {
+
+		String text_to_comment = "";
+		try {
+			// Get the document text to comment
+			text_to_comment = this.getText(start_position, end_position-start_position);
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
+		Vector<Integer> line_break = new Vector<Integer>(); // positions of line break
+		Vector<String> all_lines = new Vector<String>(); // the document line by line
+		String line = "";
+
+		if (start_position != end_position) {
+			for (int i = 0; i < text_to_comment.length(); i++) {
+				line = line.concat(text_to_comment.charAt(i)+"");
+
+				if (text_to_comment.charAt(i)=='\n') {
+					line_break.add(i);
+					all_lines.add(line);
+					line = "";
+				}
+				if (i==text_to_comment.length()-1) {
+					all_lines.add(line);
+					line = "";
+				}
+			}
+
+			String commented_text = "";
+			for (int i = 0; i < all_lines.size(); i++) {
+				String tmp = "";
+				if (!(all_lines.elementAt(i).equals(""))) {
+					if (all_lines.elementAt(i).length() >= 2) {
+						if (all_lines.elementAt(i).substring(0, 2).equals("//")) {
+							tmp = all_lines.elementAt(i).substring(2, all_lines.elementAt(i).length());
+						} else {
+							tmp = "//" + all_lines.elementAt(i);
+						}
+					}
+				}
+				commented_text += tmp;
+			}
+
+			// Display the text commented
+			try {
+				this.replace(start_position, end_position-start_position, commented_text, null);
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+
+		line_break.clear();
+		all_lines.clear();
+	}
+	/**
+	 * DOCUMENT COMMENT ACTION END
+	 */
+	
 
 	/**
 	 * FIND AND REPLACE START
