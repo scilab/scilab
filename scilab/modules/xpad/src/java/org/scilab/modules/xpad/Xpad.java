@@ -88,7 +88,7 @@ import org.scilab.modules.xpad.utils.ConfigXpadManager;
 public class Xpad extends SwingScilabTab implements Tab { 
 
     private final Window parentWindow;
-    private final JTabbedPane tabPane;
+    private JTabbedPane tabPane;
 
     private static Xpad editor = null;
 
@@ -356,5 +356,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public void addToolBar(ToolBar toolBarToAdd) {
 	    setToolBar(toolBarToAdd);
+	}
+
+	public JTabbedPane getTabPane() {
+		return tabPane;
+	}
+
+	public void setTabPane(JTabbedPane tabPane) {
+		this.tabPane = tabPane;
 	}
     }
