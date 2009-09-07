@@ -48,7 +48,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = true;
+	private boolean autoIndent = false;
 	private boolean autoColorize = true;
 	private boolean colorizeInprogress = false;
 	private boolean indentInprogress = false;
@@ -856,4 +856,5 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return undo;
 	}
 
+	
 }
