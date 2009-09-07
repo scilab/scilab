@@ -25,13 +25,15 @@ function XcosMenuExportAll()
 
   // Select output directory
   %exp_dir = uigetdir('./',_("Select a directory path"))
+  
   if %exp_dir=="" then return; end //user cancelled
-  if ~isdir(%exp_dir) then
-    pause
+  info=fileinfo(%exp_dir)
+  if isempty(info) then
+    mkdir(%exp_dir)
+  elseif ~isdir(%exp_dir) then
     messagebox(msprintf(_("""%s"" is not a valid directory\n"),%exp_dir),"error","modal")
     return
   end
-  
   // Select output format
   %exp_format=choose_export_format();
   if isempty(%exp_format) then  // User cancelled
