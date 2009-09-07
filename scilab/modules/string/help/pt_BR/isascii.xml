@@ -67,16 +67,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 isascii(code2str(300))
 isascii(code2str(-11))
 letters = [115.    99.    105.    108.    97.    98.]
 isascii(letters)
 ascii(letters)
 isascii('scilab')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

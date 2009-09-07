@@ -74,8 +74,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 ta = [10,3,6,2,3,7,6,9,5,10,8,2,5,8,4,9,1,8,9,4,7]
 he = [3,6,10,6,2,6,9,7,3,5,2,5,8,4,9,8,4,1,2,7,10]
 g=make_graph('foo',1,10,ta,he);
@@ -89,8 +88,7 @@ a=[['' string(1:10)];[string(1:10)' string(full(a))]]
 
 a=graph_2_mat(g);
 string(full(a))'
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

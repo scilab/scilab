@@ -26,23 +26,23 @@
           <para>(optional) a string given the color and/or the marker type of the form "[color][mark]" 
       where color may be a number referring the color you want to use (in the current colormap). 
       If you use the std colormap then color may be one of the following letters :</para>
-          <programlisting><![CDATA[
-    k  for black       b  for blue
-    r  for red         g  for green
-    c  for cyan        m  for magenta
-    y  for yellow      t  for turquoise
-    G  a dark green
-   ]]></programlisting>
+          <programlisting role = ""><![CDATA[ 
+k  for black       b  for blue
+r  for red         g  for green
+c  for cyan        m  for magenta
+y  for yellow      t  for turquoise
+G  a dark green
+ ]]></programlisting>
           <para>
     mark must be one of the following :
   </para>
-          <programlisting><![CDATA[
-    .  point           +  plus 
-    x  cross           *  circled plus 
-    D  filled diamond  d  diamond
-    ^  upper triangle  v  down triangle
-    o  circle
-   ]]></programlisting>
+          <programlisting role = ""><![CDATA[ 
+.  point           +  plus 
+x  cross           *  circled plus 
+D  filled diamond  d  diamond
+^  upper triangle  v  down triangle
+o  circle
+ ]]></programlisting>
           <para>
     by default you have "b." (in fact the 2d color) and this is also forced in case of error. 
   </para>
@@ -60,7 +60,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [A,description,ref,mtype] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
 set figure_style old
 PlotSparse(A,"y+")

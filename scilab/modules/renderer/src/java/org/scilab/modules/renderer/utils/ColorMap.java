@@ -247,7 +247,7 @@ public class ColorMap {
 	 * @return true if the index is valid, false otherwis
 	 */
 	public boolean isValidScilabIndex(int scilabIndex) {
-		return (scilabIndex >= WHITE_INDEX && scilabIndex < colormapSize);
+		return (scilabIndex >= WHITE_INDEX && scilabIndex <= colormapSize);
 	}
 	
 	/**

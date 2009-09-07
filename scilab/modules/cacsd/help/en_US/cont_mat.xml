@@ -44,11 +44,9 @@ Cc=cont_mat(sl)</synopsis>
     <title>Description</title>
     <para><literal>cont_mat</literal> returns the controllability 
     matrix of the pair <literal>A,B</literal> (resp. of the system <literal>sl=[A,B,C,D]</literal>).</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 Cc=[B, AB, A^2 B,..., A^(n-1) B]  
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

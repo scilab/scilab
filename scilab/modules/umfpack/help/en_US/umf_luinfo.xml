@@ -87,7 +87,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
@@ -100,7 +100,7 @@ Lup = umf_lufact(A);
 nnz(L)  // must be equal to lnz
 nnz(U)  // must be equal to unz
 umf_ludel(Lup) // clear memory
-   ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

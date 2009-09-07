@@ -68,8 +68,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a=.7*exp(%i*%pi/6);
 [ffr,bds]=xgetech(); //preserve current context
 rect=[-1.2,-1.2*sqrt(2),1.2,1.2*sqrt(2)];
@@ -88,8 +87,7 @@ w0=w0/(.93*.93);w=exp(-(0:9)*log(w0));z=a*w;
 zr=real(z);zi=imag(z);
 plot2d(zr',zi',[5],"000")
 xsetech(ffr,bds); //restore context
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

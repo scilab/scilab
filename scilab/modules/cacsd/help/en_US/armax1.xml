@@ -90,30 +90,28 @@
     <para>
     armax1 is used to identify the coefficients of a 1-dimensional 
     ARX process:</para>
-    <programlisting><![CDATA[
-
-   A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
-   e(t) is a 1-dimensional white noise with variance 1.
-   A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
-   B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
-   D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A(z^-1)y= B(z^-1)u + D(z^-1)sig*e(t)
+e(t) is a 1-dimensional white noise with variance 1.
+A(z)= 1+a1*z+...+a_r*z^r; ( r=0 => A(z)=1)
+B(z)= b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
+D(z)= 1+d1*z+...+d_q*z^q  ( q=0 => D(z)=1)
+ ]]></programlisting>
     <para>
     for the method, see Eykhoff in trends and progress in system
     identification) page 96.  with
     </para>
-    <programlisting><![CDATA[
-            z(t)=[y(t-1),..,y(t-r),u(t),...,
-                  u(t-s),e(t-1),...,e(t-q)] 
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+z(t)=[y(t-1),..,y(t-r),u(t),...,
+      u(t-s),e(t-1),...,e(t-q)] 
+ ]]></programlisting>
     <para>
     and
     </para>
-    <programlisting><![CDATA[
-            coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
-            y(t)= coef'* z(t) + sig*e(t).
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+coef= [-a1,..,-ar,b0,...,b_s,d1,...,d_q]'
+y(t)= coef'* z(t) + sig*e(t).
+ ]]></programlisting>
     <para>
     a sequential version of the AR estimation where e(t-i) is replaced 
     by an estimated value is used (RLLS). With q=0 this method is exactly

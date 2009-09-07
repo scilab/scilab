@@ -74,8 +74,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13 4];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10 4];
@@ -96,8 +95,7 @@ g.edges.graphics.display='number';
 show_graph(g)
 
 g.edges.graphics
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

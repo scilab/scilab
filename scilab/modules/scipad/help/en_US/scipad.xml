@@ -567,9 +567,9 @@ scipad f1 f2 ...</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-   scipad SCI/etc/scilab.start 
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+scipad SCI/etc/scilab.start 
+ ]]></programlisting>
   </refsection>
 
   <refsection>

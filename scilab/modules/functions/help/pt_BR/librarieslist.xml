@@ -47,9 +47,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">librarieslist()
-
-   </programlisting>
+    <programlisting role="example"><![CDATA[ 
+librarieslist()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

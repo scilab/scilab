@@ -55,11 +55,9 @@
     Called with three outputs <literal>[Ds,NUM,chi]=ss2tf(sl)</literal> returns 
     the numerator polynomial matrix <literal>NUM</literal>, the characteristic
     polynomial <literal>chi</literal> and the polynomial part <literal>Ds</literal> separately i.e.:</para>
-    <programlisting><![CDATA[
-
-h=NUM/chi + Ds
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+h = NUM/chi + Ds
+ ]]></programlisting>
     <para>
     Method:</para>
     <para>
@@ -73,15 +71,13 @@ h=NUM/chi + Ds
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 h=[1,1/s;1/(s^2+1),s/(s^2-2)]
 sl=tf2ss(h);
 h=clean(ss2tf(sl))
 [Ds,NUM,chi]=ss2tf(sl)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

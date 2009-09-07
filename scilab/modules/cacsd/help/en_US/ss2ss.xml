@@ -145,11 +145,9 @@
         <para><literal>right</literal> and <literal>left</literal> have the
         following property:</para>
 
-        <programlisting><![CDATA[
-
-  Sl1 =  left*sysdiag(sys,eye(p,p))*right 
-   
-        ]]></programlisting>
+        <programlisting role = ""><![CDATA[ 
+Sl1 = left*sysdiag(sys,eye(p,p))*right 
+ ]]></programlisting>
       </listitem>
 
       <listitem>
@@ -159,11 +157,9 @@
         injection is applied. <literal>right</literal> and
         <literal>left</literal> have the following property:</para>
 
-        <programlisting><![CDATA[
-
-  Sl1 = left*sysdiag(sys*right,eye(p,p)))
-   
-        ]]></programlisting>
+        <programlisting role = ""><![CDATA[ 
+ Sl1 = left*sysdiag(sys*right,eye(p,p)))
+ ]]></programlisting>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -171,8 +167,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 Sl=ssrand(2,2,5); trzeros(Sl)       // zeros are invariant:
 Sl1=ss2ss(Sl,rand(5,5),rand(2,5),rand(5,2)); 
 trzeros(Sl1), trzeros(rand(2,2)*Sl1*rand(2,2))
@@ -203,8 +198,7 @@ F2=0*rand(p,n);F=[F1;F2];
 [sys2,right,left]=ss2ss(sys,rand(n,n),F,G,1);
 
 res=clean(ss2tf(sys2)-ss2tf(sys1))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -69,14 +69,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 H=[2/s,(s+1)/(s^2-5)];
 Sys=tf2ss(H)
 clean(ss2tf(Sys))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

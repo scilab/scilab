@@ -46,19 +46,19 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  TCL_CreateSlave("TCLinterp")
-  TCL_SetVar("a","r","TCLinterp")
-  TCL_ExistVar("a","TCLinterp")
-  TCL_ExistVar("a")
-  TCL_DeleteInterp("TCLinterp")
+    <programlisting role="example"><![CDATA[ 
+TCL_CreateSlave("TCLinterp")
+TCL_SetVar("a","r","TCLinterp")
+TCL_ExistVar("a","TCLinterp")
+TCL_ExistVar("a")
+TCL_DeleteInterp("TCLinterp")
 
-  TCL_CreateSlave("TCLinterp", %T)
-  TCL_SetVar("a","r","TCLinterp")
-  TCL_ExistVar("a","TCLinterp")
-  TCL_ExistVar("a")
-  TCL_DeleteInterp("TCLinterp")
-]]></programlisting>
+TCL_CreateSlave("TCLinterp", %T)
+TCL_SetVar("a","r","TCLinterp")
+TCL_ExistVar("a","TCLinterp")
+TCL_ExistVar("a")
+TCL_DeleteInterp("TCLinterp")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

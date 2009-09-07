@@ -75,12 +75,10 @@
          into the user's memory using the unpack routines.</para>
     <para>
     For example</para>
-    <programlisting><![CDATA[
-
+    <programlisting><![CDATA[ 
 arrived = pvm_probe( tid, msgtag );
 if (arrived >= 0) then [bytes, msgtag, tid, info] = pvm_info(arrived); end
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

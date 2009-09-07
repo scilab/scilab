@@ -47,16 +47,13 @@ simp_mode(mod)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 mod=simp_mode()
 simp_mode(%f);hns=s/s
 simp_mode(%t);hns=s/s
 simp_mode(mod);
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

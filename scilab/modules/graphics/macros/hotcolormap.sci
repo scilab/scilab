@@ -9,9 +9,13 @@
 
 function cmap = hotcolormap(n)
 //graycmap   yellow to red color map.
-if size(n,'*')<>1|or(n<3) then
-  error('hotcolormap : n must be an integer greater than 3')
-end
+	if size(n,'*')<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"hotcolormap",1));
+	end
+	
+	if n<3 then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"hotcolormap",1,3));
+	end
 n1=fix(3/8*n);
 n2=n1
 n3=n-(n1+n2)

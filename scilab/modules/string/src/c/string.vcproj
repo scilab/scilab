@@ -606,6 +606,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\strsplitfunction.c"
+				>
+			</File>
+			<File
 				RelativePath=".\strsubst.c"
 				>
 			</File>
@@ -712,6 +716,10 @@
 			</File>
 			<File
 				RelativePath=".\stripblanks.h"
+				>
+			</File>
+			<File
+				RelativePath=".\strsplitfunction.h"
 				>
 			</File>
 			<File

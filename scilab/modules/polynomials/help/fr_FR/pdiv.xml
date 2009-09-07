@@ -49,7 +49,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 x=poly(0,'x');
 p1=(1+x^2)*(1-x);p2=1-x;
 [r,q]=pdiv(p1,p2)

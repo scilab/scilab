@@ -73,14 +73,14 @@ apropos(regexp)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 apropos('ode')
 apropos ode 
 apropos "list of"
 apropos "sin.*hyperbolic"
 apropos "^ab"  //procura por ajuda começando com os dois caracteres "ab"
 apropos "quadratic.*solver"
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

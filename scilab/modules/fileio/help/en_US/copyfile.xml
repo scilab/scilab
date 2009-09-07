@@ -42,17 +42,22 @@
     <para>copyfile('source','destination') copies the file to the file or
     directory destination.</para>
 
-    <para>[status,message] = copyfile('source','destination') copies source to
-    destination, returning the status and a message.</para>
+    <para>
+    [status,message] = copyfile('source','destination') copies source to
+    destination, returning the status and a message.
+    Whatever the operating system, if the copy succeeds, the status is 1 and 
+    the message is empty ; if the copy fails, the status is 0 and the message
+    is not empty.
+    </para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
 [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

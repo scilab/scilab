@@ -32,14 +32,14 @@
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <programlisting role=""><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _pcData8)
 int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _psData16)
 int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32)
 int createMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char* _pucData8)
 int createMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short* _pusData16)
 int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int* _puiData32)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -83,14 +83,14 @@ int createMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned 
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <programlisting role=""><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _pcData8)
 int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _psData16)
 int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32)
 int allocMatrixOfUnsignedInteger8(int _iVar, int _iRows, int _iCols, unsigned char** _pucData8)
 int allocMatrixOfUnsignedInteger16(int _iVar, int _iRows, int _iCols, unsigned short** _pusData16)
 int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned int** _puiData32)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -136,8 +136,7 @@ int allocMatrixOfUnsignedInteger32(int _iVar, int _iRows, int _iCols, unsigned i
         <!--Lib_name: integer_writing-->
         <!--Func_list: write_integer-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
 int read_integer(char *fname,unsigned long fname_len)
@@ -350,14 +349,12 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
     }
     return pvDataOut;
 }
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 a8  = int8([    1   -2  3   -4  5; ..
                 -6  7   -8  9   -10; ..
                 11  -12 13  -14 15]);
@@ -390,7 +387,6 @@ if or(c16 <> a16 * 8) then error("failed"), end
 if or(cu16 <> au16 * 16) then error("failed"), end
 if or(c32 <> a32 * 32) then error("failed"), end
 if or(cu32 <> au32 * 64) then error("failed"), end
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

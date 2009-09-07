@@ -41,10 +41,11 @@ javalibrarypath(path)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[res=javalibrarypath();
+    <programlisting role="example"><![CDATA[ 
+res=javalibrarypath();
 javalibrarypath(SCI);
 javalibrarypath([SCI,SCI+'/libs']);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

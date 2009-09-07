@@ -61,7 +61,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 //create a simple graph
 ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
 he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
@@ -71,12 +71,11 @@ g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
 show_graph(g,'new')
 nodedatafields(g)
 
-
 g=add_node_data(g,'demand',round(10*rand(1,13,'u')));
 g=add_node_data(g,'label','e'+string(1:13));
 nodedatafields(g)
 g.nodes.data.label
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

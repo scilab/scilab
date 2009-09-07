@@ -47,8 +47,9 @@ file names. The other ones are subsidiary functions.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[[m,p]=libraryinfo('corelib')
-   ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+[m,p]=libraryinfo('corelib')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

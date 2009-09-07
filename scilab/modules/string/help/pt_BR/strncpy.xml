@@ -78,13 +78,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 strncpy('scilab',3)
 strncpy(['scilab','SciLab';'strncpy','strstr'],3)
 strncpy(['scilab','SciLab';'strncpy','strstr'],[1,2;3,4])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

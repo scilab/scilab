@@ -38,11 +38,9 @@
     <para>Também podem ser definidos on-line (ver <literal>deff</literal>). Um
     arquivo que contém uma macro deve começar como segue:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Os <literal>yi</literal> são variáveis de saída calculadas como
     funções de variáveis de entrada e variáveis existentes no Scilab quando o

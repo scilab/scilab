@@ -46,10 +46,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[fd=mopen(TMPDIR+'/filetodelete.txt','wt');
+    <programlisting role="example"><![CDATA[ 
+fd=mopen(TMPDIR+'/filetodelete.txt','wt');
 mclose(fd); 
 if (fileinfo(TMPDIR+'/filetodelete.txt') <> []) then deletefile(TMPDIR+'/filetodelete.txt'),end;
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
