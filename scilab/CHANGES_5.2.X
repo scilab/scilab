@@ -41,6 +41,12 @@ Compilation:
 
 * functions module is loaded dynamically by Scilab.
 
+* autoconf updated to version 2.64
+
+* automake updated to version 1.11
+
+* libtool updated from version 1.5.26 to 2.2.6a (Closes bug #4279)
+
 Source reorganisation:
 ======================
 
