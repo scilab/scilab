@@ -56,3 +56,6 @@ library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
 library.hdf5.name=org.scilab.modules.hdf5.jar
+
+library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
+library.xpad.name=org.scilab.modules.xpad.jar
