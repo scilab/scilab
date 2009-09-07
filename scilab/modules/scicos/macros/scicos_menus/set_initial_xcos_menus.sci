@@ -20,7 +20,9 @@
 //
 
 function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_initial_xcos_menus()
-  
+//** Sept 2009, Serge Steer
+//  a better data organization should be made to avoid redundancy and for
+//  a better efficiency (see scicos_menubar, XcosPopup)
   //**-----------------------------------------------------------------------
   //**----------------------------- Menubar menus ------------------------
   //**-----------------------------------------------------------------------
@@ -144,7 +146,10 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 	      'XcosMenuTkPopup',              _("TkPopup ")        
 	      'XcosMenuBrowseTo',             _("BrowseTo")        
 	      'XcosMenuPlaceinBrowser',       _("PlaceinBrowser")  
-	      'XcosMenuSelectAll',            _("SelectAll") ]       
+	      'XcosMenuSelectAll',            _("SelectAll") 
+	      'XcosMenuProperties'            _("Properties") //added for XcosGetMenuLabel
+	      'XcosMenuMask'                  _("Mask") //added for XcosGetMenuLabel
+	      'XcosMenuAtomic'                _("Atomic")]//added for XcosGetMenuLabel
 
   scicos_menu = list(File,Diagram,Palette,Edit,View,Simulate,Format,Tools,Help,Unvisible);
 
@@ -155,21 +160,20 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
   //  Define the menus subset to appear in contextual menus
   scicos_lhb_list = list();
   
-  //** Contextual menu for a valid object inside the CURRENT Scicos
-  //Window here only Ids are used
+  //** Contextual menu for a Scicos object in a Scicos Edition window
   scicos_lhb_list(1) = list('XcosMenuOpenSet',..
-			     'XcosMenuCut',..
-			     'XcosMenuCopy',..
-                             'XcosMenuDelete',..
-			     'XcosMenuSmartMove',..
-			     'XcosMenuMove',..
-			     'XcosMenuDuplicate',..
-			     'XcosMenuLink',..
-			     'XcosMenuAlign',..
-			     'XcosMenuFlip',..
-			     'XcosMenuRotateLeft',..
-			     'XcosMenuRotateRight',..
-			     list( 'XcosMenuProperties',..
+			    'XcosMenuCut',..
+			    'XcosMenuCopy',..
+			    'XcosMenuDelete',..
+			    'XcosMenuSmartMove',..
+			    'XcosMenuMove',..
+			    'XcosMenuDuplicate',..
+			    'XcosMenuLink',..
+			    'XcosMenuAlign',..
+			    'XcosMenuFlip',..
+			    'XcosMenuRotateLeft',..
+			    'XcosMenuRotateRight',..
+			    list( 'XcosMenuProperties',..
 			           'XcosMenuResize',..
 			           'XcosMenuIcon',..
 			           'XcosMenuIconEditor',..
@@ -192,7 +196,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 			     'XcosMenuRegionToPalette',..
 			     'XcosMenuHelp');
 
-  //** Contextual menu  in the void of the CURRENT Scicos Window
+  //** Contextual menu  in the void of the Scicos edition Window
   scicos_lhb_list(2) = list('XcosMenuUndo',..
                              'XcosMenuPaste',..
 			     'XcosMenuPalettes',..
@@ -214,9 +218,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
                              'XcosMenuDetails',..
 			     'XcosMenuHelp');
 
-  //** //** Contextual menu for a valid object inside a PALETTE or 
-  //**                 not a current Scicos window
-  //**
+  //** //** Contextual menu for a Scicos object inside a PALETTE 
   scicos_lhb_list(3) = list('XcosMenuCopy',..
 			     'XcosMenuHelp');
 

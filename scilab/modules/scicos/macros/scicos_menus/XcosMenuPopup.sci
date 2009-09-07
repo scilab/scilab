@@ -22,16 +22,16 @@
 function XcosMenuPopup()
 
 //** This function uses the "%scicos_lhb_list(state_var) data strucuture
-//** defined inside [auto/scicos.sci]
+//** defined inside [set_initial_xcos_menus]
 //**
+//** state_var = 1 : right click over a Scicos object inside a Scicos edition Window
+//**
+//** state_var = 2 : right click in the void inside a Scicos edition Window
+//**
+//** state_var = 3 : right click over a Scicos object inside a ScicosPalette window
 
 state_var = 0 ; //** init
 
-//** state_var = 1 : right click over a valid object inside the CURRENT Scicos Window
-//**
-//** state_var = 2 : right click in the void of the CURRENT Scicos Window
-//**
-//** state_var = 3 : right click over a valid object inside a PALETTE or NOT a CURRENT Scicos Window
 
 
 state_pal = 0 ;
@@ -86,7 +86,7 @@ if obj_selected > 1 then
                     //** read only operation
   else
   //**---- ... in any other case -------------------------------
-    messagebox("This window is not an active scicos window",'modal')
+    messagebox(_("This window is not an active scicos window"),'modal')
     Cmenu=[]; %pt=[]; %ppt=[]; Select=[];
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point
@@ -99,7 +99,7 @@ else //** single / multiple object(s) switch
   //**------------------- Zero or one single object selected by pop up ------------
   if kc==[] then
   //** ------------- It's NOT a Scicos window -------------------
-    messagebox("This window is not an active scicos window",'modal')
+    messagebox(_("This window is not an active scicos window"),'modal')
     Cmenu = []; %pt=[]; %ppt=[]; Select=[] ;
     scf(gh_winback); //** restore the active window
     return ; //** ---> Exit point
@@ -201,7 +201,7 @@ end //** ... of single / multiple selection switch
   //** the key function call that (see "scicos.sci") call
   //-- mpopup => createpopup (Java GUI)
 
-  Cmenu = mpopup(%scicos_lhb_list(state_var)) ; //**
+  Cmenu = XcosPopup(%scicos_lhb_list(state_var)) ; //**
 
   if Cmenu==[] then
        %pt  = [];
