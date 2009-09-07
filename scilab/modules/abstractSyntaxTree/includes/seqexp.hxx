@@ -44,7 +44,12 @@ namespace ast
 
     virtual ~SeqExp ()
     {
-      //delete _l_body;
+			std::list<Exp *>::const_iterator i;
+			for(i = _l_body->begin() ; i!= _l_body->end() ; i++)
+			{
+				delete *i;
+			}
+      delete _l_body;
     }
 
     /** \name Visitors entry point.

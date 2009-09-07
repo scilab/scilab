@@ -58,6 +58,7 @@ namespace symbol
 
 		bool AddFunction(types::Function *_info);
 		bool AddMacro(types::Macro *_info);
+		bool AddMacroFile(types::MacroFile *_info);
 
 	private :
 		Stack PrivateFunTable;

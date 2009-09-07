@@ -118,5 +118,11 @@ namespace symbol
 		EnvFunTable.put(Symbol(_info->m_stName), *_info);
 		return true;
 	}
+
+	bool Context::AddMacroFile(types::MacroFile *_info)
+	{
+		EnvFunTable.put(Symbol(_info->m_stName), *_info);
+		return true;
+	}
 }
 

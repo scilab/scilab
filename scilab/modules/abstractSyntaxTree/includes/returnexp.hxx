@@ -51,7 +51,7 @@ namespace ast
 
     virtual ~ReturnExp ()
     {
-//      delete _exp;
+      delete _exp;
     }
 
     /** \name Visitors entry point.

@@ -17,7 +17,7 @@
 
 namespace types
 {
-	class EXTERN_TYPES Int : public GenericType
+	class Int : public GenericType
 	{
   public :
     enum IntType {

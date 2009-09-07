@@ -35,8 +35,8 @@ public:
      ** Delete var et exp (see constructor). */
     virtual ~AssignExp ()
     {
-//      delete  _left_exp;
-//      delete  _right_exp;
+      delete  _left_exp;
+      delete  _right_exp;
     }
     /** \} */
 

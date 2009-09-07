@@ -54,8 +54,8 @@ namespace ast
      ** Delete vardec, hi and body (see constructor). */
     virtual ~ForExp ()
     {
-      //delete  _vardec;
-      //delete  _body;
+      delete  _vardec;
+      delete  _body;
     }
     /** \} */
 

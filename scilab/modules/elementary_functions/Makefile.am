@@ -407,6 +407,8 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 	-I$(top_builddir)/modules/operations/includes \
 	-I$(top_builddir)/modules/abstractSyntaxTree/includes \
 	-I$(top_builddir)/modules/api_scilab/includes \
+	-I$(top_builddir)/modules/system_env/includes \
+	-I$(top_builddir)/modules/fileio/includes \
 	-I$(top_builddir)/modules/symbol/includes
 
 

@@ -18,7 +18,7 @@
 
 namespace types
 {
-	class EXTERN_TYPES Float : public GenericType
+	class Float : public GenericType
 	{
   public :
 		virtual				~Float();

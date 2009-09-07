@@ -19,7 +19,7 @@ using std::string;
 
 namespace types
 {
-  class EXTERN_TYPES Bool : public GenericType
+  class Bool : public GenericType
   {
   public :
 									Bool(bool _bReal);

@@ -44,7 +44,13 @@ namespace ast
 
     virtual ~CallExp ()
     {
- //     delete &_name;
+			delete &_name;
+			std::list<Exp *>::const_iterator i;
+			for(i = _args->begin() ; i != _args->end() ; i++)
+			{
+				delete *i;
+			}
+			delete _args;
     }
 
 

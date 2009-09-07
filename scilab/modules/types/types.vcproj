@@ -23,7 +23,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -63,16 +63,11 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				GenerateDebugInformation="true"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/types.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -84,9 +79,6 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -94,7 +86,7 @@
 			Name="Debug|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="2"
 			>
 			<Tool
@@ -116,7 +108,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -135,16 +127,11 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				GenerateDebugInformation="true"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/types.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -156,9 +143,6 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -166,7 +150,7 @@
 			Name="Release|Win32"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -189,7 +173,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -207,15 +191,11 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/types.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -227,9 +207,6 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
-				Name="VCAppVerifierTool"
-			/>
-			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -237,7 +214,7 @@
 			Name="Release|x64"
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="2"
+			ConfigurationType="4"
 			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
@@ -261,7 +238,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes;../operations/includes;../symbol//includes;../abstractSyntaxTree/includes;../output_stream/includes;../localization/includes;../../libs/intl;../parse/includes;../system_env/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TYPES_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -279,15 +256,11 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLinkerTool"
-				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
-				ImportLibrary="&quot;$(SolutionDir)bin\$(ProjectName).lib&quot;"
+				Name="VCLibrarianTool"
+				OutputFile="../../libs/types.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
-			/>
-			<Tool
-				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -297,9 +270,6 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
-			/>
-			<Tool
-				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -340,6 +310,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\macro.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\macrofile.cpp"
 				>
 			</File>
 			<File
@@ -413,6 +387,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\macrofile.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\matrixpoly.hxx"
 				>
 			</File>
@@ -440,15 +418,7 @@
 			>
 		</Filter>
 		<File
-			RelativePath="..\..\bin\abstractSyntaxTree.lib"
-			>
-		</File>
-		<File
 			RelativePath="..\..\bin\lapack.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\bin\symbol.lib"
 			>
 		</File>
 	</Files>

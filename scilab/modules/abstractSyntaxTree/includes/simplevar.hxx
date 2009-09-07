@@ -44,7 +44,7 @@ namespace ast
      ** Delete name, see constructor. */
     ~SimpleVar ()
     {
-      //delete &_name;
+      delete &_name;
     }
 
 

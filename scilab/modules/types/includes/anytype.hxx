@@ -26,6 +26,7 @@ namespace types
 	class Callable;
 	class Function;
 	class Macro;
+	class MacroFile;
 	class Dollar;
 	class Poly;
 	class MatrixPoly;

@@ -73,8 +73,8 @@ namespace ast
      ** Delete type_name if it exist, init and name (see constructor). */
     virtual ~VarDec()
     {
-//      delete _init;
-//      delete &_name;
+      delete _init;
+      delete &_name;
     }
     /** \} */
 

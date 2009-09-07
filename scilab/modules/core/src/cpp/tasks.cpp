@@ -18,6 +18,8 @@
 #include "execvisitor.hxx"
 #include "debugvisitor.hxx"
 
+#include "yaspio.hxx"
+
 timer _timer;
 
 //#define DEBUG

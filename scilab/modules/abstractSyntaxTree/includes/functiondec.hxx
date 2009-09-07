@@ -61,9 +61,10 @@ namespace ast
 
     virtual ~FunctionDec ()
     {
-      delete &_name;
-      delete _args;
-      delete _returns;
+			delete &_name;
+      delete _body;
+			delete _args;
+			delete _returns;
     }
 
 

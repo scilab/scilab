@@ -53,8 +53,8 @@ namespace ast
      ** Delete test and body (see constructor). */
     virtual ~WhileExp ()
     {
-//      delete _test;
-//      delete _body;
+      delete _test;
+      delete _body;
     }
     /** \}*/
 

@@ -13,6 +13,8 @@
 #include "macro.hxx"
 #include "context.hxx"
 #include "execvisitor.hxx"
+#include "localization.h"
+#include "yaspio.hxx"
 
 namespace types
 {
@@ -20,15 +22,20 @@ namespace types
 	/*--------------*/
 	/*	Contructor  */
 	/*--------------*/
-	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body):
+	Macro::Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule):
 		Callable(),
 		m_stName(_stName),
 		m_inputArgs(&_inputArgs),
 		m_outputArgs(&_outputArgs),
+		m_stModule(_stModule),
 		m_body(&_body)
 	{
 	}
 
+	Macro::~Macro()
+	{
+		delete m_body;
+	}
 	/*--------------*/
 	/*	whoIAm		  */
 	/*--------------*/
@@ -76,7 +83,21 @@ namespace types
 
 			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
 			{
-				out.push_back(symbol::Context::getInstance()->get(*i));
+				InternalType *pIT = symbol::Context::getInstance()->get(*i);
+				if(pIT != NULL)
+				{
+					out.push_back(pIT);
+				}
+				else
+				{
+					char sz[bsiz];
+#ifdef _MSC_VER
+					sprintf_s(sz, bsiz, _("Undefined variable %s.\n"), (*i).name_get().c_str());
+#else
+					sprintf(sz, _("Undefined variable %s.\n"), (*i).name_get().c_str());
+#endif
+					YaspWrite(sz);
+				}
 			}
 		}
 		catch(string sz)

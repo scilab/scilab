@@ -24,7 +24,7 @@
 #endif
 namespace types
 {
-  class EXTERN_TYPES Function : public Callable
+  class Function : public Callable
   {
   public :
     Function * 	getAsFunction(void);
@@ -55,12 +55,12 @@ namespace types
   {
   public :
     WrapFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule);
-    ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
+    Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   private :
     OLDGW_FUNC m_pOldFunc;
   };
 
-	class EXTERN_TYPES GatewayStruct
+	class GatewayStruct
 	{
 	public :
 		typed_list* m_pin;

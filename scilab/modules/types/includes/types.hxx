@@ -25,7 +25,7 @@ namespace types
   /*
   ** Type
   */
-	class EXTERN_TYPES GenericType : public InternalType
+	class GenericType : public InternalType
   {
 
 	protected :
@@ -63,9 +63,11 @@ namespace types
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
 
-    /* Function */
+    /* Macro */
     bool isMacro(void) { return (getType() == RealMacro); }
 
+    /* MacroFile */
+		bool isMacroFile(void) { return (getType() == RealMacroFile); }
 
 		/*common functions*/
 		int cols_get() const;

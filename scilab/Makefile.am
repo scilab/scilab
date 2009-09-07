@@ -96,6 +96,7 @@ scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/system_env/includes/ \
 						-I$(top_srcdir)/modules/functions_manager/includes/ \
 						-I$(top_srcdir)/modules/shell/includes/ \
+						-I$(top_srcdir)/modules/output_stream/includes/ \
 						-I$(top_srcdir)/modules/console/includes/
 
 
@@ -107,7 +108,8 @@ $(top_builddir)/modules/parse/libsciparse.la \
 $(top_builddir)/modules/types/libscitypes.la \
 $(top_builddir)/modules/system_env/libscisystem_env.la \
 $(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
-$(top_builddir)/modules/core/libscicore.la
+$(top_builddir)/modules/core/libscicore.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 

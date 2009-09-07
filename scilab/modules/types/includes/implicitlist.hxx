@@ -20,7 +20,7 @@ namespace types
 	/*
 	** Type
 	*/
-	class EXTERN_TYPES ImplicitList : public InternalType
+	class ImplicitList : public InternalType
 	{
 	private :
 		double					m_dblStart;

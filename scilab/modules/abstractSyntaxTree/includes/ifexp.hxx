@@ -74,9 +74,9 @@ namespace ast
 
     virtual ~IfExp()
     {
-//		delete this->_test;
-//		delete this->_then;
-//		delete this->_else;
+		delete _test;
+		delete _then;
+		delete _else;
     }
 
     // \brief Visitors entry point.

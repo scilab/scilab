@@ -20,19 +20,9 @@
 #include "anytype.hxx"
 
 
-#ifdef _MSC_VER
-	#if TYPES_EXPORTS
-		#define EXTERN_TYPES __declspec (dllexport)
-	#else
-		#define EXTERN_TYPES __declspec (dllimport)
-	#endif
-#else
-	#define EXTERN_TYPES
-#endif
-
 namespace types
 {
-	class EXTERN_TYPES InternalType
+	class InternalType
   {
   public :
     enum RealType {
@@ -48,6 +38,7 @@ namespace types
 			RealInternal,
 			RealFunction,
 			RealMacro,
+			RealMacroFile,
 			RealPoly,
 			RealSinglePoly,
 			RealObject
@@ -94,7 +85,11 @@ namespace types
     bool isMacro(void) { return (getType() == RealMacro); }
     virtual Macro* getAsMacro(void) { return NULL; }
 
-    /* ImplicitList */
+    /* MacroFile */
+		bool isMacroFile(void) { return (getType() == RealMacroFile); }
+    virtual MacroFile* getAsMacroFile(void) { return NULL; }
+
+		/* ImplicitList */
 		bool isImplicitList(void) { return (getType() == RealImplicitList); }
 		virtual ImplicitList* getAsImplicitList(void) { return NULL; }
 

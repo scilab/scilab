@@ -44,6 +44,11 @@ namespace ast
 
     virtual ~MatrixLineExp ()
     {
+			std::list<Exp *>::const_iterator i;
+			for(i = _columns->begin() ; i!= _columns->end() ; i++)
+			{
+				delete *i;
+			}
       delete _columns;
     }
 

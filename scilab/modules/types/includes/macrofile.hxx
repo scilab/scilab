@@ -10,8 +10,8 @@
  * 
  */
 
-#ifndef __MACRO_HXX__
-#define __MACRO_HXX__
+#ifndef __MACROFILE_HXX__
+#define __MACROFILE_HXX__
 
 #include <list>
 #include "callable.hxx"
@@ -21,24 +21,23 @@
 
 namespace types
 {
-  class Macro : public Callable
+  class MacroFile : public Callable
   {
   public :
-		Macro *getAsMacro(void);
+		MacroFile *getAsMacroFile(void);
     RealType getType(void);
 
     void whoAmI();
 
-		Macro(): Callable(){};
-		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule);
-		virtual ~Macro();
+		MacroFile(): Callable(){};
+		MacroFile(std::string _stName, string _stPath, string _stModule);
+		virtual ~MacroFile(){};
 		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   
   public :
-    std::list<symbol::Symbol>	*m_inputArgs;
-    std::list<symbol::Symbol>	*m_outputArgs;
-    ast::SeqExp			*m_body;
+		Macro*					m_pMacro;
     std::string			m_stName;
+    std::string			m_stPath;
     std::string			m_stModule;
   };
 }
