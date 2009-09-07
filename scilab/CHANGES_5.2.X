@@ -2,8 +2,8 @@
                =================================================
 
 
-Extend of Scilab :
-==================
+Extension capabilities of Scilab :
+==================================
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
