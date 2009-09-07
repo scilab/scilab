@@ -56,12 +56,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 function x=foo(a,n)
  x=0;
  for i=1:n
-   if x&lt;10 then
+   if x<10 then
      x=x+a
    else
      x=x+1
@@ -75,7 +74,7 @@ foo(0.1,100) //executando a função
 profile(foo) //extraindo informação de profile
 reset_profiling("foo")
 profile(foo) //extraindo informação de profile
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

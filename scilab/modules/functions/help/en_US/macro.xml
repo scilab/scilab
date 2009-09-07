@@ -28,11 +28,9 @@
     <para>
     They can also be defined on-line (see <literal>deff</literal>). 
     A file which contains a macro must begin as follows:</para>
-    <programlisting><![CDATA[
-
+    <programlisting><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     The <literal>yi</literal> are output variables calculated as functions of
     input variables and variables existing in Scilab

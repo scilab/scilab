@@ -76,9 +76,9 @@
     <para>
     Dans le fichier chaque fonction doit commencer par une ligne de la forme :
   </para>
-    <programlisting><![CDATA[
+    <programlisting><![CDATA[ 
 function [y1,...,yn]=foo(x1,...,xm)
-   ]]></programlisting>
+ ]]></programlisting>
     <para>
       les lignes suivantes contiennent une suite d'instructions Scilab.
     </para>
@@ -113,11 +113,11 @@ function [y1,...,yn]=foo(x1,...,xm)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-  getf('SCI/modules/graphics/macros/plot.sci')
+    <programlisting role="example"><![CDATA[ 
+getf('SCI/modules/graphics/macros/plot.sci')
 
-  getf SCI/modules/graphics/macros/plot.sci
-  ]]></programlisting>
+getf SCI/modules/graphics/macros/plot.sci
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
