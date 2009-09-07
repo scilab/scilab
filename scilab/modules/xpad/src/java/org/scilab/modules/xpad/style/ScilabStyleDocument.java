@@ -74,7 +74,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private final int MACROS = 4;
 	private final int OPERATORS = 5;
 	private final int QUOTATIONS = 6;
-	
+
 	/*if you want to add a new style just add it in the xml*/
 	private ArrayList<String> listStylesName ;
 	//private final String[] allStyles = {"Operator", "Command","String","Bool" ,"Comment"} ;
@@ -194,7 +194,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			resetStyle();
 			try {
 				applyIndent();
-				
+
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
@@ -246,11 +246,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 
 		boolean got_select = false;
-		
+
 		for (int i = 0; i < all_lines_without_spaces.size(); i++) {
 			// Get commands for each lines
 			command_list = getOperatorList(all_lines_without_spaces.elementAt(i));
-			
+
 			// Here start the indentation process
 			if (command_list.size() > 0) {
 				// Check if in one line all operators are matching,
@@ -259,7 +259,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				// Warning: command_list looks like [IN, if, IN function, OUT, endfunction, OUT, end]
 				Vector<String> vector_match;			
 				vector_match = matchingOperators(command_list);			
-				
+
 				// If we have 'IN' command
 				if (command_list.elementAt(0).equals(IN)) {
 					// No indentation in case of 'else' or 'elseif'
@@ -272,14 +272,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					} else if (command_list.elementAt(1).toLowerCase().equals("select")) {
 						tab += TABULATION;
 						got_select = true;
-						
+
 						// If we have 'case' command
 					} else if ((command_list.elementAt(1).toLowerCase().equals("case")) && 
-							   (got_case == false) &&
-							   (got_select == true) ) {
+							(got_case == false) &&
+							(got_select == true) ) {
 						got_case = true;
 						tab += TABULATION;
-						
+
 					} else {
 						if (got_case == false) {
 							tab += TABULATION;
@@ -295,8 +295,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						indentedText = indentedText.substring(0, indentedText.length()-2);
 						tab = tab.substring(0, tab.length()-2);
 						if (got_select == true && 
-							got_case == true &&
-							command_list.elementAt(1).toLowerCase().equals("end")) {
+								got_case == true &&
+								command_list.elementAt(1).toLowerCase().equals("end")) {
 							tab = tab.substring(0, tab.length()-2);
 							indentedText = indentedText.substring(0, indentedText.length()-2);
 							got_select = false;
@@ -323,7 +323,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		// Display the indentation
 		this.replace(0, this.getLength(), indentedText, null);
-		
+
 		// ATTENTION, ces cas ne sont pas traité: 
 		//            - gestion des commentaire /* */
 		//			  - analyser la ligne du document qui est modifie et non plus le document en entier pour la colorisation
@@ -349,7 +349,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		return line;
 	}
-	
+
 	/*
 	 * Get all commands given in the string
 	 * This function is used for the indentation only
@@ -387,7 +387,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		// Union of comments & quotations to remove keywords
 		tmp_comm_and_quot.addAll(comments_boundaries);
 		tmp_comm_and_quot.addAll(quotations_boundaries);
-		
+
 		// Remove commads which are into quotations or comments
 		commands_boundaries = startNotIn(commands_boundaries, tmp_comm_and_quot);
 
@@ -412,10 +412,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				}
 			}
 		}
-		
+
 		return operator_list;
 	}
-	
+
 	/*
 	 * Check if in one line all commands are matching,
 	 * by this way we can know if the next line needs indentation or not
@@ -452,7 +452,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * DOCUMENT INDENTATION END
 	 */
 
-	
+
 	/**
 	 * DOCUMENT COMMENT ACTION
 	 */
@@ -514,34 +514,55 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT COMMENT ACTION END
 	 */
-	
+
 
 	/**
 	 * FIND AND REPLACE START
 	 */
-	public Vector<Integer> findWord(String word) {
-
-		String fullText = getFullDocument();
+	public ArrayList<Integer[]> findWord(String word, boolean caseSensitive , boolean wholeWord , boolean useRegexp ) {
+		String fullText = getFullDocument(); 
 		int lastIndex = 0;
 		int wordSize = word.length();
-
-		Vector<Integer> offsetList = new Vector<Integer>();
+		ArrayList<Integer[]> offsetList = new ArrayList<Integer[]>();
 
 		//If we don't give any word to find
-		if ( (word == null) || (word.equals("")) ) {
-			System.out.println("Word is null or empty");;
-		} else {
-			//We find matching words
-			while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
-				int endIndex = lastIndex + wordSize;
+		if ( (word != null) && !(word.equals("")) ) {
+			// prepare word for each kind of search
+			if (wholeWord){
+				word = "\\b" + word + "\\b" ;
+			}
+			if (!caseSensitive){
+				if (useRegexp || wholeWord ){
+					word = "(?i)" + word ;
+				}
+				else{
+					fullText = fullText.toLowerCase();
+					word = word.toLowerCase();
+				}
+			}		
 
-				offsetList.add(lastIndex);		    	
 
-				lastIndex = endIndex;
+			//We find matching words ...
+			// ... for regexp or whole words
+			if (useRegexp || wholeWord){
+				Pattern pattern = Pattern.compile(word);
+				Matcher matcher = pattern.matcher(fullText);
+
+				while (matcher.find()) {
+					offsetList.add(new Integer[] {matcher.start() ,matcher.end()});
+				}
+				// ... for other case
+			}else {
+				while ((lastIndex = fullText.indexOf(word, lastIndex)) != -1) {
+					int endIndex = lastIndex + wordSize;
+					offsetList.add(new Integer[] {lastIndex,endIndex} );
+					lastIndex = endIndex;
+				}
 			}
 		}
 		return offsetList;
 	}
+
 	public int[] readText(int s, int e) {
 		int startOffset;
 		int endOffset;
@@ -583,6 +604,125 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return interval;
 	}
 
+	/**
+	 * Get the next expression matching the search after the caret current position
+	 * @param word , the word or regexp to find
+	 * @param currentPos, the position where the search start
+	 * @param caseSensitive , whether the search is sensitive or not to case
+	 * @param wholeWord  , whether the search will only look to separate word or not
+	 * @param useRegexp  , whether the string to search should be interpreted as a regexp or not
+	 */
+	public int[] findNextWord (String word ,int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
+		String fullText = getFullDocument();
+		int index = -1 ;
+		int end = -1 ;
+
+
+
+		if ( (word == null) || (word.equals("")) ) {
+			return new int [] {-1 , -1};
+		} else {
+
+			// prepare word for each kind of search
+			if (wholeWord){
+				word = "\\b" + word + "\\b" ;
+			}
+			if (!caseSensitive){
+				if (useRegexp || wholeWord ){
+					word = "(?i)" + word ;
+				}
+				else{
+					fullText = fullText.toLowerCase();
+					word = word.toLowerCase();
+				}
+			}		
+
+
+			//We find matching words ...
+			// ... for regexp or whole words
+			if (useRegexp || wholeWord){
+				Pattern pattern = Pattern.compile(word);
+				Matcher matcher = pattern.matcher(fullText.substring(currentPos));
+
+				if (matcher.find()) {
+					index = matcher.start()+currentPos;
+					end = matcher.end()+currentPos;
+				}else{
+					index = -1 ;
+				}
+
+				// ... for other case
+			}else {
+				index = fullText.indexOf(word,currentPos);
+				end = index + word.length();
+			}
+		}
+
+
+
+
+		if ( index == -1 )
+			return new int [] {-1 , -1};
+		else
+			return new int [] {index , end } ;
+
+
+	}
+
+	public int[] findPreviousWord (String word , int currentPos, boolean caseSensitive , boolean wholeWord , boolean useRegexp ){
+		String fullText = getFullDocument();
+		int index = -1 ;
+		int end = -1 ;
+
+
+		if ( (word != null) && (!word.equals(""))  ) {
+
+			// prepare word for each kind of search
+			if (wholeWord){
+				word = "\\b" + word + "\\b" ;
+			}
+			if (!caseSensitive){
+				if (useRegexp || wholeWord ){
+					word = "(?i)" + word ;
+				}
+				else{
+					fullText = fullText.toLowerCase();
+					word = word.toLowerCase();
+				}
+			}		
+
+
+			//We find matching words ...
+			// ... for regexp or whole words
+			if (useRegexp || wholeWord){
+				Pattern pattern = Pattern.compile(word);
+				Matcher matcher = pattern.matcher(fullText.substring(0,currentPos));
+
+				boolean found = false ;
+				while (matcher.find()) {
+					index = matcher.start();
+					end = matcher.end();
+					found = true ;
+				}
+
+				if(!found){
+					index = -1 ;
+					end = -1;
+				}
+
+				// ... for other case
+			}else {
+				index = fullText.lastIndexOf(word,currentPos-1);
+				end = index + word.length();
+			}
+		}
+
+
+		/*if nothing index and end will both be equal to -1*/
+		return new int [] {index , end } ;
+
+
+	}
 	/**
 	 * FIND AND REPLACE END
 	 */
@@ -704,7 +844,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		functionsBoundaries = strictlyNotIn(functionsBoundaries, tmp_comm_and_quot);
 		macrosBoundaries = strictlyNotIn(macrosBoundaries, tmp_comm_and_quot);
 		operatorsBoundaries = strictlyNotIn(operatorsBoundaries, tmp_comm_and_quot);
-		
+
 		vector_list.add(boolsBoundaries);
 		vector_list.add(commandsBoundaries);
 		vector_list.add(commentsBoundaries);
@@ -712,7 +852,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		vector_list.add(macrosBoundaries);
 		vector_list.add(operatorsBoundaries);
 		vector_list.add(quotationsBoundaries);
-		
+
 
 		return vector_list;
 	}
@@ -743,7 +883,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				vector_strictlyNotIn.addElement(v1.elementAt(i));
 				vector_strictlyNotIn.addElement(v1.elementAt(i+1));
 			}
-			
+
 			//System.out.println("vector_strictlyNotIn"+vector_strictlyNotIn);
 		}
 		return vector_strictlyNotIn;
@@ -771,7 +911,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				vector_startNotIn.addElement(v1.elementAt(i));
 				vector_startNotIn.addElement(v1.elementAt(i+1));
 			}
-			
+
 			//System.out.println("vector_startNotIn"+vector_startNotIn);
 		}
 		return vector_startNotIn;
@@ -787,51 +927,51 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		updaterDisabled = true;
 	}
 
-    public String getFullDocument() {
-	int startOffset;
-	int endOffset;
-	String textLine = "";
-	String text = "";
+	public String getFullDocument() {
+		int startOffset;
+		int endOffset;
+		String textLine = "";
+		String text = "";
 
-	//We read the document and put the document into the String text
-	for (int i = 0; i < this.getLength();) {
-	    startOffset = this.getParagraphElement(i).getStartOffset();
-	    endOffset = this.getParagraphElement(i).getEndOffset();
+		//We read the document and put the document into the String text
+		for (int i = 0; i < this.getLength();) {
+			startOffset = this.getParagraphElement(i).getStartOffset();
+			endOffset = this.getParagraphElement(i).getEndOffset();
 
-	    try {
-		//Get the document line by line
-		textLine = this.getText(startOffset, endOffset - startOffset);
-	    } catch (BadLocationException ex) {
-		ex.printStackTrace();
-	    }
-	    i = endOffset;
-	    text += textLine;
+			try {
+				//Get the document line by line
+				textLine = this.getText(startOffset, endOffset - startOffset);
+			} catch (BadLocationException ex) {
+				ex.printStackTrace();
+			}
+			i = endOffset;
+			text += textLine;
+		}
+		return text;
 	}
-	return text;
-    }
-    
-    public String getseletecDocumentLines(int start , int end ) {
-    	int startOffset;
-    	int endOffset;
 
-    	String text = "";
+	public String getseletecDocumentLines(int start , int end ) {
+		int startOffset;
+		int endOffset;
 
-    	startOffset = this.getParagraphElement(start).getStartOffset();
-    	endOffset = this.getParagraphElement(end).getEndOffset();
-    	//We read the document and put the document into the String text
+		String text = "";
 
-    	    try {
-    		//Get the document line by line
-    		text = this.getText(startOffset, endOffset - startOffset);
-    	    } catch (BadLocationException ex) {
-    		ex.printStackTrace();
-    	    }
+		startOffset = this.getParagraphElement(start).getStartOffset();
+		endOffset = this.getParagraphElement(end).getEndOffset();
+		//We read the document and put the document into the String text
 
-    	
-    	return text;
-        }
-	
-    public void enableUpdaters() {
+		try {
+			//Get the document line by line
+			text = this.getText(startOffset, endOffset - startOffset);
+		} catch (BadLocationException ex) {
+			ex.printStackTrace();
+		}
+
+
+		return text;
+	}
+
+	public void enableUpdaters() {
 		updaterDisabled = false;
 	}
 
@@ -867,12 +1007,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			});
 		}
 	}
-	
+
 	public void changedUpdate(DocumentEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void setAutoIndent(boolean b) {
 		//DEBUG("setAutoIndent("+b+")");
 		autoIndent = b;
@@ -885,6 +1025,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return undo;
 	}
 
-	
+
 
 }
