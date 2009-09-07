@@ -26,7 +26,7 @@
 #include "wmcopydata.h"
 #include "strdup_windows.h"
 #include "MutexClosingScilab.h"
-
+#include "with_module.h"
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
 static BOOL isGoodExtension(char *chainefichier,char *ext);
