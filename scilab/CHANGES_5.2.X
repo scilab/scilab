@@ -191,6 +191,8 @@ char encoding bugs :
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+* bug 4758 fixed - embedded version of autoconf libs.m4 were causing some issues
+
 * bug 4768 fixed - strsplit returns strange results with accened characters
 
 String manipulation:
