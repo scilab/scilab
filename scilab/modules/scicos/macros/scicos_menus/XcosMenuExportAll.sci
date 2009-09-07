@@ -27,7 +27,8 @@ function XcosMenuExportAll()
   %exp_dir = uigetdir('./',_("Select a directory path"))
   if %exp_dir=="" then return; end //user cancelled
   if ~isdir(%exp_dir) then
-    messagebox(msprintf(_("%s is not a valid directory\n"),%exp_dir),"error","modal")
+    pause
+    messagebox(msprintf(_("""%s"" is not a valid directory\n"),%exp_dir),"error","modal")
     return
   end
   
