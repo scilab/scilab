@@ -549,6 +549,7 @@ Bug fixes:
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
+* bug 4771 fixed - the configure did not stop when jhall (javahelp) or looks were not available on the system
 
 
                Changes between version 5.0.X and 5.1 of Scilab
