@@ -29,13 +29,13 @@ public class IndentAction extends DefaultAction {
 	}
 	
 	public void doAction() {
+		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
+		System.out.println(getEditor().getTextPane().getCaretPosition());
 		
-		//int start = getEditor().getTextPane().getSelectionStart();
-		//int end = getEditor().getTextPane().getSelectionEnd();
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(/*start, end*/);
-		//getEditor().getTextPane().setSelectionStart(/*start*/);
-		getEditor().getTextPane().setSelectionEnd(getEditor().getTextPane().getCaretPosition());
-		//((ScilabStyleDocument) _editor.getStyledDocument()).indent();
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
+		
+		getEditor().getTextPane().setCaretPosition(initial_caret_position);
+		
 	}
 
 }
