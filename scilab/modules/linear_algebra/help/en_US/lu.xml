@@ -88,11 +88,11 @@
       To get a lower triangular L matrix, we should have given the 
       output argument E to Scilab.
     </para>
-    <programlisting role="example">
-      a = testmatrix("hilb",4);
-      [l,u]=lu(a)
-      norm(l*u-a)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u]=lu(a)
+norm(l*u-a)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Example #2</title>
@@ -100,31 +100,31 @@
       In the following example, we create the Hilbert matrix of size 4 and
       factor it with EA=LU. Notice that the matrix L is lower triangular.
     </para>
-    <programlisting role="example">
-      a = testmatrix("hilb",4);
-      [l,u,e]=lu(a)
-      norm(l*u-e*a)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u,e]=lu(a)
+norm(l*u-e*a)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Example #3</title>
     <para>
       The following example shows how to use the lufact and luget functions.
     </para>
-    <programlisting role="example">
-      a=rand(4,4);
-      [l,u]=lu(a)
-      norm(l*u-a)
+    <programlisting role="example"><![CDATA[ 
+a=rand(4,4);
+[l,u]=lu(a)
+norm(l*u-a)
 
-      [h,rk]=lufact(sparse(a))
-      [P,L,U,Q]=luget(h);
-      ludel(h)
-      P=full(P);
-      L=full(L);
-      U=full(U);
-      Q=full(Q);
-      norm(P*L*U*Q-a)
-    </programlisting>
+[h,rk]=lufact(sparse(a))
+[P,L,U,Q]=luget(h);
+ludel(h)
+P=full(P);
+L=full(L);
+U=full(U);
+Q=full(Q);
+norm(P*L*U*Q-a)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

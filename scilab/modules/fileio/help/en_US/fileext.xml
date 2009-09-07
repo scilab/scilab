@@ -46,9 +46,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ extension = fileext('SCI/etc/scilab.start')
-    extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+extension = fileext('SCI/etc/scilab.start')
+extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -59,8 +59,7 @@ y=mean(x,'m')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2,10;7,7.1,7.01];
 mean(A)
 mean(A,'r')
@@ -68,8 +67,7 @@ mean(A,'c')
 A=matrix(1:12,[1,1,2,3,2]);
 // in this case mean(A,'m') is equivalent to mean(A,3), the first non singleton dimension of A
 y=mean(A,'m')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -58,11 +58,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 getd('SCI/modules/cacsd/macros')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

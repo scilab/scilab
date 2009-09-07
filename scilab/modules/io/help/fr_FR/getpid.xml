@@ -30,7 +30,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 d='SD_'+string(getpid())+'_'
  ]]></programlisting>
   </refsection>

@@ -254,3 +254,19 @@ int gw_dynamic_functions(void)
 		&ptr_gw_functions);
 }
 /*--------------------------------------------------------------------------*/
+/* xpad module */
+#define XPAD_MODULE_NAME "xpad"
+static DynLibHandle hXpadLib = NULL;
+static PROC_GATEWAY ptr_gw_xpad = NULL;
+static char* dynlibname_xpad = NULL;
+static char* gatewayname_xpad = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_xpad(void)
+{
+	return gw_dynamic_generic(XPAD_MODULE_NAME,
+		&dynlibname_xpad,
+		&gatewayname_xpad,
+		&hXpadLib,
+		&ptr_gw_xpad);
+}
+/*--------------------------------------------------------------------------*/

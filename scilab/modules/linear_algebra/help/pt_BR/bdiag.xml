@@ -83,11 +83,9 @@
   <refsection>
     <title>Descrição</title>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [Ab [,X [,bs]]]=bdiag(A [,rmax]) 
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>realiza a diagonalização em blocos da matriz <literal>A</literal>.
     bs fornece a estrutura dos blocos (respectivos tamanhos dos blocos).
@@ -108,14 +106,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //No caso de reais: blocos 1x1 e 2x2
 a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+
 //No caso de complexos: blocos 1x1 complexos
 [ab,x,bs]=bdiag(a+%i*0);ab
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

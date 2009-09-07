@@ -82,13 +82,13 @@ xs2svg(fig, file_name [,orientation])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
-    scf(0)
-    plot2d()
-    //SVG export
-    xs2svg(0,'foo.svg')
-    xs2svg(gcf(),'foo.svg');
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+scf(0)
+plot2d()
+//SVG export
+xs2svg(0,'foo.svg')
+xs2svg(gcf(),'foo.svg');
+ ]]></programlisting>
   </refsection>
 
   <refsection>

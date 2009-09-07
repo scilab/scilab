@@ -42,7 +42,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 getd('SCI/modules/cacsd/macros')
  ]]></programlisting>
   </refsection>

@@ -33,13 +33,11 @@
     before, but it will be removed in the future release. </para>
     <para>
     The first three syntaxes can be replaced by</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 [As,Es]=schur(A,E)
 [As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE THE TRANPOSITION HERE
 [As,Es,Z,dim] = schur(A,E,flag) 
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     The last syntax requires little more adaptations:
   </para>
@@ -50,8 +48,7 @@
           <para>extern is a scilab function  the new calling sequence
         should be <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal> with
         Nextern defined as follow:</para>
-          <programlisting><![CDATA[
-
+          <programlisting role = ""><![CDATA[ 
 function t=Nextern(R)
 if R(2)==0 then
   t=extern([1,R(1),R(3)])==1
@@ -60,8 +57,7 @@ else
   t=extern([2,real(c+c'),real(c*c')])==1
 end
 endfunction
-   
-        ]]></programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -72,20 +68,18 @@ endfunction
         </listitem>
       </varlistentry>
     </variablelist>
-    <programlisting><![CDATA[
-
-      logical function nextern(ar,ai,beta)
-      double precision ar,ai,beta
-      integer r,extern
-      if (ai.eq.0.0d0) then
-        r=extern(1,ar,beta,0.0d0,0.0d0)
-      else
-        r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
-      endif
-      nextern=r.eq.1
-      end
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+logical function nextern(ar,ai,beta)
+double precision ar,ai,beta
+integer r,extern
+if (ai.eq.0.0d0) then
+  r=extern(1,ar,beta,0.0d0,0.0d0)
+else
+  r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
+endif
+nextern=r.eq.1
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

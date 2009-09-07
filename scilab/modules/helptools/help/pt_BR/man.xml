@@ -114,16 +114,14 @@
     'palavra-chave do Scilab' ou 'tipo de dados do Scilab', ..., dependendo do
     que explica a página de ajuda.</para>
 
-    <programlisting>
-
-       &lt;!DOCTYPE MAN SYSTEM "&lt;SCIDIR&gt;/man/manrev.dtd"&gt;
-       &lt;MAN&gt;
-          &lt;LANGUAGE&gt;eng&lt;/LANGUAGE&gt;
-          &lt;TITLE&gt;foo&lt;/TITLE&gt;
-          &lt;TYPE&gt;função do Scilab&lt;/TYPE&gt;
-          &lt;DATE&gt;$LastChangedDate$&lt;/DATE&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<!DOCTYPE MAN SYSTEM "<SCIDIR>/man/manrev.dtd">
+<MAN>
+   <LANGUAGE>eng</LANGUAGE>
+   <TITLE>foo</TITLE>
+   <TYPE>função do Scilab</TYPE>
+   <DATE>$LastChangedDate$</DATE>
+ ]]></programlisting>
 
     <para>A primeira destas duas entradas seguintes
     (<literal>SHORT_DESCRIPTION</literal>) é mandatória e importante desde que
@@ -144,39 +142,35 @@
     várias seqüências de chamamento, utilize várias entradas
     <literal>CALLING_SEQUENCE_ITEM</literal>.</para>
 
-    <programlisting>
-
-          &lt;ASHORT_DESCRIPTION name="foo"&gt;descrição curta de foo&lt;/ASHORT_DESCRIPTION&gt;
-          &lt;CALLING_SEQUENCE&gt;
-              &lt;CALLING_SEQUENCE_ITEM&gt;[y] = foo(x)&lt;/CALLING_SEQUENCE_ITEM&gt;
-          &lt;/CALLING_SEQUENCE&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<ASHORT_DESCRIPTION name="foo">descrição curta de foo</ASHORT_DESCRIPTION>
+<CALLING_SEQUENCE>
+    <CALLING_SEQUENCE_ITEM>[y] = foo(x)</CALLING_SEQUENCE_ITEM>
+    </CALLING_SEQUENCE>
+ ]]></programlisting>
 
     <para>A entrada seguinte (<literal>PARAM</literal>) não é estritamente
     mandatória, mas é a boa para descrever cada parâmetro (de entrada e saída)
     no caso de uma função.</para>
 
-    <programlisting>
-
-          &lt;PARAM&gt;
-             &lt;PARAM_INDENT&gt;
-                &lt;PARAM_ITEM&gt;
-                   &lt;PARAM_NAME&gt;x&lt;/PARAM_NAME&gt;
-                   &lt;PARAM_DESCRIPTION&gt;
-                      &lt;SP&gt;: o que pode ser x&lt;/SP&gt;
-                   &lt;/PARAM_DESCRIPTION&gt; 
-                &lt;/PARAM_ITEM&gt;
-                &lt;PARAM_ITEM&gt;
-                   &lt;PARAM_NAME&gt;y&lt;/PARAM_NAME&gt;
-                   &lt;PARAM_DESCRIPTION&gt;
-                      &lt;SP&gt;: o que pode ser y&lt;/SP&gt;
-                   &lt;/PARAM_DESCRIPTION&gt; 
-                &lt;/PARAM_ITEM&gt;
-             &lt;/PARAM_INDENT&gt;
-          &lt;/PARAM&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<PARAM>
+   <PARAM_INDENT>
+      <PARAM_ITEM>
+         <PARAM_NAME>x</PARAM_NAME>
+         <PARAM_DESCRIPTION>
+            <SP>: o que pode ser x</SP>
+         </PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+      <PARAM_ITEM>
+         <PARAM_NAME>y</PARAM_NAME>
+         <PARAM_DESCRIPTION>
+            <SP>: o que pode ser y</SP>
+         </PARAM_DESCRIPTION> 
+      </PARAM_ITEM>
+   </PARAM_INDENT>
+</PARAM>
+ ]]></programlisting>
 
     <para>A entrada <literal>DESCRIPTION</literal> é talvez a mais
     significativa (mas não é estritamente mandatória) e pode ser mais
@@ -193,38 +187,34 @@
     <literal>&lt;/LINK&gt;</literal> e não <literal>&lt;ALINK&gt;</literal> e
     <literal>&lt;/ALINK&gt;</literal>).</para>
 
-    <programlisting>
-
-         &lt;DESCRIPTION&gt;
-             &lt;P&gt;
-                Um primeiro parágrafo explica o que a função foo computa.
-                Se você deseja enfatizar um nome de parâmetro, você pode utilizar o segunte
-                tag &lt;VERB&gt;x&lt;/VERB&gt;, se você desejar enfatizar parte do texto
-                &lt;EM&gt;encerre-a nestes tags&lt;/EM&gt; e use estes
-                &lt;BD&gt;para uma fonte em negrito&lt;/BD&gt; e finalmente &lt;TT&gt;para um estilo em máquina de escrever&lt;/TT&gt;.
-             &lt;/P&gt;
-             &lt;P&gt;
-                Um segundo parágrafo... Aqui vai um exemplo de um link para outra página :
-                &lt;ALINK&gt;man&lt;/ALINK&gt;.
-             &lt;/P&gt;
-         &lt;/DESCRIPTION&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<DESCRIPTION>
+    <P>
+       Um primeiro parágrafo explica o que a função foo computa.
+       Se você deseja enfatizar um nome de parâmetro, você pode utilizar o segunte
+       tag <VERB>x</VERB>, se você desejar enfatizar parte do texto
+       <EM>encerre-a nestes tags</EM> e use estes
+       <BD>para uma fonte em negrito</BD> e finalmente <TT>para um estilo em máquina de escrever</TT>.
+    </P>
+    <P>
+       Um segundo parágrafo... Aqui vai um exemplo de um link para outra página :
+       <ALINK>man</ALINK>.
+    </P>
+</DESCRIPTION>
+ ]]></programlisting>
 
     <para>Aqui está como escrever a sua própria entrada, por exemplo, para
     escrever observações e/ou notas sobre a sua maravilhosa função.</para>
 
-    <programlisting>
-
-         &lt;SECTION label='Notes'&gt;
-             &lt;P&gt;
-                Aqui está uma lista de notas :
-             &lt;/P&gt;
-             &lt;ITEM label='first'&gt;&lt;SP&gt;blablabla...&lt;/SP&gt;&lt;/ITEM&gt;
-             &lt;ITEM label='second'&gt;&lt;SP&gt;toto é o francês de foo...&lt;/SP&gt;&lt;/ITEM&gt;
-         &lt;/SECTION&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<SECTION label='Notes'>
+    <P>
+       Aqui está uma lista de notas :
+    </P>
+    <ITEM label='first'><SP>blablabla...</SP></ITEM>
+    <ITEM label='second'><SP>toto é o francês de foo...</SP></ITEM>
+</SECTION>
+ ]]></programlisting>
 
     <para>Uma entrada importante é <literal>EXAMPLE</literal> que é reservada
     para mostrar usos no Scilab da sua função (comece com exemplos simples!).
@@ -233,14 +223,12 @@
     <literal>}}&gt;&lt;/EXAMPLE&gt;</literal> (mais uma vez, este é um truque
     ruim para evitar problemas de interpretação).</para>
 
-    <programlisting>
-
-         &lt;EXAMPLE&gt;&lt;![CDATA[
-             deff("y=foo(x)","y=x"); // definindo a função foo como a função identidade
-             foo("toto")
-      }}&gt;&lt;/EXAMPLE&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<EXAMPLE><![CDATA[
+    deff("y=foo(x)","y=x"); // definindo a função foo como a função identidade
+    foo("toto")
+}}></EXAMPLE>
+ ]]></programlisting>
 
     <para>Esta última parte explica como colocar links para outras páginas de
     ajuda relacionadas (como já foi dito antes, os bons tags são
@@ -250,19 +238,16 @@
     <literal>AUTHOR_ITEM</literal> por autor). Talvez seja uma boa idéia
     colocar um endereço de email, se você procura por relatos de bugs !</para>
 
-    <programlisting>
-
-         &lt;SEE_ALSO&gt;
-           &lt;SEE_ALSO_ITEM&gt; &lt;ALINK&gt;man&lt;/ALINK&gt; &lt;/SEE_ALSO_ITEM&gt;
-           &lt;SEE_ALSO_ITEM&gt; &lt;ALINK&gt;apropos&lt;/ALINK&gt; &lt;/SEE_ALSO_ITEM&gt;
-         &lt;/SEE_ALSO&gt;
-
-         &lt;AUTHOR&gt;
-           &lt;AUTHOR_ITEM&gt;B. P.&lt;/AUTHOR_ITEM&gt;
-         &lt;/AUTHOR&gt;
-       &lt;/MAN&gt;
-   
-        </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<SEE_ALSO>
+  <SEE_ALSO_ITEM> <ALINK>man</ALINK> </SEE_ALSO_ITEM>
+  <SEE_ALSO_ITEM> <ALINK>apropos</ALINK> </SEE_ALSO_ITEM>
+</SEE_ALSO>
+ <AUTHOR>
+  <AUTHOR_ITEM>B. P.</AUTHOR_ITEM>
+</AUTHOR>
+</MAN>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

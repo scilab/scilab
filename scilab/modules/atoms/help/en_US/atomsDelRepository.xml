@@ -80,13 +80,13 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 atomsRepositoryList()
 atomsRepositoryAdd(["http://www.repository1.com";"http://www.repository2.com"])
 atomsRepositoryList()
 atomsRepositoryDel(["http://www.repository1.com";"http://www.repository2.com"])
 atomsRepositoryList()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

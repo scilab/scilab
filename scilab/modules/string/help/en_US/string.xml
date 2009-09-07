@@ -56,14 +56,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 string(rand(2,2))
 deff('y=mymacro(x)','y=x+1')
 [out,in,text]=string(mymacro)
 x=123.356; 'Result is '+string(x)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

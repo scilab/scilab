@@ -56,8 +56,8 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
- setenv('chaine','exemple')
- getenv('chaine') 
+setenv('chaine','exemple')
+getenv('chaine') 
  ]]></programlisting>
   </refsection>
   <refsection>

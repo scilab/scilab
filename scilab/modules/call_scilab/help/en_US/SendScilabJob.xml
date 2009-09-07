@@ -73,7 +73,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple SendScilabJob example
 
 if (SendScilabJob("disp('unfinished quote)")!=0){ // This will fail

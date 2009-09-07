@@ -77,12 +77,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 txt=fun2string(asinh,'foo');
 write(%io(2),txt,'(a)')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

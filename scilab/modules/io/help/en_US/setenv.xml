@@ -55,9 +55,9 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
- setenv('toto','example')
- getenv('toto')
-  ]]></programlisting>
+setenv('toto','example')
+getenv('toto')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

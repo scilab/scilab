@@ -26,7 +26,7 @@
 #include "wmcopydata.h"
 #include "strdup_windows.h"
 #include "MutexClosingScilab.h"
-
+#include "with_module.h"
 /*--------------------------------------------------------------------------*/
 static void ReplaceSlash(char *pathout,char *pathin);
 static BOOL isGoodExtension(char *chainefichier,char *ext);
@@ -35,9 +35,11 @@ static BOOL isGoodExtension(char *chainefichier,char *ext);
 #define MSG_SCIMSG2 "%s -e scicos(getlongpathname('%s'));"
 #define MSG_SCIMSG3 "%s -e edit_graph(getlongpathname('%s'));"
 #define MSG_SCIMSG4 "%s -e exec(getlongpathname('%s'));"
-#define MSG_SCIMSG5 "%s -e scipad(getlongpathname('%s'));"
+#define MSG_SCIMSG5_SCIPAD "%s -e scipad(getlongpathname('%s'));"
+#define MSG_SCIMSG5_XPAD "%s -e xpad(getlongpathname('%s'));"
 /* we try to launch scipad */
-#define MSG_SCIMSG6 "execstr('scipad(''%s'');','errcatch');"
+#define MSG_SCIMSG6_SCIPAD "execstr('scipad(''%s'');','errcatch');"
+#define MSG_SCIMSG6_XPAD "execstr('xpad(''%s'');','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
 /*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/
@@ -166,14 +168,28 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 			{
 				if ( (!HaveAnotherWindowScilab()) || (haveMutexClosingScilab()) )
 				{
-					wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
+					if (with_module("xpad"))
+					{
+						wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
+					}
+					else
+					{
+						wsprintf(Cmd,MSG_SCIMSG5_SCIPAD,PathWScilex,FinalFileName);
+					}
 				}
 				else
 				{
 					char *ScilabDestination = NULL;
 
 					ScilabDestination = getLastScilabFinded();
-					wsprintf(Cmd,MSG_SCIMSG6,FinalFileName);
+					if (with_module("xpad"))
+					{
+						wsprintf(Cmd,MSG_SCIMSG6_XPAD,FinalFileName);
+					}
+					else
+					{
+						wsprintf(Cmd,MSG_SCIMSG6_SCIPAD,FinalFileName);
+					}
 
 					if (ScilabDestination)
 					{
@@ -183,7 +199,14 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
 					}
 					else
 					{
-						wsprintf(Cmd,MSG_SCIMSG5,PathWScilex,FinalFileName);
+						if (with_module("xpad"))
+						{
+							wsprintf(Cmd,MSG_SCIMSG5_XPAD,PathWScilex,FinalFileName);
+						}
+						else
+						{
+							wsprintf(Cmd,MSG_SCIMSG5_SCIPAD,PathWScilex,FinalFileName);
+						}
 					}
 				}
 			}

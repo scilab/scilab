@@ -137,8 +137,8 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	sparse windows_tools functions overloading maple2scilab m2sci \
 	texmacs scipad development_tools compatibility_functions \
 	helptools fftw umfpack demo_tools genetic_algorithms \
-	simulated_annealing parameters matio atoms hdf5 scicos_blocks \
-	scicos . javasci
+	simulated_annealing parameters matio atoms hdf5 xpad \
+	scicos_blocks scicos . javasci
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -377,7 +377,7 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	functions overloading maple2scilab m2sci texmacs scipad \
 	development_tools compatibility_functions helptools fftw \
 	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms hdf5 $(am__append_1) scicos . \
+	parameters matio atoms hdf5 xpad $(am__append_1) scicos . \
 	$(am__append_2)
 
 #### Basic files ####
@@ -400,14 +400,16 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
+	$(top_builddir)/modules/jvm/libscijvm.la \
+	$(top_builddir)/modules/xpad/libscixpad.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
-	$(top_builddir)/modules/jvm/libscijvm-disable.la
+	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+	$(top_builddir)/modules/xpad/libscixpad-disable.la
 
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \

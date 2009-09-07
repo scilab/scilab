@@ -37,6 +37,7 @@
 ::msgcat::mcset $lang "en_us locale" "English (en_us)"
 ::msgcat::mcset $lang "es_es locale" "Espa\u00F1ol (es_es)"
 ::msgcat::mcset $lang "it_it locale" "Italiano (it_it)"
+::msgcat::mcset $lang "ja_jp locale" "\u65e5\u672c\u8a9e (ja_jp)"
 ::msgcat::mcset $lang "no locale" "Norsk (no)"
 ::msgcat::mcset $lang "pl locale" "Polski (pl)"
 ::msgcat::mcset $lang "se locale" "Svenska (se)"

@@ -68,11 +68,9 @@
     formato especial. Cada linha de <literal>whatis</literal> deve ser como
     segue:</para>
 
-    <programlisting>
-
-&lt;BR&gt;&lt;A HREF="item.html"&gt;item&lt;/A&gt; - rápida descrição
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+<BR><A HREF="item.html">item</A> - rápida descrição
+ ]]></programlisting>
 
     <para><literal>item</literal> é o item da ajuda, i.e. o comando
     <literal>help item</literal> exibe o conteúdo do arquivo

@@ -143,21 +143,17 @@
     <para>A função calcula uma aproximação a um dado vetor de integrais
     definidas</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>onde a região de integração são os NUMTET tetraedros e onde</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>uma estratégia globalmente adaptativa é aplicada para se computar
     aproximações <literal>result(k)</literal> esperando-se que satisfaça, para
@@ -205,15 +201,13 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
 [RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
 // computa o integrando exp(x*x+y*y+z*z) sobre o 
 //tetraedro (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
-
 
 //integração sobre um cubo  -1&lt;=x&lt;=1;-1&lt;=y&lt;=1;-1&lt;=z&lt;=1
 
@@ -236,9 +230,7 @@ function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
 
 function v=f(xyz,numfun),v=1,endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
-
-   
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

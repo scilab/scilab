@@ -50,11 +50,9 @@
     <title>Description</title>
     <para>
     Poles of a Type 1 Chebyshev analog filter. The transfer function is given by :</para>
-    <programlisting><![CDATA[
-
- H(s)=gain/poly(poles,'s')
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+H(s)=gain/poly(poles,'s')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

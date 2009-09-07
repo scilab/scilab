@@ -40,7 +40,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple ScilabHaveAGraph example
 int code=SendScilabJob("plot3d()"); /* This will failed since plot3d is
                                        among the disable features*/

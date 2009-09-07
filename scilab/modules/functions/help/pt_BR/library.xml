@@ -69,8 +69,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // elemlib é uma biblioteca predefinida
 elementary_functionlib //exibindo o conteúdo da biblioteca
 A=rand(3,3);
@@ -78,8 +77,7 @@ cosm(A) //carregando cosm e executando-o
 whos -name cosm // agora, cosm é uma variável
 elementary_functionlib.sinm //carregando sinm da biblioteca
 elementary_functionlib.cosm(A) //carregando novamente cosm e executando-o
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

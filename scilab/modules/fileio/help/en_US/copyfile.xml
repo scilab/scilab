@@ -54,10 +54,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
 [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

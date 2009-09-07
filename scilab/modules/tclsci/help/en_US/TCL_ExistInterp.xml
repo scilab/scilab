@@ -47,11 +47,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  TCL_ExistInterp('SlaveInterp')
-  TCL_CreateSlave('SlaveInterp')
-  TCL_ExistInterp('SlaveInterp')
-  TCL_DeleteInterp('SlaveInterp')]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+TCL_ExistInterp('SlaveInterp')
+TCL_CreateSlave('SlaveInterp')
+TCL_ExistInterp('SlaveInterp')
+TCL_DeleteInterp('SlaveInterp')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

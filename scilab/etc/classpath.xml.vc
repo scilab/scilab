@@ -113,4 +113,9 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/localization/jar/org.scilab.modules.localization.jar" load="startup"/>
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar" load="startup"/>
 
+<!-- xpad module -->
+<path value="$SCILAB/modules/xpad/jar/org.scilab.modules.xpad.jar" load="onUse">
+	<load on="Xpad"/>
+</path>
+
 </classpaths>

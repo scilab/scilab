@@ -38,12 +38,10 @@
     <title>Description</title>
     <para><literal>X = lyap(A,C,flag)</literal> solves the continuous time or
     discrete time matrix Lyapunov matrix equation:</para>
-    <programlisting><![CDATA[
-
-       A'*X + X*A = C       ( flag='c' )
-      A'*X*A - X = C       ( flag='d' )
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A'*X + X*A = C       ( flag='c' )
+A'*X*A - X = C       ( flag='d' )
+ ]]></programlisting>
     <para>
 Note that a unique solution exist if and only if an eigenvalue of <literal>A</literal> is
 not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 over an eigenvalue of <literal>A</literal> 
@@ -51,15 +49,13 @@ not an eigenvalue of <literal>-A</literal> (<literal>flag='c'</literal>)  or 1 o
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(4,4);C=rand(A);C=C+C';
 X=lyap(A,C,'c');
 A'*X + X*A -C
 X=lyap(A,C,'d');
 A'*X*A - X -C
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

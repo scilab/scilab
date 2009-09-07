@@ -77,12 +77,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=uint16(1:10);
 inttype(x)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
