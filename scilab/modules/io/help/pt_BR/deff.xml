@@ -120,13 +120,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff('[x]=myplus(y,z)','x=y+z')
-//
+
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

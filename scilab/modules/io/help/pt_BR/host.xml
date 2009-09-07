@@ -69,21 +69,19 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-    //criando uma função getdir baseda no host
-    function wd=getdir()
-      if MSDOS then 
-        host('cd&gt;'+TMPDIR+'\path');
-      else
-        host('pwd&gt;'+TMPDIR+'/path');
-      end
-      wd=read(TMPDIR+'/path',1,1,'(a)')
-    endfunction
-    //chamando-a
-    wd=getdir()
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+//criando uma função getdir baseda no host
+function wd=getdir()
+  if MSDOS then 
+    host('cd>'+TMPDIR+'\path');
+  else
+    host('pwd>'+TMPDIR+'/path');
+  end
+  wd=read(TMPDIR+'/path',1,1,'(a)')
+endfunction
+//chamando-a
+wd=getdir()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

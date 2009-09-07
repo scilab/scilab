@@ -70,21 +70,20 @@
     <literal>img*.gif</literal> é possível construir um arquivo GIF animado
     (chamado anim.gif) através da seqüência</para>
 
-    <programlisting>
-    
-    convert -delay 10  img*.gif anim.gif  
-     
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+convert -delay 10  img*.gif anim.gif  
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">    scf(0)
+    <programlisting role="example"><![CDATA[ 
+scf(0)
 plot2d()
 //Exportando para GIF
 xs2gif(0,'foo.gif');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

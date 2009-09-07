@@ -149,8 +149,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Create a simple M-file
 write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  '[m,n] = size(A);'
@@ -173,16 +172,19 @@ write(TMPDIR+'/rot90.m',['function B = rot90(A,k)'
  'else'
  '    B = A;'
  'end']);
+
 // Convert it to scilab
 mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
+
 // Show the new code
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
+
 // get it into scilab
 exec(TMPDIR+'/rot90.sci')
+
 // Execute it
 m=rand(4,2);rot90(m,1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

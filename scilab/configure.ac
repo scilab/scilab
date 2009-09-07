@@ -1467,6 +1467,7 @@ modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile
+modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

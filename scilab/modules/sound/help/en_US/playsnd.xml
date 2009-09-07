@@ -61,13 +61,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-  // a two channel signal 
-  y=loadwave("SCI/modules/sound/demos/chimes.wav");
-  playsnd(y)
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+// a two channel signal 
+y=loadwave("SCI/modules/sound/demos/chimes.wav");
+playsnd(y)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

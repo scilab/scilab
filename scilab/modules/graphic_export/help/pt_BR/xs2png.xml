@@ -66,11 +66,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">    scf(0)
-    plot2d()
-    //Exportando para PNG
-    xs2png(0,'foo.png');
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+scf(0)
+plot2d()
+//Exportando para PNG
+xs2png(0,'foo.png');
+ ]]></programlisting>
   </refsection>
 
   <refsection>

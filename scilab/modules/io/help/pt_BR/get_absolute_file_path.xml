@@ -78,13 +78,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// executando este script
+    <programlisting role="example"><![CDATA[ 
+// executando este script
 
 a=mopen(TMPDIR+'test.sce','wt');
 disp(get_absolute_file_path('test.sce'));
 mclose(a);
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
