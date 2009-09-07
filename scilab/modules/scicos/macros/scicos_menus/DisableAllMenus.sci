@@ -35,6 +35,6 @@ function DisableAllMenus()
 	C(k).Enable = "off";
       end
     end
-  end
+ end
   scf(curf);//restore current figure
 endfunction
