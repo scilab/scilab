@@ -502,37 +502,37 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	//** I'm not ready to exec a command: I need more information using cosclik()
         EnableAllMenus()
 	[btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ;
-
-        DisableAllMenus()
+	
+	if btn_n<>-1000 then  DisableAllMenus(),end
+	
 	if (Cmenu_n=="XcosMenuSelectLink" | Cmenu_n=="XcosMenuMoveLink") & Cmenu<>[] & CmenuType==1 & %pt==[] then
 	  if %pt_n<>[] then %pt = %pt_n; end
 	else
 	  if Cmenu_n<>[] then Cmenu = Cmenu_n; end
 	  if %pt_n <> [] then %pt = %pt_n;     end
 	end
-
 	%win = win_n
-
       else
 	//** I'm ready to exec a command
 	if exists(Cmenu) then
 	  Select_back = Select; //** save the selected object list
           ierr = 0
-
+	  //Preserve Cmenu label for error message (Cmenu is modified by exec)
+	  CmenuLabel=XcosGetMenuLabel(Cmenu,%scicos_menu) 
+	  
           //** Used for AGGRESSIVE DEBUG ONLY -->
 	  //** exec(evstr(Cmenu),1)
 
           //** Used for standard DEBUG ONLY -->
           disp(Cmenu); //** disp the current exec
-          //** exec(evstr(Cmenu),-1); //** nothing is printed
-
+          exec(evstr(Cmenu),-1); //** nothing is printed
+	  
           //** RELEASE --> Please reactivate the error catcher before final release
-	  ierr=exec(evstr(Cmenu),'errcatch',-1)
+	  //** ierr=exec(evstr(Cmenu),'errcatch',-1)
 
 	  if ierr > 0 then
 	    messagebox([
-		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),..
-			 XcosGetMenuLabel(Cmenu,%scicos_menu))
+		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),CmenuLabel)
 		''
 		lasterror()
 		''

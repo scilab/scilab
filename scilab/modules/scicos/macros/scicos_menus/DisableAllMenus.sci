@@ -20,30 +20,19 @@
 //
 
 function DisableAllMenus()
-//** Serge Steer Sept 2009, use the uimenu properties instead of unsetmenu
+//** Serge Steer Sept 2009, 
+//   use the uimenu properties instead of unsetmenu
+//   No more called when window deletion has been requested (see scicos)
 
-  //** This addition a double protection assure the existence
-  //** of the variable (not produce the first time in case of
-  //** Scicos used in batch mode ( Serge: I do not understand)
-  if ~exists("btn_n") then btn_n = [];end 
-  if ~exists("win_n") then win_n = [];end 
 
   curf=gcf(); //preserve current figure
+  
   //loop on all opened scicos windows
   for win = intersect(winsid(), [inactive_windows(2);curwin]')
-  
-    //** this filter out the windows that have been intentionally closed
-    //** ... for more details see macros/scicos_auto/scicos.sci
-    //**         EnableAllMenus()
-    //**           [btn_n, %pt_n, win_n, Cmenu_n] = cosclick() ; 
-    //**         DisableAllMenus(); //** this function is called here 
-    //** 
-    if ~((btn_n==-1000) & (win==win_n)) 
-      C=get(scf(win),'children')
-      for k=1:size(C,'*')
-	if C(k).type=='uimenu' then 
-	  C(k).Enable = "off";
-	end
+    C=get(scf(win),'children')
+    for k=1:size(C,'*')
+      if C(k).type=='uimenu' then 
+	C(k).Enable = "off";
       end
     end
   end
