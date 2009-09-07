@@ -112,20 +112,31 @@ function ok=navigatorexport(scs_m, exp_dir,exp_format)
   end
 
   drawnow()
-   fname = pathconvert(fname, %f, %t)
+  fname = pathconvert(fname, %f, %t)
  
-  // Capture in landscape mode if possible
-  if or(%exp_format == ["emf";"eps";"fig";"pdf";"ps";"svg" ])
-    cmd = 'xs2' + %exp_format + '(win_nag.figure_id, fname, ''landscape'')'
-  else
-    cmd = 'xs2' + %exp_format + '(win_nag.figure_id, fname)'
+  
+  
+  lf=length(fname)
+  if part(fname,lf-length(exp_format):lf)<>'.'+exp_format then 
+    fname=fname+'.'+exp_format
   end
+
+  if exp_format =='scg' then
+    //scilab binary graphic format
+    cmd="save(fname,gca())"
+  elseif or(exp_format == ["emf";"eps";"fig";"pdf";"ps";"svg" ])
+    cmd = 'xs2' + exp_format + '(win_nag.figure_id, fname, ''landscape'')'
+  else
+    cmd = 'xs2' + exp_format + '(win_nag.figure_id, fname)'
+  end
+    
   try
     execstr(cmd)
   catch
-    messagebox([msprintf(_("Export in file %s failed\n"),fname); ...
-		lasterror()],"error","modal")
+    messagebox([msprintf(_("Export in file %s failed\n"),fname);lasterror()],"error","modal")
     ok=%f
   end
+
+  
   delete(win_nag)
 endfunction
