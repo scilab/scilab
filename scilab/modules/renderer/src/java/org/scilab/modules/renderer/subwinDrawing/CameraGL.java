@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2009-2009 - INRIA - Pierre Lando
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * desc : Class containing the driver dependant routines position the camera
  * 
  * This file must be used under the terms of the CeCILL.
@@ -111,7 +111,7 @@ public abstract class CameraGL extends ObjectGL {
 	public void showCamera() {
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
+		gl.glLoadIdentity();
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
 		gl.glPushMatrix();
@@ -547,7 +547,7 @@ public abstract class CameraGL extends ObjectGL {
 		// reset the projection matrix by just modifying zNear and zFar
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
+		gl.glLoadIdentity();
 		
 		// apperently we need to use the opposite of depth range
 		gl.glOrtho(0.0, getViewportWidth(), 0.0, getViewportHeight(), -depthRange[1], -depthRange[0]);
@@ -605,7 +605,7 @@ public abstract class CameraGL extends ObjectGL {
 	protected void setProjectionMatrix(double zNear, double zFar) {
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
+		gl.glLoadIdentity();
 		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, zNear, zFar);
 		
 		// beck to default mode
