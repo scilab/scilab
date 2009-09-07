@@ -61,15 +61,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then 
   unix_x("dir "+""""+WSCI+"modules\graphics\demos"+""""); 
 else 
   unix_x("ls $SCI/modules/graphics/demos");
 end
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

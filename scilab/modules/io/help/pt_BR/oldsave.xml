@@ -78,16 +78,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=eye(2,2);b=ones(a);
 oldsave('TMPDIR/val.dat',a,b);
 clear a
 clear b
 oldload('TMPDIR/val.dat','a','b');
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -72,12 +72,10 @@
       truncated when they are longuer than 4093.</para>
     <para>
     Examples for <literal>format</literal>:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 (1x,e10.3,5x,3(f3.0))
 (10x,a20) 
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     When format is omitted datas are read using numerical free format: 
     blank, comma and slash may be used as data separators, n*v may be use
@@ -96,16 +94,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then unix('del foo');
 else unix('rm -f foo'); end
 A=rand(3,5); write('foo',A);
 B=read('foo',3,5)
 B=read('foo',-1,5)
 read(%io(1),1,1,'(a)')  // waits for user's input
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

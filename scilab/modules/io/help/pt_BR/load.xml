@@ -98,15 +98,13 @@ load(fd [,x1,...,xn])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=eye(2,2);b=ones(a);
 save('vals.dat',a,b);
 clear a
 clear b
 load('vals.dat','a','b');
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
