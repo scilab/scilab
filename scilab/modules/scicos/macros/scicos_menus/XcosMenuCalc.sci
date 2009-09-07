@@ -27,9 +27,7 @@ function XcosMenuCalc()
     xinfo("You may enter any Scilab instruction. Enter ''return'' keyword to come back to Scicos")
     
     xinfo_flag = 1 ; //** keep the message  
-//    disablemenus(xinfo_flag);
-      pause ; //** recurse in the Scilab command line 
-//    enablemenus(); 
+    pause ; //** recurse in the Scilab command line 
     
     Cmenu ="XcosMenuReplot" ; //** force a Replot of the diagram 
     

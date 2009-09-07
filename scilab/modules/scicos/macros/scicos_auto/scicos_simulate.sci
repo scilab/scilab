@@ -106,8 +106,6 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
 
   //** redefine some gui functions
   prot = funcprot();funcprot(0);
-  deff('disablemenus()',' ')
-  deff('enablemenus()',' ')
   do_terminate = do_terminate1
   funcprot(prot)
 
