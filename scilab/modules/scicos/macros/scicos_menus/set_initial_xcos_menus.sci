@@ -131,9 +131,11 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 
   //The Unvisible "Menus" are actions used internally but not displayed
   //neither in the menubar nor in contextual menus
+  //le nom MoveLink n'est pas correct l'action permet de preciser les
+  //actions a realiser (a revoir)
   Unvisible= ['Unvisible'                      ""
 	      'XcosMenuLink',                 _("Link")            
-	      'XcosMenuMoveLink',             _("MoveLink ")       
+	      'XcosMenuMoveLink',             _("MoveLink ")
 	      'XcosMenuSelectLink',           _("SelectLink  ")    
 	      'XcosMenuCtrlSelect',           _("CtrlSelect")      
 	      'XcosMenuSelectRegion',         _("SelectRegion")    

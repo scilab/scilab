@@ -19,12 +19,12 @@
 // See the file ./license.txt
 //
 
-function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
+function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 //Copyright INRIA
 
 // scicos - block diagram graphic editor
 // %SYNTAX
-// scs_m=scicos(scs_m,job)
+// scs_m=scicos(scs_m)
 // %PARAMETERS
 // scs_m    : scilab list, scicos main data structure
 //      scs_m.props contains system name and other infos
@@ -169,7 +169,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   //**----------------------------------------------------------------------------------
 
   %diagram_open = %t     //** default choice
-  if super_path<>[] then //** main diagram
+  if super_path<>[] then //** inside super block
     if isequal(%diagram_path_objective,super_path) then
       if %scicos_navig<>[] then
 	%diagram_open = %t
@@ -182,7 +182,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   end
 
  
-  //** Initialisation
+  //** Initialisation  
   newparameters = list() ;
   enable_undo = %f
   edited = %f
@@ -195,7 +195,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
  
   if argn(2)>=1 then //the argument specifies the initial diagram to edit
     
-    if type(scs_m)==10 then // diagram is given by its filename
+    if type(scs_m)==10 then // diagram is given by its filename (main diagram only)
       %fil = scs_m ;
       alreadyran = %f
       [ok,scs_m,%cpr,edited] = do_load(%fil,'diagram');
@@ -208,13 +208,13 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	%state0 = %cpr.state;
 	needcompile=0
       end
-    else // diagram is given by its data structure
+    else // diagram is given by its data structure (main or Super Block)
       if ~super_block then
 	%cpr=list(); needcompile=4 ; alreadyran=%f , %state0=list()
       end
     end
 
-  else //** scicos() is called without arguments (AND - implicitly - is NOT a superblock)
+  else //** scicos() is called without arguments (main call)
    //** In case a back up file exists
     ierr = execstr('load(TMPDIR+''/BackupSave.cos'')','errcatch')
     if ierr<>0 then
@@ -228,6 +228,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
       load(TMPDIR+'/BackupInfo');
     end
   end
+  
   //Check initial diagram validity
   if typeof(scs_m)<>'diagram' then
     error(msprintf(_("%s: First argument must be a Scicos diagram data structure\n"),'scicos'));
@@ -260,7 +261,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     gh_percent_now_win = gcf(); //** save current figure handle
 
     [%scicos_context,ierr] = script2var(scs_m.props.context,%scicos_context)
-    //for backward compatibility for scifunc
+    //for  compatibility with old  scifunc blocks
     if ierr==0 then
       %mm = getfield(1,%scicos_context)
       for %mi=%mm(3:$)
@@ -275,11 +276,13 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
     if ierr  <>0 then
       messagebox([_("An error occur when evaluating context:"); lasterror() ],"modal") ;
     else
+      //Check if it necessary to reevaluate block parameters 
+      // it is the case if then context contains functions which may give
+      //  different results from one execution to next
       deff('%fonct()',scs_m.props.context)
       %outfun = macrovar(%fonct);
       clear('%fonct')
-      //** perform eval only if context contains functions which may give
-      //** different results from one execution to next
+      //** perform eval only 
       if or(%outfun(4)=='rand')|or(%outfun(4)=='exec')|or(%outfun(4)=='load') then
 	DisableAllMenus()
 	[scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr);
@@ -304,16 +307,18 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
   %win  = curwin ; //** curwin is dynamically modified if a superblock window is open
   %curwpar = []  ; // window dimensions
 
-  //** 'Select' and 'Select_back' are matrix;
-  //**  Each line is:  [object_id win_id] : "object_id" is the same INDEX used in "scs_m.obj"
-  //**                                  and "win_id"    is the Scilab window id.
+  //** 'Select' and 'Select_back' are matrix used to store selected objects
+  //     Each line is:  [object_id win_id] : 
+  //    "object_id" is the same INDEX used in "scs_m.obj"
+  //    "win_id"    is the Scilab window id.
   //**  Multiple selection is permitted: each object is a line of the matrix.
-  Select = []      ; //** empty
-  Select_back = [] ; //** empty
+  Select = []      ; 
+  Select_back = [] ; 
+  
   %ppt = []; //** used to store last valid click position for "Paste" operation
-  //XcosClipboard = []; //** used in Copy Cut and Paste function
-   //** ------------------- GRAPHICS INITIALIZATION ---------
 
+  //** ------------------- GRAPHICS INITIALIZATION ---------
+   
   //** This section is executed in any case
   //   initialize graphics
 
@@ -525,8 +530,14 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m, menus)
 	  ierr=exec(evstr(Cmenu),'errcatch',-1)
 
 	  if ierr > 0 then
-	    messagebox([msprintf(_("I recovered from the following error:\n in %s action.\n"),strsubst(Cmenu,'XcosMenu',''))
-			lasterror()],'Error','modal')
+	    messagebox([
+		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),..
+			 XcosGetMenuLabel(Cmenu,%scicos_menu))
+		''
+		lasterror()
+		''
+		_("Please report")
+		       ],'Error','modal')
 	    Select_back = [];
             Select = [] ;
 	   
