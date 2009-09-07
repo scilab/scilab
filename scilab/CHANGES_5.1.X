@@ -12,6 +12,8 @@ Improvements:
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
+* Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
 Functions removed:
 ==================
 
