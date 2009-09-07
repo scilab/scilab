@@ -50,19 +50,15 @@
     <para>A variável <literal>%ODEOPTIONS</literal> é um vetor com os
     seguintes elementos:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>O valor padrão é:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [1,0,0,%inf,0,2,500,12,5,0,-1,-1]
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>O significado de cada elemento é descrito abaixo</para>
 

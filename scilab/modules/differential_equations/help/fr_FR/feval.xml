@@ -83,7 +83,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 deff('[z]=f(x,y)','z=x^2+y^2');
 feval(1:10,1:5,f)
 deff('[z]=f(x,y)','z=x+%i*y');
@@ -92,7 +92,7 @@ feval(1:10,1:5,'parab')   // voir le fichier ffeval.f
 feval(1:10,'parab')
 // Pour le lien dynamique (voir l'exemple ftest dans ffeval.f)
 // on peut utiliser la commande "link" 
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
