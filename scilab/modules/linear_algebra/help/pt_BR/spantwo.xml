@@ -80,14 +80,12 @@
     <literal>Xp</literal> (não-singular, mas não necessariamente ortogonal)
     tal que :</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
          [A1, 0]    (dim-dimb linhas)
 Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
          [0, B3]    (dim-dima linha)
          [0 , 0]
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>As primeiras <literal>dima</literal> colunas de
     <literal>inv(Xp)</literal> geram Im(<literal>A</literal>).</para>
@@ -114,8 +112,7 @@ Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,0,0,4;
    5,6,7,8;
    0,0,11,12;
@@ -126,8 +123,7 @@ Sl=ss2ss(syslin('c',A,B,C),rand(A));
 [uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobservável
 [Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Decomposição de Kalman
 Slcan=ss2ss(Sl,inv(Xp));
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

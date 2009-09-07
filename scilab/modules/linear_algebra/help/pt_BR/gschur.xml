@@ -46,13 +46,11 @@
 
     <para>As três sintaxes podem ser substituídas por</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [As,Es]=schur(A,E)
 [As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE A TRANSPOSIÇÃO AQUI
 [As,Es,Z,dim] = schur(A,E,flag) 
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>A última sintaxe requer algumas adaptações a mais: </para>
 
@@ -65,8 +63,7 @@
           ser <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal> com Nextern
           definido como segue:</para>
 
-          <programlisting>
-
+          <programlisting role = ""><![CDATA[ 
 function t=Nextern(R)
 if R(2)==0 then
   t=extern([1,R(1),R(3)])==1
@@ -75,8 +72,7 @@ else
   t=extern([2,real(c+c'),real(c*c')])==1
 end
 endfunction
-   
-        </programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -92,20 +88,18 @@ endfunction
       </varlistentry>
     </variablelist>
 
-    <programlisting>
-
-      logical function nextern(ar,ai,beta)
-      double precision ar,ai,beta
-      integer r,extern
-      if (ai.eq.0.0d0) then
-        r=extern(1,ar,beta,0.0d0,0.0d0)
-      else
-        r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
-      endif
-      nextern=r.eq.1
-      end
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+logical function nextern(ar,ai,beta)
+double precision ar,ai,beta
+integer r,extern
+if (ai.eq.0.0d0) then
+  r=extern(1,ar,beta,0.0d0,0.0d0)
+else
+  r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
+endif
+nextern=r.eq.1
+end
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -72,7 +72,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,2)*rand(2,5);
 [Q,M]=fullrf(A);
 norm(Q*M-A,1)

@@ -144,26 +144,25 @@ evals=spec(A,E)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    // MATRIX EIGENVALUES
-    A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
-    spec(A)
-    //
-    x=poly(0,'x');
-    pol=det(x*eye()-A)
-    roots(pol)
-    //
-    [S,X]=bdiag(A);
-    clean(inv(X)*A*X)
+    <programlisting role="example"><![CDATA[ 
+// MATRIX EIGENVALUES
+A=diag([1,2,3]);X=rand(3,3);A=inv(X)*A*X;
+spec(A)
 
-    // PENCIL EIGENVALUES
-    A=rand(3,3);
-    [al,be,Z] = spec(A,eye(A));al./be
-    clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
-    A=A+%i*rand(A);E=rand(A);
-    roots(det(%s*E-A))   //complex case
+x=poly(0,'x');
+pol=det(x*eye()-A)
+roots(pol)
 
-    ]]></programlisting>
+[S,X]=bdiag(A);
+clean(inv(X)*A*X)
+
+// PENCIL EIGENVALUES
+A=rand(3,3);
+[al,be,Z] = spec(A,eye(A));al./be
+clean(inv(Z)*A*Z)  //displaying the eigenvalues (generic matrix)
+A=A+%i*rand(A);E=rand(A);
+roots(det(%s*E-A))   //complex case
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
