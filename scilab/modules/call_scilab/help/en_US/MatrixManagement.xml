@@ -46,7 +46,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 /* 
  * Write a matrix into Scilab
  * B=[1 4 2 3; 
@@ -64,7 +64,7 @@ printf("Display from Scilab of B:\n");
 SendScilabJob("disp(B);"); /* Display A */
  ]]></programlisting>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 /* Read the previously declared matrix of double B */
 int rowB_ = 0, colB_ = 0, lp_ = 0;
 double *matrixOfDoubleB = NULL;
