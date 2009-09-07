@@ -60,6 +60,8 @@ public:
 	bool CreateModuleList(void);
 	bool CreateActivModuleList(void);
 	bool LoadFuncByModule(void);
+
+	bool LoadMacroFile(string _stModule);
 };
 
 #endif //__FUNCMANAGER_HH__

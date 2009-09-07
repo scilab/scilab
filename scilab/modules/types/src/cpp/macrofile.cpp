@@ -25,10 +25,11 @@ namespace types
 	/*--------------*/
 	/*	Contructor  */
 	/*--------------*/
-	MacroFile::MacroFile(std::string _stName, string _stPath):
+	MacroFile::MacroFile(std::string _stName, string _stPath, string _stModule):
 		Callable(),
 		m_stName(_stName),
 		m_stPath(_stPath),
+		m_stModule(_stModule),
 		m_pMacro(NULL)
 	{
 	}
@@ -82,14 +83,12 @@ namespace types
 			//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
 			//types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
 
-			m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get());
+			m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
 		}
 
 		if(m_pMacro)
 		{
 			ReturnValue Val =  m_pMacro->call(in, _iRetCount, out);
-			delete m_pMacro;
-			m_pMacro = NULL;
 			return Val;
 		}
 		else

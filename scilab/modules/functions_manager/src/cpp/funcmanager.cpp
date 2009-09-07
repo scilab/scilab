@@ -27,6 +27,10 @@
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
 
+extern "C"
+{
+	#include "findfiles.h"
+}
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
@@ -294,7 +298,35 @@ bool FuncManager::LoadFuncByModule(void)
 	{
 		//call Load function
 		itMod->second();
+		LoadMacroFile(itMod->first);
 	}
 	return bRet;
+}
+
+bool FuncManager::LoadMacroFile(string _stModule)
+{
+	//macros
+	string stPath = ConfigVariable::getInstance()->get("SCI");
+	stPath += MODULE_DIR;
+	stPath += _stModule;
+	stPath += MACRO_DIR;
+	int iSize = 0;
+	char **pstPath = findfiles((char*)stPath.c_str(), "*.sci", &iSize);
+
+	if(pstPath)
+	{
+		for(int i = 0 ; i < iSize ; i++)
+		{
+			string stFullPath = stPath + string(pstPath[i]);
+			string stTemp = pstPath[i];
+			size_t iPos = stTemp.find(".sci");
+			if(iPos < stTemp.size())
+			{
+				string stFullName = stTemp.substr(0,iPos);
+				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
+			}
+		}
+	}
+	return true;
 }
 

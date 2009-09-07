@@ -11,13 +11,11 @@
 */
 
 #include "elem_func.hxx"
-#include "configvariable.hxx"
 
 #define MODULE_NAME "elementary_functions"
 extern "C"
 {
 	#include "gw_elementary_functions.h"
-	#include "findfiles.h"
 }
 
 using namespace types;
@@ -70,28 +68,6 @@ bool ElemFuncModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("tril", &sci_tril, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction("zeros", &sci_zeros, MODULE_NAME));
 
-	//macros
-	string stPath = ConfigVariable::getInstance()->get("SCI");
-	stPath += MODULE_DIR;
-	stPath += MODULE_NAME;
-	stPath += MACRO_DIR;
-	int iSize = 0;
-	char **pstPath = findfiles((char*)stPath.c_str(), SCI_EXT, &iSize);
-
-	if(pstPath)
-	{
-		for(int i = 0 ; i < iSize ; i++)
-		{
-			string stFullPath = stPath + string(pstPath[i]);
-			string stTemp = pstPath[i];
-			size_t iPos = stTemp.find(".sci");
-			if(iPos < stTemp.size())
-			{
-				string stFullName = stTemp.substr(0,iPos);
-				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath));
-			}
-		}
-	}
 	return true;
 }
 

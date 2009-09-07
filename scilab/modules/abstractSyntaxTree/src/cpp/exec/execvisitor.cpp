@@ -695,7 +695,7 @@ namespace ast
 		}
 
 		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-		types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get());
+		types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get(), "script");
 		symbol::Context::getInstance()->AddMacro(pMacro);
 	}
 	/** \} */

@@ -30,7 +30,7 @@ namespace types
     void whoAmI();
 
 		Macro(): Callable(){};
-		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body);
+		Macro(std::string _stName, std::list<symbol::Symbol> &_inputArgs, std::list<symbol::Symbol> &_outputArgs, ast::SeqExp &_body, string _stModule);
 		virtual ~Macro();
 		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   
@@ -39,6 +39,7 @@ namespace types
     std::list<symbol::Symbol>	*m_outputArgs;
     ast::SeqExp			*m_body;
     std::string			m_stName;
+    std::string			m_stModule;
   };
 }
 

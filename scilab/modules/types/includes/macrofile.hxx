@@ -30,7 +30,7 @@ namespace types
     void whoAmI();
 
 		MacroFile(): Callable(){};
-		MacroFile(std::string _stName, string _stPath);
+		MacroFile(std::string _stName, string _stPath, string _stModule);
 		virtual ~MacroFile(){};
 		Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out);
   
@@ -38,6 +38,7 @@ namespace types
 		Macro*					m_pMacro;
     std::string			m_stName;
     std::string			m_stPath;
+    std::string			m_stModule;
   };
 }
 
