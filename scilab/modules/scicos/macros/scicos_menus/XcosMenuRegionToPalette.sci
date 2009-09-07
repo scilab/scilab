@@ -18,7 +18,7 @@
 //
 // See the file ../license.txt
 //
-function XcosMenuRegiontoPalette()
+function XcosMenuRegionToPalette()
 // Copyright INRIA
   Cmenu=[]
   if Select==[] then
