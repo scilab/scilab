@@ -760,6 +760,7 @@ AC_DEFUN([AC_JAVA_ANT], [
 
 AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 	AC_MSG_CHECKING($1)
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
