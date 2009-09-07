@@ -12,6 +12,12 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.io.File;
+import java.io.FileWriter;
+
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class SaveAsAction extends DefaultAction {
@@ -20,4 +26,23 @@ public class SaveAsAction extends DefaultAction {
 		super("Save As...", editor);
 	}
 
+	public void doAction() {
+		JFileChooser _fileChooser = new JFileChooser();
+		int retval = _fileChooser.showSaveDialog(getEditor());
+		if (retval == JFileChooser.APPROVE_OPTION) {
+			File f = _fileChooser.getSelectedFile();
+			try {
+
+				String doc = getEditor().getTextPane().getText();
+
+				FileWriter writer = new FileWriter(f);
+				writer.write(doc);
+				writer.flush();
+				writer.close();
+
+			} catch (Exception ioex) {
+			    JOptionPane.showMessageDialog(getEditor(), ioex);
+			}
+		}
+	}
 }
