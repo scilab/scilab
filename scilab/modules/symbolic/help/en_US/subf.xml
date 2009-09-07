@@ -42,13 +42,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 subf('0','a')
 subf('2','1')
 subf('a','0')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

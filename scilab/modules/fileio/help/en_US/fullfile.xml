@@ -47,12 +47,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-   f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
-   f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
-  
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
+f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

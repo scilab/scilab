@@ -133,8 +133,7 @@ rat=factors(rat,'flag')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
 R=syslin('d',n,d);
@@ -143,8 +142,7 @@ roots(R1('num'))
 roots(R1('den'))
 w=exp(2*%i*%pi*[0:0.1:1]);
 norm(abs(horner(R1,w))-abs(horner(R,w)))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

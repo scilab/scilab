@@ -73,10 +73,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 M=hypermat([2 3 2 2],1:24)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

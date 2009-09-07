@@ -68,9 +68,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-
-
+    <programlisting role="example"><![CDATA[ 
 // example_1/
 // `-- help
 //     |-- en_US
@@ -114,8 +112,7 @@ res = xmltochm(my_chinese_help_dir,my_chinese_help_title,'zh_TW');
 if MSDOS then
  dos('start ' + res);
 end
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

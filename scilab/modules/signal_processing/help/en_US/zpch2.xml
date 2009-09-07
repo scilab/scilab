@@ -57,11 +57,9 @@
     <para>
     Poles and zeros of a type 2 Chebyshev analog filter
     gain is the gain of the filter</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 H(s)=gain*poly(zeros,'s')/poly(poles,'s')
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

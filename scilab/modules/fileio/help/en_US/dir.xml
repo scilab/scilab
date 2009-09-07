@@ -73,15 +73,13 @@ S=dir([path])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 dir
 dir SCI/modules/core/macros/*.bin
 x=dir('SCI/modules/core/macros/*.bin')
 dt=getdate(x.date);
 mprintf("%s: %04d-%02d-%02d %02d:%02d:%02d\n",x.name,dt(:,[1 2 6 7:9]))
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

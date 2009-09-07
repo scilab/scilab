@@ -66,8 +66,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 iscell(1)
 
 iscell(cell())
@@ -76,8 +75,7 @@ c = cell(1,2);
 c(1).entries="Scilab";
 c(2).entries=datenum();
 iscell(c)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -57,14 +57,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=[s, s*(s+1)^2, 2*s^2+s^3];
 [Ar,U]=hermit(p'*p);
 clean(p'*p*U), det(U)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

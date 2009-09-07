@@ -65,18 +65,19 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 setdefaultlanguage('en_US')
+
 // restart scilab
 getlanguage()
 setdefaultlanguage('fr_FR')
+
 // restart scilab
 getlanguage()
 setdefaultlanguage('')
+
 // restart scilab
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

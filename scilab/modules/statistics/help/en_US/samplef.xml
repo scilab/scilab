@@ -95,16 +95,15 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   a=[3 7 9;22 4 2]
-   f1=[10 1 1 1 1 1]
-   f2=[1 ; 15]
-   f3=[10 1 1]
-   s=samplef(15,a,f1)
-   s=samplef(15,a,f2,'r')
-   s=samplef(15,a,f3,'c')
-
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=[3 7 9;22 4 2]
+f1=[10 1 1 1 1 1]
+f2=[1 ; 15]
+f3=[10 1 1]
+s=samplef(15,a,f1)
+s=samplef(15,a,f2,'r')
+s=samplef(15,a,f3,'c')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

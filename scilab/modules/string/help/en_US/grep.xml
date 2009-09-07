@@ -111,7 +111,7 @@ row=grep(haystack,needle ,[flag])
     <para>In the following example, we search one or two strings in a text,
     which is stored in the <litteral>txt</litteral> variable.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in an other string'
      'Compare Strings'];
@@ -120,8 +120,7 @@ grep(txt,'strings')
 grep(txt,['strings' 'Strings'])
 
 [r,w]=grep(txt,['strings' 'Strings'])
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -129,13 +128,13 @@ grep(txt,['strings' 'Strings'])
 
     <para>In the following example, we perform regexp searches.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
 
 grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

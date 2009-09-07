@@ -62,8 +62,7 @@
     on how to start/stop pvm.</para>
     <para>
     For example:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 pvm_start()
  ans  =
  
@@ -72,8 +71,7 @@ pvm_start()
  ans  =
  
   - 28.  
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Error -28 means: pvm_start_pvmd(): Duplicate host</para>
     <para>

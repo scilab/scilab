@@ -53,8 +53,7 @@
 
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 function x=foo(a,n)
  x=0;
  for i=1:n
@@ -72,7 +71,7 @@ foo(0.1,100) //run the function
 profile(foo) //extract profile information
 reset_profiling("foo")
 profile(foo) //extract profile information
-]]> </programlisting>
+ ]]> </programlisting>
   </refsection>
 
   <refsection>

@@ -54,7 +54,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 s = struct("field_1",123,"field_2",456,"field_4",789)
 
 // Single Fieldname Syntax
@@ -62,8 +62,7 @@ isfield( s , "field_1"  )
 
 // Multiple Fieldname Syntax
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
-]]>
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

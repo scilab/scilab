@@ -55,11 +55,9 @@ head_comments(name,%paths)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 head_comments sinc
-
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

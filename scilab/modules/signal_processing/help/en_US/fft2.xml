@@ -44,8 +44,9 @@ y=fft2(x,n,m)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[This functions performs the two-dimension discrete Fourier
-    transform.]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+This functions performs the two-dimension discrete Fourier transform.
+ ]]></programlisting>
     <para><literal>y=fft2(x)</literal>y and x have the same size</para>
     <para><literal>y=fft2(x,m,n):</literal> If <literal>m</literal> (respectively
     <literal>n</literal>) is less than the rows number (respectively columns) of
@@ -64,25 +65,24 @@ y=fft2(x,n,m)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 //Comparison with explicit formula
 a=[1 2 3 ;4 5 6 ;7 8 9 ;10 11 12]  
 m=size(a,1)
 n=size(a,2)
+
 // fourier transform along the rows
 for i=1:n
 a1(:,i)=exp(-2*%i*%pi*(0:m-1)'.*.(0:m-1)/m)*a(:,i) 
 end
+
 // fourier transform along the columns
 for j=1:m
 a2temp=exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*(a1(j,:)).' 
 a2(j,:)=a2temp.'
 end
 norm(a2-fft2(a))
-
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

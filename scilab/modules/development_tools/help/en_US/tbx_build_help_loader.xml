@@ -44,10 +44,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // Recommended usage
 tbx_build_help_loader("Toolbox Example", get_absolute_file_path('build_help.sce'))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
