@@ -20,7 +20,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 ldivf('1','1')
 ldivf('a','0')
 ldivf('a','x')
