@@ -76,13 +76,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 //Exportando para PDF
 filename='foo'; // Sem extensão !
 xs2pdf(0,filename);
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

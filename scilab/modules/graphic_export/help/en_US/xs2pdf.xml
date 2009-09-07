@@ -81,14 +81,14 @@ xs2pdf(fig, file_name [,orientation])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 //PDF export
 filename='foo'; // ! no extension
 xs2pdf(0,filename);
 xs2pdf(gcf(),filename);
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
