@@ -55,13 +55,11 @@ f=findfiles(path,filespec)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-   f=findfiles()
-   f=findfiles(SCI)
-   f=findfiles(SCI+'/modules/core/macros','*.sci') 
-  
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+f=findfiles()
+f=findfiles(SCI)
+f=findfiles(SCI+'/modules/core/macros','*.sci') 
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

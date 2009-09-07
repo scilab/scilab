@@ -12,12 +12,18 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class RedoAction extends DefaultAction {
 
 	public RedoAction(Xpad editor) {
 		super("Redo", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {

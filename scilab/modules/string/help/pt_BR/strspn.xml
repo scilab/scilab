@@ -79,13 +79,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 i = strspn("129o","1234567890");
 printf ("O comprimento do numero inicial e %d.\n",i);
 i = strspn(["129o","130o"],["1234567890","130o"])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

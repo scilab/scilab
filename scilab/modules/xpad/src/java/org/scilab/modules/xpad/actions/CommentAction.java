@@ -12,11 +12,25 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class CommentAction extends DefaultAction {
 
 	public CommentAction(Xpad editor) {
 		super("Comment Selection", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+	}
+	
+	public void doAction() {
+		int start_position = getEditor().getTextPane().getSelectionStart();
+		int end_position = getEditor().getTextPane().getSelectionEnd();
+		
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(start_position, end_position);
 	}
 }

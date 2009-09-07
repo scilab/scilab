@@ -74,16 +74,14 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 l=list(1,'qwerw',%s)
 [a,b]=getfield([3 2],l)
 
 a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes são codificadas usando-se mlists
 a(1) // a entrada a(1,1,1)
 getfield(1,a) // o primeiro campo do mlist
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

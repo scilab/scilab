@@ -12,12 +12,18 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 
 public class NewAction extends DefaultAction {
 
 	public NewAction(Xpad editor) {
 		super("New...", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {

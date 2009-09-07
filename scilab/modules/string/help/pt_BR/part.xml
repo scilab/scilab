@@ -72,7 +72,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // retorna caracteres da posição 8 a 11
 part("Como usar ""part"" ?",8:11)
 
@@ -97,8 +97,7 @@ part(['a','abc','abcd'],[1,1])
 
 // aa aab aab 
 part(['a','abc','abcd'],[1,1,2])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

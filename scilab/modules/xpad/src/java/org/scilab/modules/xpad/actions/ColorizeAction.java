@@ -19,6 +19,7 @@ public class ColorizeAction extends DefaultAction {
 
 	public ColorizeAction(Xpad editor) {
 		super("Colorize", editor);
+		//setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {

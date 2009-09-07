@@ -12,9 +12,12 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.xpad.Xpad;
 
@@ -22,7 +25,8 @@ public class OpenAction extends DefaultAction {
 
     public OpenAction(Xpad editor) {
 	super("Open...", editor);
-	setMnemonic('O');
+	//setMnemonic('O');
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
     }
 
     public void doAction() {

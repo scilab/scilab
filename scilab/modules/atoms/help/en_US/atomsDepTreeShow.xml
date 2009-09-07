@@ -73,10 +73,10 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsDepTreeShow("toolbox_6")
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
@@ -19,16 +24,17 @@ public class IndentAction extends DefaultAction {
 	
 	public IndentAction(Xpad editor) {
 		super("Indent", editor);
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+
 	}
 	
 	public void doAction() {
+		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
 		
-		//int start = getEditor().getTextPane().getSelectionStart();
-		//int end = getEditor().getTextPane().getSelectionEnd();
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(/*start, end*/);
-		//getEditor().getTextPane().setSelectionStart(/*start*/);
-		getEditor().getTextPane().setSelectionEnd(getEditor().getTextPane().getCaretPosition());
-		//((ScilabStyleDocument) _editor.getStyledDocument()).indent();
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
+		
+		getEditor().getTextPane().setCaretPosition(initial_caret_position);
+		
 	}
 
 }

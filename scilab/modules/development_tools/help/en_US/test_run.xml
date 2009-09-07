@@ -190,15 +190,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // Launch all tests
 // =============================================
 
 test_run();
 test_run([]);
 test_run([],[]);
-
 
 // Test one or several module
 // =============================================
@@ -215,7 +213,6 @@ test_run(['optimization|neldermead']);
 // Refer to a module by its path
 test_run(SCI+'/modules/core');
 
-
 // Launch a specific test
 // =============================================
 
@@ -225,13 +222,10 @@ test_run('time','datenum');
 // Several tests
 test_run('time',['datenum';'calendar']);
 
-
-
 // Skip some tests
 // =============================================
 
 test_run('time',['datenum';'calendar'],'skip_tests');
-
 
 // Options
 // =============================================
@@ -259,8 +253,7 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
-
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -102,7 +102,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "hello"
@@ -112,7 +112,7 @@ l(3) = null()
 lbis = list("gewurtz", "caipirina" ,"debug")
 lter = lstcat(l,lbis)
 size(lter) - size(lbis) - size(l)  // must be zero
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

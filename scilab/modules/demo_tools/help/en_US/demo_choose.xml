@@ -38,7 +38,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 exec('SCI/demos/control/pid/pid_ch_2.sce');
 [n]=demo_choose('SCI/demos/control/pid/pid_ch_2.bin');
 select n
@@ -47,9 +47,9 @@ select n
   case 1
     mode(1)
   case 2
-	mode(-1)
+    mode(-1)
 end
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

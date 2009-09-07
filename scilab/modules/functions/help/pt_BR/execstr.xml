@@ -115,8 +115,7 @@ ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 execstr('a=1') // ajusta a=1.
 execstr('1+1') // faz nada (enquanto evstr('1+1') retorna 2)
 
@@ -136,9 +135,7 @@ lasterror(%t)
 
 execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

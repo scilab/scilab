@@ -19,6 +19,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -30,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
@@ -66,7 +68,8 @@ public class FindAction extends DefaultAction {
 
 	public FindAction(Xpad editor) {
 		super("Find/Replace...", editor);
-		setMnemonic('F');
+		//setMnemonic('F');
+		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {

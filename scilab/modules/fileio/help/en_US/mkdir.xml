@@ -58,20 +58,20 @@ status=mkdir( ... )
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-		// Absolute pathname
-		mkdir(TMPDIR+"/mkdir_example_1")
-		status_2 = mkdir(TMPDIR+"/mkdir_example_2")
-		[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
+    <programlisting role="example"><![CDATA[ 
+// Absolute pathname
+mkdir(TMPDIR+"/mkdir_example_1")
+status_2 = mkdir(TMPDIR+"/mkdir_example_2")
+[status_3,msg_3] = mkdir(TMPDIR+"/mkdir_example_3")
 
-		// Absolute pathname (parentdir + dirname)
-		[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
+// Absolute pathname (parentdir + dirname)
+[status_4,msg_4] = mkdir(TMPDIR,"mkdir_example_4")
 
-		// Relative pathname
-		cd TMPDIR;
-		[status_5,msg_5] = mkdir("mkdir_example_5")
-		[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
-	</programlisting>
+// Relative pathname
+cd TMPDIR;
+[status_5,msg_5] = mkdir("mkdir_example_5")
+[status_6,msg_6] = mkdir("mkdir_example_5/mkdir_example_6")
+ ]]></programlisting>
   </refsection>
 
   <refsection>

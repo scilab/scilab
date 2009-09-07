@@ -7,10 +7,6 @@
     <refname>pwd</refname>
     <refpurpose> affiche le répertoire courant de Scilab  </refpurpose>
   </refnamediv>
-  <refnamediv xml:id="pwd">
-    <refname>pwd</refname>
-    <refpurpose> renvoie le répertoire courant de Scilab  </refpurpose>
-  </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
     <synopsis>pwd
@@ -24,10 +20,10 @@ x=pwd()</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    pwd
-    x=pwd()
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+pwd
+x=pwd()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>
