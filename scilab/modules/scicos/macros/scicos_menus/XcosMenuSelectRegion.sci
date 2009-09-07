@@ -53,7 +53,7 @@ function XcosMenuSelectRegion()
   kc = find(%win==windows(:,2))
 
   if kc==[] then
-    messagebox("This window is not an active palette",'modal');
+    messagebox(_("This window is not an active palette"),'modal');
     return ; //** Exit point
 
   elseif windows(kc,1)<0 then //click inside a palette window
@@ -77,42 +77,3 @@ function XcosMenuSelectRegion()
 endfunction
 
 //**---------------------------------------------------------------------------
-function [in,out] = get_objs_in_rect(scs_m,ox,oy,w,h)
-  in = []; out = [] ; ok = %f;
-  for k=1:lstsize(scs_m.objs)
-    ok = %f;
-    o=scs_m.objs(k)
-    if typeof(o)=='Block'|typeof(o)=='Text' then
-//       x=[0 1 1 0]*o.graphics.sz(1)+o.graphics.orig(1)
-//       y=[0 0 1 1]*o.graphics.sz(2)+o.graphics.orig(2)
-      if (ox <= o.graphics.orig(1)) & ...
-         (oy >= o.graphics.orig(2)+o.graphics.sz(2)) & ...
-         ((ox+w) >= (o.graphics.orig(1)+o.graphics.sz(1))) & ...
-         ((oy-h) <= o.graphics.orig(2)) then
-           ok=%t
-           in=[in k]
-      end
-
-     elseif  typeof(o)=='Link' then
-//       [x,y]=(o.xx,o.yy)
-      if (ox <= max(o.xx)) & ...
-         (oy >= max(o.yy)) & ...
-         ((ox+w) >= max(o.xx)) & ...
-         ((oy-h) <= min(o.yy)) then
-           ok=%t
-           in=[in k]
-      end
-
-    else
-      x=[] // object is "Deleted"
-    end
-
-//     for kk=1:size(x,'*')
-//       data=[(ox-x(kk))'*(ox+w-x(kk)),(oy-h-y(kk))'*(oy-y(kk))];
-//       if data(1)<0&data(2)<0 then ok=%t;in=[in k];break;end
-//     end
-
-    if ~ok then out=[out k],end
-
-  end
-endfunction
