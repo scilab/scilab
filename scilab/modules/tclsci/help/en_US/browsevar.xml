@@ -29,9 +29,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 browsevar();
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
