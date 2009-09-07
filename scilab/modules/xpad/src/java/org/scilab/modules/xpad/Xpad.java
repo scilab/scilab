@@ -14,8 +14,6 @@ package org.scilab.modules.xpad;
 
 import java.awt.Color;
 import java.awt.Event;
-import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -27,8 +25,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -250,15 +246,15 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	public JTextPane addTab(String title) {
-		textPane = new JTextPane() {
-			public boolean getScrollableTracksViewportWidth() {
-				return false;
-			};
+		textPane = new JTextPane(); // {
+//			public boolean getScrollableTracksViewportWidth() {
+//				return false;
+//			};
 //			public void paint(Graphics g) {
 //				super.paint(g);
 //				Xpad.this.repaint();
 //			};
-		};
+//		};
 
 		scrollingText = new JScrollPane(textPane);
 		tabPane.add(title, scrollingText);

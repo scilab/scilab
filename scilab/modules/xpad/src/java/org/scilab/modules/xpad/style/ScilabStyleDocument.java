@@ -856,5 +856,4 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		return undo;
 	}
 
-	
 }
