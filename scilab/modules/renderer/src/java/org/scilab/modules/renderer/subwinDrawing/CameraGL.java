@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2009-2009 - INRIA - Pierre Lando
+ * Copyright (C) 2009-2009 - DIGITEO - Pierre Lando
  * desc : Class containing the driver dependant routines position the camera
  * 
  * This file must be used under the terms of the CeCILL.
