@@ -43,15 +43,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 tic();
 realtimeinit(1);
 realtime(0);
 realtime(10);
 toc();
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
