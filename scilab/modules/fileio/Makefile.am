@@ -43,7 +43,7 @@ src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
 src/c/getrelativefilename.c \
-src/c/splitpath.c
+src/c/splitpath.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
