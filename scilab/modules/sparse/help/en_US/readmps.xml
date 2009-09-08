@@ -337,18 +337,7 @@ txt=['NAME          TESTPROB'
 mputl(txt,TMPDIR+'/test.mps')
 //Read the MPS file
 P=readmps(TMPDIR+'/test.mps',[0 10^30])
-//Convert it to linpro format
-LP=mps2linpro(P)
-//Solve it with linpro
-[x,lagr,f]=linpro(LP(2:$))
+disp(P)
  ]]></programlisting>
-  </refsection>
-  <refsection>
-    <title>See Also</title>
-    <simplelist type="inline">
-      <member>
-        <link linkend="mps2linpro">mps2linpro</link>
-      </member>
-    </simplelist>
   </refsection>
 </refentry>
