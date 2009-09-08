@@ -52,34 +52,28 @@
         function.
       </para>
 
-    <para>
-      The following calling sequence
-      <programlisting role="example">
-      options = optimset ()
-    </programlisting>
-      creates a new data structure where the fields have been set to the empty matrix (i.e. []).
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ()
+ ]]></programlisting>
+      <para>creates a new data structure where the fields have been set to the empty matrix (i.e. []).
     </para>
 
-    <para>
-      The following calling sequence
-      <programlisting role="example">
-        options = optimset ( funname )
-      </programlisting>
-      creates a new data structure where the default parameters which correspond to
-      the "funname" function have been set. For example,
-      <programlisting role="example">
-        options = optimset ( "fminsearch" )
-      </programlisting>
-      returns a new data structure where the default parameters which correspond to 
-      the "fminsearch" function have been set.
-    </para>
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( funname )
+ ]]></programlisting>
+      <para>creates a new data structure where the default parameters which correspond to the "funname" function have been set. For example,</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( "fminsearch" )
+ ]]></programlisting>
+      <para>returns a new data structure where the default parameters which correspond to the "fminsearch" function have been set.</para>
 
-    <para>
-      The following calling sequence
-      <programlisting role="example">
-        options = optimset ( oldoptions , key , value )
-      </programlisting>
-      creates a new data structure where all fields from the "oldoptions" 
+    <para>The following calling sequence</para>
+      <programlisting role="example"><![CDATA[ 
+options = optimset ( oldoptions , key , value )
+ ]]></programlisting>
+      <para>creates a new data structure where all fields from the "oldoptions" 
       structure have been copied, except the field corresponding to the "key",
       which has been set to "value".
     </para>
@@ -251,9 +245,9 @@
       In the following example, we create an empty optimization structure.
     </para>
 
-    <programlisting role="example">
-      op = optimset ()
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+op = optimset ()
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -264,18 +258,16 @@
       with all fields set to specific settings.
     </para>
 
-    <programlisting role="example">
-      op = optimset (...
-      "Display","iter",...
-      "FunValCheck","on",...
-      "MaxFunEvals",100,...
-      "MaxIter",110,...
-      "OutputFcn",myoutputfun,...
-      "PlotFcns",myplotfun,...
-      "TolFun",1.e-12,...
-      "TolX",1.e-13...
-      )
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+op = optimset ("Display","iter",...
+               "FunValCheck","on",...
+               "MaxFunEvals",100,...
+               "MaxIter",110,...
+               "OutputFcn",myoutputfun,...
+               "PlotFcns",myplotfun,...
+               "TolFun",1.e-12,...
+               "TolX",1.e-13)
+ ]]></programlisting>
   </refsection>
 
   
@@ -288,9 +280,9 @@
       optimization function.
     </para>
 
-    <programlisting role="example">
-      op = optimset ("fminsearch")
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+op = optimset ("fminsearch")
+ ]]></programlisting>
   </refsection>
 
   <refsection>
