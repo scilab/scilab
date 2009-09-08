@@ -24,7 +24,8 @@
 
     <para>The goal of this toolbox is to provide a Nelder-Mead direct search
     optimization method. That Nelder-Mead algorithm may be used in the
-    following optimization context :<itemizedlist>
+    following optimization context :</para>
+    <itemizedlist>
         <listitem>
           <para>there is no need to provide the derivatives of the objective
           function,</para>
@@ -37,7 +38,7 @@
         <listitem>
           <para>there are bounds and/or non linear constraints.</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
   </refsection>
 
   <refsection>
@@ -143,7 +144,7 @@
 
       <listitem>
         <para>Manage various termination criteria, including maximum number of
-        iterations, tolerance on function value (relative or absolute),
+        iterations, tolerance on function value (relative or absolute),</para>
         <itemizedlist>
             <listitem>
               <para>tolerance on x (relative or absolute),</para>
@@ -161,7 +162,7 @@
             <listitem>
               <para>absolute or relative simplex size,</para>
             </listitem>
-          </itemizedlist></para>
+          </itemizedlist>
       </listitem>
 
       <listitem>
@@ -221,7 +222,7 @@
   <refsection>
     <title>TODO</title>
 
-    <para><itemizedlist>
+    <itemizedlist>
         <listitem>
           <para>implement "optimget"</para>
         </listitem>
@@ -233,7 +234,7 @@
         <listitem>
           <para>implement parabolic line search</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
   </refsection>
 
   <refsection>
@@ -248,7 +249,7 @@
     the algorithm. After the optimization is performed, the optimum is
     retrieved with quiery features.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -270,7 +271,7 @@ historysimplex = neldermead_get(nm,"-historysimplex");
 fx0 = neldermead_get(nm,"-fx0");
 status = neldermead_get(nm,"-status");
 nm = neldermead_destroy(nm);
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

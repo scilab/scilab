@@ -98,8 +98,7 @@
    control the processing of the corresponding test. These tags
    are expected to be found in Scilab comments.
    </para>
-    <para>
-   These are the available tags :
+    <para>These are the available tags :</para>
    <itemizedlist>
      <listitem>
        <para>
@@ -179,7 +178,6 @@
        </para>
        </listitem>
      </itemizedlist>
-   </para>
    
     <para>
    Each test is executed in a separated process, created with the "host" command.

@@ -20,8 +20,9 @@ libscixpad_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### xpad : init scripts ####
 libscixpad_la_etcdir = $(mydatadir)/etc
-libscixpad_la_etc_DATA = etc/xpad.quit \
-etc/xpad.start
+libscixpad_la_etc_DATA = 	etc/configuration_xpad.xml \
+				etc/xpad.quit \
+				etc/xpad.start
 
 include $(top_srcdir)/Makefile.incl.am
 
