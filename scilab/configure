@@ -11019,6 +11019,7 @@ fi
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking flexdock" >&5
 $as_echo_n "checking flexdock... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11034,7 +11035,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11037 "configure"
+// #line 11038 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11090,6 +11091,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock u
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking looks" >&5
 $as_echo_n "checking looks... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11105,7 +11107,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11108 "configure"
+// #line 11110 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11161,6 +11163,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking looks2" >&5
 $as_echo_n "checking looks2... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11176,7 +11179,7 @@ $as_echo_n "checking looks2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11179 "configure"
+// #line 11182 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -11235,6 +11238,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks2 use
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking skinlf" >&5
 $as_echo_n "checking skinlf... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11250,7 +11254,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11253 "configure"
+// #line 11257 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -11306,6 +11310,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar skinlf use
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jogl" >&5
 $as_echo_n "checking jogl... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11321,7 +11326,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11324 "configure"
+// #line 11329 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -11377,6 +11382,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jhall" >&5
 $as_echo_n "checking jhall... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11392,7 +11398,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11395 "configure"
+// #line 11401 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11448,6 +11454,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhall used
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking javahelp2" >&5
 $as_echo_n "checking javahelp2... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11463,7 +11470,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11466 "configure"
+// #line 11473 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -11520,6 +11527,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar javahelp2 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking gluegen-rt" >&5
 $as_echo_n "checking gluegen-rt... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11535,7 +11543,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11538 "configure"
+// #line 11546 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -11591,6 +11599,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jrosetta-API" >&5
 $as_echo_n "checking jrosetta-API... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11606,7 +11615,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11609 "configure"
+// #line 11618 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -11662,6 +11671,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jrosetta-A
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jrosetta-engine" >&5
 $as_echo_n "checking jrosetta-engine... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11677,7 +11687,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11680 "configure"
+// #line 11690 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -11733,6 +11743,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jrosetta-e
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking commons-logging" >&5
 $as_echo_n "checking commons-logging... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -11748,7 +11759,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11751 "configure"
+// #line 11762 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -19828,7 +19839,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 19831 "configure"
+#line 19842 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -20140,7 +20151,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 20143 "configure"
+#line 20154 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -20704,6 +20715,7 @@ fi
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik-all" >&5
 $as_echo_n "checking batik-all... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -20719,7 +20731,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 20722 "configure"
+// #line 20734 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -20775,6 +20787,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik-all 
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking batik" >&5
 $as_echo_n "checking batik... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -20790,7 +20803,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 20793 "configure"
+// #line 20806 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -20848,6 +20861,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking saxon" >&5
 $as_echo_n "checking saxon... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -20863,7 +20877,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 20866 "configure"
+// #line 20880 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -20919,6 +20933,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar saxon used
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking fop" >&5
 $as_echo_n "checking fop... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -20934,7 +20949,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 20937 "configure"
+// #line 20952 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -20990,6 +21005,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar fop used b
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jeuclid-core" >&5
 $as_echo_n "checking jeuclid-core... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -21005,7 +21021,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21008 "configure"
+// #line 21024 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -21061,6 +21077,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jeuclid-co
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking commons-io" >&5
 $as_echo_n "checking commons-io... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -21076,7 +21093,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21079 "configure"
+// #line 21096 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -21132,6 +21149,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-io
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xmlgraphics-commons" >&5
 $as_echo_n "checking xmlgraphics-commons... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -21147,7 +21165,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21150 "configure"
+// #line 21168 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -21203,6 +21221,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar xmlgraphic
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking xml-apis-ext" >&5
 $as_echo_n "checking xml-apis-ext... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -21218,7 +21237,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21221 "configure"
+// #line 21240 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -21275,6 +21294,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-apis-e
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking avalon-framework" >&5
 $as_echo_n "checking avalon-framework... " >&6; }
+	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
@@ -21290,7 +21310,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 21293 "configure"
+// #line 21313 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -21932,7 +21952,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 21935 "configure"' > conftest.$ac_ext
+  echo '#line 21955 "configure"' > conftest.$ac_ext
   if { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_compile\""; } >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -23506,11 +23526,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23509: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23529: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:23513: \$? = $ac_status" >&5
+   echo "$as_me:23533: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -23796,11 +23816,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23799: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23819: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:23803: \$? = $ac_status" >&5
+   echo "$as_me:23823: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -23900,11 +23920,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:23903: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:23923: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:23907: \$? = $ac_status" >&5
+   echo "$as_me:23927: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -25994,7 +26014,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 25997 "configure"
+#line 26017 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -26094,7 +26114,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 26097 "configure"
+#line 26117 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -28455,11 +28475,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28458: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28478: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:28462: \$? = $ac_status" >&5
+   echo "$as_me:28482: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -28559,11 +28579,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:28562: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:28582: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:28566: \$? = $ac_status" >&5
+   echo "$as_me:28586: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -30157,11 +30177,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30160: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30180: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30164: \$? = $ac_status" >&5
+   echo "$as_me:30184: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30261,11 +30281,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30264: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30284: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30268: \$? = $ac_status" >&5
+   echo "$as_me:30288: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -32439,11 +32459,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32442: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32462: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:32446: \$? = $ac_status" >&5
+   echo "$as_me:32466: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -32729,11 +32749,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32732: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32752: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:32736: \$? = $ac_status" >&5
+   echo "$as_me:32756: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -32833,11 +32853,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:32836: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:32856: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:32840: \$? = $ac_status" >&5
+   echo "$as_me:32860: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized

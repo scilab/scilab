@@ -1,3 +1,4 @@
+
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
 
@@ -10,6 +11,8 @@ Improvements:
 * More help pages translated to Portugues do Brazil (Thanks Daniel de Souza Grilo)
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
+
+* Japanese localization added to Scipad (Thanks Hiroshi Saito)
 
 Functions removed:
 ==================
@@ -88,6 +91,9 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* In the documentation, the font size of the equations has been increased 
+  for a better readability.
+
 * Documentation and examples about call_scilab (BooleanManagement call_scilab
   compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
   cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement
@@ -101,6 +107,9 @@ Help & Tests:
 Bug fixes:
 ==========
  * bug 336  fixed - pspect and cspec help pages improved
+
+ * bug 667  fixed - scilab.start-file causes an initialization error when you 
+                    use predef('all') in a user startup file.
 
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
@@ -245,6 +254,13 @@ Bug fixes:
 
  * bug 4752 fixed - ci2exp produces erroneous code when applied to boolean matrices (; are missing)
 
+ * bug 4712 fixed - by GUI handle affectation produce an error.
+
+ * bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong.
+
+ * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
+
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
@@ -354,6 +370,10 @@ It has been reported a numerous number of time:
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
+                   
+* bug 3839 fixed - strrev doesn't work correctly if the string to be reversed includes some accentuated characters.
+
+* bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 
 * bug 3705 fixed - During execution of any Scipad sequence, entering abort
                    after the prompt hang up both Scipad and Console.
@@ -384,6 +404,8 @@ Bug fixes:
                    of equal values creates problem with function unique.
 
 * bug 3852 fixed - Line wrapping problem in help browser
+
+* bug 3666 fixed - 'input' with accentued character returns incorrect value
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -418,6 +440,8 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
+                   
+* bug 4141 fixed - ascii doesn't support extended ascii values in the range of [128-255].
 
 * bug 4242 fixed - Copyright added (INRIA code)
                    on modules/linear_algebra/src/fortran/doldqr.f
@@ -527,6 +551,7 @@ Bug fixes:
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
+* bug 4771 fixed - the configure did not stop when jhall (javahelp) or looks were not available on the system
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -1012,6 +1037,8 @@ Bug fixes:
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
+
+* bug 4761 fixed - memory leak in grep and regexp.
 
 * Side effect in the setenvc function.
 

@@ -11,8 +11,13 @@ function cmap = graycolormap(n)
 //graycmap   linear gray-scale color map.
 //r=g=b
 
-if size(n,'*')<>1|or(n<1) then
-  error('graycolormap : n must be a positive integer')
-end
+	if size(n,'*')<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"graycolormap",1));
+	end
+	
+	if n<3 then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"graycolormap",1,3));
+	end
+
 cmap=((0:n-1)'/(n-1))*[1 1 1];
 endfunction
