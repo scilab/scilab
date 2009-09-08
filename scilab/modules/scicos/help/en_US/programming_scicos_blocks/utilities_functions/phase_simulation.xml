@@ -47,9 +47,9 @@ That function says if the Scicos simulator is realizing the time domain integrat
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [psim]=phase_simulation()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_phase_simulation">
     <title>Parameters</title>
