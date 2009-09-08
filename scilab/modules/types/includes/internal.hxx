@@ -98,11 +98,20 @@ namespace types
 		virtual std::string	toString(int _iPrecison, int _iLineLen){return "Internal";}
 		virtual InternalType* clone(void) { return NULL; }
 
-		void	IncreaseRef(){m_iRef++;}
-		void	DecreaseRef(){m_iRef--;}
-		void	AllowDelete(){m_bAllowDelete = true;}
-		void	DenyDelete(){m_bAllowDelete = false;}
-		bool	isDeletable(){return m_bAllowDelete;}
+		void	IncreaseRef()
+		{
+			m_iRef++;
+		}
+		
+		void	DecreaseRef()
+		{
+			if(m_iRef > 0)
+			{
+				m_iRef--;
+			}
+		}
+
+		bool	isDeletable(){return m_iRef == 0;}
 		bool	isRef(int _iRef = 0){return m_iRef > _iRef;}
 
 

@@ -9,10 +9,20 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+#include <sstream>
 #include <math.h>
 #include "implicitlist.hxx"
 #include "core_math.h"
 #include "double.hxx"
+#include "tostring_common.hxx"
+#include "alltypes.hxx"
+
+extern "C"
+{
+	#include "elem_common.h"
+}
+
+string printInLine(types::Poly* _pPoly, string _stVar, int _iPrecision, int _iLineLen);
 
 namespace types
 {
@@ -141,7 +151,7 @@ namespace types
 
 	void ImplicitList::step_set(MatrixPoly *_poPoly)
 	{
-		m_poEnd = _poPoly;
+		m_poStep = _poPoly;
 		m_eStepType	= InternalType::RealPoly; 
 	}
 
@@ -258,12 +268,84 @@ namespace types
 	}
 	string ImplicitList::toString(int _iPrecision, int _iLineLen)
 	{
-		Double dbl(1, size_get());
-		for(int i = 0 ; i < dbl.size_get() ; i++)
+		if(computable())
 		{
-			dbl.val_set(0, i, extract_value(i));
+			Double dbl(1, size_get());
+			for(int i = 0 ; i < dbl.size_get() ; i++)
+			{
+				dbl.val_set(0, i, extract_value(i));
+			}
+			return dbl.toString(_iPrecision, _iLineLen);
 		}
-		return dbl.toString(_iPrecision, _iLineLen);
-	}
+		else
+		{
+			ostringstream ostr;
+			ostr << " ";
+			if(m_eStartType == RealDouble)
+			{
+				int iWidth = 0, iPrec = 0;
+				bool bFP = false; // FloatingPoint
+				GetDoubleFormat(m_dblStart, _iPrecision, &iWidth, &iPrec, &bFP);
+				AddDoubleValue(&ostr, m_dblStart, iWidth, iPrec, false, true, false);
+			}
+			else
+			{
+				ostr << printInLine(m_poStart->poly_get(0,0), m_poStart->var_get(), _iPrecision, _iLineLen);
+			}
 
+			ostr << ":";
+
+			if(m_eStepType == RealDouble)
+			{
+				int iWidth = 0, iPrec = 0;
+				bool bFP = false; // FloatingPoint
+				GetDoubleFormat(m_dblStep, _iPrecision, &iWidth, &iPrec, &bFP);
+				AddDoubleValue(&ostr, m_dblStep, iWidth, iPrec, false, true, false);
+			}
+			else
+			{
+				ostr << printInLine(m_poStep->poly_get(0,0), m_poStep->var_get(), _iPrecision, _iLineLen);
+			}
+
+			ostr << ":";
+
+			if(m_eEndType == RealDouble)
+			{
+				int iWidth = 0, iPrec = 0;
+				bool bFP = false; // FloatingPoint
+				GetDoubleFormat(m_dblEnd, _iPrecision, &iWidth, &iPrec, &bFP);
+				AddDoubleValue(&ostr, m_dblEnd, iWidth, iPrec, false, true, false);
+			}
+			else
+			{
+				ostr << printInLine(m_poEnd->poly_get(0,0), m_poEnd->var_get(), _iPrecision, _iLineLen);
+			}
+			return ostr.str();
+		}
+	}
+}
+
+string printInLine(types::Poly* _pPoly, string _stVar, int _iPrecision, int _iLineLen)
+{
+	ostringstream ostr;
+	for(int i = 0 ; i < _pPoly->rank_get() ; i++)
+	{
+		double dbl = _pPoly->coef_get()->real_get()[i];
+		if(dbl != 0)
+		{
+			int iWidth = 0, iPrec = 0;
+			bool bFP = false; // FloatingPoint
+			GetDoubleFormat(dbl, _iPrecision, &iWidth, &iPrec, &bFP);
+			AddDoubleValue(&ostr, dbl, iWidth, iPrec, ostr.str().size() != 0, i == 0, false);
+			if(i != 0)
+			{
+				ostr <<_stVar;
+				if(i > 1)
+				{
+					ostr << "^" << i;
+				}
+			}
+		}
+	}
+	return ostr.str();
 }

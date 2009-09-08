@@ -90,6 +90,13 @@ namespace symbol
 		return true;
 	}
 
+	bool Context::put_in_previous_scope(Symbol key, InternalType &type)
+	{
+		// FIXME
+		EnvVarTable.put_in_previous_scope(key, type);
+		return true;
+	}
+
 	void Context::print()
 	{
 		std::cout << "PrivateFunTable : " << std::endl;

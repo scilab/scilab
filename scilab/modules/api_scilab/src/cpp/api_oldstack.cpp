@@ -55,7 +55,7 @@ int api_Lhs(int* _piKey)
 		return 0;
 	}
 
-	return *pStr->m_piRetCount;
+	return abs(*pStr->m_piRetCount);
 }
 
 int api_CheckRhs(int _iMin, int _iMax, int* _piKey)

@@ -55,6 +55,8 @@ namespace symbol
 
 		/*add symbol and value in the stack*/
 		bool put(Symbol key, InternalType &type);
+		/*add symbol and value in the previous scope*/
+		bool put_in_previous_scope(Symbol key, InternalType &type);
 
 		bool AddFunction(types::Function *_info);
 		bool AddMacro(types::Macro *_info);

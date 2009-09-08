@@ -335,6 +335,7 @@ namespace ast
 			else if(pVar)
 			{// x = ?
 				/*getting what to assign*/
+				execMeR->expected_size_set(1);
 				e.right_exp_get().accept(*execMeR);
 
 				if(execMeR->result_size_get() != 1)
@@ -355,7 +356,16 @@ namespace ast
 					pIT = pTemp;
 				}
 
-				symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
+				//const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
+				//if(pReturn)
+				//{//ReturnExp so, put the value in the previous scope
+				//	symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
+				//	((AssignExp*)&e)->break_set();
+				//}
+				//else
+				//{
+					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
+				//}
 
 				if(e.is_verbose())
 				{
@@ -369,7 +379,7 @@ namespace ast
 			else if(pList)
 			{//[x,y] = ?
 
-				size_t iLhsCount = pList->exps_get().size();
+				int iLhsCount = (int)pList->exps_get().size();
 
 				/*getting what to assign*/
 				execMeR->expected_size_set(iLhsCount);
@@ -378,7 +388,7 @@ namespace ast
 				if(execMeR->result_size_get() != execMeR->expected_size_get())
 				{
 					std::ostringstream os;
-					os << "Incorrect assignment" << std::endl;
+					os << "Lhs != Rhs";
 					throw os.str();
 				}
 

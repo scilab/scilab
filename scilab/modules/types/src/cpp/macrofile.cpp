@@ -55,6 +55,7 @@ namespace types
 	Callable::ReturnValue MacroFile::call(typed_list &in, int _iRetCount, typed_list &out)
 	{
 		ReturnValue RetVal = Callable::OK;
+
 		//check excepted and input/output parameters numbers
 
 		if(m_pMacro == NULL)
