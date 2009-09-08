@@ -118,7 +118,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // Find x in R^6 such that:
 // x'*C1 = b1 (3 equality constraints i.e me=3)
 C1= [ 1,-1, 2;
@@ -129,7 +129,7 @@ C1= [ 1,-1, 2;
       1, 6, 0];
 b1=[1;2;3];
 
-// x'*C2 &gt;= b2 (2 inequality constraints)
+// x'*C2 >= b2 (2 inequality constraints)
 C2= [ 0 ,1;
      -1, 0;
       0,-2;
@@ -144,7 +144,7 @@ p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
 me=3;
 [x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
 // Only linear constraints (1 to 4) are active 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

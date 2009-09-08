@@ -140,12 +140,12 @@ The equivalent of BACKSLASH is "ïn Scilab.
   </refsection>
   <refsection id="Example_MATBKSL">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=[1 7 3;23 32 29]
 B=[21 18;13 10]
 then the result of the A*x=B equation is (A\B):
 x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATBKSL">
     <title>Default properties</title>

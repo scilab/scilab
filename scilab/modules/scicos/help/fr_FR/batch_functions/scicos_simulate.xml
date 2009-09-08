@@ -50,9 +50,9 @@ Contrary to the function , the diagram need not be compiled before being saved.
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_scicos_simulate">
     <title>Paramètres</title>

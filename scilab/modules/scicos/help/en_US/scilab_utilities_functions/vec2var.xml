@@ -47,9 +47,9 @@ var2vec / vec2var functions are used inside the interfacing functions of Scilab 
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [var]=vec2var(vec)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_vec2var">
     <title>Parameters</title>
@@ -64,7 +64,7 @@ var2vec / vec2var functions are used inside the interfacing functions of Scilab 
   </refsection>
   <refsection id="Example_vec2var">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 -->a=list("cos",[1.1,2])
 a  = 
 a(1)
@@ -91,7 +91,7 @@ c(1)
 cos   
 c(2)
 1.1    2.
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="SeeAlso_vec2var">
     <title>See Also</title>

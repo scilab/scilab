@@ -47,9 +47,9 @@ Les fonctions var2vec / vec2var sont utilisées dans les fonctions d'interfaçag
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [vec]=var2vec(var)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_var2vec">
     <title>Paramètres</title>
@@ -64,7 +64,7 @@ Les fonctions var2vec / vec2var sont utilisées dans les fonctions d'interfaçag
   </refsection>
   <refsection id="Exemple_var2vec">
     <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 -->a=list("cos",[1.1,2])
 a  = 
 a(1)
@@ -85,7 +85,7 @@ b  =
 9.881-324  
 1.1        
 2.
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Voiraussi_var2vec">
     <title>Voir aussi</title>
