@@ -23,6 +23,7 @@ public class HighlightCurrentLineAction extends DefaultCheckAction {
     public HighlightCurrentLineAction(Xpad editor) {
 	super("Highlight current line", editor);
 	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
+	setState(false);
     }
     
 	public void doAction() {
