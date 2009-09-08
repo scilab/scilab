@@ -397,6 +397,8 @@ Bug fixes:
 
 * bug 4689 fixed - diary() do not report interactive commands into the output file
 
+* bug 4695 fixed - some help pages + examples where missing in the arnoldi package
+
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
