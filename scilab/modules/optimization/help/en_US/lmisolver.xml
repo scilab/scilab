@@ -137,9 +137,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Find diagonal matrix X (i.e. X=diag(diag(X), p=1) such that
-//A1'*X+X*A1+Q1 &lt; 0, A2'*X+X*A2+Q2 &lt; 0 (q=2) and trace(X) is maximized 
+//A1'*X+X*A1+Q1 < 0, A2'*X+X*A2+Q2 < 0 (q=2) and trace(X) is maximized 
 n  = 2;
 A1 = rand(n,n);
 A2 = rand(n,n);
@@ -156,7 +156,7 @@ X=lmisolver(list(zeros(A1)),evalf);
 
 X=X(1)
 [Y,Z,c]=evalf(X)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
