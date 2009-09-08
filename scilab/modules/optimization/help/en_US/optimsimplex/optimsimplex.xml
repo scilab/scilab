@@ -71,7 +71,8 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
     <para>
       The goal of this component is to provide a building block for
       optimization algorithms based on a simplex. The optimsimplex package may
-      be used in the following optimization methods :<itemizedlist>
+      be used in the following optimization methods :</para>
+    <itemizedlist>
         <listitem>
           <para>the Spendley et al. simplex method,</para>
         </listitem>
@@ -91,7 +92,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
         <listitem>
           <para>etc ...</para>
         </listitem>
-      </itemizedlist></para>
+    </itemizedlist>
   </refsection>
 
   <refsection>
@@ -231,7 +232,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -246,7 +249,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -312,7 +317,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -338,7 +345,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -387,7 +396,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -420,7 +431,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -470,7 +483,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -491,7 +506,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>Each component ix =1 , n of the vertex #jve = 2,k is
                 computed from the formula :</para>
 
-                <programlisting role="example">x ( ix , jve ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))</programlisting>
+                <programlisting role="example"><![CDATA[ 
+x ( ix , jve ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -514,7 +531,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -563,7 +582,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -587,7 +608,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1141,7 +1164,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -1156,7 +1181,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1293,7 +1320,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -1322,7 +1351,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1364,7 +1395,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -1379,7 +1412,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1438,7 +1473,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -1453,7 +1490,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1494,7 +1533,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 <para>The function is expected to have the following input and
                 output arguments :</para>
 
-                <programlisting role="example">function y = myfunction (x)</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function y = myfunction (x)
+ ]]></programlisting>
               </listitem>
             </varlistentry>
 
@@ -1518,7 +1559,9 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
                 function both as an input and output argument. In that case,
                 the function must have the following header :</para>
 
-                <programlisting role="example">function [ y , data ] = myfunction ( x , data )</programlisting>
+                <programlisting role="example"><![CDATA[ 
+function [ y , data ] = myfunction ( x , data )
+ ]]></programlisting>
 
                 <para>The data input parameter may be used if the function
                 uses some additionnal parameters. It is returned as an output
@@ -1648,7 +1691,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
     <para>In the following example, one creates a simplex with known vertices
     coordinates. The function values at the vertices are unset.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 coords = [
 0.0 1.0 0.0
 0.0 0.0 1.0
@@ -1658,7 +1701,7 @@ computed = optimsimplex_getallx ( s1 );
 computed = optimsimplex_getn(s1);
 computed = optimsimplex_getnbve (s1);
 s1 = optimsimplex_destroy(s1);
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -1672,7 +1715,7 @@ s1 = optimsimplex_destroy(s1);
     value of mydude.nb is 5, which is the expected result because there is one
     function call by vertex.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 function [ y , myobj ] = mycostf ( x , myobj )
   y = rosenbrock(x);
   myobj.nb = myobj.nb + 1
@@ -1684,19 +1727,18 @@ s1 = optimsimplex_new ();
 [ s1 , mydude ] = optimsimplex_randbounds ( s1 , x0 = [-1.2 1.0], fun = mycostf, ...
   boundsmin = [-5.0 -5.0] , boundsmax = [5.0 5.0], nbve=5 , data = mydude );
 s1 = optimsimplex_destroy ( s1 );
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>TODO</title>
 
-    <para><itemizedlist>
+    <itemizedlist>
         <listitem>
           <para>implement reflection and expansion as in multidimensional
           search by Torczon</para>
         </listitem>
-      </itemizedlist></para>
+    </itemizedlist>
   </refsection>
 
   <refsection>

@@ -54,7 +54,7 @@ this = optimbase_stoplog ( this , msg )
     <para>
       The goal of this component is to provide a building block for
       optimization methods. The goal is to provide a building block for a large
-      class of specialized optimization methods. This component manages
+      class of specialized optimization methods. This component manages</para>
       <itemizedlist>
         <listitem>
           <para>the number of variables,</para>
@@ -83,7 +83,7 @@ this = optimbase_stoplog ( this , msg )
         <listitem>
           <para>etc...</para>
         </listitem>
-      </itemizedlist></para>
+      </itemizedlist>
   </refsection>
 
   <refsection>
@@ -115,7 +115,8 @@ this = optimbase_stoplog ( this , msg )
       </listitem>
 
       <listitem>
-        <para>Manage various termination criteria, including <itemizedlist>
+        <para>Manage various termination criteria, including </para>
+	<itemizedlist>
             <listitem>
               <para>maximum number of iterations,</para>
             </listitem>
@@ -131,7 +132,7 @@ this = optimbase_stoplog ( this , msg )
             <listitem>
               <para>maximum number of evaluations of cost function,</para>
             </listitem>
-          </itemizedlist></para>
+        </itemizedlist>
       </listitem>
 
       <listitem>
@@ -196,9 +197,11 @@ this = optimbase_stoplog ( this , msg )
 
     <para>The optimization problem to solve is the following</para>
 
-    <programlisting role="example">min f(x)
-l_i &lt;= x_i &lt;= h_i, i = 1,n
-g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
+    <programlisting role="example"><![CDATA[ 
+min f(x)
+l_i <= x_i <= h_i, i = 1,n
+g_i(x) <= 0, i = 1,nbineq
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1177,7 +1180,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     <para>In the more general case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example">function y = myfunction ( x , index , data )</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function y = myfunction(x, index, data)
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1252,7 +1257,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     <para>In the most simple case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example">function y = myfunction (x)</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function y = myfunction(x)
+ ]]></programlisting>
 
     <para>where x is the current point and y is the value of the cost. This
     case is associated with an unconstrained problem without any additionnal
@@ -1268,7 +1275,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
 
     <para>The output function must have the following header</para>
 
-    <programlisting role="example">function outputcmd ( state , data , myobj )</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function outputcmd(state, data, myobj)
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1373,7 +1382,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
         <para>The number of iterations is examined and compared to the
         -maxiter option : if the following condition</para>
 
-        <programlisting role="example">iterations &gt;= maxiter</programlisting>
+        <programlisting role="example"><![CDATA[ 
+iterations >= maxiter
+ ]]></programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
         set to 1.</para>
@@ -1383,7 +1394,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
         <para>The number of function evaluations and compared to the
         -maxfunevals option is examined : if the following condition</para>
 
-        <programlisting role="example">funevals &gt;= maxfunevals</programlisting>
+        <programlisting role="example"><![CDATA[ 
+funevals >= maxfunevals
+ ]]></programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
         set to 1.</para>
@@ -1408,7 +1421,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
+ ]]></programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
               set to 1.</para>
@@ -1444,7 +1459,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolute
+ ]]></programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
               set to 1.</para>
@@ -1476,21 +1493,20 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     the algorithm. After the optimization is performed, the optimum is
     retrieved with quiery features.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
-opt = optimbase_new ();
+opt = optimbase_new();
 // Check number of variables
 opt = optimbase_configure(opt,"-numberofvariables",2);
 nbvar = optimbase_cget(opt,"-numberofvariables");
 // Check cost function without additionnal argument
 opt = optimbase_configure(opt,"-function",rosenbrock);
-[this,f] = optimbase_function ( opt , [0.0 0.0] );
+[this,f] = optimbase_function(opt, [0.0 0.0]);
 opt = optimbase_destroy(opt);
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -1502,7 +1518,7 @@ opt = optimbase_destroy(opt);
   <refsection>
     <title>TODO</title>
 
-    <para><itemizedlist>
+    <itemizedlist>
         <listitem>
           <para>manage equality constraints</para>
         </listitem>
@@ -1523,6 +1539,6 @@ opt = optimbase_destroy(opt);
           <para>methods with derivatives : add a flag to manage for the
           derivatives of the cost function</para>
         </listitem>
-      </itemizedlist></para>
+    </itemizedlist>
   </refsection>
 </refentry>

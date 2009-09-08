@@ -261,7 +261,9 @@ Bug fixes:
 
 * bug 4181 fixed - remove the AdCommunications help page
 
-* bug 4217 fixed -  gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
+* bug 4184 fixed - style of the examples has been corrected
+
+* bug 4217 fixed - gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
 * bug 4262 fixed - lines returns incorrect values.
 

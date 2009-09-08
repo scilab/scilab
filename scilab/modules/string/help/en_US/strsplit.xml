@@ -31,13 +31,12 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>v = strsplit(str,ind)</synopsis>
-
-    <synopsis>[v, matched_separators] = strsplit(str)</synopsis>
-
-    <synopsis>[v, matched_separators] = strsplit(str, matrix_of_strings, limit)</synopsis>
-
-    <synopsis>[v, matched_separators] = strsplit(str, regexp_pattern, limit)</synopsis>
+    <synopsis>
+      v = strsplit(str,ind)
+      [v, matched_separators] = strsplit(str)
+      [v, matched_separators] = strsplit(str, matrix_of_strings, limit)
+      [v, matched_separators] = strsplit(str, regexp_pattern, limit)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>

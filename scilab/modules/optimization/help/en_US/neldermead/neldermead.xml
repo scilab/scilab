@@ -45,9 +45,11 @@ this = neldermead_search ( this )
     <para>The optimization problem to solve is the minimization of a cost
     function, with bounds and nonlinear constraints</para>
 
-    <programlisting role="example">min f(x)
-l_i &lt;= x_i &lt;= h_i, i = 1,n
-g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
+    <programlisting role="example"><![CDATA[ 
+min f(x)
+l_i <= x_i <= h_i, i = 1,n
+g_i(x) <= 0, i = 1,nbineq
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1166,7 +1168,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     <para>In the more general case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example">function y = myfunction ( x , index , data )</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function y = myfunction(x, index, data)
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1241,7 +1245,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
     <para>In the most simple case, the cost function is expected to have the
     following header</para>
 
-    <programlisting role="example">function y = myfunction (x)</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function y = myfunction(x)
+ ]]></programlisting>
 
     <para>where x is the current point and y is the value of the cost. This
     case is associated with an unconstrained problem without any additionnal
@@ -1257,7 +1263,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
 
     <para>The output function must have the following header</para>
 
-    <programlisting role="example">function outputcmd ( state , data , myobj )</programlisting>
+    <programlisting role="example"><![CDATA[ 
+function outputcmd(state, data, myobj)
+ ]]></programlisting>
 
     <para>where</para>
 
@@ -1363,7 +1371,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
         <para>The number of iterations is examined and compared to the
         -maxiter option : if the following condition</para>
 
-        <programlisting role="example">iterations &gt;= maxiter</programlisting>
+        <programlisting role="example"><![CDATA[ 
+iterations >= maxiter
+ ]]></programlisting>
 
         <para>is true, then the status is set to "maxiter" and terminate is
         set to 1.</para>
@@ -1373,7 +1383,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
         <para>The number of function evaluations and compared to the
         -maxfunevals option is examined : if the following condition</para>
 
-        <programlisting role="example">funevals &gt;= maxfunevals</programlisting>
+        <programlisting role="example"><![CDATA[ 
+funevals >= maxfunevals
+ ]]></programlisting>
 
         <para>is true, then the status is set to "maxfuneval" and terminate is
         set to 1.</para>
@@ -1398,7 +1410,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">abs(currentfopt) &lt; tolfunrelative * abs(previousfopt) + tolfunabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+abs(currentfopt) < tolfunrelative * abs(previousfopt) + tolfunabsolute
+ ]]></programlisting>
 
               <para>is true, then the status is set to "tolf" and terminate is
               set to 1.</para>
@@ -1434,7 +1448,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+norm(currentxopt - previousxopt) < tolxrelative * norm(currentxopt) + tolxabsolute
+ ]]></programlisting>
 
               <para>is true, then the status is set to "tolx" and terminate is
               set to 1.</para>
@@ -1472,7 +1488,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">st_deviation(fv) &lt; tolfstdeviation</programlisting>
+              <programlisting role="example"><![CDATA[ 
+st_deviation(fv) < tolfstdeviation
+ ]]></programlisting>
 
               <para>is true where fv is an array containing the function
               values in the simplex, then the status is set to "tolfstdev" and
@@ -1501,7 +1519,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">ssize &lt; tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+ssize < tolsimplexizerelative * simplexsize0 + tolsimplexizeabsolute
+ ]]></programlisting>
 
               <para>is true where simplexsize0 is the size of the simplex at
               iteration 0, then the status is set to "tolsize" and terminate
@@ -1531,9 +1551,13 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if both the following conditions</para>
 
-              <programlisting role="example">ssize &lt; tolsimplexizeabsolute</programlisting>
+              <programlisting role="example"><![CDATA[ 
+ssize < tolsimplexizeabsolute 
+ ]]></programlisting>
 
-              <programlisting role="example">shiftfv &lt; toldeltafv</programlisting>
+              <programlisting role="example"><![CDATA[ 
+shiftfv < toldeltafv
+ ]]></programlisting>
 
               <para>is true where ssize is the current simplex size and
               shiftfv is the absolute value of the difference of function
@@ -1564,7 +1588,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">newfvmean &gt;= oldfvmean - alpha * sg' * sg</programlisting>
+              <programlisting role="example"><![CDATA[ 
+newfvmean <= oldfvmean - alpha * sg' * sg
+ ]]></programlisting>
 
               <para>is true where newfvmean (resp. oldfvmean) is the function
               value average in the current iteration (resp. in the previous
@@ -1606,7 +1632,9 @@ g_i(x) &lt;= 0, i = 1,nbineq</programlisting>
           <para>in "Iterative Methods for Optimization", Kelley uses a
           normalized alpha, computed from the following formula</para>
 
-          <programlisting role="example">alpha = alpha0 * sigma0 / nsg</programlisting>
+          <programlisting role="example"><![CDATA[ 
+alpha = alpha0 * sigma0 / nsg
+ ]]></programlisting>
 
           <para>where sigma0 is the size of the initial simplex and nsg is the
           norm of the simplex gradient for the initial guess point.</para>
