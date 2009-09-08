@@ -62,15 +62,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 xsetech([0,0,1,1],[-1,-1,1,1])
 xy=[(0:0.1:10);sin(0:0.1:10)]/10;
 for i=2*%pi*(0:10)/10,
   [xy1]=rotate(xy,i);
   xpoly(xy1(1,:),xy1(2,:),"lines")
 end
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

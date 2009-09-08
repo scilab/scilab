@@ -71,24 +71,23 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    // verificando se os objetos correntes são válidos
-    is_handle_valid([gcf(), gca(), gce()])
+    <programlisting role="example"><![CDATA[ 
+// verificando se os objetos correntes são válidos
+is_handle_valid([gcf(), gca(), gce()])
 
-    // criando 11 poligonais
-    plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
+// criando 11 poligonais
+plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
     
-    // verificando a validade das poligonais
-    axes = gca();
-    polylines = axes.children(1).children
-    is_handle_valid(polylines)
+// verificando a validade das poligonais
+axes = gca();
+polylines = axes.children(1).children
+is_handle_valid(polylines)
     
-    // deletando algumas poligonais
-    delete(polylines(3:7));
-    // imprimindo a validade
-    is_handle_valid(polylines)
-    
-  </programlisting>
+// deletando algumas poligonais
+delete(polylines(3:7));
+// imprimindo a validade
+is_handle_valid(polylines)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

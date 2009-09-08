@@ -68,7 +68,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // example 1
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -106,7 +106,6 @@ subplot(2,2,4)
    Sgrayplot(x,x,zz, strf="031", rect=[0 0 1 1])
    xtitle("a Sgrayplot with a colorbar")
 drawnow() ;
-
 
 // example 3
 x = linspace(0,1,81);

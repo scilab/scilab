@@ -121,8 +121,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 plot2d(1:10,1:10,1,"020")
 // horizontal axis 
 drawaxis(x=2:7,y=4,dir='u',tics='v')
@@ -151,8 +150,7 @@ drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
 
 // horizontal axis again 
 drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

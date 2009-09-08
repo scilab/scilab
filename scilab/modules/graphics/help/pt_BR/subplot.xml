@@ -70,8 +70,7 @@ subplot(mnp)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 subplot(221)
 plot2d()
 subplot(222)
@@ -80,8 +79,7 @@ subplot(2,2,3)
 param3d()
 subplot(2,2,4)
 hist3d()
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

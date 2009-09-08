@@ -91,13 +91,13 @@ f = scf(num)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   f4=scf(4); //criando figura com id==4 e a torna a figura corrente
-   f0=scf(0); //criando figura com id==0 e a torna a figura corrente
-   plot2d() //desenhando na figura corrente (id=0)
-   scf(f4); // ajustando a primeira figura criada como sendo a corrente
-   plot3d() //desenhando na figura corrente (id=4)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+f4=scf(4); //criando figura com id==4 e a torna a figura corrente
+f0=scf(0); //criando figura com id==0 e a torna a figura corrente
+plot2d() //desenhando na figura corrente (id=0)
+scf(f4); // ajustando a primeira figura criada como sendo a corrente
+plot3d() //desenhando na figura corrente (id=4)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

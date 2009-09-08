@@ -77,10 +77,9 @@ xsetech()</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // pour avoir une explication des paramètres de xsetech() taper :
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
 
 // On coupe la fenêtre en deux 
 // D'abord on choisit la première sous-fenêtre 

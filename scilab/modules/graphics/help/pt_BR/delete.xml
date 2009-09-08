@@ -78,24 +78,20 @@ delete("all")</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-
-  subplot(211);
-  t=1:10;plot2d(t,t.^2),
-  subplot(223);
-  plot3d();
-  subplot(224);
-  plot2d();
-  xfrect(1,0,3,1);
-  a=get("current_axes") 
-  delete(); //deletando o novo objeto gráfico criado
-  delete(a.children); //deletando todos os galhos dos eixos corentes
-  delete(a); //deletando os eixos
-  delete("all"); //deletando todos os objetos gráficos da figura
-
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+subplot(211);
+t=1:10;plot2d(t,t.^2),
+subplot(223);
+plot3d();
+subplot(224);
+plot2d();
+xfrect(1,0,3,1);
+a=get("current_axes") 
+delete(); //deletando o novo objeto gráfico criado
+delete(a.children); //deletando todos os galhos dos eixos corentes
+delete(a); //deletando os eixos
+delete("all"); //deletando todos os objetos gráficos da figura
+ ]]></programlisting>
   </refsection>
 
   <refsection>

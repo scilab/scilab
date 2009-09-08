@@ -357,13 +357,23 @@ xset()</synopsis>
           <para>se flag= 1então o gráfico é automaticamente redimensionado
           para preencher a janela de gráficos.</para>
 
-          <programlisting>xdel();xset("wresize",1);plot2d();xset("wdim",1000,500)</programlisting>
+          <programlisting role = ""><![CDATA[ 
+xdel();
+xset("wresize",1);
+plot2d();
+xset("wdim",1000,500)
+ ]]></programlisting>
 
           <para>Se flag=0 a escala do gráfico é inalterada quando a janela de
           gráfico é redimensionada. O cursor no canto superior esquerdo ou as
           setas do teclado podem ser utilizadas para rolar o gráfico .</para>
 
-          <programlisting>xdel();plot2d();xset("wresize",0);xset("wdim",1000,500)</programlisting>
+          <programlisting role = ""><![CDATA[ 
+xdel();
+plot2d();
+xset("wresize",0);
+xset("wdim",1000,500)
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 

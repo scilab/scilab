@@ -67,35 +67,32 @@ a = get("default_axes")</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-     
-    a=gda() // obtendo o manipulador dos eixos modelos
-    // ajustando suas propriedades
-    a.box="off";
-    a.foreground=2;
-    a.labels_font_size=3;
-    a.labels_font_color=5;
-    a.sub_tics=[5 5 3];
-    a.x_location="top";
+    <programlisting role="example"><![CDATA[ 
+a=gda() // obtendo o manipulador dos eixos modelos
+// ajustando suas propriedades
+a.box="off";
+a.foreground=2;
+a.labels_font_size=3;
+a.labels_font_color=5;
+a.sub_tics=[5 5 3];
+a.x_location="top";
 
-    //os eixos modelos são agora usados
-    subplot(211) //criando uma nova entidade Axes
-    plot2d() 
+//os eixos modelos são agora usados
+subplot(211) //criando uma nova entidade Axes
+plot2d() 
 
-   // veja outros modelos de propriedades
-    a.background=color('gray')
-    a.grid=[5 5 5];
-    subplot(212)
-    t=0:0.1:5*%pi; 
-    plot2d(sin(t),cos(t)) 
-
+// veja outros modelos de propriedades
+a.background=color('gray')
+a.grid=[5 5 5];
+subplot(212)
+t=0:0.1:5*%pi; 
+plot2d(sin(t),cos(t)) 
  
-    set(a,"default_values",1); // retornando para os valores padrões do modelo
-                               // ver a função sda()
-    clf()
-    plot2d(sin(t),cos(t))
-
-  </programlisting>
+set(a,"default_values",1); // retornando para os valores padrões do modelo
+                           // ver a função sda()
+clf()
+plot2d(sin(t),cos(t))
+ ]]></programlisting>
   </refsection>
 
   <refsection>

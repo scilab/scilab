@@ -126,11 +126,11 @@ fonts=xlfont()</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 xlfont('reset');
 xlfont()
 
-// este exemplo pode n&#227;o funcionar se seu sistema n&#227;o possuir a fonte Monospaced.
+// este exemplo pode não funcionar se seu sistema não possuir a fonte Monospaced.
 xlfont("Monospaced",10,%t,%t);
 xstring(1,0,'A title');
 figure_entity = gcf();
@@ -147,9 +147,7 @@ title_entity.font_size  = 4; // tamanho da fonte scilabsymbols.ttf
 xlfont()
 
 xlfont('reset');
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

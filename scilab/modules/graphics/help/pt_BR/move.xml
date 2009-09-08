@@ -82,8 +82,8 @@ move(h,xy,"alone")</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
- </programlisting>
+    <programlisting role="example"><![CDATA[ 
+ ]]></programlisting>
   </refsection>
 
   <refsection>

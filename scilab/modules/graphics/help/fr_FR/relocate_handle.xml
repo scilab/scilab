@@ -45,7 +45,8 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[x = 0:10 ;
+    <programlisting role="example"><![CDATA[ 
+x = 0:10 ;
 
 // construction d'une première polyline
 plot(x,x^2) ;
@@ -61,8 +62,7 @@ poly2bis = copy( poly2 ) ; // copie de la polyline pour la déplacer ensuite
 
 // les deux polylines se retrouvent dans le même axe.
 relocate_handle( poly2bis, axes1 ) ;
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

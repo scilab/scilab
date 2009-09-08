@@ -234,12 +234,13 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
     plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
     from the grid (here with n1=5, n2=3):</para>
-    <programlisting><![CDATA[
-             _____________
-             | /| /| /| /|
-             |/_|/_|/_|/_| 
-             | /| /| /| /| 
-             |/_|/_|/_|/_|]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></programlisting>
     <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale.</para>
     <para>The parameter <literal>zminmax</literal> is useful for animation purpose (see an
        example after) and the parameter <literal>colminmax</literal> lets the user choose a part
@@ -248,7 +249,7 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // example #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
@@ -278,11 +279,11 @@ Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
 xtitle("Kaa''s eyes")
 for i = 1:nt
-   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-   show_pixmap()
+  e.data(:,3)=matrix(cos(t(i))*z,-1,1);
+  show_pixmap()
 end
 f.pixmap='off';
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
