@@ -753,8 +753,6 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 
       <member><link linkend="qpsolve">qpsolve</link></member>
 
-      <member><link linkend="linpro">linpro</link></member>
-
       <member><link linkend="datafit">datafit</link></member>
 
       <member><link linkend="leastsq">leastsq</link></member>
