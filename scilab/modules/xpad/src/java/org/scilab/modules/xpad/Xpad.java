@@ -56,6 +56,7 @@ import org.scilab.modules.xpad.actions.FindNextAction;
 import org.scilab.modules.xpad.actions.FindPreviousAction;
 import org.scilab.modules.xpad.actions.GotoLineAction;
 import org.scilab.modules.xpad.actions.HelpAction;
+import org.scilab.modules.xpad.actions.HighlightCurrentLineAction;
 import org.scilab.modules.xpad.actions.IndentAction;
 import org.scilab.modules.xpad.actions.LineNumbersAction;
 import org.scilab.modules.xpad.actions.LoadIntoScilabAction;
@@ -89,6 +90,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private JTabbedPane tabPane;
 	private JTextPane textPane;
 	private JScrollPane scrollingText;
+	private XpadLineNumberPanel xln;
 
 	private static Xpad editor = null;
 
@@ -185,6 +187,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		viewMenu.setText("View");
 		viewMenu.add(new ShowToolBarAction(editor));
 		viewMenu.addSeparator();
+		viewMenu.add(new HighlightCurrentLineAction(editor));
 		viewMenu.add(new WordWrapAction(editor));
 		viewMenu.add(new LineNumbersAction(editor));
 		viewMenu.add(new SetColorsAction(editor));
@@ -256,8 +259,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		scrollingText = new JScrollPane(textPane);
 		
 		// Panel of line number for the text pane
-		XpadLineNumberPanel tln = new XpadLineNumberPanel(textPane);
-		scrollingText.setRowHeaderView(tln);
+		xln = new XpadLineNumberPanel(textPane);
+		scrollingText.setRowHeaderView(xln);
 		
 		tabPane.add(title, scrollingText);
 		tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
@@ -370,6 +373,29 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public void setTabPane(JTabbedPane tabPane) {
 		this.tabPane = tabPane;
+	}
+
+	public XpadLineNumberPanel getXln() {
+		return xln;
+	}
+
+	public void setXln(XpadLineNumberPanel xln) {
+		this.xln = xln;
+	}
+	
+	public void displayLineNumbers(boolean display) {
+		if (display) {
+			scrollingText.setRowHeaderView(xln);
+			repaint();
+		} else {
+			scrollingText.setRowHeaderView(null);
+			repaint();
+		}
+	}
+	
+	public void enableLineHighlight(boolean display) {
+		xln.setCurrentLineHighlightColor(display);
+		repaint();
 	}
 
 }
