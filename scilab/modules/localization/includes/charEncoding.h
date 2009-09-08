@@ -67,6 +67,13 @@ LOCALIZATION_IMPEXP char *wide_string_to_UTF8(wchar_t *_wide);
 LOCALIZATION_IMPEXP int wcstat(char* filename, struct _stat *st);
 #endif
 
+#ifdef _MSC_VER
+#define wcsicmp _wcsicmp
+#else
+#define wcsicmp wcsicmp_others
+#endif
+
+
 #ifdef __cplusplus
 }
 #endif

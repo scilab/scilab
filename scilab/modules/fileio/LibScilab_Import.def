@@ -28,3 +28,4 @@ freeArrayOfString
 transposeMatrixDouble
 getScilabMode
 GetData
+freeArrayOfWideString

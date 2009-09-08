@@ -39,7 +39,8 @@ static BOOL isGoodExtension(char *chainefichier,char *ext);
 #define MSG_SCIMSG5_XPAD "%s -e xpad(getlongpathname('%s'));"
 /* we try to launch scipad */
 #define MSG_SCIMSG6_SCIPAD "execstr('scipad(''%s'');','errcatch');"
-#define MSG_SCIMSG6_XPAD "execstr('xpad(''%s'');','errcatch');"
+/* we try to launch xpad */
+#define MSG_SCIMSG6_XPAD "execstr('xpad(getlongpathname(''%s''));','errcatch');"
 #define MSG_SCIMSG7 "Scilab Communication"
 /*--------------------------------------------------------------------------*/
 /* teste si la chaine de caractere correspond à un fichier*/

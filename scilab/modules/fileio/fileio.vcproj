@@ -385,6 +385,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\copyfile_windows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\createdirectory.c"
 				>
 			</File>
@@ -537,6 +541,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_copyfile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_createdir.c"
 				>
 			</File>
@@ -594,6 +602,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_isdir.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_isfile.c"
 				>
 			</File>
 			<File
@@ -681,6 +693,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\splitpath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Status2Mode.c"
 				>
 			</File>
@@ -700,6 +716,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\cluni0.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\copyfile.h"
 				>
 			</File>
 			<File
@@ -844,6 +864,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\scicurdir.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\splitpath.h"
 				>
 			</File>
 			<File

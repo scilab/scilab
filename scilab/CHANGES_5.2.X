@@ -119,6 +119,11 @@ fileio functions:
                 of the path is removed (if present of course). See Bug 4468.
                   
 * getcwd is obsolete (see pwd). 
+
+* isfile : checks if filename is a existing file.
+
+* Rewrite :
+   + copyfile (primitive)
   
 Dynamic link:
 =============
