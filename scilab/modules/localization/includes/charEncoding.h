@@ -67,6 +67,13 @@ LOCALIZATION_IMPEXP char *wide_string_to_UTF8(wchar_t *_wide);
 LOCALIZATION_IMPEXP int wcstat(char* filename, struct _stat *st);
 #endif
 
+#ifdef _MSC_VER
+#define wcsicmp _wcsicmp
+#else
+inline int wcsicmp(const wchar_t* s1, const wchar_t* s2) { wchar_t c1 = *s1, c2 = *s2; while (c1 != 0 && c2 != 0) { if (c1 >= 'a' && c1 <= 'z') c1 -= 'a' + 'A'; if (c2 >= 'a' && c2 <= 'z') c2 -= 'a' + 'A'; if (c2 < c1) return -1; else if (c2 > c1) return 1; c1 = *(++s1); c2 = *(++s2); } return 0; }
+#endif
+
+
 #ifdef __cplusplus
 }
 #endif

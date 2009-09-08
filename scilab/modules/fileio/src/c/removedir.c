@@ -60,7 +60,6 @@ BOOL removedir(char *path)
 }
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
-//static int DeleteDirectory(char *refcstrRootDirectory)
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
 #define DEFAULT_PATTERN L"%s/*.*"
