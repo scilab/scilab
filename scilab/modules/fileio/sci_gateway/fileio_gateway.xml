@@ -70,4 +70,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="getrelativefilename" />
 <PRIMITIVE gatewayId="34" primitiveId="36" primitiveName="get_absolute_file_path" />
 <PRIMITIVE gatewayId="34" primitiveId="37" primitiveName="copyfile" />
+<PRIMITIVE gatewayId="34" primitiveId="38" primitiveName="isfile" />
 </GATEWAY>

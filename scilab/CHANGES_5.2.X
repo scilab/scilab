@@ -116,6 +116,8 @@ fileio functions:
                   
 * getcwd is obsolete (see pwd). 
 
+* isfile : checks if filename is a existing file.
+
 * Rewrite :
    + copyfile (primitive)
   

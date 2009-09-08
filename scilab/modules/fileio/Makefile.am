@@ -84,7 +84,8 @@ sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c \
-sci_gateway/c/sci_copyfile.c
+sci_gateway/c/sci_copyfile.c \
+sci_gateway/c/sci_isfile.c
 
 
 libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
