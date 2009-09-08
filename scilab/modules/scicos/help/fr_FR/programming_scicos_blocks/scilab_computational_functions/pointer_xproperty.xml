@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="pointer_xproperty">
   <refnamediv>
     <refname>pointer_xproperty</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>pointer_xproperty</refname>
     <refpurpose>Retourne le type d'une variable d'état à temps continu</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[xprop]=pointer_xproperty</synopsis>
+  </refsynopsisdiv>
   <refsection id="Module_pointer_xproperty">
     <title>Module</title>
     <itemizedlist>
@@ -46,12 +46,13 @@
 Cette fonction retourne un vecteur indiquant le type (algébrique ou différentiel) des variables d'états continues utilisées dans un bloc.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[ 
+[xprop]=pointer_xproperty
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_pointer_xproperty">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para>

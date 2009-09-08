@@ -47,9 +47,9 @@ This function generates a palette if Path is a string indicating the directoy in
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [routines,IntFunc] = create_palette(Path)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_create_palette">
     <title>Parameters</title>

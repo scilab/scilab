@@ -29,9 +29,9 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    tic;sleep(6000);toc
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+tic;sleep(6000);toc
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

@@ -137,7 +137,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
   </refsection>
   <refsection id="Example_MATTRAN">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 .                        Complex 
 --                  --               --           --
 | 1+i   2+3i    3+2i |   Tranpose    | 1- i   4- i |
@@ -150,7 +150,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
 | 4   5    6 | ----------->  |- 2   5 |
 --          --               | 3    6 |
 .                            --      --
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATTRAN">
     <title>Default properties</title>

@@ -183,7 +183,7 @@
     <programlisting><![CDATA[ 
 derivative(F, x, H_form = "hypermat")
 derivative(F, x, order = 4) etc.
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -202,7 +202,7 @@ x=[1;2;3];[J,H]=derivative(F,x,H_form='blockmat')
 
 n=3;
 // form an orthogonal matrix :   
-nu=0; while nu&lt;n, [Q,nu]=colcomp(rand(n,n)); end  
+nu=0; while nu<n, [Q,nu]=colcomp(rand(n,n)); end  
 for i=[1,2,4]
   [J,H]=derivative(F,x,order=i,H_form='blockmat',Q=Q);
   mprintf("order= %d \n",i);
@@ -236,7 +236,7 @@ Je = x'*(A+A')+p'
 He = A+A'
 clean(Je - J)
 clean(He - H)
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -47,31 +47,29 @@ unzoom(H)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    clf()
-    x=0:0.01:6*%pi;
-    plot2d(x,sin(x^2))
-    zoom_rect([16,-1,18,1])
-    unzoom()
+    <programlisting role="example"><![CDATA[ 
+clf()
+x=0:0.01:6*%pi;
+plot2d(x,sin(x^2))
+zoom_rect([16,-1,18,1])
+unzoom()
 
-
-    //subplots accordingly
-    clf()
-    x=0:0.01:6*%pi;
-    subplot(211)
-    plot2d(x,cos(x))
-    a1=gca();
-    subplot(212)
-    plot2d(x,cos(2*x))
-    a2=gca();
-    rect=[3 -2 7 10]; // a rectangle specified in the current axes (last one) coordinates
-    zoom_rect(rect) 
-    unzoom(a1) // unzoom first plot only
-    unzoom(a2) // unzoom second plot only
-    zoom_rect(rect) // zoom again
-    unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
-
-]]></programlisting>
+//subplots accordingly
+clf()
+x=0:0.01:6*%pi;
+subplot(211)
+plot2d(x,cos(x))
+a1=gca();
+subplot(212)
+plot2d(x,cos(2*x))
+a2=gca();
+rect=[3 -2 7 10]; // a rectangle specified in the current axes (last one) coordinates
+zoom_rect(rect) 
+unzoom(a1) // unzoom first plot only
+unzoom(a2) // unzoom second plot only
+zoom_rect(rect) // zoom again
+unzoom(gcf()) // unzoom all the axes, equivalent to unzoom()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

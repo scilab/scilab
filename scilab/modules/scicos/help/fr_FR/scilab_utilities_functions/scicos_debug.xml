@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_debug">
   <refnamediv>
     <refname>scicos_debug</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>scicos_debug</refname>
     <refpurpose>Définit le niveau de débogage de scicos</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
+  </refsynopsisdiv>
   <refsection id="Module_scicos_debug">
     <title>Module</title>
     <itemizedlist>
@@ -49,12 +49,14 @@ Cette fonction sert à paramétrer le niveau de débogage de la simulation scico
 Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant qu'instruction dans un bloc scilab et encore dans une fonction d'interfaçage.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[ 
+scicos_debug(level)
+level=scicos_debug()
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_scicos_debug">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">level :</emphasis> retourne/définit le niveau de débogage de la simulation scicos.</para>

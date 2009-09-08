@@ -253,28 +253,26 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
+function my_eventhandler(win,x,y,ibut)
+  if ibut==-1000 then return,end
+  [x,y]=xchange(x,y,'i2f')
+  xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
+endfunction
 
-   function my_eventhandler(win,x,y,ibut)
-      if ibut==-1000 then return,end
-      [x,y]=xchange(x,y,'i2f')
-       xinfo(msprintf('Evento de código %d na posição do mouse é (%f,%f)',ibut,x,y))
-   endfunction
-   plot2d()
-   fig = gcf() ;
-   fig.event_handler = 'my_eventhandler' ;
-   fig.event_handler_enable = "on" ;
-   //agora:
-   //   -  mova o mouse sobre a janela gráfica
-   //   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
-   //   -  pressione um botão, espere um pouco e libere
-   //   -  pressione e libere um botão
-   //   -  clique duas vezes em um botão
+plot2d()
+fig = gcf() ;
+fig.event_handler = 'my_eventhandler' ;
+fig.event_handler_enable = "on" ;
+//agora:
+//   -  mova o mouse sobre a janela gráfica
+//   -  pressione e libere as teclas com shift pressionado ou não e com Ctrl pressionado ou não
+//   -  pressione um botão, espere um pouco e libere
+//   -  pressione e libere um botão
+//   -  clique duas vezes em um botão
 
-
-   fig.event_handler_enable = "off" ; //suprimindo o gerenciador de eventos
- 
-  </programlisting>
+fig.event_handler_enable = "off" ; //suprimindo o gerenciador de eventos
+ ]]></programlisting>
   </refsection>
 
   <refsection>

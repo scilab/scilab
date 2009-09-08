@@ -30,12 +30,12 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 today = datenum();
 [N,S] = weekday(today)
 [N,S] = weekday(today,'short')
 [N,S] = weekday(today,'long')
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

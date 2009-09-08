@@ -229,7 +229,8 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">d1 = diary(TMPDIR + '/diary1.txt')
+    <programlisting role="example"><![CDATA[ 
+d1 = diary(TMPDIR + '/diary1.txt')
 d2 = diary(TMPDIR + '/diary2.txt')
 
 // some Scilab instructions …
@@ -249,7 +250,6 @@ diary(TMPDIR + '/diary2.txt')
 // closes all diary
 diary([],'close')
 [ids, filenames]  = diary()
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

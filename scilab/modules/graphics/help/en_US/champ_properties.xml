@@ -122,21 +122,18 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-10,-10;10,10];
+champ(-5:5,-5:5,rand(11,11),rand(11,11))
 
-   a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-10,-10;10,10];
-   champ(-5:5,-5:5,rand(11,11),rand(11,11))
+c=a.children
 
-   c=a.children
-
-   c.colored="on";
-   c.thickness=2;
-   c.data // display the tlist of type "scichampdata"
-   a.data_bounds=[-5,-5;5,5];
-
- 
-  ]]></programlisting>
+c.colored="on";
+c.thickness=2;
+c.data // display the tlist of type "scichampdata"
+a.data_bounds=[-5,-5;5,5];
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

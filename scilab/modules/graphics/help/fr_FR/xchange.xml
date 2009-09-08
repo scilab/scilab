@@ -55,7 +55,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]';
 plot2d(t,sin(t))
 [x,y,rect]=xchange(1,1,"f2i")

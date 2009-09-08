@@ -74,7 +74,7 @@ case 13 then
   end
   t(1)=part(t(1),10:length(t(1)))
   t($)=[]
-  t=sci2exp(t)
+  t=sci2exp(t,lmax)
   t(1)='createfun('+t(1)
   t($)=t($)+')'
 case 15 then

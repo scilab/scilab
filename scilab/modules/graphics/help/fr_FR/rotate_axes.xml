@@ -49,24 +49,23 @@ rotate_axes(h)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-      clf();
-      // création deux système d'axe à l'intérieur de la figure
-      subplot(2, 1, 1);
-      plot2d;
-      subplot(2, 1, 2);
-      plot3d;
+    <programlisting role="example"><![CDATA[ 
+clf();
+// création deux système d'axe à l'intérieur de la figure
+subplot(2, 1, 1);
+plot2d;
+subplot(2, 1, 2);
+plot3d;
 
-      // rotation du deuxième système d'axe uniquement
-      axes2 = gca();
-      rotate_axes(axes2);
+// rotation du deuxième système d'axe uniquement
+axes2 = gca();
+rotate_axes(axes2);
 
-      // rotation du système d'axe sélectionné
-      rotate_axes();
-      // ou de façon équivalente
-      rotate_axes(gcf());
-
-  ]]></programlisting>
+// rotation du système d'axe sélectionné
+rotate_axes();
+// ou de façon équivalente
+rotate_axes(gcf());
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

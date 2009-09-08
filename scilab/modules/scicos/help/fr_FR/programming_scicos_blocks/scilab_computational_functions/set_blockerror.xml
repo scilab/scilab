@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="set_blockerror">
   <refnamediv>
     <refname>set_blockerror</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>set_blockerror</refname>
     <refpurpose>Définit le numéro d'erreur de bloc</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>set_blockerror(n)</synopsis>
+  </refsynopsisdiv>
   <refsection id="Module_set_blockerror">
     <title>Module</title>
     <itemizedlist>
@@ -43,15 +43,16 @@
   <refsection id="Description_set_blockerror">
     <title>Description</title>
     <para>
-Cette fonction permet de définir une erreur spécifique en cours de simulation pour le bloc courant. Si cette fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera un message d'erreur associé au numéro donné en argument.  
+Cette fonction permet de définir une erreur spécifique en cours de simulation pour le bloc courant. Si c'est fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera un message d'erreur associé au numéro donné en argument.  
 </para>
     <para>
-
-
-
-
- 
 </para>
+    <programlisting role="example"><![CDATA[ 
+set_blockerror(n)
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_set_blockerror">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">n</emphasis> : un numéro d'erreur. Les appels suivant sont autorisés :</para>

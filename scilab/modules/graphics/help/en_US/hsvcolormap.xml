@@ -51,11 +51,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
-    f=gcf();f.color_map=hsvcolormap(64);
-     plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+f=gcf();f.color_map=hsvcolormap(64);
+plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

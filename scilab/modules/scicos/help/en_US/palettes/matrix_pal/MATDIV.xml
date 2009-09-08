@@ -140,12 +140,12 @@ The equivalent of BACKSLASH is "/" in Scilab.
   </refsection>
   <refsection id="Example_MATDIV">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=[1 7 3;23 32 29]
 B=[21 18 34;13 10 19;11 54 36]
 then the result of the x*B=A equation is (A/B):
 x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATDIV">
     <title>Default properties</title>

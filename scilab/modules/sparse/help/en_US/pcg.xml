@@ -61,11 +61,9 @@
               <para><literal>function.</literal>If A is a function, it must
                 have the following header :</para>
               
-              <programlisting>
-                
-                function y = A ( x )
-                
-              </programlisting>
+              <programlisting role = ""><![CDATA[ 
+function y = A ( x )
+ ]]></programlisting>
             </listitem>
             
             <listitem>
@@ -215,9 +213,9 @@
     converge in a larger 22 iterations. This is why the parameter maxIter is
     set to 30. See below for other examples of the "key=value" syntax. </para>
 
-    <programlisting role="example">
- //Well conditionned problem
- A=[ 94  0   0   0    0   28  0   0   32  0  
+    <programlisting role="example"><![CDATA[ 
+//Well conditionned problem
+A=[ 94  0   0   0    0   28  0   0   32  0  
      0   59  13  5    0   0   0   10  0   0  
      0   13  72  34   2   0   0   0   0   65 
      0   5   34  114  0   0   0   0   0   55 
@@ -228,12 +226,12 @@
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
 
- b=ones(10,1);
- [x, fail, err, iter, res]=pcg(A,b,1d-12,15);
- mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+b=ones(10,1);
+[x, fail, err, iter, res]=pcg(A,b,1d-12,15);
+mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
- //Ill contionned one
- A=[ 894     0   0     0   0   28  0   0   1000  70000
+//Ill contionned one
+A=[ 894     0   0     0   0   28  0   0   1000  70000
       0      5   13    5   0   0   0   0   0     0    
       0      13  72    34  0   0   0   0   0     6500 
       0      5   34    1   0   0   0   0   0     55   
@@ -244,9 +242,9 @@
       1000   0   0     0   12  33  0   8   82    11   
       70000  0   6500  55  0   0   0   0   11    100];
  
-  [x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
-  mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
-</programlisting>
+[x, fail, err, iter, res]=pcg(A,b,maxIter=30,tol=1d-12);
+mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -258,9 +256,9 @@
     right-hand side, is given to the "pcg" primitive. The final case shown by
     this example, is when a list is passed to the primitive.</para>
 
-    <programlisting role="example">
-   //Well conditionned problem
-   A=[ 94  0   0   0    0   28  0   0   32  0  
+    <programlisting role="example"><![CDATA[ 
+//Well conditionned problem
+A=[ 94  0   0   0    0   28  0   0   32  0  
      0   59  13  5    0   0   0   10  0   0  
      0   13  72  34   2   0   0   0   0   65 
      0   5   34  114  0   0   0   0   0   55 
@@ -270,16 +268,16 @@
      0   10  0   0    32  0   39  46  8   0  
      32  0   0   0    12  33  0   8   82  11 
      0   0   65  55   0   0   0   0   11  100];
-   b=ones(10,1);
+b=ones(10,1);
 
-   // Convert A into a sparse matrix
-   Asparse=sparse(A);
-   [x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+// Convert A into a sparse matrix
+Asparse=sparse(A);
+[x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
+mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-   // Define a function which computes the right-hand side.
-   function y=Atimesx(x)
-     A=[ 94  0   0   0    0   28  0   0   32  0  
+// Define a function which computes the right-hand side.
+function y=Atimesx(x)
+  A=[ 94  0   0   0    0   28  0   0   32  0  
        0   59  13  5    0   0   0   10  0   0  
        0   13  72  34   2   0   0   0   0   65
        0   5   34  114  0   0   0   0   0   55
@@ -289,23 +287,23 @@
        0   10  0   0    32  0   39  46  8   0
        32  0   0   0    12  33  0   8   82  11
        0   0   65  55   0   0   0   0   11  100];
-     y=A*x
-   endfunction
+  y=A*x
+endfunction
 
-   // Pass the script Atimesx to the primitive
-   [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+// Pass the script Atimesx to the primitive
+[x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
+mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-   // Define a function which computes the right-hand side.
-   function y=Atimesxbis(x,A)
-     y=A*x
-   endfunction
+// Define a function which computes the right-hand side.
+function y=Atimesxbis(x,A)
+  y=A*x
+endfunction
 
-   // Pass a list to the primitive
-   Alist = list(Atimesxbis,Asparse);
-   [x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
-   mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
- </programlisting>
+// Pass a list to the primitive
+Alist = list(Atimesxbis,Asparse);
+[x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
+mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -320,15 +318,15 @@
     Without the "key=value" syntax, the positionnal arguments would require
     that maxIter come first and verbose after.</para>
 
-    <programlisting role="example"> 
-  // Example of an argument passed with key=value syntax
-  A=[100,1;1,10];
-  b=[101;11];
-  [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1);
+    <programlisting role="example"><![CDATA[ 
+// Example of an argument passed with key=value syntax
+A=[100,1;1,10];
+b=[101;11];
+[xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1);
 
-  // With key=value syntax, the order does not matter
-  [xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1,maxIter=0);
-  </programlisting>
+// With key=value syntax, the order does not matter
+[xcomputed, flag, err, iter, res]=pcg(A,b,verbose=1,maxIter=0);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

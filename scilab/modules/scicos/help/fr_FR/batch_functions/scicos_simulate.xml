@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_simulate">
   <refnamediv>
     <refname>scicos_simulate</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>scicos_simulate</refname>
     <refpurpose>Fonction pour éxécuter une simulation scicos en ligne de commmande</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])</synopsis>
+  </refsynopsisdiv>
   <refsection id="Module_scicos_simulate">
     <title>Module</title>
     <itemizedlist>
@@ -43,18 +43,19 @@
   <refsection id="Description_scicos_simulate">
     <title>Description</title>
     <para>
-Cette fonction est utilisée pour simuler des diagrammes Scicos en mode batch. Elle requiert la structure scs_m qui peut-être obtenue en chargeant un diagramme Scicos dans Scilab (par exemple -load mydiagram.cos).  
+This function is used to simulate scicos diagrams in batch mode. It requires the scs_m structure which can be obtained by loading in Scilab the .cos file (e.g. load mydiagram.cos).  
 </para>
     <para>
-Contrairement à la fonction , le diagramme ne nécessite pas d'être compilé avant d'être sauvegardé.  
+Contrary to the function , the diagram need not be compiled before being saved.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[ 
+Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_scicos_simulate">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> scicos diagram (obtained by "load file.cos"). Note that the version of file.cos must be the current version. If not, load into scicos and save.</para>
@@ -77,7 +78,7 @@ Contrairement à la fonction , le diagramme ne nécessite pas d'être compilé a
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/auto/scicos_simulate.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_auto/scicos_simulate.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

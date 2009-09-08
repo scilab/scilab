@@ -27,6 +27,7 @@ Source: modules\{#XPAD}\sci_gateway\xpad_gateway.xml; DestDir: {app}\modules\{#X
 ;
 Source: modules\{#XPAD}\etc\{#XPAD}.quit; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
 Source: modules\{#XPAD}\etc\{#XPAD}.start; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
+Source: modules\{#XPAD}\etc\configuration_xpad.xml; DestDir: {app}\modules\{#XPAD}\etc; Components: {#COMPN_XPAD}
 ;
 ;Source: modules\{#XPAD}\help\addchapter.sce; DestDir: {app}\modules\{#XPAD}\help; Flags: recursesubdirs; Components:  {#COMPN_XPAD}
 ;

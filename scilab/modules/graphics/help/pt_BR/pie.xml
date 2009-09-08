@@ -87,7 +87,7 @@ pie(x[,sp[,txt]])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // primeiro exemplo: um argumento de entrada x=[1 2 5]
 scf(0);
 pie([1 2 5]);
@@ -99,7 +99,7 @@ pie([5 9 4 6 3],[0 1 0 1 0]);
 // terceiro exemplo: três argumentos de entrada, x=[3 4 6 2], sp=[0 1 0 0], txt=["parte 1","parte 2","parte 3","parte 4"]
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["parte 1","parte 2","parte 3","parte 4"]);
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

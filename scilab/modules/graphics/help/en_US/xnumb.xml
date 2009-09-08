@@ -54,13 +54,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 plot2d([-100,500],[-100,600],[-1,-1],"022")
 x=0:100:200;
 xnumb(x,500*ones(x),[10,20,35],1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

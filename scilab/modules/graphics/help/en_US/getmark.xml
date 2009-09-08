@@ -72,7 +72,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 x=0:0.1:10;
 [mark,mrkSize]=getmark();
 plot2d(x,sin(x),style=-mark);
@@ -81,8 +81,7 @@ plot2d(x,sin(x))
 e=gce(); // store the Compound containing the plot
 [mark,mrkSize]=getmark();
 e.children(1).mark_style = mark;
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

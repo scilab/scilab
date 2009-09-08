@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="create_palette">
   <refnamediv>
     <refname>create_palette</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>create_palette</refname>
     <refpurpose>Générateur de palettes</refpurpose>
   </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[routines,IntFunc] = create_palette(Path)</synopsis>
+  </refsynopsisdiv>
   <refsection id="Module_create_palette">
     <title>Module</title>
     <itemizedlist>
@@ -46,15 +46,16 @@
 Cette fonction génére une palette si Path est une chaîne de caractères indiquant un répertoire où se trouvent des fonctions d'interfaçages de blocs scicos. Si Path est absent ou bien si celui est égal à %t, les palettes standards de Scicos sont construites. Si Path est égal à %f, alors seul le paramètre IntFunc est retourné (le paramètre routines est vide dans ce cas).  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[ 
+[routines,IntFunc] = create_palette(Path)
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_create_palette">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">Path :</emphasis> une chaîne de caractères qui donne le chemin du répertoire contenant des fonctions d'interfaçage de blocs Scicos.</para>
+        <para><emphasis role="bold">Path :</emphasis> une chaîne de caractères qui donne le chemein du répertoire contenant des fonctions d'interfaçage de blocs Scicos.</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">routines :</emphasis> un vecteur de chaînes de caractères contenat les noms des fonctions de calcul utilisées dans les blocs Scicos.</para>
@@ -68,22 +69,8 @@ Cette fonction génére une palette si Path est une chaîne de caractères indiq
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/util/create_palette.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_utils/create_palette.sci</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Voiraussi_create_palette">
-    <title>Voir aussi</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="create_gif">create_gif - Crée des icones gif de blocs Scicos (Fonction Scilab)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Auteurs_create_palette">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">RN/AL</emphasis> - INRIA</para>
   </refsection>
 </refentry>
