@@ -300,9 +300,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-
+    <programlisting role="example"><![CDATA[ 
 //Let the LP problem:
 //objective:
 //   min     XONE + 4 YTWO + 9 ZTHREE
@@ -343,8 +341,7 @@ P=readmps(TMPDIR+'/test.mps',[0 10^30])
 LP=mps2linpro(P)
 //Solve it with linpro
 [x,lagr,f]=linpro(LP(2:$))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

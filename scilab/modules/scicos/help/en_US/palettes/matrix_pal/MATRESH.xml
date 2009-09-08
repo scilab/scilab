@@ -151,11 +151,11 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
   </refsection>
   <refsection id="Example_MATRESH">
     <title>Example</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 u=[1 2 3 4;5 6 7 8]
 When the output desired is [1;6] the output is:
 y=[1 2 3 4 5 6]
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Defaultproperties_MATRESH">
     <title>Default properties</title>

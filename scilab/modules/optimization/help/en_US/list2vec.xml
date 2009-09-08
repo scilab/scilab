@@ -70,10 +70,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-        list2vec(list(1,2,3))
-        list2vec(list([1 2 3],[4;5],[%s %s+1]))
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+list2vec(list(1,2,3))
+list2vec(list([1 2 3],[4;5],[%s %s+1]))
+ ]]></programlisting>
   </refsection>
 
   <refsection>
