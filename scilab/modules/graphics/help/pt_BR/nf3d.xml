@@ -59,8 +59,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //Uma esfera...
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);
@@ -69,8 +68,7 @@ y= cos(u)'*sin(v);
 z= sin(u)'*ones(v);
 //plot3d2(x,y,z) é equivalente a...
 [xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

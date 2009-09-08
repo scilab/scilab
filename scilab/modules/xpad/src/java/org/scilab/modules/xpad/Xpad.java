@@ -246,17 +246,19 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	public JTextPane addTab(String title) {
-		textPane = new JTextPane(); // {
+		textPane = new JTextPane();
+// {
 //			public boolean getScrollableTracksViewportWidth() {
 //				return false;
-//			};
-//			public void paint(Graphics g) {
-//				super.paint(g);
-//				Xpad.this.repaint();
 //			};
 //		};
 
 		scrollingText = new JScrollPane(textPane);
+		
+		// Panel of line number for the text pane
+		XpadLineNumberPanel tln = new XpadLineNumberPanel(textPane);
+		scrollingText.setRowHeaderView(tln);
+		
 		tabPane.add(title, scrollingText);
 		tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
 		this.setContentPane(tabPane);
@@ -277,9 +279,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		textPane.getInputMap().put(key, new RedoAction(this));
 		key = KeyStroke.getKeyStroke(KeyEvent.VK_F, Event.CTRL_MASK);
 		textPane.getInputMap().put(key, new FindAction(this));
-		
-//		tabPane.add(textPane, BorderLayout.WEST);
-//		tabPane.add(scrollingText, BorderLayout.CENTER);
 		
 		return textPane;
 	}
@@ -372,37 +371,5 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void setTabPane(JTabbedPane tabPane) {
 		this.tabPane = tabPane;
 	}
-	
-	/**********************************************/
-
-//	public void paint(Graphics g) {
-//		textPane.paint(g);
-//
-//		// We need to properly convert the points to match the viewport
-//		// Read docs for viewport
-//		int start = textPane.viewToModel(scrollingText.getViewport().getViewPosition()); //starting pos in document
-//		int end = textPane.viewToModel(new Point(scrollingText.getViewport().getViewPosition().x + textPane.getWidth(),
-//												 scrollingText.getViewport().getViewPosition().y + textPane.getHeight()));
-//		// end pos in doc
-//
-//		// translate offsets to lines
-//		Document doc = textPane.getDocument();
-//		int startline = doc.getDefaultRootElement().getElementIndex(start) + 1;
-//		int endline = doc.getDefaultRootElement().getElementIndex(end) + 1;
-//
-//		int fontHeight = g.getFontMetrics(textPane.getFont()).getHeight();
-//		int fontDesc = g.getFontMetrics(textPane.getFont()).getDescent();
-//		int starting_y = -1;
-//
-//		try	{
-//			starting_y = textPane.modelToView(start).y - scrollingText.getViewport().getViewPosition().y + fontHeight - fontDesc;
-//		} catch (BadLocationException e1) {
-//			e1.printStackTrace();
-//		}
-//
-//		for (int line = startline, y = starting_y; line <= endline; y += fontHeight, line++) {
-//			g.drawString(Integer.toString(line), 0, y);
-//		}
-//	}
 
 }

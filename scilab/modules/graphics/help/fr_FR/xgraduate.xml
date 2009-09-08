@@ -48,7 +48,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
   [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
  ]]></programlisting>
   </refsection>

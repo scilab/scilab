@@ -63,7 +63,7 @@ pie(x[,sp[,txt]])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // First example : one input argument  x=[1 2 5]
 scf(0);
 pie([1 2 5]);
@@ -75,7 +75,7 @@ pie([5 9 4 6 3],[0 1 0 1 0]);
 // Third example : three input arguments, x=[3 4 6 2], sp=[0 1 0 0], txt=["part1","part2","part3","part4"]
 scf(2);
 pie([3 4 6 2],[0 1 0 0],["part1","part2","part3","part4"]);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

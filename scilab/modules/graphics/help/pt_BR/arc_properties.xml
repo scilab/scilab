@@ -218,20 +218,19 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   a=get("current_axes");//obtendo o manipulador dos novos eixos criados
-   a.data_bounds=[-2,-2;2,2];
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//obtendo o manipulador dos novos eixos criados
+a.data_bounds=[-2,-2;2,2];
 
-   xarc(-1.5,1.5,3,3,0,360*64)
+xarc(-1.5,1.5,3,3,0,360*64)
 
-   arc=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade Arc)
-   arc.fill_mode="on";
-   arc.foreground=5;
-   arc.data(:,[3 6])=[2 270*64];  
-   xfarc(-.5,1,.4,.6,0,360*64);
-   arc.visible="off";
-
- </programlisting>
+arc=get("hdl"); //obtendo o manipulador da entidade corrente (aqui é a entidade Arc)
+arc.fill_mode="on";
+arc.foreground=5;
+arc.data(:,[3 6])=[2 270*64];  
+xfarc(-.5,1,.4,.6,0,360*64);
+arc.visible="off";
+ ]]></programlisting>
   </refsection>
 
   <refsection>

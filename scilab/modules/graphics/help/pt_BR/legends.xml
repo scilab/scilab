@@ -176,9 +176,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-  
-
+    <programlisting role="example"><![CDATA[ 
 // Exemplo 1
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
@@ -188,7 +186,6 @@ scf() ;
 xset("line style",2);plot2d(t,cos(t),style=5);
 xset("line style",4);plot2d(t,sin(t),style=3);
 legends(["sin(t)";"cos(t)"],[[5;2],[3;4]], with_box=%f, opt="?")
-
 
 // Exemplo 2
 scf() ;
@@ -211,10 +208,7 @@ subplot(224)
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
-
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

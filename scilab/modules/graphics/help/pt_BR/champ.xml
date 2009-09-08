@@ -125,15 +125,13 @@ champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // usando rect como fronteiras do esboço
 champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
 // usando (x,y) para conseguir obter
 clf()
 champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -47,9 +47,9 @@ Function to set a specific error during the simulation for the current block. If
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 set_blockerror(n)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_set_blockerror">
     <title>Parameters</title>

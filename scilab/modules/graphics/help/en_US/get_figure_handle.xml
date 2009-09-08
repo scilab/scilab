@@ -48,20 +48,19 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    // create some figures
-    scf(0);
-    scf(5);
-    scf(12);
+    <programlisting role="example"><![CDATA[ 
+// create some figures
+scf(0);
+scf(5);
+scf(12);
 
-    // get handle on the figure with id 5
-    f5 = get_figure_handle(5);
-    // current figure remains the one with id 12
-    gcf()
-    // get a non existing figure
-    f42 = get_figure_handle(42);
-
-  ]]></programlisting>
+// get handle on the figure with id 5
+f5 = get_figure_handle(5);
+// current figure remains the one with id 12
+gcf()
+// get a non existing figure
+f42 = get_figure_handle(42);
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

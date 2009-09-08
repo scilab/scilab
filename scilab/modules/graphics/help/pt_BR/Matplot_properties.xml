@@ -135,15 +135,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-   Matplot((1:xget("lastpattern")))
-   e=gce(); // obtendo a entidade corrente
+    <programlisting role="example"><![CDATA[ 
+Matplot((1:xget("lastpattern")))
+e=gce(); // obtendo a entidade corrente
 
-   e.data=e.data($:-1:1) // ordem inversa
-
- 
-  </programlisting>
+e.data=e.data($:-1:1) // ordem inversa
+ ]]></programlisting>
   </refsection>
 
   <refsection>

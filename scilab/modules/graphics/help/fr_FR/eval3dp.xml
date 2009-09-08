@@ -54,7 +54,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 p1=linspace(0,2*%pi,10);
 p2=linspace(0,2*%pi,10);
 deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..

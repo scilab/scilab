@@ -62,8 +62,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // first subwindow 
 xsetech([0,0,1.0,0.5])
 plot2d()
@@ -78,8 +77,7 @@ xsetech([0,0.5,1.0,0.5])
 [wrect,frect,logflag,arect]=xgetech();
 xbasc();
 xset('default')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

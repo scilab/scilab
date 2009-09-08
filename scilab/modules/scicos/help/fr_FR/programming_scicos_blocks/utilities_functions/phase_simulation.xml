@@ -47,9 +47,9 @@ Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'int�
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [psim]=phase_simulation()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_phase_simulation">
     <title>Paramètres</title>

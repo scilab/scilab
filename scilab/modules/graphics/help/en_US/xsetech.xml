@@ -82,11 +82,9 @@ xsetech()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // To get a graphical explanation of xsetech parameters enter:
 exec('SCI/modules/graphics/demos/xsetechfig.sce');
-
 
 // Here xsetech is used to split the graphics window in two parts 
 // first xsetech is used to set the first sub-window 
@@ -119,8 +117,7 @@ xsetech(arect=[1/8,1/8,1/16,1/4])
 x=1:0.1:10;plot2d(x',sin(x)')
 xbasc()
 xset("default")
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

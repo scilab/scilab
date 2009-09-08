@@ -45,9 +45,10 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[//-----------------//
-//  Permier exemple   //
-//-----------------//
+    <programlisting role="example"><![CDATA[ 
+//------------------//
+//  Premier exemple //
+//------------------//
 
 // creation d'un rectangle
 xrect( 0.5, 0.5,0.5,0.5) ;
@@ -74,9 +75,9 @@ swap_handles( arrow, circle ) ;
 // affichage du nouvel ordre
 axes.children
 
-//------------------//
+//-------------------//
 //  Deuxième exemple //
-//------------------//
+//-------------------//
 
 // creation de deux fenêtres
 plot2d ;
@@ -89,9 +90,7 @@ axes2 = gca() ;
 // parmutation de leurs axes respectifs
 // Onpeut noter que les axes héritent de la color map de leur nouvelle fenêtre.
 swap_handles( axes1, axes2 ) ;
-
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

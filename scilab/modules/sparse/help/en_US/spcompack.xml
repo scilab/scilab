@@ -49,17 +49,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 Utility fonction spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // A is the sparse matrix:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -94,8 +91,7 @@ xlindx=[1,2,3,8,9,11];
 //A can be reconstructed from (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

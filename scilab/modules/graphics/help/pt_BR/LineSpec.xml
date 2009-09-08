@@ -350,8 +350,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">x=1:0.1:10; // inicialização
-plot(x,sin(x),'r.-&gt;') // esboçando um linha de traços e pontos com um truângulo apontando para a direita centrado em cada ponto.
+    <programlisting role="example"><![CDATA[ 
+x=1:0.1:10; // inicialização
+plot(x,sin(x),'r.->') // esboçando um linha de traços e pontos com um truângulo apontando para a direita centrado em cada ponto.
 clf();
 
 // se você especificar um marcador sem um estilo de linha, apenas a marca é desenhada
@@ -365,8 +366,7 @@ plot(x,x.*x,'*cya--')
 clf();
 t=0:%pi/20:2*%pi;
 plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
- 
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
