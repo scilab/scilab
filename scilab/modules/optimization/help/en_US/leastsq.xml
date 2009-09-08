@@ -535,8 +535,6 @@ link(clibname,names,"c")
       <member><link linkend="external">external</link></member>
 
       <member><link linkend="qpsolve">qpsolve</link></member>
-
-      <member><link linkend="linpro">linpro</link></member>
     </simplelist>
   </refsection>
 </refentry>
