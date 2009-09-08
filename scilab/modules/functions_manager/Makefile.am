@@ -26,6 +26,7 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-I$(top_builddir)/modules/operations/includes/ \
 						-I$(top_builddir)/modules/system_env/includes/ \
 						-I$(top_builddir)/modules/api_scilab/includes/ \
+						-I$(top_builddir)/modules/fileio/includes/ \
 						-I$(top_builddir)/modules/abstractSyntaxTree/includes/ \
 						-Iincludes/ \
 						-Isrc/cpp \
