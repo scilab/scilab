@@ -149,34 +149,34 @@
     <para>find a zero of a system of n nonlinear functions in n variables by a
     modification of the powell hybrid method. Jacobian may be provided.</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 0 = fct(x) w.r.t x.
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>fct</literal> is an "external". This external returns
     <literal>v=fct(x)</literal> given <literal>x</literal>.</para>
 
     <para>The simplest calling sequence for <literal>fct</literal> is:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 [v]=fct(x).
-    </programlisting>
+ ]]></programlisting>
 
     <para>If <literal>fct</literal> is a character string, it refers to a C or
     Fortran routine which must be linked to Scilab. Fortran calling sequence
     must be</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 fct(n,x,v,iflag)
 integer n,iflag
 double precision x(n),v(n)
-    </programlisting>
+ ]]></programlisting>
 
     <para>and C Calling sequence must be</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 fct(int *n, double x[],double v[],int *iflag)
-    </programlisting>
+ ]]></programlisting>
 
     <para>Incremental link is possible (help <literal>link</literal>).</para>
 
@@ -185,9 +185,9 @@ fct(int *n, double x[],double v[],int *iflag)
 
     <para>The simplest calling sequence for <literal>jac</literal> is:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 [v]=jac(x).
-    </programlisting>
+ ]]></programlisting>
 
     <para>If <literal>jac</literal> is a character string, it refers to a to a
     C or Fortran routine which must be linked to Scilab calling sequences are
@@ -213,7 +213,7 @@ a*xres+b
 // See routines/default/Ex-fsolve.f
 [xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
 a*xres+b
-  ]]></programlisting>
+ ]]></programlisting>
     <para>For some starting points and some equations system, the fsolve method can fail. The fsolve method is a local search method. 
       So, to have a good chance to find a solution to your equations system, you must ship, a good starting point to fsolve.</para>
     <para> Here is an example on which fsolve can fail:</para>
@@ -239,8 +239,7 @@ disp(info); // The termination indicator
 
 clf();x=linspace(0,1,1000);plot(x,feuler(x))
 a=gca();a.grid=[5 5];
-
-  ]]></programlisting>
+ ]]></programlisting>
     <para>So, each time you use fsolve, be sure to check the termination indicator and the residual value to see if fsolve has converged.</para>
   </refsection>
 

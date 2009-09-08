@@ -2,8 +2,8 @@
                =================================================
 
 
-Extend of Scilab :
-==================
+Extension capabilities of Scilab :
+==================================
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
@@ -40,6 +40,12 @@ Compilation:
 * lapack 3.2 used on Windows
 
 * functions module is loaded dynamically by Scilab.
+
+* autoconf updated to version 2.64
+
+* automake updated to version 1.11
+
+* libtool updated from version 1.5.26 to 2.2.6a (Closes bug #4279)
 
 Source reorganisation:
 ======================
@@ -184,6 +190,8 @@ char encoding bugs :
 
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
+
+* bug 4758 fixed - embedded version of autoconf libs.m4 were causing some issues
 
 * bug 4768 fixed - strsplit returns strange results with accened characters
 
