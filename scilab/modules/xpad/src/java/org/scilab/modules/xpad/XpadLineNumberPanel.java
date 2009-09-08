@@ -47,7 +47,7 @@ import javax.swing.text.Utilities;
 import javax.swing.text.Highlighter.HighlightPainter;
 
 public class XpadLineNumberPanel extends JPanel implements CaretListener, DocumentListener, PropertyChangeListener,
- 														   MouseListener, MouseMotionListener, HighlightPainter	{
+MouseListener, MouseMotionListener, HighlightPainter	{
 
 	// Alignment of the line index
 	public final static float LEFT_JUSTIFY = 0.0f;
@@ -58,13 +58,15 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 
 	private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
 
-	private final static int PANEL_GAP_SIZE = 10;
+	public final static int PANEL_GAP_SIZE = 10;
 
 	private JTextPane textPane;
 
 	private boolean updateFont;
 	private int borderGap;
 	private Color currentLineForeground;
+	private boolean isHighlighted;
+	private Color currentLineHighlightColor = new Color(228,233,244);;
 	private float alignmentOfNumber;
 	private int minimumNumbers;
 
@@ -73,7 +75,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	private int lastLine;
 
 	private HashMap<String, FontMetrics> fonts;
-	
+
 
 	public XpadLineNumberPanel(JTextPane textPane) {
 		// Here we have 3, it means that the LineNumber panel will 
@@ -95,7 +97,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 		textPane.addPropertyChangeListener("font", this);
 		textPane.addMouseListener(this);
 		textPane.addMouseMotionListener(this);
-		
+
 		try {
 			textPane.getHighlighter().addHighlight(0, 0, this);
 		} catch (BadLocationException ex) {
@@ -119,7 +121,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	public void setBorderGap(int borderGap) {
 		this.borderGap = borderGap;
 		Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
-		setBorder( new CompoundBorder(OUTER, inner) );
+		setBorder(new CompoundBorder(OUTER, inner));
 		lastNumber = 0;
 		setPreferredWidth();
 	}
@@ -274,7 +276,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 			repaint();
 			lastLine = currentLine;
 		}
-		
+
 		resetHighlight();
 	}
 
@@ -342,7 +344,7 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 			}
 		});
 	}
-	
+
 	public void mouseClicked(MouseEvent arg0) {}
 	public void mouseEntered(MouseEvent arg0) {}
 	public void mouseExited(MouseEvent arg0) {}
@@ -358,11 +360,24 @@ public class XpadLineNumberPanel extends JPanel implements CaretListener, Docume
 	public void paint(Graphics g, int p0, int p1, Shape bounds, JTextComponent textPane) {
 		try {
 			Rectangle r = textPane.modelToView(textPane.getCaretPosition());
-			g.setColor(new Color(228,233,244));
+			if (isHighlighted == true) {
+				g.setColor(currentLineHighlightColor);
+			} else {
+				g.setColor(textPane.getBackground());
+			}
 			g.fillRect(0, r.y, textPane.getWidth(), r.height);
 		}
 		catch(BadLocationException ex) {
 			ex.printStackTrace();
 		}
 	}
+
+	public boolean getCurrentLineHighlightColor() {
+		return isHighlighted;
+	}
+
+	public void setCurrentLineHighlightColor(boolean highlight) {
+		this.isHighlighted = highlight;
+	}
+
 }

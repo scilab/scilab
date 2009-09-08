@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,14 +18,14 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.xpad.Xpad;
 
-public class LineNumbersAction extends DefaultCheckAction {
+public class HighlightCurrentLineAction extends DefaultCheckAction {
 
-    public LineNumbersAction(Xpad editor) {
-	super("Line Numbers", editor);
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    public HighlightCurrentLineAction(Xpad editor) {
+	super("Highlight current line", editor);
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, ActionEvent.CTRL_MASK));
     }
     
 	public void doAction() {
-		getEditor().displayLineNumbers(this.getState());
+		getEditor().enableLineHighlight(this.getState());
 	}
 }

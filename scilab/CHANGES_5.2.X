@@ -261,7 +261,9 @@ Bug fixes:
 
 * bug 4181 fixed - remove the AdCommunications help page
 
-* bug 4217 fixed -  gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
+* bug 4184 fixed - style of the examples has been corrected
+
+* bug 4217 fixed - gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
 * bug 4262 fixed - lines returns incorrect values.
 
@@ -394,6 +396,8 @@ Bug fixes:
 * bug 4688 fixed - listfiles("/") returned an error.
 
 * bug 4689 fixed - diary() do not report interactive commands into the output file
+
+* bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 

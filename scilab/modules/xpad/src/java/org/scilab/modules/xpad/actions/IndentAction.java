@@ -25,7 +25,6 @@ public class IndentAction extends DefaultAction {
 	public IndentAction(Xpad editor) {
 		super("Indent", editor);
 		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-
 	}
 	
 	public void doAction() {
