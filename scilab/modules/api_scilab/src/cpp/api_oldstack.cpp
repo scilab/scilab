@@ -13,6 +13,7 @@
  * still available and supported in Scilab 6.
  */
 
+#include <stdlib.h>
 #include "api_oldstack.h"
 #include "function.hxx"
 #include "sciprint.h"
