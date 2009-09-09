@@ -193,7 +193,7 @@ sciGetCharEntityType (sciPointObj * pobj)
       return "uimenu";
       break;
     case SCI_UICONTEXTMENU: 
-      return "uimenu";
+      return "uicontextmenu";
       break;
     case SCI_UICONTROL: 
       return "uicontrol";
