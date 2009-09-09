@@ -621,6 +621,23 @@ function save_graphichandle(h,fd)
     mput(length(h.callback),"c",fd);mput(ascii(h.callback),"c",fd); // Callback
     mput(h.callback_type,"il",fd); // Callback Type
     mput(length(h.tag),"c",fd);mput(ascii(h.tag),"c",fd); // Tag
+    // children
+    c=h.children;
+    n=size(c,"*")
+    mput(n,"il",fd)
+    for k=1:n
+      save_graphichandle(c(k),fd)
+    end
+    
+  case "uicontextmenu"
+    mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // Type
+    // children
+    c=h.children;
+    n=size(c,"*")
+    mput(n,"il",fd)
+    for k=1:n
+      save_graphichandle(c(k),fd)
+    end
     
   case "uicontrol"
     mput(length(h.type),"c",fd);mput(ascii(h.type),"c",fd); // Type
