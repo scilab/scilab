@@ -72,11 +72,11 @@ void splitpathW(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, 
 /*--------------------------------------------------------------------------*/ 
 void splitpath(const char* path, char* drv, char* dir, char* name, char* ext)
 {
-	wchar_t *wcpath = to_wide_string(path);
-	wchar_t *wcdrv = to_wide_string(path);
-	wchar_t *wcdir = to_wide_string(path);
-	wchar_t *wcname = to_wide_string(path);
-	wchar_t *wcext = to_wide_string(path);
+	wchar_t *wcpath = to_wide_string((char*)path);
+	wchar_t *wcdrv = to_wide_string((char*)path);
+	wchar_t *wcdir = to_wide_string((char*)path);
+	wchar_t *wcname = to_wide_string((char*)path);
+	wchar_t *wcext = to_wide_string((char*)path);
 
 	char *buffer = NULL;
 
