@@ -561,6 +561,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_fileparts.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_filesep.c"
 				>
 			</File>

@@ -120,6 +120,7 @@ fileio functions:
 
 * Rewrite :
    + copyfile (primitive)
+   + fileparts (primitive)
   
 Dynamic link:
 =============
