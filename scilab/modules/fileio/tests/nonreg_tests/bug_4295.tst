@@ -15,11 +15,11 @@
 // <-- Short Description -->
 // The function mdelete no more works with "*.extension" as input, it works in previous versions (Scilab 4.1.2 for exemple).
 
-fd = mopen(TMPDIR + filesep() + "file1.bug","wt")
+fd = mopen(TMPDIR + filesep() + "file1.bug","wt");
 mclose(fd);
-fd = mopen(TMPDIR + filesep() + "file2.bug","wt")
+fd = mopen(TMPDIR + filesep() + "file2.bug","wt");
 mclose(fd);
-fd = mopen(TMPDIR + filesep() + "file3.bug","wt")
+fd = mopen(TMPDIR + filesep() + "file3.bug","wt");
 mclose(fd);
 mdelete(TMPDIR + filesep() + "*.bug");
 if listfiles(TMPDIR + filesep() + "*.bug") <> [] then pause,end
