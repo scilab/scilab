@@ -33,15 +33,7 @@ public class ExitAction extends DefaultAction {
     public void doAction() {
 	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
 
-	/*
-	 * Check if Xpad is docked somewhere or if it is in it's single window.
-	 */
-	if(xpadWindow.getNbDockedObjects() <= 1) {
-	    xpadWindow.getAsSimpleWindow().close();
-	}
-	else {
-	    xpadWindow.getAsSimpleWindow().removeTab(getEditor());
-	}
+	xpadWindow.getAsSimpleWindow().removeTab(getEditor());
 	Xpad.closeXpad();
     }
 }
