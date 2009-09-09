@@ -824,7 +824,16 @@ function %h_p(h)
 		"Tag = "+h.tag
             ]
         
-        // uicontrol
+        // uicontextmenu
+        // =====================================================================
+        
+        case "uicontextmenu"
+            t=[t;
+                "Parent: "+h.parent.type
+                "Children: "+fmtchildren(h.children)
+		]
+
+	// uicontrol
         // =====================================================================
         
         case "uicontrol"
