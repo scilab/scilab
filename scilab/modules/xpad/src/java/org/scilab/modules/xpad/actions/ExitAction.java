@@ -18,18 +18,30 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xpad.Xpad;
 
 public class ExitAction extends DefaultAction {
-    
+
     public ExitAction(Xpad editor) {
-        super("Exit", editor);
-        //setMnemonic('X');
-        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+	super("Exit", editor);
+	//setMnemonic('X');
+	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
     }
-    
+
     public void doAction() {
-	getEditor().getParentWindow().getAsSimpleWindow().close();
+	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
+
+	/*
+	 * Check if Xpad is docked somewhere or if it is in it's single window.
+	 */
+	if(xpadWindow.getNbDockedObjects() <= 1) {
+	    xpadWindow.getAsSimpleWindow().close();
+	}
+	else {
+	    xpadWindow.getAsSimpleWindow().removeTab(getEditor());
+	}
 	Xpad.closeXpad();
     }
 }
