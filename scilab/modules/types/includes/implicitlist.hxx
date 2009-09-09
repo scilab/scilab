@@ -14,6 +14,7 @@
 #define __IMP_LIST_HXX__
 
 #include "types.hxx"
+#include "alltypes.hxx"
 
 namespace types
 {

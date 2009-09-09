@@ -69,12 +69,12 @@ namespace types
 
 		//open a new scope
 		symbol::Context *pContext = symbol::Context::getInstance();
-		symbol::Context::getInstance()->scope_begin();
+		pContext->scope_begin();
 
 		//assign value to variable in the new context
 		for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j,++i)
 		{
-			symbol::Context::getInstance()->put(*i, **j);
+			pContext->put(*i, **j);
 		}
 
 		try
@@ -83,10 +83,11 @@ namespace types
 
 			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
 			{
-				InternalType *pIT = symbol::Context::getInstance()->get(*i);
+				InternalType *pIT = pContext->get(*i);
 				if(pIT != NULL)
 				{
 					out.push_back(pIT);
+					//pIT->IncreaseRef();
 				}
 				else
 				{
@@ -108,7 +109,7 @@ namespace types
 		}
 		
 		//close the current scope
-		symbol::Context::getInstance()->scope_end();
+		pContext->scope_end();
 
 		return RetVal;
 	}

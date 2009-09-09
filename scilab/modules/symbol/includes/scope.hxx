@@ -50,6 +50,14 @@ namespace symbol
 
 		~Scope()
 		{
+			std::map<Symbol, InternalType*>::const_iterator i;
+			for(i = _scope->begin() ; i != _scope->end() ; ++i)
+			{
+				if(i->second->isDeletable())
+				{
+					delete i->second;
+				}
+			}
 			delete _scope;
 		}
 
@@ -67,6 +75,11 @@ namespace symbol
 		/** Associate value to key in the current scope. */
 		InternalType*	put (Symbol key, InternalType &value)
 		{
+			if(key.name_get() == "ans")
+			{
+				std::cout << "yop" << std::endl;
+			}
+
 			InternalType *pOld = (*_scope)[key];
 
 			if(pOld == &value)
@@ -77,18 +90,9 @@ namespace symbol
 			if(pOld != NULL)
 			{
 				pOld->DecreaseRef();
-				if(pOld->isRef() == false)
+				if(pOld->isDeletable() == true)
 				{
-					pOld->AllowDelete();
-					if(pOld->getType() == InternalType::RealDouble)
-					{
-						// WIN64
-						delete pOld->getAsDouble();
-					}
-					else
-					{
-						delete pOld;
-					}
+					delete pOld;
 					pOld = NULL;
 				}
 			}
@@ -98,7 +102,6 @@ namespace symbol
 				std::cout << "Need copy : " << key.name_get() << std::endl;
 			}
 */
-			value.DenyDelete();
 			(*_scope)[key] = &value;
 			value.IncreaseRef();
 			return NULL;
@@ -135,7 +138,6 @@ namespace symbol
 					ostr << _name << "::";
 				}
 				ostr << (*it_scope).first << " : ";
-				(*it_scope).second->whoAmI();
 				if((*it_scope).second->isDouble())
 				{
 					Double *pdbl = (*it_scope).second->getAsDouble();

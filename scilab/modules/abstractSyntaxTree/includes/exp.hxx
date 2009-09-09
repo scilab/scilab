@@ -36,7 +36,9 @@ namespace ast
      ** \param location scanner position informations */
     Exp (const Location& location) :
       Ast (location),
-      _verbose(false)
+      _verbose(false),
+			_bBreak(false),
+			_bBreakable(false)
     {
     }
     /** \brief Destroys an Expression node. */
@@ -64,9 +66,41 @@ namespace ast
       return _verbose;
     }
 
-  private:
-    bool _verbose;
+		const void break_set(void)
+		{
+			_bBreak = true;
+		}
 
+		void break_reset(void)
+		{
+			_bBreak = false;
+		}
+
+		const bool is_break(void) const
+		{
+			return _bBreak;
+		}
+
+		const void breakable_set(void)
+		{
+			_bBreakable = true;
+		}
+
+		void breakable_reset(void)
+		{
+			_bBreakable = false;
+		}
+
+		const bool is_breakable(void) const
+		{
+			return _bBreakable;
+		}
+
+
+	private:
+    bool _verbose;
+		bool _bBreak;
+		bool _bBreakable;
   };
 
   /** \brief Define a shorthand for list of Exp* manipulation. */

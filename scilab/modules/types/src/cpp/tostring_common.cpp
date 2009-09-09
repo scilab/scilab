@@ -126,7 +126,7 @@ void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 	}
 }
 
-void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne)
+void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
 	if(bPrintPlusSign == true)
 	{
@@ -134,7 +134,14 @@ void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPr
 	}
 	else
 	{
-		*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
+		if(bPaddSign)
+		{
+			*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
+		}
+		else
+		{
+			*_postr << (_dblVal < 0 ? MINUS_STRING : "");
+		}
 	}
 
 	Config_Stream(_postr, _iWidth/* + SIZE_BETWEEN_TWO_VALUES*/, _iPrec, ' ');

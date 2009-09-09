@@ -38,7 +38,7 @@ namespace ast
 	public:
 		ExecVisitor()
 		{
-			_excepted_result = 1;
+			_excepted_result = -1;
 			_result.push_back(NULL);
 		}
 
@@ -129,9 +129,9 @@ namespace ast
 	public:
 		virtual void visit(const ListExp &e);
 		/** \} */
-		size_t result_size_get(void);
-		size_t expected_size_get(void);
-		void expected_size_set(size_t _iSize);
+		int result_size_get(void);
+		int expected_size_get(void);
+		void expected_size_set(int _iSize);
 		types::InternalType*		result_get(void);
 		types::InternalType*		result_get(int _iPos);
 		void	result_set(const types::InternalType *gtVal);
@@ -143,7 +143,7 @@ namespace ast
 		`-------------*/
 	protected:
 		vector<types::InternalType*>	_result;
-		size_t _excepted_result;
+		int _excepted_result;
 	};
 }
 #endif // !AST_EXECVISITOR_HXX

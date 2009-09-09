@@ -431,6 +431,8 @@ int main(int argc, char *argv[])
 		iMainRet = batchMain();
 	}
 
+	//close main scope
+	symbol::Context::getInstance()->scope_end();
 	delete pFM;
 	return iMainRet;
 }

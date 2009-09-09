@@ -366,6 +366,7 @@ namespace ast
 			else if(pVar || propName)
 			{// x = ?
 				/*getting what to assign*/
+				execMeR->expected_size_set(1);
 				e.right_exp_get().accept(*execMeR);
 
 				if(execMeR->result_size_get() != 1)
@@ -391,7 +392,7 @@ namespace ast
 			else if(pList)
 			{//[x,y] = ?
 
-				size_t iLhsCount = pList->exps_get().size();
+				int iLhsCount = (int)pList->exps_get().size();
 
 				/*getting what to assign*/
 				execMeR->expected_size_set(iLhsCount);
@@ -400,7 +401,7 @@ namespace ast
 				if(execMeR->result_size_get() != execMeR->expected_size_get())
 				{
 					std::ostringstream os;
-					os << "Incorrect assignment" << std::endl;
+					os << "Lhs != Rhs";
 					throw os.str();
 				}
 

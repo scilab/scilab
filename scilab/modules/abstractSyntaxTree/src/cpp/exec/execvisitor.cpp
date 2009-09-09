@@ -108,11 +108,6 @@ namespace ast
 	{
 		Double *pdbl = new Double(e.value_get());
 		result_set(pdbl);
-		//if(e.is_verbose())
-		//{
-		//  YaspWrite((char *) pdbl->toString(10,75).c_str());
-		//  YaspWrite("\n");
-		//}
 	}
 
 	void ExecVisitor::visit (const BoolExp  &e)
@@ -133,7 +128,6 @@ namespace ast
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		if(pI != NULL)
 		{
-			pI->DenyDelete();
 			result_set(pI);
 			if(pI != NULL && pI->getAsCallable() == false && e.is_verbose())
 			{
@@ -255,16 +249,20 @@ namespace ast
 			
 			if(Ret == Callable::OK)
 			{
-				if(out.size() < expected_size_get())
+				if(expected_size_get() == 1 && out.size() == 0) //to manage ans
 				{
-					std::ostringstream os;
-					os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
-					throw os.str();
+					if((int)out.size() < expected_size_get())
+					{
+						std::ostringstream os;
+						os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+						throw os.str();
+					}
 				}
 
 				for(int i = 0 ; i < out.size() ; i++)
 				{
 					result_set(i, out[i]);
+					out[i]->DecreaseRef();
 				}
 			}
 			else if(Ret == Callable::Error)
@@ -451,25 +449,39 @@ namespace ast
 
 	void ExecVisitor::visit (const IfExp  &e)
 	{
-			//Create local exec visitor
-			ExecVisitor *execMeTest		= new ast::ExecVisitor();
-			ExecVisitor *execMeAction = new ast::ExecVisitor();
-			bool bTestStatus					= false;
+		//Create local exec visitor
+		ExecVisitor *execMeTest		= new ast::ExecVisitor();
+		ExecVisitor *execMeAction = new ast::ExecVisitor();
+		bool bTestStatus					= false;
 
-			//condition
-			e.test_get().accept(*execMeTest);
+		//condition
+		e.test_get().accept(*execMeTest);
 
-			bTestStatus = bConditionState(execMeTest);
-			if(bTestStatus == true)
-			{//condition == true
-				e.then_get().accept(*execMeAction);
+		bTestStatus = bConditionState(execMeTest);
+		if(bTestStatus == true)
+		{//condition == true
+			if(e.is_breakable())
+			{
+				((Exp*)&e.then_get())->breakable_set();
 			}
-			else
-			{//condition == false
-				e.else_get().accept(*execMeAction);
+			e.then_get().accept(*execMeAction);
+		}
+		else
+		{//condition == false
+			if(e.is_breakable())
+			{
+				((Exp*)&e.else_get())->breakable_set();
 			}
+			e.else_get().accept(*execMeAction);
+		}
+
 		delete execMeAction;
 		delete execMeTest;
+
+		if(e.is_breakable() && ( ((Exp*)&e.else_get())->is_break() || ((Exp*)&e.then_get())->is_break() ))
+		{
+			((Exp*)&e)->break_set();
+		}
 	}
 
 	void ExecVisitor::visit (const TryCatchExp  &e)
@@ -501,6 +513,8 @@ namespace ast
 	{
 		ExecVisitor *execVar = new ast::ExecVisitor();
 		e.vardec_get().accept(*execVar);
+		//allow break operation
+		((Exp*)&e.body_get())->breakable_set();
 
 		if(execVar->result_get()->getType() == InternalType::RealImplicitList)
 		{
@@ -512,6 +526,10 @@ namespace ast
 				Double *pdbl = new Double(dblVal);
 				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
 				e.body_get().accept(*execBody);
+				if(e.body_get().is_break())
+				{
+					break;
+				}
 			}
 			delete execBody;
 		}
@@ -533,10 +551,25 @@ namespace ast
 
 	void ExecVisitor::visit (const BreakExp &e)
 	{
+		((BreakExp*)&e)->break_set();
 	}
 
 	void ExecVisitor::visit (const ReturnExp &e)
 	{
+		if(e.is_global())
+		{//return 
+
+		}
+		else
+		{//return(x)
+			ExecVisitor execVar;
+			e.exp_get().accept(execVar);
+			
+			for(int i = 0 ; i < execVar.result_size_get() ; i++)
+			{
+				result_set(i, execVar.result_get(i));
+			}
+		}
 	}
 
 	void ExecVisitor::visit (const SeqExp  &e)
@@ -546,6 +579,11 @@ namespace ast
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
 			ExecVisitor *execMe = new ast::ExecVisitor();
+			if(e.is_breakable())
+			{
+				(*i)->breakable_set();
+			}
+
 			(*i)->accept (*execMe);
 
 			if(execMe->result_get() != NULL)
@@ -560,16 +598,20 @@ namespace ast
 
 					if(Ret == Callable::OK)
 					{
-						if(out.size() < expected_size_get())
+						if(expected_size_get() == 1 && out.size() == 0) //to manage ans
 						{
-							std::ostringstream os;
-							os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
-							throw os.str();
+							if((int)out.size() < expected_size_get())
+							{
+								std::ostringstream os;
+								os << "bad lhs, expected : " << expected_size_get() << " returned : " << out.size() << std::endl;
+								throw os.str();
+							}
 						}
 
-						for(int j = 0 ; j < out.size() ; j++)
+						for(int i = 0 ; i < out.size() ; i++)
 						{
-							execMe->result_set(j, out[j]);
+							out[i]->DecreaseRef();
+							execMe->result_set(i, out[i]);
 						}
 					}
 					else if(Ret == Callable::Error)
@@ -599,7 +641,13 @@ namespace ast
 				}
 
 			}
+
 			delete execMe;
+			if(((SeqExp*)&e)->is_breakable() && (*i)->is_break())
+			{
+				((SeqExp*)&e)->break_set();
+				break;
+			}
 		}
 	}
 
@@ -611,9 +659,11 @@ namespace ast
 		{
 			ExecVisitor *execArg = new ExecVisitor();
 			(*it)->accept(*execArg);
-			execArg->result_get()->DenyDelete();
-			result_set(i++, execArg->result_get());
+			//execArg->result_get()->IncreaseRef();
+			result_set(i, execArg->result_get());
 			delete execArg;
+			//result_get(i)->DecreaseRef();
+			i++;
 		}
 	}
 
@@ -724,7 +774,7 @@ namespace ast
 			/*getting what to assign*/
 			e.init_get().accept(*execMe);
 			result_set(execMe->result_get());
-			result_get()->DenyDelete();
+			result_get()->IncreaseRef();
 		}
 		catch(string sz)
 		{
@@ -901,74 +951,72 @@ namespace ast
 	** \{ */
 	void ExecVisitor::visit(const ListExp &e)
 	{
-		double dblStart = -1;
-		double dblStep = -1;
-		double dblEnd = -1;
-
 		ExecVisitor*	execMeStart = new ast::ExecVisitor();
 		ExecVisitor*	execMeStep	= new ast::ExecVisitor();
 		ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
 
+		try
+		{
+			e.start_get().accept(*execMeStart);
+			execMeStart->result_get()->IncreaseRef();
+			GenericType* pITStart = (GenericType*)execMeStart->result_get();
+			if(pITStart->rows_get() != 1 || pITStart->cols_get() != 1)
+			{
+				throw 1;
+			}
 
-		e.start_get().accept(*execMeStart);
-		execMeStart->result_get()->DenyDelete();
-		/*			if(execMeStart->result_get()->isDouble())
-		{
-		pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
-		}
-		else if(execMeStart->result_get()->isPoly())
-		{
-		pIL->start_set(((Poly*)execMeStart->result_get()));
-		}
-		*/
 
-		e.step_get().accept(*execMeStep);
-		execMeStep->result_get()->DenyDelete();
-		/*			if(execMeStep->result_get()->isDouble())
-		{
-		pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
-		}
-		else if(execMeStep->result_get()->isPoly())
-		{
-		pIL->step_set(((Poly*)execMeStep->result_get()));
-		}
-		*/
+			e.step_get().accept(*execMeStep);
+			execMeStep->result_get()->IncreaseRef();
+			GenericType* pITStep = (GenericType*)execMeStep->result_get();
+			if(pITStep->rows_get() != 1 || pITStep->cols_get() != 1)
+			{
+				throw 2;
+			}
 
-		e.end_get().accept(*execMeEnd);
-		execMeEnd->result_get()->DenyDelete();
-		/*			if(execMeEnd->result_get()->isDouble())
-		{
-		pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));
-		}
-		else if(execMeEnd->result_get()->isPoly())
-		{
-		pIL->end_set(((Poly*)execMeEnd->result_get()));
-		}
-		*/
+			e.end_get().accept(*execMeEnd);
+			execMeEnd->result_get()->IncreaseRef();
+			GenericType* pITEnd = (GenericType*)execMeEnd->result_get();
+			if(pITEnd->rows_get() != 1 || pITEnd->cols_get() != 1)
+			{
+				throw 3;
+			}
 
-		ImplicitList *pIL	= new ImplicitList(
-			execMeStart->result_get(),
-			execMeStep->result_get(),
-			execMeEnd->result_get());
+			ImplicitList *pIL	= new ImplicitList(
+				execMeStart->result_get(),
+				execMeStep->result_get(),
+				execMeEnd->result_get());
 
-		result_set(pIL);
+			result_set(pIL);
+		}
+		catch(int iPos)
+		{
+			char st[bsiz];
+#ifdef _MSC_VER
+			sprintf_s(st, bsiz, _("%s: Wrong type for argument %d: Scalar expected.\n"), ":", iPos);
+#else
+			sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), "::", 1);
+#endif
+			throw string(st);
+		}
+
 		delete execMeStart;
 		delete execMeStep;
 		delete execMeEnd;
 	}
 	/** \} */
 
-	size_t ExecVisitor::expected_size_get(void)
+	int ExecVisitor::expected_size_get(void)
 	{
 		return _excepted_result;
 	}
 
-	size_t ExecVisitor::result_size_get(void)
+	int ExecVisitor::result_size_get(void)
 	{
-		return _result.size();
+		return (int)_result.size();
 	}
 
-	void ExecVisitor::expected_size_set(size_t _iSize)
+	void ExecVisitor::expected_size_set(int _iSize)
 	{
 		_excepted_result = _iSize;
 	}

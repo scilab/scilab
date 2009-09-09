@@ -46,6 +46,19 @@ namespace symbol
       this->l_scope.pop_front();
     }
 
+    void	put_in_previous_scope(Symbol key, InternalType &value)
+		{
+			size_t iSize = l_scope.size();
+			if(iSize > 1)
+			{
+				std::list<Scope>::iterator i;
+				i = l_scope.end();
+				i--;
+				i--;
+				i->put(key, value);
+			}
+		}
+		
     /** Associate value to key in the current scope. */
     void	put (Symbol key, InternalType &value)
     {

@@ -80,6 +80,7 @@ public:
     {
       return *_right_exp;
     }
+
     /** \} */
 
   protected:
@@ -87,6 +88,7 @@ public:
     Exp* _left_exp;
     /** \brief Right expression which affect var. */
     Exp* _right_exp;
+
   };
 } // namespace ast
 

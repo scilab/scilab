@@ -13,6 +13,7 @@
  * still available and supported in Scilab 6.
  */
 
+#include <stdlib.h>
 #include "api_oldstack.h"
 #include "function.hxx"
 #include "sciprint.h"
@@ -55,7 +56,7 @@ int api_Lhs(int* _piKey)
 		return 0;
 	}
 
-	return *pStr->m_piRetCount;
+	return abs(*pStr->m_piRetCount);
 }
 
 int api_CheckRhs(int _iMin, int _iMax, int* _piKey)

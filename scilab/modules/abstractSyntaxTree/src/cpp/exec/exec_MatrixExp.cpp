@@ -84,15 +84,11 @@ namespace ast
 
 						InternalType *pResult = execMe->result_get();
 						RowList.push_back(pResult);
-						bool bSavedStatus = pResult->isDeletable();
 
-						execMe->result_get()->DenyDelete();
+						//tips to delete only execvisitor but not data
+						pResult->IncreaseRef();
 						delete execMe;
-
-						if(bSavedStatus == true)
-						{
-							pResult->AllowDelete();
-						}
+						pResult->DecreaseRef();
 					}
 
 					if(iCols == -1)
