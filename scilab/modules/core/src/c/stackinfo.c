@@ -216,7 +216,6 @@ BOOL existLocalVariableNamedOnStack(char *varname)
 {
 	if (varname)
 	{
-		int LocalSize = 0;
 		int Lused = 0;
 		int Ltotal = 0;
 		int i = 0;
@@ -246,7 +245,6 @@ BOOL existGlobalVariableNamedOnStack(char *varname)
 {
 	if (varname)
 	{
-		int GlobalSize = 0;
 		int Gused = 0;
 		int Gtotal = 0;
 		int i = 0;

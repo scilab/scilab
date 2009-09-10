@@ -158,8 +158,6 @@ int C2F(sci_newfun) (char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static BOOL Is_a_correct_function_name(char *functionname)
 {
-	int i=0;
-
 	if (functionname)
 	{
 		if ( (strlen(functionname) > 0) && (strlen(functionname) < 24) )
