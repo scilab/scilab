@@ -1,0 +1,68 @@
+message = 
+
+Expected result:
+
+yop
+message = 
+
+5
+
+yop
+message = 
+
+2
+
+yop
+message = 
+
+4
+
+yop
+message = 
+
+2
+
+yop
+message = 
+
+3
+
+yop
+message = 
+
+Error: slot y found but not visible from this context
+
+yop
+message = 
+
+------- Running test -----------
+
+yop
+message = 
+
+  5
+
+yop
+message = 
+
+  2
+
+yop
+yop
+message = 
+
+  4
+
+yop
+message = 
+
+  2
+
+yop
+yop
+message = 
+
+  3
+
+yop
+Error: slot y found but not visible from this context
