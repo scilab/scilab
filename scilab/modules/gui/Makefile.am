@@ -388,7 +388,7 @@ images/icons/undock_active.png \
 images/icons/undock_default.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png \ 
+images/icons/zoom-area.png \
 images/icons/document-new.png \
 images/icons/document-print-preview.png \
 images/icons/document-print.png \
