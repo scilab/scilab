@@ -1,12 +1,12 @@
 /*
-*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2009-2009 - DIGITEO - Simon LIPP
+*	Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*	Copyright (C) 2009-2009 - DIGITEO - Simon LIPP
 *
-*  This file must be used under the terms of the CeCILL.
-*  This source file is licensed as described in the file COPYING, which
-*  you should have received as part of this distribution.  The terms
-*  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*	This file must be used under the terms of the CeCILL.
+*	This source file is licensed as described in the file COPYING, which
+*	you should have received as part of this distribution.	The terms
+*	are also available at
+*	http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
 
@@ -19,137 +19,172 @@
 
 namespace types
 {
-  Class::Class(const std::string &p_name, Object *p_isa):
-    Object(p_isa),
-    m_instance_slots(),
-    m_name(p_name)
-  {
-    String *s = new String(p_name.c_str());
-    install_property("super", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
-    install_property("name", Slot::PUBLIC, s, NULL, ro_setter);
-  }
-  
-  Class *
-  Class::create(const std::string &p_name, Class *p_super_class)
-  {
-    if(p_super_class != NULL)
-      return new Class(p_name, p_super_class);
-    else
-      return new Class(p_name, get_root_class());
-  }
-  
-  void
-  Class::install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
-  {
-    if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
-    {
-      printf("Error: slot already exists\n");
-      return;
-    }
-    
-    if(p_default == NULL)
-    {
-      p_default = new Double(0,0);
-    }
-    
-    PropertySlot *slot = new PropertySlot;
-    slot->name = p_slotName;
-    slot->visibility = p_visibility;
-    slot->default_value = p_default;
-    slot->getter = p_getter;
-    slot->setter = p_setter;
-    
-    slot->default_value->IncreaseRef();
-    if(slot->getter)
-      slot->getter->IncreaseRef();
-    if(slot->setter)
-      slot->setter->IncreaseRef();
-    
-    m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
-  }
-  
-  void
-  Class::install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
-  {
-    if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
-    {
-      printf("Error: slot already exists\n");
-      return;
-    }
-    
-    MethodSlot *slot = new MethodSlot;
-    slot->name = p_slotName;
-    slot->visibility = p_visibility;
-    slot->func = p_func;
-    slot->func->IncreaseRef();
-    m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
-  }
-  
-  Slot *
-  Class::resolv_instance_slot(const std::string &p_slotName)
-  {
-    SlotsIterator it = m_instance_slots.find(p_slotName);
-    if(it != m_instance_slots.end())
-      return &it->second;
-    else
-      return NULL;
-  }
-  
-  Instance *
-  Class::create_instance()
-  {
-    Class *super_class = dynamic_cast<Class*>(m_isa);
-    if(super_class)
-      return new Instance(this, super_class->create_instance());
-    else
-      return new Instance(this, Object::get_root_object());
-  }
-  
-  Instance  *
-  Class::create_instance(typed_list &p_constructor_args)
-  {
-    typed_list out_args;
-    Instance *res = create_instance();
-    
-    InternalType *tmp = res->get("%constructor", res, NULL);
-    Callable *constructor = dynamic_cast<Callable*>(tmp);
-    if(constructor)
-      constructor->call(p_constructor_args, 0, out_args);
-    
-    return res;
-  }
-  
-  /* Root class */
-  
-  static Callable::ReturnValue
-  new_instance(typed_list &in, int, typed_list &out, const Method::MethodCallCtx &ctx)
-  {
-    Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
-    Instance *inst = kls->create_instance(in);
-    out.push_back(ObjectMatrix::create_standard_ref(inst));
-    return Callable::OK;
-  }
-  
-  static Callable::ReturnValue
-  empty_constructor(typed_list &, int, typed_list &, const Method::MethodCallCtx &)
-  {
-    return Callable::OK_NoResult;
-  }
-  
-  Class *
-  Class::get_root_class()
-  {
-    static Class *kls = NULL;
-    if(kls == NULL)
-    {
-      kls = new Class("<RootClass>", get_root_object());
-      kls->install_method("%new", Slot::PUBLIC, new Method(&types::new_instance));
-      kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::empty_constructor));
-      kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::empty_constructor));
-      kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::empty_constructor));
-      kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::empty_constructor));
-      kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::empty_constructor));
-    }
-    return kls;
-  }
+	/*
+	 * Root class methods declaration
+	 */
+	
+	static Callable::ReturnValue RootNew(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	static Callable::ReturnValue EmptyConstructor(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	static Callable::ReturnValue InstallInstanceMethod(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	static Callable::ReturnValue InstallInstanceProperty(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	static Callable::ReturnValue RemoveInstanceSlot(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	static Callable::ReturnValue InstanceSlotsList(typed_list &, int, typed_list &, const Method::MethodCallCtx &);
+	
+	/*
+	 * Class::*
+	 */
+	
+	Class::Class(const std::string &p_name, Object *p_isa):
+		Object(p_isa),
+		m_instance_slots(),
+		m_name(p_name)
+	{
+		String *s = new String(p_name.c_str());
+		install_property("super", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
+		install_property("name", Slot::PUBLIC, s, NULL, ro_setter);
+	}
+	
+	Class* Class::create(const std::string &p_name, Class *p_super_class)
+	{
+		if(p_super_class != NULL)
+		{
+			return new Class(p_name, p_super_class);
+		}
+		else
+		{
+			return new Class(p_name, get_root_class());
+		}
+	}
+	
+	void Class::install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
+	{
+		if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
+		{
+			printf("Error: slot already exists\n");
+			return;
+		}
+		
+		/* "Default default" is [] */
+		if(p_default == NULL)
+		{
+			p_default = new Double(0,0);
+		}
+		
+		/* Create slot */
+		PropertySlot *slot = new PropertySlot;
+		slot->name = p_slotName;
+		slot->visibility = p_visibility;
+		slot->default_value = p_default;
+		slot->getter = p_getter;
+		slot->setter = p_setter;
+		
+		/* Keep a ref on getter, setter and default */
+		slot->default_value->IncreaseRef();
+		if(slot->getter)
+		{
+			slot->getter->IncreaseRef();
+		}
+		if(slot->setter)
+		{
+			slot->setter->IncreaseRef();
+		}
+		
+		/* Add slot */
+		m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
+	}
+	
+	void Class::install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
+	{
+		if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
+		{
+			printf("Error: slot already exists\n");
+			return;
+		}
+		
+		/* Create slot */
+		MethodSlot *slot = new MethodSlot;
+		slot->name = p_slotName;
+		slot->visibility = p_visibility;
+		slot->func = p_func;
+		
+		/* Keep a ref on the code */
+		slot->func->IncreaseRef();
+		
+		/* Add slot */
+		m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
+	}
+	
+	Slot* Class::resolv_instance_slot(const std::string &p_slotName)
+	{
+		SlotsIterator it = m_instance_slots.find(p_slotName);
+		if(it != m_instance_slots.end())
+		{
+			return &it->second;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+	
+	Instance* Class::create_instance()
+	{
+		Class *super_class = dynamic_cast<Class*>(m_isa);
+		if(super_class)
+		{
+			return new Instance(this, super_class->create_instance());
+		}
+		else
+		{
+			return new Instance(this, Object::get_root_object());
+		}
+	}
+	
+	Instance* Class::create_instance(typed_list &p_constructor_args)
+	{
+		typed_list out_args;
+		Instance *res = create_instance();
+		
+		InternalType *tmp = res->get("%constructor", res, NULL);
+		Callable *constructor = dynamic_cast<Callable*>(tmp);
+		if(constructor)
+		{
+			constructor->call(p_constructor_args, 0, out_args);
+		}
+		
+		return res;
+	}
+	
+	Class* Class::get_root_class()
+	{
+		static Class *kls = NULL;
+		if(kls == NULL)
+		{
+			kls = new Class("<RootClass>", get_root_object());
+			kls->install_method("%new", Slot::PUBLIC, new Method(&types::RootNew));
+			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+		}
+		return kls;
+	}
+	
+	/*
+	 * Root class methods definition
+	 */
+	
+	static Callable::ReturnValue RootNew(typed_list &in, int, typed_list &out, const Method::MethodCallCtx &ctx)
+	{
+		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		Instance *inst = kls->create_instance(in);
+		out.push_back(ObjectMatrix::create_standard_ref(inst));
+		return Callable::OK;
+	}
+	
+	static Callable::ReturnValue EmptyConstructor(typed_list &, int, typed_list &, const Method::MethodCallCtx &)
+	{
+		return Callable::OK_NoResult;
+	}
 }
