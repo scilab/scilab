@@ -51,6 +51,13 @@ int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirector
 		DestinationDirectory[wcslen(DestinationDirectory) - 1] = L'\0';
 	}
 
+	if (wcsicmp(DestinationDirectory, SourceDirectory) == 0)
+	{
+		SetLastError(ERROR_ACCESS_DENIED);
+		return 1;
+	}
+
+
 	return CopyDirectoryFunction_windows(DestinationDirectory, SourceDirectory);
 }
 /*--------------------------------------------------------------------------*/

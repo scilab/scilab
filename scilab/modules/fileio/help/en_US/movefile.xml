@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="copyfile" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="movefile" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -24,36 +23,34 @@
   </info>
 
   <refnamediv>
-    <refname>copyfile</refname>
+    <refname>movefile</refname>
 
-    <refpurpose>Copy file</refpurpose>
+    <refpurpose>Move file or directory</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>copyfile('source','destination')
-[status,message] = copyfile('source','destination')</synopsis>
+    <synopsis>movefile('source','destination')
+[status,message] = movefile('source','destination')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>Description</title>
 
-    <para>copyfile('source','destination') copies the file or directory ,
+    <para>movefile('source','destination') moves the file or directory ,
     source (and subdirectories) to the file or directory, destination.</para>
 
-    <para>If source is a directory, destination can not be a file. copyfile
+    <para>If source is a directory, destination can not be a file. movefile
     replaces existing files without warning.</para>
 
-    <para>[status, message] = copyfile('source','destination') copies source
+    <para>[status, message] = movefile('source','destination') moves source
     to destination, returning the status and a message. </para>
 
-    <para>Whatever the operating system, if the copy succeeds, the status is 1
-    and the message is empty ; if the copy fails, the status is 0 and the
+    <para>Whatever the operating system, if the move succeeds, the status is 1
+    and the message is empty ; if the move fails, the status is 0 and the
     message is not empty.</para>
 
-    <para>The timestamp given to the destination file is identical to that
-    taken from source file.</para>
   </refsection>
 
   <refsection>
@@ -61,7 +58,7 @@
 
     <programlisting role="example"> 
 copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
-[status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
+[status,message] = movefile(TMPDIR+"/scilab.start",TMPDIR+"/renamed_scilab.start")
  </programlisting>
   </refsection>
 
@@ -69,8 +66,7 @@ copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
     <title>See Also</title>
 
     <simplelist type="inline">
-    	<member><link linkend="movefile">movefile</link></member>
-      <member><link linkend="mdelete">mdelete</link></member>
+      <member><link linkend="copyfile">copyfile</link></member>
     </simplelist>
   </refsection>
 

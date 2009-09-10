@@ -72,4 +72,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="37" primitiveName="copyfile" />
 <PRIMITIVE gatewayId="34" primitiveId="38" primitiveName="isfile" />
 <PRIMITIVE gatewayId="34" primitiveId="39" primitiveName="fileparts" />
+<PRIMITIVE gatewayId="34" primitiveId="40" primitiveName="movefile" />
 </GATEWAY>

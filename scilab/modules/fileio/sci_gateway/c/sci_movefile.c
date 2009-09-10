@@ -21,16 +21,16 @@
 #include "api_string.h"
 #include "api_double.h"
 #include "Scierror.h"
-#include "copyfile.h"
 #include "FileExist.h"
+#include "movefile.h"
 #include "isdir.h"
 #include "splitpath.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename);
-static void returnCopyFileResultOnStack(int ierr, char *fname);
+static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename);
+static void returnMoveFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
-int sci_copyfile(char *fname,unsigned long fname_len)
+int sci_movefile(char *fname,unsigned long fname_len)
 {
 	int *piAddressVarOne = NULL;
 	wchar_t *pStVarOne = NULL;
@@ -99,77 +99,67 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 
 	if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
 	{
-		int ierrCopy = 0;
+		int ierrMove = 0;
 
-		if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
+		if ( isdirW(pStVarOne)  )
 		{
-			
-			if ( isdirW(pStVarOne)  )
+			/* move a directory into a directory */
+			ierrMove = MoveDirectoryFunction(pStVarTwo, pStVarOne);
+		}
+		else if (FileExistW(pStVarOne))
+		{
+			if (isdirW(pStVarTwo)) 
 			{
-				/* copy a directory into a directory */
-				ierrCopy = CopyDirectoryFunction(pStVarTwo, pStVarOne);
-			}
-			else if (FileExistW(pStVarOne))
-			{
-				if (isdirW(pStVarTwo)) 
+				/* move file into a existing directory */
+				/* copy file into a existing directory */
+				wchar_t* filename = getFilenameWithExtensionForMove(pStVarOne);
+				if (filename)
 				{
-					/* copy file into a existing directory */
-					wchar_t* filename = getFilenameWithExtension(pStVarOne);
-					if (filename)
+					#define FORMAT_FULLFILENAME "%s/%s"
+					wchar_t* destFullFilename = NULL;
+
+					/* remove last file separator if it exists */
+					if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || 
+						(pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
 					{
-						#define FORMAT_FULLFILENAME "%s/%s"
-						wchar_t* destFullFilename = NULL;
-
-						/* remove last file separator if it exists */
-						if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || 
-							(pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
-						{
-							pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
-						}
-
-						destFullFilename = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(pStVarTwo) +
-							(int)wcslen(filename) + (int)wcslen(L"/") + 1));
-						wcscpy(destFullFilename, pStVarTwo);
-						wcscat(destFullFilename, L"/");
-						wcscat(destFullFilename, filename);
-
-						ierrCopy = CopyFileFunction(destFullFilename, pStVarOne);
-
-						FREE(filename); filename = NULL;
-						FREE(destFullFilename); destFullFilename = NULL;
+						pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
 					}
-					else
-					{
-						if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
-						if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
 
-						Scierror(999,_("%s : Memory allocation error.\n"),fname);
-						return 0;
-					}
+					destFullFilename = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(pStVarTwo) +
+						(int)wcslen(filename) + (int)wcslen(L"/") + 1));
+					wcscpy(destFullFilename, pStVarTwo);
+					wcscat(destFullFilename, L"/");
+					wcscat(destFullFilename, filename);
+
+					ierrMove = MoveFileFunction(destFullFilename, pStVarOne);
+
+					FREE(filename); filename = NULL;
+					FREE(destFullFilename); destFullFilename = NULL;
 				}
-				else 
+				else
 				{
-					/* copy a file into a file */
-					ierrCopy = CopyFileFunction(pStVarTwo, pStVarOne);
+					if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+					if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+
+					Scierror(999,_("%s : Memory allocation error.\n"),fname);
+					return 0;
 				}
 			}
 			else
 			{
-				if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
-				if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-				Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
+				/* move a file into a file */
+				ierrMove = MoveFileFunction(pStVarTwo, pStVarOne);
 			}
 		}
 		else
 		{
 			if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 			if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-
-			Scierror(999,_("%s: Wrong value(s) for input argument(s).\n"), fname);
+			Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
 			return 0;
 		}
 
-		returnCopyFileResultOnStack(ierrCopy, fname);
+		returnMoveFileResultOnStack(ierrMove, fname);
 	}
 	else
 	{
@@ -182,7 +172,7 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
+static wchar_t* getFilenameWithExtensionForMove(wchar_t* wcFullFilename)
 {
 	wchar_t* wcfilename = NULL;
 
@@ -207,7 +197,7 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
 	return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static void returnCopyFileResultOnStack(int ierr, char *fname)
+static void returnMoveFileResultOnStack(int ierr, char *fname)
 {
 	double dError = 0.;
 	wchar_t **strError = NULL;
@@ -233,9 +223,9 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 			wcscpy(buffer, L"Unknown Error");
 		}
 
-		// Compatibility with previous version , we return 0
+		// for compatibilty with copyfile, we return 0 (error)
 		//dError = (double) dw;
-		dError = (double) 0.;
+		dError = (double) 0;
 
 		strError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
 		if (strError[0] == NULL)
@@ -260,9 +250,10 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 #else
 	if (ierr)
 	{
-		// Compatibility with previous version , we return 0
+		// for compatibilty with copyfile, we return 0 (error)
 		//dError = (double) ierr;
-		//dError = (double) 0.;
+		dError = (double) 0.;
+
 		strError[0] = to_wide_string(strerror(errno));
 		if (strError[0] == NULL)
 		{

@@ -44,17 +44,37 @@ BOOL removedir(char *path)
 #ifdef _MSC_VER
 		{
 			wchar_t *pstPath = to_wide_string(path);
-			if(pstPath != NULL)
+			if(pstPath)
 			{
-				DeleteDirectory(pstPath);
+				removedirW(pstPath);
 				FREE(pstPath);
+				pstPath = NULL;
 			}
 		}
 #else
 		DeleteDirectory(path);
 #endif
-
 		if (!isdir(path)) return TRUE;
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/ 
+BOOL removedirW(wchar_t *pathW)
+{
+	if (isdirW(pathW))
+	{
+#ifdef _MSC_VER
+		DeleteDirectory(pathW);
+#else
+		char *path = wide_string_to_UTF8(pathW);
+		if (path)
+		{
+			DeleteDirectory(path);
+			FREE(path);
+			path = NULL;
+		}
+#endif
+		if (!isdirW(pathW)) return TRUE;
 	}
 	return FALSE;
 }

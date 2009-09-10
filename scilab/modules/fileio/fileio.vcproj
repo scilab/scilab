@@ -505,6 +505,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\movefile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mput.c"
 				>
 			</File>
@@ -650,6 +654,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mopen.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_movefile.c"
 				>
 			</File>
 			<File
@@ -832,6 +840,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\mopen.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\movefile.h"
 				>
 			</File>
 			<File

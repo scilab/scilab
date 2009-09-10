@@ -118,6 +118,8 @@ fileio functions:
 
 * isfile : checks if filename is a existing file.
 
+* movefile : move files or directory (Request 661)
+
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)

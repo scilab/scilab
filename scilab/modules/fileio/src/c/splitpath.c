@@ -65,7 +65,7 @@ void splitpathW(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, 
 				if (drv)
 				{
 					wcsncpy(drv, duplicate_path, 2);
-					drv[2] = 0;
+					drv[2] = L'\0';
 					duplicate_path = duplicate_path + 2;
 				}
 			}
@@ -109,7 +109,7 @@ void splitpathW(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, 
 			{
 				int len = (int)wcslen(begin) - (int)wcslen(lastdot);
 				wcsncpy(name, begin, len);
-				name[len] = 0;
+				name[len] = L'\0';
 			}
 		}
 		if(ext) wcscpy(ext, lastdot);
