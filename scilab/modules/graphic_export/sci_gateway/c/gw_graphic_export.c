@@ -24,8 +24,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-#define GRAPHIC_EXPORT_TAB_SIZE 9
-static gw_generic_table Tab[GRAPHIC_EXPORT_TAB_SIZE]= 
+static gw_generic_table Tab[] = 
 {
   {sci_xs2bmp,"xs2bmp"},
   {sci_xs2gif,"xs2gif"},
@@ -49,8 +48,7 @@ int gw_graphic_export(void)
 			loadedDep=TRUE;
 		}
 
-		callFunctionFromGateway(Tab,GRAPHIC_EXPORT_TAB_SIZE);
-		
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	else
 	{

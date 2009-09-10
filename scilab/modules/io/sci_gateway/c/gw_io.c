@@ -15,8 +15,7 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define IO_TAB_SIZE 18
-static gw_generic_table Tab[IO_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 {C2F(sci_setenv),"setenv"},
 {C2F(sci_read),"read"},
@@ -64,7 +63,7 @@ int gw_io(void)
 	else
 	{
 		Rhs = Max(0, Rhs);
-		callFunctionFromGateway(Tab,IO_TAB_SIZE);
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	return 0;
 }

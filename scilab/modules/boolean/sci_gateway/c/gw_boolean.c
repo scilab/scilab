@@ -15,8 +15,7 @@
 #include "gw_boolean.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define BOOLEAN_TAB_SIZE 4
-static gw_generic_table Tab[BOOLEAN_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{C2F(sci_find),"find"},
 	{C2F(sci_bool2s),"bool2s"},
@@ -26,7 +25,7 @@ static gw_generic_table Tab[BOOLEAN_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_boolean(void)
 {  
-	callFunctionFromGateway(Tab,BOOLEAN_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

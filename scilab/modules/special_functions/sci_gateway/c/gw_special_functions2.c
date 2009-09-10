@@ -19,8 +19,7 @@
 #include "xerhlt.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-#define SPECIAL_FUNCTIONS_TAB_SIZE 7
-static gw_generic_table Tab[SPECIAL_FUNCTIONS_TAB_SIZE]={
+static gw_generic_table Tab[] = {
   {sci_legendre, "legendre"},
   {sci_beta, "beta"},
   {sci_besseli,"besseli"},
@@ -38,7 +37,7 @@ int gw_special_functions2(void)
 		Scierror(999,"%s: Wrong value for input argument: Positive expected.\n", Tab[Fin-1].name);
 		return 0;
 	}
-	callFunctionFromGateway(Tab,SPECIAL_FUNCTIONS_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
 	C2F(putlhsvar)();
 	return 0;

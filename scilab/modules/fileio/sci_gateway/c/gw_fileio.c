@@ -17,8 +17,7 @@
 /*--------------------------------------------------------------------------*/ 
 /*  interface function */
 /*--------------------------------------------------------------------------*/ 
-#define FILEIO_TAB_SIZE 40
-static gw_generic_table Tab[FILEIO_TAB_SIZE]={
+static gw_generic_table Tab[]={
 	{sci_mopen, "mopen"},
 	{sci_mputstr, "mputstr"},
 	{sci_mclose, "mclose"},
@@ -64,7 +63,7 @@ static gw_generic_table Tab[FILEIO_TAB_SIZE]={
 int gw_fileio(void)
 {
 	Rhs = Max(0,Rhs);
-	callFunctionFromGateway(Tab,FILEIO_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 
