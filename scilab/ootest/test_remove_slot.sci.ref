@@ -5,17 +5,12 @@ Expected result:
 yop
 message = 
 
-42
+Hello
 
 yop
 message = 
 
-5
-
-yop
-message = 
-
-Error: slot x not found
+Error: slot hello not found
 
 yop
 message = 
@@ -25,12 +20,7 @@ message =
 yop
 message = 
 
-  42
+Hello
 
 yop
-message = 
-
-  5
-
-yop
-Error: slot x not found
+Error: slot hello not found
