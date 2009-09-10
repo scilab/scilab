@@ -20,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class OpenAction extends DefaultAction {
 
@@ -35,6 +36,9 @@ public class OpenAction extends DefaultAction {
 	if (retval == JFileChooser.APPROVE_OPTION) {
 	    File f = _fileChooser.getSelectedFile();
 	    getEditor().readFile(f);
+
+	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+	    
 	}
     }
 

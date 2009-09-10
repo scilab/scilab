@@ -19,6 +19,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class SaveAsAction extends DefaultAction {
 
@@ -39,6 +40,8 @@ public class SaveAsAction extends DefaultAction {
 				writer.write(doc);
 				writer.flush();
 				writer.close();
+				
+				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 
 			} catch (Exception ioex) {
 			    JOptionPane.showMessageDialog(getEditor(), ioex);
