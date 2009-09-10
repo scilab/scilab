@@ -393,6 +393,8 @@ Bug fixes:
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
 
+* bug 4654 fixed - max of an empty sparse matrix makes Scilab hangs
+
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
 * bug 4676 fixed - diary() removes whitespaces characters from the output of mprintf()
