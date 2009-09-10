@@ -20,10 +20,21 @@ namespace types
   class Method: public Callable
   {
   public:
+    struct MethodCallCtx
+    {
+      ObjectMatrix &self;    /* = this in the Scilab environnment */
+      ObjectMatrix &super;   /* = super in the Scilab environnment */
+      ObjectMatrix *pSender; /* = the object calling this method, or NULL if not called from a metho */
+    };
+    
     typedef Callable::ReturnValue (*GW_METH)(typed_list &in, int iRetCount, typed_list &out,
-                                             ObjectMatrix *p_this, ObjectMatrix *p_super);
+                                             const MethodCallCtx &ctx);
   
     Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
+    Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out, const MethodCallCtx &ctx)
+    {
+      return m_callback(in, iRetCount, out, ctx);
+    }
   
     Method(GW_METH p_callback): Callable(), m_callback(p_callback) {}
     virtual ~Method() {}

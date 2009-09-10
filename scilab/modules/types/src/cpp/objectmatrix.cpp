@@ -159,17 +159,22 @@ namespace types
   InternalType *
   ObjectMatrix::get(const std::string &p_slotName) const
   {
+    ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
+    return get(p_slotName, sender);
+  }
+    
+  InternalType *
+  ObjectMatrix::get(const std::string &p_slotName, ObjectMatrix *p_sender) const
+  {
     if(m_iSize != 1)
       throw std::string("Must be a single object");
     
-    ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
-    
     // Handle the case of this.x with x being private
-    if(sender != NULL && is_this())
+    if(p_sender != NULL && is_this())
     {
-      if(sender->m_lvptr == m_lvptr)
+      if(p_sender->m_lvptr == m_lvptr)
       {
-        InternalType * res = m_lvptr->get_priv(p_slotName, m_optr[0], sender);
+        InternalType * res = m_lvptr->get_priv(p_slotName, m_optr[0], p_sender);
         if(res != NULL)
           return res;
       }
@@ -177,32 +182,37 @@ namespace types
     
     if(is_super())
       // super.x
-      return m_startptr->get(p_slotName, m_optr[0], sender);
+      return m_startptr->get(p_slotName, m_optr[0], p_sender);
     else
       // normal case
-      return m_optr[0]->get(p_slotName, m_optr[0], sender);
+      return m_optr[0]->get(p_slotName, m_optr[0], p_sender);
   }
   
   void
   ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value) const
   {
+    ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
+    return set(p_slotName, p_value, sender);
+  }
+    
+  void
+  ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value, ObjectMatrix *p_sender) const
+  {
     if(m_iSize != 1)
       throw std::string("Must be a single object");
     
-    ObjectMatrix * sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
-    
     // Handle the case of this.x = y with x being private
-    if(sender != NULL && is_this())
-      if(sender->m_lvptr == m_lvptr)
-        if(m_lvptr->set_priv(p_slotName, p_value, m_optr[0], sender))
+    if(p_sender != NULL && is_this())
+      if(p_sender->m_lvptr == m_lvptr)
+        if(m_lvptr->set_priv(p_slotName, p_value, m_optr[0], p_sender))
           return;
     
     if(is_super())
       // super.x = y
-      m_startptr->set(p_slotName, p_value, m_optr[0], sender);
+      m_startptr->set(p_slotName, p_value, m_optr[0], p_sender);
     else
       // normal case
-      m_optr[0]->set(p_slotName, p_value, m_optr[0], sender);
+      m_optr[0]->set(p_slotName, p_value, m_optr[0], p_sender);
   }
   
   ObjectMatrix *

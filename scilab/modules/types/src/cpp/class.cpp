@@ -14,6 +14,7 @@
 #include "objectmatrix.hxx"
 #include "ooutils.hxx"
 #include "string.hxx"
+#include "double.hxx"
 #include "instance.hxx"
 
 namespace types
@@ -46,12 +47,24 @@ namespace types
       return;
     }
     
+    if(p_default == NULL)
+    {
+      p_default = new Double(0,0);
+    }
+    
     PropertySlot *slot = new PropertySlot;
     slot->name = p_slotName;
     slot->visibility = p_visibility;
     slot->default_value = p_default;
     slot->getter = p_getter;
     slot->setter = p_setter;
+    
+    slot->default_value->IncreaseRef();
+    if(slot->getter)
+      slot->getter->IncreaseRef();
+    if(slot->setter)
+      slot->setter->IncreaseRef();
+    
     m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
   }
   
@@ -68,6 +81,7 @@ namespace types
     slot->name = p_slotName;
     slot->visibility = p_visibility;
     slot->func = p_func;
+    slot->func->IncreaseRef();
     m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
   }
   
@@ -95,13 +109,12 @@ namespace types
   Class::create_instance(typed_list &p_constructor_args)
   {
     typed_list out_args;
-    int nArgsOut = 0;
     Instance *res = create_instance();
     
     InternalType *tmp = res->get("%constructor", res, NULL);
     Callable *constructor = dynamic_cast<Callable*>(tmp);
     if(constructor)
-      constructor->call(p_constructor_args, nArgsOut, out_args);
+      constructor->call(p_constructor_args, 0, out_args);
     
     return res;
   }
@@ -109,16 +122,16 @@ namespace types
   /* Root class */
   
   static Callable::ReturnValue
-  new_instance(typed_list &in, int, typed_list &out, ObjectMatrix *self, ObjectMatrix *)
+  new_instance(typed_list &in, int, typed_list &out, const Method::MethodCallCtx &ctx)
   {
-    Class *kls = dynamic_cast<Class*>(self->object_ref_get());
+    Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
     Instance *inst = kls->create_instance(in);
     out.push_back(ObjectMatrix::create_standard_ref(inst));
     return Callable::OK;
   }
   
   static Callable::ReturnValue
-  empty_constructor(typed_list &, int, typed_list &, ObjectMatrix *, ObjectMatrix *)
+  empty_constructor(typed_list &, int, typed_list &, const Method::MethodCallCtx &)
   {
     return Callable::OK_NoResult;
   }
@@ -131,8 +144,11 @@ namespace types
     {
       kls = new Class("<RootClass>", get_root_object());
       kls->install_method("%new", Slot::PUBLIC, new Method(&types::new_instance));
+      kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::empty_constructor));
+      kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::empty_constructor));
+      kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::empty_constructor));
+      kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::empty_constructor));
       kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::empty_constructor));
-      // TODO: install_instance_method, install_instance_property, instance_slots_list, remove_instance_slot
     }
     return kls;
   }

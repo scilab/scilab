@@ -19,12 +19,58 @@
 
 namespace types
 {
+  PropertySlot::~PropertySlot()
+  {
+    if(getter)
+    {
+      getter->DecreaseRef();
+      if(getter->isDeletable())
+        delete getter;
+    }
+    
+    if(setter)
+    {
+      setter->DecreaseRef();
+      if(setter->isDeletable())
+        delete setter;
+    }
+    
+    default_value->DecreaseRef();
+    if(default_value->isDeletable())
+      delete default_value;
+  }
+  
+  MethodSlot::~MethodSlot()
+  {
+    func->DecreaseRef();
+    if(func->isDeletable())
+      delete func;
+  }
+  
+  Object::~Object()
+  {
+    std::map<std::string, InternalType *>::iterator it;
+    for(it = m_slots_values.begin(); it != m_slots_values.end(); ++it)
+    {
+      it->second->DecreaseRef();
+      if(it->second->isDeletable())
+        delete it->second;
+    }
+  }
+  
   void
   Object::install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
   {
     SlotsIterator it = m_slots.find(p_slotName);
     if(it != m_slots.end())
+    {
       throw std::string("Error: slot already exists");
+    }
+    
+    if(p_default == NULL)
+    {
+      p_default = new Double(0, 0);
+    }
     
     PropertySlot *slot = new PropertySlot;
     slot->name = p_slotName;
@@ -32,6 +78,13 @@ namespace types
     slot->default_value = p_default;
     slot->getter = p_getter;
     slot->setter = p_setter;
+    
+    slot->default_value->IncreaseRef();
+    if(slot->getter)
+      slot->getter->IncreaseRef();
+    if(slot->setter)
+      slot->setter->IncreaseRef();
+    
     m_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
   }
   
@@ -46,6 +99,7 @@ namespace types
     slot->name = p_slotName;
     slot->visibility = p_visibility;
     slot->func = p_func;
+    slot->func->IncreaseRef();
     m_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
   }
   
@@ -122,7 +176,7 @@ namespace types
     bool res = resolv_slot(p_slotName, p_sender, &level, &slot);
     if(slot != NULL && level != NULL)
     {
-      return p_self->do_get(slot, level);
+      return p_self->do_get(slot, level, p_sender);
     }
     else if(res)
     {
@@ -138,8 +192,8 @@ namespace types
       MethodSlot *magic = dynamic_cast<MethodSlot*>(slot);
       if(magic)
       {
-        BoundMethod m(magic->func, p_self, level);
-        return p_self->do_call(m, new String(p_slotName.c_str()), NULL);
+        BoundMethod m(magic->func, p_self, level, p_sender);
+        return p_self->do_call(m, 1, new String(p_slotName.c_str()), NULL);
       }
     }
     
@@ -158,7 +212,7 @@ namespace types
     resolv_slot_local(p_slotName, p_sender, &slot);
     if(slot != NULL)
       if(slot->visibility == Slot::PRIVATE)
-        return p_self->do_get(slot, this);
+        return p_self->do_get(slot, this, p_sender);
     return NULL;
   }
 
@@ -172,7 +226,7 @@ namespace types
     bool res = resolv_slot(p_slotName, p_sender, &level, &slot);
     if(slot != NULL && level != NULL)
     {
-      p_self->do_set(slot, level, p_value);
+      p_self->do_set(slot, level, p_value, p_sender);
       return;
     }
     else if(res)
@@ -189,8 +243,8 @@ namespace types
       MethodSlot *magic = dynamic_cast<MethodSlot*>(slot);
       if(magic)
       {
-        BoundMethod m(magic->func, p_self, level);
-        p_self->do_call(m, new String(p_slotName.c_str()), p_value, NULL);
+        BoundMethod m(magic->func, p_self, level, p_sender);
+        p_self->do_call(m, 1, new String(p_slotName.c_str()), p_value, NULL);
         return;
       }
     }
@@ -212,7 +266,7 @@ namespace types
     {
       if(slot->visibility == Slot::PRIVATE)
       {
-        p_self->do_set(slot, this, p_value);
+        p_self->do_set(slot, this, p_value, p_sender);
         return true;
       }
     }
@@ -220,7 +274,7 @@ namespace types
   }
   
   InternalType *
-  Object::do_get(Slot *p_slot, Object *p_level)
+  Object::do_get(Slot *p_slot, Object *p_level, ObjectMatrix *p_sender)
   {
     MethodSlot *meth = dynamic_cast<MethodSlot*>(p_slot);
     if(meth == NULL)
@@ -228,22 +282,22 @@ namespace types
       PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
       if(prop->getter)
       {
-        BoundGetter m(prop, this, p_level);
-        return do_call(m, NULL);
+        BoundGetter m(prop, this, p_level, p_sender);
+        return do_call(m, 1, NULL);
       }
       else
       {
-        return raw_get(*prop);
+        return p_level->raw_get(*prop);
       }
     }
     else
     {
-      return new BoundMethod(meth->func, this, p_level);
+      return new BoundMethod(meth->func, this, p_level, p_sender);
     }
   }
   
   void
-  Object::do_set(Slot *p_slot, Object *p_level, InternalType *p_value)
+  Object::do_set(Slot *p_slot, Object *p_level, InternalType *p_value, ObjectMatrix *p_sender)
   {
     MethodSlot *meth = dynamic_cast<MethodSlot*>(p_slot);
     if(meth == NULL)
@@ -251,12 +305,12 @@ namespace types
       PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
       if(prop->setter)
       {
-        BoundSetter m(prop, this, p_level);
-        do_call(m, p_value, NULL);
+        BoundSetter m(prop, this, p_level, p_sender);
+        do_call(m, 0, p_value, NULL);
       }
       else
       {
-        raw_set(*prop, p_value);
+        p_level->raw_set(*prop, p_value);
       }
     }
     else
@@ -266,18 +320,18 @@ namespace types
   }
   
   InternalType *
-  Object::do_call(Callable &m,...)
+  Object::do_call(Callable &m, int retCount, ...)
   {
     InternalType *arg;
     va_list ap;
     typed_list args, out;
     
-    va_start(ap, m);
+    va_start(ap, retCount);
     while((arg = va_arg(ap, InternalType*)) != NULL)
       args.push_back(arg);
     va_end(ap);
     
-    if(m.call(args, 1, out) == Callable::OK)
+    if(m.call(args, 1, out) == Callable::OK && out.size() != 0)
       return out[0];
     
     return NULL;
@@ -292,7 +346,10 @@ namespace types
       obj = new Object();
       obj->install_method("%install_property", Slot::PUBLIC, new Method(&types::install_property));
       obj->install_method("%install_method", Slot::PUBLIC, new Method(&types::install_method));
-      // TODO: remove_slot, slots_list, %get, %set
+      obj->install_method("%get", Slot::PUBLIC, new Method(&types::object_get));
+      obj->install_method("%set", Slot::PUBLIC, new Method(&types::object_set));
+      obj->install_method("%slots_list", Slot::PUBLIC, new Method(&types::slots_list));
+      obj->install_method("%remove_slot", Slot::PUBLIC, new Method(&types::remove_slot));
     }
     return obj;
   }
@@ -305,7 +362,7 @@ namespace types
     {
       InternalType *ret = slot.default_value->clone();
       m_slots_values[slot.name] = ret;
-      ret->DenyDelete();
+      ret->IncreaseRef();
       return ret;
     }
     else
@@ -318,9 +375,34 @@ namespace types
   {
     std::map<std::string, InternalType *>::iterator it = m_slots_values.find(slot.name);
     if(it != m_slots_values.end())
-      delete it->second;
+    {
+      it->second->DecreaseRef();
+      if(it->second->isDeletable())
+        delete it->second;
+    }
     
     m_slots_values[slot.name] = value;
-    value->DenyDelete();
+    value->IncreaseRef();
+  }
+  
+  void Object::RemoveSlot(const std::string &_slotName)
+  {
+    if(m_slots.find(_slotName) != m_slots.end())
+    {
+      m_slots.erase(m_slots.find(_slotName));
+    }
+    else
+    {
+      if(m_isa)
+      {
+        m_isa->RemoveSlot(_slotName);
+      }
+      else
+      {
+        std::stringstream ss;
+        ss << "Error: slot " <<  _slotName << " not found";
+        throw ss.str();
+      }
+    }
   }
 }

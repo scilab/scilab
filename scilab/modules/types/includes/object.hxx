@@ -29,7 +29,6 @@ namespace types
     Visibility visibility;
     
     Slot(): name(), visibility(PUBLIC) {}
-    
     virtual ~Slot() {}
   };
   
@@ -44,16 +43,7 @@ namespace types
     InternalType *default_value;
     
     PropertySlot(): Slot(), getter(NULL), setter(NULL), default_value(NULL) {}
-    
-    virtual ~PropertySlot()
-    {
-      if(getter)
-        delete getter;
-      if(setter)
-        delete setter;
-      if(default_value)
-        delete default_value;
-    }
+    virtual ~PropertySlot();
   };
   
   /** Represents a method
@@ -64,12 +54,7 @@ namespace types
     Callable *func;
     
     MethodSlot(): Slot(), func(NULL) {}
-    
-    virtual ~MethodSlot()
-    {
-      if(func)
-        delete func;
-    }
+    virtual ~MethodSlot();
   };
   
   /** Declarations to avoid circular references */
@@ -85,7 +70,7 @@ namespace types
   class Object
   {
   public:
-    virtual ~Object() { }
+    virtual ~Object();
     
     /** Perform (this object).(slot) ; returns NULL if the slot isn't found.
      *   p_sender is the caller object reference, that is, the "this" variable
@@ -137,11 +122,18 @@ namespace types
      */
     void install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
     
+    /** Remove the first encountered slot by this name
+     */
+    void RemoveSlot(const std::string &_slotName);
+    
     /** Get the parent object */
     Object *super() { return m_isa; }
     
     /** See InternalType::toString */
-    virtual std::string toString() const { return "Object"; }
+    virtual std::string toString() const { return "<Root object>"; }
+    
+    /** Get slots */
+    const std::map<std::string, Slot&>& GetSlots() const { return m_slots; }
   
     // root_object is the object at the top of all super chains
     static Object *get_root_object();
@@ -172,14 +164,14 @@ namespace types
   
     // Perform a get operation on this slot (property: returns its value or
     // the result of the getter, method: return the bound method)
-    InternalType *do_get(Slot *p_slot, Object *p_level);
+    InternalType *do_get(Slot *p_slot, Object *p_level, ObjectMatrix *p_sender);
   
     // Perform a set operation on this slot (must be a property)
-    void do_set(Slot *p_slot, Object *p_level, InternalType *p_value);
+    void do_set(Slot *p_slot, Object *p_level, InternalType *p_value, ObjectMatrix *p_sender);
     
     // Call the function. VaArgs: null terminated list of InternalType*. 
     // Returns only the first return value of the function.
-    InternalType *do_call(Callable &func,...);
+    InternalType *do_call(Callable &func, int retCount, ...);
   
   protected:
     typedef std::map<std::string, Slot&>::iterator SlotsIterator;

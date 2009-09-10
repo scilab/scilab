@@ -35,6 +35,8 @@ namespace types
   
     static Class *get_root_class();
     
+    const std::map<std::string, Slot&>& GetInstanceSlots() const { return m_instance_slots; }
+    
   private:
     Class(const std::string &p_name, Object *p_isa);
     Instance *create_instance();

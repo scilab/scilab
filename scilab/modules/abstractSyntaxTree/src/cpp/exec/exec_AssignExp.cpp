@@ -75,7 +75,8 @@ namespace ast
 					object = dynamic_cast<ObjectMatrix*>(execMeF.result_get());
 					propName = dynamic_cast<const SimpleVar*>(field->tail_get());
 					
-					dataOld = object->get(propName->name_get().name_get());
+					if(pCall != NULL)
+						dataOld = object->get(propName->name_get().name_get());
 				}
 			}
 			

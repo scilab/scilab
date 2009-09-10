@@ -209,11 +209,10 @@ namespace ast
 			if(res != NULL)
 			{
 				result_set(res);
-				res->DenyDelete();
 				if(e.is_verbose())
 				{
 					std::ostringstream ostr;
-					ostr << " = " << std::endl;
+					ostr << obj->toString(10,75) << "." << tail.name_get() << " = " << std::endl;
 					ostr << std::endl;
 					ostr << res->toString(75,10) << std::endl;
 					YaspWrite((char *) ostr.str().c_str());
@@ -846,11 +845,7 @@ namespace ast
 					ExecVisitor execMe;
 					pdec->default_get()->accept(execMe);
 					def = execMe.result_get();
-					def->DenyDelete();
-				}
-				else
-				{
-					def = new Double(0, 0);
+					def->IncreaseRef();
 				}
 				
 				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
@@ -864,14 +859,23 @@ namespace ast
 						vis = types::Slot::PRIVATE;
 					else if(attr == "ro")
 						setter = ro_setter;
-					else if(attr == "klass")
+					else if(attr == "cls")
 						class_slot = true;
 				}
 				
 				if(class_slot)
+				{
 					kls->install_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+				}
 				else
+				{
 					kls->install_instance_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+				}
+				
+				if(def)
+				{
+					def->DecreaseRef();
+				}
 			}
 			else
 			{
@@ -893,7 +897,8 @@ namespace ast
 					out.push_back(dynamic_cast<const SimpleVar*>(*it)->name_get());
 				}
 				
-				Callable *code = new types::Macro("", in, out, (SeqExp&)mdec->body_get());
+				Callable *code = new types::Macro(sdec->name_get().name_get() + "::" + e.name_get()->name_get(),
+					in, out, (SeqExp&)mdec->body_get(), "script");
 				
 				for(vars_it = vars.begin(); vars_it != vars.end(); ++vars_it)
 				{
@@ -908,42 +913,72 @@ namespace ast
 						getter = true;
 					else if(attr == "setter")
 						setter = true;
-					else if(attr == "klass")
+					else if(attr == "cls")
 						class_slot = true;
 				}
 				
 				if(getter || setter)
 				{
-					PropertySlot *slot = dynamic_cast<PropertySlot*>(kls->resolv_instance_slot(sdec->name_get().name_get()));
-					if(getter)
-						slot->getter = code;
+					std::string slotName = sdec->name_get().name_get();
+					Slot *mslot = NULL;
+					
+					if(class_slot)
+					{
+						if(kls->GetSlots().find(slotName) != kls->GetSlots().end())
+						{
+							mslot = &kls->GetSlots().find(slotName)->second;
+						}
+					}
 					else
+					{
+						if(kls->GetInstanceSlots().find(slotName) != kls->GetInstanceSlots().end())
+						{
+							mslot = &kls->GetInstanceSlots().find(slotName)->second;
+						}
+					}
+					
+					PropertySlot *slot = dynamic_cast<PropertySlot*>(mslot);
+					if(slot == NULL)
+					{
+						std::stringstream ss;
+						ss << "Error: slot " << sdec->name_get().name_get() << " not found.";
+						throw ss.str();
+					}
+					
+					if(getter)
+					{
+						slot->getter = code;
+					}
+					else
+					{
 						slot->setter = code;
+					}
 				}
 				else
 				{
 					if(class_slot)
+					{
 						kls->install_method(sdec->name_get().name_get(), vis, code);
+					}
 					else
+					{
 						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
+					}
 				}
 			}
 		}
 		
 		ObjectMatrix *res = types::ObjectMatrix::create_standard_ref(kls);
-		res->DenyDelete();
 		result_set(res);
 		symbol::Context::getInstance()->put(symbol::Symbol(*e.name_get()), *res);
 	}
   
-	void ExecVisitor::visit (const PropertyDec &e)
+	void ExecVisitor::visit (const PropertyDec &)
 	{
-		// TODO
 	}
   
-	void ExecVisitor::visit (const MethodDec &e)
+	void ExecVisitor::visit (const MethodDec &)
 	{
-		// TODO
 	}
 	/** \} */
 

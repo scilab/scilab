@@ -39,9 +39,11 @@ namespace types
     
     // obj.foo
     InternalType *get(const std::string &p_slotName) const;
+    InternalType *get(const std::string &p_slotName, ObjectMatrix *p_sender) const;
     
     // obj.foo = bar
     void set(const std::string &p_slotName, InternalType * p_value) const;
+    void set(const std::string &p_slotName, InternalType * p_value, ObjectMatrix *p_sender) const;
     
     Object *object_ref_get() const { return m_optr[0]; }
     Object *level_ref_get() const { return m_lvptr; }
