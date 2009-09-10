@@ -43,6 +43,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -80,6 +81,8 @@ public class ConfigXpadManager {
 	
 	private static final int DEFAULT_WIDTH = 650;
 	private static final int DEFAULT_HEIGHT = 550;
+	
+	private static final int MAX_RECENT_FILES = 10;
 	
 	
 	private static Document document; 
@@ -604,7 +607,81 @@ public class ConfigXpadManager {
 		}
 	}
 	
+	/**
+	 * Get all the  recent opened files
+	 * @return a array of uri
+	 */
+	
+	public static ArrayList<File> getAllRecentOpenedFiles(){
+		ArrayList<File> files = new ArrayList<File>();
 
+		readDocument() ;
+
+
+		Element root = (Element )document.getDocumentElement().getElementsByTagName("recentFiles").item(0);
+		NodeList recentFiles= root.getElementsByTagName("document");
+		
+		for (int i = 0; i < recentFiles.getLength() ; ++i){
+			Element style =(Element) recentFiles.item(i);
+		
+			
+			File temp = new File(style.getAttribute("path") ) ;
+			
+			if (temp.exists())
+				files.add(temp);
+			else
+				root.removeChild((Node)style );
+			
+			/* Save changes */
+			writeDocument();
+			
+		}		
+		return files ;
+	}
+	
+	/**
+	 * Add a file to recent Opened Files
+	 * @param filePath the path of the files to add 
+	 */
+	public static void saveToRecentOpenedFiles(String filePath ){
+		
+		readDocument() ;
+
+		Element root = (Element )document.getDocumentElement().getElementsByTagName("recentFiles").item(0);
+		NodeList recentFiles= root.getElementsByTagName("document");
+		int numberOfFiles = recentFiles.getLength();
+		
+		// we remove all the duplicate
+		for (int i = 0; i < recentFiles.getLength();  ++i){
+			Element style =(Element) recentFiles.item(i);
+		
+			
+			if (filePath.equals(style.getAttribute("path") ) ){
+				root.removeChild((Node)style );
+				numberOfFiles -- ;
+			}
+				
+		}
+		
+		
+		// if we have reached the maximun , we remove the oldest files
+		while ( recentFiles.getLength() >= MAX_RECENT_FILES ){
+			root.removeChild(root.getFirstChild());
+		}
+			
+		Element newFile =  document.createElement("document");
+		
+		newFile.setAttribute("path", filePath);
+		
+		root.appendChild((Node) newFile);
+			
+		/* Save changes */
+		writeDocument();
+			
+				
+		
+	}
+	
 	
 	
 	/**

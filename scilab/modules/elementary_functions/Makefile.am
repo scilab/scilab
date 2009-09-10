@@ -28,9 +28,6 @@ src/c/IsEqualVar.c
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES =
 
-SLATEC_SOURCES = 
-
-
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
 src/fortran/slatec/d9b1mp.f \

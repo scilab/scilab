@@ -17,6 +17,7 @@ import java.awt.Event;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
@@ -66,6 +67,7 @@ import org.scilab.modules.xpad.actions.PageSetupAction;
 import org.scilab.modules.xpad.actions.PasteAction;
 import org.scilab.modules.xpad.actions.PrintAction;
 import org.scilab.modules.xpad.actions.PrintPreviewAction;
+import org.scilab.modules.xpad.actions.RecentFileAction;
 import org.scilab.modules.xpad.actions.RedoAction;
 import org.scilab.modules.xpad.actions.ResetFontAction;
 import org.scilab.modules.xpad.actions.SaveAction;
@@ -121,6 +123,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	private static Xpad createEditor() {
 		ConfigXpadManager.createUserCopy();	
+		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles() ;
 
 		Window mainWindow = ScilabWindow.createWindow();
 		Xpad editor = new Xpad(mainWindow);
@@ -139,15 +142,27 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileMenu.setMnemonic('F');
 		fileMenu.add(new NewAction(editor));
 		fileMenu.add(new OpenAction(editor));
+		Menu recentsMenu = ScilabMenu.createMenu();
+		recentsMenu.setText("Recent Files");
+		for (int i = 0 ; i < recentFiles.size() ; i++ ){
+			recentsMenu.add(new RecentFileAction(editor , recentFiles.get(i)));
+		}
+		
+		
+		fileMenu.add(recentsMenu);
+		
 		fileMenu.addSeparator();
 		fileMenu.add(new SaveAction(editor));
 		fileMenu.add(new SaveAsAction(editor));
+		
 		fileMenu.addSeparator();
 		fileMenu.add(new PageSetupAction(editor));
 		fileMenu.add(new PrintPreviewAction(editor));
 		fileMenu.add(new PrintAction(editor));
+		
 		fileMenu.addSeparator();
 		fileMenu.add(new CloseAction(editor));
+		
 		fileMenu.addSeparator();
 		fileMenu.add(new ExitAction(editor));
 		menuBar.add(fileMenu);
