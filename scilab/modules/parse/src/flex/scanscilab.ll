@@ -44,7 +44,7 @@ hex			[0]x[0-9a-fA-F]+
 oct			[0]o[0-7]+
 
 id			[a-zA-Z_%#?][a-zA-Z_0-9#?]*
-newline			("\n"|"\r\n")
+newline			("\n"|"\r\n"|"\r")
 blankline		^[ \t\v\f]+{newline}
 next			(".."|"...")
 
@@ -796,7 +796,7 @@ void scan_step() {
 void scan_error(std::string msg)
 {
   Parser::PrintError(msg);
-  exit(exit_status);
+  Parser::getInstance()->setExitStatus(Parser::Failed);
 }
 
 /*
