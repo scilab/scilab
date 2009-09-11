@@ -16,6 +16,7 @@
 #include "string.hxx"
 #include "double.hxx"
 #include "instance.hxx"
+#include <sstream>
 
 namespace types
 {
@@ -165,10 +166,31 @@ namespace types
 			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::EmptyConstructor));
-			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
 			kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 		}
 		return kls;
+	}
+	
+	void Class::RemoveInstanceSlot(const std::string &_slotName)
+	{
+		if(m_instance_slots.find(_slotName) != m_instance_slots.end())
+		{
+			m_instance_slots.erase(m_instance_slots.find(_slotName));
+		}
+		else
+		{
+			if(m_isa && dynamic_cast<Class*>(m_isa))
+			{
+				dynamic_cast<Class*>(m_isa)->RemoveInstanceSlot(_slotName);
+			}
+			else
+			{
+				std::stringstream ss;
+				ss << "Error: slot " <<	_slotName << " not found";
+				throw ss.str();
+			}
+		}
 	}
 	
 	/*
@@ -176,15 +198,42 @@ namespace types
 	 */
 	
 	static Callable::ReturnValue RootNew(typed_list &in, int, typed_list &out, const Method::MethodCallCtx &ctx)
-	{
+	{	/* Accepts any input argument since they are transmitted to the constructor */
 		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
 		Instance *inst = kls->create_instance(in);
 		out.push_back(ObjectMatrix::create_standard_ref(inst));
 		return Callable::OK;
 	}
 	
-	static Callable::ReturnValue EmptyConstructor(typed_list &, int, typed_list &, const Method::MethodCallCtx &)
+	static Callable::ReturnValue EmptyConstructor(typed_list &in, int, typed_list &, const Method::MethodCallCtx &)
 	{
+		if(in.size() != 1)
+		{
+			return Callable::Error;
+		}
+		else
+		{
+			return Callable::OK_NoResult;
+		}
+	}
+
+	static Callable::ReturnValue RemoveInstanceSlot(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	{
+		if(in.size() != 1)
+		{
+			return Callable::Error;
+		}
+		
+		String *name = dynamic_cast<String*>(in[0]);
+		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		
+		if(name == NULL || kls == NULL)
+		{
+			return Callable::Error;
+		}
+		
+		kls->RemoveInstanceSlot(name->string_get(0,0));
+		
 		return Callable::OK_NoResult;
 	}
 }

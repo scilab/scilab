@@ -34,8 +34,6 @@ namespace types
 		
 		virtual bool resolv_slot_local(const std::string &p_slotName, const ObjectMatrix *p_sender,
 			Slot **r_slot);
-	
-	protected:
 		Class *m_kls;
 	};
 }
