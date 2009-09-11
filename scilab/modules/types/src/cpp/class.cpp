@@ -164,7 +164,7 @@ namespace types
 			kls = new Class("<RootClass>", get_root_object());
 			kls->install_method("%new", Slot::PUBLIC, new Method(&types::RootNew));
 			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::EmptyConstructor));
-			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::InstallInstanceProperty));
 			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
 			kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
@@ -236,4 +236,81 @@ namespace types
 		
 		return Callable::OK_NoResult;
 	}
+	
+	static Callable::ReturnValue InstallInstanceProperty(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
+	{
+		if(in.size() == 0 || in.size() > 5)
+		{
+			return Callable::Error;
+		}
+		
+		String *name = dynamic_cast<String*>(in[0]);
+		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		InternalType *def = NULL;
+		Callable *getter = NULL;
+		Callable *setter = NULL;
+		Slot::Visibility svisib = Slot::PUBLIC;
+		
+		/* name */
+		if(name == NULL)
+		{
+			return Callable::Error;
+		}
+		
+		/* visibility */
+		if(in.size() > 1)
+		{
+			String *visibility = dynamic_cast<String*>(in[1]);
+			if(visibility == NULL)
+			{
+				return Callable::Error;
+			}
+			else
+			{
+				Slot::Visibility svisib = Slot::PUBLIC;
+				if(visibility != NULL)
+				{
+					if(!strcmp(visibility->string_get(0,0), "public"))
+						svisib = Slot::PUBLIC;
+					else if(!strcmp(visibility->string_get(0,0), "protected"))
+						svisib = Slot::PROTECTED;
+					else if(!strcmp(visibility->string_get(0,0), "private"))
+						svisib = Slot::PRIVATE;
+					else
+						throw std::string("Bad visibility");
+				}
+			}
+		}
+		
+		/* default */
+		if(in.size() > 2)
+		{
+			def = in[2];
+		}
+		
+		/* getter */
+		if(in.size() > 3)
+		{
+			getter = dynamic_cast<Callable*>(in[3]);
+			if(getter == NULL)
+			{
+				return Callable::Error;
+			}
+		}
+		
+		/* setter */
+		if(in.size() > 4)
+		{
+			setter = dynamic_cast<Callable*>(in[4]);
+			if(setter == NULL)
+			{
+				return Callable::Error;
+			}
+		}
+		
+		kls->install_instance_property(name->string_get(0,0), svisib, def, getter, setter);
+		
+		return Callable::OK_NoResult;
+	}
+	
 }

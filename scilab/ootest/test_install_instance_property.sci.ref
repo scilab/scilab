@@ -13,4 +13,8 @@ message =
 ------- Running test -----------
 
 yop
-Error: slot x not found
+message = 
+
+  42
+
+yop

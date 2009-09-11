@@ -4,9 +4,6 @@ function nil = disp(message)
 endfunction
 
 class Test
-	function test
-		disp(this.y);
-	endfunction
 endclass
 
 disp("Expected result:");

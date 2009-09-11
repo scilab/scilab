@@ -131,32 +131,71 @@ namespace types
 	 */
 	Callable::ReturnValue install_property(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
 	{
+		if(in.size() == 0 || in.size() > 5)
+		{
+			return Callable::Error;
+		}
+		
 		String *name = dynamic_cast<String*>(in[0]);
-		String *visibility = NULL;
 		InternalType *def = NULL;
 		Callable *getter = NULL;
 		Callable *setter = NULL;
-		
-		if(in.size() > 1)
-			visibility = dynamic_cast<String*>(in[1]);
-		if(in.size() > 2)
-			def = in[2];
-		if(in.size() > 3)
-			getter = dynamic_cast<Callable*>(in[3]);
-		if(in.size() > 4)
-			setter = dynamic_cast<Callable*>(in[4]);
-		
 		Slot::Visibility svisib = Slot::PUBLIC;
-		if(visibility != NULL)
+		
+		/* name */
+		if(name == NULL)
 		{
-			if(!strcmp(visibility->string_get(0,0), "public"))
-				svisib = Slot::PUBLIC;
-			else if(!strcmp(visibility->string_get(0,0), "protected"))
-				svisib = Slot::PROTECTED;
-			else if(!strcmp(visibility->string_get(0,0), "private"))
-				svisib = Slot::PRIVATE;
+			return Callable::Error;
+		}
+		
+		/* visibility */
+		if(in.size() > 1)
+		{
+			String *visibility = dynamic_cast<String*>(in[1]);
+			if(visibility == NULL)
+			{
+				return Callable::Error;
+			}
 			else
-				throw std::string("Bad visibility");
+			{
+				if(visibility != NULL)
+				{
+					if(!strcmp(visibility->string_get(0,0), "public"))
+						svisib = Slot::PUBLIC;
+					else if(!strcmp(visibility->string_get(0,0), "protected"))
+						svisib = Slot::PROTECTED;
+					else if(!strcmp(visibility->string_get(0,0), "private"))
+						svisib = Slot::PRIVATE;
+					else
+						throw std::string("Bad visibility");
+				}
+			}
+		}
+		
+		/* default */
+		if(in.size() > 2)
+		{
+			def = in[2];
+		}
+		
+		/* getter */
+		if(in.size() > 3)
+		{
+			getter = dynamic_cast<Callable*>(in[3]);
+			if(getter == NULL)
+			{
+				return Callable::Error;
+			}
+		}
+		
+		/* setter */
+		if(in.size() > 4)
+		{
+			setter = dynamic_cast<Callable*>(in[4]);
+			if(setter == NULL)
+			{
+				return Callable::Error;
+			}
 		}
 		
 		ctx.self.object_ref_get()->install_property(name->string_get(0,0), svisib, def, getter, setter);
@@ -166,17 +205,19 @@ namespace types
 	
 	Callable::ReturnValue install_method(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
 	{
-		String *name = dynamic_cast<String*>(in[0]);
-		String *visibility = NULL;
-		Callable *func = NULL;
-		
-		if(in.size() > 1)
-			visibility = dynamic_cast<String*>(in[1]);
-		if(in.size() > 2)
-			func = dynamic_cast<Callable*>(in[2]);
-		
-		if(retCount)
+		if(in.size() != 3)
+		{
 			return Callable::Error;
+		}
+		
+		String *name = dynamic_cast<String*>(in[0]);
+		String *visibility = dynamic_cast<String*>(in[1]);
+		Callable *func = dynamic_cast<Callable*>(in[2]);
+		
+		if(name == NULL || visibility == NULL || func == NULL)
+		{
+			return Callable::Error;
+		}
 		
 		Slot::Visibility svisib = Slot::PUBLIC;
 		if(visibility != NULL)
