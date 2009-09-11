@@ -1,10 +1,12 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
+### Copyright (C) 2009 - DIGITEO - Vincent LIARD
 ##########
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
-src/c/ipmpar1.c
+src/c/ipmpar1.c \
+src/c/sci_string_matrix.c
 
 STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
 src/dcdflib/alngam.f \
