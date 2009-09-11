@@ -29,8 +29,10 @@ namespace ast
     enum Oper
     {
       // Logical operators
-      /** \brief "&" */		binaryAnd,
-      /** \brief "|" */		binaryOr
+      /** \brief "&" */		logicalAnd,
+      /** \brief "|" */		logicalOr,
+      /** \brief "&&" */	logicalShorCutAnd,
+      /** \brief "||" */	logicalShorCutOr
     };
 
     /** \brief Operation Expression kind.
@@ -147,6 +149,12 @@ namespace ast
     Oper oper_get () const
     {
       return _oper;
+    }
+
+    /** \brief set the operator description (read only) */
+    void oper_set(Oper oper)
+    {
+      _oper = oper;
     }
 
     /** \brief Return the right expression of the operation (read only) */

@@ -58,10 +58,6 @@ namespace ast
       /** \brief "<=" */		le,
       /** \brief "<" */			gt,
       /** \brief ">=" */		ge,
-
-      // Logical operators
-      /** \brief "&" */		binaryAnd,
-      /** \brief "|" */		binaryOr
     };
 
     /** \brief Operation Expression kind.
@@ -180,7 +176,7 @@ namespace ast
       return _oper;
     }
 
-    /** \brief Return the right expression of the operation (read only) */
+		/** \brief Return the right expression of the operation (read only) */
     const Exp& right_get () const
     {
       return *_right;

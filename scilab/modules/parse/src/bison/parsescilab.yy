@@ -77,6 +77,7 @@
 
   ast::OpExp*		t_op_exp;
   ast::OpExp::Oper	t_op_exp_oper;
+  ast::LogicalOpExp::Oper	t_lop_exp_oper;
 
   ast::AssignExp*	t_assign_exp;
 
@@ -147,8 +148,10 @@
 %token GT		">"
 %token GE		">="
 %token AND		"&"
+%token ANDAND	"&&"
 %token OR		"|"
-%token ASSIGN		"="
+%token OROR		"||"
+%token ASSIGN	"="
 
 %token IF		"if"
 %token THEN		"then"
@@ -197,7 +200,7 @@
 %type <t_exp>		operation
 %type <t_op_exp>	rightOperand
 %type <t_op_exp_oper>	comparators
-%type <t_op_exp_oper>	logicalComparators
+%type <t_lop_exp_oper>	logicalComparators
 
  // IF Control
 %type <t_if_exp>	ifControl
@@ -653,8 +656,10 @@ variable comparators comparable			{ $$ = new ast::OpExp(@$, *$1, $2, *$3); }
 ;
 
 logicalComparators :
-AND				{ $$ = ast::OpExp::binaryAnd; }
-| OR				{ $$ = ast::OpExp::binaryOr; }
+AND				{ $$ = ast::LogicalOpExp::logicalAnd; }
+| ANDAND		{ $$ = ast::LogicalOpExp::logicalShorCutAnd; }
+| OR			{ $$ = ast::LogicalOpExp::logicalOr; }
+| OROR			{ $$ = ast::LogicalOpExp::logicalShorCutOr; }
 ;
 /*
 ** -*- COMPARABLE -*-
