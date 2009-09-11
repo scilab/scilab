@@ -27,6 +27,7 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -91,6 +92,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private JTextPane textPane;
 	private JScrollPane scrollingText;
 	private XpadLineNumberPanel xln;
+	private  Menu recentsMenu ;
 
 	private static Xpad editor = null;
 
@@ -140,13 +142,13 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileMenu.setMnemonic('F');
 		fileMenu.add(NewAction.createMenu(editor));
 		fileMenu.add(OpenAction.createMenu(editor));
-		Menu recentsMenu = ScilabMenu.createMenu();
-		recentsMenu.setText("Recent Files");
+	//		 recentsMenu = ScilabMenu.createMenu();
+		editor.recentsMenu.setText("Recent Files");
 		for (int i = 0 ; i < recentFiles.size() ; i++ ){
-			recentsMenu.add(RecentFileAction.createMenu(editor , recentFiles.get(i)));
+			editor.recentsMenu.add( RecentFileAction.createMenu(editor , recentFiles.get(i)));
 		}
 		
-		fileMenu.add(recentsMenu);
+		fileMenu.add(editor.recentsMenu);
 		
 		fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(editor));
@@ -273,6 +275,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public Xpad(Window parentWindow) {
 		super("Xpad");
 		this.parentWindow = parentWindow;
+		recentsMenu = ScilabMenu.createMenu(); ;
 		tabPane = new JTabbedPane();
 		this.setContentPane(tabPane);
 	}
@@ -408,6 +411,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 		this.xln = xln;
 	}
 	
+	public Menu getRecentsMenu(){
+		return  this.recentsMenu ;
+	}
+	
 	public void displayLineNumbers(boolean display) {
 		if (display) {
 			scrollingText.setRowHeaderView(xln);
@@ -421,6 +428,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public void enableLineHighlight(boolean display) {
 		xln.setCurrentLineHighlightColor(display);
 		repaint();
+	}
+	
+	public void updateRecentOpenedFilesMenu () {
+		ArrayList<File> recentFiles = ConfigXpadManager.getAllRecentOpenedFiles() ;
+		
+		((SwingScilabMenu)getRecentsMenu().getAsSimpleMenu()).removeAll();
+			for (int i = 0 ; i < recentFiles.size() ; i++ ){
+				getRecentsMenu().add( RecentFileAction.createMenu(editor , recentFiles.get(i)));
+			}
+			
 	}
 
 }
