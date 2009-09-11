@@ -73,7 +73,6 @@ public class GotoLineAction extends DefaultAction {
 
 	        gbc.gridx = gbc.gridy = 0;
 	        gbc.gridheight = gbc.gridwidth = 1;
-	        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 	        gbc.insets = new Insets(0, 10, 0, 0);
 
 
@@ -82,14 +81,12 @@ public class GotoLineAction extends DefaultAction {
 	        gbc.gridx = 0;
 	        gbc.gridy = 4;
 	        gbc.gridheight = gbc.gridwidth = 1;
-	        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 	        gbc.fill = GridBagConstraints.NONE;
 	        gbc.insets = new Insets(0, 10, 0, 0);
 	        mainFrame.add( label, gbc);
 
 	        gbc.gridx = 1;
 	        gbc.gridwidth = GridBagConstraints.REMAINDER;
-	        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
 	        gbc.fill = GridBagConstraints.HORIZONTAL;
 	        gbc.insets = new Insets(5, 10, 0, 10);
 	        mainFrame.add(enterLineNumberField, gbc);
@@ -98,7 +95,6 @@ public class GotoLineAction extends DefaultAction {
 	        gbc.gridx = 1;
 	        gbc.gridy = 5;
 	        gbc.gridheight = gbc.gridwidth = 1;
-	        gbc.anchor = GridBagConstraints.BASELINE_TRAILING;
 	        gbc.weightx = 1.;
 	        gbc.fill = GridBagConstraints.NONE;
 	        gbc.insets = new Insets(5, 0, 10, 5);
@@ -155,7 +151,7 @@ public class GotoLineAction extends DefaultAction {
 	}
 
 	private void updateCaretPosition(){
-		if ( ! enterLineNumberField.getText().isEmpty()){
+		if (  enterLineNumberField.getText().length() != 0){
 			
 			   // if the input is not a integer..
 			   Pattern p = Pattern.compile("\\D");
