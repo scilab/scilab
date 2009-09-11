@@ -268,6 +268,7 @@ int gw_dynamic_xcos(void)
 		&gatewayname_xcos,
 		&hXcosLib,
 		&ptr_gw_xcos);
+}
 /*--------------------------------------------------------------------------*/
 /* xpad module */
 #define XPAD_MODULE_NAME "xpad"
