@@ -15,6 +15,7 @@
 #include "ooutils.hxx"
 #include "string.hxx"
 #include "double.hxx"
+#include "bool.hxx"
 #include "instance.hxx"
 #include <sstream>
 
@@ -165,7 +166,7 @@ namespace types
 			kls->install_method("%new", Slot::PUBLIC, new Method(&types::RootNew));
 			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::InstallInstanceMethod));
 			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::InstallInstanceProperty));
-			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::InstanceSlotsList));
 			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
 			kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 		}
@@ -346,5 +347,114 @@ namespace types
 		kls->install_instance_method(name->string_get(0,0), svisib, func);
 		
 		return Callable::OK_NoResult;
+	}
+
+	static Callable::ReturnValue InstanceSlotsList(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	{
+		if(in.size() > 1)
+		{
+			return Callable::Error;
+		}
+		
+		if(retCount == 0 || retCount > 3)
+		{
+			return Callable::Error;
+		}
+		
+		/* Recursive ? */
+		bool recursive = true;
+		
+		if(in.size() > 0)
+		{
+			Bool *sciRec = in[0]->getAsBool();
+			if(sciRec == NULL)
+			{
+				return Callable::Error;
+			}
+			if(sciRec->size_get() != 1)
+			{
+				return Callable::Error;
+			}
+			recursive = sciRec->bool_get(0, 0);
+		}
+		
+		/* Get slots */
+		std::map<std::string, Slot&> allSlots;
+		std::map<std::string, Slot&>::const_iterator it;
+		Class *lvl = dynamic_cast<Class*>(ctx.super.object_ref_get());
+		
+		do
+		{
+			for(it = lvl->GetInstanceSlots().begin() ; it != lvl->GetInstanceSlots().end() ; ++it)
+			{
+				if(allSlots.find(it->first) == allSlots.end())
+				{
+					allSlots.insert(std::pair<std::string, Slot&>(it->first, it->second));
+				}
+				else
+				{
+					if(allSlots.find(it->first)->second.visibility == Slot::PRIVATE || it->second.visibility == Slot::PUBLIC)
+					{ /* New slots is more visibility that the old one */
+						allSlots.insert(std::pair<std::string, Slot&>(it->first, it->second));
+					}
+				}
+			}
+			lvl = dynamic_cast<Class*>(lvl->super());
+		}
+		while(lvl != NULL && recursive);
+		
+		/* Build return */
+		int row;
+		
+		/* Name */
+		String *retName = new String(allSlots.size(), 1);
+		for(row = 0, it = allSlots.begin() ; it != allSlots.end() ; ++it, ++row)
+		{
+			retName->string_set(row, 0, it->first.c_str());
+		}
+		out.push_back(retName);
+		
+		/* Type */
+		if(retCount > 1)
+		{
+			String *retType = new String(allSlots.size(), 1);
+			for(row = 0, it = allSlots.begin() ; it != allSlots.end() ; ++it, ++row)
+			{
+				if(dynamic_cast<PropertySlot*>(&it->second))
+				{
+					retType->string_set(row, 0, "property");
+				}
+				else
+				{
+					retType->string_set(row, 0, "method");
+				}
+			}
+			out.push_back(retType);
+		}
+		
+		/* Visibility */
+		if(retCount > 2)
+		{
+			String *retVisibility = new String(allSlots.size(), 1);
+			for(row = 0, it = allSlots.begin() ; it != allSlots.end() ; ++it, ++row)
+			{
+				switch(it->second.visibility)
+				{
+					case Slot::PUBLIC:
+						retVisibility->string_set(row, 0, "public");
+						break;
+					case Slot::PROTECTED:
+						retVisibility->string_set(row, 0, "protected");
+						break;
+					case Slot::PRIVATE:
+						retVisibility->string_set(row, 0, "private");
+						break;
+					default:;
+				}
+			}
+			out.push_back(retVisibility);
+		}
+		
+		return Callable::OK;
 	}
 }

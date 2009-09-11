@@ -275,7 +275,9 @@ namespace types
 		}
 		
 		if(retCount == 0 || retCount > 3)
+		{
 			return Callable::Error;
+		}
 		
 		/* Recursive ? */
 		bool recursive = true;

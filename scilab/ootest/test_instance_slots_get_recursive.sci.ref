@@ -1,0 +1,96 @@
+message = 
+
+Expected result:
+
+yop
+message = 
+
+%constructor method public
+
+yop
+message = 
+
+a method public
+
+yop
+message = 
+
+b method protected
+
+yop
+message = 
+
+c method private
+
+yop
+message = 
+
+x property public
+
+yop
+message = 
+
+y property protected
+
+yop
+message = 
+
+z property private
+
+yop
+message = 
+
+------- Running test -----------
+
+yop
+iMaxLen : 11
+V = 
+
+!public     !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+
+iMaxLen : 10
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+iMaxLen : 14
+N = 
+
+!%constructor  !
+!              !
+!a             !
+!              !
+!b             !
+!              !
+!c             !
+!              !
+!x             !
+!              !
+!y             !
+!              !
+!z             !
+
