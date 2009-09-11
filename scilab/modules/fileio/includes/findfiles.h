@@ -13,6 +13,8 @@
 #ifndef __FINDFILES_H__
 #define __FINDFILES_H__
 
+#include "dynlib_fileio.h"
+
 /** 
 * Finding all files in a directory with a given filespec
 * @param path example : "c:\"
@@ -21,7 +23,7 @@
 * @return all the files except '.' & '..'
 */
 
-char **findfiles(char *path,char *filespec,int *sizeListReturned);
+FILEIO_IMPEXP char **findfiles(char *path,char *filespec,int *sizeListReturned);
 
 #endif /* __FINDFILES_H__ */
 /*--------------------------------------------------------------------------*/ 

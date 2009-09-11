@@ -49,7 +49,7 @@ str1+str2</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [1,2]+1
 []+2
 s=poly(0,"s");

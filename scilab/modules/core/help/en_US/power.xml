@@ -66,8 +66,7 @@ t=A.^b</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=[1 2;3 4];
 A^2.5,
 A.^2.5
@@ -76,8 +75,7 @@ A.^2.5
 
 s=poly(0,'s')
 s^(1:10)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

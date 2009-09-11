@@ -81,8 +81,7 @@ xclip("clipgrf")</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=0:0.2:2*%pi;
 x1=[sin(x);100*sin(x)];
 y1=[cos(x);100*cos(x)];
@@ -105,8 +104,7 @@ e.clip_state='clipgrf';
 xclip("clipgrf")
 // removendo recorte
 e.clip_state='off';
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

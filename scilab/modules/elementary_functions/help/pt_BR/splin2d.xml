@@ -79,13 +79,13 @@
     x(i+1)]x[y(j) y(j+1)]</emphasis>, <emphasis>s</emphasis> é definido por
     :</para>
 
-    <programlisting>
+    <programlisting role = ""><![CDATA[ 
              _4_   _4_                       
              \     \                   k-1       l-1
     s(x,y) = /     /    C (k,l) (x - xi)  (y - yj)
              ---   ---   ij
              k=1   l=1
-          </programlisting>
+ ]]></programlisting>
 
     <para>A avaliação de s em alguns pontos deve ser feita pela função <link
     linkend="interp2d">interp2d</link> Vários tipos de splines podem ser
@@ -152,7 +152,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1 : interpolação de cos(x)cos(y)
 n = 7;  // um grid regular com n x n pontos de interpolação
         // será usado
@@ -185,17 +185,17 @@ ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
 xset("colormap", jetcolormap(64))
 xbasc()
 subplot(2,2,1)
-   plot3d1(xp, yp, ZP1, flag=[2 2 4])
-   xtitle("not_a_knot")
+plot3d1(xp, yp, ZP1, flag=[2 2 4])
+xtitle("not_a_knot")
 subplot(2,2,2)
-   plot3d1(xp, yp, ZP2, flag=[2 2 4])
-   xtitle("bilinear interpolation")
+plot3d1(xp, yp, ZP2, flag=[2 2 4])
+xtitle("bilinear interpolation")
 subplot(2,2,3)
-   plot3d1(xp, yp, ZP3, flag=[2 2 4])
-   xtitle("natural")
+plot3d1(xp, yp, ZP3, flag=[2 2 4])
+xtitle("natural")
 subplot(2,2,4)
-   plot3d1(xp, yp, ZP4, flag=[2 2 4])
-   xtitle("monotone")
+plot3d1(xp, yp, ZP4, flag=[2 2 4])
+xtitle("monotone")
 xselect()
 
 // exemplo 3 : spline not_a_knot e sub-spline monotone
@@ -216,12 +216,12 @@ zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
 xbasc()
 xset("colormap",jetcolormap(128))
 subplot(1,2,1)
-   plot3d1(xp, xp, zp1, flag=[-2 6 4])
-   xtitle("spline (not_a_knot)")
+plot3d1(xp, xp, zp1, flag=[-2 6 4])
+xtitle("spline (not_a_knot)")
 subplot(1,2,2)
-   plot3d1(xp, xp, zp2, flag=[-2 6 4])
-   xtitle("subspline (monotone)")
- </programlisting>
+plot3d1(xp, xp, zp2, flag=[-2 6 4])
+xtitle("subspline (monotone)")
+ ]]></programlisting>
   </refsection>
 
   <refsection>

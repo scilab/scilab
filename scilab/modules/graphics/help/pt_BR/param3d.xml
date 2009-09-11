@@ -266,8 +266,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 t=0:0.1:5*%pi;
 param3d(sin(t),cos(t),t/10,35,45,"X@Y@Z",[2,3])
 
@@ -277,7 +276,7 @@ e.foreground=color('red');
 
 a=gca(); //o manipulador para os eixos
 a.rotation_angles=[10 70];
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

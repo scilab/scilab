@@ -26,17 +26,17 @@
     <title>Description</title>
     <para> This is an obsolete function, replaced by <link linkend="make_graph">make_graph</link> </para>
     <para><literal>glist(a1,....a34)</literal> is a shortcut to  to </para>
-    <programlisting><![CDATA[
-       tlist(['graph','name','directed','node_number','tail','head',..
-              'node_name','node_type','node_x','node_y','node_color',..
-              'node_diam','node_border','node_font_size','node_demand',..
-              'edge_name','edge_color','edge_width','edge_hi_width',..
-              'edge_font_size','edge_length','edge_cost',..
-              'edge_min_cap','edge_max_cap','edge_q_weight','edge_q_orig',..
-              'edge_weight','default_node_diam','default_node_border',..
-              'default_edge_width','default_edge_hi_width',..
-              'default_font_size','node_label','edge_label'],a1, ... ,a34)
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+tlist(['graph','name','directed','node_number','tail','head',..
+       'node_name','node_type','node_x','node_y','node_color',..
+       'node_diam','node_border','node_font_size','node_demand',..
+       'edge_name','edge_color','edge_width','edge_hi_width',..
+       'edge_font_size','edge_length','edge_cost',..
+       'edge_min_cap','edge_max_cap','edge_q_weight','edge_q_orig',..
+       'edge_weight','default_node_diam','default_node_border',..
+       'default_edge_width','default_edge_hi_width',..
+       'default_font_size','node_label','edge_label'],a1, ... ,a34)
+ ]]></programlisting>
     <para>
     It is a low level function to create graph lists, mainly used by programmers. 
     No checking is done.

@@ -124,7 +124,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 //Scilab function case
 function y=f(x),y=x*sin(30*x)/sqrt(1-((x/(2*%pi))^2)),endfunction
 exact=-2.5432596188;
@@ -159,7 +159,7 @@ abs(exact-I)
 
 // C code case (C compiler required)
 // write down the C code
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
    'double cfun(double *x)'
    '{'
    '  double y,pi=3.14159265358979312;'
@@ -177,7 +177,7 @@ link(l,'cfun','c')
 //integrate the function
 I=intg(0,2*%pi,'cfun')
 abs(exact-I)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

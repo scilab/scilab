@@ -56,8 +56,7 @@ global nam1 ... namn</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //primeiro: o ambiente de chamamento e uma função compartilham uma variável
 global a
 a=1
@@ -71,9 +70,7 @@ deff('letsgo1()','global C ;disp(C)')
 initdata()
 letsgo()
 letsgo1()
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

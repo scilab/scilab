@@ -46,9 +46,9 @@
 Construit une liste "outtb" initialisée.
 
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [outtb]=buildouttb(lnksz,lnktyp)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_buildouttb">
     <title>Paramètres</title>

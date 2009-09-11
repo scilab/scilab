@@ -15,6 +15,7 @@
 #ifndef __TERMPRINTF_WINDOWS_H__
 #define __TERMPRINTF_WINDOWS_H__
 
+
 /**
 * Print a buffer in windows terminal (dos box)
 * @param[in] a string to disp

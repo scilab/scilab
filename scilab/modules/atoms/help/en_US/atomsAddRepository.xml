@@ -82,11 +82,11 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 atomsRepositoryList()
 atomsRepositoryAdd(["http://www.repository1.com";"http://www.repository1.com"
 atomsRepositoryList()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

@@ -63,16 +63,14 @@ res=getmd5(ParamString,'string')</synopsis>
   <refsection>
     <title> Exemplos </title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 getmd5('ola mundo','string')
 getmd5(['ola' 'mundo'],'string')
 getmd5(['ola' ; 'mundo'],'string')
 
 getmd5( SCI+'/modules/core/etc/core.start' )
 getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

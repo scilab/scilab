@@ -60,8 +60,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(2,3);
 ndims(A)
 
@@ -70,8 +69,7 @@ size(A),ndims(A)
 
 H=[1/%s,1/(%s+1)]
 ndims(H)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -309,7 +309,7 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // simple plot using z=f(x,y) 
 t=[0:0.3:2*%pi]';
 z=sin(t)*cos(t');
@@ -329,8 +329,8 @@ clf()
 plot3d(1:10,1:20,10*rand(10,20),alpha=35,theta=45,flag=[2,2,3]) 
 // plot of a sphere using facets computed by eval3dp 
 deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";.. 
- "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";.. 
- "z=r*sin(alp)+orig(3)*ones(tet)"]); 
+     "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";.. 
+     "z=r*sin(alp)+orig(3)*ones(tet)"]); 
 r=1; orig=[0 0 0]; 
 [xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20)); 
 clf();plot3d(xx,yy,zz) 
@@ -379,12 +379,11 @@ c=[1:400,1:400];
 TL.color = [c;c+1;c+2;c+3];
 h.data = TL;
 h.color_flag=3; // interpolated shading mode
-
-]]></programlisting>
+ ]]></programlisting>
 
     <para>We can also use the plot3d function to plot a set of patches (triangular, quadrangular, etc). </para>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
  
 // The plot3d function to draw patches:
 // patch(x,y,[z])
@@ -499,8 +498,7 @@ plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor_byface));
 h = gcf();
 h.children(1).background = 1;
 xtitle('A standard rabbit set of patches');
- 
-]]></programlisting>
+ ]]></programlisting>
     <para> The result of the preceding example: </para>
     <para> <imagedata fileref="../images/plot3d_patch.png" /> </para>
   </refsection>

@@ -48,7 +48,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 X1=rand(5,2);X2=rand(5,3);
 P=proj(X1,X2);
 norm(P^2-P,1)

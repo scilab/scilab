@@ -11,7 +11,7 @@
  *
  */
 
-#include "sci_xs2svg.h"
+#include "gw_graphic_export.h"
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/

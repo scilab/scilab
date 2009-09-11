@@ -92,11 +92,9 @@ Isp=speye(A)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 eye(3,3)-full(speye(3,3))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

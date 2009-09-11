@@ -47,12 +47,13 @@ state1=console()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[consolebox('off')
+    <programlisting role="example"><![CDATA[ 
+consolebox('off')
 state=consolebox()
 consolebox()
 consolebox('toggle')
 consolebox('toggle')
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

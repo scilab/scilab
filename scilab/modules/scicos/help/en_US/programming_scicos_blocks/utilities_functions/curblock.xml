@@ -35,9 +35,9 @@
         </para>
       </listitem>
     </itemizedlist>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 blk=curblock()
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_curblock">
     <title>Parameters</title>

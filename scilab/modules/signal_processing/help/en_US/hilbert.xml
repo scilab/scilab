@@ -54,20 +54,16 @@
     </simplelist>
   </refsection>
   <refsection><title>Examples</title>
-  <programlisting role="example"><![CDATA[
-
-
-
-  //compare the discrete-time analytic signal imaginary part of the impulse real signal 
-  // with the FIR approximation of the Hilbert transform filter
-  m=25;
-  n=2*m+1;
-  y=hilbert(eye(n,1));
-  h=hilb(n)';
-  h=[h((m+1):$);h(1:m)];
-  plot([imag(y) h])
- 
-  ]]></programlisting></refsection>
+  <programlisting role="example"><![CDATA[ 
+//compare the discrete-time analytic signal imaginary part of the impulse real signal 
+// with the FIR approximation of the Hilbert transform filter
+m=25;
+n=2*m+1;
+y=hilbert(eye(n,1));
+h=hilb(n)';
+h=[h((m+1):$);h(1:m)];
+plot([imag(y) h])
+ ]]></programlisting></refsection>
   <refsection>
 <title>Authors</title>
   <para>C. B.  </para></refsection>

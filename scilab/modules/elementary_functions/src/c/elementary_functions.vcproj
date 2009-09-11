@@ -599,10 +599,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\sortTemplate.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\unsfdcopy.c"
 				>
 				<FileConfiguration
@@ -711,10 +707,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_tools.h"
-				>
-			</File>
-			<File
-				RelativePath=".\sortTemplate.h"
 				>
 			</File>
 			<File

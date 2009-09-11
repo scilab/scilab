@@ -133,7 +133,6 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	int *TypesNumbers = NULL;
 	
 	int m_out1 = 0, n_out1 = 0;
-	int *piAddressOut1 = NULL;
 	
 	TypesNumbers = getAllTypesNumber(&numberOfTypes);
 	m_out1 = numberOfTypes;

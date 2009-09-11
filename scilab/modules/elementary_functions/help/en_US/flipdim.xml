@@ -76,7 +76,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // example 1: flip x components along the first dimension
 x=[1 2 3 4; 5 6 7 8];
 dim=1;
@@ -90,7 +90,7 @@ y=flipdim(x,dim)
 x=matrix(1:48,[3 2,4,2]);
 dim=3;
 y=flipdim(x,dim)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

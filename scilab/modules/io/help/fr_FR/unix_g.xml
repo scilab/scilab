@@ -95,8 +95,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 function d=DIR(path)
  path=pathconvert(path,%t,%t)
  if MSDOS then
@@ -106,7 +105,8 @@ function d=DIR(path)
  end
 endfunction
 
-DIR('SCI/etc')</programlisting>
+DIR('SCI/etc')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

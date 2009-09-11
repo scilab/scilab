@@ -65,31 +65,29 @@ unzoom(H)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    clf()
-    x=0:0.01:6*%pi;
-    plot2d(x,sin(x^2))
-    zoom_rect([16,-1,18,1])
-    unzoom()
+    <programlisting role="example"><![CDATA[ 
+clf()
+x=0:0.01:6*%pi;
+plot2d(x,sin(x^2))
+zoom_rect([16,-1,18,1])
+unzoom()
 
-
-    //aplicação a subesboços
-    clf()
-    x=0:0.01:6*%pi;
-    subplot(211)
-    plot2d(x,cos(x))
-    a1=gca();
-    subplot(212)
-    plot2d(x,cos(2*x))
-    a2=gca();
-    rect=[3 -2 7 10]; // um retângulo especificado nos eixos correntes (os últimos)
-    zoom_rect(rect) 
-    unzoom(a1) // diminuição de ampliação aplicado ao primeiro esboço apenas
-    unzoom(a2) // diminuição de ampliação aplicado ao segundo esboço apenas
-    zoom_rect(rect) // aplicando ampliação de novo
-    unzoom(gcf()) // diminuição de ampliação aplicada a todos os eixos, equivalente a unzoom()
-
-</programlisting>
+//aplicação a subesboços
+clf()
+x=0:0.01:6*%pi;
+subplot(211)
+plot2d(x,cos(x))
+a1=gca();
+subplot(212)
+plot2d(x,cos(2*x))
+a2=gca();
+rect=[3 -2 7 10]; // um retângulo especificado nos eixos correntes (os últimos)
+zoom_rect(rect) 
+unzoom(a1) // diminuição de ampliação aplicado ao primeiro esboço apenas
+unzoom(a2) // diminuição de ampliação aplicado ao segundo esboço apenas
+zoom_rect(rect) // aplicando ampliação de novo
+unzoom(gcf()) // diminuição de ampliação aplicada a todos os eixos, equivalente a unzoom()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

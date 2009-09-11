@@ -38,6 +38,7 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/functions/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
@@ -79,6 +80,7 @@ libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h \
 includes/getCommonPart.h \
 includes/getPartLine.h \
+includes/dynlib_completion.h \
 includes/completeLine.h
 
 #### completion : test file ####

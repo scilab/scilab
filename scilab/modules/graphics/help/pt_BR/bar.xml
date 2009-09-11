@@ -133,7 +133,7 @@ bar([h],x,y [,width [,color [,style]]])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // primeiro exemplo: desenhando uma barra (i.e uma poligonal com polyline_style =6) com
 // width=0.5 e color='yellow' e style='grouped', x=1:length(y).
 scf(0);
@@ -154,7 +154,7 @@ bar(x,y,'stacked');
 scf(3);
 x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
 bar(x,y,0.2,'green');
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

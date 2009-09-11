@@ -55,13 +55,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 isglobal(1)
 global a
 isglobal(a)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

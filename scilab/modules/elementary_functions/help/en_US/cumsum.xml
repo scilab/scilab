@@ -83,7 +83,7 @@ y=cumsum(x,'c') or y=cumsum(x,2)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 
 cumsum(A)
@@ -98,7 +98,7 @@ for k=2:m;
   w(k,:)=w(k-1,:)+a(k,:);
 end;
 w-cumsum(a,'r')
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -72,17 +72,17 @@ ilib_verbose(level)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 if haveacompiler() then
   cur_verbose = ilib_verbose();
   ilib_verbose(0);
 
   chdir(TMPDIR);
   f1=['int ext1c(int *n, double *a, double *b, double *c)'
-    '{int k;'
-    '  for (k = 0; k &lt; *n; ++k) '
-    '      c[k] = a[k] + b[k];'
-    '  return(0);}'];
+      '{int k;'
+      '  for (k = 0; k &lt; *n; ++k) '
+      '      c[k] = a[k] + b[k];'
+      '  return(0);}'];
 
   mputl(f1,'fun1.c');
 
@@ -97,10 +97,10 @@ if haveacompiler() then
   ilib_verbose(1);
 
   f2=['int ext2c(int *n, double *a, double *b, double *c)'
-    '{int k;'
-    '  for (k = 0; k &lt; *n; ++k) '
-    '      c[k] = a[k] + b[k];'
-    '  return(0);}'];
+      '{int k;'
+      '  for (k = 0; k &lt; *n; ++k) '
+      '      c[k] = a[k] + b[k];'
+      '  return(0);}'];
 
   mputl(f2,'fun2.c');
 
@@ -115,8 +115,7 @@ if haveacompiler() then
   ilib_verbose(cur_verbose);
 
 end
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

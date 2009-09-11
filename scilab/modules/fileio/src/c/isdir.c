@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,29 +37,38 @@ BOOL isdir(const char * path)
 	if (path == NULL) return FALSE;
 	if (stat(path, &buf) == 0 && S_ISDIR(buf.st_mode)) bOK=TRUE;
 #else
-	if (isDrive(path)) return TRUE;
+	wchar_t *wcpath = to_wide_string((char*)path);
+	if (wcpath == NULL) return FALSE;
+	bOK = isdirW(wcpath);
+	FREE(wcpath);
+#endif
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+BOOL isdirW(const wchar_t * wcpath)
+{
+	BOOL bOK = FALSE;
+#ifndef _MSC_VER
+	struct stat buf;
+	char *path = wide_string_to_UTF8(wcpath);
+	if (path == NULL) return FALSE;
+	bOK = isdir(path);
+	FREE(path);
+#else
+	if (isDriveW(wcpath)) return TRUE;
 	else
 	{
-		char *pathTmp = strdup(path);
-		
-		if (pathTmp)
+		DWORD attr = 0;
+		wchar_t *tmpPath = wstrdup(wcpath);
+
+		if ( (tmpPath[wcslen(tmpPath) - 1] == L'\\') || (tmpPath[wcslen(tmpPath) - 1] == L'/') )
 		{
-			wchar_t *pwTemp = NULL;
-			DWORD attr = 0;
-
-			if ( (pathTmp[strlen(pathTmp)-1]=='\\') || (pathTmp[strlen(pathTmp)-1]=='/') )
-			{
-				pathTmp[strlen(pathTmp)-1]='\0';
-			}
-
-			pwTemp = to_wide_string(pathTmp);
-			attr = GetFileAttributesW(pwTemp);
-			FREE(pathTmp); pathTmp = NULL;
-			FREE(pwTemp); pathTmp = NULL;
-
-			if (attr == INVALID_FILE_ATTRIBUTES) return FALSE;
-			return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? TRUE : FALSE;
+			tmpPath[wcslen(tmpPath) - 1] = L'\0';
 		}
+		attr = GetFileAttributesW(tmpPath);
+		FREE(tmpPath);
+		if (attr == INVALID_FILE_ATTRIBUTES) return FALSE;
+		return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? TRUE : FALSE;
 	}
 #endif
 	return bOK;

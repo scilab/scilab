@@ -92,13 +92,13 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 55  */ {gw_history_manager},
 	/* 56  */ {gw_dynamic_spreadsheet},
 	/* 57  */ {gw_graphic_export},
-    /* 58  */ {gw_dynamic_umfpack},
+	/* 58  */ {gw_dynamic_umfpack},
 	/* 59  */ {gw_dynamic_matio},
 	/* 60  */ {gw_dynamic_helptools},
 	/* 61  */ {gw_call_scilab},
 	/* 62  */ {gw_hdf5},
-	/* 63  */ {gw_user}, /* xpad (to replace by "{gw_dynamic_xpad}," )*/
-	/* 60  */ {gw_dynamic_xcos}
+	/* 63  */ {gw_dynamic_xpad},
+	/* 64  */ {gw_dynamic_xcos}
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;

@@ -54,7 +54,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d([-100,500],[-50,50],[-1,-1],"022")
 cols=[-34,-33,-32,-20:5:20,32,33,34];
 x=400*(0:14)/14; step=20;

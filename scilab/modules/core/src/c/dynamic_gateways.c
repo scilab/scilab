@@ -268,5 +268,20 @@ int gw_dynamic_xcos(void)
 		&gatewayname_xcos,
 		&hXcosLib,
 		&ptr_gw_xcos);
+/*--------------------------------------------------------------------------*/
+/* xpad module */
+#define XPAD_MODULE_NAME "xpad"
+static DynLibHandle hXpadLib = NULL;
+static PROC_GATEWAY ptr_gw_xpad = NULL;
+static char* dynlibname_xpad = NULL;
+static char* gatewayname_xpad = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_xpad(void)
+{
+	return gw_dynamic_generic(XPAD_MODULE_NAME,
+		&dynlibname_xpad,
+		&gatewayname_xpad,
+		&hXpadLib,
+		&ptr_gw_xpad);
 }
 /*--------------------------------------------------------------------------*/

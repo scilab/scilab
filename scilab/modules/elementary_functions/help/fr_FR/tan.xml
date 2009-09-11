@@ -46,11 +46,11 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[1,%i,-1,-%i]
 tan(x)
 sin(x)./cos(x)
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

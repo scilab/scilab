@@ -57,11 +57,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 derivat(1/s)  // -1/s^2;
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

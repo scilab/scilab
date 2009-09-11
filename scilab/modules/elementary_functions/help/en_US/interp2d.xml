@@ -130,10 +130,10 @@
         <listitem>
           <para>the extrapolation is defined as follows :</para>
 
-          <programlisting> 
+          <programlisting role = ""><![CDATA[ 
 s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
                       of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
-         </programlisting>
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -159,7 +159,7 @@ s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // see the examples of splin2d
 
 // this example shows some different extrapolation features
@@ -179,19 +179,19 @@ zz3 = interp2d(XX,YY, x, y, C, "periodic");
 zz4 = interp2d(XX,YY, x, y, C, "natural");
 xbasc()
 subplot(2,2,1)
-  plot3d(xx, yy, zz1, flag=[2 6 4])
-  xtitle("extrapolation with the C0 outmode")
+plot3d(xx, yy, zz1, flag=[2 6 4])
+xtitle("extrapolation with the C0 outmode")
 subplot(2,2,2)
-  plot3d(xx, yy, zz2, flag=[2 6 4])
-  xtitle("extrapolation with the by_zero outmode")
+plot3d(xx, yy, zz2, flag=[2 6 4])
+xtitle("extrapolation with the by_zero outmode")
 subplot(2,2,3)
-  plot3d(xx, yy, zz3, flag=[2 6 4])
-  xtitle("extrapolation with the periodic outmode")
+plot3d(xx, yy, zz3, flag=[2 6 4])
+xtitle("extrapolation with the periodic outmode")
 subplot(2,2,4)
-  plot3d(xx, yy, zz4, flag=[2 6 4])
-  xtitle("extrapolation with the natural outmode")
+plot3d(xx, yy, zz4, flag=[2 6 4])
+xtitle("extrapolation with the natural outmode")
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -63,26 +63,22 @@
     The <literal>dim</literal> first columns of <literal>X</literal> make a basis for <literal>A+B</literal>.</para>
     <para>
     One has the following canonical form for <literal>[A,B]</literal>:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
          [*,*]    (dima rows)
 X'*[A,B]=[0,*]    (dim-dima rows)
          [0,0]    
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para><literal>tol</literal> is an optional argument (see function code).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(6,2)*rand(2,5);      // rank(A)=2
 B=[A(:,1),rand(6,2)]*rand(3,3);   //two additional independent vectors
 [X,dim,dimA]=spanplus(A,B);
 dimA
 dim
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

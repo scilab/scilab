@@ -109,13 +109,11 @@ y=ones()</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 ones(3)
 ones(3,3)
 ones(2,3,2)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

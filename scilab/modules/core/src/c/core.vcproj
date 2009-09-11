@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -527,14 +527,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\librarieslist.c"
-				>
-			</File>
-			<File
-				RelativePath=".\libraryinfo.c"
-				>
-			</File>
-			<File
 				RelativePath=".\LoadFunctionsTab.c"
 				>
 			</File>
@@ -735,14 +727,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_librarieslist.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_libraryinfo.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_macr2lst.c"
 				>
 			</File>
@@ -808,10 +792,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_where.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_whereis.c"
 				>
 			</File>
 			<File
@@ -1113,10 +1093,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\LaunchScilabSignal.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\librarieslist.h"
 				>
 			</File>
 			<File

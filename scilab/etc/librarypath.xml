@@ -26,6 +26,7 @@
 <path value="$SCILAB/modules/localization/.libs"/>
 <path value="$SCILAB/modules/renderer/.libs"/>
 <path value="$SCILAB/modules/graphic_export/.libs"/>
+<path value="$SCILAB/modules/xpad/.libs"/>
 <path value="$SCILAB/.libs"/>
 
 <!-- Default path to the JNI classes under some Linux (JoGL under Debian for example) -->

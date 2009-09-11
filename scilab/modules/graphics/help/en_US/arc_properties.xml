@@ -218,20 +218,19 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-   a=get("current_axes");//get the handle of the newly created axes
-   a.data_bounds=[-2,-2;2,2];
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-2,-2;2,2];
 
-   xarc(-1.5,1.5,3,3,0,360*64)
+xarc(-1.5,1.5,3,3,0,360*64)
 
-   arc=get("hdl"); //get handle on current entity (here the arc entity)
-   arc.fill_mode="on";
-   arc.foreground=5;
-   arc.data(:,[3 6])=[2 270*64];  
-   xfarc(-.5,1,.4,.6,0,360*64);
-   arc.visible="off";
-
- </programlisting>
+arc=get("hdl"); //get handle on current entity (here the arc entity)
+arc.fill_mode="on";
+arc.foreground=5;
+arc.data(:,[3 6])=[2 270*64];  
+xfarc(-.5,1,.4,.6,0,360*64);
+arc.visible="off";
+ ]]></programlisting>
   </refsection>
 
   <refsection>

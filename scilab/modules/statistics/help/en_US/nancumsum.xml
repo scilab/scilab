@@ -81,15 +81,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a=[1 2 3;4 5 6]
 s=nancumsum(a)
 s=nancumsum(a,'r')
 s=nancumsum(a,'c')
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

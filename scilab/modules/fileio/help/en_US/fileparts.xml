@@ -75,12 +75,10 @@ v=fileparts(fullpath,sel)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-   [path,fname,extension]=fileparts('SCI/etc/scilab.start')
-   fileparts('SCI/etc/scilab.start','extension')
-  
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+[path,fname,extension]=fileparts('SCI/etc/scilab.start')
+fileparts('SCI/etc/scilab.start','extension')
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

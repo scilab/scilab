@@ -9,8 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "machine.h" /* C2F */
-#include "BOOL.h" 
+#include "gw_umfpack.h"
+#include "with_umfpack.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 

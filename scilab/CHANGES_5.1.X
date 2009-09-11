@@ -12,6 +12,8 @@ Improvements:
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
+* Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
 Functions removed:
 ==================
 
@@ -66,6 +68,11 @@ Compilation:
 
 * automake version changed (1.10.1 => 1.10.2)
 
+* autoconf version changed (2.63 => 2.64)
+
+* Fix a bug in the configure with autoconf 2.64
+
+
 Source reorganisation:
 ======================
 
@@ -84,6 +91,9 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* In the documentation, the font size of the equations has been increased 
+  for a better readability.
+
 * Documentation and examples about call_scilab (BooleanManagement call_scilab
   compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
   cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement
@@ -97,6 +107,9 @@ Help & Tests:
 Bug fixes:
 ==========
  * bug 336  fixed - pspect and cspec help pages improved
+
+ * bug 667  fixed - scilab.start-file causes an initialization error when you 
+                    use predef('all') in a user startup file.
 
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
@@ -236,6 +249,17 @@ Bug fixes:
  * bug 4709 fixed - The set function with 2 parameters and no handles makes Scilab hangs
 
  * bug 4710 fixed - Error with C++ interface which uses the function CreateVar.
+
+ * bug 4750 fixed - Error boolean catenation
+
+ * bug 4752 fixed - ci2exp produces erroneous code when applied to boolean matrices (; are missing)
+
+ * bug 4712 fixed - by GUI handle affectation produce an error.
+
+ * bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong.
+
+ * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
+
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
@@ -527,6 +551,7 @@ Bug fixes:
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
+* bug 4771 fixed - the configure did not stop when jhall (javahelp) or looks were not available on the system
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -1012,6 +1037,8 @@ Bug fixes:
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
+
+* bug 4761 fixed - memory leak in grep and regexp.
 
 * Side effect in the setenvc function.
 

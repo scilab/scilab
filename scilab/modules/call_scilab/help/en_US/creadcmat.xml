@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 /* Load the previously set variable B */
 // See: modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
 int rowB_ = 0, colB_ = 0, lp_ = 0;

@@ -42,27 +42,25 @@ f = gdf(); set(f,"default_values",1)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   
-   x=[0:0.1:2*%pi]';
-   f=get("default_figure"); // get the handle of the model figure 
-   a=get("default_axes"); // get the handle of the model axes 
-     // setting its' properties
-   f.background=4;
-   f.auto_resize="off";
-   f.figure_size=[400 300];
-   f.axes_size=[600 400];
-   f.figure_position=[0 -1];
-   a.x_location="top";
-   a.y_location="left";
-   for (i=1:6)
-     xset("window",i) // create a figure with the identifier i
-     plot2d(x,[sin(x) cos(x)],[i -i])
-     xclick();
-     if i == 4, sdf(); end // return to the  default values of the figure's model
-    end
-    
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+x=[0:0.1:2*%pi]';
+f=get("default_figure"); // get the handle of the model figure 
+a=get("default_axes");   // get the handle of the model axes 
+                         // setting its' properties
+f.background=4;
+f.auto_resize="off";
+f.figure_size=[400 300];
+f.axes_size=[600 400];
+f.figure_position=[0 -1];
+a.x_location="top";
+a.y_location="left";
+for (i=1:6)
+  xset("window",i) // create a figure with the identifier i
+  plot2d(x,[sin(x) cos(x)],[i -i])
+  xclick();
+  if i == 4, sdf(); end // return to the  default values of the figure's model
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

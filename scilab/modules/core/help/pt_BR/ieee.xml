@@ -87,12 +87,10 @@ ieee(mod)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 ieee(1);1/0
 ieee(2);1/0,log(0)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

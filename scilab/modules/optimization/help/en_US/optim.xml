@@ -226,9 +226,9 @@
               set the nizs, nrzs and ndzs integer parameters of the "nird"
               common.</para>
 
-              <programlisting>      
+              <programlisting role = ""><![CDATA[ 
 common /nird/ nizs,nrzs,ndzs
-    </programlisting>
+ ]]></programlisting>
 
               <para>This allows Scilab to allocate memory inside its internal
               workspace. The second time the objective function is called, ind
@@ -342,9 +342,9 @@ common /nird/ nizs,nrzs,ndzs
     <para>Non-linear optimization routine for programs without constraints or
     with bound constraints:</para>
 
-    <programlisting>      
+    <programlisting role = ""><![CDATA[ 
 min costf(x) w.r.t x.
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>costf</literal> is an "external" i.e a Scilab function, a
     list or a string giving the name of a C or Fortran routine (see
@@ -361,9 +361,9 @@ min costf(x) w.r.t x.
           <para>If <literal>costf</literal> is a Scilab function, the calling
           sequence for <literal>costf</literal> must be:</para>
 
-          <programlisting>     
+          <programlisting role = ""><![CDATA[ 
 [f,g,ind]=costf(x,ind)
-    </programlisting>
+ ]]></programlisting>
 
           <para>Here, <literal>costf</literal> is a function which returns
           <literal>f</literal>, value (real number) of cost function at
@@ -404,17 +404,17 @@ min costf(x) w.r.t x.
                 <para>The interface of the Fortran subroutine computing the
                 objective must be :</para>
 
-                <programlisting> 
+                <programlisting role = ""><![CDATA[ 
 subroutine costf(ind,n,x,f,g,ti,tr,td)
-    </programlisting>
+ ]]></programlisting>
 
                 <para>with the following declarations:</para>
 
-                <programlisting>      
+                <programlisting role = ""><![CDATA[ 
 integer ind,n ti(*)
 double precision x(n),f,g(n),td(*)
 real tr(*)
-    </programlisting>
+ ]]></programlisting>
 
                 <para>The argument <literal>ind</literal> is described
                 below.</para>
@@ -434,9 +434,9 @@ real tr(*)
                 <para>The interface of the C function computing the objective
                 must be :</para>
 
-                <programlisting>      
+                <programlisting role = ""><![CDATA[ 
 void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)
-    </programlisting>
+ ]]></programlisting>
 
                 <para>The argument <literal>ind</literal> is described
                 below.</para>
@@ -473,7 +473,7 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
     issues so that a direct optimization may be to use the value of "ind" to
     compute "f" and "g" only when needed.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // External function written in Scilab
 xref=[1;2;3];x0=[1;-1;1]
 deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
@@ -518,7 +518,7 @@ deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
 // Simplest call
 xref=[1;2;3];x0=[1;-1;1]
 [f,xopt]=optim(cost,x0)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -535,10 +535,10 @@ xref=[1;2;3];x0=[1;-1;1]
     arrays ti and td are the same that the content of the Scilab variable, as
     expected.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // External function written in C (C compiler required)
 // write down the C code (Rosenbrock problem)
-C=['#include &lt;math.h&gt;'
+C=['#include <math.h>'
    'double sq(double x)'
    '{ return x*x;}'
    'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
@@ -549,12 +549,12 @@ C=['#include &lt;math.h&gt;'
    '  p=td[0];'
    '  if (*ind==2||*ind==4) {'
    '    *f=1.0;'
-   '    for (i=1;i&lt;*n;i++)'
+   '    for (i=1;i<*n;i++)'
    '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
    '  }'
    '  if (*ind==3||*ind==4) {'
    '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
-   '    for (i=1;i&lt;*n-1;i++)'
+   '    for (i=1;i<*n-1;i++)'
    '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
    '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
    '  }'
@@ -571,7 +571,7 @@ link(l,'rosenc','c')
 x0=[40;10;50];
 p=100;
 [f,xo,go]=optim('rosenc',x0,'td',p)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -579,7 +579,7 @@ p=100;
 
     <para>The following is an example with a Fortran function.</para>
 
-    <programlisting role="example">    
+    <programlisting role="example"><![CDATA[ 
 // External function written in Fortran (Fortran compiler required)
 // write down the Fortran  code (Rosenbrock problem)
 F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
@@ -600,7 +600,7 @@ F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
     '        if(n.gt.2) then'
     '          do i=2,n-1'
     '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
-    '     &amp;           -2.0d0*(1.0d0-x(i))'
+    '     &           -2.0d0*(1.0d0-x(i))'
     '          enddo'
     '        endif'
     '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
@@ -620,7 +620,7 @@ link(l,'rosenf','f')
 x0=[40;10;50];
 p=100;
 [f,xo,go]=optim('rosenf',x0,'td',p)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -646,14 +646,14 @@ p=100;
     Whenever the objective function is called, the izs, rzs and dzs arrays
     have the values that have been previously initialized.</para>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // 
 // Define a fortran source code and compile it (fortran compiler required)
 //
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
                'C     -------------------------------------------'
                'c     Example of cost function given by a subroutine'
-               'c     if n&lt;=2 returns ind=0'
+               'c     if n<=2 returns ind=0'
                'c     f.bonnans, oct 86'
                '      implicit double precision (a-h,o-z)'
                '      real rzs(1)'
@@ -693,7 +693,7 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
                '        ip1=i+1'
                '        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
                '30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
-               '     &amp;        2.0d+0*(1.0d+0-x(i))'
+               '     &        2.0d+0*(1.0d+0-x(i))'
                '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
                '      return'
                '      end'];
@@ -710,7 +710,7 @@ x0=1.2*ones(1,5);
 // Solve the problem
 //
 [f,x,g]=optim('rosenf',x0,'in');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -731,18 +731,18 @@ x0=1.2*ones(1,5);
     instructions, which allows the compiler to import the "nird"
     symbol.</para>
 
-    <programlisting role="example">    
+    <programlisting role="example"><![CDATA[ 
 fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
                'cDEC$ IF DEFINED (FORDLL)'
                'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
                'cDEC$ ENDIF'
                'C     -------------------------------------------'
                'c     Example of cost function given by a subroutine'
-               'c     if n&lt;=2 returns ind=0'
+               'c     if n<=2 returns ind=0'
                'c     f.bonnans, oct 86'
                '      implicit double precision (a-h,o-z)'
 [etc...]
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -752,8 +752,6 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
       <member><link linkend="external">external</link></member>
 
       <member><link linkend="qpsolve">qpsolve</link></member>
-
-      <member><link linkend="linpro">linpro</link></member>
 
       <member><link linkend="datafit">datafit</link></member>
 

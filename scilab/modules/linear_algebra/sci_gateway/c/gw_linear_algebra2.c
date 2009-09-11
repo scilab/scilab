@@ -17,8 +17,8 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/ 
-#define LINEAR_ALGEBRA2_TAB_SIZE 15
-static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
+static gw_generic_table Tab[] = 
+{
 	{C2F(intqr),"qr"},
 	{C2F(intsvd),"svd"},
 	{C2F(intlsq),"lsq"},
@@ -38,7 +38,7 @@ static gw_generic_table Tab[LINEAR_ALGEBRA2_TAB_SIZE]={
 int gw_linear_algebra2(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,LINEAR_ALGEBRA2_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	if (Err <= 0 && C2F(errgst).err1 <= 0) C2F(putlhsvar)();
 	return 0;
 }

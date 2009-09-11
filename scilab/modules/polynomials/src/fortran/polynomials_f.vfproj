@@ -151,7 +151,6 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\wmpcnc.f"/>
 		<File RelativePath=".\wmpins.f"/>
 		<File RelativePath=".\wmpmu.f"/>
-		<File RelativePath=".\wmptld.f"/>
 		<File RelativePath=".\wmptra.f"/>
 		<File RelativePath=".\wpmul.f"/>
 		<File RelativePath=".\wpmul1.f"/>

@@ -12,6 +12,8 @@
 
 #ifndef __TERMINATETCLTK_H__
 #define __TERMINATETCLTK_H__
+
+#include "dynlib_tclsci.h"
 #include "BOOL.h"
 
 /**
@@ -19,7 +21,7 @@
  *
  * @return The result of the stop
  */
-BOOL TerminateTclTk(void);
+TCLSCI_IMPEXP BOOL TerminateTclTk(void);
 
 #endif /* _TERMINATETCLTK_H__ */
 /*--------------------------------------------------------------------------*/ 

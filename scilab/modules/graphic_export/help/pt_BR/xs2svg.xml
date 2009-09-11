@@ -76,13 +76,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"> 
-    scf(0)
-    plot2d()
-    //exportando para SVG
-    filename='foo.svg'
-    xs2svg(0,filename);
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+scf(0)
+plot2d()
+//exportando para SVG
+filename='foo.svg'
+xs2svg(0,filename);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

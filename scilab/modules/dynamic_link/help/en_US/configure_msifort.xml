@@ -60,8 +60,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">bOK = configure_msifort()
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+bOK = configure_msifort()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

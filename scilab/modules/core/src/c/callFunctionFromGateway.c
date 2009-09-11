@@ -38,7 +38,7 @@ void callFunctionFromGateway(gw_generic_table *Tab,int sizeTab)
 		ExceptionMessage(GetExceptionCode(),Tab[Fin-1].name);
 	}
 #else
-	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) ((char*)Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
 #endif
 #else
 	if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));

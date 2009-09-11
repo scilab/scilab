@@ -41,7 +41,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple DisableInteractiveMode example
  
 DisableInteractiveMode();

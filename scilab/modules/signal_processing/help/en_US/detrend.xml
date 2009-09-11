@@ -70,7 +70,7 @@ y = detrend(x,flag,bp)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // example #1
 t = linspace(0,16*%pi,1000)';
 x = -20 + t + 0.3*sin(0.5*t) + sin(t) + 2*sin(2*t) + 0.5*sin(3*t); 
@@ -88,7 +88,7 @@ xbasc()
 plot2d(t,[x y],style=[2 5])
 legend(["before detrend","after detrend"]);
 xgrid()
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

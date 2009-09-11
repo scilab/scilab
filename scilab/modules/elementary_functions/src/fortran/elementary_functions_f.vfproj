@@ -197,6 +197,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tril.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_triu.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_zeros.f"/>
+		<File RelativePath=".\sdot.f"/>
 		<File RelativePath="simple.f"/>
 		<File RelativePath="split.f"/>
 		<File RelativePath="urand.f"/>
@@ -226,7 +227,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="wmprod.f"/>
 		<File RelativePath="wmsum.f"/>
 		<File RelativePath="wmul.f"/>
-		<File RelativePath="wnrm2.f"/>
 		<File RelativePath="wrscal.f"/>
 		<File RelativePath="wscal.f"/>
 		<File RelativePath="wshrsl.f"/>

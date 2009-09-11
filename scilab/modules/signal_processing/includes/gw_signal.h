@@ -13,19 +13,20 @@
 #ifndef __GW_SIGNAL__
 #define __GW_SIGNAL__
 /*--------------------------------------------------------------------------*/
+#include "dynlib_signal_processing.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
-int gw_signal(void);
+SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ffir)(char *fname,unsigned long fname_len);
-int C2F(sci_fft)(char *fname,unsigned long fname_len);
-int C2F(sci_corr)(char *fname,unsigned long fname_len);
-int C2F(sci_fiir)(char *fname,unsigned long fname_len);
-int C2F(sci_rpem)(char *fname,unsigned long fname_len);
-int C2F(sci_amell)(char *fname,unsigned long fname_len);
-int C2F(sci_delip)(char *fname,unsigned long fname_len);
-int C2F(sci_remez)(char *fname,unsigned long fname_len);
-int C2F(sci_syredi)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_ffir)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_fft)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_corr)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_fiir)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_rpem)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_amell)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_delip)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_remez)(char *fname,unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_syredi)(char *fname,unsigned long fname_len);
 
 void dfft2 ( double* a , double* b , int nseg , int n , int nspn ,
              int isn , int ierr, int* iw , int lw );

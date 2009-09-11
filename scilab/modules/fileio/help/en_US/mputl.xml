@@ -79,16 +79,15 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
- fd = mopen(TMPDIR+'/text_mputl.txt','wt');
- mputl('Hello World',fd);
- mclose(fd);
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/text_mputl.txt','wt');
+mputl('Hello World',fd);
+mclose(fd);
 
- fd = mopen(TMPDIR+'/text_mputl.txt','rt');
- disp(mgetl(fd));
- mclose(fd);
-
-  </programlisting>
+fd = mopen(TMPDIR+'/text_mputl.txt','rt');
+disp(mgetl(fd));
+mclose(fd);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

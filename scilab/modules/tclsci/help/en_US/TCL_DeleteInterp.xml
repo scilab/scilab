@@ -41,7 +41,7 @@ TCL_DeleteInterp()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 TCL_SetVar("Scilab","OK")
 TCL_ExistVar("Scilab")
 TCL_DeleteInterp()
@@ -52,7 +52,7 @@ TCL_SetVar("Scilab","OK",'BisInterp')
 TCL_ExistVar("Scilab",'BisInterp')
 TCL_DeleteInterp('BisInterp')
 TCL_ExistInterp('BisInterp')
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

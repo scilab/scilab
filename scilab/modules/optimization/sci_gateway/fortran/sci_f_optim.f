@@ -476,7 +476,7 @@ c     izs et dzs en entree (chaine 'ti' et/ou 'td' suivie du tableau)
          endif
       endif
 c     
-c     mettre izs et/ou dzs en sortie (chaine 'si' ou 'sd')
+c     mettre ti = izs et/ou td = dzs en sortie (chaine 'si' ou 'sd')
       if(istk(il).ne.10) then
          err=top2-topin
          call error(55)

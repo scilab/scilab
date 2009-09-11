@@ -20,6 +20,13 @@
 int gw_dynamic_xcos(void);
 
 /**
+* xpad gateway
+* functions is loaded dynamically at runtime
+* load gw_functions in SCI/modules/xpad/sci_gateway/gw_xpad.c
+*/
+int gw_dynamic_xpad(void);
+
+/**
 * functions gateway
 * functions is loaded dynamically at runtime
 * load gw_functions in SCI/modules/functions/sci_gateway/gw_functions.c

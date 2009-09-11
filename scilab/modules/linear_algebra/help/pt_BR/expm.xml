@@ -64,13 +64,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 X=[1 2;3 4]
 expm(X)
 logm(expm(X))    
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

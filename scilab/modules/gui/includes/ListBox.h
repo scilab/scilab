@@ -13,6 +13,7 @@
 #ifndef __LISTBOX_H__
 #define __LISTBOX_H__
 
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +22,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createListBox(sciPointObj* sciObj);
+GUI_IMPEXP void createListBox(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a ListBox in Scilab GUIs
@@ -29,6 +30,6 @@ void createListBox(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsListBoxParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsListBoxParent(sciPointObj* sciObj);
 
 #endif /* __LISTBOX_H__ */

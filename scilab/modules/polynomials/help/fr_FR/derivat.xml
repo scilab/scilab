@@ -32,7 +32,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 derivat(1/s)  // -1/s^2;
  ]]></programlisting>

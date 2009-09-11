@@ -13,7 +13,7 @@ function nbAdd = atomsRepositoryAdd(url,allusers)
 	
 	// Load Atoms Internals lib if it's not already loaded
 	// =========================================================================
-	if ~ exists("atoms_internalslib") then
+	if ~ exists("atomsinternalslib") then
 		load("SCI/modules/atoms/macros/atoms_internals/lib");
 	end
 	

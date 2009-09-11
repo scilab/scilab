@@ -88,7 +88,8 @@ lib /DEF:&quot;$(InputDir)io_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 
 		<File RelativePath="..\..\sci_gateway\fortran\intexec.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intexecstr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intgetf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
+		<File RelativePath=".\whereis.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\functions_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

@@ -157,15 +157,13 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 int8([1 -120 127 312])
 uint8([1 -120 127 312])
 
 x=int32(-200:100:400)
 int8(x)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

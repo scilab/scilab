@@ -173,98 +173,99 @@ y = besselh(alpha,K,x [,ice])</synopsis>
     <para>As funções de Bessel Y_alfa e J_alfa são duas soluções independentes
     da equação diferencial de Bessel:</para>
 
-    <programlisting>2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa &gt;=
-    0</programlisting>
+    <programlisting role = ""><![CDATA[ 
+2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa >= 0
+ ]]></programlisting>
 
     <para>As funções modificadas de Bessel K_alfa e I_alfa são duas soluções
     independentes para a equação diferencial de Bessel :</para>
 
-    <programlisting>2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa &gt;=
-    0</programlisting>
+    <programlisting role = ""><![CDATA[ 
+2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa >= 0
+ ]]></programlisting>
 
     <para>As funções de Hankel de primeiro e segundo tipos H^1_alfa e
     H^2_alfa, são combinações lineares das funções de Bessel de primeiro e
     segundo tipos:</para>
 
-    <programlisting>H^1_alfa(z) = J_alfa(z) + i Y_alfa(z) H^2_alfa(z) =
-    J_alfa(z) - i Y_alfa(z)</programlisting>
+    <programlisting role = ""><![CDATA[ 
+H^1_alfa(z) = J_alfa(z) + i Y_alfa(z) H^2_alfa(z) = J_alfa(z) - i Y_alfa(z)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 //  Funções I de Bessel
 // ==================
-   x = linspace(0.01,10,5000)';
-   xbasc()
-   subplot(2,1,1)
-   plot2d(x,besseli(0:4,x), style=2:6)
-   legend('I'+string(0:4),2);
-   xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
-   subplot(2,1,2)
-   plot2d(x,besseli(0:4,x,1), style=2:6)
-   legend('I'+string(0:4),1);
-   xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
+x = linspace(0.01,10,5000)';
+xbasc()
+subplot(2,1,1)
+plot2d(x,besseli(0:4,x), style=2:6)
+legend('I'+string(0:4),2);
+xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
+subplot(2,1,2)
+plot2d(x,besseli(0:4,x,1), style=2:6)
+legend('I'+string(0:4),1);
+xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
 
 // Funções J de Bessel
 // =================
-   x = linspace(0,40,5000)';
-   xbasc()
-   plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
-   legend('I'+string(0:4),1);
-   xtitle("Algumas funções de Bessel do primeiro tipo")
+x = linspace(0,40,5000)';
+xbasc()
+plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
+legend('I'+string(0:4),1);
+xtitle("Algumas funções de Bessel do primeiro tipo")
 
 // Usando o fato de que J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 // Para comparar o algoritmo de besselj(0.5,x) com uma fórmula mais direta 
-   x = linspace(0.1,40,5000)';
-   y1 = besselj(0.5, x);
-   y2 = sqrt(2 ./(%pi*x)).*sin(x);
-   er = abs((y1-y2)./y2);
-   ind = find(er &gt; 0 &amp; y2 ~= 0);
-   xbasc()
-   subplot(2,1,1)
-   plot2d(x,y1,style=2)
-   xtitle("besselj(0.5,x)")
-   subplot(2,1,2)
-   plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("Erro relativo entre as duas fórmulas para besselj(0.5,x)") 
-
+x = linspace(0.1,40,5000)';
+y1 = besselj(0.5, x);
+y2 = sqrt(2 ./(%pi*x)).*sin(x);
+er = abs((y1-y2)./y2);
+ind = find(er > 0 & y2 ~= 0);
+xbasc()
+subplot(2,1,1)
+plot2d(x,y1,style=2)
+xtitle("besselj(0.5,x)")
+subplot(2,1,2)
+plot2d(x(ind), er(ind), style=2, logflag="nl")
+xtitle("Erro relativo entre as duas fórmulas para besselj(0.5,x)") 
 
 // Funções K de Bessel
 // =================
-   x = linspace(0.01,10,5000)';
-   xbasc()
-   subplot(2,1,1)
-   plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
-   legend('K'+string(0:4),1);
-   xtitle("Algumas funções modificadas de Bessel do segundo tipo")
-   subplot(2,1,2)
-   plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
-   legend('K'+string(0:4),1);
-   xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
+x = linspace(0.01,10,5000)';
+xbasc()
+subplot(2,1,1)
+plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
+legend('K'+string(0:4),1);
+xtitle("Algumas funções modificadas de Bessel do segundo tipo")
+subplot(2,1,2)
+plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
+legend('K'+string(0:4),1);
+xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
 
 // Funções Y de Bessel
 // =================
-   x = linspace(0.1,40,5000)'; // funções Y de Bessel não possuem limite para x -&gt; 0+
-   xbasc()
-   plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
-   legend('Y'+string(0:4),4);
-   xtitle("Algumas funções de Bessel do segundo tipo")
+x = linspace(0.1,40,5000)'; // funções Y de Bessel não possuem limite para x -> 0+
+xbasc()
+plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
+legend('Y'+string(0:4),4);
+xtitle("Algumas funções de Bessel do segundo tipo")
 
 // Funções H de Bessel
 // =================
-   x=-4:0.025:2; y=-1.5:0.025:1.5;
-   [X,Y] = ndgrid(x,y);
-   H = besselh(0,1,X+%i*Y); 
-   clf();f=gcf();
-   xset("fpf"," ")
-   f.color_map=jetcolormap(16);
-   contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
-   legends(string(0.2:0.2:3.2),1:16,"ur")
-   xtitle("Curvas de nível de |H1(0,z)|")
-
-  </programlisting>
+x=-4:0.025:2; y=-1.5:0.025:1.5;
+[X,Y] = ndgrid(x,y);
+H = besselh(0,1,X+%i*Y); 
+clf();f=gcf();
+xset("fpf"," ")
+f.color_map=jetcolormap(16);
+contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
+legends(string(0.2:0.2:3.2),1:16,"ur")
+xtitle("Curvas de nível de |H1(0,z)|")
+ ]]></programlisting>
   </refsection>
 
   <refsection>

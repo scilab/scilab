@@ -80,13 +80,11 @@
   <refsection>
     <title>Descrição</title>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 adj2sp converte uma representação em forma de adjacência de uma matriz
 em sua representação padrão do Scilab (função utilitária).
 xadj, adjncy, anz = representação  de adjacência de A i.e:
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>xadj(j+1)-xadj(j)</literal> = número de entradas não-nulas
     na linha j. <literal>adjncy</literal> = índice de coluna das entradas
@@ -101,15 +99,13 @@ xadj, adjncy, anz = representação  de adjacência de A i.e:
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A = sprand(100,50,.05);
 [xadj,adjncy,anz]= sp2adj(A);
 [n,m]=size(A);
 p = adj2sp(xadj,adjncy,anz,[n,m]);
 A-p,
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

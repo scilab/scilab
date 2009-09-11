@@ -86,13 +86,14 @@ versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">getversion()
+    <programlisting role="example"><![CDATA[ 
+getversion()
 [version,opts]=getversion()
 ver=getversion('scilab')
 verstr=getversion('scilab','string_info')
 ver=getversion('overloading')
 verstr=getversion('overloading','string_info')
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

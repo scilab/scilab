@@ -82,12 +82,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
 vars=macrovar(f)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -62,11 +62,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  a=rand(100,10,'n');
-  [lambda,facpr,comprinc] = pca(a);
-  show_pca(lambda,facpr)
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=rand(100,10,'n');
+[lambda,facpr,comprinc] = pca(a);
+show_pca(lambda,facpr)
+ ]]></programlisting>
   </refsection>
  <refsection>
     <title>See Also</title>

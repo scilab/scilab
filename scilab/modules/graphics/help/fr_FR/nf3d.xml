@@ -31,7 +31,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // une sphère...
 u = linspace(-%pi/2,%pi/2,40);
 v = linspace(0,2*%pi,20);

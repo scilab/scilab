@@ -69,13 +69,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,3)*rand(3,4);
 [X,dim]=rowcomp(A);X=X';
 svd([orth(A),X(:,1:dim)])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -33,8 +33,8 @@
 	extern "C"
 	{
 #endif
-		char *strdup_windows(const char *strSource);
-		wchar_t *wstrdup_windows(const wchar_t *strSource);
+char *strdup_windows(const char *strSource);
+wchar_t *wstrdup_windows(const wchar_t *strSource);
 #ifdef __cplusplus
 	};
 #endif

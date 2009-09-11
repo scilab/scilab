@@ -65,10 +65,8 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 disp(['xxx' blanks(20) 'yyy'])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

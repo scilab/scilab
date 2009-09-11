@@ -12,7 +12,7 @@
 
 #ifndef __POPUPMENU_H__
 #define __POPUPMENU_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -21,7 +21,7 @@
  *
  * @param sciObj the corresponding Scilab object
  */
-void createPopupMenu(sciPointObj* sciObj);
+GUI_IMPEXP void createPopupMenu(sciPointObj* sciObj);
 
 /**
  * Set the current figure as parent for a PopupMenu in Scilab GUIs
@@ -29,6 +29,6 @@ void createPopupMenu(sciPointObj* sciObj);
  * @param sciObj the corresponding Scilab object   
  * @return true parent setting has be done without error
  */
-int setCurentFigureAsPopupMenuParent(sciPointObj* sciObj);
+GUI_IMPEXP int setCurentFigureAsPopupMenuParent(sciPointObj* sciObj);
 
 #endif /* __POPUPMENU_H__ */

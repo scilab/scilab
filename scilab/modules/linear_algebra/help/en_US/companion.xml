@@ -53,15 +53,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=poly([1,2,3,4,1],'s','c')
 det(s*eye()-companion(p))
 roots(p)
 spec(companion(p))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

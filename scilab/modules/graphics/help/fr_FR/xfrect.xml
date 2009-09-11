@@ -32,7 +32,7 @@ xfrect(rect) // rect =[x,y,w,h]</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfrect(-1,1,2,2)

@@ -22,25 +22,14 @@
 #include <tcl.h>
 #include <tk.h>
 
+#include "dynlib_tclsci.h"
 #include "stack-c.h"
-#include "version.h"
 
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
 extern Tk_Window TKmainWindow;
 extern int XTKsocket;
-/*--------------------------------------------------------------------------*/
-
-/**
- * @TODO : add comment
- *
- * @param TCLinterp
- * @param StringUTF8
- * @return <ReturnValue>
- */
-char *UTF8toANSI(Tcl_Interp *TCLinterp,char *StringUTF8);
-
 /*--------------------------------------------------------------------------*/
 #endif /* __TCLGLOBAL__ */
 /*--------------------------------------------------------------------------*/

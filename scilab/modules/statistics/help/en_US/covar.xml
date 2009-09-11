@@ -59,8 +59,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=[10 20 30 40]
 y=[10 20 30 40]
 fre=[.20 .04 .01  0;
@@ -68,8 +67,7 @@ fre=[.20 .04 .01  0;
        0 .05 .10  0;
        0   0   0 .05]
 s=covar(x,y,fre)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

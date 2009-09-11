@@ -65,12 +65,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 mod=ieee();ieee(2);
 x=[0,30 45 60 90 360];
 tand(x)
 ieee(mod)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

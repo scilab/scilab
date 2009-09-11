@@ -64,9 +64,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
-
-
+    <programlisting role="example"><![CDATA[ 
 // example_1/
 // `-- help
 //     |-- en_US
@@ -90,21 +88,18 @@ my_french_help_dir    = my_module_path+'/help/fr_FR';
 my_french_help_title  = 'Example 1 [fr_FR]';
 my_french_html_dir    = xmltohtml(my_french_help_dir,my_french_help_title,'fr_FR')
 
-
 // Build the english help
 // =============================================================================
 my_english_help_dir   = my_module_path+'/help/en_US';
 my_english_help_title = 'Example 1 [en_US]';
 my_english_html_dir   = xmltohtml(my_english_help_dir,my_english_help_title,'en_US')
 
-
 // Build the chinese help
 // =============================================================================
 my_chinese_help_dir   = my_module_path+'/help/zh_TW';
 my_chinese_help_title = 'Example 1 [zh_TW]';
 my_chinese_html_dir   = xmltohtml(my_chinese_help_dir,my_chinese_help_title,'zh_TW')
-
-    </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -1,0 +1,34 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+load("SCI/modules/atoms/macros/atoms_internals/lib");
+// Load the 2nd scenario : See scene1.test.atoms.scilab.org.txt
+atomsRepositorySetOfl("http://scene2.test.atoms.scilab.org");
+// Install toolbox N°2
+atomsInstall("toolbox_2 2.0");
+	toolbox_2 (2.0) is already installed and up-to-date
+	toolbox_1 (1.0) is already installed and up-to-date
+atomsInstall("toolbox_2 2.1");
+	toolbox_2 (2.1) is already installed and up-to-date
+	toolbox_1 (1.0) is already installed and up-to-date
+atomsInstall("toolbox_3 1.0");
+	toolbox_3 (1.0) is already installed and up-to-date
+	toolbox_2 (2.1) is already installed and up-to-date
+	toolbox_1 (1.0) is already installed and up-to-date
+// Check input parameters
+if execstr("atomsIsInstalled()","errcatch") == 0 then bugmes();quit;end
+if execstr("atomsIsInstalled([""toolbox_1"" ""toolbox_2""],[""1.0"";""2.0""]  )","errcatch") == 0 then bugmes();quit;end
+if execstr("atomsIsInstalled([""toolbox_1"" ""toolbox_1""],[""1.0""]  )","errcatch") == 0 then bugmes();quit;end
+// Check output results
+if ~ atomsIsInstalled("toolbox_1") then bugmes();quit;end
+if ~ atomsIsInstalled("toolbox_2") then bugmes();quit;end
+if ~ atomsIsInstalled("toolbox_1","1.0") then bugmes();quit;end
+if ~ atomsIsInstalled("toolbox_2","2.0") then bugmes();quit;end
+if ~ atomsIsInstalled("toolbox_2","2.1") then bugmes();quit;end
+if or( atomsIsInstalled(["toolbox_1" "toolbox_2" "toolbox_2" "toolbox_99"],["1.0" "0.0" "2.1" "1.0"] ) <> [%T %F %T %F] )  then bugmes();quit;end
+if or( atomsIsInstalled(["toolbox_1" "toolbox_2";"toolbox_2" "toolbox_99"],["1.0" "0.0";"2.1" "1.0"] ) <> [%T %F;%T %F] )  then bugmes();quit;end
+if or( atomsIsInstalled(["toolbox_1";"toolbox_2";"toolbox_2";"toolbox_99"],["1.0";"0.0";"2.1";"1.0"] ) <> [%T;%F;%T;%F] )  then bugmes();quit;end

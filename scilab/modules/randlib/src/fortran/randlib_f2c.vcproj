@@ -6,6 +6,7 @@
 	ProjectGUID="{BB8D4E6F-F09E-49FC-8BCB-9F496F639F60}"
 	RootNamespace="randlib_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -448,15 +449,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lennob.c"
-				>
-			</File>
-			<File
 				RelativePath=".\phrtsd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sdot.c"
 				>
 			</File>
 			<File
@@ -465,10 +458,6 @@
 			</File>
 			<File
 				RelativePath=".\snorm.c"
-				>
-			</File>
-			<File
-				RelativePath=".\spofa.c"
 				>
 			</File>
 		</Filter>
@@ -536,15 +525,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lennob.f"
-				>
-			</File>
-			<File
 				RelativePath=".\phrtsd.f"
-				>
-			</File>
-			<File
-				RelativePath=".\sdot.f"
 				>
 			</File>
 			<File
@@ -553,10 +534,6 @@
 			</File>
 			<File
 				RelativePath=".\snorm.f"
-				>
-			</File>
-			<File
-				RelativePath=".\spofa.f"
 				>
 			</File>
 		</Filter>

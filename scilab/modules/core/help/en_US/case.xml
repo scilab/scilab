@@ -13,17 +13,15 @@
     Keyword used in <literal>select ... case</literal></para>
     <para>
     Use it in the following way:</para>
-    <programlisting><![CDATA[
-
+    <programlisting><![CDATA[ 
 select expr0,
- case expr1 then instructions1,
- case expr2 then instructions2,
- ...
- case exprn then instructionsn,
- [else instructions],
+  case expr1 then instructions1,
+  case expr2 then instructions2,
+  ...
+  case exprn then instructionsn,
+  [else instructions],
 end
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

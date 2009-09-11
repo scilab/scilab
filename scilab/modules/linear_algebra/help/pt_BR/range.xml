@@ -84,23 +84,20 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    A=rand(4,2)*rand(2,4);   // 4 vetores colunas, 2 independentes.
-    [X,dim]=range(A,1);dim   // computando a imagem
+    <programlisting role="example"><![CDATA[ 
+A=rand(4,2)*rand(2,4);   // 4 vetores colunas, 2 independentes.
+[X,dim]=range(A,1);dim   // computando a imagem
 
-    y1=A*rand(4,1);          //um vetor que está na imagem de A
-    y2=rand(4,1);            //um vetor que não está na imagem de A
-    norm(X(dim+1:$,:)*y1)    //as últimas entradas são zeros, y1 está na imagem de A
-    norm(X(dim+1:$,:)*y2)    //as últimas entradas não são zeros
+y1=A*rand(4,1);          //um vetor que está na imagem de A
+y2=rand(4,1);            //um vetor que não está na imagem de A
+norm(X(dim+1:$,:)*y1)    //as últimas entradas são zeros, y1 está na imagem de A
+norm(X(dim+1:$,:)*y2)    //as últimas entradas não são zeros
 
-    I=X(1:dim,:)'            //I é uma base para a imagem
-    coeffs=X(1:dim,:)*y1     //componentes de y1 relativos à base I
+I=X(1:dim,:)'            //I é uma base para a imagem
+coeffs=X(1:dim,:)*y1     //componentes de y1 relativos à base I
 
-    norm(I*coeffs-y1)        //verificando
-
-    
-  </programlisting>
+norm(I*coeffs-y1)        //verificando
+ ]]></programlisting>
   </refsection>
 
   <refsection>

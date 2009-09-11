@@ -72,12 +72,12 @@ xs2bmp(fig, file_name)</synopsis>
 
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //BMP export
 xs2bmp(0,'foo.bmp');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

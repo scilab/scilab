@@ -25,10 +25,7 @@ src/fortran/snorm.f \
 src/fortran/gennch.f \
 src/fortran/genmn.f \
 src/fortran/phrtsd.f \
-src/fortran/spofa.f \
-src/fortran/sdot.f \
 src/fortran/ignnbn.f \
-src/fortran/lennob.f \
 src/fortran/genf.f \
 src/fortran/genunf.f \
 src/fortran/genexp.f \
@@ -85,6 +82,7 @@ libscirandlib_la_includedir=$(pkgincludedir)/randlib
 libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h \
-includes/gw_randlib.h
+includes/gw_randlib.h \
+includes/dynlib_randlib.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -57,8 +57,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">ifortv = findmsifortcompiler()
-</programlisting>
+    <programlisting role="example"><![CDATA[ 
+ifortv = findmsifortcompiler()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

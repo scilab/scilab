@@ -54,13 +54,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 str='This is a character string';
 kdf=tokenpos(str)
 first=part(str,kdf(1,1):kdf(1,2))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

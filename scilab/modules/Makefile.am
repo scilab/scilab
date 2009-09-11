@@ -83,7 +83,8 @@ parameters \
 matio \
 atoms \
 hdf5 \
-xcos
+xcos \
+xpad
 
 #umfpack
 
@@ -129,7 +130,11 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
+<<<<<<< HEAD:scilab/modules/Makefile.am
 	$(top_builddir)/modules/xcos/libscixcos.la
+=======
+	$(top_builddir)/modules/xpad/libscixpad.la
+>>>>>>> origin/master:scilab/modules/Makefile.am
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
@@ -137,7 +142,11 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
+<<<<<<< HEAD:scilab/modules/Makefile.am
 	$(top_builddir)/modules/xcos/libscixcos-disable.la
+=======
+	$(top_builddir)/modules/xpad/libscixpad-disable.la
+>>>>>>> origin/master:scilab/modules/Makefile.am
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
@@ -197,7 +206,13 @@ endif
 # Dev in progress
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+if GUI
+libscilab_la_LIBADD += $(GUI_LIBS)
+else
+libscilab_la_LIBADD += $(NO_GUI_LIBS)
+endif
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

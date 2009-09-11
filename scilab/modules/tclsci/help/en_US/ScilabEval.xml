@@ -104,24 +104,24 @@ ScilabEval "flush"</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Callbacks and "seq" option usage
 
 //create tcl instructions
 tcl_script=['toplevel .w1'
-'button .w1.b -text ""Click here to execute without seq option""  -command WithoutSeq'
-'button .w1.b1 -text ""Click here to execute with seq option""  -command  WithSeq'
-'pack .w1.b .w1.b1'
-'proc  WithoutSeq {} { ';
-'  ScilabEval ""cont=%f;;cont=%t;"" '
-'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
-'}'
-'proc WithSeq {} { ';
-'  ScilabEval ""cont=%f;;cont=%t;""  ""seq""'
-'  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
-'}'];
+            'button .w1.b -text ""Click here to execute without seq option""  -command WithoutSeq'
+            'button .w1.b1 -text ""Click here to execute with seq option""  -command  WithSeq'
+            'pack .w1.b .w1.b1'
+            'proc  WithoutSeq {} { ';
+            '  ScilabEval ""cont=%f;;cont=%t;"" '
+            '  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
+            '}'
+            'proc WithSeq {} { ';
+            '  ScilabEval ""cont=%f;;cont=%t;""  ""seq""'
+            '  ScilabEval ""if cont then disp(''ok''),else disp(''wrong'');end;cont=%f;"" '
+            '}'];
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+
 // Execute the tcl script
 cont=%f;
 TCL_EvalFile(TMPDIR+'/test.tcl');;
@@ -130,30 +130,32 @@ TCL_EvalFile(TMPDIR+'/test.tcl');;
 
 //----------------without "sync"----------------
 tcl_script=['  set t ""0""'
-    '  while {$t != ""10""} {'
-    '     ScilabEval ""a=$t;mprintf(''%d '',a);""'
-    '     incr t'
-    '  }'];
+            '  while {$t != ""10""} {'
+            '     ScilabEval ""a=$t;mprintf(''%d '',a);""'
+            '     incr t'
+            '  }'];
 
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+
 // Execute the tcl script
 TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
+
 // The ScilabEval are executed  after the and of TCL_EvalFile
 
 //----------------with "sync"----------------
 tcl_script=['  set t ""0""'
-    '  while {$t != ""10""} {'
-    '     ScilabEval ""a=$t;mprintf(''%d '',a);"" ""sync""'
-    '     incr t'
-    '  }'];
+            '  while {$t != ""10""} {'
+            '     ScilabEval ""a=$t;mprintf(''%d '',a);"" ""sync""'
+            '     incr t'
+            '  }'];
 
 mputl(tcl_script,TMPDIR+'/test.tcl') //write them to a file
+
 // Execute the tcl script
 TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
-// The ScilabEval are executed  synchronously with TCL_EvalFile
 
- 
-  ]]></programlisting>
+// The ScilabEval are executed  synchronously with TCL_EvalFile
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

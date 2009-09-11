@@ -15,11 +15,13 @@
 #ifndef __BUILDMAINWINDOWTITLE_WINDOWS_H__
 #define __BUILDMAINWINDOWTITLE_WINDOWS_H__
 
+#include "dynlib_scilab_windows.h"
+
 /**
 * build title of the main scilab window (Windows)
 * @return string (title)
 */
-char *buildMainWindowTitle_Windows(void);
+SCILAB_WINDOWS_IMPEXP char *buildMainWindowTitle_Windows(void);
 
 #endif /* __BUILDMAINWINDOWTITLE_WINDOWS_H__ */
 /*--------------------------------------------------------------------------*/
