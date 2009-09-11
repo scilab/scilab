@@ -73,6 +73,8 @@
 
   ast::CallExp*		t_call_exp;
 
+  ast::MathExp*		t_math_exp;
+
   ast::OpExp*		t_op_exp;
   ast::OpExp::Oper	t_op_exp_oper;
 
@@ -190,11 +192,12 @@
 %type <t_arraylist_exp>	variableFields
 %type <t_exp>		expression
 
-%type <t_op_exp>	comparison
+%type <t_math_exp>	comparison
 %type <t_exp>		comparable
 %type <t_exp>		operation
 %type <t_op_exp>	rightOperand
 %type <t_op_exp_oper>	comparators
+%type <t_op_exp_oper>	logicalComparators
 
  // IF Control
 %type <t_if_exp>	ifControl
@@ -645,8 +648,14 @@ functionCall	%prec HIGHLEVEL		{ $$ = $1; }
 comparison :
 variable comparators comparable			{ $$ = new ast::OpExp(@$, *$1, $2, *$3); }
 | functionCall comparators comparable		{ $$ = new ast::OpExp(@$, *$1, $2, *$3); }
+| variable logicalComparators comparable	{ $$ = new ast::LogicalOpExp(@$, *$1, $2, *$3); }
+| functionCall logicalComparators comparable	{ $$ = new ast::LogicalOpExp(@$, *$1, $2, *$3); }
 ;
 
+logicalComparators :
+AND				{ $$ = ast::OpExp::binaryAnd; }
+| OR				{ $$ = ast::OpExp::binaryOr; }
+;
 /*
 ** -*- COMPARABLE -*-
 */
@@ -1284,8 +1293,6 @@ EQ				{ $$ = ast::OpExp::eq; }
 | LE				{ $$ = ast::OpExp::le; }
 | GT				{ $$ = ast::OpExp::gt; }
 | GE				{ $$ = ast::OpExp::ge; }
-| AND				{ $$ = ast::OpExp::binaryAnd; }
-| OR				{ $$ = ast::OpExp::binaryOr; }
 ;
 
 /*

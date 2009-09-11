@@ -216,6 +216,8 @@ typedef union YYSTYPE
 
   ast::CallExp*		t_call_exp;
 
+  ast::MathExp*		t_math_exp;
+
   ast::OpExp*		t_op_exp;
   ast::OpExp::Oper	t_op_exp_oper;
 

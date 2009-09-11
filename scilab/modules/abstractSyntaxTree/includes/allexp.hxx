@@ -59,6 +59,7 @@
 #include "notexp.hxx"
 #include "transposeexp.hxx"
 #include "opexp.hxx"
+#include "logicalopexp.hxx"
 // Matrix Expression
 #include "matrixexp.hxx"
 #include "matrixlineexp.hxx"
