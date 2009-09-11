@@ -277,6 +277,7 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 			lastLine = currentLine;
 		}
 
+		textPane.repaint();
 		resetHighlight();
 	}
 

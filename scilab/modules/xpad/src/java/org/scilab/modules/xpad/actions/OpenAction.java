@@ -19,14 +19,15 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class OpenAction extends DefaultAction {
 
-    public OpenAction(Xpad editor) {
+    private OpenAction(Xpad editor) {
 	super("Open...", editor);
-	//setMnemonic('O');
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
     }
 
     public void doAction() {
@@ -35,7 +36,19 @@ public class OpenAction extends DefaultAction {
 	if (retval == JFileChooser.APPROVE_OPTION) {
 	    File f = _fileChooser.getSelectedFile();
 	    getEditor().readFile(f);
+
+	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+	    getEditor().updateRecentOpenedFilesMenu();
+	    
+	    
 	}
     }
-
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Open...", null, new OpenAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+    }
+    
+    public static PushButton createButton(Xpad editor) {
+	return createButton("Open...", "document-open.png", new OpenAction(editor));
+    }
 }

@@ -55,6 +55,8 @@ FILEIO_IMPEXP int sci_getrelativefilename(char *fname, unsigned long l);
 FILEIO_IMPEXP int sci_get_absolute_file_path(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_copyfile(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_isfile(char *fname,unsigned long fname_len);
+FILEIO_IMPEXP int sci_fileparts(char *fname,unsigned long fname_len);
+FILEIO_IMPEXP int sci_movefile(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

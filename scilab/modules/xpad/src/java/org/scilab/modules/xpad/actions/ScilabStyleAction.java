@@ -11,11 +11,16 @@
  */
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class ScilabStyleAction extends DefaultCheckAction {
 
-    public ScilabStyleAction(Xpad editor) {
+    private ScilabStyleAction(Xpad editor) {
 	super("Scilab", editor);
+    }
+    
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+	return createCheckBoxMenu("Scilab", null, new ScilabStyleAction(editor), null);
     }
 }

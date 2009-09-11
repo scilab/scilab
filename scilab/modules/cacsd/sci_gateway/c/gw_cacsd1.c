@@ -14,8 +14,7 @@
 #include "gw_cacsd1.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define CACSD1_TAB_SIZE 3
-static gw_generic_table Tab[CACSD1_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{C2F(scilyap),"lyap"},
 	{C2F(scisylv),"sylv"},
@@ -24,7 +23,7 @@ static gw_generic_table Tab[CACSD1_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_cacsd1(void)
 {  
-	callFunctionFromGateway(Tab,CACSD1_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

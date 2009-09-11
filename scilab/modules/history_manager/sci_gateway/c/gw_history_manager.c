@@ -21,8 +21,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define HISTORY_MANAGER_TAB_SIZE 13
-static gw_generic_table Tab[HISTORY_MANAGER_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{sci_loadhistory,"loadhistory"},
 	{sci_savehistory,"savehistory"},
@@ -42,8 +41,7 @@ static gw_generic_table Tab[HISTORY_MANAGER_TAB_SIZE]=
 int gw_history_manager(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,HISTORY_MANAGER_TAB_SIZE);
-
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -17,12 +17,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class PrintPreviewAction extends DefaultAction {
 
-    public PrintPreviewAction(Xpad editor) {
+    private PrintPreviewAction(Xpad editor) {
 	super("Print Preview...", editor);
+    }
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Print Preview...", null, new PrintPreviewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+    }
+    
+    public static PushButton createButton(Xpad editor) {
+	return createButton("Print Preview...", "document-print-preview.png", new PrintPreviewAction(editor));
     }
     
 }

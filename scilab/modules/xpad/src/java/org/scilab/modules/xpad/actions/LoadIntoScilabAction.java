@@ -13,11 +13,12 @@
 package org.scilab.modules.xpad.actions;
 
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class LoadIntoScilabAction extends DefaultAction {
 
-	public LoadIntoScilabAction(Xpad editor) {
+	private LoadIntoScilabAction(Xpad editor) {
 		super("Load Into Scilab", editor);
 	}
 
@@ -26,4 +27,8 @@ public class LoadIntoScilabAction extends DefaultAction {
 	    //InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
 	    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getText(), true, false);
 	}
+	
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Load Into Scilab", null, new LoadIntoScilabAction(editor), null);
+	 }
 }

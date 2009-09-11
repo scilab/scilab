@@ -197,7 +197,13 @@ endif
 # Dev in progress
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+
+if GUI
+libscilab_la_LIBADD += $(GUI_LIBS)
+else
+libscilab_la_LIBADD += $(NO_GUI_LIBS)
+endif
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

@@ -12,10 +12,8 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,11 +24,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
 import org.scilab.modules.gui.bridge.colorchooser.SwingScilabColorChooser;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
@@ -45,18 +43,20 @@ public class SetColorsAction extends DefaultAction {
 	private int numberOfStyles ;
 	Hashtable<String, Color> allStylesColor ;
 	
-    public SetColorsAction(Xpad editor) {
+    private SetColorsAction(Xpad editor) {
 	super("Set Colors...", editor);
     }
     
     
     public void doAction() {
     	changeColorsBox ();
-
-    
     }
     
-    public void changeColorsBox () {
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Set Colors...", null, new SetColorsAction(editor), null);
+    }
+    
+    private void changeColorsBox () {
     	
 		frame = new JFrame();
 		JPanel panel = new JPanel(new GridBagLayout( ));

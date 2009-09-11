@@ -12,18 +12,26 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class ColorizeAction extends DefaultAction {
 
-	public ColorizeAction(Xpad editor) {
+	private ColorizeAction(Xpad editor) {
 		super("Colorize", editor);
-		//setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {
 		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).colorize();
 	}
 
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Colorize", null, new ColorizeAction(editor), null);
+	 }
 }

@@ -12,11 +12,22 @@
 
 package org.scilab.modules.xpad.actions;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
+
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class GotoLineAction extends DefaultAction {
 
-	public GotoLineAction(Xpad editor) {
+	private GotoLineAction(Xpad editor) {
 		super("Goto Line...", editor);
 	}
+	
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Goto Line...", null, new GotoLineAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+	 }
+	 
 }

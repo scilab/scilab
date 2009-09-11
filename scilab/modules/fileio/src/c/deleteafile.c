@@ -35,15 +35,40 @@ BOOL deleteafile(char *filename)
 	}
 	#else
 	{
-        wchar_t *wcfilename = to_wide_string(filename);
-		if (wcfilename)
+		if (filename)
 		{
-			bOK = DeleteFileW(wcfilename);
-			FREE(wcfilename);
-			wcfilename = NULL;
+			wchar_t *wcfilename = to_wide_string(filename);
+			if (wcfilename)
+			{
+				bOK = deleteafileW(wcfilename);
+				FREE(wcfilename);
+				wcfilename = NULL;
+			}
 		}
 	}
 	#endif
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+BOOL deleteafileW(wchar_t *filenameW)
+{
+	BOOL bOK = FALSE;
+#ifndef _MSC_VER
+	{
+		char *filename = wide_string_to_UTF8(filenameW);
+		if (filename)
+		{
+			bOK = deleteafile(filename);
+			FREE(filename);
+			filename = NULL;
+		}
+	}
+#else
+	if (filenameW)
+	{
+		bOK = DeleteFileW(filenameW);
+	}
+#endif
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/

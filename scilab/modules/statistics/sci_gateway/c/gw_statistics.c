@@ -15,8 +15,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define STATISTICS_TAB_SIZE 11
-static gw_generic_table Tab[STATISTICS_TAB_SIZE]=
+static gw_generic_table Tab[] =
 { 
 	{cdfbetI, "cdfbet"},
 	{cdfbinI, "cdfbin"},
@@ -34,7 +33,7 @@ static gw_generic_table Tab[STATISTICS_TAB_SIZE]=
 int gw_statistics()
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,STATISTICS_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

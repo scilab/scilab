@@ -18,18 +18,20 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class CloseAction extends DefaultAction {
     
-    public CloseAction(Xpad editor) {
+    private CloseAction(Xpad editor) {
         super("Close", editor);
-        //setMnemonic('W');
-        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {
 	getEditor().closeCurrentTab();
-	Xpad.closeXpad();
+    }
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Close", null, new CloseAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
     }
 }

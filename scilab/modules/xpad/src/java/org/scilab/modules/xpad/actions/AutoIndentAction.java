@@ -12,20 +12,22 @@
 
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class AutoIndentAction extends DefaultCheckAction  {
 
 
-    public AutoIndentAction(Xpad editor) {
+    private AutoIndentAction(Xpad editor) {
 	super("Auto Indent", editor);
-	setState(false);
     }
 
     public void doAction() {
 	getEditor().setAutoIndent(this.getState());
     }
 
- 
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+	return createCheckBoxMenu("Auto Indent", null, new AutoIndentAction(editor), null);
+    }
 
 }

@@ -1,22 +1,20 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.Font;
-import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.JFileChooser;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
-import org.scilab.modules.gui.bridge.fontchooser.SwingScilabFontChooser;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class ResetFontAction extends DefaultAction {
 
-    public ResetFontAction(Xpad editor) {
-	super("Reset default font...", editor);
+    private ResetFontAction(Xpad editor) {
+	super("Reset default font", editor);
     }
     
     public void doAction() {
@@ -54,5 +52,9 @@ public class ResetFontAction extends DefaultAction {
 	    	
 	    	ConfigXpadManager.saveFont(oldFont);
     	}
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Reset default font", null, new ResetFontAction(editor), null);
+ }
     	
     }

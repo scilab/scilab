@@ -336,7 +336,7 @@ static BOOL FreeVariableStructArray(struct VariableStruct* Vstruct,int lenStruct
 	 if (Sorted) SortVarsStructByStrings(Vstruct,lenStructArray);
 
 	 Tab=(char **)MALLOC(sizeof(char*)*lenStructArray);
-	 Size=(int *)MALLOC(sizeof(int*)*lenStructArray);
+	 Size=(int *)MALLOC(sizeof(int)*lenStructArray);
 
 	 for (i=0;i<lenStructArray;i++)
 	 {

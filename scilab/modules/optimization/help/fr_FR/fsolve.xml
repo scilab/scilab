@@ -214,8 +214,6 @@ a*xres+b
 
       <member><link linkend="qpsolve">qpsolve</link></member>
 
-      <member><link linkend="linpro">linpro</link></member>
-
       <member><link linkend="optim">optim</link></member>
     </simplelist>
   </refsection>

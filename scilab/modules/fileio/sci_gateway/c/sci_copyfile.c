@@ -100,49 +100,64 @@ int sci_copyfile(char *fname,unsigned long fname_len)
 	if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
 	{
 		int ierrCopy = 0;
-		if ( isdirW(pStVarOne) && isdirW(pStVarTwo) )
+
+		if ( isdirW(pStVarOne) || FileExistW(pStVarOne) )
 		{
-			/* copy a directory into a directory */
-			ierrCopy = CopyDirectoryFunction(pStVarTwo, pStVarOne);
-		}
-		else if ( FileExistW(pStVarOne) && !isdirW(pStVarTwo) )
-		{
-			/* copy a file to a file */
-			ierrCopy = CopyFileFunction(pStVarTwo, pStVarOne);
-		}
-		else if ( FileExistW(pStVarOne) && isdirW(pStVarTwo) )
-		{
-			/* copy a file into a directory */
-			wchar_t* filename = getFilenameWithExtension(pStVarOne);
-			if (filename)
+			
+			if ( isdirW(pStVarOne)  )
 			{
-#define FORMAT_FULLFILENAME "%s/%s"
-				wchar_t* destFullFilename = NULL;
-
-				/* remove last file separator if it exists */
-				if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || 
-					(pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
+				/* copy a directory into a directory */
+				ierrCopy = CopyDirectoryFunction(pStVarTwo, pStVarOne);
+			}
+			else if (FileExistW(pStVarOne))
+			{
+				if (isdirW(pStVarTwo)) 
 				{
-					pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
+					/* copy file into a existing directory */
+					wchar_t* filename = getFilenameWithExtension(pStVarOne);
+					if (filename)
+					{
+						#define FORMAT_FULLFILENAME "%s/%s"
+						wchar_t* destFullFilename = NULL;
+
+						/* remove last file separator if it exists */
+						if ( (pStVarTwo[wcslen(pStVarTwo) - 1] == L'\\') || 
+							(pStVarTwo[wcslen(pStVarTwo) - 1] == L'/') )
+						{
+							pStVarTwo[wcslen(pStVarTwo) - 1] = L'\0';
+						}
+
+						destFullFilename = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(pStVarTwo) +
+							(int)wcslen(filename) + (int)wcslen(L"/") + 1));
+						wcscpy(destFullFilename, pStVarTwo);
+						wcscat(destFullFilename, L"/");
+						wcscat(destFullFilename, filename);
+
+						ierrCopy = CopyFileFunction(destFullFilename, pStVarOne);
+
+						FREE(filename); filename = NULL;
+						FREE(destFullFilename); destFullFilename = NULL;
+					}
+					else
+					{
+						if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+						if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
+
+						Scierror(999,_("%s : Memory allocation error.\n"),fname);
+						return 0;
+					}
 				}
-
-				destFullFilename = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(pStVarTwo) +
-					(int)wcslen(filename) + (int)wcslen(L"/") + 1));
-				wcscpy(destFullFilename, pStVarTwo);
-				wcscat(destFullFilename, L"/");
-				wcscat(destFullFilename, filename);
-
-				ierrCopy = CopyFileFunction(destFullFilename, pStVarOne);
-
-				FREE(filename); filename = NULL;
+				else 
+				{
+					/* copy a file into a file */
+					ierrCopy = CopyFileFunction(pStVarTwo, pStVarOne);
+				}
 			}
 			else
 			{
 				if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
 				if (pStVarTwo) {FREE(pStVarTwo); pStVarTwo = NULL;}
-
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
-				return 0;
+				Scierror(999,_("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
 			}
 		}
 		else
@@ -208,7 +223,7 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 #ifdef _MSC_VER
 	if (ierr)
 	{
-#define BUFFER_SIZE 1024
+		#define BUFFER_SIZE 1024
 		DWORD dw = GetLastError(); 
 		wchar_t buffer[BUFFER_SIZE];
 
@@ -218,7 +233,9 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 			wcscpy(buffer, L"Unknown Error");
 		}
 
-		dError = (double) dw;
+		// Compatibility with previous version , we return 0
+		//dError = (double) dw;
+		dError = (double) 0.;
 
 		strError[0] = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(buffer) + 1));
 		if (strError[0] == NULL)
@@ -243,7 +260,9 @@ static void returnCopyFileResultOnStack(int ierr, char *fname)
 #else
 	if (ierr)
 	{
-		dError = (double) ierr;
+		// Compatibility with previous version , we return 0
+		//dError = (double) ierr;
+		//dError = (double) 0.;
 		strError[0] = to_wide_string(strerror(errno));
 		if (strError[0] == NULL)
 		{

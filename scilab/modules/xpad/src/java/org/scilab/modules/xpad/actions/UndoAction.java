@@ -17,16 +17,26 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class UndoAction extends DefaultAction {
 
-	public UndoAction(Xpad editor) {
+	private UndoAction(Xpad editor) {
 		super("Undo", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {
 		getEditor().undo();
 	}
+
+	public static MenuItem createMenu(Xpad editor) {
+	    return createMenu("Undo", null, new UndoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+	}
+
+	public static PushButton createButton(Xpad editor) {
+	    return createButton("Undo", "edit-undo.png", new UndoAction(editor));
+	}
+
 }

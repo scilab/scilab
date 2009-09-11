@@ -17,13 +17,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class PrintAction extends DefaultAction {
 
-	public PrintAction(Xpad editor) {
+	private PrintAction(Xpad editor) {
 		super("Print...", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 	}
 
+	public static MenuItem createMenu(Xpad editor) {
+	    return createMenu("Print...", null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+	}
+
+	public static PushButton createButton(Xpad editor) {
+	    return createButton("Print...", "document-print.png", new PrintAction(editor));
+	}
+	
 }

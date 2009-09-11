@@ -60,7 +60,9 @@ host_triplet = @host@
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
 @SCICOS_TRUE@am__append_3 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-@ENABLE_STATIC_TRUE@am__append_4 = $(ALL_LIBS)
+@GUI_TRUE@am__append_4 = $(GUI_LIBS)
+@GUI_FALSE@am__append_5 = $(NO_GUI_LIBS)
+@ENABLE_STATIC_TRUE@am__append_6 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -114,8 +116,9 @@ libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
 am__DEPENDENCIES_1 =
-libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
+libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__append_4) $(am__append_5) \
+	$(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -518,8 +521,8 @@ OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 # Dev in progress
 
 # Core modules
-libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
-	$(EXTERNAL_LIBS) $(am__append_4)
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) \
+	$(am__append_4) $(am__append_5) $(am__append_6)
 
 # Core modules
 libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)

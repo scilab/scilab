@@ -22,8 +22,8 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-#define XPAD_TAB_SIZE 1
-static gw_generic_table Tab[XPAD_TAB_SIZE]={
+static gw_generic_table Tab[]=
+{
   {sci_xpad, "xpad"}
 };
 
@@ -43,7 +43,7 @@ int gw_xpad(void)
 		loadOnUseClassPath("Xpad");
 		loadedDep = TRUE;
 	}
-	callFunctionFromGateway(Tab,XPAD_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

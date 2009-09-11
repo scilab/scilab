@@ -44,6 +44,7 @@ src/c/fullpath.c \
 src/c/fileinfo.c \
 src/c/getrelativefilename.c \
 src/c/splitpath.c \
+src/c/movefile.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -85,6 +86,8 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_copyfile.c \
+sci_gateway/c/sci_fileparts.c \
+sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_isfile.c
 
 

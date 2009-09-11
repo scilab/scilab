@@ -122,8 +122,11 @@ fileio functions:
 
 * isfile : checks if filename is a existing file.
 
+* movefile : move files or directory (Request 661)
+
 * Rewrite :
    + copyfile (primitive)
+   + fileparts (primitive)
   
 Dynamic link:
 =============
@@ -395,6 +398,8 @@ Bug fixes:
 * bug 4641 fixed - the parameter Q of the function derivative was not clear.
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
+
+* bug 4654 fixed - max of an empty sparse matrix makes Scilab hangs
 
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 

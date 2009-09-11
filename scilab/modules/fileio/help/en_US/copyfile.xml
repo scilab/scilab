@@ -52,7 +52,7 @@
     and the message is empty ; if the copy fails, the status is 0 and the
     message is not empty.</para>
 
-    <para>The timestamp gitven to the destination file is identical to that
+    <para>The timestamp given to the destination file is identical to that
     taken from source file.</para>
   </refsection>
 
@@ -69,6 +69,7 @@ copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
     <title>See Also</title>
 
     <simplelist type="inline">
+    	<member><link linkend="movefile">movefile</link></member>
       <member><link linkend="mdelete">mdelete</link></member>
     </simplelist>
   </refsection>

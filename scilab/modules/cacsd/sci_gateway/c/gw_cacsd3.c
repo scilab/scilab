@@ -16,8 +16,7 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-#define CACSD3_TAB_SIZE 3
-static gw_generic_table Tab[CACSD3_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 	{C2F(sci_arl2),"arl2_ius"},
 	{C2F(sci_residu),"residu"},
@@ -27,7 +26,7 @@ static gw_generic_table Tab[CACSD3_TAB_SIZE]=
 int gw_cacsd3(void)
 {  
 	if ( Fin-1 > 2) return 0;
-	callFunctionFromGateway(Tab,CACSD3_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

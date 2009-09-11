@@ -18,18 +18,25 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.xpad.Xpad;
 
 public class ExitAction extends DefaultAction {
-    
-    public ExitAction(Xpad editor) {
-        super("Exit", editor);
-        //setMnemonic('X');
-        setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+
+    private ExitAction(Xpad editor) {
+	super("Exit", editor);
+    }
+
+    public void doAction() {
+	ScilabWindow xpadWindow = (ScilabWindow) UIElementMapper.getCorrespondingUIElement(getEditor().getParentWindowId());
+
+	xpadWindow.getAsSimpleWindow().removeTab(getEditor());
+	Xpad.closeXpad();
     }
     
-    public void doAction() {
-	getEditor().getParentWindow().getAsSimpleWindow().close();
-	Xpad.closeXpad();
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Exit", null, new ExitAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
     }
 }

@@ -111,7 +111,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 						/* Now, we adjust the stacksize to the required value */
 						C2F(getstackinfo)(&currentstacksize,&used);
 
-						if (MEMSTACKSIZE != currentstacksize)
+						if (MEMSTACKSIZE != (unsigned long)currentstacksize)
 						{
 							unsigned long ptr=0;
 
