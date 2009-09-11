@@ -17,17 +17,22 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class NextTabAction extends DefaultAction {
 
-	public NextTabAction(Xpad editor) {
+	private NextTabAction(Xpad editor) {
 		super("Next tab", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
 	}
 	
 	public void doAction() {
 		int index = this.getEditor().getTabPane().getSelectedIndex();
 		System.out.println(index);
 	}
+	
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Next tab", null, new NextTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
+	 }
+	
 }

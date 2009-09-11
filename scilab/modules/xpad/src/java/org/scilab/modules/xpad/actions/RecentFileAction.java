@@ -12,32 +12,25 @@
 package org.scilab.modules.xpad.actions;
 import java.io.File;
 
-import javax.swing.KeyStroke;
-
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
-
-
 
 public class RecentFileAction extends DefaultAction {
 	
 	private File recentFile ;
 
-	public RecentFileAction(Xpad editor , File f) {
+	private RecentFileAction(Xpad editor , File f) {
 		super(f.getName(), editor);
 		recentFile = f ;
-		//setMnemonic('S');
-		
 	}
 	
 	public void doAction() {
 		ConfigXpadManager.saveToRecentOpenedFiles(recentFile.getPath());
 		getEditor().readFile(recentFile);
-		
-		
-		
 	};
 
-
-
+	public static MenuItem createMenu(Xpad editor, File f) {
+	    return createMenu(f.getName(), null, new RecentFileAction(editor, f), null);
+	}
 }

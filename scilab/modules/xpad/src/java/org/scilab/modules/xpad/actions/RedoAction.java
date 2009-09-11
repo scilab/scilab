@@ -17,16 +17,25 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class RedoAction extends DefaultAction {
 
-	public RedoAction(Xpad editor) {
+	private RedoAction(Xpad editor) {
 		super("Redo", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {
 		getEditor().redo();
+	}
+	
+	public static MenuItem createMenu(Xpad editor) {
+	    return createMenu("Redo", null, new RedoAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+	}
+
+	public static PushButton createButton(Xpad editor) {
+	    return createButton("Redo", "edit-redo.png", new RedoAction(editor));
 	}
 }

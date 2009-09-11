@@ -619,23 +619,23 @@ public class ConfigXpadManager {
 
 
 		Element root = (Element )document.getDocumentElement().getElementsByTagName("recentFiles").item(0);
-		NodeList recentFiles= root.getElementsByTagName("document");
-		
-		for (int i = 0; i < recentFiles.getLength() ; ++i){
+		if(root != null) {
+		    NodeList recentFiles= root.getElementsByTagName("document");
+
+		    for (int i = 0; i < recentFiles.getLength() ; ++i){
 			Element style =(Element) recentFiles.item(i);
-		
-			
+
 			File temp = new File(style.getAttribute("path") ) ;
-			
+
 			if (temp.exists())
-				files.add(temp);
+			    files.add(temp);
 			else
-				root.removeChild((Node)style );
-			
+			    root.removeChild((Node)style );
+
 			/* Save changes */
 			writeDocument();
-			
-		}		
+		    }		
+		}
 		return files ;
 	}
 	

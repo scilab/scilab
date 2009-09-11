@@ -12,12 +12,17 @@
 
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class ShowToolBarAction extends DefaultCheckAction {
 
-    public ShowToolBarAction(Xpad editor) {
+    private ShowToolBarAction(Xpad editor) {
 	super("Show/Hide ToolBar", editor);
+    }
+    
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+	return createCheckBoxMenu("Show/Hide ToolBar", null, new ShowToolBarAction(editor), null);
     }
     
 }

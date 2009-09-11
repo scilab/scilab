@@ -45,6 +45,8 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.Highlight;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
@@ -84,10 +86,8 @@ public class FindAction extends DefaultAction {
 	int endFindSelection ;
 
 
-	public FindAction(Xpad editor) {
+	private FindAction(Xpad editor) {
 		super("Find/Replace...", editor);
-		//setMnemonic('F');
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
 	}
 
 	public void doAction() {
@@ -95,6 +95,14 @@ public class FindAction extends DefaultAction {
 		findReplaceBox();
 	}
 
+	 public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Find/Replace...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+	 }
+	 
+	 public static PushButton createButton(Xpad editor) {
+	     return createButton("Find/Replace...", "edit-find-replace.png", new FindAction(editor));
+	 }
+	
 	public void findReplaceBox() {
 
 		//Find & Replace Frame
