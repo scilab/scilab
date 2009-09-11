@@ -37,11 +37,11 @@ namespace ast
 		{
 			types::ObjectMatrix *super_mat = dynamic_cast<types::ObjectMatrix*>(symbol::Context::getInstance()->get(*e.super_get()));
 			if(super_mat)
-				super = dynamic_cast<types::Class*>(super_mat->object_ref_get());
+				super = dynamic_cast<types::Class*>(super_mat->GetObjectRef());
 		}
 		
 		/* Create class */
-		kls = types::Class::create(e.name_get()->name_get(), super);
+		kls = types::Class::Create(e.name_get()->name_get(), super);
 		
 		/* Create slots */
 		for(it = slots.begin(); it != slots.end(); ++it)
@@ -77,7 +77,7 @@ namespace ast
 					else if(attr == "private")
 						vis = types::Slot::PRIVATE;
 					else if(attr == "ro")
-						setter = ro_setter;
+						setter = RoSetter;
 					else if(attr == "cls")
 						class_slot = true;
 				}
@@ -85,11 +85,11 @@ namespace ast
 				/* Add it */
 				if(class_slot)
 				{
-					kls->install_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+					kls->InstallProperty(sdec->name_get().name_get(), vis, def, NULL, setter);
 				}
 				else
 				{
-					kls->install_instance_property(sdec->name_get().name_get(), vis, def, NULL, setter);
+					kls->InstallInstanceProperty(sdec->name_get().name_get(), vis, def, NULL, setter);
 				}
 				
 				if(def)
@@ -183,17 +183,17 @@ namespace ast
 				{	/* Standard method, add it */
 					if(class_slot)
 					{
-						kls->install_method(sdec->name_get().name_get(), vis, code);
+						kls->InstallMethod(sdec->name_get().name_get(), vis, code);
 					}
 					else
 					{
-						kls->install_instance_method(sdec->name_get().name_get(), vis, code);
+						kls->InstallInstanceMethod(sdec->name_get().name_get(), vis, code);
 					}
 				}
 			}
 		}
 		
-		ObjectMatrix *res = types::ObjectMatrix::create_standard_ref(kls);
+		ObjectMatrix *res = types::ObjectMatrix::CreateStandardRef(kls);
 		result_set(res);
 		symbol::Context::getInstance()->put(symbol::Symbol(*e.name_get()), *res);
 	}

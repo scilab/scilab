@@ -27,23 +27,22 @@ namespace types
 			ObjectMatrix *pSender; /* = the object calling this method, or NULL if not called from a metho */
 		};
 		
-		typedef Callable::ReturnValue (*GW_METH)(typed_list &in, int iRetCount, typed_list &out,
-																						 const MethodCallCtx &ctx);
+		typedef Callable::ReturnValue (*GW_METH)(typed_list &_in, int _iRetCount, typed_list &_out, const MethodCallCtx &_ctx);
 	
-		Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
-		Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out, const MethodCallCtx &ctx)
+		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out);
+		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out, const MethodCallCtx &_ctx)
 		{
-			return m_callback(in, iRetCount, out, ctx);
+			return m_pCallback(_in, _iRetCount, _out, _ctx);
 		}
 	
-		Method(GW_METH p_callback): Callable(), m_callback(p_callback) {}
+		Method(GW_METH _pCallback): Callable(), m_pCallback(_pCallback) {}
 		virtual ~Method() {}
 	
 	protected:
-		GW_METH m_callback;
+		GW_METH m_pCallback;
 	};
 	
-	extern Callable *ro_setter;
+	extern Callable *RoSetter;
 }
 
 #endif /* !__OOUTILS_HXX__ */

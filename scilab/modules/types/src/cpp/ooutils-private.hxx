@@ -20,52 +20,52 @@ namespace types
 	class BoundMethod: public Callable
 	{
 	public:
-		BoundMethod(Callable *p_func, Object *p_self, Object *p_level, ObjectMatrix *p_sender);
+		BoundMethod(Callable *_pFunc, Object *_pSelf, Object *_pLevel, ObjectMatrix *_pSender);
 		virtual ~BoundMethod();
 		
-		Callable::ReturnValue call(typed_list &in, int iRetCount, typed_list &out);
-		virtual Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
+		Callable::ReturnValue call(typed_list &_in, int _iRetCount, typed_list &_out);
+		virtual Callable::ReturnValue InnerCall(typed_list &_in, int _iRetCount, typed_list &_out);
 	
 	protected:
-		Callable *m_func;
-		ObjectMatrix *m_this;
-		ObjectMatrix *m_super;
-		ObjectMatrix *m_sender;
+		Callable *m_pFunc;
+		ObjectMatrix *m_pThis;
+		ObjectMatrix *m_pSuper;
+		ObjectMatrix *m_pSender;
 	};
 	
 	class BoundGetter: public BoundMethod
 	{
 	public:
-		BoundGetter(PropertySlot *p_slot, Object *p_self, Object *p_level, ObjectMatrix *p_sender):
-			BoundMethod(p_slot->getter, p_self, p_level, p_sender), m_slot(p_slot) {}
+		BoundGetter(PropertySlot *_pSlot, Object *_pSelf, Object *_pLevel, ObjectMatrix *_pSender):
+			BoundMethod(_pSlot->getter, _pSelf, _pLevel, _pSender), m_pSlot(_pSlot) {}
 		virtual ~BoundGetter() {}
 		
-		Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
+		Callable::ReturnValue InnerCall(typed_list &_in, int _iRetCount, typed_list &_out);
 	
 	protected:
-		PropertySlot *m_slot;
+		PropertySlot *m_pSlot;
 	};
 	
 	class BoundSetter: public BoundMethod
 	{
 	public:
-		BoundSetter(PropertySlot *p_slot, Object *p_self, Object *p_level, ObjectMatrix *p_sender):
-			BoundMethod(p_slot->setter, p_self, p_level, p_sender), m_slot(p_slot) {}
+		BoundSetter(PropertySlot *_pSlot, Object *_pSelf, Object *_pLevel, ObjectMatrix *_pSender):
+			BoundMethod(_pSlot->setter, _pSelf, _pLevel, _pSender), m_pSlot(_pSlot) {}
 		virtual ~BoundSetter() {}
 		
-		Callable::ReturnValue inner_call(typed_list &in, int iRetCount, typed_list &out);
+		Callable::ReturnValue InnerCall(typed_list &_in, int _iRetCount, typed_list &_out);
 	
 	protected:
-		PropertySlot *m_slot;
+		PropertySlot *m_pSlot;
 	};
 	
 	/* Methods of root object */
-	Callable::ReturnValue install_property(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
-	Callable::ReturnValue install_method(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
-	Callable::ReturnValue object_get(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
-	Callable::ReturnValue object_set(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
-	Callable::ReturnValue slots_list(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
-	Callable::ReturnValue remove_slot(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue InstallProperty(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue InstallMethod(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue ObjectGet(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue ObjectSet(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue SlotsList(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
+	Callable::ReturnValue RemoveSlot(typed_list&, int, typed_list&, const Method::MethodCallCtx &);
 }
 
 #endif /* !__OOUTILS_PRIVATE_HXX__ */

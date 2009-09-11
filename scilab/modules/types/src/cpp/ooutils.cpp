@@ -20,12 +20,12 @@ namespace types
 	/*
 	 * Public utils
 	 */
-	static Callable::ReturnValue ro_setter_func(typed_list&, int, typed_list&, const Method::MethodCallCtx &)
+	static Callable::ReturnValue RoSetterFunc(typed_list&, int, typed_list&, const Method::MethodCallCtx &)
 	{
 		throw std::string("Read-only property");
 	}
 	
-	Callable *ro_setter = new Method(ro_setter_func);
+	Callable *RoSetter = new Method(RoSetterFunc);
 	
 	/*
 	 * Method
@@ -47,19 +47,19 @@ namespace types
 	 * Bound method
 	 */
 	BoundMethod::BoundMethod(Callable *p_func, Object *p_self, Object *p_level, ObjectMatrix *p_sender)
-		: m_func(p_func), m_this(NULL), m_super(NULL), m_sender(p_sender)
+		: m_pFunc(p_func), m_pThis(NULL), m_pSuper(NULL), m_pSender(p_sender)
 	{
 		if(p_level == NULL)
 		{
 			p_level = p_self;
 		}
-		m_this = ObjectMatrix::create_this(p_self, p_level);
-		m_super = ObjectMatrix::create_super(p_self, p_level->super());
+		m_pThis = ObjectMatrix::CreateThis(p_self, p_level);
+		m_pSuper = ObjectMatrix::CreateSuper(p_self, p_level->Super());
 	}
 	
 	BoundMethod::~BoundMethod()
 	{
-		/* Don’t delete m_this and m_super ; will be deleted by scope_end */
+		/* Don’t delete m_pThis and m_pSuper ; will be deleted by scope_end */
 	}
 	
 	Callable::ReturnValue BoundMethod::call(typed_list &in, int iRetCount, typed_list &out)
@@ -68,30 +68,30 @@ namespace types
 		symbol::Context *ctx = symbol::Context::getInstance();
 		
 		ctx->scope_begin();
-		ctx->put(symbol::Symbol("this"), *m_this);
-		ctx->put(symbol::Symbol("super"), *m_super);
+		ctx->put(symbol::Symbol("this"), *m_pThis);
+		ctx->put(symbol::Symbol("super"), *m_pSuper);
 		
-		ret = inner_call(in, iRetCount, out);
+		ret = InnerCall(in, iRetCount, out);
 		
 		ctx->scope_end();
 		
 		return ret;
 	}
 	
-	Callable::ReturnValue BoundMethod::inner_call(typed_list &in, int iRetCount, typed_list &out)
+	Callable::ReturnValue BoundMethod::InnerCall(typed_list &in, int iRetCount, typed_list &out)
 	{
-		Method *meth = dynamic_cast<Method*>(m_func);
+		Method *meth = dynamic_cast<Method*>(m_pFunc);
 		if(meth == NULL)
 		{
-			return m_func->call(in, iRetCount, out);
+			return m_pFunc->call(in, iRetCount, out);
 		}
 		else
 		{
 			Method::MethodCallCtx ctx =
 			{
-				*m_this,
-				*m_super,
-				m_sender
+				*m_pThis,
+				*m_pSuper,
+				m_pSender
 			};
 			
 			return meth->call(in, iRetCount, out, ctx);
@@ -101,27 +101,27 @@ namespace types
 	/*
 	 * BoundGetter
 	 */
-	Callable::ReturnValue BoundGetter::inner_call(typed_list &in, int retCount, typed_list &out)
+	Callable::ReturnValue BoundGetter::InnerCall(typed_list &in, int retCount, typed_list &out)
 	{
 		symbol::Context::getInstance()->put(symbol::Symbol("value"),
-				* m_this->level_ref_get()->raw_get(*m_slot)->clone());
-		return BoundMethod::inner_call(in, retCount, out);
+				* m_pThis->GetLevelRef()->RawGet(*m_pSlot)->clone());
+		return BoundMethod::InnerCall(in, retCount, out);
 	}
 	
 	/*
 	 * BoundSetter
 	 */
-	Callable::ReturnValue BoundSetter::inner_call(typed_list &in, int retCount, typed_list &out)
+	Callable::ReturnValue BoundSetter::InnerCall(typed_list &in, int retCount, typed_list &out)
 	{
 		Callable::ReturnValue ret;
 		symbol::Symbol v_sym("value");
 		InternalType *new_val;
 		
 		symbol::Context::getInstance()->put(v_sym, 
-				* m_this->level_ref_get()->raw_get(*m_slot)->clone());
-		ret = BoundMethod::inner_call(in, retCount, out);
+				* m_pThis->GetLevelRef()->RawGet(*m_pSlot)->clone());
+		ret = BoundMethod::InnerCall(in, retCount, out);
 		new_val = out.front();
-		m_this->level_ref_get()->raw_set(*m_slot, new_val);
+		m_pThis->GetLevelRef()->RawSet(*m_pSlot, new_val);
 		
 		return ret;
 	}
@@ -129,7 +129,7 @@ namespace types
 	/*
 	 * Root object methods
 	 */
-	Callable::ReturnValue install_property(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue InstallProperty(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
 	{
 		if(in.size() == 0 || in.size() > 5)
 		{
@@ -198,12 +198,12 @@ namespace types
 			}
 		}
 		
-		ctx.self.object_ref_get()->install_property(name->string_get(0,0), svisib, def, getter, setter);
+		ctx.self.GetObjectRef()->InstallProperty(name->string_get(0,0), svisib, def, getter, setter);
 		
 		return Callable::OK_NoResult;
 	}
 	
-	Callable::ReturnValue install_method(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue InstallMethod(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
 	{
 		if(in.size() != 3)
 		{
@@ -232,12 +232,12 @@ namespace types
 				throw std::string("Bad visibility");
 		}
 		
-		ctx.self.object_ref_get()->install_method(name->string_get(0,0), svisib, func);
+		ctx.self.GetObjectRef()->InstallMethod(name->string_get(0,0), svisib, func);
 		
 		return Callable::OK_NoResult;
 	}
 	
-	Callable::ReturnValue object_get(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue ObjectGet(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
 	{
 		if(in.size() != 1)
 			return Callable::Error;
@@ -248,11 +248,11 @@ namespace types
 		if(name->size_get() != 1)
 			return Callable::Error;
 		
-		out.push_back(ctx.self.get(name->string_get(0), ctx.pSender));
+		out.push_back(ctx.self.Get(name->string_get(0), ctx.pSender));
 		return Callable::OK;
 	}
 	
-	Callable::ReturnValue object_set(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue ObjectSet(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
 	{
 		if(in.size() != 2)
 			return Callable::Error;
@@ -263,11 +263,11 @@ namespace types
 		if(name->size_get() != 1)
 			return Callable::Error;
 		
-		ctx.self.set(name->string_get(0), in[1]->clone(), ctx.pSender);
+		ctx.self.Set(name->string_get(0), in[1]->clone(), ctx.pSender);
 		return Callable::OK_NoResult;
 	}
 	
-	Callable::ReturnValue slots_list(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue SlotsList(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
 	{
 		if(in.size() > 1)
 		{
@@ -299,7 +299,7 @@ namespace types
 		/* Get slots */
 		std::map<std::string, Slot&> allSlots;
 		std::map<std::string, Slot&>::const_iterator it;
-		Object *lvl = ctx.super.object_ref_get();
+		Object *lvl = ctx.super.GetObjectRef();
 		
 		do
 		{
@@ -317,7 +317,7 @@ namespace types
 					}
 				}
 			}
-			lvl = lvl->super();
+			lvl = lvl->Super();
 		}
 		while(lvl != NULL && recursive);
 		
@@ -376,7 +376,7 @@ namespace types
 		return Callable::OK;
 	}
 
-	Callable::ReturnValue remove_slot(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
+	Callable::ReturnValue RemoveSlot(typed_list &in, int retCount, typed_list &out, const Method::MethodCallCtx &ctx)
 	{
 		String *name = dynamic_cast<String*>(in[0]);
 		
@@ -385,7 +385,7 @@ namespace types
 			return Callable::Error;
 		}
 		
-		ctx.self.object_ref_get()->RemoveSlot(name->string_get(0,0));
+		ctx.self.GetObjectRef()->RemoveSlot(name->string_get(0,0));
 		
 		return Callable::OK_NoResult;
 	}

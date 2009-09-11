@@ -38,15 +38,19 @@ namespace types
 	
 	Class::Class(const std::string &p_name, Object *p_isa):
 		Object(p_isa),
-		m_instance_slots(),
+		m_instanceSlots(),
 		m_name(p_name)
 	{
 		String *s = new String(p_name.c_str());
-		install_property("super", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
-		install_property("name", Slot::PUBLIC, s, NULL, ro_setter);
+		InstallProperty("super", Slot::PUBLIC, ObjectMatrix::CreateStandardRef(p_isa), NULL, RoSetter);
+		InstallProperty("name", Slot::PUBLIC, s, NULL, RoSetter);
 	}
 	
-	Class* Class::create(const std::string &p_name, Class *p_super_class)
+	Class::~Class()
+	{
+	}
+	
+	Class* Class::Create(const std::string &p_name, Class *p_super_class)
 	{
 		if(p_super_class != NULL)
 		{
@@ -54,13 +58,13 @@ namespace types
 		}
 		else
 		{
-			return new Class(p_name, get_root_class());
+			return new Class(p_name, GetRootClass());
 		}
 	}
 	
-	void Class::install_instance_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
+	void Class::InstallInstanceProperty(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
 	{
-		if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
+		if(m_instanceSlots.find(p_slotName) != m_instanceSlots.end())
 		{
 			printf("Error: slot already exists\n");
 			return;
@@ -92,12 +96,12 @@ namespace types
 		}
 		
 		/* Add slot */
-		m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
+		m_instanceSlots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
 	}
 	
-	void Class::install_instance_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
+	void Class::InstallInstanceMethod(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func)
 	{
-		if(m_instance_slots.find(p_slotName) != m_instance_slots.end())
+		if(m_instanceSlots.find(p_slotName) != m_instanceSlots.end())
 		{
 			printf("Error: slot already exists\n");
 			return;
@@ -113,13 +117,13 @@ namespace types
 		slot->func->IncreaseRef();
 		
 		/* Add slot */
-		m_instance_slots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
+		m_instanceSlots.insert(std::pair<const std::string &, Slot&>(p_slotName, *slot));
 	}
 	
-	Slot* Class::resolv_instance_slot(const std::string &p_slotName)
+	Slot* Class::ResolvInstanceSlot(const std::string &p_slotName)
 	{
-		SlotsIterator it = m_instance_slots.find(p_slotName);
-		if(it != m_instance_slots.end())
+		SlotsIterator it = m_instanceSlots.find(p_slotName);
+		if(it != m_instanceSlots.end())
 		{
 			return &it->second;
 		}
@@ -129,25 +133,25 @@ namespace types
 		}
 	}
 	
-	Instance* Class::create_instance()
+	Instance* Class::CreateInstance()
 	{
-		Class *super_class = dynamic_cast<Class*>(m_isa);
+		Class *super_class = dynamic_cast<Class*>(m_pSuper);
 		if(super_class)
 		{
-			return new Instance(this, super_class->create_instance());
+			return new Instance(this, super_class->CreateInstance());
 		}
 		else
 		{
-			return new Instance(this, Object::get_root_object());
+			return new Instance(this, Object::GetRootObject());
 		}
 	}
 	
-	Instance* Class::create_instance(typed_list &p_constructor_args)
+	Instance* Class::CreateInstance(typed_list &p_constructor_args)
 	{
 		typed_list out_args;
-		Instance *res = create_instance();
+		Instance *res = CreateInstance();
 		
-		InternalType *tmp = res->get("%constructor", res, NULL);
+		InternalType *tmp = res->Get("%constructor", res, NULL);
 		Callable *constructor = dynamic_cast<Callable*>(tmp);
 		if(constructor)
 		{
@@ -157,33 +161,33 @@ namespace types
 		return res;
 	}
 	
-	Class* Class::get_root_class()
+	Class* Class::GetRootClass()
 	{
 		static Class *kls = NULL;
 		if(kls == NULL)
 		{
-			kls = new Class("<RootClass>", get_root_object());
-			kls->install_method("%new", Slot::PUBLIC, new Method(&types::RootNew));
-			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::InstallInstanceMethod));
-			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::InstallInstanceProperty));
-			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::InstanceSlotsList));
-			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
-			kls->install_instance_method("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls = new Class("<RootClass>", GetRootObject());
+			kls->InstallMethod("%new", Slot::PUBLIC, new Method(&types::RootNew));
+			kls->InstallMethod("%install_instance_method", Slot::PUBLIC, new Method(&types::InstallInstanceMethod));
+			kls->InstallMethod("%install_instance_property", Slot::PUBLIC, new Method(&types::InstallInstanceProperty));
+			kls->InstallMethod("%instance_slots_list", Slot::PUBLIC, new Method(&types::InstanceSlotsList));
+			kls->InstallMethod("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
+			kls->InstallInstanceMethod("%constructor", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 		}
 		return kls;
 	}
 	
 	void Class::RemoveInstanceSlot(const std::string &_slotName)
 	{
-		if(m_instance_slots.find(_slotName) != m_instance_slots.end())
+		if(m_instanceSlots.find(_slotName) != m_instanceSlots.end())
 		{
-			m_instance_slots.erase(m_instance_slots.find(_slotName));
+			m_instanceSlots.erase(m_instanceSlots.find(_slotName));
 		}
 		else
 		{
-			if(m_isa && dynamic_cast<Class*>(m_isa))
+			if(m_pSuper && dynamic_cast<Class*>(m_pSuper))
 			{
-				dynamic_cast<Class*>(m_isa)->RemoveInstanceSlot(_slotName);
+				dynamic_cast<Class*>(m_pSuper)->RemoveInstanceSlot(_slotName);
 			}
 			else
 			{
@@ -200,9 +204,9 @@ namespace types
 	
 	static Callable::ReturnValue RootNew(typed_list &in, int, typed_list &out, const Method::MethodCallCtx &ctx)
 	{	/* Accepts any input argument since they are transmitted to the constructor */
-		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
-		Instance *inst = kls->create_instance(in);
-		out.push_back(ObjectMatrix::create_standard_ref(inst));
+		Class *kls = dynamic_cast<Class*>(ctx.self.GetObjectRef());
+		Instance *inst = kls->CreateInstance(in);
+		out.push_back(ObjectMatrix::CreateStandardRef(inst));
 		return Callable::OK;
 	}
 	
@@ -226,7 +230,7 @@ namespace types
 		}
 		
 		String *name = dynamic_cast<String*>(in[0]);
-		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		Class *kls = dynamic_cast<Class*>(ctx.self.GetObjectRef());
 		
 		if(name == NULL || kls == NULL)
 		{
@@ -246,7 +250,7 @@ namespace types
 		}
 		
 		String *name = dynamic_cast<String*>(in[0]);
-		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		Class *kls = dynamic_cast<Class*>(ctx.self.GetObjectRef());
 		InternalType *def = NULL;
 		Callable *getter = NULL;
 		Callable *setter = NULL;
@@ -309,7 +313,7 @@ namespace types
 			}
 		}
 		
-		kls->install_instance_property(name->string_get(0,0), svisib, def, getter, setter);
+		kls->InstallInstanceProperty(name->string_get(0,0), svisib, def, getter, setter);
 		
 		return Callable::OK_NoResult;
 	}
@@ -323,7 +327,7 @@ namespace types
 		
 		String *name = dynamic_cast<String*>(in[0]);
 		String *visibility = dynamic_cast<String*>(in[1]);
-		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		Class *kls = dynamic_cast<Class*>(ctx.self.GetObjectRef());
 		Callable *func = dynamic_cast<Callable*>(in[2]);
 		
 		if(name == NULL || visibility == NULL || func == NULL)
@@ -344,7 +348,7 @@ namespace types
 				throw std::string("Bad visibility");
 		}
 		
-		kls->install_instance_method(name->string_get(0,0), svisib, func);
+		kls->InstallInstanceMethod(name->string_get(0,0), svisib, func);
 		
 		return Callable::OK_NoResult;
 	}
@@ -381,7 +385,7 @@ namespace types
 		/* Get slots */
 		std::map<std::string, Slot&> allSlots;
 		std::map<std::string, Slot&>::const_iterator it;
-		Class *lvl = dynamic_cast<Class*>(ctx.super.object_ref_get());
+		Class *lvl = dynamic_cast<Class*>(ctx.super.GetObjectRef());
 		
 		do
 		{
@@ -399,7 +403,7 @@ namespace types
 					}
 				}
 			}
-			lvl = dynamic_cast<Class*>(lvl->super());
+			lvl = dynamic_cast<Class*>(lvl->Super());
 		}
 		while(lvl != NULL && recursive);
 		

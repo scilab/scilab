@@ -84,7 +84,7 @@ namespace types
 		*	 Return value will be destroyed with this object (or when it will be
 		* set), clone it if you may need it later.
 		*/
-		InternalType *get(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
+		InternalType *Get(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
 		
 		/** Perform (this object).(slot), private slot case
 		*	 See Object::get for general discussion of arguments.
@@ -95,38 +95,38 @@ namespace types
 		* this method to check that "sender" is the special variable "this"
 		* refering to this object. See ObjectMatrix::get.
 		*/
-		InternalType *get_priv(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
+		InternalType *GetPriv(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
 		
 		/** Perform (this.object).(slot) = (value).
 		*	 See Object::get for considerations on arguments.
 		*	 p_value will be destroyed with the object ; clone it before if you may
 		* need it later.
 		*/
-		void set(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
+		void Set(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
 		
 		/** Perform (this.object).(slot) = (value), private case.
 		*	 See Object::set and Object::get_priv for general considerations.
 		*/
-		bool set_priv(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
+		bool SetPriv(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
 		
 		/** Install a property on the object.
 		*	 getter and setter can be NULL ; p_default can’t.
 		*	 getter, setter and p_default will be destroyed with this object ;
 		* clone them if you may need it later.
 		*/
-		void install_property(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *getter, Callable *setter);
+		void InstallProperty(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *getter, Callable *setter);
 		
 		/** Install a method on the object.
 		*	 func will be destroyed with this object ;* clone them if you may need
 		* it later.
 		*/
-		void install_method(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
+		void InstallMethod(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
 		
 		/** Remove the first encountered slot by this name */
 		void RemoveSlot(const std::string &_slotName);
 		
 		/** Get the parent object */
-		Object *super() { return m_isa; }
+		Object *Super() { return m_pSuper; }
 		
 		/** See InternalType::toString */
 		virtual std::string toString() const { return "<Root object>"; }
@@ -135,42 +135,42 @@ namespace types
 		const std::map<std::string, Slot&>& GetSlots() const { return m_slots; }
 	
 		// root_object is the object at the top of all super chains
-		static Object *get_root_object();
+		static Object *GetRootObject();
 	
 		// m_slots_values manipulation
-		InternalType *raw_get(PropertySlot &slot);
-		void raw_set(PropertySlot &slot, InternalType *value);
+		InternalType *RawGet(PropertySlot &slot);
+		void RawSet(PropertySlot &slot, InternalType *value);
 	
 	protected:
-		Object(Object *p_isa = NULL): m_isa(p_isa), m_slots(), m_slots_values() { }
+		Object(Object *_pSuper = NULL): m_pSuper(_pSuper), m_slots(), m_slotsValues() { }
 	
 		// Search p_slotName in slots list (recursively).
 		// If found, set r_lvptr to the level where the slot is found and r_slot to
 		//	the found slot. Else, set them to NULL
 		// If not found, the return value indicates wether the slot has been found 
 		//	but is fot visible (true) or not (false)
-		virtual bool resolv_slot(const std::string &p_slotName, const ObjectMatrix *p_sender,
+		virtual bool ResolvSlot(const std::string &p_slotName, const ObjectMatrix *p_sender,
 			Object **r_lvptr, Slot **r_slot);
 	
 		// Search p_slotName in local slots. Same rules as resolv_slot for r_slot
 		// and return value.
-		virtual bool resolv_slot_local(const std::string &p_slotName, const ObjectMatrix *p_sender,
+		virtual bool ResolvSlotLocal(const std::string &p_slotName, const ObjectMatrix *p_sender,
 			Slot **r_slot);
 		
 		// Returns true if p_slot (considered as a slot of this object) is visible
 		// from p_sender
-		virtual bool is_visible(const Slot *p_slot, const ObjectMatrix *p_sender) const;
+		virtual bool IsVisible(const Slot *p_slot, const ObjectMatrix *p_sender) const;
 	
 		// Perform a get operation on this slot (property: returns its value or
 		// the result of the getter, method: return the bound method)
-		InternalType *do_get(Slot *p_slot, Object *p_level, ObjectMatrix *p_sender);
+		InternalType *DoGet(Slot *p_slot, Object *p_level, ObjectMatrix *p_sender);
 	
 		// Perform a set operation on this slot (must be a property)
-		void do_set(Slot *p_slot, Object *p_level, InternalType *p_value, ObjectMatrix *p_sender);
+		void DoSet(Slot *p_slot, Object *p_level, InternalType *p_value, ObjectMatrix *p_sender);
 		
 		// Call the function. VaArgs: null terminated list of InternalType*. 
 		// Returns only the first return value of the function.
-		InternalType *do_call(Callable &func, int retCount, ...);
+		InternalType *DoCall(Callable &func, int retCount, ...);
 	
 	protected:
 		typedef std::map<std::string, Slot&>::iterator SlotsIterator;
@@ -179,9 +179,9 @@ namespace types
 		// We split apart the slot (including its default value) and its value
 		// since an instance slot may be shared among many objects, but its
 		// value is still specific to each object
-		std::map<std::string, InternalType *> m_slots_values;
+		std::map<std::string, InternalType *> m_slotsValues;
 		std::map<std::string, Slot&> m_slots;
-		Object *m_isa;
+		Object *m_pSuper;
 	};
 }
 

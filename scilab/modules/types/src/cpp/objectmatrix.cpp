@@ -20,7 +20,7 @@ namespace types
 {
 	ObjectMatrix::ObjectMatrix(int rows, int cols):
 		GenericType(),
-		m_optr(new Object*[rows*cols]), m_lvptr(NULL), m_startptr(NULL), m_repr(NULL)
+		m_pObj(new Object*[rows*cols]), m_pLvl(NULL), m_pStart(NULL), m_pRepr(NULL)
 	{
 		m_iRows = rows;
 		m_iCols = cols;
@@ -29,15 +29,10 @@ namespace types
 		
 	ObjectMatrix::~ObjectMatrix()
 	{
-		delete [] m_optr;
+		delete [] m_pObj;
 	}
 	
-	Object* ObjectMatrix::elem_get(int pos) const
-	{
-		return m_optr[pos];
-	}
-	
-	bool ObjectMatrix::elem_set(int row, int col, Object *val)
+	bool ObjectMatrix::SetElem(int row, int col, Object *val)
 	{
 		/* Out of bounds check */
 		if(row >= m_iRows || col >= m_iCols)
@@ -45,39 +40,39 @@ namespace types
 			return false;
 		}
 		
-		return elem_set(col * m_iRows + row, val);
+		return SetElem(col * m_iRows + row, val);
 	}
 	
-	bool ObjectMatrix::elem_set(int pos, Object *val)
+	bool ObjectMatrix::SetElem(int pos, Object *val)
 	{
 		/* Check element compatibility */
-		if(m_repr == NULL)
+		if(m_pRepr == NULL)
 		{	/* Firts element inserted */
 			if(dynamic_cast<Instance*>(val) != NULL)
 			{
-				m_repr = dynamic_cast<Instance*>(val)->class_get();
+				m_pRepr = dynamic_cast<Instance*>(val)->GetClass();
 			}
 			else if(dynamic_cast<Class*>(val) != NULL)
 			{
-				m_repr = Class::get_root_class();
+				m_pRepr = Class::GetRootClass();
 			}
 			else
 			{
-				m_repr = val;
+				m_pRepr = val;
 			}
 		}
 		else
 		{
-			if(m_repr == Class::get_root_class())
+			if(m_pRepr == Class::GetRootClass())
 			{	/* Matrix contais classes ; we want a class */
 				if(dynamic_cast<Class*>(val) == NULL)
 				{
 					return false;
 				}
 			}
-			else if(m_repr == Object::get_root_object())
+			else if(m_pRepr == Object::GetRootObject())
 			{	/* Matrix contains root object ; we accept only the root object */
-				if(val != Object::get_root_object())
+				if(val != Object::GetRootObject())
 				{
 					return false;
 				}
@@ -94,12 +89,12 @@ namespace types
 				std::stack<Object*> super_chain_repr;
 				std::stack<Object*> super_chain_val;
 				Object *cur_lv;
-				Object *root = Class::get_root_class();
+				Object *root = Class::GetRootClass();
 				
-				for(cur_lv = m_repr; cur_lv != root; cur_lv = cur_lv->super())
+				for(cur_lv = m_pRepr; cur_lv != root; cur_lv = cur_lv->Super())
 					super_chain_repr.push(cur_lv);
 				
-				for(cur_lv = val_inst->class_get(); cur_lv != root; cur_lv = cur_lv->super())
+				for(cur_lv = val_inst->GetClass(); cur_lv != root; cur_lv = cur_lv->Super())
 					super_chain_val.push(cur_lv);
 				
 				/* Find the innermost common object in the stacks ; it is the new representative */
@@ -117,15 +112,15 @@ namespace types
 					return false;
 				}
 				
-				m_repr = new_repr;
+				m_pRepr = new_repr;
 			}
 		}
 		
-		m_optr[pos] = val;
+		m_pObj[pos] = val;
 		return true;
 	}
 	
-	bool ObjectMatrix::insert(int row, int col, const ObjectMatrix *other)
+	bool ObjectMatrix::Insert(int row, int col, const ObjectMatrix *other)
 	{
 		/* Out of bounds check */
 		if(row + other->rows_get() > m_iRows || col + other->cols_get() > m_iCols)
@@ -139,7 +134,7 @@ namespace types
 		{
 			for(curRow = 0 ; curRow < other->rows_get() ; ++curRow)
 			{
-				if(!elem_set(row + curRow, col + curCol, other->elem_get(curRow, curCol)))
+				if(!SetElem(row + curRow, col + curCol, other->GetElem(curRow, curCol)))
 				{
 					return false;
 				}
@@ -153,25 +148,25 @@ namespace types
 	{
 		if(m_iSize == 1)
 		{
-			return m_optr[0]->toString();
+			return m_pObj[0]->toString();
 		}
 		else
 		{
 			std::stringstream ss;
 			std::string ret;
 			ss << "<" << m_iRows << "x" << m_iCols << " matrix of ";
-			if(m_repr == Class::get_root_class())
+			if(m_pRepr == Class::GetRootClass())
 			{ /* Matrix contains classes */
 				ss << "classes";
 			}
-			else if(m_repr == Object::get_root_object())
+			else if(m_pRepr == Object::GetRootObject())
 			{ /* Matrix contains root object */
 				ss << "root object";
 			}
 			else
-			{ /* Matrix contains instances of m_repr class */
+			{ /* Matrix contains instances of m_pRepr class */
 				ss << "'";
-				ss << dynamic_cast<Class*>(m_repr)->name_get();
+				ss << dynamic_cast<Class*>(m_pRepr)->GetName();
 				ss << "' instances";
 			}
 			ss << ">";
@@ -179,13 +174,13 @@ namespace types
 		}
 	}
 	
-	InternalType* ObjectMatrix::get(const std::string &p_slotName) const
+	InternalType* ObjectMatrix::Get(const std::string &p_slotName) const
 	{
 		ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
-		return get(p_slotName, sender);
+		return Get(p_slotName, sender);
 	}
 		
-	InternalType* ObjectMatrix::get(const std::string &p_slotName, ObjectMatrix *p_sender) const
+	InternalType* ObjectMatrix::Get(const std::string &p_slotName, ObjectMatrix *p_sender) const
 	{
 		if(m_iSize != 1)
 		{
@@ -193,33 +188,33 @@ namespace types
 		}
 		
 		/* this.x, with x private */
-		if(p_sender != NULL && is_this())
+		if(p_sender != NULL && IsThis())
 		{
-			if(p_sender->m_lvptr == m_lvptr)
+			if(p_sender->m_pLvl == m_pLvl)
 			{
-				InternalType * res = m_lvptr->get_priv(p_slotName, m_optr[0], p_sender);
+				InternalType * res = m_pLvl->GetPriv(p_slotName, m_pObj[0], p_sender);
 				if(res != NULL)
 					return res;
 			}
 		}
 		
-		if(is_super())
+		if(IsSuper())
 		{	/* super.x */
-			return m_startptr->get(p_slotName, m_optr[0], p_sender);
+			return m_pStart->Get(p_slotName, m_pObj[0], p_sender);
 		}
 		else
 		{	/* normal case */
-			return m_optr[0]->get(p_slotName, m_optr[0], p_sender);
+			return m_pObj[0]->Get(p_slotName, m_pObj[0], p_sender);
 		}
 	}
 	
-	void ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value) const
+	void ObjectMatrix::Set(const std::string &p_slotName, InternalType * p_value) const
 	{
 		ObjectMatrix *sender = dynamic_cast<ObjectMatrix*>(symbol::Context::getInstance()->get(symbol::Symbol("this")));
-		return set(p_slotName, p_value, sender);
+		return Set(p_slotName, p_value, sender);
 	}
 		
-	void ObjectMatrix::set(const std::string &p_slotName, InternalType * p_value, ObjectMatrix *p_sender) const
+	void ObjectMatrix::Set(const std::string &p_slotName, InternalType * p_value, ObjectMatrix *p_sender) const
 	{
 		if(m_iSize != 1)
 		{
@@ -227,53 +222,39 @@ namespace types
 		}
 		
 		/* this.x, with x private */
-		if(p_sender != NULL && is_this())
+		if(p_sender != NULL && IsThis())
 		{
-			if(p_sender->m_lvptr == m_lvptr)
+			if(p_sender->m_pLvl == m_pLvl)
 			{
-				if(m_lvptr->set_priv(p_slotName, p_value, m_optr[0], p_sender))
+				if(m_pLvl->SetPriv(p_slotName, p_value, m_pObj[0], p_sender))
 				{
 					return;
 				}
 			}
 		}
 		
-		if(is_super())
+		if(IsSuper())
 		{
 			/* super.x = y */
-			m_startptr->set(p_slotName, p_value, m_optr[0], p_sender);
+			m_pStart->Set(p_slotName, p_value, m_pObj[0], p_sender);
 		}
 		else
 		{
 			/* normal case */
-			m_optr[0]->set(p_slotName, p_value, m_optr[0], p_sender);
+			m_pObj[0]->Set(p_slotName, p_value, m_pObj[0], p_sender);
 		}
-	}
-	
-	ObjectMatrix* ObjectMatrix::create_this(Object *p_self, Object *p_level)
-	{
-		return new ObjectMatrix(p_self, p_level, NULL);
-	}
-	
-	ObjectMatrix* ObjectMatrix::create_super(Object *p_self, Object *p_startp)
-	{
-		return new ObjectMatrix(p_self, NULL, p_startp);
-	}
-	
-	ObjectMatrix* ObjectMatrix::create_standard_ref(Object *p_self)
-	{
-		return new ObjectMatrix(p_self, NULL, NULL);
 	}
 	
 	InternalType* ObjectMatrix::clone()
 	{
+		/* the copy of "this" and "super" are standard references */
 		if(m_iSize == 1)
 		{
-			return ObjectMatrix::create_standard_ref(m_optr[0]);
+			return ObjectMatrix::CreateStandardRef(m_pObj[0]);
 		}
 		
 		ObjectMatrix *ret = new ObjectMatrix(m_iRows, m_iCols);
-		ret->insert(0, 0, this);
+		ret->Insert(0, 0, this);
 		return ret;
 	}
 }

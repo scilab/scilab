@@ -23,18 +23,14 @@ namespace types
 	
 	public:
 		virtual ~Instance() {}
-		std::string toString() const { return "<'"+m_kls->name_get()+"' Instance>"; }
-		Class *class_get() const { return m_kls; }
-	
-	private:
-		static Instance *get_root_instance();
+		std::string toString() const { return "<'"+m_pClass->GetName()+"' Instance>"; }
+		Class *GetClass() const { return m_pClass; }
 	
 	protected:
-		Instance(Class *p_kls, Object *p_isa);
+		Instance(Class *_pClass, Object *_pSuper);
 		
-		virtual bool resolv_slot_local(const std::string &p_slotName, const ObjectMatrix *p_sender,
-			Slot **r_slot);
-		Class *m_kls;
+		bool ResolvSlotLocal(const std::string &_slotName, const ObjectMatrix *_pSender, Slot **_pSlot);
+		Class *m_pClass;
 	};
 }
 

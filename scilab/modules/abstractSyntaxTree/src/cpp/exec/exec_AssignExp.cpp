@@ -76,7 +76,7 @@ namespace ast
 					propName = dynamic_cast<const SimpleVar*>(field->tail_get());
 					
 					if(pCall != NULL)
-						dataOld = object->get(propName->name_get().name_get());
+						dataOld = object->Get(propName->name_get().name_get());
 				}
 			}
 			
@@ -441,7 +441,7 @@ namespace ast
 				}
 				else
 				{
-					object->set(propName->name_get().name_get(), dataNew);
+					object->Set(propName->name_get().name_get(), dataNew);
 				}
 			}
 

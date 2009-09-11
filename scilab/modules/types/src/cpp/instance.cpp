@@ -18,25 +18,25 @@ namespace types
 {
 	Instance::Instance(Class *p_kls, Object *p_isa):
 		Object(p_isa),
-		m_kls(p_kls)
+		m_pClass(p_kls)
 	{
-		install_property("super", Slot::PRIVATE, ObjectMatrix::create_standard_ref(p_isa), NULL, ro_setter);
-		install_property("cls", Slot::PUBLIC, ObjectMatrix::create_standard_ref(p_kls), NULL, ro_setter);
-		install_property("level_class", Slot::PRIVATE, ObjectMatrix::create_standard_ref(p_kls), NULL, ro_setter);
+		InstallProperty("super", Slot::PRIVATE, ObjectMatrix::CreateStandardRef(p_isa), NULL, RoSetter);
+		InstallProperty("cls", Slot::PUBLIC, ObjectMatrix::CreateStandardRef(p_kls), NULL, RoSetter);
+		InstallProperty("level_class", Slot::PRIVATE, ObjectMatrix::CreateStandardRef(p_kls), NULL, RoSetter);
 	}
 	
-	bool Instance::resolv_slot_local(const std::string &p_slotName, const ObjectMatrix *p_sender, Slot **r_slot)
+	bool Instance::ResolvSlotLocal(const std::string &p_slotName, const ObjectMatrix *p_sender, Slot **r_slot)
 	{
-		bool res = Object::resolv_slot_local(p_slotName, p_sender, r_slot);
+		bool res = Object::ResolvSlotLocal(p_slotName, p_sender, r_slot);
 		if(*r_slot != NULL)
 		{
 			return res;
 		}
 		
-		Slot *slot = m_kls->resolv_instance_slot(p_slotName);
+		Slot *slot = m_pClass->ResolvInstanceSlot(p_slotName);
 		if(slot != NULL)
 		{
-			if(is_visible(slot, p_sender))
+			if(IsVisible(slot, p_sender))
 			{
 				*r_slot = slot;
 			}

@@ -202,7 +202,7 @@ namespace ast
 		types::ObjectMatrix *obj = dynamic_cast<types::ObjectMatrix*>(head);
 		if(obj != NULL)
 		{
-			types::InternalType *res = obj->get(tail.name_get());
+			types::InternalType *res = obj->Get(tail.name_get());
 			if(res != NULL)
 			{
 				result_set(res);
@@ -416,7 +416,7 @@ namespace ast
 					{
 						for(int i = 0 ; i < iTotalCombi ; i++)
 						{
-							oResult->elem_set(i, pObj->elem_get(piIndexSeq[i] - 1));
+							oResult->SetElem(i, pObj->GetElem(piIndexSeq[i] - 1));
 						}
 					}
 					else//matrix

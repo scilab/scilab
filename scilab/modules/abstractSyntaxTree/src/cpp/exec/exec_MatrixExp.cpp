@@ -339,7 +339,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			*_piCols = _poSource->getAsString()->cols_get();
 			break;
 		case GenericType::RealObject :
-			poResult->getAsObject()->insert(iCurRow, iCurCol, _poSource->getAsObject());
+			poResult->getAsObject()->Insert(iCurRow, iCurCol, _poSource->getAsObject());
 			*_piRows = dynamic_cast<GenericType*>(_poSource)->rows_get();
 			*_piCols = dynamic_cast<GenericType*>(_poSource)->cols_get();
 			break;
