@@ -163,7 +163,7 @@ namespace types
 		{
 			kls = new Class("<RootClass>", get_root_object());
 			kls->install_method("%new", Slot::PUBLIC, new Method(&types::RootNew));
-			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::EmptyConstructor));
+			kls->install_method("%install_instance_method", Slot::PUBLIC, new Method(&types::InstallInstanceMethod));
 			kls->install_method("%install_instance_property", Slot::PUBLIC, new Method(&types::InstallInstanceProperty));
 			kls->install_method("%instance_slots_list", Slot::PUBLIC, new Method(&types::EmptyConstructor));
 			kls->install_method("%remove_instance_slot", Slot::PUBLIC, new Method(&types::RemoveInstanceSlot));
@@ -313,4 +313,38 @@ namespace types
 		return Callable::OK_NoResult;
 	}
 	
+	static Callable::ReturnValue InstallInstanceMethod(typed_list &in, int retCount, typed_list &, const Method::MethodCallCtx &ctx)
+	{
+		if(in.size() != 3)
+		{
+			return Callable::Error;
+		}
+		
+		String *name = dynamic_cast<String*>(in[0]);
+		String *visibility = dynamic_cast<String*>(in[1]);
+		Class *kls = dynamic_cast<Class*>(ctx.self.object_ref_get());
+		Callable *func = dynamic_cast<Callable*>(in[2]);
+		
+		if(name == NULL || visibility == NULL || func == NULL)
+		{
+			return Callable::Error;
+		}
+		
+		Slot::Visibility svisib = Slot::PUBLIC;
+		if(visibility != NULL)
+		{
+			if(!strcmp(visibility->string_get(0,0), "public"))
+				svisib = Slot::PUBLIC;
+			else if(!strcmp(visibility->string_get(0,0), "protected"))
+				svisib = Slot::PROTECTED;
+			else if(!strcmp(visibility->string_get(0,0), "private"))
+				svisib = Slot::PRIVATE;
+			else
+				throw std::string("Bad visibility");
+		}
+		
+		kls->install_instance_method(name->string_get(0,0), svisib, func);
+		
+		return Callable::OK_NoResult;
+	}
 }

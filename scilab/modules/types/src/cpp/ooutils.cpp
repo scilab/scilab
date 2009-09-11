@@ -228,6 +228,8 @@ namespace types
 				svisib = Slot::PROTECTED;
 			else if(!strcmp(visibility->string_get(0,0), "private"))
 				svisib = Slot::PRIVATE;
+			else
+				throw std::string("Bad visibility");
 		}
 		
 		ctx.self.object_ref_get()->install_method(name->string_get(0,0), svisib, func);
