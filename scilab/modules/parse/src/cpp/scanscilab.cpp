@@ -371,8 +371,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 114
-#define YY_END_OF_BUFFER 115
+#define YY_NUM_RULES 116
+#define YY_END_OF_BUFFER 117
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -383,33 +383,33 @@ struct yy_trans_info
 static yyconst flex_int16_t yy_accept[263] =
     {   0,
         0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-        0,    0,    0,    0,    0,    0,  115,   68,   65,   66,
-       66,   63,   60,   18,   60,   21,   64,   23,   24,   37,
-       36,   26,   35,   54,   38,   56,   27,   25,   47,   51,
-       48,   17,   52,   39,   53,   40,   60,   60,   60,   60,
-       60,   60,   60,   60,   60,   60,   28,   22,   29,   17,
-       65,  105,  104,  104,  105,  102,  105,  113,  111,  111,
-      110,  113,  113,   97,   96,   96,   97,   97,   93,   92,
-       92,   91,   90,   87,   87,   91,   77,   65,   66,   63,
-       60,   18,   60,   21,   64,   23,   24,   37,   70,   26,
+        0,    0,    0,    0,    0,    0,  117,   70,   67,   68,
+       68,   65,   62,   18,   62,   21,   66,   25,   26,   39,
+       38,   28,   37,   56,   40,   58,   29,   27,   49,   53,
+       50,   17,   54,   41,   55,   42,   62,   62,   62,   62,
+       62,   62,   62,   62,   62,   62,   30,   23,   31,   17,
+       67,  107,  106,  106,  107,  104,  107,  115,  113,  113,
+      112,  115,  115,   99,   98,   98,   99,   99,   95,   94,
+       94,   93,   92,   89,   89,   93,   79,   67,   68,   65,
+       62,   18,   62,   21,   66,   25,   26,   39,   72,   28,
 
-       71,   54,   38,   56,   27,   25,   47,   51,   48,   17,
-       52,   39,   69,   40,   28,   22,   29,   17,   65,   86,
-       85,  114,   84,   79,   78,   86,   80,   65,   66,   60,
-       20,   19,   21,   40,   30,   31,   55,   32,   59,   33,
-       34,   61,   44,   62,   58,   56,    0,   49,   46,   45,
-       50,   60,   60,   12,   60,   60,   60,   60,    1,   60,
-       60,   60,   60,   60,   22,   65,   67,   67,  104,   98,
-       99,  100,  101,  103,  111,  106,  107,  108,  109,  112,
-       96,   94,   95,   92,   90,   87,   88,   89,   65,    0,
-       65,   85,   84,   82,   81,   80,    0,   41,   55,   42,
+       73,   56,   40,   58,   29,   27,   49,   53,   50,   17,
+       54,   41,   71,   42,   30,   23,   31,   17,   67,   88,
+       87,  116,   86,   81,   80,   88,   82,   67,   68,   62,
+       20,   19,   22,   42,   32,   33,   57,   34,   61,   35,
+       36,   63,   46,   64,   60,   58,    0,   51,   48,   47,
+       52,   62,   62,   12,   62,   62,   62,   62,    1,   62,
+       62,   62,   62,   62,   24,   67,   69,   69,  106,  100,
+      101,  102,  103,  105,  113,  108,  109,  110,  111,  114,
+       98,   96,   97,   94,   92,   89,   90,   91,   67,    0,
+       67,   87,   86,   84,   83,   82,    0,   43,   57,   44,
 
-       43,   58,    0,   57,   60,   60,   60,   60,    5,   10,
-       60,   60,   60,   60,   14,   60,  103,  112,   76,    0,
-       72,   81,    0,   83,   60,    7,   60,    3,   60,   60,
-       60,   60,    2,   60,   76,   75,   73,    0,   13,   15,
-       60,   60,   60,   60,   60,   11,   73,    0,   74,    4,
-       60,   60,   16,    6,   60,   60,   60,    8,   60,   60,
+       45,   60,    0,   59,   62,   62,   62,   62,    5,   10,
+       62,   62,   62,   62,   14,   62,  105,  114,   78,    0,
+       74,   83,    0,   85,   62,    7,   62,    3,   62,   62,
+       62,   62,    2,   62,   78,   77,   75,    0,   13,   15,
+       62,   62,   62,   62,   62,   11,   75,    0,   76,    4,
+       62,   62,   16,    6,   62,   62,   62,    8,   62,   62,
         9,    0
     } ;
 
@@ -1066,209 +1066,221 @@ YY_RULE_SETUP
 case 22:
 YY_RULE_SETUP
 {
-  return scan_throw(OR);
+  return scan_throw(ANDAND);
 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
 {
-  return scan_throw(LPAREN);
+  return scan_throw(OR);
 }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
 {
-  return scan_throw(RPAREN);
+  return scan_throw(OROR);
 }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
 {
-  return scan_throw(SEMI);
+  return scan_throw(LPAREN);
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
 {
-  return scan_throw(COMMA);
+  return scan_throw(RPAREN);
 }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
 {
-  return scan_throw(COLON);
+  return scan_throw(SEMI);
 }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
 {
-  return scan_throw(LBRACE);
+  return scan_throw(COMMA);
 }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
 {
-  return scan_throw(RBRACE);
+  return scan_throw(COLON);
 }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTQUOTE);
+  return scan_throw(LBRACE);
 }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTTIMES);
+  return scan_throw(RBRACE);
 }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTDIVIDE);
+  return scan_throw(DOTQUOTE);
 }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTRDIVIDE);
+  return scan_throw(DOTTIMES);
 }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
 {
-  return scan_throw(DOTPOWER);
+  return scan_throw(DOTDIVIDE);
 }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
 {
-  return scan_throw(MINUS);
+  return scan_throw(DOTRDIVIDE);
 }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
 {
-  return scan_throw(PLUS);
+  return scan_throw(DOTPOWER);
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
 {
-  return scan_throw(TIMES);
+  return scan_throw(MINUS);
 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
 {
-  return scan_throw(DIVIDE);
+  return scan_throw(PLUS);
 }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
 {
-  return scan_throw(RDIVIDE);
+  return scan_throw(TIMES);
 }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
 {
-  return scan_throw(POWER);
+  return scan_throw(DIVIDE);
 }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
 {
-  return scan_throw(KRONTIMES);
+  return scan_throw(RDIVIDE);
 }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
 {
-  return scan_throw(KRONDIVIDE);
+  return scan_throw(POWER);
 }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
 {
-  return scan_throw(KRONRDIVIDE);
+  return scan_throw(KRONTIMES);
 }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
 {
-  return scan_throw(CONTROLDIVIDE);
+  return scan_throw(KRONDIVIDE);
 }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
 {
-  return scan_throw(EQ);
+  return scan_throw(KRONRDIVIDE);
 }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
 {
-  return scan_throw(NE);
+  return scan_throw(CONTROLDIVIDE);
 }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
 {
-  return scan_throw(LT);
+  return scan_throw(EQ);
 }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
 {
-  return scan_throw(GT);
+  return scan_throw(NE);
 }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
 {
-  return scan_throw(LE);
+  return scan_throw(LT);
 }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
 {
-  return scan_throw(GE);
+  return scan_throw(GT);
 }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
 {
+  return scan_throw(LE);
+}
+	YY_BREAK
+case 52:
+YY_RULE_SETUP
+{
+  return scan_throw(GE);
+}
+	YY_BREAK
+case 53:
+YY_RULE_SETUP
+{
   return scan_throw(ASSIGN);
  }
 	YY_BREAK
-case 52:
+case 54:
 YY_RULE_SETUP
 {
   yy_push_state(MATRIX);
   return scan_throw(LBRACK);
 }
 	YY_BREAK
-case 53:
+case 55:
 YY_RULE_SETUP
 {
   return scan_throw(RBRACK);
 }
 	YY_BREAK
-case 54:
+case 56:
 YY_RULE_SETUP
 {
   return scan_throw(DOT);
 }
 	YY_BREAK
-case 55:
+case 57:
 YY_RULE_SETUP
 {
   yy_push_state(LINEBREAK);
 }
 	YY_BREAK
-case 56:
+case 58:
 YY_RULE_SETUP
 {
   yylval.number = atof(yytext);
@@ -1279,7 +1291,7 @@ YY_RULE_SETUP
   return scan_throw(VARINT);
 }
 	YY_BREAK
-case 57:
+case 59:
 YY_RULE_SETUP
 {
   scan_exponent_convert(yytext);
@@ -1291,7 +1303,7 @@ YY_RULE_SETUP
   return scan_throw(VARFLOAT);
 }
 	YY_BREAK
-case 58:
+case 60:
 YY_RULE_SETUP
 {
   yylval.number = atof(yytext);
@@ -1302,7 +1314,7 @@ YY_RULE_SETUP
   return scan_throw(NUM);
 }
 	YY_BREAK
-case 59:
+case 61:
 YY_RULE_SETUP
 {
   yylval.number = atof(yytext);
@@ -1313,7 +1325,7 @@ YY_RULE_SETUP
   return scan_throw(NUM);
 }
 	YY_BREAK
-case 60:
+case 62:
 YY_RULE_SETUP
 {
   yylval.str = new std::string(yytext);
@@ -1324,7 +1336,7 @@ YY_RULE_SETUP
   return scan_throw(ID);
 }
 	YY_BREAK
-case 61:
+case 63:
 YY_RULE_SETUP
 {
   yylval.comment = new std::string();
@@ -1332,21 +1344,21 @@ YY_RULE_SETUP
   yy_push_state(REGIONCOMMENT);
 }
 	YY_BREAK
-case 62:
+case 64:
 YY_RULE_SETUP
 {
   yylval.comment = new std::string();
   yy_push_state(LINECOMMENT);
 }
 	YY_BREAK
-case 63:
+case 65:
 YY_RULE_SETUP
 {
   yylval.str = new std::string();
   yy_push_state(DOUBLESTRING);
 }
 	YY_BREAK
-case 64:
+case 66:
 YY_RULE_SETUP
 {
   /*
@@ -1366,15 +1378,15 @@ YY_RULE_SETUP
   }
 }
 	YY_BREAK
-case 65:
+case 67:
 YY_RULE_SETUP
 {
   scan_step();
   scan_throw(SPACES);
 }
 	YY_BREAK
-case 66:
-/* rule 66 can match eol */
+case 68:
+/* rule 68 can match eol */
 YY_RULE_SETUP
 {
   yylloc.last_line += 1;
@@ -1385,8 +1397,8 @@ YY_RULE_SETUP
   }
 }
 	YY_BREAK
-case 67:
-/* rule 67 can match eol */
+case 69:
+/* rule 69 can match eol */
 YY_RULE_SETUP
 {
   yylloc.last_line += 1;
@@ -1395,7 +1407,7 @@ YY_RULE_SETUP
   scan_throw(EOL);
 }
 	YY_BREAK
-case 68:
+case 70:
 YY_RULE_SETUP
 {
   std::string str = "unexpected token '";
@@ -1406,57 +1418,23 @@ YY_RULE_SETUP
 }
 	YY_BREAK
 
-case 69:
+case 71:
 YY_RULE_SETUP
 {
     yy_pop_state();
     return scan_throw(RBRACK);
   }
 	YY_BREAK
-case 70:
+case 72:
 YY_RULE_SETUP
 {
     return scan_throw(PLUS);
   }
 	YY_BREAK
-case 71:
-YY_RULE_SETUP
-{
-    return scan_throw(MINUS);
-  }
-	YY_BREAK
-case 72:
-YY_RULE_SETUP
-{
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-	unput(yytext[i]);
-      }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
-      {
-	return scan_throw(COMMA);
-      }
-  }
-	YY_BREAK
 case 73:
 YY_RULE_SETUP
 {
-   int i;
-    for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-	unput(yytext[i]);
-      }
-    yy_push_state(MATRIXMINUSID);
-    if (last_token != LBRACK
-	&& last_token != EOL
-	&& last_token != SEMI)
-      {
-	return scan_throw(COMMA);
-      }
+    return scan_throw(MINUS);
   }
 	YY_BREAK
 case 74:
@@ -1496,7 +1474,7 @@ YY_RULE_SETUP
 case 76:
 YY_RULE_SETUP
 {
-    int i;
+   int i;
     for (i = yyleng - 1 ; i >= 0 ; --i)
       {
 	unput(yytext[i]);
@@ -1513,6 +1491,40 @@ YY_RULE_SETUP
 case 77:
 YY_RULE_SETUP
 {
+   int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+	YY_BREAK
+case 78:
+YY_RULE_SETUP
+{
+    int i;
+    for (i = yyleng - 1 ; i >= 0 ; --i)
+      {
+	unput(yytext[i]);
+      }
+    yy_push_state(MATRIXMINUSID);
+    if (last_token != LBRACK
+	&& last_token != EOL
+	&& last_token != SEMI)
+      {
+	return scan_throw(COMMA);
+      }
+  }
+	YY_BREAK
+case 79:
+YY_RULE_SETUP
+{
     std::string str = "unexpected token '";
     str += yytext;
     str += "' within a matrix.";
@@ -1521,19 +1533,19 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 78:
+case 80:
 YY_RULE_SETUP
 {
     return scan_throw(MINUS);
   }
 	YY_BREAK
-case 79:
+case 81:
 YY_RULE_SETUP
 {
      /* Do Nothing. */
   }
 	YY_BREAK
-case 80:
+case 82:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -1545,7 +1557,7 @@ YY_RULE_SETUP
     return scan_throw(VARINT);
   }
 	YY_BREAK
-case 81:
+case 83:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -1557,7 +1569,7 @@ YY_RULE_SETUP
     return scan_throw(NUM);
   }
 	YY_BREAK
-case 82:
+case 84:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -1569,7 +1581,7 @@ YY_RULE_SETUP
     return scan_throw(NUM);
   }
 	YY_BREAK
-case 83:
+case 85:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -1582,7 +1594,7 @@ YY_RULE_SETUP
     return scan_throw(VARFLOAT);
   }
 	YY_BREAK
-case 84:
+case 86:
 YY_RULE_SETUP
 {
     yy_pop_state();
@@ -1594,13 +1606,13 @@ YY_RULE_SETUP
     return scan_throw(ID);
   }
 	YY_BREAK
-case 85:
+case 87:
 YY_RULE_SETUP
 {
     /* Do Nothing. */
   }
 	YY_BREAK
-case 86:
+case 88:
 YY_RULE_SETUP
 {
     std::string str = "unexpected token '";
@@ -1611,8 +1623,8 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 87:
-/* rule 87 can match eol */
+case 89:
+/* rule 89 can match eol */
 YY_RULE_SETUP
 {
     yylloc.last_line += 1;
@@ -1621,14 +1633,14 @@ YY_RULE_SETUP
     yy_pop_state();
   }
 	YY_BREAK
-case 88:
+case 90:
 YY_RULE_SETUP
 {
     ++comment_level;
     yy_push_state(REGIONCOMMENT);
   }
 	YY_BREAK
-case 89:
+case 91:
 YY_RULE_SETUP
 {
     scan_throw(DOTS);
@@ -1636,13 +1648,13 @@ YY_RULE_SETUP
     yy_push_state(LINECOMMENT);
   }
 	YY_BREAK
-case 90:
+case 92:
 YY_RULE_SETUP
 {
     /* Do nothing... */
   }
 	YY_BREAK
-case 91:
+case 93:
 YY_RULE_SETUP
 {
     std::string str = "unexpected token '";
@@ -1653,8 +1665,8 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 92:
-/* rule 92 can match eol */
+case 94:
+/* rule 94 can match eol */
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
@@ -1678,14 +1690,14 @@ case YY_STATE_EOF(LINECOMMENT):
     return scan_throw(COMMENT);
   }
 	YY_BREAK
-case 93:
+case 95:
 YY_RULE_SETUP
 {
     *yylval.comment += yytext;
   }
 	YY_BREAK
 
-case 94:
+case 96:
 YY_RULE_SETUP
 {
     --comment_level;
@@ -1695,7 +1707,7 @@ YY_RULE_SETUP
     }
   }
 	YY_BREAK
-case 95:
+case 97:
 YY_RULE_SETUP
 {
     ++comment_level;
@@ -1709,8 +1721,8 @@ case YY_STATE_EOF(REGIONCOMMENT):
     scan_error(str);
   }
 	YY_BREAK
-case 96:
-/* rule 96 can match eol */
+case 98:
+/* rule 98 can match eol */
 YY_RULE_SETUP
 {
     yylloc.last_line += 1;
@@ -1719,25 +1731,13 @@ YY_RULE_SETUP
     *yylval.comment += "\n//";
   }
 	YY_BREAK
-case 97:
+case 99:
 YY_RULE_SETUP
 {
     *yylval.comment += yytext;
   }
 	YY_BREAK
 
-case 98:
-YY_RULE_SETUP
-{
-    *yylval.str += "\"";
-  }
-	YY_BREAK
-case 99:
-YY_RULE_SETUP
-{
-    *yylval.str += "'";
-  }
-	YY_BREAK
 case 100:
 YY_RULE_SETUP
 {
@@ -1753,20 +1753,32 @@ YY_RULE_SETUP
 case 102:
 YY_RULE_SETUP
 {
+    *yylval.str += "\"";
+  }
+	YY_BREAK
+case 103:
+YY_RULE_SETUP
+{
+    *yylval.str += "'";
+  }
+	YY_BREAK
+case 104:
+YY_RULE_SETUP
+{
     yy_pop_state();
     scan_step();
     return scan_throw(STR);
   }
 	YY_BREAK
-case 103:
+case 105:
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
     scan_step();
   }
 	YY_BREAK
-case 104:
-/* rule 104 can match eol */
+case 106:
+/* rule 106 can match eol */
 YY_RULE_SETUP
 {
     std::string str = "unexpected end of line in a string.";
@@ -1784,7 +1796,7 @@ case YY_STATE_EOF(SIMPLESTRING):
     scan_error(str);
   }
 	YY_BREAK
-case 105:
+case 107:
 YY_RULE_SETUP
 {
     scan_step();
@@ -1792,18 +1804,6 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 106:
-YY_RULE_SETUP
-{
-    *yylval.str += "\"";
-  }
-	YY_BREAK
-case 107:
-YY_RULE_SETUP
-{
-    *yylval.str += "'";
-  }
-	YY_BREAK
 case 108:
 YY_RULE_SETUP
 {
@@ -1819,13 +1819,25 @@ YY_RULE_SETUP
 case 110:
 YY_RULE_SETUP
 {
+    *yylval.str += "\"";
+  }
+	YY_BREAK
+case 111:
+YY_RULE_SETUP
+{
+    *yylval.str += "'";
+  }
+	YY_BREAK
+case 112:
+YY_RULE_SETUP
+{
     yy_pop_state();
     scan_step();
     return scan_throw(STR);
   }
 	YY_BREAK
-case 111:
-/* rule 111 can match eol */
+case 113:
+/* rule 113 can match eol */
 YY_RULE_SETUP
 {
     std::string str = "unexpected end of line in a string";
@@ -1836,7 +1848,7 @@ YY_RULE_SETUP
     *yylval.str += yytext;
   }
 	YY_BREAK
-case 112:
+case 114:
 YY_RULE_SETUP
 {
     //yylloc.last_line += 1;
@@ -1850,7 +1862,7 @@ case YY_STATE_EOF(DOUBLESTRING):
     scan_error(str);
   }
 	YY_BREAK
-case 113:
+case 115:
 YY_RULE_SETUP
 {
     scan_step();
@@ -1858,7 +1870,7 @@ YY_RULE_SETUP
   }
 	YY_BREAK
 
-case 114:
+case 116:
 YY_RULE_SETUP
 ECHO;
 	YY_BREAK

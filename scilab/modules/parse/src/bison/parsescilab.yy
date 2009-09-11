@@ -148,10 +148,10 @@
 %token GT		">"
 %token GE		">="
 %token AND		"&"
-%token ANDAND	"&&"
+%token ANDAND		"&&"
 %token OR		"|"
 %token OROR		"||"
-%token ASSIGN	"="
+%token ASSIGN		"="
 
 %token IF		"if"
 %token THEN		"then"
@@ -268,8 +268,8 @@
 %nonassoc BOOLTRUE BOOLFALSE
 %nonassoc LPAREN
 
-%left OR
-%left AND
+%left OR OROR
+%left AND ANDAND
 
 %left COLON
 %nonassoc EQ NE LT LE GT GE
@@ -656,7 +656,7 @@ variable comparators comparable			{ $$ = new ast::OpExp(@$, *$1, $2, *$3); }
 ;
 
 logicalComparators :
-AND				{ $$ = ast::LogicalOpExp::logicalAnd; }
+AND			{ $$ = ast::LogicalOpExp::logicalAnd; }
 | ANDAND		{ $$ = ast::LogicalOpExp::logicalShorCutAnd; }
 | OR			{ $$ = ast::LogicalOpExp::logicalOr; }
 | OROR			{ $$ = ast::LogicalOpExp::logicalShorCutOr; }

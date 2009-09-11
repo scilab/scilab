@@ -80,37 +80,39 @@
      GT = 295,
      GE = 296,
      AND = 297,
-     OR = 298,
-     ASSIGN = 299,
-     IF = 300,
-     THEN = 301,
-     ELSE = 302,
-     ELSEIF = 303,
-     END = 304,
-     SELECT = 305,
-     CASE = 306,
-     FUNCTION = 307,
-     ENDFUNCTION = 308,
-     FOR = 309,
-     WHILE = 310,
-     DO = 311,
-     BREAK = 312,
-     TRY = 313,
-     CATCH = 314,
-     RETURN = 315,
-     STR = 316,
-     ID = 317,
-     VARINT = 318,
-     VARFLOAT = 319,
-     NUM = 320,
-     PATH = 321,
-     COMMENT = 322,
-     BLOCKCOMMENT = 323,
-     TOPLEVEL = 324,
-     HIGHLEVEL = 325,
-     UPLEVEL = 326,
-     LISTABLE = 327,
-     FUNCTIONCALL = 328
+     ANDAND = 298,
+     OR = 299,
+     OROR = 300,
+     ASSIGN = 301,
+     IF = 302,
+     THEN = 303,
+     ELSE = 304,
+     ELSEIF = 305,
+     END = 306,
+     SELECT = 307,
+     CASE = 308,
+     FUNCTION = 309,
+     ENDFUNCTION = 310,
+     FOR = 311,
+     WHILE = 312,
+     DO = 313,
+     BREAK = 314,
+     TRY = 315,
+     CATCH = 316,
+     RETURN = 317,
+     STR = 318,
+     ID = 319,
+     VARINT = 320,
+     VARFLOAT = 321,
+     NUM = 322,
+     PATH = 323,
+     COMMENT = 324,
+     BLOCKCOMMENT = 325,
+     TOPLEVEL = 326,
+     HIGHLEVEL = 327,
+     UPLEVEL = 328,
+     LISTABLE = 329,
+     FUNCTIONCALL = 330
    };
 #endif
 /* Tokens.  */
@@ -155,37 +157,39 @@
 #define GT 295
 #define GE 296
 #define AND 297
-#define OR 298
-#define ASSIGN 299
-#define IF 300
-#define THEN 301
-#define ELSE 302
-#define ELSEIF 303
-#define END 304
-#define SELECT 305
-#define CASE 306
-#define FUNCTION 307
-#define ENDFUNCTION 308
-#define FOR 309
-#define WHILE 310
-#define DO 311
-#define BREAK 312
-#define TRY 313
-#define CATCH 314
-#define RETURN 315
-#define STR 316
-#define ID 317
-#define VARINT 318
-#define VARFLOAT 319
-#define NUM 320
-#define PATH 321
-#define COMMENT 322
-#define BLOCKCOMMENT 323
-#define TOPLEVEL 324
-#define HIGHLEVEL 325
-#define UPLEVEL 326
-#define LISTABLE 327
-#define FUNCTIONCALL 328
+#define ANDAND 298
+#define OR 299
+#define OROR 300
+#define ASSIGN 301
+#define IF 302
+#define THEN 303
+#define ELSE 304
+#define ELSEIF 305
+#define END 306
+#define SELECT 307
+#define CASE 308
+#define FUNCTION 309
+#define ENDFUNCTION 310
+#define FOR 311
+#define WHILE 312
+#define DO 313
+#define BREAK 314
+#define TRY 315
+#define CATCH 316
+#define RETURN 317
+#define STR 318
+#define ID 319
+#define VARINT 320
+#define VARFLOAT 321
+#define NUM 322
+#define PATH 323
+#define COMMENT 324
+#define BLOCKCOMMENT 325
+#define TOPLEVEL 326
+#define HIGHLEVEL 327
+#define UPLEVEL 328
+#define LISTABLE 329
+#define FUNCTIONCALL 330
 
 
 
@@ -220,6 +224,7 @@ typedef union YYSTYPE
 
   ast::OpExp*		t_op_exp;
   ast::OpExp::Oper	t_op_exp_oper;
+  ast::LogicalOpExp::Oper	t_lop_exp_oper;
 
   ast::AssignExp*	t_assign_exp;
 
