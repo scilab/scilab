@@ -12,32 +12,31 @@
 
 package org.scilab.modules.xpad.actions;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
-import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
-import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.xpad.Xpad;
 
-public class DefaultAction implements ActionListener {
+public class DefaultAction extends CallBack {
     private Xpad _editor;
 
     private DefaultAction(Xpad editor) {
+	super("Default...");
 	_editor = editor;
     }
 
     protected DefaultAction(String label, Xpad editor) {
+	super(label);
 	_editor = editor;
     }
 
@@ -59,9 +58,9 @@ public class DefaultAction implements ActionListener {
 	return button;
     }
 
-    protected static MenuItem createMenu(String title, String icon, ActionListener listener, KeyStroke keyStroke) {
+    protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
 	MenuItem menu = ScilabMenuItem.createMenuItem();
-	((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(listener);
+	menu.setCallback(listener);
 	menu.setText(title);
 	
 	if (keyStroke != null) {
@@ -75,7 +74,7 @@ public class DefaultAction implements ActionListener {
 	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
     }
 
-    public void actionPerformed(ActionEvent arg0) {
+    public void callBack() {
 	doAction();
     }
 
