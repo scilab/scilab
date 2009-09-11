@@ -13,8 +13,10 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
@@ -24,7 +26,7 @@ import org.scilab.modules.gui.menu.SimpleMenu;
 import org.scilab.modules.gui.menuitem.SimpleMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
-public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem {
+public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements CheckBoxMenuItem, ActionListener {
     private Xpad _editor;
 
     public DefaultCheckAction(Xpad editor) {
@@ -60,24 +62,40 @@ public class DefaultCheckAction extends SwingScilabCheckBoxMenuItem implements C
 	});
     }
 
+  
+    
     public Xpad getEditor() {
 	return _editor;
-    }
-
-    public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
-	return (SwingScilabCheckBoxMenuItem) this;
-    }
-
-    public SimpleMenuItem getAsSimpleMenuItem() {
-	return null;
     }
 
     public void doAction() {
 	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!! (state = "+getState()+")", null, JOptionPane.ERROR_MESSAGE);
     }
 
-    public SimpleMenu getAsSimpleMenu() {
+    public void actionPerformed(ActionEvent arg0) {
+	doAction();
+    }
+    
+    protected static CheckBoxMenuItem createCheckBoxMenu(String title, String icon, DefaultCheckAction defaultCheckAction, KeyStroke keyStroke) {
+	defaultCheckAction.setText(title);
+	defaultCheckAction.setChecked(false);
+	if (keyStroke != null) {
+	    ((SwingScilabCheckBoxMenuItem) defaultCheckAction.getAsSimpleCheckBoxMenuItem()).setAccelerator(keyStroke);
+	}
+	
+	return defaultCheckAction;
+	
+    }
+
+    public SimpleCheckBoxMenuItem getAsSimpleCheckBoxMenuItem() {
+	return this;
+    }
+
+    public SimpleMenuItem getAsSimpleMenuItem() {
 	return null;
     }
 
+    public SimpleMenu getAsSimpleMenu() {
+	return null;
+    }
 }

@@ -17,17 +17,21 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class PreviousTabAction extends DefaultAction {
 
-	public PreviousTabAction(Xpad editor) {
+	private PreviousTabAction(Xpad editor) {
 		super("Previous tab", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT & KeyEvent.VK_TAB, ActionEvent.CTRL_MASK));
 	}
 	
 	public void doAction() {
 		int index = this.getEditor().getTabPane().getSelectedIndex();
 		System.out.println(index);
 	}
+
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Save", null, new PreviousTabAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_TAB, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+	 }
 }

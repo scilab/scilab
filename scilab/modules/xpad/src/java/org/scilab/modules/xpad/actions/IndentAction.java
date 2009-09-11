@@ -17,14 +17,14 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class IndentAction extends DefaultAction {
 	
-	public IndentAction(Xpad editor) {
+	private IndentAction(Xpad editor) {
 		super("Indent", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 	}
 	
 	public void doAction() {
@@ -33,7 +33,10 @@ public class IndentAction extends DefaultAction {
 		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
 		
 		getEditor().getTextPane().setCaretPosition(initial_caret_position);
-		
 	}
 
+	 public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Indent", null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+	 }
+	
 }

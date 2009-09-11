@@ -14,23 +14,25 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileWriter;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class SaveAction extends DefaultAction {
 
-	public SaveAction(Xpad editor) {
+	private SaveAction(Xpad editor) {
 		super("Save", editor);
-		//setMnemonic('S');
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 	}
 
-
+	 public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Save", null, new SaveAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+	 }
+	 
+	 public static PushButton createButton(Xpad editor) {
+	     return createButton("Save", "media-floppy.png", new SaveAction(editor));
+	 }
 
 }

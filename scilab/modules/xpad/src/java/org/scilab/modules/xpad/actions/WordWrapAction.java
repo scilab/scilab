@@ -11,12 +11,17 @@
  */
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class WordWrapAction extends DefaultCheckAction {
     
-    public WordWrapAction(Xpad editor) {
+    private WordWrapAction(Xpad editor) {
 	super("Word Wrap", editor);
+    }
+    
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+	return createCheckBoxMenu("Word Wrap", null, new WordWrapAction(editor), null);
     }
     
 }

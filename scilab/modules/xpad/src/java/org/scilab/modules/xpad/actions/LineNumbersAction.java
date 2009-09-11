@@ -16,16 +16,21 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class LineNumbersAction extends DefaultCheckAction {
 
-    public LineNumbersAction(Xpad editor) {
+    private LineNumbersAction(Xpad editor) {
 	super("Line Numbers", editor);
 	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
     }
-    
-	public void doAction() {
-		getEditor().displayLineNumbers(this.getState());
-	}
+
+    public void doAction() {
+	getEditor().displayLineNumbers(this.getState());
+    }
+
+    public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
+	return createCheckBoxMenu("Line Numbers", null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    }
 }

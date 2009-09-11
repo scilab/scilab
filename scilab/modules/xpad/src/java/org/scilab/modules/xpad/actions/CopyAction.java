@@ -18,18 +18,25 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class CopyAction extends DefaultAction {
 
-    public CopyAction(Xpad editor) {
+    private CopyAction(Xpad editor) {
 	super("Copy", editor);
-	//setMnemonic('c');
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.copyAction).actionPerformed(null);
     }
-
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Copy", null, new CopyAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+    }
+    
+    public static PushButton createButton(Xpad editor) {
+	return createButton("Copy", "edit-copy.png", new CopyAction(editor));
+    }
 }

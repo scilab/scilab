@@ -12,12 +12,16 @@
 
 package org.scilab.modules.xpad.actions;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class PageSetupAction extends DefaultAction {
 
-	public PageSetupAction(Xpad editor) {
+	private PageSetupAction(Xpad editor) {
 		super("Page Setup...", editor);
 	}
 
+	 public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Page Setup...", null, new PageSetupAction(editor), null);
+	 }
 }

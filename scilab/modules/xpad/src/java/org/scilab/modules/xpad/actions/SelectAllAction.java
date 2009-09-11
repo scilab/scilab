@@ -18,17 +18,21 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class SelectAllAction extends DefaultAction {
 
-    public SelectAllAction(Xpad editor) {
+    private SelectAllAction(Xpad editor) {
 	super("Select All", editor);
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.selectAllAction).actionPerformed(null);
+    }
+
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Select All", null, new SelectAllAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
     }
 
 }

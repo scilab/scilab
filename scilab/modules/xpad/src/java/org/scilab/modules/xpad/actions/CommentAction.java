@@ -17,14 +17,14 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class CommentAction extends DefaultAction {
 
-	public CommentAction(Xpad editor) {
+	private CommentAction(Xpad editor) {
 		super("Comment Selection", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
 	}
 	
 	public void doAction() {
@@ -33,4 +33,8 @@ public class CommentAction extends DefaultAction {
 		
 		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).commentText(start_position, end_position);
 	}
+	
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Comment Selection", null, new CommentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+	 }
 }

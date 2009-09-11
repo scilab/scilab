@@ -18,18 +18,26 @@ import java.awt.event.KeyEvent;
 import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class CutAction extends DefaultAction {
 
-    public CutAction(Xpad editor) {
+    private CutAction(Xpad editor) {
 	super("Cut", editor);
-	//setMnemonic('c');
-	setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
     }
     
     public void doAction() {
 	getEditor().getTextPane().getActionMap().get(DefaultEditorKit.cutAction).actionPerformed(null);
     }
 
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("Cut", null, new CutAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+    }
+    
+    public static PushButton createButton(Xpad editor) {
+	return createButton("Cut", "edit-cut.png", new CutAction(editor));
+    }
+    
 }

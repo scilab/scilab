@@ -17,17 +17,25 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 
 public class NewAction extends DefaultAction {
 
-	public NewAction(Xpad editor) {
-		super("New...", editor);
-		setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-	}
+    private NewAction(Xpad editor) {
+	super("New...", editor);
+    }
 
-	public void doAction() {
-	    getEditor().addEmptyTab();
-	}
-
+    public void doAction() {
+	getEditor().addEmptyTab();
+    }
+    
+    public static MenuItem createMenu(Xpad editor) {
+	return createMenu("New...", null, new NewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+    }
+    
+    public static PushButton createButton(Xpad editor) {
+	return createButton("New...", "document-new.png", new NewAction(editor));
+    }
 }

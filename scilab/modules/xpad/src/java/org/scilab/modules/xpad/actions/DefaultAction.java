@@ -13,64 +13,70 @@
 package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
+import org.scilab.modules.gui.bridge.checkboxmenuitem.SwingScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.events.callback.CallBack;
-import org.scilab.modules.gui.menu.SimpleMenu;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
+import org.scilab.modules.gui.checkboxmenuitem.ScilabCheckBoxMenuItem;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.SimpleMenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.xpad.Xpad;
 
-public class DefaultAction extends SwingScilabMenuItem implements MenuItem {
+public class DefaultAction implements ActionListener {
     private Xpad _editor;
 
-    public DefaultAction(Xpad editor) {
-	super();
-	setText("Default...");
+    private DefaultAction(Xpad editor) {
 	_editor = editor;
-	setCallback(new CallBack("Default...") {
-
-	    public void callBack() {
-		doAction();
-	    }
-
-	    public void actionPerformed(ActionEvent e) {
-		callBack();
-	    } 
-	});
     }
 
     protected DefaultAction(String label, Xpad editor) {
-	super();
-	setText(label);
 	_editor = editor;
-	setCallback(new CallBack("Default...") {
-	    public void callBack() {
-		doAction();
-	    }
-
-	    public void actionPerformed(ActionEvent e) {
-		callBack();
-	    } 
-	});
     }
 
     public Xpad getEditor() {
 	return _editor;
     }
 
-    public SimpleMenuItem getAsSimpleMenuItem() {
-	return (SwingScilabMenuItem) this;
+    protected static PushButton createButton(String title, String icon, ActionListener listener) {
+	PushButton button = ScilabPushButton.createPushButton(); 
+	((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
+	 button.setToolTipText(title);
+	 if (icon == null) {
+	    button.setText(title);
+	}
+	else {
+	    ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(System.getenv("SCI")+"/modules/gui/images/icons/"+icon));
+	}
+	
+	return button;
+    }
+
+    protected static MenuItem createMenu(String title, String icon, ActionListener listener, KeyStroke keyStroke) {
+	MenuItem menu = ScilabMenuItem.createMenuItem();
+	((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(listener);
+	menu.setText(title);
+	
+	if (keyStroke != null) {
+	    ((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
+	}
+	
+	return menu;
     }
 
     public void doAction() {
 	  JOptionPane.showMessageDialog(getEditor(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
     }
 
-    public SimpleMenu getAsSimpleMenu() {
-	return null;
+    public void actionPerformed(ActionEvent arg0) {
+	doAction();
     }
 
 }

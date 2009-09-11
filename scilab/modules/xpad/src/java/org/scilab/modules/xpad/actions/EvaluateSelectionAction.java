@@ -12,14 +12,14 @@
 
 package org.scilab.modules.xpad.actions;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 
 public class EvaluateSelectionAction extends DefaultAction {
 
-	public EvaluateSelectionAction(Xpad editor) {
+	private EvaluateSelectionAction(Xpad editor) {
 		super("Evaluate Selection", editor);
 	}
 
@@ -28,4 +28,8 @@ public class EvaluateSelectionAction extends DefaultAction {
 	    //InterpreterManagement.requestScilabExec(getEditor().getTextPane().getText());
 	    ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(getEditor().getTextPane().getSelectedText(), true, false);
 	}
+	
+	 public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Evaluate Selection", null, new EvaluateSelectionAction(editor), null);
+	 }
 }
