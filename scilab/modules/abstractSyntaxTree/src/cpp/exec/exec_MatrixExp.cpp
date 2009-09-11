@@ -339,7 +339,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			{
 				if(_poSource->getAsImplicitList()->start_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->start_set(_poSource->getAsImplicitList()->start_poly_get());
+					poResult->getAsImplicitList()->start_set(_poSource->getAsImplicitList()->start_get());
 				}
 				else
 				{
@@ -348,7 +348,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 
 				if(_poSource->getAsImplicitList()->step_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->step_set(_poSource->getAsImplicitList()->step_poly_get());
+					poResult->getAsImplicitList()->step_set(_poSource->getAsImplicitList()->step_get());
 				}
 				else
 				{
@@ -357,7 +357,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 
 				if(_poSource->getAsImplicitList()->end_type_get() == InternalType::RealPoly)
 				{
-					poResult->getAsImplicitList()->end_set(_poSource->getAsImplicitList()->end_poly_get());
+					poResult->getAsImplicitList()->end_set(_poSource->getAsImplicitList()->end_get());
 				}
 				else
 				{

@@ -326,6 +326,10 @@
 				RelativePath=".\src\cpp\printvisitor.cpp"
 				>
 			</File>
+			<File
+				RelativePath=".\includes\shortcutvisitor.cpp"
+				>
+			</File>
 			<Filter
 				Name="exec"
 				>
@@ -485,6 +489,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\logicalopexp.hxx"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\mathexp.hxx"
 				>
 			</File>
@@ -518,6 +526,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\seqexp.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\shortcutvisitor.hxx"
 				>
 			</File>
 			<File

@@ -31,8 +31,8 @@ namespace ast
       // Logical operators
       /** \brief "&" */		logicalAnd,
       /** \brief "|" */		logicalOr,
-      /** \brief "&&" */	logicalShorCutAnd,
-      /** \brief "||" */	logicalShorCutOr
+      /** \brief "&&" */	logicalShortCutAnd,
+      /** \brief "||" */	logicalShortCutOr
     };
 
     /** \brief Operation Expression kind.

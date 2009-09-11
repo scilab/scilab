@@ -59,6 +59,8 @@
 
 #define SCI_AND			"&"
 #define SCI_OR			"|"
+#define SCI_ANDAND	"&&"
+#define SCI_OROR		"||"
 #define SCI_NOT			"~"
 
 #define SCI_CONJUGATE_TRANSPOSE	"'"
