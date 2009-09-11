@@ -657,9 +657,9 @@ variable comparators comparable			{ $$ = new ast::OpExp(@$, *$1, $2, *$3); }
 
 logicalComparators :
 AND			{ $$ = ast::LogicalOpExp::logicalAnd; }
-| ANDAND		{ $$ = ast::LogicalOpExp::logicalShorCutAnd; }
+| ANDAND		{ $$ = ast::LogicalOpExp::logicalShortCutAnd; }
 | OR			{ $$ = ast::LogicalOpExp::logicalOr; }
-| OROR			{ $$ = ast::LogicalOpExp::logicalShorCutOr; }
+| OROR			{ $$ = ast::LogicalOpExp::logicalShortCutOr; }
 ;
 /*
 ** -*- COMPARABLE -*-

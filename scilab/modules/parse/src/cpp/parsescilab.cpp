@@ -3074,7 +3074,7 @@ yyreduce:
 
   case 92:
 
-    { (yyval.t_lop_exp_oper) = ast::LogicalOpExp::logicalShorCutAnd; }
+    { (yyval.t_lop_exp_oper) = ast::LogicalOpExp::logicalShortCutAnd; }
     break;
 
   case 93:
@@ -3084,7 +3084,7 @@ yyreduce:
 
   case 94:
 
-    { (yyval.t_lop_exp_oper) = ast::LogicalOpExp::logicalShorCutOr; }
+    { (yyval.t_lop_exp_oper) = ast::LogicalOpExp::logicalShortCutOr; }
     break;
 
   case 95:
