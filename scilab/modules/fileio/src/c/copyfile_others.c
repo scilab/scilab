@@ -26,6 +26,7 @@
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "isdir.h"
+#include "FileExist.h"
 #include "createdirectory.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
@@ -159,8 +160,19 @@ static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *
 	/* we check destination directory exists */
 	if (!isdir(pStrDest))
 	{
-		if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
-		return ENOTDIR;
+		if (FileExistW(DestinationDirectory))
+		{
+			if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
+			return ENOTDIR;
+		}
+		else
+		{
+			if (!createdirectoryW(DestinationDirectory))
+			{
+				if (pStrDest) {FREE(pStrDest); pStrDest = NULL;}
+				return ENOTDIR;
+			}
+		}
 	}
 
 	ierr = RecursiveCopyDirectory(pStrDest, pStrSrc);
