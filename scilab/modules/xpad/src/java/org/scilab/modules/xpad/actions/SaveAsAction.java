@@ -47,6 +47,10 @@ public class SaveAsAction extends DefaultAction {
 				writer.close();
 				
 				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+				
+				getEditor().getTextPane().setName(f.getPath());
+				getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
+				getEditor().updateRecentOpenedFilesMenu();
 
 			} catch (Exception ioex) {
 			    JOptionPane.showMessageDialog(getEditor(), ioex);

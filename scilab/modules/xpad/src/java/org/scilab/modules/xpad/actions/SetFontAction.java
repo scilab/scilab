@@ -51,7 +51,7 @@ public class SetFontAction extends DefaultAction {
     		
     		/*insert update refresh the styles without needing to type text*/
 	    	((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertUpdate(null);
-	    	getEditor().getTextPane().requestFocus();
+	    	getEditor().getTextPane().setFocusable(true);
 	    	
 	    	ConfigXpadManager.saveFont(newFont);
     	}

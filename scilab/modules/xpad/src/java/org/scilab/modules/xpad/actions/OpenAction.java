@@ -38,6 +38,8 @@ public class OpenAction extends DefaultAction {
 	    getEditor().readFile(f);
 
 	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+	    getEditor().updateRecentOpenedFilesMenu();
+	    
 	    
 	}
     }

@@ -14,12 +14,17 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileWriter;
 
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class SaveAction extends DefaultAction {
 
@@ -35,4 +40,51 @@ public class SaveAction extends DefaultAction {
 	     return createButton("Save", "media-floppy.png", new SaveAction(editor));
 	 }
 
+@Override
+	public void doAction() {
+		// TODO Auto-generated method stub
+		//super.doAction();
+		if ( getEditor().getTextPane().getName() != null ){
+			try {
+				File newSavedFiled = new File(getEditor().getTextPane().getName());
+				
+				String doc = getEditor().getTextPane().getText();
+
+				FileWriter writer = new FileWriter(newSavedFiled);
+				writer.write(doc);
+				writer.flush();
+				writer.close();
+				
+
+			} catch (Exception ioex) {
+			    JOptionPane.showMessageDialog(getEditor(), ioex);
+			}
+		}else{
+			JFileChooser _fileChooser = new JFileChooser();
+			int retval = _fileChooser.showSaveDialog(getEditor());
+			if (retval == JFileChooser.APPROVE_OPTION) {
+				File f = _fileChooser.getSelectedFile();
+				try {
+
+					String doc = getEditor().getTextPane().getText();
+
+					FileWriter writer = new FileWriter(f);
+					writer.write(doc);
+					writer.flush();
+					writer.close();
+					
+					
+					ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+					getEditor().getTextPane().setName(f.getPath());
+					getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
+					getEditor().updateRecentOpenedFilesMenu();
+				} catch (Exception ioex) {
+				    JOptionPane.showMessageDialog(getEditor(), ioex);
+				}
+			}
+			
+		}
+		
+		
+	}
 }
