@@ -29,7 +29,6 @@ public class CloseAction extends DefaultAction {
     
     public void doAction() {
 	getEditor().closeCurrentTab();
-	Xpad.closeXpad();
     }
     
     public static MenuItem createMenu(Xpad editor) {
