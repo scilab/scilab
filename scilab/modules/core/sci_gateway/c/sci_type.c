@@ -12,21 +12,33 @@
  */
 #include "gw_core.h"
 #include "stack-c.h"
+#include "api_scilab.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_type)(char *fname,unsigned long fname_len)
+int sci_type(char *fname, int* _piKey)
 {
-	int iType = 0;
-	int l = 0, lc = 0;
-	int one = 1;
-	int zero = 0;
+	int iRet		= 0;
+	int* piAddr	= NULL;
+	int iType		= 0;
 
 	CheckRhs(1,1);
-	CheckLhs(1,2); 
-	
-	iType = GetType(1);
-	if (! C2F(cremat)(fname, &Top, &zero, &one, &one, &l, &lc, fname_len)) return 0;
-	*stk(l) = (double) iType;
+	CheckLhs(1,1);
 
+	iRet = getVarAddressFromPosition(1, &piAddr, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iType = getVarType(piAddr);
+	iRet = createMatrixOfDoubleFromInteger(Rhs + 1, 1, 1, &iType, _piKey);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	LhsVar(1) = Rhs + 1;
+	PutLhsVar();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -31,16 +31,17 @@ namespace types
 									Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
 		/*data management*/
+		GenericType*	get(int _iPos);
 		double*				real_get() const;
-		double				real_get(int _iRow, int _iCol) const;
+		double				real_get(int _iRows, int _iCols) const;
 		double*				img_get() const;
-		double				img_get(int _iRow, int _iCol) const;
+		double				img_get(int _iRows, int _iCols) const;
 
 		bool					real_set(double *_pdblReal);
 		bool					img_set(double *_pdblImg);
 
-		bool					val_set(int _iRow, int _iCols, double _dblReal);
-		bool					val_set(int _iRow, int _iCols, double _dblReal, double _dblImg);
+		bool					val_set(int _iRows, int _iCols, double _dblReal);
+		bool					val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
 
 		/*zero or one set filler*/
 		bool					zero_set();

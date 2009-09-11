@@ -836,5 +836,28 @@ namespace types
 	{
 		return !(*this == it);
 	}
+
+	GenericType* MatrixPoly::get(int _iPos)
+	{
+		MatrixPoly* pMP = NULL;
+		if(_iPos < cols_get())
+		{
+			int *piRank = new int[rows_get()];
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				piRank[i] = poly_get(i, _iPos)->rank_get();
+			}
+
+			pMP = new MatrixPoly(var_get(), rows_get(), 1, piRank);
+			for(int i = 0 ; i < rows_get() ; i++)
+			{
+				pMP->poly_set(i, 0, poly_get(i, _iPos)->coef_get());
+			}
+
+			delete[] piRank;
+		}
+
+		return pMP;
+	}
 }
 

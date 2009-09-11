@@ -26,7 +26,7 @@ static gw_generic_table Tab[CORE_TAB_SIZE]=
 {C2F(sci_comp),"comp"},
 {C2F(sci_getscilabmode),"getscilabmode"},
 {C2F(sci_mode),"mode"},
-{C2F(sci_type),"type"},
+{NULL ,""}, //type
 {C2F(sci_error),"error"},
 {C2F(sci_resume),"resume"},
 {C2F(sci_return),"return"},

@@ -28,6 +28,8 @@ namespace types
 									MatrixPoly(string _szVarName, int _iRows, int _iCols, int *_piRank);
 		virtual				~MatrixPoly();
 
+		GenericType*	get(int _iPos);
+
 		Poly*					poly_get(int _iRows, int _iCols);
 		Poly*					poly_get(int _iIdx);
 		bool					poly_set(int _iRows, int _iCols, Double *_pdblCoef);

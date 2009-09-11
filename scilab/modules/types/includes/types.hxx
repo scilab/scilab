@@ -76,6 +76,7 @@ namespace types
 
 		std::string DimToString();
 
+		virtual GenericType*	get(int _iPos){return NULL;};
 
     bool isIdentity(void);
     virtual bool isAssignable(void) { return true; }

@@ -1569,6 +1569,84 @@ namespace types
 	{
 		return !(*this == it);
 	}
+
+	GenericType* Int::get(int _iPos)
+	{
+		Int* pi = NULL;
+		if(_iPos < cols_get())
+		{
+			pi = new Int(rows_get(), 1, getIntType());
+			switch(getIntType())
+			{
+			case Type8 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, data8_get(i, 0));
+					}
+				}
+				break;
+			case TypeUnsigned8 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, dataUnsigned8_get(i, 0));
+					}
+				}
+				break;
+			case Type16 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, data16_get(i, 0));
+					}
+				}
+				break;
+			case TypeUnsigned16 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, dataUnsigned16_get(i, 0));
+					}
+				}
+				break;
+			case Type32 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, data32_get(i, 0));
+					}
+				}
+				break;
+			case TypeUnsigned32 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, dataUnsigned32_get(i, 0));
+					}
+				}
+				break;
+			case Type64 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, data64_get(i, 0));
+					}
+				}
+				break;
+			case TypeUnsigned64 : 
+				{
+					for(int i = 0 ; i < m_iRows ; i++)
+					{
+						pi->data_set(0, 1, dataUnsigned64_get(i, 0));
+					}
+				}
+				break;
+			}
+		}
+		return pi;
+	}
+
 }
 
 /*

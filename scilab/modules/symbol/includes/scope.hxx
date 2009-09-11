@@ -75,11 +75,6 @@ namespace symbol
 		/** Associate value to key in the current scope. */
 		InternalType*	put (Symbol key, InternalType &value)
 		{
-			if(key.name_get() == "ans")
-			{
-				std::cout << "yop" << std::endl;
-			}
-
 			InternalType *pOld = (*_scope)[key];
 
 			if(pOld == &value)

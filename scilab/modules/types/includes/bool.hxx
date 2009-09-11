@@ -33,7 +33,7 @@ namespace types
 		bool					bool_get(int _iRows, int _iCols) const;
 
 		bool					bool_set(bool *_pbData);
-		bool					bool_set(int _iRow, int _iCol, bool _bData);
+		bool					bool_set(int _iRows, int _iCols, bool _bData);
 
 
 		/*zero or one set filler*/
