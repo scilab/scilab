@@ -90,62 +90,20 @@ global %fig_counter
 
 
 deff('Snapshot_()',..
-     ['global %fig_counter'
-      '%fig_counter=%fig_counter+1;'
-      'scs_m1=scs_m;scs_m1.props.title(1)='' '' '
-      'do_export(scs_m1,''fig''+string(%fig_counter));'
-      'rect_=dig_bound(scs_m)'
-      'rect_=min((rect_(3)-rect_(1))*12/400,12)'
-      'txti=[''\begin{center}'';''\includegraphics[angle=270,width=''+string(rect_)+''cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
-      'Cmenu=''Replot'''])
-
+     ['Cmenu=''Replot'''])
+      
 deff('GrabPalette_()',..
      ['global %fig_counter'
       '[c_i,c_x,c_y,c_w]=xclick()'
-      '%fig_counter=%fig_counter+1;'
-      'dr=driver();driver(''Pos'');'
-      'fname=''fig''+string(%fig_counter)'
-      'xinit(fname)';
-      'xtape(''replay'',c_w);xend();driver(dr)'
-      'if MSDOS then'
-      '  comm=pathconvert(SCI+''\bin\BEpsf'',%f,%f,''w'')'
-      '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
-      'else'
-      '  rep=unix_g(SCI+''/bin/BEpsf ''+fname)'
-      'end'
-      'txt2=x_dialog([''Enter caption''],'''');'
-      'txti=[''\begin{figure}\begin{center}'';''\fbox{\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
-      'Cmenu=''Replot'''])
+      'Cmenu=''Replot'''])      
 
 deff('GrabScope_()',..
      ['global %fig_counter'
       '[c_i,c_x,c_y,c_w]=xclick()'
-      'xset(''default'')'
-      '%fig_counter=%fig_counter+1;'
-      'dr=driver();driver(''Pos'');'
-      'fname=''fig''+string(%fig_counter)'
-      'xinit(fname)';
-      'xtape(''replay'',c_w);xend();driver(dr)'
-      'if MSDOS then'
-      '  comm=pathconvert(SCI+''\bin\BEpsf'',%f,%f,''w'')'
-      '  rep=unix_g('''''"''+comm+'''''" ''+fname)'
-      'else'
-      '  rep=unix_g(SCI+''/bin/BEpsf ''+fname)'
-      'end'
-      'txt2=x_dialog([''Enter caption''],'''');'
-      'txti=[''\begin{figure}\begin{center}'';''\includegraphics[angle=0,width=12cm]{fig''+string(%fig_counter)+''.eps}'';''\end{center}\caption{\label{labyy''+string(%fig_counter)+''}''+txt2+''}'';''\end{figure}'']'
-      'txti=[''  '';txti;''  '']'
-      '//mputl(txti,%J)'
       'Cmenu=''Replot'''])
-
 
 deff('Comment_()',..
      ['txt=x_dialog([''Comments''],'''');'
-      '//mputl(txt,%J)'
       'Cmenu=''Open/Set'''])
 
 

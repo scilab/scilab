@@ -1,6 +1,8 @@
 Scicos:
 =======
 * bug 4156 fixed - scicos defines some temp. variables on stack without remove.
+
+* bug 4705 fixed - scicos used a non existing file BEpsf
                
                Changes between version 5.1.X and 5.2.0 of Scilab
                =================================================
