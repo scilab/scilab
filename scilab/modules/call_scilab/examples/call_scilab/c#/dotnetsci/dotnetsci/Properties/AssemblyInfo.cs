@@ -11,13 +11,13 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyCompany("Scilab - DIGITEO")]
 [assembly: AssemblyProduct("dotnetsci")]
 [assembly: AssemblyCopyright("Copyright © Scilab 2009")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Allan CORNET")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("ef7effe8-4440-47b7-b579-433dc94cc859")]

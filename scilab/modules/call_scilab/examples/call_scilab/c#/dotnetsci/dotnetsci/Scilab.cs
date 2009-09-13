@@ -19,6 +19,9 @@ using System.Threading;
 //=============================================================================
 namespace DotNetScilab
 {
+    [ClassInterface(ClassInterfaceType.AutoDual)]
+    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfaceattribute(VS.80).aspx
+    // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfacetype(VS.80).aspx
     public sealed class Scilab
     {
         //=============================================================================
