@@ -51,8 +51,7 @@
      <literal>             | awk -F: '{print "/tmp/pvmd.";$3;exit}'`</literal></para>
     <para>
     For example:</para>
-    <programlisting><![CDATA[
-
+    <programlisting><![CDATA[ 
 -->pvm_halt()
  ans  =
  
@@ -62,8 +61,7 @@
  ans  =
  
   - 14.  
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Error -14 means: pvm_halt(): Can't contact local daemon</para>
   </refsection>

@@ -80,14 +80,14 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    A=rand(5,2)*rand(2,4);          // 4 vecteurs colonne dont 2 indépendants
-    [X,dim]=rowcomp(A);Xp=X';
-    svd([Xp(:,1:dim),A])            // Im(A) = Im(Xp(:,1:dim)
-    x=A*rand(4,1);                  // x appartient à Im(A)
-    y=X*x  
-    norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
-    ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,2)*rand(2,4);          // 4 vecteurs colonne dont 2 indépendants
+[X,dim]=rowcomp(A);Xp=X';
+svd([Xp(:,1:dim),A])            // Im(A) = Im(Xp(:,1:dim)
+x=A*rand(4,1);                  // x appartient à Im(A)
+y=X*x  
+norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

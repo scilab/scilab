@@ -48,25 +48,23 @@ f = get("default_figure")</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   
-   f=gdf() // get the handle of the model figure 
-   // setting its' properties
-   f.background=7;
-   f.figure_name="Function gdf()";
-   f.figure_position=[-1 100];
-   f.auto_resize="off";
-   f.figure_size=[300 461];
-   f.axes_size=[600 400];
-   plot2d() //create a figure
-   scf(1);
-   plot3d() //create a second figure
-   set(f,"default_values",1); // return to the  default values of figure's model
-                              // see sdf() function
-   scf(2);
-   plot2d() 
-
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+f=gdf() // get the handle of the model figure 
+// setting its' properties
+f.background=7;
+f.figure_name="Function gdf()";
+f.figure_position=[-1 100];
+f.auto_resize="off";
+f.figure_size=[300 461];
+f.axes_size=[600 400];
+plot2d() //create a figure
+scf(1);
+plot3d() //create a second figure
+set(f,"default_values",1); // return to the  default values of figure's model
+                           // see sdf() function
+scf(2);
+plot2d() 
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

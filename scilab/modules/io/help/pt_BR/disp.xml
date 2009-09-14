@@ -54,13 +54,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 disp([1 2],3)
 deff('[]=%t_p(l)','disp(l(3),l(2))')
 disp(tlist('t',1,2))
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -49,7 +49,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 xsetech(frect=[0,0,100,100])
 r=dragrect([10;10;30;10])
 xrect(r)

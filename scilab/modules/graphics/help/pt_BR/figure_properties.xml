@@ -323,20 +323,14 @@
         <term>Nota sobre valores padrões:</term>
 
         <listitem>
-          <variablelist>
-            <varlistentry>
-              <listitem>
-                <para>todas estas propriedades e campos listados herdam
-                valores de valores padrões armazenados num modelo de figura.
-                Estes valores padrões podem ser vistos e salvos. Para fazê-lo,
-                use o comando <literal>get("default_figure")</literal>: ele
-                retorna o manipulador gráfico de uma figura. Note que nenhuma
-                janela de gráficos é criada por este comando. As próximas
-                figuras criadas herdarão valores deste modelo (ver o exemplo 2
-                abaixo).</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
+          <para>todas estas propriedades e campos listados herdam
+            valores de valores padrões armazenados num modelo de figura.
+            Estes valores padrões podem ser vistos e salvos. Para fazê-lo,
+            use o comando <literal>get("default_figure")</literal>: ele
+            retorna o manipulador gráfico de uma figura. Note que nenhuma
+            janela de gráficos é criada por este comando. As próximas
+            figuras criadas herdarão valores deste modelo (ver o exemplo 2
+            abaixo).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -345,31 +339,31 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   lines(0) // desabilitando paginamento vertical
-  //Exemplo 1
-   f=get("current_figure") //obtendo o manipulador da figura corrente: 
+    <programlisting role="example"><![CDATA[ 
+lines(0) // desabilitando paginamento vertical
+//Exemplo 1
+f=get("current_figure") //obtendo o manipulador da figura corrente: 
                                            //se nenhum existir, cria uma figura e retorna o manipulador correspondente
-   f.figure_position
-   f.figure_size=[200,200]
-   f.background=2
-   f.children  // pode-se ver que uma entidade Axes já existe
-   delete(f);
-   f=gcf(); // atalho de macro  &lt;=&gt; f=get("current_figure")
-   f.pixmap = "on" // ajusta o status de pixmap para on
-   plot2d() // nada acontece na tela...
-   show_pixmap() // ...exibe o pixmap na tela
-   //Exemplo 2 : configurações de default_figure
-   df=get("default_figure") // obtendo os valores padrões (o atalho é gdf() )
-   // vamos mudar os padrões...
-   df.color_map=hotcolormap(128)
-   df.background= 110 // ajustando o plano de fundo para um tipo de amarelo (note que estamos utilizando um índice de cor dentro do mapa de cores color_map redefinido previamente)
-   scf(122); // criando uma nova figura de número122 com o novo padrão
-   plot2d()
-   scf(214);
-   t=-%pi:0.3:%pi;
-   plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
-     </programlisting>
+f.figure_position
+f.figure_size=[200,200]
+f.background=2
+f.children  // pode-se ver que uma entidade Axes já existe
+delete(f);
+f=gcf(); // atalho de macro  &lt;=&gt; f=get("current_figure")
+f.pixmap = "on" // ajusta o status de pixmap para on
+plot2d() // nada acontece na tela...
+show_pixmap() // ...exibe o pixmap na tela
+//Exemplo 2 : configurações de default_figure
+df=get("default_figure") // obtendo os valores padrões (o atalho é gdf() )
+// vamos mudar os padrões...
+df.color_map=hotcolormap(128)
+df.background= 110 // ajustando o plano de fundo para um tipo de amarelo (note que estamos utilizando um índice de cor dentro do mapa de cores color_map redefinido previamente)
+scf(122); // criando uma nova figura de número122 com o novo padrão
+plot2d()
+scf(214);
+t=-%pi:0.3:%pi;
+plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
+ ]]></programlisting>
   </refsection>
 
   <refsection>

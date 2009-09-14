@@ -89,7 +89,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // tlist creation
 t = tlist(["listtype","field1","field2"], [], []);
 t.field1(1) = 10;
@@ -107,27 +107,25 @@ disp(t)
 
 // Overloading display for this type of tlist
 function %listtype_p(mytlist)
+  f = fieldnames(mytlist);
 
-f = fieldnames(mytlist);
+  // typeof(mytlist) <=> f(1)
+  mprintf("Displaying a tlist of type: %s\n", typeof(mytlist));
 
-// typeof(mytlist) <=> f(1)
-mprintf("Displaying a tlist of type: %s\n", typeof(mytlist));
+  mprintf("\n");
 
-mprintf("\n");
+  mprintf("-- Field ''%s'' --\n", f(1));
+  mprintf("Contents: %s\n", sci2exp(mytlist(f(1))));
 
-mprintf("-- Field ''%s'' --\n", f(1));
-mprintf("Contents: %s\n", sci2exp(mytlist(f(1))));
+  mprintf("\n");
 
-mprintf("\n");
-
-mprintf("-- Field ''%s'' --\n", f(2));
-mprintf("Contents: %s\n", sci2exp(mytlist(f(2))));
-
+  mprintf("-- Field ''%s'' --\n", f(2));
+  mprintf("Contents: %s\n", sci2exp(mytlist(f(2))));
 endfunction
 
 // Display using overloading function
 disp(t)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

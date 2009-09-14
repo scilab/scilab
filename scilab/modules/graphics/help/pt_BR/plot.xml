@@ -315,7 +315,7 @@ plot(&lt;axes_handle&gt;,...)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // inicialização de x
 x=[0:0.1:2*%pi]';
 //esboço simples
@@ -414,7 +414,6 @@ subplot(224);
 plot(x',[t [8;9;10;12]]');
 clf()
 
-
 //caso especial 2
 // caso onde apenas x ou y é uma matriz quadrada
 //x : matrix (t) e y  : vetor ([1 2 3 4])
@@ -435,8 +434,7 @@ clf();
 // ...uma macro:
 deff('[y]=toto(x)','y=x.*x')
 plot(1:10,toto)
- 
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

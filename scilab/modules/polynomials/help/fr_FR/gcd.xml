@@ -34,17 +34,17 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 //cas des polynômes
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
 [pgcd,u]=gcd(p);
 p*u
+
 //cas des entiers
 V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 [thegcd,U]=gcd(V)
 V*U
-
  ]]></programlisting>
   </refsection>
   <refsection>

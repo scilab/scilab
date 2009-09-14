@@ -84,7 +84,7 @@ hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])</synopsis>
   <refsection>
   <title>Examples</title>
 
-  <programlisting role="example"><![CDATA[
+  <programlisting role="example"><![CDATA[ 
 hist3d(10*rand(10,10));
 
 Z = zeros(100,5);
@@ -101,7 +101,8 @@ hist3d(Z);
 A = abs(rand(10,5));
 Z(91:100,:) = A;
 scf();
-hist3d(Z); ]]></programlisting>
+hist3d(Z); 
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -388,7 +388,17 @@ images/icons/undock_active.png \
 images/icons/undock_default.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png
+images/icons/zoom-area.png \
+images/icons/document-new.png \
+images/icons/document-print-preview.png \
+images/icons/document-print.png \
+images/icons/document-save-as.png \
+images/icons/document-save.png \
+images/icons/edit-find-replace.png \
+images/icons/edit-find.png \
+images/icons/edit-redo.png \
+images/icons/edit-undo.png \
+images/icons/media-floppy.png
 
 
 if GUI

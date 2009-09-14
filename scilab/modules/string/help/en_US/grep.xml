@@ -89,18 +89,18 @@ row=grep(haystack,needle ,[flag])
   <refsection>
     <title>Description</title>
 
-    <para>Foreach entry of <litteral>haystack </litteral>, grep searches if at
-    least a string in <litteral>needle</litteral> which matches a substring.
-    The <litteral>haystack</litteral> entries index where at least a match has
-    been found are returned in the <litteral>row</litteral> output argument.
-    The optionnal <litteral>which</litteral> output argument gives the index
-    of first string of <litteral>needle</litteral> found.</para>
+    <para>Foreach entry of <literal>haystack </literal>, grep searches if at
+    least a string in <literal>needle</literal> which matches a substring.
+    The <literal>haystack</literal> entries index where at least a match has
+    been found are returned in the <literal>row</literal> output argument.
+    The optionnal <literal>which</literal> output argument gives the index
+    of first string of <literal>needle</literal> found.</para>
 
-    <para>When using the third parameter <litteral>flag="r"</litteral>, the
-    <litteral>needle</litteral> is expected to be a regular expression string.
-    In this case, <litteral>grep</litteral> uses the
-    <litteral>needle</litteral> as a regular expression and compares it
-    against <litteral>haystack</litteral> according to the regular express
+    <para>When using the third parameter <literal>flag="r"</literal>, the
+    <literal>needle</literal> is expected to be a regular expression string.
+    In this case, <literal>grep</literal> uses the
+    <literal>needle</literal> as a regular expression and compares it
+    against <literal>haystack</literal> according to the regular express
     rules. See the <link linkend="regexp">regexp</link> function for details about
     regular expressions.</para>
   </refsection>
@@ -109,9 +109,9 @@ row=grep(haystack,needle ,[flag])
     <title>Example #1</title>
 
     <para>In the following example, we search one or two strings in a text,
-    which is stored in the <litteral>txt</litteral> variable.</para>
+    which is stored in the <literal>txt</literal> variable.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 txt=['find matches of a string in a vector of strings'
      'search position of a character string in an other string'
      'Compare Strings'];
@@ -120,8 +120,7 @@ grep(txt,'strings')
 grep(txt,['strings' 'Strings'])
 
 [r,w]=grep(txt,['strings' 'Strings'])
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
@@ -129,13 +128,13 @@ grep(txt,['strings' 'Strings'])
 
     <para>In the following example, we perform regexp searches.</para>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
 
 grep(str,'/[hc]+at/','r')
 grep(str,'/[hc]?at/','r')
 grep(str,'/cat|dog/','r')
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

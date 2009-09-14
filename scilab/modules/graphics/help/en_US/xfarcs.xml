@@ -49,8 +49,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
 arcs=[-1.0 0.0 0.5; // upper left x
        1.0 0.0 0.5; // upper left y
@@ -59,8 +58,7 @@ arcs=[-1.0 0.0 0.5; // upper left x
        0.0 0.0 0.0; // angle 1
        180*64 360*64 90*64]; // angle 2
 xfarcs(arcs,[1,2,3])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

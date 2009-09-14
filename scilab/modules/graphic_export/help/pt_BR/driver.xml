@@ -120,11 +120,9 @@ current_driver=driver()</synopsis>
     <literal>img*.gif</literal> é possível construir um arquivo Gif animado
     (chamado anim.gif) por</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 convert -delay 10  img*.gif anim.gif  
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

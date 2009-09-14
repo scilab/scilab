@@ -13,9 +13,22 @@
 #ifndef __DELETEAFILE_H__
 #define __DELETEAFILE_H__
 
+#include <wchar.h>
 #include "BOOL.h"
 
+/**
+* delete a file by filename
+* @param[in] filename
+* @return BOOLEAN TRUE or FALSE
+*/
 BOOL deleteafile(char *filename);
+
+/**
+* delete a file by filename 
+* @param[in] filenameW wide string
+* @return BOOLEAN TRUE or FALSE
+*/
+BOOL deleteafileW(wchar_t *filenameW);
 
 #endif /* __DELETEAFILE_H__ */
 /*--------------------------------------------------------------------------*/

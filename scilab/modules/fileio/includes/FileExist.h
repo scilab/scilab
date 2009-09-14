@@ -12,6 +12,8 @@
 /*--------------------------------------------------------------------------*/ 
 #ifndef __FILEEXIST_H__
 #define __FILEEXIST_H__
+
+#include <wchar.h>
 #include "dynlib_fileio.h"
 #include "BOOL.h" /* BOOL */
 
@@ -21,5 +23,12 @@
 * @return TRUE or FALSE
 */
 FILEIO_IMPEXP BOOL FileExist(char *filename);
+
+/**
+* verify if filename is a valid file
+* @param filename a wide string 
+* @return TRUE or FALSE
+*/
+FILEIO_IMPEXP BOOL FileExistW(wchar_t *wcfilename);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __FILEEXIST_H__ */

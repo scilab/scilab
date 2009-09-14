@@ -90,8 +90,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');rand('seed',0);w=ssrand(1,1,3);w('A')=w('A')-2*eye();
 t=0:0.05:5;
 //impulse(w) = step (s * w)
@@ -108,9 +107,7 @@ plot2d([t',t'],[(csim('impulse',t,tf2ss(1/s)*w))',0*t'])
 //input defined by a time function
 deff('u=input(t)','u=abs(sin(t))')
 xbasc();plot2d([t',t'],[(csim(input,t,w))',0*t'])
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

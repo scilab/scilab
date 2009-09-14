@@ -57,8 +57,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //define a function and prepare it for profiling
 deff('x=foo(n)',['if n==0 then'
                  '  x=[]'
@@ -71,9 +70,9 @@ deff('x=foo(n)',['if n==0 then'
                  'end'],'p')
 //call the function
 foo(30)
+
 //get execution profiles
 plotprofile(foo) // click on Exit to exit
- 
   ]]></programlisting>
   </refsection>
   <refsection>

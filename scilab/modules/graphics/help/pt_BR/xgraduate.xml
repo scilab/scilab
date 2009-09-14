@@ -80,11 +80,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-  [x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
- 
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+[x1,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(-0.3,0.2)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

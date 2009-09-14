@@ -15,8 +15,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define OPTIMIZATION_TAB_SIZE 6
-static gw_generic_table Tab[OPTIMIZATION_TAB_SIZE]=
+static gw_generic_table Tab[] =
 {
 {sci_optim, "optim"},
 {sci_semidef, "semidef"},
@@ -29,7 +28,7 @@ static gw_generic_table Tab[OPTIMIZATION_TAB_SIZE]=
 int gw_optimization(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,OPTIMIZATION_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

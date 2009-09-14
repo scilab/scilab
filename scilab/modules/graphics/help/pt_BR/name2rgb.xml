@@ -76,12 +76,10 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 rgb=name2rgb("gold")
 rgb2name(rgb)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

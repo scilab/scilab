@@ -93,11 +93,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   recompilefunction("asinh","p")
-   [flist,compiled,profilable,called] = listfunctions();
-   flist(profilable)
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+recompilefunction("asinh","p")
+[flist,compiled,profilable,called] = listfunctions();
+flist(profilable)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

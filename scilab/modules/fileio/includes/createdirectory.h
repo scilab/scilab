@@ -12,6 +12,9 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __CREATEDIRECTORY_H__
 #define __CREATEDIRECTORY_H__
+
+#include <wchar.h>
+
 #include "dynlib_fileio.h"
 #include "BOOL.h" /* BOOL */
 
@@ -21,6 +24,14 @@
 * @return the result of the operation TRUE or FALSE
 */
 FILEIO_IMPEXP BOOL createdirectory(const char *path);
+
+/**
+* Create a directory (wide string)
+* @param path the path of the futur directory
+* @return the result of the operation TRUE or FALSE
+*/
+FILEIO_IMPEXP BOOL createdirectoryW(const wchar_t *path);
+
 
 #endif /* __CREATEDIRECTORY_H__ */
 /*--------------------------------------------------------------------------*/ 

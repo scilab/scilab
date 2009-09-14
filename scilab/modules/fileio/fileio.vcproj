@@ -385,6 +385,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\copyfile_windows.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\createdirectory.c"
 				>
 			</File>
@@ -501,6 +505,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\movefile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mput.c"
 				>
 			</File>
@@ -537,6 +545,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_copyfile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_createdir.c"
 				>
 			</File>
@@ -550,6 +562,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_fileinfo.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_fileparts.c"
 				>
 			</File>
 			<File
@@ -597,6 +613,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_isfile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_maxfiles.c"
 				>
 			</File>
@@ -634,6 +654,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mopen.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_movefile.c"
 				>
 			</File>
 			<File
@@ -681,6 +705,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\splitpath.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\Status2Mode.c"
 				>
 			</File>
@@ -700,6 +728,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\cluni0.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\copyfile.h"
 				>
 			</File>
 			<File
@@ -811,6 +843,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\movefile.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\mput.h"
 				>
 			</File>
@@ -844,6 +880,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\scicurdir.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\splitpath.h"
 				>
 			</File>
 			<File

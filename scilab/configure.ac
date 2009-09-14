@@ -17,6 +17,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.60)
+AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
@@ -1466,6 +1467,7 @@ modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile
+modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

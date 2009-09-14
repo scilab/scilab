@@ -231,14 +231,11 @@ polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 t= 0:.01:2*%pi;
 clf();polarplot(sin(7*t),cos(8*t))
 
 clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

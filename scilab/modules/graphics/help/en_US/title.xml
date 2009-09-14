@@ -93,7 +93,8 @@ title(&lt;axes_handle&gt;,&lt;my_title&gt;,&lt;Property&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[// display a title with several properties 
+    <programlisting role="example"><![CDATA[ 
+// display a title with several properties 
 title('my title');
 // change the color for the font
 title('my title','color','blue');
@@ -108,8 +109,7 @@ title('my title','rotation',90);
 
 // We can do all these modifications with just the below instruction:
 title('my title','color','blue','edgecolor','red','fontsize',3,'rotation',90,'position',[0.3 0.8]);
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -41,12 +41,10 @@
     <para>Esta função está agora inclusa na função <literal>spec</literal> . A
     seqüência de chamamento deve ser substituida por</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 [al,be]=spec(A,E)
 [al,be,Z]=spec(A,E)
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -324,8 +324,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-   
+    <programlisting role="example"><![CDATA[ 
 // x initialisation 
 x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
@@ -338,11 +337,7 @@ l.visible="off"; // invisible
 l.font_size = 2;
 l.font_style = 5;
 l.visible='on';
-
-    
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -54,19 +54,15 @@
     In the continuous time case calling sequence is <literal>ric_descr(H)</literal> (one input):</para>
     <para>
     Riccati equation is:</para>
-    <programlisting><![CDATA[
-
-  (Ec)   A'*X + X*A + X*R*X -Q = 0.
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+(Ec)   A'*X + X*A + X*R*X -Q = 0.
+ ]]></programlisting>
     <para>
     Defining the hamiltonian matrix <literal>H</literal> by:</para>
-    <programlisting><![CDATA[
-
- H = [A  R;
-      Q -A']
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+H = [A  R;
+     Q -A']
+ ]]></programlisting>
     <para>
     with the calling sequence <literal>[X1,X2,zero]=ric_descr(H)</literal>, the 
     solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.</para>
@@ -77,19 +73,15 @@
     In the discrete-time case calling sequence is <literal>ric_descr(H,E)</literal> (two inputs):</para>
     <para>
     The Riccati equation is:</para>
-    <programlisting><![CDATA[
-
-   (Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+(Ed)  A'*X*A-(A'*X*B*(R+B'*X*B)^-1)*(B'*X*A)+C-X = 0.
+ ]]></programlisting>
     <para>
     Defining <literal>G=B/R*B'</literal> and the hamiltonian pencil <literal>(E,H)</literal> by:</para>
-    <programlisting><![CDATA[
-
-      E=[eye(n,n),G;               H=[A, 0*ones(n,n);
-         0*ones(n,n),A']             -C, eye(n,n)];
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+E=[eye(n,n),G;               H=[A, 0*ones(n,n);
+   0*ones(n,n),A']             -C, eye(n,n)];
+ ]]></programlisting>
     <para>
     with the calling sequence <literal>[X1,X2,err]=ric_descr(H,E)</literal>, the 
     solution <literal>X</literal> is given by <literal>X=X1/X2</literal>.</para>

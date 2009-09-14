@@ -648,10 +648,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dqrsm.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dzdivq.f"
 				>
 			</File>

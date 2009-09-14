@@ -15,8 +15,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define SHELL_TAB_SIZE 5
-static gw_generic_table Tab[SHELL_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 {sci_clc,"clc"},
 {sci_tohome,"tohome"},
@@ -28,7 +27,7 @@ static gw_generic_table Tab[SHELL_TAB_SIZE]=
 int gw_shell(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,SHELL_TAB_SIZE);
+	callFunctionFromGateway(Tab,SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

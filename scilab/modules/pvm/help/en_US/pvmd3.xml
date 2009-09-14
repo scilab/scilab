@@ -112,16 +112,14 @@
     <para>
      A simple host file might look like:
   </para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 # my first host file
 thud
 fred
 wilma
 barney
 betty
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     This specifies the names of five hosts to be configured in the virtual machine.  The master pvmd for a group is started by hand on the localhost, and it starts slaves on each of the remaining hosts using the rsh or rexec command. The master host may appear on any line of the hostfile, but must have an entry.  The simple format above works fine if you have the same login name on all five machines and the name of the master host in your .rhosts files on the other four.  There are several host file options available:
   </para>
@@ -245,47 +243,37 @@ betty
     <para>
     Example hostfile:
   </para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 # hostfile for testing on various platforms fonebone refuge
 # installed in /usr/local/here
 sigi.cs
-     dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
-     label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by hand and share a homedir  
-     igor.firewall.com lo=guest2 so=ms  ep=bob/pvm3/bin/$PVM_ARCH
-   
-    ]]></programlisting>
+dx=/usr/local/pvm3/lib/pvmd # borrowed accts, "guest", don't trust fonebone 
+label="* lo=guest so=pw sn666.jrandom.com cubie.misc.edu # really painful one, must start it by hand and share a homedir  
+igor.firewall.com lo=guest2 so=ms  ep=bob/pvm3/bin/$PVM_ARCH
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Manual STARTUP</title>
     <para>
      When adding a host with this option set you will see on the tty of the pvmd:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 *** Manual startup ***
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Login to "honk" and type:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 $PVM_ROOT/lib/pvmd -S -d0 -nhonk 1 80a9ca95:0cb6 4096 2 80a95c43:0000 Type response:
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     after typing the given command on host honk, you should see a line like:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 ddpro<2312> arch<ALPHA> ip<80a95c43:0a8e> mtu<4096>
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     type this line on the tty of the master pvmd. You should then see:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 Thanks
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     and the two pvmds should be able to communicate.  Note you can't start the master using the console or background it when using this option.</para>
   </refsection>
@@ -293,11 +281,9 @@ Thanks
     <title>Stopping PVMD3</title>
     <para>
      The preferred method of stopping all the pvmds is to give the halt command in the PVM console.  This kills all pvm tasks, all the remote daemons, the local daemon, and finally the console itself. If the master pvmd is killed manually it should be sent a SIGTERM signal to allow it to kill the remote pvmds and clean up various files.  The pvmd can be killed in a manner that leaves the file /tmp/pvmd.uid behind on one or more hosts. Uid is the numeric user ID (from /etc/passwd) of the user. This will prevent PVM from restarting on that host. Deletion of this file will fix this problem:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 rm `( grep $user /etc/passwd || ypmatch $user passwd ) | \
  awk -F: `{print "/tmp/pvmd."$3; exit}'`
-   
-    ]]></programlisting>
+  ]]></programlisting>
   </refsection>
 </refentry>

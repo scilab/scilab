@@ -16,8 +16,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define METANET_TAB_SIZE 50
-static gw_generic_table Tab[METANET_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 {C2F(intsm6loadg),"m6loadg"},
 {C2F(intsm6saveg),"m6saveg"},
@@ -74,7 +73,7 @@ static gw_generic_table Tab[METANET_TAB_SIZE]=
 int gw_metanet(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,METANET_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

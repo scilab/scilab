@@ -55,7 +55,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
 xstring(0.5,0.5,["Scilab" "n''est ";"pas" "Matlab"])
 // autre exemple

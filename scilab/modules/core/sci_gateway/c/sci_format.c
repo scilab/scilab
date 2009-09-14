@@ -48,7 +48,6 @@ int C2F(sci_format)(char *fname,unsigned long fname_len)
 		case 0: default:
 			return sci_format_norhs(fname);
 	}
-	return 0;
 }
 /*--------------------------------------------------------------------------*/
 static void setVariableFormat(int numberDigits)

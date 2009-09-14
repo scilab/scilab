@@ -50,9 +50,9 @@ The output is a Scilab data structure of type continuous-time state-space linear
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 sys= lincos(scs_m [,x0,u0 [,param] ])
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_lincos">
     <title>Paramètres</title>

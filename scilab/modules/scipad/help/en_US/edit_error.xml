@@ -50,10 +50,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    acosh abc
-    edit_error
-   ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+acosh abc
+edit_error
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

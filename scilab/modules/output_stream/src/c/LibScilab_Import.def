@@ -36,6 +36,7 @@ vartype_
 getRecursionFunctionToCall
 isRecursionCallToFunction
 freeArrayOfString
+freeArrayOfWideString
 ;
 ;core_f
 errcontext_

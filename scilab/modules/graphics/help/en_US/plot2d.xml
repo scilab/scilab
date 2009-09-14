@@ -523,7 +523,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // x initialisation 
 x=[0:0.1:2*%pi]';
 //simple plot
@@ -539,7 +539,7 @@ plot2d(x,[sin(x) sin(2*x) sin(3*x)],rect=[0,0,6,0.5]);
 //multiple plot with captions and given tics + style
 clf();
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
-  [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
+       [1,2,3],leg="L1@L2@L3",nax=[2,10,2,10],rect=[0,-2,2*%pi,2]);
 // isoview
 clf();
 plot2d(x,sin(x),1,frameflag= 4);
@@ -575,7 +575,7 @@ leg = a.children(2); // store legend handle into leg
 leg.font_style = 9; 
 leg.line_mode = "on";
 a.isoview='off';
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

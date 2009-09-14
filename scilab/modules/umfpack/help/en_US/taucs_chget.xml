@@ -41,21 +41,21 @@
     pattern  of the Cholesky factorization (or if you  code something which
     use the factors). Traditionnaly, the factorization is written :
   </para>
-    <programlisting><![CDATA[
-    P A P' = C C'
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+P A P' = C C'
+ ]]></programlisting>
     <para>
     with P' the permutation matrix associated to the permutation p.
     As we get the upper triangle Ct (= C'), in scilab syntax we
     can write :
   </para>
-    <programlisting><![CDATA[
-    A(p,p) = Ct' * Ct
-   ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+A(p,p) = Ct' * Ct
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // Example #1 : a small linear test system 
 A = sparse( [ 2 -1  0  0  0;
              -1  2 -1  0  0; 

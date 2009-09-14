@@ -71,8 +71,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">[m,p]=libraryinfo('corelib')
-   </programlisting>
+    <programlisting role="example"><![CDATA[ 
+[m,p]=libraryinfo('corelib')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

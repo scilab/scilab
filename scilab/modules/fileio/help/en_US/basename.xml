@@ -88,11 +88,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 files=basename('SCI/modules/fileio/macros/poo.sci')
 files=basename('SCI/modules\fileio/macros/poo.sci')
 files=basename('SCI/modules\fileio/macros/poo.sci.k')
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

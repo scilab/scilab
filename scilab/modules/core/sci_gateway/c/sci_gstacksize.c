@@ -85,7 +85,7 @@ int C2F(sci_gstacksize)(char *fname,unsigned long fname_len)
 
 						C2F(getgstackinfo)(&currentgstacksize,&used);
 
-						if (MEMGSTACKSIZE != currentgstacksize)
+						if (MEMGSTACKSIZE != (unsigned long)currentgstacksize)
 						{
 							int ptr=0;
 							int l=0;

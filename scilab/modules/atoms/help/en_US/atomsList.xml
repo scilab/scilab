@@ -41,10 +41,10 @@
   <!-- ===================================================================== -->
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 atomsRepositoryAdd("http://scene1.test.atoms.scilab.org");
 atomsList();
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <!-- ===================================================================== -->
   <!-- See also -->

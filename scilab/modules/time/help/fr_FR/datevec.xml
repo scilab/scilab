@@ -37,21 +37,21 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-// First example
+    <programlisting role="example"><![CDATA[ 
+// Premier exemple
 datevec(720840)
 
-// Second example
+// Second exemple
 datevec(datenum())
 
-// Third example (With integers values)
+// Troisième exemple (Avec des valeurs entières)
 A = grand(10,12,'uin',1,1000000)
 datevec(A)
 
-// Fourth example (With real values)
+// Quatrième exemple (Avec des valeurs réelles)
 A = grand(10,12,'unf',1,1000000)
 datevec(A)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

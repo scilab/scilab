@@ -106,25 +106,24 @@ clf(num,&lt;opt_job_arg&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   f4=scf(4);  //criando figura com id==4 e tornando-a a figura corrente
-   f4.color_map = jetcolormap(64);
-   f4.figure_size = [400, 200];
-   plot2d()
-   clf(f4,'reset')
+    <programlisting role="example"><![CDATA[ 
+f4=scf(4);  //criando figura com id==4 e tornando-a a figura corrente
+f4.color_map = jetcolormap(64);
+f4.figure_size = [400, 200];
+plot2d()
+clf(f4,'reset')
    
-   f0=scf(0); //criando figura com id==0 e tornando-a a figura corrente
-   f0.color_map=hotcolormap(128); // mudando o mapa de cores
-   t=-%pi:0.3:%pi;
-   plot3d1(t,t,sin(t)'*cos(t));
+f0=scf(0); //criando figura com id==0 e tornando-a a figura corrente
+f0.color_map=hotcolormap(128); // mudando o mapa de cores
+t=-%pi:0.3:%pi;
+plot3d1(t,t,sin(t)'*cos(t));
 
-   clf() // equivalent to clf(gcf(),'clear')
-   plot3d1(t,t,sin(t)'*cos(t));  // color_map inalterado
+clf() // equivalent to clf(gcf(),'clear')
+plot3d1(t,t,sin(t)'*cos(t));  // color_map inalterado
    
-   clf(gcf(),'reset')
-   plot3d1(t,t,sin(t)'*cos(t));  // color_map alterado (de volta ao padrão com 32 cores)
-
-  </programlisting>
+clf(gcf(),'reset')
+plot3d1(t,t,sin(t)'*cos(t));  // color_map alterado (de volta ao padrão com 32 cores)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

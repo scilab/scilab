@@ -81,16 +81,14 @@
     <para>Retorna um vetor de permutação <literal>perm</literal> tal
     que</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 M(perm,perm) = [M11 0 0 0 0   0]
                [0 M22 0 0     0]
                [0 0 M33       0]
                [      ...      ]
                [0 0       Mrr 0]
                [* *        *  Q]
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>Cada <literal>Mii</literal> é uma matriz de Markov de dimensão
     <literal>rec(i) i=1,..,r</literal>. <literal>Q</literal> é uma submatriz
@@ -103,14 +101,12 @@ M(perm,perm) = [M11 0 0 0 0   0]
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //P tem 2 classes recorrentes (com 2 e 1 estados) e 2 estados transientes
 P=genmarkov([2,1],2,'perm')
 [perm,rec,tr,indsRec,indsT]=classmarkov(P);
 P(perm,perm)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

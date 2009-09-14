@@ -70,8 +70,7 @@ plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // esboçando uma função de degrau de valor i no segmento [i,i+1]
 // o último segmento não é desenhado
 plot2d2([1:4],[1:4],1,"111","função de degrau",[0,0,5,5])
@@ -86,8 +85,7 @@ e=gce();
 e.children(1).polyline_style=2;
 e.children(2).polyline_style=2;
 e.children(3).polyline_style=2;
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

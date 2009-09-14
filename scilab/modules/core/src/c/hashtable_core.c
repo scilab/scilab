@@ -46,8 +46,6 @@ static BOOL realloc_hashtable_scilab_functions(void);
 /*--------------------------------------------------------------------------*/
 BOOL create_hashtable_scilab_functions(void)
 {
-	unsigned int i = 0;
-
 	if (htable == NULL)
 	{
 		hashtableSize  = DEFAULT_ELEMENTFUNCTIONLIST;
@@ -154,7 +152,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 				if (htable[idx].used == 0)
 				{
 					int zero = 0;
-					int j = 0;
+
 					htable[idx].entry.data = *scilab_funptr;
 
 					if (name)
@@ -274,7 +272,7 @@ BOOL realloc_hashtable_scilab_functions(void)
 {
 	if ( (filled) >= hashtableSize)
 	{
-		int newhashtableSize = filled * 2;
+		unsigned int newhashtableSize = filled * 2;
 
 		if (newhashtableSize > MAXELEMENTFUNCTIONLIST) newhashtableSize = MAXELEMENTFUNCTIONLIST;
 
@@ -285,7 +283,7 @@ BOOL realloc_hashtable_scilab_functions(void)
 			if (htable)	
 			{
 				_ENTRY emptyEntry;
-				int i = 0;
+				unsigned int i = 0;
 
 				emptyEntry.used = 0;
 				strcpy(emptyEntry.entry.namefunction, "");

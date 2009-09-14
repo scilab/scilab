@@ -79,7 +79,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple GetLastJob example
 // See SCI/modules/call_scilab/examples/basicExamples/GetLastJob.c for 
 // the full code

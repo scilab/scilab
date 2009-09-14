@@ -64,14 +64,14 @@ set_posfig_dim(0,0)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"><![CDATA[  
 // make a figure with a specific shape
 f=scf(0);f.figure_size=[800,300];
 plot2d();
 set_posfig_dim(f.figure_size(1),f.figure_size(2));
 filename='foo.ps';
 xs2ps(0,filename);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

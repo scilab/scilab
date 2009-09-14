@@ -104,13 +104,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,2)*rand(2,5);
 [X,r]=colcomp(A);
 norm(A*X(:,1:$-r),1)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

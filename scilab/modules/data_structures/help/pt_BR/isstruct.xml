@@ -67,8 +67,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 isstruct(1)
 
 isstruct(cell())
@@ -79,8 +78,7 @@ info.name="Scilab";
 info.function="isstruct";
 info.module="help";
 isstruct(info)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

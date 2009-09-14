@@ -61,10 +61,10 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    a=[0.33 1.24 2.1 1.03]
-    s=samwr(4,12,a)
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+a=[0.33 1.24 2.1 1.03]
+s=samwr(4,12,a)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

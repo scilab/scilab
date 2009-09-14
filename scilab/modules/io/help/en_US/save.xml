@@ -101,8 +101,7 @@ save(fd [,x1,x2,...,xn])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 a=eye(2,2);b=ones(a);
 save('val.dat',a,b);
 clear a
@@ -123,9 +122,7 @@ mseek(0,fd,'end')
 lst=list(1,2,3)
 save(fd,lst)
 mclose(fd)
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

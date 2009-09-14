@@ -77,23 +77,21 @@ xs2gif(fig,file_name)</synopsis>
     <literal>img*.gif</literal> it is possible to build an animated Gif file
     (named anim.gif) by</para>
 
-    <programlisting>
-    
-    convert -delay 10  img*.gif anim.gif  
-     
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+convert -delay 10  img*.gif anim.gif  
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 //GIF export
 xs2gif(0,'foo.gif');
 xs2gif(gcf(),'foo.gif');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

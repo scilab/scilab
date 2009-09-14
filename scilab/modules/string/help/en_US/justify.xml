@@ -72,8 +72,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 t=['1234','x','adfdfgdfghfgj'
    '1','354556','dgf'
    'sdfgd','','sdfsf'];
@@ -81,8 +80,7 @@ t=['1234','x','adfdfgdfghfgj'
 justify(t,'l')
 justify(t,'c')
 justify(t,'r')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

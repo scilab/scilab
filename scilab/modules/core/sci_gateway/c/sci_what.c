@@ -55,8 +55,6 @@ int C2F(sci_what)(char *fname,unsigned long fname_len)
 	}
 	else /* Lhs == 2 */
 	{
-		int i2=0;
-
 		int ncol=1;	
 		int nrowFunctions=SizeLocalFunctionsTab;
 		int nrowCommands=sizecommandwords;

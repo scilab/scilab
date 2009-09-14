@@ -88,13 +88,11 @@
     <para>Tem-se a seguinte forma canônica para
     <literal>[A,B]</literal>:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
          [*,*]    (dima rows)
 X'*[A,B]=[0,*]    (dim-dima rows)
          [0,0]    
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para><literal>tol</literal> é um argumento opcional (ver código da
     função).</para>
@@ -103,15 +101,13 @@ X'*[A,B]=[0,*]    (dim-dima rows)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(6,2)*rand(2,5);      // rank(A)=2 (posto(A)=2)
 B=[A(:,1),rand(6,2)]*rand(3,3);   //dois vetores adicionais independentes
 [X,dim,dimA]=spanplus(A,B);
 dimA
 dim
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

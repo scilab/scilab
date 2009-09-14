@@ -21,8 +21,8 @@ function plotframe(rect,axisdata,options,legs,subwindow)
 //!
 [lhs,rhs]=argn(0)
 
-if rhs < 1 then 
-  error('Wrong number of arguments ');
+if rhs < 1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plotframe", 1));
   return ;
 end
 

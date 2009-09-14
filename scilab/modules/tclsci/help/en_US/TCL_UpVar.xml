@@ -64,7 +64,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 TCL_SetVar("Scilab","OK")
 TCL_UpVar("Scilab","ScilabBis")
 TCL_GetVar("ScilabBis")
@@ -84,8 +84,7 @@ TCL_SetVar("ScilabBis","modified again",'InterpBis')
 TCL_GetVar("ScilabBis",'InterpBis')
 TCL_GetVar("Scilab",'InterpBis')
 TCL_DeleteInterp('InterpBis')
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

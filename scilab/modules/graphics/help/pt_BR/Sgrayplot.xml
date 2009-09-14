@@ -310,12 +310,13 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
     esboçada assumindo-se que é linear em um conjunto de triângulos
     construídos a partir do grid (aqui, com n1=5, n2=3):</para>
 
-    <programlisting>
-             _____________
-             | /| /| /| /|
-             |/_|/_|/_|/_| 
-             | /| /| /| /| 
-             |/_|/_|/_|/_|</programlisting>
+    <programlisting role = ""><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></programlisting>
 
     <para>A função <link linkend="colorbar">colorbar</link> pode ser utilizada
     para se visualizar a escala de cores.</para>
@@ -333,7 +334,7 @@ Sgrayplot(x,y,z [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo #1
 x=-10:10; y=-10:10;m =rand(21,21);
 clf()
@@ -363,11 +364,11 @@ Sgrayplot(x,y,cos(t(1))*z, strf="042", zminmax=[-1,1])
 c=gce(),e=c.children
 xtitle("Olhos de Kaa")
 for i = 1:nt
-   e.data(:,3)=matrix(cos(t(i))*z,-1,1);
-   show_pixmap()
+  e.data(:,3)=matrix(cos(t(i))*z,-1,1);
+  show_pixmap()
 end
 f.pixmap='off';
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

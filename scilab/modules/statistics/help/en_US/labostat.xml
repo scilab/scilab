@@ -20,8 +20,7 @@
   </refnamediv>
   <refsection>
     <title>Contents</title>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 centre: centering variables
 centrered: centering and reducing variables
 cmoment: central moments of all orders
@@ -58,8 +57,7 @@ strange: distance between largest and smallest value
 tabul: frequences of values
 var: variance
 varf: variance with frequence table
-   
-    ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>References</title>

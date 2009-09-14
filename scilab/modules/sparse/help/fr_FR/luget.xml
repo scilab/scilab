@@ -78,7 +78,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 a=rand(5,2)*rand(2,5);A=sparse(a);
 [hand,rk]=lufact(A);[P,L,U,Q]=luget(hand);
 full(L), P*L*U*Q-A

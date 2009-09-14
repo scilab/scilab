@@ -93,15 +93,13 @@ grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=-10:10; y=-10:10;m =rand(21,21);
 grayplot(x,y,m,rect=[-20,-20,20,20])
 t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
 clf()
 grayplot(t,t,m)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -63,7 +63,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 x=uint16(1:10);
 inttype(x)
  ]]></programlisting>

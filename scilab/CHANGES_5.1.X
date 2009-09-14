@@ -12,6 +12,8 @@ Improvements:
 
 * Catalan localization added to Scipad (Thanks Oriol Gonzalez)
 
+* Japanese localization added to Scipad (Thanks Hiroshi Saito)
+
 Functions removed:
 ==================
 
@@ -88,6 +90,9 @@ Source reorganisation:
 
 Help & Tests:
 =============
+
+* In the documentation, the font size of the equations has been increased 
+  for a better readability.
 
 * Documentation and examples about call_scilab (BooleanManagement call_scilab
   compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat
@@ -248,6 +253,13 @@ Bug fixes:
  * bug 4750 fixed - Error boolean catenation
 
  * bug 4752 fixed - ci2exp produces erroneous code when applied to boolean matrices (; are missing)
+
+ * bug 4712 fixed - by GUI handle affectation produce an error.
+
+ * bug 4770 fixed - modules::renderer::utils::ColorMap::isValidScilabIndex test was wrong.
+
+ * bug 4773 fixed - Using "axes_reverse" produce a switch between the front and back color of a figure.
+
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
@@ -539,6 +551,7 @@ Bug fixes:
 
 * bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
+* bug 4771 fixed - the configure did not stop when jhall (javahelp) or looks were not available on the system
 
 
                Changes between version 5.0.X and 5.1 of Scilab

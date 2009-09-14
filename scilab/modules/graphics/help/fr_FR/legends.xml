@@ -119,9 +119,7 @@ legends(strings,style,xy)
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-  
-
+    <programlisting role="example"><![CDATA[ 
 // Exemple 1  
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
@@ -153,8 +151,6 @@ subplot(224)
 t=0:0.1:2*%pi;
 plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-1,2 3]);  
 legends(['cos(t)';'cos(2*t)';'cos(3*t)'],[-1,2 3], opt=2, font_size=1 )
-
-
  ]]></programlisting>
   </refsection>
   <refsection>

@@ -78,14 +78,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 w=s*rand(10,10);
 determ(w)
 det(coeff(w,1))*s^10
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

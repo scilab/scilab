@@ -96,7 +96,7 @@ following the References headline.</para></listitem>
 
 <refsection>
    <title>Examples</title>
-   <programlisting role="example">
+   <programlisting role="example"><![CDATA[ 
 help_from_sci()   // Open an empty source code template in the Scipad editor.
 // Save this template as test_fun.sci in the current directory before running
 // the next example commands.
@@ -113,8 +113,7 @@ help_from_sci('test_fun','.','.')
 // This command would process all .sci files in the macros directory
 // and use the head comments section to update all .xml help files in the
 // help\en_US directory an rebuild the .dem.sce files in the demos\ directory.
-
-   </programlisting>
+ ]]></programlisting>
 </refsection>
 
 <refsection>

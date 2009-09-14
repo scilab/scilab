@@ -2,8 +2,8 @@
                =================================================
 
 
-Extend of Scilab :
-==================
+Extension capabilities of Scilab :
+==================================
 
 * A new API called api_scilab is available. This API provides functions to
   read/write data from/to Scilab memory.
@@ -17,9 +17,6 @@ Extend of Scilab :
   Note that all other Scilab API (straight access to the Scilab stack, stack1,
   stack2 and stack3) will be maintained in the Scilab 5.X familly but most of
   them will be dropped in the 6 family.
-  
-
-
 
 * In the enum sci_types which list all Scilab datatypes, the type 
   "sci_lufact_pointer" has been renamed to "sci_pointer".
@@ -43,6 +40,12 @@ Compilation:
 * lapack 3.2 used on Windows
 
 * functions module is loaded dynamically by Scilab.
+
+* autoconf updated to version 2.64
+
+* automake updated to version 1.11
+
+* libtool updated from version 1.5.26 to 2.2.6a (Closes bug #4279)
 
 Source reorganisation:
 ======================
@@ -112,6 +115,14 @@ fileio functions:
                 of the path is removed (if present of course). See Bug 4468.
                   
 * getcwd is obsolete (see pwd). 
+
+* isfile : checks if filename is a existing file.
+
+* movefile : move files or directory (Request 661)
+
+* Rewrite :
+   + copyfile (primitive)
+   + fileparts (primitive)
   
 Dynamic link:
 =============
@@ -188,6 +199,17 @@ char encoding bugs :
 * bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
                    characters and character class are associated in the pattern to match.
 
+* bug 4758 fixed - embedded version of autoconf libs.m4 were causing some issues
+
+* bug 4768 fixed - strsplit returns strange results with accened characters
+
+String manipulation:
+====================
+
+* Rewrite :
+    + strsplit - SEP 26
+
+
 Java/Scilab API:
 ================
 
@@ -247,7 +269,9 @@ Bug fixes:
 
 * bug 4181 fixed - remove the AdCommunications help page
 
-* bug 4217 fixed -  gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
+* bug 4184 fixed - style of the examples has been corrected
+
+* bug 4217 fixed - gsort sort complex by magnitude only with 'g' and not support 'r', 'c', 'lr', 'lc'
 
 * bug 4262 fixed - lines returns incorrect values.
 
@@ -371,6 +395,8 @@ Bug fixes:
 
 * bug 4645 fixed - french 'gsort' help had some wrong informations.
 
+* bug 4654 fixed - max of an empty sparse matrix makes Scilab hangs
+
 * bug 4666 fixed - SCIHOME was not well defined if scilab has been launched in another scilab session.
 
 * bug 4676 fixed - diary() removes whitespaces characters from the output of mprintf()
@@ -380,6 +406,8 @@ Bug fixes:
 * bug 4688 fixed - listfiles("/") returned an error.
 
 * bug 4689 fixed - diary() do not report interactive commands into the output file
+
+* bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 

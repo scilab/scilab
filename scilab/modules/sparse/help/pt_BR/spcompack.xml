@@ -69,20 +69,16 @@
   <refsection>
     <title>Descrição</title>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 A função utilitária spcompak é usada para converter uma representação de adjacência
 comprimida em uma representação de adjacência padrão.
-
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // A é a matriz esparsa:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
@@ -117,8 +113,7 @@ xlindx=[1,2,3,8,9,11];
 //A pode ser reconstruída de (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

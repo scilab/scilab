@@ -204,30 +204,27 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 w = fileinfo(SCI+'/etc/scilab.start')
-// permiss&#227;o do arquivo
+// permissão do arquivo
 dec2oct(w(2))
 // data do arquivo
 getdate(w(6))
 
-// Verificando a permiss&#227;o de escrita em um arquivo
+// Verificando a permissão de escrita em um arquivo
 w = fileinfo(SCI+'/etc/scilab.start')
 
-S_IWRITE = 128; // mascarando a permiss&#227;o de escrita
-S_IEXEC = 64; // mascarando a permiss&#227;o de execu&#231;&#227;o
-S_IREAD = 256; // mascarando a permiss&#227;o de leitura
-S_IFCHR = 8192; // mascarando a permiss&#227;o de diret&#243;rio
+S_IWRITE = 128; // mascarando a permissão de escrita
+S_IEXEC = 64; // mascarando a permissão de execução
+S_IREAD = 256; // mascarando a permissão de leitura
+S_IFCHR = 8192; // mascarando a permissão de diretório
 
-if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
- disp('PERIMISS&#195;O DE ESCRITA neste arquivo.');
+if ( bitand( w(2), S_IWRITE ) <> 0) then
+ disp('PERIMISSÃO DE ESCRITA neste arquivo.');
 else
- disp('N&#195;O H&#193; PERIMISS&#195;O DE ESCRITA neste arquivo.');
+ disp('NÃO HÁ PERIMISSÃO DE ESCRITA neste arquivo.');
 end
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -39,26 +39,22 @@
     Balanced realization of linear system <literal>sl=[A,B,C,D]</literal>. <literal>sl</literal>
     can be a continuous-time or discrete-time state-space system. 
     sl is assumed stable.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
 slb=[inv(U)*A*U ,inv(U)*B , C*U , D]
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     is the balanced realization.</para>
     <para><literal>slb</literal> is returned as a <literal>syslin</literal> list.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([-1,-2,-3,-4,-5]);B=rand(5,2);C=rand(1,5);
 sl=syslin('c',A,B,C);
 [slb,U]=balreal(sl);
 Wc=clean(ctr_gram(slb))
 W0=clean(obs_gram(slb))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>
