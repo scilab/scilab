@@ -265,7 +265,6 @@ namespace ast
 				for(int i = 0 ; i < out.size() ; i++)
 				{
 					result_set(i, out[i]);
-					out[i]->DecreaseRef();
 				}
 			}
 			else if(Ret == Callable::Error)
@@ -502,11 +501,15 @@ namespace ast
 		if(e.is_breakable() && ( ((Exp*)&e.else_get())->is_break() || ((Exp*)&e.then_get())->is_break() ))
 		{
 			((Exp*)&e)->break_set();
+			((Exp*)&e.else_get())->break_reset();
+			((Exp*)&e.then_get())->break_reset();
 		}
 
 		if(e.is_returnable() && ( ((Exp*)&e.else_get())->is_return() || ((Exp*)&e.then_get())->is_return() ))
 		{
 			((Exp*)&e)->return_set();
+			((Exp*)&e.else_get())->return_reset();
+			((Exp*)&e.then_get())->return_reset();
 		}
 	}
 
@@ -713,6 +716,7 @@ namespace ast
 			if(((SeqExp*)&e)->is_returnable() && (*i)->is_return())
 			{
 				((SeqExp*)&e)->return_set();
+				((SeqExp*)(*i))->return_reset();
 				break;
 			}
 		}

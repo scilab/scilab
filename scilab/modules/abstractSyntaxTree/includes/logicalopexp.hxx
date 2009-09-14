@@ -22,63 +22,8 @@ namespace ast
   /** \brief Abstract an Operation Expression node.
    **
    ** \b Example: 77 * 27 */
-  class LogicalOpExp : public MathExp
+  class LogicalOpExp : public OpExp
   {
-  public:
-    /** \brief Operator qualifier */
-    enum Oper
-    {
-      // Logical operators
-      /** \brief "&" */		logicalAnd,
-      /** \brief "|" */		logicalOr,
-      /** \brief "&&" */	logicalShortCutAnd,
-      /** \brief "||" */	logicalShortCutOr
-    };
-
-    /** \brief Operation Expression kind.
-     **
-     ** Specify the result of Operation Expression (set at type checking). */
-    enum Kind
-    {
-      /** \brief Invalid kind */
-      invalid_kind,
-
-      // Scalar values
-      /** \brief Boolean result */
-      bool_kind,
-      /** \brief String result */
-      string_kind,
-      /** \brief Integer result */
-      integer_kind,
-      /** \brief Float result */
-      float_kind,
-      /** \brief Double result */
-      double_kind,
-      /** \brief Float Complex result */
-      float_complex_kind,
-      /** \brief Double Complex result */
-      double_complex_kind,
-
-      // Matrix values
-      /** \brief Boolean Matrix result */
-      bool_matrix_kind,
-      /** \brief String Matrix result */
-      string_matrix_kind,
-      /** \brief Integer Matrix result */
-      integer_matrix_kind,
-      /** \brief Float Matrix result */
-      float_matrix_kind,
-      /** \brief Double Matrix result */
-      double_matrix_kind,
-      /** \brief Float Complex Matrix result */
-      float_complex_matrix_kind,
-      /** \brief Double Complex Matrix result */
-      double_complex_matrix_kind,
-
-      /** \brief Heterogeneous Matrix result */
-      matrix_kind
-    };
-
 
     /** \name Ctor & dtor.
      ** \{ */
@@ -96,11 +41,7 @@ namespace ast
      */
     LogicalOpExp (const Location& location,
 	   Exp& left, Oper oper, Exp& right):
-      MathExp (location),
-      _left (&left),
-      _oper (oper),
-      _right (&right),
-      _kind (invalid_kind)
+      OpExp (location, left, oper, right)
     {
     }
 
@@ -109,8 +50,6 @@ namespace ast
      ** Delete left and right, see constructor. */
     virtual ~LogicalOpExp ()
     {
-			delete _left;
-			delete _right;
     }
     /** \} */
 
@@ -130,67 +69,12 @@ namespace ast
     }
     /** \} */
 
-
-    /** \name Accessors.
-     ** \{ */
-  public:
-    /** \brief Return the left expression of the operation (read only) */
-    const Exp& left_get () const
-    {
-      return *_left;
-    }
-    /** \brief Return the left expression of the operation (read and write) */
-    Exp& left_get ()
-    {
-      return *_left;
-    }
-
-    /** \brief Return the operator description (read only) */
-    Oper oper_get () const
-    {
-      return _oper;
-    }
-
-    /** \brief set the operator description (read only) */
+  /** \brief set the operator description (read only) */
     void oper_set(Oper oper)
     {
       _oper = oper;
     }
-
-    /** \brief Return the right expression of the operation (read only) */
-    const Exp& right_get () const
-    {
-      return *_right;
-    }
-    /** \brief Return the right expression of the operation (read and write) */
-    Exp& right_get ()
-    {
-      return *_right;
-    }
-
-    /** \brief Return the kind of the Op Expression (read only) \see Kind. */
-    Kind kind_get (void) const
-    {
-      assert (_kind != invalid_kind);
-      return _kind;
-    }
-    /** \brief Set the kind of the Op Expression \see Kind. */
-    void kind_set (Kind kind)
-    {
-      this->_kind = kind;
-    }
-    /** \} */
-
-  protected:
-    /** \brief Left expression of the operation. */
-    Exp* _left;
-    /** \brief Operator. */
-    Oper _oper;
-    /** \brief Right expression of the operation. */
-    Exp* _right;
-
-    /** \brief Result type of the operation. */
-    Kind _kind;
+    
   };
 
 } // namespace ast

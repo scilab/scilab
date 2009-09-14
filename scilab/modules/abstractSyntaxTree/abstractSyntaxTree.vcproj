@@ -327,7 +327,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\shortcutvisitor.cpp"
+				RelativePath=".\src\cpp\shortcutvisitor.cpp"
 				>
 			</File>
 			<Filter
@@ -486,10 +486,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\location.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\logicalopexp.hxx"
 				>
 			</File>
 			<File

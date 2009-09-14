@@ -278,9 +278,9 @@ namespace ast {
       case LogicalOpExp::logicalOr:
 	*ostr << SCI_OR; break;
 			case LogicalOpExp::logicalShortCutAnd:
-	*ostr << SCI_AND; break;
+	*ostr << SCI_ANDAND; break;
 			case LogicalOpExp::logicalShortCutOr:
-	*ostr << SCI_OR; break;
+	*ostr << SCI_OROR; break;
       }
     *ostr << " ";
 
