@@ -53,6 +53,7 @@ namespace symbol
 			std::map<Symbol, InternalType*>::const_iterator i;
 			for(i = _scope->begin() ; i != _scope->end() ; ++i)
 			{
+				i->second->DecreaseRef();
 				if(i->second->isDeletable())
 				{
 					delete i->second;
