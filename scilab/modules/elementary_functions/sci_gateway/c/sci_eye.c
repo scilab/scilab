@@ -71,6 +71,18 @@ int C2F(sci_eye) (char *fname,unsigned long fname_len)
 	}
 	else if(Rhs == 2)
 	{
+		iRet = getVarAddressFromPosition(1, &piAddr1);
+		if(iRet)
+		{
+			return 1;
+		}
+
+		iRet = getVarAddressFromPosition(2, &piAddr2);
+		if(iRet)
+		{
+			return 1;
+		}
+
 		getDimFromVar(piAddr1, &iRows);
 		getDimFromVar(piAddr2, &iCols);
 	}
