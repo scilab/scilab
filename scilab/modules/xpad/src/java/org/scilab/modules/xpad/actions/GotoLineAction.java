@@ -33,13 +33,17 @@ import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class GotoLineAction extends DefaultAction {
+	
+	private static boolean windowAlreadyExist ;
 
 	private JFrame mainFrame ;
 	private JTextField enterLineNumberField ;
 	private JButton okButton ;
 	
 	private GotoLineAction(Xpad editor) {
-		super("Goto Line...", editor);
+
+    		super("Goto Line...", editor);
+
 	}
 	
 	public static MenuItem createMenu(Xpad editor) {
@@ -48,7 +52,10 @@ public class GotoLineAction extends DefaultAction {
 
 	 @Override
 	public void doAction() {
-		gotoLineBox ();
+	    	if (!GotoLineAction.windowAlreadyExist ){
+	    		GotoLineAction.windowAlreadyExist= true ;
+	    		gotoLineBox ();
+	    	}
 	}
 	
 	public void gotoLineBox (){
@@ -110,6 +117,7 @@ public class GotoLineAction extends DefaultAction {
 			cancelButton.addActionListener(new ActionListener() {
 
 				public void actionPerformed(ActionEvent e) {
+					GotoLineAction.windowAlreadyExist= false ;
 					mainFrame.dispose();
 				}
 			});
@@ -120,6 +128,7 @@ public class GotoLineAction extends DefaultAction {
 					
 					updateCaretPosition();
 					getEditor().getTextPane().setFocusable(true);
+					GotoLineAction.windowAlreadyExist= false ;
 					mainFrame.dispose();
 				}
 			});
