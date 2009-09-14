@@ -18,7 +18,7 @@
 #include "removedir.h"
 #include "isdir.h"
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "localization.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
@@ -31,18 +31,22 @@ int sci_removedir(char *fname,unsigned long l)
 	{
 		BOOL bOK = FALSE;
 		int m1 = 0, n1 = 0, l1 = 0;
-		char expandedpath[PATH_MAX+1];
-		int out_n = 0;
+		char *expandedpath = NULL;
 		char *VarName = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		VarName = cstk(l1);
 
-		C2F(cluni0)(VarName,expandedpath, &out_n,(int)strlen(VarName),PATH_MAX);
-
-		if ( isdir(expandedpath) )
+		expandedpath = expandPathVariable(VarName);
+		if (expandedpath)
 		{
-			bOK = removedir(expandedpath);
+			if ( isdir(expandedpath) )
+			{
+				bOK = removedir(expandedpath);
+			}
+
+			FREE(expandedpath);
+			expandedpath = NULL;
 		}
 
 		m1 = 1; n1 = 1;

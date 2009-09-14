@@ -22,7 +22,7 @@
 #include "isdir.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
@@ -45,9 +45,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	else
 	{
 		char *path = NULL, *myPath = NULL;
-		char filename[FILENAME_MAX];
-		long int lout;
-		int out_n;
+		char *filename = NULL;
 		BOOL result = FALSE;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
@@ -82,21 +80,25 @@ int sci_isdir(char *fname,unsigned long fname_len)
 		}
 		/* End of the crappy workaround */
 
-		lout = PATH_MAX + FILENAME_MAX;
 		if(myPath == NULL)
 		{
 			/* Replaces SCI, ~, HOME by the real path */
-			C2F(cluni0)(path, filename, &out_n,m1*n1,lout);
+			filename = expandPathVariable(path);
 		}
 		else
 		{
 			/* Replaces SCI, ~, HOME by the real path */
-			C2F(cluni0)(myPath, filename, &out_n,m1*n1,lout);
+			filename = expandPathVariable(myPath);
 			FREE(myPath);
 			myPath = NULL;
 		}
 
-		result = isdir(filename);
+		if (filename)
+		{
+			result = isdir(filename);
+			FREE(filename);
+			filename = NULL;
+		}
 		m1 = 1;
 		n1 = 1;
 		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &m1, &n1 ,&l1); /* Create the space in the stack for result */

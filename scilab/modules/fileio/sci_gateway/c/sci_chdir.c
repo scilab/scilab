@@ -15,8 +15,9 @@
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "localization.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname,unsigned long fname_len)
 {
@@ -26,15 +27,15 @@ int sci_chdir(char *fname,unsigned long fname_len)
 
 	if ( (Rhs == 0) || (GetType(1) == sci_strings) )
 	{
-		int ierr = 0;
-		static int l1,n1,m1;
+		int ierr = 1;
+		int l1 = 0, n1 = 0,m1 = 0;
 		char shortpath[PATH_MAX];
-		char path[PATH_MAX];
+		char *path = NULL;
 		int out_n = 0;
 
 		if (Rhs == 0)
 		{
-			strcpy(shortpath,"home/");
+			strcpy(shortpath, "home/");
 		}
 		else
 		{
@@ -42,8 +43,13 @@ int sci_chdir(char *fname,unsigned long fname_len)
 			strcpy(shortpath,cstk(l1));
 		}
 
-		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),PATH_MAX);
-		scichdir(path,&ierr);
+		path = expandPathVariable(shortpath);
+		if (path)
+		{
+			scichdir(path, &ierr);
+			FREE(path);
+			path = NULL;
+		}
 
 		n1=1;
 		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);

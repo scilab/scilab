@@ -17,7 +17,7 @@
 #include "MALLOC.h"
 #include "createdirectory.h"
 #include "isdir.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "warningmode.h"
 #include "sciprint.h"
 #include "Scierror.h"
@@ -33,13 +33,12 @@ int sci_createdir(char *fname,unsigned long l)
 	{
 		BOOL bOK = FALSE;
 		int m1 = 0, n1 = 0, l1 = 0;
-		char expandedpath[PATH_MAX+1];
+		char *expandedpath = NULL;
 		int out_n = 0;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
-
-		C2F(cluni0)(cstk(l1),expandedpath, &out_n,(int)strlen(cstk(l1)),PATH_MAX);
+		expandedpath = expandPathVariable(cstk(l1));
 
 		if (!isdir(expandedpath))
 		{
@@ -49,6 +48,12 @@ int sci_createdir(char *fname,unsigned long l)
 		{
 			if (getWarningMode()) sciprint(_("%s: Warning: Directory '%s' already exists.\n"),fname,expandedpath);
 			bOK = TRUE;
+		}
+
+		if (expandedpath)
+		{
+			FREE(expandedpath);
+			expandedpath = NULL;
 		}
 
 		m1 = 1; n1 = 1;

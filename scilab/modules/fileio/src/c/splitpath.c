@@ -40,7 +40,7 @@ void splitpathW(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, 
 		wcscpy(duplicate_path, path);
 		begin_duplicate_path = duplicate_path;
 		
-		for(i = 0; i < wcslen(duplicate_path); i++)
+		for(i = 0; i < (int)wcslen(duplicate_path); i++)
 		{
 #ifdef _MSC_VER
 			if (duplicate_path[i] == L'/') duplicate_path[i] = L'\\';

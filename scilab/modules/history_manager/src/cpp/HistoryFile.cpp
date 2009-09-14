@@ -22,7 +22,6 @@ extern "C"
 #include <stdlib.h>
 #include "sciprint.h"
 #include "PATH_MAX.h"
-#include "cluni0.h"
 #include "SCIHOME.h"
 #include "inffic.h"
 #include "getCommentDateSession.h"
