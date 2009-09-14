@@ -52,6 +52,8 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class FindAction extends DefaultAction {
 
+	private static boolean windowAlreadyExist ;
+	
 	private JFrame frame;
 	private JTextField textfieldFind;
 	private JTextField textfieldReplace;
@@ -91,8 +93,10 @@ public class FindAction extends DefaultAction {
 	}
 
 	public void doAction() {
-
-		findReplaceBox();
+    	if (!FindAction.windowAlreadyExist ){
+    		FindAction.windowAlreadyExist= true ;
+        	findReplaceBox();
+    	}
 	}
 
 	 public static MenuItem createMenu(Xpad editor) {
@@ -361,6 +365,7 @@ public class FindAction extends DefaultAction {
 
 
 			public void actionPerformed(ActionEvent e) {
+				FindAction.windowAlreadyExist= false ;
 
 				frame.dispose();
 			}
