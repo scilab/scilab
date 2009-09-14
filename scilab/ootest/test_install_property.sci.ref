@@ -2,35 +2,28 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 42
 
-yop
 message = 
 
 5
 
-yop
 message = 
 
 Error: slot y not found
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
 message = 
 
   42
 
-yop
 message = 
 
   5
 
-yop
 Error: slot y not found

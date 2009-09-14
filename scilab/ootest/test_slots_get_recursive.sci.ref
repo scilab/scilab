@@ -2,108 +2,86 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 %get method public
 
-yop
 message = 
 
 %set method public
 
-yop
 message = 
 
 %new method public
 
-yop
 message = 
 
 %slots_list method public
 
-yop
 message = 
 
 %install_method method public
 
-yop
 message = 
 
 %install_property method public
 
-yop
 message = 
 
 %remove_slot method public
 
-yop
 message = 
 
 %instance_slots_list method public
 
-yop
 message = 
 
 %install_instance_method method public
 
-yop
 message = 
 
 %install_instance_property method public
 
-yop
 message = 
 
 %remove_instance_slot method public
 
-yop
 message = 
 
 a method public
 
-yop
 message = 
 
 b method protected
 
-yop
 message = 
 
 c method private
 
-yop
 message = 
 
 name property public
 
-yop
 message = 
 
 super property public
 
-yop
 message = 
 
 x property public
 
-yop
 message = 
 
 y property protected
 
-yop
 message = 
 
 z property private
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
-iMaxLen : 11
 V = 
 
 !public     !
@@ -144,7 +122,6 @@ V =
 !           !
 !private    !
 
-iMaxLen : 10
 T = 
 
 !method    !
@@ -185,7 +162,6 @@ T =
 !          !
 !property  !
 
-iMaxLen : 28
 N = 
 
 !%get                        !

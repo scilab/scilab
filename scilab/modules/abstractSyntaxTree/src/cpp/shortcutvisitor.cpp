@@ -197,6 +197,31 @@ namespace ast
 		ShortCutVisitor SCBody;
 		e.body_get().accept(SCBody);
 	}
+	
+	void ShortCutVisitor::visit (const ClassDec &e)
+	{
+		slots_t::const_iterator it;
+		for(it = e.slots_get().begin() ; it != e.slots_get().end() ; ++it)
+		{
+			ShortCutVisitor SCSlot;
+			(*it)->accept(SCSlot);
+		}
+	}
+	
+	void ShortCutVisitor::visit (const PropertyDec &e)
+	{
+		if(e.default_get())
+		{
+			ShortCutVisitor SCProperty;
+			e.default_get()->accept(SCProperty);
+		}
+	}
+	
+	void ShortCutVisitor::visit (const MethodDec &e)
+	{
+		ShortCutVisitor SCMethod;
+		e.body_get().accept(SCMethod);
+	}
 
 	void ShortCutVisitor::visit(const ListExp &e)
 	{

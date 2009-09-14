@@ -2,133 +2,106 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 a
 
-yop
 message = 
 
 b
 
-yop
 message = 
 
 c
 
-yop
 message = 
 
 name
 
-yop
 message = 
 
 super
 
-yop
 message = 
 
 x
 
-yop
 message = 
 
 y
 
-yop
 message = 
 
 z
 
-yop
 message = 
 
 a method
 
-yop
 message = 
 
 b method
 
-yop
 message = 
 
 c method
 
-yop
 message = 
 
 name property
 
-yop
 message = 
 
 super property
 
-yop
 message = 
 
 x property
 
-yop
 message = 
 
 y property
 
-yop
 message = 
 
 z property
 
-yop
 message = 
 
 a method public
 
-yop
 message = 
 
 b method protected
 
-yop
 message = 
 
 c method private
 
-yop
 message = 
 
 name property public
 
-yop
 message = 
 
 super property public
 
-yop
 message = 
 
 x property public
 
-yop
 message = 
 
 y property protected
 
-yop
 message = 
 
 z property private
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
-iMaxLen : 7
 N = 
 
 !a      !
@@ -147,7 +120,6 @@ N =
 !       !
 !z      !
 
-iMaxLen : 10
 T = 
 
 !method    !
@@ -166,7 +138,6 @@ T =
 !          !
 !property  !
 
-iMaxLen : 7
 N = 
 
 !a      !
@@ -185,7 +156,6 @@ N =
 !       !
 !z      !
 
-iMaxLen : 11
 V = 
 
 !public     !
@@ -204,7 +174,6 @@ V =
 !           !
 !private    !
 
-iMaxLen : 10
 T = 
 
 !method    !
@@ -223,7 +192,6 @@ T =
 !          !
 !property  !
 
-iMaxLen : 7
 N = 
 
 !a      !

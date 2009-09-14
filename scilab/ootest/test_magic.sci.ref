@@ -2,49 +2,39 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 GET:foo
 
-yop
 message = 
 
 42
 
-yop
 message = 
 
 SET:bar
 
-yop
 message = 
 
 1
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
 message = 
 
 GET:foo
 
-yop
 message = 
 
   42
 
-yop
 message = 
 
 SET:bar
 
-yop
 message = 
 
   1
 
-yop

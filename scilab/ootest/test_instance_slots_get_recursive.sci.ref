@@ -2,48 +2,38 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 %constructor method public
 
-yop
 message = 
 
 a method public
 
-yop
 message = 
 
 b method protected
 
-yop
 message = 
 
 c method private
 
-yop
 message = 
 
 x property public
 
-yop
 message = 
 
 y property protected
 
-yop
 message = 
 
 z property private
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
-iMaxLen : 11
 V = 
 
 !public     !
@@ -60,7 +50,6 @@ V =
 !           !
 !private    !
 
-iMaxLen : 10
 T = 
 
 !method    !
@@ -77,7 +66,6 @@ T =
 !          !
 !property  !
 
-iMaxLen : 14
 N = 
 
 !%constructor  !

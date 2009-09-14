@@ -2,19 +2,15 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 42
 
-yop
 message = 
 
 51
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop

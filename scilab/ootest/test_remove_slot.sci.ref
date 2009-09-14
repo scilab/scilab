@@ -2,25 +2,20 @@ message =
 
 Expected result:
 
-yop
 message = 
 
 Hello
 
-yop
 message = 
 
 Error: slot hello not found
 
-yop
 message = 
 
 ------- Running test -----------
 
-yop
 message = 
 
 Hello
 
-yop
 Error: slot hello not found
