@@ -109,6 +109,7 @@ namespace ast
   public:
     virtual void visit (typename select_const<K, CallExp>::t & e) = 0;
     virtual void visit (typename select_const<K, OpExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, LogicalOpExp>::t & e) = 0;
     virtual void visit (typename select_const<K, AssignExp>::t & e) = 0;
     virtual void visit (typename select_const<K, IfExp>::t & e) = 0;
     virtual void visit (typename select_const<K, WhileExp>::t & e) = 0;

@@ -29,6 +29,8 @@ namespace types
 
 
 		/*data management*/
+		GenericType*	get(int _iPos);
+
 		float*				real_get() const;
 		float					real_get(int _iRows, int _iCols) const;
 		float*				img_get() const;
@@ -38,6 +40,8 @@ namespace types
 		bool					img_set(float *_pfImg);
 
 
+		bool					val_set(int _iRows, int _iCols, float _fReal);
+		bool					val_set(int _iRows, int _iCols, float _fReal, float _fImg);
 
 		/*zero or one set filler*/
 		bool					zero_set();

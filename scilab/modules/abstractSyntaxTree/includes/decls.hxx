@@ -45,7 +45,9 @@ namespace ast
 
   // Intructions Exp
   class CallExp;
+  class MathExp;
   class OpExp;
+  class LogicalOpExp;
   class AssignExp;
   class IfExp;
   class WhileExp;

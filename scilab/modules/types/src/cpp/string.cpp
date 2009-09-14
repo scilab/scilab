@@ -190,7 +190,6 @@ namespace types
 			}
 
 			iMaxLen += 2;
-			cout << "iMaxLen : " << iMaxLen << endl;
 
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
@@ -372,5 +371,20 @@ namespace types
 	{
 		return !(*this == it);
 	}
+
+	GenericType* String::get(int _iPos)
+	{
+		String *ps = NULL;
+		if(_iPos < m_iCols)
+		{
+			ps = new String(m_iRows, 1);
+			for(int i = 0 ; i < m_iRows ; i++)
+			{
+				ps->string_set(i, 0, string_get(i, _iPos));
+			}
+		}
+		return ps;
+	}
+
 }
 

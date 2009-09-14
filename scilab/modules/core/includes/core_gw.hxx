@@ -10,8 +10,21 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
-#include "../../integer/includes/integer_gw.hxx"
-#include "../../core/includes/core_gw.hxx"
+#ifndef __CORE_GW_HXX__
+#define __CORE_GW_HXX__
 
+#include "funcmanager.hxx"
+#include "context.hxx"
+
+#include "dynlib_core_gw.h"
+
+class CoreModule
+{
+private :
+	CoreModule(){};
+	~CoreModule(){};
+public :
+	CORE_GW_IMPEXP static bool Load();
+};
+
+#endif /* __CORE_GW_HXX__ */

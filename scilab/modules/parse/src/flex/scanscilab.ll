@@ -51,8 +51,10 @@ next			(".."|"...")
 boolnot			("@"|"~")
 booltrue		("%t"|"%T")
 boolfalse		("%f"|"%F")
-booland			("&"|"&&")
-boolor			("|"|"||")
+booland			("&")
+boolandand		("&&")
+boolor			("|")
+booloror		("||")
 
 lbrack			"["
 rbrack			"]"
@@ -162,8 +164,14 @@ assign			"="
 <INITIAL,MATRIX>{booland}		{
   return scan_throw(AND);
 }
+<INITIAL,MATRIX>{boolandand}	{
+  return scan_throw(ANDAND);
+}
 <INITIAL,MATRIX>{boolor}		{
   return scan_throw(OR);
+}
+<INITIAL,MATRIX>{booloror}		{
+  return scan_throw(OROR);
 }
 
 

@@ -97,11 +97,11 @@ namespace types
 	/*------------*/
 	/*	bool_get	*/
 	/*------------*/
-	bool	Bool::bool_get(int _iRow, int _iCol) const
+	bool	Bool::bool_get(int _iRows, int _iCols) const
 	{ 
 		if(m_pbData != NULL)
 		{
-			return m_pbData[_iCol * m_iRows + _iRow];
+			return m_pbData[_iCols * m_iRows + _iRows];
 		}
 		else
 		{
@@ -132,13 +132,13 @@ namespace types
 	/*------------*/
 	/*	bool_set	*/
 	/*------------*/
-	bool Bool::bool_set(int _iRow, int _iCol, bool _bData)
+	bool Bool::bool_set(int _iRows, int _iCols, bool _bData)
 	{
 		if(m_pbData != NULL)
 		{
-			if(_iRow <= m_iRows && _iCol <= m_iCols)
+			if(_iRows <= m_iRows && _iCols <= m_iCols)
 			{
-				m_pbData[_iCol * m_iRows + _iRow] = _bData;
+				m_pbData[_iCols * m_iRows + _iRows] = _bData;
 			}
 			else
 			{

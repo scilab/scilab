@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef AST_OPEXP_HXX
-# define AST_OPEXP_HXX
+#ifndef AST_LOGICALOPEXP_HXX
+# define AST_LOGICALOPEXP_HXX
 
 # include <assert.h>
 # include "mathexp.hxx"
@@ -22,42 +22,17 @@ namespace ast
   /** \brief Abstract an Operation Expression node.
    **
    ** \b Example: 77 * 27 */
-  class OpExp : public MathExp
+  class LogicalOpExp : public MathExp
   {
   public:
     /** \brief Operator qualifier */
     enum Oper
     {
-      // Arithmetics.
-      /** \brief "+" */			plus,
-      /** \brief "-" */			minus,
-      /** \brief "*" */			times,
-      /** \brief "/" */			divide,
-      /** \brief "\" */			rdivide,
-      /** \brief "**" or "^" */		power,
-
-      // Element Ways.
-      /** \brief ".*" */		dottimes,
-      /** \brief "./" */		dotdivide,
-      /** \brief ".\" */		dotrdivide,
-      /** \brief ".^" */		dotpower,
-
-      // Kroneckers
-      /** \brief ".*." */		krontimes,
-      /** \brief "./." */		krondivide,
-      /** \brief ".\." */		kronrdivide,
-
-      // Control
-      // FIXME : What the hell is this ???
-      /** \brief "/." */		controldivide,
-
-      // Comparison.
-      /** \brief "==" */		eq,
-      /** \brief "<>" or "~=" */	ne,
-      /** \brief "<" */			lt,
-      /** \brief "<=" */		le,
-      /** \brief "<" */			gt,
-      /** \brief ">=" */		ge,
+      // Logical operators
+      /** \brief "&" */		logicalAnd,
+      /** \brief "|" */		logicalOr,
+      /** \brief "&&" */	logicalShortCutAnd,
+      /** \brief "||" */	logicalShortCutOr
     };
 
     /** \brief Operation Expression kind.
@@ -119,7 +94,7 @@ namespace ast
      ** \li "*" is the operator
      ** \li "27" is the right expression
      */
-    OpExp (const Location& location,
+    LogicalOpExp (const Location& location,
 	   Exp& left, Oper oper, Exp& right):
       MathExp (location),
       _left (&left),
@@ -132,7 +107,7 @@ namespace ast
     /** \brief Destroy a Operation Expression node.
      **
      ** Delete left and right, see constructor. */
-    virtual ~OpExp ()
+    virtual ~LogicalOpExp ()
     {
 			delete _left;
 			delete _right;
@@ -176,7 +151,13 @@ namespace ast
       return _oper;
     }
 
-		/** \brief Return the right expression of the operation (read only) */
+    /** \brief set the operator description (read only) */
+    void oper_set(Oper oper)
+    {
+      _oper = oper;
+    }
+
+    /** \brief Return the right expression of the operation (read only) */
     const Exp& right_get () const
     {
       return *_right;
@@ -214,4 +195,4 @@ namespace ast
 
 } // namespace ast
 
-#endif // !AST_OPEXP_HXX
+#endif // !AST_LOGICALOPEXP_HXX

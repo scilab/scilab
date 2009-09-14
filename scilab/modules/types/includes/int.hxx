@@ -53,6 +53,8 @@ namespace types
 
 		virtual								~Int();
 
+		GenericType*					get(int _iPos);
+
 		/*data management*/
 		void*									data_get(void) const;
 

@@ -27,6 +27,8 @@ namespace types
 							String(const char *_pcData);
 		virtual		~String();
 
+		GenericType*	get(int _iPos);
+
     char**		string_get() const;
     char*			string_get(int _iRows, int _iCols) const;
 		char*			string_get(int _iPos) const;

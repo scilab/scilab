@@ -259,24 +259,24 @@ namespace types
 	/*----------------*/
 	/*		val_set		*/
 	/*----------------*/
-	bool Double::val_set(int _iRow, int _iCol, double _dblVal)
+	bool Double::val_set(int _iRows, int _iCols, double _dblVal)
 	{
-		return val_set(_iRow, _iCol, _dblVal, 0);
+		return val_set(_iRows, _iCols, _dblVal, 0);
 	}
 
 	/*----------------*/
 	/*		val_set		*/
 	/*----------------*/
-	bool Double::val_set(int _iRow, int _iCol, double _dblReal, double _dblImg)
+	bool Double::val_set(int _iRows, int _iCols, double _dblReal, double _dblImg)
 	{
 		if(m_pdblReal != NULL)
 		{
-			if(_iRow < m_iRows && _iCol < m_iCols)
+			if(_iRows < m_iRows && _iCols < m_iCols)
 			{
-				m_pdblReal[_iCol * m_iRows + _iRow] = _dblReal;
+				m_pdblReal[_iCols * m_iRows + _iRows] = _dblReal;
 				if(m_bComplex)
 				{
-					m_pdblImg[_iCol * m_iRows + _iRow] = _dblImg;
+					m_pdblImg[_iCols * m_iRows + _iRows] = _dblImg;
 				}
 			}
 			else
@@ -813,9 +813,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < m_iRows ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+				for(int iCols = 0 ; iCols < m_iCols ; iCols++)
 				{
-					pNew->val_set(iRow, iCol, real_get(iRow,iCol), img_get(iRow,iCol));
+					pNew->val_set(iRow, iCols, real_get(iRow,iCols), img_get(iRow,iCols));
 				}
 			}
 		}
@@ -823,9 +823,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < m_iRows ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+				for(int iCols = 0 ; iCols < m_iCols ; iCols++)
 				{
-					pNew->val_set(iRow, iCol, real_get(iRow,iCol));
+					pNew->val_set(iRow, iCols, real_get(iRow,iCols));
 				}
 			}
 		}
@@ -847,9 +847,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < iRows ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < iCols ; iCol++)
+				for(int iCols = 0 ; iCols < iCols ; iCols++)
 				{
-					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol), _poSource->img_get(iRow, iCol));
+					val_set(_iRows + iRow, _iCols + iCols, _poSource->real_get(iRow, iCols), _poSource->img_get(iRow, iCols));
 				}
 			}
 		}
@@ -857,9 +857,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < iRows ; iRow++)
 			{
-				for(int iCol = 0 ; iCol < iCols ; iCol++)
+				for(int iCols = 0 ; iCols < iCols ; iCols++)
 				{
-					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol));
+					val_set(_iRows + iRow, _iCols + iCols, _poSource->real_get(iRow, iCols));
 				}
 			}
 		}
@@ -906,6 +906,31 @@ namespace types
 	bool Double::operator!=(const InternalType& it)
 	{
 		return !(*this == it);
+	}
+
+	GenericType*	Double::get(int _iPos)
+	{
+		Double *pdbl = NULL;
+		if(_iPos < m_iCols)
+		{
+			if(isComplex())
+			{
+				pdbl = new Double(m_iRows, 1, true);
+				for(int i = 0 ; i < m_iRows ; i++)
+				{
+					pdbl->val_set(i, 0, real_get(i, _iPos), img_get(i, _iPos));
+				}
+			}
+			else
+			{
+				pdbl = new Double(m_iRows, 1);
+				for(int i = 0 ; i < m_iRows ; i++)
+				{
+					pdbl->val_set(i, 0, real_get(i, _iPos));
+				}
+			}
+		}
+		return pdbl;
 	}
 
 }

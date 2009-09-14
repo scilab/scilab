@@ -363,5 +363,60 @@ namespace types
 	{
 		return !(*this == it);
 	}
+
+	GenericType*	Float::get(int _iPos)
+	{
+		Float *pf = NULL;
+		if(_iPos < m_iCols)
+		{
+			if(isComplex())
+			{
+				pf = new Float(m_iRows, 1, true);
+				for(int i = 0 ; i < m_iRows ; i++)
+				{
+					pf->val_set(i, 0, real_get(i, _iPos), img_get(i, _iPos));
+				}
+			}
+			else
+			{
+				pf = new Float(m_iRows, 1);
+				for(int i = 0 ; i < m_iRows ; i++)
+				{
+					pf->val_set(i, 0, real_get(i, _iPos));
+				}
+			}
+		}
+		return pf;
+	}
+
+	bool Float::val_set(int _iRows, int _iCols, float _fReal)
+	{
+		return val_set(_iRows, _iCols, _fReal, 0);
+	}
+
+	bool Float::val_set(int _iRows, int _iCols, float _fReal, float _fImg)
+	{
+		if(m_pfReal != NULL)
+		{
+			if(_iRows < m_iRows && _iCols < m_iCols)
+			{
+				m_pfReal[_iCols * m_iRows + _iRows] = _fReal;
+				if(m_bComplex)
+				{
+					m_pfImg[_iCols * m_iRows + _iRows] = _fImg;
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+		return true;
+	}
+
 }
 

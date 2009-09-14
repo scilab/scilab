@@ -79,7 +79,13 @@ namespace types
 
 		try
 		{
+			m_body->returnable_set();
 			m_body->accept(execFunc);
+			if(m_body->is_return())
+			{
+				m_body->returnable_set();				
+			}
+
 
 			for (i = m_outputArgs->begin(); i != m_outputArgs->end() && _iRetCount; ++i, --_iRetCount)
 			{

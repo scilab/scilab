@@ -201,7 +201,20 @@ namespace ast
     DEBUG_END_NODE();
   }
 
-  void DebugVisitor::visit (const AssignExp  &e)
+  void DebugVisitor::visit(const LogicalOpExp &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec LogicalOpExp");
+    // FIXME
+    {
+      e.left_get().accept(*this);
+      //e.oper_get();
+      e.right_get().accept(*this);
+    }
+    DEBUG_END_NODE();
+  }
+
+	void DebugVisitor::visit (const AssignExp  &e)
   {
     DEBUG_START_NODE();
     DEBUG("Exec AssignExp");

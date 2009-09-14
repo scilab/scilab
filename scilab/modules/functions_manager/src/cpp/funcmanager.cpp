@@ -26,10 +26,12 @@
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
+#include "parser.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
-	#include "findfiles.h"
+#include "findfiles.h"
 }
 #ifndef _MSC_VER
 #include "stricmp.h"
@@ -37,6 +39,7 @@ extern "C"
 
 
 using namespace std;
+using namespace ast;
 
 #define BASENAMEMODULESFILE "etc/yasp_modules.xml"
 
@@ -159,21 +162,21 @@ bool FuncManager::AppendModules()
 					if(VerifyModule(name))
 					{
 						m_ModuleName.push_back(name);
-/*
+						/*
 						if (indice==0)
 						{
-							ScilabModules->ModuleList = new char*[indice+1];
+						ScilabModules->ModuleList = new char*[indice+1];
 						}
 						else
 						{
-							ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
+						ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
 						}
 
 						ScilabModules->numberofModules=indice+1;
 
 						ScilabModules->ModuleList[indice]= strdup(name);
 						indice++;
-*/					}
+						*/					}
 					else
 					{
 						std::cout << name << " module not found." << std::endl;
@@ -272,6 +275,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<string, GW_MOD>("elementary_functions", &ElemFuncModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("integer", &IntegerModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("core", &CoreModule::Load));
 	return bRet;
 }
 
@@ -315,15 +319,57 @@ bool FuncManager::LoadMacroFile(string _stModule)
 
 	if(pstPath)
 	{
-		for(int i = 0 ; i < iSize ; i++)
+		for(int k = 0 ; k < iSize ; k++)
 		{
-			string stFullPath = stPath + string(pstPath[i]);
-			string stTemp = pstPath[i];
-			size_t iPos = stTemp.find(".sci");
-			if(iPos < stTemp.size())
+			//version with direct parsing
+			//parse the file to find all functions
+			string stFullPath = stPath + string(pstPath[k]);
+			Parser::getInstance()->parseFile(stFullPath, ConfigVariable::getInstance()->get("SCI"));
+			FunctionDec* pFD = NULL;
+
+			std::list<Exp *>::iterator j;
+			std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
+
+			for(j = LExp.begin() ; j != LExp.end() ; j++)
 			{
-				string stFullName = stTemp.substr(0,iPos);
-				symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
+				pFD = dynamic_cast<FunctionDec*>(*j);
+				if(pFD)
+				{
+					std::list<ast::Var *>::const_iterator	i;
+
+					//get input parameters list
+					std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+					ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
+					for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
+					{
+						string sz = ((SimpleVar*)(*i))->name_get().name_get();
+						pVarList->push_back(((SimpleVar*)(*i))->name_get());
+					}
+
+					//get output parameters list
+					std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+					ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
+					for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
+					{
+						pRetList->push_back(((SimpleVar*)(*i))->name_get());
+					}
+
+					//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
+					types::Macro *pMacro = new types::Macro(pFD->name_get().name_get(), *pVarList, *pRetList, (SeqExp&)pFD->body_get(), _stModule);
+					symbol::Context::getInstance()->AddMacro(pMacro);
+				}
+
+			//version with macrofile
+
+			//string stFullPath = stPath + string(pstPath[k]);
+			//string stTemp = pstPath[k];
+			//size_t iPos = stTemp.find(".sci");
+			//if(iPos < stTemp.size())
+			//{
+			//string stFullName = stTemp.substr(0,iPos);
+
+			//symbol::Context::getInstance()->AddMacroFile(new MacroFile(stFullName, stFullPath, _stModule));
+
 			}
 		}
 	}

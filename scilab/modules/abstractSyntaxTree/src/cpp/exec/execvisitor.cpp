@@ -11,6 +11,7 @@
 */
 
 #include "execvisitor.hxx"
+#include "shortcutvisitor.hxx"
 #include "timer.hxx"
 #include "localization.h"
 #include "macro.hxx"
@@ -160,8 +161,8 @@ namespace ast
 		poPoly->coef_set(&dblCoef);
 
 		ImplicitList *pIL = new ImplicitList();
-		pIL->start_set(1);
-		pIL->step_set(1);
+		pIL->start_set(new Double(1));
+		pIL->step_set(new Double (1));
 		pIL->end_set(pVar);
 		result_set(pIL);
 		/*
@@ -232,12 +233,18 @@ namespace ast
 			types::typed_list out;
 			types::typed_list in;
 			
+			//finc the good macro
 			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
 			{
 				execVar[j] = new ast::ExecVisitor();
 				(*i)->accept (*execVar[j]);
+				if(execVar[j]->result_get()->getType() == InternalType::RealImplicitList)
+				{
+					ImplicitList* pIL = execVar[j]->result_get()->getAsImplicitList();
+					execVar[j]->result_set(pIL->extract_matrix());
+				}
 				in.push_back(execVar[j]->result_get());
 			}
 			
@@ -447,10 +454,12 @@ namespace ast
 	{
 		//Create local exec visitor
 		ExecVisitor *execMeTest		= new ast::ExecVisitor();
+		ShortCutVisitor *SCTest		= new ast::ShortCutVisitor();
 		ExecVisitor *execMeAction = new ast::ExecVisitor();
 		bool bTestStatus					= false;
 
 		//condition
+		e.test_get().accept(*SCTest);
 		e.test_get().accept(*execMeTest);
 
 		bTestStatus = bConditionState(execMeTest);
@@ -460,15 +469,31 @@ namespace ast
 			{
 				((Exp*)&e.then_get())->breakable_set();
 			}
+
+			if(e.is_returnable())
+			{
+				((Exp*)&e.then_get())->returnable_set();
+			}
+
 			e.then_get().accept(*execMeAction);
 		}
 		else
 		{//condition == false
-			if(e.is_breakable())
+
+			if(e.has_else())
 			{
-				((Exp*)&e.else_get())->breakable_set();
+				if(e.is_breakable())
+				{
+					((Exp*)&e.else_get())->breakable_set();
+				}
+
+				if(e.is_returnable())
+				{
+					((Exp*)&e.else_get())->returnable_set();
+				}
+
+				e.else_get().accept(*execMeAction);
 			}
-			e.else_get().accept(*execMeAction);
 		}
 
 		delete execMeAction;
@@ -478,6 +503,11 @@ namespace ast
 		{
 			((Exp*)&e)->break_set();
 		}
+
+		if(e.is_returnable() && ( ((Exp*)&e.else_get())->is_return() || ((Exp*)&e.then_get())->is_return() ))
+		{
+			((Exp*)&e)->return_set();
+		}
 	}
 
 	void ExecVisitor::visit (const TryCatchExp  &e)
@@ -486,31 +516,51 @@ namespace ast
 
 	void ExecVisitor::visit (const WhileExp  &e)
 	{
-			ExecVisitor *execMeTest		= new ast::ExecVisitor();
-			bool bTestStatus					= false;
+		ExecVisitor *execMeTest		= new ast::ExecVisitor();
+		ExecVisitor *execMeAction = new ast::ExecVisitor();
+		bool bTestStatus					= false;
 
-			//condition
-			e.test_get().accept(*execMeTest);
-			while(bConditionState(execMeTest))
+		//allow break operation
+		((Exp*)&e.body_get())->breakable_set();
+		//allow return operation
+		if(e.is_returnable())
+		{
+			((Exp*)&e.body_get())->is_returnable();
+		}
+
+		//condition
+		e.test_get().accept(*execMeTest);
+		while(bConditionState(execMeTest))
+		{
+			e.body_get().accept(*execMeAction);
+			if(e.body_get().is_break())
 			{
-				delete execMeTest;
-
-				ExecVisitor *execMeAction = new ast::ExecVisitor();
-				e.body_get().accept(*execMeAction);
-				delete execMeAction;
-
-				execMeTest		= new ast::ExecVisitor();
-				e.test_get().accept(*execMeTest);
+				break;
 			}
-			delete execMeTest;
+
+			if(e.body_get().is_return())
+			{
+				((Exp*)&e)->return_set();
+				break;
+			}
+			e.test_get().accept(*execMeTest);
+		}
+		delete execMeAction;
+		delete execMeTest;
 	}
 
 	void ExecVisitor::visit (const ForExp  &e)
 	{
 		ExecVisitor *execVar = new ast::ExecVisitor();
 		e.vardec_get().accept(*execVar);
+
 		//allow break operation
 		((Exp*)&e.body_get())->breakable_set();
+		//allow return operation
+		if(e.is_returnable())
+		{
+			((Exp*)&e.body_get())->is_returnable();
+		}
 
 		if(execVar->result_get()->getType() == InternalType::RealImplicitList)
 		{
@@ -518,12 +568,16 @@ namespace ast
 			ImplicitList* pVar = (ImplicitList*)execVar->result_get();
 			for(int i = 0 ; i < pVar->size_get() ; i++)
 			{
-				double dblVal = pVar->extract_value(i);
-				Double *pdbl = new Double(dblVal);
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
+				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pVar->extract_value(i));
 				e.body_get().accept(*execBody);
 				if(e.body_get().is_break())
 				{
+					break;
+				}
+
+				if(e.body_get().is_return())
+				{
+					((Exp*)&e)->return_set();
 					break;
 				}
 			}
@@ -532,13 +586,22 @@ namespace ast
 		else
 		{//Matrix i = [1,3,2,6] or other type
 			ExecVisitor *execBody = new ast::ExecVisitor();
-			Double* pVar = (Double*)execVar->result_get();
-			for(int i = 0 ; i < pVar->size_get() ; i++)
+			GenericType* pVar = (GenericType*)execVar->result_get();
+			for(int i = 0 ; i < pVar->cols_get() ; i++)
 			{
-				double dblVal = pVar->real_get(0,i);
-				Double *pdbl = new Double(dblVal);
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
+				GenericType* pNew = pVar->get(i);
+				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *pNew);
 				e.body_get().accept(*execBody);
+				if(e.body_get().is_break())
+				{
+					break;
+				}
+
+				if(e.body_get().is_return())
+				{
+					((Exp*)&e)->return_set();
+					break;
+				}
 			}
 			delete execBody;
 		}
@@ -552,11 +615,7 @@ namespace ast
 
 	void ExecVisitor::visit (const ReturnExp &e)
 	{
-		if(e.is_global())
-		{//return 
-
-		}
-		else
+		if(e.is_global() == false)
 		{//return(x)
 			ExecVisitor execVar;
 			e.exp_get().accept(execVar);
@@ -566,6 +625,7 @@ namespace ast
 				result_set(i, execVar.result_get(i));
 			}
 		}
+		((Exp*)&e)->return_set();
 	}
 
 	void ExecVisitor::visit (const SeqExp  &e)
@@ -580,11 +640,16 @@ namespace ast
 				(*i)->breakable_set();
 			}
 
+			if(e.is_returnable())
+			{
+				(*i)->returnable_set();
+			}
+
 			(*i)->accept (*execMe);
 
 			if(execMe->result_get() != NULL)
 			{
-				if(execMe->result_get()->getAsCallable())
+				if(execMe->result_get()->getAsCallable())//to manage call without ()
 				{
 					Callable *pCall = execMe->result_get()->getAsCallable();
 					types::typed_list out;
@@ -642,6 +707,12 @@ namespace ast
 			if(((SeqExp*)&e)->is_breakable() && (*i)->is_break())
 			{
 				((SeqExp*)&e)->break_set();
+				break;
+			}
+
+			if(((SeqExp*)&e)->is_returnable() && (*i)->is_return())
+			{
+				((SeqExp*)&e)->return_set();
 				break;
 			}
 		}
@@ -748,8 +819,52 @@ namespace ast
 			}
 			result_set(pReturn);
 		}
-		else
+		else if(execMe->result_get()->isPoly())
 		{
+			MatrixPoly *pMP			= execMe->result_get()->getAsPoly();
+			MatrixPoly *pReturn	= NULL;
+
+			//prepare rank array
+			int* piRank = new int[pMP->size_get()];
+
+			for(int i = 0 ; i < pMP->rows_get() ; i++)
+			{
+				for(int j = 0 ; j < pMP->cols_get() ; j++)
+				{
+					piRank[i * pMP->cols_get() + j] = pMP->poly_get(i,j)->rank_get();
+				}
+			}
+
+			pReturn = new MatrixPoly(pMP->var_get(), pMP->cols_get(), pMP->rows_get(), piRank);
+			pReturn->complex_set(pMP->isComplex());
+
+			if(pMP->isComplex() && bConjug)
+			{
+				for(int i = 0 ; i < pMP->rows_get() ; i++)
+				{
+					for(int j = 0 ; j < pMP->cols_get() ; j++)
+					{
+						pReturn->poly_set(j, i, pMP->poly_get(i,j)->coef_get());
+						double *pdblImg = pReturn->poly_get(j, i)->coef_img_get();
+						for(int k = 0 ; k < pReturn->poly_get(j, i)->rank_get() ; k++)
+						{
+							pdblImg[k] *= -1;
+						}
+					}
+				}
+			}
+			else
+			{
+				for(int i = 0 ; i < pMP->rows_get() ; i++)
+				{
+					for(int j = 0 ; j < pMP->cols_get() ; j++)
+					{
+						pReturn->poly_set(j, i, pMP->poly_get(i,j)->coef_get());
+					}
+				}
+			}
+
+			result_set(pReturn);
 		}
 
 
@@ -853,6 +968,69 @@ namespace ast
 				throw 3;
 			}
 
+			//check compatibility
+
+			if(execMeStart->result_get()->getType() == InternalType::RealInt)
+			{//if Step or End are Int too, they must have the same precision
+				Int::IntType IT = execMeStart->result_get()->getAsInt()->getIntType();
+
+				if(execMeStep->result_get()->getType() == InternalType::RealInt)
+				{
+					if(execMeStep->result_get()->getAsInt()->getIntType() != IT)
+					{
+						throw string(_("Undefined operation for the given operands.\n"));
+					}
+				}
+				else if(execMeStep->result_get()->getType() == InternalType::RealPoly)
+				{
+					throw string(_("Undefined operation for the given operands.\n"));
+				}
+
+
+				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				{
+					if(execMeEnd->result_get()->getAsInt()->getIntType() != IT)
+					{
+						throw string(_("Undefined operation for the given operands.\n"));
+					}
+				}
+				else if(execMeEnd->result_get()->getType() == InternalType::RealPoly)
+				{
+					throw string(_("Undefined operation for the given operands.\n"));
+				}
+			}
+			else if(execMeStart->result_get()->getType() == InternalType::RealPoly)
+			{
+				if(execMeStep->result_get()->getType() == InternalType::RealInt)
+				{
+					throw string(_("Undefined operation for the given operands.\n"));
+				}
+
+				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				{
+					throw string(_("Undefined operation for the given operands.\n"));
+				}
+			}
+			else if(execMeStep->result_get()->getType() == InternalType::RealInt)
+			{//if End are Int too, they must have the same precision
+				Int::IntType IT = execMeStep->result_get()->getAsInt()->getIntType();
+
+				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				{
+					if(execMeEnd->result_get()->getAsInt()->getIntType() != IT)
+					{
+						throw string(_("Undefined operation for the given operands.\n"));
+					}
+				}
+			}
+			else if(execMeStep->result_get()->getType() == InternalType::RealPoly)
+			{
+				if(execMeEnd->result_get()->getType() == InternalType::RealInt)
+				{
+					throw string(_("Undefined operation for the given operands.\n"));
+				}
+			}
+
 			ImplicitList *pIL	= new ImplicitList(
 				execMeStart->result_get(),
 				execMeStep->result_get(),
@@ -869,6 +1047,11 @@ namespace ast
 			sprintf(st, _("%s: Wrong type for argument %d: Scalar expected.\n"), "::", 1);
 #endif
 			throw string(st);
+		}
+		catch(string sz)
+		{		
+			//TODO YaSp : Overloading
+			throw sz;
 		}
 
 		delete execMeStart;
@@ -1050,18 +1233,18 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 			{
 				if(pIL->start_type_get() == InternalType::RealPoly)
 				{
-					MatrixPoly *poPoly	= pIL->start_poly_get();
-					pIL->start_set(poPoly->evaluate(&dbl)->real_get(0,0));
+					MatrixPoly *poPoly	= (MatrixPoly*)pIL->start_get();
+					pIL->start_set(poPoly->evaluate(&dbl));
 				}
 				if(pIL->step_type_get() == InternalType::RealPoly)
 				{
-					MatrixPoly *poPoly	= pIL->step_poly_get();
-					pIL->step_set(poPoly->evaluate(&dbl)->real_get(0,0));
+					MatrixPoly *poPoly	= (MatrixPoly*)pIL->step_get();
+					pIL->step_set(poPoly->evaluate(&dbl));
 				}
 				if(pIL->end_type_get() == InternalType::RealPoly)
 				{
-					MatrixPoly *poPoly	= pIL->end_poly_get();
-					pIL->end_set(poPoly->evaluate(&dbl)->real_get(0,0));
+					MatrixPoly *poPoly	= (MatrixPoly*)pIL->end_get();
+					pIL->end_set(poPoly->evaluate(&dbl));
 				}
 			}
 

@@ -61,7 +61,30 @@ namespace types
 		if(m_pMacro == NULL)
 		{//load file, only for the first call
 			Parser::getInstance()->parseFile(m_stPath, ConfigVariable::getInstance()->get("SCI"));
-			FunctionDec* pFD = dynamic_cast<FunctionDec*>(*((SeqExp*)Parser::getInstance()->getTree())->exps_get().begin());
+			//find FunctionDec
+			FunctionDec* pFD = NULL;
+
+			std::list<Exp *>::iterator j;
+			std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
+
+			for(j = LExp.begin() ; j != LExp.end() ; j++)
+			{
+				pFD = dynamic_cast<FunctionDec*>(*j);
+				if(pFD &&	pFD->name_get().name_get() == m_stName)
+				{
+					break;
+				}
+				else
+				{
+					pFD = NULL;
+				}
+			}
+
+			if(pFD == NULL)
+			{
+				return Callable::Error;
+			}
+
 			std::list<Var *>::const_iterator	i;
 
 			//get input parameters list

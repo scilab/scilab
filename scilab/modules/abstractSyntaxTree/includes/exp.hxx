@@ -38,7 +38,9 @@ namespace ast
       Ast (location),
       _verbose(false),
 			_bBreak(false),
-			_bBreakable(false)
+			_bBreakable(false),
+			_bReturn(false),
+			_bReturnable(false)
     {
     }
     /** \brief Destroys an Expression node. */
@@ -96,11 +98,42 @@ namespace ast
 			return _bBreakable;
 		}
 
+		const void return_set(void)
+		{
+			_bReturn = true;
+		}
+
+		void return_reset(void)
+		{
+			_bReturn = false;
+		}
+
+		const bool is_return(void) const
+		{
+			return _bReturn;
+		}
+
+		const void returnable_set(void)
+		{
+			_bReturnable = true;
+		}
+
+		void returnable_reset(void)
+		{
+			_bReturnable = false;
+		}
+
+		const bool is_returnable(void) const
+		{
+			return _bReturnable;
+		}
 
 	private:
     bool _verbose;
 		bool _bBreak;
 		bool _bBreakable;
+		bool _bReturn;
+		bool _bReturnable;
   };
 
   /** \brief Define a shorthand for list of Exp* manipulation. */

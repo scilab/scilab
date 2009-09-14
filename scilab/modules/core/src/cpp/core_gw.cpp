@@ -10,8 +10,18 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
-#include "../../integer/includes/integer_gw.hxx"
-#include "../../core/includes/core_gw.hxx"
+#include "core_gw.hxx"
+
+extern "C"
+{
+	#include "gw_core.h"
+}
+
+using namespace types;
+
+bool CoreModule::Load()
+{
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("type", &sci_type, "core"));
+	return true;
+}
 

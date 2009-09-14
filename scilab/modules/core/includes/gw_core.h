@@ -22,7 +22,6 @@ int C2F(sci_who)(char *fname,unsigned long fname_len);
 int C2F(sci_warning)(char *fname,unsigned long fname_len);
 int C2F(sci_argn)(char *fname,unsigned long fname_len);
 int C2F(sci_mode)(char *fname,unsigned long fname_len);
-int C2F(sci_type)(char *fname,unsigned long fname_len);
 int C2F(sci_error)(char *fname,unsigned long fname_len);
 int C2F(sci_resume)(char *fname,unsigned long fname_len);
 int C2F(sci_return)(char *fname,unsigned long fname_len);
@@ -78,6 +77,9 @@ int C2F(sci_comp)(char *fname,unsigned long fname_len);
 int C2F(sci_typename)(char *fname,int* _piKey);
 int C2F(sci_funcprot)(char *fname,int* _piKey);
 int C2F(sci_newfun)(char *fname, int* _piKey);
+
+//Yasp
+int sci_type(char *fname, int* _piKey);
 
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_CORE__ */

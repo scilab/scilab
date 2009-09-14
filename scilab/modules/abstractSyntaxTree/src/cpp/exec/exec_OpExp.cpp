@@ -44,6 +44,28 @@ namespace ast
 		GenericType::RealType TypeL = execMeL->result_get()->getType();
 		GenericType::RealType TypeR = execMeR->result_get()->getType();
 
+		if(TypeL == GenericType::RealImplicitList)
+		{
+			ImplicitList* pIL = execMeL->result_get()->getAsImplicitList();
+			if(pIL->computable())
+			{
+				InternalType *pIT = pIL->extract_matrix();
+				execMeL->result_set(pIT);
+				TypeL = pIT->getType();
+			}
+		}
+
+		if(TypeR == GenericType::RealImplicitList)
+		{
+			ImplicitList* pIL = execMeR->result_get()->getAsImplicitList();
+			if(pIL->computable())
+			{
+				InternalType *pIT = pIL->extract_matrix();
+				execMeR->result_set(pIT);
+				TypeR = pIT->getType();
+			}
+		}
+
 		InternalType *pResult = NULL;
 		switch(e.oper_get())
 		{
@@ -395,6 +417,80 @@ namespace ast
 
 					result_set(pResult);
 				}
+				else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
+				{
+					String *pL			= execMeL->result_get()->getAsString();
+					String *pR			= execMeR->result_get()->getAsString();
+
+					if(pL->size_get() == 1)
+					{
+						pResult = new Bool(pR->rows_get(), pR->cols_get());
+
+						char* pstL = pL->string_get()[0];
+						for(int i = 0 ; i < pR->rows_get() ; i++)
+						{
+							for(int j = 0 ; j < pR->cols_get() ; j++)
+							{
+								char* pstR = pR->string_get(i,j);
+								if(strcmp(pstL, pstR) == 0)
+								{
+									pResult->getAsBool()->bool_set(i,j,true);
+								}
+								else
+								{
+									pResult->getAsBool()->bool_set(i,j,false);
+								}
+							}
+						}
+					}
+					else if(pR->size_get() == 1)
+					{
+						pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+						char* pstR = pR->string_get()[0];
+						for(int i = 0 ; i < pL->rows_get() ; i++)
+						{
+							for(int j = 0 ; j < pL->cols_get() ; j++)
+							{
+								char* pstL = pL->string_get(i,j);
+								if(strcmp(pstL, pstR) == 0)
+								{
+									pResult->getAsBool()->bool_set(i,j,true);
+								}
+								else
+								{
+									pResult->getAsBool()->bool_set(i,j,false);
+								}
+							}
+						}
+					}
+					else if(pL->rows_get() == pR->rows_get() && pL->cols_get() == pR->cols_get())
+					{
+						pResult = new Bool(pL->rows_get(), pL->cols_get());
+
+						for(int i = 0 ; i < pL->rows_get() ; i++)
+						{
+							for(int j = 0 ; j < pL->cols_get() ; j++)
+							{
+								char* pstR = pR->string_get(i,j);
+								char* pstL = pL->string_get(i,j);
+								if(strcmp(pstL, pstR) == 0)
+								{
+									pResult->getAsBool()->bool_set(i,j,true);
+								}
+								else
+								{
+									pResult->getAsBool()->bool_set(i,j,false);
+								}
+							}
+						}
+					}
+					else
+					{
+						pResult = new Bool(false);
+					}
+					result_set(pResult);
+				}
 				break;
 			}
 		case OpExp::ne :
@@ -697,6 +793,130 @@ namespace ast
 
 		delete execMeL;
 		delete execMeR;
+	}
+
+	void ExecVisitor::visit(const LogicalOpExp &e)
+	{
+		ExecVisitor *execMeL = new ast::ExecVisitor();
+		ExecVisitor *execMeR = new ast::ExecVisitor();
+
+		symbol::Context *pContext = symbol::Context::getInstance();
+		e.left_get().accept(*execMeL);
+		GenericType::RealType TypeL = execMeL->result_get()->getType();
+
+		//e.right_get().accept(*execMeR);
+		//GenericType::RealType TypeR = execMeR->result_get()->getType();
+
+		if(TypeL == GenericType::RealImplicitList)
+		{
+			ImplicitList* pIL = execMeL->result_get()->getAsImplicitList();
+			if(pIL->computable())
+			{
+				InternalType *pIT = pIL->extract_matrix();
+				execMeL->result_set(pIT);
+				TypeL = pIT->getType();
+			}
+		}
+
+
+		InternalType *pResult = NULL;
+		switch(e.oper_get())
+		{
+		case LogicalOpExp::logicalOr :
+			{//
+				break;
+			}
+		case LogicalOpExp::logicalAnd :
+			{
+				break;
+			}
+		case LogicalOpExp::logicalShortCutOr :
+			{
+				if(TypeL == GenericType::RealBool)
+				{
+					Bool *pL	= execMeL->result_get()->getAsBool();
+					bool *pbL	= pL->bool_get();
+					bool bL		= false;
+
+					for(int i = 0 ; i < pL->size_get() ; i++)
+					{
+						if(pbL[i] == true)
+						{
+							bL = true;
+							break;
+						}
+					}
+
+					if(bL)
+					{//we don't need to look at ohers exp
+						pResult = new Bool(true);
+						result_set(pResult);
+					}
+					else //look at others exp
+					{
+						e.right_get().accept(*execMeR);
+						GenericType::RealType TypeR = execMeR->result_get()->getType();
+
+						if(TypeR == GenericType::RealImplicitList)
+						{
+							ImplicitList* pIL = execMeR->result_get()->getAsImplicitList();
+							if(pIL->computable())
+							{
+								InternalType *pIT = pIL->extract_matrix();
+								execMeR->result_set(pIT);
+								TypeR = pIT->getType();
+							}
+						}
+
+						if(TypeR == GenericType::RealBool)
+						{
+							Bool *pR	= execMeR->result_get()->getAsBool();
+							bool* pbR = pR->bool_get();
+							bool* pbL = pL->bool_get();
+
+							if(pR->size_get() == 1)
+							{
+
+								if(pbR[0] == true)
+								{
+									pResult = new Bool(true);
+									result_set(pResult);
+								}
+								else
+								{
+									bool bState = true;
+									for(int i = 0 ; i < pL->size_get() ; i++)
+									{
+										if(pbL[i] == false)
+										{
+											bState = false;
+											break;
+										}
+									}
+									pResult = new Bool(bState);
+									result_set(pResult);
+								}
+							}
+							else if(pL->size_get() == 1)
+							{
+							}
+							else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
+							{
+							}
+						}
+					}
+				}
+				else
+				{
+					//TODO YaSp : Overloading %*_g_*
+				}
+				break;
+			}
+		case LogicalOpExp::logicalShortCutAnd :
+			{
+				break;
+			}
+		}
 	}
 }
 

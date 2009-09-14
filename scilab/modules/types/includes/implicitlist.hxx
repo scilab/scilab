@@ -15,6 +15,7 @@
 
 #include "types.hxx"
 #include "alltypes.hxx"
+#include "int.hxx"
 
 namespace types
 {
@@ -24,12 +25,9 @@ namespace types
 	class ImplicitList : public InternalType
 	{
 	private :
-		double					m_dblStart;
-		double					m_dblStep;
-		double					m_dblEnd;
-		MatrixPoly*			m_poStart;
-		MatrixPoly*			m_poStep;
-		MatrixPoly*			m_poEnd;
+		InternalType*		m_poStart;
+		InternalType*		m_poStep;
+		InternalType*		m_poEnd;
 		int							m_iSize;
 
 		int							m_iElement;
@@ -40,36 +38,30 @@ namespace types
 										m_eStepType;
 		InternalType::RealType		
 										m_eEndType;
-
-		void CreateImplicitList(double _dblStart, double _dblStep, double _dblEnd);
+		InternalType::RealType		
+										m_eOutType;
+		Int::IntType		m_eOutSubType;
 
 	public :
 		ImplicitList();
 		virtual ~ImplicitList();
-		ImplicitList(double _dblStart, double _dblStep, double _dblEnd);
-		ImplicitList(double _dblStart, double _dblEnd);
 		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);
 
 		ImplicitList* getAsImplicitList(void) { return this; }
 		virtual				RealType getType(void) { return RealImplicitList; }
 
-		double				start_get();
-		MatrixPoly*		start_poly_get();
-		void					start_set(double _dblStart);
-		void					start_set(MatrixPoly*	_poPoly);
+		RealType			getOutputType();
+		Int::IntType	getOutputSubType();
 
-		double				step_get();
-		MatrixPoly*		step_poly_get();
-		void					step_set(double _dblStep);
-		void					step_set(MatrixPoly* _poPoly);
+		InternalType*	start_get();
+		void					start_set(InternalType*	_poIT);
 
-		double				end_get();
-		MatrixPoly*		end_poly_get();
-		void					end_set(double _dblEnd);
-		void					end_set(MatrixPoly *_poPoly);
+		InternalType*	step_get();
+		void					step_set(InternalType* _poIT);
 
-		void					extract_matrix(double *_pData);
-		double				extract_value(int _iOccur);
+		InternalType*	end_get();
+		void					end_set(InternalType* _poIT);
+
 		void					compute();
 		bool					computable();
 
@@ -84,6 +76,24 @@ namespace types
 									end_type_get();
 
 		int						size_get();
+
+		//extract single value in a InternalType
+		InternalType* extract_value(int _iOccur); //Single value
+		//extract matrix in a Internaltype
+		InternalType* extract_matrix();
+		//extract double
+		void					extract_matrix(double *_pdbl);
+		//extract integer
+		void					extract_matrix(char *_pc);
+		void					extract_matrix(short *_ps);
+		void					extract_matrix(int *_pi);
+		void					extract_matrix(long long *_pll);
+		//extract unsigned integer
+		void					extract_matrix(unsigned char *_puc);
+		void					extract_matrix(unsigned short *_pus);
+		void					extract_matrix(unsigned int *_pui);
+		void					extract_matrix(unsigned long long *_pull);
+
 
 	};
 }

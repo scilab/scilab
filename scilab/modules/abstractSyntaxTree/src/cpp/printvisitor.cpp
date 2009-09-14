@@ -241,10 +241,45 @@ namespace ast {
 	*ostr << SCI_GT; break;
       case OpExp::ge:
 	*ostr << SCI_GE; break;
+      }
+    *ostr << " ";
+
+    // Now getting right operand
+    this->enable_force_parenthesis();
+    e.right_get().accept(*this);
+    this->set_force_parenthesis(old_force_parenthesis);
+
+    if (force_parenthesis)
+      {
+	*ostr << SCI_RPAREN;
+      }
+  }
+
+	void PrintVisitor::visit(const LogicalOpExp &e)
+  {
+    bool old_force_parenthesis = force_parenthesis;
+
+    if (force_parenthesis)
+      {
+	*ostr << SCI_LPAREN;
+      }
+
+    // Getting Left Operand
+    this->enable_force_parenthesis();
+    e.left_get().accept(*this);
+    this->set_force_parenthesis(old_force_parenthesis);
+
+    *ostr << " ";
+    switch (e.oper_get())
+      {
 	// Binary Operators
-      case OpExp::binaryAnd:
+      case LogicalOpExp::logicalAnd:
 	*ostr << SCI_AND; break;
-      case OpExp::binaryOr:
+      case LogicalOpExp::logicalOr:
+	*ostr << SCI_OR; break;
+			case LogicalOpExp::logicalShortCutAnd:
+	*ostr << SCI_AND; break;
+			case LogicalOpExp::logicalShortCutOr:
 	*ostr << SCI_OR; break;
       }
     *ostr << " ";
@@ -260,7 +295,7 @@ namespace ast {
       }
   }
 
-  void PrintVisitor::visit (const AssignExp  &e)
+	void PrintVisitor::visit (const AssignExp  &e)
   {
     e.left_exp_get ().accept (*this);
     *ostr << " " << SCI_ASSIGN << " ";
