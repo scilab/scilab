@@ -34,31 +34,6 @@ void vTransposeComplexMatrix(
 
 namespace ast
 {
-	static int level = -1;
-
-	static void DEBUG_START_NODE(void)
-	{
-		++level;
-	}
-
-	static void DEBUG_END_NODE(void)
-	{
-		--level;
-	}
-
-	static void DEBUG(string str)
-	{
-		for(int i = 0 ; i < level; ++i)
-		{
-			std::cerr << "  ";
-		}
-		if (level > 0)
-		{
-			std::cerr << "|_./ ";
-		}
-		std::cerr << str << std::endl;
-	}
-
 	void ExecVisitor::visit (const MatrixLineExp &e)
 	{
 	/*
@@ -246,6 +221,7 @@ namespace ast
 					execVar[j]->result_set(pIL->extract_matrix());
 				}
 				in.push_back(execVar[j]->result_get());
+				execVar[j]->result_get()->IncreaseRef();
 			}
 			
 			Function::ReturnValue Ret = pCall->call(in, (int)expected_size_get(), out);
@@ -282,6 +258,7 @@ namespace ast
 			
 			for (j = 0; j < e.args_get().size(); j++)
 			{
+				execVar[j]->result_get()->DecreaseRef();
 				delete execVar[j];
 			}
 			delete[] execVar;
