@@ -50,8 +50,6 @@ namespace ast
      ** Delete left and right, see constructor. */
     virtual ~LogicalOpExp ()
     {
-			delete _left;
-			delete _right;
     }
     /** \} */
 

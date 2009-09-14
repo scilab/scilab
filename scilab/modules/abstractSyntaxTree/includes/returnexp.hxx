@@ -41,17 +41,25 @@ namespace ast
       _exp (exp),
       _is_global(false)
     {
+			if(exp)
+			{
+				_is_global = false;
+			}
     }
 
     ReturnExp (const Location& location) :
       ControlExp (location),
+      _exp (NULL),
       _is_global(true)
     {
     }
 
     virtual ~ReturnExp ()
     {
-      delete _exp;
+			if(_exp != NULL)
+			{
+				delete _exp;
+			}
     }
 
     /** \name Visitors entry point.
