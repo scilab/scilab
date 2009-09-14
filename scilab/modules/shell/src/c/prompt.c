@@ -29,7 +29,10 @@ static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 void C2F(setprlev)( int *pause)
 {
-	if ( *pause == 0 ) sprintf(Sci_Prompt,SCIPROMPT);
+	if ( *pause == 0 ) 
+	{
+		sprintf(Sci_Prompt,SCIPROMPT);
+	}
 	else if ( *pause > 0 )
 	{
 		if (dispWarningLevelPrompt)
@@ -42,7 +45,10 @@ void C2F(setprlev)( int *pause)
 		}
 		sprintf(Sci_Prompt,SCIPROMPT_INTERRUPT,*pause);
 	}
-	else sprintf(Sci_Prompt,SCIPROMPT_PAUSE);
+	else 
+	{
+		sprintf(Sci_Prompt,SCIPROMPT_PAUSE);
+	}
 }
 /*------------------------------------------------------------------------*/
 void GetCurrentPrompt(char *CurrentPrompt)
@@ -55,7 +61,11 @@ void GetCurrentPrompt(char *CurrentPrompt)
 /*------------------------------------------------------------------------*/
 void SetTemporaryPrompt(char *tempPrompt)
 {
-	if (temporaryPrompt) {FREE(temporaryPrompt);temporaryPrompt = NULL;}
+	if (temporaryPrompt) 
+	{
+		FREE(temporaryPrompt);
+		temporaryPrompt = NULL;
+	}
 	temporaryPrompt = strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/

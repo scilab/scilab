@@ -30,9 +30,9 @@ AC_CHECK_HEADER([hdf5.h],
                 [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])]
         )
 
-AC_CHECK_LIB([hdf5], [H5Dopen],
+AC_CHECK_LIB([hdf5], [H5Fopen],
                [],
-               [AC_MSG_ERROR([libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct])]
+               [AC_MSG_ERROR([libhdf5: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
                )
 CFLAGS=$saved_cflags
 LIBS="$saved_LIBS"

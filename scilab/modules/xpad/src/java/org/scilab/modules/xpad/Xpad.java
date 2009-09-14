@@ -14,6 +14,7 @@ package org.scilab.modules.xpad;
 
 import java.awt.Color;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -367,7 +368,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 			}
 			((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
 		} catch (IOException ioex) {
-			JOptionPane.showMessageDialog(this, ioex.getMessage());
+
+			int choice = JOptionPane.showConfirmDialog(this, "This file doesn't exist\n Do you want to create it?");
+			//JOptionPane.showMessageDialog(this, ioex.getMessage());
+			if (choice  == 0){
+
+				try {
+						FileWriter writer = new FileWriter(f);
+						writer.write("");
+						writer.flush();
+						writer.close();
+						
+						readFile(f);
+				}catch (Exception ioexc) {
+				    JOptionPane.showMessageDialog(this , ioexc);
+				}
+			}	
 		}
 	}
 
