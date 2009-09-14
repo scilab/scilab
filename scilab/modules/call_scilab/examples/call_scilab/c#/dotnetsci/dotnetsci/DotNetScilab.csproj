@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DotNetScilab</RootNamespace>
-    <AssemblyName>DotNetScilab</AssemblyName>
+    <AssemblyName>Scilab</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -91,6 +91,8 @@
   <ItemGroup>
     <Compile Include="Scilab.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScilabType.cs" />
+    <Compile Include="Scilab_cs_wrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
