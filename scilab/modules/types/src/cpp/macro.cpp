@@ -93,7 +93,7 @@ namespace types
 				if(pIT != NULL)
 				{
 					out.push_back(pIT);
-					//pIT->IncreaseRef();
+					pIT->IncreaseRef();
 				}
 				else
 				{
@@ -117,6 +117,10 @@ namespace types
 		//close the current scope
 		pContext->scope_end();
 
+		for (int j = 0; j < out.size(); ++j)
+		{
+			out[j]->DecreaseRef();
+		}
 		return RetVal;
 	}
 }

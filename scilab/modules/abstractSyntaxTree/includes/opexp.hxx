@@ -58,6 +58,12 @@ namespace ast
       /** \brief "<=" */		le,
       /** \brief "<" */			gt,
       /** \brief ">=" */		ge,
+
+			// Logical operators
+      /** \brief "&" */		logicalAnd,
+      /** \brief "|" */		logicalOr,
+      /** \brief "&&" */	logicalShortCutAnd,
+      /** \brief "||" */	logicalShortCutOr
     };
 
     /** \brief Operation Expression kind.
