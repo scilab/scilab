@@ -13,6 +13,8 @@
 #ifndef __SETGETSCIPATH_H__
 #define __SETGETSCIPATH_H__
 
+#include <wchar.h>
+
 /** 
  * save SCI path
  * @param path a char * in order to set the Scilab Path

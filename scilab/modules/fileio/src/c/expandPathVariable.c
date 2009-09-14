@@ -169,8 +169,8 @@ static wchar_t *replaceAliasInString(wchar_t *wcValue, wchar_t *wcBegin)
 static wchar_t *getHomeDirW(void)
 {
 	int ierr = 0;
-	char result[MAX_PATH];
-	int lenMAX = MAX_PATH;
+	char result[PATH_MAX];
+	int lenMAX = PATH_MAX;
 	int iflag = 0; /* no warnings */
 
 	C2F(getenvc)(&ierr, "home", result, &lenMAX, &iflag);
