@@ -140,6 +140,7 @@ static wchar_t *findAliasInString(wchar_t *wcStr, wchar_t *wcAlias)
 		{
 			wchar_t *wcBegin = (wchar_t *)MALLOC(sizeof(wchar_t) * (lenwcAlias + 1));
 			wcsncpy(wcBegin, wcStr, lenwcAlias);
+			wcBegin[lenwcAlias] = 0;
 			if (wcscmp(wcBegin, wcAlias) == 0)
 			{
 				FREE(wcBegin); wcBegin = NULL;
