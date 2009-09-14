@@ -58,6 +58,12 @@ namespace ast
       /** \brief "<=" */		le,
       /** \brief "<" */			gt,
       /** \brief ">=" */		ge,
+
+      // Logical operators
+      /** \brief "&" */		logicalAnd,
+      /** \brief "|" */		logicalOr,
+      /** \brief "&&" */	logicalShortCutAnd,
+      /** \brief "||" */	logicalShortCutOr
     };
 
     /** \brief Operation Expression kind.
@@ -152,6 +158,16 @@ namespace ast
     virtual void accept (ConstVisitor& v) const
     {
       v.visit (*this);
+    }
+    /** \} */
+
+    
+    /** \name Setters.
+     ** \{ */
+  public :
+    virtual void left_set(Exp& left)
+    {
+      _left = &left;
     }
     /** \} */
 
