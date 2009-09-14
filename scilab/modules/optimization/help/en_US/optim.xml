@@ -310,6 +310,10 @@ common /nird/ nizs,nrzs,ndzs
             <listitem>
               <para>iflag&gt;2: add reports on linear search.</para>
             </listitem>
+
+            <listitem>
+              <para>iflag&lt;0: calls the cost function with ind=1 every -imp iterations.</para>
+            </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -475,8 +479,12 @@ void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr
 
     <programlisting role="example"><![CDATA[ 
 // External function written in Scilab
-xref=[1;2;3];x0=[1;-1;1]
-deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
+xref=[1;2;3];
+x0=[1;-1;1];
+function [f,g,ind] = cost(x,ind)
+  f=0.5*norm(x-xref)^2;
+  g=x-xref;
+endfunction
 
 // Simplest call
 [f,xopt]=optim(cost,x0)
@@ -746,6 +754,151 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
   </refsection>
 
   <refsection>
+    <title>Example #6 : Logging features</title>
+
+    <para>The imp flag may take negative integer values, say k.
+    In that case, the cost function is called once every -k iterations.
+    This allows to draw the function value or write a log file.
+    </para>
+
+    <para>In the following example, we solve the Rosenbrock test case.
+    For each iteration of the algorithm, we print the value of x, f and g.
+    </para>
+
+<programlisting role="example">
+xref=[1;2;3];
+x0=[1;-1;1];
+function [f,g,ind] = cost(x,ind)
+  f=0.5*norm(x-xref)^2;
+  g=x-xref;
+endfunction
+function [f,g,ind] = cost(x,ind)
+  if ind == 2 | ind == 4 then
+    f=0.5*norm(x-xref)^2;
+  end
+  if ind == 3 | ind == 4 then
+    g=x-xref;
+  end
+  if ind == 1 then
+    mprintf("x = %s\n", strcat(string(x)," "))
+    mprintf("f = %e\n", f)
+    g=x-xref;
+    mprintf("g = %s\n", strcat(string(g)," "))
+  end
+endfunction
+[f,xopt]=optim(cost,x0,imp=-1)
+  </programlisting>
+
+    <para>In the following example, we solve the Rosenbrock test case.
+    For each iteration of the algorithm, we plot the current value of x
+    into a 2D graph containing the contours of Rosenbrock's function.
+    This allows to see the progress of the algorithm while the 
+    algorithm is performing. We could as well write the 
+    value of x, f and g into a log file if needed.
+    </para>
+
+<programlisting role="example">
+// 1. Define rosenbrock
+function [ f , g , ind ] = rosenbrock ( x , ind )
+  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+    f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  end
+  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+    g(1) = - 400. * ( x(2) - x(1)**2 ) * x(1) -2. * ( 1. - x(1) )
+    g(2) = 200. * ( x(2) - x(1)**2 )
+  end
+  if (ind == 1) then
+    plot ( x(1) , x(2) , "g." )
+  end
+endfunction
+x0 = [-1.2 1.0];
+xopt = [1.0 1.0];
+// 2. Draw the contour of Rosenbrock's function
+xmin = -2.0
+xmax = 2.0
+stepx = 0.1
+ymin = -1.0
+ymax = 2.0
+stepy = 0.1
+nx = 100
+ny = 100
+stepx = (xmax - xmin)/nx;
+xdata = xmin:stepx:xmax;
+stepy = (ymax - ymin)/ny;
+ydata = ymin:stepy:ymax;
+for ix = 1:length(xdata)
+    for iy = 1:length(ydata)
+      x = [xdata(ix) ydata(iy)];
+      f = rosenbrock ( x , 2 );
+      zdata ( ix , iy ) = f;
+    end
+end
+contour ( xdata , ydata , zdata , [1 10 100 500 1000])
+plot(x0(1) , x0(2) , "b.")
+plot(xopt(1) , xopt(2) , "r*")
+// 3. Plot the optimization process, during optimization
+[ fopt , xopt ] = optim ( rosenbrock , x0 , imp = -1)
+  </programlisting>
+  </refsection>
+
+
+  <refsection>
+    <title>Example #7 : Optimizing without derivatives</title>
+
+    <para>It is possible to optimize a problem without an explicit 
+    knowledge of the derivative of the cost function.
+    For this purpose, we can use the numdiff or derivative function
+    to compute a numerical derivative of the cost function.
+    </para>
+
+    <para>In the following example, we use the numdiff function to 
+    solve Rosenbrock's problem.
+    </para>
+
+
+<programlisting role="example">
+function f = rosenbrock ( x )
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+function [ f , g , ind ] = rosenbrockCost ( x , ind )
+  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+    f = rosenbrock ( x );
+  end
+  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+    g= numdiff ( rosenbrock , x );
+  end
+endfunction
+x0 = [-1.2 1.0];
+[ fopt , xopt ] = optim ( rosenbrockCost , x0 )
+  </programlisting>
+
+    <para>In the following example, we use the derivative function to 
+    solve Rosenbrock's problem. Given that the step computation strategy
+    is not the same in numdiff and derivative, this might lead to improved
+    results.
+    </para>
+
+
+<programlisting role="example">
+function f = rosenbrock ( x )
+  f = 100.0 *(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+function [ f , g , ind ] = rosenbrockCost2 ( x , ind )
+  if ((ind == 1) | (ind == 2) | (ind == 4)) then
+    f = rosenbrock ( x );
+  end
+  if ((ind == 1) | (ind == 3) | (ind == 4)) then
+    g= derivative ( rosenbrock , x.' , order = 4 );
+  end
+endfunction
+x0 = [-1.2 1.0];
+[ fopt , xopt ] = optim ( rosenbrockCost2 , x0 )
+  </programlisting>
+
+  </refsection>
+
+
+  <refsection>
     <title>See Also</title>
 
     <simplelist type="inline">
@@ -826,5 +979,11 @@ fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+  <refsection>
+    <title>Author</title>
+    <para>The Modulopt library : J.Frederic Bonnans, Jean-Charles Gilbert, Claude Lemarechal</para>
+    <para>The interfaces to the Modulopt library : J.Frederic Bonnans</para>
+    <para>This help : Michael Baudin</para>
   </refsection>
 </refentry>

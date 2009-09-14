@@ -20,6 +20,8 @@ import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -46,8 +48,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.Utilities;
 import javax.swing.text.Highlighter.HighlightPainter;
 
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
+
 public class XpadLineNumberPanel extends JPanel implements CaretListener, DocumentListener, PropertyChangeListener,
-MouseListener, MouseMotionListener, HighlightPainter	{
+MouseListener, MouseMotionListener, HighlightPainter, KeyListener	{
 
 	// Alignment of the line index
 	public final static float LEFT_JUSTIFY = 0.0f;
@@ -92,7 +96,9 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 		setNumberAlignment(CENTER_JUSTIFY);
 		setMinimumNumbers(minimumNumbers);
 
-		textPane.getDocument().addDocumentListener(this);
+		//textPane.getStyledDocument().addDocumentListener(this);
+		//textPane.getDocument().addDocumentListener(this);
+		textPane.addKeyListener(this);
 		textPane.addCaretListener(this);
 		textPane.addPropertyChangeListener("font", this);
 		textPane.addMouseListener(this);
@@ -283,12 +289,16 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 
 	public void changedUpdate(DocumentEvent e) {
 		documentChanged();
+		repaint();
 	}
 	public void insertUpdate(DocumentEvent e) {
 		documentChanged();
+		repaint();
 	}
 	public void removeUpdate(DocumentEvent e) {
+		System.err.println("--- Calling LineNumberPanel.removeUpdate");
 		documentChanged();
+		repaint();
 	}
 
 	private void documentChanged() {
@@ -305,7 +315,7 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 			}
 		});
 	}
-
+	
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getNewValue() instanceof Font) {
 			if (updateFont) {
@@ -351,6 +361,7 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 	public void mouseExited(MouseEvent arg0) {}
 	public void mousePressed(MouseEvent arg0) {
 		resetHighlight();
+		repaint();
 	}
 	public void mouseReleased(MouseEvent arg0) {}
 	public void mouseDragged(MouseEvent arg0) {
@@ -379,6 +390,18 @@ MouseListener, MouseMotionListener, HighlightPainter	{
 
 	public void setCurrentLineHighlightColor(boolean highlight) {
 		this.isHighlighted = highlight;
+	}
+
+	public void keyPressed(KeyEvent arg0) {
+		repaint();
+	}
+
+	public void keyReleased(KeyEvent arg0) {
+		
+	}
+
+	public void keyTyped(KeyEvent arg0) {
+		repaint();
 	}
 
 }

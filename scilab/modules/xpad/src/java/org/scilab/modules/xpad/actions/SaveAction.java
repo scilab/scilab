@@ -30,6 +30,7 @@ public class SaveAction extends DefaultAction {
 
 	private SaveAction(Xpad editor) {
 		super("Save", editor);
+	
 	}
 
 	 public static MenuItem createMenu(Xpad editor) {

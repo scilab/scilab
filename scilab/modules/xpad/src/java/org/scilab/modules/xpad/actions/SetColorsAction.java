@@ -41,6 +41,8 @@ public class SetColorsAction extends DefaultAction {
 	private ArrayList<JButton> changeColorButtonList ;
 	private ArrayList<String> listStylesName ;
 	private int numberOfStyles ;
+	
+	private static boolean windowAlreadyExist ;
 	Hashtable<String, Color> allStylesColor ;
 	
     private SetColorsAction(Xpad editor) {
@@ -49,7 +51,12 @@ public class SetColorsAction extends DefaultAction {
     
     
     public void doAction() {
-    	changeColorsBox ();
+    	
+    	if (!SetColorsAction.windowAlreadyExist ){
+    		SetColorsAction.windowAlreadyExist= true ;
+        	changeColorsBox ();
+    	}
+
     }
     
     public static MenuItem createMenu(Xpad editor) {
@@ -194,6 +201,7 @@ public class SetColorsAction extends DefaultAction {
 				
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);
+				SetColorsAction.windowAlreadyExist= false ;
 				frame.dispose();
 			}
 		});
@@ -202,6 +210,7 @@ public class SetColorsAction extends DefaultAction {
 		cancelButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				SetColorsAction.windowAlreadyExist= false ;
 				frame.dispose();
 			}
 		});
