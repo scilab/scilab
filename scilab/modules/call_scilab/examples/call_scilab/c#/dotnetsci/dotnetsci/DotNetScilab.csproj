@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DotNetScilab</RootNamespace>
-    <AssemblyName>Scilab</AssemblyName>
+    <AssemblyName>Scilab-COM-server</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
