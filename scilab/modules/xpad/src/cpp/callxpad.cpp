@@ -20,6 +20,7 @@ extern "C"
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
+#include "expandPathVariable.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xpad;
@@ -31,7 +32,16 @@ int callXpad(char **_filenames, int _nbfiles)
 		int i = 0;
 		for (i = 0; i < _nbfiles; i++)
 		{
-			Xpad::xpad(getScilabJavaVM(), _filenames[i]);
+			char *filename = expandPathVariable( _filenames[i]);
+			if (filename)
+			{
+				Xpad::xpad(getScilabJavaVM(), filename);
+				FREE(filename); filename = NULL;
+			}
+			else
+			{
+				Xpad::xpad(getScilabJavaVM());
+			}
 		}
 	}
 	else
@@ -51,7 +61,9 @@ int callXpadW(wchar_t **_wcfilenames, int _nbfiles)
 		{
 			for (i = 0; i < _nbfiles; i++)
 			{
-				filesname[i] = wide_string_to_UTF8(_wcfilenames[i]);
+				wchar_t *wcfilename = expandPathVariableW(_wcfilenames[i]);
+				filesname[i] = wide_string_to_UTF8(wcfilename);
+				if (wcfilename) {FREE(wcfilename); wcfilename = NULL;}
 			}
 			callXpad(filesname, _nbfiles);
 			freeArrayOfString(filesname, _nbfiles);

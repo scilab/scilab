@@ -14,6 +14,7 @@ vartype_
 checkrhs_ 
 checklhs_
 freeArrayOfString
+freeArrayOfWideString
 getVariablesName
 getcommandkeywords
 GetFunctionsList

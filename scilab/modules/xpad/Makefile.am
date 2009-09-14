@@ -50,6 +50,7 @@ libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/core/includes \
 			-I$(top_srcdir)/modules/functions/includes
 

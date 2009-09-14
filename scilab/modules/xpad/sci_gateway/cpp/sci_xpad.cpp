@@ -13,6 +13,7 @@
 
 extern "C"
 {
+#include <wchar.h>
 #include "callxpad.h"
 #include "gw_xpad.h"
 #include "stack-c.h"
@@ -38,7 +39,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 	{
 		int m1 = 0, n1 = 0;
 		int *piAddressVarOne = NULL;
-		char **pStVarOne = NULL;
+		wchar_t **pStVarOne = NULL;
 		int *lenStVarOne = NULL;
 		int i = 0;
 
@@ -51,7 +52,7 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
 
 		/* get dimensions */
-		getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 
 		lenStVarOne = (int*)MALLOC(sizeof(int)*(m1 * n1));
 		if (lenStVarOne == NULL)
@@ -61,9 +62,9 @@ int sci_xpad(char *fname,unsigned long fname_len)
 		}
 
 		/* get lengths */
-		getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 
-		pStVarOne = (char **)MALLOC(sizeof(char*)*(m1*n1));
+		pStVarOne = (wchar_t  **)MALLOC(sizeof(wchar_t *)*(m1*n1));
 		if (pStVarOne == NULL)
 		{
 			Scierror(999,_("%s: No more memory.\n"), fname);
@@ -72,14 +73,14 @@ int sci_xpad(char *fname,unsigned long fname_len)
 
 		for(i = 0; i < m1 * n1; i++)
 		{
-			pStVarOne[i] = (char*)MALLOC(sizeof(char*) * (lenStVarOne[i] + 1));
+			pStVarOne[i] = (wchar_t *)MALLOC(sizeof(wchar_t *) * (lenStVarOne[i] + 1));
 		}
   
 		/* get strings */
-		getMatrixOfString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		getMatrixOfWideString(piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
 
-		callXpad(pStVarOne,m1 * n1);
-		freeArrayOfString(pStVarOne,m1 * n1);
+		callXpadW(pStVarOne,m1 * n1);
+		freeArrayOfWideString(pStVarOne,m1 * n1);
 	}
 
 	LhsVar(1) = 0;

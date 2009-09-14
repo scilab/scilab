@@ -9,6 +9,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#ifndef __SETGETSCIPATH_H__
+#define __SETGETSCIPATH_H__
+
 /** 
  * save SCI path
  * @param path a char * in order to set the Scilab Path
@@ -16,9 +20,16 @@
 void setSCIpath(char *path);
 
 /** 
- * get SCI path
- * @return the path to Scilab
+* get SCI path
+* @return the path to Scilab
 */
 char *getSCIpath(void);
 
+/** 
+* get SCI path (wide string)
+* @return the path to Scilab
+*/
+wchar_t *getSCIpathW(void);
+
+#endif /* __SETGETSCIPATH_H__ */
 /*--------------------------------------------------------------------------*/ 
