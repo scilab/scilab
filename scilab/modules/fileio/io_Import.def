@@ -3,5 +3,6 @@ LIBRARY    io.dll
 
 EXPORTS
 GetenvB
+getenvc_
 setUpdateEnvVar
 getUpdateEnvVar

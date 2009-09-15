@@ -25,7 +25,7 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
@@ -129,9 +129,7 @@ int xs2file(char * fname, ExportFileType fileType )
 			}
 
 			/* Replaces SCI, ~, HOME, TMPDIR by the real path */
-			lout = PATH_MAX + FILENAME_MAX;
-			real_filename = (char*)MALLOC(sizeof(char)*lout);
-			C2F(cluni0)(fileName[0], real_filename, &out_n, (long)strlen(fileName[0]), lout);
+			real_filename = expandPathVariable(fileName[0]);
 
 			/* Call the function for exporting file */
 			status = exportToFile(getFigureFromIndex(figurenum), real_filename, fileType, orientation);

@@ -18,7 +18,7 @@
 #include "scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "machine.h"
 #include "isdir.h"
 #include "stack-def.h"
@@ -46,7 +46,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		char pathname[PATH_MAX];
 		char filename[PATH_MAX];
 
-		char pathextended[PATH_MAX];
+		char *pathextended = NULL;
 		int out_n = 0;
 
 		splitpath(somechars,pathname,filename);
@@ -82,8 +82,15 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 			sprintf(filespec,"%s*",filename);
 		}
 
-		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
-		dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+		pathextended = expandPathVariable(path);
+		
+		if (pathextended)
+		{
+			dictionary = findfiles(pathextended, filespec, &sizeListReturned);
+			FREE(pathextended);
+			pathextended = NULL;
+		}
+
 		if (fullpath)
 		{
 			dictionary = addPath(dictionary, sizeListReturned, path);
@@ -162,15 +169,19 @@ static char **addDirSeparator(char **dictionary, int sizearray, char *path)
 	int i = 0;
 	for (i = 0;i < sizearray;i++)
 	{
-		int out_n = 0;
-
-		char pathextended[PATH_MAX];
+		char *pathextended = NULL;
 		char fullpath[PATH_MAX * 2];
 
-		C2F(cluni0)(path, pathextended, &out_n,( long)strlen(path), PATH_MAX);
-
-		strcpy(fullpath, pathextended);
-		strcat(fullpath, dictionary[i]);
+		pathextended = expandPathVariable(path);
+		if (pathextended)
+		{
+			strcpy(fullpath, pathextended);
+			strcat(fullpath, dictionary[i]);
+		}
+		else
+		{
+			strcpy(fullpath, dictionary[i]);
+		}
 
 		if ( isdir(fullpath) && (dictionary[i][strlen(dictionary[i])-1] != DIR_SEPARATOR[0]) )
 		{

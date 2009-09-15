@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "stricmp.h"
 #include "freeArrayOfString.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 #include "isdir.h"
@@ -61,14 +61,8 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 				char *MD5       = NULL;
 				char *real_path = NULL;
 
-				long int lout;
-				int out_n;
-
 				/* Replaces SCI, ~, HOME, TMPDIR by the real path */
-				lout = PATH_MAX + FILENAME_MAX;
-				real_path = (char*)MALLOC(sizeof(char*)*lout);
-
-				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, (long)strlen(Input_Matrix[i]), lout);
+				real_path = expandPathVariable(Input_Matrix[i]);
 
 				/* bug 4469 */
 				if (isdir(real_path))
@@ -76,7 +70,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 					Scierror(999,_("%s: The file %s does not exist.\n"),fname, Input_Matrix[i]);
 					freeArrayOfString(Output_Matrix,mn);
 					freeArrayOfString(Input_Matrix,mn);
-					FREE(real_path);real_path=NULL;
+					FREE(real_path); real_path = NULL;
 					return 0;
 				}
 
