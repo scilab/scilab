@@ -17,6 +17,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -68,6 +70,8 @@ public class SetColorsAction extends DefaultAction {
 		frame = new JFrame();
 		JPanel panel = new JPanel(new GridBagLayout( ));
 		frame.setContentPane(panel);
+		
+		
 		
 		JPanel changePanel = new JPanel(new GridBagLayout());
 		JPanel validationPanel = new JPanel(new GridBagLayout());
@@ -244,7 +248,40 @@ public class SetColorsAction extends DefaultAction {
 		
 		
 		//display the frame and set some properties
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		frame.addWindowListener( new WindowListener(){
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowClosing(WindowEvent arg0) {
+				SetColorsAction.windowAlreadyExist = false ;
+				frame.dispose();
+				
+			}
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowIconified(WindowEvent arg0) {
+				
+			};
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		} );
+		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setTitle("Change Colors");
 		frame.pack();
 		frame.setLocationRelativeTo(null);

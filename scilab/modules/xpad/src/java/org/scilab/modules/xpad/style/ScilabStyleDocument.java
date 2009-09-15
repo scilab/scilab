@@ -26,6 +26,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
@@ -83,6 +84,10 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean singleLine = false;
 	private int currentLine;
 	
+	private boolean contentModified ;
+	
+	//private XpadStyles xpadStyles ; 
+	
 	Hashtable<String, String[]> keywords;
 	String[] commands;
 	String[] functions;
@@ -96,13 +101,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private Style defaultStyle;
 
 
-	public ScilabStyleDocument() {
+	public ScilabStyleDocument(Xpad editor) {
 		super();
 
+		this.editor = editor ;
 		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold()  ;
 		listStylesName  =  ConfigXpadManager.getAllStyleName();
 
+		//xpadStyles = XpadStyles.getInstance() ;
 		addDocumentListener(this);
 		addUndoableEditListener(undo);
 		defaultStyle = this.addStyle("Default", null);
@@ -121,8 +128,37 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 		
 		loadingsForColorisation();
+		setContentModified(false );
+		
+		this.addDocumentListener( new DocumentListener(){
+			
+			 public void changedUpdate(DocumentEvent documentEvent) {
+
+			      }
+			      public void insertUpdate(DocumentEvent documentEvent) {
+			        handleEvent(documentEvent);
+			      }
+			      public void removeUpdate(DocumentEvent documentEvent) {
+			    	  handleEvent(documentEvent);
+			      }
+			      private void handleEvent(DocumentEvent documentEvent) {
+			        DocumentEvent.EventType type = documentEvent.getType();
+			        if (type.equals(DocumentEvent.EventType.INSERT) || type.equals(DocumentEvent.EventType.REMOVE) ) {
+			         
+			        	int index = getEditor().getTabPane().getSelectedIndex();
+			        	if ( ! isContentModified()){
+			        		getEditor().getTabPane().setTitleAt( index  , "*" + getEditor().getTabPane().getTitleAt(index ) );
+			        	}
+			        	setContentModified(true);
+			        }  
+
+			      }
+		});
+		
 	}
 
+
+	
 	/**
 	 * DOCUMENT COLORISATION START
 	 */
@@ -205,9 +241,14 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				colorizeInprogress = false;
 			}
 		}
-
 	}
-	
+	/*
+	public Style getStyle(String styleName ){
+		Style plop =  xpadStyles.getStyle(styleName);
+		
+		return plop ;
+	}
+	*/
 	private void resetStyle() {
 		// Reset Color
 		this.removeUndoableEditListener(undo);
@@ -1313,7 +1354,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	
-
+	public boolean isContentModified(){
+		return contentModified ;
+	}
+	
+	public void setContentModified(boolean contentModified){
+		this.contentModified = contentModified ;
+	}
+	
+	
 	public boolean isSingleLine() {
 		return singleLine;
 	}

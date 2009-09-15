@@ -33,29 +33,9 @@ public class SaveAsAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		JFileChooser _fileChooser = new JFileChooser();
-		int retval = _fileChooser.showSaveDialog(getEditor());
-		if (retval == JFileChooser.APPROVE_OPTION) {
-			File f = _fileChooser.getSelectedFile();
-			try {
-
-				String doc = getEditor().getTextPane().getText();
-
-				FileWriter writer = new FileWriter(f);
-				writer.write(doc);
-				writer.flush();
-				writer.close();
-				
-				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
-				
-				getEditor().getTextPane().setName(f.getPath());
-				getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
-				getEditor().updateRecentOpenedFilesMenu();
-
-			} catch (Exception ioex) {
-			    JOptionPane.showMessageDialog(getEditor(), ioex);
-			}
-		}
+		
+		 getEditor().saveAs(getEditor().getTextPane() );
+			
 	}
 	
 	 public static MenuItem createMenu(Xpad editor) {

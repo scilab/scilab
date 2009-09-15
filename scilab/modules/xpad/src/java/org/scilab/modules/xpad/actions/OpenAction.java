@@ -22,6 +22,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class OpenAction extends DefaultAction {
@@ -39,7 +40,8 @@ public class OpenAction extends DefaultAction {
 
 	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 	    getEditor().updateRecentOpenedFilesMenu();
-	    
+	    getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
+	    ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setContentModified(false);
 	    
 	}
     }

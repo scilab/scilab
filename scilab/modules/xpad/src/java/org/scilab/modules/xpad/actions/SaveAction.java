@@ -24,6 +24,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class SaveAction extends DefaultAction {
@@ -45,7 +46,13 @@ public class SaveAction extends DefaultAction {
 	public void doAction() {
 		// TODO Auto-generated method stub
 		//super.doAction();
-		if ( getEditor().getTextPane().getName() != null ){
+	 getEditor().save(getEditor().getTextPane() );
+		
+	}
+}
+
+/*
+	if ( getEditor().getTextPane().getName() != null ){
 			try {
 				File newSavedFiled = new File(getEditor().getTextPane().getName());
 				
@@ -55,6 +62,12 @@ public class SaveAction extends DefaultAction {
 				writer.write(doc);
 				writer.flush();
 				writer.close();
+				
+				((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setContentModified(false);
+				
+				int index = getEditor().getTabPane().getSelectedIndex();
+	            getEditor().getTabPane().setTitleAt( index  , newSavedFiled.getName() );
+
 				
 
 			} catch (Exception ioex) {
@@ -79,13 +92,13 @@ public class SaveAction extends DefaultAction {
 					getEditor().getTextPane().setName(f.getPath());
 					getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
 					getEditor().updateRecentOpenedFilesMenu();
+					
+					((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setContentModified(false);
+					
 				} catch (Exception ioex) {
 				    JOptionPane.showMessageDialog(getEditor(), ioex);
 				}
 			}
 			
 		}
-		
-		
-	}
-}
+		*/

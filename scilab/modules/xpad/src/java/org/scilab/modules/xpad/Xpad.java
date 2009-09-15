@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -119,6 +120,12 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	public static void closeXpad() {
+		for ( int i = 0 ; i < editor.getTabPane().getComponentCount() ; i++){
+		
+			editor.closeTabAt(i);
+			
+		}
+			
 		editor = null;
 	}
 
@@ -282,7 +289,102 @@ public class Xpad extends SwingScilabTab implements Tab {
 	}
 
 	public void closeCurrentTab() {
-		tabPane.remove(tabPane.getSelectedComponent());
+		closeTabAt( tabPane.getSelectedIndex() );
+
+	}
+
+	public void closeTabAt (int indexTab ){
+//		JScrollPane pouet  = (JScrollPane) tabPane.getTabComponentAt(indexTab) ;
+//		 pouet.getViewport().getComponent(0);
+		JTextPane textPane = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0) ;
+		
+		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
+			int choice = JOptionPane.showConfirmDialog(this, "This file has been modified since last save\nsave it?");
+			
+			if (choice == 0){
+					save (textPane);
+			}else if (choice == 1){
+				tabPane.remove(tabPane.getSelectedComponent());
+				
+			}else if (choice == 2){
+				// if cancel we do nothing
+			}
+			
+		}else {
+			tabPane.remove(tabPane.getSelectedComponent());
+		}
+		
+	}
+	
+	
+	public boolean save ( JTextPane textPane ) {
+		
+		//JTextPane textPane =(JTextPane) ((JScrollPane) tabPane.getTabComponentAt(indexTab)).getViewport().getComponent(0) ;
+		boolean isSuccess = false ;
+		if (textPane.getName() != null ){
+			try {
+				File newSavedFiled = new File(textPane.getName());
+				
+				String doc = textPane.getText();
+
+				FileWriter writer = new FileWriter(newSavedFiled);
+				writer.write(doc);
+				writer.flush();
+				writer.close();
+				
+				((ScilabStyleDocument) textPane.getStyledDocument()).setContentModified(false);
+				
+				int index = getTabPane().getSelectedIndex();
+	            getTabPane().setTitleAt( index  , newSavedFiled.getName() );
+
+	            isSuccess = true ;
+
+			} catch (Exception ioex) {
+			    JOptionPane.showMessageDialog(this, ioex);
+			}
+		}else{
+			 isSuccess = saveAs (textPane ); 
+			
+		}
+		
+		return isSuccess ;
+	}
+	
+	public boolean saveAs (JTextPane textPane){
+		
+		boolean isSuccess = false ;
+		JFileChooser _fileChooser = new JFileChooser();
+		int retval = _fileChooser.showSaveDialog(this);
+		
+		//JTextPane textPane =(JTextPane) ((JScrollPane) tabPane.getTabComponentAt(indexTab)).getViewport().getComponent(0) ;
+		
+		if (retval == JFileChooser.APPROVE_OPTION) {
+			File f = _fileChooser.getSelectedFile();
+			try {
+
+				String doc = this.getTextPane().getText();
+
+				FileWriter writer = new FileWriter(f);
+				writer.write(doc);
+				writer.flush();
+				writer.close();
+				
+				
+				ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
+				textPane.setName(f.getPath());
+				getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+				updateRecentOpenedFilesMenu();
+				
+				((ScilabStyleDocument) textPane.getStyledDocument()).setContentModified(false);
+				
+				isSuccess = true ;
+				
+			} catch (Exception ioex) {
+			    JOptionPane.showMessageDialog(this, ioex);
+			}
+			
+		}
+		return isSuccess ;
 	}
 
 	public JTextPane addTab(String title) {
@@ -307,7 +409,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 		textPane.setBackground(ConfigXpadManager.getXpadBackgroundColor());
 		textPane.setCaretColor(Color.BLACK);
-		textPane.setStyledDocument(new ScilabStyleDocument());
+		textPane.setStyledDocument(new ScilabStyleDocument(this));
 		textPane.setCharacterAttributes(textPane.getStyle("Default"), true);
 
 		textPane.setFocusable(true);

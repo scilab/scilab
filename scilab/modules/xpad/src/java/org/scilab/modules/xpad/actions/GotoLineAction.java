@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -152,7 +154,41 @@ public class GotoLineAction extends DefaultAction {
 			
 	        
 		//display the frame and set some properties
-	        mainFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			
+			mainFrame.addWindowListener( new WindowListener(){
+				public void windowClosed(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				public void windowDeiconified(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				public void windowActivated(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				public void windowClosing(WindowEvent arg0) {
+					GotoLineAction.windowAlreadyExist = false ;
+					mainFrame.dispose();
+					
+				}
+				public void windowDeactivated(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				public void windowIconified(WindowEvent arg0) {
+					
+				};
+				public void windowOpened(WindowEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			} );
+			
+			
+	        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	        mainFrame.setTitle("Go to line ...");
 	        mainFrame.pack();
 	        mainFrame.setLocationRelativeTo(null);
