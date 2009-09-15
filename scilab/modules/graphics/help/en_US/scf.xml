@@ -65,13 +65,13 @@ f = scf(num)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   f4=scf(4); //creates figure with id==4 and make it the current one
-   f0=scf(0); //creates figure with id==0 and make it the current one
-   plot2d() //draw in current figure (id=0)
-   scf(f4); // set first created figure as current one
-   plot3d() //draw in current figure (id=4)
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+f4=scf(4); //creates figure with id==4 and make it the current one
+f0=scf(0); //creates figure with id==0 and make it the current one
+plot2d() //draw in current figure (id=0)
+scf(f4); // set first created figure as current one
+plot3d() //draw in current figure (id=4)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

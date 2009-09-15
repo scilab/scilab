@@ -40,15 +40,13 @@ t = toc()</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 tic();
 realtimeinit(1);
 realtime(0);
 realtime(10);
 toc();
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

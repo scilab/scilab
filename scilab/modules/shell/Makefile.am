@@ -95,7 +95,8 @@ includes/PutChar.h \
 includes/tohome.h \
 includes/zzledt.h \
 includes/prompt.h \
-includes/promptecho.h
+includes/promptecho.h \
+includes/dynlib_shell.h
 
 
 if GUI

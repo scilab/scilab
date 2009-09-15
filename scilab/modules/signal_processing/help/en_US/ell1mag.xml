@@ -49,8 +49,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
 'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
 alpha=%k(1-m1)/%k(1-m);')
@@ -64,8 +63,7 @@ sample=0:0.01:20;
 //Now we map the positive real axis into the contour...
 z=alpha*%asn(sample/omegac,m)+Beta*ones(sample);
 plot(sample,ell1mag(epsilon,m1,z))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

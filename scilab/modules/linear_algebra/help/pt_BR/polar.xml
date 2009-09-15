@@ -75,13 +75,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,5);
 [Ro,Theta]=polar(A);
 norm(A-Ro*expm(%i*Theta),1)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

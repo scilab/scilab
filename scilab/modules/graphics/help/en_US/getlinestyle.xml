@@ -65,13 +65,12 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 x=0:0.1:10;
 plot2d(x,sin(x))
 e=gce(); // store the Compound containing the plot
 e.children(1).line_style = getlinestyle();
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

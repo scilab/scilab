@@ -58,9 +58,9 @@ For advanced user it is possible to "manually" change some parameters or state v
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [state,t] = scicosim(state,tcur,tf,sim,str,tol)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_scicosim">
     <title>Parameters</title>

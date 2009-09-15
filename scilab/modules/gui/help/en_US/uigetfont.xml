@@ -76,15 +76,13 @@ uigetfont()
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 uigetfont()
 uigetfont("arial")
 uigetfont("arial", 24)
 uigetfont("arial", 24, %T)
 uigetfont("arial", 24, %T, %F)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

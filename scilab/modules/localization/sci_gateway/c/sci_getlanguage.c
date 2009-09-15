@@ -15,7 +15,7 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getlanguage)(char *fname,unsigned long fname_len)
+int sci_getlanguage(char *fname,unsigned long fname_len)
 {
 	static int n1,m1;
 	char *Output=NULL;

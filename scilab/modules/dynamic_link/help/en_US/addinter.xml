@@ -95,11 +95,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting>
+    <programlisting role = "example"><![CDATA[ 
 if haveacompiler() then
 
 chdir(TMPDIR)
-src = ['#include &lt;math.h&gt;'
+src = ['#include <math.h>'
 '#include ""stack-c.h""'
 ''
 'static double fun2(double x);'
@@ -119,7 +119,7 @@ src = ['#include &lt;math.h&gt;'
 '  int m1,n1,l1;'
 '  CheckRhs(1,1);'
 '  CheckLhs(1,1);'
-'  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m1, &amp;n1, &amp;l1);'
+'  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);'
 '  fun1(stk(l1),stk(l1));'
 '  LhsVar(1) = 1;'
 '  return 0;'
@@ -131,7 +131,8 @@ disp(mgetl('loader.sce'));
 exec loader.sce;
 fun1_in_scilab(%pi)
 
-end // if haveacompiler()  </programlisting>
+end // if haveacompiler()
+ ]]></programlisting>
   </refsection>
 
   <refsection>

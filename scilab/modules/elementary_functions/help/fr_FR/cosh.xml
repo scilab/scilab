@@ -48,10 +48,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=[0,1,%i]
 acosh(cosh(x))
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

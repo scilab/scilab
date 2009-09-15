@@ -68,7 +68,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,3)*rand(3,8);
 b=A*ones(8,1);[x,kerA]=linsolve(A,b);A*x+b   // b compatible
 b=ones(5,1);[x,kerA]=linsolve(A,b);A*x+b   // b incompatible

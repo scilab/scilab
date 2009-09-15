@@ -61,8 +61,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //define some variables
 function z = myplus(x, y), z = x + y,endfunction
 function z = yourplus(x, y), x = x - y,endfunction
@@ -87,8 +86,7 @@ clear myplus yourplus A
 myplus(1,2)
 
 A
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

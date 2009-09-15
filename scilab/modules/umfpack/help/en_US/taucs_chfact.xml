@@ -73,7 +73,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // Example #1 : a small linear test system 
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2 -1  0  0  0;
@@ -101,7 +101,7 @@ x = taucs_chsolve(Cp,b,A);
 norm(A*x - b)
 // don't forget to clear memory
 taucs_chdel(Cp)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -58,7 +58,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // this is the small linear test system from UMFPACK
 // whom solution must be [1;2;3;4;5]
 A = sparse( [ 2  3  0  0  0;
@@ -99,7 +99,7 @@ norm(A'*x - b)
 
 // don't forget to clear memory
 umf_ludel(Lup)
-   ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

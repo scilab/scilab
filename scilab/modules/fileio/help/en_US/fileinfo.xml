@@ -205,8 +205,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 w = fileinfo(SCI+'/etc/scilab.start')
 // file permission
 dec2oct(w(2))
@@ -229,9 +228,7 @@ end
 
 FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
 [X,ERRS] = fileinfo(FILES)
-
-
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

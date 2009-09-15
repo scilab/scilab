@@ -22,6 +22,7 @@
 #ifndef __SCI_INTERACTION__
 #define __SCI_INTERACTION__
 
+#include "dynlib_graphics.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
@@ -38,13 +39,13 @@ typedef enum
 
 
 
-extern int sciAddCallback (sciPointObj * pthis, char *code, int len, int mevent); /* INTERACTION */
-extern int sciGetCallbackMouseEvent (sciPointObj * pthis); /* INTERACTION */
-extern int sciSetCallbackMouseEvent (sciPointObj * pthis, int mevent); /* INTERACTION */
-extern char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
-extern int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
+GRAPHICS_IMPEXP int sciAddCallback (sciPointObj * pthis, char *code, int len, int mevent); /* INTERACTION */
+GRAPHICS_IMPEXP int sciGetCallbackMouseEvent (sciPointObj * pthis); /* INTERACTION */
+GRAPHICS_IMPEXP int sciSetCallbackMouseEvent (sciPointObj * pthis, int mevent); /* INTERACTION */
+GRAPHICS_IMPEXP char *sciGetCallback (sciPointObj * pthis); /* INTERACTION */
+GRAPHICS_IMPEXP int sciDelCallback (sciPointObj * pthis); /* INTERACTION */
 
-int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
+GRAPHICS_IMPEXP int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
 
 /**
  * Call rubber box on a figure in pixels
@@ -56,7 +57,7 @@ int Objmove(sciPointObj * pobj, double d[], int m, BOOL opt); /* INTERACTION */
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
+GRAPHICS_IMPEXP void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
                     const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
@@ -68,35 +69,35 @@ void pixelRubberBox(sciPointObj * pFigure, BOOL isClick,
  * @param[out] endRect array containing the [x,y,w,h] of the selected rectangle
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void rubberBox(sciPointObj * pSubwin, BOOL isClick,
+GRAPHICS_IMPEXP void rubberBox(sciPointObj * pSubwin, BOOL isClick,
                const double initialRect[4], double endRect[4], int * usedButton);
 
 
 /**
  * Perform an interative zoom on a subwin or figure handle;
  */
-void interactiveZoom(sciPointObj * pObj);
+GRAPHICS_IMPEXP void interactiveZoom(sciPointObj * pObj);
 
 /**
  * Interactive rotation of a subwin within the figure.
  */
-void interactiveRotation(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void interactiveRotation(sciPointObj * pFigure);
 
 /**
  * Interactive rotation of a subwindow
  */
-void interactiveSubwinRotation(sciPointObj * pSubwin);
+GRAPHICS_IMPEXP void interactiveSubwinRotation(sciPointObj * pSubwin);
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
-void showWindow(sciPointObj * pFigure);
+GRAPHICS_IMPEXP void showWindow(sciPointObj * pFigure);
 
 /**
  * Modify a subwin viewing angles by a certain amount.
  */
-void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta);
+GRAPHICS_IMPEXP void updateViewingAngles(sciPointObj * pSubwin, double deltaAlpha, double deltaTheta);
 
 
 #endif /* __SCI_INTERACTION__ */

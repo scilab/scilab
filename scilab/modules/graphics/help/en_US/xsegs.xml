@@ -55,21 +55,21 @@
     <para><literal>(xv(i),yv(i))--&gt;(xv(i+1),yv(i+1))</literal>.</para>
     <para>For instance, using matrices of size (2,n), the segments can be defined
     by:</para>
-    <programlisting><![CDATA[xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] yv=[yi_1 yi_2 ...; yf_1 yf_2
-    ...]]]></programlisting>
+    <programlisting><![CDATA[ 
+xv=[xi_1 xi_2 ...; xf_1 xf_2 ...] 
+yv=[yi_1 yi_2 ...; yf_1 yf_2 ...]
+ ]]></programlisting>
     <para>and the segments are <literal>(xi_k,yi_k)--&gt;(xf_k,yf_k)</literal>.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 x=2*%pi*(0:9)/10;
 xv=[sin(x);9*sin(x)];
 yv=[cos(x);9*cos(x)];
 plot2d([-10,10],[-10,10],[-1,-1],"022")
 xsegs(xv,yv,1:10)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

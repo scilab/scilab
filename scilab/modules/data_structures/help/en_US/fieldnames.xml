@@ -46,14 +46,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 clear t;
 t.a=1;
 t.b=2;
 fieldnames(t)
 fieldnames(1/%s)
 fieldnames(tf2ss(1/%s))
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

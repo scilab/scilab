@@ -57,27 +57,25 @@ f = gdf(); set(f,"default_values",1)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-   
-   x=[0:0.1:2*%pi]';
-   f=get("default_figure"); // obtendo o manipulador da figura modelo 
-   a=get("default_axes"); // obtendo o manipulador dos eixos modelos
-     // ajustando suas propriedades
-   f.background=4;
-   f.auto_resize="off";
-   f.figure_size=[400 300];
-   f.axes_size=[600 400];
-   f.figure_position=[0 -1];
-   a.x_location="top";
-   a.y_location="left";
-   for (i=1:6)
-     xset("window",i) // criando figura com identificador i
-     plot2d(x,[sin(x) cos(x)],[i -i])
-     xclick();
-     if i == 4, sdf(); end // obtendo os valores padrões da figura modelo
-    end
-    
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+x=[0:0.1:2*%pi]';
+f=get("default_figure"); // obtendo o manipulador da figura modelo 
+a=get("default_axes");   // obtendo o manipulador dos eixos modelos
+                         // ajustando suas propriedades
+f.background=4;
+f.auto_resize="off";
+f.figure_size=[400 300];
+f.axes_size=[600 400];
+f.figure_position=[0 -1];
+a.x_location="top";
+a.y_location="left";
+for (i=1:6)
+  xset("window",i) // criando figura com identificador i
+  plot2d(x,[sin(x) cos(x)],[i -i])
+  xclick();
+  if i == 4, sdf(); end // obtendo os valores padrões da figura modelo
+ end
+ ]]></programlisting>
   </refsection>
 
   <refsection>

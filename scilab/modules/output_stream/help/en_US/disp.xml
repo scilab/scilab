@@ -39,13 +39,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 disp([1 2],3)
 deff('[]=%t_p(l)','disp(l(3),l(2))')
 disp(tlist('t',1,2))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

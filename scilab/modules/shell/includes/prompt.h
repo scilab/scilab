@@ -16,6 +16,8 @@
 
 #include "machine.h" /* C2F */
 
+#include "dynlib_shell.h"
+
 #ifdef SCIPROMPT
 #undef SCIPROMPT
 #endif
@@ -34,10 +36,10 @@
 #define PROMPT_SIZE_MAX 64
 
 /*--------------------------------------------------------------------------*/ 
-void C2F(setprlev)( int *pause);
-void GetCurrentPrompt(char *CurrentPrompt);
-void SetTemporaryPrompt(char *tempPrompt);
-char *GetTemporaryPrompt(void);
-void ClearTemporaryPrompt(void);
+SHELL_IMPEXP void C2F(setprlev)( int *pause);
+SHELL_IMPEXP void GetCurrentPrompt(char *CurrentPrompt);
+SHELL_IMPEXP void SetTemporaryPrompt(char *tempPrompt);
+SHELL_IMPEXP char *GetTemporaryPrompt(void);
+SHELL_IMPEXP void ClearTemporaryPrompt(void);
 /*--------------------------------------------------------------------------*/ 
 #endif /* _PROMPT_H_ */

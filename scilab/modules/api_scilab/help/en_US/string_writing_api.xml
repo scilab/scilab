@@ -71,13 +71,12 @@
         <para>This help describes how matrix of strings can be handled through the Scilab API.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/string_writing_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/string_writing_api.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/string_writing_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/string_writing_api.tst-->
         <!--Lib_name: string_writing-->
         <!--Func_list: write_string-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int write_string(char *fname,unsigned long fname_len)
 {
     int iRet        = 0;
@@ -116,13 +115,11 @@ int write_string(char *fname,unsigned long fname_len)
     LhsVar(1)       = Rhs + 1;
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 a_ref = "may the puffin be with you ";
 b = [];
 a = write_string();
@@ -133,7 +130,6 @@ for i=1:size(a,"r")
     end
 end
 if b <> a_ref then error("failed"), end
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

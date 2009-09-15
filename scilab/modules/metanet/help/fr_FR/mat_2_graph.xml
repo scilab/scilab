@@ -93,8 +93,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // creation d'un graphe orienté avec 13 noeuds et 14 arcs.
 ta=[1  1 2 7 8 9 10 10 10 11 12 13 13];
 he=[2 10 7 8 9 7  7 11 13 12 13  9 10];
@@ -112,9 +111,7 @@ a=graph_2_mat(g,'node-node');
 g1=mat_2_graph(a,1,'node-node');
 g1.nodes.graphics.x=g.nodes.graphics.x; g1.nodes.graphics.y=g.nodes.graphics.y;
 show_graph(g1,'new');
-
-
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

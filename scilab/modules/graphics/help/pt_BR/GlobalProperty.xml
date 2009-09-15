@@ -430,11 +430,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// --------------------
+    <programlisting role="example"><![CDATA[ 
+// --------------------
 // com o comando plot:
 // --------------------
 x=1:10; // Init.
-plot(x,sin(x),'colo','red','linest','-.','marker','&gt;','markeredg','cyan','markerFace','yellow','markersize',5)
+plot(x,sin(x),'colo','red','linest','-.','marker','<','markeredg','cyan','markerFace','yellow','markersize',5)
 clf();
 
 // a ordem das combinações e, {PropertyName,PropertyValue} não importa
@@ -473,9 +474,7 @@ subplot(211)
 surf(Z,'facecol','interp','ydat',101:110,'edgecol','mage')
 subplot(212)
 surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
-
- 
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -53,15 +53,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 tokens('This is a character string')
 
 tokens('SCI/demos/scicos','/')
 
 tokens('y=a+b*2',['=','+','*'])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

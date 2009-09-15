@@ -246,6 +246,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 
 # Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
@@ -279,7 +281,6 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 #### gui : include files ####
 libscigui_la_includedir=$(pkgincludedir)/gui
 libscigui_la_include_HEADERS = includes/gw_gui.h \
-includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
@@ -329,11 +330,6 @@ includes/ListBox.h \
 includes/PopupMenu.h \
 includes/PushButton.h \
 includes/RadioButton.h \
-includes/sci_mpopup.h \
-includes/sci_uicontextmenu.h \
-includes/sci_uicontrol.h \
-includes/sci_uimenu.h \
-includes/sci_uiwait.h \
 includes/SetUicontrolBackgroundColor.h \
 includes/SetUicontrolFontAngle.h \
 includes/SetUicontrolFontName.h \
@@ -361,17 +357,14 @@ includes/SetUiobjectEnable.h \
 includes/SetUimenuChecked.h \
 includes/Slider.h \
 includes/TerminateGui.h \
-includes/write_scilab.h \
 includes/Toolbar.h \
 includes/DestroyUicontrol.h \
 includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
-includes/sci_exportUI.h \
 includes/exportUserInterface.hxx \
 includes/CallJuigetfile.hxx \
-src/jni/Juigetfile.hxx \
-includes/sci_uigetfile.h \
+includes/dynlib_gui.h \
 includes/CallJuigetfile.h
 
 #### gui : icons files ####
@@ -396,7 +389,17 @@ images/icons/undock_active.png \
 images/icons/undock_default.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png
+images/icons/zoom-area.png \
+images/icons/document-new.png \
+images/icons/document-print-preview.png \
+images/icons/document-print.png \
+images/icons/document-save-as.png \
+images/icons/document-save.png \
+images/icons/edit-find-replace.png \
+images/icons/edit-find.png \
+images/icons/edit-redo.png \
+images/icons/edit-undo.png \
+images/icons/media-floppy.png
 
 
 if GUI

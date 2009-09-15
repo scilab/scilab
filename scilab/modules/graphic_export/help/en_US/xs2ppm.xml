@@ -73,13 +73,13 @@ xs2ppm(fig, file_name)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //PPM export
 filename='foo.ppm';
 xs2ppm(0,filename);
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

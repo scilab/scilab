@@ -14,13 +14,15 @@
 #ifndef __STRISTR_H__
 #define __STRISTR_H__
 
+#include "dynlib_scilab_windows.h"
+
 /**
 * strstr case insensitive
 * @param[in] string where we search
 * @param[in] string to search
 * @return result 
 */
-char *stristr(const char *psz,const char *tofind);
+SCILAB_WINDOWS_IMPEXP char *stristr(const char *psz,const char *tofind);
 
 #endif /* __STRISTR_H__ */
 /*--------------------------------------------------------------------------*/

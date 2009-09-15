@@ -84,8 +84,7 @@ y=cumprod(x,'m')</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 cumprod(A)
 cumprod(A,'r')
@@ -96,8 +95,7 @@ a=rand(3,4);
 w=zeros(a);
 w(1,:)=a(1,:);
 for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

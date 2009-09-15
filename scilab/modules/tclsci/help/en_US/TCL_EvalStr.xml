@@ -56,20 +56,23 @@ res = TCL_EvalStr(str [,interp])</synopsis></refsynopsisdiv>
     <literal>TCL_EvalFile</literal>).</para>
   </refsection>
 
-  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[ 
 //with one call
 TCL_EvalStr(["toplevel .foo1"
-   "label .foo1.l -text ""TK married Scilab !!!"""
-   "pack .foo1.l"
-   "button .foo1.b -text close -command {destroy .foo1}"
-   "pack .foo1.b"])
+             "label .foo1.l -text ""TK married Scilab !!!"""
+             "pack .foo1.l"
+             "button .foo1.b -text close -command {destroy .foo1}"
+             "pack .foo1.b"])
 
 //step by step (debugging)
 TCL_EvalStr("toplevel .foo2");
+
 // creates a toplevel TK window. 
 TCL_EvalStr("label .foo2.l -text ""TK married Scilab !!!""");
+
 // create a static label
 TCL_EvalStr("pack .foo2.l");
+
 // pack the label widget. It appears on the screen.
 text="button .foo2.b -text close -command {destroy .foo2}";
 TCL_EvalStr(text);
@@ -90,7 +93,7 @@ TCL_DeleteInterp('TCLSlave')
 res = TCL_EvalStr("expr 1+1")
 res = TCL_EvalStr("tk_messageBox -message Hello -type okcancel")
 res = TCL_EvalStr(["expr 4+5" "lsearch -all {a b c a b c} c" ; "list [list a b c] [list d e f] [list g h i]" "llength  {a b c d e}"])
-]]></programlisting></refsection>
+ ]]></programlisting></refsection>
 
   <refsection><title>See Also</title><simplelist type="inline">
     <member>

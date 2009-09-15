@@ -190,9 +190,6 @@ struct {
 extern void  F2C(sciblk)();
 extern void  sciblk2();
 extern void  sciblk4();
-extern void  GetDynFunc();
-extern void  C2F(iislink)();
-
 
 extern  int C2F(cvstr)();
 extern  int C2F(dset)();

@@ -69,11 +69,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 get_function_path('median')
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

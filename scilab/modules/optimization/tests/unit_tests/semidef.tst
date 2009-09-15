@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 F0=[2,1,0,0;
     1,2,0,0;
     0,0,3,1
@@ -45,5 +47,3 @@ if abs(expectedUl2-ul(2))>100*%eps then pause,end
 // Check Slater's condition, which states that the duality gap is zero at optimum.
 dualitygap = ul(1)-ul(2);
 if dualitygap > abstol then pause,end
-
-

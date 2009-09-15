@@ -74,7 +74,8 @@ libsciaction_binding_la_sci_gateway_DATA =
 
 ####�action_binding : include files ####
 libsciaction_binding_la_includedir=$(pkgincludedir)/action_binding
-libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h
+libsciaction_binding_la_include_HEADERS = includes/dynamic_menus.h \
+includes/dynlib_action_binding.h
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1

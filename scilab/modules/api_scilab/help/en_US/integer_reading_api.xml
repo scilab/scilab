@@ -82,8 +82,7 @@ int getMatrixOfUnsignedInteger32(int* _piAddress, int* _piRows, int* _piCols, un
         <!--Lib_name: integer_reading-->
         <!--Func_list: read_integer-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDataIn);
 
 int read_integer(char *fname,unsigned long fname_len)
@@ -296,14 +295,12 @@ void* create_output(int _iCoeff, int _iSize, int _iRows, int _iCols, void* _pvDa
     }
     return pvDataOut;
 }
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 a8  = int8([    1   -2  3   -4  5; ..
                 -6  7   -8  9   -10; ..
                 11  -12 13  -14 15]);
@@ -336,7 +333,6 @@ if or(c16 <> a16 * 8) then error("failed"), end
 if or(cu16 <> au16 * 16) then error("failed"), end
 if or(c32 <> a32 * 32) then error("failed"), end
 if or(cu32 <> au32 * 64) then error("failed"), end
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

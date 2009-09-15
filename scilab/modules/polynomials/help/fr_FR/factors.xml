@@ -93,7 +93,7 @@ rat=factors(rat,'flag')</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 n=poly([0.2,2,5],'z');
 d=poly([0.1,0.3,7],'z');
 R=syslin('d',n,d);

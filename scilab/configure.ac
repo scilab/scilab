@@ -17,6 +17,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.60)
+AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
@@ -893,6 +894,7 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 
 # gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
 AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.16])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -1466,6 +1468,7 @@ modules/parameters/Makefile
 modules/matio/Makefile
 modules/operations/Makefile
 modules/atoms/Makefile
+modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

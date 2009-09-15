@@ -13,26 +13,25 @@
 #include "gw_statistics.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
-
-#define GWTABLE_LENGTH(t) (sizeof(Tab) / sizeof(gw_generic_table))
-
-static gw_generic_table Tab[] = { 
-  {cdfbetI, "cdfbet"},
-  {cdfbinI, "cdfbin"},
-  {cdfchiI, "cdfchi"},
-  {cdfchnI, "cdfchn"},
-  {cdffI  , "cdff"  },
-  {cdffncI, "cdffnc"},
-  {cdfgamI, "cdfgam"},
-  {cdfnbnI, "cdfnbn"},
-  {cdfnorI, "cdfnor"},
-  {cdfpoiI, "cdfpoi"},
-  {cdftI  , "cdft"  }};
-
-int
-gw_statistics(void)
+/*--------------------------------------------------------------------------*/
+static gw_generic_table Tab[] =
+{ 
+	{cdfbetI, "cdfbet"},
+	{cdfbinI, "cdfbin"},
+	{cdfchiI, "cdfchi"},
+	{cdfchnI, "cdfchn"},
+	{cdffI, "cdff"},
+	{cdffncI, "cdffnc"},
+	{cdfgamI, "cdfgam"},
+	{cdfnbnI, "cdfnbn"},
+	{cdfnorI, "cdfnor"},
+	{cdfpoiI, "cdfpoi"},
+	{cdftI, "cdft"}
+};
+/*--------------------------------------------------------------------------*/
+int gw_statistics()
 {  
-  Rhs = Max(0, Rhs);
-  callFunctionFromGateway(Tab, GWTABLE_LENGTH(Tab));
-  return 0;
+	Rhs = Max(0, Rhs);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
+	return 0;
 }

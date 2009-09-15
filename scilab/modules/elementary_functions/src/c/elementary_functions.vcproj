@@ -770,10 +770,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sortTemplate.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\vfinite.h"
 				>
 			</File>

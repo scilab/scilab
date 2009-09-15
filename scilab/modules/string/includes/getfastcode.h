@@ -15,6 +15,7 @@
 #define __GETFASTCODE_H__
 
 #include "machine.h"
+#include "dynlib_string.h"
 
 /**
 * converts from ascii to Scilab internal coding 
@@ -24,20 +25,20 @@
 * @return internal code
 * getfastcode uses convertAsciiCodeToScilabCode
 */
-int C2F(getfastcode)(unsigned char *c, unsigned long c_len);
+STRING_IMPEXP int C2F(getfastcode)(unsigned char *c, unsigned long c_len);
 
 /**
 * converts from ascii to Scilab internal coding 
 * @param[in] ascii char
 * @return scilab code
 */
-int convertAsciiCodeToScilabCode(unsigned char scilab_char);
+STRING_IMPEXP int convertAsciiCodeToScilabCode(unsigned char scilab_char);
 
 /**
 * converts Scilab internal coding to ascii code
 * @param[in] scilab_code
 * @return ascii_code [0 255]
 */
-unsigned char convertScilabCodeToAsciiCode(int scilab_code);
+STRING_IMPEXP unsigned char convertScilabCodeToAsciiCode(int scilab_code);
 
 #endif /* __GETFASTCODE_H__ */

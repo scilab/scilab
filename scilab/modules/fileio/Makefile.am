@@ -42,7 +42,11 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c
+src/c/getrelativefilename.c \
+src/c/splitpath.c \
+src/c/movefile.c \
+src/c/expandPathVariable.c \
+src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -81,7 +85,12 @@ sci_gateway/c/sci_mtell.c \
 sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
-sci_gateway/c/sci_getrelativefilename.c
+sci_gateway/c/sci_getrelativefilename.c \
+sci_gateway/c/sci_copyfile.c \
+sci_gateway/c/sci_fileparts.c \
+sci_gateway/c/sci_movefile.c \
+sci_gateway/c/sci_isfile.c
+
 
 libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -160,7 +169,10 @@ includes/mput.h \
 includes/mseek.h \
 includes/deleteafile.h \
 includes/readline.h \
+includes/splitpath.h \
 includes/cluni0.h \
+includes/expandPathVariable.h \
+includes/dynlib_fileio.h \
 includes/scicurdir.h
 
 include $(top_srcdir)/Makefile.incl.am

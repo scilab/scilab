@@ -60,9 +60,9 @@
     prints the integer corresponding to the type of the variable sent as
     argument in the Scilab console.</para>
 
-    <programlisting role="example"> 
-#include &lt;stack-c.h&gt;
-#include &lt;sciprint.h&gt;
+    <programlisting role="example"><![CDATA[ 
+#include <stack-c.h>
+#include <sciprint.h>
 
 int sci_mygettype(char * fname)
 {
@@ -70,7 +70,7 @@ int sci_mygettype(char * fname)
 
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

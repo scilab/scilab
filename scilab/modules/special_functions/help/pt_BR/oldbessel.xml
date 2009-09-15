@@ -133,31 +133,33 @@ y = oldbessely(alpha,x)</synopsis>
     <para>As funções Y_alfa e J_alfa de Bessel são duas soluções independentes
     da equação diferencial de Bessel :</para>
 
-    <programlisting>2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa &gt;=
-    0</programlisting>
+    <programlisting role = ""><![CDATA[ 
+2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa = 0
+ ]]></programlisting>
 
     <para>As funções modificadas K_alfa e I_alfa de Bessel são duas soluções
     independentes da equação diferencial modificada de Bessel:</para>
 
-    <programlisting>2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa &gt;=
-    0</programlisting>
+    <programlisting role = ""><![CDATA[ 
+2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa >= 0
+ ]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Exemplos </title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo #1: exibindo algumas funções I de Bessel
 x = linspace(0.01,10,5000)';
 y = oldbesseli(0:4,x);
 ys = oldbesseli(0:4,x,2);
 xbasc()
 subplot(2,1,1)
-   plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
-   xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
+plot2d(x,y, style=2:6, leg="I0@I1@I2@I3@I4", rect=[0,0,6,10])
+xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
 subplot(2,1,2)
-   plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
-   xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
+plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
+xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
 
 // exemplo #2 : exibindo algumas funções J de Bessel
 x = linspace(0,40,5000)';
@@ -173,15 +175,14 @@ x = linspace(0.1,40,5000)';
 y1 = besselj(0.5, x);
 y2 = sqrt(2 ./(%pi*x)).*sin(x);
 er = abs((y1-y2)./y2);
-ind = find(er &gt; 0 &amp; y2 ~= 0);
+ind = find(er > 0 & y2 ~= 0);
 xbasc()
 subplot(2,1,1)
-   plot2d(x,y1,style=2)
-   xtitle("besselj(0.5,x)")
+plot2d(x,y1,style=2)
+xtitle("besselj(0.5,x)")
 subplot(2,1,2)
-   plot2d(x(ind), er(ind), style=2, logflag="nl")
-   xtitle("erro relativo entre as duas fórmulas para besselj(0.5,x)") 
-
+plot2d(x(ind), er(ind), style=2, logflag="nl")
+xtitle("erro relativo entre as duas fórmulas para besselj(0.5,x)") 
 
 // exemplo #4: exibindo algumas funções K de Bessel
 x = linspace(0.01,10,5000)';
@@ -189,20 +190,19 @@ y = besselk(0:4,x);
 ys = besselk(0:4,x,1);
 xbasc()
 subplot(2,1,1)
-   plot2d(x,y, style=0:4, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
-   xtitle("Algumas funções modificadas de Bessel do segundo tipo")
+plot2d(x,y, style=0:4, leg="K0@K1@K2@K3@K4", rect=[0,0,6,10])
+xtitle("Algumas funções modificadas de Bessel do segundo tipo")
 subplot(2,1,2)
-   plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
-   xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
+plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
+xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
 
 // exemplo #5: plot de várias funções Y de Bessel
-x = linspace(0.1,40,5000)'; // funções  Y de Bessel não possuem limite para x -&gt; 0+
+x = linspace(0.1,40,5000)'; // funções  Y de Bessel não possuem limite para x -> 0+
 y = bessely(0:4,x);
 xbasc()
 plot2d(x,y, style=0:4, leg="Y0@Y1@Y2@Y3@Y4", rect=[0,-1.5,40,0.6])
 xtitle("Algumas funções de Bessel do segundo tipo")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

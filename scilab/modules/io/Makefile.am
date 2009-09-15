@@ -99,6 +99,7 @@ libsciio_la_includedir=$(pkgincludedir)/io
 libsciio_la_include_HEADERS = includes/gw_io.h \
 includes/getenvc.h \
 includes/setenvc.h \
-includes/GetenvB.h
+includes/GetenvB.h \
+includes/dynlib_io.h
 
 include $(top_srcdir)/Makefile.incl.am

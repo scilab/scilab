@@ -21,6 +21,7 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
+#include "dynlib_graphics.h"
 #include "StringMatrix.h"
 #include "DoublyLinkedList.h"
 

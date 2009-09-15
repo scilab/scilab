@@ -124,8 +124,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // solucionador de equação de Lyapunov (uma incógnita, uma restrição)
 deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
 A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
@@ -160,8 +159,7 @@ A=rand(3,3);dimX=[3,3];[Af,bf]=aff2ab(f,dimX,list(A));
 [Xf,KerAf]=linsolve(Af,bf);[p,q]=size(KerAf);
 Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
 C=Xsol(:); A*C-C*A
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -83,13 +83,13 @@ xs2eps(fig, file_name [,orientation])</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //EPS export
 xs2eps(0,'foo.eps')
 xs2eps(gcf(),'foo.eps')
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

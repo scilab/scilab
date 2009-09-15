@@ -16,7 +16,7 @@
 /* desc : interface for show_window routine                               */
 /*------------------------------------------------------------------------*/
 
-#include "sci_show_window.h"
+#include "gw_graphics.h"
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
 #include "stack-c.h"

@@ -464,10 +464,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\time_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

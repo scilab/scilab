@@ -29,8 +29,6 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 	if (Rhs == 0)
 	{
 		int m_out = 0, n_out = 0;
-		int *piAddressOut = NULL;
-
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;

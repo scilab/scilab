@@ -54,14 +54,12 @@
     filter model.
     The algorithm tries to compute the solution P as the growing limit of a
     sequence of matrices Pn such that</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
                                      -1
 Pn+1=F*Pn*F'+(G-F*Pn*h')*(R0-H*Pn*H')  *(G'-H*Pn*F')
        -1
 P0=G*R0 *G'
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Note that this method may not converge,especially when F has poles
     near the unit circle. Use preferably the srfaur function.</para>

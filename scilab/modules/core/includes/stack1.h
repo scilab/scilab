@@ -28,8 +28,6 @@ extern int C2F(dcopy)(int *array_length, double *array_in, int *array_in_stride,
 extern int C2F(scidcopy)(int *,double *,int *,double *,int *);
 extern int C2F(unsfdcopy)(int *,double *,int *,double *,int *);
 extern int C2F(rcopy)(int *,float *,int *,float *,int *);
-extern void C2F(cstringf)(char ***,int *,int *,int *,int *,int *);
-extern int C2F(stringc)(int *,char ***,int *);
 extern int C2F(stackg)(int *);
 
 /* calelm */

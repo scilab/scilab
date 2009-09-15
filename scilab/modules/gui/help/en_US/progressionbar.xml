@@ -47,15 +47,15 @@ progressionbar(winId[,mes])</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 winId=progressionbar('Do something');
 realtimeinit(0.3);
 for j=0:0.1:1,
-    realtime(3*j);
-    progressionbar(winId);
+  realtime(3*j);
+  progressionbar(winId);
 end
 winclose(winId);
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

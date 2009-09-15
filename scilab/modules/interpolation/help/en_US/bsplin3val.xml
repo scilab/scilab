@@ -97,7 +97,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
 deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
@@ -128,7 +128,7 @@ fxyz_i = bsplin3val(xp,yp,zp,tl,[1 1 1])
 
 fxxyz_e = fxxyz(xp,yp,zp)
 fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

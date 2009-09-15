@@ -80,7 +80,8 @@ includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
 includes/TerminateLocalization.h \
-includes/charEncoding.h
+includes/charEncoding.h \
+includes/dynlib_localization.h
 
 if GUI
 USEANT=1

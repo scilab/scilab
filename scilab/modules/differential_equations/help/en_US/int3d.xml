@@ -144,18 +144,18 @@
     <para>The function calculates an approximation to a given vector of
     definite integrals</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
           1  2      numfun
-     </programlisting>
+ ]]></programlisting>
 
     <para>where the region of integration is a collection of NUMTET
     tetrahedrons and where</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
  J   J
-     </programlisting>
+ ]]></programlisting>
 
     <para>A globally adaptive strategy is applied in order to compute
     approximations <literal>result(k)</literal> hopefully satisfying, for each
@@ -203,7 +203,7 @@ F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 X=[0;1;0;0];
 Y=[0;0;1;0];
 Z=[0;0;0;1];
@@ -211,7 +211,7 @@ Z=[0;0;0;1];
 // computes the integrand exp(x*x+y*y+z*z) over the 
 //tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
 
-//integration over a cube  -1&lt;=x&lt;=1;-1&lt;=y&lt;=1;-1&lt;=z&lt;=1
+//integration over a cube  -1<;=x<=1;-1<=y<=1;-1<=z<=1
 
 //  bottom  -top-     right    -left-   front   -rear- 
 X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
@@ -232,7 +232,7 @@ function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
 
 function v=f(xyz,numfun),v=1,endfunction
 [result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -57,8 +57,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //create the initial graph
 ta=[1 1 2 4 4 5 6 7 2 3 5 1];
 he=[2 6 3 6 7 8 8 8 4 7 3 5];
@@ -82,8 +81,7 @@ show_graph(g1,'new');
 g1.nodes.graphics.colors(2,:)=color('red');
 g1.edges.graphics.foreground(:)=color('red');
 show_graph(graph_union(g,g1,%f),'new')
-  
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -142,12 +142,16 @@
               <para>Esta forma permite passar outros parâmetros além de
               t,y,ydot à função. Deve ser como segue:</para>
 
-              <programlisting>list(res,x1,x2,...)            </programlisting>
+              <programlisting role = ""><![CDATA[ 
+list(res,x1,x2,...)
+ ]]></programlisting>
 
               <para>Onde a seqüência de chamamento da função
               <literal>res</literal> é agora</para>
 
-              <programlisting>r=res(t,y,ydot,x1,x2,...)             </programlisting>
+              <programlisting role = ""><![CDATA[ 
+r=res(t,y,ydot,x1,x2,...)
+ ]]></programlisting>
 
               <para><literal>res</literal> ainda retorna
               <literal>r=g(t,y,ydot)</literal> como função de
@@ -165,18 +169,18 @@
 
               <para>Em C a seqüência de chamamento:</para>
 
-              <programlisting>
+              <programlisting role = ""><![CDATA[ 
 void res(double *t, double y[], double yd[], double r[],
-                                          int *ires, double rpar[], int ipar[]) 
-     </programlisting>
+         int *ires, double rpar[], int ipar[]) 
+ ]]></programlisting>
 
               <para>Em Fortran deve ser:</para>
 
-              <programlisting>
+              <programlisting role = ""><![CDATA[ 
 subroutine res(t,y,yd,r,ires,rpar,ipar)
 double precision t, y(*),yd(*),r(*),rpar(*)
 integer ires,ipar(*)
-      </programlisting>
+ ]]></programlisting>
 
               <para>Os arrays rpar e ipar devem estar presentes, mas não podem
               ser utilizados.</para>
@@ -209,12 +213,16 @@ integer ires,ipar(*)
 
               <para>Deve ser como segue</para>
 
-              <programlisting>list(jac,x1,x2,...)              </programlisting>
+              <programlisting role = ""><![CDATA[ 
+list(jac,x1,x2,...)
+ ]]></programlisting>
 
               <para>Onde a seqüência de chamamento da função
               <literal>jac</literal> é agora</para>
 
-              <programlisting>r=jac(t,y,ydot,cj,x1,x2,...)    </programlisting>
+              <programlisting role = ""><![CDATA[ 
+r=jac(t,y,ydot,cj,x1,x2,...) 
+]]></programlisting>
 
               <para><literal>jac</literal> ainda retorna
               <literal>dg/dy+cj*dg/dydot</literal> como uma função de
@@ -229,16 +237,19 @@ integer ires,ipar(*)
 
               <para>Em C, a seqüência de chamamento deve ser</para>
 
-              <programlisting>  void jac(double *t, double y[], double yd[], double
-              pd[], double *cj, double rpar[], int ipar[])
-</programlisting>
+              <programlisting role = ""><![CDATA[ 
+void jac(double *t, double y[], double yd[], 
+         double pd[], double *cj, double rpar[], int ipar[])
+ ]]></programlisting>
 
               <para>Em Fortran deve ser</para>
 
-              <programlisting>  subroutine jac(t,y,yd,pd,cj,rpar,ipar)
-  double precision t, y(*),yd(*),pd(*),cj,rpar(*)
-  integer ipar(*)</programlisting>
-            </listitem>
+              <programlisting role = ""><![CDATA[ 
+subroutine jac(t,y,yd,pd,cj,rpar,ipar)
+double precision t, y(*),yd(*),pd(*),cj,rpar(*)
+integer ipar(*)
+ ]]></programlisting>
+           </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
@@ -265,12 +276,16 @@ integer ires,ipar(*)
 
               <para>Deve ser como segue:</para>
 
-              <programlisting>list(surf,x1,x2,...)              </programlisting>
+              <programlisting role = ""><![CDATA[ 
+list(surf,x1,x2,...)
+ ]]></programlisting>
 
               <para>onde a seqüência de chamamento <literal>surf</literal> é
               agora</para>
 
-              <programlisting>r=surf(t,y,x1,x2,...)             </programlisting>
+              <programlisting role = ""><![CDATA[ 
+r=surf(t,y,x1,x2,...)
+ ]]></programlisting>
             </listitem>
 
             <listitem>
@@ -281,13 +296,17 @@ integer ires,ipar(*)
 
               <para>Em C a seqüência de chamamento deve ser:</para>
 
-              <programlisting>  void surf(int *ny, double *t, double y[], int *ng, double gout[])</programlisting>
+              <programlisting role = ""><![CDATA[ 
+void surf(int *ny, double *t, double y[], int *ng, double gout[])
+ ]]></programlisting>
 
               <para>Em Fortran deve ser</para>
 
-              <programlisting>  subroutine surf(ny,t,y,ng,gout)
-  double precision t, y(*),gout(*)
-  integer ny,ng</programlisting>
+              <programlisting role = ""><![CDATA[ 
+subroutine surf(ny,t,y,ng,gout)
+double precision t, y(*),gout(*)
+integer ny,ng
+ ]]></programlisting>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -403,12 +422,10 @@ integer ires,ipar(*)
 
     <para>Solução da equação diferencial implícita</para>
 
-    <programlisting>
-
-    g(t,y,ydot)=0
-    y(t0)=y0  e   ydot(t0)=ydot0
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+g(t,y,ydot)=0
+y(t0)=y0  e   ydot(t0)=ydot0
+ ]]></programlisting>
 
     <para>Retorna os instantes de cruzamento da superfície e o número da
     superfície alcançada em <literal>nn</literal>.</para>
@@ -420,8 +437,7 @@ integer ires,ipar(*)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //dy/dt = ((2*log(y)+8)/t -5)*y,  y(1) = 1,  1&lt;=t&lt;=6
 //g1 = ((2*log(y)+8)/t - 5)*y 
 //g2 = log(y) - 2.2491 
@@ -433,8 +449,7 @@ deff('[rts]=gr1(t,y)','rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]')
 
 [yy,nn]=dasrt([y0,y0d],t0,t,atol,rtol,res1,ng,gr1);
 //(Deveria retornar nn=[2.4698972 2])
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -11,7 +11,6 @@
  *
  */
 
-#include "sci_fftw.h"
 #include "fftw_utilities.h"
 #include "callfftw.h"
 #include "MALLOC.h"

@@ -79,9 +79,8 @@ colordef('new',color_scheme)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-   // Add here scilab instructions and comments
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

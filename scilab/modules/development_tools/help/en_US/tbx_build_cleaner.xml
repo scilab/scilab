@@ -64,10 +64,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // Recommended usage
 tbx_build_cleaner("mytoolbox", get_absolute_file_path('builder.sce'))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

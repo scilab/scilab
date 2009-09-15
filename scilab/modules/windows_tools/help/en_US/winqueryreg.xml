@@ -42,7 +42,8 @@ value = winqueryreg('rootkey','subkey')</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[if MSDOS then
+    <programlisting role="example"><![CDATA[ 
+if MSDOS then
   winqueryreg 'HKEY_LOCAL_MACHINE' 'HARDWARE\DESCRIPTION\System\CentralProcessor\0\' 'ProcessorNameString'
   lines(-1);
   mousechar = winqueryreg('name', 'HKEY_CURRENT_USER','control panel\mouse');
@@ -53,7 +54,8 @@ value = winqueryreg('rootkey','subkey')</synopsis>
      str = sprintf('%s = %s', mousechar(k), string(setting));
      disp(str);
   end
-end]]></programlisting>
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

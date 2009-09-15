@@ -15,7 +15,7 @@
 /* desc : interface for relocate_handle routine                           */
 /*------------------------------------------------------------------------*/
 
-#include "sci_relocate_handle.h"
+#include "gw_graphics.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "HandleManagement.h"

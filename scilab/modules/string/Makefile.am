@@ -9,6 +9,7 @@ src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
 src/c/strcatfunction.c \
+src/c/strsplitfunction.c \
 src/c/partfunction.c \
 src/c/InitializeString.c \
 src/c/setScilabCharactersCodes.c \
@@ -113,6 +114,7 @@ includes/stricmp.h includes/strsubst.h \
 includes/code2str.h \
 includes/NumTokens.h \
 includes/StringConvert.h \
-includes/scistrtostr.h
+includes/scistrtostr.h \
+includes/dynlib_string.h
 
 include $(top_srcdir)/Makefile.incl.am

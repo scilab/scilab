@@ -44,20 +44,16 @@
     <para>
     System matrix of the linear system <literal>Sl</literal> (<literal>syslin</literal> list)
     in state-space form (utility function).</para>
-    <programlisting><![CDATA[
-
- Sm = [-sI + A   B;
-      [    C     D]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+Sm = [-sI + A   B;
+     [    C     D]
+ ]]></programlisting>
     <para>
     For a descriptor system (<literal>Sl=list('des',A,B,C,D,E)</literal>), <literal>systmat</literal> returns:</para>
-    <programlisting><![CDATA[
-
- Sm = [-sE + A   B;
-      [    C     D]
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+Sm = [-sE + A   B;
+     [    C     D]
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

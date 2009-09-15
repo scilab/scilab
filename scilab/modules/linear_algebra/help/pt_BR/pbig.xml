@@ -108,15 +108,13 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
 [Q,M]=pbig(A,1.5,'d');
 spec(M*A*Q)
 [Q1,M1]=fullrf(eye()-Q*M);
 spec(M1*A*Q1)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

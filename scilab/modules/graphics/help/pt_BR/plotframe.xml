@@ -145,8 +145,7 @@ plotframe(rect,&lt;opts_args&gt;)</synopsis>
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x=[-0.3:0.8:27.3]';
 y=rand(x);
 rect=[min(x),min(y),max(x),max(y)];
@@ -159,11 +158,10 @@ plotframe(rect,tics,[%t,%t],..
 ["Meu esboço com grides e fronteiras automáticas","x","y"],[0,0.5,0.5,0.5])
 plot2d(x,y,4,"000")
 plotframe(rect,flags=[%f,%t],tics=tics,..
-   Captions=["Meu esboço sem grides mas com fronteiras automáticas ","x","y"],..
-   subwin=[0.5,0.5,0.5,0.5])
+          Captions=["Meu esboço sem grides mas com fronteiras automáticas ","x","y"],..
+          subwin=[0.5,0.5,0.5,0.5])
 plot2d(x,y,5,"000")
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

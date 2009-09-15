@@ -51,28 +51,25 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
-  f=get("current_figure") // manipulador da figura corrente
+    <programlisting role="example"><![CDATA[ 
+f=get("current_figure") // manipulador da figura corrente
   
-  drawlater()
-  subplot(221);
-  t=1:10;plot2d(t,t.^2)
-  subplot(222);
-  x=0:1:7;plot2d(x,cos(x),2) 
-  subplot(234);
-  plot2d(t,cos(t),3);
-  subplot(235);
-  plot2d(x,sin(2*x),5); 
-  subplot(236);
-  plot2d(t,tan(2*t));  
+drawlater()
+subplot(221);
+t=1:10;plot2d(t,t.^2)
+subplot(222);
+x=0:1:7;plot2d(x,cos(x),2) 
+subplot(234);
+plot2d(t,cos(t),3);
+subplot(235);
+plot2d(x,sin(2*x),5); 
+subplot(236);
+plot2d(t,tan(2*t));  
  
-  draw(gca()); //desenhando os eixos correntes e seus galhos
-  draw(f.children([3 4])); // desenhando os eixos especificados e seus galhos
-  drawnow(); // desenhando a figura corrente
-
- 
-  </programlisting>
+draw(gca()); //desenhando os eixos correntes e seus galhos
+draw(f.children([3 4])); // desenhando os eixos especificados e seus galhos
+drawnow(); // desenhando a figura corrente
+ ]]></programlisting>
   </refsection>
 
   <refsection>

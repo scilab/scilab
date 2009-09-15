@@ -16,8 +16,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
-#define SOUND_TAB_SIZE 2
-static gw_generic_table Tab[SOUND_TAB_SIZE]={
+static gw_generic_table Tab[] = 
+{
 	{ sci_Playsound,"PlaySound"},
 	{ sci_Beep,"beep"}
 };
@@ -25,7 +25,7 @@ static gw_generic_table Tab[SOUND_TAB_SIZE]={
 int gw_sound(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab,SOUND_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
 	return 0;
 }

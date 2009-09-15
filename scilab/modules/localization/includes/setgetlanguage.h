@@ -14,61 +14,62 @@
 #ifndef __SETGETLANGUAGE_H__
 #define __SETGETLANGUAGE_H__
 
+#include "dynlib_localization.h"
 #include "BOOL.h"
 
 /** 
  * change language
  * @param lang
  */
-BOOL setlanguage(char *lang);
+LOCALIZATION_IMPEXP BOOL setlanguage(char *lang);
 
 
 /** 
  * returns current language
  * @return
  */
-char *getlanguage(void);
+LOCALIZATION_IMPEXP char *getlanguage(void);
 
 /** 
  * returns current alias 
  * example : en_US --> en
  * @return
  */
-char *getlanguagealias(void);
+LOCALIZATION_IMPEXP char *getlanguagealias(void);
 
 /** 
  * return internal code associated with a language
  * @return
  */
-int getcurrentlanguagecode(void);
+LOCALIZATION_IMPEXP int getcurrentlanguagecode(void);
 
 /** 
  * returns language of code
  * @param code
  * @return
  */
-char *getlanguagefromcode(int code);
+LOCALIZATION_IMPEXP char *getlanguagefromcode(int code);
 
 /** 
  * get code of a language
  * @param language
  * @return
  */
-int getcodefromlanguage(char *language);
+LOCALIZATION_IMPEXP int getcodefromlanguage(char *language);
 
 /** 
 * try to convert strlanguage (alias) to a good language string
 * @param language
 * @return
 */
-char *convertlanguagealias(char *strlanguage);
+LOCALIZATION_IMPEXP char *convertlanguagealias(char *strlanguage);
 
 /** 
 * test if lang is defined language
 * @param lang
 * @return TRUE or FALSE
 */
-BOOL LanguageIsOK(char *lang);
+LOCALIZATION_IMPEXP BOOL LanguageIsOK(char *lang);
 
 /**
  * Check if the current language is the same we are trying to switch to
@@ -76,7 +77,7 @@ BOOL LanguageIsOK(char *lang);
  * @param language The language we want to switch to
  * @return If we need to change the language or not
  */
-BOOL needtochangelanguage(char *language);
+LOCALIZATION_IMPEXP BOOL needtochangelanguage(char *language);
 
 
 /**
@@ -85,7 +86,7 @@ BOOL needtochangelanguage(char *language);
  * @param the locale we want to export
  * @return if is worked
  */
-BOOL exportLocaleToSystem(char *locale);
+LOCALIZATION_IMPEXP BOOL exportLocaleToSystem(char *locale);
 
 #endif /* __SETGETLANGUAGE_H__ */
 /*--------------------------------------------------------------------------*/ 

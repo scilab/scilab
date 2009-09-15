@@ -46,13 +46,13 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 if MSDOS then 
-	unix_w("dir "+'""'+WSCI+"\modules"+'""');
+  unix_w("dir "+'""'+WSCI+"\modules"+'""');
 else
-	unix_w("ls $SCI/modules");
+  unix_w("ls $SCI/modules");
 end
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

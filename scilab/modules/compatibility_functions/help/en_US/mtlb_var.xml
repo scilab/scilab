@@ -100,8 +100,7 @@ In the second case, a matrix is passed to the function, which returns the row ve
 [0.16 0.09].
 In the third case, a complex column vector is passed to the function, which 
 returns a value close to 2.</para>
-<programlisting role="example"><![CDATA[
-
+<programlisting role="example"><![CDATA[ 
 x = [10; 20; 30; 40; 50; 60; 70; 80; 90];
 computed = mtlb_var(x);
 
@@ -113,8 +112,7 @@ computed = mtlb_var(x);
 N=1000;
 x = grand(N,1,'nor',0,1) + %i*grand(N,1,'nor',0,1);
 computed = mtlb_var(x);
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

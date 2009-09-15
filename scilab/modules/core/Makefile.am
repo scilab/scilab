@@ -63,8 +63,6 @@ src/c/expr.c \
 src/c/getcommandlineargs.c \
 src/c/syncexec.c \
 src/c/callFunctionFromGateway.c \
-src/c/librarieslist.c \
-src/c/libraryinfo.c \
 src/c/getvariablesname.c \
 src/c/commandwords.c \
 src/c/freeArrayOfString.c \
@@ -216,7 +214,6 @@ sci_gateway/c/sci_funcprot.c \
 sci_gateway/c/sci_newfun.c \
 sci_gateway/c/sci_warning.c \
 sci_gateway/c/sci_dispbpt.c \
-sci_gateway/c/sci_whereis.c \
 sci_gateway/c/sci_intppty.c \
 sci_gateway/c/sci_ieee.c \
 sci_gateway/c/sci_gstacksize.c \
@@ -249,8 +246,6 @@ sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
 sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
-sci_gateway/c/sci_librarieslist.c \
-sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
@@ -262,7 +257,6 @@ sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
 sci_gateway/fortran/sci_useascommand.f \
-sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
@@ -371,8 +365,6 @@ includes/intmacr2tree.h \
 includes/isanan.h \
 includes/IsAScalar.h \
 includes/islittleendian.h \
-includes/librarieslist.h \
-includes/libraryinfo.h \
 includes/loadversion.h \
 includes/machine.h \
 includes/machine.h.in \

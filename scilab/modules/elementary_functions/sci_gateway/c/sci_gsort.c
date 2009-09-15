@@ -20,7 +20,6 @@
 #include "string.h"
 #include "Scierror.h"
 #include "MALLOC.h"
-#include "sortTemplate.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "isanan.h"

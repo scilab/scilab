@@ -144,7 +144,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 l = list(1,["a" "b"])
 l(0) = "foo"
 l($+1) = "olá"
@@ -154,7 +154,7 @@ l(3) = null()
 lbis = list("gewurtz", "caipirina" ,"debug")
 lter = lstcat(l,lbis)
 size(lter) - size(lbis) - size(l)  // deve ser zero
-</programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

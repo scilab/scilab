@@ -18,6 +18,7 @@
 #include "JVM_functions.h"
 #include "MALLOC.h"
 #include "getScilabJavaVM.h"
+#include "getScilabJNIEnv.h"
 #include "fromjava.h"
 #include "localization.h"
 #include "getJvmOptions.h"

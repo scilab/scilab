@@ -3,5 +3,5 @@
 
 EXPORTS
 ;fileio
-cluni0_
+expandPathVariable
 ;

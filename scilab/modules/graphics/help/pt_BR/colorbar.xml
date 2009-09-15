@@ -87,7 +87,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // exemplo 1
 x = linspace(0,1,81);
 z = cos(2*%pi*x)'*sin(2*%pi*x);
@@ -126,7 +126,6 @@ subplot(2,2,4)
    xtitle("um Sgrayplot com barra de cores")
 drawnow() ;
 
-
 // exemplo 3
 x = linspace(0,1,81);
 zz = abs(0.5*cos(2*%pi*x)'*cos(2*%pi*x));
@@ -143,7 +142,7 @@ plot3d(xf, yf, list(zf, zcol), flag = [-2 6 4])
 xtitle("um plot3d com cores de gradação interpolada")
 drawnow() ;
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

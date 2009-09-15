@@ -76,4 +76,5 @@ libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
 
 #### matio : include files ####
 libscimatio_la_includedir=$(pkgincludedir)/matio
-libscimatio_la_include_HEADERS = includes/gw_matio.h
+libscimatio_la_include_HEADERS = includes/gw_matio.h \
+	includes/dynlib_matio.h

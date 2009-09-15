@@ -254,17 +254,17 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
             <para>Si c'est une subroutine Fortran, sa liste d'appel doit
             être</para>
 
-            <programlisting> 
+            <programlisting role = ""><![CDATA[ 
 subroutine fex(n,t,y,ydot) 
 integer n
 double precision t,y(*),ydot(*)
- </programlisting>
+ ]]></programlisting>
 
             <para>Si c'est une fonction C son prototype doit être:</para>
 
-            <programlisting> 
+            <programlisting role = ""><![CDATA[ 
 void fex(int *n,double *t,double *y,double *ydot)
-       </programlisting>
+ ]]></programlisting>
 
             <para>Cet external peut être compilé par l'utilitaire <link
             linkend="ilib_for_link">ilib_for_link</link> et chargé
@@ -334,17 +334,17 @@ void fex(int *n,double *t,double *y,double *ydot)
         <para>En Fortran, Cette routine doit avoir la liste d'appel suivante
         :</para>
 
-        <programlisting> 
+        <programlisting role = ""><![CDATA[ 
 subroutine fex(n,t,y,ml,mu,J,nrpd) 
 integer n,ml,mu,nrpd
 double precision t,y(*),J(*)
-       </programlisting>
+ ]]></programlisting>
 
         <para>Si c'est une fonction C son prototype doit être:</para>
 
-        <programlisting> 
+        <programlisting role = ""><![CDATA[ 
 void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
-       </programlisting>
+ ]]></programlisting>
 
         <para>Dans la plupart des cas il n'est pas nécessaire d'utiliser
         <literal>ml</literal>, <literal>mu</literal> et
@@ -377,7 +377,7 @@ void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 // ---------- EDO Simple  (external : fonction Scilab)
 // dy/dt=y^2-y sin(t)+cos(t), y(0)=0
 function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
@@ -386,7 +386,7 @@ y=ode(y0,t0,t,f)
 plot(t,y)
 
 // ---------- EDO Simple  (external : code C)
-ccode=['#include &lt;math.h&gt;'
+ccode=['#include <math.h>'
        'void myode(int *n,double *t,double *y,double *ydot)'
        '{'
        '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
@@ -426,7 +426,7 @@ A=[10,0;0,-1];
 function xdot=f(t,x),xdot=A*x,endfunction 
 function J=Jacobian(t,y),J=A,endfunction 
 ode("stiff",[0;1],0,1,f,Jacobian)
-     </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

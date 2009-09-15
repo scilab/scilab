@@ -91,21 +91,19 @@
       </varlistentry>
     </variablelist>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
  s1\s2 |    "c"     |     "d"     |      n2        |     []     |
  ---------------------------------------------------------------
  "c"   | nothing    |uncompatible | c2e(s1,n2)     |  c(s2)     |
  ---------------------------------------------------------------
  "d"   |uncompatible| nothing     | e(s1,n2)       |  d(s2)     |
  ---------------------------------------------------------------
- n1    | c2e(s2,n1) | e(s2,n1)    | n1&lt;&gt;n2 uncomp  |  e(s2,n1)  |
+ n1    | c2e(s2,n1) | e(s2,n1)    | n1<>n2 uncomp  |  e(s2,n1)  |
        |            |             | n1=n2  nothing |            |
  ---------------------------------------------------------------
  []    | c(s1)      | d(s1)       | e(s1,n2)       |  nothing   |
  ---------------------------------------------------------------
-   
-    </programlisting>
+  ]]></programlisting>
 
     <para>With the following meaning:</para>
 
@@ -159,11 +157,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 s1=ssrand(1,1,2);
 s2=ss2tf(s1);
 [s1,s2]=sysconv(s1,s2);
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

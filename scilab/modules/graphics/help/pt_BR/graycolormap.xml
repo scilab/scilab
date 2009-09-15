@@ -66,11 +66,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 f = scf();
 plot3d1();
 f.color_map = graycolormap(32);
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

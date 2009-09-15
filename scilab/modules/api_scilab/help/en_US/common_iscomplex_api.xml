@@ -60,8 +60,7 @@
         <!--Lib_name: commom_function-->
         <!--Func_list: commom_function-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
@@ -185,8 +184,7 @@ int printf_info(int _iVar)
     }
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>

@@ -59,12 +59,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[// draw a surface
+    <programlisting role="example"><![CDATA[ 
+// draw a surface
 plot3d() ;
 // puts the titles
 xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
 // draw a box around the titles
-xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 ) ;]]></programlisting>
+xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 );
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

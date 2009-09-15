@@ -130,11 +130,9 @@
     <para>Se <literal>g</literal> é uma função, a sintaxe deve ser como
     segue:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
 z=g(t,y)
-   
-    </programlisting>
+ ]]></programlisting>
 
     <para>onde <literal>t</literal> é um escalar real (tempo) e
     <literal>y</literal> um vetor de reais (estado). Ela retorna um vetor de
@@ -160,8 +158,7 @@ z=g(t,y)
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 // Integração da equação diferencial
 // dy/dt=y , y(0)=1, e acha o tempo mínimo t tal que y(t)=2
 deff("[ydot]=f(t,y)","ydot=y")
@@ -169,13 +166,9 @@ deff("[z]=g(t,y)","z=y-2")
 y0=1;ng=1;
 [y,rd]=ode("roots",y0,0,2,f,ng,g)
 
-
 deff("[z]=g(t,y)","z=y-[2;2;33]")
 [y,rd]=ode("roots",1,0,2,f,3,g)
-
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -43,13 +43,11 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 mulf('1','a')
 mulf('0','a')
 'a'+'b'   //Cuidado...
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

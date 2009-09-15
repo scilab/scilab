@@ -47,9 +47,9 @@ This function set a vector to inform the type (algebraic or differential) of the
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 set_xproperty(xprop)
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_set_xproperty">
     <title>Parameters</title>

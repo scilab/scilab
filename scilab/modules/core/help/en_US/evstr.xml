@@ -70,14 +70,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a=1; b=2; Z=['a','b'] ; evstr(Z) 
 
 a=1; b=2; Z=list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
 evstr(Z)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

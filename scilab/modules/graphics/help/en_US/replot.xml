@@ -57,7 +57,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[backupstyle='?'
+    <programlisting role="example"><![CDATA[ 
+backupstyle='?'
 
 // First Example
 x=[0:0.1:2*%pi]';
@@ -70,9 +71,7 @@ plot() // plot demo
 f=gcf();
 replot([-1,-1,10,2],f.children(1)) // specify axes handle's value
 replot([-3,-2,8,4],f.children(2)) 
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

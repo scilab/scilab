@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "PATH_MAX.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "mopen.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -29,12 +29,10 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	int m1 = 0, n1 = 0, l1 = 0;
 	int m2 = 0, n2 = 0, l2 = 0;
 	int m3 = 0, n3 = 0, l3 = 0;
-	int l4 = 0, l5 = 0, err = 0;
+	int l4 = 0, l5 = 0, err = 3;
 	int swap = 1, one = 1;
 	char *status = NULL;
-	char filename[PATH_MAX + FILENAME_MAX];
-	int out_n = 0;
-	long int lout = 0;
+	char *filename = NULL;
 
 	Nbvars = 0;
 	CheckRhs(1,3);
@@ -90,10 +88,13 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l4);
 	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &one,&one, &l5);
 
-	lout = PATH_MAX + FILENAME_MAX;
-	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
-
-	C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
+	filename = expandPathVariable(cstk(l1));
+	if (filename)
+	{
+		C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
+		FREE(filename);
+		filename = NULL;
+	}
 
 	if (err >  0)
 	{

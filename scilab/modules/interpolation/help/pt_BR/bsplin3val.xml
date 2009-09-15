@@ -75,13 +75,13 @@
     <literal>s</literal>. A derivada a ser computada é especificada pelo
     argumento <literal>der=[ox,oy,oz]</literal> :</para>
 
-    <programlisting>
-               ox   oy   oz
-              d    d    d
-   dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
-               ox   oy   oz
-             dx   dy   dz
-         </programlisting>
+    <programlisting role = ""><![CDATA[ 
+            ox   oy   oz
+           d    d    d
+dfp(i) =  ---  ---  ---   s (xp(i),yp(i),zp(i))
+            ox   oy   oz
+          dx   dy   dz
+ ]]></programlisting>
 
     <para>Então, <literal>der=[0 0 0]</literal> corresponde a
     <emphasis>s</emphasis>, <literal>der=[1 0 0]</literal> to
@@ -97,7 +97,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 deff("v=f(x,y,z)","v=cos(x).*sin(y).*cos(z)");
 deff("v=fx(x,y,z)","v=-sin(x).*sin(y).*cos(z)");
 deff("v=fxy(x,y,z)","v=-sin(x).*cos(y).*cos(z)");
@@ -128,8 +128,7 @@ fxyz_i = bsplin3val(xp,yp,zp,tl,[1 1 1])
 
 fxxyz_e = fxxyz(xp,yp,zp)
 fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
-
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -115,7 +115,7 @@ k = mode()</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // copy - paste in scilab
 
 function example_mode( level_mode )
@@ -134,8 +134,7 @@ example_mode(3)
 example_mode(7)
 
 mode(2)
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

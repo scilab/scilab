@@ -166,12 +166,12 @@
 	  matrice <literal>X</literal> peut être calculée à
 	  partir de <literal>ind</literal> par
 	  </para>
-	  <programlisting><![CDATA[
-          items=1:n;
-          items(ind==0)==[ ];
-          ind(ind==0)=[ ];
-          X=sparse([ind;items]',ones(n,1),[m,n])
-	  ]]></programlisting>
+	  <programlisting><![CDATA[ 
+items=1:n;
+items(ind==0)==[ ];
+ind(ind==0)=[ ];
+X=sparse([ind;items]',ones(n,1),[m,n])
+ ]]></programlisting>
 	</listitem>
       </varlistentry>
    </variablelist>
@@ -190,7 +190,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 weight=ones(1,15).*.[1:4];
 profit=ones(1,60);
 capa=[15 45 30 60];
@@ -204,7 +204,6 @@ X*weight' //sack weights
 x=sum(X,1);
 and(x<=1) //contraints check
 profit*x'==earn
-
  ]]></programlisting>
   </refsection>
   <refsection>

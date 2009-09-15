@@ -52,8 +52,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // elemlib is a predefined library
 elementary_functionlib //displays the contents of the library
 A=rand(3,3);
@@ -61,8 +60,7 @@ cosm(A) //loads cosm and executes it
 whos -name cosm // now cosm is a variable
 elementary_functionlib.sinm //loads sinm from the library
 elementary_functionlib.cosm(A) //reloads cosm and executes it
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

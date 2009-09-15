@@ -173,8 +173,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //  rectangle selection
 clf();  // erase/create window
 a=gca();a.data_bounds=[0 0;100 100];//set user coordinates
@@ -195,8 +194,7 @@ while rep(3)==-1 do // mouse just moving ...
   r.data=[ox,oy,w,h]; //change the retangle origin, width an height
   first=%f;
 end
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

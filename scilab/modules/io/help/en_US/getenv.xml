@@ -46,11 +46,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
- getenv('SCI')
- getenv('FOO','foo') 
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+getenv('SCI')
+getenv('FOO','foo') 
+ ]]></programlisting>
   </refsection>
 </refentry>

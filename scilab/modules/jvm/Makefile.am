@@ -69,7 +69,8 @@ includes/addToLibrarypath.h \
 includes/catchIfJavaException.h \
 includes/getScilabObject.h \
 includes/loadBackGroundClassPath.h \
-includes/loadOnUseClassPath.h
+includes/loadOnUseClassPath.h \
+includes/dynlib_jvm.h
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \

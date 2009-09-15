@@ -43,15 +43,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
+gain = 0.235;x_message('value of gain is :'+string(gain))
+x_message(['singular matrix';'use least squares'])
 
- gain=0.235;x_message('value of gain is :'+string(gain))
- x_message(['singular matrix';'use least squares'])
-
- r=x_message(['Your problem is ill conditioned';
-             'continue ?'],['Yes','No'])
- 
-  ]]></programlisting>
+r = x_message(['Your problem is ill conditioned';
+               'continue ?'],['Yes','No'])
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

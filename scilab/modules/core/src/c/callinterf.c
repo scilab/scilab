@@ -33,7 +33,7 @@ static void sci_sigint_addinter(int n);
  ** Watch out the positions are crutial !!!
  ** @TODO : Make this less crappy...
  **/
-#define INTERFACES_MAX 62
+#define INTERFACES_MAX 64
 static OpTab Interfaces[INTERFACES_MAX] = {
     /* 01  */ {gw_user}, /* free position may be used */
 	/* 02  */ {gw_linear_algebra},
@@ -92,11 +92,13 @@ static OpTab Interfaces[INTERFACES_MAX] = {
 	/* 55  */ {gw_history_manager},
 	/* 56  */ {gw_dynamic_spreadsheet},
 	/* 57  */ {gw_graphic_export},
-    /* 58  */ {gw_dynamic_umfpack},
+	/* 58  */ {gw_dynamic_umfpack},
 	/* 59  */ {gw_dynamic_matio},
 	/* 60  */ {gw_dynamic_helptools},
 	/* 61  */ {gw_call_scilab},
-	/* 62  */ {gw_hdf5}
+	/* 62  */ {gw_hdf5},
+	/* 63  */ {gw_dynamic_xpad},
+	/* 64  */ {gw_user} /* xcos (to replace by "{gw_dynamic_xcos}," )*/
 };
 /*--------------------------------------------------------------------------*/
 static int sig_ok = 0;

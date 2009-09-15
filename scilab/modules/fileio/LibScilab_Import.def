@@ -28,3 +28,6 @@ freeArrayOfString
 transposeMatrixDouble
 getScilabMode
 GetData
+freeArrayOfWideString
+getTMPDIRW
+getSCIpathW

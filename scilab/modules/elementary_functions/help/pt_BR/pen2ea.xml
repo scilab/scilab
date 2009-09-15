@@ -65,11 +65,9 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 E=[1,0];A=[1,2];s=poly(0,'s');
 [E,A]=pen2ea(s*E-A)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

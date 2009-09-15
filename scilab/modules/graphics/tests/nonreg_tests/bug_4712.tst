@@ -25,4 +25,4 @@ plot3d(x,y,z);
 e=gce();
 e.data.x=e.data.x;
 
-// should not display any warinign or error
+// should not display any warning or error

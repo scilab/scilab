@@ -69,8 +69,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 //--- primeiro exemplo
 clf();
 ax=gca();//obtendo o manipulador dos eixos correntes
@@ -86,7 +85,6 @@ Matplot1(a,[5,6,7,8])
 //--- segundo exemplo (animação)
 n=100;
 
-
 clf();
 f=gcf();//obtendo o manipulador da figura corrente
 f.pixmap='on';//modo de buffer duplo
@@ -99,13 +97,11 @@ for k=-n:n,
   a= 3*tril(a,k)+ 2*a;
   a= a + a';
   k1= 3*(k+100)/200;
-  if k&gt;-n then delete(gce()),end
+  if k>-n then delete(gce()),end
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //enviando o buffer duplo para a tela
 end
-
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

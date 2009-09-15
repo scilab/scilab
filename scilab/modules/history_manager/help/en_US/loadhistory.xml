@@ -41,7 +41,9 @@ loadhistory(f)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[loadhistory(SCI+'/session.scilab')]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+loadhistory(SCI+'/session.scilab') 
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

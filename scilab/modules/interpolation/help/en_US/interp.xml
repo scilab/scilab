@@ -179,7 +179,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // see the examples of splin and lsq_splin
 
 // an example showing C2 and C1 continuity of spline and subspline
@@ -219,7 +219,7 @@ yy3 = interp(xx,x,y,d,"periodic");
 xbasc()
 plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
 xtitle(" different way to evaluate a spline outside its domain")
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
