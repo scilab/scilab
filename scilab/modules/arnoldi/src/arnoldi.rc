@@ -7,7 +7,6 @@
 //
 // Generated from the TEXTINCLUDE 2 resource.
 //
-//#include "afxres.h"
 #define APSTUDIO_HIDDEN_SYMBOLS
 #include "windows.h"
 /////////////////////////////////////////////////////////////////////////////
@@ -33,6 +32,7 @@ BEGIN
     "resource.h\0"
 END
 
+
 3 TEXTINCLUDE 
 BEGIN
     "\r\n"
@@ -57,7 +57,7 @@ VS_VERSION_INFO VERSIONINFO
  FILEFLAGS 0x0L
 #endif
  FILEOS 0x4L
- FILETYPE 0x2L
+ FILETYPE 0x0L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
@@ -66,10 +66,10 @@ BEGIN
         BEGIN
             VALUE "FileDescription", "arnoldi module"
             VALUE "FileVersion", "5, 2, 0, 0"
-            VALUE "InternalName", "arnoldi"
+            VALUE "InternalName", "arnoldi module"
             VALUE "LegalCopyright", "Copyright (C) 2009"
             VALUE "OriginalFilename", "arnoldi.dll"
-            VALUE "ProductName", "arnoldi module"
+            VALUE "ProductName", " arnoldi"
             VALUE "ProductVersion", "5, 2, 0, 0"
         END
     END
