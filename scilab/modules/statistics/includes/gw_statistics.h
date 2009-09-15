@@ -13,6 +13,7 @@
 #ifndef __GW_STATISTICS__
 #define __GW_STATISTICS__
 /*--------------------------------------------------------------------------*/ 
+#include "machine.h"
 #include "dynlib_statistics.h"
 #include "api_common.h"
 /*--------------------------------------------------------------------------*/ 
