@@ -55,11 +55,23 @@ namespace types
 		}
 		m_pThis = ObjectMatrix::CreateThis(p_self, p_level);
 		m_pSuper = ObjectMatrix::CreateSuper(p_self, p_level->Super());
+		m_pThis->IncreaseRef();
+		m_pSuper->IncreaseRef();
 	}
 	
 	BoundMethod::~BoundMethod()
 	{
-		/* Don’t delete m_pThis and m_pSuper ; will be deleted by scope_end */
+		m_pThis->DecreaseRef();
+		if(m_pThis->isDeletable())
+		{
+			delete m_pThis;
+		}
+		
+		m_pSuper->DecreaseRef();
+		if(m_pSuper->isDeletable())
+		{
+			delete m_pSuper;
+		}
 	}
 	
 	Callable::ReturnValue BoundMethod::call(typed_list &in, int iRetCount, typed_list &out)
@@ -68,8 +80,8 @@ namespace types
 		symbol::Context *ctx = symbol::Context::getInstance();
 		
 		ctx->scope_begin();
-		ctx->put(symbol::Symbol("this"), *m_pThis);
-		ctx->put(symbol::Symbol("super"), *m_pSuper);
+		ctx->put(symbol::Symbol("this"), *m_pThis, false);
+		ctx->put(symbol::Symbol("super"), *m_pSuper, false);
 		
 		ret = InnerCall(in, iRetCount, out);
 		
@@ -104,7 +116,7 @@ namespace types
 	Callable::ReturnValue BoundGetter::InnerCall(typed_list &in, int retCount, typed_list &out)
 	{
 		symbol::Context::getInstance()->put(symbol::Symbol("value"),
-				* m_pThis->GetLevelRef()->RawGet(*m_pSlot)->clone());
+				* m_pThis->GetLevelRef()->RawGet(*m_pSlot));
 		return BoundMethod::InnerCall(in, retCount, out);
 	}
 	
@@ -118,7 +130,7 @@ namespace types
 		InternalType *new_val;
 		
 		symbol::Context::getInstance()->put(v_sym, 
-				* m_pThis->GetLevelRef()->RawGet(*m_pSlot)->clone());
+				* m_pThis->GetLevelRef()->RawGet(*m_pSlot));
 		ret = BoundMethod::InnerCall(in, retCount, out);
 		new_val = out.front();
 		m_pThis->GetLevelRef()->RawSet(*m_pSlot, new_val);

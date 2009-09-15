@@ -83,10 +83,10 @@ namespace symbol
 		// FIXME
 	}
 
-	bool Context::put(Symbol key, InternalType &type)
+	bool Context::put(Symbol key, InternalType &type, bool bCheckSpecial)
 	{
 		// FIXME
-		EnvVarTable.put(key, type);
+		EnvVarTable.put(key, type, bCheckSpecial);
 		return true;
 	}
 

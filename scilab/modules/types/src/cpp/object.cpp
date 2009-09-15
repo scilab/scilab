@@ -221,8 +221,14 @@ namespace types
 			MethodSlot *magic = dynamic_cast<MethodSlot*>(slot);
 			if(magic)
 			{
-				BoundMethod m(magic->func, p_self, level, p_sender);
-				return p_self->DoCall(m, 1, new String(p_slotName.c_str()), NULL);
+				InternalType *pRet;
+				{
+					BoundMethod m(magic->func, p_self, level, p_sender);
+					pRet = p_self->DoCall(m, 1, new String(p_slotName.c_str()), NULL);
+					pRet->IncreaseRef();
+				}
+				pRet->DecreaseRef();
+				return pRet;
 			}
 		}
 		
@@ -275,7 +281,9 @@ namespace types
 			if(magic)
 			{
 				BoundMethod m(magic->func, p_self, level, p_sender);
-				p_self->DoCall(m, 1, new String(p_slotName.c_str()), p_value, NULL);
+				p_value->IncreaseRef();
+				p_self->DoCall(m, 0, new String(p_slotName.c_str()), p_value, NULL);
+				p_value->DecreaseRef();
 				return;
 			}
 		}
@@ -311,8 +319,14 @@ namespace types
 			PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
 			if(prop->getter)
 			{
-				BoundGetter m(prop, this, p_level, p_sender);
-				return DoCall(m, 1, NULL);
+				InternalType *pRet;
+				{
+					BoundGetter m(prop, this, p_level, p_sender);
+					pRet = DoCall(m, 1, NULL);
+					pRet->IncreaseRef();
+				}
+				pRet->DecreaseRef();
+				return pRet;
 			}
 			else
 			{
@@ -333,8 +347,12 @@ namespace types
 			PropertySlot *prop = dynamic_cast<PropertySlot*>(p_slot);
 			if(prop->setter)
 			{
-				BoundSetter m(prop, this, p_level, p_sender);
-				DoCall(m, 1, p_value, NULL);
+				p_value->IncreaseRef();
+				{
+					BoundSetter m(prop, this, p_level, p_sender);
+					DoCall(m, 1, p_value, NULL);
+				}
+				p_value->DecreaseRef();
 			}
 			else
 			{
@@ -389,7 +407,7 @@ namespace types
 		std::map<std::string, InternalType *>::iterator it = m_slotsValues.find(slot.name);
 		if(it == m_slotsValues.end())
 		{
-			InternalType *ret = slot.default_value->clone();
+			InternalType *ret = slot.default_value;
 			m_slotsValues[slot.name] = ret;
 			ret->IncreaseRef();
 			return ret;
