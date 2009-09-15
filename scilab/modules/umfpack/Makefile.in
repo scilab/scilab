@@ -473,8 +473,9 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
+@UMFPACK_TRUE@			-I$(top_srcdir)/modules/mexlib/includes \
 @UMFPACK_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
-@UMFPACK_TRUE@			-I$(top_srcdir)/modules/mexlib/includes
+@UMFPACK_TRUE@			-I$(top_srcdir)/modules/operations/includes
 
 
 #### umfpack : include files ####

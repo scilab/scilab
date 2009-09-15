@@ -513,13 +513,13 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@	-I$(top_srcdir)/modules/io/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/modules/fileio/includes/ \
 @PVM_TRUE@	-I$(top_srcdir)/modules/api_scilab/includes \
-@PVM_TRUE@	$(PVM_INCLUDE)
+@PVM_TRUE@	-I$(top_srcdir)/modules/operations/includes/
 
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_FALSE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 @PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
-@PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
+@PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES)
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
@@ -539,12 +539,12 @@ top_srcdir = @top_srcdir@
 #### pvm : init scripts ####
 @PVM_FALSE@libscipvm_la_etcdir = $(mydatadir)/etc
 
-#### pvm : init scripts #### 
+#### pvm : init scripts ####
 @PVM_TRUE@libscipvm_la_etcdir = $(mydatadir)/etc
 @PVM_FALSE@libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 @PVM_TRUE@libscipvm_la_etc_DATA = etc/pvm.quit etc/pvm.start
 
-#### pvm : gateway declaration #### 
+#### pvm : gateway declaration ####
 @PVM_TRUE@libscipvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
@@ -1433,6 +1433,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+@PVM_TRUE@	$(PVM_INCLUDE)
 
 # This target enables tests for Scilab
 @PVM_TRUE@check-local: $(top_builddir)/scilab-bin

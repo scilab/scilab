@@ -18,6 +18,7 @@
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006/2007
+### Copyright (C) 2009 - DIGITEO - Vincent LIARD
 ##########
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -113,7 +114,8 @@ libscistatistics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscistatistics_la-CdfBase.lo \
-	libscistatistics_la-ipmpar1.lo
+	libscistatistics_la-ipmpar1.lo \
+	libscistatistics_la-sci_string_matrix.lo
 am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
 	cdfpoi.lo bcorr.lo cumchi.lo apser.lo gamln1.lo cdft.lo \
 	gaminv.lo cumnbn.lo cdffnc.lo rlog1.lo cdfchn.lo dt1.lo \
@@ -403,7 +405,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
-src/c/ipmpar1.c
+src/c/ipmpar1.c \
+src/c/sci_string_matrix.c
 
 STATISTICS_FORTRAN_SOURCES = src/dcdflib/psi.f \
 src/dcdflib/alngam.f \
@@ -483,8 +486,9 @@ sci_gateway/c/sci_cdfnor.c
 
 libscistatistics_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/api_scilab/includes \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/operations/includes
 
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
@@ -494,7 +498,7 @@ libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURC
 # For the code check (splint)
 CHECK_SRC = $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
-libscistatistics_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscistatistics_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = statistics
@@ -668,6 +672,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfnor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdfpoi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_cdft.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistatistics_la-sci_string_matrix.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -703,6 +708,13 @@ libscistatistics_la-ipmpar1.lo: src/c/ipmpar1.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/ipmpar1.c' object='libscistatistics_la-ipmpar1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-ipmpar1.lo `test -f 'src/c/ipmpar1.c' || echo '$(srcdir)/'`src/c/ipmpar1.c
+
+libscistatistics_la-sci_string_matrix.lo: src/c/sci_string_matrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -MT libscistatistics_la-sci_string_matrix.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-sci_string_matrix.Tpo -c -o libscistatistics_la-sci_string_matrix.lo `test -f 'src/c/sci_string_matrix.c' || echo '$(srcdir)/'`src/c/sci_string_matrix.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistatistics_la-sci_string_matrix.Tpo $(DEPDIR)/libscistatistics_la-sci_string_matrix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_string_matrix.c' object='libscistatistics_la-sci_string_matrix.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -c -o libscistatistics_la-sci_string_matrix.lo `test -f 'src/c/sci_string_matrix.c' || echo '$(srcdir)/'`src/c/sci_string_matrix.c
 
 libscistatistics_la-gw_statistics.lo: sci_gateway/c/gw_statistics.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistatistics_la_CFLAGS) $(CFLAGS) -MT libscistatistics_la-gw_statistics.lo -MD -MP -MF $(DEPDIR)/libscistatistics_la-gw_statistics.Tpo -c -o libscistatistics_la-gw_statistics.lo `test -f 'sci_gateway/c/gw_statistics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_statistics.c
