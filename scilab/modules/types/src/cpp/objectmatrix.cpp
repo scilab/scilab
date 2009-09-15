@@ -25,10 +25,18 @@ namespace types
 		m_iRows = rows;
 		m_iCols = cols;
 		m_iSize = rows * cols;
+		for(int i = 0; i < rows * cols; ++i)
+		{
+			m_pObj[i] = NULL;
+		}
 	}
 		
 	ObjectMatrix::~ObjectMatrix()
 	{
+		for(int i = 0; i < m_iSize; ++i)
+		{
+			m_pObj[i]->Release();
+		}
 		delete [] m_pObj;
 	}
 	
@@ -116,7 +124,12 @@ namespace types
 			}
 		}
 		
+		if(m_pObj[pos] != NULL)
+		{
+			m_pObj[pos]->Release();
+		}
 		m_pObj[pos] = val;
+		val->Retain();
 		return true;
 	}
 	

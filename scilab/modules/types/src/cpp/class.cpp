@@ -48,6 +48,11 @@ namespace types
 	
 	Class::~Class()
 	{
+		std::map<std::string, Slot&>::iterator it;
+		for(it = m_instanceSlots.begin(); it != m_instanceSlots.end(); ++it)
+		{
+			delete &it->second;
+		}
 	}
 	
 	Class* Class::Create(const std::string &p_name, Class *p_super_class)
@@ -181,7 +186,9 @@ namespace types
 	{
 		if(m_instanceSlots.find(_slotName) != m_instanceSlots.end())
 		{
+			Slot *theSlot = &m_instanceSlots.find(_slotName)->second;
 			m_instanceSlots.erase(m_instanceSlots.find(_slotName));
+			delete theSlot;
 		}
 		else
 		{

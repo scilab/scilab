@@ -38,10 +38,12 @@ namespace types
 		const ObjectMatrix *getAsObject() const { return this; }
 		
 		// obj.foo
+		// Garbage collection rules are the same that Object::Get
 		InternalType *Get(const std::string &p_slotName) const;
 		InternalType *Get(const std::string &p_slotName, ObjectMatrix *p_sender) const;
 		
 		// obj.foo = bar
+		// Garbage collection rules are the same that Object::Set
 		void Set(const std::string &p_slotName, InternalType * p_value) const;
 		void Set(const std::string &p_slotName, InternalType * p_value, ObjectMatrix *p_sender) const;
 		
@@ -63,7 +65,7 @@ namespace types
 		ObjectMatrix(Object *_pObj, Object *_pLevel, Object *_pStart):
 			GenericType(), 
 			m_pObj(new Object*[1]), m_pLvl(_pLevel), m_pStart(_pStart), m_pRepr(NULL)
-		{ m_iRows = m_iCols = m_iSize = 1; SetElem(0, _pObj); }
+		{ m_iRows = m_iCols = m_iSize = 1; m_pObj[0] = NULL; SetElem(0, _pObj); }
 	
 		Object **m_pObj; // Reference to the object
 		Object *m_pLvl; // For "this" only: pointer to current level

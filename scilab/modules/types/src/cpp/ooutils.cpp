@@ -126,14 +126,12 @@ namespace types
 	Callable::ReturnValue BoundSetter::InnerCall(typed_list &in, int retCount, typed_list &out)
 	{
 		Callable::ReturnValue ret;
-		symbol::Symbol v_sym("value");
-		InternalType *new_val;
+		symbol::Symbol valSym("value");
 		
-		symbol::Context::getInstance()->put(v_sym, 
+		symbol::Context::getInstance()->put(valSym, 
 				* m_pThis->GetLevelRef()->RawGet(*m_pSlot));
 		ret = BoundMethod::InnerCall(in, retCount, out);
-		new_val = out.front();
-		m_pThis->GetLevelRef()->RawSet(*m_pSlot, new_val);
+		m_pThis->GetLevelRef()->RawSet(*m_pSlot, out.front());
 		
 		return ret;
 	}

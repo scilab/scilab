@@ -57,15 +57,29 @@ namespace types
 	
 	Object::~Object()
 	{
-		std::map<std::string, InternalType*>::iterator it;
-		for(it = m_slotsValues.begin(); it != m_slotsValues.end(); ++it)
+		/* Free slots values */
 		{
-			it->second->DecreaseRef();
-			if(it->second->isDeletable())
+			std::map<std::string, InternalType*>::iterator it;
+			for(it = m_slotsValues.begin(); it != m_slotsValues.end(); ++it)
 			{
-				delete it->second;
+				it->second->DecreaseRef();
+				if(it->second->isDeletable())
+				{
+					delete it->second;
+				}
 			}
 		}
+		
+		/* Delete slots */
+		{
+			std::map<std::string, Slot&>::iterator it;
+			for(it = m_slots.begin(); it != m_slots.end(); ++it)
+			{
+				delete &it->second;
+			}
+		}
+		
+		m_pSuper->Release();
 	}
 	
 	void Object::InstallProperty(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *p_getter, Callable *p_setter)
@@ -438,7 +452,9 @@ namespace types
 	{
 		if(m_slots.find(_slotName) != m_slots.end())
 		{
+			Slot *theSlot = &m_slots.find(_slotName)->second;
 			m_slots.erase(m_slots.find(_slotName));
+			delete theSlot;
 		}
 		else
 		{

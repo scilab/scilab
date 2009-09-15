@@ -22,7 +22,7 @@ namespace types
 	friend class Class;
 	
 	public:
-		virtual ~Instance() {}
+		virtual ~Instance() { m_pClass->Release(); }
 		std::string toString() const { return "<'"+m_pClass->GetName()+"' Instance>"; }
 		Class *GetClass() const { return m_pClass; }
 	

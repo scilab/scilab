@@ -73,16 +73,16 @@ namespace types
 		virtual ~Object();
 		
 		/** Perform (this object).(slot) ; returns NULL if the slot isn't found.
-		*	 p_sender is the caller object reference, that is, the "this" variable
+		*   p_sender is the caller object reference, that is, the "this" variable
 		* in the calling environment, if the calling environment is a method (NULL
 		* otherwise)
-		*	 p_self is the current object (the bottom in the super chain). It can
+		*   p_self is the current object (the bottom in the super chain). It can
 		* be different in the case of the special variable super, where the slot
 		* resolution algorithm starts from a level upper than the bottom level in
 		* the super chain. If this case, this is the start level of slot
 		* resolution while p_self is the bottom of the super chain.
-		*	 Return value will be destroyed with this object (or when it will be
-		* set), clone it if you may need it later.
+		*   This object has a reference (IncreaseRef) on the result. The result
+		* will be destroyed with this object if it is deletable.
 		*/
 		InternalType *Get(const std::string &p_slotName, Object *p_self, ObjectMatrix *p_sender);
 		
@@ -99,8 +99,7 @@ namespace types
 		
 		/** Perform (this.object).(slot) = (value).
 		*	 See Object::get for considerations on arguments.
-		*	 p_value will be destroyed with the object ; clone it before if you may
-		* need it later.
+		*	 No copy is performed on p_value, but a IncreaseRef is.
 		*/
 		void Set(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
 		
@@ -110,15 +109,16 @@ namespace types
 		bool SetPriv(const std::string &p_slotName, InternalType *p_value, Object *p_self, ObjectMatrix *p_sender);
 		
 		/** Install a property on the object.
-		*	 getter and setter can be NULL ; p_default can’t.
-		*	 getter, setter and p_default will be destroyed with this object ;
-		* clone them if you may need it later.
+		*   getter and setter can be NULL ; p_default can’t.
+		*   getter, setter and p_default will not be cloned but an IncreaseRef
+		* will be performed on it. They will be destroyed with this object if
+		* they are deletable.
 		*/
 		void InstallProperty(const std::string &p_slotName, Slot::Visibility p_visibility, InternalType *p_default, Callable *getter, Callable *setter);
 		
 		/** Install a method on the object.
-		*	 func will be destroyed with this object ;* clone them if you may need
-		* it later.
+		*   funct will not be cloned but an IncreaseRef will be performed on it.
+		*   It will be destroyed with this object if they are deletable.
 		*/
 		void InstallMethod(const std::string &p_slotName, Slot::Visibility p_visibility, Callable *p_func);
 		
@@ -140,9 +140,19 @@ namespace types
 		// m_slots_values manipulation
 		InternalType *RawGet(PropertySlot &slot);
 		void RawSet(PropertySlot &slot, InternalType *value);
+		
+		/* Garbage collection
+		* Right now, simple refcount with no cycle detection. A created object begins with
+		* a refcount of 1 ; it is destroyed as soon as its refcount falls to 0
+		* Since it’s a bit different from the refcount of InternalType, name it differently
+		*/
+		inline Object* Retain() { ++m_iRefCount; return this; }
+		inline void Release() { if(--m_iRefCount == 0) delete this; }
 	
 	protected:
-		Object(Object *_pSuper = NULL): m_pSuper(_pSuper), m_slots(), m_slotsValues() { }
+		Object(Object *_pSuper = NULL):
+			m_pSuper(_pSuper), m_slots(), m_slotsValues(), m_iRefCount(1)
+		{ if(_pSuper) _pSuper->Retain(); }
 	
 		// Search p_slotName in slots list (recursively).
 		// If found, set r_lvptr to the level where the slot is found and r_slot to
@@ -182,6 +192,7 @@ namespace types
 		std::map<std::string, InternalType *> m_slotsValues;
 		std::map<std::string, Slot&> m_slots;
 		Object *m_pSuper;
+		int m_iRefCount;
 	};
 }
 

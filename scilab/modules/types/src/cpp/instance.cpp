@@ -20,6 +20,7 @@ namespace types
 		Object(p_isa),
 		m_pClass(p_kls)
 	{
+		m_pClass->Retain();
 		InstallProperty("super", Slot::PRIVATE, ObjectMatrix::CreateStandardRef(p_isa), NULL, RoSetter);
 		InstallProperty("cls", Slot::PUBLIC, ObjectMatrix::CreateStandardRef(p_kls), NULL, RoSetter);
 		InstallProperty("level_class", Slot::PRIVATE, ObjectMatrix::CreateStandardRef(p_kls), NULL, RoSetter);
