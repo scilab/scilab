@@ -21,7 +21,7 @@ int getStartPosition(int _iPos, int* _piStartPos);
 int diag_double(int* _piAddress, int _iStartPos);
 int diag_poly(int* _piAddress, int _iStartPos);
 
-extern int C2F(sci_pdiag) (char *fname,unsigned long fname_len);
+extern int sci_pdiag(char *fname,unsigned long fname_len);
 
 int C2F(sci_diag) (char *fname,unsigned long fname_len)
 {
@@ -226,7 +226,7 @@ int diag_double(int* _piAddress, int _iStartPos)
 
 int diag_poly(int* _piAddress, int _iStartPos)
 {
-	C2F(sci_pdiag)("diag", 4);
+	sci_pdiag("diag", 4);
 	return 0;
 }
 

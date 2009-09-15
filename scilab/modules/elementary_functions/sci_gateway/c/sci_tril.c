@@ -18,7 +18,7 @@
 /*--------------------------------------------------------------------------*/
 int tril_matrix(int _iOffset);
 
-extern int C2F(sci_ptril) (char *fname,unsigned long fname_len);
+extern int sci_ptril(char *fname,unsigned long fname_len);
 extern int C2F(inttril)	(int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_tril) (char *fname,unsigned long fname_len)
@@ -64,7 +64,7 @@ int C2F(sci_tril) (char *fname,unsigned long fname_len)
 		tril_matrix(iOffset);
 		break;
 	case sci_poly :
-		C2F(sci_ptril)(fname, fname_len);
+		sci_ptril(fname, fname_len);
 	default : 
 		OverLoad(1);
 		break;

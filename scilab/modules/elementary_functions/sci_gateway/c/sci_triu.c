@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/
 int triu_matrix(int _iOffset);
 
-extern int C2F(sci_ptriu) (char *fname,unsigned long fname_len);
+extern int sci_ptriu(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 extern int C2F(inttriu) (int *id);
 /*--------------------------------------------------------------------------*/
@@ -66,7 +66,7 @@ int C2F(sci_triu) (char *fname,unsigned long fname_len)
 		triu_matrix(iOffset);
 		break;
 	case sci_poly :
-		C2F(sci_ptriu)(fname, fname_len);
+		sci_ptriu(fname, fname_len);
 	default : 
 		OverLoad(1);
 		break;
