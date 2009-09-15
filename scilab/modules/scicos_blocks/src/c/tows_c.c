@@ -29,7 +29,7 @@
 #include "mopen.h"
 #include "mput.h"
 #include "mclose.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "scicos_malloc.h"
@@ -88,7 +88,8 @@ static char *str_hmlst[]={"hm","dims","entries"};
 #endif
 /*--------------------------------------------------------------------------*/ 
 /* work struct for that block */
-typedef struct {
+typedef struct 
+{
 	int cnt;
 	int loop;
 	void *work;
@@ -108,9 +109,7 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 	char *status;
 	int swap = 1;
 	double res;
-	int out_n;
-	long int lout;
-	char filename[FILENAME_MAX];
+	char *filename = NULL;
 	/* for name of file */
 	char str[100];
 	/* generic pointer */
@@ -152,14 +151,17 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 	nz  = block->ipar[0];         /* buffer size */
 
 	/* check if u is a matrix */
-	if (nu2!=1) {
+	if (nu2!=1) 
+	{
 		ismat=1;
 	}
 
-	if (flag==4) { /* init */
-
+	if (flag==4) 
+	{ 
+		/* init */
 		/* begin campaign of allocations */
-		if((*(block->work)=(towork_struct*) scicos_malloc(sizeof(towork_struct)))==NULL) {
+		if((*(block->work)=(towork_struct*) scicos_malloc(sizeof(towork_struct)))==NULL) 
+		{
 			set_block_error(-16);
 			return;
 		}
@@ -170,11 +172,12 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		* t
 		*/
 		if((ptr->workt=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-			nz*sizeof(double)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
+			nz*sizeof(double)))==NULL) 
+		{
+			set_block_error(-16);
+			scicos_free(ptr);
+			*(block->work) = NULL;
+			return;
 		}
 		ptr_i    = (int*) ptr->workt;
 		ptr_i[6] = 1;
@@ -183,7 +186,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		ptr_i[9] = 0;
 
 		ptr_d = (SCSREAL_COP *) &(ptr_i[10]);
-		for (i=0;i<nz;i++) {
+		for (i=0;i<nz;i++) 
+		{
 			ptr_d[i]=-1;
 		}
 
@@ -204,7 +208,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		switch (ut)
 		{
 		case SCSREAL_N    :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -214,12 +219,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(double)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(double)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -230,14 +236,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_d      = (SCSREAL_COP *) &(ptr_i[44]);
 
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(double)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(double)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				ptr_i[6]   = 1;
@@ -246,13 +254,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]   = 0;
 				ptr_d      = (SCSREAL_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_d[i] = 0.;
 			}
 			break;
 
 		case SCSCOMPLEX_N :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -262,12 +273,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					2*nz*nu*nu2*sizeof(double)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					2*nz*nu*nu2*sizeof(double)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -278,14 +290,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_d      = (SCSREAL_COP *) &(ptr_i[44]);
 
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					2*nz*nu*sizeof(double)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					2*nz*nu*sizeof(double)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				ptr_i[6]   = 1;
@@ -294,13 +308,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]   = 1;
 				ptr_d      = (SCSREAL_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<2*nu*nu2*nz;i++) {
+
+			for (i=0;i<2*nu*nu2*nz;i++) 
+			{
 				ptr_d[i] = 0.;
 			}
 			break;
 
 		case SCSINT8_N    :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -310,12 +327,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(char)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(char)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -326,14 +344,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_c      = (SCSINT8_COP *) &(ptr_i[44]);
 
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(char)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(char)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				ptr_i[6]   = 8;
@@ -342,13 +362,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]   = 1;
 				ptr_c      = (SCSINT8_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_c[i] = 0;
 			}
 			break;
 
 		case SCSINT16_N   :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -358,12 +380,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(short)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(short)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -373,14 +396,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[43]  = 2;
 				ptr_s      = (SCSINT16_COP *) &(ptr_i[44]);
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(short)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(short)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				ptr_i[6]   = 8;
@@ -389,7 +414,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]   = 2;
 				ptr_s      = (SCSINT16_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_s[i] = 0;
 			}
 			break;
@@ -405,12 +431,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(long)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(long)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -420,14 +447,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[43]  = 4;
 				ptr_l      = (SCSINT32_COP *) &(ptr_i[44]);
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(long)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(long)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				ptr_i[6]   = 8;
@@ -436,13 +465,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]   = 4;
 				ptr_l      = (SCSINT32_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_l[i] = 0;
 			}
 			break;
 
 		case SCSUINT8_N   :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -452,12 +483,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(unsigned char)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(unsigned char)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -467,14 +499,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[43]  = 11;
 				ptr_uc     = (SCSUINT8_COP *) &(ptr_i[44]);
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(unsigned char)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(unsigned char)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i       = (int*) ptr->work;
 				ptr_i[6]    = 8;
@@ -483,13 +517,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]    = 11;
 				ptr_uc      = (SCSUINT8_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_uc[i] = 0;
 			}
 			break;
 
 		case SCSUINT16_N  :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -499,12 +535,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(unsigned short)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(unsigned short)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -514,14 +551,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[43]  = 12;
 				ptr_us     = (SCSUINT16_COP *) &(ptr_i[44]);
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(unsigned short)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(unsigned short)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i = (int*) ptr->work;
 				ptr_i[6]    = 8;
@@ -530,13 +569,15 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]    = 12;
 				ptr_us      = (SCSUINT16_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_us[i] = 0;
 			}
 			break;
 
 		case SCSUINT32_N  :
-			if (ismat) {
+			if (ismat) 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int) + \
 					2*sizeof(int) + \
 					4*sizeof(int) + \
@@ -546,12 +587,13 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 					4*sizeof(int) + \
 					(3)*sizeof(int) + \
 					4*sizeof(int) + \
-					nz*nu*nu2*sizeof(unsigned long)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*nu2*sizeof(unsigned long)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i      = (int*) ptr->work;
 				codehm
@@ -561,14 +603,16 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[43]  = 14;
 				ptr_ul     = (SCSUINT32_COP *) &(ptr_i[44]);
 			}
-			else {
+			else 
+			{
 				if((ptr->work=(void *) scicos_malloc(6*sizeof(int)+4*sizeof(int)+ \
-					nz*nu*sizeof(unsigned long)))==NULL) {
-						set_block_error(-16);
-						scicos_free(ptr->workt);
-						scicos_free(ptr);
-						*(block->work) = NULL;
-						return;
+					nz*nu*sizeof(unsigned long)))==NULL) 
+				{
+					set_block_error(-16);
+					scicos_free(ptr->workt);
+					scicos_free(ptr);
+					*(block->work) = NULL;
+					return;
 				}
 				ptr_i = (int*) ptr->work;
 				ptr_i[6]    = 8;
@@ -577,7 +621,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[9]    = 14;
 				ptr_ul      = (SCSUINT32_COP *) &(ptr_i[10]);
 			}
-			for (i=0;i<nu*nu2*nz;i++) {
+			for (i=0;i<nu*nu2*nz;i++) 
+			{
 				ptr_ul[i] = 0;
 			}
 			break;
@@ -608,11 +653,14 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		ptr->loop = 0;
 	}
 
-	else if (flag==5) { /* finish */
+	else if (flag==5) 
+	{ 
+		/* finish */
 
 		ptr = *(block->work);
 
-		if (ptr!=NULL) {
+		if (ptr!=NULL) 
+		{
 			/* Put file name in str */
 			C2F(cvstr)(&(block->ipar[1]),&(block->ipar[2]),str,(j=1,&j), \
 				(unsigned long)strlen(str));
@@ -626,12 +674,21 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 			strcat(env,str);
 
 			/* open tmp file */
-			status = "wb"; /* "w" : write */
+			status = "wb"; 
+			/* "w" : write */
 			/* "b" : binary (required for Windows) */
-			lout   = FILENAME_MAX;
-			C2F(cluni0)(env, filename, &out_n,1,lout);
-			C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
-			if (ierr != 0) {
+
+			ierr = 1;
+			filename = expandPathVariable(env);
+			if (filename)
+			{
+				C2F(mopen)(&fd, filename, status, &swap, &res, &ierr);
+				FREE(filename);
+				filename = NULL;
+			}
+
+			if (ierr != 0) 
+			{
 				Coserror(_("Error when opening file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -645,7 +702,9 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 			/* we don't are at the end of the buffer :
 			* only first records will be saved
 			*/
-			if ((ptr->cnt==0)&&(ptr->loop==0)) { /* nothing have been stored */
+			if ((ptr->cnt==0)&&(ptr->loop==0)) 
+			{ 
+				/* nothing have been stored */
 				ptr_i = (int*) ptr->workt;
 				ptr_i[6] = 1;
 				ptr_i[7] = 0;
@@ -657,109 +716,135 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				ptr_i[8] = 0;
 				ptr_i[9] = 0;
 			}
-			if ((ptr->cnt!=0)&&(ptr->cnt!=nz)&&(ptr->loop==0)) { /* something stored */
+
+			if ((ptr->cnt!=0)&&(ptr->cnt!=nz)&&(ptr->loop==0)) 
+			{ 
+				/* something stored */
 				/* but we don't are at the end */
 				ptr_i    = (int*) ptr->workt;
 				ptr_i[7] = ptr->cnt;
 				ptr_i    = (int*) ptr->work;
 				/* hmat */
-				if (ismat) {
+				if (ismat) 
+				{
 					ptr_i[39] = ptr->cnt;
 					ptr_i[41] = ptr->cnt*nu*nu2;
 				}
 				/* vector or matrix */
-				else {
+				else 
+				{
 					/* vector case */
 					/* adjust only done for complex numbers */
-					if (ptr_i[8] == 1) {
-						switch (ut) {
-			 case SCSCOMPLEX_N :
-				 for(j=0;j<ptr->cnt;j++) {
-					 *((double *)(&ptr_i[10]) + (j+ptr->cnt)) = \
-						 *((double *)(&ptr_i[10]) + (j+nz*nu));
-				 }
-				 break;
+					if (ptr_i[8] == 1) 
+					{
+						switch (ut) 
+						{
+						case SCSCOMPLEX_N :
+							for(j=0;j<ptr->cnt;j++) 
+							{
+								*((double *)(&ptr_i[10]) + (j+ptr->cnt)) = \
+									*((double *)(&ptr_i[10]) + (j+nz*nu));
+							}
+							break;
 						}
 					}
 					/* matrix case */
-					else {
+					else 
+					{
 						/* */
 						k=nz-ptr->cnt;
 						/* */
-						switch (ut) {
-			 case SCSREAL_N    :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						switch (ut) 
+						{
+						case SCSREAL_N    :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((double *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSCOMPLEX_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j));
-						 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)+nz*nu) = \
-							 *((double *)(&ptr_i[10]) + (((i+1)*nz)+j)+nz*nu);
-					 }
-				 }
-				 break;
+						case SCSCOMPLEX_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((double *)(&ptr_i[10]) + (((i+1)*nz)+j));
+									*((double *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)+nz*nu) = \
+										*((double *)(&ptr_i[10]) + (((i+1)*nz)+j)+nz*nu);
+								}
+							}
+							break;
 
-			 case SCSINT8_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((char *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((char *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSINT8_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((char *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((char *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSINT16_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((short *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((short *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSINT16_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((short *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((short *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSINT32_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((long *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((long *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSINT32_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((long *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((long *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSUINT8_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((unsigned char *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((unsigned char *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSUINT8_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((unsigned char *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((unsigned char *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSUINT16_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((unsigned short *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((unsigned short *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSUINT16_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((unsigned short *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((unsigned short *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
-			 case SCSUINT32_N :
-				 for(i=0;i<ptr_i[8]-1;i++) {
-					 for(j=0;j<ptr->cnt;j++) {
-						 *((unsigned long *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
-							 *((unsigned long *)(&ptr_i[10]) + (((i+1)*nz)+j));
-					 }
-				 }
-				 break;
+						case SCSUINT32_N :
+							for(i=0;i<ptr_i[8]-1;i++) 
+							{
+								for(j=0;j<ptr->cnt;j++) 
+								{
+									*((unsigned long *)(&ptr_i[10]) + (((i+1)*nz)+j-(i+1)*k)) = \
+										*((unsigned long *)(&ptr_i[10]) + (((i+1)*nz)+j));
+								}
+							}
+							break;
 
 						}
 					}
@@ -767,365 +852,474 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				}
 			}
 			/* sort data */
-			else if ((ptr->cnt!=0)&&(ptr->cnt!=nz)&&(ptr->loop!=0)) {
+			else if ((ptr->cnt!=0)&&(ptr->cnt!=nz)&&(ptr->loop!=0)) 
+			{
 				/* shift time data */
-				for(i=0;i<(nz-ptr->cnt);i++) {
+				for(i=0;i<(nz-ptr->cnt);i++) 
+				{
 					ptr_i = (int*) ptr->workt;
 					sav_t = *((double *)(&ptr_i[10])+(nz-1));
-					for (j=(nz-1);j>=1;j--) {
+					for (j=(nz-1);j>=1;j--) 
+					{
 						*((double *)(&ptr_i[10])+j)=*((double *)(&ptr_i[10])+(j-1));
 					}
 					*((double *)(&ptr_i[10]))=sav_t;
 				}
 				/* shift x data */
-				switch (ut) {
-		case SCSREAL_N    :
-			if((sav_d=(double *) scicos_malloc(nu*nu2*sizeof(double)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int*) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_d[k] = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+				switch (ut) 
+				{
+				case SCSREAL_N    :
+					if((sav_d=(double *) scicos_malloc(nu*nu2*sizeof(double)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((double *)(&ptr_i[44])+k+j*(nu*nu2))=*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int*) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_d[k] = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((double *)(&ptr_i[44])+k+j*(nu*nu2))=*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((double *)(&ptr_i[44])+k)  = sav_d[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((double *)(&ptr_i[44])+k)  = sav_d[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_d[k] = *((double *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((double *)(&ptr_i[10])+k*nz+j)=*((double *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_d[k] = *((double *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((double *)(&ptr_i[10])+k*nz+j)=*((double *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((double *)(&ptr_i[10])+k*nz)  = sav_d[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((double *)(&ptr_i[10])+k*nz)  = sav_d[k];
+					scicos_free(sav_d);
+					break;
+				case SCSCOMPLEX_N :
+					if((sav_d=(double *) scicos_malloc(2*nu*nu2*sizeof(double)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_d);
-			break;
-		case SCSCOMPLEX_N :
-			if((sav_d=(double *) scicos_malloc(2*nu*nu2*sizeof(double)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_d[k]        = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-						sav_d[k+nu*nu2] = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2+nz*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((double *)(&ptr_i[44])+k+j*(nu*nu2))= \
-								*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
-							*((double *)(&ptr_i[44])+k+j*(nu*nu2)+nz*nu*nu2)= \
-								*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2)+nz*nu*nu2);
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_d[k]        = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+								sav_d[k+nu*nu2] = *((double *)(&ptr_i[44])+k+(nz-1)*nu*nu2+nz*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((double *)(&ptr_i[44])+k+j*(nu*nu2))= \
+										*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+									*((double *)(&ptr_i[44])+k+j*(nu*nu2)+nz*nu*nu2)= \
+										*((double *)(&ptr_i[44])+k+(j-1)*(nu*nu2)+nz*nu*nu2);
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((double *)(&ptr_i[44])+k)           = sav_d[k];
+								*((double *)(&ptr_i[44])+k+nz*nu*nu2) = sav_d[k+nu*nu2];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((double *)(&ptr_i[44])+k)           = sav_d[k];
-						*((double *)(&ptr_i[44])+k+nz*nu*nu2) = sav_d[k+nu*nu2];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_d[k]    = *((double *)(&ptr_i[10])+k*nz+(nz-1));
-						sav_d[k+nu] = *((double *)(&ptr_i[10])+k*nz+(nz-1)+nz*nu);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((double *)(&ptr_i[10])+k*nz+j)= \
-								*((double *)(&ptr_i[10])+k*nz+j-1);
-							*((double *)(&ptr_i[10])+k*nz+j+nz*nu)= \
-								*((double *)(&ptr_i[10])+k*nz+j-1+nz*nu);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_d[k]    = *((double *)(&ptr_i[10])+k*nz+(nz-1));
+								sav_d[k+nu] = *((double *)(&ptr_i[10])+k*nz+(nz-1)+nz*nu);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((double *)(&ptr_i[10])+k*nz+j)= \
+										*((double *)(&ptr_i[10])+k*nz+j-1);
+									*((double *)(&ptr_i[10])+k*nz+j+nz*nu)= \
+										*((double *)(&ptr_i[10])+k*nz+j-1+nz*nu);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((double *)(&ptr_i[10])+k*nz)        = sav_d[k];
+								*((double *)(&ptr_i[10])+k*nz+nz*nu)  = sav_d[k+nu];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((double *)(&ptr_i[10])+k*nz)        = sav_d[k];
-						*((double *)(&ptr_i[10])+k*nz+nz*nu)  = sav_d[k+nu];
+					scicos_free(sav_d);
+					break;
+				case SCSINT8_N    :
+					if((sav_c=(char *) scicos_malloc(nu*nu2*sizeof(char)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_d);
-			break;
-		case SCSINT8_N    :
-			if((sav_c=(char *) scicos_malloc(nu*nu2*sizeof(char)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_c[k] = *((char *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((char *)(&ptr_i[44])+k+j*(nu*nu2))=*((char *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_c[k] = *((char *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((char *)(&ptr_i[44])+k+j*(nu*nu2))=*((char *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((char *)(&ptr_i[44])+k)  = sav_c[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((char *)(&ptr_i[44])+k)  = sav_c[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_c[k] = *((char *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((char *)(&ptr_i[10])+k*nz+j)=*((char *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_c[k] = *((char *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((char *)(&ptr_i[10])+k*nz+j)=*((char *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((char *)(&ptr_i[10])+k*nz)  = sav_c[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((char *)(&ptr_i[10])+k*nz)  = sav_c[k];
+					scicos_free(sav_c);
+					break;
+				case SCSINT16_N   :
+					if((sav_s=(short *) scicos_malloc(nu*nu2*sizeof(short)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_c);
-			break;
-		case SCSINT16_N   :
-			if((sav_s=(short *) scicos_malloc(nu*nu2*sizeof(short)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_s[k] = *((short *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((short *)(&ptr_i[44])+k+j*(nu*nu2))=*((short *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_s[k] = *((short *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((short *)(&ptr_i[44])+k+j*(nu*nu2))=*((short *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((short *)(&ptr_i[44])+k)  = sav_s[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((short *)(&ptr_i[44])+k)  = sav_s[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_s[k] = *((short *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((short *)(&ptr_i[10])+k*nz+j)=*((short *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_s[k] = *((short *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((short *)(&ptr_i[10])+k*nz+j)=*((short *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((short *)(&ptr_i[10])+k*nz)  = sav_s[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((short *)(&ptr_i[10])+k*nz)  = sav_s[k];
+					scicos_free(sav_s);
+					break;
+				case SCSINT32_N   :
+					if((sav_l=(long *) scicos_malloc(nu*nu2*sizeof(long)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_s);
-			break;
-		case SCSINT32_N   :
-			if((sav_l=(long *) scicos_malloc(nu*nu2*sizeof(long)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_l[k] = *((long *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((long *)(&ptr_i[44])+k+j*(nu*nu2))=*((long *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_l[k] = *((long *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((long *)(&ptr_i[44])+k+j*(nu*nu2))=*((long *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((long *)(&ptr_i[44])+k)  = sav_l[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((long *)(&ptr_i[44])+k)  = sav_l[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_l[k] = *((long *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((long *)(&ptr_i[10])+k*nz+j)=*((long *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_l[k] = *((long *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((long *)(&ptr_i[10])+k*nz+j)=*((long *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((long *)(&ptr_i[10])+k*nz)  = sav_l[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((long *)(&ptr_i[10])+k*nz)  = sav_l[k];
+					scicos_free(sav_l);
+					break;
+				case SCSUINT8_N   :
+					if((sav_uc=(unsigned char *) scicos_malloc(nu*nu2*sizeof(unsigned char)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_l);
-			break;
-		case SCSUINT8_N   :
-			if((sav_uc=(unsigned char *) scicos_malloc(nu*nu2*sizeof(unsigned char)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_uc[k] = *((unsigned char *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((unsigned char *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned char *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_uc[k] = *((unsigned char *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((unsigned char *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned char *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((unsigned char *)(&ptr_i[44])+k)  = sav_uc[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((unsigned char *)(&ptr_i[44])+k)  = sav_uc[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_uc[k] = *((unsigned char *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((unsigned char *)(&ptr_i[10])+k*nz+j)=*((unsigned char *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_uc[k] = *((unsigned char *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((unsigned char *)(&ptr_i[10])+k*nz+j)=*((unsigned char *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((unsigned char *)(&ptr_i[10])+k*nz)  = sav_uc[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((unsigned char *)(&ptr_i[10])+k*nz)  = sav_uc[k];
+					scicos_free(sav_uc);
+					break;
+				case SCSUINT16_N  :
+					if((sav_us=(unsigned short *) scicos_malloc(nu*nu2*sizeof(unsigned short)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_uc);
-			break;
-		case SCSUINT16_N  :
-			if((sav_us=(unsigned short *) scicos_malloc(nu*nu2*sizeof(unsigned short)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_us[k] = *((unsigned short *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((unsigned short *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned short *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_us[k] = *((unsigned short *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((unsigned short *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned short *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((unsigned short *)(&ptr_i[44])+k)  = sav_us[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((unsigned short *)(&ptr_i[44])+k)  = sav_us[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_us[k] = *((unsigned short *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((unsigned short *)(&ptr_i[10])+k*nz+j)=*((unsigned short *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_us[k] = *((unsigned short *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((unsigned short *)(&ptr_i[10])+k*nz+j)=*((unsigned short *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((unsigned short *)(&ptr_i[10])+k*nz)  = sav_us[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((unsigned short *)(&ptr_i[10])+k*nz)  = sav_us[k];
+					scicos_free(sav_us);
+					break;
+				case SCSUINT32_N  :
+					if((sav_ul=(unsigned long *) scicos_malloc(nu*nu2*sizeof(unsigned long)))==NULL) 
+					{
+						set_block_error(-16);
+						scicos_free(ptr->workt);
+						scicos_free(ptr);
+						*(block->work) = NULL;
+						return;
 					}
-				}
-			}
-			scicos_free(sav_us);
-			break;
-		case SCSUINT32_N  :
-			if((sav_ul=(unsigned long *) scicos_malloc(nu*nu2*sizeof(unsigned long)))==NULL) {
-				set_block_error(-16);
-				scicos_free(ptr->workt);
-				scicos_free(ptr);
-				*(block->work) = NULL;
-				return;
-			}
-			ptr_i = (int *) ptr->work;
-			if (ismat) {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu*nu2;k++) {
-						sav_ul[k] = *((unsigned long *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu*nu2;k++) {
-							*((unsigned long *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned long *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+					ptr_i = (int *) ptr->work;
+					if (ismat) 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu*nu2;k++) 
+							{
+								sav_ul[k] = *((unsigned long *)(&ptr_i[44])+k+(nz-1)*nu*nu2);
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu*nu2;k++) 
+								{
+									*((unsigned long *)(&ptr_i[44])+k+j*(nu*nu2))=*((unsigned long *)(&ptr_i[44])+k+(j-1)*(nu*nu2));
+								}
+							}
+							for (k=0;k<nu*nu2;k++) 
+							{
+								*((unsigned long *)(&ptr_i[44])+k)  = sav_ul[k];
+							}
 						}
 					}
-					for (k=0;k<nu*nu2;k++) {
-						*((unsigned long *)(&ptr_i[44])+k)  = sav_ul[k];
-					}
-				}
-			}
-			else {
-				for(i=0;i<(nz-ptr->cnt);i++) {
-					for (k=0;k<nu;k++) {
-						sav_ul[k] = *((unsigned long *)(&ptr_i[10])+k*nz+(nz-1));
-					}
-					for (j=(nz-1);j>=1;j--) {
-						for (k=0;k<nu;k++) {
-							*((unsigned long *)(&ptr_i[10])+k*nz+j)=*((unsigned long *)(&ptr_i[10])+k*nz+j-1);
+					else 
+					{
+						for(i=0;i<(nz-ptr->cnt);i++) 
+						{
+							for (k=0;k<nu;k++) 
+							{
+								sav_ul[k] = *((unsigned long *)(&ptr_i[10])+k*nz+(nz-1));
+							}
+							for (j=(nz-1);j>=1;j--) 
+							{
+								for (k=0;k<nu;k++) 
+								{
+									*((unsigned long *)(&ptr_i[10])+k*nz+j)=*((unsigned long *)(&ptr_i[10])+k*nz+j-1);
+								}
+							}
+							for (k=0;k<nu;k++) 
+							{
+								*((unsigned long *)(&ptr_i[10])+k*nz)  = sav_ul[k];
+							}
 						}
 					}
-					for (k=0;k<nu;k++) {
-						*((unsigned long *)(&ptr_i[10])+k*nz)  = sav_ul[k];
-					}
-				}
-			}
-			scicos_free(sav_ul);
-			break;
-		default  : /* Add a message here */
-			break;
+					scicos_free(sav_ul);
+					break;
+				default  : /* Add a message here */
+					break;
 				}
 			}
 
 			/* write x */
 			ptr_i = (int*) ptr->work;
 			C2F(mputnc)(&fd, &ptr_i[0], (j=nsiz,&j), fmti, &ierr); /* write sci id */
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1134,7 +1328,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				return;
 			}
 			C2F(mputnc)(&fd, &ptr_i[6], (j=1,&j), fmti, &ierr);    /* write sci type */
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1142,18 +1337,23 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				/*set_block_error(-3);*/
 				return;
 			}
-			if ((ptr->cnt==0)&&(ptr->loop==0)) {
+			if ((ptr->cnt==0)&&(ptr->loop==0)) 
+			{
 				C2F(mputnc)(&fd, &ptr_i[7], (j=3,&j), fmti, &ierr);    /* write sci header */
 			}
-			else {
-				if (ismat) {
+			else 
+			{
+				if (ismat) 
+				{
 					C2F(mputnc)(&fd, &ptr_i[7], (j=37,&j), fmti, &ierr);    /* write sci header */
 				}
-				else {
+				else 
+				{
 					C2F(mputnc)(&fd, &ptr_i[7], (j=3,&j), fmti, &ierr);    /* write sci header */
 				}
 			}
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1161,77 +1361,96 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				/*set_block_error(-3);*/
 				return;
 			}
-			if ((ptr->cnt!=0)||(ptr->loop!=0)) {
+			if ((ptr->cnt!=0)||(ptr->loop!=0)) 
+			{
 				/* write data */
-				switch (ut) {
-		 case SCSREAL_N    :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtd, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtd, &ierr);
-			 }
-			 break;
-		 case SCSCOMPLEX_N :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=2*ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtd, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=2*ptr_i[7]*ptr_i[8],&j), fmtd, &ierr);
-			 }
-			 break;
-		 case SCSINT8_N    :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtc, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtc, &ierr);
-			 }
-			 break;
-		 case SCSINT16_N   :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmts, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmts, &ierr);
-			 }
-			 break;
-		 case SCSINT32_N   :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtl, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtl, &ierr);
-			 }
-			 break;
-		 case SCSUINT8_N   :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtuc, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtuc, &ierr);
-			 }
-			 break;
-		 case SCSUINT16_N  :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtus, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtus, &ierr);
-			 }
-			 break;
-		 case SCSUINT32_N  :
-			 if (ismat) {
-				 C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtul, &ierr);
-			 }
-			 else {
-				 C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtul, &ierr);
-			 }
-			 break;
-		 default  : /* Add a message here */
-			 break;
+				switch (ut) 
+				{
+				case SCSREAL_N    :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtd, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtd, &ierr);
+					}
+					break;
+				case SCSCOMPLEX_N :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=2*ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtd, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=2*ptr_i[7]*ptr_i[8],&j), fmtd, &ierr);
+					}
+					break;
+				case SCSINT8_N    :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtc, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtc, &ierr);
+					}
+					break;
+				case SCSINT16_N   :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmts, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmts, &ierr);
+					}
+					break;
+				case SCSINT32_N   :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtl, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtl, &ierr);
+					}
+					break;
+				case SCSUINT8_N   :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtuc, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtuc, &ierr);
+					}
+					break;
+				case SCSUINT16_N  :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtus, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtus, &ierr);
+					}
+					break;
+				case SCSUINT32_N  :
+					if (ismat) 
+					{
+						C2F(mputnc)(&fd, &ptr_i[44], (j=ptr_i[37]*ptr_i[38]*ptr_i[39],&j), fmtul, &ierr);
+					}
+					else 
+					{
+						C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7]*ptr_i[8],&j), fmtul, &ierr);
+					}
+					break;
+				default  : /* Add a message here */
+					break;
 				}
-				if (ierr != 0) {
+				if (ierr != 0) 
+				{
 					Coserror(_("Write error in file '%s'.\n"),str);
 					scicos_free(ptr->workt);
 					scicos_free(ptr);
@@ -1244,7 +1463,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 			/* write t */
 			ptr_i = (int*) ptr->workt;
 			C2F(mputnc)(&fd, &ptr_i[0], (j=nsiz,&j), fmti, &ierr);
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1253,7 +1473,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				return;
 			}
 			C2F(mputnc)(&fd, &ptr_i[6], (j=1,&j), fmti, &ierr);
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1262,7 +1483,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				return;
 			}
 			C2F(mputnc)(&fd, &ptr_i[7], (j=3,&j), fmti, &ierr);
-			if (ierr != 0) {
+			if (ierr != 0) 
+			{
 				Coserror(_("Write error in file '%s'.\n"),str);
 				scicos_free(ptr->workt);
 				scicos_free(ptr);
@@ -1270,9 +1492,11 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 				/*set_block_error(-3);*/
 				return;
 			}
-			if ((ptr->cnt!=0)||(ptr->loop!=0)) {
+			if ((ptr->cnt!=0)||(ptr->loop!=0)) 
+			{
 				C2F(mputnc)(&fd, &ptr_i[10], (j=ptr_i[7],&j), fmtd, &ierr);
-				if (ierr != 0) {
+				if (ierr != 0) 
+				{
 					Coserror(_("Write error in file '%s'.\n"),str);
 					scicos_free(ptr->workt);
 					scicos_free(ptr);
@@ -1293,22 +1517,27 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 	}
 
-	else if ((flag==2)||(flag==0)) { /* update state */
-
+	else if ((flag==2)||(flag==0)) 
+	{ 
+		/* update state */
 		ptr = *(block->work);
 
 		ptr_i = (int*) ptr->work;
 
 		/* check data dimension */
-		if (ismat) {
-			if ((nz!=ptr_i[39]) || (nu!=ptr_i[37]) || (nu2!=ptr_i[38])) {
+		if (ismat) 
+		{
+			if ((nz!=ptr_i[39]) || (nu!=ptr_i[37]) || (nu2!=ptr_i[38])) 
+			{
 				Coserror(_("Size of buffer or input size have changed!\n"));
 				/*set_block_error(-1);*/
 				return;
 			}
 		}
-		else {
-			if ((nz!=ptr_i[7]) || (nu!=ptr_i[8])) {
+		else 
+		{
+			if ((nz!=ptr_i[7]) || (nu!=ptr_i[8])) 
+			{
 				Coserror(_("Size of buffer or input size have changed!\n"));
 				/*set_block_error(-1);*/
 				return;
@@ -1326,27 +1555,35 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		t     = get_scicos_time();
 
 		/* get old time */
-		if (ptr->cnt==0) {
+		if (ptr->cnt==0) 
+		{
 			t_old = ptr_d[nz-1];
 		}
-		else {
+		else 
+		{
 			t_old = ptr_d[ptr->cnt-1];
 		}
 
 		/* get current index of cnt */
-		while (t_old>=t) { /*decrease*/
-			if (ptr->cnt == 0) {
+		while (t_old>=t) 
+		{ 
+			/*decrease*/
+			if (ptr->cnt == 0) 
+			{
 				ptr->cnt = nz-1;
 			}
-			else {
+			else 
+			{
 				ptr->cnt = ptr->cnt - 1;
 			}
 
 			/* get old time */
-			if (ptr->cnt==0) {
+			if (ptr->cnt==0) 
+			{
 				t_old = ptr_d[nz-1];
 			}
-			else {
+			else 
+			{
 				t_old = ptr_d[ptr->cnt-1];
 			}
 		}
@@ -1363,15 +1600,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		{
 		case SCSREAL_N    :
 			u_d   = GetRealInPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_d = (SCSREAL_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_d[ptr->cnt*(nu*nu2)+i] = u_d[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_d = (SCSREAL_COP *) &(ptr_i[10]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_d[ptr->cnt+i*nz] = u_d[i];
 				}
 			}
@@ -1380,16 +1621,20 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		case SCSCOMPLEX_N :
 			u_d  = GetRealInPortPtrs(block,1);
 			u_cd = GetImagInPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_d = (SCSREAL_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_d[ptr->cnt*(nu*nu2)+i] = u_d[i];
 					ptr_d[nz*nu*nu2+ptr->cnt*(nu*nu2)+i] = u_cd[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_d = (SCSREAL_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_d[ptr->cnt+i*nz]       = u_d[i];
 					ptr_d[nz*nu+ptr->cnt+i*nz] = u_cd[i];
 				}
@@ -1398,15 +1643,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSINT8_N    :
 			u_c   = Getint8InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_c = (SCSINT8_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_c[ptr->cnt*(nu*nu2)+i] = u_c[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_c = (SCSINT8_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_c[ptr->cnt+i*nz] = u_c[i];
 				}
 			}
@@ -1414,15 +1663,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSINT16_N   :
 			u_s   = Getint16InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_s = (SCSINT16_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_s[ptr->cnt*(nu*nu2)+i] = u_s[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_s = (SCSINT16_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_s[ptr->cnt*nu+i*nz] = u_s[i];
 				}
 			}
@@ -1430,15 +1683,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSINT32_N   :
 			u_l   = Getint32InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_l = (SCSINT32_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_l[ptr->cnt*(nu*nu2)+i] = u_l[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_l = (SCSINT32_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_l[ptr->cnt+i*nz] = u_l[i];
 				}
 			}
@@ -1446,15 +1703,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSUINT8_N   :
 			u_uc   = Getuint8InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_uc = (SCSUINT8_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_uc[ptr->cnt*(nu*nu2)+i] = u_uc[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_uc = (SCSUINT8_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_uc[ptr->cnt+i*nz] = u_uc[i];
 				}
 			}
@@ -1462,15 +1723,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSUINT16_N  :
 			u_us   = Getuint16InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_us = (SCSUINT16_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_us[ptr->cnt*(nu*nu2)+i] = u_us[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_us = (SCSUINT16_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_us[ptr->cnt+i*nz] = u_us[i];
 				}
 			}
@@ -1478,15 +1743,19 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 
 		case SCSUINT32_N  :
 			u_ul = Getuint32InPortPtrs(block,1);
-			if (ismat) {
+			if (ismat) 
+			{
 				ptr_ul = (SCSUINT32_COP *) &(ptr_i[44]);
-				for (i=0;i<nu*nu2;i++) {
+				for (i=0;i<nu*nu2;i++) 
+				{
 					ptr_ul[ptr->cnt*(nu*nu2)+i] = u_ul[i];
 				}
 			}
-			else {
+			else 
+			{
 				ptr_ul = (SCSUINT32_COP *) &(ptr_i[10]);
-				for (i=0;i<nu;i++) {
+				for (i=0;i<nu;i++) 
+				{
 					ptr_ul[ptr->cnt+i*nz]=u_ul[i];
 				}
 			}
@@ -1505,7 +1774,8 @@ SCICOS_BLOCKS_IMPEXP void tows_c(scicos_block *block,int flag)
 		* update cnt
 		*/
 		ptr->cnt++;
-		if (ptr->cnt==nz) {
+		if (ptr->cnt==nz) 
+		{
 			ptr->cnt = 0;
 			ptr->loop++;
 		}
