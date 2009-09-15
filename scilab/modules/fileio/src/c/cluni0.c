@@ -29,6 +29,11 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 		expandedVar = NULL;
 		*out_n = (int) strlen(out_name);
 	}
+	else
+	{
+		strcpy(out_name, in_name);
+		*out_n = (int) strlen(out_name);
+	}
 
 	return 0;
 }
