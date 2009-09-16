@@ -40,8 +40,7 @@ public class OpenAction extends DefaultAction {
 
 	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 	    getEditor().updateRecentOpenedFilesMenu();
-	    getEditor().getTabPane().setTitleAt( getEditor().getTabPane().getSelectedIndex() , f.getName());
-	    ((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).setContentModified(false);
+	    
 	    
 	}
     }
