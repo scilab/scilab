@@ -16,6 +16,7 @@
 #include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
+#include "stack-c.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"
@@ -24,7 +25,7 @@ extern "C"{
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "Scierror.h"
-
+#include "HandleManagement.h"
 }
 
 using namespace org_scilab_modules_gui_bridge;
@@ -65,6 +66,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setFigureAsParent(getScilabJavaVM(), parentFigureIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
@@ -77,6 +79,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUIMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;
@@ -89,6 +92,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
           CallScilabBridge::setMenuAsParent(getScilabJavaVM(), pUICONTEXTMENU_FEATURE(sciGetPointerFromHandle(getHandleFromStack(stackPointer)))->hashMapIndex, pUIMENU_FEATURE(sciObj)->hashMapIndex);
           
           // Scilab relationship
+          sciDelThisToItsParent(sciObj, sciGetParent(sciObj));
           sciAddThisToItsParent(sciObj, sciGetPointerFromHandle(getHandleFromStack(stackPointer)));
           
           return SET_PROPERTY_SUCCEED;

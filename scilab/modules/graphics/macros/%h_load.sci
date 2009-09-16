@@ -1329,6 +1329,23 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.callback_type = mget(1,"il",fd); // Callback Type
       h.tag = ascii(mget(mget(1,"c",fd),"c",fd)); // Tag
     end
+    if is_higher_than( [5 1 1 0] ) then // 5.1.2 and higher
+      // children
+      nbChildren = mget(1,"il",fd) ;
+      for k = 1 : nbChildren
+	htmp = load_graphichandle(fd) ;
+	set(htmp, "Parent", h);
+      end
+    end
+
+  case "uicontextmenu"
+      h = uicontextmenu();
+      // children
+      nbChildren = mget(1,"il",fd) ;
+      for k = 1 : nbChildren
+	htmp = load_graphichandle(fd) ;
+	set(htmp, "Parent", h);
+      end
 
   case "uicontrol"
     if is_higher_than( [4 1 2 0] ) then
