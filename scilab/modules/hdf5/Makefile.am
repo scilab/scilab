@@ -81,7 +81,7 @@ libscihdf5_la_etc_DATA = etc/hdf5.quit etc/hdf5.start
 
 
 #### hdf5 : include files ####
-libscihdf5_la_includedir=$(pkgincludedir)/hdf5
+libscihdf5_la_includedir=$(pkgincludedir)
 libscihdf5_la_include_HEADERS = includes/gw_hdf5.h \
 includes/h5_attributeConstants.h \
 includes/h5_fileManagement.h \

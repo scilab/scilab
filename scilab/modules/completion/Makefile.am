@@ -75,7 +75,7 @@ libscicompletion_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 
 #### completion : include files ####
-libscicompletion_la_includedir=$(pkgincludedir)/completion
+libscicompletion_la_includedir=$(pkgincludedir)
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h \
 includes/getCommonPart.h \

@@ -102,7 +102,7 @@ libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_b
 SWIG_WRAPPERS = src/jni/GuiManagement.i
 
 #### console : include files ####
-libsciconsole_la_includedir=$(pkgincludedir)/console
+libsciconsole_la_includedir=$(pkgincludedir)
 libsciconsole_la_include_HEADERS = includes/ClearConsole.h \
 includes/dynlib_console.h \
 includes/ClearConsolePart.h \

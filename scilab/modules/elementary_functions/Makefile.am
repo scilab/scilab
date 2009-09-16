@@ -458,7 +458,7 @@ libscielementary_functions_la_sci_gateway_DATA = sci_gateway/elementary_function
 
 
 #### elementary_functions : include files ####
-libscielementary_functions_la_includedir=$(pkgincludedir)/elementary_functions
+libscielementary_functions_la_includedir=$(pkgincludedir)
 libscielementary_functions_la_include_HEADERS = includes/sci_tools.h \
 includes/gw_elementary_functions.h \
 includes/elementary_functions.h \

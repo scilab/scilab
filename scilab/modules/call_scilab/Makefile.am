@@ -57,7 +57,7 @@ libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
-libscicall_scilab_la_includedir=$(pkgincludedir)/call_scilab
+libscicall_scilab_la_includedir=$(pkgincludedir)
 libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
 	includes/fromjava.h \
 	includes/dynlib_call_scilab.h

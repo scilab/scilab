@@ -104,7 +104,7 @@ libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 
 
 #### xpad : include files ####
-libscixpad_la_includedir=$(pkgincludedir)/xpad
+libscixpad_la_includedir=$(pkgincludedir)
 libscixpad_la_include_HEADERS = includes/gw_xpad.h \
 includes/dynlib_xpad.h \
 includes/callxpad.h

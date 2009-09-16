@@ -5,7 +5,7 @@
 
 DYNAMICLIBRARY_C_SOURCES = src/dynamiclibrary_others.c
 
-libscidynamiclibrary_la_includedir=$(pkgincludedir)/dynamiclibrary
+libscidynamiclibrary_la_includedir=$(pkgincludedir)
 
 libscidynamiclibrary_la_include_HEADERS = includes/dynamiclibrary_others.h \
 includes/dynamiclibrary.h
