@@ -61,7 +61,7 @@ Compilation:
 		- adds missing enable_keypad_mode()
 		- use configure results to protect the inclusion of curses.h, 
 		  ncurses.h, term.h, and termcap.h.
-		- Large amounts of cleanup of the PVM configure code
+		- Large amounts of cleanup of the PVM configure code (Closes: #4151)
 
 * automake version changed (1.10.1 => 1.10.2)
 
