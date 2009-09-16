@@ -13,8 +13,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-struct string_matrix *
-create_string_matrix(int arg)
+struct string_matrix* create_string_matrix(int arg)
 {
   struct string_matrix *mat = NULL;
   int *lengths = NULL;

@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STATISTICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -127,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STATISTICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -212,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STATISTICS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -301,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../windows_tools/includes;../../../api_scilab/includes;../../../operations/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STATISTICS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -427,6 +427,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_cdft.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_string_matrix.c"
 				>
 			</File>
 		</Filter>

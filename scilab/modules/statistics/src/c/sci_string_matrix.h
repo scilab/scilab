@@ -27,13 +27,13 @@ struct string_matrix {
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-extern struct string_matrix *create_string_matrix(int arg);
+struct string_matrix *create_string_matrix(int arg);
 
 /**
  * Free string matrix
  * @param[in] pointer on the string_matrix to be freed
  */
-extern void destroy_string_matrix(struct string_matrix *mat);
+void destroy_string_matrix(struct string_matrix *mat);
 
 /**
  * Retrieve a mere string (ie 1x1 matrix of string) from scilab function call
@@ -41,12 +41,12 @@ extern void destroy_string_matrix(struct string_matrix *mat);
  * @param[in] arg is the index of the argument on the scilab function call line
  * @return pointer on string_matrix structure holding the strings
  */
-extern char *create_string(int arg);
+char *create_string(int arg);
 
 /**
  * Free string
  * @param[in] str string to be freed
  */
-extern void destroy_string(char *str);
+void destroy_string(char *str);
 
 #endif /* _STRING_MATRIX_ */

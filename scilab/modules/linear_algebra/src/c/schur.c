@@ -24,19 +24,19 @@
  * Lapack routines used to perform the schur decompositions
  */
 
-extern void C2F(dgges)(char const jobVsL[1], char const jobVsR[1], char const sort[1],  int* (*select)(double*, double*, double*), int const* n
+extern void C2F(dgges)(char const jobVsL[1], char const jobVsR[1], char const sort[1],  dgges_select_t select, int const* n
 		       , double* a, int const* ldA, double* b, int const* ldB, int* sDim, double* alphaR, double* alphaI, double* beta
 		       , double* VSL, int const* ldVSL, double* VSR, int const* ldVSR, double* work, int const* lWork, int* bWork, int* info );
 
-extern void C2F(dgees)(char const jobVs[1], char const sort[1],  int* (*select)(double*, double*), int const* n, double* a, int const* ldA
+extern void C2F(dgees)(char const jobVs[1], char const sort[1], dgees_select_t select, int const* n, double* a, int const* ldA
 		       , int * sDim, double* wR, double* wI, double* VS, int const* ldVS, double* work, int const* lWork, int* bWork, int* info );
 
-extern void C2F(zgges)(char const jobVsL[1], char const jobVsR[1], char const sort[1],  int* (*select)(doublecomplex*, doublecomplex*)
+extern void C2F(zgges)(char const jobVsL[1], char const jobVsR[1], char const sort[1],  zgges_select_t select
 		       , int const* n, doublecomplex* a, int const* ldA, doublecomplex* b, int const* ldB, int* sDim
 		       , doublecomplex* alpha, doublecomplex* beta, doublecomplex* VSL, int const* ldVSL, doublecomplex* VSR, int const* ldVSR
 		       , doublecomplex* work, int const* lWork, double* rWork, int* bWork, int* info);
 
-extern void C2F(zgees)(char const jobVs[1], char const sort[1],  int* (*select)(doublecomplex*), int const* n, doublecomplex* a, int const* ldA
+extern void C2F(zgees)(char const jobVs[1], char const sort[1],  zgees_select_t select, int const* n, doublecomplex* a, int const* ldA
 		       , int * sDim, doublecomplex* w, doublecomplex* VS, int const* ldVS, doublecomplex* work, int const* lWork, double* rWork
 		       , int* bWork, int* info );
 
