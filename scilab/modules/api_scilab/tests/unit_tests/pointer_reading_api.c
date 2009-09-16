@@ -46,7 +46,7 @@ int read_pointer(char *fname,unsigned long fname_len)
             return 1;
         }
 
-        if(getVarType(piAddr) != sci_lufact_pointer)
+        if(getVarType(piAddr) != sci_pointer)
         {
             return 1;
         }

@@ -201,7 +201,7 @@ int get_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos)
         sciprint("MList ");
         iRet = get_list_info(_iRhs, _piParent, _piAddr, _iItemPos);
         break;
-    case sci_lufact_pointer :
+    case sci_pointer :
         iRet = get_pointer_info(_iRhs, _piParent, _piAddr, _iItemPos);
         break;
     default :
