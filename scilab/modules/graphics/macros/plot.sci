@@ -437,19 +437,3 @@ ResetFigureDDM(current_figure, cur_draw_mode)
 endfunction
 
 
-
-
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure) == 9
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    warning("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
-end
-
-endfunction
