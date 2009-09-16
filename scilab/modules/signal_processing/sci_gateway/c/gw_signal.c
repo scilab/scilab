@@ -8,29 +8,28 @@
  * you should have received as part of this distribution.  The terms
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
  */
  
-#include <string.h>
 #include "gw_signal.h"
 #include "callFunctionFromGateway.h"
-/*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
-{
-  {NULL,       ""}, // placeholder
-  {sci_fft,    "fft"},
-  {NULL,       ""}, // placeholder
-  {sci_corr,   "corr"},
-  {sci_rpem,   "rpem"},
-  {sci_amell,  "amell"},
-  {sci_delip,  "delip"},
-  {sci_remez,  "remez"},
-  {sci_syredi, "syredi"}
-};
-/****************************************************************/
-int gw_signal_processing(void)
+#include <stdlib.h>
+
+#define GWTABLE_LENGTH(t) (sizeof(Tab) / sizeof(gw_generic_table))
+
+static gw_generic_table Tab[] = {
+  {NULL		       }, /* placeholder */
+  {sci_fft   , "fft"   },
+  {NULL		       }, /* placeholder */
+  {sci_corr  , "corr"  },
+  {sci_rpem  , "rpem"  },
+  {sci_amell , "amell" },
+  {sci_delip , "delip" },
+  {sci_remez , "remez" },
+  {sci_syredi, "syredi"}};
+
+int
+gw_signal_processing(void)
 {  
-	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+  callFunctionFromGateway(Tab, GWTABLE_LENGTH(Tab));
+  return 0;
 }
-/****************************************************************/

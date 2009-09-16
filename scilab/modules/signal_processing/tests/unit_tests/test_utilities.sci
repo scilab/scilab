@@ -10,9 +10,10 @@
 // RPEM unit tests
 
 // substraction on lists (for lists whose elements allow the minus operator)
-function l1=list_substract(l1,l2)
+function r=list_substract(l1,l2)
+r = list();
 for i=1:length(l1)
-  l1(i) = l1(i) - l2(i);
+  r(i) = l1(i) - l2(i);
 end
 endfunction
 
@@ -20,9 +21,10 @@ endfunction
 deff('x = %l_s_l(l1,l2)', 'x = list_substract(l1,l2)');
 
 // absolute value on lists
-function l=list_abs(l)
+function r=list_abs(l)
+r=list()
 for i=1:length(l)
-  l(i) = abs(l(i))
+  r(i) = abs(l(i))
 end
 endfunction
 

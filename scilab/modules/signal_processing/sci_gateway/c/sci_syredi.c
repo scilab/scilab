@@ -10,15 +10,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
-#include <math.h>
+
+#include "api_scilab.h"
 #include "gw_signal.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
+#include <math.h>
 
-/****************************************************************/
 extern void C2F(syredi)(int *maxdeg, int *ityp, int *iapro,
 			double *om, double *adelp, double *adels,
 			/* outputs */
@@ -35,7 +35,7 @@ extern void C2F(syredi)(int *maxdeg, int *ityp, int *iapro,
 			double *zm, double *sm, double *rom,
 			/* v-- doutful types but whatever... */
 			double *nzero, double *nze);
-/****************************************************************/
+
 enum filter_type {
   low_pass = 1,
   high_pass = 2,
@@ -92,20 +92,28 @@ int sci_syredi(char *fname, unsigned long fname_len)
   double *output_buffers[OUTPUT_BUFFERS_COUNT];
   int output_cursor;
   #undef OUTPUT_BUFFERS_COUNT
+
+  int *p;
   
   CheckRhs(5,5);
   CheckLhs(8,8);
 
   /* arg1: filter kind */
-  GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
+  getVarAddressFromPosition(1, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   filter = (int)argument[0];
 
   /* arg2: approximation kind */
-  GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+  getVarAddressFromPosition(2, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   design = (int)argument[0];
 
   /* arg3: cutoff frequencies */
-  GetRhsVarMatrixDouble(3, &rows, &cols, &cutoff_frequencies);
+  // GetRhsVarMatrixDouble(3, &rows, &cols, &cutoff_frequencies);
+  getVarAddressFromPosition(3, &p);
+  getMatrixOfDouble(p, &rows, &cols, &cutoff_frequencies);
   if (rows != 1 || cols != 4) {
     Scierror(999, _("%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"), fname, 3, 1, 4);
     return 1;
@@ -123,7 +131,9 @@ int sci_syredi(char *fname, unsigned long fname_len)
   }
 
   /* arg4: passband's ripple */
-  GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+  getVarAddressFromPosition(4, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   ripple_passband = argument[0];
   if (ripple_passband <= 0 || ripple_passband >= 1) {
     Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), fname, 4, "0", "1");
@@ -131,7 +141,9 @@ int sci_syredi(char *fname, unsigned long fname_len)
   }
 
   /* arg5: stopband's ripple */
-  GetRhsVarMatrixDouble(5, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(5, &rows, &cols, &argument);
+  getVarAddressFromPosition(5, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   ripple_stopband = argument[0];
   if (ripple_stopband <= 0 || ripple_stopband >= 1) {
     Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), fname, 5, "0", "1");
@@ -147,7 +159,9 @@ int sci_syredi(char *fname, unsigned long fname_len)
     }
   }
   
-  iAllocMatrixOfDouble(Rhs + 1, 1, 1, &fact);
+  // iAllocMatrixOfDouble(Rhs + 1, 1, 1, &fact);
+  allocMatrixOfDouble(Rhs + 1, 1, 1, &fact);
+  createMatrixOfDouble(Rhs + 1, 1, 1, fact);
 
   error = syredi_buffered(/* inputs */
 			  filter, design,
@@ -168,38 +182,52 @@ int sci_syredi(char *fname, unsigned long fname_len)
   LhsVar(1) = Rhs + 1;
 
   /* ret2: b2 */
-  iAllocMatrixOfDouble(Rhs + 2, 1, deg_count, &b2);
+  // iAllocMatrixOfDouble(Rhs + 2, 1, deg_count, &b2);
+  allocMatrixOfDouble(Rhs + 2, 1, deg_count, &b2);
+  createMatrixOfDouble(Rhs + 2, 1, deg_count, b2);
   C2F(dcopy)(&deg_count, output_buffers[0], &one, b2, &one);
   LhsVar(2) = Rhs + 2;
 
   /* ret3: b1 */
-  iAllocMatrixOfDouble(Rhs + 3, 1, deg_count, &b1);
+  // iAllocMatrixOfDouble(Rhs + 3, 1, deg_count, &b1);
+  allocMatrixOfDouble(Rhs + 3, 1, deg_count, &b1);
+  createMatrixOfDouble(Rhs + 3, 1, deg_count, b1);
   C2F(dcopy)(&deg_count, output_buffers[1], &one, b1, &one);
   LhsVar(3) = Rhs + 3;
 
   /* ret4: b0 */
-  iAllocMatrixOfDouble(Rhs + 4, 1, deg_count, &b0);
+  // iAllocMatrixOfDouble(Rhs + 4, 1, deg_count, &b0);
+  allocMatrixOfDouble(Rhs + 4, 1, deg_count, &b0);
+  createMatrixOfDouble(Rhs + 4, 1, deg_count, b0);
   C2F(dcopy)(&deg_count, output_buffers[2], &one, b0, &one);
   LhsVar(4) = Rhs + 4;
 
   /* ret5: c1 */
-  iAllocMatrixOfDouble(Rhs + 5, 1, deg_count, &c1);
+  // iAllocMatrixOfDouble(Rhs + 5, 1, deg_count, &c1);
+  allocMatrixOfDouble(Rhs + 5, 1, deg_count, &c1);
+  createMatrixOfDouble(Rhs + 5, 1, deg_count, c1);
   C2F(dcopy)(&deg_count, output_buffers[3], &one, c1, &one);
   LhsVar(5) = Rhs + 5;
 
   /* ret6: c0 */
-  iAllocMatrixOfDouble(Rhs + 6, 1, deg_count, &c0);
+  // iAllocMatrixOfDouble(Rhs + 6, 1, deg_count, &c0);
+  allocMatrixOfDouble(Rhs + 6, 1, deg_count, &c0);
+  createMatrixOfDouble(Rhs + 6, 1, deg_count, c0);
   C2F(dcopy)(&deg_count, output_buffers[4], &one, c0, &one);
   LhsVar(6) = Rhs + 6;
 
   /* ret7: zeros */
-  iAllocComplexMatrixOfDouble(Rhs + 7, 1, zeros_count, &zeros_real, &zeros_imaginary);
+  // iAllocComplexMatrixOfDouble(Rhs + 7, 1, zeros_count, &zeros_real, &zeros_imaginary);
+  allocComplexMatrixOfDouble(Rhs + 7, 1, zeros_count, &zeros_real, &zeros_imaginary);
+  createComplexMatrixOfDouble(Rhs + 7, 1, zeros_count, zeros_real, zeros_imaginary);
   questionable_copy(zeros_count, output_buffers[5], output_buffers[6],
 		    zeros_real, zeros_imaginary);
   LhsVar(7) = Rhs + 7;
 
   /* ret8: poles */
-  iAllocComplexMatrixOfDouble(Rhs + 8, 1, zeros_count, &poles_real, &poles_imaginary);
+  // iAllocComplexMatrixOfDouble(Rhs + 8, 1, zeros_count, &poles_real, &poles_imaginary);
+  allocComplexMatrixOfDouble(Rhs + 8, 1, zeros_count, &poles_real, &poles_imaginary);
+  createComplexMatrixOfDouble(Rhs + 8, 1, zeros_count, poles_real, poles_imaginary);
   questionable_copy(zeros_count, output_buffers[7], output_buffers[8], poles_real, poles_imaginary);
   LhsVar(8) = Rhs + 8;
 
@@ -268,7 +296,8 @@ void questionable_copy(int length,
   for (i = 0, j = 0 ; j < length ; ++i, ++j) {
     output_real[j] = input_real[i];
     output_imaginary[j] = input_imaginary[i];
-    if (input_imaginary[i] != 0L) { /* as in fortran's source */
+    /* doubles compared with == as in fortran's source */
+    if (input_imaginary[i] != 0L) {
       ++j;
       output_real[j] = input_real[i];
       output_imaginary[j] = - input_imaginary[i];

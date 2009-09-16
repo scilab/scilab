@@ -41,11 +41,11 @@ if or(size(zpoles)<>[1 5]) then pause,end;
 endfunction
 
 function test_syredi_new()
-load('syredi.dat', 'fact1_ref', 'b21_ref', 'b11_ref', 'b01_ref', 'c11_ref', 'c01_ref', 'zzeros1_ref', 'zpoles1_ref', ' fact2_ref', 'b22_ref', 'b12_ref', 'b02_ref', 'c12_ref', 'c02_ref', 'zzeros2_ref', 'zpoles2_ref');
+load(test_path + 'syredi.dat', 'fact1_ref', 'b21_ref', 'b11_ref', 'b01_ref', 'c11_ref', 'c01_ref', 'zzeros1_ref', 'zpoles1_ref', 'fact2_ref', 'b22_ref', 'b12_ref', 'b02_ref', 'c12_ref', 'c02_ref', 'zzeros2_ref', 'zpoles2_ref');
 [fact1, b21, b11, b01, c11, c01, zzeros1, zpoles1] = syredi(1, 4, [1, 2, 0, 0], 0.02, 0.001);
-check(list(fact1, b21, b11, b01, c11, c01, zzeros1, zpoles1), list(fact1_ref,b21_ref,b11_ref,b01_ref,c11_ref,c01_ref,zzeros1_ref,zpoles1_ref);
+check(list(fact1, b21, b11, b01, c11, c01, zzeros1, zpoles1), list(fact1_ref,b21_ref,b11_ref,b01_ref,c11_ref,c01_ref,zzeros1_ref,zpoles1_ref));
 [fact2, b22, b12, b02, c12, c02, zzeros2, zpoles2] = syredi(3, 4, [1, 2, 3, 3.01], 0.1, 0.001);
-check(list(fact2, b22, b12, b02, c12, c02, zzeros2, zpoles2), list(fact2_ref,b22_ref,b12_ref,b02_ref,c12_ref,c02_ref,zzeros2_ref,zpoles2_ref);
+check(list(fact2, b22, b12, b02, c12, c02, zzeros2, zpoles2), list(fact2_ref,b22_ref,b12_ref,b02_ref,c12_ref,c02_ref,zzeros2_ref,zpoles2_ref));
 endfunction
 
 // **** Part II: performing the tests ****

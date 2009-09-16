@@ -8,25 +8,24 @@
  * you should have received as part of this distribution.  The terms
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
  */
 
+#include "api_scilab.h"
 #include "MALLOC.h"
 #include "gw_signal.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 
-/****************************************************************/
 extern void C2F(remez)(int *ngrid, int *nc, int *iext,
 		       double *ad, double *x, double *y,
 		       float *des, float *grid, float *wt,
 		       double *a, double *p, double *q, double *alpha);
-/****************************************************************/
+
 /* allocates required buffers and calls remez */
 int remez_buffered(int ngrid, int nc, int *iext,
 		   float *des, float *grid, float *wt, double *output);
-/****************************************************************/
+
 int sci_remez(char *fname, unsigned long fname_len)
 {
   /************************************************
@@ -41,30 +40,41 @@ int sci_remez(char *fname, unsigned long fname_len)
   double *output = NULL, *argument = NULL;
   float *des = NULL, *grid = NULL, *wt = NULL;
   int *iext;
+  int *p;
   
   CheckRhs(4,4);
   CheckLhs(1,1);
   
-  GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(1, &rows, &cols, &argument);
+  getVarAddressFromPosition(1, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   iext = (int *)argument;
   nc = cols * rows;
   C2F(entier)(&nc, argument, iext);
 
-  GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+  getVarAddressFromPosition(2, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   des = (float *)argument;
   ngrid = cols * rows;
   length = rows;
   C2F(simple)(&ngrid, argument, des);
 
-  GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
+  getVarAddressFromPosition(3, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   grid = (float *)argument;
   C2F(simple)(&ngrid, argument, grid);
 
-  GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+  // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+  getVarAddressFromPosition(4, &p);
+  getMatrixOfDouble(p, &rows, &cols, &argument);
   wt = (float *)argument;
   C2F(simple)(&ngrid, argument, wt);
 
-  iAllocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
+  // iAllocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
+  allocMatrixOfDouble(Rhs + 1, rows, nc - 1, &output);
+  createMatrixOfDouble(Rhs + 1, rows, nc - 1, output);
 
   error = remez_buffered(ngrid, nc - 2, iext, des, grid, wt, output);
   if (error) {
@@ -106,13 +116,13 @@ int remez_buffered(int ngrid, int nc, int *iext,
   nc++;
   C2F(dcopy)(&nc, buffer0, &one, output, &one);
 
-  free(buffer0);
-  free(buffer6);
-  free(buffer5);
-  free(buffer4);
-  free(buffer3);
-  free(buffer2);
-  free(buffer1);
+  FREE(buffer0);
+  FREE(buffer6);
+  FREE(buffer5);
+  FREE(buffer4);
+  FREE(buffer3);
+  FREE(buffer2);
+  FREE(buffer1);
 
   return 0;
 }

@@ -11,15 +11,16 @@
  *
  */
 
-#include <math.h>
+#include "api_scilab.h"
+
 
 #include "gw_signal.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
+#include <math.h>
 
-/****************************************************************/
 extern void C2F(fft842)(int *inverse, int *signal_length,
 			double *signal_real, double *signal_imaginary,
 			int *error);
@@ -27,7 +28,7 @@ extern void C2F(dfft2)(double *signal_real, double *signal_imaginary,
 		       int *nseg, int *n, int *nspn,
 		       int *inverse, int *error,
 		       int *buffer_data, int *buffer_size);
-/****************************************************************/
+
 int POW2_15 = 32768;
 
 int my_log2(int n);
@@ -43,7 +44,8 @@ int fft_ndim(double *signal_real, double *signal_imaginary, int signal_length,
 	     int dimensions_length, int dimension_stride,
 	     int inverse, int *buffer_data, int buffer_size);
 
-int sci_fft(char *fname, unsigned long fname_len)
+int
+sci_fft(char *fname, unsigned long fname_len)
 {
   double
     *signal_real, *signal_imaginary, /* input signal */
@@ -62,20 +64,28 @@ int sci_fft(char *fname, unsigned long fname_len)
   int *buffer_data = NULL;
   int signal_length = 0, error = 0, buffer_size = 0;
   int one = 1;
+  int *p;
 
   CheckRhs(1,4); /* but RHS=3 invalid too: checked afterwars */
+  /** @todo check RHS = 3 verified */
   CheckLhs(1,1);
 
   /* collecting and checking arguments */
   switch (Rhs) {   /* no breaks to collect all arguments */
   case 4:
-    GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+    // GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
+    getVarAddressFromPosition(4, &p);
+    getMatrixOfDouble(p, &rows, &cols, &argument);
     dimension_stride = (int)argument[0];
-    GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
+    // GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
+    getVarAddressFromPosition(3, &p);
+    getMatrixOfDouble(p, &rows, &cols, &argument);
     dimensions_length = (int)argument[0];
     dimension_count = 3; /* any value > 2 (used as a flag) */
-  case 2:
-    GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+  case 2: /* FALLTHROUGH */
+    // GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
+    getVarAddressFromPosition(2, &p);
+    getMatrixOfDouble(p, &rows, &cols, &argument);
     inverse = argument[0];
     if (rows != 1 || cols != 1) {
       Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
@@ -85,8 +95,10 @@ int sci_fft(char *fname, unsigned long fname_len)
       Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 2, "-1 1");
       return 1;
     }
-  case 1:
-    GetVarDimension(1, &signal_rows, &signal_cols);
+  case 1: /* FALLTHROUGH */
+    // GetVarDimension(1, &signal_rows, &signal_cols);
+    getVarAddressFromPosition(1, &p);
+    getVarDimension(p, &signal_rows, &signal_cols);
     dimension_count = Max(dimension_count,
 			  (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
     signal_length = signal_rows * signal_cols;    
@@ -94,11 +106,13 @@ int sci_fft(char *fname, unsigned long fname_len)
       Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
       return 1;
     }
-    iAllocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols,
-				&frequencies_real, &frequencies_imaginary);
-    if (iIsComplex(1)) {
-      GetRhsVarMatrixComplex(1, &signal_rows, &signal_cols,
-			     &signal_real, &signal_imaginary);
+    // iAllocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
+    allocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
+    createComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, frequencies_real, frequencies_imaginary);
+    // if (iIsComplex(1)) {
+    if (isVarComplex(p)) {
+      // GetRhsVarMatrixComplex(1, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
+      getComplexMatrixOfDouble(p, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
       C2F(dcopy)(&signal_length, signal_real,
 		 &one, frequencies_real, &one);
       C2F(dcopy)(&signal_length, signal_imaginary,
@@ -106,7 +120,8 @@ int sci_fft(char *fname, unsigned long fname_len)
     }
     else {
       double zero = 0L;
-      GetRhsVarMatrixDouble(1, &signal_rows, &signal_cols, &signal_real);
+      // GetRhsVarMatrixDouble(1, &signal_rows, &signal_cols, &signal_real);
+      getMatrixOfDouble(p, &signal_rows, &signal_cols, &signal_real);
       C2F(dcopy)(&signal_length, signal_real,
 		 &one, frequencies_real, &one);
       C2F(dset)(&signal_length, &zero, frequencies_imaginary, &one);
@@ -149,11 +164,11 @@ int sci_fft(char *fname, unsigned long fname_len)
   /* preparing the return value */
   LhsVar(1) = Rhs + 1;
   PutLhsVar();
-  free(buffer_data);
+  FREE(buffer_data);
   buffer_data = NULL;
   return 0;
 }
-/****************************************************************/
+
 int fft_1dim(double *signal_real, double *signal_imaginary,
 	     int signal_length, int inverse,
 	     int *buffer_data, int buffer_size) {
@@ -207,7 +222,7 @@ int fft_2dim(double *signal_real, double *signal_imaginary,
       C2F(dcopy)(&signal_cols, temp_imaginary, &one,
 		 &(signal_imaginary[i]), &signal_rows);
     }
-    free(temp_imaginary);
+    FREE(temp_imaginary);
     temp_imaginary = NULL;
     free(temp_real);
     temp_real = NULL;
