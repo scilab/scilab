@@ -62,7 +62,7 @@ AC_SYS_LARGEFILE
 # See http://wiki.debian.org/RpathIssue
 AC_RELOCATABLE
 AC_RELOCATABLE_LIBRARY
-
+AC_LIB_RPATH
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
