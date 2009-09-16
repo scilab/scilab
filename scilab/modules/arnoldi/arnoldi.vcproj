@@ -128,7 +128,6 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="includes;src;../core/includes;../output_stream/includes;../localization/includes;../../libs/intl;../../libs/MALLOC/includes;../operations/includes;../api_scilab/includes"
-				AdditionalIncludeDirectories="includes;src;../core/includes;../output_stream/includes;../localization/includes;../../libs/intl;../../libs/MALLOC/includes;../api_scilab/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;ARNOLDI_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
