@@ -331,7 +331,7 @@ bool FuncManager::LoadMacroFile(string _stModule)
 			std::list<Exp *>LExp = ((SeqExp*)Parser::getInstance()->getTree())->exps_get();
 			if(Parser::getInstance()->getExitStatus() == Parser::Failed)
 			{
-				j = LExp.begin();
+				continue;
 			}
 
 			for(j = LExp.begin() ; j != LExp.end() ; j++)
