@@ -867,9 +867,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < iRows ; iRow++)
 			{
-				for(int iCols = 0 ; iCols < iCols ; iCols++)
+				for(int iCol = 0 ; iCol < iCols ; iCol++)
 				{
-					val_set(_iRows + iRow, _iCols + iCols, _poSource->real_get(iRow, iCols), _poSource->img_get(iRow, iCols));
+					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCols), _poSource->img_get(iRow, iCol));
 				}
 			}
 		}
@@ -877,9 +877,9 @@ namespace types
 		{
 			for(int iRow = 0 ; iRow < iRows ; iRow++)
 			{
-				for(int iCols = 0 ; iCols < iCols ; iCols++)
+				for(int iCol = 0 ; iCol < iCols ; iCol++)
 				{
-					val_set(_iRows + iRow, _iCols + iCols, _poSource->real_get(iRow, iCols));
+					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol));
 				}
 			}
 		}

@@ -89,11 +89,11 @@ namespace ast
 						pResult->DecreaseRef();
 					}
 
-					if(iCols == -1)
+					if(iCols <= 0)
 					{
 						iCols = iCurCol;
 					}
-					else if(iCols != iCurCol)
+					else if(iCols != 0 && iCols != iCurCol)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
