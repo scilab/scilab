@@ -26,7 +26,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
-import javax.swing.text.Document;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
@@ -34,6 +33,7 @@ import javax.swing.undo.UndoManager;
 import org.scilab.modules.xpad.ScilabKeywords;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.actions.ColorizeAction;
+import org.scilab.modules.xpad.actions.IndentAction;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
 
 public class ScilabStyleDocument extends DefaultStyledDocument implements DocumentListener {
@@ -57,8 +57,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean indentInprogress = false;
 	private boolean updaterDisabled = false;
 
-	private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
-	//private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
+	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
+	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f"};
 	private final String[] comments = {"//[^{\n}]*", "/\\*.*?\\*/"};
 	private final String[] operators = {"=", "\\+", "-", "\\*", "/", "\\\\", "\\^", 
@@ -213,7 +213,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	
-	public void colorizeSingleLine(Xpad editor, int caretPosition, int lineStartPosition, int lineEndPosition) {
+	public void colorizeSingleLine(int lineStartPosition, int lineEndPosition) {
 
 		singleLine = true;
 
@@ -297,25 +297,25 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT INDENTATION START
 	 */
-	public void indent() {
+	public void indent(int start, int end) {
 		if (!indentInprogress) {
 			disableUpdaters();
 			indentInprogress = true;
 			resetStyle();
-			try {
-				applyIndent();
-				colorize();
-
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
+			
+			applySelectionIndent(start, end, autoIndent);
+			
+			colorize();
 			indentInprogress = false;
 			enableUpdaters();
 		}
 	}
 
-	public void applyIndent() throws BadLocationException {
+	public void applyIndent(int start, int end, String tabulation) throws BadLocationException {
 
+		
+		System.out.println("tabulation2 = {"+tabulation+"}");
+		
 		String indentedText = "";
 		String tab = "";
 		boolean got_case = false;
@@ -325,10 +325,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		try {
 			// Get the document text to indent
-			text_to_indent = this.getText(0, this.getLength());
+			text_to_indent = this.getText(start, end-start);
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
+		
 		
 		// Get all line break positions &
 		// each line of the document
@@ -397,7 +398,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 							indentedText = indentedText.substring(0, indentedText.length()-2);
 						}
 					}
-					indentedText += all_lines_without_spaces.elementAt(i);
+					indentedText += tabulation + all_lines_without_spaces.elementAt(i);
 
 					// If we have "OUT' operator
 				} else if (command_list.elementAt(0).equals(OUT)) {
@@ -413,15 +414,15 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 							got_case = false;
 						}
 					}
-					indentedText += all_lines_without_spaces.elementAt(i);
+					indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
 
 					// Line got operators and they match, so no need of indentation
 				} else {
-					indentedText += all_lines_without_spaces.elementAt(i);
+					indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
 				}
 				// Line without operator
 			} else {
-				indentedText += all_lines_without_spaces.elementAt(i);
+				indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
 			}
 
 			// Add the indentation
@@ -429,17 +430,102 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				indentedText += tab;
 			}
 			command_list.clear();
+			System.out.println("-----------------"+indentedText);
 		} // end for
 
 		// Display the indentation
-		this.replace(0, this.getLength(), indentedText, null);
-
+		this.replace(start, end-start, indentedText, null);
+		
 		// ATTENTION, ces cas ne sont pas traité: 
 		//            - gestion des commentaire /* */
 		//			  - analyser la ligne du document qui est modifie et non plus le document en entier pour la colorisation
 		//				dans le cas d'une quotation ou commentaire(/* */) analyser le document en entier
 	}
 
+	
+	public void applySelectionIndent(int start, int end, boolean autoIndent) {
+
+		editor = getEditor();
+		String tab = "";
+		int selection_start = 0;
+		int selection_end = 0;
+		
+		if (autoIndent) {
+			selection_start = start;
+			selection_end = end;
+		} else {
+			// Get start & end offsets of the selected text
+			selection_start = editor.getTextPane().getSelectionStart();
+			selection_end = editor.getTextPane().getSelectionEnd();
+		}
+
+		// Get start offsets of the first selected line & end offsets of the last selected line
+		lineStartPosition =  this.getParagraphElement(selection_start).getStartOffset();
+		lineEndPosition = this.getParagraphElement(selection_end).getEndOffset()-1;
+		
+		System.out.println("lineStartPosition = "+lineStartPosition);
+		System.out.println("lineEndPosition = "+lineEndPosition);
+
+		// Scan document line by line
+//		int selection_first_line_number = this.getDefaultRootElement().getElementIndex(lineStartPosition);
+//		int selection_last_line_number = this.getDefaultRootElement().getElementIndex(lineEndPosition);
+		
+		
+		if (lineStartPosition == 0) {
+			System.out.println("RENTRE DANS LE IF");
+			tab = "";
+		} else {
+			System.out.println("RENTRE DANS LE ELSE");
+			// Get previous line
+			int previous_line_start =  this.getParagraphElement(lineStartPosition-1).getStartOffset();
+			int previous_line_end = this.getParagraphElement(lineStartPosition-1).getEndOffset()-1;
+			String previous_line = "";
+			try {
+				previous_line = this.getText(previous_line_start, previous_line_end-previous_line_start);
+				// Get previous line's tabulation
+				tab = getLineTabulations(previous_line);
+				// Check if we have commands and if they match
+				Vector<String> command_list = getOperatorList(previous_line);
+				Vector<String> vector_match = matchingOperators(command_list);
+				if (vector_match.size() > 0) {
+					if (vector_match.elementAt(0).equals(IN)) {
+						tab += "  ";
+					} else {
+						if (tab.length() >= 2) {
+							tab = tab.substring(0, tab.length()-2);
+						}
+					}
+				}
+				System.out.println("previous_line = "+previous_line);
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			System.out.println("tabulation1 = {"+tab+"}");
+			applyIndent(lineStartPosition, lineEndPosition, tab);
+			tab = "";
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public String getLineTabulations(String line) {
+		String spaces = "";
+
+		for (int j = 0; j < line.length(); j++) {
+			if ((line.charAt(j) == '\t') || (line.charAt(j) == ' ')) {
+				spaces = spaces.concat(line.charAt(j)+"");
+			} else {
+				break;
+			}				
+		}			
+
+		return spaces;
+	}
+	
 	/*
 	 * Remove all spaces or tabulations at the begining a string
 	 * This function is used for the indentation only
@@ -1266,7 +1352,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				public void run() {
 					//resetStyle();
 					if (autoIndent) {
-						indent();
+						//indent();
+						IndentAction.getXpadEditor();
+						editor = getEditor();
+						int  caretPosition = editor.getTextPane().getCaretPosition();
+						
+						try {
+							if (!(caretPosition == 0)) {
+								caretPosition = caretPosition -1;
+							}
+							if (editor.getTextPane().getText(caretPosition, 1).equals("\n")) {
+								System.out.println("JE SAUTE UNE LIGNE");
+
+								// Get start & end offsets of the selected text
+								int selection_start = editor.getTextPane().getSelectionStart();
+								int selection_end = editor.getTextPane().getSelectionEnd();
+
+								// Get start offsets of the first selected line & end offsets of the last selected line
+								lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(selection_start).getStartOffset();
+								lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(selection_end).getEndOffset()-1;
+								
+								indent(lineStartPosition-1, lineEndPosition);
+							}
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
 					}
 					if (autoColorize) {
 						//colorize();
@@ -1289,7 +1399,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						} 
 						
 						if (lineStartPosition != lineEndPosition) {
-							colorizeSingleLine(editor, caretPosition, lineStartPosition, lineEndPosition);
+							colorizeSingleLine(lineStartPosition, lineEndPosition);
 						}
 						setSingleLine(false);
 					}
@@ -1304,7 +1414,31 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				public void run() {
 					//resetStyle();
 					if (autoIndent) {
-						indent();
+						//indent();
+						IndentAction.getXpadEditor();
+						editor = getEditor();
+						int  caretPosition = editor.getTextPane().getCaretPosition();
+						
+						try {
+							if (!(caretPosition == 0)) {
+								caretPosition = caretPosition -1;
+							}
+							if (editor.getTextPane().getText(caretPosition, 1).equals("\n")) {
+								System.out.println("JE SAUTE UNE LIGNE");
+
+								// Get start & end offsets of the selected text
+								int selection_start = editor.getTextPane().getSelectionStart();
+								int selection_end = editor.getTextPane().getSelectionEnd();
+
+								// Get start offsets of the first selected line & end offsets of the last selected line
+								lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(selection_start).getStartOffset();
+								lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(selection_end).getEndOffset()-1;
+								
+								indent(lineStartPosition-1, lineEndPosition);
+							}
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
 					}
 					if (autoColorize) {
 						//colorize();
@@ -1328,7 +1462,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						} 
 						
 						if (lineStartPosition != lineEndPosition) {
-							colorizeSingleLine(editor, caretPosition, lineStartPosition, lineEndPosition);
+							colorizeSingleLine(lineStartPosition, lineEndPosition);
 						}
 						setSingleLine(false);
 					}

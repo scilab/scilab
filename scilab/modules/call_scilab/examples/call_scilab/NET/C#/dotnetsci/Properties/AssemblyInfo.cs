@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("dotnetsci")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription(".NET COM server for Scilab 5.x")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Scilab - DIGITEO")]
 [assembly: AssemblyProduct("dotnetsci")]

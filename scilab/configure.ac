@@ -23,7 +23,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:1:0
+SCILAB_LIBRARY_VERSION=5:2:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -62,7 +62,7 @@ AC_SYS_LARGEFILE
 # See http://wiki.debian.org/RpathIssue
 AC_RELOCATABLE
 AC_RELOCATABLE_LIBRARY
-
+AC_LIB_RPATH
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
