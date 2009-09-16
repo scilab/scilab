@@ -13,6 +13,11 @@
 #define __CLUNI0_H__
 #include "dynlib_fileio.h"
 #include "machine.h"
+
+/**
+* !!! DEPRECATED see expandPathVariable.h !!!
+*/
+
 /**
  * expand in_name to produce out_name 
  *

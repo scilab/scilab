@@ -45,6 +45,7 @@ src/c/fileinfo.c \
 src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
+src/c/expandPathVariable.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -166,6 +167,7 @@ includes/deleteafile.h \
 includes/readline.h \
 includes/splitpath.h \
 includes/cluni0.h \
+includes/expandPathVariable.h \
 includes/dynlib_fileio.h \
 includes/scicurdir.h
 

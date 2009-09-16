@@ -156,7 +156,10 @@ call_scilab module :
 ====================
 
 * A example to call scilab from C# added.
-   see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
+   see SCI/modules/call_scilab/examples/call_scilab/NET/C# directory
+
+* A example to call scilab from VB.NET added.
+   see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
 
 tests :
 =======

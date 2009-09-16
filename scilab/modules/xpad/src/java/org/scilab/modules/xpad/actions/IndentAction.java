@@ -23,20 +23,31 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class IndentAction extends DefaultAction {
 	
+	private static Xpad indent_editor;
+
 	private IndentAction(Xpad editor) {
 		super("Indent", editor);
-	}
-	
-	public void doAction() {
-		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
-		
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-		
-		getEditor().getTextPane().setCaretPosition(initial_caret_position);
+		indent_editor = editor;
 	}
 
-	 public static MenuItem createMenu(Xpad editor) {
+	public void doAction() {
+		
+		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(0,0);
+		
+//		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
+//
+//		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
+//
+//		getEditor().getTextPane().setCaretPosition(initial_caret_position);
+		
+	}
+
+	public static MenuItem createMenu(Xpad editor) {
 		return createMenu("Indent", null, new IndentAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
-	 }
-	
+	}
+
+	public static void getXpadEditor(){
+		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
+	}
 }

@@ -140,6 +140,7 @@ am__objects_1 = libscifileio_la-FileExist.lo \
 	libscifileio_la-fullpath.lo libscifileio_la-fileinfo.lo \
 	libscifileio_la-getrelativefilename.lo \
 	libscifileio_la-splitpath.lo libscifileio_la-movefile.lo \
+	libscifileio_la-expandPathVariable.lo \
 	libscifileio_la-copyfile_others.lo
 am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_mfprintf.lo libscifileio_la-sci_mscanf.lo \
@@ -467,6 +468,7 @@ src/c/fileinfo.c \
 src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
+src/c/expandPathVariable.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -584,6 +586,7 @@ includes/deleteafile.h \
 includes/readline.h \
 includes/splitpath.h \
 includes/cluni0.h \
+includes/expandPathVariable.h \
 includes/dynlib_fileio.h \
 includes/scicurdir.h
 
@@ -735,6 +738,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-deleteafile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-delfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-do_xxscanf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-expandPathVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-fileinfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-filesmanagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-findfiles.Plo@am__quote@
@@ -1123,6 +1127,13 @@ libscifileio_la-movefile.lo: src/c/movefile.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/movefile.c' object='libscifileio_la-movefile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-movefile.lo `test -f 'src/c/movefile.c' || echo '$(srcdir)/'`src/c/movefile.c
+
+libscifileio_la-expandPathVariable.lo: src/c/expandPathVariable.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-expandPathVariable.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-expandPathVariable.Tpo -c -o libscifileio_la-expandPathVariable.lo `test -f 'src/c/expandPathVariable.c' || echo '$(srcdir)/'`src/c/expandPathVariable.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifileio_la-expandPathVariable.Tpo $(DEPDIR)/libscifileio_la-expandPathVariable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/expandPathVariable.c' object='libscifileio_la-expandPathVariable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-expandPathVariable.lo `test -f 'src/c/expandPathVariable.c' || echo '$(srcdir)/'`src/c/expandPathVariable.c
 
 libscifileio_la-copyfile_others.lo: src/c/copyfile_others.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-copyfile_others.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-copyfile_others.Tpo -c -o libscifileio_la-copyfile_others.lo `test -f 'src/c/copyfile_others.c' || echo '$(srcdir)/'`src/c/copyfile_others.c
