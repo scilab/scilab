@@ -132,7 +132,6 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		   mprintf(gettext("stderr: %s\n"),stderr);
 		end
 	  if ierr <> 0 then
-	    if ( ilib_verbose() <> 0 ) then
 	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
 	      lines(0);
 	      disp(stderr);
@@ -140,7 +139,6 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		    mprintf(gettext("%s: The command was:\n"),"ilib_compile");
 		    mprintf(cmd);
 		    mprintf("\n");
-		  end
 		  chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
