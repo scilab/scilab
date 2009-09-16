@@ -26,7 +26,7 @@ Compilation:
 
 * --enable-debug-java add two options to the JVM args (-verbose:jni and
   -Xcheck:jni) in order to provide more feedbacks on debug
-  Note that this should be used into a binary since it is expensive
+  Note that this should not be used into a binary since it is expensive
 
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.3)
