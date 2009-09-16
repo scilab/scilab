@@ -33,7 +33,7 @@ Compilation:
   There was a bug in GIWS:
 	The use of a static method returning an int wasn't calling the right
 	method.
-	It didn't seem to trigger any errors in the past but the latest 
+	It did not seem to trigger any errors in the past but the latest 
 	version of the JDK is now complaining.
 
 
