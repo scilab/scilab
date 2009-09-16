@@ -15,6 +15,7 @@
 #include "basic_functions.h"
 #include "sciprint.h"
 #include "localization.h"
+#include "Scierror.h"
 
 #define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/

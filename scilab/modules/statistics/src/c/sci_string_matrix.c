@@ -11,10 +11,9 @@
 
 #include "sci_string_matrix.h"
 #include "api_scilab.h"
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 
-struct string_matrix *
-create_string_matrix(int arg)
+struct string_matrix* create_string_matrix(int arg)
 {
   struct string_matrix *mat = NULL;
   int *lengths = NULL;
