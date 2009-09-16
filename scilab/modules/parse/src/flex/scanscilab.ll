@@ -413,6 +413,7 @@ assign			"="
   str += "'";
   exit_status = SCAN_ERROR;
   scan_error(str);
+  yyterminate();
 }
 
 
@@ -511,6 +512,7 @@ assign			"="
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 }
 
@@ -585,6 +587,7 @@ assign			"="
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 }
 
@@ -618,6 +621,7 @@ assign			"="
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 }
 
@@ -670,6 +674,7 @@ assign			"="
     std::string str = "unexpected end of file in a comment";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 
   {newline}					{
@@ -721,12 +726,14 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yyterminate();
   }
 
   <<EOF>>					{
     std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 
   .						{
@@ -767,6 +774,7 @@ assign			"="
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yyterminate();
   }
 
   {next} {
@@ -778,6 +786,7 @@ assign			"="
     std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 
   .         {

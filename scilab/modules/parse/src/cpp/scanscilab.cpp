@@ -1415,6 +1415,7 @@ YY_RULE_SETUP
   str += "'";
   exit_status = SCAN_ERROR;
   scan_error(str);
+  yyterminate();
 }
 	YY_BREAK
 
@@ -1530,6 +1531,7 @@ YY_RULE_SETUP
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 
@@ -1620,6 +1622,7 @@ YY_RULE_SETUP
     str += "' within a matrix.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 
@@ -1662,6 +1665,7 @@ YY_RULE_SETUP
     str += "' after line break with .. or ...";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 
@@ -1719,6 +1723,7 @@ case YY_STATE_EOF(REGIONCOMMENT):
     std::string str = "unexpected end of file in a comment";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 case 98:
@@ -1787,6 +1792,7 @@ YY_RULE_SETUP
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yyterminate();
   }
 	YY_BREAK
 case YY_STATE_EOF(SIMPLESTRING):
@@ -1794,6 +1800,7 @@ case YY_STATE_EOF(SIMPLESTRING):
     std::string str = "unexpected end of file in a string.";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 case 107:
@@ -1846,6 +1853,7 @@ YY_RULE_SETUP
     yylloc.last_line += 1;
     yylloc.last_column = 1;
     *yylval.str += yytext;
+    yyterminate();
   }
 	YY_BREAK
 case 114:
@@ -1860,6 +1868,7 @@ case YY_STATE_EOF(DOUBLESTRING):
     std::string str = "unexpected end of file in a string";
     exit_status = SCAN_ERROR;
     scan_error(str);
+    yyterminate();
   }
 	YY_BREAK
 case 115:
