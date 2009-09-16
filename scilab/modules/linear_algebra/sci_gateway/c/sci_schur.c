@@ -34,6 +34,41 @@ schur(A,sel) : ok
 [a1,a2]=schur(A,sel) pas ok, 1= +haut au lieu de 
  */
 
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2009-2009 - DIGITEO - Bernard HUGUENEY
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+
+function r=Err(x)
+        r=norm(x,1)
+endfunction
+rand('normal')
+
+//define tools
+function A=testmat1(a,n)
+        //eigen values are given by a dilation of nth roots of 1
+        A=diag(a*ones(1,n-1),1)+diag((1/a)*ones(1,n-1),-1)
+        A(1,n)=1/a;A(n,1)=a
+endfunction
+
+//==========================================================================
+//==============================    schur     ============================== 
+//==========================================================================
+clear sel
+function t=sel(R),t=real(R)<0 ,endfunction
+A=testmat1(3,5);Ac=testmat1(3+%i,5);
+
+
+schur(A,sel) : ok
+[a1,a2]=schur(A,sel) pas ok, 1= +haut au lieu de 
+ */
+
 #include <string.h>
 #include "doublecomplex.h"
 #include "api_double.h"
@@ -76,12 +111,16 @@ twoMatrices, selectPtr.none
  */
 
 /* wrapper around SearchInDynLink with saner API (returns the resulting ptr as the return value NULL if not found */
-static void(* getDynamicFunctionByName(char const* name))(void)
+static schur_select_type getDynamicFunctionByName(char const* name)
 {
   int err=0;
-  void (*ret) (void);
-  err=SearchInDynLinks(name, &ret);
-  return (err >= 0) ? ret : NULL;
+  schur_select_type ret;
+  err=SearchInDynLinks(name, &ret.none);
+  if(err >= 0)
+  {
+	  ret.none=NULL;
+  }
+  return ret;
 }
 /* makes (with MALLOC) a '\0'-terminated string from an Rhs var n°arg. */
 static char* getStringArg(int arg)
@@ -138,16 +177,16 @@ static int callSciPredicate(int nbRhs);
 
 
 static int zggesSciSelectFunction (doublecomplex const* alpha, doublecomplex const* beta);
-static zgges_select_t checkZggesSciSelectFunction(void);
+static schur_select_type checkZggesSciSelectFunction(void);
 
 static int zgeesSciSelectFunction (doublecomplex const* w);
-static zgees_select_t checkZgeesSciSelectFunction(void);
+static schur_select_type checkZgeesSciSelectFunction(void);
 
 static int dggesSciSelectFunction (double const* alphaReal, double const* alphaImg, double const* beta);
-static dgges_select_t checkDggesSciSelectFunction(void);
+static schur_select_type checkDggesSciSelectFunction(void);
 
 static int dgeesSciSelectFunction (double const* wr, double const* wi);
-static dgees_select_t checkDgeesSciSelectFunction(void);
+static schur_select_type checkDgeesSciSelectFunction(void);
 
 
 static char const* thisFunctionName;
@@ -155,8 +194,8 @@ static char const* thisFunctionName;
 static schur_select_type createSelectWrapper(int isCplx, int twoMat)
 {
   return isCplx
-    ? (twoMat ? (schur_select_type)checkZggesSciSelectFunction() : (schur_select_type) checkZgeesSciSelectFunction())
-    : (twoMat ? (schur_select_type)checkDggesSciSelectFunction() : (schur_select_type) checkDgeesSciSelectFunction());
+    ? (twoMat ? checkZggesSciSelectFunction() : checkZgeesSciSelectFunction())
+    : (twoMat ? checkDggesSciSelectFunction() : checkDgeesSciSelectFunction());
 }
 
 static int isNameOneOf(char* const name, char* const n1, char* const n2, char* const n3)
@@ -169,20 +208,50 @@ static schur_select_type selectFunctionByName(char* const name
 				       , char* const discName, schur_select_type discFunction)
 {
   return isNameOneOf(name, "c", "cont", contName) 
-    ? contFunction : (isNameOneOf(name, "d", "disc", discName) ? discFunction : (schur_select_type) getDynamicFunctionByName(name));
+    ? contFunction : (isNameOneOf(name, "d", "disc", discName) ? discFunction : getDynamicFunctionByName(name));
 }
 
 static schur_select_type getFunctionByName(int isCplx, int twoMat, char* const name)
 {
-  return isCplx 
-    ? (twoMat 
-       ? selectFunctionByName(name, "zb02ow", (schur_select_type)&zb02ox,"zb02ox", (schur_select_type)&zb02ox)
-       : selectFunctionByName(name, "zb02mv", (schur_select_type)&zb02mv,"zb02mw", (schur_select_type)&zb02mw))
-    : (twoMat 
-       ? selectFunctionByName(name, "sb02ow", (schur_select_type)&sb02ow,"sb02ox", (schur_select_type)&sb02ox)
-       : selectFunctionByName(name, "sb02mv", (schur_select_type)&sb02mv,"sb02mw", (schur_select_type)&sb02mw));
+  schur_select_type f1, f2;
+  char const* name1;
+  char const* name2;
+  if(isCplx)
+    {
+      if(twoMat)
+	{
+	  name1="zb02ow";
+	  f1.zgges_select= &zb02ow;
+	  name2="zb02ox";
+	  f2.zgges_select= &zb02ox;
+	}
+      else
+	{
+	  name1="zb02mv";
+	  f1.zgees_select= &zb02mv;
+	  name2="zb02mw";
+	  f2.zgees_select= &zb02mw;
+	}
+    }
+  else
+    {
+      if(twoMat)
+	{
+	  name1="sb02ow";
+	  f1.dgges_select= &sb02ow;
+	  name2="sb02ox";
+	  f2.dgges_select= &sb02ox;
+	}
+      else
+	{
+	  name1="sb02mv";
+	  f1.dgees_select= &sb02mv;
+	  name2="sb02mw";
+	  f2.dgees_select= &sb02mw;
+	}
+    }
+  return selectFunctionByName(name, name1, f1, name2, f2);
 }
-
 typedef struct data_matrix_t
 {
   double* data; /* is in fact a doublecomplex* if real (and img) != NULL */
@@ -540,7 +609,7 @@ int C2F(intschur)(char *fname,unsigned long fname_len)
 	      ret= (selectPtr.none && !( (Lhs == 1) && !twoMatrices)) ? createDimVar(&dimIndex, &ptrDim) : 0;
 	      {
 		int placeholderInt=0;
-		fprintf(stderr,"nbvars=%d, lastIndex=%d, rows=%d cols=%d dim=%d\n",intersci_.nbvars, lastIndex, args[0].rows, args[0].cols, ptrDim ? *ptrDim : -1);
+		//		fprintf(stderr,"nbvars=%d, lastIndex=%d, rows=%d cols=%d dim=%d\n",intersci_.nbvars, lastIndex, args[0].rows, args[0].cols, ptrDim ? *ptrDim : -1);
 		ret= args[0].cols 
 		  ? iSchurM(args[0].data, args[1].data, args[0].cols, complexArgs
 			    , lhsOpt[0].data, lhsOpt[1].data, selectPtr, ptrDim? &placeholderInt : NULL) 
@@ -648,9 +717,10 @@ static int zggesSciSelectFunction (doublecomplex const* alpha, doublecomplex con
   return callSciPredicate(2);
 }
 
-static zgges_select_t checkZggesSciSelectFunction(void)
+static schur_select_type checkZggesSciSelectFunction(void)
 {  
   int i;
+  schur_select_type res;
   for(i=0; i!=2; ++i)
     {
       int const one = 1;
@@ -659,7 +729,15 @@ static zgges_select_t checkZggesSciSelectFunction(void)
       ++endSelectArg;
       *stk(dataReal)= *stk(dataImg)= 1.0;
     }
-  return isSciPredicateValid(2) ? &zggesSciSelectFunction : NULL ;
+  if(isSciPredicateValid(2))
+    {
+      res.zgges_select= &zggesSciSelectFunction;
+    }
+  else
+    {
+      res.none= NULL;
+    }
+  return res;
 }
 
 static int zgeesSciSelectFunction (doublecomplex const* w)
@@ -674,16 +752,24 @@ static int zgeesSciSelectFunction (doublecomplex const* w)
   return callSciPredicate(1);
 }
 
-static zgees_select_t checkZgeesSciSelectFunction(void)
+static schur_select_type checkZgeesSciSelectFunction(void)
 {
   int const one = 1;
   int dataReal, dataImg;
+  schur_select_type res;
 
   C2F(createcvar)(&endSelectArg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &one, &dataReal, &dataImg, 1L);
   ++endSelectArg;
   *stk(dataReal)= *stk(dataImg)= 1.0;
-
-  return isSciPredicateValid(1)? &zgeesSciSelectFunction : NULL;
+  if(isSciPredicateValid(1))
+    {
+      res.zgees_select=  &zgeesSciSelectFunction;
+    }
+  else
+    {
+      res.none= NULL;
+    }
+  return res;
 }
 
 /* /!\ Lapack uses 2 double args for alphaReal and alphaImg, but Scilab uses a complex alpha */
@@ -705,10 +791,11 @@ static int dggesSciSelectFunction (double const* alphaReal, double const* alphaI
   return callSciPredicate(2);
 }
 
-static dgges_select_t checkDggesSciSelectFunction(void)
+static schur_select_type checkDggesSciSelectFunction(void)
 {
   int const one = 1;
   int dataReal, dataImg;
+  schur_select_type res;
 
   C2F(createcvar)(&endSelectArg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &one, &dataReal, &dataImg, 1L);
   ++endSelectArg;
@@ -717,8 +804,15 @@ static dgges_select_t checkDggesSciSelectFunction(void)
   C2F(createvar)(&endSelectArg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &dataReal, 1L);
   ++endSelectArg;
   *stk(dataReal)= 1.0;
-
-  return isSciPredicateValid(2)? &dggesSciSelectFunction : NULL;
+   if(isSciPredicateValid(2))
+    {
+      res.dgges_select=  &dggesSciSelectFunction ;
+    }
+  else
+    {
+      res.none= NULL;
+    }
+  return res;
 }
 
 static int dgeesSciSelectFunction (double const* wr, double const* wi)
@@ -732,14 +826,22 @@ static int dgeesSciSelectFunction (double const* wr, double const* wi)
   return callSciPredicate(1);
 }
 
-static dgees_select_t checkDgeesSciSelectFunction(void)
+static schur_select_type checkDgeesSciSelectFunction(void)
 {
   int const one = 1;
   int dataReal, dataImg;
+  schur_select_type res;
 
   C2F(createcvar)(&endSelectArg, MATRIX_OF_DOUBLE_DATATYPE, &one, &one, &one, &dataReal, &dataImg, 1L);
   ++endSelectArg;
   *stk(dataReal)= *stk(dataImg)= 1.0;
-
-  return isSciPredicateValid(1)? &dgeesSciSelectFunction : NULL;
+  if(isSciPredicateValid(1))
+    {
+      res.dgees_select=  &dgeesSciSelectFunction ;
+    }
+  else
+    {
+      res.none= NULL;
+    }
+  return res;
 }
