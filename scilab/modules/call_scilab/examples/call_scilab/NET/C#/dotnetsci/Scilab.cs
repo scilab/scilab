@@ -14,18 +14,39 @@
 //=============================================================================
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 //=============================================================================
 namespace DotNetScilab
 {
+    /* Scilab Types */
+    public enum ScilabType
+    {
+        sci_matrix = 1,
+        sci_poly = 2,
+        sci_boolean = 4,
+        sci_sparse = 5,
+        sci_boolean_sparse = 6,
+        sci_matlab_sparse = 7,
+        sci_ints = 8,
+        sci_handles = 9,
+        sci_strings = 10,
+        sci_u_function = 11,
+        sci_c_function = 13,
+        sci_lib = 14,
+        sci_list = 15,
+        sci_tlist = 16,
+        sci_mlist = 17,
+        sci_pointer = 128,
+        sci_implicit_poly = 129,
+        sci_intrinsic_function = 130
+    };
+
     /* Enables COM interoperability */
     [ClassInterface(ClassInterfaceType.AutoDual)]
     // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfaceattribute(VS.80).aspx
     // http://msdn.microsoft.com/en-us/library/system.runtime.interopservices.classinterfacetype(VS.80).aspx
-
     public sealed class Scilab
     {
         //=============================================================================
@@ -38,17 +59,16 @@ namespace DotNetScilab
         /// </summary>
         public Scilab()
         {
-            // start Scilab engine
-            Scilab_cs_wrapper.StartScilab(null, null, null);
             // Disable TCL/TK and Java graphic interfaces
             Scilab_cs_wrapper.DisableInteractiveMode();
             withGraphics = false;
+
+            // start Scilab engine configurated without java
+            Scilab_cs_wrapper.StartScilab(null, null, null);
         }
         //=============================================================================
         public Scilab(Boolean _bWithGraphics)
         {
-            // start Scilab engine
-            Scilab_cs_wrapper.StartScilab(null, null, null);
             // Disable TCL/TK and Java graphic interfaces
             if (_bWithGraphics == false)
             {
@@ -59,6 +79,9 @@ namespace DotNetScilab
             {
                 withGraphics = true;
             }
+
+            // start Scilab engine
+            Scilab_cs_wrapper.StartScilab(null, null, null);
         }
         //=============================================================================
         /// <summary>
@@ -86,6 +109,7 @@ namespace DotNetScilab
         /// </summary>
         ~Scilab()
         {
+            // freed by O.S
             //Scilab_cs_wrapper.TerminateScilab(null);
         }
         //=============================================================================
@@ -448,6 +472,16 @@ namespace DotNetScilab
             Thread.Sleep(1);
             // do a loop of parser
             return SendScilabJob("");
+        }
+        //=============================================================================
+        /// <summary>
+        /// get scilab type of named matrix
+        /// </summary>
+        /// <param name="matrixName"> variable name</param>
+        /// <returns>scilab type (see enum ScilabType)</returns>
+        public int isNamedVarComplex(string matrixName)
+        {
+            return Scilab_cs_wrapper.isNamedVarComplex(matrixName);
         }
         //=============================================================================
     }
