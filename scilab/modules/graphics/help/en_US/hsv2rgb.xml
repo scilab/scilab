@@ -99,23 +99,23 @@ rgb = hsv2rgb(hsv)</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-    t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
-    plot3d1(t,t,z) 
-    f=gcf();f.pixmap='on';
-    for h=0:0.1:1
-      hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
-      f.color_map=hsv2rgb(hsv);
-      show_pixmap()
-      xpause(10000)
-    end
-    for v=0:0.1:1
-      hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
-      f.color_map=hsv2rgb(hsv);
-      show_pixmap()
-      xpause(10000)
-    end
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+plot3d1(t,t,z) 
+f=gcf();f.pixmap='on';
+for h=0:0.1:1
+  hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+  f.color_map=hsv2rgb(hsv);
+  show_pixmap()
+  xpause(10000)
+end
+for v=0:0.1:1
+  hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+  f.color_map=hsv2rgb(hsv);
+  show_pixmap()
+  xpause(10000)
+end
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

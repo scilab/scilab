@@ -60,10 +60,6 @@ src/fortran/intzgeqpf3.f \
 src/fortran/writebuf.f
 #src/fortran/issymmetric.f
 
-
-SLICOT_SOURCES = src/slicot/SELECT.f \
-src/slicot/Ex-schur.f
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_backslash.c \
 sci_gateway/c/sci_hess.c \
 sci_gateway/c/sci_rcond.c \
@@ -92,15 +88,17 @@ sci_gateway/c/sci_zheev.c
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
 libscilinear_algebra_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libscilinear_algebra.la
 
 libscilinear_algebra_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(SLICOT_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscilinear_algebra_la_SOURCES = $(LINEAR_ALGEBRA_FORTRAN_SOURCES) $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -129,6 +127,9 @@ libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xm
 libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h \
-includes/issymmetric.h
+includes/issymmetric.h \
+includes/dynlib_linear_algebra.h \
+includes/gschur.h \
+includes/schur.h
 
 include $(top_srcdir)/Makefile.incl.am

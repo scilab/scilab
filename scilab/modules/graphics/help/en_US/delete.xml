@@ -59,24 +59,20 @@ delete("all")</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-
-  subplot(211);
-  t=1:10;plot2d(t,t.^2),
-  subplot(223);
-  plot3d();
-  subplot(224);
-  plot2d();
-  xfrect(1,0,3,1);
-  a=get("current_axes") 
-  delete(); //delete the graphics object newly created
-  delete(a.children); //delete all children of the current axes
-  delete(a); //delete the axes
-  delete("all"); //delete all the graphics objects of the figure
-
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+subplot(211);
+t=1:10;plot2d(t,t.^2),
+subplot(223);
+plot3d();
+subplot(224);
+plot2d();
+xfrect(1,0,3,1);
+a=get("current_axes") 
+delete(); //delete the graphics object newly created
+delete(a.children); //delete all children of the current axes
+delete(a); //delete the axes
+delete("all"); //delete all the graphics objects of the figure
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

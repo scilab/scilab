@@ -100,7 +100,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple StartScilab example
 if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
  {

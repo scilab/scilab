@@ -71,16 +71,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 n=15;
 d=100*rand(15,15);
 d=d-diag(diag(d));
 c=zeros(n,n);f=c;
 f(2:n,1)=ones(1:n-1)';
 [crit,order]=qassign(c,f,d)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

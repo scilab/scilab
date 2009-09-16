@@ -35,7 +35,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 clear t;
 t.a=1;
 t.b=2;

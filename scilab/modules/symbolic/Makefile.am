@@ -20,6 +20,7 @@ sci_gateway/fortran/sci_ldivf.f \
 sci_gateway/fortran/sci_rdivf.f
 
 libscisymbolic_la_CFLAGS=  	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
@@ -56,6 +57,7 @@ libscisymbolic_la_sci_gateway_DATA = sci_gateway/symbolic_gateway.xml
 
 #### symbolic : include files ####
 libscisymbolic_la_includedir=$(pkgincludedir)/symbolic
-libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h
+libscisymbolic_la_include_HEADERS = includes/gw_symbolic.h \
+includes/dynlib_symbolic.h
 
 include $(top_srcdir)/Makefile.incl.am

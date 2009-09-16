@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -29,7 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>y=sum(x)
 y=sum(x,'r') ou y=sum(x,1)
@@ -40,7 +40,7 @@ y=sum(x,'m')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,7 +48,7 @@ y=sum(x,'m')</synopsis>
 
         <listitem>
           <para>vetor ou matriz (de reais, complexos, esparso(a) ou de
-          polin√¥mios) </para>
+          polinÙmios) </para>
         </listitem>
       </varlistentry>
 
@@ -63,31 +63,30 @@ y=sum(x,'m')</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para>Para um vetor ou matriz <literal>x</literal>,
     <literal>y=sum(x)</literal> retorna no escalar <literal>y</literal> a soma
     de todas as entradas de <literal>x</literal>.</para>
 
     <para><literal>y=sum(x,'r')</literal> (ou, equivalentemente,
-    <literal>y=sum(x,1)</literal>) √© a soma linha a linha:: <literal>y(j)=
-    sum(x(:,j))</literal>. <literal>y</literal> √© um vetor linha.</para>
+    <literal>y=sum(x,1)</literal>) È a soma linha a linha:: <literal>y(j)=
+    sum(x(:,j))</literal>. <literal>y</literal> È um vetor linha.</para>
 
     <para><literal>y=sum(x,'c')</literal> (ou, equivalentemente,
-    <literal>y=sum(x,2)</literal>) √© a soma coluna a coluna. Retorna em cada
+    <literal>y=sum(x,2)</literal>) È a soma coluna a coluna. Retorna em cada
     entrada do vetor coluna <literal>y</literal> a soma : <literal>y(i)=
     sum(x(i,:))</literal>)).</para>
 
-    <para><literal>y=sum(x,'m')</literal> √© a soma ao longo da primeira
-    dimens√£o "n√£o-singleton" de <literal>x</literal> (para compatibilidade com
+    <para><literal>y=sum(x,'m')</literal> È a soma ao longo da primeira
+    dimens„o "n„o-singleton" de <literal>x</literal> (para compatibilidade com
     Matlab).</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 A=[1,2;3,4];
 trace(A)-sum(diag(A))
 sum(A,'c')-A*ones(2,1)
@@ -96,12 +95,11 @@ A=sparse(A);sum(A,'c')-A*ones(2,1)
 s=poly(0,'s');
 M=[s,%i+s;s^2,1];
 sum(M),sum(M,2)
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="cumsum">cumsum</link></member>

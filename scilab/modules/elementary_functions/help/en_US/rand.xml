@@ -184,13 +184,13 @@ rand("info")
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[  
 x=rand(10,10,'uniform')
 rand('normal')
 rand('info')
 y=rand(x,'normal');
 x=rand(2,2,2)
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

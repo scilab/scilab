@@ -32,6 +32,7 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscilocalization.la
@@ -78,7 +79,8 @@ includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
 includes/TerminateLocalization.h \
-includes/charEncoding.h
+includes/charEncoding.h \
+includes/dynlib_localization.h
 
 if GUI
 USEANT=1

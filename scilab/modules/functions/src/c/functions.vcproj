@@ -6,6 +6,7 @@
 	ProjectGUID="{53A01263-92BE-4C87-AA9A-79297F882310}"
 	RootNamespace="functions"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../call_scilab/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../fileio/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FUNCTIONS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -69,7 +70,7 @@
 				AdditionalDependencies="LibScilab.lib functions_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="functions.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -126,7 +127,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../call_scilab/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../fileio/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;FUNCTIONS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -145,14 +146,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions.dll %%f &gt;nul&#x0D;&#x0A;copy *.def functionstmp.def &gt;nul&#x0D;&#x0A;copy ..\functions_header.def+functionstmp.def  ..\functions.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib functions_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="functions.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -211,7 +212,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../call_scilab/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../fileio/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FUNCTIONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -237,7 +238,7 @@
 				AdditionalDependencies="LibScilab.lib functions_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="functions.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -300,7 +301,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../localization/includes;../../../call_scilab/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../core/includes;../../../../libs/hashtable;../../../../libs/intl;../../../fileio/includes;../../../windows_tools/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;FUNCTIONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -319,14 +320,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n functions.dll %%f &gt;nul&#x0D;&#x0A;copy *.def functionstmp.def &gt;nul&#x0D;&#x0A;copy ..\functions_header.def+functionstmp.def  ..\functions.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib functions_f.lib"
 				OutputFile="../../../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="functions.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -373,7 +374,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getmacroslist.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\librarieslist.c"
+				>
+			</File>
+			<File
+				RelativePath=".\libraryinfo.c"
 				>
 			</File>
 			<File
@@ -396,13 +409,49 @@
 				RelativePath="..\..\sci_gateway\c\sci_lib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_librarieslist.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_libraryinfo.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_whereis.c"
+				>
+			</File>
+			<File
+				RelativePath=".\searchmacroinlibraries.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\dynlib_functions.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getmacroslist.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_functions.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\librarieslist.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\libraryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\searchmacroinlibraries.h"
 				>
 			</File>
 		</Filter>
@@ -417,10 +466,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\functions_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

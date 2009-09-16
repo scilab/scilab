@@ -14,6 +14,7 @@
 #define __FILESMANAGEMENT_H__
 
 #include <stdio.h>
+#include "dynlib_fileio.h"
 #include "BOOL.h"
 
 /* ID returned if File is not defined */
@@ -31,88 +32,88 @@
 * Get max of files opened in scilab
 * @return max of files opened in scilab
 */
-int GetMaximumFileOpenedInScilab(void);
+FILEIO_IMPEXP int GetMaximumFileOpenedInScilab(void);
 
 /**
 * Get the file associated to int Id
 * @param Id
 * @return FILE ptr
 */
-FILE *GetFileOpenedInScilab(int Id);
+FILEIO_IMPEXP FILE *GetFileOpenedInScilab(int Id);
 
 /**
 * Set the file associated to int Id
 * @param FILE ptr
 * @param Id
 */
-void SetFileOpenedInScilab(int Id,FILE *fptr);
+FILEIO_IMPEXP void SetFileOpenedInScilab(int Id,FILE *fptr);
 
 /**
 * Get the current Id (current file)
 * @return Id
 */
-int GetCurrentFileId(void);
+FILEIO_IMPEXP int GetCurrentFileId(void);
 
 /**
 * Get the previous Id (previous file)
 * @return Id
 */
-int GetPreviousFileId(void);
+FILEIO_IMPEXP int GetPreviousFileId(void);
 
 /**
 * Set the current Id (current file)
 * @param Id
 */
-void SetCurrentFileId(int Id);
+FILEIO_IMPEXP void SetCurrentFileId(int Id);
 
 /**
 * Get the swap status of file Id
 * @param Id
 * @return swap status
 */
-int GetSwapStatus(int Id);
+FILEIO_IMPEXP int GetSwapStatus(int Id);
 
 /**
 * Set the swap status of file Id
 * @param Id
 * @param new swap
 */
-void SetSwapStatus(int Id,int newswap);
+FILEIO_IMPEXP void SetSwapStatus(int Id,int newswap);
 
 /**
 * Get the mode of file Id
 * @param Id
 * @return mode
 */
-int GetFileModeOpenedInScilab(int Id);
+FILEIO_IMPEXP int GetFileModeOpenedInScilab(int Id);
 
 /**
 * Set the mode of file Id
 * @param Id
 * @param new mode
 */
-void SetFileModeOpenedInScilab(int Id,int mode);
+FILEIO_IMPEXP void SetFileModeOpenedInScilab(int Id,int mode);
 
 /**
 * Get the type of file Id
 * @param Id
 * @return Type (Fortran,C)
 */
-int GetFileTypeOpenedInScilab(int Id);
+FILEIO_IMPEXP int GetFileTypeOpenedInScilab(int Id);
 
 /**
 * Set the mode of file Id
 * @param Id
 * @param new Type (Fortran,C)
 */
-void SetFileTypeOpenedInScilab(int Id,int Type);
+FILEIO_IMPEXP void SetFileTypeOpenedInScilab(int Id,int Type);
 
 /**
 * Get the name of file Id
 * @param Id
 * @return name
 */
-char* GetFileNameOpenedInScilab(int Id);
+FILEIO_IMPEXP char* GetFileNameOpenedInScilab(int Id);
 
 /**
 * Set the name of file Id
@@ -120,45 +121,46 @@ char* GetFileNameOpenedInScilab(int Id);
 * @param new name
 * @return TRUE or FALSE
 */
-BOOL SetFileNameOpenedInScilab(int Id,char *name);
+FILEIO_IMPEXP BOOL SetFileNameOpenedInScilab(int Id,char *name);
 
 /**
 * Free filename of file Id
 * @param Id
 * @return TRUE or FALSE
 */
-BOOL FreeFileNameOpenedInScilab(int Id);
+FILEIO_IMPEXP BOOL FreeFileNameOpenedInScilab(int Id);
 
 /**
 * Initialize Scilab's file list
 * @return TRUE or FALSE
 */
-BOOL InitializeScilabFilesList(void);
+FILEIO_IMPEXP BOOL InitializeScilabFilesList(void);
 
 /**
 * Terminate Scilab's file list
 * @return TRUE or FALSE
 */
-BOOL TerminateScilabFilesList(void);
+FILEIO_IMPEXP BOOL TerminateScilabFilesList(void);
 
 /**
 * Extend Scilab's file list
 * @return TRUE or FALSE
 */
-BOOL ExtendScilabFilesList(int NewSize);
+FILEIO_IMPEXP BOOL ExtendScilabFilesList(int NewSize);
 
 /**
 * Search if filename is already opened in Scilab
 * @return TRUE or FALSE
 */
-BOOL IsAlreadyOpenedInScilab(char *filename);
+FILEIO_IMPEXP BOOL IsAlreadyOpenedInScilab(char *filename);
 
 /**
 * Get ID of a filename opened in scilab
 * @param[in] filen name
 * @return file ID or FILE_ID_NOT_DEFINED
 */
-int GetIdFromFilename(char *filename);
+FILEIO_IMPEXP int GetIdFromFilename(char *filename);
+
 #endif /* __FILESMANAGEMENT_H__ */
 /*--------------------------------------------------------------------------*/
 

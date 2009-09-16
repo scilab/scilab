@@ -44,16 +44,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 manedit('manedit')
 
 function [x,y,z]=foo123(a,b),
 x=a+b,y=a-b,z=a==b
 endfunction
 manedit foo123
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

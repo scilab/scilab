@@ -119,6 +119,7 @@ libscimetanet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/libs/hashtable/
 
 pkglib_LTLIBRARIES = libscimetanet.la
@@ -152,7 +153,8 @@ libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 
 #### metanet : include files ####
 libscimetanet_la_includedir=$(pkgincludedir)/metanet
-libscimetanet_la_include_HEADERS = includes/gw_metanet.h
+libscimetanet_la_include_HEADERS = includes/gw_metanet.h \
+includes/dynlib_metanet.h
 
 #### metanet : Macros ####
 MACROSDIRSEXT =  macros/editor macros/graph_tools

@@ -55,9 +55,7 @@ of data in the corresponding row of x.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-
+    <programlisting role="example"><![CDATA[ 
 x=[6 7 0 7 10 4 2 2 7 1;
    6 0 5 5 5 2 0 6 8 10;
    8 6 4 3 5 9 8 3 4 7;
@@ -71,9 +69,7 @@ x=[6 7 0 7 10 4 2 2 7 1;
 q=quart(x)
 q=quart(x,'r')
 q=quart(x,'c')
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>

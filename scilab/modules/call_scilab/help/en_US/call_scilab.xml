@@ -50,10 +50,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // A simple call_scilab example 
 
-#include &lt;stdio.h&gt; /* stderr */
+#include <stdio.h> /* stderr */
 
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
 #include "CallScilab.h" /* Provide functions to call Scilab engine */

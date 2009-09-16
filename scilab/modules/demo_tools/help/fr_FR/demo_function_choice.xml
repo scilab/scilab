@@ -36,7 +36,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 demolist=[
 	'Simulation of a binomial random variable','set figure_style new;xbasc();BinomialT();';
 	'Simulation of a discrete random variable','set figure_style new;xbasc();RndDiscT();';
@@ -48,7 +48,7 @@ demolist=[
 	'Simulation of an Erlang random variable','set figure_style new;xbasc();ErlangT();'];
 
 demo_function_choice();
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

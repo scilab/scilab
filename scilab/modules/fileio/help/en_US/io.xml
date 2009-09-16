@@ -48,13 +48,13 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 mfprintf(%io(2),'Scilab stdout (C)');
 mfprintf(0,'Scilab stderr (C)');
 write(%io(2),'Scilab stdout (Fortran)');
 write(0,'Scilab stderr (Fortran');
 [units,typ,names]=file()
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

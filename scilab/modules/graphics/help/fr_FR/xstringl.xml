@@ -59,7 +59,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d([0;1],[0;1],0)
 str=["Scilab" "n''est ";"pas" "Matlab"];
 r=xstringl(0.5,0.5,str)
@@ -75,8 +75,7 @@ xstring(r2(1),r2(2),str)
 txt2=gce();
 txt2.font_size = 5;
 txt2.font_style = 2;
-
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

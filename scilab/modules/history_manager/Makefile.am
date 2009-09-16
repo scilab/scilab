@@ -41,7 +41,7 @@ endif
 
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/fileio/includes/
+libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/modules/api_scilab/includes -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -51,6 +51,7 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -87,7 +88,8 @@ libscihistory_manager_la_includedir=$(pkgincludedir)/history_manager
 libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
 includes/HistoryManager.h \
 includes/InitializeHistoryManager.h \
-includes/TerminateHistoryManager.h
+includes/TerminateHistoryManager.h \
+includes/dynlib_history_manager.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/HistoryManagement.i

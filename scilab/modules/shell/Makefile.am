@@ -33,8 +33,12 @@ sci_gateway/c/sci_prompt.c \
 sci_gateway/c/sci_iswaitingforinput.c
 
 # Includes need for the compilation
-libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
--I$(srcdir)/src/c/others/ -I$(top_srcdir)/libs/MALLOC/includes/
+libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(srcdir)/includes/ \
+-I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
+-I$(srcdir)/src/c/others/ \
+-I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
 libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -49,6 +53,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
 			-I$(top_srcdir)/modules/fileio/src/c/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -93,7 +98,8 @@ includes/PutChar.h \
 includes/tohome.h \
 includes/zzledt.h \
 includes/prompt.h \
-includes/promptecho.h
+includes/promptecho.h \
+includes/dynlib_shell.h
 
 
 if GUI

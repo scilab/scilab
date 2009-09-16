@@ -50,15 +50,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-  //create a simple demo script
-  path=TMPDIR+'/foo.sce';
-  mputl('disp Hello',path)
-  add_demo('My first demo',path)
-  //the demo can now be run using the "Demos" menu.
-  
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+//create a simple demo script
+path=TMPDIR+'/foo.sce';
+mputl('disp Hello',path)
+add_demo('My first demo',path)
+//the demo can now be run using the "Demos" menu.
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

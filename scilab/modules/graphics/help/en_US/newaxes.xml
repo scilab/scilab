@@ -42,8 +42,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 clf()
 a1=newaxes(); 
 a1.axes_bounds=[0,0,1.0,0.5];
@@ -58,8 +57,7 @@ legend('sinh')
 sca(a1); //make first axes current
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

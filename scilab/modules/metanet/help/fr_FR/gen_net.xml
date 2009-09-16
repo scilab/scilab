@@ -119,7 +119,7 @@ g = gen_net()</synopsis>
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 v=[1,10,2,1,0,10,100,100,0,100,50,50];
 g=gen_net('foo',1,v);
 show_graph(g)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>xfpolys</refname>
 
-    <refpurpose>preenche um conjunto de pol√≠gonos</refpurpose>
+    <refpurpose>preenche um conjunto de polÌgonos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>xpols,ypols</term>
 
         <listitem>
-          <para>matrizes de mesmo tamanho (p,n) (pontos dos pol√≠gonos).
+          <para>matrizes de mesmo tamanho (p,n) (pontos dos polÌgonos).
           </para>
         </listitem>
       </varlistentry>
@@ -57,45 +57,45 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para><literal>xfpolys</literal> preenche um conjunto de pol√≠gonos de
+    <para><literal>xfpolys</literal> preenche um conjunto de polÌgonos de
     mesmo tamanho definidos pelas matrizes <literal>xpols</literal> e
-    <literal>ypols</literal>. As coordenadas de cada pol√≠gono s√£o armazenadas
+    <literal>ypols</literal>. As coordenadas de cada polÌgono s„o armazenadas
     em uma coluna de <literal>xpols</literal> e
     <literal>ypols</literal>.</para>
 
-    <para>Os pol√≠gonos podem ser preenchidos por uma dada cor (preenchimento
-    mon√≥tono) ou pintados com cores interpoladas (preenchimento por
-    gradua√ß√£o). </para>
+    <para>Os polÌgonos podem ser preenchidos por uma dada cor (preenchimento
+    monÛtono) ou pintados com cores interpoladas (preenchimento por
+    graduaÁ„o). </para>
 
     <variablelist>
       <varlistentry>
-        <term>preenchimento mon√≥tono</term>
+        <term>preenchimento monÛtono</term>
 
         <listitem>
           <para>Neste caso, <literal>fill</literal> deve ser um vetor de
-          tamanho <literal>n</literal>. O padr√£o para preenchimento de um
-          pol√≠gono de n√∫mero i √© dado por <literal>fill(i)</literal>:</para>
+          tamanho <literal>n</literal>. O padr„o para preenchimento de um
+          polÌgono de n˙mero i È dado por <literal>fill(i)</literal>:</para>
 
           <itemizedlist>
             <listitem>
-              <para>se <literal>fill(i)&lt;0</literal>, o pol√≠gono √©
-              preenchido com padr√£o de identificador
+              <para>se <literal>fill(i)&lt;0</literal>, o polÌgono È
+              preenchido com padr„o de identificador
               <literal>-fill(i)</literal>.</para>
             </listitem>
 
             <listitem>
-              <para>se <literal>fill(i)=0</literal>, o pol√≠gono √© desenhado no
-              estilo de tra√ßo (ou cor) corrente e n√£o √© preenchido. </para>
+              <para>se <literal>fill(i)=0</literal>, o polÌgono È desenhado no
+              estilo de traÁo (ou cor) corrente e n„o È preenchido. </para>
             </listitem>
 
             <listitem>
-              <para>se <literal>fill(i)&gt;0</literal>, o pol√≠gono √©
-              preenchido com padr√£o de identificador
-              <literal>fill(i)</literal>. Ent√£o seu contorno √© desenhado com o
-              estilo de tra√ßo (ou cor) corrente e fechado, se
-              necess√°rio.</para>
+              <para>se <literal>fill(i)&gt;0</literal>, o polÌgono È
+              preenchido com padr„o de identificador
+              <literal>fill(i)</literal>. Ent„o seu contorno È desenhado com o
+              estilo de traÁo (ou cor) corrente e fechado, se
+              necess·rio.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -111,7 +111,7 @@
           igual a 3 ou 4. </para>
 
           <para><literal>fill(k,i)</literal> fornece a cor da
-          <literal>k</literal> -√©sima borda do pol√≠gono
+          <literal>k</literal> -Èsima borda do polÌgono
           <literal>i</literal>.</para>
         </listitem>
       </varlistentry>
@@ -121,50 +121,46 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    
-    a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
-    x1=[0,10,20,30,20,10,0]';
-    y1=[15,30,30,15,0,0,15]';
-    xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
-    ypols=[y1 y1 y1 y1];
-    xfpolys(xpols,ypols,[-1,0,1,2])
+    <programlisting role="example"><![CDATA[ 
+a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
+x1=[0,10,20,30,20,10,0]';
+y1=[15,30,30,15,0,0,15]';
+xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+ypols=[y1 y1 y1 y1];
+xfpolys(xpols,ypols,[-1,0,1,2])
 
-    // cores interpoladas
-    clf()
-    f=gcf();
-    a=gca();a.data_bounds=[0,-10;40,30];a.isoview='on';
-    x1=[0,10,20,10]';
-    y1=[10,0,10,20]';
-    c=linspace(2,100,4)';
-    xpols=[x1 x1+20 x1+10 x1+10];
-    ypols=[y1 y1    y1+10 y1-10];
-    cols= [c c($:-1:1) c([3 4 1 2]) c]
-    f.color_map=jetcolormap(max(cols));
-    xfpolys(xpols,ypols,cols)
+// cores interpoladas
+clf()
+f=gcf();
+a=gca();a.data_bounds=[0,-10;40,30];a.isoview='on';
+x1=[0,10,20,10]';
+y1=[10,0,10,20]';
+c=linspace(2,100,4)';
+xpols=[x1 x1+20 x1+10 x1+10];
+ypols=[y1 y1    y1+10 y1-10];
+cols= [c c($:-1:1) c([3 4 1 2]) c]
+f.color_map=jetcolormap(max(cols));
+xfpolys(xpols,ypols,cols)
   
-    // cores interpoladas
-    clf()
-    f=gcf();
-    x11=[0;20;20;0];y11=[10;10;30;30];c11=[10;10;30;30];
-    x12=x11;y12=y11+20;c12=[20;20;1;1];c12=[30;30;10;10];
-    x21=[0;30;30;0]+22;y21=[20;20;30;30];c21=[20;20;30;30];
-    x22=x21;y22=y21+10;c22=[30;30;20;20];
-    x31=[0;40;40;0]+55;y31=[0;0;30;30];c31=[0;0;30;30];
-    x32=x31;y32=y31+30;c32=[30;30;0;0];
-    X=[x11 x12 x21 x22 x31 x32];Y=[y11 y12 y21 y22 y31 y32];C=([c11 c12 c21 c22  c31 c32]+1)*5;
-    a=gca();a.isoview='on';
-    a.data_bounds=[min(X),min(Y);max(X),max(Y)];
-    f=gcf();f.color_map=graycolormap(max(C));
-    xfpolys(X,Y,C)
-
-    
-  </programlisting>
+// cores interpoladas
+clf()
+f=gcf();
+x11=[0;20;20;0];y11=[10;10;30;30];c11=[10;10;30;30];
+x12=x11;y12=y11+20;c12=[20;20;1;1];c12=[30;30;10;10];
+x21=[0;30;30;0]+22;y21=[20;20;30;30];c21=[20;20;30;30];
+x22=x21;y22=y21+10;c22=[30;30;20;20];
+x31=[0;40;40;0]+55;y31=[0;0;30;30];c31=[0;0;30;30];
+x32=x31;y32=y31+30;c32=[30;30;0;0];
+X=[x11 x12 x21 x22 x31 x32];Y=[y11 y12 y21 y22 y31 y32];C=([c11 c12 c21 c22  c31 c32]+1)*5;
+a=gca();a.isoview='on';
+a.data_bounds=[min(X),min(Y);max(X),max(Y)];
+f=gcf();f.color_map=graycolormap(max(C));
+xfpolys(X,Y,C)
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m</title>
+    <title>Ver TambÈm</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpoly">xfpoly</link></member>

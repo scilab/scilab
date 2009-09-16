@@ -52,16 +52,14 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 samples=[46 55 54;
          53 54 50; 
          49 58 51;
          50 61 51;
          46 52 49]
 [f,p]=ftest(samples)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -47,9 +47,9 @@ This function is used to know the current version number of Scicos.
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 scicos_ver = get_scicos_version
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Parameters_get_scicos_version">
     <title>Parameters</title>

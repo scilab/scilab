@@ -65,8 +65,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
 find(beers=="Leffe") // OK
 find(beers=="1664") // KO
@@ -86,8 +85,7 @@ H=rand(4,3,5); //an hypermatrix
 [i,j,k]=find(H>0.9)  
 
 H(i(1),j(1),k(1))
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

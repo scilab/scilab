@@ -83,11 +83,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 cellstr("foo")
 cellstr(["sci","lab"])
 cellstr(["abc","def",'gh';"i","j","klm"])
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

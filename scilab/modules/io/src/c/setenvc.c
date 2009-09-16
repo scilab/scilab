@@ -22,13 +22,9 @@
 #include "MALLOC.h" /* MALLOC */
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-static int UpdateEnvVar = 0;
-/*--------------------------------------------------------------------------*/
 BOOL setenvc(char *stringIn,char *valueIn)
 {
 	BOOL ret = TRUE;
-
-	
 
 #ifdef _MSC_VER
 	{
@@ -44,8 +40,6 @@ BOOL setenvc(char *stringIn,char *valueIn)
 		#define ENV_FORMAT L"%s=%s"
 		wchar_t* wstringIn = to_wide_string(stringIn);
 		wchar_t* wvalueIn = to_wide_string(valueIn);
-
-
 
 		if (SetEnvironmentVariableW(wstringIn,wvalueIn) == 0)
 		{
@@ -78,20 +72,9 @@ BOOL setenvc(char *stringIn,char *valueIn)
 
 	if(ret)
 	{
-		setUpdateEnvVar(1);
 		setenvtcl(stringIn,valueIn);
 	}
 
 	return ret;
-}
-/*--------------------------------------------------------------------------*/
-int getUpdateEnvVar(void)
-{
-	return UpdateEnvVar;
-}
-/*--------------------------------------------------------------------------*/
-void setUpdateEnvVar(int val)
-{
-	UpdateEnvVar = val;
 }
 /*--------------------------------------------------------------------------*/

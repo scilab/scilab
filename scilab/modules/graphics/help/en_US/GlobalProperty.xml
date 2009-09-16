@@ -353,7 +353,8 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[// --------------------
+    <programlisting role="example"><![CDATA[ 
+// --------------------
 // With the plot command :
 // --------------------
 x=1:10; // Init.
@@ -396,9 +397,7 @@ subplot(211)
 surf(Z,'facecol','interp','ydat',101:110,'edgecol','mage')
 subplot(212)
 surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
-
- 
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="poly" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>poly</refname>
 
-    <refpurpose>defini√ß√£o de polin√¥mios</refpurpose>
+    <refpurpose>definiÁ„o de polinÙmios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>p=poly(a,x, ["flag"])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>matriz ou n√∫mero real </para>
+          <para>matriz ou n˙mero real </para>
         </listitem>
       </varlistentry>
 
@@ -38,8 +38,8 @@
         <term>x</term>
 
         <listitem>
-          <para>String, o nome da vari√°vel simb√≥lica. Se o string tiver mais
-          de 4 caracteres, apenas os quatro primeiros ser√£o levados em
+          <para>String, o nome da vari·vel simbÛlica. Se o string tiver mais
+          de 4 caracteres, apenas os quatro primeiros ser„o levados em
           conta.</para>
         </listitem>
       </varlistentry>
@@ -48,67 +48,65 @@
         <term>"flag"</term>
 
         <listitem>
-          <para>string ("roots", "coeff"), valor padr√£o √© "roots".</para>
+          <para>string ("roots", "coeff"), valor padr„o È "roots".</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <variablelist>
       <varlistentry>
-        <term>Se a √© uma matriz,</term>
+        <term>Se a È uma matriz,</term>
 
         <listitem>
-          <para><literal>p</literal> √© o polin√¥mio caracter√≠stico, i.e.,
+          <para><literal>p</literal> È o polinÙmio caracterÌstico, i.e.,
           <literal>determinant(x*eye()-a)</literal>, <literal>x</literal>
-          sendo a vari√°vel simb√≥lica.</para>
+          sendo a vari·vel simbÛlica.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Se v √© um vetor,</term>
+        <term>Se v È um vetor,</term>
 
         <listitem>
           <itemizedlist>
             <listitem>
-              <para><literal>poly(v,"x",["roots"])</literal> √© o polin√¥mio com
-              entradas de <literal>v</literal> como ra√≠zes e
-              <literal>"x"</literal> como vari√°vel formal (neste caso,
-              <literal>roots</literal> e <literal>poly</literal> s√£o fun√ß√µes
-              inversas). Note que infinitas ra√≠zes fornecem zero coeficientes
+              <para><literal>poly(v,"x",["roots"])</literal> È o polinÙmio com
+              entradas de <literal>v</literal> como raÌzes e
+              <literal>"x"</literal> como vari·vel formal (neste caso,
+              <literal>roots</literal> e <literal>poly</literal> s„o funÁıes
+              inversas). Note que infinitas raÌzes fornecem zero coeficientes
               de grau mais elevado.</para>
             </listitem>
 
             <listitem>
-              <para><literal>poly(v,"x","coeff")</literal> cria o polin√¥mio
-              com s√≠mbolo <literal>"x"</literal> e com entradas de
-              <literal>v</literal> como coeficientes (v(1) √© o termo constante
-              do polin√¥mio). (aqui <literal>poly</literal> e
-              <literal>coeff</literal> s√£o fun√ß√µes inversas).</para>
+              <para><literal>poly(v,"x","coeff")</literal> cria o polinÙmio
+              com sÌmbolo <literal>"x"</literal> e com entradas de
+              <literal>v</literal> como coeficientes (v(1) È o termo constante
+              do polinÙmio). (aqui <literal>poly</literal> e
+              <literal>coeff</literal> s„o funÁıes inversas).</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para><literal>s=poly(0,"s")</literal> √© a fonte para definir polin√¥mios
-    com s√≠mbolo <literal>"s"</literal>.</para>
+    <para><literal>s=poly(0,"s")</literal> È a fonte para definir polinÙmios
+    com sÌmbolo <literal>"s"</literal>.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    s=poly(0,"s");p=1+s+2*s^2;
-    A=rand(2,2);poly(A,"x")
-    //fra√ß√µes racionais
-    h=(1+2*%s)/poly(1:4,'s','c')
-    
-  </programlisting>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+//fraÁıes racionais
+h=(1+2*%s)/poly(1:4,'s','c')
+ ]]></programlisting>
   </refsection>
 
   <refsection>

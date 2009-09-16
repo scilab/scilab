@@ -40,8 +40,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // Suppose you want to load some codes via the dynamic 
 // loading facilities offers by addinter. By default 
 // arguments are passed by values but if you want to 
@@ -58,8 +57,7 @@
 // intppty()                
 //
 // you will see all the interfaces working by reference
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

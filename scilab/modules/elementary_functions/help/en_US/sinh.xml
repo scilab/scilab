@@ -57,9 +57,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 asinh(sinh([0,1,%i]))
-   </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

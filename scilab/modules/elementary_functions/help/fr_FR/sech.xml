@@ -68,10 +68,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 x=linspace(-10,10,1000)
 plot(x,sech(x))
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

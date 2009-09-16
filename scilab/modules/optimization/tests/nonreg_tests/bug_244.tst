@@ -5,6 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- TEST WITH GRAPHIC -->
+// <-- INTERACTIVE TEST -->
+
 // <-- Non-regression test for bug 244 -->
 //
 // <-- Bugzilla URL -->

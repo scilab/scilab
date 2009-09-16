@@ -30,6 +30,7 @@ pkglib_LTLIBRARIES = libscihelptools.la
 
 libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/jvm/includes
 
 
@@ -37,6 +38,7 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/src/jni/ \
 				-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -67,7 +69,8 @@ libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
 #### helptools : include files ####
 libscihelptools_la_includedir=$(pkgincludedir)/helptools
-libscihelptools_la_include_HEADERS = includes/gw_helptools.h
+libscihelptools_la_include_HEADERS = includes/gw_helptools.h \
+	includes/dynlib_helptools.h
 
 
 #### helptools : bin files ####
@@ -106,7 +109,6 @@ libscihelptools_la_schema_DATA = schema/scilab.rnc
 #### helptools : doc files ####
 libscihelptools_la_docdir = $(mydatadir)/doc
 libscihelptools_la_doc_DATA = \
-doc/addonprefs.png \
 doc/addonprefs.png \
 doc/doc.pdf \
 doc/doc.xml

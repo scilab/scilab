@@ -12,7 +12,7 @@
 
 #ifndef __SETUIMENUCHECKED_H__
 #define __SETUIMENUCHECKED_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -26,6 +26,6 @@
  * @param nbCol number of columns of the value on stack
  * @return true if the set has been correcty done
  */
-int SetUimenuChecked(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
+GUI_IMPEXP int SetUimenuChecked(sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol ) ;
 
 #endif /* !__SETUIMENUCHECKED_H__ */

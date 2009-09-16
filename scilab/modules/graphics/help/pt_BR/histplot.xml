@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>histplot</refname>
 
-    <refpurpose>esbo√ßa um histograma</refpurpose>
+    <refpurpose>esboÁa um histograma</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seq√º√™ncia de Chamamento</title>
+    <title>Seq¸Íncia de Chamamento</title>
 
     <synopsis>histplot(n, data, &lt;opt_args&gt;)
 histplot(x, data, &lt;opt_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>n</term>
 
         <listitem>
-          <para>inteiro positivo (n√∫mero de classes) </para>
+          <para>inteiro positivo (n˙mero de classes) </para>
         </listitem>
       </varlistentry>
 
@@ -67,70 +67,69 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
         <term>&lt;opt_args&gt;</term>
 
         <listitem>
-          <para>representa uma seq√º√™ncia de declara√ß√µes
+          <para>representa uma seq¸Íncia de declaraÁıes
           <literal>key1=value1,key2=value2</literal> ,... onde
           <literal>key1</literal>, <literal>key2,...</literal> pode ser
-          qualquer normaliza√ß√£o ou par√¢metro de <link
+          qualquer normalizaÁ„o ou par‚metro de <link
           linkend="plot2d">plot2d</link> opcional (<literal>style,strf,leg,
           rect,nax, logflag,frameflag, axesflag</literal>) No caso de
-          normaliza√ß√£o, o valor correspondente deve ser um escalar booleano
-          (valor padr√£o %t). </para>
+          normalizaÁ„o, o valor correspondente deve ser um escalar booleano
+          (valor padr„o %t). </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Esta fun√ß√£o esbo√ßa um histograma do vetor <literal>data</literal>
-    utilizando classes <literal>x</literal>. Quando o n√∫mero
-    <literal>n</literal> de classes √© fornecido ao inv√©s de
-    <literal>x</literal>, as classes s√£o escolhidas de modo igualmente
-    espa√ßado e <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt;
+    <para>Esta funÁ„o esboÁa um histograma do vetor <literal>data</literal>
+    utilizando classes <literal>x</literal>. Quando o n˙mero
+    <literal>n</literal> de classes È fornecido ao invÈs de
+    <literal>x</literal>, as classes s„o escolhidas de modo igualmente
+    espaÁado e <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt;
     x(n+1) = max(data)</emphasis> com <emphasis>dx =
     (x(n+1)-x(1))/n</emphasis>.</para>
 
-    <para>As classes s√£o definidas por C1 = [x(1), x(2)] e Ci = ( x(i),
-    x(i+1)] para i &gt;= 2. Notando Nmax o n√∫mero total de
-    <literal>data</literal> (Nmax = comprimento de data) e Ni o n√∫mero de
+    <para>As classes s„o definidas por C1 = [x(1), x(2)] e Ci = ( x(i),
+    x(i+1)] para i &gt;= 2. Notando Nmax o n˙mero total de
+    <literal>data</literal> (Nmax = comprimento de data) e Ni o n˙mero de
     componentes de <literal>data</literal> em Ci, o valor do histograma para x
-    em Ci √© igual a <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quando
-    <literal>normalization</literal> (normaliza√ß√£o) for verdadeiro (caso
-    padr√£o) sen√£o, √© simplesmente igual a Ni. Quando a normaliza√ß√£o ocorre, o
+    em Ci È igual a <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> quando
+    <literal>normalization</literal> (normalizaÁ„o) for verdadeiro (caso
+    padr„o) sen„o, È simplesmente igual a Ni. Quando a normalizaÁ„o ocorre, o
     histograma verifica: </para>
 
-    <programlisting>
-            x(n+1)
-           /  
-           |   h(x) dx = 1,  when x(1)&lt;=min(data) e max(data) &lt;= x(n+1)) 
-           /
-           x(1)
-     
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+ x(n+1)
+/  
+|   h(x) dx = 1,  when x(1)<=min(data) e max(data) <= x(n+1)) 
+/
+ x(1)
+ ]]></programlisting>
 
-    <para>Qualquer <link linkend="plot2d">plot2d</link> par√¢metro (opcional)
-    pode ser fornecido; por exemplo, para esbo√ßar um histograma com a cor
-    n√∫mero 2 (azul, se o mapa de cores padr√£o for utilizado) e para restringir
-    o esbo√ßo ao ret√¢ngulo [-3,3]x[0,0.5], voc√™ pode utilizar
+    <para>Qualquer <link linkend="plot2d">plot2d</link> par‚metro (opcional)
+    pode ser fornecido; por exemplo, para esboÁar um histograma com a cor
+    n˙mero 2 (azul, se o mapa de cores padr„o for utilizado) e para restringir
+    o esboÁo ao ret‚ngulo [-3,3]x[0,0.5], vocÍ pode utilizar
     <literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>.</para>
 
     <para>Entre com o comando <literal>histplot()</literal> para visualizar
-    uma demonstra√ß√£o.</para>
+    uma demonstraÁ„o.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-// exemplo #1: varia√ß√µes ao redor de um histograma de uma amostra gaussiana aleat√≥ria
-d=rand(1,10000,'normal');  // a amostra gaussiana aleat√≥ria
+    <programlisting role="example"><![CDATA[ 
+// exemplo #1: variaÁıes ao redor de um histograma de uma amostra gaussiana aleatÛria
+d=rand(1,10000,'normal');  // a amostra gaussiana aleatÛria
 clf();histplot(20,d)
 clf();histplot(20,d,normalization=%f)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
 clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
 
-// exemplo #2: histograma de uma amsostra binomial (B(6,0.5)) aleat√≥ria
+// exemplo #2: histograma de uma amsostra binomial (B(6,0.5)) aleatÛria
 d = grand(1000,1,"bin", 6, 0.5);
 c = linspace(-0.5,6.5,8);
 xbasc()
@@ -139,9 +138,9 @@ subplot(2,1,1)
    xtitle("histograma normalizado")
 subplot(2,1,2)
    histplot(c, d, normalization=%f, style=5)
-   xtitle("histograma n√£o normalizado")
+   xtitle("histograma n„o normalizado")
 
-// exemplo #3: histograma de uma amostra exponencial aleat√≥ria
+// exemplo #3: histograma de uma amostra exponencial aleatÛria
 lambda = 2;
 X = grand(100000,1,"exp", 1/lambda);
 Xmax = max(X);
@@ -149,13 +148,12 @@ xbasc()
 histplot(40, X, style=2)
 x = linspace(0,max(Xmax),100)';
 plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
-legend(["histograma de amostra exponencial aleat√≥ria" "curva de densidade exata"]);
-
-  </programlisting>
+legend(["histograma de amostra exponencial aleatÛria" "curva de densidade exata"]);
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver Tamb√©m </title>
+    <title>Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="hist3d">hist3d</link></member>

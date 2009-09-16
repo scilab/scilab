@@ -22,8 +22,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-#define GUI_TAB_SIZE 35
-static gw_generic_table Tab[GUI_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 	{sci_x_dialog,"x_dialog"},
 	{sci_x_choose,"x_choose"},
@@ -90,7 +89,7 @@ int gw_gui(void)
           }
 
 
-	callFunctionFromGateway(Tab,GUI_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 
 	return 0;
 }

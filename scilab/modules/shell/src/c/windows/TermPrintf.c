@@ -11,10 +11,10 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#include "TermPrintf.h"
+#include "dynlib_shell.h"
 #include "TermConsole.h"
 /*--------------------------------------------------------------------------*/
-void TermPrintf_Windows(char *buffer)
+SHELL_IMPEXP void TermPrintf_Windows(char *buffer)
 {
 	TerminalPrintf(buffer);
 }

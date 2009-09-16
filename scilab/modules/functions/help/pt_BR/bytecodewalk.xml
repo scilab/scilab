@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="bytecodewalk" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 18-04-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bytecodewalk</refname>
+
+    <refpurpose>caminha no bytecode (código de bytes) da função aplicando
+    transformação</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>c1 = bytecodewalk(code,query,job)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>code</term>
+
+        <listitem>
+          <para>vetor int32: array de bytecode de entrada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>query</term>
+
+        <listitem>
+          <para>inteiro, o opcode (código de operação) a ser procurado</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>job</term>
+
+        <listitem>
+          <para>a operação a ser realizada, requerida para</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c1</term>
+
+        <listitem>
+          <para>vetor int32: array de bytecode de saída</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>caminha no bytecode da função aplicando transformação</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bytecode">bytecode</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

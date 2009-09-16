@@ -22,7 +22,7 @@ extern "C"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "freeArrayOfString.h"
 }
 
@@ -44,12 +44,6 @@ int sci_uigetdir(char *fname,unsigned long l)
   CheckRhs(0,2);
   CheckLhs(1,1);
 
-  if ((expandedpath = (char*)MALLOC(sizeof(char*)*(PATH_MAX + FILENAME_MAX + 1))) == NULL)
-    {
-      Scierror(999, _("%s: No more memory.\n"),fname);
-      return FALSE;
-    }
-
   if (Rhs >= 1)
     {
       /* First argument is initial directory */
@@ -64,14 +58,12 @@ int sci_uigetdir(char *fname,unsigned long l)
             }
           initialDirectory = cstk(initialDirectoryAdr);
 
-          int out_n = 0;
-          C2F(cluni0)(initialDirectory ,expandedpath, &out_n,(int)strlen(initialDirectory),PATH_MAX + FILENAME_MAX);
-
+		  expandedpath = expandPathVariable(initialDirectory);
        }
       else
         {
           Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
-          FREE(expandedpath);
+		  if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
           return FALSE;
         }
 
@@ -86,7 +78,7 @@ int sci_uigetdir(char *fname,unsigned long l)
            if (nbCol !=1)
              {
                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
-               FREE(expandedpath);
+               if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
                return FALSE;
              }
            title = cstk(titleAdr);
@@ -94,7 +86,7 @@ int sci_uigetdir(char *fname,unsigned long l)
        else
          {
            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
-           FREE(expandedpath);
+           if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
            return FALSE;
          }
      }
@@ -140,7 +132,7 @@ int sci_uigetdir(char *fname,unsigned long l)
   LhsVar(1)=Rhs+1;
   PutLhsVar();
 
-  FREE(expandedpath);
+  if (expandedpath) {FREE(expandedpath); expandedpath = NULL;}
   
   return TRUE;
 }

@@ -1,0 +1,13 @@
+	LIBRARY    api_scilab.dll
+
+
+EXPORTS
+	getMatrixOfDouble
+	getVarType
+	getVarAddressFromPosition
+	getMatrixOfWideString
+	createMatrixOfDouble
+	createMatrixOfWideString
+	createMatrixOfBoolean
+	getVarDimension
+	

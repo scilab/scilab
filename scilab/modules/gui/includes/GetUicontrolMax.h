@@ -12,7 +12,7 @@
 
 #ifndef __GET_UICONTROL_MAX_H__
 #define __GET_UICONTROL_MAX_H__
-
+#include "dynlib_gui.h"
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 
@@ -22,6 +22,6 @@
  * @param pobj Scilab object corresponding to the uicontrol
  * @return true if the max property has been correcty got
  */
-int GetUicontrolMax(sciPointObj * pobj);
+GUI_IMPEXP int GetUicontrolMax(sciPointObj * pobj);
 
 #endif /* __GET_UICONTROL_MAX_H__ */

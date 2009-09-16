@@ -51,11 +51,9 @@
     <para><literal>R</literal> = linear system in state-space representation (<literal>syslin</literal> list).</para>
     <para><literal>R</literal> is strictly proper and <literal>- R~</literal> is stable 
     (i.e. <literal>R</literal> is anti stable).</para>
-    <programlisting><![CDATA[
-
-    || R - X ||oo = min || R - Y ||oo
-                  Y in Hoo
-   
-    ]]></programlisting>
+    <programlisting role = ""><![CDATA[ 
+|| R - X ||oo = min || R - Y ||oo
+              Y in Hoo
+ ]]></programlisting>
   </refsection>
 </refentry>

@@ -19,8 +19,7 @@
 #include "gw_differential_equations2.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define DIFFERENTIAL_EQUATIONS2_TAB_SIZE 3
-static gw_generic_table Tab[DIFFERENTIAL_EQUATIONS2_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
 	{C2F(sciimpl),"impl"},
 	{C2F(dassli),"dassl"},
@@ -30,7 +29,7 @@ static gw_generic_table Tab[DIFFERENTIAL_EQUATIONS2_TAB_SIZE]=
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations2(void)
 {  
-	callFunctionFromGateway(Tab,DIFFERENTIAL_EQUATIONS2_TAB_SIZE);
+	callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

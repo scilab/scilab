@@ -19,6 +19,7 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/core/src/c/
@@ -58,6 +59,7 @@ libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 #### call_scilab : include files ####
 libscicall_scilab_la_includedir=$(pkgincludedir)/call_scilab
 libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
-	includes/fromjava.h
+	includes/fromjava.h \
+	includes/dynlib_call_scilab.h
 
 include $(top_srcdir)/Makefile.incl.am

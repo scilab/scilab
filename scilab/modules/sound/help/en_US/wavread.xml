@@ -104,8 +104,7 @@ y=wavread(wavfile,ext)
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 wavread("SCI/modules/sound/demos/chimes.wav","size")
 [y,Fs,bits]=wavread("SCI/modules/sound/demos/chimes.wav");Fs,bits
 subplot(2,1,1)
@@ -113,8 +112,7 @@ plot2d(y(1,:)) // first channel
 subplot(2,1,2)
 plot2d(y(2,:)) // second channel
 y=wavread("SCI/modules/sound/demos/chimes.wav",[1 5]) //the first five samples
-
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

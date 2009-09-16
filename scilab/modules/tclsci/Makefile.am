@@ -59,6 +59,7 @@ libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
 libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -254,10 +255,11 @@ includes/TCL_Global.h \
 includes/ScilabEval.h \
 includes/gw_tclsci.h \
 includes/InitializeTclTk.h \
-includes/sci_TCL_SetVar.h \
 includes/TerminateTclTk.h \
 includes/GlobalTclInterp.h \
-includes/withtk.h
+includes/withtk.h \
+includes/dynlib_tclsci.h
+
 
 include $(top_srcdir)/Makefile.incl.am
 

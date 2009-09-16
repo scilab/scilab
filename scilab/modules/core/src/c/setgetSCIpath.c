@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "charEncoding.h"
 #include "setgetSCIpath.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -28,5 +29,10 @@ void setSCIpath(char *path)
 char *getSCIpath(void)
 {
 	return strdup(SCIPATH);
+}
+/*--------------------------------------------------------------------------*/ 
+wchar_t *getSCIpathW(void)
+{
+	return to_wide_string(SCIPATH);
 }
 /*--------------------------------------------------------------------------*/ 

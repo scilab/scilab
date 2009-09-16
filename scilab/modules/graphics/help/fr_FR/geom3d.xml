@@ -42,8 +42,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff("[z]=surface(x,y)","z=sin(x)*cos(y)")
 t=%pi*(-10:10)/10;
 // 3D plot of the surface
@@ -51,8 +50,7 @@ fplot3d(t,t,surface,35,45,"X@Y@Z")
 // now (t,t,sin(t).*cos(t)) is a curve on the surface
 // which can be drawn using geom3d and xpoly
 [x,y]=geom3d(%pi/2,0,surface(%pi/2,0))
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Auteurs</title>

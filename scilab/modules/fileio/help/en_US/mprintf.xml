@@ -131,7 +131,8 @@ str=msprintf(format,a1,...,an);</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
+    <programlisting role="example"><![CDATA[ 
+mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
 
 msprintf('%5.3f %5.3f',123,0.732)
 msprintf('%5.3f\n%5.3f',123,0.732)
@@ -151,7 +152,7 @@ mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);
 mclose(fd);
 scipad(TMPDIR+'/text.txt')
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

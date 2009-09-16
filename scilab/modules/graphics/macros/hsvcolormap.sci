@@ -7,6 +7,12 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function c=hsvcolormap(n)
-  if n<1 then error('hsvcolormap : n must be an integer greater than 1'),end
+	if size(n,'*')<>1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer expected.\n"),"hsvcolormap",1));
+	end
+	
+	if n<3 then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"),"hsvcolormap",1,3));
+	end
   c = hsv2rgb([(0:n-1)'/n ones(n,2)]);
 endfunction

@@ -42,7 +42,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // échelle isométrique 
 plot2d(0,0,-1,"031"," ",[-2,-2,2,2])
 xset("color",3)

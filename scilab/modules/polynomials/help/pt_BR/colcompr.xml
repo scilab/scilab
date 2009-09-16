@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>colcompr</refname>
 
-    <refpurpose>compress√£o de colunas de matrizes de polin√¥mios</refpurpose>
+    <refpurpose>compress„o de colunas de matrizes de polinÙmios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A</term>
 
         <listitem>
-          <para>matriz de polin√¥mios </para>
+          <para>matriz de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>Y</term>
 
         <listitem>
-          <para>matriz de polin√¥mios quadrada (base unimodular direita)
+          <para>matriz de polinÙmios quadrada (base unimodular direita)
           </para>
         </listitem>
       </varlistentry>
@@ -66,34 +66,32 @@
         <term>Ac</term>
 
         <listitem>
-          <para>: <literal>Ac=A*Y</literal>, matriz de polin√¥mios</para>
+          <para>: <literal>Ac=A*Y</literal>, matriz de polinÙmios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Compress√£o de colunas da matriz de polin√¥mios <literal>A</literal>
-    (compress√£o para a esquerda).</para>
+    <para>Compress„o de colunas da matriz de polinÙmios <literal>A</literal>
+    (compress„o para a esquerda).</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 p=[s;s*(s+1)^2;2*s^2+s^3];
 [Y,rk,ac]=colcompr(p*p');
 p*p'*Y
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="rowcompr">rowcompr</link></member>

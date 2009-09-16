@@ -338,7 +338,7 @@ pack $w3.frame.polydataY   -in $w3.frame.curdataframeY  -expand 1 -fill x -pady 
 frame $w3.frame.curdataframeFX  -borderwidth 0
 pack $w3.frame.curdataframeFX  -in $w3.frame  -side top  -fill x
 
-label $w3.frame.polydatalabelFX  -height 0 -text "X Data:" -width 0  -font $gedFont -anchor e -width $largeur
+label $w3.frame.polydatalabelFX  -height 0 -text "FX Data:" -width 0  -font $gedFont -anchor e -width $largeur
 combobox $w3.frame.polydataFX \
     -borderwidth 1 \
     -highlightthickness 1 \

@@ -66,6 +66,7 @@ sci_gateway/c/sci_znaupd.c
 
 libsciarnoldi_la_CFLAGS= 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
 libsciarnoldi_la_FFLAGS= -I$(srcdir)/src/arpack/
@@ -101,6 +102,7 @@ libsciarnoldi_la_sci_gateway_DATA = sci_gateway/arnoldi_gateway.xml
 
 #### arnoldi : include files ####
 libsciarnoldi_la_includedir=$(pkgincludedir)/arnoldi
-libsciarnoldi_la_include_HEADERS = includes/gw_arnoldi.h
+libsciarnoldi_la_include_HEADERS = includes/gw_arnoldi.h \
+	includes/dynlib_arnoldi.h
 
 include $(top_srcdir)/Makefile.incl.am

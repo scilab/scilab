@@ -17,12 +17,13 @@ dnl Process this file with autoconf to produce a configure script.
 AC_REVISION($Revision$)dnl
 AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.60)
+AC_CONFIG_MACRO_DIR([m4/])
 
 SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:1:0
+SCILAB_LIBRARY_VERSION=5:2:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -61,7 +62,7 @@ AC_SYS_LARGEFILE
 # See http://wiki.debian.org/RpathIssue
 AC_RELOCATABLE
 AC_RELOCATABLE_LIBRARY
-
+AC_LIB_RPATH
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
@@ -893,6 +894,7 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 
 # gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
 AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.16])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -1065,7 +1067,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1469,6 +1471,7 @@ modules/simulated_annealing/Makefile
 modules/parameters/Makefile
 modules/matio/Makefile
 modules/atoms/Makefile
+modules/xpad/Makefile
 modules/Makefile
 libs/Makefile
 Makefile

@@ -160,6 +160,7 @@ sci_gateway/fortran/sci_fadj2sp.f \
 sci_gateway/fortran/sci_sfinit.f
 
 libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la

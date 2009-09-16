@@ -50,24 +50,23 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-    // Vérification de la validité des objets courants
-    is_handle_valid([gcf(), gca(), gce()])
+    <programlisting role="example"><![CDATA[ 
+// Vérification de la validité des objets courants
+is_handle_valid([gcf(), gca(), gce()])
 
-    // création de 11 polylines
-    plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
+// création de 11 polylines
+plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
     
-    // Vérification de la validité des polylines
-    axes = gca();
-    polylines = axes.children(1).children
-    is_handle_valid(polylines)
+// Vérification de la validité des polylines
+axes = gca();
+polylines = axes.children(1).children
+is_handle_valid(polylines)
     
-    // destruction de quelques polylines
-    delete(polylines(3:7));
-    // Affichage de la validité
-    is_handle_valid(polylines)
-
-  ]]></programlisting>
+// destruction de quelques polylines
+delete(polylines(3:7));
+// Affichage de la validité
+is_handle_valid(polylines)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

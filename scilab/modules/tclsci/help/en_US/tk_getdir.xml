@@ -57,13 +57,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 tk_getdir()
 tk_getdir("SCI/modules/")
 tk_getdir(Title="Choose a directory name")
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

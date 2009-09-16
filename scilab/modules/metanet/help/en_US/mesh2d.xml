@@ -89,8 +89,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // FIRST CASE
 theta=0.025*[1:40]*2.*%pi;
 x=1+cos(theta);
@@ -186,7 +185,6 @@ endfunction
 N=1000;xbasc();X=rand(1,N); Y=rand(1,N);
 xset("wdim",700,700);
 test(X,Y);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
 </refentry>

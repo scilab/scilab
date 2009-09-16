@@ -77,7 +77,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 n=15;
 d=100*rand(15,15);
 d=d-diag(diag(d));

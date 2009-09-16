@@ -93,6 +93,7 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
@@ -127,6 +128,7 @@ libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gate
 
 ####�signal_processing : include files ####
 libscisignal_processing_la_includedir=$(pkgincludedir)/signal_processing
-libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
+libscisignal_processing_la_include_HEADERS = includes/gw_signal.h \
+includes/dynlib_signal_processing.h
 
 include $(top_srcdir)/Makefile.incl.am

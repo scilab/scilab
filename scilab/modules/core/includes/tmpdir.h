@@ -12,6 +12,8 @@
 #ifndef __TMPDIR_H__
 #define __TMPDIR_H__
 
+#include <wchar.h>
+
 #include "machine.h"
 
 /**
@@ -29,12 +31,19 @@ void C2F(settmpdir)(void);
 void C2F(tmpdirc)(void);
 
 /**
- * @TODO add comment
- *
+ * returns TMPDIR directory value
  * @param void  
  * @return <ReturnValue>
  */
 char *getTMPDIR(void);
+
+
+/**
+* returns TMPDIR directory value (wide string)
+* @param void  
+* @return <ReturnValue>
+*/
+wchar_t *getTMPDIRW(void);
 
 #endif /* __TMPDIR_H__ */
 /*--------------------------------------------------------------------------*/ 

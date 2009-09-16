@@ -14,6 +14,11 @@
 #define __STRING_API__
 
 #include <wchar.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "dynlib_api_scilab.h"
 /*****************************/
 /*   string matrix functions   */
@@ -106,5 +111,9 @@ API_SCILAB_IMPEXP int readNamedMatrixOfString(char* _pstName, int* _piRows, int*
 * @return if the operation successed (0) or not ( !0 )
 */
 API_SCILAB_IMPEXP int readNamedMatrixOfWideString(char* _pstName, int* _piRows, int* _piCols, int* _piwLength, wchar_t** _pwstStrings);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* __STRING_API__ */

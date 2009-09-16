@@ -20,7 +20,7 @@
 
 #ifndef _BASIC_ALGOS_H_
 #define _BASIC_ALGOS_H_
-
+#include "dynlib_graphics.h"
 #include "BOOL.h"
 
 /**
@@ -28,7 +28,7 @@
  * @param[in] x array of size n.
  * @return The stricly posistive minimum of x if exists, a negative value otherwise
  */
-double sciFindStPosMin( const double x[], int n ) ;
+GRAPHICS_IMPEXP double sciFindStPosMin( const double x[], int n ) ;
 
 
 /**
@@ -38,34 +38,34 @@ double sciFindStPosMin( const double x[], int n ) ;
  *          0 if not monotonous
  * @param nbElement must be greater than 2.
  */
-int checkMonotony( const double vector[], int nbElement ) ;
+GRAPHICS_IMPEXP int checkMonotony( const double vector[], int nbElement ) ;
 
 /**
  * @return TRUE if the array contains one element which is not %inf, -%inf or %nan
  *         FALSE is all its elements are not finite
  */
-BOOL containsOneFiniteElement(const double vector[], int nbElement);
+GRAPHICS_IMPEXP BOOL containsOneFiniteElement(const double vector[], int nbElement);
 
 /*--------------------------------------------------------------------------*/
 /**
  * copy an array into an other
  */
-void doubleArrayCopy( double dest[], const double src[], int nbElement ) ;
+GRAPHICS_IMPEXP void doubleArrayCopy( double dest[], const double src[], int nbElement ) ;
 
 /**
  * copy an int array into an other
  */
-void intArrayCopy( int dest[], const int src[], int nbElement ) ;
+GRAPHICS_IMPEXP void intArrayCopy( int dest[], const int src[], int nbElement ) ;
 
 /**
  * copy a char * array into an other
  */
-void stringArrayCopy( char * dest[], char * src[], int nbElement ) ;
+GRAPHICS_IMPEXP void stringArrayCopy( char * dest[], char * src[], int nbElement ) ;
 
 /**
  * set each element of an array to a certain value
  */
-void setDoubleArraySingleValue( double dest[], double value, int nbElement ) ;
+GRAPHICS_IMPEXP void setDoubleArraySingleValue( double dest[], double value, int nbElement ) ;
 
 /**
  * create a new array which is kind of copy of another
@@ -74,37 +74,37 @@ void setDoubleArraySingleValue( double dest[], double value, int nbElement ) ;
  * @param destSize the wanted size for the new array
  * @return  the newly created array or NULL if an error occured
  */
-double * createNewArrayFromSource( int destSize, const double src[], int srcSize ) ;
+GRAPHICS_IMPEXP double * createNewArrayFromSource( int destSize, const double src[], int srcSize ) ;
 
 /**
  * free an array of strings
  */
-void destroyStringArray( char * src[], int nbStrings ) ;
+GRAPHICS_IMPEXP void destroyStringArray( char * src[], int nbStrings ) ;
 
 /**
  * Free a string allocated by new
  */
-void destroyCppString(char * string);
+GRAPHICS_IMPEXP void destroyCppString(char * string);
 
 /**
  * allocate a copy of a double array
  */
-double * createDoubleArrayCopy( const double src[], int nbElement ) ;
+GRAPHICS_IMPEXP double * createDoubleArrayCopy( const double src[], int nbElement ) ;
 
 /**
  * allocate a copy of a int array.
  */
-int * createIntArrayCopy( const int src[], int nbElement ) ;
+GRAPHICS_IMPEXP int * createIntArrayCopy( const int src[], int nbElement ) ;
 
 /**
  * allocate a copy of a string array
  */
-char ** createStringArrayCopy( char * src[], int nbElement ) ;
+GRAPHICS_IMPEXP char ** createStringArrayCopy( char * src[], int nbElement ) ;
 
 /**
  * allocate a string array and set all its element to NULL
  */
-char ** createStringArray(int nbElement);
+GRAPHICS_IMPEXP char ** createStringArray(int nbElement);
 /*--------------------------------------------------------------------------*/
 
 #endif /* _BASIC_ALGOS_H_ */

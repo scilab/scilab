@@ -39,17 +39,27 @@
   <refsection>
     <title>Description</title>
 
-    <para>copyfile('source','destination') copies the file to the file or
-    directory destination.</para>
+    <para>copyfile('source','destination') copies the file or directory ,
+    source (and subdirectories) to the file or directory, destination.</para>
 
-    <para>[status,message] = copyfile('source','destination') copies source to
-    destination, returning the status and a message.</para>
+    <para>If source is a directory, destination can not be a file. copyfile
+    replaces existing files without warning.</para>
+
+    <para>[status, message] = copyfile('source','destination') copies source
+    to destination, returning the status and a message. </para>
+
+    <para>Whatever the operating system, if the copy succeeds, the status is 1
+    and the message is empty ; if the copy fails, the status is 0 and the
+    message is not empty.</para>
+
+    <para>The timestamp given to the destination file is identical to that
+    taken from source file.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"> 
 copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
 [status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
  </programlisting>
@@ -59,6 +69,7 @@ copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
     <title>See Also</title>
 
     <simplelist type="inline">
+    	<member><link linkend="movefile">movefile</link></member>
       <member><link linkend="mdelete">mdelete</link></member>
     </simplelist>
   </refsection>

@@ -82,9 +82,9 @@
     <literal>R^n</literal> to <literal>R^p</literal> computes the matrix
     <literal>g</literal> such as</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 [ d f ] [ i ] g = [ ---- ] ij [ d x ] [ j ]
-  </programlisting>
+ ]]></programlisting>
 
     <para>using finite difference methods.</para>
 
@@ -100,9 +100,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example 1 (without parameters)
-// myfun is a function from R^2 to R :   (x(1),x(2)) |--&gt; myfun(x) 
+// myfun is a function from R^2 to R :   (x(1),x(2)) |--> myfun(x) 
 function f=myfun(x)
   f=x(1)*x(1)+x(1)*x(2)
 endfunction
@@ -113,9 +113,8 @@ g=numdiff(myfun,x)
 // The exact gradient (i.e derivate belong x(1) :first component and derivate belong x(2): second component) is  
 exact=[2*x(1)+x(2)  x(1)]
 
-
 //example 2 (with parameters)
-// myfun is a function from R to R:  x(1) |--&gt; myfun(x) 
+// myfun is a function from R to R:  x(1) |--> myfun(x) 
 // myfun contains 3 parameters, a, b, c
 function  f=myfun(x,a,b,c)
   f=(x+a)^c+b
@@ -127,7 +126,7 @@ g2=numdiff(list(myfun,a,b,c),x)
 
 // The exact gradient, i.e derivate belong x(1), is :
 exact2=c*(x+a)^(c-1)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

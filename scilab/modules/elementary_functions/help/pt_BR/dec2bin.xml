@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>dec2bin</refname>
 
-    <refpurpose>representaÃ§Ã£o binÃ¡ria</refpurpose>
+    <refpurpose>representação binária</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[str]=dec2bin(x[,n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>ParÃ¢metros</title>
+    <title>Parâmetros</title>
 
     <variablelist>
       <varlistentry>
@@ -64,43 +64,44 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
     <para>Dado <literal>x</literal>, um inteiro (ou um vetor/matriz de
-    inteiros) positivo, esta funÃ§Ã£o retorna um string (ou um vetor coluna de
-    strings) que Ã© a representaÃ§Ã£o binÃ¡ria de <literal>x. </literal>Se a
-    dimensÃ£o de <literal>x</literal> Ã© superior a 1, entÃ£o cada componente do
-    vetor coluna <literal>str</literal> Ã© a representaÃ§Ã£o binÃ¡ria dos
-    componentes de <literal>x</literal> (i.e <literal>str(i)</literal> Ã© a
-    representaÃ§Ã£o binÃ¡ria de <literal>x(i)</literal>). Se o comprimento dos
-    componentes de <literal>str</literal> Ã© menor que <literal>n</literal> (
-    i.e length str(i) &lt; n ), entÃ£o, adicione aos componentes de
-    <literal>str</literal> os caracteres '0' Ã  esquerda, para se obter o
+    inteiros) positivo, esta função retorna um string (ou um vetor coluna de
+    strings) que é a representação binária de <literal>x. </literal>Se a
+    dimensão de <literal>x</literal> é superior a 1, então cada componente do
+    vetor coluna <literal>str</literal> é a representação binária dos
+    componentes de <literal>x</literal> (i.e <literal>str(i)</literal> é a
+    representação binária de <literal>x(i)</literal>). Se o comprimento dos
+    componentes de <literal>str</literal> é menor que <literal>n</literal> (
+    i.e length str(i) &lt; n ), então, adicione aos componentes de
+    <literal>str</literal> os caracteres '0' à esquerda, para se obter o
     comprimento dos componentes igual a <literal>n</literal></para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">// exemplo 1 :
+    <programlisting role="example"><![CDATA[ 
+// exemplo 1 :
 x=86;
 str=dec2bin(x)
 
 // exemplo 2 :
-// a representaÃ§Ã£o binÃ¡ria de 86 Ã©: '1010110'
-// seu comprimento Ã© 7(menor que n), entÃ£o, temos adicionamos a str, 
-//8 vezes o caracteres '0'  (Ã  esquerda)
+// a representação binária de 86 é: '1010110'
+// seu comprimento é 7(menor que n), então, temos adicionamos a str, 
+//8 vezes o caracteres '0'  (à esquerda)
 x=86;n=15;
 str=dec2bin(x,n)
 
 // exemplo 3 :
 x=[12;45;135]
 z=dec2bin(x)
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

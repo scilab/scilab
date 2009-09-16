@@ -13,6 +13,7 @@
 #ifndef __MOPEN_H__
 #define __MOPEN_H__
 
+#include "dynlib_fileio.h"
 #include "machine.h"
 
 /**
@@ -25,7 +26,7 @@
 * @param[out] error
 */
 
-void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
+FILEIO_IMPEXP void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 
 #endif  /* __MOPEN_H__ */
 /*--------------------------------------------------------------------------*/

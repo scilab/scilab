@@ -56,14 +56,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 A=diag([-1,-2,-3]);B=rand(3,2);
 Wc=ctr_gram(A,B)
 U=rand(3,3);A1=U*A/U;B1=U*B;
 Wc1=ctr_gram(A1,B1)    //Not invariant!
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

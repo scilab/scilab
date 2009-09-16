@@ -310,10 +310,10 @@ case "list"
     if type(e(k))==15 then // Recursive extraction in recursive extraction
       ind=strsubst(ind,")(",",")
       if part(ind, 1)=="(" then
-	ind = part(ind, 2:length(ind))
+		ind = part(ind, 2:length(ind))
       end
       if part(ind, length(ind))==")" then
-	ind = part(ind, 1:(length(ind)-1))
+		ind = part(ind, 1:(length(ind)-1))
       end
     end
     if ind==""":""" then

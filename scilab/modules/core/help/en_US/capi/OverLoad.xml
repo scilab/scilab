@@ -57,9 +57,9 @@
     and prints the integer corresponding to the type of the variable sent as
     parameter in the Scilab console.</para>
 
-    <programlisting> 
-#include &lt;stack-c.h&gt;
-#include &lt;sciprint.h&gt;
+    <programlisting role = "example"><![CDATA[  
+#include <stack-c.h>
+#include <sciprint.h>
 
 int sci_check_properties_2(char * fname)
 {
@@ -71,11 +71,11 @@ int sci_check_properties_2(char * fname)
   switch(VarType(1)) 
     {
     case sci_matrix: 
-      GetRhsVar(1, "d", &amp;m1, &amp;n1, &amp;l1);
+      GetRhsVar(1, "d", &m1, &n1, &l1);
       sciprint("1 is a scalar matrix\n");
       break;
     case sci_strings:
-      GetRhsVar(1, "c", &amp;m1, &amp;n1, &amp;l1);
+      GetRhsVar(1, "c", &m1, &n1, &l1);
       sciprint("1 is a string\n");
       break;
     case sci_sparse:
@@ -91,7 +91,7 @@ int sci_check_properties_2(char * fname)
 
     <para>The builder.sce script look like this:</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[  
 // This is the builder.sce 
 // must be run from this directory 
 
@@ -113,11 +113,11 @@ cflags  = "";
 fflags  = "";
 
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
- </programlisting>
+ ]]></programlisting>
 
     <para>And now, an example of use of this new function:</para>
 
-    <programlisting> 
+    <programlisting role = "example"><![CDATA[  
 chprop2([1,2,2]);
 chprop2('foo');
 
@@ -125,7 +125,7 @@ chprop2('foo');
 
 deff('[]=%sp_chprop2(sp)','disp(''sparse overloaded'')');
 chprop2(sparse([1,2,3]));
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

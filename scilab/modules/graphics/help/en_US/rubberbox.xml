@@ -71,14 +71,12 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 xsetech(frect=[0,0,100,100])
 [x,y]=xclick();r=rubberbox([x;y;30;10])
 xrect(r)
 r=rubberbox()
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

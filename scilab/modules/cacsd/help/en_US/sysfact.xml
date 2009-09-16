@@ -69,8 +69,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //Kalman filter
 Sys=ssrand(3,2,4);Sys('D')=rand(3,2);
 S=sysfact(Sys,lqr(Sys),'post');
@@ -81,8 +80,7 @@ Sys=ssrand(2,3,4);
 [X,d,F,U,k,Z]=abinv(Sys);
 ss2tf(Sys*Z)
 ss2tf(Sys*sysfact(Sys,F,'post')*U)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

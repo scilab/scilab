@@ -103,7 +103,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 // This example shows how to write a Scilab matrix of complex in Scilab engine
 /* 
  * Write a matrix into Scilab

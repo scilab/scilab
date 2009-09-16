@@ -48,19 +48,22 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[// create a struct date
+    <programlisting role="example"><![CDATA[ 
+// create a struct date
 date=struct('day',25,'month' ,'DEC','year',2006)
+
 //change the month
 date.month='AUG';
+
 // change the year
 date.year=1973;
+
 //change the day
 date.day=19;
+
 // add a new field
 date.semaine=32
-
-
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

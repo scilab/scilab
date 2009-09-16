@@ -6,6 +6,7 @@
 	ProjectGUID="{DBC45B0D-6E0A-4107-B284-5A3B0C5BB50D}"
 	RootNamespace="elementary_functions_f2c"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -859,6 +860,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sdot.c"
+				>
+			</File>
+			<File
 				RelativePath=".\simple.c"
 				>
 			</File>
@@ -972,10 +977,6 @@
 			</File>
 			<File
 				RelativePath=".\wmul.c"
-				>
-			</File>
-			<File
-				RelativePath=".\wnrm2.c"
 				>
 			</File>
 			<File
@@ -1595,6 +1596,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sdot.f"
+				>
+			</File>
+			<File
 				RelativePath=".\simple.f"
 				>
 			</File>
@@ -1708,10 +1713,6 @@
 			</File>
 			<File
 				RelativePath=".\wmul.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wnrm2.f"
 				>
 			</File>
 			<File

@@ -29,20 +29,46 @@
 /*--------------------------------------------------------------------------*/
 BOOL createdirectory(const char *path)
 {
-	BOOL bOK=FALSE;
+	BOOL bOK = FALSE;
+
+	if (path)
+	{
+		if  (!isdir(path)) 
+		{
 #ifndef _MSC_VER
-	if  (!isdir(path)) 
-	{
-		if (mkdir(path, DIRMODE) == 0) bOK=TRUE;
-	}
+			if (mkdir(path, DIRMODE) == 0) bOK = TRUE;
 #else
-	wchar_t *widePath = to_wide_string((char*)path);
-	if (widePath)
-	{
-		if (CreateDirectoryW(widePath,NULL)) bOK = TRUE;
-		FREE(widePath);
-	}
+			wchar_t *widePath = to_wide_string((char*)path);
+			if (widePath)
+			{
+				bOK = createdirectoryW(widePath);
+				FREE(widePath); widePath = NULL;
+			} 
 #endif
+		}
+	}
+	return bOK;
+}
+/*--------------------------------------------------------------------------*/
+BOOL createdirectoryW(const wchar_t *pathW)
+{
+	BOOL bOK = FALSE;
+	if (pathW)
+	{
+		if (!isdirW(pathW))
+		{
+#ifndef _MSC_VER
+			char *path = wide_string_to_UTF8(pathW);
+			if (path)
+			{
+				bOK = createdirectory(path);
+				FREE(path); path = NULL;
+			}
+#else
+			if (CreateDirectoryW(pathW, NULL)) bOK = TRUE;
+#endif
+		}
+	}
 	return bOK;
 }
 /*--------------------------------------------------------------------------*/

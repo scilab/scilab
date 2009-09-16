@@ -813,7 +813,8 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 
 		for (i=0; i < nblegends; i++)
 		{
-			ppLegend->tabofhandles[i] = tabofhandles[i];
+ 			// Bug 4530: we must reverse the order of the handles
+			ppLegend->tabofhandles[i] = tabofhandles[nblegends - 1 - i];
 		}
 
 		ppLegend->text.fontcontext.textorientation = 0.0;

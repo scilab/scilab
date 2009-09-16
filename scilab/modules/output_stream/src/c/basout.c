@@ -17,8 +17,9 @@
 #include "stack-def.h"
 #include "basout.h"
 #include "MALLOC.h"
-#include "../../../fileio/includes/diary.h"
+#include "diary.h"
 #include "sciprint.h"
+#include "charEncoding.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
 /*--------------------------------------------------------------------------*/ 
@@ -75,10 +76,10 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			if (nbcharacters > 1)
 			{
 				/* on linux , q=[] crashs with previous version 
-				  in printf.f line 102 
-				  call basout(io,lunit,'     []')
-				  if we do basout(io,lunit,'     []',7) it works ...
-				  temp workaround , we returns to old version with a allocation
+				in printf.f line 102 
+				call basout(io,lunit,'     []')
+				if we do basout(io,lunit,'     []',7) it works ...
+				temp workaround , we returns to old version with a allocation
 				*/
 				char *buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+1));
 				if (buffer)
@@ -108,20 +109,34 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	{
 		if (*lunit == -2)
 		{
-			// it write a INPUT command line in diary
+			wchar_t *wcBuffer = NULL;
+
+			string[nbcharacters] = '\0';
+
+			/* remove blanks at end of line */
+			if (*lunit == -2)
+			{
+				int i = 0;
+				int len = (int) strlen(string) - 2;
+				for (i = len; i >= 0; i--)
+				{
+					if (string[i] == ' ') string[i] = '\0';
+					else break;
+				}
+			}
+
+			wcBuffer = to_wide_string(string);
+			if (wcBuffer)
+			{
+				if (wcscmp(wcBuffer,L"")) diaryWriteln(wcBuffer, TRUE);
+				FREE(wcBuffer);
+				wcBuffer = NULL;
+			}
 		}
 		else
-		  {
-		    if (*lunit == C2F(iop).wio)
-		      {
-			string[nbcharacters] = '\0';
-			diary(string,TRUE);
-		      }
-		    else
-		      {
+		{
 			C2F(basouttofile)(lunit, string,nbcharacters);
-		      }
-		  }
+		}
 	}
 	return 0;
 } 

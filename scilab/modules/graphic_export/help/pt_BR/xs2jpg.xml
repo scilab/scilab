@@ -66,12 +66,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0);
 plot2d();
 //Exportando para JPG
 xs2jpg(0,'foo.jpg');
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

@@ -24,13 +24,11 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <programlisting><![CDATA[
-
+    <programlisting><![CDATA[ 
 function <lhs_arguments>=<function_name><rhs_arguments>
-<statements>
+  <statements>
 endfunction
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     Where
   </para>
@@ -86,8 +84,7 @@ endfunction
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //inline definition (see function)
 function [x,y]=myfct(a,b)
 x=a+b
@@ -110,13 +107,9 @@ endfunction
 
 foo(%pi/3)
 
-
 // definition in an script file (see exec)
 exec SCI/modules/elementary_functions/macros/asinh.sci;
-
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

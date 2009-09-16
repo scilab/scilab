@@ -28,18 +28,18 @@
     <refsection>
         <title>Description</title>
         <para>This help describes how to add matrix of integer in a list.</para>
-        <para>There are 2 types of functions which can be used to write in the memory of Scilab.</para>
+        <para>Two types of functions can be used to write in the memory of Scilab.</para>
     </refsection>
     <refsection>
         <title>Create from existing data</title>
-        <programlisting><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
 int createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
 int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
 int createMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char* _pucData)
 int createMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short* _pusData)
 int createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int* _puiData)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -96,14 +96,14 @@ int createMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemP
     </refsection>
     <refsection>
         <title>Write directly in Scilab memory</title>
-        <programlisting><![CDATA[
+        <programlisting role=""><![CDATA[ 
 int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pcData)
 int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short** _psData)
 int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piData)
 int allocMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned char** _pucData)
 int allocMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned short** _pusData)
 int allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, unsigned int** _puiData)
-]]></programlisting>
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title>Parameters</title>
@@ -159,13 +159,12 @@ int allocMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPo
         </variablelist>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/list_createlist_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/list_createlist_api.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/list_createlist_api.tst-->
         <!--Lib_name: list_createlist-->
         <!--Func_list: list_createlist-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int list_createlist(char *fname,unsigned long fname_len)
 {
     int iRet                = 0;
@@ -274,14 +273,12 @@ int list_createlist(char *fname,unsigned long fname_len)
     LhsVar(1) = 1;
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
 dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
@@ -292,8 +289,6 @@ for i = 1 : size_ref
     if typeof(l(i)) <> type_ref(i) then error("failed"), end
     if size(l(i)) <> dim_ref(i) then error("failed"), end
 end
-
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

@@ -47,9 +47,9 @@ Cette fonction retourne un vecteur indiquant le type (algébrique ou différenti
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 [xprop]=pointer_xproperty
-]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection id="Paramètres_pointer_xproperty">
     <title>Paramètres</title>

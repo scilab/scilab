@@ -51,7 +51,6 @@ src/fortran/hpdel.f \
 src/fortran/hpins.f \
 src/fortran/svcar1.f \
 src/fortran/daux.f \
-src/fortran/dgbfa.f \
 src/fortran/rscom1.f \
 src/fortran/rksimp.f \
 src/fortran/roots.f \
@@ -128,6 +127,7 @@ sci_gateway/fortran/bbvode.f
 
 
 libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/dynamic_link/includes
 

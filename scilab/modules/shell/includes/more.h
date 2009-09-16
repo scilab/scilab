@@ -13,11 +13,13 @@
 #ifndef __MORE_H__
 #define __MORE_H__
 
+#include "dynlib_shell.h"
+
 /**
 * do a "more" 
 * @return 0 or 1 
 */
-int linesmore(void);
+SHELL_IMPEXP int linesmore(void);
 
 #endif /*  __MORE_H__ */
 /*--------------------------------------------------------------------------*/ 

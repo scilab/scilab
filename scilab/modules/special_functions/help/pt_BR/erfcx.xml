@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>erfcx</refname>
 
-    <refpurpose>funÃ§Ã£o de erro complementar escalada </refpurpose>
+    <refpurpose>função de erro complementar escalada </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>y = erfcx(x)</synopsis>
   </refsynopsisdiv>
@@ -56,25 +56,23 @@
   </refsection>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para><literal>erfcx</literal> computa a funÃ§Ã£o de erro complementar
+    <para><literal>erfcx</literal> computa a função de erro complementar
     escalada:</para>
 
-    <programlisting>
-
+    <programlisting role = ""><![CDATA[ 
               2                
      y = exp(x ) * erfc(x)
 
                 1
-     y  --&gt;  ---------    quando x --&gt; +oo
+     y  -->  ---------    quando x --> +oo
              x sqrt(pi) 
-   
-    </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="erf">erf</link></member>
@@ -88,6 +86,6 @@
   <refsection>
     <title>Autor</title>
 
-    <para>W. J. Cody (cÃ³digo de Netlib (specfun))</para>
+    <para>W. J. Cody (código de Netlib (specfun))</para>
   </refsection>
 </refentry>

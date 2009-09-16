@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2009 - Digiteo - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>lu</refname>
-    <refpurpose> LU factors of Gaussian elimination</refpurpose>
+    <refpurpose> LU factorization with pivoting</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -54,38 +55,76 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
-    <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
-    upper triangular and <literal>E*L</literal> lower triangular for a
-    permutation matrix <literal>E</literal>.</para>
-    <para> 
-    If <literal>A</literal> has rank <literal>k</literal>, rows <literal>k+1</literal> to
-    <literal>n</literal> of <literal>U</literal> are zero.</para>
-    <para><literal>[L,U,E]= lu(A)</literal> produces three matrices <literal>L</literal>, <literal>U</literal> and
-    <literal>E</literal> such that <literal>E*A = L*U</literal> with
-    <literal>U</literal> upper triangular and <literal>E*L</literal> lower
-    triangular for a permutation matrix <literal>E</literal>.</para>
-    <para> 
-    If <literal>A</literal> is a real matrix, using the function
-    <literal>lufact</literal> and  <literal>luget</literal> it is possible to obtain
-    the permutation matrices and also when <literal>A</literal> is not full
-    rank the column compression of the matrix <literal>L</literal>.</para>
+    <para>
+      <literal>[L,U]= lu(A)</literal> produces two matrices <literal>L</literal> and
+      <literal>U</literal> such that <literal>A = L*U</literal> with <literal>U</literal>
+      upper triangular and <literal>L</literal> a general matrix without any particular 
+      structure. In fact, the matrix <literal>A</literal> is factored as <literal>E*A=B*U</literal>
+      where the matrix <literal>B</literal> is lower triangular 
+      and the matrix <literal>L</literal> is computed from <literal>L=E'*B</literal>.
+    </para>
+    <para>
+      If <literal>A</literal> has rank <literal>k</literal>, rows <literal>k+1</literal> to
+      <literal>n</literal> of <literal>U</literal> are zero.
+    </para>
+    <para>
+      <literal>[L,U,E]= lu(A)</literal> produces three matrices <literal>L</literal>, <literal>U</literal> and
+      <literal>E</literal> such that <literal>E*A = L*U</literal> with
+      <literal>U</literal> upper triangular and <literal>E*L</literal> lower
+      triangular for a permutation matrix <literal>E</literal>.
+    </para>
+    <para>
+      If <literal>A</literal> is a real matrix, using the function
+      <literal>lufact</literal> and  <literal>luget</literal> it is possible to obtain
+      the permutation matrices and also when <literal>A</literal> is not full
+      rank the column compression of the matrix <literal>L</literal>.
+    </para>
   </refsection>
   <refsection>
-    <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <title>Example #1</title>
+    <para>
+      In the following example, we create the Hilbert matrix of size 4 and
+      factor it with A=LU. Notice that the matrix L is not lower triangular.
+      To get a lower triangular L matrix, we should have given the 
+      output argument E to Scilab.
+    </para>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u]=lu(a)
+norm(l*u-a)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Example #2</title>
+    <para>
+      In the following example, we create the Hilbert matrix of size 4 and
+      factor it with EA=LU. Notice that the matrix L is lower triangular.
+    </para>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u,e]=lu(a)
+norm(l*u-e*a)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Example #3</title>
+    <para>
+      The following example shows how to use the lufact and luget functions.
+    </para>
+    <programlisting role="example"><![CDATA[ 
 a=rand(4,4);
 [l,u]=lu(a)
 norm(l*u-a)
 
-[h,rk]=lufact(sparse(a))  // lufact fonctionne avec des matrices creuses 
+[h,rk]=lufact(sparse(a))
 [P,L,U,Q]=luget(h);
 ludel(h)
-P=full(P);L=full(L);U=full(U);Q=full(Q); 
-norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
- 
-  ]]></programlisting>
+P=full(P);
+L=full(L);
+U=full(U);
+Q=full(Q);
+norm(P*L*U*Q-a)
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

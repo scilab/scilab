@@ -19,15 +19,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 deff('y=test(a)',['y=sin(a)+1';
                   'y=t1(y)';
                   'y=y+1'])
 deff('y=t1(y)',['y=y^2';'whereami()'])
 test(1)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

@@ -22,7 +22,7 @@
         <refname>Variable Dimension (Scilab gateway)</refname>
 
         <refpurpose>
-            How to get dimension of a variable stored as matrix.
+            How to get the dimensions of a variable stored as matrix.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -36,7 +36,7 @@
                 <term>_piAddress</term>
                 <listitem>
                     <para>
-                        Address of the variable.
+                        The address of the variable.
                     </para>
                 </listitem>
             </varlistentry>
@@ -60,16 +60,15 @@
     </refsection>
     <refsection>
       <title>Description</title>
-      <para>This help describes how to get dimension of a variable in a gateway.</para>
+      <para>This help describes how to get the dimensions of a variable in a gateway.</para>
     </refsection>
     <refsection>
-        <!--File_gateway: SCI/modules/core/tests/unit_tests/commom_function_api.c-->
-        <!--File_scilab: SCI/modules/core/tests/unit_tests/commom_function.tst-->
+        <!--File_gateway: SCI/modules/api_scilab/tests/unit_tests/commom_function_api.c-->
+        <!--File_scilab: SCI/modules/api_scilab/tests/unit_tests/commom_function.tst-->
         <!--Lib_name: commom_function-->
         <!--Func_list: commom_function-->
         <title>Gateway Source</title>
-        <programlisting role="code_gateway">
-            <![CDATA[
+        <programlisting role="code_gateway"><![CDATA[ 
 int printf_info(int _iVar);
 
 int commom_function(char *fname,unsigned long fname_len)
@@ -193,14 +192,12 @@ int printf_info(int _iVar)
     }
     return 0;
 }
-        ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 
     <refsection>
         <title>Scilab test script</title>
-        <programlisting role="code_scilab">
-            <![CDATA[
+        <programlisting role="code_scilab"><![CDATA[ 
 l1 = [1,2*%i,3;%i,2,3*%i];
 l2 = ["may","the";"puffin","be";"with","you"];
 l3 = int8([1,2,3]);
@@ -208,7 +205,6 @@ l4 = uint16([1000,2000,3000]);
 l5 = list(l1,l2,l3);
 l = list(l1,l2,l3,l4,l5);
 commom_function(l(1:$))
-            ]]>
-        </programlisting>
+ ]]></programlisting>
     </refsection>
 </refentry>

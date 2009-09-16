@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="percent" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,42 +17,40 @@
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <para>Alguns nomes de vari√°veis predefinidas come√ßam com '
+    <para>Alguns nomes de vari·veis predefinidas comeÁam com '
     <literal>%</literal>', tais como <literal>%i</literal> (para
     <literal>sqrt(-1)</literal>), <literal>%inf</literal> (para
     <literal>Infinity</literal>), <literal>%pi</literal> (para
     <literal>3.14...</literal>), <literal>%T</literal> (para a constante
     booleana<literal>"true"</literal>),...</para>
 
-    <para>Ainda, fun√ß√µes cujo nome come√ßa com % s√£o especiais : elas s√£o
+    <para>Ainda, funÁıes cujo nome comeÁa com % s„o especiais : elas s„o
     usadas para primitivas e overloading ("sobrecarga") de operadores (ver
     <literal>overloading</literal>).</para>
 
-    <para>Por exemplo, a fun√ß√£o <literal>%rmr</literal> realiza a opera√ß√£o de
-    multiplica√ß√£o (<literal>m</literal>) <literal>x*y</literal> para
-    <literal>x</literal> e <literal>y</literal> matrizes de raz√µes de
-    polin√¥mios (<literal>r</literal>). As conven√ß√µes de codifica√ß√£o s√£o
-    fornecidas pelo arquivo "leia-me" no diret√≥rio
+    <para>Por exemplo, a funÁ„o <literal>%rmr</literal> realiza a operaÁ„o de
+    multiplicaÁ„o (<literal>m</literal>) <literal>x*y</literal> para
+    <literal>x</literal> e <literal>y</literal> matrizes de razıes de
+    polinÙmios (<literal>r</literal>). As convenÁıes de codificaÁ„o s„o
+    fornecidas pelo arquivo "leia-me" no diretÛrio
     <literal>SCIDIR/macros/percent</literal>.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 x1=tlist('x',1,2);
 x2=tlist('x',2,3);
 deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
 x1*x2
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="overloading">overloading</link></member>

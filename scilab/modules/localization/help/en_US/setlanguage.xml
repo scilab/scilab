@@ -41,8 +41,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 setlanguage('en_US')
 getlanguage()
 setlanguage('en')
@@ -51,8 +50,7 @@ setlanguage('fr')
 getlanguage()
 setlanguage('fr_FR')
 getlanguage()
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

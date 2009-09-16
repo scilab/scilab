@@ -46,8 +46,6 @@ static BOOL realloc_hashtable_scilab_functions(void);
 /*--------------------------------------------------------------------------*/
 BOOL create_hashtable_scilab_functions(void)
 {
-	unsigned int i = 0;
-
 	if (htable == NULL)
 	{
 		hashtableSize  = DEFAULT_ELEMENTFUNCTIONLIST;
@@ -111,7 +109,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			}
 
 			/* linear search algorithm */
-			for ( idx = 0 ; idx < hashtableSize ; idx++ ) 
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
 			{
 				if ( htable[idx].used)
 				{
@@ -129,7 +127,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 		{
 			/* linear search algorithm */
 			unsigned int idx = 0;
-			for ( idx = 0 ; idx < hashtableSize ; idx++ ) 
+			for ( idx = 0 ; idx < filled + 1; idx++ ) 
 			{
 				if ( (htable[idx].used) && (htable[idx].entry.data == *scilab_funptr) ) 
 				{
@@ -148,18 +146,29 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 			realloc_hashtable_scilab_functions();
 
 			if (filled ==  hashtableSize) return FALSE;
+
 			for (idx = 0; idx < hashtableSize; idx++)
 			{
 				if (htable[idx].used == 0)
 				{
 					int zero = 0;
-					int j = 0;
+
 					htable[idx].entry.data = *scilab_funptr;
-					if (name) strcpy(htable[idx].entry.namefunction, name);
-					else strcpy(htable[idx].entry.namefunction, "");
 
-					C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
-
+					if (name)
+					{
+						strcpy(htable[idx].entry.namefunction, name);
+						C2F(cvname)(htable[idx].entry.key, name, &zero,(unsigned long)strlen(name));
+					}
+					else
+					{
+						unsigned int i = 0;
+						strcpy(htable[idx].entry.namefunction, "");
+						for(i = 0; i < nsiz; i++)
+						{
+							htable[idx].entry.key[i] = key[i];
+						}
+					}
 					htable[idx].used = 1;
 					filled++;
 					return TRUE;
@@ -171,7 +180,7 @@ BOOL action_hashtable_scilab_functions(int *key,char *name, int *scilab_funptr, 
 	case SCI_HFUNCTIONS_DELETE:
 		{
 			unsigned int idx = 0;
-			for (idx = 0; idx < hashtableSize; idx++)
+			for (idx = 0; idx < filled + 1; idx++)
 			{
 				if ( (htable[idx].used) &&
 					 (htable[idx].entry.data == *scilab_funptr) &&
@@ -214,7 +223,7 @@ char **GetFunctionsList(int *sizeList)
 
 	*sizeList = 0;
 
-	for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+	for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 	{
 		if (htable[i].entry.namefunction) 
 		{
@@ -227,7 +236,7 @@ char **GetFunctionsList(int *sizeList)
 	j = 0;
 	if (ListFunctions)
 	{
-		for ( i = 0 ; i < hashtableSize ; i++ ) if ( htable[i].used) 
+		for ( i = 0 ; i < filled + 1; i++ ) if ( htable[i].used) 
 		{
 			if (htable[i].entry.namefunction)
 			{
@@ -246,7 +255,7 @@ BOOL ExistFunction(char *name)
 {
 	int i = 0;
 
-	for ( i = 0 ; i < (int)hashtableSize ; i++ ) 
+	for ( i = 0 ; i < (int)filled + 1; i++ ) 
 	{
 		if (htable[i].used) 
 		{
@@ -263,7 +272,7 @@ BOOL realloc_hashtable_scilab_functions(void)
 {
 	if ( (filled) >= hashtableSize)
 	{
-		int newhashtableSize = filled * 2;
+		unsigned int newhashtableSize = filled * 2;
 
 		if (newhashtableSize > MAXELEMENTFUNCTIONLIST) newhashtableSize = MAXELEMENTFUNCTIONLIST;
 
@@ -274,7 +283,7 @@ BOOL realloc_hashtable_scilab_functions(void)
 			if (htable)	
 			{
 				_ENTRY emptyEntry;
-				int i = 0;
+				unsigned int i = 0;
 
 				emptyEntry.used = 0;
 				strcpy(emptyEntry.entry.namefunction, "");

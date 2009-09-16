@@ -36,13 +36,11 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 a=rand(3,3);p=poly([1,2,3],'s');l=list(1,'asdf',[1 2 3]);
 print(%io(2),a,p,l)
 write(%io(2),a)
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

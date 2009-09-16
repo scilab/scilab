@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xbasc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xbasc</refname>
+
+    <refpurpose>limpa uma janela de gráficos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xbasc([window-id])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>window-id</term>
+
+        <listitem>
+          <para>escalar inteiro ou vetor de escalares inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Sem argumentos, esta função limpa a janela de gráficos corrente e
+    apaga os gráficos gravados. Em outro caso, ela limpa as janelas de
+    gráficos cujos números estão inclusos no vetor
+    <literal>window-id</literal>. Por exemplo <literal>xbasc(1:3)</literal>
+    limpa as janelas 1, 2 e 3 e apaga seus gráficos gravados correspondentes.
+    Se uma dessas janelas não existir, ela é automaticamente criada.</para>
+
+    <para><literal>xbasc</literal> deleta cada galho das janelas
+    especificadas, incluindo menus e uicontrols adicionados pelo usuário. Para
+    evitar que menus e uicontrols sejam apagados, o comando
+    <literal>delete(gca())</literal> pode ser utilizado ao invés.</para>
+
+    <para>A função <literal>xbasc</literal> está obsoleta. Para apagar uma
+    figura, por favor, use ao invés <literal>clf</literal> ou
+    <literal>delete</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="xclear">xclear</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

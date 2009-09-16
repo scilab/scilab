@@ -21,7 +21,7 @@
 /******************************************
  * SCILAB function : pvm_start 
  ******************************************/
-int intspvm_start(char *fname,unsigned long fname_len)
+int sci_pvm_start(char *fname,unsigned long fname_len)
 {
   int m1,n1,l1,mn1,un=1,res;
   char *host; 

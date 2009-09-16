@@ -35,7 +35,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 t=[0:0.1:2*%pi]';
 plot2d(sin(t),cos(t))
 xbasc()

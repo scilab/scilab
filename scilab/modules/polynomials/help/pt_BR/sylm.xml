@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -28,20 +28,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seq√º√™ncia de Chamamento </title>
+    <title> Seq¸Íncia de Chamamento </title>
 
     <synopsis>[S]=sylm(a,b)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Par√¢metros</title>
+    <title>Par‚metros</title>
 
     <variablelist>
       <varlistentry>
         <term>a,b</term>
 
         <listitem>
-          <para>duas matrizes de polin√¥mios </para>
+          <para>duas matrizes de polinÙmios </para>
         </listitem>
       </varlistentry>
 
@@ -56,34 +56,32 @@
   </refsection>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
     <para><literal>sylm(a,b)</literal> fornece a matriz de Sylvester associada
-    aos polin√¥mios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
+    aos polinÙmios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
     <literal>S</literal> tal que:</para>
 
     <para><literal>coeff( a*x + b*y )' = S *
     [coeff(x)';coeff(y)']</literal>.</para>
 
-    <para>A dimens√£o de <literal>S</literal> √© igual a
+    <para>A dimens„o de <literal>S</literal> È igual a
     <literal>degree(a)+degree(b)</literal>.</para>
 
-    <para>Se <literal>a</literal> e <literal>b</literal> s√£o polin√¥mios primos
-    entre si, ent√£o</para>
+    <para>Se <literal>a</literal> e <literal>b</literal> s„o polinÙmios primos
+    entre si, ent„o</para>
 
     <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
-    instru√ß√µes</para>
+    instruÁıes</para>
 
-    <programlisting>
-
-  u = sylm(a,b) \ eye(na+nb,1)
-  x = poly(u(1:nb),'z','coeff')
-  y = poly(u(nb+1:na+nb),'z','coeff')
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+u = sylm(a,b) \ eye(na+nb,1)
+x = poly(u(1:nb),'z','coeff')
+y = poly(u(nb+1:na+nb),'z','coeff')
+ ]]></programlisting>
 
     <para>computam os fatores de Bezout <literal>x</literal> e
-    <literal>y</literal> de graus m√≠nimos tais que <literal>a*x+b*y =
+    <literal>y</literal> de graus mÌnimos tais que <literal>a*x+b*y =
     1</literal></para>
   </refsection>
 </refentry>

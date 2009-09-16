@@ -68,11 +68,24 @@ copy linpack_f_header.def+linpack_f.vcdef linpack_f.def &gt;nul" Description="Bu
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath=".\dgbfa.f"/>
+		<File RelativePath=".\dgeco.f"/>
+		<File RelativePath=".\dgedi.f"/>
 		<File RelativePath=".\dgefa.f"/>
 		<File RelativePath=".\dgesl.f"/>
+		<File RelativePath=".\dpofa.f"/>
+		<File RelativePath=".\dqrdc.f"/>
+		<File RelativePath=".\dqrsl.f"/>
+		<File RelativePath=".\dqrsm.f"/>
+		<File RelativePath=".\hhdml.f"/>
 		<File RelativePath=".\icopy.f"/>
 		<File RelativePath=".\pade.f"/>
+		<File RelativePath=".\spofa.f"/>
+		<File RelativePath=".\util.f"/>
 		<File RelativePath=".\wcopy.f"/>
+		<File RelativePath=".\wgeco.f"/>
+		<File RelativePath=".\wgefa.f"/>
+		<File RelativePath=".\wgesl.f"/>
 		<File RelativePath=".\wpade.f"/></Filter>
 		<File RelativePath="..\..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\..\bin\lapack.lib"/></Files>

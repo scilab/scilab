@@ -68,14 +68,14 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 t1=[2004 06 10 17 00 12.345]
 t2=[2004 06 10 17 01 13.965]
 E1=etime(t2,t1)
 t1=[2004 06 24 162 5 10 17 00 12 345]
 t2=[2004 06 24 162 5 10 17 01 13 965]
 E2=etime(t2,t1)
-	]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

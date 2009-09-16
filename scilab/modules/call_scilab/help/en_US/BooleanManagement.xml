@@ -49,43 +49,43 @@
  *    F F F T ]
  * Note that it is done column by column
  */ 
- int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
- int rowB=2, colB=4; /* Size of the matrix */
- char variableNameB[] = "B";
- C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
+int rowB=2, colB=4; /* Size of the matrix */
+char variableNameB[] = "B";
+C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 
- printf("Display from Scilab of B:\n");
- SendScilabJob("disp(B);"); /* Display B */
+printf("Display from Scilab of B:\n");
+SendScilabJob("disp(B);"); /* Display B */
  ]]></programlisting>
 
     <programlisting role="example"><![CDATA[ 
 /* Read the previously declared matrix of boolean B */
- int rowB_ = 0, colB_ = 0, lp_ = 0;
- int i = 0, j = 0;
- int *matrixOfBooleanB = NULL; /* Int instead of double */
+int rowB_ = 0, colB_ = 0, lp_ = 0;
+int i = 0, j = 0;
+int *matrixOfBooleanB = NULL; /* Int instead of double */
 
- char variableToBeRetrievedB[] = "B";
+char variableToBeRetrievedB[] = "B";
 
- /* First, retrieve the size of the matrix */
- C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+/* First, retrieve the size of the matrix */
+C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
- /* Alloc the memory */
- matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
+/* Alloc the memory */
+matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
- /* Load the matrix */
- C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+/* Load the matrix */
+C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
 
- printf("\n");
- printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
- for(j = 0 ; j < rowB_ ; j++)
+printf("\n");
+printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+for(j = 0 ; j < rowB_ ; j++)
+{
+ for(i = 0 ; i < colB_ ; i++)
  {
-  for(i = 0 ; i < colB_ ; i++)
-  {
-   /* Display the formated matrix ... the way the user expects */
-   printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
-  }
-  printf("\n"); /* New row of the matrix */
+  /* Display the formated matrix ... the way the user expects */
+  printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
  }
+ printf("\n"); /* New row of the matrix */
+}
  ]]></programlisting>
   </refsection>
 

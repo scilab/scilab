@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 # A sample Makefile building a C code using Call Scilab using Scilab built in it source tree.
 PATH_SCILAB = /path/to/scilab/sources.
 SCILAB_CFLAGS = -I$(PATH_SCILAB)/modules/core/includes/ -I$(PATH_SCILAB)/modules/call_scilab/includes/
@@ -223,7 +223,7 @@ all: simple_call_scilab.c
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 # Serie of declarations to execute my binary
 $ export LD_LIBRARY_PATH=/home/sylvestre/dev/git/scilab.5.1/scilab/modules/.libs/:/home/sylvestre/dev/git/scilab.5.1/scilab/modules/call_scilab/.libs/
 $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/:/usr/lib/jvm/java-6-openjdk//jre/lib/i386/server/

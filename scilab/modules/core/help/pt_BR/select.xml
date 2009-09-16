@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="select" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,23 +14,21 @@
     <refname>select</refname>
 
     <refpurpose>Palavra-chave da estrutura select (significa "selecionar (de
-    acordo com a vari√°vel)")</refpurpose>
+    acordo com a vari·vel)")</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descri√ß√£o</title>
+    <title>DescriÁ„o</title>
 
-    <programlisting>
-
-  select express√£o,
-   case express√£o1 then instru√ß√µes1,
-   case express√£o2 then instru√ß√µes2,
-   ...
-   case express√£on then instru√ß√µesn,
-   [else instru√ß√µes],
- end
-   
-    </programlisting>
+    <programlisting role = ""><![CDATA[ 
+select express„o,
+  case express„o1 then instruÁıes1,
+  case express„o2 then instruÁıes2,
+  ...
+  case express„on then instruÁıesn,
+  [else instruÁıes],
+end
+ ]]></programlisting>
 
     <para></para>
 
@@ -38,27 +36,26 @@
 
     <itemizedlist>
       <listitem>
-        <para>A √∫nica restri√ß√£o √© de que a palavra-chave "then" deve estar na
+        <para>A ˙nica restriÁ„o È de que a palavra-chave "then" deve estar na
         mesma linha que a palavra-chave "case" correspondente. </para>
       </listitem>
 
       <listitem>
-        <para>A palavra-chave "then" pode ser substitu√≠da por uma v√≠rgula ou
-        um retorno de carro. <literal>instru√ß√µesi</literal> s√£o executadas se
-        <literal>express√£oi=express√£o</literal>.</para>
+        <para>A palavra-chave "then" pode ser substituÌda por uma vÌrgula ou
+        um retorno de carro. <literal>instruÁıesi</literal> s„o executadas se
+        <literal>express„oi=express„o</literal>.</para>
       </listitem>
     </itemizedlist>
 
-    <para>Aviso: o n√∫mero de caracteres usados para definir o corpo de
-    qualquer instru√ß√£o condicional (if while for ou select/case) deve ser
+    <para>Aviso: o n˙mero de caracteres usados para definir o corpo de
+    qualquer instruÁ„o condicional (if while for ou select/case) deve ser
     limitado a 16k.</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"><![CDATA[ 
 while %t do
   n=round(10*rand(1,1))
   select n
@@ -70,13 +67,11 @@ while %t do
     break
   end
 end
-  
- 
-  </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>
-    <title> Ver Tamb√©m </title>
+    <title> Ver TambÈm </title>
 
     <simplelist type="inline">
       <member><link linkend="if">if</link></member>

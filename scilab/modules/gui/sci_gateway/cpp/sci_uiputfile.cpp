@@ -26,7 +26,7 @@ extern "C"
 #include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -115,7 +115,7 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 	if (Rhs >= 2)
 	{
 		int out_n = 0;
-		char path[PATH_MAX + FILENAME_MAX];
+		char *path = NULL;
 
 		if (VarType(2) != sci_strings) 
 		{ 
@@ -133,9 +133,9 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 			return 0;
 		}
 
-		C2F(cluni0)(initialDirectory[0],path,&out_n,(long)strlen(initialDirectory[0]),PATH_MAX + FILENAME_MAX);
+		path = expandPathVariable(initialDirectory[0]);
 		FREE(initialDirectory[0]);
-		initialDirectory[0] = strdup(path);
+		initialDirectory[0] = path;
 	}
 
 	/* call uiputfile with 3 arg */

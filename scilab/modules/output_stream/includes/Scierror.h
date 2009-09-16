@@ -15,7 +15,12 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include "do_error_number.h"
+#include "dynlib_output_stream.h"
 
 
 /* 
@@ -25,7 +30,10 @@
 * @param fmt
 * @param ...
 */
-int  Scierror(int iv,char *fmt,...);
+OUTPUT_STREAM_IMPEXP int  Scierror(int iv,char *fmt,...);
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* __SCIERROR__ */
 /*--------------------------------------------------------------------------*/ 

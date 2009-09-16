@@ -65,11 +65,9 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 files=listfiles(['SCI/modules/core/macros/*.sci';'SCI/modules/core/macros/*.bin']);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

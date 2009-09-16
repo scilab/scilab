@@ -142,10 +142,10 @@
         <listitem>
           <para>the extrapolation is defined as follows:</para>
 
-          <programlisting>
-     s(P) = s(proj(P)) where proj(P) is nearest point from P 
-                       located on the grid boundary.
-         </programlisting>
+          <programlisting role = ""><![CDATA[ 
+s(P) = s(proj(P)) where proj(P) is nearest point from P 
+                  located on the grid boundary.
+ ]]></programlisting>
         </listitem>
       </varlistentry>
 
@@ -171,7 +171,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 // example 1 : 1d linear interpolation
 x = linspace(0,2*%pi,11);
 y = sin(x);
@@ -215,25 +215,24 @@ zp4 = linear_interpn(XP, YP, x, y, z, "by_zero");
 zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
 xbasc()
 subplot(2,3,1)
-   plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
-   xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
+plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
+xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
 subplot(2,3,2)
-   plot3d(xp, yp, zp1, leg="x@y@z", flag = [2 4 4])
-   xtitle("Natural")
+plot3d(xp, yp, zp1, leg="x@y@z", flag = [2 4 4])
+xtitle("Natural")
 subplot(2,3,3)
-   plot3d(xp, yp, zp2, leg="x@y@z", flag = [2 4 4])
-   xtitle("Periodic")
+plot3d(xp, yp, zp2, leg="x@y@z", flag = [2 4 4])
+xtitle("Periodic")
 subplot(2,3,4)
-   plot3d(xp, yp, zp3, leg="x@y@z", flag = [2 4 4])
-   xtitle("C0")
+plot3d(xp, yp, zp3, leg="x@y@z", flag = [2 4 4])
+xtitle("C0")
 subplot(2,3,5)
-   plot3d(xp, yp, zp4, leg="x@y@z", flag = [2 4 4])
-   xtitle("by_zero")
+plot3d(xp, yp, zp4, leg="x@y@z", flag = [2 4 4])
+xtitle("by_zero")
 subplot(2,3,6)
-   plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
-   xtitle("by_nan")
+plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
+xtitle("by_nan")
 xselect()
-
 
 // example 4 : trilinear interpolation (see splin3d help
 //             page which have the same example with
@@ -253,13 +252,13 @@ ebox = [0 1 0 1 0 1];
 
 XF=[]; YF=[]; ZF=[]; VF=[];
 for i = 1:length(val)
-   [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
-   Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
-   [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
-   Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
-   [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
-   XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+  Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
 end
 nb_col = 128;
 vmin = min(VF); vmax = max(VF);
@@ -271,7 +270,7 @@ colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("tri-linear interpolation of "+func)
 xselect()
- </programlisting>
+ ]]></programlisting>
   </refsection>
 
   <refsection>

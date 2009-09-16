@@ -81,11 +81,9 @@
     Frequency response to  transfer function conversion. The order of <literal>h</literal>
     is a priori given in <literal>dg</literal> which must be provided.
     The following linear system is solved in the least square sense.</para>
-    <programlisting><![CDATA[
-
+    <programlisting role = ""><![CDATA[ 
  weight(k)*(n( phi_k) - d(phi_k)*rep_k)=0, k=1,..,n
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     where <literal>phi_k= 2*%i*%pi*frq</literal> when <literal>dom='c'</literal> and <literal>phi_k=exp(2*%i*%pi*dom*frq</literal> if not. If the <literal>weight</literal> vector is not given a default 
     penalization is used (when <literal>dom='c'</literal>).</para>
@@ -94,8 +92,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 h=syslin('c',(s-1)/(s^3+5*s+20))
 frq=0:0.05:3;repf=repfreq(h,frq);
@@ -116,9 +113,7 @@ frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
 [Sys2,err]=frep2tf(frq,repf,3,dom);
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
 xbasc();plot2d1("onn",frq',abs([repf;rep2])');
-
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

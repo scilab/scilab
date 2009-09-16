@@ -56,12 +56,13 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-  TCL_ExistVar("A")
-	a=["A","B","C";"D","E","F"];
-	TCL_SetVar("A",a)
-	TCL_ExistVar("A")
-	TCL_ExistArray("A")]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+TCL_ExistVar("A")
+a=["A","B","C";"D","E","F"];
+TCL_SetVar("A",a)
+TCL_ExistVar("A")
+TCL_ExistArray("A")
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

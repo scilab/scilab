@@ -108,15 +108,14 @@ src/slicot/inva.f \
 src/slicot/polmc.f \
 src/slicot/ssxmc.f \
 src/slicot/ZB03OD.f \
-src/slicot/riccpack.f
+src/slicot/riccpack.f \
+src/slicot/Ex-schur.f
 
 CACSD_FORTRAN_SOURCES = \
 src/fortran/jacl2.f \
 src/fortran/onface.f \
-src/fortran/hhdml.f \
 src/fortran/tild.f \
 src/fortran/degl2.f \
-src/fortran/dqrdc.f \
 src/fortran/qvalz.f \
 src/fortran/dfrmg.f \
 src/fortran/hessl2.f \
@@ -128,7 +127,6 @@ src/fortran/expan.f \
 src/fortran/optml2.f \
 src/fortran/wdegre.f \
 src/fortran/phi.f \
-src/fortran/dgeco.f \
 src/fortran/ricd.f \
 src/fortran/shrslv.f \
 src/fortran/qhesz.f \
@@ -138,28 +136,22 @@ src/fortran/arl2.f \
 src/fortran/wesidu.f \
 src/fortran/dzdivq.f \
 src/fortran/arl2a.f \
-src/fortran/wgeco.f \
 src/fortran/lq.f \
 src/fortran/outl2.f \
 src/fortran/dhetr.f \
 src/fortran/domout.f \
 src/fortran/rootgp.f \
 src/fortran/feq.f \
-src/fortran/dgedi.f \
 src/fortran/fout.f \
 src/fortran/deg1l2.f \
 src/fortran/modul.f \
 src/fortran/scapol.f \
-src/fortran/wgesl.f \
 src/fortran/dlslv.f \
 src/fortran/giv.f \
-src/fortran/dqrsl.f \
 src/fortran/storl2.f \
-src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
-src/fortran/front.f \
-src/fortran/wgefa.f
+src/fortran/front.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \
 sci_gateway/c/sci_gspec.c \
@@ -211,6 +203,7 @@ sci_gateway/fortran/sci_f_rankqr.f
 
 libscicacsd_la_FFLAGS= -I$(srcdir)/includes/
 libscicacsd_la_CFLAGS= 	-I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la

@@ -48,6 +48,7 @@ libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/matio/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes \
 			$(MATIO_CFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la
@@ -75,4 +76,5 @@ libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
 
 #### matio : include files ####
 libscimatio_la_includedir=$(pkgincludedir)/matio
-libscimatio_la_include_HEADERS = includes/gw_matio.h
+libscimatio_la_include_HEADERS = includes/gw_matio.h \
+	includes/dynlib_matio.h

@@ -66,10 +66,10 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-        [lf,ind]=aplat(list(1,2,list([3,1],'xxx',list([3,2,1]))));
-        recons(lf,ind)
-    </programlisting>
+    <programlisting role="example"><![CDATA[ 
+[lf,ind]=aplat(list(1,2,list([3,1],'xxx',list([3,2,1]))));
+recons(lf,ind)
+ ]]></programlisting>
   </refsection>
 
   <refsection>

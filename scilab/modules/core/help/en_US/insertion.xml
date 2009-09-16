@@ -322,8 +322,7 @@ l(k1)...(kn)(i,j)=a or l(list(k1,...,kn,list(i,j))=a</synopsis>
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 // MATRIX CASE
 a=[1 2 3;4 5 6]
 a(1,2)=10
@@ -355,8 +354,7 @@ l(6)=['one more';'added']
 dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
 dts(2).a=33
 dts(2)('b')(1,2)=-100
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

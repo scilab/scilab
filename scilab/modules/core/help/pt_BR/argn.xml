@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <refentry version="5.0-subset Scilab" xml:id="argn" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>argn</refname>
 
-    <refpurpose>nÃºmero de argumentos na chamada de uma funÃ§Ã£o</refpurpose>
+    <refpurpose>número de argumentos na chamada de uma função</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>SeqÃ¼Ãªncia de Chamamento</title>
+    <title>Seqüência de Chamamento</title>
 
     <synopsis>[lhs [,rhs] ]=argn()
 lhs=argn(1)
@@ -25,17 +25,17 @@ rhs=argn(2)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>DescriÃ§Ã£o</title>
+    <title>Descrição</title>
 
-    <para>Esta funÃ§Ã£o Ã© usada dentro da definiÃ§Ã£o de uma funÃ§Ã£o. Ela fornece
-    os nÃºmeros de parÃ¢metros de entrada <literal>rhs</literal> e saÃ­da
-    <literal>lhs</literal> passados Ã  funÃ§Ã£o quando esta Ã© chamada. Geralmente
-    Ã© usada em definiÃ§Ãµes de funÃ§Ãµes para lidar com parÃ¢metros
+    <para>Esta função é usada dentro da definição de uma função. Ela fornece
+    os números de parâmetros de entrada <literal>rhs</literal> e saída
+    <literal>lhs</literal> passados à função quando esta é chamada. Geralmente
+    é usada em definições de funções para lidar com parâmetros
     opcionais.</para>
   </refsection>
 
   <refsection>
-    <title>Ver TambÃ©m</title>
+    <title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="function">function</link></member>

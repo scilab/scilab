@@ -16,7 +16,7 @@
 /* desc : interface for xsegs routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include "sci_xsegs.h"
+#include "gw_graphics.h"
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"

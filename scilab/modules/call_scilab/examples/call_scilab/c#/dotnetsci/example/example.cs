@@ -30,31 +30,31 @@ namespace example
             //=============================================================================
             // Send a command to scilab
             // Here , we want to display SCI variable
-            _objScilab.sendScilabJob("disp(\'SCI = \');");
-            _objScilab.sendScilabJob("disp(SCI);");
+            _objScilab.SendScilabJob("disp(\'SCI = \');");
+            _objScilab.SendScilabJob("disp(SCI);");
             //=============================================================================
             double[] A = new double[] { 1, 2, 3, 4, 5, 6 };
             int mA = 2, nA = 3;
 
             // Write a matrix of double named in scilab
-            _objScilab.setNamedMatrixOfDouble("A", mA, nA, A);
+            _objScilab.createNamedMatrixOfDouble("A", mA, nA, A);
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'A =\');");
-            _objScilab.sendScilabJob("disp(A);");
+            _objScilab.SendScilabJob("disp(\'A =\');");
+            _objScilab.SendScilabJob("disp(A);");
             //=============================================================================
-            if (_objScilab.getNamedMatrixType("A") == (int)DotNetScilab.Scilab.ScilabType.sci_matrix)
+            if (_objScilab.getNamedVarType("A") == (int)DotNetScilab.ScilabType.sci_matrix)
             {
                 Console.WriteLine("A is a matrix of double");
             }
             //=============================================================================
-            _objScilab.sendScilabJob("B = A + 1;");
+            _objScilab.SendScilabJob("B = A + 1;");
 
             // get dimensions of a named matrix of double
-            int[] DimB = _objScilab.getNamedMatrixOfDoubleDimensions("B");
+            int[] DimB = _objScilab.getNamedVarDimension("B");
 
             // get named matrix of double
-            double[] B = _objScilab.getNamedMatrixOfDouble("B");
+            double[] B = _objScilab.readNamedMatrixOfDouble("B");
 
             // display matrix of double from C#
             Console.WriteLine("");
@@ -70,8 +70,8 @@ namespace example
             }
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'B =\');");
-            _objScilab.sendScilabJob("disp(B);");
+            _objScilab.SendScilabJob("disp(\'B =\');");
+            _objScilab.SendScilabJob("disp(B);");
             //=============================================================================
         }
         //=============================================================================
@@ -84,24 +84,24 @@ namespace example
             int mstrA = 3, nstrA = 3;
 
             // Write a matrix of string named in scilab
-            _objScilab.setNamedMatrixOfString("string_A", mstrA, nstrA, strA);
+            _objScilab.createNamedMatrixOfString("string_A", mstrA, nstrA, strA);
 
             // display matrix of string by scilab
-            _objScilab.sendScilabJob("disp(\'string_A =\');");
-            _objScilab.sendScilabJob("disp(string_A);");
+            _objScilab.SendScilabJob("disp(\'string_A =\');");
+            _objScilab.SendScilabJob("disp(string_A);");
             //=============================================================================
-            if (_objScilab.getNamedMatrixType("string_A") == (int)DotNetScilab.Scilab.ScilabType.sci_strings)
+            if (_objScilab.getNamedVarType("string_A") == (int)DotNetScilab.ScilabType.sci_strings)
             {
                 Console.WriteLine("string_A is a matrix of strings");
             }
             //=============================================================================
-            _objScilab.sendScilabJob("string_B = convstr(string_A,\'u\');");
+            _objScilab.SendScilabJob("string_B = convstr(string_A,\'u\');");
 
             // get dimensions of a named matrix of string
-            int[] DimstrB = _objScilab.getNamedMatrixOfStringDimensions("string_B");
+            int[] DimstrB = _objScilab.getNamedVarDimension("string_B");
 
             // get named matrix of string
-            string[] strB = _objScilab.getNamedMatrixOfString("string_B");
+            string[] strB = _objScilab.readNamedMatrixOfString("string_B");
 
             Console.WriteLine("");
             Console.WriteLine("(C#) strB =");
@@ -116,8 +116,8 @@ namespace example
             }
 
             // display matrix of string by scilab
-            _objScilab.sendScilabJob("disp(\'string_B =\');");
-            _objScilab.sendScilabJob("disp(string_B);");
+            _objScilab.SendScilabJob("disp(\'string_B =\');");
+            _objScilab.SendScilabJob("disp(string_B);");
             //=============================================================================
         }
         //=============================================================================
@@ -129,11 +129,11 @@ namespace example
             int mbA = 2, nbA = 3;
 
             // Write a matrix of string named in scilab
-            _objScilab.setNamedMatrixOfBoolean("boolean_A", mbA, nbA, bA);
+            _objScilab.createNamedMatrixOfBoolean("boolean_A", mbA, nbA, bA);
 
             // display matrix of string by scilab
-            _objScilab.sendScilabJob("disp(\'boolean_A =\');");
-            _objScilab.sendScilabJob("disp(boolean_A);");
+            _objScilab.SendScilabJob("disp(\'boolean_A =\');");
+            _objScilab.SendScilabJob("disp(boolean_A);");
             //=============================================================================
             // check if av
             if (_objScilab.existNamedVariable("boolean_A") == true)
@@ -146,14 +146,14 @@ namespace example
                 Console.WriteLine("boolean_B does not exist in scilab");
             }
             //=============================================================================
-            if (_objScilab.getNamedMatrixType("boolean_A") == (int)DotNetScilab.Scilab.ScilabType.sci_boolean)
+            if (_objScilab.getNamedVarType("boolean_A") == (int)DotNetScilab.ScilabType.sci_boolean)
             {
                 Console.WriteLine("boolean_A is a matrix of boolean");
             }
             //=============================================================================
-            _objScilab.sendScilabJob("boolean_B = ~boolean_A;");
+            _objScilab.SendScilabJob("boolean_B = ~boolean_A;");
             // get dimensions of a named matrix of boolean
-            int[] DimbB = _objScilab.getNamedMatrixOfBooleanDimensions("boolean_B");
+            int[] DimbB = _objScilab.getNamedVarDimension("boolean_B");
 
             // get named matrix of boolean
             Boolean[] bB = _objScilab.getNamedMatrixOfBoolean("boolean_B");
@@ -171,14 +171,14 @@ namespace example
             }
 
             // display matrix of string by scilab
-            _objScilab.sendScilabJob("disp(\'boolean_B =\');");
-            _objScilab.sendScilabJob("disp(boolean_B);");
+            _objScilab.SendScilabJob("disp(\'boolean_B =\');");
+            _objScilab.SendScilabJob("disp(boolean_B);");
             //=============================================================================
         }
         //=============================================================================
         static void example_doplot3d(Scilab _objScilab)
         {
-            _objScilab.sendScilabJob("plot3d()");
+            _objScilab.SendScilabJob("plot3d()");
             while (_objScilab.HaveAGraph())
             {
                 _objScilab.doEvent();
@@ -192,24 +192,24 @@ namespace example
             int mA = 2, nA = 3;
 
             // Write a matrix of double named in scilab
-            _objScilab.setNamedMatrixOfInt("int32_A", mA, nA, A);
+            _objScilab.createNamedMatrixOfInt32("int32_A", mA, nA, A);
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'int32_A =\');");
-            _objScilab.sendScilabJob("disp(int32_A);");
+            _objScilab.SendScilabJob("disp(\'int32_A =\');");
+            _objScilab.SendScilabJob("disp(int32_A);");
             //=============================================================================
-            if (_objScilab.getNamedMatrixType("int32_A") == (int)DotNetScilab.Scilab.ScilabType.sci_ints)
+            if (_objScilab.getNamedVarType("int32_A") == (int)DotNetScilab.ScilabType.sci_ints)
             {
                 Console.WriteLine("int32_A is a matrix of int(32)");
             }
             //=============================================================================
-            _objScilab.sendScilabJob("int32_B = int32_A + 1;");
+            _objScilab.SendScilabJob("int32_B = int32_A + 1;");
 
             // get dimensions of a named matrix of double
-            int[] DimB = _objScilab.getNamedMatrixOfDoubleDimensions("int32_B");
+            int[] DimB = _objScilab.getNamedVarDimension("int32_B");
 
             // get named matrix of double
-            int[] B = _objScilab.getNamedMatrixOfInt("int32_B");
+            int[] B = _objScilab.readNamedMatrixOfInt32("int32_B");
 
             // display matrix of double from C#
             Console.WriteLine("");
@@ -225,8 +225,8 @@ namespace example
             }
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'int32_B =\');");
-            _objScilab.sendScilabJob("disp(int32_B);");
+            _objScilab.SendScilabJob("disp(\'int32_B =\');");
+            _objScilab.SendScilabJob("disp(int32_B);");
             //=============================================================================
         }
         //=============================================================================
@@ -238,20 +238,20 @@ namespace example
             int mA = 2, nA = 3;
 
             // Write a matrix of double named in scilab
-            _objScilab.setNamedMatrixOfComplexDouble("cplx_A", mA, nA, realPartA, imagPartA);
+            _objScilab.createNamedComplexMatrixOfDouble("cplx_A", mA, nA, realPartA, imagPartA);
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'cplx_A =\');");
-            _objScilab.sendScilabJob("disp(cplx_A);");
+            _objScilab.SendScilabJob("disp(\'cplx_A =\');");
+            _objScilab.SendScilabJob("disp(cplx_A);");
             //=============================================================================
-            _objScilab.sendScilabJob("cplx_B = cplx_A * 2;");
+            _objScilab.SendScilabJob("cplx_B = cplx_A * 2;");
 
             // get dimensions of a named matrix of double
-            int[] DimB = _objScilab.getNamedMatrixOfComplexDoubleDimensions("cplx_B");
+            int[] DimB = _objScilab.getNamedVarDimension("cplx_B");
 
             // get named matrix of double
-            double[] realPartB = _objScilab.getNamedMatrixOfComplexDoubleRealPart("cplx_B");
-            double[] imagPartB = _objScilab.getNamedMatrixOfComplexDoubleImagPart("cplx_B");
+            double[] realPartB = _objScilab.readNamedComplexMatrixOfDoubleRealPart("cplx_B");
+            double[] imagPartB = _objScilab.readNamedComplexMatrixOfDoubleImgPart("cplx_B");
 
             // display matrix of double from C#
             Console.WriteLine("");
@@ -267,8 +267,8 @@ namespace example
             }
 
             // display matrix of double by scilab
-            _objScilab.sendScilabJob("disp(\'cplx_B =\');");
-            _objScilab.sendScilabJob("disp(cplx_B);");
+            _objScilab.SendScilabJob("disp(\'cplx_B =\');");
+            _objScilab.SendScilabJob("disp(cplx_B);");
             //=============================================================================
         }
         //=============================================================================

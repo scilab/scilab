@@ -50,12 +50,10 @@
     <para>
     Utility function.</para>
     <para><literal>P</literal> being partitioned as follows:</para>
-    <programlisting><![CDATA[
-
+    <programlisting role =""><![CDATA[ 
 P=[ P11 P12;
     P21 P22]  
-   
-    ]]></programlisting>
+ ]]></programlisting>
     <para>
     with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.</para>
   </refsection>

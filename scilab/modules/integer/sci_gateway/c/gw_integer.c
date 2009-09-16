@@ -27,8 +27,7 @@ static int C2F(scivoid)(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-#define INTEGER_TAB_SIZE 25
-static gw_generic_table Tab[INTEGER_TAB_SIZE]=
+static gw_generic_table Tab[]=
 {
   {C2F(sciint32),"int32"},
   {C2F(sciint16),"int16"},
@@ -72,7 +71,7 @@ int gw_integer(void)
 	#endif
 	#endif
 	{
-		callFunctionFromGateway(Tab,INTEGER_TAB_SIZE);
+		callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
 	}
 	return 0;
 }

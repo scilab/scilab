@@ -48,21 +48,19 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
-    //create a getdir function based on host
-    function wd=getdir()
-      if MSDOS then 
-        host('cd>'+TMPDIR+'\path');
-      else
-        host('pwd>'+TMPDIR+'/path');
-      end
-      wd=read(TMPDIR+'/path',1,1,'(a)')
-    endfunction
-    //call it
-    wd=getdir()
- 
-  ]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+//create a getdir function based on host
+function wd=getdir()
+  if MSDOS then 
+    host('cd>'+TMPDIR+'\path');
+  else
+    host('pwd>'+TMPDIR+'/path');
+  end
+  wd=read(TMPDIR+'/path',1,1,'(a)')
+endfunction
+//call it
+wd=getdir()
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

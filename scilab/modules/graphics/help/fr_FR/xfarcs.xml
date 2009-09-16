@@ -42,7 +42,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
 arcs=[-1.0 0.0 0.5; // abscisse du coin superieur gauche
        1.0 0.0 0.5; // ordonnée du coin superieur gauche

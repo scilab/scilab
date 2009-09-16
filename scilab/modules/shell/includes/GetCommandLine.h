@@ -14,11 +14,13 @@
 #define __GETCOMMANDLINE_H__
 /*--------------------------------------------------------------------------*/
 
+#include "dynlib_shell.h"
+
 /**
 * getConsoleInputLine function
 * @return characters 
 */
-char *getConsoleInputLine(void);
+SHELL_IMPEXP char *getConsoleInputLine(void);
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GETCOMMANDLINE_H__ */

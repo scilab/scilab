@@ -25,10 +25,10 @@
 
     <para>How to use this example:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 exec call_scifunction.sce; // launch scilab 
 v = call_scifunc(30,12,scilabfoo);
- </programlisting>
+ ]]></programlisting>
 
     <para>you pass a pointer on a scilab function (scilabfoo macro) to your
     function 'call_scifunc'.</para>
@@ -59,7 +59,7 @@ v = call_scifunc(30,12,scilabfoo);
     <para>The script call_scifunction.sce used to build and load the C
     interface into Scilab is the following:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[ 
 files=['sci_call_scifunc.c']; // Defines the list of file
 ilib_build('callscifunc',['call_scifunc','sci_call_scifunc'],files,[]); // Build the files and creates the loader
 
@@ -76,11 +76,11 @@ v = call_scifunc(300,120,scilabfoo);
 disp('result : ' + string(v));
 
 ulink(); // unload the dynamic library
- </programlisting>
+ ]]></programlisting>
 
     <para>The file sci_call_scifunc.c is the following:</para>
 
-    <programlisting> 
+    <programlisting role = ""><![CDATA[  
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -107,8 +107,8 @@ int sci_call_scifunc(char *fname)
     return 0;
   }
         
-  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m1, &amp;n1, &amp;l1);
-  if ( (m1 == n1) &amp;&amp; (n1 == 1) )
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+  if ( (m1 == n1) && (n1 == 1) )
   {
     v1 = *stk(l1);
   }
@@ -124,8 +124,8 @@ int sci_call_scifunc(char *fname)
     return 0;
   }
   
-  GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &amp;m2, &amp;n2, &amp;l2);
-  if ( (m2 == n2) &amp;&amp; (n2 == 1) )
+  GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
+  if ( (m2 == n2) && (n2 == 1) )
   {
     v2 = *stk(l2);
   }
@@ -142,7 +142,7 @@ int sci_call_scifunc(char *fname)
   }
   
   // get pointer on external function (here scilabfoo)
-  GetRhsVar(3, EXTERNAL_DATATYPE, &amp;m3, &amp;n3, &amp;l3);
+  GetRhsVar(3, EXTERNAL_DATATYPE, &m3, &n3, &l3);
         
   // r = scilabfoo(x, y)  
   // rhs eq. 2
@@ -153,7 +153,7 @@ int sci_call_scifunc(char *fname)
   // On stack : 300 is on Top position (1)
   // 120 second position
   // scilabfoo third position
-  // we want to pass 300 &amp; 120 to scilab Function
+  // we want to pass 300 & 120 to scilab Function
   // First position is here : 1
         
   positionFirstElementOnStackForScilabFunction = 1;
@@ -163,23 +163,23 @@ int sci_call_scifunc(char *fname)
 
   // r = scilabfoo(x, y)  
   // Scifunction call a scilab function
-  Scifunction(&amp;positionFirstElementOnStackForScilabFunction,
-              &amp;pointerOnScilabFunction,
-              &amp;numberOfLhsOnScilabFunction,
-              &amp;numberOfRhsOnScilabFunction);  
+  Scifunction(&positionFirstElementOnStackForScilabFunction,
+              &pointerOnScilabFunction,
+              &numberOfLhsOnScilabFunction,
+              &numberOfRhsOnScilabFunction);  
 
   // result r is now on position positionFirstElementOnStackForScilabFunction on stack
-  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;rm1, &amp;rn1, &amp;rl1);
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &rm1, &rn1, &rl1);
   r = *stk(rl1);
         
-  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_out, &amp;n_out, &amp;l_out);
+  CreateVar(Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &l_out);
   *stk(l_out) = r;
   
   LhsVar(1) = Rhs + 1;
   
   return 0;
 }
- </programlisting>
+ ]]></programlisting>
 
     <para>The main function in this C file is Scifunction. It allows to call a
     Scilab function inside a C interface.</para>

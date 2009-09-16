@@ -55,12 +55,14 @@
     <title>Description</title>
     <para><literal>add_node</literal> adds  disconnected nodes to graph <literal>g</literal> and returns the new
     graph <literal>g1</literal>.</para>
-    <para>The coordinates of the new nodes can be given as a  vector of
-    coordinates in <literal>xy</literal>.
-    If the nodes of graph <literal>g</literal> have no
-    coordinates (elements <literal>node_x</literal> and <literal>node_y</literal> are <literal>[]</literal>), to
-    give <literal>xy</literal> has no effect. If the nodes of graph <literal>g</literal> have
-    coordinates and <literal>xy</literal> is not given, the new node has <literal>(0,0)</literal> as
+    <para>The coordinates of the new nodes can be given as a vector of
+    coordinates in <literal>xy</literal>.  If the nodes of graph
+    <literal>g</literal> have no coordinates (elements
+    <literal>g.nodes.graphics.x</literal> and
+    <literal>g.nodes.graphics.y</literal> are <literal>[]</literal>),
+    to give <literal>xy</literal> has no effect. If the nodes of graph
+    <literal>g</literal> have coordinates and <literal>xy</literal> is
+    not given, the new node has <literal>(0,0)</literal> as
     coordinates.</para>
     <para>If <literal>name</literal> is given, it is the vector  of the new node names, otherwise the node number
      is taken as the name of each new node.</para>
@@ -68,8 +70,7 @@
   </refsection>
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
-
+    <programlisting role="example"><![CDATA[ 
 //create a graph
 ta=[1 1 2 2 2 3 4 5 5 7 8 8 9 10 10 10 11 12 13 13 13 14 15 16 16 17 17];
 he=[2 10 3 5 7 4 2 4 6 8 6 9 7 7 11 15 12 13 9 10 14 11 16 1 17 14 15];
@@ -82,8 +83,7 @@ show_graph(g);
 g1=add_node(g,[270  350 700;140 0 400]);
 show_graph(g1);
 hilite_nodes(18:20);
- 
-  ]]></programlisting>
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>See Also</title>

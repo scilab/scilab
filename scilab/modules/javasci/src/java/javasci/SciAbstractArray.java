@@ -67,35 +67,12 @@ public abstract class SciAbstractArray implements java.io.Serializable {
 
 	/**
 	 * Return the number of rows
-	 * @deprecated
-	 * @see #getNumberOfRows()
-	 * @return the number of rows
-	 */
-	public int getRow() {
-		return this.getNumberOfRows();
-	}
-
-
-	/**
-	 * Return the number of rows
 	 * @return the number of rows
 	 */
 	public int getNumberOfRows() {
 		return m;
 	}
 	
-	/**
-	 * Return the number of columns
-	 * @deprecated
-	 * @see #getNumberOfCols()
-	 * @return the number of columns
-	 */
-	public int getCol() {
-		return this.getNumberOfCols();
-	}
-
-
-
 	/**
 	 * Return the number of columns
 	 * @return the number of columns

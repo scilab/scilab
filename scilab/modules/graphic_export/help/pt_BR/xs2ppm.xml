@@ -66,13 +66,12 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
+    <programlisting role="example"><![CDATA[ 
 scf(0)
 plot2d()
 //exportando para PPM
-filename='foo.ppm';
-xs2ppm(0,filename);
-  </programlisting>
+xs2ppm(0,(foo.ppm');
+ ]]></programlisting>
   </refsection>
 
   <refsection>

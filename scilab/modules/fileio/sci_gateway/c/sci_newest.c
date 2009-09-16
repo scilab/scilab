@@ -19,7 +19,7 @@
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "stack-c.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
@@ -156,14 +156,11 @@ static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 	for (i = 0; i<numberelemnts ;i++)
 	{
 
-		int resultstat=0;
-		char *FileName=NULL;
-		int out_n;
-		long int lin=(long int)strlen(ListFilename[i]);
-		long int lout=(long int)strlen(ListFilename[i])+PATH_MAX;
+		int resultstat = 0;
+		char *FileName = NULL;
 
-		FileName=(char*)MALLOC(sizeof(char)*(lout+1));
-		C2F(cluni0)(ListFilename[i], FileName, &out_n,lin,lout);
+		FileName = expandPathVariable(ListFilename[i]);
+
 #ifdef _MSC_VER
 		if (FileName)
 		{
@@ -192,7 +189,7 @@ static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 		}
 
 		FREE(FileName);
-		FileName=NULL;
+		FileName = NULL;
 	}
 
 	RetVal=RetIndex;

@@ -61,7 +61,7 @@
   </refsection>
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+    <programlisting role="example"><![CDATA[ 
 A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
 norm(Bk*Ck-A^3,1)
  ]]></programlisting>
