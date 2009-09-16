@@ -125,6 +125,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
     //**          environment where the Makefile are created from a "./configure"  
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
+
+	    if ( ilib_verbose() == 2 ) then
+		   mprintf(gettext("%s: Build command: %s\n"),"ilib_compile",cmd);
+		   mprintf(gettext("Output: %s\n"),msg);
+		   mprintf(gettext("stderr: %s\n"),stderr);
+		end
 	  if ierr <> 0 then
 	    if ( ilib_verbose() <> 0 ) then
 	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
