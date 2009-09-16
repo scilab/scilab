@@ -51,7 +51,7 @@ static void updateNamedListOffset(int _iVar, int *_piCurrentNode, int _iItemPos,
 static void updateCommunListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 static int allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-static int getCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+static int getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 static int createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 static int createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
@@ -319,17 +319,17 @@ int getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int 
  * Double functions *
  *********************/
 
-int getMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
+int getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
 {
-	return getCommonMatrixOfDoubleInList(_iVar, _piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
+	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-int getComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+int getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonMatrixOfDoubleInList(_iVar, _piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-static int getCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+static int getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;

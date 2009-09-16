@@ -38,18 +38,18 @@ e+u*%i,-j+p*%i,o+k*%i,-t+f*%i,y+a*%i];
 //Insertion
 //SeeAsVector
 a = [1,2,3;4,5,6];
-a(4) = 8;
+a(4) = 8
 //a(10) = 12 //error
 //matrix insertion
 a = [];
-a([1,2],[3,4]) = 6; //creation
-a([1,2],[2,3]) = 5; //insertion
-a([1,2],[4,5]) = 7; //agrandissement
+a([1,2],[3,4]) = 6 //creation
+a([1,2],[2,3]) = 5 //insertion
+a([1,2],[4,5]) = 7 //agrandissement
 
 b = [];
-b([1,2],[3,4]) = [1 2;3 4]; //creation
-b([1,2],[2,3]) = [4,3;2,1]; //insertion
-b([1,2],[4,5]) = [5 6;7 8]; //agrandissement
+b([1,2],[3,4]) = [1 2;3 4] //creation
+b([1,2],[2,3]) = [4,3;2,1] //insertion
+b([1,2],[4,5]) = [5 6;7 8] //agrandissement
 
 
 //Extraction

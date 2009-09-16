@@ -10,6 +10,7 @@
 *
 */
 
+#include "localization.h"
 #include "execvisitor.hxx"
 #include "context.hxx"
 #include <string>
@@ -39,6 +40,7 @@ namespace ast
 			/*get data*/
 			InternalType *dataOld, *dataNew	= NULL;
 			bool bNew			= false;
+			bool bRet			= true;
 			if(pList == NULL)
 			{
 				// To sum up, 5 possibilities for the left expression:
@@ -97,6 +99,7 @@ namespace ast
 					if(pIT->isRef(1) == true)
 					{
 						pIT = pIT->clone();
+						bNew = true;
 					}
 				}
 
@@ -106,261 +109,80 @@ namespace ast
 				int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
 				/*I have  the indexlist expanded and the max index*/
+				InternalType *pOut	= NULL;
+				if(pIT == NULL)
+				{//call static insert function
+					switch(execMeR->result_get()->getType())
+					{
+					case InternalType::RealImplicitList:
+						{
+							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
+							switch(pIL->getType())
+							{
+							case InternalType::RealDouble : 
+								pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
+								break;
+							default :
+								//TOTO YaSp : overlaoding insertion
+								break;
+							}
+							break;
+						}
+					case InternalType::RealDouble : 
+						pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsDouble(), bSeeAsVector);
+						break;
+					case InternalType::RealString : 
+						pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsString(), bSeeAsVector);
+						break;
+					default : 
+						//TOTO YaSp : overlaoding insertion
+						break;
+					}
+				}
+				else
+				{//call type insert function
+					switch(execMeR->result_get()->getType())
+					{
+					case InternalType::RealImplicitList:
+						{
+							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
+							switch(pIL->getType())
+							{
+							case InternalType::RealDouble : 
+								bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
+								break;
+							default :
+								//TOTO YaSp : overlaoding insertion
+								break;
+							}
+							break;
+						}
+					case InternalType::RealDouble : 
+						bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					case InternalType::RealString : 
+						bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					default : 
+						//TOTO YaSp : overlaoding insertion
+						break;
+					}
 
-				if(execMeR->result_get()->getType() == InternalType::RealDouble)
+					pOut = pIT;
+				}
+
+				if(pOut != NULL && bRet == true)
 				{
-					Double *pOut	= NULL;
-					Double *pIn		= execMeR->result_get()->getAsDouble();
-
-					//tips : if pIT == NULL then pOld = NULL
-					Double *pOld	= pIT != NULL ? pIT->getAsDouble() : NULL;
-
-					if(bSeeAsVector == false)
-					{
-						//pOld can be null but only if bNew == true, in this case pOld->xxx was never evaluate
-						//if Index is a vector, we can enalge Out only if it's a vector
-						if(bNew || pOld->rows_get() < piMaxDim[0] || pOld->cols_get() < piMaxDim[1])
-						{//new or smaller
-							if(bNew == false)
-							{
-								pOut = new Double(Max(piMaxDim[0], pOld->rows_get()), Max(piMaxDim[1], pOld->cols_get()), pIn->isComplex());
-							}
-							else
-							{
-								pOut = new Double(piMaxDim[0], piMaxDim[1], pIn->isComplex());
-							}
-								pOut->zero_set();
-
-							if(bNew == false)
-							{//copy old values
-								//toggle this flag to add var is the scope
-								bNew = true;
-								if(pOld->isComplex())
-								{//if pOut is already complex, complex_set function exits without change anything
-									pOut->complex_set(true);
-								}
-
-								double *pOldR = pOld->real_get();
-								double *pOutR	= pOut->real_get();
-								int iRowOut		= pOut->rows_get();
-								int iRowOld		= pOld->rows_get();
-								int iColOld		= pOld->cols_get();
-
-								if(pOut->isComplex())
-								{
-									double *pOldI = pOld->img_get();
-									double *pOutI	= pOut->img_get();
-
-									for(int i = 0 ; i < iRowOld ; i++)
-									{
-										for(int j = 0 ; j < iColOld ; j++)
-										{
-											pOutR[j * iRowOut + i] = pOldR[j * iRowOld + i];
-											pOutI[j * iRowOut + i] = pOldI[j * iRowOld + i];
-										}
-									}
-								}
-								else
-								{
-									for(int i = 0 ; i < iRowOld ; i++)
-									{
-										for(int j = 0 ; j < iColOld ; j++)
-										{
-											pOutR[j * iRowOut + i] = pOldR[j * iRowOld + i];
-										}
-									}
-								}
-							}
-						}
-						else
-						{
-							pOut = pIT->getAsDouble();
-						}
-					}
-					else
-					{//bSeeAsVector
-						if(bNew)
-						{
-							if(pIn->cols_get() == 1)
-							{
-								pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
-								pOut->zero_set();
-							}
-							else if(pIn->rows_get() == 1)
-							{
-								pOut = new Double(1, piMaxDim[0], pIn->isComplex());
-								pOut->zero_set();
-							}
-							else
-							{
-								std::ostringstream os;
-								os << "inconsistent row/column dimensions";
-								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-								throw os.str();
-							}
-						}
-						else
-						{//Out already exist
-							if(pIn->size_get() != 1 && pIn->cols_get() != 1 && pIn->rows_get() != 1 && pIn->size_get() == iTotalCombi)
-							{//bad size
-								std::ostringstream os;
-								os << "inconsistent row/column dimensions";
-								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-								throw os.str();
-							}
-
-							if(pOld->size_get() >= piMaxDim[0])
-							{//pOut bigger than pIn
-								pOut = pIT->getAsDouble();
-							}
-							else
-							{//pOut smaller than pIn, enlarge pOut
-								bNew = true;
-								if(pOld->cols_get() == 1 || pOld->size_get() == 0)
-								{
-									pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
-								}
-								else if(pOld->rows_get() == 1)
-								{
-									pOut = new Double(1, piMaxDim[0], pIn->isComplex());
-								}
-								else
-								{
-									std::ostringstream os;
-									os << "inconsistent row/column dimensions";
-									os << " (" << e.left_exp_get().location_get().first_line << "," << e.left_exp_get().location_get().first_column << ")" << std::endl;
-									throw os.str();
-								}
-
-								double *pOldR = pOld->real_get();
-								double *pOutR = pOut->real_get();
-
-								if(pOld->isComplex())
-								{
-									double *pOldI = pOld->img_get();
-									double *pOutI = pOut->img_get();
-
-									pOut->complex_set(true);
-									pOut->zero_set();
-
-									for(int i = 0 ; i < pOld->size_get() ; i++)
-									{
-										pOutR[i] = pOldR[i];
-										pOutI[i] = pOldI[i];
-									}
-
-								}
-								else
-								{
-									pOut->zero_set();
-									for(int i = 0 ; i < pOld->size_get() ; i++)
-									{
-										pOutR[i] = pOldR[i];
-									}
-								}
-							}
-						}
-					}
-
-					//check if the size of In is compatible with the size of Out
-					if(pIn->rows_get() <= pOut->rows_get() && pIn->cols_get() <= pOut->cols_get() &&
-						(pIn->size_get() == 1 || pIn->size_get() == iTotalCombi))
-					{
-						//Copy values in pOut at indexed
-						double *pInR	= pIn->real_get();
-						double *pOutR = pOut->real_get();
-
-						if(pIn->size_get() == 1)
-						{//a(?) = C
-							if(pIn->isComplex())
-							{//a([]) = C
-								pOut->complex_set(true);
-								double *pInI	= pIn->img_get();
-								for(int i = 0 ; i < iTotalCombi ; i ++)
-								{
-								}
-							}
-							else
-							{
-								if(bSeeAsVector == true)
-								{//a([]) = R
-									for(int j = 0 ; j < iTotalCombi ; j++)
-									{
-										int iPos = piIndexSeq[j] - 1;
-										pOutR[iPos] = pInR[0];
-									}
-								}
-								else
-								{//a([],[]) = R
-									int iRowOut		= pOut->rows_get();
-									for(int i = 0 ; i < iTotalCombi ; i ++)
-									{
-										int iRow		= piIndexSeq[i * iProductElem] - 1;
-										int iCol		= piIndexSeq[i * iProductElem + 1] - 1;
-										int iPos		= iRow + iCol * iRowOut;
-										pOutR[iPos] = pInR[0];
-									}
-								}
-							}
-						}
-						else
-						{//a(?) = [C]
-							if(pIn->isComplex())
-							{//a(?) = [C]
-								pOut->complex_set(true);
-								double *pInI	= pIn->img_get();
-								for(int i = 0 ; i < iTotalCombi ; i ++)
-								{
-								}
-							}
-							else
-							{
-								if(bSeeAsVector)
-								{//a([]) = [R]
-									for(int i = 0 ; i < iTotalCombi ; i ++)
-									{
-										int iPos = piIndexSeq[i * iProductElem] - 1;
-										pOutR[iPos] = pInR[i];
-									}
-								}
-								else
-								{//a([][]) = [R]
-									int iRowOut		= pOut->rows_get();
-									int iRowIn		= pIn->rows_get();
-									int iColIn		= pIn->cols_get();
-
-									for(int i = 0 ; i < iTotalCombi ; i ++)
-									{
-										int iRow		= piIndexSeq[i * iProductElem] - 1;
-										int iCol		= piIndexSeq[i * iProductElem + 1] - 1;
-										int iPos		= iRow + iCol * iRowOut;
-
-										//try to "linearise pInR Oo
-										int iTempR = i / iColIn;
-										int iTempC = i % iColIn;
-										int iNew_i = iTempR + iTempC * iRowIn;
-
-										pOutR[iPos] = pInR[iNew_i];
-									}
-								}
-							}
-						}
-
-						dataNew = pOut;
-					}
-					else
-					{//manage error
-						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
-						throw os.str();
-					}
+					dataNew = pOut;
 				}
-				else if(execMeR->result_get()->getType() == InternalType::RealPoly)
-				{//other tpyes
-					getchar();
+				else
+				{
+					//manage error
+					std::ostringstream os;
+					os << _("Submatrix incorrectly defined.\n");
+					os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
+					throw os.str();
 				}
-
 				delete piMaxDim;
 				delete[] piDimSize;
 			}
@@ -381,9 +203,7 @@ namespace ast
 				InternalType *pIT	=	execMeR->result_get();
 				if(pIT->isImplicitList())
 				{
-					double *pData = NULL;
-					Double *pTemp = new Double(1, ((ImplicitList*)pIT)->size_get(), &pData);
-					((ImplicitList*)pIT)->extract_matrix(pData);
+					InternalType *pTemp = ((ImplicitList*)pIT)->extract_matrix();
 					delete pIT;
 					pIT = pTemp;
 				}

@@ -62,7 +62,7 @@ namespace types
 		InternalType*	end_get();
 		void					end_set(InternalType* _poIT);
 
-		void					compute();
+		bool					compute();
 		bool					computable();
 
 		string				toString(int _iPrecision, int _iLineLen);

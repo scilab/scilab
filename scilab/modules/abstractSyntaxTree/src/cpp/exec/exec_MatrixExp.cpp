@@ -55,9 +55,7 @@ namespace ast
 						{
 							if(execMe->result_get()->getAsImplicitList()->computable() == true)
 							{
-								Double *pTemp = new Double(1, execMe->result_get()->getAsImplicitList()->size_get(), false);
-								execMe->result_get()->getAsImplicitList()->extract_matrix(pTemp->real_get());
-								execMe->result_set(pTemp);
+								execMe->result_set(execMe->result_get()->getAsImplicitList()->extract_matrix());
 								iCurCol += ((GenericType*)execMe->result_get())->cols_get();
 							}
 							else
@@ -290,7 +288,7 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 
 			if(_poSource->getAsDouble()->size_get() != 1)
 			{
-				poResult->getAsDouble()->insert(iCurRow, iCurCol, _poSource->getAsDouble());
+				poResult->getAsDouble()->append(iCurRow, iCurCol, _poSource->getAsDouble());
 			}
 			else
 			{
@@ -326,6 +324,8 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			}
 		case GenericType::RealBool:
 			poResult->getAsBool()->bool_set(iCurRow, iCurCol, _poSource->getAsBool()->bool_get(0,0));
+			*_piRows = _poSource->getAsBool()->rows_get();
+			*_piCols = _poSource->getAsBool()->cols_get();
 			break;
 		case GenericType::RealUInt:
 			//((Double*)poResult)->val_set(iCurRow, iCurCol, ((Double*)_poSource)->real_get(0,0), ((Double*)_poSource)->img_get(0,0));

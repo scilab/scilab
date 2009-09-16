@@ -114,7 +114,7 @@ namespace types
 		return m_iSize;
 	}
 
-	void ImplicitList::compute()
+	bool ImplicitList::compute()
 	{
 		m_iSize = -1;
 		if(computable() == true)
@@ -198,6 +198,11 @@ namespace types
 					}
 				}
 			}
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -308,7 +313,7 @@ namespace types
 	InternalType* ImplicitList::extract_value(int _iOccur)
 	{
 		InternalType* pIT = NULL;
-		if(computable())
+		if(compute())
 		{
 			if(m_eOutType == RealInt)
 			{
@@ -397,7 +402,7 @@ namespace types
 	InternalType* ImplicitList::extract_matrix()
 	{
 		InternalType* pIT = NULL;
-		if(computable())
+		if(compute())
 		{
 			if(m_eOutType == RealInt)
 			{

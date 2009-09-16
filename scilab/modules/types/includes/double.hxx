@@ -22,61 +22,65 @@ namespace types
 	class Double : public GenericType
 	{
   public :
-		virtual				~Double();
+		virtual						~Double();
 
-									Double(double _dblReal);
-									Double(double _dblReal, double _dblImg);
-									Double(int _iRows, int _iCols, bool _bComplex = false);
-									Double(int _iRows, int _iCols, double **_pdblReal);
-									Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+											Double(double _dblReal);
+											Double(double _dblReal, double _dblImg);
+											Double(int _iRows, int _iCols, bool _bComplex = false);
+											Double(int _iRows, int _iCols, double **_pdblReal);
+											Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
 		/*data management*/
-		GenericType*	get(int _iPos);
-		double*				real_get() const;
-		double				real_get(int _iRows, int _iCols) const;
-		double*				img_get() const;
-		double				img_get(int _iRows, int _iCols) const;
+		GenericType*			get(int _iPos);
+		double*						real_get() const;
+		double						real_get(int _iRows, int _iCols) const;
+		double*						img_get() const;
+		double						img_get(int _iRows, int _iCols) const;
 
-		bool					real_set(double *_pdblReal);
-		bool					img_set(double *_pdblImg);
+		bool							real_set(double *_pdblReal);
+		bool							img_set(double *_pdblImg);
 
-		bool					val_set(int _iRows, int _iCols, double _dblReal);
-		bool					val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
+		bool							val_set(int _iRows, int _iCols, double _dblReal);
+		bool							val_set(int _iRows, int _iCols, double _dblReal, double _dblImg);
 
 		/*zero or one set filler*/
-		bool					zero_set();
-		bool					one_set();
+		bool							zero_set();
+		bool							one_set();
 
 		/*Config management*/
-    void					whoAmI();
-		bool					isComplex();
-		void					complex_set(bool _bComplex);
+    void							whoAmI();
+		bool							isComplex();
+		void							complex_set(bool _bComplex);
 
-    Double*				getAsDouble(void);
-		string				toString(int _iPrecision, int _iLineLen);
+    Double*						getAsDouble(void);
+		string						toString(int _iPrecision, int _iLineLen);
 
-		Double*				clone();
-		Double*				resize(int _iNewRows, int _iNewCols);
-		bool					insert(int _iRows, int _iCols, Double *_poSource);
+		Double*						clone();
+		bool							resize(int _iNewRows, int _iNewCols);
+		bool							append(int _iRows, int _iCols, Double *_poSource);
 
-		bool					operator==(const InternalType& it);
-		bool					operator!=(const InternalType& it);
+		bool							insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
+		static Double*		insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, Double* _poSource, bool _bAsVector);
+
+
+		bool							operator==(const InternalType& it);
+		bool							operator!=(const InternalType& it);
 
   protected :
-		RealType			getType(void);
+		RealType					getType(void);
 
 		/*clean values array*/
-		void					real_delete();
-		void					img_delete(bool _bSetReal = false);
-		void					all_delete(bool _bSetReal = false);
+		void							real_delete();
+		void							img_delete(bool _bSetReal = false);
+		void							all_delete(bool _bSetReal = false);
 
 		/*Internal "constructor*/
-		void					CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
+		void							CreateDouble(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
 
   private :
-    double*				m_pdblReal;
-    double*				m_pdblImg;
-		bool					m_bComplex;
+    double*						m_pdblReal;
+    double*						m_pdblImg;
+		bool							m_bComplex;
 	};
 }
 

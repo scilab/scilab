@@ -775,6 +775,12 @@ namespace ast
 
 		bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
 
+		if(execMe->result_get()->isImplicitList())
+		{
+			InternalType *pIT = execMe->result_get()->getAsImplicitList()->extract_matrix();
+			execMe->result_set(pIT);
+		}
+
 		if(execMe->result_get()->isDouble())
 		{
 			Double *pdbl		= execMe->result_get()->getAsDouble();
@@ -1084,6 +1090,7 @@ namespace ast
 		{
 			_result.push_back(NULL);
 		}
+
 		_result[_iPos] = (InternalType *)gtVal;
 	}
 
@@ -1229,10 +1236,21 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 				}
 			}
 
-			double *pDblData = NULL;
-			pDbl = new Double(1, pIL->size_get(), &pDblData);
-			pIL->extract_matrix(pDblData);
+			pDbl = (Double*)pIL->extract_matrix();
 			bDeleteDbl = true;
+		}
+		else if(execMeArg->result_get()->getType() == InternalType::RealBool)
+		{
+			Bool *pB			= execMeArg->result_get()->getAsBool();
+			pDbl					= new Double(pB->rows_get(), pB->cols_get());
+			double* pdbl	= pDbl->real_get();
+			bool *pb			= pB->bool_get();
+
+			for(int i = 0 ; i < pDbl->size_get() ; i++)
+			{
+				pdbl[i]			= pb[i] == true ? 1 : 0;
+			}
+			bDeleteDbl		= true;
 		}
 		else
 		{
