@@ -1,0 +1,26 @@
+message = 
+
+Expected result:
+
+message = 
+
+5
+
+message = 
+
+Undefined variable: a
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+  5
+
+Undefined variable: this
+
+Function call failed
+
+Function call failed
+
