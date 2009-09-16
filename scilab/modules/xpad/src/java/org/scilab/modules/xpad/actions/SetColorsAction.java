@@ -26,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
@@ -114,12 +116,14 @@ public class SetColorsAction extends DefaultAction {
 			    	_colorChooser.displayAndWait();
 			    	Color newColor = _colorChooser.getSelectedColor();
 			    	
-			    	allStylesColor.put(listStylesName.get(i), newColor );
-			    	
+			    	if (newColor != null ){
+			    		allStylesColor.put(listStylesName.get(i), newColor );
+			    		stylesNamesLabelList.get(i).setForeground(newColor);
+			    	}
 			    	/*update label color*/
-			    	stylesNamesLabelList.get(i).setForeground(newColor);
+			    	
 
-					frame.requestFocus();
+					frame.setFocusable(true);
 				}
 			};
 	
@@ -192,17 +196,23 @@ public class SetColorsAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 				
 				/*apply all the new colors to the editor*/
-				for (int i = 0; i <numberOfStyles ; i++) {
+				int numberOfTab = getEditor().getTabPane().getComponentCount();
+				for ( int j = 0 ; j < numberOfTab ; j++){
 					
-					Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-			    	Style tempStyle = getEditor().getTextPane().getStyledDocument().getStyle(listStylesName.get(i));
+					JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
 
-			    	StyleConstants.setForeground (tempStyle ,thisStyleColor );				    
-	
-				}
-				/*without this line we would have needed to type a character to see the update*/	
-		    	((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertUpdate(null);
 				
+					for (int i = 0; i <numberOfStyles ; i++) {
+						
+						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
+				    	Style tempStyle = textPane.getStyledDocument().getStyle(listStylesName.get(i));
+	
+				    	StyleConstants.setForeground (tempStyle ,thisStyleColor );				    
+		
+					}
+					/*without this line we would have needed to type a character to see the update*/	
+			    	((ScilabStyleDocument) textPane.getStyledDocument()).insertUpdate(null);
+				}
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);
 				SetColorsAction.windowAlreadyExist= false ;
