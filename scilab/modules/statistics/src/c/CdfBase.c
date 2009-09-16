@@ -16,7 +16,7 @@
 #include "stack-c.h" /* TODO: remove as soon as Rhs is linked in api_scilab.h */
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 #include "sci_string_matrix.h"
 #include <string.h>
 
