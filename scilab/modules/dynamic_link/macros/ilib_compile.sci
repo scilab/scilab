@@ -76,17 +76,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
     end
    
   else
-    //** ---------- Linux/MacOS/Unix section ---------------------  
+    //** ---------- Linux section ---------------------  
+	defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
+	defaultModulesFHeader=[ "core" ];
 	
-	ScilabTreeFound=%f
-
     // Source tree version
-	// Headers are dispatched in the source tree
 	if isdir(SCI+"/modules/core/includes/") then
-	  defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
-	  defaultModulesFHeader=[ "core" ];
-	  ScilabTreeFound=%t
-
 	  for x = defaultModulesCHeader(:)' 
 	      cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
 	  end
@@ -97,21 +92,27 @@ function libn = ilib_compile(lib_name,makename,files, ..
           end
 	end
 
+	// Add MALLOC since that is this two cases, it is at the same place
+	defaultModulesCHeader=[ defaultModulesCHeader, "malloc" ]; 
+
 	// Binary version
-	if isdir(SCI+"/../../include/scilab/") && ScilabTreeFound == %t then
-  	  cflags="-I"+SCI+"/../../include/scilab/ " + cflags
-  	  fflags="-I"+SCI+"/../../include/scilab/ " + fflags
-	  ScilabTreeFound=%t
+	if isdir(SCI+"/../../include/scilab/core/") then
+	  for x = defaultModulesCHeader(:)' 
+	  	  cflags="-I"+SCI+"/../../include/scilab/"+ x + "/ " + cflags
+	  end
+ 	  for x = defaultModulesFHeader(:)' 
+	  	  fflags="-I"+SCI+"/../../include/scilab/"+x+"/ "+fflags
+	  end
 	end
 
 	// System version (ie: /usr/include/scilab/)	
-	if isdir("/usr/include/scilab/") && ScilabTreeFound == %t then
-	   cflags="-I/usr/include/scilab/ "+cflags
-	   fflags="-I/usr/include/scilab/ "+fflags
-	end
-
-	if ( ilib_verbose() <> 0 ) then
-	   mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");	
+	if isdir("/usr/include/scilab/") then
+	  for x = defaultModulesCHeader(:)' 
+	  	  cflags="-I/usr/include/scilab/"+x+"/ "+cflags
+	  end
+ 	  for x = defaultModulesFHeader(:)' 
+	  	  fflags="-I/usr/include/scilab/"+x+"/ "+fflags
+	  end
 	end
 
       oldPath = pwd();
