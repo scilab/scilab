@@ -113,7 +113,7 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //**          environment where the Makefile are created from a "./configure"  
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
-		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
+		mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
 		lines(0)
 	    disp(stderr);
 		mprintf("\n");
