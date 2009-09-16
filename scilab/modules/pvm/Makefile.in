@@ -549,7 +549,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
 #### pvm : include files ####
-@PVM_TRUE@libscipvm_la_includedir = $(pkgincludedir)/pvm
+@PVM_TRUE@libscipvm_la_includedir = $(pkgincludedir)
 @PVM_TRUE@libscipvm_la_include_HEADERS = includes/gw_pvm.h \
 @PVM_TRUE@includes/with_pvm.h \
 @PVM_TRUE@includes/dynlib_pvm.h
