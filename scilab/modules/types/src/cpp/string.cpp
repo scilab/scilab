@@ -14,6 +14,10 @@
 #include "core_math.h"
 #include "string.hxx"
 
+#ifdef _MSC_VER
+	#define strdup _strdup
+#endif
+
 using namespace std;
 
 #define SIZE_BETWEEN_TWO_VALUES			2
@@ -49,10 +53,10 @@ namespace types
 		m_iCols		= _iCols;
 		m_iSize		= m_iRows * m_iCols;
 
-		m_pcData	= new char*[m_iSize];
+		m_pstData	= new char*[m_iSize];
 		for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
 		{
-			m_pcData[iIndex] = NULL;
+			m_pstData[iIndex] = NULL;
 		}
 	}
 
@@ -63,7 +67,7 @@ namespace types
 
 	char** String::string_get() const
 	{
-		return m_pcData;
+		return m_pstData;
 	}
 
 	char* String::string_get(int _iRows, int _iCols) const
@@ -77,9 +81,9 @@ namespace types
 
 	char* String::string_get(int _iPos) const
 	{
-		if(m_pcData != NULL && _iPos < m_iSize)
+		if(m_pstData != NULL && _iPos < m_iSize)
 		{
-			return m_pcData[_iPos];
+			return m_pstData[_iPos];
 		}
 		else
 		{
@@ -121,33 +125,33 @@ namespace types
 
 	bool String::string_set(int _iPos, const char *_pcData)
 	{
-		if(m_pcData == NULL)
+		if(m_pstData == NULL)
 		{
 			return false;
 		}
 
-		if(m_pcData[_iPos] != NULL)
+		if(m_pstData[_iPos] != NULL)
 		{
-			delete m_pcData[_iPos];
+			delete m_pstData[_iPos];
 		}
 
-		m_pcData[_iPos] = new char[strlen(_pcData) + 1];
-		memcpy(m_pcData[_iPos], _pcData, strlen(_pcData) * sizeof(char));
-		m_pcData[_iPos][strlen(_pcData)] = '\0';
-		//strncpy(m_pcData[_iCols * m_iRows + _iRows], _pcData, strlen(_pcData));
+		m_pstData[_iPos] = new char[strlen(_pcData) + 1];
+		memcpy(m_pstData[_iPos], _pcData, strlen(_pcData) * sizeof(char));
+		m_pstData[_iPos][strlen(_pcData)] = '\0';
+		//strncpy(m_pstData[_iCols * m_iRows + _iRows], _pcData, strlen(_pcData));
 
 		return true;
-		}
+	}
 
 
 	void String::string_delete(int _iPos)
 	{
-		if(m_pcData != NULL)
+		if(m_pstData != NULL)
 		{
-			if(m_pcData[_iPos] != NULL)
+			if(m_pstData[_iPos] != NULL)
 			{
-				delete m_pcData[_iPos];
-				m_pcData[_iPos]	= NULL;
+				delete m_pstData[_iPos];
+				m_pstData[_iPos]	= NULL;
 			}
 		}
 	}
@@ -158,8 +162,8 @@ namespace types
 		{
 			string_delete(iIndex);
 		}
-		delete[] m_pcData;
-		m_pcData = NULL;
+		delete[] m_pstData;
+		m_pstData = NULL;
 	}
 
 
@@ -384,6 +388,193 @@ namespace types
 			}
 		}
 		return ps;
+	}
+
+	bool String::insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector)
+	{
+		int iNewRows = rows_get();
+		int iNewCols = cols_get();
+		//check input size
+		if(_bAsVector == false)
+		{
+			if(rows_get() < _piMaxDim[0] || cols_get() < _piMaxDim[1])
+			{//compute new dimensions
+				iNewRows = Max(_piMaxDim[0], rows_get());
+				iNewCols = Max(_piMaxDim[1], cols_get());
+			}
+		}
+		else
+		{
+			if(size_get() < _piMaxDim[0])
+			{
+				if(rows_get() == 1 || size_get() == 0)
+				{
+					iNewRows = 1;
+					iNewCols = _piMaxDim[0];
+				}
+				else if(cols_get() == 1)
+				{
+					iNewRows = _piMaxDim[0];
+					iNewCols = 1;
+				}
+				else
+				{
+					return false;
+				}
+			}
+		}
+
+		//check if the size of _poSource is compatible with the size of the variable
+		if(_bAsVector == false && (iNewRows < _poSource->rows_get() || iNewCols < _poSource->cols_get()))
+		{
+			return false;
+		}
+		else if(_bAsVector == true && (iNewRows * iNewCols < _poSource->size_get()))
+		{
+			return false;
+		}
+
+
+		//check if the count of values is compatible with indexes
+		if(_poSource->size_get() != 1 && _poSource->size_get() != _iSeqCount)
+		{
+			return false;
+		}
+
+
+		switch(_poSource->getType())
+		{
+		case InternalType::RealString :
+			{
+				String *pIn = _poSource->getAsString();
+
+				//Only resize after all tests !
+				if(resize(iNewRows, iNewCols) == false)
+				{
+					return false;
+				}
+
+				char** pstIn = pIn->string_get();
+
+				//variable can receive new values.
+				if(pIn->size_get() == 1)
+				{//a(?) = x
+					if(_bAsVector)
+					{//a([]) = R
+						for(int i = 0 ; i < _iSeqCount ; i++)
+						{
+							m_pstData[_piSeqCoord[i] - 1]	= strdup(pstIn[0]);
+						}
+					}
+					else
+					{//a([],[]) = R
+						for(int i = 0 ; i < _iSeqCount ; i++)
+						{
+							int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+							m_pstData[iPos]	= strdup(pstIn[0]);
+						}
+					}
+				}
+				else
+				{//a(?) = [x]
+					if(_bAsVector)
+					{//a([]) = [R]
+						for(int i = 0 ; i < _iSeqCount ; i++)
+						{
+							m_pstData[_piSeqCoord[i] - 1]	= strdup(pstIn[i]);
+						}
+					}
+					else
+					{//a([],[]) = [R]
+						for(int i = 0 ; i < _iSeqCount ; i++)
+						{
+							int iPos = (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+							int iTempR = i / pIn->cols_get();
+							int iTempC = i % pIn->cols_get();
+							int iNew_i = iTempR + iTempC * pIn->rows_get();
+
+							m_pstData[iPos]	= strdup(pstIn[iNew_i]);
+						}
+					}
+				}
+			break;
+			}
+		default :
+			return false;
+			break;
+		}
+		return true;
+	}
+
+	String*	String::insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector)
+	{
+		String *pS	= NULL ; 
+		
+		if(_bAsVector)
+		{
+			if(_poSource->cols_get() == 1)
+			{
+				pS = new String(_piMaxDim[0], 1);
+			}
+			else if(_poSource->rows_get() == 1)
+			{
+				pS = new String(1, _piMaxDim[0]);
+			}
+			else
+			{
+				return NULL;
+			}
+		}
+		else
+		{
+			pS = new String(_piMaxDim[0], _piMaxDim[1]);
+		}
+
+		if(pS->insert(_iSeqCount, _piSeqCoord, _piMaxDim, _poSource, _bAsVector) == false)
+		{
+			delete pS;
+			return NULL;
+		}
+
+		return pS;
+	}
+
+	bool String::resize(int _iNewRows, int _iNewCols)
+	{
+		if(_iNewRows <= rows_get() && _iNewCols <= cols_get())
+		{//nothing to do
+			return true;
+		}
+
+		//alloc new data array
+		char** pst = NULL;
+
+		pst	= new char*[_iNewRows * _iNewCols];
+		for(int i = 0 ; i < _iNewRows * _iNewCols ; i++)
+		{
+			pst[i] = strdup("");
+		}
+
+		//copy existing values
+		for(int i = 0 ; i < rows_get() ; i++)
+		{
+			for(int j = 0 ; j < cols_get() ; j++)
+			{
+				if(pst[j * _iNewRows + i])
+				{
+					delete pst[j * _iNewRows + i];
+				}
+				pst[j * _iNewRows + i] = m_pstData[j * rows_get() + i];
+			}
+		}
+		delete[] m_pstData;
+		m_pstData	= pst;
+
+
+		m_iRows = _iNewRows;
+		m_iCols	= _iNewCols;
+		m_iSize = m_iRows * m_iCols;
+		return true;
 	}
 
 }

@@ -804,9 +804,6 @@ namespace ast
 		e.left_get().accept(*execMeL);
 		GenericType::RealType TypeL = execMeL->result_get()->getType();
 
-		//e.right_get().accept(*execMeR);
-		//GenericType::RealType TypeR = execMeR->result_get()->getType();
-
 		if(TypeL == GenericType::RealImplicitList)
 		{
 			ImplicitList* pIL = execMeL->result_get()->getAsImplicitList();
@@ -834,15 +831,16 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealBool)
 				{
+
 					Bool *pL	= execMeL->result_get()->getAsBool();
 					bool *pbL	= pL->bool_get();
-					bool bL		= false;
+					bool bL		= true;
 
 					for(int i = 0 ; i < pL->size_get() ; i++)
 					{
-						if(pbL[i] == true)
+						if(pbL[i] == false)
 						{
-							bL = true;
+							bL = false;
 							break;
 						}
 					}
@@ -876,7 +874,6 @@ namespace ast
 
 							if(pR->size_get() == 1)
 							{
-
 								if(pbR[0] == true)
 								{
 									pResult = new Bool(true);
@@ -899,9 +896,45 @@ namespace ast
 							}
 							else if(pL->size_get() == 1)
 							{
+								if(pbL[0] == true)
+								{
+									pResult = new Bool(true);
+									result_set(pResult);
+								}
+								else
+								{
+									bool bState = true;
+									for(int i = 0 ; i < pR->size_get() ; i++)
+									{
+										if(pbR[i] == false)
+										{
+											bState = false;
+											break;
+										}
+									}
+									pResult = new Bool(bState);
+									result_set(pResult);
+								}
 							}
 							else if(pR->rows_get() == pL->rows_get() && pR->cols_get() == pL->cols_get())
 							{
+								bool* pb = NULL;
+								bool* pbR	= pR->bool_get();
+								bool* pbL	= pL->bool_get();
+
+								pResult = new Bool(pR->rows_get(), pR->cols_get(), &pb);
+								for(int i = 0 ; i < pL->size_get(); i++)
+								{
+									pb[i] = pbR[i] || pbL[i];
+								}
+								result_set(pResult);
+							}
+							else
+							{
+								std::ostringstream os;
+								os << _("Inconsistent row/column dimensions.\n");
+								os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+								throw os.str();
 							}
 						}
 					}

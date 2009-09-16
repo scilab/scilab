@@ -255,15 +255,14 @@ API_SCILAB_IMPEXP int createMListInNamedList(char* _pstName, int* _piParent, int
 
 /**
  * Get double variable data
- * @param[in] _iVar variable number
  * @param[in] _piParent pointer on the parent
- * @param[in] _iItemPos position of the new list in the parent
+ * @param[in] _iItemPos itme position in the list
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal);
+API_SCILAB_IMPEXP int getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -275,7 +274,7 @@ API_SCILAB_IMPEXP int getMatrixOfDoubleInList(int _iVar, int* _piParent, int _iI
  * @param[out] _pdblReal return pointer on real data
  * @return if the operation successed (0) or not ( !0 )
  */
-API_SCILAB_IMPEXP int getComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+API_SCILAB_IMPEXP int getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Alloc double variable in a list
