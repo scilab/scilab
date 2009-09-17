@@ -529,12 +529,32 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			}
 		}
 		
-		try {
+		if (autoIndent) {
+			int  caretPosition = editor.getTextPane().getCaretPosition();
+			try {
+				if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+
+
+					//try {
+					applyIndent(lineStartPosition, lineEndPosition, tab);
+					tab = "";
+					//} catch (BadLocationException e) {
+					//e.printStackTrace();
+					//}
+
+				}
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
+		} else {
+			try {
 			applyIndent(lineStartPosition, lineEndPosition, tab);
 			tab = "";
-		} catch (BadLocationException e) {
+			} catch (BadLocationException e) {
 			e.printStackTrace();
+			}
 		}
+		
 
 	}
 	
