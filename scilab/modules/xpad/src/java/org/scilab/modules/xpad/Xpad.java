@@ -462,23 +462,30 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public void undo() {
 		UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		try {
-			System.err.println("Will undo "+undo.getUndoPresentationName());
-			undo.undo();
-		} catch (CannotUndoException ex) {
-			System.out.println("Unable to undo: " + ex);
-			ex.printStackTrace();
-		}
+		
+		if(undo.canUndo()){
+			try {
+					System.out.println(undo.canUndo());
+					System.err.println("Will undo "+undo.getUndoPresentationName());
+					undo.undo();
+				
+			} catch (CannotUndoException ex) {
+				System.out.println("Unable to undo: " + ex);
+				ex.printStackTrace();
+			}
+		};
 	}
 
 	public void redo() {
 		UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		try {
-			System.err.println("Will redo "+redo.getRedoPresentationName());
-			redo.redo();
-		} catch (CannotRedoException ex) {
-			System.out.println("Unable to redo: " + ex);
-			ex.printStackTrace();
+		if ( redo.canRedo()){
+			try {
+				System.err.println("Will redo "+redo.getRedoPresentationName());
+				redo.redo();
+			} catch (CannotRedoException ex) {
+				System.out.println("Unable to redo: " + ex);
+				ex.printStackTrace();
+			}
 		}
 	}
 

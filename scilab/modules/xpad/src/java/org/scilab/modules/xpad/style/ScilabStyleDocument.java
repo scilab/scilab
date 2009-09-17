@@ -40,14 +40,16 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	private UndoManager undo = new UndoManager() {
 		public void undoableEditHappened(UndoableEditEvent e) {
-			//	    System.out.println("UndoableEditEvent ="+e.getClass().getCanonicalName());
-			//	    System.out.println("UndoableEdit ="+e.getEdit().toString());
-			//	    System.out.println("Source = "+e.getSource().toString());
-			//	    System.out.println("filter = "+(e.getEdit() instanceof AttributeUndoableEdit));
-			//			if(e.getEdit().getPresentationName().compareTo("addition") == 0
-			//					|| e.getEdit().getPresentationName().compareTo("deletion") == 0) {
-			undo.addEdit(e.getEdit());
-			//			}
+					
+			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) || EventType.equals(DocumentEvent.EventType.REMOVE.toString()) ) && (e.getEdit().canUndo()) ){
+				
+				System.out.println("add edit");
+				undo.addEdit(e.getEdit());
+				
+				EventType = "" ;
+			}
+
+					
 		}
 	};
 
@@ -57,6 +59,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private boolean indentInprogress = false;
 	private boolean updaterDisabled = false;
 
+	private String EventType ;
+	
 	//private final String[] quotations = {"[^A-Z](\"|')[^{\n}]*?(\"|')"};
 	private final String[] quotations = {"(\"|')[^{\n}]*?(\"|')"};
 	private final String[] bools = {"%T", "%F", "%t", "%f"};
@@ -103,7 +107,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	public ScilabStyleDocument(Xpad editor) {
 		super();
-
+		EventType = new String();
+		
 		this.editor = editor ;
 		Hashtable< String, Color>stylesColorsTable =  ConfigXpadManager.getAllForegroundColors();
 		Hashtable< String, Boolean>stylesIsBoldTable = ConfigXpadManager.getAllisBold()  ;
@@ -1392,6 +1397,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	public void insertUpdate(DocumentEvent e) {
+		
+		EventType = e.getType().toString();
 		//System.err.println("--- Calling insertUpdate");
 		if (!updaterDisabled) {
 			SwingUtilities.invokeLater(new Runnable() {
@@ -1446,6 +1453,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	}
 	public void removeUpdate(DocumentEvent e) {
+		
+		EventType = e.getType().toString() ;
 		//System.err.println("--- Calling ScilabStyleDocument.removeUpdate");
 		if (!updaterDisabled) {
 			SwingUtilities.invokeLater(new Runnable() {
@@ -1510,6 +1519,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	public void changedUpdate(DocumentEvent arg0) {
+		
+		EventType = arg0.getType().toString() ;
 		// TODO Auto-generated method stub
 	}
 
