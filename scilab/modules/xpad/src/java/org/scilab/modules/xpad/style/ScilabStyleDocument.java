@@ -297,13 +297,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	/**
 	 * DOCUMENT INDENTATION START
 	 */
-	public void indent(int start, int end) {
+	public void indent() {
 		if (!indentInprogress) {
 			disableUpdaters();
 			indentInprogress = true;
 			resetStyle();
 			
-			applySelectionIndent(start, end, autoIndent);
+			applySelectionIndent();
 			
 			colorize();
 			indentInprogress = false;
@@ -313,9 +313,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 	public void applyIndent(int start, int end, String tabulation) throws BadLocationException {
 
-		
-		System.out.println("tabulation2 = {"+tabulation+"}");
-		
 		String indentedText = "";
 		String tab = "";
 		boolean got_case = false;
@@ -329,7 +326,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		
 		
 		// Get all line break positions &
 		// each line of the document
@@ -430,7 +426,6 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				indentedText += tab;
 			}
 			command_list.clear();
-			System.out.println("-----------------"+indentedText);
 		} // end for
 
 		// Display the indentation
@@ -443,25 +438,34 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	
-	public void applySelectionIndent(int start, int end, boolean autoIndent) {
+	public void applySelectionIndent() {
 
 		editor = getEditor();
 		String tab = "";
 		int selection_start = 0;
 		int selection_end = 0;
 		
+		// Get start & end offsets of the selected text
+		selection_start = editor.getTextPane().getSelectionStart();
+		selection_end = editor.getTextPane().getSelectionEnd();
+		
+		
 		if (autoIndent) {
-			selection_start = start;
-			selection_end = end;
-		} else {
-			// Get start & end offsets of the selected text
-			selection_start = editor.getTextPane().getSelectionStart();
-			selection_end = editor.getTextPane().getSelectionEnd();
+			int  caretPosition = editor.getTextPane().getCaretPosition();
+			try {
+				if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+				selection_start = selection_start-1;
+				selection_end  =  selection_end-1;
+				}
+			} catch (BadLocationException e) {
+				e.printStackTrace();
+			}
 		}
 
 		// Get start offsets of the first selected line & end offsets of the last selected line
 		lineStartPosition =  this.getParagraphElement(selection_start).getStartOffset();
 		lineEndPosition = this.getParagraphElement(selection_end).getEndOffset()-1;
+		
 		
 		System.out.println("lineStartPosition = "+lineStartPosition);
 		System.out.println("lineEndPosition = "+lineEndPosition);
@@ -472,38 +476,49 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		
 		if (lineStartPosition == 0) {
-			System.out.println("RENTRE DANS LE IF");
 			tab = "";
 		} else {
-			System.out.println("RENTRE DANS LE ELSE");
 			// Get previous line
 			int previous_line_start =  this.getParagraphElement(lineStartPosition-1).getStartOffset();
 			int previous_line_end = this.getParagraphElement(lineStartPosition-1).getEndOffset()-1;
 			String previous_line = "";
+			
+			int current_line_start = this.getParagraphElement(selection_start).getStartOffset();
+			int current_line_end = this.getParagraphElement(selection_end).getEndOffset()-1;
+			String current_line = "";
+			
 			try {
 				previous_line = this.getText(previous_line_start, previous_line_end-previous_line_start);
+				current_line = this.getText(current_line_start, current_line_end-current_line_start);
 				// Get previous line's tabulation
 				tab = getLineTabulations(previous_line);
-				// Check if we have commands and if they match
-				Vector<String> command_list = getOperatorList(previous_line);
-				Vector<String> vector_match = matchingOperators(command_list);
-				if (vector_match.size() > 0) {
-					if (vector_match.elementAt(0).equals(IN)) {
+				// Check if we have commands and if they match in the previous line
+				Vector<String> previous_command_list = getOperatorList(previous_line);
+				Vector<String> previous_vector_match = matchingOperators(previous_command_list);
+				
+				// Check if we have commands and if they match in the current line
+				Vector<String> current_command_list = getOperatorList(current_line);
+				Vector<String> current_vector_match = matchingOperators(current_command_list);
+				
+				if (previous_vector_match.size() > 0) {
+					if (previous_vector_match.elementAt(0).equals(IN)) {
 						tab += "  ";
-					} else {
+					} 
+				}
+				
+				if (current_vector_match.size() > 0) {
+					if (current_vector_match.elementAt(0).equals(OUT)) {
 						if (tab.length() >= 2) {
 							tab = tab.substring(0, tab.length()-2);
 						}
 					}
 				}
-				System.out.println("previous_line = "+previous_line);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
 		}
 		
 		try {
-			System.out.println("tabulation1 = {"+tab+"}");
 			applyIndent(lineStartPosition, lineEndPosition, tab);
 			tab = "";
 		} catch (BadLocationException e) {
@@ -1355,28 +1370,20 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						//indent();
 						IndentAction.getXpadEditor();
 						editor = getEditor();
-						int  caretPosition = editor.getTextPane().getCaretPosition();
 						
-						try {
-							if (!(caretPosition == 0)) {
-								caretPosition = caretPosition -1;
-							}
-							if (editor.getTextPane().getText(caretPosition, 1).equals("\n")) {
-								System.out.println("JE SAUTE UNE LIGNE");
-
-								// Get start & end offsets of the selected text
-								int selection_start = editor.getTextPane().getSelectionStart();
-								int selection_end = editor.getTextPane().getSelectionEnd();
-
-								// Get start offsets of the first selected line & end offsets of the last selected line
-								lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(selection_start).getStartOffset();
-								lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(selection_end).getEndOffset()-1;
-								
-								indent(lineStartPosition-1, lineEndPosition);
-							}
-						} catch (BadLocationException e) {
-							e.printStackTrace();
-						}
+//						int  caretPosition = editor.getTextPane().getCaretPosition();
+//						
+//						
+//						try {
+//							if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+//								System.out.println("------------ SAUTE de LIGNE ------------");
+//								System.out.println(caretPosition);
+//							}
+//						} catch (BadLocationException e) {
+//							e.printStackTrace();
+//						}
+						
+						indent();
 					}
 					if (autoColorize) {
 						//colorize();
@@ -1415,30 +1422,30 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 					//resetStyle();
 					if (autoIndent) {
 						//indent();
-						IndentAction.getXpadEditor();
-						editor = getEditor();
-						int  caretPosition = editor.getTextPane().getCaretPosition();
-						
-						try {
-							if (!(caretPosition == 0)) {
-								caretPosition = caretPosition -1;
-							}
-							if (editor.getTextPane().getText(caretPosition, 1).equals("\n")) {
-								System.out.println("JE SAUTE UNE LIGNE");
-
-								// Get start & end offsets of the selected text
-								int selection_start = editor.getTextPane().getSelectionStart();
-								int selection_end = editor.getTextPane().getSelectionEnd();
-
-								// Get start offsets of the first selected line & end offsets of the last selected line
-								lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(selection_start).getStartOffset();
-								lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(selection_end).getEndOffset()-1;
-								
-								indent(lineStartPosition-1, lineEndPosition);
-							}
-						} catch (BadLocationException e) {
-							e.printStackTrace();
-						}
+//						IndentAction.getXpadEditor();
+//						editor = getEditor();
+//						int  caretPosition = editor.getTextPane().getCaretPosition();
+//						
+//						try {
+//							if (!(caretPosition == 0)) {
+//								caretPosition = caretPosition -1;
+//							}
+//							if (editor.getTextPane().getText(caretPosition, 1).equals("\n")) {
+//								System.out.println("JE SAUTE UNE LIGNE");
+//
+//								// Get start & end offsets of the selected text
+//								int selection_start = editor.getTextPane().getSelectionStart();
+//								int selection_end = editor.getTextPane().getSelectionEnd();
+//
+//								// Get start offsets of the first selected line & end offsets of the last selected line
+//								lineStartPosition =  editor.getTextPane().getStyledDocument().getParagraphElement(selection_start).getStartOffset();
+//								lineEndPosition = editor.getTextPane().getStyledDocument().getParagraphElement(selection_end).getEndOffset()-1;
+//								
+//								indent();
+//							}
+//						} catch (BadLocationException e) {
+//							e.printStackTrace();
+//						}
 					}
 					if (autoColorize) {
 						//colorize();

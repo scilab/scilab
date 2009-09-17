@@ -501,7 +501,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 				((ScilabStyleDocument) textPane.getStyledDocument()).colorize();
 			}
 			if (((ScilabStyleDocument) textPane.getStyledDocument()).getAutoIndent()) {
-				((ScilabStyleDocument) textPane.getStyledDocument()).indent(0,0);
+				((ScilabStyleDocument) textPane.getStyledDocument()).indent();
 			}
 			((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
 			

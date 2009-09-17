@@ -33,7 +33,7 @@ public class IndentAction extends DefaultAction {
 	public void doAction() {
 		
 		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent(0,0);
+		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
 		
 //		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
 //
