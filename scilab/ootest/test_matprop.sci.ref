@@ -1,0 +1,56 @@
+message = 
+
+Expected result:
+
+message = 
+
+[1 2 1]
+
+message = 
+
+[1 1 1]
+
+message = 
+
+[1 2 1 4]
+
+message = 
+
+[1 1 1]
+
+message = 
+
+[1 2 3]
+
+message = 
+
+[1 1 1]
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+  1    2    1
+
+message = 
+
+  1    1    1
+
+message = 
+
+  1    2    1    4
+
+message = 
+
+  1    1    1
+
+message = 
+
+  1    2    3
+
+message = 
+
+  1    1    1
+

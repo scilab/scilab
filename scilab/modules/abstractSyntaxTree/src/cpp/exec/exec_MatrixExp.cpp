@@ -195,6 +195,9 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 		case GenericType::RealString :
 			poResult = new String(_iRows, _iCols);
 			break;
+		case GenericType::RealObject :
+			poResult = new ObjectMatrix(_iRows, _iCols);
+			break;
 		case GenericType::RealPoly :
 			{
 				int* piRank = new int[_iRows * _iCols];
@@ -334,6 +337,11 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			poResult->getAsString()->string_set(iCurRow, iCurCol, _poSource->getAsString()->string_get(0,0));
 			*_piRows = _poSource->getAsString()->rows_get();
 			*_piCols = _poSource->getAsString()->cols_get();
+			break;
+		case GenericType::RealObject :
+			poResult->getAsObject()->Insert(iCurRow, iCurCol, _poSource->getAsObject());
+			*_piRows = dynamic_cast<GenericType*>(_poSource)->rows_get();
+			*_piCols = dynamic_cast<GenericType*>(_poSource)->cols_get();
 			break;
 		case GenericType::RealImplicitList :
 			{

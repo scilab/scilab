@@ -14,6 +14,7 @@
 #include "shortcutvisitor.hxx"
 #include "timer.hxx"
 #include "localization.h"
+#include "macro.hxx"
 
 #include "yaspio.hxx"
 
@@ -169,6 +170,30 @@ namespace ast
 		/*
 		a.b
 		*/
+		ExecVisitor *execL = new ast::ExecVisitor();
+		e.head_get()->accept(*execL);
+		types::InternalType *head = execL->result_get();
+		const symbol::Symbol &tail = dynamic_cast<const SimpleVar*>(e.tail_get())->name_get();
+		
+		types::ObjectMatrix *obj = dynamic_cast<types::ObjectMatrix*>(head);
+		if(obj != NULL)
+		{
+			types::InternalType *res = obj->Get(tail.name_get());
+			if(res != NULL)
+			{
+				result_set(res);
+				if(e.is_verbose())
+				{
+					std::ostringstream ostr;
+					ostr << obj->toString(10,75) << "." << tail.name_get() << " = " << std::endl;
+					ostr << std::endl;
+					ostr << res->toString(75,10) << std::endl;
+					YaspWrite((char *) ostr.str().c_str());
+				}
+			}
+		}
+		
+		delete execL;
 	}
 
 	void ExecVisitor::visit(const CallExp &e)
@@ -241,14 +266,10 @@ namespace ast
 		else if(execFunc->result_get() != NULL)
 		{//a(xxx) with a variable, extraction
 
-			//get symbol of variable
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
-			if(Var != NULL)
-			{
-				Double *pResult = NULL;
+				InternalType *pResult = NULL;
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
+				InternalType *pIT = execFunc->result_get();
 				int iArgDim				= (int)e.args_get().size();
 				bool bSeeAsVector	= iArgDim == 1;
 
@@ -263,6 +284,7 @@ namespace ast
 				if(pIT->getType() == InternalType::RealDouble)
 				{
 					Double *pDouble	= pIT->getAsDouble();
+					Double *dResult;
 					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector
 							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
 							iArgDim > 2) //more than 2 dimensions ?
@@ -293,19 +315,19 @@ namespace ast
 					}
 					else
 					{
-						pResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
+						pResult = dResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
 						iRowOut = piDimSize[0];
 						iColOut = piDimSize[1];
 					}
 
 					double *pRealIn		= pDouble->real_get();
 					double *pImgIn		= pDouble->img_get();
-					double *pRealOut	= pResult->real_get();
-					double *pImgOut		= pResult->img_get();
+					double *pRealOut	= dResult->real_get();
+					double *pImgOut		= dResult->img_get();
 
 					if(bSeeAsVector)
 					{
-						if(pResult->isComplex())
+						if(dResult->isComplex())
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
@@ -324,7 +346,7 @@ namespace ast
 					else//matrix
 					{
 						int iRowIn = pDouble->rows_get();
-						if(pResult->isComplex())
+						if(dResult->isComplex())
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
@@ -343,18 +365,56 @@ namespace ast
 							}
 						}
 					}
-
-					result_set(pResult);
 				}
-				else
+				else if(pIT->getType() == InternalType::RealObject)
 				{
+					ObjectMatrix *pObj = pIT->getAsObject();
+					ObjectMatrix *oResult;
+					if(iArgDim == 1 && piMaxDim[0] > pObj->size_get() || //SeeAsVector
+							iArgDim == 2 && (piMaxDim[0] > pObj->rows_get() || piMaxDim[0] > pObj->cols_get()) || //check dimension to extract
+							iArgDim > 2) //more than 2 dimensions ?
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+
+
+					int iRowOut = 0;
+					int iColOut	= 0;
+					if(iArgDim == 1)
+					{
+						pResult = oResult = new ObjectMatrix(piDimSize[0], 1);
+						iRowOut = piDimSize[0];
+						iColOut = 1;
+					}
+					else
+					{
+						// TODO
+					}
+
+					if(bSeeAsVector)
+					{
+						for(int i = 0 ; i < iTotalCombi ; i++)
+						{
+							oResult->SetElem(i, pObj->GetElem(piIndexSeq[i] - 1));
+						}
+					}
+					else//matrix
+					{
+						// TODO
+					}
 				}
 				delete[] piDimSize;
-			}
-			else
-			{
-				std::cout << "error Var == NULL\x0d\x0a";
-			}
+				result_set(pResult);
+				if(e.is_verbose())
+				{
+				  std::ostringstream ostr;
+				  ostr <<  pResult->toString(10,75) << std::endl;
+				  YaspWrite((char *) ostr.str().c_str());
+				}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
@@ -849,6 +909,14 @@ namespace ast
 		//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
 		types::Macro *pMacro = new types::Macro(e.name_get().name_get(), *pVarList, *pRetList, (SeqExp&)e.body_get(), "script");
 		symbol::Context::getInstance()->AddMacro(pMacro);
+	}
+  
+	void ExecVisitor::visit (const PropertyDec &)
+	{
+	}
+  
+	void ExecVisitor::visit (const MethodDec &)
+	{
 	}
 	/** \} */
 

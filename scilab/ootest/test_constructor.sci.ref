@@ -1,0 +1,56 @@
+message = 
+
+Expected result:
+
+message = 
+
+Hello from TestB
+
+message = 
+
+Hello from TestC
+
+message = 
+
+Hello from TestA
+
+message = 
+
+5
+
+message = 
+
+Hello from TestA
+
+message = 
+
+42
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+Hello from TestB
+
+message = 
+
+Hello from TestC
+
+message = 
+
+Hello from TestA
+
+message = 
+
+  5
+
+message = 
+
+Hello from TestA
+
+message = 
+
+  42
+

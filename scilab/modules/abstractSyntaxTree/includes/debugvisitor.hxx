@@ -90,6 +90,9 @@ namespace ast
     /** \brief Visit Var declarations. */
     virtual void visit (const VarDec  &e);
     virtual void visit (const FunctionDec  &e);
+    virtual void visit (const ClassDec  &e);
+    virtual void visit (const PropertyDec  &e);
+    virtual void visit (const MethodDec  &e);
     /** \} */
 
     /** \name Visit Type dedicated Expressions related node.

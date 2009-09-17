@@ -21,6 +21,11 @@ TYPES_CPP_SOURCES 	= src/cpp/types.cpp \
 			src/cpp/matrixpoly.cpp \
 			src/cpp/tostring_common.cpp \
 			src/cpp/function.cpp \
+			src/cpp/object.cpp \
+			src/cpp/objectmatrix.cpp \
+			src/cpp/instance.cpp \
+			src/cpp/class.cpp \
+			src/cpp/ooutils.cpp \
 			src/cpp/macrofile.cpp \
 			src/cpp/macro.cpp
 

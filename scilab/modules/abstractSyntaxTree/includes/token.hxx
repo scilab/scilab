@@ -126,6 +126,14 @@
 #define SCI_CLOSE_ARGS		SCI_RPAREN
 #define SCI_ENDFUNCTION		"endfunction"
 
+// Syntax to have class declaration
+#define SCI_CLASS		"class"
+#define SCI_SUPER_CLASS		SCI_LT
+#define SCI_ENDCLASS		"endclass"
+#define SCI_PROPERTY		"property"
+#define SCI_OPEN_ATTRIBUTES	SCI_LPAREN
+#define SCI_CLOSE_ATTRIBUTES	SCI_RPAREN
+
 // Syntax to have return control structure
 #define SCI_RETURN		"return"
 

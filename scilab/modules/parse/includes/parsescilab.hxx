@@ -1,24 +1,23 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+
+/* A Bison parser, made by GNU Bison 2.4.1.  */
 
 /* Skeleton interface for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
+   
+      Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
    Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
+   
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -29,9 +28,10 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
+
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -93,26 +93,29 @@
      CASE = 308,
      FUNCTION = 309,
      ENDFUNCTION = 310,
-     FOR = 311,
-     WHILE = 312,
-     DO = 313,
-     BREAK = 314,
-     TRY = 315,
-     CATCH = 316,
-     RETURN = 317,
-     STR = 318,
-     ID = 319,
-     VARINT = 320,
-     VARFLOAT = 321,
-     NUM = 322,
-     PATH = 323,
-     COMMENT = 324,
-     BLOCKCOMMENT = 325,
-     TOPLEVEL = 326,
-     HIGHLEVEL = 327,
-     UPLEVEL = 328,
-     LISTABLE = 329,
-     FUNCTIONCALL = 330
+     CLASS = 311,
+     ENDCLASS = 312,
+     PROPERTY = 313,
+     FOR = 314,
+     WHILE = 315,
+     DO = 316,
+     BREAK = 317,
+     TRY = 318,
+     CATCH = 319,
+     RETURN = 320,
+     STR = 321,
+     ID = 322,
+     VARINT = 323,
+     VARFLOAT = 324,
+     NUM = 325,
+     PATH = 326,
+     COMMENT = 327,
+     BLOCKCOMMENT = 328,
+     TOPLEVEL = 329,
+     HIGHLEVEL = 330,
+     UPLEVEL = 331,
+     LISTABLE = 332,
+     FUNCTIONCALL = 333
    };
 #endif
 /* Tokens.  */
@@ -170,34 +173,38 @@
 #define CASE 308
 #define FUNCTION 309
 #define ENDFUNCTION 310
-#define FOR 311
-#define WHILE 312
-#define DO 313
-#define BREAK 314
-#define TRY 315
-#define CATCH 316
-#define RETURN 317
-#define STR 318
-#define ID 319
-#define VARINT 320
-#define VARFLOAT 321
-#define NUM 322
-#define PATH 323
-#define COMMENT 324
-#define BLOCKCOMMENT 325
-#define TOPLEVEL 326
-#define HIGHLEVEL 327
-#define UPLEVEL 328
-#define LISTABLE 329
-#define FUNCTIONCALL 330
+#define CLASS 311
+#define ENDCLASS 312
+#define PROPERTY 313
+#define FOR 314
+#define WHILE 315
+#define DO 316
+#define BREAK 317
+#define TRY 318
+#define CATCH 319
+#define RETURN 320
+#define STR 321
+#define ID 322
+#define VARINT 323
+#define VARFLOAT 324
+#define NUM 325
+#define PATH 326
+#define COMMENT 327
+#define BLOCKCOMMENT 328
+#define TOPLEVEL 329
+#define HIGHLEVEL 330
+#define UPLEVEL 331
+#define LISTABLE 332
+#define FUNCTIONCALL 333
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-
 {
+
+
   /* Tokens. */
   double		number;
   std::string*		str;
@@ -240,17 +247,21 @@ typedef union YYSTYPE
   ast::CellExp*		t_cell_exp;
 
   ast::FunctionDec*	t_function_dec;
+  
+  ast::ClassDec*	t_class_dec;
+  ast::SlotDec*		t_slot_dec;
+  ast::slots_t*		t_list_slots;
 
   ast::ArrayListExp*	t_arraylist_exp;
   ast::AssignListExp*	t_assignlist_exp;
   ast::ArrayListVar*	t_arraylist_var;
-}
-/* Line 1489 of yacc.c.  */
 
-	YYSTYPE;
+
+
+} YYSTYPE;
+# define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
 #endif
 
 extern YYSTYPE yylval;
@@ -269,3 +280,4 @@ typedef struct YYLTYPE
 #endif
 
 extern YYLTYPE yylloc;
+

@@ -22,6 +22,10 @@
 
 #include "vardec.hxx"
 #include "functiondec.hxx"
+#include "classdec.hxx"
+#include "slotdec.hxx"
+#include "propertydec.hxx"
+#include "methoddec.hxx"
 
 //# include "typedec.hxx"
 

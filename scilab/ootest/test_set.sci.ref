@@ -1,0 +1,29 @@
+message = 
+
+Expected result:
+
+message = 
+
+2
+
+message = 
+
+5
+
+message = 
+
+Error: slot x found but not visible from this context
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+  2
+
+message = 
+
+  5
+
+Error: slot x found but not visible from this context

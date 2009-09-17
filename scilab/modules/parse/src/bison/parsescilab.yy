@@ -93,6 +93,10 @@
   ast::CellExp*		t_cell_exp;
 
   ast::FunctionDec*	t_function_dec;
+  
+  ast::ClassDec*	t_class_dec;
+  ast::SlotDec*		t_slot_dec;
+  ast::slots_t*		t_list_slots;
 
   ast::ArrayListExp*	t_arraylist_exp;
   ast::AssignListExp*	t_assignlist_exp;
@@ -164,6 +168,10 @@
 
 %token FUNCTION		"function"
 %token ENDFUNCTION	"endfunction"
+
+%token CLASS		"class"
+%token ENDCLASS		"endclass"
+%token PROPERTY		"property"
 
 %token FOR		"for"
 
@@ -239,6 +247,14 @@
 %type <t_list_var>	functionDeclarationReturns
 %type <t_list_var>	functionDeclarationArguments
 %type <t_list_var>	idList
+
+ // Class Declaration
+%type <t_class_dec>	classDeclaration
+%type <t_list_slots>	slotsDeclaration
+%type <t_slot_dec>	slotDeclaration
+%type <t_slot_dec>	methodDeclaration
+%type <t_slot_dec>	propertyDeclaration
+%type <t_list_var>	slotAttributes
 
  // Variable Declaration
 %type <t_assign_exp>	variableDeclaration
@@ -378,6 +394,7 @@ SEMI						{ $$ = false; }
 /* Expression or Instruction : quite similar. */
 expression :
 functionDeclaration				{ $$ = $1; }
+| classDeclaration				{ $$ = $1; }
 | functionCall			%prec TOPLEVEL	{ $$ = $1; }
 | variableDeclaration				{ $$ = $1; }
 | ifControl					{ $$ = $1; }
@@ -479,7 +496,7 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 */
 /* Usual way to call functions foo(arg1, arg2, arg3) */
 simpleFunctionCall :
-ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
+variable LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *$1, *$3); }
 ;
 
 /*
@@ -631,6 +648,105 @@ expressions			{ $$ = $1; }
 				  #endif
 				  $$ = new ast::SeqExp(@$, *tmp);
 				}
+;
+
+/*
+** -*- CLASS DECLARATION -*-
+*/
+classDeclaration :
+CLASS ID LT ID functionDeclarationBreak slotsDeclaration ENDCLASS {
+				  $$ = new ast::ClassDec(@$, new symbol::Symbol(*$2), new symbol::Symbol(*$4), *$6);
+				}
+| CLASS ID functionDeclarationBreak slotsDeclaration ENDCLASS {
+				  $$ = new ast::ClassDec(@$, new symbol::Symbol(*$2), NULL, *$4);
+				}
+;
+
+/*
+** -*- SLOTS DECLARATION -*-
+*/
+slotsDeclaration :
+slotsDeclaration slotDeclaration functionDeclarationBreak {
+				  $$ = $1; $$->push_back($2);
+				}
+| slotsDeclaration functionDeclarationBreak /* Empty slot */ { $$ = $1; }
+| /* Epsilon */			{ $$ = new ast::slots_t; } 
+;
+
+/*
+** -*- SLOT DECLARATION -*-
+*/
+slotDeclaration :
+methodDeclaration { $$ = $1; }
+| propertyDeclaration { $$ = $1; }
+;
+
+/*
+** -*- METHOD DECLARATION -*-
+*/
+/* Copied from function declaration ; consider to factorize ? */
+methodDeclaration :
+FUNCTION slotAttributes ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
+				  ast::vars_t *tmp = new ast::vars_t;
+				  tmp->push_front(new ast::SimpleVar(@3, *new symbol::Symbol(*$3)));
+				  $$ = new ast::MethodDec(@$,
+							    *new symbol::Symbol(*$5),
+							    *new ast::ArrayListVar(@2, *$2),
+							    *new ast::ArrayListVar(@6, *$6),
+							    *new ast::ArrayListVar(@3, *tmp),
+							    *$8);
+				}
+| FUNCTION slotAttributes LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
+				  $$ = new ast::MethodDec(@$,
+							    *new symbol::Symbol(*$7),
+							    *new ast::ArrayListVar(@2, *$2),
+							    *new ast::ArrayListVar(@8, *$8),
+							    *new ast::ArrayListVar(@4 ,*$4),
+							    *$10);
+				}
+| FUNCTION slotAttributes LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
+				  $$ = new ast::MethodDec(@$,
+							    *new symbol::Symbol(*$6),
+							    *new ast::ArrayListVar(@2, *$2),
+							    *new ast::ArrayListVar(@7, *$7),
+							    *new ast::ArrayListVar(@3, *new ast::vars_t),
+							    *$9);
+				}
+| FUNCTION slotAttributes ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
+				  $$ = new ast::MethodDec(@$,
+							    *new symbol::Symbol(*$3),
+							    *new ast::ArrayListVar(@2, *$2),
+							    *new ast::ArrayListVar(@4, *$4),
+							    *new ast::ArrayListVar(@$, *new ast::vars_t),
+							    *$6);
+				}
+;
+
+/*
+** -*- PROPERTY DECLARATION -*-
+*/
+propertyDeclaration :
+PROPERTY slotAttributes ID ASSIGN variable {
+				  $$ = new ast::PropertyDec(@$,
+							    *new symbol::Symbol(*$3),
+							    *new ast::ArrayListVar(@2, *$2),
+							    $5);
+				}
+| PROPERTY slotAttributes ID {
+				  $$ = new ast::PropertyDec(@$,
+							    *new symbol::Symbol(*$3),
+							    *new ast::ArrayListVar(@2, *$2),
+							    NULL);
+				}
+;
+
+/*
+** -*- SLOT ATTRIBUTES -*-
+*/
+slotAttributes :
+LPAREN idList RPAREN		{ $$ = $2; }
+| LPAREN RPAREN			{ $$ = new ast::vars_t; }
+| /* Epsilon */			{ $$ = new ast::vars_t; }
 ;
 
 /*
@@ -801,15 +917,13 @@ listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@
 variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
-| variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
 | operation						{ $$ = $1; }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| ID					%prec DOT	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | NUM					%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | VARFLOAT						{ $$ = new ast::DoubleExp(@$, $1); }

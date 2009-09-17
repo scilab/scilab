@@ -30,6 +30,7 @@ namespace types
 	class Dollar;
 	class Poly;
 	class MatrixPoly;
+	class ObjectMatrix;
 }
 
 #endif /* !__ANY_TYPES_HH__ */

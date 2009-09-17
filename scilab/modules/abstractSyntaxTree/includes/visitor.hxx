@@ -154,6 +154,9 @@ namespace ast
   public:
     virtual void visit (typename select_const<K, VarDec>::t & e) = 0;
     virtual void visit (typename select_const<K, FunctionDec>::t & e) = 0;
+    virtual void visit (typename select_const<K, ClassDec>::t & e) = 0;
+    virtual void visit (typename select_const<K, PropertyDec>::t & e) = 0;
+    virtual void visit (typename select_const<K, MethodDec>::t & e) = 0;
     /** \} */
 
     /** \name Visit Type dedicated Expressions related node.

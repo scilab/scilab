@@ -500,6 +500,80 @@ namespace ast {
     // Close function declaration
     *ostr << SCI_ENDFUNCTION;
   }
+  
+  void PrintVisitor::visit (const ClassDec &e)
+  {
+    const slots_t& slots = e.slots_get();
+    slots_t::const_iterator slot;
+    
+    this->apply_indent();
+    *ostr << SCI_CLASS << " " << *e.name_get();
+    if (e.super_get()) {
+      *ostr << " " << SCI_SUPER_CLASS << " " << *e.super_get();
+    }
+    *ostr << std::endl;
+    
+    ++indent;
+    for (slot = slots.begin(); slot != slots.end(); ++slot) {
+      (*slot)->accept(*this);
+      *ostr << std::endl;
+    }
+    --indent;
+    
+    this->apply_indent();
+    *ostr << SCI_ENDCLASS;
+  }
+  
+  void PrintVisitor::visit (const PropertyDec &e)
+  {
+    this->apply_indent();
+    *ostr << SCI_PROPERTY;
+    if (!e.attributes_get().vars_get().empty()) {
+      *ostr << SCI_OPEN_ATTRIBUTES;
+      e.attributes_get().accept(*this);
+      *ostr << SCI_CLOSE_ATTRIBUTES;
+    }
+    *ostr << " " << e.name_get();
+    if (e.default_get()) {
+      *ostr << " " << SCI_ASSIGN << " ";
+      e.default_get()->accept(*this);
+    }
+  }
+  
+  void PrintVisitor::visit (const MethodDec &e)
+  {
+    this->apply_indent();
+    *ostr << SCI_FUNCTION;
+    if (!e.attributes_get().vars_get().empty()) {
+      *ostr << SCI_OPEN_ATTRIBUTES;
+      e.attributes_get().accept(*this);
+      *ostr << SCI_CLOSE_ATTRIBUTES;
+    }
+    *ostr << " ";
+
+    // First ask if there are some return values.
+    *ostr << SCI_OPEN_RETURNS;
+    visit(e.returns_get());
+    *ostr << SCI_CLOSE_RETURNS << " ";
+    *ostr << SCI_ASSIGN << " ";
+
+    // Then get the function name
+    *ostr << e.name_get();
+
+    // Then get function args
+    *ostr << SCI_OPEN_ARGS;
+    visit(e.args_get());
+    *ostr << SCI_CLOSE_ARGS << std::endl;
+
+    // Now print function body
+    ++indent;
+    e.body_get().accept(*this);
+    --indent;
+    this->apply_indent();
+
+    // Close function declaration
+    *ostr << SCI_ENDFUNCTION;
+  }
   /** \} */
 
   /** \name Visit Type dedicated Expressions related node.

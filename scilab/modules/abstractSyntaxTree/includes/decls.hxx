@@ -76,6 +76,11 @@ namespace ast
   // Decs
   class VarDec;
   class FunctionDec;
+  class ClassDec;
+  class SlotDec;
+  class PropertyDec;
+  class MethodDec;
+  typedef std::list<SlotDec *> slots_t;
 
   // Type dedicated Exp
   class ListExp;

@@ -31,17 +31,61 @@ namespace ast
 		try
 		{
 			/*get king of left hand*/
-			const SimpleVar *pVar				= dynamic_cast<const SimpleVar*>(&e.left_exp_get());
 			const AssignListExp *pList	= dynamic_cast<const AssignListExp*>(&e.left_exp_get());
-			const CallExp *pCall				= dynamic_cast<const CallExp*>(&e.left_exp_get());
-
+			const CallExp *pCall		= dynamic_cast<const CallExp*>(&e.left_exp_get());
+			const SimpleVar *pVar 		= NULL, 
+			                *propName 	= NULL;
+			ObjectMatrix *object		= NULL;
+			
+			/*get data*/
+			InternalType *dataOld, *dataNew	= NULL;
+			bool bNew			= false;
+			bool bRet			= true;
+			if(pList == NULL)
+			{
+				// To sum up, 5 possibilities for the left expression:
+				//  (1) The modified object is a variable or, eg a (2) an object/structure property, eg a.b
+				//  (3) The modified object is fully modified or (3) only a subscript of the matrix is modified
+				//  (5) The modified object is a list of full variables.
+				//  (1) => pVar != NULL, object = NULL, propName = NULL; (2) => the opposite
+				//  (3) => pCall = NULL; (4) => pCall != NULL
+				//  (5) => pList != NULL, pVar = pCall = object = propname = NULL
+				const Exp *ref;
+				if(pCall != NULL)
+				{ // e = foo(...) => pCall = e, ref = foo
+					ref = &pCall->name_get();
+				}
+				else
+				{ // e = var => pCall = NULL, ref = e
+					ref = &e.left_exp_get();
+				}
+				
+				pVar = dynamic_cast<const SimpleVar*>(ref);
+				if(pVar != NULL)
+				{ // ref = foo => pVar = Foo, object & propName = NULL
+					object = NULL;
+					propName = NULL;
+					dataOld = symbol::Context::getInstance()->get(pVar->name_get());
+				}
+				else
+				{ // ref = foo.bar => pVar = NULL, object = foo, propName = bar
+					ExecVisitor execMeF;
+					
+					const FieldExp *field = dynamic_cast<const FieldExp*>(ref);
+					field->head_get()->accept(execMeF);
+					
+					object = dynamic_cast<ObjectMatrix*>(execMeF.result_get());
+					propName = dynamic_cast<const SimpleVar*>(field->tail_get());
+					
+					if(pCall != NULL)
+						dataOld = object->Get(propName->name_get().name_get());
+				}
+			}
+			
 			if(pCall)
 			{//x(?) = ?
-				bool bRet								= true;
-				bool bNew								= false;
 				int iProductElem				= (int)pCall->args_get().size();
-				pVar										= (SimpleVar*)&pCall->name_get();
-				InternalType *pIT				= symbol::Context::getInstance()->get(pVar->name_get());
+				InternalType *pIT				= dataOld;
 				bool bSeeAsVector				= iProductElem == 1;
 
 				/*getting what to assign*/
@@ -129,19 +173,7 @@ namespace ast
 
 				if(pOut != NULL && bRet == true)
 				{
-					if(bNew)
-					{
-						symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
-					}
-
-					if(e.is_verbose())
-					{
-						std::ostringstream ostr;
-						ostr << pVar->name_get() << " = " << std::endl;
-						ostr << std::endl;
-						ostr << pOut->toString(10,75) << std::endl;
-						YaspWrite((char *)ostr.str().c_str());
-					}
+					dataNew = pOut;
 				}
 				else
 				{
@@ -154,7 +186,7 @@ namespace ast
 				delete piMaxDim;
 				delete[] piDimSize;
 			}
-			else if(pVar)
+			else if(pVar || propName)
 			{// x = ?
 				/*getting what to assign*/
 				execMeR->expected_size_set(1);
@@ -175,26 +207,8 @@ namespace ast
 					delete pIT;
 					pIT = pTemp;
 				}
-
-				//const ReturnExp *pReturn = dynamic_cast<const ReturnExp*>(&e.right_exp_get());
-				//if(pReturn)
-				//{//ReturnExp so, put the value in the previous scope
-				//	symbol::Context::getInstance()->put_in_previous_scope(pVar->name_get(), *((GenericType*)pIT));
-				//	((AssignExp*)&e)->break_set();
-				//}
-				//else
-				//{
-					symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pIT));
-				//}
-
-				if(e.is_verbose())
-				{
-					std::ostringstream ostr;
-					ostr << pVar->name_get() << " = " << std::endl;
-					ostr << std::endl;
-					ostr << pIT->toString(10,75) << std::endl;
-					YaspWrite((char *)ostr.str().c_str());
-				}
+				dataNew = pIT;
+				bNew = true;
 			}
 			else if(pList)
 			{//[x,y] = ?
@@ -237,6 +251,34 @@ namespace ast
 				os << "unknow script form";
 				os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
 				throw os.str();
+			}
+			
+			if(bNew)
+			{
+				if(pVar != NULL)
+				{
+					symbol::Context::getInstance()->put(pVar->name_get(), *dynamic_cast<GenericType*>(dataNew));
+				}
+				else
+				{
+					object->Set(propName->name_get().name_get(), dataNew);
+				}
+			}
+
+			if(e.is_verbose() && pList == NULL)
+			{
+				std::ostringstream ostr;
+				if(pVar != NULL)
+				{
+					ostr << pVar->name_get() << " = " << std::endl;
+				}
+				else
+				{
+					ostr << object->toString(10,75) << "." << propName->name_get() << " = " << std::endl;
+				}
+				ostr << std::endl;
+				ostr << dataNew->toString(10,75) << std::endl;
+				YaspWrite((char *)ostr.str().c_str());
 			}
 		}
 		catch(string sz)

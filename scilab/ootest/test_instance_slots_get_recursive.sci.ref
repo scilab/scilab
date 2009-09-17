@@ -1,0 +1,84 @@
+message = 
+
+Expected result:
+
+message = 
+
+%constructor method public
+
+message = 
+
+a method public
+
+message = 
+
+b method protected
+
+message = 
+
+c method private
+
+message = 
+
+x property public
+
+message = 
+
+y property protected
+
+message = 
+
+z property private
+
+message = 
+
+------- Running test -----------
+
+V = 
+
+!public     !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!%constructor  !
+!              !
+!a             !
+!              !
+!b             !
+!              !
+!c             !
+!              !
+!x             !
+!              !
+!y             !
+!              !
+!z             !
+

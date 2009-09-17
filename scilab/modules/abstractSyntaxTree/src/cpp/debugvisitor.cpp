@@ -408,6 +408,83 @@ namespace ast
 
     DEBUG_END_NODE();
   }
+  
+  void DebugVisitor::visit (const ClassDec &e)
+  {
+    const slots_t&           slots = e.slots_get();
+    slots_t::const_iterator  slot;
+    
+    DEBUG_START_NODE();
+    DEBUG("Exec ClassDec");
+    {
+      DEBUG_START_NODE();
+      DEBUG("Name: "+e.name_get()->name_get());
+      DEBUG_END_NODE();
+    }
+    if (e.super_get()) {
+      DEBUG_START_NODE();
+      DEBUG("SuperClassName: "+e.super_get()->name_get());
+      DEBUG_END_NODE();
+    }
+    for (slot = slots.begin(); slot != slots.end(); ++slot) {
+      (*slot)->accept(*this);
+    }
+    DEBUG_END_NODE();
+  }
+  
+  void DebugVisitor::visit (const PropertyDec &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec PropertyDec");
+    {
+      DEBUG_START_NODE();
+      DEBUG("Name: "+e.name_get().name_get());
+      DEBUG_END_NODE();
+    }
+    {
+      DEBUG_START_NODE();
+      DEBUG("Slot attributes:");
+      visit(e.attributes_get());
+      DEBUG_END_NODE();
+    }
+    if (e.default_get()) {
+      e.default_get()->accept(*this);
+    }
+    DEBUG_END_NODE();
+  }
+  
+  void DebugVisitor::visit (const MethodDec &e)
+  {
+    DEBUG_START_NODE();
+    DEBUG("Exec MethodDec");
+    DEBUG_START_NODE();
+    {
+      DEBUG("Name: "+e.name_get().name_get());
+    }
+    {
+      DEBUG("Slot attributes:");
+      DEBUG_START_NODE();
+      visit(e.attributes_get());
+      DEBUG_END_NODE();
+    }
+    {
+      DEBUG("Arguments:");
+      DEBUG_START_NODE();
+      visit(e.args_get());
+      DEBUG_END_NODE();
+    }
+    {
+      DEBUG("Returns:");
+      DEBUG_START_NODE();
+      visit(e.returns_get());
+      DEBUG_END_NODE();
+    }
+    DEBUG_END_NODE();
+    {
+      e.body_get().accept(*this);
+    }
+    DEBUG_END_NODE();
+  }
   /** \} */
 
   /** \name Visit Type dedicated Expressions related node.

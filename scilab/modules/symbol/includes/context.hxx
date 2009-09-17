@@ -54,7 +54,7 @@ namespace symbol
 		void print();
 
 		/*add symbol and value in the stack*/
-		bool put(Symbol key, InternalType &type);
+		bool put(Symbol key, InternalType &type, bool bCheckSpecial = true);
 		/*add symbol and value in the previous scope*/
 		bool put_in_previous_scope(Symbol key, InternalType &type);
 

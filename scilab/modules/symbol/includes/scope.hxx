@@ -74,13 +74,24 @@ namespace symbol
 		}
 
 		/** Associate value to key in the current scope. */
-		InternalType*	put (Symbol key, InternalType &value)
+		/* bCheckSpecial: Object Matrix containing "this" or "super" must be cloned
+		 * ASAP, disabling COW on them */
+		InternalType*	put (Symbol key, InternalType &value, bool bCheckSpecial = false)
 		{
 			InternalType *pOld = (*_scope)[key];
-
+			
 			if(pOld == &value)
 			{
 				return NULL;
+			}
+
+			ObjectMatrix *pObj;
+			if(bCheckSpecial && (pObj = dynamic_cast<ObjectMatrix*>(&value)) != NULL)
+			{
+				if(pObj->IsThis() || pObj->IsSuper())
+				{
+					return put(key, *pObj->clone(), false);
+				}
 			}
 
 			if(pOld != NULL)

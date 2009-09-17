@@ -61,8 +61,13 @@ namespace symbol
 		
     /** Associate value to key in the current scope. */
     void	put (Symbol key, InternalType &value)
+	{
+		put(key, value, false);
+	}
+
+    void	put (Symbol key, InternalType &value, bool bChekSpecial)
     {
-      InternalType *pOld = (this->l_scope.front()).put(key, value);
+      InternalType *pOld = (this->l_scope.front()).put(key, value, bChekSpecial);
 /*			if(pOld != NULL)
 			{
 				std::list<Scope>::const_iterator it_list_scope;
@@ -86,14 +91,22 @@ namespace symbol
     InternalType*	get (Symbol key) const
 		{
 			InternalType* result = 0;
-
+			ObjectMatrix* pObj;
+			
+			int i;
 			std::list<Scope>::const_iterator it_list_scope;
 
-			for (it_list_scope = this->l_scope.begin(); it_list_scope != this->l_scope.end(); ++it_list_scope)
+			for (i = 0, it_list_scope = this->l_scope.begin(); it_list_scope != this->l_scope.end(); ++it_list_scope, ++i)
 			{
 				result = (*it_list_scope).get(key);
 				if (result == 0)
 					continue ;
+				if (i > 1 && result->isObject())
+				{
+					pObj = result->getAsObject();
+					if(pObj->IsThis() || pObj->IsSuper())
+						continue ;
+				}
 				return result;
 			}
       return result;

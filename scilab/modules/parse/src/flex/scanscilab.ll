@@ -129,6 +129,11 @@ assign			"="
 "endfunction"	return scan_throw(ENDFUNCTION);
 
 
+"class"		return scan_throw(CLASS);
+"endclass"	return scan_throw(ENDCLASS);
+"property"	return scan_throw(PROPERTY);
+
+
 "for"		{
   Parser::getInstance()->pushControlStatus(Parser::WithinFor);
   return scan_throw(FOR);

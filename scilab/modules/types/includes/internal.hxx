@@ -40,7 +40,8 @@ namespace types
 			RealMacro,
 			RealMacroFile,
 			RealPoly,
-			RealSinglePoly
+			RealSinglePoly,
+			RealObject
     };
 
 		virtual ~InternalType(){};
@@ -75,6 +76,10 @@ namespace types
     /* Function */
     bool isFunction(void) { return (getType() == RealFunction); }
     virtual Function* getAsFunction(void) { return NULL; }
+    
+    /* Object */
+    bool isObject(void) { return (getType() == RealObject); }
+    virtual ObjectMatrix* getAsObject(void) { return NULL; }
 
     /* Macro */
     bool isMacro(void) { return (getType() == RealMacro); }

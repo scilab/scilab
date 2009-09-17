@@ -1,0 +1,40 @@
+message = 
+
+Expected result:
+
+message = 
+
+2
+
+message = 
+
+3
+
+message = 
+
+100
+
+message = 
+
+500
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+  2
+
+message = 
+
+  3
+
+message = 
+
+  100
+
+message = 
+
+  500
+

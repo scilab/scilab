@@ -1,0 +1,40 @@
+message = 
+
+Expected result:
+
+message = 
+
+GET:foo
+
+message = 
+
+42
+
+message = 
+
+SET:bar
+
+message = 
+
+1
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+GET:foo
+
+message = 
+
+  42
+
+message = 
+
+SET:bar
+
+message = 
+
+  1
+

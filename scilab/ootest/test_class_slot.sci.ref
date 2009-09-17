@@ -1,0 +1,40 @@
+message = 
+
+Expected result:
+
+message = 
+
+Hello from class Test
+
+message = 
+
+5
+
+message = 
+
+Hello from Test instance
+
+message = 
+
+42
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+Hello from class Test
+
+message = 
+
+  5
+
+message = 
+
+Hello from Test instance
+
+message = 
+
+  42
+

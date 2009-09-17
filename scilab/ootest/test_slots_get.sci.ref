@@ -1,0 +1,212 @@
+message = 
+
+Expected result:
+
+message = 
+
+a
+
+message = 
+
+b
+
+message = 
+
+c
+
+message = 
+
+name
+
+message = 
+
+super
+
+message = 
+
+x
+
+message = 
+
+y
+
+message = 
+
+z
+
+message = 
+
+a method
+
+message = 
+
+b method
+
+message = 
+
+c method
+
+message = 
+
+name property
+
+message = 
+
+super property
+
+message = 
+
+x property
+
+message = 
+
+y property
+
+message = 
+
+z property
+
+message = 
+
+a method public
+
+message = 
+
+b method protected
+
+message = 
+
+c method private
+
+message = 
+
+name property public
+
+message = 
+
+super property public
+
+message = 
+
+x property public
+
+message = 
+
+y property protected
+
+message = 
+
+z property private
+
+message = 
+
+------- Running test -----------
+
+N = 
+
+!a      !
+!       !
+!b      !
+!       !
+!c      !
+!       !
+!name   !
+!       !
+!super  !
+!       !
+!x      !
+!       !
+!y      !
+!       !
+!z      !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!a      !
+!       !
+!b      !
+!       !
+!c      !
+!       !
+!name   !
+!       !
+!super  !
+!       !
+!x      !
+!       !
+!y      !
+!       !
+!z      !
+
+V = 
+
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!a      !
+!       !
+!b      !
+!       !
+!c      !
+!       !
+!name   !
+!       !
+!super  !
+!       !
+!x      !
+!       !
+!y      !
+!       !
+!z      !
+

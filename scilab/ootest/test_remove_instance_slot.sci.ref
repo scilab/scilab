@@ -1,0 +1,21 @@
+message = 
+
+Expected result:
+
+message = 
+
+Hello
+
+message = 
+
+Error: slot hello not found
+
+message = 
+
+------- Running test -----------
+
+message = 
+
+Hello
+
+Error: slot hello not found

@@ -62,6 +62,9 @@ namespace ast
 		virtual void visit (const TransposeExp &e);
 		virtual void visit (const VarDec  &e);
 		virtual void visit (const FunctionDec  &e);
+		virtual void visit (const ClassDec  &e);
+		virtual void visit (const PropertyDec  &e);
+		virtual void visit (const MethodDec  &e);
 		virtual void visit(const ListExp &e);
 	};
 }

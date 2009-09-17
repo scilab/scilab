@@ -1,0 +1,204 @@
+message = 
+
+Expected result:
+
+message = 
+
+%get method public
+
+message = 
+
+%set method public
+
+message = 
+
+%new method public
+
+message = 
+
+%slots_list method public
+
+message = 
+
+%install_method method public
+
+message = 
+
+%install_property method public
+
+message = 
+
+%remove_slot method public
+
+message = 
+
+%instance_slots_list method public
+
+message = 
+
+%install_instance_method method public
+
+message = 
+
+%install_instance_property method public
+
+message = 
+
+%remove_instance_slot method public
+
+message = 
+
+a method public
+
+message = 
+
+b method protected
+
+message = 
+
+c method private
+
+message = 
+
+name property public
+
+message = 
+
+super property public
+
+message = 
+
+x property public
+
+message = 
+
+y property protected
+
+message = 
+
+z property private
+
+message = 
+
+------- Running test -----------
+
+V = 
+
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!%get                        !
+!                            !
+!%install_instance_method    !
+!                            !
+!%install_instance_property  !
+!                            !
+!%install_method             !
+!                            !
+!%install_property           !
+!                            !
+!%instance_slots_list        !
+!                            !
+!%new                        !
+!                            !
+!%remove_instance_slot       !
+!                            !
+!%remove_slot                !
+!                            !
+!%set                        !
+!                            !
+!%slots_list                 !
+!                            !
+!a                           !
+!                            !
+!b                           !
+!                            !
+!c                           !
+!                            !
+!name                        !
+!                            !
+!super                       !
+!                            !
+!x                           !
+!                            !
+!y                           !
+!                            !
+!z                           !
+

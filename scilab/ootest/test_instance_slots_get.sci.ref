@@ -1,0 +1,164 @@
+message = 
+
+Expected result:
+
+message = 
+
+a
+
+message = 
+
+b
+
+message = 
+
+c
+
+message = 
+
+x
+
+message = 
+
+y
+
+message = 
+
+z
+
+message = 
+
+a method
+
+message = 
+
+b method
+
+message = 
+
+c method
+
+message = 
+
+x property
+
+message = 
+
+y property
+
+message = 
+
+z property
+
+message = 
+
+a method public
+
+message = 
+
+b method protected
+
+message = 
+
+c method private
+
+message = 
+
+x property public
+
+message = 
+
+y property protected
+
+message = 
+
+z property private
+
+message = 
+
+------- Running test -----------
+
+N = 
+
+!a  !
+!   !
+!b  !
+!   !
+!c  !
+!   !
+!x  !
+!   !
+!y  !
+!   !
+!z  !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!a  !
+!   !
+!b  !
+!   !
+!c  !
+!   !
+!x  !
+!   !
+!y  !
+!   !
+!z  !
+
+V = 
+
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+!           !
+!public     !
+!           !
+!protected  !
+!           !
+!private    !
+
+T = 
+
+!method    !
+!          !
+!method    !
+!          !
+!method    !
+!          !
+!property  !
+!          !
+!property  !
+!          !
+!property  !
+
+N = 
+
+!a  !
+!   !
+!b  !
+!   !
+!c  !
+!   !
+!x  !
+!   !
+!y  !
+!   !
+!z  !
+
