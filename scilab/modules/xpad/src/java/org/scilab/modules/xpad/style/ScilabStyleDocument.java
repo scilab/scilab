@@ -51,7 +51,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = false;
+	private boolean autoIndent = true;
 	private boolean autoColorize = true;
 	private boolean colorizeInprogress = false;
 	private boolean indentInprogress = false;
@@ -508,6 +508,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				
 				if (current_vector_match.size() > 0) {
 					if (current_vector_match.elementAt(0).equals(OUT)) {
+						if (tab.length() >= 2) {
+							tab = tab.substring(0, tab.length()-2);
+						}
+					}
+					if ((current_vector_match.elementAt(1).toLowerCase().equals("else")) || 
+							(current_vector_match.elementAt(1).toLowerCase().equals("elseif"))) {
+						if (tab.length() >= 2) {
+							tab = tab.substring(0, tab.length()-2);
+						}
+					}
+					if ((current_vector_match.elementAt(1).toLowerCase().equals("case"))) {
 						if (tab.length() >= 2) {
 							tab = tab.substring(0, tab.length()-2);
 						}
