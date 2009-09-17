@@ -27,7 +27,10 @@ public class AutoIndentAction extends DefaultCheckAction  {
     }
 
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("Auto Indent", null, new AutoIndentAction(editor), null);
+	CheckBoxMenuItem autoIndent = createCheckBoxMenu("Auto Indent", null, new AutoIndentAction(editor), null);
+	autoIndent.setChecked(true);
+
+	return autoIndent;
     }
 
 }
