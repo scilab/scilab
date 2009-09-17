@@ -48,6 +48,8 @@ import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.xcos.actions.DumpAction;
+import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.clock.ClockBlock;
 import org.scilab.modules.xcos.block.generic.GenericBlock;
 import org.scilab.modules.xcos.block.scope.ScopeBlock;
@@ -130,6 +132,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	    public void actionPerformed(ActionEvent arg0) { System.exit(0); }
 	});
 	file.add(newItem);
+	file.add(DumpAction.dumpMenu(scilabGraph));
+	file.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
 	//file.add(quit);
 	menuBar.add(file);
 

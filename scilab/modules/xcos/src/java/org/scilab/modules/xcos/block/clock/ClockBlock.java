@@ -23,6 +23,7 @@ public class ClockBlock extends BasicBlock {
     public ClockBlock() {
 	super("Clock", "Clock");
 	insert(new CommandPort());
+	setInterfaceFunctionName("c_block");
     }
 
 }
