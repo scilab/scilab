@@ -164,6 +164,8 @@ call_scilab module :
 
 * A example to call scilab from VB.NET added.
    see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
+ 
+* CallScilab.h renamed call_scilab.h
 
 tests :
 =======
@@ -285,7 +287,7 @@ Bug fixes:
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
-* bug 4278 fixed - typename() called with a wrong number of input arguments  returns incoherent errors.
+* bug 4278 fixed - typename() called with a wrong number of input arguments returns incoherent errors.
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
@@ -428,3 +430,4 @@ Bug fixes:
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
 
+* bug 4795 fixed - CallScilab.h renamed call_scilab.h

@@ -373,7 +373,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\c\CallScilab.c"
+				RelativePath=".\src\c\call_scilab.c"
 				>
 			</File>
 			<File

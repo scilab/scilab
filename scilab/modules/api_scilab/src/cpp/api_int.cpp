@@ -18,7 +18,7 @@
 #include "api_internal_int.h"
 #include "api_int.h"
 
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 
 int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)

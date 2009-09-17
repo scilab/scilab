@@ -37,7 +37,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "callinterf.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "recursionFunction.h"
 #include "doublecomplex.h"
 #include "libinter.h"
