@@ -20,6 +20,7 @@ public class AutoIndentAction extends DefaultCheckAction  {
 
     private AutoIndentAction(Xpad editor) {
 	super("Auto Indent", editor);
+	setState(true);
     }
 
     public void doAction() {
