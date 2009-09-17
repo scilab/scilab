@@ -430,4 +430,6 @@ Bug fixes:
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
 
+* bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
+
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h

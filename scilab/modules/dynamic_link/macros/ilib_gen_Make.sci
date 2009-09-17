@@ -12,6 +12,12 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
 //------------------------------------
 // generate a Makefile for gateway
 
+  [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_Make"));
+    return
+  end
+
   if argn(2)<6 then with_gateway=%t,ldflags='',cflags='',fflags='', cc='';end
   for i=1:size(files,'*') // compatibility scilab 4.x
     [path_f, file_f, ext_f] = fileparts(files(i));

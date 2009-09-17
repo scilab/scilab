@@ -15,6 +15,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
 				                         cc)
 
 
+  [lhs,rhs] = argn(0);
+  if rhs < 3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
+    return
+  end
+  
   libn=""; //** init variable 
 
   if ~haveacompiler() then
