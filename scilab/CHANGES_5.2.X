@@ -143,6 +143,10 @@ Dynamic link:
  
 * addinter : each interface added can manage 999 functions (bug 4675). 
 
+* ilib_gen_gateway can generated gateway without PutLhsVar (Managed by user, in this case)
+  see help of 'ilib_gen_gateway' about this modification and 
+  SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
+
 Online Help :
 =============
 
