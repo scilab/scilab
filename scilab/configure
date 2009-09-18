@@ -11220,7 +11220,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
 	  else
