@@ -233,6 +233,7 @@ Optimization:
  - Created optimbase component to build optimization algorithms
  - Created optimsimplex component to build direct search algorithms
  - Created fminsearch optimization function
+ - Added examples in the help for optim
  
 Linear algebra
 =============
