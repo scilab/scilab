@@ -561,7 +561,7 @@ libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
-libscifileio_la_includedir = $(pkgincludedir)/fileio
+libscifileio_la_includedir = $(pkgincludedir)
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/findfiles.h \

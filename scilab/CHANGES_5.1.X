@@ -26,14 +26,14 @@ Compilation:
 
 * --enable-debug-java add two options to the JVM args (-verbose:jni and
   -Xcheck:jni) in order to provide more feedbacks on debug
-  Note that this should be used into a binary since it is expensive
+  Note that this should not be used into a binary since it is expensive
 
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.3)
   There was a bug in GIWS:
 	The use of a static method returning an int wasn't calling the right
 	method.
-	It didn't seem to trigger any errors in the past but the latest 
+	It did not seem to trigger any errors in the past but the latest 
 	version of the JDK is now complaining.
 
 
@@ -64,7 +64,7 @@ Compilation:
 		- adds missing enable_keypad_mode()
 		- use configure results to protect the inclusion of curses.h, 
 		  ncurses.h, term.h, and termcap.h.
-		- Large amounts of cleanup of the PVM configure code
+		- Large amounts of cleanup of the PVM configure code (Closes: #4151)
 
 * automake version changed (1.10.1 => 1.10.2)
 

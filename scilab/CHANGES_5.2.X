@@ -143,6 +143,10 @@ Dynamic link:
  
 * addinter : each interface added can manage 999 functions (bug 4675). 
 
+* ilib_gen_gateway can generated gateway without PutLhsVar (Managed by user, in this case)
+  see help of 'ilib_gen_gateway' about this modification and 
+  SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
+
 Online Help :
 =============
 
@@ -156,7 +160,12 @@ call_scilab module :
 ====================
 
 * A example to call scilab from C# added.
-   see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
+   see SCI/modules/call_scilab/examples/call_scilab/NET/C# directory
+
+* A example to call scilab from VB.NET added.
+   see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
+ 
+* CallScilab.h renamed call_scilab.h
 
 tests :
 =======
@@ -278,7 +287,7 @@ Bug fixes:
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
-* bug 4278 fixed - typename() called with a wrong number of input arguments  returns incoherent errors.
+* bug 4278 fixed - typename() called with a wrong number of input arguments returns incoherent errors.
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
@@ -421,3 +430,8 @@ Bug fixes:
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
 
+* bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
+
+* bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
+
+* bug 4795 fixed - CallScilab.h renamed call_scilab.h

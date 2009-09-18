@@ -60,7 +60,7 @@ libmex_la_etc_DATA = etc/mexlib.quit etc/mexlib.start
 
 
 #### mexlib : include files ####
-libmex_la_includedir=$(pkgincludedir)/mexlib
+libmex_la_includedir=$(pkgincludedir)
 libmex_la_include_HEADERS = includes/mex.h \
 includes/sci_gateway.h
 

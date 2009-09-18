@@ -65,7 +65,7 @@ libsciapi_scilab_la_etc_DATA = etc/api_scilab.quit etc/api_scilab.start
 
 
 #### api_scilab : include files ####
-libsciapi_scilab_la_includedir=$(pkgincludedir)/api_scilab
+libsciapi_scilab_la_includedir=$(pkgincludedir)
 libsciapi_scilab_la_include_HEADERS = includes/api_boolean.h \
 includes/api_boolean_sparse.h \
 includes/api_common.h \

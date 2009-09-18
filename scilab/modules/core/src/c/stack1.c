@@ -2291,7 +2291,7 @@ static int C2F(crepointeri)(char *fname,int *stlw,int *lr,int *flagx,unsigned lo
     return FALSE;
   };
   if (*flagx) {
-    *istk(il ) = sci_lufact_pointer;
+    *istk(il ) = sci_pointer; /* used to be sci_lufact_pointer before Scilab 5.2 */
     /* if m*n=0 then both dimensions are to be set to zero */
     *istk(il + 1) = 1;
     *istk(il + 2) = 1;
@@ -2534,7 +2534,7 @@ static int C2F(getpointeri)(char *fname,int *topk,int *spos,int *lw,int *lr,int 
   int il;
   il = iadr(*lw);
   if (*istk(il ) < 0) il = iadr(*istk(il +1));
-  if (*istk(il ) != sci_lufact_pointer) {
+  if (*istk(il ) != sci_pointer) { /* used to be sci_lufact_pointer before Scilab 5.2 */
     sciprint("----%d\n",*istk(il));
     if (*inlistx) 
       Scierror(197,_("%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"),get_fname(fname,fname_len), Rhs + (*spos - *topk), *nel);

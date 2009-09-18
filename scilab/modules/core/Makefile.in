@@ -799,7 +799,7 @@ libscicore_la_xmldir = $(mydatadir)/xml
 libscicore_la_xml_DATA = xml/modules.dtd xml/version.dtd
 
 #### core : include files ####
-libscicore_la_includedir = $(pkgincludedir)/core
+libscicore_la_includedir = $(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/BOOL.h \
 includes/callFunctionFromGateway.h \

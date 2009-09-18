@@ -478,7 +478,7 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 
 
 #### umfpack : include files ####
-@UMFPACK_TRUE@libsciumfpack_la_includedir = $(pkgincludedir)/umfpack
+@UMFPACK_TRUE@libsciumfpack_la_includedir = $(pkgincludedir)
 @UMFPACK_TRUE@libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
 @UMFPACK_TRUE@includes/with_umfpack.h \
 @UMFPACK_TRUE@includes/dynlib_umfpack.h

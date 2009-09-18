@@ -459,7 +459,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 
 #### fftw : include files ####
-@FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)/fftw
+@FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)
 @FFTW_TRUE@libscifftw_la_include_HEADERS = includes/gw_fftw.h \
 @FFTW_TRUE@includes/dynlib_fftw.h \
 @FFTW_TRUE@includes/with_fftw.h

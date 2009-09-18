@@ -455,7 +455,7 @@ libscirandlib_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscirandlib_la_sci_gateway_DATA = sci_gateway/randlib_gateway.xml
 
 #### randlib : include files ####
-libscirandlib_la_includedir = $(pkgincludedir)/randlib
+libscirandlib_la_includedir = $(pkgincludedir)
 libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h \

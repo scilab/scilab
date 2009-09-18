@@ -17,6 +17,12 @@
 
 function gateway_filename = ilib_gen_gateway(name,tables)
 
+  [lhs,rhs] = argn(0);
+  if rhs <> 2 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"), "ilib_gen_gateway"));
+    return
+  end
+
   gateway_filename = '';
   k = strindex(name,['/','\']);
   if k~=[] then

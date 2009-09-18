@@ -29,8 +29,11 @@ import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.menu.SwingScilabMenu;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.filechooser.Juigetfile;
+import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -109,7 +112,11 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public static void xpad(String filePath) {
 		Xpad editor = launchXpad();
-		editor.readFile(new File(filePath));
+		File f= new File(filePath) ;
+		
+		editor.readFile(f);
+		
+	
 	}
 
 	private static Xpad launchXpad() {
@@ -353,17 +360,45 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public boolean saveAs (JTextPane textPane){
 		
 		boolean isSuccess = false ;
-		JFileChooser _fileChooser = new JFileChooser();
-		int retval = _fileChooser.showSaveDialog(this);
+		
+		
+		String[] mask = Juigetfile.DEFAULT_MASK ;
+		
+		SwingScilabFileChooser _fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+		 
+		 _fileChooser .setAcceptAllFileFilterUsed(true);
+		 _fileChooser .addMask(mask , new String[0]);		
+		 _fileChooser .setInitialDirectory( System.getProperty("user.dir"));		
+		 _fileChooser .setUiDialogType(Juigetfile.SAVE_DIALOG);		
+		//ssfc.displayAndWait();	
+		
+		
+		int retval =_fileChooser.showSaveDialog(this) ;
 		
 		//JTextPane textPane =(JTextPane) ((JScrollPane) tabPane.getTabComponentAt(indexTab)).getViewport().getComponent(0) ;
 		
 		if (retval == JFileChooser.APPROVE_OPTION) {
-			File f = _fileChooser.getSelectedFile();
+			File f = _fileChooser.getSelectedFile() ;
 			try {
 
 				String doc = this.getTextPane().getText();
-
+				
+				
+				/*we test if the file has already a scilab extension*/
+				boolean hasNoExtension = true ;
+				
+				for ( int i = 0 ; i < Juigetfile.DEFAULT_MASK.length ; i++ ){
+					if (f.getName().endsWith(Juigetfile.DEFAULT_MASK[i])){
+						hasNoExtension = false;
+						break ;
+					}
+					
+				}
+				/*if no extension , we add it */
+				if ( hasNoExtension ){
+					f = new File (f.getPath() + ".sci");
+				}
+				
 				FileWriter writer = new FileWriter(f);
 				writer.write(doc);
 				writer.flush();
@@ -427,23 +462,30 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public void undo() {
 		UndoManager undo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		try {
-			System.err.println("Will undo "+undo.getUndoPresentationName());
-			undo.undo();
-		} catch (CannotUndoException ex) {
-			System.out.println("Unable to undo: " + ex);
-			ex.printStackTrace();
-		}
+		
+		if(undo.canUndo()){
+			try {
+					System.out.println(undo.canUndo());
+					System.err.println("Will undo "+undo.getUndoPresentationName());
+					undo.undo();
+				
+			} catch (CannotUndoException ex) {
+				System.out.println("Unable to undo: " + ex);
+				ex.printStackTrace();
+			}
+		};
 	}
 
 	public void redo() {
 		UndoManager redo = ((ScilabStyleDocument) getTextPane().getStyledDocument()).getUndoManager();
-		try {
-			System.err.println("Will redo "+redo.getRedoPresentationName());
-			redo.redo();
-		} catch (CannotRedoException ex) {
-			System.out.println("Unable to redo: " + ex);
-			ex.printStackTrace();
+		if ( redo.canRedo()){
+			try {
+				System.err.println("Will redo "+redo.getRedoPresentationName());
+				redo.redo();
+			} catch (CannotRedoException ex) {
+				System.out.println("Unable to redo: " + ex);
+				ex.printStackTrace();
+			}
 		}
 	}
 
@@ -469,6 +511,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 				((ScilabStyleDocument) textPane.getStyledDocument()).indent();
 			}
 			((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
+			
+			getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+			((ScilabStyleDocument) getTextPane().getStyledDocument()).setContentModified(false);
+			
 		} catch (IOException ioex) {
 
 			int choice = JOptionPane.showConfirmDialog(this, "This file doesn't exist\n Do you want to create it?");

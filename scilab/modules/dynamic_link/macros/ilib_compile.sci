@@ -15,6 +15,12 @@ function libn = ilib_compile(lib_name,makename,files, ..
 				                         cc)
 
 
+  [lhs,rhs] = argn(0);
+  if rhs < 3 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_compile"));
+    return
+  end
+  
   libn=""; //** init variable 
 
   if ~haveacompiler() then
@@ -125,8 +131,13 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //** BEWARE : this function can cause errors if used with "old style" Makefile inside a Scilab 5
     //**          environment where the Makefile are created from a "./configure"  
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
+
+	    if ( ilib_verbose() == 2 ) then
+		   mprintf(gettext("%s: Build command: %s\n"),"ilib_compile",cmd);
+		   mprintf(gettext("Output: %s\n"),msg);
+		   mprintf(gettext("stderr: %s\n"),stderr);
+		end
 	  if ierr <> 0 then
-	    if ( ilib_verbose() <> 0 ) then
 	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
 	      lines(0);
 	      disp(stderr);
@@ -134,7 +145,6 @@ function libn = ilib_compile(lib_name,makename,files, ..
 		    mprintf(gettext("%s: The command was:\n"),"ilib_compile");
 		    mprintf(cmd);
 		    mprintf("\n");
-		  end
 		  chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end

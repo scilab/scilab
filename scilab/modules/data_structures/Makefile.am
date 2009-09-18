@@ -89,7 +89,7 @@ libscidata_structures_la_sci_gateway_DATA = sci_gateway/data_structures_gateway.
 
 
 #### data_structures : include files ####
-libscidata_structures_la_includedir=$(pkgincludedir)/data_structures
+libscidata_structures_la_includedir=$(pkgincludedir)
 libscidata_structures_la_include_HEADERS = includes/gw_data_structures1.h \
 includes/gw_data_structures2.h
 

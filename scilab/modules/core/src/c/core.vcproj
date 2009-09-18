@@ -339,6 +339,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\call_scilab\src\c\call_scilab.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.c"
 				>
 			</File>
@@ -348,10 +352,6 @@
 			</File>
 			<File
 				RelativePath=".\callinterf.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\call_scilab\src\c\CallScilab.c"
 				>
 			</File>
 			<File

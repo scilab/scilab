@@ -10,7 +10,7 @@
  *
  */
 #include <stdio.h>
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "MALLOC.h"
 #include "scilabmode.h"
 #include "fromc.h"

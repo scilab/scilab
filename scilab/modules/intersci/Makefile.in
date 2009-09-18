@@ -392,7 +392,7 @@ src/exe/declare.c \
 src/exe/opt.c \
 src/exe/check.c
 
-libsciintersci_la_includedir = $(pkgincludedir)/intersci
+libsciintersci_la_includedir = $(pkgincludedir)
 pkglib_LTLIBRARIES = libsciintersci.la
 libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)

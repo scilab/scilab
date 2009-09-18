@@ -118,7 +118,7 @@ libscistatistics_la_sci_gateway_DATA = sci_gateway/statistics_gateway.xml
 
 
 #### statistics : include files ####
-libscistatistics_la_includedir=$(pkgincludedir)/statistics
+libscistatistics_la_includedir=$(pkgincludedir)
 libscistatistics_la_include_HEADERS = includes/gw_statistics.h \
 includes/dynlib_statistics.h \
 includes/ipmpar1.h

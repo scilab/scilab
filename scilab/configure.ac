@@ -23,7 +23,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:1:0
+SCILAB_LIBRARY_VERSION=5:2:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -62,7 +62,7 @@ AC_SYS_LARGEFILE
 # See http://wiki.debian.org/RpathIssue
 AC_RELOCATABLE
 AC_RELOCATABLE_LIBRARY
-
+AC_LIB_RPATH
 
 # If configure detect that timestamp changed,
 # it tries to rebuild configure & makefile which can be a painmaker
@@ -658,13 +658,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
 				LOOKS=$PACKAGE_JAR_FILE
 
-				# Named differently under Opensuse
+				# Named differently under ArchLinux
 				if test -z "$LOOKS"; then
-				    AC_JAVA_CHECK_PACKAGE([looks2],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+					AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
 					LOOKS=$PACKAGE_JAR_FILE
 				fi
-				AC_SUBST(LOOKS)
-
 				AC_SUBST(LOOKS)
 
 				#  Skin Look and Feel 

@@ -14,7 +14,7 @@
 #include <string.h>
 #include "javasci_SciAbstractArray.h"
 #include "javasci_globals.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "api_common.h"
 #include "api_string.h"
 #include "api_double.h"

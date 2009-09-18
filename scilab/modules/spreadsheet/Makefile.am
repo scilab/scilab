@@ -56,7 +56,7 @@ libscispreadsheet_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 
 ####�spreadsheet : include files ####
-libscispreadsheet_la_includedir=$(pkgincludedir)/spreadsheet
+libscispreadsheet_la_includedir=$(pkgincludedir)
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h \
 		includes/dynlib_spreadsheet.h
 

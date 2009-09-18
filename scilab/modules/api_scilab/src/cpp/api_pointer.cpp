@@ -24,7 +24,7 @@ int getPointer(int* _piAddress, void** _pvPtr)
 {
 	int *piTmp = NULL;
 
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_lufact_pointer)
+	if(	_piAddress == NULL || getVarType(_piAddress) != sci_pointer)
 	{
 		return 1;
 	}
@@ -42,7 +42,7 @@ int fillPointer(int *_piAddress, void** _pvPtr)
 		return 1;
 	}
 
-	_piAddress[0] = sci_lufact_pointer;
+	_piAddress[0] = sci_pointer;
 	_piAddress[1] = 1;
 	_piAddress[2] = 1;
 	_piAddress[3] = 0;

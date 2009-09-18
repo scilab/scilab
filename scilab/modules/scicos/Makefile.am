@@ -132,7 +132,7 @@ libsciscicos_la_sci_gateway_DATA = sci_gateway/scicos_gateway.xml
 
 
 #### scicos : include files ####
-libsciscicos_la_includedir=$(pkgincludedir)/scicos
+libsciscicos_la_includedir=$(pkgincludedir)
 libsciscicos_la_include_HEADERS = includes/intcscicos.h \
 includes/scicos.h \
 includes/gw_scicos.h \
@@ -279,7 +279,7 @@ libsciscicos_la_CFLAGS= -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/scicos/includes
 
-libsciscicos_la_includedir=$(pkgincludedir)/scicos
+libsciscicos_la_includedir=$(pkgincludedir)
 libsciscicos_la_include_HEADERS = src/c/noscicos/resource.h
 
 #### scicos : init scripts ####
