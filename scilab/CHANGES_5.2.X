@@ -435,3 +435,8 @@ Bug fixes:
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
+
+* bug 415 fixed - wrong order in the roots of a polynomial
+
+* bug 4792 fixed - macro name too long
+
