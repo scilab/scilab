@@ -257,7 +257,7 @@ namespace ast
 			{
 				if(pVar != NULL)
 				{
-					symbol::Context::getInstance()->put(pVar->name_get(), *dynamic_cast<GenericType*>(dataNew));
+					symbol::Context::getInstance()->put(pVar->name_get(), *dataNew);
 				}
 				else
 				{
