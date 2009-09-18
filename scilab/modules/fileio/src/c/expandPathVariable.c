@@ -10,24 +10,21 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include "stack-c.h"
 #include "expandPathVariable.h"
 #include "charEncoding.h"
 #include "MALLOC.h"
 #include "PATH_MAX.h"
-#include "tmpdir.h"
-#include "setgetSCIpath.h"
-#include "getenvc.h"
+#include "api_string.h"
+#include "api_common.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t *SCI_words[]  = 
 {
 	L"SCI/" ,
-	L"sci/" ,
-	L"$SCI" ,
 	L"SCI\\" ,
-	L"sci\\" ,
 	(wchar_t *) NULL
 };
-
+/*--------------------------------------------------------------------------*/
 static wchar_t *HOME_words[] = 
 {
 	L"HOME/" ,
@@ -36,28 +33,47 @@ static wchar_t *HOME_words[] =
 	L"HOME\\" ,
 	L"home\\" ,
 	L"~\\" ,
-	L"$HOME" ,
 	(wchar_t *) NULL
 };
-
-static wchar_t *TMP_words[]  = 
+/*--------------------------------------------------------------------------*/
+static wchar_t *TMPDIR_words[]  = 
 {
 	L"TMPDIR/" ,
-	L"tmpdir/" ,
 	L"TMPDIR\\" ,
-	L"tmpdir\\" ,
-	L"$TMPDIR" ,
 	(wchar_t *) NULL
 };
 /*--------------------------------------------------------------------------*/
-static wchar_t *SCIDIR = NULL;
-static wchar_t *TMPDIR = NULL;
-static wchar_t *HOMEDIR = NULL;
+static wchar_t *SCIHOME_words[]  = 
+{
+	L"SCIHOME/" ,
+	L"SCIHOME\\",
+	(wchar_t *) NULL
+};
 /*--------------------------------------------------------------------------*/
+static wchar_t *getVariableValueDefinedInScilab(char *varname);
 static wchar_t *findAliasInString(wchar_t *wcStr, wchar_t *wcAlias);
 static wchar_t *replaceAliasInString(wchar_t *wcValue, wchar_t *wcBegin);
-static wchar_t *getHomeDirW(void);
 static wchar_t *convertFileSeparators(wchar_t *wcStr);
+/*--------------------------------------------------------------------------*/
+#define expandPath(PathStr, VariableNames, VariableValue) \
+i = 0; \
+while(VariableNames[i] != NULL) \
+{ \
+	wcTmp = findAliasInString(PathStr, VariableNames[i]); \
+	if (wcTmp) \
+	{ \
+		if (VariableValue) \
+		{ \
+			wchar_t * replaced = replaceAliasInString(VariableValue, wcTmp); \
+			if (SCIDIR) {FREE(SCIDIR); SCIDIR = NULL;} \
+			if (TMPDIR) {FREE(TMPDIR); TMPDIR = NULL;} \
+			if (HOMEDIR) {FREE(HOMEDIR); HOMEDIR = NULL;} \
+			if (SCIHOMEDIR) {FREE(SCIHOMEDIR); SCIHOMEDIR = NULL;} \
+			return replaced; \
+		} \
+	} \
+	i++; \
+} \
 /*--------------------------------------------------------------------------*/
 wchar_t *expandPathVariableW(wchar_t *wcstr)
 {
@@ -65,44 +81,32 @@ wchar_t *expandPathVariableW(wchar_t *wcstr)
 
 	wchar_t *wcexpanded = NULL;
 	wchar_t *wcTmp = NULL;
+	
+	wchar_t *SCIDIR = NULL;
+	wchar_t *HOMEDIR = NULL;
+	wchar_t *SCIHOMEDIR = NULL;
+	wchar_t *TMPDIR = NULL;
 
-	if (wcstr == NULL) return wcexpanded;
-	if (SCIDIR == NULL) SCIDIR = getSCIpathW();
-	if (TMPDIR == NULL) TMPDIR = getTMPDIRW();
-	if (HOMEDIR == NULL) HOMEDIR = getHomeDirW();
+	/* search SCIHOME Alias and expand */
+	SCIHOMEDIR = getVariableValueDefinedInScilab("SCIHOME");
+	expandPath(wcstr, SCIHOME_words, SCIHOMEDIR)
 
-	i = 0;
-	while(SCI_words[i] != NULL)
-	{
-		wcTmp = findAliasInString(wcstr, SCI_words[i]);
-		if (wcTmp)
-		{
-			return replaceAliasInString(SCIDIR, wcTmp);
-		}
-		i++;
-	}
+	/* search SCI Alias and expand */
+	SCIDIR = getVariableValueDefinedInScilab("SCI");
+	expandPath(wcstr, SCI_words, SCIDIR)
 
-	i = 0;
-	while(HOME_words[i] != NULL)
-	{
-		wcTmp = findAliasInString(wcstr, HOME_words[i]);
-		if (wcTmp)
-		{
-			return replaceAliasInString(HOMEDIR, wcTmp);
-		}
-		i++;
-	}
+	/* search HOME Alias and expand */
+	HOMEDIR = getVariableValueDefinedInScilab("home");
+	expandPath(wcstr, HOME_words, HOMEDIR)
 
-	i = 0;
-	while(TMP_words[i] != NULL)
-	{
-		wcTmp = findAliasInString(wcstr, TMP_words[i]);
-		if (wcTmp)
-		{
-			return replaceAliasInString(TMPDIR, wcTmp);
-		}
-		i++;
-	}
+	/* search TMPDIR Alias and expand */
+	TMPDIR = getVariableValueDefinedInScilab("TMPDIR");
+	expandPath(wcstr, TMPDIR_words, TMPDIR)
+
+	if (SCIDIR) {FREE(SCIDIR); SCIDIR = NULL;}
+	if (TMPDIR) {FREE(TMPDIR); TMPDIR = NULL;}
+	if (HOMEDIR) {FREE(HOMEDIR); HOMEDIR = NULL;}
+	if (SCIHOMEDIR) {FREE(SCIHOMEDIR); SCIHOMEDIR = NULL;}
 	
 	/* Variables not founded returns a copy of input */
 	wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(wcstr) + 1));
@@ -167,21 +171,6 @@ static wchar_t *replaceAliasInString(wchar_t *wcValue, wchar_t *wcBegin)
 	return convertFileSeparators(wcexpanded);
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *getHomeDirW(void)
-{
-	int ierr = 0;
-	char result[PATH_MAX];
-	int lenMAX = PATH_MAX;
-	int iflag = 0; /* no warnings */
-
-	C2F(getenvc)(&ierr, "home", result, &lenMAX, &iflag);
-	if (ierr == 0)
-	{
-		return to_wide_string(result);
-	}
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
 static wchar_t *convertFileSeparators(wchar_t *wcStr)
 {
 	if (wcStr)
@@ -196,5 +185,27 @@ static wchar_t *convertFileSeparators(wchar_t *wcStr)
 #endif
 	}
 	return wcStr;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t *getVariableValueDefinedInScilab(char *varname)
+{
+	wchar_t *VARVALUE = NULL;
+	if (getNamedVarType(varname) == sci_strings)
+	{
+		int VARVALUElen = 0;
+		int m = 0, n = 0;
+		if (readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE) == 0)
+		{
+			if ( (m == 1) && (n == 1) )
+			{
+				VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+				if (VARVALUE)
+				{
+					readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+				}
+			}
+		}
+	}
+	return VARVALUE;
 }
 /*--------------------------------------------------------------------------*/
