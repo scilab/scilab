@@ -1,6 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2004 - INRIA - Fabrice Leray
 # Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+# Copyright (C) 2009 - DIGITEO - Pierre Lando
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -431,7 +432,7 @@ combobox $w.frame.xpos \
     -textvariable Xlabelpos \
     -editable false \
     -command [list SelectXpos ]  -font $gedFont
-eval $w.frame.xpos list insert end [list "top" "middle" "bottom"]
+eval $w.frame.xpos list insert end [list "top" "middle" "bottom" "origin"]
 
 pack $w.frame.xposlabel -in  $w.frame.px -side left
 pack $w.frame.xpos  -in  $w.frame.px  -expand 1 -fill x -pady 0 -padx $mediumPad
@@ -702,7 +703,7 @@ combobox $w.frame.ypos \
     -textvariable Ylabelpos \
     -editable false \
     -command [list SelectYpos ] -font $gedFont
-eval $w.frame.ypos list insert end [list "left" "middle" "right"]
+eval $w.frame.ypos list insert end [list "left" "middle" "right" "origin"]
 
 pack $w.frame.yposlabel -in  $w.frame.py -side left
 pack $w.frame.ypos  -in  $w.frame.py  -expand 1 -fill x -pady 0 -padx $mediumPad
