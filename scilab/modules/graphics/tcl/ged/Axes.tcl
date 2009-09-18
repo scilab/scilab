@@ -1473,7 +1473,7 @@ combobox $w.frame.box \
     -textvariable curBoxState\
     -editable false \
     -command [list selectBoxState ] -font $gedFont
-eval $w.frame.box list insert end [list "off" "hidden_axis" "back_half" "on"]
+eval $w.frame.box list insert end [list "off" "hidden_axes" "back_half" "on"]
 pack $w.frame.boxlabel -in $w.frame.line3   -side left
 pack $w.frame.box -in $w.frame.line3  -side left -fill x -pady 0 -padx $smallPad
 

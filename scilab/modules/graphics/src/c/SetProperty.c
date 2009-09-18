@@ -2739,7 +2739,7 @@ int sciInitBoxType( sciPointObj * pobj, EAxesBoxType type )
         case BT_ON:
           pSUBWIN_FEATURE(pobj)->axes.flag[2] = 4 ;
           break ;
-        case BT_HIDDEN_AXIS:
+        case BT_HIDDEN_AXES:
           pSUBWIN_FEATURE(pobj)->axes.flag[2] = 2 ;
           break ;
         case BT_BACK_HALF:
