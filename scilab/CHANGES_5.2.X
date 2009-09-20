@@ -123,6 +123,7 @@ fileio functions:
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)
+   + isdir manages matrix of strings as input argument
   
 Dynamic link:
 =============

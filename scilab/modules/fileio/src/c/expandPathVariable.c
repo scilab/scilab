@@ -1,3 +1,4 @@
+/*--------------------------------------------------------------------------*/
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
@@ -18,100 +19,93 @@
 #include "api_string.h"
 #include "api_common.h"
 /*--------------------------------------------------------------------------*/
-static wchar_t *SCI_words[]  = 
+struct VARIABLEALIAS
 {
-	L"SCI/" ,
-	L"SCI\\" ,
-	(wchar_t *) NULL
+	wchar_t *Alias;
+	wchar_t *VariableName;
 };
 /*--------------------------------------------------------------------------*/
-static wchar_t *HOME_words[] = 
+#define NB_ALIAS 6
+static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
-	L"HOME/" ,
-	L"home/" ,
-	L"~/" ,
-	L"HOME\\" ,
-	L"home\\" ,
-	L"~\\" ,
-	(wchar_t *) NULL
+	{L"SCIHOME", L"SCIHOME"},
+	{L"SCI", L"SCI"},
+	{L"~", L"home"},
+	{L"HOME", L"home"},
+	{L"home", L"home"},
+	{L"TMPDIR", L"TMPDIR"}
 };
 /*--------------------------------------------------------------------------*/
-static wchar_t *TMPDIR_words[]  = 
-{
-	L"TMPDIR/" ,
-	L"TMPDIR\\" ,
-	(wchar_t *) NULL
-};
-/*--------------------------------------------------------------------------*/
-static wchar_t *SCIHOME_words[]  = 
-{
-	L"SCIHOME/" ,
-	L"SCIHOME\\",
-	(wchar_t *) NULL
-};
-/*--------------------------------------------------------------------------*/
-static wchar_t *getVariableValueDefinedInScilab(char *varname);
-static wchar_t *findAliasInString(wchar_t *wcStr, wchar_t *wcAlias);
-static wchar_t *replaceAliasInString(wchar_t *wcValue, wchar_t *wcBegin);
+static wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName);
 static wchar_t *convertFileSeparators(wchar_t *wcStr);
-/*--------------------------------------------------------------------------*/
-#define expandPath(PathStr, VariableNames, VariableValue) \
-i = 0; \
-while(VariableNames[i] != NULL) \
-{ \
-	wcTmp = findAliasInString(PathStr, VariableNames[i]); \
-	if (wcTmp) \
-	{ \
-		if (VariableValue) \
-		{ \
-			wchar_t * replaced = replaceAliasInString(VariableValue, wcTmp); \
-			if (SCIDIR) {FREE(SCIDIR); SCIDIR = NULL;} \
-			if (TMPDIR) {FREE(TMPDIR); TMPDIR = NULL;} \
-			if (HOMEDIR) {FREE(HOMEDIR); HOMEDIR = NULL;} \
-			if (SCIHOMEDIR) {FREE(SCIHOMEDIR); SCIHOMEDIR = NULL;} \
-			return replaced; \
-		} \
-	} \
-	i++; \
-} \
 /*--------------------------------------------------------------------------*/
 wchar_t *expandPathVariableW(wchar_t *wcstr)
 {
-	int i = 0;
-
 	wchar_t *wcexpanded = NULL;
-	wchar_t *wcTmp = NULL;
-	
-	wchar_t *SCIDIR = NULL;
-	wchar_t *HOMEDIR = NULL;
-	wchar_t *SCIHOMEDIR = NULL;
-	wchar_t *TMPDIR = NULL;
+	if (wcstr)
+	{
+		int i = 0;
+		int lenStr = (int)wcslen(wcstr);
 
-	/* search SCIHOME Alias and expand */
-	SCIHOMEDIR = getVariableValueDefinedInScilab("SCIHOME");
-	expandPath(wcstr, SCIHOME_words, SCIHOMEDIR)
+		for (i = 0; i < NB_ALIAS; i++)
+		{
+			int lenAlias = 0;
 
-	/* search SCI Alias and expand */
-	SCIDIR = getVariableValueDefinedInScilab("SCI");
-	expandPath(wcstr, SCI_words, SCIDIR)
+			/* input is ALIAS without subdirectory */
+			if (wcscmp(VARIABLES_words[i].Alias, wcstr) == 0)
+			{
+				wchar_t *wcexpanded = getVariableValueDefinedInScilab(VARIABLES_words[i].VariableName);
+				if (wcexpanded)
+				{
+					 return convertFileSeparators(wcexpanded);
+				}
+			}
 
-	/* search HOME Alias and expand */
-	HOMEDIR = getVariableValueDefinedInScilab("home");
-	expandPath(wcstr, HOME_words, HOMEDIR)
+			lenAlias = (int)wcslen(VARIABLES_words[i].Alias);
 
-	/* search TMPDIR Alias and expand */
-	TMPDIR = getVariableValueDefinedInScilab("TMPDIR");
-	expandPath(wcstr, TMPDIR_words, TMPDIR)
+			if (lenStr > lenAlias)
+			{
+				wchar_t *wcBegin = (wchar_t *)MALLOC(sizeof(wchar_t) * (lenAlias + 1));
+				if (wcBegin)
+				{
+					wcsncpy(wcBegin, wcstr, lenAlias);
+					wcBegin[lenAlias] = 0;
 
-	if (SCIDIR) {FREE(SCIDIR); SCIDIR = NULL;}
-	if (TMPDIR) {FREE(TMPDIR); TMPDIR = NULL;}
-	if (HOMEDIR) {FREE(HOMEDIR); HOMEDIR = NULL;}
-	if (SCIHOMEDIR) {FREE(SCIHOMEDIR); SCIHOMEDIR = NULL;}
-	
-	/* Variables not founded returns a copy of input */
-	wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(wcstr) + 1));
-	wcscpy(wcexpanded, wcstr);
-	return convertFileSeparators(wcexpanded);
+					if (wcscmp(wcBegin,VARIABLES_words[i].Alias)== 0 )
+					{
+						if ( (wcstr[lenAlias] == L'/') || (wcstr[lenAlias] == L'\\') )
+						{
+							wchar_t * newBegin = getVariableValueDefinedInScilab(VARIABLES_words[i].VariableName);
+							if (newBegin)
+							{
+								int lengthnewBegin = (int)wcslen(newBegin);
+								wcexpanded = (wchar_t *)MALLOC(sizeof(wchar_t)* (lengthnewBegin + (int)wcslen(&wcstr[lenAlias]) + 1));
+								if (wcexpanded)
+								{
+									wcscpy(wcexpanded, newBegin);
+									wcscat(wcexpanded, &wcstr[lenAlias]);
+									FREE(wcBegin); wcBegin = NULL;
+									FREE(newBegin); newBegin = NULL;
+									return convertFileSeparators(wcexpanded);
+								}
+								FREE(newBegin); newBegin = NULL;
+							}
+						}
+					}
+					FREE(wcBegin);wcBegin = NULL;
+				}
+			}
+		}
+
+		/* Variables not founded returns a copy of input */
+		wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t)* ((int)wcslen(wcstr) + 1));
+		if (wcexpanded) 
+		{
+			wcscpy(wcexpanded, wcstr);
+			return convertFileSeparators(wcexpanded);
+		}
+	}
+	return wcexpanded;
 }
 /*--------------------------------------------------------------------------*/
 char *expandPathVariable(char* str)
@@ -134,44 +128,38 @@ char *expandPathVariable(char* str)
 	return expanded;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *findAliasInString(wchar_t *wcStr, wchar_t *wcAlias)
+wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 {
-	if (wcStr && wcAlias)
+	wchar_t *VARVALUE = NULL;
+	char *varname = NULL;
+
+	if (wcVarName)
 	{
-		int lenwcAlias = (int)wcslen(wcAlias);
-		int lenwcStr = (int)wcslen(wcStr);
-		if (lenwcStr >= lenwcAlias)
+		varname = wide_string_to_UTF8(wcVarName);
+		if (varname)
 		{
-			wchar_t *wcBegin = (wchar_t *)MALLOC(sizeof(wchar_t) * (lenwcAlias + 1));
-			wcsncpy(wcBegin, wcStr, lenwcAlias);
-			wcBegin[lenwcAlias] = 0;
-			if (wcscmp(wcBegin, wcAlias) == 0)
+			if (getNamedVarType(varname) == sci_strings)
 			{
-				FREE(wcBegin); wcBegin = NULL;
-				return(&wcStr[lenwcAlias]);
+				int VARVALUElen = 0;
+				int m = 0, n = 0;
+				if (readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE) == 0)
+				{
+					if ( (m == 1) && (n == 1) )
+					{
+						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+						if (VARVALUE)
+						{
+							readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+						}
+					}
+				}
 			}
-			FREE(wcBegin); wcBegin = NULL;
 		}
 	}
-	return NULL;
+	return VARVALUE;
 }
 /*--------------------------------------------------------------------------*/
-static wchar_t *replaceAliasInString(wchar_t *wcValue, wchar_t *wcBegin)
-{
-	wchar_t *wcexpanded = NULL;
-	int lenwcBegin = (int)wcslen(wcBegin);
-	int lenwcValue = (int)wcslen(wcValue);
-
-	wcexpanded = (wchar_t*)MALLOC(sizeof(wchar_t) * (lenwcBegin + lenwcValue + 1 + 1));
-
-	wcscpy(wcexpanded, wcValue);
-	wcscat(wcexpanded, L"/");
-	wcscat(wcexpanded, wcBegin);
-
-	return convertFileSeparators(wcexpanded);
-}
-/*--------------------------------------------------------------------------*/
-static wchar_t *convertFileSeparators(wchar_t *wcStr)
+wchar_t *convertFileSeparators(wchar_t *wcStr)
 {
 	if (wcStr)
 	{
@@ -185,27 +173,5 @@ static wchar_t *convertFileSeparators(wchar_t *wcStr)
 #endif
 	}
 	return wcStr;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t *getVariableValueDefinedInScilab(char *varname)
-{
-	wchar_t *VARVALUE = NULL;
-	if (getNamedVarType(varname) == sci_strings)
-	{
-		int VARVALUElen = 0;
-		int m = 0, n = 0;
-		if (readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE) == 0)
-		{
-			if ( (m == 1) && (n == 1) )
-			{
-				VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
-				if (VARVALUE)
-				{
-					readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
-				}
-			}
-		}
-	}
-	return VARVALUE;
 }
 /*--------------------------------------------------------------------------*/
