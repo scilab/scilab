@@ -14,13 +14,10 @@ package org.scilab.modules.xcos.port.output;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
-import com.mxgraph.model.mxGeometry;
+public abstract class OutputPort extends BasicPort {
 
-public class OutputPort extends BasicPort {
-
-    public OutputPort() {
-	super("outputPort");
-	setGeometry(new mxGeometry(80, 35, 10, 10));
+    public OutputPort(String type) {
+	super(type);
     }
     
 }

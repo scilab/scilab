@@ -14,13 +14,25 @@ package org.scilab.modules.xcos.port;
 
 import com.mxgraph.model.mxCell;
 
-public class BasicPort extends mxCell {
+public abstract class BasicPort extends mxCell {
 
+    private int dataSize = 0;
+    
+    public static enum Type { IMPLICIT, EXPLICIT };
+    
     public BasicPort(String style) {
 	super();
 	setVertex(true);
 	setStyle(style);
-	//setValue(style);
+    }
+
+    public int getDataSize() {
+        return dataSize;
+    }
+
+    public void setDataSize(int dataSize) {
+        this.dataSize = dataSize;
     }
     
+    public abstract Type getType();
 }

@@ -10,14 +10,19 @@
  *
  */
 
-package org.scilab.modules.xcos.port.input;
+package org.scilab.modules.xcos.port.output;
 
-import org.scilab.modules.xcos.port.BasicPort;
+import com.mxgraph.model.mxGeometry;
 
-public abstract class InputPort extends BasicPort {
+public class ImplicitOutputPort extends OutputPort {
 
-    protected InputPort(String type) {
-	super(type);
+    public ImplicitOutputPort() {
+	super("ImplicitOutputPort");
+	setGeometry(new mxGeometry(0, 0, 10, 10));
+    }
+
+    public Type getType() {
+	return Type.IMPLICIT;
     }
     
 }

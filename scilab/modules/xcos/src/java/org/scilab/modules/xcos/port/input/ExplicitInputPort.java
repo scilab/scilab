@@ -12,12 +12,17 @@
 
 package org.scilab.modules.xcos.port.input;
 
-import org.scilab.modules.xcos.port.BasicPort;
+import com.mxgraph.model.mxGeometry;
 
-public abstract class InputPort extends BasicPort {
+public class ExplicitInputPort extends InputPort {
 
-    protected InputPort(String type) {
-	super(type);
+    public ExplicitInputPort() {
+	super("ExplicitInputPort");
+	setGeometry(new mxGeometry(-10, 35, 10, 10));
+    }
+
+    public Type getType() {
+	return Type.EXPLICIT;
     }
     
 }

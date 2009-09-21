@@ -19,8 +19,12 @@ import com.mxgraph.model.mxGeometry;
 public class ControlPort extends BasicPort {
 
     public ControlPort() {
-	super("controlPort");
+	super("ControlPort");
 	setGeometry(new mxGeometry(35, -10, 10, 10));
+    }
+
+    public Type getType() {
+	return null;
     }
     
 }
