@@ -61,7 +61,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	};
 
-	private boolean autoIndent = true;
+	private boolean autoIndent = false;
 	private boolean autoColorize = true;
 	private boolean colorizeInprogress = false;
 	private boolean indentInprogress = false;
@@ -324,10 +324,9 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		}
 	}
 
-	public void applyIndent(int start, int end, String tabulation) throws BadLocationException {
+	public void applyIndent(int start, int end, String previous_tab, int level_one) throws BadLocationException {
 
 		String indentedText = "";
-		String tab = "";
 		boolean got_case = false;
 
 		String text_to_indent = ""; // the entire document
@@ -339,7 +338,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
-		
+
 		// Get all line break positions &
 		// each line of the document
 		Vector<Integer> line_break = new Vector<Integer>(); // positions of line break
@@ -365,85 +364,119 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			String no_space_line = removeFirstSpaces(all_lines.elementAt(i));
 			all_lines_without_spaces.add(no_space_line);
 		}
-		
+
 		boolean got_select = false;
+		int indent_level = 0;
+		indent_level = level_one;
 
 		for (int i = 0; i < all_lines_without_spaces.size(); i++) {
+			
+			//System.out.println("indent_level["+ (i+1) +"] = " + indent_level);
+
 			// Get commands for each lines
 			command_list = getOperatorList(all_lines_without_spaces.elementAt(i));
-			
+
+			// Check if in one line all operators are matching,
+			// so we can know if the next line needs indentation or not
+			// ex: if %T then function foo(1) endfunction end => doesn't need indentation
+			// Warning: vector_match looks like [IN, if, IN function, OUT, endfunction, OUT, end]
+			Vector<String> vector_match = matchingOperators(command_list);
+
+
+			indentedText += previous_tab;
+
 			// Here start the indentation process
-			if (command_list.size() > 0) {
-				// Check if in one line all operators are matching,
-				// so we can know if the next line needs indentation or not
-				// ex: if %T then function foo(1) endfunction end => doesn't need indentation
-				// Warning: command_list looks like [IN, if, IN function, OUT, endfunction, OUT, end]
-				Vector<String> vector_match = matchingOperators(command_list);			
+			if (vector_match.size() > 0) {
 
 				// If we have 'IN' command
-				if (command_list.elementAt(0).equals(IN)) {
-					// No indentation in case of 'else' or 'elseif'
-					if ((command_list.elementAt(1).toLowerCase().equals("else")) || 
-							(command_list.elementAt(1).toLowerCase().equals("elseif"))) {
-						if (indentedText.length() >= 2) {
-							indentedText = indentedText.substring(0, indentedText.length()-2);
-						}
-						// 	If we have 'select' command
-					} else if (command_list.elementAt(1).toLowerCase().equals("select")) {
-						tab += TABULATION;
-						got_select = true;
+				if (vector_match.elementAt(0).equals(IN)) {
 
-						// If we have 'case' command
-					} else if ((command_list.elementAt(1).toLowerCase().equals("case")) && 
-							(got_case == false) &&
-							(got_select == true) ) {
-						got_case = true;
-						tab += TABULATION;
-
-					} else {
-						if (got_case == false) {
-							tab += TABULATION;
-						} else if (indentedText.length() >= 2) {
-							indentedText = indentedText.substring(0, indentedText.length()-2);
-						}
+					for (int j = 0; j < indent_level; j++) {
+						indentedText += TABULATION;
 					}
-					indentedText += tabulation + all_lines_without_spaces.elementAt(i);
+
+					if ((vector_match.elementAt(1).toLowerCase().equals("else")) || 
+							(vector_match.elementAt(1).toLowerCase().equals("elseif"))) {
+
+						if (indentedText.length() >= 2) {
+							String text_tab = indentedText.substring(indentedText.length()-2, indentedText.length());
+							if (text_tab.equals("  ") && indent_level > 0) {
+								indentedText = indentedText.substring(0, indentedText.length()-2);
+								indent_level--;
+							}
+						}
+						indent_level++;
+					
+					} else if (vector_match.elementAt(1).toLowerCase().equals("select")) {
+						got_select = true;
+						indent_level++;
+
+						// If we have 'case' command, case needs 'select' to be correct
+					} else if ((vector_match.elementAt(1).toLowerCase().equals("case")) && 
+							(got_case == false) && (got_select == true) ) {
+						got_case = true;
+						indent_level++;
+					} else {
+						indent_level++;
+					}
+
+					indentedText += all_lines_without_spaces.elementAt(i);
+					
 
 					// If we have "OUT' operator
-				} else if (command_list.elementAt(0).equals(OUT)) {
-					if (indentedText.length() >= 2 && tab.length() >= 2) {	
-						indentedText = indentedText.substring(0, indentedText.length()-2);
-						tab = tab.substring(0, tab.length()-2);
-						if (got_select == true && 
-								got_case == true &&
-								command_list.elementAt(1).toLowerCase().equals("end")) {
-							tab = tab.substring(0, tab.length()-2);
-							indentedText = indentedText.substring(0, indentedText.length()-2);
-							got_select = false;
-							got_case = false;
-						}
+				} else if (vector_match.elementAt(0).equals(OUT)) {
+					
+					if (indent_level > 0) {
+						indent_level--;
 					}
-					indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
+					
+					for (int j = 0; j < indent_level; j++) {
+						indentedText += TABULATION;
+					}
 
-					// Line got operators and they match, so no need of indentation
-				} else {
-					indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
-				}
-				// Line without operator
+					if (got_select == true && got_case == true &&
+							vector_match.elementAt(1).toLowerCase().equals("end")) {
+						got_select = false;
+						got_case = false;
+					}
+					
+					// If we have only an OUT command to indent
+					// If AUTO INDENT
+					if (autoIndent == true && all_lines_without_spaces.size() == 1 && level_one == 0) {
+						indentedText = previous_tab + all_lines_without_spaces.elementAt(i);
+						if (indentedText.length() >= 2) {
+							String text_tab = indentedText.substring(0, 2);
+							if (text_tab.equals("  ")) {
+								indentedText = indentedText.substring(2, indentedText.length());
+							}
+						}
+						break;
+					}
+					
+					indentedText += all_lines_without_spaces.elementAt(i);
+				} 
 			} else {
-				indentedText += tabulation +  all_lines_without_spaces.elementAt(i);
-			}
 
-			// Add the indentation
-			if (i != all_lines_without_spaces.size()-1) {
-				indentedText += tab;
+				for (int j = 0; j < indent_level; j++) {
+					indentedText += TABULATION;
+				}
+				indentedText += all_lines_without_spaces.elementAt(i);
+
+				if (got_case) {
+					if (indent_level > 0) {
+						indent_level--;
+					}
+				}
 			}
-			command_list.clear();
+			vector_match.clear();
+			
+			//System.out.println("_______________indent_level["+ (i+1) +"] = " + indent_level);
+
 		} // end for
 
 		// Display the indentation
 		this.replace(start, end-start, indentedText, null);
-		
+
 		// ATTENTION, ces cas ne sont pas traité: 
 		//            - gestion des commentaire /* */
 		//			  - analyser la ligne du document qui est modifie et non plus le document en entier pour la colorisation
@@ -457,36 +490,20 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		String tab = "";
 		int selection_start = 0;
 		int selection_end = 0;
+		int level_one = 0;
 		
 		// Get start & end offsets of the selected text
 		selection_start = editor.getTextPane().getSelectionStart();
 		selection_end = editor.getTextPane().getSelectionEnd();
 		
 		
-		if (autoIndent) {
-			int  caretPosition = editor.getTextPane().getCaretPosition();
-			try {
-				if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-				selection_start = selection_start-1;
-				selection_end  =  selection_end-1;
-				}
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-		}
-
 		// Get start offsets of the first selected line & end offsets of the last selected line
 		lineStartPosition =  this.getParagraphElement(selection_start).getStartOffset();
 		lineEndPosition = this.getParagraphElement(selection_end).getEndOffset()-1;
 		
 		
-		System.out.println("lineStartPosition = "+lineStartPosition);
-		System.out.println("lineEndPosition = "+lineEndPosition);
-
-		// Scan document line by line
-//		int selection_first_line_number = this.getDefaultRootElement().getElementIndex(lineStartPosition);
-//		int selection_last_line_number = this.getDefaultRootElement().getElementIndex(lineEndPosition);
-		
+		System.out.println(lineStartPosition);
+		System.out.println(lineEndPosition);
 		
 		if (lineStartPosition == 0) {
 			tab = "";
@@ -515,59 +532,23 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				
 				if (previous_vector_match.size() > 0) {
 					if (previous_vector_match.elementAt(0).equals(IN)) {
-						tab += "  ";
+						level_one = 1;
 					} 
+				} else {
+					level_one = 0;
 				}
 				
-				if (current_vector_match.size() > 0) {
-					if (current_vector_match.elementAt(0).equals(OUT)) {
-						if (tab.length() >= 2) {
-							tab = tab.substring(0, tab.length()-2);
-						}
-					}
-					if ((current_vector_match.elementAt(1).toLowerCase().equals("else")) || 
-							(current_vector_match.elementAt(1).toLowerCase().equals("elseif"))) {
-						if (tab.length() >= 2) {
-							tab = tab.substring(0, tab.length()-2);
-						}
-					}
-					if ((current_vector_match.elementAt(1).toLowerCase().equals("case"))) {
-						if (tab.length() >= 2) {
-							tab = tab.substring(0, tab.length()-2);
-						}
-					}
-				}
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
 		}
-		
-		if (autoIndent) {
-			int  caretPosition = editor.getTextPane().getCaretPosition();
-			try {
-				if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-
-
-					//try {
-					applyIndent(lineStartPosition, lineEndPosition, tab);
-					tab = "";
-					//} catch (BadLocationException e) {
-					//e.printStackTrace();
-					//}
-
-				}
-			} catch (BadLocationException e) {
-				e.printStackTrace();
-			}
-		} else {
-			try {
-			applyIndent(lineStartPosition, lineEndPosition, tab);
+				
+		try {
+			applyIndent(lineStartPosition, lineEndPosition, tab, level_one);
 			tab = "";
-			} catch (BadLocationException e) {
+		} catch (BadLocationException e) {
 			e.printStackTrace();
-			}
 		}
-		
 
 	}
 	
@@ -1416,23 +1397,21 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 				public void run() {
 					//resetStyle();
 					if (autoIndent) {
-						//indent();
+						
 						IndentAction.getXpadEditor();
 						editor = getEditor();
+						int  caretPosition = editor.getTextPane().getCaretPosition();
 						
-//						int  caretPosition = editor.getTextPane().getCaretPosition();
-//						
-//						
-//						try {
-//							if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-//								System.out.println("------------ SAUTE de LIGNE ------------");
-//								System.out.println(caretPosition);
-//							}
-//						} catch (BadLocationException e) {
-//							e.printStackTrace();
-//						}
+						try {
+							if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+								System.out.println("------------ SAUTE de LIGNE ------------");
+								indent();
+							}
+						} catch (BadLocationException e) {
+							e.printStackTrace();
+						}
 						
-						indent();
+						//indent();
 					}
 					if (autoColorize) {
 						//colorize();
