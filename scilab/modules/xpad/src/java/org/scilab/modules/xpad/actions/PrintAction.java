@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.print.PageFormat;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 
@@ -43,9 +44,15 @@ public class PrintAction extends DefaultAction {
 	}
 
 	public static boolean printXpadDocument(Xpad editor) {
-
+		
 		PrinterJob printTask = PrinterJob.getPrinterJob();
-		printTask.setPrintable(new PrinterWriter(editor.getTextPane()));
+		
+		PageFormat pageFormat = PageSetupAction.getPageFormat();
+		if (pageFormat != null) {
+			printTask.setPrintable(new PrinterWriter(editor.getTextPane()), pageFormat);
+		} else {
+			printTask.setPrintable(new PrinterWriter(editor.getTextPane()));
+		}
 
 		if (printTask.printDialog()) { 
 			try{
