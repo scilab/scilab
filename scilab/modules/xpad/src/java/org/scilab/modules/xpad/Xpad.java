@@ -31,6 +31,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
@@ -701,11 +702,11 @@ public class Xpad extends SwingScilabTab implements Tab {
         }
 
         public void actionPerformed(ActionEvent e) {
-            /*e.getSource();
+           /* e.getSource();
             if (i != -1) {
             	tabPane.remove(i);
-            }
-            */
+            }*/
+            
         }
 
         //we don't want to update UI for this button
@@ -713,5 +714,5 @@ public class Xpad extends SwingScilabTab implements Tab {
         }
 	}
 	
-*/
+
 }
