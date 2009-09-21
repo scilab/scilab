@@ -22,7 +22,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>xsegs(xv,yv,[zv, style])</synopsis>
+    <synopsis>
+      xsegs(xv,yv,[style])
+      xsegs(xv,yv,zv,[style])
+    </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -56,9 +59,11 @@
     <para><literal>(xv(i),yv(i),zv(i))--&gt;(xv(i+1),yv(i+1),zv(i+1))</literal>.</para>
     <para>For instance, using matrices of size (2,n), the segments can be defined
     by:</para>
-    <programlisting><![CDATA[xv=[xi_1 xi_2 ...; xf_1 xf_2...]
+    <programlisting><![CDATA[ 
+xv=[xi_1 xi_2 ...; xf_1 xf_2...]
 yv=[yi_1 yi_2 ...; yf_1 yf_2...]
-zv=[zi_1 zi_2 ...; zf_1 zf_2...]]]></programlisting>
+zv=[zi_1 zi_2 ...; zf_1 zf_2...]
+ ]]></programlisting>
     <para>and the segments are <literal>(xi_k,yi_k,zi_k)--&gt;(xf_k,yf_k,zf_k)</literal>.</para>
   </refsection>
   <refsection>
@@ -83,8 +88,10 @@ xv=[sin(alpha)/2;sin(alpha)/3];
 yv=[cos(alpha)/2;cos(alpha)/3];
 zv=[alpha/8;alpha/8];
 xsegs(xv,yv,zv,1:120);
- 
-  ]]></programlisting>
+// Now adjust the data_bounds
+a.data_bounds = [min(xv) min(yv) min(zv); ...
+                 max(xv) max(yv) max(zv)];
+ ]]></programlisting>
   </refsection>
   <refsection>
     <title>Authors</title>
