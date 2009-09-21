@@ -41,7 +41,7 @@ char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char
 	return replacedStrings;
 }
 /*--------------------------------------------------------------------------*/
-char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string)
+char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string, int *ierr)
 {
 	char **replacedStrings = NULL;
 
@@ -52,7 +52,7 @@ char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,
 		for (i = 0; i < strings_dim; i++)
 		{
 			char *str = strings_input[i];
-			replacedStrings[i] = strsub_reg(str,string_to_search,replacement_string);
+			replacedStrings[i] = strsub_reg(str,string_to_search,replacement_string, ierr);
 		}
 	}
 	return replacedStrings;
@@ -121,7 +121,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 
 	return replacedString;
 }/*-------------------------------------------------------------------------------------*/
-char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string)
+char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string, int *ierr)
 {
     pcre_error_code w = PCRE_FINISHED_OK;
 
@@ -136,15 +136,19 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
 	int len = 0;
 
+	*ierr = (int)PCRE_FINISHED_OK;
+
 	if (input_string == NULL) return NULL;
 
 	if (string_to_search == NULL || replacement_string == NULL) 
 	{
 		return strdup(input_string);
 	}
+
     w = pcre_private(input_string,(char*)string_to_search,&Output_Start,&Output_End);
 	if (w != PCRE_FINISHED_OK)
 	{
+		*ierr = (int)w;
 		return strdup(input_string);
 	}
 
@@ -153,6 +157,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 
 	if (wcreplacement_string == NULL || wcreplacement_string == NULL) 
 	{
+		*ierr = (int)NOT_ENOUGH_MEMORY_FOR_VECTOR;
 		return strdup(input_string);
 	}
 
