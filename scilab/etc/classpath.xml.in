@@ -48,7 +48,7 @@ The option is "disableUnderMode" and can be:
 </path>
 
 <path value="@JHDF5@" load="onUse">
-        <load on="Xcos"/>
+        <load on="XCos"/>
 </path>
 
 <!-- Temp. loaded at startup -->
