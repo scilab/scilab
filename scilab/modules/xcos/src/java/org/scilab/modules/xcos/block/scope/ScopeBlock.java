@@ -13,14 +13,14 @@ package org.scilab.modules.xcos.block.scope;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 
 public class ScopeBlock extends BasicBlock {
 
     public ScopeBlock() {
 	super("Scope", "Scope");
-	insert(new InputPort());
-	insert(new ControlPort());
+	addPort(new ExplicitInputPort());
+	addPort(new ControlPort());
     }
     
 }

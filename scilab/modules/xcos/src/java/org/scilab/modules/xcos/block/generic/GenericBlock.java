@@ -14,16 +14,23 @@ package org.scilab.modules.xcos.block.generic;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 public class GenericBlock extends BasicBlock {
 
     public GenericBlock() {
 	super("Generic", "Generic");
-	insert(new CommandPort());
-	insert(new ControlPort());
-	insert(new InputPort());
-	insert(new OutputPort());
+	addPort(new CommandPort());
+	addPort(new ControlPort());
+	addPort(new ImplicitInputPort());
+	addPort(new ImplicitInputPort());
+	addPort(new ExplicitInputPort());
+	addPort(new ImplicitOutputPort());
+	addPort(new ImplicitOutputPort());
+	addPort(new ExplicitOutputPort());
+	addPort(new ImplicitOutputPort());
     }
 }

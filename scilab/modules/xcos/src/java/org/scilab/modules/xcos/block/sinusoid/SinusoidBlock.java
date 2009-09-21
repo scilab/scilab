@@ -13,7 +13,7 @@
 package org.scilab.modules.xcos.block.sinusoid;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 
 public class SinusoidBlock extends BasicBlock {
     /**
@@ -21,7 +21,7 @@ public class SinusoidBlock extends BasicBlock {
      */
     public SinusoidBlock() {
 	super("Sinusoid Generator", "Sinusoid");
-	insert(new OutputPort());
+	addPort(new ExplicitOutputPort());
     }
 
 }

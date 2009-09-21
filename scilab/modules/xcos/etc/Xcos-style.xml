@@ -22,11 +22,11 @@
 
 	
 	<!-- PORT DEFINITION -->
-	<add as="port" extend="defaultVertex">
+	<add as="Port" extend="defaultVertex">
 		<add as="shape" value="triangle"/>
 		<add as="perimeter" value="trianglePerimeter"/>
 	</add>
-	<add as="commandPort" extend="port">
+	<add as="CommandPort" extend="Port">
 		<!--
 		<add as="shape" value="ellipse"/>
 		<add as="perimeter" value="ellipsePerimeter"/>
@@ -36,21 +36,31 @@
 		<add as="direction" value="south"/>
 		<add as="type" value="Command"/>
 	</add>
-	<add as="controlPort" extend="port">
+	<add as="ControlPort" extend="Port">
 		<add as="strokeColor" value="red"/>
 		<add as="fillColor" value="red"/>
 		<add as="direction" value="south"/>
 		<add as="type" value="Control"/>
 	</add>
-	<add as="inputPort" extend="port">
+	<add as="ExplicitInputPort" extend="Port">
 		<add as="strokeColor" value="black"/>
 		<add as="fillColor" value="black"/>
 		<add as="direction" value="east"/>
 	</add>
-	<add as="outputPort" extend="port">
+	<add as="ExplicitOutputPort" extend="Port">
 		<add as="strokeColor" value="black"/>
 		<add as="fillColor" value="black"/>
 		<add as="direction" value="east"/>
+	</add>
+	<add as="ImplicitInputPort" extend="Port">
+		<add as="shape" value="rectangle"/>
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="white"/>
+	</add>
+	<add as="ImplicitOutputPort" extend="Port">
+		<add as="shape" value="rectangle"/>
+		<add as="strokeColor" value="black"/>
+		<add as="fillColor" value="black"/>
 	</add>
 
 	
