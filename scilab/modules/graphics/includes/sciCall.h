@@ -63,6 +63,7 @@ void Objsegs ( int * style,
                int   n1   ,
                double  * x    ,
                double  * y    ,
+               double  * z    ,
                double    arsize ) ;
 
 void Objstring( char            ** fname      ,

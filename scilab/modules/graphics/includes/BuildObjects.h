@@ -95,9 +95,9 @@ sciPointObj *ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *p
 				  double *pfun, int Nnode, int Ntr, double *zminmax, 
 				  int *colminmax, int *colout, BOOL with_mesh); /* BUILD */
 
-sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, int Nbr1, 
-               int Nbr2, double *vfx, double *vfy, int flag, 
-              int *style, double arsize1,  int colored, double arfact, int typeofchamp);  /* BUILD */
+sciPointObj *ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy, double *vz, int Nbr1, 
+               int Nbr2, int Nbr3, double *vfx, double *vfy, int flag, 
+              int *style, double arsize,  int colored, int typeofchamp);  /* BUILD */
 
 sciPointObj *ConstructCompound (long *tabpointobj, int number); /* BUILD */
 sciPointObj *ConstructCompoundSeq (int number); /* BUILD */
