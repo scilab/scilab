@@ -169,7 +169,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		fileMenu.add(NewAction.createMenu(editor));
 		fileMenu.add(OpenAction.createMenu(editor));
 	//		 recentsMenu = ScilabMenu.createMenu();
-		editor.recentsMenu.setText("Recent Files");
+		editor.recentsMenu.setText(XpadMessages.RECENT_FILES);
 		for (int i = 0 ; i < recentFiles.size() ; i++ ){
 			editor.recentsMenu.add( RecentFileAction.createMenu(editor , recentFiles.get(i)));
 		}
@@ -234,14 +234,14 @@ public class Xpad extends SwingScilabTab implements Tab {
 		Menu documentMenu = ScilabMenu.createMenu();
 		documentMenu.setText(XpadMessages.DOCUMENT);
 		Menu syntaxTypeMenu = ScilabMenu.createMenu();
-		syntaxTypeMenu.setText("Syntax Type");
+		syntaxTypeMenu.setText(XpadMessages.SYNTAX_TYPE);
 		documentMenu.add(syntaxTypeMenu);
 		syntaxTypeMenu.add(TextStyleAction.createCheckBoxMenu(editor));
 		syntaxTypeMenu.add(ScilabStyleAction.createCheckBoxMenu(editor));
 		syntaxTypeMenu.add(XMLStyleAction.createCheckBoxMenu(editor));
 		documentMenu.addSeparator();
 		Menu encodingTypeMenu = ScilabMenu.createMenu();
-		encodingTypeMenu.setText("Encoding Type");
+		encodingTypeMenu.setText(XpadMessages.ENCODING_TYPE);
 		documentMenu.add(encodingTypeMenu);
 		encodingTypeMenu.add(ASCIIEncodingAction.createCheckBoxMenu(editor));
 		encodingTypeMenu.add(UTF8EncodingAction.createCheckBoxMenu(editor));
@@ -333,20 +333,22 @@ public class Xpad extends SwingScilabTab implements Tab {
 		JTextPane textPane = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0) ;
 		
 		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
-			int choice = JOptionPane.showConfirmDialog(this, "This file has been modified since last save\nsave it?");
+			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.FILE_MODIFIED);
 			
 			if (choice == 0){
 					save (textPane);
+					
 			}else if (choice == 1){
 				tabPane.remove(tabPane.getSelectedComponent());
 				
 			}else if (choice == 2){
-				// if cancel we do nothing
+				return ;
 			}
 			
 		}else {
 			tabPane.remove(tabPane.getSelectedComponent());
 		}
+		numberOfUntitled -- ;
 		
 	}
 	
@@ -393,10 +395,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 			lastSaveDir = System.getProperty("user.dir");
 		
 		//SciFileFilter allFilter = new SciFileFilter("" , null , 0);
-		SciFileFilter sceFilter = new SciFileFilter("*.sce" , null , 1);
-		SciFileFilter scxFilter = new SciFileFilter("*.scx" , null , 2);
-		SciFileFilter cosFilter = new SciFileFilter("*.cos" , null , 3);
-		SciFileFilter sciFilter = new SciFileFilter("*.sci" , null , 4);
+		SciFileFilter sceFilter = new SciFileFilter("*.sce" , null , 0);
+		SciFileFilter scxFilter = new SciFileFilter("*.sc*" , null , 1);
+		SciFileFilter sciFilter = new SciFileFilter("*.sci" , null , 2);
 
 		SwingScilabFileChooser _fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 		 
@@ -407,7 +408,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 		 //_fileChooser.addChoosableFileFilter(allFilter);
 		 _fileChooser.addChoosableFileFilter(sceFilter);
 		 _fileChooser.addChoosableFileFilter(scxFilter);
-		 _fileChooser.addChoosableFileFilter(cosFilter);
 		 _fileChooser.addChoosableFileFilter(sciFilter);
 		 
 		//ssfc.displayAndWait();	
@@ -421,7 +421,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			File f = _fileChooser.getSelectedFile();
 			lastSaveDir = f.getPath() ;
 			if (f.exists()) {
-				int actionDialog = JOptionPane.showConfirmDialog(this, "Replace existing file?", "File already exist", JOptionPane.YES_NO_OPTION);
+				int actionDialog = JOptionPane.showConfirmDialog(this, XpadMessages.REPLACE_FILE_TITLE, XpadMessages.FILE_ALREADY_EXIST, JOptionPane.YES_NO_OPTION);
 				if (actionDialog == JOptionPane.NO_OPTION){
 					this.saveAs (this.getTextPane());
 					return true ;
@@ -456,8 +456,6 @@ public class Xpad extends SwingScilabTab implements Tab {
 						extension = ".sce";
 					} else if (_fileChooser.getFileFilter() == scxFilter) {
 						extension = ".sce";
-					} else if (_fileChooser.getFileFilter() == cosFilter) {
-						extension = ".cos";
 					} else {
 						extension = "";
 					}
@@ -495,6 +493,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 //				return false;
 //			};
 //		};
+		
+		//TabButton tabCloseButton = new TabButton() ;
+		
 
 		scrollingText = new JScrollPane(textPane);
 		
@@ -521,10 +522,10 @@ public class Xpad extends SwingScilabTab implements Tab {
 	public JTextPane addEmptyTab() {
 		
 		if (numberOfUntitled != 0)
-			return addTab("Untitled " + numberOfUntitled++);
+			return addTab( XpadMessages.UNTITLED + numberOfUntitled++);
 		else{
 			numberOfUntitled++;
-			return addTab("Untitled ");
+			return addTab(XpadMessages.UNTITLED);
 		}
 			
 
@@ -592,7 +593,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 			
 		} catch (IOException ioex) {
 
-			int choice = JOptionPane.showConfirmDialog(this, "This file doesn't exist\n Do you want to create it?");
+			int choice = JOptionPane.showConfirmDialog(this,XpadMessages.FILE_DOESNT_EXIST);
 			//JOptionPane.showMessageDialog(this, ioex.getMessage());
 			if (choice  == 0){
 
@@ -687,7 +688,7 @@ public class Xpad extends SwingScilabTab implements Tab {
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
+            setToolTipText(XpadMessages.CLOSE_TAB_TIP);
             
             setUI(new BasicButtonUI());
             //Make it transparent
