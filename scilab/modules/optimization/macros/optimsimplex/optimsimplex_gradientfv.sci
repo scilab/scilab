@@ -28,9 +28,9 @@ function [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
     g = optimsimplex_gradforward ( this )
   case "centered" then
     if (~isdef('data','local')) then
-      g = optimsimplex_gradcentered ( this , fun )
+      g = optimsimplex_gradcenter ( this , fun )
     else
-      [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
+      [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
     end
   else
     errmsg = sprintf("Unknown method %s",method)
@@ -49,13 +49,13 @@ function g = optimsimplex_gradforward ( this )
   g = v'\d
 endfunction
 //
-// optimsimplex_gradcentered --
+// optimsimplex_gradcenter --
 //   Returns the simplex centered gradient of the function.
 // Arguments
 //   fun : name of the function
 //   data : user-defined data
 //
-function [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
+function [ g , data ] = optimsimplex_gradcenter ( this , fun , data )
   g1 = optimsimplex_gradforward ( this )
   if (~isdef('data','local')) then
     r = optimsimplex_reflect ( this , fun )

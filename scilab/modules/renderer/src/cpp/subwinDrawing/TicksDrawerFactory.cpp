@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * desc : Factory for TicksDrawer classes
  * 
  * This file must be used under the terms of the CeCILL.
@@ -15,9 +16,11 @@
 #include "BottomXAxisPositioner.hxx"
 #include "TopXAxisPositioner.hxx"
 #include "MiddleXAxisPositioner.hxx"
+#include "OriginXAxisPositioner.hxx"
 #include "RightYAxisPositioner.hxx"
 #include "LeftYAxisPositioner.hxx"
 #include "MiddleYAxisPositioner.hxx"
+#include "OriginYAxisPositioner.hxx"
 #include "ZAxisPositioner.hxx"
 #include "UserDefinedTicksComputer.hxx"
 #include "AutomaticTicksComputer.hxx"
@@ -124,6 +127,9 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
   {
   case 'u':
     ticksPositioner = new TopXAxisPositioner(m_pDrawer);
+    break;
+  case 'o':
+    ticksPositioner = new OriginXAxisPositioner(m_pDrawer);
     break;
   case 'c':
     ticksPositioner = new MiddleXAxisPositioner(m_pDrawer);
@@ -236,6 +242,9 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     break;
   case 'c':
     ticksPositioner = new MiddleYAxisPositioner(m_pDrawer);
+    break;
+  case 'o':
+    ticksPositioner = new OriginYAxisPositioner(m_pDrawer);
     break;
   case 'r':
     ticksPositioner = new RightYAxisPositioner(m_pDrawer);

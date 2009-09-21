@@ -123,6 +123,7 @@ fileio functions:
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)
+   + isdir manages matrix of strings as input argument
   
 Dynamic link:
 =============
@@ -233,6 +234,7 @@ Optimization:
  - Created optimbase component to build optimization algorithms
  - Created optimsimplex component to build direct search algorithms
  - Created fminsearch optimization function
+ - Added examples in the help for optim
  
 Linear algebra
 =============
@@ -240,6 +242,8 @@ Linear algebra
 
 Bug fixes:
 ==========
+
+* bug 415 fixed - wrong order in the roots of a polynomial
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
@@ -434,4 +438,9 @@ Bug fixes:
 
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
+* bug 4792 fixed - macro name too long
+
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
+
+* bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
+

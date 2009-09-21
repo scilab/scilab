@@ -4,9 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- JVM NOT MANDATORY -->
-
 // <-- NO CHECK REF -->
 // <-- Non-regression test for bug 415 -->
 //
@@ -66,7 +64,6 @@
 //
 //Jean-Marc Sac-EpÃƒÂ©e on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
 //France  September 27, 2000 at 9:18:17
-
 // 
 // sort_merge_comparison --
 //   Returns -1 if x < y, 
@@ -82,7 +79,6 @@ function order = sort_merge_comparison ( x , y )
     order = 1
   end
 endfunction
-
 //
 // sort_merge --
 //   Returns the sorted array x.
@@ -90,7 +86,7 @@ endfunction
 //   x : the array to sort
 //   compfun : the comparison function
 // Bruno Pincon
-// "quelques tests de rapidit´e entre diff´erents logiciels matriciels"
+// "quelques tests de rapiditï¿½e entre diffï¿½erents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
@@ -137,7 +133,6 @@ function [x] = sort_merge ( varargin )
     end
   end
 endfunction
-
 // 
 // compare_complexrealimag --
 //   Returns -1 if a < b, 
@@ -164,7 +159,6 @@ function order = compare_complexrealimag ( a , b )
     end
   end
 endfunction
-
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -184,9 +178,8 @@ function flag = assert_close ( computed, expected, epsilon )
   else
     flag = 0;
   end
-  if flag <> 1 then pause,end
+  if flag <> 1 then bugmes();quit;end
 endfunction
-
 t=poly(0,"t");
 p=t^14 - 15*t^12 - t^11 + 89*t^10 + 12*t^9 - 263*t^8 - 53*t^7 + 397*t^6 + 103*t^5 - 275*t^4 - 78*t^3 + 62*t^2 + 8*t - 7;
 myroots=roots(p);
@@ -210,6 +203,6 @@ expected  = [
 ];
 // Precision measured with experiments
 assert_close ( computed , expected , 10^4*%eps )
-
-
-
+ ans  =
+ 
+    1.  
