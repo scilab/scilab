@@ -976,7 +976,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @SWIG_TRUE@@TCLTK_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@@TCLTK_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@@TCLTK_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@@TCLTK_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@@TCLTK_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@@TCLTK_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@@TCLTK_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@@TCLTK_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -988,7 +988,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 
 @GIWS_TRUE@@TCLTK_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@TCLTK_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@TCLTK_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@TCLTK_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@TCLTK_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@TCLTK_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1094,10 +1094,12 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@TCLTK_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
-@TCLTK_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@TCLTK_TRUE@			done; \
-@TCLTK_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@TCLTK_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
+@TCLTK_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@TCLTK_TRUE@				done; \
+@TCLTK_TRUE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_TRUE@			fi; \
 @TCLTK_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
@@ -1156,7 +1158,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @SWIG_TRUE@@TCLTK_FALSE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@@TCLTK_FALSE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@@TCLTK_FALSE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@@TCLTK_FALSE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@@TCLTK_FALSE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@@TCLTK_FALSE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@@TCLTK_FALSE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@@TCLTK_FALSE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1168,7 +1170,7 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 
 @GIWS_TRUE@@TCLTK_FALSE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@TCLTK_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@TCLTK_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@TCLTK_FALSE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@TCLTK_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@TCLTK_FALSE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@TCLTK_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1274,10 +1276,12 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @TCLTK_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@TCLTK_FALSE@			for specialExt in $(MACROSSPECIALEXT); do \
-@TCLTK_FALSE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@TCLTK_FALSE@			done; \
-@TCLTK_FALSE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_FALSE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@TCLTK_FALSE@				for specialExt in $(MACROSSPECIALEXT); do \
+@TCLTK_FALSE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@TCLTK_FALSE@				done; \
+@TCLTK_FALSE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_FALSE@			fi; \
 @TCLTK_FALSE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
