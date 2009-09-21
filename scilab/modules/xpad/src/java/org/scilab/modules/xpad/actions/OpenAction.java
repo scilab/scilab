@@ -36,7 +36,7 @@ public class OpenAction extends DefaultAction {
 
     public void doAction() {
     	
-		String[] mask = Juigetfile.DEFAULT_MASK ;
+		String[] mask = new String[]{ "*.sce",  "*.sc*", "*.cos*", "*.sci",}; 
 		
 		SwingScilabFileChooser _fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 		 
@@ -50,6 +50,7 @@ public class OpenAction extends DefaultAction {
 		    File f = _fileChooser.getSelectedFile();
 		    getEditor().readFile(f);
 
+		getEditor().setTitle(f.getPath() + " - Xpad");
 	    ConfigXpadManager.saveToRecentOpenedFiles(f.getPath());
 	    getEditor().updateRecentOpenedFilesMenu();
 	    

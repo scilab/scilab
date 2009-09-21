@@ -26,6 +26,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.undo.UndoManager;
@@ -42,11 +44,17 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		public void undoableEditHappened(UndoableEditEvent e) {
 					
 			if ( (EventType.equals(DocumentEvent.EventType.INSERT.toString()) || EventType.equals(DocumentEvent.EventType.REMOVE.toString()) ) && (e.getEdit().canUndo()) ){
-				
-				System.out.println("add edit");
+				/*
+				if ( EventType.equals(DocumentEvent.EventType.REMOVE.toString())){
+					System.out.println("remove");
+					System.out.println(indentInprogress) ;
+				}
+				*/
+				if (!indentInprogress){ 
 				undo.addEdit(e.getEdit());
 				
 				EventType = "" ;
+				}
 			}
 
 					
@@ -1397,8 +1405,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 
 	public void insertUpdate(DocumentEvent e) {
+		if (e != null){
+			EventType = e.getType().toString();
+			//Element[] pouet =  e.getChange( this.getParagraphElement(editor.getTextPane().getCaretPosition())).getChildrenAdded();
+		}
 		
-		EventType = e.getType().toString();
 		//System.err.println("--- Calling insertUpdate");
 		if (!updaterDisabled) {
 			SwingUtilities.invokeLater(new Runnable() {
