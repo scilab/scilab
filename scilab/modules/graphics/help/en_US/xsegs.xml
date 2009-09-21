@@ -91,6 +91,11 @@ xsegs(xv,yv,zv,1:120);
 // Now adjust the data_bounds
 a.data_bounds = [min(xv) min(yv) min(zv); ...
                  max(xv) max(yv) max(zv)];
+// We can add an arrow to each segs
+e = gce();
+e.arrow_size = 0.4;
+
+
  ]]></programlisting>
   </refsection>
   <refsection>
