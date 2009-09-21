@@ -65,7 +65,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
     flag = 0;
   }
   
-  Objsegs (style,flag,mn2,stk(l1),stk(l2),arsize);
+  Objsegs (style,flag,mn2,stk(l1),stk(l2),NULL,arsize);
   
   sciDrawObj(sciGetCurrentObj());
 
