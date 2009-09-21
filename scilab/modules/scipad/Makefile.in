@@ -172,11 +172,8 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
-GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
-GMSGFMT = @GMSGFMT@
-GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -189,8 +186,6 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
-INTLLIBS = @INTLLIBS@
-INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -212,16 +207,12 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LIBICONV = @LIBICONV@
-LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
-LTLIBICONV = @LTLIBICONV@
-LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -231,8 +222,6 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
-MSGFMT_015 = @MSGFMT_015@
-MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
@@ -257,7 +246,6 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
-POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PVMGETARCH = @PVMGETARCH@
 PVM_ARCH = @PVM_ARCH@
@@ -286,13 +274,10 @@ TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
-USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
-XGETTEXT_015 = @XGETTEXT_015@
-XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -1094,10 +1079,12 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @TCLTK_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@TCLTK_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
-@TCLTK_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@TCLTK_TRUE@			done; \
-@TCLTK_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@TCLTK_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
+@TCLTK_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@TCLTK_TRUE@				done; \
+@TCLTK_TRUE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_TRUE@			fi; \
 @TCLTK_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
@@ -1274,10 +1261,12 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @TCLTK_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @TCLTK_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@TCLTK_FALSE@			for specialExt in $(MACROSSPECIALEXT); do \
-@TCLTK_FALSE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@TCLTK_FALSE@			done; \
-@TCLTK_FALSE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_FALSE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@TCLTK_FALSE@				for specialExt in $(MACROSSPECIALEXT); do \
+@TCLTK_FALSE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@TCLTK_FALSE@				done; \
+@TCLTK_FALSE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@TCLTK_FALSE@			fi; \
 @TCLTK_FALSE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

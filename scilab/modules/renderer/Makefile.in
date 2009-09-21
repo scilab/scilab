@@ -358,6 +358,8 @@ am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
 	libscirenderer_la-YAxisPositioner.lo \
 	libscirenderer_la-MiddleXAxisPositioner.lo \
 	libscirenderer_la-MiddleYAxisPositioner.lo \
+	libscirenderer_la-OriginXAxisPositioner.lo \
+	libscirenderer_la-OriginYAxisPositioner.lo \
 	libscirenderer_la-AxisPositioner.lo \
 	libscirenderer_la-TopXAxisPositioner.lo \
 	libscirenderer_la-ZAxisPositioner.lo \
@@ -461,11 +463,8 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
-GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
-GMSGFMT = @GMSGFMT@
-GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -478,8 +477,6 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
-INTLLIBS = @INTLLIBS@
-INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -501,16 +498,12 @@ JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LIBICONV = @LIBICONV@
-LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LIPO = @LIPO@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
-LTLIBICONV = @LTLIBICONV@
-LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -520,8 +513,6 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
-MSGFMT_015 = @MSGFMT_015@
-MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJDUMP = @OBJDUMP@
@@ -546,7 +537,6 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
-POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PVMGETARCH = @PVMGETARCH@
 PVM_ARCH = @PVM_ARCH@
@@ -575,13 +565,10 @@ TCL_INC_PATH = @TCL_INC_PATH@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
-USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
-XGETTEXT_015 = @XGETTEXT_015@
-XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -893,6 +880,8 @@ src/cpp/subwinDrawing/XAxisPositioner.cpp \
 src/cpp/subwinDrawing/YAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
 src/cpp/subwinDrawing/AxisPositioner.cpp \
 src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
 src/cpp/subwinDrawing/ZAxisPositioner.cpp \
@@ -1337,6 +1326,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MatplotDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleXAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-MiddleYAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-PolylineArrowDrawerJoGL.Plo@am__quote@
@@ -3095,6 +3086,20 @@ libscirenderer_la-MiddleYAxisPositioner.lo: src/cpp/subwinDrawing/MiddleYAxisPos
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-MiddleYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp
 
+libscirenderer_la-OriginXAxisPositioner.lo: src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginXAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginXAxisPositioner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' object='libscirenderer_la-OriginXAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginXAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginXAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginXAxisPositioner.cpp
+
+libscirenderer_la-OriginYAxisPositioner.lo: src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-OriginYAxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-OriginYAxisPositioner.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' object='libscirenderer_la-OriginYAxisPositioner.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-OriginYAxisPositioner.lo `test -f 'src/cpp/subwinDrawing/OriginYAxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/OriginYAxisPositioner.cpp
+
 libscirenderer_la-AxisPositioner.lo: src/cpp/subwinDrawing/AxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-AxisPositioner.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo -c -o libscirenderer_la-AxisPositioner.lo `test -f 'src/cpp/subwinDrawing/AxisPositioner.cpp' || echo '$(srcdir)/'`src/cpp/subwinDrawing/AxisPositioner.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscirenderer_la-AxisPositioner.Tpo $(DEPDIR)/libscirenderer_la-AxisPositioner.Plo
@@ -3684,10 +3689,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
