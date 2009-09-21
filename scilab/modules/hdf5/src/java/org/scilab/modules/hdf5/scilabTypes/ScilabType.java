@@ -12,29 +12,6 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
-public class ScilabString implements ScilabType {
+public interface ScilabType {
 
-    public ScilabString() {
-	data = null;
-    }
-    
-    public ScilabString(String[][] data) {
-	this.data = data;
-    }
-    
-    public ScilabString(String string) {
-	this.data = new String[1][1];
-	this.data[0][0] = string;
-    }
-
-    public void setData(String[][] data) {
-	this.data = data;
-    }
-
-    public String[][] getData() {
-	return data;
-    }
-    
-    private String[][] data;
- 
 }

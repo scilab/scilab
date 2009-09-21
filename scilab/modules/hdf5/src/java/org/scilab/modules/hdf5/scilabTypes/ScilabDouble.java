@@ -12,7 +12,7 @@
 
 package org.scilab.modules.hdf5.scilabTypes;
 
-public class ScilabDouble {
+public class ScilabDouble implements ScilabType {
 
     public ScilabDouble() {
 	realPart = null;

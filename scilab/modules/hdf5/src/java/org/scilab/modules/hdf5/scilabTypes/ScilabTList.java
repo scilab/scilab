@@ -14,7 +14,7 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 import java.util.ArrayList;
 
-public class ScilabTList extends ArrayList {
+public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 
     public ScilabTList() {
 	super();

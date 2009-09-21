@@ -11,9 +11,6 @@ package org.scilab.modules.hdf5.read;
  *
  */
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5AttributeException;
@@ -26,6 +23,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 public class H5Read {
 
@@ -204,8 +202,8 @@ public class H5Read {
     }
     
 
-    public static Object getData(int dataSetId) throws NullPointerException, HDF5Exception {
-	Object data = null;
+    public static ScilabType getData(int dataSetId) throws NullPointerException, HDF5Exception {
+	ScilabType data = null;
 	String dataType = readAttribute(dataSetId, H5ScilabConstant.SCILAB_CLASS);
 	if(isScilabString(dataType)) { 
 	    data = new ScilabString(); 

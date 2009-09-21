@@ -16,12 +16,12 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
-import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 
 public class H5Write {  
@@ -92,14 +92,12 @@ public class H5Write {
 //	H5.H5Sclose(dataspaceId);
 //    }
 
-    public static void writeInDataSet(int file_id, String dataSetName, Object data) {
+    public static void writeInDataSet(int file_id, String dataSetName, ScilabType data) {
 	try {
 	    if(data instanceof ScilabString) { H5WriteScilabString.writeInDataSet(file_id, dataSetName, (ScilabString) data); }
 	    if(data instanceof ScilabList) { H5WriteScilabList.writeInDataSet(file_id, dataSetName, (ScilabList) data); }
 	    if(data instanceof ScilabTList) { H5WriteScilabTList.writeInDataSet(file_id, dataSetName, (ScilabTList) data); }
 	    if(data instanceof ScilabMList) { H5WriteScilabMList.writeInDataSet(file_id, dataSetName, (ScilabMList) data); }
-	    if(data instanceof int[]) { writeInDataSet(file_id, dataSetName, (int[]) data); }
-	    if(data instanceof int[][]) { writeInDataSet(file_id, dataSetName, (int[][]) data); }
 	    if(data instanceof ScilabDouble) { H5WriteScilabDouble.writeInDataSet(file_id, dataSetName, (ScilabDouble) data); }
 	} catch (NullPointerException e) {
 	    // TODO Auto-generated catch block

@@ -19,9 +19,10 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
+import org.scilab.modules.hdf5.scilabTypes.ScilabType;
 
 public class H5WriteScilabCommonList {
-    protected static void writeInDataSet(int file_id, String dataSetName, ArrayList data, String ListType) throws NullPointerException, HDF5Exception {
+    protected static void writeInDataSet(int file_id, String dataSetName, ArrayList<ScilabType> data, String ListType) throws NullPointerException, HDF5Exception {
 	long[] dims = {data.size()};
 	byte[][] refs = new byte[data.size()][8];
 
