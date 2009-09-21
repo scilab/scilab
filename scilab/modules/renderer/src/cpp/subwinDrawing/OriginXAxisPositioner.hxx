@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * desc : Class specialized in drawing ticks  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -12,8 +11,8 @@
  *
  */
 
-#ifndef _MIDDLE_X_AXIS_POSITIONER_HXX_
-#define _MIDDLE_X_AXIS_POSITIONER_HXX_
+#ifndef _ORIGIN_X_AXIS_POSITIONER_HXX_
+#define _ORIGIN_X_AXIS_POSITIONER_HXX_
 
 #include "XAxisPositioner.hxx"
 
@@ -23,13 +22,13 @@ namespace sciGraphics
 /**
  * Interface for determining on which edge of axes box an axe will be
  */
-class MiddleXAxisPositioner : public XAxisPositioner
+class OriginXAxisPositioner : public XAxisPositioner
 {
 public:
 
-  MiddleXAxisPositioner(DrawableSubwin * subwin);
+  OriginXAxisPositioner(DrawableSubwin * subwin);
 
-  virtual ~MiddleXAxisPositioner(void);
+  virtual ~OriginXAxisPositioner(void);
 
   /**
    * Get the two bounds of this axis.
@@ -38,6 +37,13 @@ public:
 
 protected:
 
+  /**
+   * Compute the Y coordinate of the X axis segment
+   * Select the one which on the back of the screen
+   * @param zCoordinate Z coordinate of the X axis segment alredy computed by findZCoordinate
+   * @return Y coordinate of the segment to draw
+   */
+  double findOriginYCoordinate(double zCoordinate);
 
 };
 

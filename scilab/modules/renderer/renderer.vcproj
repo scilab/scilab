@@ -776,6 +776,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\src\cpp\subwinDrawing\OriginXAxisPositioner.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\subwinDrawing\OriginYAxisPositioner.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\src\cpp\subwinDrawing\RightYAxisPositioner.cpp"
 					>
 				</File>

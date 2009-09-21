@@ -495,7 +495,7 @@ void Objplot3d ( char    * fname ,
 		}
 		else if(iflag[2] == 2)
 		{
-			pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXIS ; /* for 2d use only (when switching to 2d mode) */
+			pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXES ; /* for 2d use only (when switching to 2d mode) */
 
 			pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
 			pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;

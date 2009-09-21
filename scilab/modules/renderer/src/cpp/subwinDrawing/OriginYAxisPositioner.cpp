@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * desc : Class specialized in drawing ticks  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -12,26 +11,26 @@
  *
  */
 
-#include "MiddleYAxisPositioner.hxx"
+#include "OriginYAxisPositioner.hxx"
 
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
-MiddleYAxisPositioner::MiddleYAxisPositioner(DrawableSubwin * subwin)
+OriginYAxisPositioner::OriginYAxisPositioner(DrawableSubwin * subwin)
   : YAxisPositioner(subwin)
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
-MiddleYAxisPositioner::~MiddleYAxisPositioner(void)
+OriginYAxisPositioner::~OriginYAxisPositioner(void)
 {
 
 }
 /*------------------------------------------------------------------------------------------*/
-void MiddleYAxisPositioner::getAxisBounds(double startBound[3], double endBound[3])
+void OriginYAxisPositioner::getAxisBounds(double startBound[3], double endBound[3])
 {
   double zCoordinate = findUpperZCoordinate();
-  double xCoordinate = (m_dXmin + m_dXmax) / 2.0;
+  double xCoordinate = findOriginXCoordinate(zCoordinate);
 
   startBound[0] = xCoordinate;
   startBound[1] = m_dYmin;
@@ -40,6 +39,26 @@ void MiddleYAxisPositioner::getAxisBounds(double startBound[3], double endBound[
   endBound[0] = xCoordinate;
   endBound[1] = m_dYmax;
   endBound[2] = zCoordinate;
+}
+/*------------------------------------------------------------------------------------------*/
+double OriginYAxisPositioner::findOriginXCoordinate(double zCoordinate)
+{
+  // find if 0 is in the range of X coordinates
+  // if so then one of xMax or xMax is <= 0 and the other is not
+  if (m_dXmin * m_dXmax <= 0.0)
+  {
+    return 0.0;
+  }
+  else if (m_dXmax < 0.0)
+  {
+    // both bounds are negative
+    return m_dXmax;
+  }
+  else
+  {
+    // both bounds are positive
+    return m_dXmin;
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 }
