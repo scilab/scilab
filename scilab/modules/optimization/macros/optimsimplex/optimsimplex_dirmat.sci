@@ -18,7 +18,7 @@
 function m = optimsimplex_dirmat ( this )
   m = zeros(this.n,this.n)
   for i=1:this.nbve-1
-    m(1:this.n,i) = this.x(1:this.n,i+1) - this.x(1:this.n,1)
+    m(1:this.n,i) = (this.x(i+1,1:this.n) - this.x(1,1:this.n)).'
   end
 endfunction
 

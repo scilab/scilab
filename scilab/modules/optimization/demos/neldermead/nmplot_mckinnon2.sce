@@ -110,7 +110,7 @@ nm = nmplot_configure(nm,"-simplex0method","given");
 nm = nmplot_configure(nm,"-coords0",coords0);
 nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","variable");
-nm = nmplot_configure(nm,"-verbose",0);
+//nm = nmplot_configure(nm,"-verbose",0);
 nm = nmplot_configure(nm,"-verbosetermination",0);
 nm = nmplot_configure(nm,"-kelleystagnationflag",1);
 nm = nmplot_configure(nm,"-restartflag",1);
@@ -126,6 +126,7 @@ nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.restart.sigma.txt");
 // Perform optimization
 //
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
 // Plot
 //
@@ -134,19 +135,15 @@ f = scf();
 xset("fpf"," ")
 contour ( xdata , ydata , zdata , 40 )
 nmplot_simplexhistory ( nm );
-xs2png(0,"mckinnon.history.restart.simplex.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.restart.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
-xs2png(1,"mckinnon.history.restart.fbar.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.restart.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
-xs2png(2,"mckinnon.history.restart.fopt.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.restart.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-xs2png(3,"mckinnon.history.restart.sigma.png");
 deletefile("mckinnon.history.restart.simplex.txt");
 deletefile("mckinnon.history.restart.fbar.txt");
 deletefile("mckinnon.history.restart.fopt.txt");

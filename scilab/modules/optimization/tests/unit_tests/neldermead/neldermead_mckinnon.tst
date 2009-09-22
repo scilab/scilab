@@ -127,12 +127,13 @@ function f = mckinnon3 ( x )
   end
 endfunction
 
-lambda1 = (1.0 + sqrt(33.0))/8.0
-lambda2 = (1.0 - sqrt(33.0))/8.0
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
 coords0 = [
-1.0 0.0 lambda1
-1.0 0.0 lambda2
-]
+1.0  1.0
+0.0  0.0 
+lambda1 lambda2
+];
 
 //
 // Test with default NM
@@ -416,5 +417,6 @@ assert_equal ( iterations > 110 , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
 assert_equal ( restartnb , 3 );
 nm = neldermead_destroy(nm);
+
 
 

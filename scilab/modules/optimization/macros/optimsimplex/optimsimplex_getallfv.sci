@@ -17,6 +17,6 @@
 //   <no arg>
 //
 function fv = optimsimplex_getallfv ( this )
-  fv = this.fv ( 1:this.nbve )
+  fv = this.fv ( 1:this.nbve , 1 )
 endfunction
 

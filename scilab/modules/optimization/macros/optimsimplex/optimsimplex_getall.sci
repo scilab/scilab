@@ -18,8 +18,8 @@
 //   <no arg>
 //
 function simplex = optimsimplex_getall ( this )
-  simplex = zeros( this.nbve , this.n+1 );
-  simplex ( 1:this.nbve , 1 ) = this.fv ( 1:this.nbve )
-  simplex ( 1:this.nbve , 2:this.n+1 ) = this.x ( 1:this.n , 1:this.nbve )'
+  simplex = zeros ( this.nbve , this.n+1 );
+  simplex ( 1:this.nbve , 1 ) = this.fv ( 1:this.nbve , 1 )
+  simplex ( 1:this.nbve , 2:this.n+1 ) = this.x ( 1:this.nbve , 1:this.n )
 endfunction
 

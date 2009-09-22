@@ -76,7 +76,7 @@ function [this , terminate , status] = optimbase_terminate (this , ...
     case "disabled" then
       // Nothing to do.
     else
-      errmsg = sprintf("Unknown tolf method %s",this.tolfunmethod);
+      errmsg = msprintf(gettext ( "%s: Unknown tolf method %s") , "optimbase_terminate" ,this.tolfunmethod);
       error(errmsg);
     end
   end
@@ -103,7 +103,7 @@ function [this , terminate , status] = optimbase_terminate (this , ...
    case "disabled" then
       // Nothing to do.
     else
-      errmsg = sprintf("Unknown tolx method %s",this.tolxmethod);
+      errmsg = msprintf(gettext ( "%s: Unknown tolx method %s") , "optimbase_terminate" , this.tolxmethod );
       error(errmsg);
     end
   end

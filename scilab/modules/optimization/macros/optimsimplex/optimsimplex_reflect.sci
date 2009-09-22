@@ -20,18 +20,18 @@ function [ r , data ] = optimsimplex_reflect ( this , fun , data )
   r = optimsimplex_new ( )
   r.n = this.n
   r.nbve = this.nbve
-  r.x = zeros(r.n, r.nbve )
-  r.fv = zeros( r.nbve )
-  r.x(1:r.n,1) = this.x(1:r.n,1)
+  r.x = zeros ( r.nbve , r.n )
+  r.fv = zeros( r.nbve , 1 )
+  r.x(1,1:r.n) = this.x(1,1:r.n)
   r.fv(1) = this.fv(1)
-  x1 = this.x(1:r.n,1)
+  x1 = this.x(1,1:r.n)
   twox1 = 2*x1
   for i = 2:r.nbve
-    r.x(1:r.n,i) = twox1 - this.x(1:r.n,i)
+    r.x(i,1:r.n) = twox1 - this.x(i,1:r.n)
     if (~isdef('data','local')) then
-       r.fv(i)  = fun (r.x(:,i));
+       r.fv(i)  = fun (r.x(i,:));
      else
-       [ r.fv(i) , data ]  = fun (r.x(:,i) , data );
+       [ r.fv(i) , data ]  = fun (r.x(i,:) , data );
      end
   end
 endfunction

@@ -1624,9 +1624,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						int  caretPosition = editor.getTextPane().getCaretPosition();
 						
 						try {
-							if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-								System.out.println("------------ SAUTE de LIGNE ------------");
-								indent();
+							if (caretPosition != 0) {
+
+								if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+									System.out.println("------------ SAUTE de LIGNE ------------");
+									indent();
+								}
 							}
 						} catch (BadLocationException e) {
 							e.printStackTrace();
@@ -1678,9 +1681,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 						int  caretPosition = editor.getTextPane().getCaretPosition();
 						
 						try {
-							if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
-								System.out.println("------------ SAUTE de LIGNE ------------");
-								indent();
+							if (caretPosition != 0) {
+								if (editor.getTextPane().getText(caretPosition-1, 1).equals("\n")) {
+									System.out.println("------------ SAUTE de LIGNE ------------");
+									indent();
+								}
 							}
 						} catch (BadLocationException e) {
 							e.printStackTrace();

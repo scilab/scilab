@@ -37,49 +37,90 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_display(nm);
 Nelder-Mead Object
+
 Optimization Object
+
 Verbose logging : 0
+
 Verbose Termination : 0
+
 Store History : 0
+
 Number of variables : 2
+
 Initial Guess :
+
  
     1.  
     2.  
 Initial Function Value :0.000000e+000
+
 Optimum Parameters :
+
  
     0.  
 Optimum Function Value :0.000000e+000
+
 Number of iterations : 0
+
 Maximum number of iterations : 100
+
 Number function evaluations : 0
+
 Maximum number of function evaluations : 100
+
 Termination Method on function value : disabled
+
 Termination Absolute Tolerance on function value : 0
+
 Termination Relative Tolerance on function value : 2.220D-16
+
 Termination Method on x : enabled
+
 Termination Absolute Tolerance on x : 0
+
 Termination Relative Tolerance on x : 2.220D-16
+
 Optimization Status : 
+
 Simplex0 : 
+
 Empty simplex (zero dimension)
+
 Simplex0 Method : axes
+
 Simplex0 Length : 1
+
 Termination Method on simplex size : enabled
+
 Termination Absolute Tolerance on simplex size : 0
+
 Termination Relative Tolerance on simplex size : 2.220D-16
+
 Termination Method on standard deviation of function value : disabled
+
 Termination Tolerance on standard deviation of function value : 0
+
 Termination Method on simplex size + shift of function value : disabled
+
 Termination Tolerance on shift of function value : 2.220D-16
+
 Method : variable
+
 Reflection Factor (rho) : 1
+
 Expansion Factor (chi) : 2
+
 Contraction Factor (gamma) : 0.5
+
 Shrinkage Factor (sigma) : 0.5
+
 Kelley Stagnation : 0
+
 Restart Epsilon : 2.220446e-016
+
 Restart Step : 1
+
 Restart Maximum : 3
+
 nm = neldermead_destroy(nm);

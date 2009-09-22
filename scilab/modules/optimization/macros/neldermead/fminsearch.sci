@@ -22,7 +22,7 @@
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then
-    errmsg = sprintf("Unexpected number of arguments : %d provided while 2 or 3 are expected.",rhs);
+    errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 or 3 are expected."), "fminsearch", rhs);
     error(errmsg)
   end
   fun = varargin(1);
@@ -34,9 +34,6 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   elseif rhs==3 then
     // One options struc on the command line : use it !
     options = varargin(3);
-  else
-    errmsg = msprintf(gettext("%s: Unexpected number of input arguments %d instead of 2 to 3."), "fminsearch", rhs);
-    error(errmsg)
   end
   // Compute options from the options struct
   numberofvariables = size(x0,2);
@@ -60,7 +57,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   options.MaxFunEvals
   // Perform Optimization
   nm = neldermead_new ();
-  nm = neldermead_configure(nm,"-x0",x0');
+  nm = neldermead_configure(nm,"-x0",x0.');
   nm = neldermead_configure(nm,"-numberofvariables",numberofvariables);
   nm = neldermead_configure(nm,"-simplex0method","pfeffer");
   nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
@@ -76,7 +73,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-toldeltafv",TolFun);
   nm = neldermead_configure(nm,"-tolsimplexizeabsolute",TolX);
   nm = neldermead_search(nm);
-  x = neldermead_get(nm,"-xopt")';
+  x = neldermead_get(nm,"-xopt").';
   fval = neldermead_get(nm,"-fopt");
   status = neldermead_get(nm,"-status");
   select status
@@ -98,10 +95,10 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   output.algorithm = 'Nelder-Mead simplex direct search';
   output.funcCount = neldermead_get(nm,"-funevals");
   output.iterations = neldermead_get(nm,"-iterations");
-  output.message = sprintf("%s\n%s\n%s", "Optimization terminated:",...
-    "the current x satisfies the termination criteria using OPTIONS.TolX of %e",...
+  output.message = sprintf("%s\n%s %e\n%s %e", "Optimization terminated:",...
+    "the current x satisfies the termination criteria using OPTIONS.TolX of",...
     TolX,...
-    "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of %e",...
+    "and F(X) satisfies the convergence criteria using OPTIONS.TolFun of",...
     TolFun);
   nm = neldermead_destroy(nm);
   clear nm;
