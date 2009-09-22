@@ -54,8 +54,8 @@ namespace types
     /* Int */
     bool isInt(void) { return (getType() == RealInt); }
 
-    /* UInt */
-    bool isUInt(void) { return (getType() == RealUInt); }
+    /* Int */
+    bool isInt2(void) { return (getType() == RealInt2); }
 
     /* Bool */
     bool isBool(void) { return (getType() == RealBool); }

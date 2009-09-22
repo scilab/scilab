@@ -156,7 +156,6 @@ int getVarType(int* _piAddress)
 	case InternalType::RealBool : 
 		return sci_boolean;
 	case InternalType::RealInt : 
-	case InternalType::RealUInt : 
 		return sci_ints;
 	case InternalType::RealString : 
 		return sci_strings;

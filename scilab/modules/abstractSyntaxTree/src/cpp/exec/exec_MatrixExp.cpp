@@ -190,7 +190,8 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			poResult = new Bool(_iRows, _iCols);
 			break;
 		case GenericType::RealInt :
-			poResult = new Int(_iRows, _iCols, _poSource->getAsInt()->getIntType());
+			poResult = Int::createInt(_iRows, _iCols, _poSource->getAsInt()->getIntType());
+			//poResult = new Int(_iRows, _iCols, _poSource->getAsInt()->getIntType());
 			break;
 		case GenericType::RealString :
 			poResult = new String(_iRows, _iCols);
@@ -323,9 +324,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			poResult->getAsBool()->bool_set(iCurRow, iCurCol, _poSource->getAsBool()->bool_get(0,0));
 			*_piRows = _poSource->getAsBool()->rows_get();
 			*_piCols = _poSource->getAsBool()->cols_get();
-			break;
-		case GenericType::RealUInt:
-			//((Double*)poResult)->val_set(iCurRow, iCurCol, ((Double*)_poSource)->real_get(0,0), ((Double*)_poSource)->img_get(0,0));
 			break;
 		case GenericType::RealInt :
 			//((Double*)poResult)->val_set(iCurRow, iCurCol, ((Double*)_poSource)->real_get(0,0), ((Double*)_poSource)->img_get(0,0));

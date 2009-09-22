@@ -318,73 +318,8 @@ namespace types
 			if(m_eOutType == RealInt)
 			{
 				Int *pI	= NULL;
-				switch(m_eOutSubType)
-				{
-				case Int::Type8 :
-					{
-						char cStart = (char)convert_input(m_poStart);
-						char cStep	= (char)convert_input(m_poStep);
-						char cVal		= cStart + _iOccur * cStep;
-						pI					= new Int(cVal);
-						break;
-					}
-				case Int::TypeUnsigned8 :
-					{
-						unsigned char ucStart = (unsigned char)convert_unsigned_input(m_poStart);
-						unsigned char ucStep	= (unsigned char)convert_unsigned_input(m_poStep);
-						unsigned char ucVal		= ucStart + _iOccur * ucStep;
-						pI										= new Int(ucVal);
-						break;
-					}
-				case Int::Type16 :
-					{
-						short sStart	= (short)convert_input(m_poStart);
-						short sStep		= (short)convert_input(m_poStep);
-						short sVal		= sStart + _iOccur * sStep;
-						pI						= new Int(sVal);
-						break;
-					}
-				case Int::TypeUnsigned16 :
-					{
-						unsigned short usStart	= (unsigned short)convert_unsigned_input(m_poStart);
-						unsigned short usStep		= (unsigned short)convert_unsigned_input(m_poStep);
-						unsigned short usVal		= usStart + _iOccur * usStep;
-						pI											= new Int(usVal);
-						break;
-					}
-				case Int::Type32 :
-					{
-						int iStart	= (int)convert_input(m_poStart);
-						int iStep		= (int)convert_input(m_poStep);
-						int iVal		= iStart + _iOccur * iStep;
-						pI					= new Int(iVal);
-						break;
-					}
-				case Int::TypeUnsigned32 :
-					{
-						unsigned int uiStart	= (unsigned int)convert_unsigned_input(m_poStart);
-						unsigned int uiStep		= (unsigned int)convert_unsigned_input(m_poStep);
-						unsigned int uiVal		= uiStart + _iOccur * uiStep;
-						pI										= new Int(uiVal);
-						break;
-					}
-				case Int::Type64 :
-					{
-						long long llStart = convert_input(m_poStart);
-						long long llStep	= convert_input(m_poStep);
-						long long llVal		= llStart + _iOccur * llStep;
-						pI								= new Int(llVal);
-						break;
-					}
-				case Int::TypeUnsigned64 :
-					{
-						unsigned long long ullStart	= convert_unsigned_input(m_poStart);
-						unsigned long long ullStep	= convert_unsigned_input(m_poStep);
-						unsigned long long ullVal		= ullStart + _iOccur * ullStep;
-						pI					= new Int(ullVal);
-						break;
-					}
-				}
+				pI = Int::createInt(1,1, m_eOutSubType);
+				pI->data_set(0,0, convert_input(m_poStart) + _iOccur * convert_input(m_poStep));
 				pIT	= pI;
 			}
 			else //RealDouble
@@ -406,50 +341,13 @@ namespace types
 		{
 			if(m_eOutType == RealInt)
 			{
-				Int *pI	= new Int(1, m_iSize, m_eOutSubType);
-				switch(m_eOutSubType)
+				Int *pI	= Int::createInt(1, m_iSize, m_eOutSubType);
+
+				for(int i = 0 ; i < m_iSize ; i++)
 				{
-				case Int::Type8 :
-					{
-						extract_matrix((char*)pI->data_get());
-						break;
-					}
-				case Int::TypeUnsigned8 :
-					{
-						extract_matrix((unsigned char*)pI->data_get());
-						break;
-					}
-				case Int::Type16 :
-					{
-						extract_matrix((short*)pI->data_get());
-						break;
-					}
-				case Int::TypeUnsigned16 :
-					{
-						extract_matrix((unsigned short*)pI->data_get());
-						break;
-					}
-				case Int::Type32 :
-					{
-						extract_matrix((int*)pI->data_get());
-						break;
-					}
-				case Int::TypeUnsigned32 :
-					{
-						extract_matrix((unsigned int*)pI->data_get());
-						break;
-					}
-				case Int::Type64 :
-					{
-						extract_matrix((long long*)pI->data_get());
-						break;
-					}
-				case Int::TypeUnsigned64 :
-					{
-						extract_matrix((unsigned long long*)pI->data_get());
-						break;
-					}
+					pI->data_set(i, convert_input(m_poStart) + convert_input(m_poStep) * i);
 				}
+
 				pIT	= pI;
 			}
 			else //RealDouble
@@ -616,21 +514,7 @@ long long convert_input(types::InternalType* _poIT)
 		llValue = (long long)_poIT->getAsDouble()->real_get(0,0);
 		break;
 	case types::GenericType::RealInt :
-		switch(_poIT->getAsInt()->getIntType())
-		{
-		case types::Int::Type8 :
-			llValue = (long long)_poIT->getAsInt()->data8_get(0,0);
-			break;
-		case types::Int::Type16 :
-			llValue = (long long)_poIT->getAsInt()->data16_get(0,0);
-			break;
-		case types::Int::Type32 :
-			llValue = (long long)_poIT->getAsInt()->data32_get(0,0);
-			break;
-		case types::Int::Type64 :
-			llValue = (long long)_poIT->getAsInt()->data64_get(0,0);
-			break;
-		}
+			llValue = (long long)_poIT->getAsInt()->data_get(0,0);
 		break;
 	}
 	return llValue;
@@ -645,21 +529,7 @@ unsigned long long convert_unsigned_input(types::InternalType* _poIT)
 		ullValue = (unsigned long long)_poIT->getAsDouble()->real_get(0,0);
 		break;
 	case types::GenericType::RealInt :
-		switch(_poIT->getAsInt()->getIntType())
-		{
-		case types::Int::TypeUnsigned8 :
-			ullValue = (unsigned long long)_poIT->getAsInt()->dataUnsigned8_get(0,0);
-			break;
-		case types::Int::TypeUnsigned16 :
-			ullValue = (unsigned long long)_poIT->getAsInt()->dataUnsigned16_get(0,0);
-			break;
-		case types::Int::TypeUnsigned32 :
-			ullValue = (unsigned long long)_poIT->getAsInt()->dataUnsigned32_get(0,0);
-			break;
-		case types::Int::TypeUnsigned64 :
-			ullValue = (unsigned long long)_poIT->getAsInt()->dataUnsigned64_get(0,0);
-			break;
-		}
+		ullValue = (unsigned long long)_poIT->getAsInt()->data_get(0,0);
 		break;
 	}
 	return ullValue;

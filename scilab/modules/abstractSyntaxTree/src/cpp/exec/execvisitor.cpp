@@ -183,7 +183,7 @@ namespace ast
 			types::typed_list out;
 			types::typed_list in;
 			
-			//finc the good macro
+			//find the good macro
 			ExecVisitor **execVar	= new ast::ExecVisitor*[e.args_get().size()]();
 			int j = 0;
 			for (j = 0, i = e.args_get().begin (); i != e.args_get().end (); ++i,j++)
@@ -245,12 +245,11 @@ namespace ast
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
 			if(Var != NULL)
 			{
-				Double *pResult = NULL;
-				ExecVisitor* execMeArg = new ast::ExecVisitor();
-				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
-				int iArgDim				= (int)e.args_get().size();
-				bool bSeeAsVector	= iArgDim == 1;
+				InternalType *pOut			= NULL;
+				ExecVisitor* execMeArg	= new ast::ExecVisitor();
+				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
+				int iArgDim							= (int)e.args_get().size();
+				bool bSeeAsVector				= iArgDim == 1;
 
 				//Create list of indexes
 				//std::vector<std::vector<int>> IndexList;
@@ -260,108 +259,38 @@ namespace ast
 				int *piDimSize		= new int[iArgDim];
 				int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
-				if(pIT->getType() == InternalType::RealDouble)
+				switch(pIT->getType())
 				{
-					Double *pDouble	= pIT->getAsDouble();
-					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector
-							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
-							iArgDim > 2) //more than 2 dimensions ?
-					{
-						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
-						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
-						throw os.str();
-					}
-
-
-					int iRowOut = 0;
-					int iColOut	= 0;
-					if(iArgDim == 1)
-					{
-						if(pDouble->rows_get() == 1)
-						{
-							pResult = new Double(1, piDimSize[0], pDouble->isComplex());
-							iRowOut = 1;
-							iColOut = piDimSize[0];
-						}
-						else
-						{
-							pResult = new Double(piDimSize[0], 1, pDouble->isComplex());
-							iRowOut = piDimSize[0];
-							iColOut = 1;
-						}
-					}
-					else
-					{
-						pResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
-						iRowOut = piDimSize[0];
-						iColOut = piDimSize[1];
-					}
-
-					double *pRealIn		= pDouble->real_get();
-					double *pImgIn		= pDouble->img_get();
-					double *pRealOut	= pResult->real_get();
-					double *pImgOut		= pResult->img_get();
-
-					if(bSeeAsVector)
-					{
-						if(pResult->isComplex())
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
-								pImgOut[i]	= pImgIn[piIndexSeq[i] - 1];
-							}
-						}
-						else
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
-							}
-						}
-					}
-					else//matrix
-					{
-						int iRowIn = pDouble->rows_get();
-						if(pResult->isComplex())
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
-								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-								pImgOut[iCurIndex] = pImgIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-							}
-						}
-						else
-						{
-							for(int i = 0 ; i < iTotalCombi ; i++)
-							{
-								//convert vertical indexes to horizontal indexes
-								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
-								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
-							}
-						}
-					}
-
-					result_set(pResult);
+				case InternalType::RealDouble :
+					pOut = pIT->getAsDouble()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+					break;
+				case InternalType::RealInt :
+					pOut = pIT->getAsInt()->extract(iTotalCombi, piIndexSeq, piMaxDim, piDimSize, bSeeAsVector);
+					break;
+				default :
+					break;
 				}
-				else
+
+				if(pOut == NULL)
 				{
+					std::ostringstream os;
+					os << "inconsistent row/column dimensions";
+					os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+					throw os.str();
 				}
-				delete[] piDimSize;
-			}
-			else
-			{
-				std::cout << "error Var == NULL\x0d\x0a";
+				result_set(pOut);
 			}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
 			std::ostringstream os;
-			os << "variable must exist";
-			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
-			throw os.str();
+			char pst[bsiz];
+	#ifdef _MSC_VER
+			sprintf_s(pst, bsiz, _("Undefined variable %s.\n"), e.name_get());
+#else
+			sprintf(pst, _("Undefined variable %s.\n"), e.name_get());
+#endif
+			throw string(pst);
 		}
 		delete execFunc;
 	}
@@ -678,14 +607,7 @@ namespace ast
 			bool *pB			= pReturn->bool_get();
 			for(int i = 0 ; i < pdbl->size_get() ; i++)
 			{
-				if(pR[i] == 0)
-				{
-					pB[i] = true;
-				}
-				else
-				{
-					pB[i] = false;
-				}
+				pB[i] = pR[i] == 0 ? true : false;
 			}
 			result_set(pReturn);
 		}
@@ -698,7 +620,7 @@ namespace ast
 
 			for(int i = 0 ; i < pb->size_get() ; i++)
 			{
-				pB[i] = pR[i];
+				pB[i] = !pR[i];
 			}
 			result_set(pReturn);
 		}
@@ -1063,9 +985,6 @@ bool bConditionState(ast::ExecVisitor *exec)
 				break;
 			}
 		}
-	}
-	else if(((GenericType*)exec->result_get())->isUInt())
-	{
 	}
 	else if(((GenericType*)exec->result_get())->isInt())
 	{

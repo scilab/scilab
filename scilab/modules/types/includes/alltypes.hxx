@@ -24,6 +24,7 @@
 #include "types.hxx"
 #include "string.hxx"
 #include "int.hxx"
+#include "intt.hxx"
 #include "double.hxx"
 #include "float.hxx"
 #include "bool.hxx"

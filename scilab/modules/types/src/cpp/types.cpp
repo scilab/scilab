@@ -46,5 +46,4 @@ namespace types
 		}
 		return false;
 	}
-
 }

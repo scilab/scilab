@@ -577,5 +577,65 @@ namespace types
 		return true;
 	}
 
+	String*	String::extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector)
+	{
+		String* pOut	= NULL;
+		int iRowsOut	= 0;
+		int iColsOut	= 0;
+
+		//check input param
+
+		if(	_bAsVector && _piMaxDim[0] > size_get() ||
+				_bAsVector == false && _piMaxDim[0] > rows_get() ||
+				_bAsVector == false && _piMaxDim[1] > cols_get())
+		{
+			return NULL;
+		}
+
+		if(_bAsVector)
+		{//a([])
+			if(rows_get() == 1)
+			{
+				iRowsOut	= 1;
+				iColsOut	= _piDimSize[0];
+			}
+			else
+			{
+				iRowsOut	= _piDimSize[0];
+				iColsOut	= 1;
+			}
+		}
+		else
+		{//a([],[])
+			iRowsOut	= _piDimSize[0];
+			iColsOut	= _piDimSize[1];
+		}
+
+		pOut				= new String(iRowsOut, iColsOut);
+		char** pst	= pOut->string_get();
+
+
+		if(_bAsVector)
+		{
+			for(int i = 0 ; i < _iSeqCount ; i++)
+			{
+				pst[i] = strdup(m_pstData[_piSeqCoord[i] - 1]);
+			}
+		}
+		else
+		{
+			int iRowIn = rows_get();
+			for(int i = 0 ; i < _iSeqCount ; i++)
+			{
+				//convert vertical indexes to horizontal indexes
+				int iCurIndex		= (i % iColsOut) * iRowsOut + (i / iColsOut);
+				int iInIndex		= (_piSeqCoord[i * 2] - 1) + (_piSeqCoord[i * 2 + 1] - 1) * rows_get();
+				pst[iCurIndex]	= strdup(m_pstData[iInIndex]);
+			}
+		}
+		
+		return pOut;
+	}
+
 }
 
