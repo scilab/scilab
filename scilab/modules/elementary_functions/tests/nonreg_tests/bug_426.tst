@@ -18,6 +18,6 @@
 a = ['aaa';'eee';'ccc';'bbb';'ddd';'rrr'];
 trueValue=[1; 4; 3; 5; 2; 6];
 
-[a result] = sort(a)
+[b result] = gsort(a,'rc','i')
 if result <> trueValue then pause,end
 
