@@ -66,7 +66,7 @@ function elts=pfss(S,rmax,cord)
 	  class=[class,mini(real(spec(A)))];
 	end
       end;
-      [cl,indi]=sort(-class);
+      [cl,indi] = gsort(-class);
       elts1=elts;
       for k=1:size(elts);
         elts(k)=elts1(indi(k));
@@ -83,7 +83,7 @@ function elts=pfss(S,rmax,cord)
 	  class=[class,maxi(abs(spec(A)))];
 	end
       end;
-      [cl,indi]=sort(-class);
+      [cl,indi] = gsort(-class);
       elts1=elts;
       for k=1:size(elts);
         elts(k)=elts1(indi(k));
