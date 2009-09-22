@@ -11,7 +11,7 @@ function contourf(x,y,z,nv,style,strf,leg,rect,nax)
 	[nout,nin]=argn(0);
 	
 	newstyle = get('figure_style')=='new'
-	
+
 	if nin == 0 then   // demo
 		t = -%pi:0.1:%pi;
 		m = sin(t)'*cos(t);

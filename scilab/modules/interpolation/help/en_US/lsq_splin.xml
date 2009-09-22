@@ -143,7 +143,7 @@ x = linspace(a,b,n)';
 // plotting
 ye = sin(xd);
 ys = interp(xd, x, y, d);
-xbasc()
+clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
 xtitle("a least square spline")

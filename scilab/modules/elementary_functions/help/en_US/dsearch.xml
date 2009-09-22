@@ -165,7 +165,7 @@ m = 50000 ; n = 10;
 X = grand(m,1,"def");
 val = linspace(0,1,n+1)';
 [ind, occ] = dsearch(X, val);
-xbasc() ; plot2d2(val, [occ/m;0])  // no normalisation : y must be near 1/n
+clf() ; plot2d2(val, [occ/m;0])  // no normalisation : y must be near 1/n
 
 
 // example #2 (elementary stat for B(N,p))
@@ -173,7 +173,7 @@ N = 8 ; p = 0.5; m = 50000;
 X = grand(m,1,"bin",N,p); val = (0:N)';
 [ind, occ] = dsearch(X, val, "d");
 Pexp = occ/m; Pexa = binomial(p,N); 
-xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
+clf() ; hm = 1.1*max(max(Pexa),max(Pexp));
 plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
         "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
 xtitle(  "binomial distribution B("+string(N)+","+string(p)+") :" ...
@@ -197,7 +197,7 @@ deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
 
 // plot the curve
 Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
-xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+clf(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
 xtitle("an Hermite piecewise polynomial")
 // NOTE : you can verify by adding these ones : 
 // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")

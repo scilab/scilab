@@ -86,7 +86,7 @@ xset()</synopsis>
         <listitem>
           <para>Met "on" ou "off" le mode d'effacement automatique des
           graphiques. Quand le mode est "on", les dessins successifs ne sont
-          pas superposés, i.e. la commande <literal>xbasc()</literal>
+          pas superposés, i.e. la commande <literal>clf()</literal>
           (effacement de la fenêtre graphique et effacement des graphiques
           enregistrés) est exécutée avant chaque commande graphique de haut
           niveau (plot2d par exemple). La valeur par défaut est "off".</para>
@@ -271,7 +271,7 @@ xset()</synopsis>
           sont affichés à   l'écran avec la commande
           <literal>xset("wshow")</literal>. Le pixmap est effacé avec la
           commande <literal>xset("wwpc")</literal>. Noter que la commande
-          <literal>xbasc()</literal> efface aussi le pixmap.</para>
+          <literal>clf()</literal> efface aussi le pixmap.</para>
         </listitem>
       </varlistentry>
 

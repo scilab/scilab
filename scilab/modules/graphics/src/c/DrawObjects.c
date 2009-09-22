@@ -83,9 +83,9 @@ void sciClearFigure(sciPointObj * pFigure)
 }
 
 void sciXbasc()
-{  
+{
   sciClearFigure(sciGetCurrentFigure());  
-} 	
+}
 
 void sciXclear()
 {

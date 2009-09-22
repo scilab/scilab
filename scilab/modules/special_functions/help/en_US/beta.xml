@@ -95,7 +95,7 @@ e = beta(ones(x),x) - (1)./x;
 er = abs(e) .* x;
 ind = find(er ~= 0);
 eps = ones(x(ind))*number_properties("eps");
-xbasc()
+clf()
 plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
 xtitle("approximate relative error in computing beta(1,x)")
 xselect()
@@ -104,7 +104,7 @@ xselect()
 t = linspace(0.2,10,60);
 X = t'*ones(t); Y = ones(t')*t;
 Z = beta(X,Y);
-xbasc()
+clf()
 plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
 xtitle("The beta function on [0.2,10]x[0.2,10]")
 xselect()

@@ -6,7 +6,7 @@
 //
 
 mode(-1)
-xbasc() ;
+clf() ;
 
 xset('color',2)
 
