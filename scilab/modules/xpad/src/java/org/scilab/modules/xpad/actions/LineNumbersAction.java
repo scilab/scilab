@@ -31,6 +31,8 @@ public class LineNumbersAction extends DefaultCheckAction {
     }
 
     public static CheckBoxMenuItem createCheckBoxMenu(Xpad editor) {
-	return createCheckBoxMenu("Line Numbers", null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    CheckBoxMenuItem lineNumber = createCheckBoxMenu("Line Numbers", null, new LineNumbersAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.CTRL_MASK));
+    lineNumber.setChecked(true);
+	return lineNumber;
     }
 }
