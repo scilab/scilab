@@ -24,6 +24,9 @@ public class GenericBlock extends BasicBlock {
     public GenericBlock() {
 	super("Generic", "Generic");
 	addPort(new CommandPort());
+	addPort(new CommandPort());
+	addPort(new CommandPort());
+	addPort(new ControlPort());
 	addPort(new ControlPort());
 	addPort(new ImplicitInputPort());
 	addPort(new ImplicitInputPort());

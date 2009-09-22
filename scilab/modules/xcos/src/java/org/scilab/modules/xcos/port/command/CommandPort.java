@@ -20,7 +20,6 @@ public class CommandPort extends BasicPort {
     
     public CommandPort() {
 	super("CommandPort");
-	setGeometry(new mxGeometry(35, 80, 10, 10));
     }
 
     public Type getType() {

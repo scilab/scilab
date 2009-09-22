@@ -32,12 +32,30 @@ import com.mxgraph.model.mxGeometry;
 
 public class BasicBlock extends mxCell {
 
-    private String interfaceFunctionName = "c_block";
+    private String interfaceFunctionName = "xcos_block";
+    private String simulationFunctionName = "xcos_simulate";
+    private SimulationFunctionType simulationFunctionType = SimulationFunctionType.SCILAB;
     private List<InputPort> inputPorts = new ArrayList<InputPort>();
     private List<OutputPort> outputPorts = new ArrayList<OutputPort>();
     private List<CommandPort> commandPorts = new ArrayList<CommandPort>();
     private List<ControlPort> controlPorts = new ArrayList<ControlPort>();
 
+    public enum SimulationFunctionType {
+	C_OR_FORTRAN,
+	SCILAB;
+
+	public double getAsDouble() {
+	    switch (this) {
+	    case C_OR_FORTRAN:
+		return 4.0;
+	    case SCILAB:
+		return 5;
+	    default:
+		return 0;
+	    }
+	}
+    };
+    
     protected BasicBlock(String label, String style) {
 	super();
 	setValue(label);
@@ -53,6 +71,22 @@ public class BasicBlock extends mxCell {
 
     protected void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
+    }
+
+    public void setSimulationFunctionName(String simulationFunctionName) {
+	this.simulationFunctionName = simulationFunctionName;
+    }
+
+    public String getSimulationFunctionName() {
+	return simulationFunctionName;
+    }
+
+    public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
+	this.simulationFunctionType = simulationFunctionType;
+    }
+
+    public SimulationFunctionType getSimulationFunctionType() {
+	return simulationFunctionType;
     }
 
     protected void addPort(InputPort port) {
@@ -80,13 +114,27 @@ public class BasicBlock extends mxCell {
     }
 
     protected void addPort(CommandPort port) {
-	insert(port);
 	commandPorts.add(port);
+	for (int i = 0 ; i < commandPorts.size() ; ++i) {
+	    mxGeometry portGeometry = commandPorts.get(i).getGeometry();
+	    commandPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (commandPorts.size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
+		    getGeometry().getHeight(),
+		    portGeometry.getWidth(),
+		    portGeometry.getHeight()));
+	}
+	insert(port);
     }
 
     protected void addPort(ControlPort port) {
-	insert(port);
 	controlPorts.add(port);
+	for (int i = 0 ; i < controlPorts.size() ; ++i) {
+	    mxGeometry portGeometry = controlPorts.get(i).getGeometry();
+	    controlPorts.get(i).setGeometry(new mxGeometry((i + 1.0) / (controlPorts.size() + 1.0) * getGeometry().getWidth() - portGeometry.getHeight() / 2.0, 
+		    - portGeometry.getHeight(),
+		    portGeometry.getWidth(),
+		    portGeometry.getHeight()));
+	}
+	insert(port);
     }
 
     public ScilabMList getAsScilabObj() {
@@ -118,13 +166,13 @@ public class BasicBlock extends mxCell {
 
 	graphics.add(new ScilabList()); // exprs
 
-	graphics.add(getAllPortsSize(inputPorts)); // pin
+	graphics.add(getAllLinkId(inputPorts)); // pin
 
-	graphics.add(getAllPortsSize(outputPorts)); // pout
+	graphics.add(getAllLinkId(outputPorts)); // pout
 
-	graphics.add(getAllPortsSize(controlPorts)); // pein
+	graphics.add(getAllLinkId(controlPorts)); // pein
 
-	graphics.add(getAllPortsSize(commandPorts)); // peout
+	graphics.add(getAllLinkId(commandPorts)); // peout
 
 	ScilabList gr_i = new ScilabList();
 	ScilabString graphicsInstructions = new ScilabString("xstringb(orig(1),orig(2),\""+getValue()+"\",sz(1),sz(2));");
@@ -147,23 +195,23 @@ public class BasicBlock extends mxCell {
 		"nzcross", "nmode", "equations"};
 	ScilabMList model = new ScilabMList(modelFields);
 
-	model.add(new ScilabString("my_sim_fun")); // sim
+	model.add(getSimulationFunctionNameAndType()); // sim
 
-	model.add(getAllPortsSize(inputPorts)); // in
+	model.add(getAllPortsDataLines(inputPorts)); // in
 
-	model.add(new ScilabDouble()); // in2
+	model.add(getAllPortsDataColumns(inputPorts)); // in2
 
-	model.add(new ScilabDouble(1)); // intyp
+	model.add(getAllPortsDataType(inputPorts)); // intyp
 
-	model.add(getAllPortsSize(outputPorts)); // out
+	model.add(getAllPortsDataLines(outputPorts)); // out
 
-	model.add(new ScilabDouble()); // out2
+	model.add(getAllPortsDataColumns(inputPorts)); // out2
 
-	model.add(new ScilabDouble(1)); // outtyp
+	model.add(getAllPortsDataType(outputPorts)); // outtyp
 
-	model.add(getAllPortsSize(controlPorts)); // evtin
+	model.add(getAllPortsDataLines(controlPorts)); // evtin
 
-	model.add(getAllPortsSize(commandPorts)); // evtout
+	model.add(getAllPortsDataLines(commandPorts)); // evtout
 
 	model.add(new ScilabDouble()); // state
 
@@ -203,14 +251,73 @@ public class BasicBlock extends mxCell {
 	return new ScilabList();
     }
 
+    private ScilabList getSimulationFunctionNameAndType() {
+	ScilabList data = new ScilabList();
+	
+	data.add(new ScilabString(getSimulationFunctionName()));
+	data.add(new ScilabDouble(getSimulationFunctionType().getAsDouble()));
+	
+	return data;
+    }
+    
+    private ScilabDouble getAllLinkId(List ports) {
+	if (ports.isEmpty()) {
+	    return new ScilabDouble();
+	}
+
+	double[][] data = new double[ports.size()][1];
+	for (int i = 0 ; i < ports.size() ; ++i) {
+	    data[i][0] = 0;
+	}
+
+	return new ScilabDouble(data);
+    }
+
     private ScilabDouble getAllPortsSize(List ports) {
+	if (ports.isEmpty()) {
+	    return new ScilabDouble();
+	}
+
+	double[][] data = new double[ports.size()][1];
+	for (int i = 0 ; i < ports.size() ; ++i) {
+	    data[i][0] = ((BasicPort) ports.get(i)).getDataSize();
+	}
+
+	return new ScilabDouble(data);
+    }
+
+    private ScilabDouble getAllPortsDataLines(List ports) {
+	if (ports.isEmpty()) {
+	    return new ScilabDouble();
+	}
+	double[][] data = new double[1][ports.size()];
+	for (int i = 0 ; i < ports.size() ; ++i) {
+	    data[0][i] = ((BasicPort) ports.get(i)).getDataLines();
+	}
+
+	return new ScilabDouble(data);
+    }
+
+    private ScilabDouble getAllPortsDataColumns(List ports) {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
 
 	double[][] data = new double[1][ports.size()];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getDataSize();
+	    data[0][i] = ((BasicPort) ports.get(i)).getDataColumns();
+	}
+
+	return new ScilabDouble(data);
+    }
+
+    private ScilabType getAllPortsDataType(List ports) {
+	if (ports.isEmpty()) {
+	    return new ScilabDouble();
+	}
+	double[][] data = new double[1][ports.size()];
+	for (int i = 0 ; i < ports.size() ; ++i) {
+	    data[0][i] = ((BasicPort) ports.get(i)).getDataType().getAsDouble();
 	}
 
 	return new ScilabDouble(data);
@@ -222,15 +329,7 @@ public class BasicBlock extends mxCell {
 	}
 	String[][] data = new String[1][ports.size()];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    if (((BasicPort) ports.get(i)).getType() == BasicPort.Type.IMPLICIT) {
-		data[0][i] = "I";
-	    }
-	    else if (((BasicPort) ports.get(i)).getType() == BasicPort.Type.EXPLICIT) {
-		data[0][i] = "E";
-	    }
-	    else {
-		data[0][i] = "";
-	    }
+	    data[0][i] = ((BasicPort) ports.get(i)).getType().getAsString();
 	}
 
 	return new ScilabString(data);

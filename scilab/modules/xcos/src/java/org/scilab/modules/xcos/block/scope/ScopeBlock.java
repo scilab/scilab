@@ -14,13 +14,23 @@ package org.scilab.modules.xcos.block.scope;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 
 public class ScopeBlock extends BasicBlock {
 
     public ScopeBlock() {
 	super("Scope", "Scope");
-	addPort(new ExplicitInputPort());
-	addPort(new ControlPort());
+	InputPort inputPort = new ExplicitInputPort();
+	ControlPort controlPort = new ControlPort();
+	
+	inputPort.setDataLines(-1); // model.in
+	inputPort.setDataColumns(1); // model.in2
+	addPort(inputPort);
+	
+	controlPort.setDataLines(1); // model.evtin
+	addPort(controlPort);
+	
+	setSimulationFunctionName("cscope");
+	setSimulationFunctionType(SimulationFunctionType.C_OR_FORTRAN);
     }
-    
 }

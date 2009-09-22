@@ -68,12 +68,12 @@ public class XcosDiagram extends ScilabGraph {
 	 * SAMPLE DATA 
 	 */
 
-	ClockBlock clock = new ClockBlock();
-	clock.getGeometry().setX(20);
-	clock.getGeometry().setY(20);
-	addCell(clock, parent);
+	//ClockBlock clock = new ClockBlock();
+	//clock.getGeometry().setX(20);
+	//clock.getGeometry().setY(20);
+	//addCell(clock, parent);
 
-	getAsComponent().setCellWarning(clock, "ACHTUNG !!!");
+	//getAsComponent().setCellWarning(clock, "ACHTUNG !!!");
 	
 //	SinusoidBlock sinusoid = new SinusoidBlock();
 //	sinusoid.getGeometry().setX(220);
@@ -266,7 +266,7 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     private double[][] createTol() {
-	double[][] tol = {{finalIntegrationTime, integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, realTimeScaling, solver, maximumStepSize}};
+	double[][] tol = {{integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, realTimeScaling, solver, maximumStepSize}};
 	return tol;
     }
     

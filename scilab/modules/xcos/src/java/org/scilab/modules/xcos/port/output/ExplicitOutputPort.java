@@ -12,13 +12,11 @@
 
 package org.scilab.modules.xcos.port.output;
 
-import com.mxgraph.model.mxGeometry;
 
 public class ExplicitOutputPort extends OutputPort {
 
     public ExplicitOutputPort() {
 	super("ExplicitOutputPort");
-	setGeometry(new mxGeometry(80, 35, 10, 10));
     }
 
     public Type getType() {

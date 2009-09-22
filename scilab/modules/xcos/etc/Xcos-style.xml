@@ -55,12 +55,12 @@
 	<add as="ImplicitInputPort" extend="Port">
 		<add as="shape" value="rectangle"/>
 		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="white"/>
+		<add as="fillColor" value="black"/>
 	</add>
 	<add as="ImplicitOutputPort" extend="Port">
 		<add as="shape" value="rectangle"/>
 		<add as="strokeColor" value="black"/>
-		<add as="fillColor" value="black"/>
+		<add as="fillColor" value="white"/>
 	</add>
 
 	
