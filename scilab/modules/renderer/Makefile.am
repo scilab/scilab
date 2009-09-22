@@ -237,6 +237,8 @@ src/cpp/subwinDrawing/XAxisPositioner.cpp \
 src/cpp/subwinDrawing/YAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
 src/cpp/subwinDrawing/AxisPositioner.cpp \
 src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
 src/cpp/subwinDrawing/ZAxisPositioner.cpp \

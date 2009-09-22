@@ -1966,9 +1966,12 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
  * @see sciSetCurrentObj
  */
 sciPointObj *
-ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
-               int Nbr1,int Nbr2, double *vfx, double *vfy, int flag,
-	       int *style, double arsize, int colored, double arfact, int typeofchamp)
+ConstructSegs ( sciPointObj * pparentsubwin, int type,
+                double *vx, double *vy, double *vz,
+                int Nbr1,int Nbr2, int Nbr3,
+                double *vfx, double *vfy,
+                int flag, int *style, double arsize,
+                int colored, int typeofchamp)
 {
 	sciPointObj *pobj = (sciPointObj *) NULL;
 	sciSegs * ppSegs = (sciSegs *) NULL;
@@ -2030,16 +2033,36 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			FREE(pobj);
 			return (sciPointObj *) NULL;
 		}
+    if (vz!=NULL)
+    {
+		  if ((ppSegs->vz = MALLOC (Nbr3 * sizeof (double))) == NULL)
+		  {
+			  FREE(ppSegs->vx);
+			  FREE(ppSegs->vy);
+			  sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			  sciDelHandle (pobj);
+			  FREE(ppSegs);
+			  FREE(pobj);
+			  return (sciPointObj *) NULL;
+		  }
+    }
+    else
+    {
+        ppSegs->vz = NULL;
+    }
 
 		for (i = 0; i < Nbr1; i++)
-		{
 			ppSegs->vx[i] = vx[i];
-		}
 		for (i = 0; i < Nbr2; i++)
-		{
 			ppSegs->vy[i] = vy[i];
-		}
-		pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
+    if (vz!=NULL)
+    {
+  		for (i = 0; i < Nbr3; i++)
+        {
+	  		ppSegs->vz[i] = vz[i];
+        }
+    }
+
 		ppSegs->ptype = type;
 
 		/* F.Leray Test imprortant sur type ici*/
@@ -2051,6 +2074,8 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			{
 				FREE(ppSegs->vx);
 				FREE(ppSegs->vy);
+        if (vz!=NULL)
+  				FREE(ppSegs->vz);
 				sciDelThisToItsParent (pobj, sciGetParent (pobj));
 				sciDelHandle (pobj);
 				FREE(ppSegs);
@@ -2087,6 +2112,8 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			{
 				FREE(ppSegs->vx);
 				FREE(ppSegs->vy);
+        if (vz!=NULL)
+  				FREE(ppSegs->vz);
 				sciDelThisToItsParent (pobj, sciGetParent (pobj));
 				sciDelHandle (pobj);
 				FREE(ppSegs);
@@ -2097,6 +2124,8 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			{
 				FREE(ppSegs->vx);
 				FREE(ppSegs->vy);
+        if (vz!=NULL)
+  				FREE(ppSegs->vz);
 				FREE(ppSegs->vfx);
 				sciDelThisToItsParent (pobj, sciGetParent (pobj));
 				sciDelHandle (pobj);
@@ -2116,6 +2145,8 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 		{
 			FREE(ppSegs->vx);
 			FREE(ppSegs->vy);
+      if (vz!=NULL)
+  		  FREE(ppSegs->vz);
 			if (type ==0)
 			{
 				FREE(ppSegs->pstyle);
@@ -2131,13 +2162,13 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
 			FREE(pobj);
 			return (sciPointObj *) NULL;
 		}
-      return pobj;
-    }
+    return pobj;
+  }
   else
-    {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
+  {
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
+    return (sciPointObj *) NULL;
+  }
 }
 
 

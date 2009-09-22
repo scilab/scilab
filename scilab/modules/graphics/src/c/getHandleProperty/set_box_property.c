@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -46,9 +47,14 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     {
       return sciSetBoxType( pobj, BT_ON ) ;
     }
+    else if ( isStringParamEqual( stackPointer, "hidden_axes" ) )
+    {
+      return sciSetBoxType( pobj, BT_HIDDEN_AXES ) ;
+    }
     else if ( isStringParamEqual( stackPointer, "hidden_axis" ) )
     {
-      return sciSetBoxType( pobj, BT_HIDDEN_AXIS ) ;
+      sciprint(_("WARNING !!!\n%s: for input argument #%d: '%s' is deprecated use '%s' instead.\n"), "set_box_property",2,"hidden_axis", "hidden_axes");
+      return sciSetBoxType( pobj, BT_HIDDEN_AXES ) ;
     }
     else if ( isStringParamEqual( stackPointer, "back_half" ) )
     {
@@ -56,7 +62,7 @@ int set_box_property( sciPointObj * pobj, size_t stackPointer, int valueType, in
     }
     else
     {
-      Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axis","back_half") ;
+      Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"), "set_box_property",2,"on","off","hidden_axes","back_half") ;
       return SET_PROPERTY_ERROR ;
     }
   }
