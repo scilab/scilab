@@ -35,6 +35,11 @@ public class BasicBlock extends mxCell {
     private String interfaceFunctionName = "xcos_block";
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.SCILAB;
+  
+    private List<Double> realParameters = new ArrayList<Double>();
+    private List<Integer> integerParameters = new ArrayList<Integer>();
+    private List objectsParameters = new ArrayList();
+    
     private List<InputPort> inputPorts = new ArrayList<InputPort>();
     private List<OutputPort> outputPorts = new ArrayList<OutputPort>();
     private List<CommandPort> commandPorts = new ArrayList<CommandPort>();
@@ -87,6 +92,18 @@ public class BasicBlock extends mxCell {
 
     public SimulationFunctionType getSimulationFunctionType() {
 	return simulationFunctionType;
+    }
+
+    public List getRealParameters() {
+        return realParameters;
+    }
+
+    public List getIntegerParameters() {
+        return integerParameters;
+    }
+
+    public List getObjectsParameters() {
+        return objectsParameters;
     }
 
     protected void addPort(InputPort port) {
@@ -219,9 +236,9 @@ public class BasicBlock extends mxCell {
 
 	model.add(new ScilabDouble()); // odstate
 
-	model.add(new ScilabDouble()); // rpar
+	model.add(createScilabRPar()); // rpar
 
-	model.add(new ScilabDouble()); // ipar
+	model.add(createScilabIPar()); // ipar
 
 	model.add(new ScilabList()); // opar
 
@@ -243,6 +260,31 @@ public class BasicBlock extends mxCell {
 	return model;
     }
 
+    private ScilabType createScilabRPar() {
+	if (realParameters.isEmpty()) {
+	    return new ScilabDouble();
+	}
+	double[][] data = new double[realParameters.size()][1];
+	for (int i = 0 ; i < realParameters.size() ; ++i) {
+	    data[i][0] = realParameters.get(i).doubleValue();
+	}
+	
+	return new ScilabDouble(data);
+    }
+
+    private ScilabType createScilabIPar() {
+	if (integerParameters.isEmpty()) {
+	    return new ScilabDouble();
+	}
+	double[][] data = new double[integerParameters.size()][1];
+	for (int i = 0 ; i < integerParameters.size() ; ++i) {
+	    data[i][0] = integerParameters.get(i).doubleValue();
+	}
+	
+	return new ScilabDouble(data);
+    }
+    
+    
     private ScilabString createScilabGuiProperties() {
 	return new ScilabString(interfaceFunctionName);
     }
@@ -265,9 +307,9 @@ public class BasicBlock extends mxCell {
 	    return new ScilabDouble();
 	}
 
-	double[][] data = new double[ports.size()][1];
+	double[][] data = new double[1][ports.size()];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[i][0] = 0;
+	    data[0][i] = 0;
 	}
 
 	return new ScilabDouble(data);
@@ -290,9 +332,9 @@ public class BasicBlock extends mxCell {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
-	double[][] data = new double[1][ports.size()];
+	double[][] data = new double[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getDataLines();
+	    data[i][0] = ((BasicPort) ports.get(i)).getDataLines();
 	}
 
 	return new ScilabDouble(data);
@@ -303,9 +345,9 @@ public class BasicBlock extends mxCell {
 	    return new ScilabDouble();
 	}
 
-	double[][] data = new double[1][ports.size()];
+	double[][] data = new double[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getDataColumns();
+	    data[i][0] = ((BasicPort) ports.get(i)).getDataColumns();
 	}
 
 	return new ScilabDouble(data);
@@ -315,9 +357,9 @@ public class BasicBlock extends mxCell {
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
-	double[][] data = new double[1][ports.size()];
+	double[][] data = new double[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    data[0][i] = ((BasicPort) ports.get(i)).getDataType().getAsDouble();
+	    data[i][0] = ((BasicPort) ports.get(i)).getDataType().getAsDouble();
 	}
 
 	return new ScilabDouble(data);

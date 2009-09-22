@@ -54,6 +54,7 @@ public abstract class BasicPort extends mxCell {
 		return 1;
 	    case COMPLEX_MATRIX:
 		return 2;
+		//TODO
 	    default:
 		return 0;
 	    }

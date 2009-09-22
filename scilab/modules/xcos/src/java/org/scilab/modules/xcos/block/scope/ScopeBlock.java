@@ -32,5 +32,26 @@ public class ScopeBlock extends BasicBlock {
 	
 	setSimulationFunctionName("cscope");
 	setSimulationFunctionType(SimulationFunctionType.C_OR_FORTRAN);
+	
+	getRealParameters().add(0.0); // model.rpar
+	getRealParameters().add(-15.0);
+	getRealParameters().add(15.0);
+	getRealParameters().add(30.0);
+	
+	getIntegerParameters().add(-1); // model.ipar
+	getIntegerParameters().add(1);
+	getIntegerParameters().add(20);
+	getIntegerParameters().add(1);
+	getIntegerParameters().add(3);
+	getIntegerParameters().add(5);
+	getIntegerParameters().add(7);
+	getIntegerParameters().add(9);
+	getIntegerParameters().add(11);
+	getIntegerParameters().add(13);
+	getIntegerParameters().add(15);
+	getIntegerParameters().add(-1);
+	getIntegerParameters().add(-1);
+	getIntegerParameters().add(600);
+	getIntegerParameters().add(400);
     }
 }

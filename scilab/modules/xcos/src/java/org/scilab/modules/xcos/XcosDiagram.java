@@ -266,7 +266,7 @@ public class XcosDiagram extends ScilabGraph {
     }
     
     private double[][] createTol() {
-	double[][] tol = {{integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, realTimeScaling, solver, maximumStepSize}};
+	double[][] tol = {{integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, maxIntegrationTimeinterval, realTimeScaling, solver, maximumStepSize}};
 	return tol;
     }
     
