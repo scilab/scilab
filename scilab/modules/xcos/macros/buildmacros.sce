@@ -12,5 +12,5 @@ if (isdef('genlib') == %f) then
   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 
-// genlib("xcoslib","SCI/modules/xcos/macros",%f,%t);
+genlib("xcoslib","SCI/modules/xcos/macros",%f,%t);
 

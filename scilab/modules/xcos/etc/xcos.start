@@ -9,7 +9,7 @@
 
 // Load  functions libraries
 // =============================================================================
-//load('SCI/modules/xcos/macros/lib');
+load('SCI/modules/xcos/macros/lib');
 
 // Add help chapter
 // =============================================================================
