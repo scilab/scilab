@@ -53,12 +53,13 @@ function y = rosenbrock (x)
 endfunction
 
 coords = [...
-0.0 3.0 0.0
-0.0 0.0 6.0
+    0.    0.  
+    3.    0.  
+    0.    6.  
 ];
 s1 = optimsimplex_new ( coords );
 sicenter = optimsimplex_center ( s1 );
-assert_close ( sicenter , [1.0 2.0]', %eps );
+assert_close ( sicenter , [1.0 2.0], %eps );
 s1 = optimsimplex_destroy(s1);
 
 

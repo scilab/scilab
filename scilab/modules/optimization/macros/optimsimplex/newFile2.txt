@@ -1,0 +1,5 @@
+for ifile=12:23
+  mprintf("%s...\n",lf(ifile));
+  exec(lf(ifile));
+end
+

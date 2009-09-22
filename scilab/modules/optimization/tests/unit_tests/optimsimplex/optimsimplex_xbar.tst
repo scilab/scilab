@@ -52,7 +52,7 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 cen = optimsimplex_xbar ( s1 );
-assert_close ( cen , [-1.2 1.5]', %eps );
+assert_close ( cen , [-1.2 1.5], %eps );
 s1 = optimsimplex_destroy ( s1 );
 // iexcl =2
 s1 = optimsimplex_new ();
@@ -63,7 +63,7 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 cen = optimsimplex_xbar ( s1 , 2 );
-assert_close ( cen , [-0.7 1.0]', %eps );
+assert_close ( cen , [-0.7 1.0], %eps );
 s1 = optimsimplex_destroy ( s1 );
 //
 // Test with 5 vertices
@@ -78,6 +78,6 @@ simplex = [
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
 cen = optimsimplex_xbar ( s1 );
-assert_close ( cen , [-0.65 1.0]', %eps );
+assert_close ( cen , [-0.65 1.0], %eps );
 s1 = optimsimplex_destroy ( s1 );
 

@@ -61,7 +61,7 @@ endfunction
 //    algorithm to "converge" to a point which is not the minimizer
 //    of the function F.
 //
-//    Sample parameter values which cause problems for Nelder-Mead
+//    Sample parameter values which cause problems for Nelder-Mead 
 //    include:
 //
 //      TAU = 1, THETA = 15, PHI =  10;
@@ -72,9 +72,9 @@ endfunction
 //
 //      X1 = (0,0),
 //      X2 = (1,1),
-//      X3 = (A,B),
+//      X3 = (A,B), 
 //
-//    where
+//    where 
 //
 //      A = (1+sqrt(33))/8 =  0.84307...
 //      B = (1-sqrt(33))/8 = -0.59307...
@@ -118,22 +118,13 @@ function f = mckinnon3 ( x )
     f = theta       *       x(1).^tau   + x(2) * ( 1.0 + x(2) );
   end
 endfunction
-lambda1 = (1.0 + sqrt(33.0))/8.0
- lambda1  =
- 
-    0.8430703  
-lambda2 = (1.0 - sqrt(33.0))/8.0
- lambda2  =
- 
-  - 0.5930703  
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
 coords0 = [
-1.0 0.0 lambda1
-1.0 0.0 lambda2
-]
- coords0  =
- 
-    1.    0.    0.8430703  
-    1.    0.  - 0.5930703  
+1.0  1.0
+0.0  0.0 
+lambda1 lambda2
+];
 //
 // Test with default NM
 //
@@ -183,9 +174,9 @@ nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
 nm = neldermead_search(nm);
 nm = neldermead_restart ( nm );
-Warning :
-matrix is close to singular or badly scaled. rcond =    6.6651D-13
-computing least squares solution. (see lsq).
+Attention:
+la matrice est presque singulière ou mal conditionnée. rcond =    6.6651D-13
+calcul de la solution des moindres carrés. (voir lsq).
 
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -278,9 +269,9 @@ nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-restartflag",1);
 nm = neldermead_configure(nm,"-restartdetection","oneill");
 nm = neldermead_search(nm);
-Warning :
-matrix is close to singular or badly scaled. rcond =    6.6651D-13
-computing least squares solution. (see lsq).
+Attention:
+la matrice est presque singulière ou mal conditionnée. rcond =    6.6651D-13
+calcul de la solution des moindres carrés. (voir lsq).
 
 // Check status
 status = neldermead_get(nm,"-status");
@@ -380,7 +371,7 @@ nm = neldermead_destroy(nm);
 // Test with auto-restart, Kelley stagnation detection and Kelley restart method
 // Use pfeffer simplex for restart.
 // Use a reduced alpha0 so that restart occur earlier.
-// Pfeffer's initial simplex is the best for restart, since it
+// Pfeffer's initial simplex is the best for restart, since it 
 // respects the optimal point computed so far. It saves tens of iterations.
 //
 nm = neldermead_new ();
