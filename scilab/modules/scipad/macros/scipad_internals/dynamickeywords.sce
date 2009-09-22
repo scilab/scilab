@@ -31,7 +31,7 @@ function dynamickeywords()
 TCL_EvalStr("set dynamickeywords_running true","scipad")
 
   function cset=lineform(keywordlist)
-     keywordlist=sort(keywordlist)
+     keywordlist = gsort(keywordlist, 'g', 'i');
      initial=gsort(unique(part(keywordlist,1)),"r","i")
      cset=[]
      for i=1:size(initial,1)
