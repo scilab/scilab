@@ -28,6 +28,7 @@ public class RecentFileAction extends DefaultAction {
 	public void doAction() {
 		ConfigXpadManager.saveToRecentOpenedFiles(recentFile.getPath());
 		getEditor().readFile(recentFile);
+		getEditor().setTitle(recentFile.getPath() + " - Xpad");
 	};
 
 	public static MenuItem createMenu(Xpad editor, File f) {

@@ -14,6 +14,7 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.print.Printable;
 
 import javax.swing.KeyStroke;
 
@@ -27,6 +28,11 @@ public class PrintPreviewAction extends DefaultAction {
 	super("Print Preview...", editor);
     }
     
+    public void doAction() {
+    	//Printable p = getEditor().getTextPane().getPrintable();
+
+    }
+
     public static MenuItem createMenu(Xpad editor) {
 	return createMenu("Print Preview...", null, new PrintPreviewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
     }

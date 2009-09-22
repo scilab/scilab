@@ -123,6 +123,7 @@ fileio functions:
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)
+   + isdir manages matrix of strings as input argument
   
 Dynamic link:
 =============
@@ -242,6 +243,8 @@ Linear algebra
 Bug fixes:
 ==========
 
+* bug 415 fixed - wrong order in the roots of a polynomial
+
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
@@ -272,6 +275,8 @@ Bug fixes:
                    deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
+
+* bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
@@ -419,6 +424,8 @@ Bug fixes:
 
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
+* bug 4702 fixed - on some case, dos(cmd) does not return results
+
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
@@ -435,9 +442,9 @@ Bug fixes:
 
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
+* bug 4792 fixed - macro name too long
+
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
 
-* bug 415 fixed - wrong order in the roots of a polynomial
-
-* bug 4792 fixed - macro name too long
+* bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 

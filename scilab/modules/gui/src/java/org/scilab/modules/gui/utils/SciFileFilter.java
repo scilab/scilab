@@ -40,15 +40,15 @@ public class SciFileFilter extends FileFilter {
 		if (maskdescription == null) {
 
 			if (fileMask.equals("*.sci")) {
-				description = "Scilab SCI files";
+				description = "Scilab SCI files (*.sci)";
 			} else if (fileMask.equals("*.sce")) {
-				description = "Scilab SCE files";
+				description = "Scilab SCE files (*.sce)";
 			} else if (fileMask.equals("*.bin")) {
-				description = "Scilab binary files";
+				description = "Scilab binary files (*.bin)";
 			} else if (fileMask.equals("*.sc*")) {
-				description = "All Scilab files";
+				description = "All Scilab files (*.sc*)";
 			} else if (fileMask.equals("*.cos*")) {
-				description = "Scicos files";
+				description = "Scicos files (*.cos*)";
 			} else {
 				description = "All " + fileMask + " files";
 			}
