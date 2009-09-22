@@ -31,7 +31,7 @@ int sci_xsegs(char *fname,unsigned long fname_len)
 {
   int dstyle = -1, *style, colorFlag;
   double * zptr = NULL;
-  int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz,mc=0,nc=0,lc; 
+  int mx,nx,lx,my,ny,ly,mz=0,nz=0,lz=0,mc=0,nc=0,lc; 
   const double arsize = 0.0 ; // no arrow here
   sciPointObj * psubwin = NULL ;
 
