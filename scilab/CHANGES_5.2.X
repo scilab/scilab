@@ -276,6 +276,8 @@ Bug fixes:
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
+* bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
+
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
 * bug 4110 fixed - Demos order differs between Linux and Windows versions
@@ -421,6 +423,8 @@ Bug fixes:
 * bug 4689 fixed - diary() do not report interactive commands into the output file
 
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
+
+* bug 4702 fixed - on some case, dos(cmd) does not return results
 
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
