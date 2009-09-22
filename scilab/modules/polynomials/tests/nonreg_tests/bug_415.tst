@@ -67,28 +67,149 @@
 //Jean-Marc Sac-EpÃƒÂ©e on Linux PC version Linux distribution Mandrake 7.1 with  KDE as window manager
 //France  September 27, 2000 at 9:18:17
 
+// 
+// sort_merge_comparison --
+//   Returns -1 if x < y, 
+//   returns 0 if x==y,
+//   returns +1 if x > y
+//
+function order = sort_merge_comparison ( x , y )
+  if x < y then
+    order = -1
+  elseif x==y then
+    order = 0
+  else 
+    order = 1
+  end
+endfunction
+
+//
+// sort_merge --
+//   Returns the sorted array x.
+// Arguments
+//   x : the array to sort
+//   compfun : the comparison function
+// Bruno Pincon
+// "quelques tests de rapidit´e entre diff´erents logiciels matriciels"
+// Modified by Michael Baudin to manage a comparison function
+//
+function [x] = sort_merge ( varargin )
+  [lhs,rhs]=argn();
+  if rhs<>1 & rhs<>2 then
+    errmsg = sprintf("Unexpected number of arguments : %d provided while 1 or 2 are expected.",rhs);
+    error(errmsg)
+  end
+  // Get the array x
+  x = varargin(1);
+  // Get the comparison function compfun
+  if rhs==1 then
+    compfun = sort_merge_comparison;
+  else
+    compfun = varargin(2);
+  end
+  // Proceed...
+  n = length(x)
+  if n > 1 then
+    m = floor(n/2); 
+    p = n-m
+    x1 = sort_merge ( x(1:m) , compfun )
+    x2 = sort_merge ( x(m+1:n) , compfun )
+    i = 1; 
+    i1 = 1;
+    i2 = 1;
+    for i = 1:n
+      order = compfun ( x1(i1) , x2(i2) );
+      if order<=0 then
+        x(i) = x1(i1)
+        i1 = i1+1
+        if (i1 > m) then
+          x(i+1:n) = x2(i2:p)
+          break
+        end
+      else
+        x(i) = x2(i2)
+        i2 = i2+1
+        if (i2 > p) then
+          x(i+1:n) = x1(i1:m)
+          break
+        end
+      end
+    end
+  end
+endfunction
+
+// 
+// compare_complexrealimag --
+//   Returns -1 if a < b, 
+//   returns 0 if a==b,
+//   returns +1 if a > b
+// Compare first by real parts, then by imaginary parts.
+//
+function order = compare_complexrealimag ( a , b )
+ ar = real(a)
+ br = real(b)
+ if ar < br then
+   order = -1
+ elseif ar > br then
+   order = 1
+ else
+   ai = imag(a)
+   bi = imag(b)
+   if ai < bi then
+     order = -1
+   elseif ai == bi then
+     order = 0
+   else
+     order = 1
+    end
+  end
+endfunction
+
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then pause,end
+endfunction
+
 t=poly(0,"t");
 p=t^14 - 15*t^12 - t^11 + 89*t^10 + 12*t^9 - 263*t^8 - 53*t^7 + 397*t^6 + 103*t^5 - 275*t^4 - 78*t^3 + 62*t^2 + 8*t - 7;
 myroots=roots(p);
-computedroots = sort(myroots);
-expectedroots  = [..
-- 1.9914144710587742270747 ;..
-1.9767819021883872299128 - 0.0347589196932355307124*%i ;..
-1.9767819021883872299128 + 0.0347589196932355307124*%i ;..
-- 1.89588904429592775003 ;..
-1.8466679814523012659322 ;..
-- 1.6923826055708985904857 ;..
-1.5040136285121223913563 ;..
-- 1.4815461434243473171080 ;..
-1.346891063468121929603 ;..
-- 1.1302576100836980721454 ;..
-- 0.5652255834927423228109 - 0.0655079626336916437390*%i ;..
-- 0.5652255834927423228109 + 0.0655079626336916437390*%i ;..
-0.3354022818049053333844 + 0.1602901760665648156490*%i ;..
-0.3354022818049053333844 - 0.1602901760665648156490*%i..
+//computedroots = sort(myroots);
+computed = sort_merge ( myroots , compare_complexrealimag );
+expected  = [ 
+- 1.9914144710587742270747  
+- 1.89588904429592775003 
+- 1.6923826055708985904857  
+- 1.4815461434243473171080  
+- 1.1302576100836980721454  
+- 0.5652255834927423228109 - 0.0655079626336916437390*%i  
+- 0.5652255834927423228109 + 0.0655079626336916437390*%i  
+0.3354022818049053333844 - 0.1602901760665648156490*%i 
+0.3354022818049053333844 + 0.1602901760665648156490*%i  
+1.346891063468121929603  
+1.5040136285121223913563  
+1.8466679814523012659322  
+1.9767819021883872299128 - 0.0347589196932355307124*%i  
+1.9767819021883872299128 + 0.0347589196932355307124*%i  
 ];
 // Precision measured with experiments
-if or(abs(computedroots-expectedroots)>10^4*%eps) then pause,end
+assert_close ( computed , expected , 10^4*%eps )
 
 
 

@@ -64,6 +64,7 @@ GRAPHICS_IMPEXP void Objsegs ( int * style,
                int   n1   ,
                double  * x    ,
                double  * y    ,
+               double  * z    ,
                double    arsize ) ;
 
 GRAPHICS_IMPEXP void Objstring( char            ** fname      ,

@@ -636,16 +636,6 @@ end
 endfunction
 
 
-// Reset the Default Drawing Mode (DDM) of the figure
-// immediate_drawing is set to its input value.
-function ResetFigureDDM(cur_figure, cur_draw_mode)
-
-if type(cur_figure == 9)
-  cur_figure.immediate_drawing = cur_draw_mode;
-end
-
-endfunction
-
 // If an error occurs in the surf code, we need to catch it
 // order to reset some default values
 function processSurfError(cur_figure, cur_draw_mode)

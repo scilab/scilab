@@ -73,7 +73,7 @@ libscilocalization_la_sci_gateway_DATA = sci_gateway/localization_gateway.xml
 
 
 ####localization : include files ####
-libscilocalization_la_includedir=$(pkgincludedir)/localization
+libscilocalization_la_includedir=$(pkgincludedir)
 libscilocalization_la_include_HEADERS = includes/localization.h \
 includes/gw_localization.h \
 includes/InitializeLocalization.h \

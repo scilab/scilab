@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "machine.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "api_common.h"
 #include "api_internal_common.h"
 #include "api_double.h"

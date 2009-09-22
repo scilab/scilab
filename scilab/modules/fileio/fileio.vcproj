@@ -409,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\expandPathVariable.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\FileExist.c"
 				>
 			</File>
@@ -748,6 +752,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\dynlib_fileio.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\expandPathVariable.h"
 				>
 			</File>
 			<File

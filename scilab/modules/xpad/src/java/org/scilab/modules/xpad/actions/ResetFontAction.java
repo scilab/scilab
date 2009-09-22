@@ -3,6 +3,8 @@ package org.scilab.modules.xpad.actions;
 import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
@@ -29,26 +31,26 @@ public class ResetFontAction extends DefaultAction {
     		
     		/*we need to loop on every style , if not after the second change, styles will not change anymore
     		  except default*/
+			int numberOfTab = getEditor().getTabPane().getComponentCount();
+			for ( int j = 0 ; j < numberOfTab ; j++){
+				
+				JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
     		
-    		for (int i = 0 ; i < listStylesName.size() ; i++ )
-    		{
-    			Style tempStyle = getEditor().getTextPane().getStyledDocument().getStyle(listStylesName.get(i));
-
-    	    	
-    	    	StyleConstants.setFontFamily(tempStyle ,oldFont.getFamily() );
-    	    	StyleConstants.setFontSize(tempStyle, oldFont.getSize());
-    	    	StyleConstants.setBold(tempStyle, oldFont.isBold());
-    	    	//StyleConstants.setItalic(tempStyle, newFont.isItalic());
-    	    	
-
-    			
-    		}
+	    		for (int i = 0 ; i < listStylesName.size() ; i++ ){
+	    			Style tempStyle =  textPane.getStyledDocument().getStyle(listStylesName.get(i));
 	    	
+	    	    	StyleConstants.setFontFamily(tempStyle ,oldFont.getFamily() );
+	    	    	StyleConstants.setFontSize(tempStyle, oldFont.getSize());
+	    	    	StyleConstants.setBold(tempStyle, oldFont.isBold());
+	    	    	//StyleConstants.setItalic(tempStyle, newFont.isItalic());  			
+	    		}
+	    		/*insert update refresh the styles without needing to type text*/
+		    	((ScilabStyleDocument)  textPane.getStyledDocument()).insertUpdate(null);
+			}
 
     		
-    		/*insert update refresh the styles without needing to type text*/
-	    	((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertUpdate(null);
-	    	getEditor().getTextPane().requestFocus();
+
+	    	getEditor().getTextPane().setFocusable(true);
 	    	
 	    	ConfigXpadManager.saveFont(oldFont);
     	}

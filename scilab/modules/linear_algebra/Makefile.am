@@ -124,7 +124,7 @@ libscilinear_algebra_la_sci_gateway_DATA = sci_gateway/linear_algebra_gateway.xm
 
 
 #### linear_algebra : include files ####
-libscilinear_algebra_la_includedir=$(pkgincludedir)/linear_algebra
+libscilinear_algebra_la_includedir=$(pkgincludedir)
 libscilinear_algebra_la_include_HEADERS = includes/gw_linear_algebra.h \
 includes/gw_linear_algebra2.h \
 includes/issymmetric.h \

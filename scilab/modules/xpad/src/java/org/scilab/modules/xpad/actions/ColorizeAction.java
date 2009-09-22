@@ -23,8 +23,12 @@ import org.scilab.modules.xpad.style.ScilabStyleDocument;
 
 public class ColorizeAction extends DefaultAction {
 
+	private static Xpad color_editor;
+
 	private ColorizeAction(Xpad editor) {
 		super("Colorize", editor);
+		//setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_, ActionEvent.CTRL_MASK));
+		color_editor = editor;
 	}
 
 	public void doAction() {
@@ -33,5 +37,9 @@ public class ColorizeAction extends DefaultAction {
 
 	public static MenuItem createMenu(Xpad editor) {
 		return createMenu("Colorize", null, new ColorizeAction(editor), null);
-	 }
+	}
+
+	public static void getXpadEditor(){
+		((ScilabStyleDocument) color_editor.getTextPane().getStyledDocument()).setEditor(color_editor);
+	}
 }

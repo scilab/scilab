@@ -257,6 +257,8 @@ src/cpp/subwinDrawing/XAxisPositioner.cpp \
 src/cpp/subwinDrawing/YAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
 src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginXAxisPositioner.cpp \
+src/cpp/subwinDrawing/OriginYAxisPositioner.cpp \
 src/cpp/subwinDrawing/AxisPositioner.cpp \
 src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
 src/cpp/subwinDrawing/ZAxisPositioner.cpp \
@@ -390,7 +392,7 @@ libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 #libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 #### renderer : include files ####
-libscirenderer_la_includedir=$(pkgincludedir)/renderer
+libscirenderer_la_includedir=$(pkgincludedir)
 libscirenderer_la_include_HEADERS = includes/gw_renderer.h \
 includes/BuildDrawingObserver.h \
 includes/DrawingBridge.h \

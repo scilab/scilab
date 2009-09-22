@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
@@ -31,7 +31,7 @@
 int sci_findfiles(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, n1 = 0, m1 = 0;
-	char pathextented[PATH_MAX];
+	char *pathextented = NULL;
 	int out_n = 0;
 	char *path = NULL;
 	char *filespec = NULL;
@@ -102,8 +102,9 @@ int sci_findfiles(char *fname,unsigned long fname_len)
 		break;
 	}
 
-	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
+	pathextented = expandPathVariable(path);
 	FilesList = findfiles(pathextented, filespec, &sizeListReturned);
+	if (pathextented) {FREE(pathextented); pathextented = NULL;}
 	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
 
 	if (FilesList)

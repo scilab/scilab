@@ -19,7 +19,7 @@
 #include "gw_sound.h"
 #include "PATH_MAX.h"
 #include "stack-c.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
@@ -31,11 +31,9 @@ static int playsound(char *filename,char *command);
 /*--------------------------------------------------------------------------*/
 int sci_Playsound (char *fname,unsigned long fname_len)
 {
-	char filename[PATH_MAX];
-	int out_n;
-	long int lout;
-	char *command=NULL;
-	int m1,n1,l1,un=1,rep,m2,n2,l2;
+	char *filename = NULL;
+	char *command = NULL;
+	int m1,n1,l1,un=1,rep = -1 ,m2,n2,l2;
 	CheckRhs(1,2);
 	CheckLhs(0,1);
 	/*  checking variable file */
@@ -45,11 +43,15 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		command = cstk(l2);
 	}
-	/*** first call to get the size **/
-	lout = PATH_MAX + FILENAME_MAX;
-	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
-	rep = playsound(filename,command);
+	filename = expandPathVariable(filename);
+	if (filename)
+	{
+		rep = playsound(filename,command);
+		FREE(filename);
+		filename = NULL;
+	}
+
 
 	if ( Lhs == 1 )
 	{

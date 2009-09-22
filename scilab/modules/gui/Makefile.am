@@ -278,7 +278,7 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 
 #### gui : include files ####
-libscigui_la_includedir=$(pkgincludedir)/gui
+libscigui_la_includedir=$(pkgincludedir)
 libscigui_la_include_HEADERS = includes/gw_gui.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \

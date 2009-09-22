@@ -22,6 +22,10 @@ function libn = ilib_for_link(names, ..
                               cc)
 
   [lhs,rhs] = argn(0);
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_for_link"));
+    return
+  end
   
   if rhs <= 4 then makename = "Makelib";end
   if rhs <= 5 then loadername = "loader.sce";end

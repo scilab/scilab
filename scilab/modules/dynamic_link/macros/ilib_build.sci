@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
-// Copyright (C) DIGITEO - 2009 - Allan CORNEt
+// Copyright (C) DIGITEO - 2009 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,11 +12,15 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
 
   if ~haveacompiler() then
     error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"),'ilib_build'));
-  	return;
+    return;
   end
   
   [lhs,rhs] = argn(0);
-  
+  if rhs < 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"ilib_build"));
+    return
+  end
+
   if type(ilib_name) <> 10 then
     error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),'ilib_build',1));
   end

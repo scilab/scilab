@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "javasci_Scilab.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "api_common.h"
 #include "../../../modules/graphics/includes/WindowList.h"
 /*--------------------------------------------------------------------------*/

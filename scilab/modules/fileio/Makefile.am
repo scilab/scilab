@@ -45,6 +45,7 @@ src/c/fileinfo.c \
 src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
+src/c/expandPathVariable.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -141,7 +142,7 @@ libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
 
 #### fileio : include files ####
-libscifileio_la_includedir=$(pkgincludedir)/fileio
+libscifileio_la_includedir=$(pkgincludedir)
 libscifileio_la_include_HEADERS = includes/FileExist.h \
 includes/gw_fileio.h \
 includes/findfiles.h \
@@ -166,6 +167,7 @@ includes/deleteafile.h \
 includes/readline.h \
 includes/splitpath.h \
 includes/cluni0.h \
+includes/expandPathVariable.h \
 includes/dynlib_fileio.h \
 includes/scicurdir.h
 

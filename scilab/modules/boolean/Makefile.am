@@ -54,7 +54,7 @@ libsciboolean_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciboolean_la_sci_gateway_DATA = sci_gateway/boolean_gateway.xml
 
 ####�boolean : include files ####
-libsciboolean_la_includedir=$(pkgincludedir)/boolean
+libsciboolean_la_includedir=$(pkgincludedir)
 libsciboolean_la_include_HEADERS = includes/gw_boolean.h \
 includes/matboolean.h
 

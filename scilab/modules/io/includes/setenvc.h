@@ -23,17 +23,5 @@
  */
 IO_IMPEXP BOOL setenvc(char *string,char *value);
 
-/**
- * TODO : comment 
- * @return 
- */
-IO_IMPEXP int getUpdateEnvVar(void);
-
-/**
- * TODO : comment 
- * @param val
- */
-IO_IMPEXP void setUpdateEnvVar(int val);
-
 #endif /* __SETENVC_H__ */
 /*--------------------------------------------------------------------------*/

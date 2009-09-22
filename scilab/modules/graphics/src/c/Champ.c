@@ -96,8 +96,8 @@ void champg(char *name, int colored, double *x, double *y, double *fx, double *f
 
   for(i=0;i<(*n1);i++) { style[i] = i ; }
 
-  newSegs = ConstructSegs(psubwin,type,x,y,*n1,*n2,fx,fy,flag,
-                          style,arsize1,colored,*arfact,typeofchamp);
+  newSegs = ConstructSegs(psubwin,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
+                          style,arsize1,colored,typeofchamp);
   sciSetCurrentObj(newSegs);
 
   if( style != NULL )

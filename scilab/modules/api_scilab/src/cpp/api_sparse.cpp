@@ -19,7 +19,7 @@
 #include "api_sparse.h"
 
 #include "MALLOC.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 
 //internal sparse functions

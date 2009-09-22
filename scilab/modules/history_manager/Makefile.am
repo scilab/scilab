@@ -84,7 +84,7 @@ libscihistory_manager_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihistory_manager_la_sci_gateway_DATA = sci_gateway/history_manager_gateway.xml
 
 #### history_manager : include files ####
-libscihistory_manager_la_includedir=$(pkgincludedir)/history_manager
+libscihistory_manager_la_includedir=$(pkgincludedir)
 libscihistory_manager_la_include_HEADERS = includes/gw_history_manager.h \
 includes/HistoryManager.h \
 includes/InitializeHistoryManager.h \

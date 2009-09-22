@@ -57,7 +57,7 @@ libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
 #### jvm : include files ####
-libscijvm_la_includedir=$(pkgincludedir)/jvm
+libscijvm_la_includedir=$(pkgincludedir)
 libscijvm_la_include_HEADERS = includes/TerminateJVM.h \
 includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \

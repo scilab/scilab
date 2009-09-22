@@ -50,6 +50,7 @@ libscixpad_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/core/includes \
 			-I$(top_srcdir)/modules/functions/includes
 
@@ -59,6 +60,7 @@ libscixpad_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/api_scilab/includes
@@ -104,7 +106,7 @@ libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 
 
 #### xpad : include files ####
-libscixpad_la_includedir=$(pkgincludedir)/xpad
+libscixpad_la_includedir=$(pkgincludedir)
 libscixpad_la_include_HEADERS = includes/gw_xpad.h \
 includes/dynlib_xpad.h \
 includes/callxpad.h

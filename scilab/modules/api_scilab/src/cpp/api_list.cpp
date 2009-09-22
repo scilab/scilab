@@ -15,7 +15,7 @@
 
 #include "MALLOC.h"
 #include "stack-c.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 
 #include "api_common.h"
 #include "api_internal_common.h"
@@ -51,14 +51,14 @@ static void updateNamedListOffset(int _iVar, int *_piCurrentNode, int _iItemPos,
 static void updateCommunListOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 static int allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-static int getCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
+static int getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
 static int createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 static int createCommomMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 static int readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 static int allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr);
 static int fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
-static int getCommonxMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+static int getCommonxMatrixOfPolyInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static int createCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static int fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int* _piTotalLen);
 static int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
@@ -319,17 +319,17 @@ int getCommomListInNamedList(char* _pstName, int* _piParent, int _iItemPos, int 
  * Double functions *
  *********************/
 
-int getMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
+int getMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
 {
-	return getCommonMatrixOfDoubleInList(_iVar, _piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
+	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
 }
 
-int getComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+int getComplexMatrixOfDoubleInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonMatrixOfDoubleInList(_iVar, _piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
+	return getCommonMatrixOfDoubleInList(_piParent,_iItemPos, 1, _piRows, _piCols, _pdblReal, _pdblImg);
 }
 
-static int getCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
+static int getCommonMatrixOfDoubleInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -767,7 +767,7 @@ static int readCommonMatrixOfDoubleInNamedList(char* _pstName, int* _piParent, i
  * Strings functions *
  *********************/
 
-int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+int getMatrixOfStringInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -940,7 +940,7 @@ int readMatrixOfStringInNamedList(char* _pstName, int* _piParent, int _iItemPos,
  * boolean functions *
  *********************/
 
-int getMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
+int getMatrixOfBooleanInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -1130,17 +1130,17 @@ int readMatrixOfBooleanInNamedList(char* _pstName, int* _piParent, int _iItemPos
  * polynomials functions *
  *************************/
 
-int getMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+int getMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
 {
-	return getCommonxMatrixOfPolyInList(_iVar, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+	return getCommonxMatrixOfPolyInList(_piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
 }
 
-int getComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int getComplexMatrixOfPolyInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonxMatrixOfPolyInList(_iVar, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+	return getCommonxMatrixOfPolyInList(_piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int getCommonxMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int getCommonxMatrixOfPolyInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -1491,7 +1491,7 @@ int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int 
 	return createCommomMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _iRows, _iCols, _piData);
 }
 
-static int getCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
+static int getCommonMatrixOfIntegerInList(int* _piParent, int _iItemPos, int _iPrecision, int* _piRows, int* _piCols, void** _pvData)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -1511,34 +1511,34 @@ static int getCommonMatrixOfIntegerInList(int _iVar, int* _piParent, int _iItemP
 	return 0;
 }
 
-int getMatrixOfUnsignedInteger8InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)
+int getMatrixOfUnsignedInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned char** _pucData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, (void**)_pucData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT8, _piRows, _piCols, (void**)_pucData);
 }
 
-int getMatrixOfUnsignedInteger16InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)
+int getMatrixOfUnsignedInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned short** _pusData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, (void**)_pusData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT16, _piRows, _piCols, (void**)_pusData);
 }
 
-int getMatrixOfUnsignedInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)
+int getMatrixOfUnsignedInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, unsigned int** _puiData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, (void**)_puiData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_UINT32, _piRows, _piCols, (void**)_puiData);
 }
 
-int getMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)
+int getMatrixOfInteger8InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, char** _pcData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT8, _piRows, _piCols, (void**)_pcData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT8, _piRows, _piCols, (void**)_pcData);
 }
 
-int getMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)
+int getMatrixOfInteger16InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, short** _psData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT16, _piRows, _piCols, (void**)_psData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT16, _piRows, _piCols, (void**)_psData);
 }
 
-int getMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)
+int getMatrixOfInteger32InList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piData)
 {
-	return getCommonMatrixOfIntegerInList(_iVar, _piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
+	return getCommonMatrixOfIntegerInList(_piParent, _iItemPos, SCI_INT32, _piRows, _piCols, (void**)_piData);
 }
 
 static int createCommonMatrixOfIntegerInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iPrecision, int _iRows, int _iCols, void* _pvData)
@@ -1852,7 +1852,7 @@ int createComplexSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iI
 	return createCommonSparseMatrixInNamedList(_pstName, _piParent, _iItemPos, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-static int getCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+static int getCommonSparseMatrixInList(int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -1872,14 +1872,14 @@ static int getCommonSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos,
 	return 0;
 }
 
-int getSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
+int getSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
 {
-	return getCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
+	return getCommonSparseMatrixInList(_piParent, _iItemPos, 0, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, NULL);
 }
 
-int getComplexSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+int getComplexSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	return getCommonSparseMatrixInList(_iVar, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
+	return getCommonSparseMatrixInList(_piParent, _iItemPos, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
 static int readCommonSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
@@ -2078,7 +2078,7 @@ int createBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iI
 	return 0;
 }
 
-int getBooleanSparseMatrixInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
+int getBooleanSparseMatrixInList(int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;
@@ -2151,7 +2151,7 @@ int readBooleanSparseMatrixInNamedList(char* _pstName, int* _piParent, int _iIte
 /*********************
  * Pointer functions *
  *********************/
-int getPointerInList(int _iVar, int* _piParent, int _iItemPos, void** _pvPtr)
+int getPointerInList(int* _piParent, int _iItemPos, void** _pvPtr)
 {
 	int iRet			= 0;
 	int* piAddr		= NULL;

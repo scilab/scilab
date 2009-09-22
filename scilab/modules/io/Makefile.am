@@ -94,7 +94,7 @@ libsciio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
 ####�io : include files ####
-libsciio_la_includedir=$(pkgincludedir)/io
+libsciio_la_includedir=$(pkgincludedir)
 libsciio_la_include_HEADERS = includes/gw_io.h \
 includes/getenvc.h \
 includes/setenvc.h \

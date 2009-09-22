@@ -18,12 +18,12 @@
 #include "stackinfo.h"
 #include "MALLOC.h"
 #include "cvstr.h"
-#include "cluni0.h"
+#include "expandPathVariable.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
 #include "charEncoding.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 /*--------------------------------------------------------------------------*/
 char *getlibrarypath(char *libraryname)
 {
@@ -57,40 +57,42 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 	{
 		/* in each library directory , we have a "names" file with list of macros */
 		#define filenameNAMES "names"
-		char expandedpath[PATH_MAX+1];
-		char *fullfilename = NULL;
-		int out_n = 0;
+		char *expandedpath = expandPathVariable(pathlibrary);
 
-		C2F(cluni0)(pathlibrary,expandedpath, &out_n,(long)strlen(pathlibrary),PATH_MAX);
-
-		fullfilename = (char*)MALLOC(sizeof(char)*(strlen(expandedpath)+strlen(filenameNAMES)+1));
-		if (fullfilename)
+		if (expandedpath)
 		{
-			char  line[PATH_MAX+1];
-			FILE * pFile = NULL;
-			int nbElements = 0;
-
-			sprintf(fullfilename,"%s%s",expandedpath,filenameNAMES);
-
-			wcfopen (pFile,fullfilename,"rt");
-			if (pFile)
+			char *fullfilename = (char*)MALLOC(sizeof(char)*(strlen(expandedpath)+strlen(filenameNAMES)+1));
+			if (fullfilename)
 			{
-				while(fgets (line,sizeof(line),pFile) != NULL)
-				{
-					line[strlen(line)-1]='\0'; /* remove carriage return */
-					
-					if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
-					else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
+				char  line[PATH_MAX+1];
+				FILE * pFile = NULL;
+				int nbElements = 0;
 
-					macroslist[nbElements] = strdup(line);
-					nbElements++;
+				sprintf(fullfilename,"%s%s",expandedpath,filenameNAMES);
+
+				wcfopen (pFile,fullfilename,"rt");
+				if (pFile)
+				{
+					while(fgets (line,sizeof(line),pFile) != NULL)
+					{
+						line[strlen(line)-1]='\0'; /* remove carriage return */
+					
+						if (macroslist) macroslist = (char**)REALLOC(macroslist,sizeof(char*)*(nbElements+1));
+						else macroslist =(char**)MALLOC(sizeof(char*)*(nbElements+1));
+
+						macroslist[nbElements] = strdup(line);
+						nbElements++;
+					}
+					fclose(pFile);
+					*sizearray = nbElements;
 				}
-				fclose(pFile);
-				*sizearray = nbElements;
+				FREE(fullfilename);
+				fullfilename = NULL;
 			}
-			FREE(fullfilename);
-			fullfilename = NULL;
+			FREE(expandedpath);
+			expandedpath = NULL;
 		}
+
 		FREE(pathlibrary);
 		pathlibrary = NULL;
 	}
