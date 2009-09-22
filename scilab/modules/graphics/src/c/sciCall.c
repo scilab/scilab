@@ -217,10 +217,10 @@ void Objsegs ( int * style,
   int type=0, colored=0;
   double *fx =NULL,*fy = NULL; // No fx or fy
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-
+  sciPointObj *psubwin = NULL;
 
   checkRedrawing() ;
-  sciPointObj *psubwin = sciGetCurrentSubWin();
+  psubwin = sciGetCurrentSubWin();
   sciSetCurrentObj(
     ConstructSegs(psubwin,type,
                   x,y,z,n1,n1, (z==NULL ? 0 : n1),     // x, y and z have the same size n1
