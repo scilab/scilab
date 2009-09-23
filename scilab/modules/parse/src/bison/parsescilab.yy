@@ -571,6 +571,36 @@ FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak func
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
 				}
+| FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
+				  ast::vars_t *tmp = new ast::vars_t;
+				  tmp->push_front(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
+				  $$ = new ast::FunctionDec(@$,
+							    *new symbol::Symbol(*$4),
+							    *new ast::ArrayListVar(@5, *$5),
+							    *new ast::ArrayListVar(@2, *tmp),
+							    *$7);
+				}
+| FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
+				  $$ = new ast::FunctionDec(@$,
+							    *new symbol::Symbol(*$6),
+							    *new ast::ArrayListVar(@7, *$7),
+							    *new ast::ArrayListVar(@3 ,*$3),
+							    *$9);
+				}
+| FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody END {
+				  $$ = new ast::FunctionDec(@$,
+							    *new symbol::Symbol(*$5),
+							    *new ast::ArrayListVar(@6, *$6),
+							    *new ast::ArrayListVar(@2, *new ast::vars_t),
+							    *$8);
+				}
+| FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody END {
+				  $$ = new ast::FunctionDec(@$,
+							    *new symbol::Symbol(*$2),
+							    *new ast::ArrayListVar(@3, *$3),
+							    *new ast::ArrayListVar(@$, *new ast::vars_t),
+							    *$5);
+				}
 ;
 
 /*
