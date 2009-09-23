@@ -11,6 +11,9 @@
 // =============================================================================
 load('SCI/modules/xcos/macros/lib');
 
+load('SCI/modules/scicos_blocks/macros/Sources/lib');
+load('SCI/modules/scicos_blocks/macros/Sinks/lib');
+
 // Add help chapter
 // =============================================================================
 if WITH_HELPTOOLS then
