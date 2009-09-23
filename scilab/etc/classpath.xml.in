@@ -41,10 +41,12 @@ The option is "disableUnderMode" and can be:
 <path value="@JOGL@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="@GLUEGEN_RT@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <path value="@JHDF5@" load="onUse">
