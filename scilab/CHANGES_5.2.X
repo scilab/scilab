@@ -240,6 +240,11 @@ Linear algebra
 =============
  - Clarified documentation for lu function.
 
+elementary functions
+=============
+ - 'sort' is obsolete. see 'gsort'
+
+
 Bug fixes:
 ==========
 
