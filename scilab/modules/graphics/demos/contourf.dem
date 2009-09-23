@@ -16,9 +16,9 @@ levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
   h = [r g b];
   xset('colormap',h);
 xset('fpf',' ');
-xbasc();
+clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
 xset('fpf','');
 halt()
-xbasc();
+clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);

@@ -21,7 +21,7 @@ xstring(28,30,'K');xstring(56,30,'Plant');xstring(12,28.80,'-');
 xtitle('PLANT   and   CONTROLLER')
 
 
-// xset("window",0);xbasc();xselect();
+// xset("window",0);clf();xselect();
 // plot2d(xx,yy,ones(1,16),'022');
 // xstring(28,30,'K');xstring(56,30,'Plant');xstring(12,28.80,'-');
 // xtitle('PLANT   and   CONTROLLER')

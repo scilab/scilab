@@ -80,9 +80,6 @@ replot([-3,-2,8,4],f.children(2))
         <link linkend="xbasr">xbasr</link>
       </member>
       <member>
-        <link linkend="xbasc">xbasc</link>
-      </member>
-      <member>
         <link linkend="clf">clf</link>
       </member>
     </simplelist>

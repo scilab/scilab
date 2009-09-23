@@ -130,7 +130,7 @@ color = 2*ones(1,size(zf,2));
 // indices corresponding to facet in the interpolation region
 ind=find( mean(xf,"r")>0 & mean(xf,"r")<1 & mean(yf,"r")>0 & mean(yf,"r")<1 );
 color(ind)=3;
-xbasc();
+clf();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["extrapolation region","interpolation region"],[2 3],1)
 xselect()

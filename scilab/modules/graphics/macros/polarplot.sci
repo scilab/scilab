@@ -10,7 +10,7 @@ function polarplot(theta,rho,style,strf,leg,rect)
   [lhs,rhs]=argn(0)
   if rhs<=0 then
     theta=0:.01:2*%pi;rho=sin(2*theta).*cos(2*theta)
-    xbasc();polarplot(theta,rho)
+    clf();polarplot(theta,rho)
     return
   end
   if size(theta,1)==1 then theta=theta(:),end
