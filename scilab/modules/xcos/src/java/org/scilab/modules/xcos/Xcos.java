@@ -17,11 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
-import javax.swing.JToolBar;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
@@ -49,9 +46,12 @@ import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.DumpAction;
+import org.scilab.modules.xcos.actions.RunAction;
+import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.clock.ClockBlock;
 import org.scilab.modules.xcos.block.generic.GenericBlock;
+import org.scilab.modules.xcos.block.ramp.RampBlock;
 import org.scilab.modules.xcos.block.scope.ScopeBlock;
 import org.scilab.modules.xcos.block.sinusoid.SinusoidBlock;
 import org.scilab.modules.xcos.palette.XcosPalette;
@@ -110,11 +110,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	GenericBlock genericTemplate = new GenericBlock();
 	ScopeBlock scopeTemplate = new ScopeBlock();
 	SinusoidBlock sinusoidTemplate = new SinusoidBlock();
+	RampBlock rampBlockTemplate = new RampBlock();
 
 	sources.addTemplate("Clock", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLOCK_c_blk.gif"),clockTemplate);
 	sources.addTemplate("Generic", null ,genericTemplate);
 	sources.addTemplate("Scope", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CSCOPE_blk.gif"),scopeTemplate);
 	sources.addTemplate("Sinusoid", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GENSIN_f_blk.gif"),sinusoidTemplate);
+	sources.addTemplate("Ramp", null, rampBlockTemplate);
     }
 
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
@@ -162,6 +164,13 @@ public class Xcos extends SwingScilabTab implements Tab {
 	shape.add(UnGroupAction.ungroupMenu(scilabGraph));
 	menuBar.add(shape);
 
+	// SIMULATE
+	Menu simulate = ScilabMenu.createMenu();
+	simulate.setText("Simulate");
+	simulate.add(RunAction.runMenu(scilabGraph));
+	simulate.add(StopAction.stopMenu(scilabGraph));
+	menuBar.add(simulate);
+	
 	return menuBar;
     }
 

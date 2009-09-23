@@ -69,5 +69,14 @@
 		<add as="endArrow" value="none"/>
 		<add as="strokeColor" value="black"/>
 	</add>
-	
+	<add as="CommandControlLink" extend="defaultEdge">
+		<add as="strokeColor" value="red"/>
+	</add>
+	<add as="ExplicitLink" extend="defaultEdge">
+		<add as="strokeColor" value="blue"/>
+	</add>
+	<add as="ImplicitLink" extend="defaultEdge">
+		<add as="strokeColor" value="green"/>
+	</add>
+
 </mxStylesheet>

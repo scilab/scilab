@@ -14,10 +14,13 @@ package org.scilab.modules.xcos;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -29,8 +32,17 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.clock.ClockBlock;
+import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
+import org.scilab.modules.xcos.link.explicit.ExplicitLink;
+import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.PortCheck;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
@@ -54,8 +66,57 @@ public class XcosDiagram extends ScilabGraph {
     private double maximumStepSize = 0;
     private String context = "";
     private List doc = null;
-    
-    
+
+
+    public Object addEdge(Object edge, Object parent, Object source,
+	    Object target, Integer index)
+    {	
+	// Command -> Control
+	if(source instanceof CommandPort) {
+	    if (target instanceof ControlPort) {
+		return super.addEdge(new CommandControlLink(), parent, source, target, index);
+	    }
+	}
+
+	// Control -> Command
+	// Switch source and target !
+	if(target instanceof CommandPort) {
+	    if (source instanceof ControlPort) {
+		return super.addEdge(new CommandControlLink(), parent, target, source, index);
+	    }
+	}
+
+	// ExplicitOutput -> ExplicitInput
+	if (source instanceof ExplicitOutputPort) {
+	    if(target instanceof ExplicitInputPort) {
+		return super.addEdge(new ExplicitLink(), parent, source, target, index);
+	    }
+	}
+	// ExplicitInput -> ExplicitOutput
+	// Switch source and target !
+	if(target instanceof ExplicitOutputPort) {
+	    if (source instanceof ExplicitInputPort) {
+		return super.addEdge(new ExplicitLink(), parent, target, source, index);
+	    }
+	}
+
+	// ImplicitOutput -> ImplicitInput
+	if (source instanceof ImplicitOutputPort) {
+	    if(target instanceof ImplicitInputPort) {
+		return super.addEdge(new ImplicitLink(), parent, source, target, index);
+	    }
+	}
+	// ImplicitInput -> ImplicitOutput
+	// Switch source and target !
+	if(target instanceof ImplicitOutputPort) {
+	    if (source instanceof ImplicitInputPort) {
+		return super.addEdge(new ImplicitLink(), parent, target, source, index);
+	    }
+	}
+
+	return null;
+    }
+
     public XcosDiagram() {
 	super();
 	keyboardHandler = new XcosShortCut(getAsComponent());
@@ -74,22 +135,22 @@ public class XcosDiagram extends ScilabGraph {
 	//addCell(clock, parent);
 
 	//getAsComponent().setCellWarning(clock, "ACHTUNG !!!");
-	
-//	SinusoidBlock sinusoid = new SinusoidBlock();
-//	sinusoid.getGeometry().setX(220);
-//	sinusoid.getGeometry().setY(120);
-//	addCell(sinusoid,parent);
-//	
-//	GenericBlock fake = new GenericBlock();
-//	fake.getGeometry().setX(20);
-//	fake.getGeometry().setY(420);
-//	addCell(fake, parent);
-//	
-//	ScopeBlock scope = new ScopeBlock();
-//	scope.getGeometry().setX(220);
-//	scope.getGeometry().setY(420);
-//	addCell(scope, parent);
-	
+
+	//	SinusoidBlock sinusoid = new SinusoidBlock();
+	//	sinusoid.getGeometry().setX(220);
+	//	sinusoid.getGeometry().setY(120);
+	//	addCell(sinusoid,parent);
+	//	
+	//	GenericBlock fake = new GenericBlock();
+	//	fake.getGeometry().setX(20);
+	//	fake.getGeometry().setY(420);
+	//	addCell(fake, parent);
+	//	
+	//	ScopeBlock scope = new ScopeBlock();
+	//	scope.getGeometry().setX(220);
+	//	scope.getGeometry().setY(420);
+	//	addCell(scope, parent);
+
 	/**
 	 * END
 	 */
@@ -107,7 +168,9 @@ public class XcosDiagram extends ScilabGraph {
 	setAllowLoops(false);
 
 	setCellsResizable(false);
-	
+
+	setCellsEditable(false);
+
 	setConnectableEdges(false);
 
 
@@ -163,45 +226,60 @@ public class XcosDiagram extends ScilabGraph {
 
 	    public void mouseClicked(MouseEvent arg0) {
 		Object cell = getAsComponent().getCellAt(arg0.getX(), arg0.getY());
-		
+
 		if (arg0.getClickCount() >= 2 && cell != null)
 		{
-			System.out.println("cell="+getLabel(cell));
-			arg0.consume();
+		    System.out.println("cell="+getLabel(cell));
+		    if (cell instanceof BasicBlock) {
+			BasicBlock block = (BasicBlock) cell;
+			File temp;
+			try {
+			    temp = File.createTempFile("xcos",".hdf5");
+			    temp.deleteOnExit();
+			    int file_id = H5Write.createFile(temp.getAbsolutePath());
+			    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
+			    H5Write.closeFile(file_id);
+			    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"+
+				    "[x,y,typ]="+block.getInterfaceFunctionName()+"(\"set\",scs_m, 0);");
+
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+		    }
 		}
 		else {
 		    System.out.println("ClickCount="+arg0.getClickCount());
 		}
-		
+
 	    }
 
 	    @Override
 	    public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	    }
 
 	    @Override
 	    public void mouseExited(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	    }
 
 	    @Override
 	    public void mousePressed(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	    }
 
 	    @Override
 	    public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		
+
 	    }
-	    
+
 	});
     }
-
 
     /*
      * Manage Group to be CellFoldable i.e with a (-) to reduce
@@ -211,22 +289,25 @@ public class XcosDiagram extends ScilabGraph {
      * (non-Javadoc)
      * @see com.mxgraph.view.mxGraph#isCellFoldable(java.lang.Object, boolean)
      */
-    public boolean isCellFoldable(Object cell, boolean collapse)
-    {
+    public boolean isCellFoldable(Object cell, boolean collapse) {
 	return !(cell instanceof BasicBlock) && super.isCellFoldable(cell, collapse);
     }
 
-//    public boolean isCellConnectable(Object cell)
-//    {
-//	return (cell instanceof InputPort) && super.isCellConnectable(cell);
-//    }
+    public boolean isCellMovable(Object cell) {
+	return (cell instanceof BasicBlock) && super.isCellMovable(cell);
+    }
+
+    //    public boolean isCellConnectable(Object cell)
+    //    {
+    //	return (cell instanceof InputPort) && super.isCellConnectable(cell);
+    //    }
 
     public void dumpToHdf5File(String fileName) {
 	if (fileName == null) {
 	    FileChooser fc = ScilabFileChooser.createFileChooser();
 	    fc.setMultipleSelection(false);
 	    fc.displayAndWait();
-	    
+
 	    if (fc.getSelection() == null || 
 		    fc.getSelection().length == 0 ||
 		    fc.getSelection()[0].isEmpty()) {
@@ -235,19 +316,19 @@ public class XcosDiagram extends ScilabGraph {
 	    fileName = fc.getSelection()[0];
 	    System.out.println("Savingh to file : {"+fileName+"}");
 	}
-	
+
 	int file_id = H5Write.createFile(fileName);
 	String[] diagramFields = {"diagram", "props", "objs", "version"};
-	
+
 	ScilabMList data = new ScilabMList(diagramFields);
 	data.add(getDiagramProps());
 	data.add(getDiagramObjs());
 	data.add(getDiagramVersion());
-	
+
 	H5Write.writeInDataSet(file_id, "scs_m", data);
 	H5Write.closeFile(file_id);
     }
-    
+
     private ScilabTList getDiagramProps() {
 	String[] propsFields = {"params", "wpar", "title", "tol", "tf", "context", "void1", "options", "void2", "void3", "doc"};
 	ScilabTList data = new ScilabTList(propsFields);
@@ -261,33 +342,33 @@ public class XcosDiagram extends ScilabGraph {
 	data.add(new ScilabDouble()); // void2
 	data.add(new ScilabDouble()); // void3
 	data.add(new ScilabList()); // doc
-	
+
 	return data;
     }
-    
+
     private double[][] createTol() {
 	double[][] tol = {{integratorAbsoluteTolerance, integratorRelativeTolerance, toleranceOnTime, maxIntegrationTimeinterval, realTimeScaling, solver, maximumStepSize}};
 	return tol;
     }
-    
+
     private ScilabTList getDiagramOptions() {
 	String[] optionsFields = {"scsopt", "3D", "Background", "Link", "ID", "Cmap"};
-	
+
 	ScilabTList data = new ScilabTList(optionsFields);
 	ScilabList _3D = new ScilabList();
-	_3D.add(new ScilabDouble(0));
+	_3D.add(new ScilabDouble(1));
 	_3D.add(new ScilabDouble(33));
-	
+
 	double[][] background = {{8, 1}};
 	double[][] link = {{1,5}};
-	
+
 	ScilabList ID = new ScilabList();
 	double[][] ID_1 = {{5,1}};
 	double[][] ID_2 = {{4,1}};
 	ID.add(new ScilabDouble(ID_1));
 	ID.add(new ScilabDouble(ID_2));
 	double[][] Cmap = {{0.8, 0.8, 0.8}};
-	
+
 	data.add(_3D); // 3D
 	data.add(new ScilabDouble(background)); // Background
 	data.add(new ScilabDouble(link)); // Link
@@ -295,35 +376,50 @@ public class XcosDiagram extends ScilabGraph {
 	data.add(new ScilabDouble(Cmap)); // Cmap
 	return data;
     }
-    
+
     private ScilabList getDiagramObjs() {
 	ScilabList data = new ScilabList();
 	Object[] allCells = getChildCells(getDefaultParent());
 	List<BasicBlock> blockList = new ArrayList<BasicBlock>();
-	//List<BasicLink> linkList = new ArrayList<BasicLink>();
+	List<BasicLink> linkList = new ArrayList<BasicLink>();
 	for (int i = 0 ; i < allCells.length ; ++i)
 	{
 	    if (allCells[i] instanceof BasicBlock) {
 		blockList.add((BasicBlock) allCells[i]);
 	    }
+	    else if (allCells[i] instanceof BasicLink) {
+		linkList.add((BasicLink) allCells[i]);
+	    }
 	    else {
-		System.out.println("Not a BasicBlock");
-		System.out.println(allCells[i].toString());
+		System.out.println("Not a BasicBlock nor BasicLink");
 	    }
 	}
-	
+
+	// Go over all list to set ID
+	for (int i = 0 ; i < linkList.size() ; ++i) {
+	    linkList.get(i).setOrdering(i + blockList.size() + 1);
+	}
+
+	// Go over all blocks to dump it inside Scilab Structure
 	for (int i = 0 ; i < blockList.size() ; ++i) {
+	    blockList.get(i).setOrdering(i + 1);
 	    System.out.println(blockList.get(i).getGeometry().getX());
 	    System.out.println(blockList.get(i).getGeometry().getY());
 	    data.add(blockList.get(i).getAsScilabObj());
 	}
-	
+
+	// Go over all link to dump it inside Scilab Structure
+	for (int i = 0 ; i < linkList.size() ; ++i) {
+	    data.add(linkList.get(i).getAsScilabObj());
+	}
+
+
 	return data;
     }
-    
+
     private ScilabString getDiagramVersion() {
 	return new ScilabString("scicos4.2");
     }
-    
+
 }
 
