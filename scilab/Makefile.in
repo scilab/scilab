@@ -51,12 +51,13 @@ host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
 @IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
 check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 	call_scilab_c_getlastjob$(EXEEXT) \
 	call_scilab_c_DisableInteractiveMode$(EXEEXT) \
@@ -75,7 +76,7 @@ DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(top_srcdir)/modules/jvm/etc/jvm_options.xml.in COPYING \
 	config/compile config/config.guess config/config.rpath \
 	config/config.sub config/depcomp config/install-sh \
-	config/ltmain.sh config/missing
+	config/ltmain.sh config/missing config/mkinstalldirs
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -94,7 +95,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
-mkinstalldirs = $(install_sh) -d
+mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab.pc etc/modules.xml etc/classpath.xml \
@@ -191,7 +192,7 @@ scilab_cli_bin_OBJECTS = $(am_scilab_cli_bin_OBJECTS)
 scilab_cli_bin_DEPENDENCIES = $(am__DEPENDENCIES_2) $(SCILAB_CLI_LIB)
 scilab_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_cli_bin_CFLAGS) \
-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+	$(CFLAGS) $(scilab_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
 am__scilab_static_bin_SOURCES_DIST =  \
 	$(top_srcdir)/modules/shell/src/c/others/mainscic.c
 am__objects_1 = scilab_static_bin-mainscic.$(OBJEXT)
@@ -353,11 +354,9 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
-GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GMSGFMT = @GMSGFMT@
-GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -410,9 +409,9 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
+MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
-MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -430,7 +429,6 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
-PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -472,8 +470,6 @@ VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
-XGETTEXT_015 = @XGETTEXT_015@
-XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -524,7 +520,6 @@ libdir = @libdir@
 libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
-lt_ECHO = @lt_ECHO@
 mandir = @mandir@
 mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
@@ -549,6 +544,7 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
+scilab_cli_bin_LDFLAGS = $(am__append_2)
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
 
@@ -576,7 +572,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_3)
+TARGETS_ALL = macros $(am__append_4)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
