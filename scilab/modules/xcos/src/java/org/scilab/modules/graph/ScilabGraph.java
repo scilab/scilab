@@ -16,7 +16,6 @@ import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.mxGraphOutline;
 import com.mxgraph.swing.handler.mxKeyboardHandler;
 import com.mxgraph.swing.handler.mxRubberband;
-import com.mxgraph.swing.util.mxGraphActions;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUndoManager;
@@ -40,8 +39,6 @@ public class ScilabGraph extends mxGraph {
 	// Adds rubberband selection
 	new mxRubberband(component);
 
-	
-	
 	//addKeyListener(new XcosShortCut());
 	//setMarqueeHandler(new XcosPortAction());
 	//getGraphLayoutCache().setFactory(new DiagrammFactory());
