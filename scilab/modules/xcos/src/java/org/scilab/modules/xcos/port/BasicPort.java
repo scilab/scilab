@@ -17,7 +17,7 @@ import com.mxgraph.model.mxGeometry;
 
 public abstract class BasicPort extends mxCell {
 
-    private int dataSize = 0;
+    private int ordering = 0;
     private int dataLines = 0;
     private int dataColumns = 0;
     private DataType dataType = DataType.REAL_MATRIX;
@@ -68,14 +68,6 @@ public abstract class BasicPort extends mxCell {
 	setGeometry(new mxGeometry(0, 0, 10, 10));
     }
 
-    public int getDataSize() {
-	return dataSize;
-    }
-
-    public void setDataSize(int dataSize) {
-	this.dataSize = dataSize;
-    }
-
     public int getDataLines() {
 	return dataLines;
     }
@@ -98,6 +90,14 @@ public abstract class BasicPort extends mxCell {
 
     public DataType getDataType() {
 	return dataType;
+    }
+
+    public void setOrdering(int portOrdering) {
+	this.ordering = portOrdering;
+    }
+
+    public int getOrdering() {
+	return ordering;
     }
 
     public abstract Type getType();
