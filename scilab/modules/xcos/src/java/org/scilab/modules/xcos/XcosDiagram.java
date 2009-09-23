@@ -239,8 +239,7 @@ public class XcosDiagram extends ScilabGraph {
 			    int file_id = H5Write.createFile(temp.getAbsolutePath());
 			    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
 			    H5Write.closeFile(file_id);
-			    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");"+
-				    "[x,y,typ]="+block.getInterfaceFunctionName()+"(\"set\",scs_m, 0);");
+			    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+temp.getAbsolutePath()+"\", "+block.getInterfaceFunctionName()+", \"set\");");
 
 			} catch (IOException e) {
 			    // TODO Auto-generated catch block
