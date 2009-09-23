@@ -38,8 +38,14 @@ function [x,y,typ]=SampleCLK(job,arg1,arg2)
     x=orig(1)*ones(1,2)+sz(1)*[1/16 15/16];
     y=orig(2)*ones(1,2)+sz(2)*[1/3 1/3];
     xpolys(x',y',5*ones(2,1));
-    xstringb(orig(1)+sz(1)/16,orig(2)+2*sz(2)/3+sz(2)/16,arg1.graphics.exprs(1),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
-    xstringb(orig(1)+sz(1)/16,orig(2)+sz(2)/3+sz(2)/16,arg1.graphics.exprs(2),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
+
+    //**
+    //** BJ : Reference model.rpar to avoid duplicate information
+    //**
+    //xstringb(orig(1)+sz(1)/16,orig(2)+2*sz(2)/3+sz(2)/16,arg1.graphics.exprs(1),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
+    xstringb(orig(1)+sz(1)/16,orig(2)+2*sz(2)/3+sz(2)/16,sci2exp(arg1.model.rpar(1)),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
+    //xstringb(orig(1)+sz(1)/16,orig(2)+sz(2)/3+sz(2)/16,arg1.graphics.exprs(2),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
+    xstringb(orig(1)+sz(1)/16,orig(2)+sz(2)/3+sz(2)/16,sci2exp(arg1.model.rpar(2)),7*sz(1)/8,sz(2)/3-sz(2)/8,'fill')
     font=xget('font')
     xset('font', options.ID(1)(1), options.ID(1)(2))
     xstringb(orig(1)+2*sz(1)/16,orig(2)+sz(2)/16,'S-CLK',sz(1)/2,sz(2)/3-sz(2)/8,'fill')
