@@ -8,3 +8,5 @@ Known incompatibilities:
   height no more set the window size itself but the size of the virtual graphics
   window (the part of the figure which contains uicontrols and graphics) as if
   the user sets the axes_size property of a figure.
+
+- 'sort' is obsolete. see 'gsort'

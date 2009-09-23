@@ -89,7 +89,7 @@ end
 ok=%t
 mess=[]
 if nin>0 then
-  [inp,k]=sort(-inp)
+  [inp,k]=gsort(-inp)
   if ~and(inp==-(1:nin)) then
     mess=[mess;
           'Super_block input ports must be numbered';
@@ -100,7 +100,7 @@ if nin>0 then
   in2=in2(k,:)
 end
 if nout>0 then
-  [outp,k]=sort(-outp)
+  [outp,k]=gsort(-outp)
   if ~and(outp==-(1:nout)) then
     mess=[mess;
           'Super_block output ports must be numbered';
@@ -113,7 +113,7 @@ end
 
 
 if nclkin>0 then
-  [cinp,k]=sort(-cinp)
+  [cinp,k]=gsort(-cinp)
   if ~and(cinp==-(1:nclkin)) then
     mess=[mess;
           'Super_block event input ports must be numbered';
@@ -123,7 +123,7 @@ if nclkin>0 then
   cin=cin(k)
 end
 if nclkout>0 then
-  [coutp,k]=sort(-coutp)
+  [coutp,k]=gsort(-coutp)
   if ~and(coutp==-(1:nclkout)) then
     mess=[mess;
           'Super_block event output ports must be numbered';

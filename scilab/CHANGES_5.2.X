@@ -246,6 +246,11 @@ Linear algebra
 =============
  - Clarified documentation for lu function.
 
+elementary functions
+=============
+ - 'sort' is obsolete. see 'gsort'
+
+
 Bug fixes:
 ==========
 
@@ -454,3 +459,4 @@ Bug fixes:
 
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
+* bug 4810 fixed - gsort does not manage sparse vectors as sort.

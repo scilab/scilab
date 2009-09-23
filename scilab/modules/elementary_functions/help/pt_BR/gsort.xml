@@ -44,7 +44,8 @@
         <term>v,s</term>
 
         <listitem>
-          <para>vetor ou matriz de reais, inteiros ou strings</para>
+          <para>vetor ou matriz de reais, inteiros ou strings ou sparse
+          vector</para>
         </listitem>
       </varlistentry>
 
@@ -116,7 +117,7 @@
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -140,7 +141,7 @@ v=['Scilab' '2.6'
 
 gsort(v,'lr','i')
 gsort(v,'lc','i')
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -148,8 +149,6 @@ gsort(v,'lc','i')
 
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>
-
-      <member><link linkend="sort">sort</link></member>
     </simplelist>
   </refsection>
 

@@ -13,6 +13,9 @@
 #include <string.h>
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
+#include "warningmode.h"
+#include "sciprint.h"
+#include "localization.h"
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(intsort) (int *id);
 extern int C2F(intssort) (int *id);
@@ -26,6 +29,13 @@ int C2F(sci_sort) (char *fname,unsigned long fname_len)
 
 	CheckRhs(1,2);
 	CheckLhs(1,2);
+
+	if (getWarningMode())
+	{
+		sciprint(_("WARNING: Function %s is obsolete.\n"), fname);
+		sciprint(_("WARNING: Please use %s instead.\n"), "gsort");
+		sciprint(_("WARNING: This function will be permanently removed in Scilab %s.\n"), "5.3");
+	}
 
 	if ( VarType(1) == sci_strings ) 
 	{
