@@ -42,15 +42,18 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/thirdparty/jogl.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 <path value="$SCILAB/thirdparty/gluegen-rt.jar" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
+	<load on="XCos"/>
 </path>
 
 <path value="$SCILAB/thirdparty/jhdf5.jar" load="onUse">
-        <load on="hdf5BasedFeature"/>
+         <load on="XCos"/>
 </path>
+
 
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
