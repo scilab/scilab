@@ -123,7 +123,7 @@ while %t do
       if n ==0 then break,end
       dirr=pwd()
       chdir(TMPDIR)
-      if n>4 then err=execstr('getf(''toto.sci'')','errcatch'),
+      if n>4 then err=execstr('exec(''toto.sci'')','errcatch'),
 	if err<>0 then 
 	  x_message('tutorials must be played in order!'),
 	  break

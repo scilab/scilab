@@ -54,7 +54,7 @@ function XcosMenuSaveasInterfFunc()
 	end
 	
 	if %path<>[] then 
-	  if execstr('getf(%path)','errcatch')<>0 then
+	  if execstr('exec(%path)','errcatch')<>0 then
 	     messagebox([name+': error:'
 		      lasterror()],'modal')
 	  end

@@ -62,7 +62,7 @@ names=[
     'x_matrix']
 
 for k=1:size(names,'r')
-  getf(get_function_path(names(k)))
+  exec(get_function_path(names(k)))
 end
 
 global %fig_counter

@@ -107,6 +107,8 @@ Core functions:
      
 * sethomedirectory is obsolete (see home). 
 
+* getf is obsolete (see exec).
+
 fileio functions:
 =================
 
@@ -242,14 +244,13 @@ Optimization:
  - Created fminsearch optimization function
  - Added examples in the help for optim
  
-Linear algebra
-=============
+Linear algebra:
+===============
  - Clarified documentation for lu function.
 
-elementary functions
-=============
+elementary functions:
+=====================
  - 'sort' is obsolete. see 'gsort'
-
 
 Bug fixes:
 ==========

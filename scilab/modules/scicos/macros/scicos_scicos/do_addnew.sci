@@ -62,7 +62,7 @@ function [scs_m, fct] = do_addnew(scs_m)
     //  messagebox(path+' file, Not found','modal')
     //  return
     //end
-    //if execstr('getf(u)','errcatch')<>0 then
+    //if execstr('exec(u)','errcatch')<>0 then
     //  file('close',u)
     //  messagebox([name + " erroneous function:"; lasterror()],'modal')
     //  return
