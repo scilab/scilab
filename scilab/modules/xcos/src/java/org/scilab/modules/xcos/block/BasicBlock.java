@@ -36,6 +36,7 @@ public class BasicBlock extends mxCell {
     private String simulationFunctionName = "xcos_simulate";
     private SimulationFunctionType simulationFunctionType = SimulationFunctionType.DEFAULT;
 
+    private List<String> exprs = new ArrayList<String>();
     private List<Double> realParameters = new ArrayList<Double>();
     private List<Integer> integerParameters = new ArrayList<Integer>();
     private List objectsParameters = new ArrayList();
@@ -156,6 +157,14 @@ public class BasicBlock extends mxCell {
 	return ordering;
     }
 
+    public void setExprs(List<String> exprs) {
+	this.exprs = exprs;
+    }
+
+    public List<String> getExprs() {
+	return exprs;
+    }
+
     protected void addPort(InputPort port) {
 	inputPorts.add(port);
 	for (int i = 0 ; i < inputPorts.size() ; ++i) {
@@ -235,7 +244,7 @@ public class BasicBlock extends mxCell {
 
 	graphics.add(new ScilabDouble(0)); // theta
 
-	graphics.add(new ScilabList()); // exprs
+	graphics.add(getAllExprs()); // exprs
 
 	graphics.add(getAllLinkId(inputPorts)); // pin
 
@@ -258,6 +267,19 @@ public class BasicBlock extends mxCell {
 	graphics.add(getAllPortsType(outputPorts)); // out_implicit
 
 	return graphics;
+    }
+
+    private ScilabType getAllExprs() {
+	if (getExprs().isEmpty()) {
+	    return new ScilabList();
+	}
+	
+	String[][] data = new String[getExprs().size()][1];
+	for (int i = 0 ; i < getExprs().size() ; ++i) {
+	    data[i][0] = getExprs().get(i);
+	}
+	
+	return new ScilabString(data);
     }
 
     private ScilabMList createScilabModelProperties() {
@@ -376,10 +398,6 @@ public class BasicBlock extends mxCell {
 
 	double[][] data = new double[1][ports.size()];
 	for (int i = 0 ; i < ports.size() ; ++i) {
-	    System.out.println("************************************");
-	    System.out.println("PortType = "+ports.get(i).getClass().getSimpleName());
-	    System.out.println("Block = "+((BasicBlock) ((BasicPort) ports.get(i)).getParent()).getSimulationFunctionName());
-	    System.out.println("************************************");
 	    data[0][i] = ((BasicPort) ports.get(i)).getOrdering();
 	}
 
