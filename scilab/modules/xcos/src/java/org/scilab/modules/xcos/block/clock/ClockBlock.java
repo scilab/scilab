@@ -22,8 +22,23 @@ public class ClockBlock extends BasicBlock {
      */
     public ClockBlock() {
 	super("Clock", "Clock");
-	addPort(new CommandPort());
-	setInterfaceFunctionName("c_block");
+	
+	CommandPort commandPort = new CommandPort(); // model.evtout=1
+	commandPort.setDataLines(1); // model.firing=-1
+	commandPort.setInitialState(-1.0);
+	addPort(commandPort);
+	
+	setSimulationFunctionName("sampleclk"); // model.sim='sampleclk'
+	
+	setInterfaceFunctionName("SampleCLK");
+    
+	setDependsOnU(false); // model.dep_ut=[%f %f]
+	setDependsOnT(false);
+	
+	getRealParameters().add(1.0); // model.rpar=[1,0]
+	getRealParameters().add(0.0);
+	
+	setBlockType("d"); // model.blocktype='d'
     }
 
 }

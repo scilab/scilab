@@ -30,6 +30,8 @@ public class ScopeBlock extends BasicBlock {
 	controlPort.setDataLines(1); // model.evtin
 	addPort(controlPort);
 	
+	setInterfaceFunctionName("CSCOPE");
+	
 	setSimulationFunctionName("cscope");
 	setSimulationFunctionType(SimulationFunctionType.C_OR_FORTRAN);
 	
@@ -53,5 +55,8 @@ public class ScopeBlock extends BasicBlock {
 	getIntegerParameters().add(-1);
 	getIntegerParameters().add(600);
 	getIntegerParameters().add(400);
+	
+	setDependsOnU(true); // model.dep_ut=[%t %f]
+	setDependsOnT(false);
     }
 }

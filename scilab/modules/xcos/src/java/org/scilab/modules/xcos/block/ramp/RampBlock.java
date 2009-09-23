@@ -10,29 +10,30 @@
  *
  */
 
-package org.scilab.modules.xcos.block.sinusoid;
+package org.scilab.modules.xcos.block.ramp;
 
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
-public class SinusoidBlock extends BasicBlock {
+public class RampBlock extends BasicBlock {
     /**
      * Default constructor
      */
-    public SinusoidBlock() {
-	super("Sinusoid Generator", "Sinusoid");
+    public RampBlock() {
+	super("Ramp");
 	
 	OutputPort outputPort = new ExplicitOutputPort();
 	outputPort.setDataLines(1); // model.out = 1
 	addPort(outputPort);
 	
-	setInterfaceFunctionName("GENSIN_f");
+	setInterfaceFunctionName("RAMP");
 	
-	setSimulationFunctionName("gensin"); // model.sim = "gensin"
+	setSimulationFunctionName("ramp"); // model.sim = list("ramp", 4)
+	setSimulationFunctionType(SimulationFunctionType.C_OR_FORTRAN);
 	
-	getRealParameters().add(1.0); // model.rpar = [1;1;0]
-	getRealParameters().add(1.0);
+	getRealParameters().add(0.0); // model.rpar = [0;0;0]
+	getRealParameters().add(0.0);
 	getRealParameters().add(0.0);
 	
 	setDependsOnU(false);  // model.dep_ut=[%f %t]
