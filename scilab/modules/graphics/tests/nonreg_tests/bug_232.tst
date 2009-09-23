@@ -15,11 +15,11 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-clf();                       
+xbasc();                       
 plot2d([.4; .6],[-.6 ;.6],-3);
 plot2d(.2,0,-3) 
                
-clf(); 
+xbasc(); 
 plot2d([.4; .6],[-.6;.6],-3);
 plot2d(.5,0,-3);
 

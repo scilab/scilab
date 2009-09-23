@@ -26,7 +26,7 @@ for i = 1:100,
   m2=uimenu(m,'label', 'quit scilab', 'callback', "exit");
   //create two items in the menu "windows"
   m11=uimenu(m1,'label', 'new window', 'callback',"xselect()");
-  m12=uimenu(m1,'label', 'clear  window', 'callback',"clf()");
+  m12=uimenu(m1,'label', 'clear  window', 'callback',"xbasc()");
   // create a submenu to the item "operations"
   close(f);
 end

@@ -22,12 +22,12 @@ g('node_diam')=[30 30 30 60];
 g('edge_color')=[10 0 2 6 11 11 0 0 11];
 rep=[2 2 1 1 2 2 2 2 2 2 2 2 2];
 rep1=[100 -400 650 300];
-clf(); plot_graph(g,rep,rep1);
+xbasc(); plot_graph(g,rep,rep1);
 rep=[2 1 1 1 2 2 2 2 2 2 2 2 2];
-clf(); plot_graph(g,rep,rep1);
+xbasc(); plot_graph(g,rep,rep1);
 // plotting using dialogs
-clf(); plot_graph(g);
+xbasc(); plot_graph(g);
 xset("thickness",4);
-clf();
+xbasc();
 plot_graph(g);
 

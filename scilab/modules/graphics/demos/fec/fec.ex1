@@ -9,7 +9,7 @@
 mode(0)
 path=get_absolute_file_path('fec.ex1');
 getf(path+'fec_demo.sci');
-clf();
+xbasc();
 xset("colormap",jetcolormap(128));
 new_style = get("figure_style")=="new";
 

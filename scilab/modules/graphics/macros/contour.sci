@@ -63,7 +63,7 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
 
   fig=gcf();
   autoc=fig.auto_clear;
-  if autoc=="on" then, clf(),end
+  if autoc=="on" then, xbasc(),end
   a=gca();
   fg=a.foreground
   v=fig.immediate_drawing;

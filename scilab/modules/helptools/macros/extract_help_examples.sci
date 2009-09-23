@@ -368,7 +368,7 @@ function ln=add_ref_code(l)
 	  ln($+1)=lk
 	end
 	
-      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then 
+      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then 
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_build'
 	ln($+1)=lk
@@ -452,7 +452,7 @@ function ln=add_cmp_code(l)
 	else
 	  ln($+1)=lk
 	end
-      elseif  lk(1)=='2'&or(lk(2)==['xdel','clf']) then
+      elseif  lk(1)=='2'&or(lk(2)==['xbasc','xdel','clf']) then
 	//change some function names to allow overloading
 	lk(2)=lk(2)+'_run'
 	ln($+1)=lk

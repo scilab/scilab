@@ -22,7 +22,7 @@ function []=demo_folder_choice(path,ch)
 			else
 				set('figure_style','old');
 				xdel();
-				clf();
+				xbasc();
 				demoexc(num);
 			end
 		end
@@ -51,7 +51,7 @@ function []=demo_folder_choice(path,ch)
 					return
 				else
 					xdel(0);
-					clf();
+					xbasc();
 					demoex(num);
 				end
 			end

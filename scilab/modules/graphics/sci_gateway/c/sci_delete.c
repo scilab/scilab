@@ -66,7 +66,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     if (strcmp(cstk(l2),"all") == 0)
     {
 			startGraphicDataWriting();
-			sciClearFigure(sciGetCurrentFigure());
+			sciXbasc();
 			endGraphicDataWriting();
 			sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
 			LhsVar(1) = 0;

@@ -98,7 +98,7 @@ m = tabul(X,"i")
 n = 50000;
 X = grand(n,1,"bin",70,0.5);
 m = tabul(X,"i");
-clf()
+xbasc()
 plot2d3(m(:,1), m(:,2)/n)
 xtitle("empiral probabilities of B(70,0.5)")
 

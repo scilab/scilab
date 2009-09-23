@@ -12,7 +12,7 @@ function graypolarplot(theta,rho,z,varargin)
 if rhs<=0 then
   rho=1:0.2:4;theta=(0:0.02:1)*2*%pi;
   z=30+round(theta'*(1+rho^2));
-  clf();
+  xbasc();
   f=gcf();
   f.color_map=hotcolormap(128);
   f.background= 128;

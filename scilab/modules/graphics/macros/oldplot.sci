@@ -25,16 +25,16 @@ function []=oldplot(x,y,legx,legy,leg)
     if nl==1|nk==1 then
       plot2d1("enn",1,matrix(x,prod(size(x)),1));
     else
-      clf();plot2d((ones(nl,1)*(1:nk))',x')
+      xbasc();plot2d((ones(nl,1)*(1:nk))',x')
     end
-  case 2 then clf();
+  case 2 then xbasc();
     if type(y)==10,
       plot2d1("enn",1,matrix(x,prod(size(x)),1));
       xtitle(' ',y,' ');
     else
       plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
     end;
-  case 3 then clf();
+  case 3 then xbasc();
     if type(y)==10,
       plot2d1("enn",1,matrix(x,prod(size(x)),-1));
       xtitle(' ',y,legx);
@@ -42,7 +42,7 @@ function []=oldplot(x,y,legx,legy,leg)
       plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
       xtitle(' ',legx,' ');
     end;
-  case 4 then clf();
+  case 4 then xbasc();
     if type(y)==10,
       plot2d1("enn",1,matrix(x,prod(size(x)),1));
       xtitle(legy,y,legx);
@@ -50,7 +50,7 @@ function []=oldplot(x,y,legx,legy,leg)
       plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
       xtitle(' ',legx,legy);
     end;
-  case 5 then clf();
+  case 5 then xbasc();
     plot2d(matrix(x,prod(size(x)),1),matrix(y,prod(size(y)),1));
     xtitle(leg,legx,legy);
   end

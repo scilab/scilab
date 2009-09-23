@@ -61,10 +61,10 @@ x=0:0.1:2*%pi;
 // simple plot
 oldplot(sin(x))
 // using captions
-clf()
+xbasc()
 oldplot(x,sin(x),"sin","time","plot of sinus")
 // plot 2 functions
-clf()
+xbasc()
 oldplot([sin(x);cos(x)])
  
   ]]></programlisting>

@@ -54,7 +54,7 @@ fpf=xget("fpf");if fpf=='' then fpf='%.3g',end
 
 fig=gcf();
 autoc=fig.auto_clear;
-if autoc=="on" then, clf(),end
+if autoc=="on" then, xbasc(),end
 a=gca();
 v=fig.immediate_drawing;
 fig.immediate_drawing="off"
