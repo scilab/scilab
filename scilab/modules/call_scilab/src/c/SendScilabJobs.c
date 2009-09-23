@@ -12,7 +12,7 @@
  */
 #include <stdio.h>
 #include <string.h>
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
 #include "localization.h"
@@ -31,7 +31,7 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
 static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
-/* see CallScilab.h more informations*/
+/* see call_scilab.h more informations*/
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {

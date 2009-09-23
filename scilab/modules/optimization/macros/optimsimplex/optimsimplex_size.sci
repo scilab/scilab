@@ -31,30 +31,29 @@ function ssize = optimsimplex_size ( this , method )
   end
   select method
   case "Nash" then
-    // TODO : fix the formula and use norm - 1 instead of euclidian norm (check that Nash indeed use norm 1)
     ssize = 0.0;
     for iv = 2:this.nbve
-      ssize = ssize + norm(this.x(:,iv) - this.x(:,1));
+      ssize = ssize + norm ( this.x(iv,:) - this.x(1,:) , 1 );
     end
   case "diameter" then
     ssize = 0.0;
     for i = 1:this.nbve
       for j = 1:this.nbve
-        ssize = max(ssize , norm(this.x(:,i) - this.x(:,j)));
+        ssize = max(ssize , norm(this.x(i,:) - this.x(j,:)));
       end
     end
   case "sigmaplus" then
     ssize = 0.0;
     for j = 2:this.nbve
-      ssize = max(ssize , norm(this.x(:,j) - this.x(:,1)));
+      ssize = max(ssize , norm(this.x(j,:) - this.x(1,:)));
     end
   case "sigmaminus" then
     ssize = 1.e307;
     for j = 2:this.nbve
-      ssize = min(ssize , norm(this.x(:,j) - this.x(:,1)));
+      ssize = min(ssize , norm(this.x(j,:) - this.x(1,:)));
     end
   else
-    errmsg = sprintf("Unknown simplex size method %s",method)
+    errmsg = msprintf(gettext ( "%s: Unknown simplex size method %s") , "optimsimplex_size",method)
     error(errmsg)
   end
 endfunction

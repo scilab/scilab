@@ -129,6 +129,7 @@ fileio functions:
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)
+   + isdir manages matrix of strings as input argument
   
 Dynamic link:
 =============
@@ -149,6 +150,10 @@ Dynamic link:
  
 * addinter : each interface added can manage 999 functions (bug 4675). 
 
+* ilib_gen_gateway can generated gateway without PutLhsVar (Managed by user, in this case)
+  see help of 'ilib_gen_gateway' about this modification and 
+  SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
+
 Online Help :
 =============
 
@@ -162,7 +167,12 @@ call_scilab module :
 ====================
 
 * A example to call scilab from C# added.
-   see SCI/modules/call_scilab/examples/call_scilab/dotnetsci directory
+   see SCI/modules/call_scilab/examples/call_scilab/NET/C# directory
+
+* A example to call scilab from VB.NET added.
+   see SCI/modules/call_scilab/examples/call_scilab/NET/VB.NET directory
+ 
+* CallScilab.h renamed call_scilab.h
 
 tests :
 =======
@@ -230,6 +240,7 @@ Optimization:
  - Created optimbase component to build optimization algorithms
  - Created optimsimplex component to build direct search algorithms
  - Created fminsearch optimization function
+ - Added examples in the help for optim
  
 Linear algebra
 =============
@@ -237,6 +248,8 @@ Linear algebra
 
 Bug fixes:
 ==========
+
+* bug 415 fixed - wrong order in the roots of a polynomial
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
@@ -269,6 +282,8 @@ Bug fixes:
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
+* bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
+
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
 * bug 4110 fixed - Demos order differs between Linux and Windows versions
@@ -284,7 +299,7 @@ Bug fixes:
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
-* bug 4278 fixed - typename() called with a wrong number of input arguments  returns incoherent errors.
+* bug 4278 fixed - typename() called with a wrong number of input arguments returns incoherent errors.
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
@@ -415,6 +430,8 @@ Bug fixes:
 
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
+* bug 4702 fixed - on some case, dos(cmd) does not return results
+
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
@@ -426,4 +443,14 @@ Bug fixes:
 * bug 4732 fixed - the help page of function ss2ss has some missing part
 
 * bug 4744 fixed - whereis, librairieslist, libraryinfo primitives should be moved in "functions" modules.
+
+* bug 4753 fixed - if you have a toolbox and you launch scilab-cli, you have a error message at startup. 
+
+* bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
+
+* bug 4792 fixed - macro name too long
+
+* bug 4795 fixed - CallScilab.h renamed call_scilab.h
+
+* bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 

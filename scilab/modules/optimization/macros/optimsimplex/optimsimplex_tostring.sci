@@ -27,9 +27,9 @@ function str = optimsimplex_tostring ( this )
   str = []
   for k = 1:this.nbve
     // Compute a string for x
-    ss = sprintf("%f", this.x(1,k));
+    ss = sprintf("%f", this.x(k,1));
     for i = 2:this.n
-      ss = ss + " " + sprintf("%f", this.x(i,k));
+      ss = ss + " " + sprintf("%f", this.x(k,i));
     end
     str(k) = sprintf("Vertex #%d/%d : fv=%f, x=%s\n" , k , this.n+1 , this.fv(k), ss );
   end

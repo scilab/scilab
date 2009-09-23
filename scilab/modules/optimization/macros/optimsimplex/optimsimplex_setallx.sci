@@ -10,12 +10,20 @@
 //
 // optimsimplex_setallx --
 //   Set all the coordinates of all the vertices.
-//   The vertex #k is expected to be stored in x(1:n,k)
+//   The vertex #k is expected to be stored in x(k,1:n)
 //   with k = 1 , nbve
 // Arguments
 //   x : the coordinates of the vertices.
 //
 function this = optimsimplex_setallx ( this , x )
-  this.x (1:this.n , 1:this.nbve ) = x (1:this.n , 1:this.nbve );
+  nx1 = size ( x , 1 );
+  if nx1 <> this.nbve then
+    error ( msprintf ( gettext ( "%s: The number of rows is %d, while expected %d." ), "optimsimplex_setallx" , nx1 , this.nbve ))
+  end
+  nx2 = size ( x , 2 );
+  if nx2 <> this.n then
+    error ( msprintf ( gettext ( "%s: The number of columns is %d, while expected %d." ), "optimsimplex_setallx" , nx2 , this.n ))
+  end
+  this.x ( 1:this.nbve , 1:this.n ) = x ( 1:this.nbve , 1:this.n );
 endfunction
 

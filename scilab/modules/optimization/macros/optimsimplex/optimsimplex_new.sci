@@ -18,7 +18,7 @@
 //   * the simplex is made of k>=n+1 vertices
 //   * the function value for vertex #kve is in fv(kve),
 //     with kve = 1 , k
-//   * the vertex #kve is stored in x(1:n,kve)
+//   * the vertex #kve is stored in x(kve,1:n)
 //     with kve = 1 , k
 // Arguments
 //   coords : list of point coordinates in the simplex
@@ -39,29 +39,29 @@ function [ newobj , data ] = optimsimplex_new ( coords , fun , data )
   newobj.n = 0;
   // The number of vertices
   newobj.nbve = 0;
-  // The coordinates of the vertices, with size n x nbve
+  // The coordinates of the vertices, with size nbve x n
   newobj.x = [];
-  // The function values, with size nbve
+  // The function values, with size nbve x 1 
   newobj.fv = [];
   //
   // Take input arguments into account
   //
   if coords<>[] then
-    n = size(coords,1)
-    nbve = size(coords,2)
+    nbve = size(coords,1)
+    n = size(coords,2)
     if nbve < n + 1 then
-      error(sprintf("The numbers of columns of coords is %d but is expected to be at least %d",...
-        nbve , n + 1))
+      error(msprintf(gettext("%s: The numbers of columns of coords is %d but is expected to be at least %d"),...
+        "optimsimplex_new" , nbve , n + 1))
     end
     newobj.n = n;
     newobj.nbve = nbve;
-    newobj.x(1:n,1:nbve) = coords(1:n,1:nbve);
+    newobj.x(1:nbve,1:n) = coords(1:nbve,1:n);
     if fun<>[] then
       for j = 1 : nbve
         if (~isdef('data','local')) then
-          newobj.fv(j)  = fun (newobj.x(1:newobj.n,j));
+          newobj.fv(j)  = fun (newobj.x(j,1:newobj.n));
         else
-          [ newobj.fv(j) , data ]  = fun (newobj.x(1:newobj.n,j) , data );
+          [ newobj.fv(j) , data ]  = fun (newobj.x(j,1:newobj.n) , data );
         end
       end
     end

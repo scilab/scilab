@@ -111,7 +111,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscicall_scilab_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la
-am__objects_1 = libscicall_scilab_la-CallScilab.lo \
+am__objects_1 = libscicall_scilab_la-call_scilab.lo \
 	libscicall_scilab_la-fromc.lo libscicall_scilab_la-fromjava.lo \
 	libscicall_scilab_la-SendScilabJobs.lo
 am__objects_2 = libscicall_scilab_la-sci_fromjava.lo \
@@ -377,7 +377,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 ### SOURCES ###
-CALLSCILAB_C_SOURCES = src/c/CallScilab.c \
+CALLSCILAB_C_SOURCES = src/c/call_scilab.c \
 		src/c/fromc.c \
 		src/c/fromjava.c \
 		src/c/SendScilabJobs.c
@@ -422,8 +422,9 @@ libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
-libscicall_scilab_la_includedir = $(pkgincludedir)/call_scilab
+libscicall_scilab_la_includedir = $(pkgincludedir)
 libscicall_scilab_la_include_HEADERS = includes/CallScilab.h \
+	includes/call_scilab.h \
 	includes/fromjava.h \
 	includes/dynlib_call_scilab.h
 
@@ -564,8 +565,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-CallScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-SendScilabJobs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-call_scilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-fromc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicall_scilab_la-gw_call_scilab.Plo@am__quote@
@@ -593,12 +594,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscicall_scilab_la-CallScilab.lo: src/c/CallScilab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicall_scilab_la_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-CallScilab.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-CallScilab.Tpo -c -o libscicall_scilab_la-CallScilab.lo `test -f 'src/c/CallScilab.c' || echo '$(srcdir)/'`src/c/CallScilab.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicall_scilab_la-CallScilab.Tpo $(DEPDIR)/libscicall_scilab_la-CallScilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CallScilab.c' object='libscicall_scilab_la-CallScilab.lo' libtool=yes @AMDEPBACKSLASH@
+libscicall_scilab_la-call_scilab.lo: src/c/call_scilab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicall_scilab_la_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-call_scilab.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-call_scilab.Tpo -c -o libscicall_scilab_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicall_scilab_la-call_scilab.Tpo $(DEPDIR)/libscicall_scilab_la-call_scilab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/call_scilab.c' object='libscicall_scilab_la-call_scilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicall_scilab_la_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_la-CallScilab.lo `test -f 'src/c/CallScilab.c' || echo '$(srcdir)/'`src/c/CallScilab.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicall_scilab_la_CFLAGS) $(CFLAGS) -c -o libscicall_scilab_la-call_scilab.lo `test -f 'src/c/call_scilab.c' || echo '$(srcdir)/'`src/c/call_scilab.c
 
 libscicall_scilab_la-fromc.lo: src/c/fromc.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicall_scilab_la_CFLAGS) $(CFLAGS) -MT libscicall_scilab_la-fromc.lo -MD -MP -MF $(DEPDIR)/libscicall_scilab_la-fromc.Tpo -c -o libscicall_scilab_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
@@ -982,7 +983,7 @@ check-code:
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -994,7 +995,7 @@ check-code:
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1100,10 +1101,12 @@ install-data-local:
 	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-			for specialExt in $(MACROSSPECIALEXT); do \
-				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-			done; \
-			FILELIST="$$FILELIST $$specialExtDir"; \
+			if test -n "$(MACROSSPECIALEXT)"; then \
+				for specialExt in $(MACROSSPECIALEXT); do \
+					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+				done; \
+				FILELIST="$$FILELIST $$specialExtDir"; \
+			fi; \
 		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

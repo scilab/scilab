@@ -156,11 +156,21 @@ function ilib_gen_Make_unix(names,   ..
 	if ldflags <> '' | cflags <> '' | fflags <> '' | cc <> '' | fileinfo(commandpath+"/Makefile.orig") == [] | fileinfo(commandpath+"/libtool") == [] then
 		// Makefile.orig doesn't exists or may be invalid regarding the flags
 		// run the ./configure with the flags
+
+		if ( ilib_verbose() == 2 ) then
+		   mprintf(gettext("   %s: Need to run the compiler detection (configure).\n"),"ilib_gen_Make");
+		end
+
 		mdelete(linkBuildDir+"/Makefile.orig");
 		generateConfigure(linkBuildDir, ldflags, cflags, fflags, cc)
 	else
 		// Reuse existing Makefile.orig because compilation flags are all empty 
 		[status,msg]=copyfile(commandpath+"/Makefile.orig",linkBuildDir);
+
+		if ( ilib_verbose() == 2 ) then
+		   mprintf(gettext("   %s: Use the previous detection of compiler.\n"),"ilib_gen_Make");
+		end
+
 		if (status <> 1)
 			error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
 		end
@@ -182,7 +192,17 @@ function ilib_gen_Make_unix(names,   ..
 	end
 	
 	cmd=commandpath + "scicompile.sh " + libname + " " + filelist
+
 	[msg,ierr, stderr] = unix_g(cmd);
+
+	if ( ilib_verbose() == 2 ) then
+	   mprintf(gettext("   %s: Substitute the reference by the actual file.\n"),"ilib_gen_Make");
+	   mprintf(gettext("   Command: %s\n"),cmd);
+	   if (length(msg)) then
+	   	   mprintf(gettext("Output: %s\n"),msg);
+	   end
+	   mprintf(gettext("stderr: %s\n"),stderr);
+	end
 	
 	if ierr <> 0 then
 	  if ( ilib_verbose() <> 0 ) then
@@ -213,7 +233,13 @@ function generateConfigure(workingPath, ..
 	cmd = workingPath+"/compilerDetection.sh "+cmd
 	
 	[msg,ierr,stderr] = unix_g(cmd);
-	
+
+	if ( ilib_verbose() == 2 ) then
+	   mprintf(gettext("   %s: Command: %s\n"),"ilib_gen_Make",cmd);
+	   mprintf(gettext("   Output: %s\n"),msg);
+	   mprintf(gettext("   stderr: %s\n"),stderr);
+	end
+
 	if ierr <> 0 then
 	  if ( ilib_verbose() <> 0 ) then
 		  mprintf(msg + " " + stderr);

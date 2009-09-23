@@ -106,7 +106,7 @@ function options = optimset_configure ( options , key , value )
     case "TolX" then
       options.TolX = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown key %s"), "optimset", key)
+      errmsg = msprintf(gettext("%s: Unrecognized parameter name ''%s''."), "optimset", key)
       error(errmsg)
     end
 endfunction
@@ -143,7 +143,7 @@ function options = optimset_method ( method )
       options = optimset_configure ( options , "TolFun" , 1.e-4 );
       options = optimset_configure ( options , "TolX" , 1.e-4 );
     else
-      errmsg = msprintf(gettext("%s: Unknown method %s"), "optimset", method)
+      errmsg = msprintf(gettext("%s: No default options available: the function ''%s'' does not exist on the path."), "optimset", method)
       error(errmsg)
     end
 endfunction

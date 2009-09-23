@@ -35,7 +35,7 @@
 //
 function [ this , result ] = optimbase_function ( this , x , index )
   if this.fun == "" then
-    errmsg = sprintf("Empty function (use -fun option).")
+    errmsg = msprintf(gettext("%s: Empty function (use -function option)."), "optimbase_function")
     error(errmsg)
   end
   if typeof(this.costfargument)=="string" then
@@ -52,7 +52,10 @@ function [ this , result ] = optimbase_function ( this , x , index )
     end
   end
   this.funevals = this.funevals + 1;
-  optimbase_log ( this , sprintf ( "Function Evaluation #%d is [%s] at [%s]" , ...
-    this.funevals , strcat(string(result)," ") , strcat(string(x)," ") ))
+  if this.verbose == 1 then
+    msg = sprintf ( "Function Evaluation #%d is [%s] at [%s]" , ...
+      this.funevals , strcat(string(result)," ") , strcat(string(x)," ") )
+    optimbase_log ( this , msg )
+  end
 endfunction
 

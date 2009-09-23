@@ -58,8 +58,9 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setn(s1,2);
 s1 = optimsimplex_setnbve(s1,3);
 newsimplex = [
-0.0 1.0 0.0
-0.0 0.0 1.0
+    0.    0.  
+    1.    0.  
+    0.    1.  
 ];
 s1 = optimsimplex_setallx ( s1 , newsimplex );
 s1 = optimsimplex_setallfv ( s1 , [-12.0 0.0 0.0]' );

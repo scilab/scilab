@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "javasci_Scilab2.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "api_common.h"
 #include "api_double.h"
 #include "api_string.h"

@@ -18,11 +18,11 @@
 //
 function value = optimbase_histget ( this , iter , key )
   if this.storehistory == 0 then
-    errmsg = sprintf("History disabled ; turn on -storehistory option.")
+    errmsg = msprintf(gettext("%s: History disabled ; turn on -storehistory option.") , "optimbase_histget" )
     error(errmsg)
   end
   if iter < 1 then
-    errmsg = sprintf("Negative iteration index are not allowed.")
+    errmsg = msprintf(gettext("%s: Negative iteration index %d is not allowed.") , "optimbase_histget" , iter )
     error(errmsg)
   end
   select key
@@ -31,7 +31,8 @@ function value = optimbase_histget ( this , iter , key )
   case "-fopt" then
     value = this.historyfopt ( iter );
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s") , "optimbase_histget" ,key)
     error(errmsg)
   end
 endfunction
+

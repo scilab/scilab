@@ -41,7 +41,7 @@ libsciwindows_tools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciwindows_tools_la_sci_gateway_DATA = sci_gateway/windows_tools_gateway.xml
 
 #### windows_tools : include files ####
-libsciwindows_tools_la_includedir=$(pkgincludedir)/windows_tools
+libsciwindows_tools_la_includedir=$(pkgincludedir)
 libsciwindows_tools_la_include_HEADERS = includes/gw_windows_tools.h \
 includes/dynlib_windows_tools.h
 

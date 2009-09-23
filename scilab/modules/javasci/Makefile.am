@@ -65,7 +65,7 @@ libjavasci_la_LIBADD = \
 	$(top_builddir)/modules/libscilab.la
 
 #### javasci : include files ####
-libjavasci_la_includedir=$(pkgincludedir)/javasci
+libjavasci_la_includedir=$(pkgincludedir)
 libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
 includes/javasci_Scilab2.h \
 includes/javasci_globals.h \

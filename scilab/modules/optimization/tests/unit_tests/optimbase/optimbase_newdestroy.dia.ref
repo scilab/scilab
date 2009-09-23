@@ -47,7 +47,7 @@ function y = rosenbrock (x)
 endfunction
 //
 // myoutputcmd --
-//  This command is called back by the Optimization
+//  This command is called back by the Optimization 
 //  algorithm.
 // Arguments
 //  state : the current state of the algorithm
@@ -75,7 +75,7 @@ _OUTPUCMDFLAG_ = 0
     0.  
 //
 // myoutputcmd2 --
-//  This command is called back by the Optimization
+//  This command is called back by the Optimization 
 //  algorithm.
 // Arguments
 //  state : the current state of the algorithm
@@ -182,11 +182,11 @@ assert_equal ( status , "maxiter" );
 opt = optimbase_configure(opt,"-verbose",1);
 opt = optimbase_log ( opt , "My interesting message" );
 My interesting message
+
 opt = optimbase_configure(opt,"-verbose",0);
 // Log a message relative to the stopping rule
 opt = optimbase_configure(opt,"-verbosetermination",1);
 opt = optimbase_stoplog ( opt , "My interesting stop message" );
-My interesting stop message
 opt = optimbase_configure(opt,"-verbosetermination",0);
 // Check output command without additionnal argument
 opt = optimbase_configure(opt,"-outputcommand",myoutputcmd);
@@ -232,30 +232,50 @@ assert_close ( f0 , 1.0, %eps );
 // Check display
 optimbase_display ( opt );
 Optimization Object
+
 Verbose logging : 0
+
 Verbose Termination : 0
+
 Store History : 1
+
 Number of variables : 2
+
 Initial Guess :
+
  
   - 1.2  
     1.   
 Initial Function Value :0.000000e+000
+
 Optimum Parameters :
+
  
     1.    1.  
 Optimum Function Value :1.000000e+000
+
 Number of iterations : 1
+
 Maximum number of iterations : 200
+
 Number function evaluations : 0
+
 Maximum number of function evaluations : 200
+
 Termination Method on function value : disabled
+
 Termination Absolute Tolerance on function value : 0
+
 Termination Relative Tolerance on function value : 2.220D-15
+
 Termination Method on x : enabled
+
 Termination Absolute Tolerance on x : 0
+
 Termination Relative Tolerance on x : 2.220D-15
+
 Optimization Status : maxiter
+
 // Check the boundsmin, boundsmax and nbineqconst
 opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 boundsmin = optimbase_cget ( opt , "-boundsmin" );
@@ -268,3 +288,106 @@ nbineqconst = optimbase_cget ( opt , "-nbineqconst" );
 assert_equal ( nbineqconst , 3 );
 // Cleanup
 opt = optimbase_destroy(opt);
+//
+// Test error cases
+//
+opt = optimbase_new ();
+//
+// Test wrong initial guess
+//
+cmd = "optimbase_configure(opt,''-x0'',[-1.2 1.0])";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
+assert_equal ( computed , expected );
+//
+// Test wrong -tolxmethod
+//
+cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: Unknown value foo for -tolxmethod option";
+assert_equal ( computed , expected );
+//
+// Test wrong -tolfunmethod
+//
+cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: Unknown value foo for -tolfunmethod";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test outstruct when no -outputcommand is defined
+//
+opt = optimbase_new ();
+cmd = "data = optimbase_outstruct ( opt )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_outstruct: No output command is defined.";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test optimbase_cget with unknown key
+//
+opt = optimbase_new ();
+cmd = "value = optimbase_cget (opt,''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_cget: Unknown key foo";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test optimbase_get with unknown key
+//
+opt = optimbase_new ();
+cmd = "value = optimbase_get (opt,''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: Unknown key foo";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test various errors 
+//
+opt = optimbase_new ();
+// Test -historyxopt when there is no history
+cmd = "value = optimbase_get (opt,''-historyxopt'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: History disabled ; enable -storehistory option.";
+assert_equal ( computed , expected );
+// Test -historyfopt when there is no history
+cmd = "value = optimbase_get (opt,''-historyfopt'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: History disabled ; enable -storehistory option.";
+assert_equal ( computed , expected );
+// Test optimbase_function when there is no function
+cmd = "optimbase_function ( opt , [] , 1 )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_function: Empty function (use -function option).";
+assert_equal ( computed , expected );
+// Test optimbase_histget ( this , iter , key ) when there is no history
+cmd = "optimbase_histget ( opt , 1 , ''-xopt'' )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_histget: History disabled ; turn on -storehistory option.";
+assert_equal ( computed , expected );
+// Test optimbase_histget ( this , iter , key ) with negative iteration
+opt = optimbase_configure ( opt , "-storehistory" , 1 );
+cmd = "optimbase_histget ( opt , -1 , ''-xopt'' )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_histget: Negative iteration index -1 is not allowed.";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+//
+// Test optimbase_function when there is no function
+//

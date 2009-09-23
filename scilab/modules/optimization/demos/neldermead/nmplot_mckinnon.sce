@@ -124,6 +124,7 @@ nm = nmplot_configure(nm,"-sigmafn","mckinnon.history.sigma.txt");
 // Perform optimization
 //
 nm = nmplot_search(nm);
+nmplot_display(nm);
 //
 // Plot
 //
@@ -132,19 +133,15 @@ f = scf();
 xset("fpf"," ")
 contour ( xdata , ydata , zdata , 40 )
 nmplot_simplexhistory ( nm );
-xs2png(0,"mckinnon.history.simplex.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
-xs2png(1,"mckinnon.history.fbar.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
-xs2png(2,"mckinnon.history.fopt.png");
 f = scf();
 nmplot_historyplot ( nm , "mckinnon.history.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
-xs2png(3,"mckinnon.history.sigma.png");
 deletefile("mckinnon.history.simplex.txt");
 deletefile("mckinnon.history.fbar.txt");
 deletefile("mckinnon.history.fopt.txt");

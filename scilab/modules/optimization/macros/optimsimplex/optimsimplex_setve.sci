@@ -13,10 +13,10 @@
 // Arguments
 //   ive : vertex index
 //   fv : the function value
-//   x : the coordinates of the point, as a column vector
+//   x : the coordinates of the point, as a row vector
 //
 function this = optimsimplex_setve ( this , ive , fv , x )
-  this.x(:,ive) = x;
-  this.fv(ive) = fv;
+  this.x(ive,:) = x;
+  this.fv(ive,1) = fv;
 endfunction
 

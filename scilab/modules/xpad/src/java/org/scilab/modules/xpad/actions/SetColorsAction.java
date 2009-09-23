@@ -17,6 +17,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -24,6 +26,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 
@@ -69,6 +73,8 @@ public class SetColorsAction extends DefaultAction {
 		JPanel panel = new JPanel(new GridBagLayout( ));
 		frame.setContentPane(panel);
 		
+		
+		
 		JPanel changePanel = new JPanel(new GridBagLayout());
 		JPanel validationPanel = new JPanel(new GridBagLayout());
 		
@@ -110,12 +116,14 @@ public class SetColorsAction extends DefaultAction {
 			    	_colorChooser.displayAndWait();
 			    	Color newColor = _colorChooser.getSelectedColor();
 			    	
-			    	allStylesColor.put(listStylesName.get(i), newColor );
-			    	
+			    	if (newColor != null ){
+			    		allStylesColor.put(listStylesName.get(i), newColor );
+			    		stylesNamesLabelList.get(i).setForeground(newColor);
+			    	}
 			    	/*update label color*/
-			    	stylesNamesLabelList.get(i).setForeground(newColor);
+			    	
 
-					frame.requestFocus();
+					frame.setFocusable(true);
 				}
 			};
 	
@@ -188,17 +196,23 @@ public class SetColorsAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 				
 				/*apply all the new colors to the editor*/
-				for (int i = 0; i <numberOfStyles ; i++) {
+				int numberOfTab = getEditor().getTabPane().getComponentCount();
+				for ( int j = 0 ; j < numberOfTab ; j++){
 					
-					Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
-			    	Style tempStyle = getEditor().getTextPane().getStyledDocument().getStyle(listStylesName.get(i));
+					JTextPane textPane = (JTextPane) ((JScrollPane) getEditor().getTabPane().getComponentAt(j)).getViewport().getComponent(0) ;
 
-			    	StyleConstants.setForeground (tempStyle ,thisStyleColor );				    
-	
-				}
-				/*without this line we would have needed to type a character to see the update*/	
-		    	((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).insertUpdate(null);
 				
+					for (int i = 0; i <numberOfStyles ; i++) {
+						
+						Color thisStyleColor = allStylesColor.get(listStylesName.get(i));		
+				    	Style tempStyle = textPane.getStyledDocument().getStyle(listStylesName.get(i));
+	
+				    	StyleConstants.setForeground (tempStyle ,thisStyleColor );				    
+		
+					}
+					/*without this line we would have needed to type a character to see the update*/	
+			    	((ScilabStyleDocument) textPane.getStyledDocument()).insertUpdate(null);
+				}
 		    	/*save the change in the xml*/
 				ConfigXpadManager.saveAllForegroundColors(allStylesColor);
 				SetColorsAction.windowAlreadyExist= false ;
@@ -244,7 +258,40 @@ public class SetColorsAction extends DefaultAction {
 		
 		
 		//display the frame and set some properties
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		frame.addWindowListener( new WindowListener(){
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowClosing(WindowEvent arg0) {
+				SetColorsAction.windowAlreadyExist = false ;
+				frame.dispose();
+				
+			}
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowIconified(WindowEvent arg0) {
+				
+			};
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		} );
+		
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setTitle("Change Colors");
 		frame.pack();
 		frame.setLocationRelativeTo(null);

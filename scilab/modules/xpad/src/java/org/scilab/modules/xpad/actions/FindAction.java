@@ -23,6 +23,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,7 +113,7 @@ public class FindAction extends DefaultAction {
 
 		//Find & Replace Frame
 		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(300, 650));
 		frame.setTitle("Find/Replace");
 		frame.pack();
@@ -421,7 +423,36 @@ public class FindAction extends DefaultAction {
             }
 		});
 		
+		frame.addWindowListener( new WindowListener(){
+			public void windowClosed(WindowEvent arg0) {
+				// TODO Auto-generated method stub
 				
+			}
+			public void windowDeiconified(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowActivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowClosing(WindowEvent arg0) {
+				FindAction.windowAlreadyExist = false ;
+				frame.dispose();
+				
+			}
+			public void windowDeactivated(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			public void windowIconified(WindowEvent arg0) {
+				
+			}
+			public void windowOpened(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 	}
 	private void findText(){

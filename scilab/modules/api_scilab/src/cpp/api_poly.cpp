@@ -19,7 +19,7 @@
 #include "api_poly.h"
 
 #include "MALLOC.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "stack-c.h"
 extern "C" {
 #include "code2str.h"

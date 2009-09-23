@@ -37,7 +37,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "callinterf.h"
-#include "CallScilab.h"
+#include "call_scilab.h"
 #include "recursionFunction.h"
 #include "doublecomplex.h"
 #include "libinter.h"
@@ -255,7 +255,7 @@ static int overloadtype(int *lw,char *fname,unsigned char *typ)
     ityp=sci_c_function;
     break;
   case 'p' : /* pointer */
-    ityp=sci_lufact_pointer;
+    ityp=sci_pointer; /* used to be sci_lufact_pointer before Scilab 5.2 */
     break;
   case 's' : /* sparse */
     ityp= sci_sparse;

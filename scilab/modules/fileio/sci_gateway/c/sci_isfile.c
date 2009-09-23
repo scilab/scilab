@@ -20,6 +20,7 @@
 #include "Scierror.h"
 #include "FileExist.h"
 #include "isdir.h"
+#include "expandPathVariable.h"
 #include "freeArrayOfString.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
@@ -76,7 +77,16 @@ int sci_isfile(char *fname,unsigned long fname_len)
 
 	for (i=0;i< m1 * n1; i++)
 	{
-		results[i] = !isdirW(pStVarOne[i]) && FileExistW(pStVarOne[i]);
+		wchar_t *expandedPath = expandPathVariableW(pStVarOne[i]);
+		if (expandedPath)
+		{
+			results[i] = !isdirW(expandedPath) && FileExistW(expandedPath);
+			FREE(expandedPath); expandedPath = NULL;
+		}
+		else
+		{
+			results[i] = FALSE;
+		}
 	}
 
 	if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}

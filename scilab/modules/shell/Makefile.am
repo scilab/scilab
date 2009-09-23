@@ -88,7 +88,7 @@ libscishell_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscishell_la_sci_gateway_DATA = sci_gateway/shell_gateway.xml
 
 #### shell : include files ####
-libscishell_la_includedir=$(pkgincludedir)/shell
+libscishell_la_includedir=$(pkgincludedir)
 libscishell_la_include_HEADERS = includes/gw_shell.h \
 includes/scilines.h \
 includes/InitializeShell.h \

@@ -21,7 +21,7 @@ src/exe/declare.c \
 src/exe/opt.c \
 src/exe/check.c
 
-libsciintersci_la_includedir=$(pkgincludedir)/intersci
+libsciintersci_la_includedir=$(pkgincludedir)
 
 pkglib_LTLIBRARIES = libsciintersci.la
 

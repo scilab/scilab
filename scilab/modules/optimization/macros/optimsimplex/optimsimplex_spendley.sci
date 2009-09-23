@@ -24,8 +24,8 @@ function [ this , data ] = optimsimplex_spendley ( this , x0 , fun , len , data 
   n = length(x0);
   this.n = n;
   this.nbve = n + 1;
-  this.x = zeros ( n , n+1 )
-  this.fv = zeros ( n+1 )
+  this.x = zeros ( n+1  , n )
+  this.fv = zeros ( n+1 , 1 )
   //
   // Compute p (diagonal term) , q (off-diagonal term)
   //
@@ -34,15 +34,15 @@ function [ this , data ] = optimsimplex_spendley ( this , x0 , fun , len , data 
   //
   // Set 1st point
   //
-  this.x ( 1:n,1 ) = x0 (1:n)'
+  this.x ( 1 , 1:n ) = x0 (1:n)
   //
   // Set points #2 to #n+1
   //
   for j = 2 : this.n+1
     // Note : Vectorize when possible
     // In order to vectorize, add q everywhere, then substract p just for one diagonal term j-1
-    this.x ( 1:n,j ) = x0 (1:n)' + len * q * ones(n,1)
-    this.x ( j-1,j ) = this.x ( j-1,j ) - len * q + len * p
+    this.x ( j , 1:n ) = x0 (1:n) + len * q * ones(1,n)
+    this.x ( j , j-1 ) = this.x ( j , j-1 ) - len * q + len * p
   end
   // Compute Function Value
   if (~isdef('data','local')) then

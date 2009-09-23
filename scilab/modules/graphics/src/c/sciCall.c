@@ -211,19 +211,20 @@ void Objsegs ( int * style,
                int   n1   ,
                double  * x    ,
                double  * y    ,
+               double  * z    ,
                double    arsize )
 {
-  int type=0,n2, colored=0;
-  double *fx,*fy,arfact=1.0;
+  int type=0, colored=0;
+  double *fx =NULL,*fy = NULL; // No fx or fy
   int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-  sciPointObj *psubwin = sciGetCurrentSubWin();
+  sciPointObj *psubwin = NULL;
 
   checkRedrawing() ;
-
-  n2=n1;
-  fx=x;fy=y;
-  sciSetCurrentObj (ConstructSegs(psubwin,type,
-				  x,y,n1,n2,fx,fy,flag,style,arsize,colored,arfact,typeofchamp));
+  psubwin = sciGetCurrentSubWin();
+  sciSetCurrentObj(
+    ConstructSegs(psubwin,type,
+                  x,y,z,n1,n1, (z==NULL ? 0 : n1),     // x, y and z have the same size n1
+                  fx,fy,flag,style,arsize,colored,typeofchamp));
 }
 /*-----------------------------------------------------------
  * Objstring:
@@ -495,7 +496,7 @@ void Objplot3d ( char    * fname ,
 		}
 		else if(iflag[2] == 2)
 		{
-			pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXIS ; /* for 2d use only (when switching to 2d mode) */
+			pSUBWIN_FEATURE (psubwin)->axes.rect = BT_HIDDEN_AXES ; /* for 2d use only (when switching to 2d mode) */
 
 			pSUBWIN_FEATURE (psubwin)->axes.axes_visible[0] = FALSE;
 			pSUBWIN_FEATURE (psubwin)->axes.axes_visible[1] = FALSE;

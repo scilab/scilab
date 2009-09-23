@@ -1,0 +1,67 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
+
+mprintf("Defining quadratic function...\n");
+function y = quadratic (x)
+  y = x(1)^2 + x(2)^2 - x(1) * x(2);
+endfunction
+
+mprintf("Creating nmplot object...\n");
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",quadratic);
+nm = nmplot_configure(nm,"-x0",[2.0 2.0]');
+nm = nmplot_configure(nm,"-maxiter",100);
+nm = nmplot_configure(nm,"-maxfunevals",300);
+//nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
+nm = nmplot_configure(nm,"-tolxrelative",1.e-8);
+nm = nmplot_configure(nm,"-simplex0method","spendley");
+//nm = nmplot_configure(nm,"-simplex0length",1.0);
+nm = nmplot_configure(nm,"-method","fixed");
+//nm = nmplot_configure(nm,"-verbose",1);
+nm = nmplot_configure(nm,"-verbosetermination",0);
+//
+// Setup output files
+//
+nm = nmplot_configure(nm,"-simplexfn","rosenbrock.fixed.history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn","rosenbrock.fixed.history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn","rosenbrock.fixed.history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
+//
+// Perform optimization
+//
+mprintf("Searching for minimum...\n");
+nm = nmplot_search(nm);
+nmplot_display(nm);
+// Plot the contours of the cost function and the simplex history
+mprintf("Plotting contour...\n");
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 100 , ny = 100 );
+f = scf();
+contour ( xdata , ydata , zdata , [0.1 1.0 2.0 5.0 10.0 15.0 20.0] )
+nmplot_simplexhistory ( nm );
+mprintf("Plotting history of fbar...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
+  mytitle = "Function Value Average" , myxlabel = "Iterations" );
+mprintf("Plotting history of fopt...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.fopt.txt" , ...
+  mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
+mprintf("Plotting history of sigma...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.sigma.txt" , ...
+  mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
+deletefile("rosenbrock.fixed.history.simplex.txt");
+deletefile("rosenbrock.fixed.history.fbar.txt");
+deletefile("rosenbrock.fixed.history.fopt.txt");
+deletefile("rosenbrock.fixed.history.sigma.txt");
+nm = nmplot_destroy(nm);
+
+

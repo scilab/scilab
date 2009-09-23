@@ -794,41 +794,41 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
       pAxes = scoGetPointerAxes(pScopeMemory,i);
 
       for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
-	{
+        {
 
-	  /* Compute color of segments */
-	  if (color == NULL)
-	    {
-	      /* default color */
-	      style[0] = 0;
-	    }
-	  else
-	    {
-	      /* User specified color */
-	      style[0] = color[j];
-	    }
+          /* Compute color of segments */
+          if (color == NULL)
+          {
+            /* default color */
+            style[0] = 0;
+          }
+          else
+          {
+            /* User specified color */
+            style[0] = color[j];
+          }
 
-	  pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, longdraw_size, longdraw_size, NULL, NULL,0,style, 0, TRUE, 0, 0);
-	  pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
-	  pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
-	  sciSetIsLine(pLongDraw, 1);
-	  sciSetLineStyle(pLongDraw, 1);
-	  sciSetMarkStyle(pLongDraw, 0);
-	  sciSetIsMark(pLongDraw, 0);
-	  sciSetIsClipping(pLongDraw, 0);
-	  scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
+          pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, NULL, longdraw_size, longdraw_size, 0, NULL, NULL,0,style, 0, TRUE, 0);
+          pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
+          pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
+          sciSetIsLine(pLongDraw, 1);
+          sciSetLineStyle(pLongDraw, 1);
+          sciSetMarkStyle(pLongDraw, 0);
+          sciSetIsMark(pLongDraw, 0);
+          sciSetIsClipping(pLongDraw, 0);
+          scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 
-	  pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, 2, 2, NULL, NULL,0,style, 0, TRUE, 0, 0);
-	  pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
-	  pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
+          pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, NULL, 2, 2, 0, NULL, NULL,0,style, 0, TRUE, 0);
+          pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
+          pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
 
-	  sciSetIsLine(pShortDraw, 1);
-	  sciSetLineStyle(pShortDraw, 1);
-	  sciSetMarkStyle(pShortDraw, 0);
-	  sciSetIsMark(pShortDraw, 0);
-	  sciSetIsClipping(pShortDraw, 0);
-	  scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
-	}
+          sciSetIsLine(pShortDraw, 1);
+          sciSetLineStyle(pShortDraw, 1);
+          sciSetMarkStyle(pShortDraw, 0);
+          sciSetIsMark(pShortDraw, 0);
+          sciSetIsClipping(pShortDraw, 0);
+          scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
+        }
 
       scicos_free(vx2);
       scicos_free(vy2);

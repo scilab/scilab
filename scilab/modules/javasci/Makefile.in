@@ -454,7 +454,7 @@ libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 
 #### javasci : include files ####
-@JAVASCI_TRUE@libjavasci_la_includedir = $(pkgincludedir)/javasci
+@JAVASCI_TRUE@libjavasci_la_includedir = $(pkgincludedir)
 @JAVASCI_TRUE@libjavasci_la_include_HEADERS = includes/javasci_Scilab.h \
 @JAVASCI_TRUE@includes/javasci_Scilab2.h \
 @JAVASCI_TRUE@includes/javasci_globals.h \
@@ -1114,7 +1114,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @JAVASCI_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @JAVASCI_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@JAVASCI_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1126,7 +1126,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 
 @GIWS_TRUE@@JAVASCI_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@JAVASCI_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@JAVASCI_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@JAVASCI_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@JAVASCI_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@JAVASCI_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1232,10 +1232,12 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @JAVASCI_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@JAVASCI_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
-@JAVASCI_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@JAVASCI_TRUE@			done; \
-@JAVASCI_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@JAVASCI_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@JAVASCI_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
+@JAVASCI_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@JAVASCI_TRUE@				done; \
+@JAVASCI_TRUE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@JAVASCI_TRUE@			fi; \
 @JAVASCI_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @JAVASCI_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @JAVASCI_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

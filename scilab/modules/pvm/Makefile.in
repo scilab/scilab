@@ -549,7 +549,7 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@libscipvm_la_sci_gateway_DATA = sci_gateway/pvm_gateway.xml
 
 #### pvm : include files ####
-@PVM_TRUE@libscipvm_la_includedir = $(pkgincludedir)/pvm
+@PVM_TRUE@libscipvm_la_includedir = $(pkgincludedir)
 @PVM_TRUE@libscipvm_la_include_HEADERS = includes/gw_pvm.h \
 @PVM_TRUE@includes/with_pvm.h \
 @PVM_TRUE@includes/dynlib_pvm.h
@@ -1466,7 +1466,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_TRUE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_TRUE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_TRUE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @PVM_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @PVM_TRUE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @PVM_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1478,7 +1478,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @GIWS_TRUE@@PVM_TRUE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@PVM_TRUE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_TRUE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@PVM_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1584,10 +1584,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_TRUE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@PVM_TRUE@			for specialExt in $(MACROSSPECIALEXT); do \
-@PVM_TRUE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@PVM_TRUE@			done; \
-@PVM_TRUE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_TRUE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_TRUE@				for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_TRUE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_TRUE@				done; \
+@PVM_TRUE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_TRUE@			fi; \
 @PVM_TRUE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \
@@ -1646,7 +1648,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
 @PVM_FALSE@@SWIG_TRUE@	@SWIG_PACKAGENAME=org.scilab.modules.$(modulename); \
 @PVM_FALSE@@SWIG_TRUE@	SWIG_OUTDIR=src/java/org/scilab/modules/$(modulename)/; \
-@PVM_FALSE@@SWIG_TRUE@	if test ! -z "$(SWIG_WRAPPERS)"; then \
+@PVM_FALSE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @PVM_FALSE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @PVM_FALSE@@SWIG_TRUE@			echo "Swig process of $$file ..."; \
 @PVM_FALSE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
@@ -1658,7 +1660,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 
 @GIWS_TRUE@@PVM_FALSE@giws: $(GIWS_WRAPPERS)
 @GIWS_TRUE@@PVM_FALSE@	@GIWS_OUTPUTDIR=src/jni/;\
-@GIWS_TRUE@@PVM_FALSE@	if test ! -z "$(GIWS_WRAPPERS)"; then \
+@GIWS_TRUE@@PVM_FALSE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@@PVM_FALSE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@@PVM_FALSE@			echo "GIWS process of $$file ..."; \
 @GIWS_TRUE@@PVM_FALSE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
@@ -1764,10 +1766,12 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
 @PVM_FALSE@		if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
-@PVM_FALSE@			for specialExt in $(MACROSSPECIALEXT); do \
-@PVM_FALSE@				specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
-@PVM_FALSE@			done; \
-@PVM_FALSE@			FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_FALSE@			if test -n "$(MACROSSPECIALEXT)"; then \
+@PVM_FALSE@				for specialExt in $(MACROSSPECIALEXT); do \
+@PVM_FALSE@					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
+@PVM_FALSE@				done; \
+@PVM_FALSE@				FILELIST="$$FILELIST $$specialExtDir"; \
+@PVM_FALSE@			fi; \
 @PVM_FALSE@		  for file in `ls -1 $$FILELIST 2>/dev/null`; do \
 @PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgmacrosdir)/$$dir" ; \
 @PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgmacrosdir)/$$dir ; \

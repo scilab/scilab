@@ -20,7 +20,7 @@
 typedef struct pipeinfo
 {
 	HANDLE pipe;
-	char *OutputBuffer;
+	unsigned char *OutputBuffer;
 	int NumberOfLines;
 } pipeinfo;
 /*--------------------------------------------------------------------------*/

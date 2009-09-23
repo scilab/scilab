@@ -9,11 +9,17 @@
 
 
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
-					// This function is restricted to Linux/Unix user only
+  // This function is restricted to Linux/Unix user only
 	if MSDOS then
 	  error(msprintf(gettext("%s: Feature not available under Microsoft Windows.\n"),'gencompilationflags_unix'));
 	  return;
 	end
+	
+  [lhs,rhs] = argn(0);
+  if rhs <> 4 then
+    error(msprintf(gettext("%s: Wrong number of input argument(s).\n"),"gencompilationflags_unix"));
+    return
+  end
 
 	cmd=''
 	// CFLAGS

@@ -190,6 +190,11 @@ nm = neldermead_destroy(nm);
 // The convergence is not accurate in this case, whatever the 
 // value of the relative tolerance on simplex size.
 //
+    //
+    // Initialize the random number generator, so that the results are always the
+    // same.
+    //
+    rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -230,6 +235,11 @@ nm = neldermead_destroy(nm);
 // Here the initial simplex is computed with Box randomized bounds method
 // and user-defined number of points in the simplex, i.e. 6
 //
+    //
+    // Initialize the random number generator, so that the results are always the
+    // same.
+    //
+    rand("seed" , 0)
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",4);
 nm = neldermead_configure(nm,"-function",optimtestcase);
@@ -285,7 +295,7 @@ nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","given");
-nm = neldermead_configure(nm,"-coords0",[
+coords = [
 0.0 0.0 0.0 0.0
 1.0 0.0 0.0 0.0
 0.0 1.0 0.0 0.0
@@ -293,7 +303,8 @@ nm = neldermead_configure(nm,"-coords0",[
 0.0 0.0 0.0 1.0
 1.0 1.0 1.0 1.0
 0.0 1.0 2.0 -1.0
-]');
+]
+nm = neldermead_configure(nm,"-coords0",coords);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");

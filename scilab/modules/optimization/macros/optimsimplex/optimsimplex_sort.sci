@@ -17,6 +17,6 @@
 //
 function this = optimsimplex_sort ( this )
   [this.fv,is] = gsort(this.fv,"r","i");
-  this.x = this.x( : , is );
+  this.x = this.x ( is , : );
 endfunction
 
