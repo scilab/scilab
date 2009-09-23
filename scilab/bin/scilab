@@ -573,7 +573,7 @@ do_compile()
 	rm -f report
 	name=`basename $1 .sci`
 	echo generating $name.bin
-	echo "predef();getf('$name.sci');save('$name.bin');quit"\
+	echo "predef();exec('$name.sci');save('$name.bin');quit"\
 	      | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " "
