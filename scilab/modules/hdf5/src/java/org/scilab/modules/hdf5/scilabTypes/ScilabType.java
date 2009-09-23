@@ -14,4 +14,8 @@ package org.scilab.modules.hdf5.scilabTypes;
 
 public interface ScilabType {
 
+	public int getWidth();
+	
+	public int getHeigth();
+	
 }

@@ -26,4 +26,18 @@ public class ScilabMList extends ArrayList<ScilabType> implements ScilabType {
 	typesData[0] = types;
 	add(new ScilabString(typesData));
     }
+    
+	public int getHeigth() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return 1;
+	}
+
+	public int getWidth() {
+		if (isEmpty()) {
+			return 0;
+		}
+		return size();
+	}
 }
