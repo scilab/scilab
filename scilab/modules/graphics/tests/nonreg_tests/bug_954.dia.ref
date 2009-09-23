@@ -36,43 +36,43 @@ XX=ode([p0;pi0;xh0;z0;sig0],0,TT,f);
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981636D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981180D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981636D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981180D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981636D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981180D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981636D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2754264981180D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077458D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077083D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077458D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077083D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077458D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077083D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077458D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.2249615077083D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.1837429597534D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.1837429597234D-16      
 lsoda--  caution... t (=r1) and h (=r2) are
      such that t + h = t at next step
       (h = pas). integration continues
-      where r1 is :   0.4373378914124D+00   and r2 :   0.1837429597534D-16      
+      where r1 is :   0.4373378914124D+00   and r2 :   0.1837429597234D-16      
 lsoda--  previous message precedent given i1 times
      will no more be repeated
       where i1 is :         10                                                  
@@ -80,18 +80,18 @@ lsoda--  at t (=r1), mxstep (=i1) steps
 needed before reaching tout
       where i1 is :        500                                                  
       where r1 is :   0.4373378914124D+00                                       
-Warning:  Result may be inaccurate.
+Attention: Le résultat est peut être inexact.
 
 TT=TT(1:size(XX,2));
 K=XX($,:)+XX(2,:).*(XX(3,:)-XX(4,:)).^2;
 xset('window',0);
-xbasc();
+clf();
 plot2d(TT',K');
 xset('window',1);
-xbasc();
+clf();
 plot2d(TT',XX(2,:)');
 xset('window',2);
-xbasc();
+clf();
 plot2d(TT',XX(1,:)');
 // Test #2
 clear
