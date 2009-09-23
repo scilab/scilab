@@ -107,7 +107,7 @@ bigstr = strcat(text," ");                  // put all the lines in a big string
 sep =  [" " "," "." ";" "*" ":" "-" """"];  // words separators 
 words = tokens(bigstr, sep);                // cut the big string into words
 m = tabul(words);                           // computes occurrences of each word
-[occ , p] = sort(m(2));                     // sort by decreasing frequencies
+[occ , p] = gsort(m(2));                     // sort by decreasing frequencies
 results = [m(1)(p) string(occ)]             // display result
  ]]></programlisting>
   </refsection>

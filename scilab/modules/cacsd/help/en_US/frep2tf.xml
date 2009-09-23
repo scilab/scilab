@@ -104,7 +104,7 @@ frq=logspace(-3,2,200);
 [Sys2,err]=frep2tf(frq,rep,10);Sys2=clean(Sys2)//Sys2 obtained from freq. resp of Sys
 [frq,rep2]=repfreq(Sys2,frq); //Frequency response of Sys2
 xbasc();bode(frq,[rep;rep2])   //Responses of Sys and Sys2
-[sort(spec(Sys('A'))),sort(roots(Sys2('den')))] //poles
+[gsort(spec(Sys('A'))),gsort(roots(Sys2('den')))] //poles
 
 dom=1/1000; // Sampling time 
 z=poly(0,'z');
