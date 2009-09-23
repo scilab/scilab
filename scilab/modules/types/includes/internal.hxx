@@ -29,7 +29,7 @@ namespace types
       RealInt,
       RealString,
       RealDouble,
-			RealUInt,
+			RealInt2,
 			RealBool,
 			RealFloat,
       RealGeneric,
@@ -65,7 +65,7 @@ namespace types
     virtual Int* getAsInt(void) { return NULL; }
 
     /* Bool */
-    bool isBool(void) { return (getType() == RealBool); }
+		bool isBool(void) { return (getType() == RealBool); }
     virtual Bool* getAsBool(void) { return NULL; }
     
     /* Callable */

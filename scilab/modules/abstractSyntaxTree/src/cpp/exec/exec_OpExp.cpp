@@ -106,9 +106,6 @@ namespace ast
 					}
 					result_set(pResult);
 				}
-				else if(TypeL == GenericType::RealUInt && TypeR == GenericType::RealUInt)
-				{
-				}
 				else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)
 				{
 				}
@@ -235,9 +232,6 @@ namespace ast
 				{
 				}
 				else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
-				{
-				}
-				else if(TypeL == GenericType::RealUInt && TypeR == GenericType::RealUInt)
 				{
 				}
 				else if(TypeL == GenericType::RealInt && TypeR == GenericType::RealInt)

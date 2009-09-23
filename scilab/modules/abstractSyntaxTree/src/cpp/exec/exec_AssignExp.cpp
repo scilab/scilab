@@ -63,32 +63,32 @@ namespace ast
 				int *piMaxDim			= NULL;
 				int *piDimSize			= new int[iProductElem];
 				int iTotalCombi		= GetIndexList(pCall->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+				/*We have the indexlist expanded and the max index*/
 
-				/*I have  the indexlist expanded and the max index*/
 				InternalType *pOut	= NULL;
+
+				//fisrt extract implicit list
+				if(execMeR->result_get()->getType() == InternalType::RealImplicitList)
+				{
+					InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
+					execMeR->result_set(pIL);
+				}
+
 				if(pIT == NULL)
 				{//call static insert function
 					switch(execMeR->result_get()->getType())
 					{
-					case InternalType::RealImplicitList:
-						{
-							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
-							switch(pIL->getType())
-							{
-							case InternalType::RealDouble : 
-								pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
-								break;
-							default :
-								//TOTO YaSp : overlaoding insertion
-								break;
-							}
-							break;
-						}
 					case InternalType::RealDouble : 
 						pOut = Double::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsDouble(), bSeeAsVector);
 						break;
+					case InternalType::RealBool : 
+						pOut = Bool::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsBool(), bSeeAsVector);
+						break;
 					case InternalType::RealString : 
 						pOut = String::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsString(), bSeeAsVector);
+						break;
+					case InternalType::RealInt : 
+						pOut = Int::insert_new(iTotalCombi, piIndexSeq, piMaxDim, execMeR->result_get()->getAsInt(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion
@@ -97,27 +97,19 @@ namespace ast
 				}
 				else
 				{//call type insert function
-					switch(execMeR->result_get()->getType())
+					switch(pIT->getType())
 					{
-					case InternalType::RealImplicitList:
-						{
-							InternalType *pIL = execMeR->result_get()->getAsImplicitList()->extract_matrix();
-							switch(pIL->getType())
-							{
-							case InternalType::RealDouble : 
-								bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, pIL->getAsDouble(), bSeeAsVector);
-								break;
-							default :
-								//TOTO YaSp : overlaoding insertion
-								break;
-							}
-							break;
-						}
 					case InternalType::RealDouble : 
 						bRet = pIT->getAsDouble()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
 						break;
+					case InternalType::RealBool : 
+						bRet = pIT->getAsBool()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
 					case InternalType::RealString : 
 						bRet = pIT->getAsString()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
+						break;
+					case InternalType::RealInt : 
+						bRet = pIT->getAsInt()->insert(iTotalCombi, piIndexSeq, piMaxDim, (GenericType*)execMeR->result_get(), bSeeAsVector);
 						break;
 					default : 
 						//TOTO YaSp : overlaoding insertion

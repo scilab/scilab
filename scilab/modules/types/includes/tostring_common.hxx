@@ -28,8 +28,45 @@ using namespace std;
 #define SYMBOL_I										"i"
 
 /*int*/
-void GetIntFormat(long long _llVal, int *_piWidth);
-void AddIntValue(ostringstream *_postr, long long _llVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true);
+template <typename T>
+void GetIntFormat(T _TVal, int *_piWidth)
+{
+	if(_TVal < 0)
+	{
+		*_piWidth = (int)(log10((long double)_abs64(_TVal)) + 1);
+	}
+	else
+	{
+		*_piWidth = (int)(log10((long double)_TVal) + 1);
+	}
+}
+
+template <typename T>
+void AddIntValue(ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSign = false, bool bPrintOne = true)
+{
+	if(bPrintPlusSign == true)
+	{
+		*_postr << (_TVal < 0 ? MINUS_STRING_INT : PLUS_STRING);
+	}
+	else
+	{
+		*_postr << (_TVal < 0 ? MINUS_STRING_INT : NO_SIGN);
+	}
+
+	Config_Stream(_postr, _iWidth, 0, ' ');
+
+	if(bPrintOne == true || _TVal != 1)
+	{
+		if(_TVal < 0)
+		{
+			*_postr << right << (long long)_abs64(_TVal);
+		}
+		else
+		{
+			*_postr << right << (unsigned long long)_TVal;
+		}
+	}
+}
 
 /*double*/
 void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);

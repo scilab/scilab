@@ -45,6 +45,7 @@ namespace types
 		bool						resize(int _iNewRows, int _iNewCols);
 		bool						insert(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, GenericType* _poSource, bool _bAsVector);
 		static String*	insert_new(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, String* _poSource, bool _bAsVector);
+		String*					extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector);
 
 		bool						operator==(const InternalType& it);
 		bool						operator!=(const InternalType& it);

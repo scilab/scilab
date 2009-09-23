@@ -359,7 +359,7 @@ int allocCommonMatrixOfInteger(int _iVar, int _iPrecision, int _iRows, int _iCol
 		return 1;
 	}
 
-	pi = new Int(_iRows, _iCols, (Int::IntType)_iPrecision);
+	pi = Int::createInt(_iRows, _iCols, (Int::IntType)_iPrecision);
 	*_pvData = pi->data_get();
 
 	for(int i = (int)pStr->m_pout->size() ; i <= iNewPos ; i++)
