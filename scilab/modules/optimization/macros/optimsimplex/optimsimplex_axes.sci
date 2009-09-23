@@ -34,18 +34,18 @@ function [ this , data ] = optimsimplex_axes ( this , x0 , fun , len , data )
   else
     xlen = len
   end
-  this.x = zeros ( n , this.nbve )
-  this.fv = zeros ( this.nbve )
+  this.x = zeros ( this.nbve , n )
+  this.fv = zeros ( this.nbve , 1 )
   //
   // Set 1st point
   //
-  this.x ( 1:n,1 ) = x0 (1:n)'
+  this.x ( 1 , 1:n ) = x0 (1:n)
   //
   // Set points #2 to #n+1
   //
   for j = 2 : this.nbve
-    this.x ( 1:n,j ) = x0 (1:n)'
-    this.x ( j-1,j ) = this.x ( j-1,j ) + xlen(j-1)
+    this.x ( j , 1:n ) = x0 (1:n)
+    this.x ( j , j-1 ) = this.x ( j , j-1 ) + xlen(j-1)
   end
   // Compute Function Value
   if (~isdef('data','local')) then

@@ -47,8 +47,9 @@ nm = neldermead_search(nm);
 simplex0 = neldermead_cget(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
-1.    1.96592582628907    1.25881904510252  
-2.    2.25881904510252    2.96592582628907
+1.    2.
+1.96592582628907    2.25881904510252
+1.25881904510252    2.96592582628907
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);
@@ -65,8 +66,9 @@ nm = neldermead_search(nm);
 simplex0 = neldermead_cget(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
-1.    2.    1.
-2.    2.    3.
+    1.    2.  
+    2.    2.  
+    1.    3.  
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);
@@ -84,20 +86,22 @@ nm = neldermead_search(nm);
 simplex0 = neldermead_cget(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
-1.    1.05    1.   
-2.    2.      2.1
+    1.                          2.                        
+    1.05                        2.                        
+    1.                          2.1
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);
 //
 // Test simplex given
 //
-lambda1 = (1.0 + sqrt(33.0))/8.0
-lambda2 = (1.0 - sqrt(33.0))/8.0
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
 coords0 = [
-1.0 0.0 lambda1
-1.0 0.0 lambda2
-]
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
@@ -109,8 +113,9 @@ nm = neldermead_search(nm);
 simplex0 = neldermead_cget(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
-1.    0.    0.8430703308172535770382
-1.    0.   -0.5930703308172535770382
+1.    1.      
+0.    0.   
+0.8430703308172535770382 -0.5930703308172535770382
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);
@@ -127,8 +132,9 @@ nm = neldermead_search(nm);
 simplex0 = neldermead_cget(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
-1.    2.    1.
-2.    2.    4.
+    1.    2.  
+    2.    2.  
+    1.    4.  
 ];
 assert_close ( computed, expected, 10 * %eps );
 nm = neldermead_destroy(nm);

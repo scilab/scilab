@@ -39,8 +39,8 @@
 	  peut être utilisée à la place.
 	</para>
     <para>
-		La fonction <literal>xbasc</literal> est obsolète.
-		Pour effacer une fenêtre graphique, les fonctions <literal>clf</literal> ou <literal>delete</literal> peuvent être utilisée
+		La fonction <literal>xbasc</literal> est obsolète et sera retirée dans la version 5.3.
+		Pour effacer une fenêtre graphique, les fonctions <literal>clf</literal> ou <literal>delete</literal> peuvent être utilisées
 		à la place.
 	</para>
   </refsection>

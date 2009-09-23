@@ -7,7 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function xclear(win_num)
-//xbasc([win_num])
+//xclear([win_num])
 // Clear the graphic window win_num and erase the recorded graphics of
 // window win_num
 // if win_num is omited, it's the current graphic window

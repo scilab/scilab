@@ -23,8 +23,8 @@ function cen = optimsimplex_xbar ( this , iexcl )
     iexcl = this.nbve;
   end
   // Vectorize by making the sum of all, substracting only one vector
-  cen = sum(this.x(1:this.n,1:this.nbve),'c')
-  cen = cen - this.x(1:this.n,iexcl)
+  cen = sum(this.x(1:this.nbve,1:this.n),'r')
+  cen = cen - this.x(iexcl,1:this.n)
   cen = cen / ( this.nbve - 1)
 endfunction
 

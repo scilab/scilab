@@ -29,14 +29,14 @@ function nmplot_outputcmd ( state , data , this )
   // Print simplex
   x = optimsimplex_getallx ( data.simplex )
   if this.simplexfn <> "" then
-    nbve = size(x,2)
-    n = nbve - 1
+    nbve = optimsimplex_getnbve ( data.simplex )
+    n = optimsimplex_getn ( data.simplex )
     mfprintf ( this.simplexhandle , "// Iteration #%d\n", iter )
     mfprintf ( this.simplexhandle , "history($+1) = [\n" )
     for ive = 1:nbve
       mfprintf ( this.simplexhandle , "// Vertex #%d\n", ive )
       for ix = 1:n
-        mfprintf ( this.simplexhandle , "%e ", x(ix,ive))
+        mfprintf ( this.simplexhandle , "%e ", x(ive,ix))
       end
       mfprintf ( this.simplexhandle , "\n")
     end

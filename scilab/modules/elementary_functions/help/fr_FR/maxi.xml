@@ -96,7 +96,7 @@
     <title>Voir Aussi</title>
 
     <simplelist type="inline">
-      <member><link linkend="sort">sort</link></member>
+      <member><link linkend="gsort">gsort</link></member>
 
       <member><link linkend="find">find</link></member>
 

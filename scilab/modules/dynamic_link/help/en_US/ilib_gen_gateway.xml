@@ -80,18 +80,18 @@
   <refsection>
     <title>Example about WITHOUT_AUTO_PUTLHSVAR = %t</title>
 
-    <programlisting role="example">cd TMPDIR
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR
 WITHOUT_AUTO_PUTLHSVAR = %t;
 name = 'gw_example1';
 table = ['sci_func1', 'func1']
 ilib_gen_gateway(name,table)
 
 // generated gateway
-mgetl(TMPDIR+'/gw_example1.c')</programlisting>
-  </refsection>
-
-  <refsection>
-    <programlisting role="example">int sci_func1(char *fname)
+mgetl(TMPDIR+'/gw_example1.c')
+]]></programlisting>
+    <programlisting role="example"><![CDATA[ 
+int sci_func1(char *fname)
 {
   // ... your C code
   // you need to add a explicit PutLhsVar();
@@ -99,24 +99,25 @@ mgetl(TMPDIR+'/gw_example1.c')</programlisting>
   
   PutLhsVar();
   return 0;
-}</programlisting>
+}
+]]></programlisting>
   </refsection>
 
   <refsection>
     <title>Example about WITHOUT_AUTO_PUTLHSVAR = %f (default)</title>
 
-    <programlisting role="example">cd TMPDIR
+    <programlisting role="example"><![CDATA[ 
+cd TMPDIR
 WITHOUT_AUTO_PUTLHSVAR = %f;
 name = 'gw_example2';
 table = ['sci_func2', 'func2']
 ilib_gen_gateway(name,table)
 
 // generated gateway
-mgetl(TMPDIR+'/gw_example2.c')</programlisting>
-  </refsection>
-
-  <refsection>
-    <programlisting role="example">int sci_func2(char *fname)
+mgetl(TMPDIR+'/gw_example2.c')
+]]></programlisting>
+    <programlisting role="example"><![CDATA[
+int sci_func2(char *fname)
 {
   // ... your code
   // you do NOT need to add a explicit PutLhsVar();
@@ -124,7 +125,8 @@ mgetl(TMPDIR+'/gw_example2.c')</programlisting>
   // default mode in scilab 4
 
   return 0;
-}</programlisting>
+}
+]]></programlisting>
   </refsection>
 
   <refsection>

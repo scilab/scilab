@@ -107,28 +107,28 @@ olddir=pwd();
           'file_中文'];
           
     B = ls();
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = listfiles();
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = dir();
-    if(or(A <> sort(B(2)))) then pause,end;
+    if(or(gsort(A) <> gsort(B(2)))) then pause,end;
     
     B = findfiles('.','*');
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = ls('../'+dirName);
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = listfiles('../'+dirName);
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = dir('../'+dirName);
-    if(or(A <> sort(B(2)))) then pause,end;
+    if(or(gsort(A) <> gsort(B(2)))) then pause,end;
     
     B = findfiles('.','*'+specialName+'*');
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     
     // 8. test getshortpathname,getlongpathname
@@ -242,28 +242,28 @@ olddir=pwd();
           'file_æøå'];
           
     B = ls();
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = listfiles();
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = dir();
-    if(or(A <> sort(B(2)))) then pause,end;
+    if(or(gsort(A) <> gsort(B(2)))) then pause,end;
     
     B = findfiles('.','*');
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = ls('../'+dirName);
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = listfiles('../'+dirName);
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     B = dir('../'+dirName);
-    if(or(A <> sort(B(2)))) then pause,end;
+    if(or(gsort(A) <> gsort(B(2)))) then pause,end;
     
     B = findfiles('.','*'+specialName+'*');
-    if(or(A <> sort(B))) then pause,end;
+    if(or(gsort(A) <> gsort(B))) then pause,end;
     
     
     // 8. test getshortpathname,getlongpathname

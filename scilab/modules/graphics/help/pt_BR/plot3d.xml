@@ -405,14 +405,6 @@ plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
   </refsection>
 
   <refsection>
-    <title>Mais Informações</title>
-
-    <para>Para obter mais informações sobre a sintaxe antiga de plot3d, veja a
-    documentação de ajuda <link
-    linkend="plot3d_old_version">plot3d_old_version</link>.</para>
-  </refsection>
-
-  <refsection>
     <title>Exemplos</title>
 
     <programlisting role="example"><![CDATA[ 

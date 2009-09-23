@@ -5,7 +5,7 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-getf('SCI/modules/graphics/demos/peaks.sci');
+exec('SCI/modules/graphics/demos/peaks.sci');
 z=peakit();
 levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
   m=size(levels,'*');
@@ -16,9 +16,9 @@ levels=[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8];
   h = [r g b];
   xset('colormap',h);
 xset('fpf',' ');
-xbasc();
+clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8],0*ones(1,m))
 xset('fpf','');
 halt()
-xbasc();
+clf();
 contourf([],[],z,[-6:-1,-logspace(-5,0,10),logspace(-5,0,10),1:8]);

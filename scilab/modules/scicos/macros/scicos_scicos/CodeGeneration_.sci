@@ -1037,25 +1037,25 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   end
 
   //Check if input/output ports are numered properly
-  IN=-sort(-IN);
+  IN=-gsort(-IN);
   if or(IN<>[1:size(IN,'*')]) then
     ok=%f;%cpr=list()
     message('Input ports are not numbered properly.')
     return
   end
-  OUT=-sort(-OUT);
+  OUT=-gsort(-OUT);
   if or(OUT<>[1:size(OUT,'*')]) then
     ok=%f;%cpr=list()
     message('Output ports are not numbered properly.')
     return
   end
-  clkIN=-sort(-clkIN);
+  clkIN=-gsort(-clkIN);
   if or(clkIN<>[1:size(clkIN,'*')]) then
     ok=%f;%cpr=list()
     message('Event input ports are not numbered properly.')
     return
   end
-  clkOUT=-sort(-clkOUT);
+  clkOUT=-gsort(-clkOUT);
   if or(clkOUT<>[1:size(clkOUT,'*')]) then
     ok=%f;%cpr=list()
     message('Event output ports are not numbered properly.')
@@ -1508,9 +1508,9 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   //**************************************
   //on prend en compte l'ordre des numerotation graphique des
   //capteur et des actionneur
-  [junk,index]=sort(-actt(:,$));
+  [junk,index]=gsort(-actt(:,$));
   actt=actt(index,1:$) ;
-  [junk,index]=sort(-capt(:,$));
+  [junk,index]=gsort(-capt(:,$));
   capt=capt(index,1:$) ;
 
   //***************************************************

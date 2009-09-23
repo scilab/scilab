@@ -32,7 +32,7 @@ function [f]=polfact(p)
   n=degree(p);f=coeff(p,n);
   if n==0 then return,end
   var=varn(p);
-  r=roots(p);[s,k]=sort(abs(r));r=r(k)
+  r=roots(p);[s,k]=gsort(abs(r));r=r(k)
   k=1;
   while k<=n do,
     if imag(r(k))<>0 then
