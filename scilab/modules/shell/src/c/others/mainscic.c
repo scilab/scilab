@@ -169,10 +169,12 @@ fpsetmask(0);
   }
 #endif
 
-#ifndef __APPLE__
+#if defined(__APPLE__) && !defined(WITHOUT_GUI)
+  /* Do not use this function when building scilab-bin under Mac OS X
+   * not that this function is however used by scilab-cli-bin under Mac OS X */
   return realmain(no_startup_flag,initial_script,initial_script_type,memory);
 #else
-  /* Mac OS X doesn't work the same way as Microsoft Windows or GNU/Linux */
+  /* The Mac OS X Java/Swing integration doesn't work the same way as Microsoft Windows or GNU/Linux */
   return initMacOSXEnv(no_startup_flag,initial_script,initial_script_type,memory);
 #endif
 }

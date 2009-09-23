@@ -31,7 +31,6 @@ scilab_cli_bin_LDFLAGS		=
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
-scilab_cli_bin_LDFLAGS		+= -framework Cocoa
 endif
 
 scilab_bin_CFLAGS 		=

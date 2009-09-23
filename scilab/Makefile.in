@@ -51,13 +51,12 @@ host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
 @IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
-@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
 check_PROGRAMS = call_scilab_c_simple$(EXEEXT) call_scilab_c$(EXEEXT) \
 	call_scilab_c_getlastjob$(EXEEXT) \
 	call_scilab_c_DisableInteractiveMode$(EXEEXT) \
@@ -544,7 +543,7 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
 scilab_bin_LDFLAGS = $(am__append_1)
-scilab_cli_bin_LDFLAGS = $(am__append_2)
+scilab_cli_bin_LDFLAGS = 
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
 
@@ -572,7 +571,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_4)
+TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
