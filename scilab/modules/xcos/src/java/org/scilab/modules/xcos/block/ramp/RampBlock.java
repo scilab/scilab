@@ -38,6 +38,11 @@ public class RampBlock extends BasicBlock {
 	
 	setDependsOnU(false);  // model.dep_ut=[%f %t]
 	setDependsOnT(true);
+	
+	getExprs().add("0"); // exprs=[string(rpar)]
+	getExprs().add("0");
+	getExprs().add("0");
+	
     }
 
 }

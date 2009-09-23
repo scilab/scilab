@@ -37,6 +37,11 @@ public class SinusoidBlock extends BasicBlock {
 	
 	setDependsOnU(false);  // model.dep_ut=[%f %t]
 	setDependsOnT(true);
+	
+	 // exprs=[string(rpar(1));string(rpar(2));string(rpar(3))]
+	getExprs().add("1");
+	getExprs().add("1");
+	getExprs().add("0");
     }
 
 }

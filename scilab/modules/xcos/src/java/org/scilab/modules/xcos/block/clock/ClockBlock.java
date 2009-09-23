@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.block.clock;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 
@@ -39,6 +41,9 @@ public class ClockBlock extends BasicBlock {
 	getRealParameters().add(0.0);
 	
 	setBlockType("d"); // model.blocktype='d'
+	
+	getExprs().add("1"); // graphics.exprs = [sci2exp(1);sci2exp(0)]
+	getExprs().add("0");
     }
 
 }

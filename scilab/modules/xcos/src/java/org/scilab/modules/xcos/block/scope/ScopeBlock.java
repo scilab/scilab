@@ -58,5 +58,37 @@ public class ScopeBlock extends BasicBlock {
 	
 	setDependsOnU(true); // model.dep_ut=[%t %f]
 	setDependsOnT(false);
+	
+    //	 win=-1;
+    //	  wdim=[600;400]
+    //	  wpos=[-1;-1]
+    //	  clrs=[1;3;5;7;9;11;13;15];
+    //	  N=20;
+    //	  ymin=-15;ymax=+15;per=30;
+
+	
+//	  exprs=[strcat(string(clrs),' ');
+//		string(win);
+//		sci2exp([]);
+//		sci2exp(wdim);
+//		string(ymin);
+//		string(ymax);
+//		string(per);
+//		string(N);
+//	        string(0)';
+//		emptystr()]; //label-id
+
+	getExprs().add("1 3 5 7 9 11 13 15 ");
+	getExprs().add("-1");
+	getExprs().add("[]");
+	getExprs().add("[600 ; 400]");
+	getExprs().add("-15");
+	getExprs().add("15");
+	getExprs().add("30");
+	getExprs().add("20");
+	getExprs().add("0");
+	getExprs().add("");
+	
+	
     }
 }
