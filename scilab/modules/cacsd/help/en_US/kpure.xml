@@ -64,7 +64,7 @@
     <programlisting role="example"><![CDATA[ 
 s=poly(0,'s');
 h=syslin('c',(s-1)/(1+5*s+s^2+s^3))
-xbasc();evans(h)
+clf();evans(h)
 K=kpure(h)
 hf=h/.K(1)
 roots(denom(hf))

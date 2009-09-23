@@ -49,7 +49,7 @@
 	  might be used instead.
 	</para>
     <para>
-		Function <literal>xbasc</literal> is obsolete.
+		The <literal>xbasc</literal> function is obsolete and will be removed in Scilab 5.3.
 		To erase a figure, please use instead the <literal>clf</literal> or <literal>delete</literal> functions.
 	</para>
 

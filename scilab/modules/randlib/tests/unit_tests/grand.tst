@@ -126,7 +126,7 @@ lambda=1.6;
 N=100000;
 //Generation of a vector of numbers following an exponential distribution
 X = grand(1,N,"exp",lambda);
-xbasc();
+clf();
 //Discretisation of the abscisses in classes
 classes = linspace(0,12,25);
 //Draw in histogram
@@ -146,7 +146,7 @@ A=1;B=3;
 N=100000;
 //Generation of a vector of numbers following a beta distribution
 X = grand(1,N,"bet",A,B);
-xbasc();
+clf();
 //Discretisation of the abscisses in classes
 classes = linspace(0,1,50);
 //Draw in histogram
@@ -166,7 +166,7 @@ A=2;B=1;
 N=100000;
 //Generation of a vector of numbers following a gamma distribution
 X = grand(1,N,"gam",A,B);
-xbasc();
+clf();
 //Discretisation of the abscisses in classes
 classes = linspace(0,2,50);
 //Draw in histogram
@@ -187,7 +187,7 @@ n=50;p=0.3;
 N=100000;
 //Generation of a vector of numbers following a binomial distribution
 X = grand(1,N,"bin",n,p);
-xbasc();
+clf();
 //Discretisation of the abscisses in classes
 classes = linspace(0,n,n+1);
 //Draw in histogram
@@ -207,7 +207,7 @@ mu=50;
 N=100000;
 //Generation of a vector of numbers following a poisson distribution
 X = grand(1,N,"poi",mu);
-xbasc();
+clf();
 //Discretisation of the abscisses in classes
 classes = linspace(0,2*mu,101);
 //Draw in histogram
