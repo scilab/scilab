@@ -14,9 +14,9 @@ package org.scilab.modules.xcos.port.command;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
-import com.mxgraph.model.mxGeometry;
-
 public class CommandPort extends BasicPort {
+    
+    private double initialState = -1.0;
     
     public CommandPort() {
 	super("CommandPort");
@@ -24,6 +24,14 @@ public class CommandPort extends BasicPort {
 
     public Type getType() {
 	return null;
+    }
+
+    public void setInitialState(double initialState) {
+	this.initialState = initialState;
+    }
+
+    public double getInitialState() {
+	return initialState;
     }
 
 }
