@@ -24,6 +24,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -355,7 +356,7 @@ public class XcosDiagram extends ScilabGraph {
 
 	ScilabTList data = new ScilabTList(optionsFields);
 	ScilabList _3D = new ScilabList();
-	_3D.add(new ScilabDouble(1));
+	_3D.add(new ScilabBoolean(true));
 	_3D.add(new ScilabDouble(33));
 
 	double[][] background = {{8, 1}};
