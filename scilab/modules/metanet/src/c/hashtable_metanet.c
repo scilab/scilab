@@ -53,7 +53,9 @@ static unsigned int hashfromkey_string(void *ky)
 	str=k->Key_String;
 
 	while ((c = *(str++)))
+	{
 		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+	}
 
 	return hash;
 }

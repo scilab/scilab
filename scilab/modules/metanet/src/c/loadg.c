@@ -23,6 +23,8 @@
 #include "strdup_windows.h"
 #endif
 
+#include "files.h"
+
 static int CompString(char **s1,char **s2)
 {
   return strcmp((char*)*s1,(char*)*s2);
@@ -41,20 +43,20 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
 		int *default_edge_hi_width, int *default_font_size,
 		int *ndim, int *ma)
 {
-  FILE *fg;
+  FILE *fg = NULL;
 #ifndef _MSC_VER
-  DIR *dirp=NULL;
+  DIR *dirp = NULL;
 #endif
   char fname[2 * MAXNAM];
   char line[5 * MAXNAM];
   char strname[MAXNAM], head_name[MAXNAM], tail_name[MAXNAM];
-  int isize,dsize;
-  int i,s;
+  int isize = 0,dsize = 0;
+  int i = 0,s = 0;
   ENTRY node;
-  ENTRY *found=NULL;
+  ENTRY *found = NULL;
   char dir[PATH_MAX];
-  char *pname=NULL;
-  char **lar=NULL;
+  char *pname = NULL;
+  char **lar = NULL;
 
   path[*lpath] = '\0';
 #ifndef _MSC_VER

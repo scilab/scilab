@@ -47,23 +47,26 @@ int CheckGraphName(char *name,char *dir)
 
 char *StripGraph(char *name)
 {
-  char *s;
-  int i;
-  char *t;
+	char *s = NULL;
+	int i = 0;
+	char *t = NULL;
 
-  s = name;
-  i = 0;
-  t = (char *)MALLOC((unsigned)strlen(name)+1);
-  while ( (t[i++] = *s++) ) {
-    if (*s == '.') {
-      if (strcmp(++s,"graph") == 0) {
-	t[i] = '\0';
-	return t;
-      }
-      t[i++] = '.';
-    }
-  }
-  return name;
+	s = name;
+	i = 0;
+	t = (char *)MALLOC((unsigned)strlen(name)+1);
+	while ( (t[i++] = *s++) ) 
+	{
+		if (*s == '.') 
+		{
+			if (strcmp(++s,"graph") == 0) 
+			{
+				t[i] = '\0';
+				return t;
+			}
+			t[i++] = '.';
+		}
+	}
+	return name;
 }
 
 #ifndef _MSC_VER

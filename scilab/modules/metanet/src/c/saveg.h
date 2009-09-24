@@ -24,9 +24,10 @@
 #define __SAVEG_H__
 
 #include "machine.h"
+#include "dynlib_metanet.h"
 #include "files.h"
 
-void C2F(saveg) (char *path, int *lpath,
+METANET_IMPEXP void C2F(saveg) (char *path, int *lpath,
 		 char *name, int *lname,int *directed,int *node_number,int *tail,int *head,
 		 char ***node_name,
 		 int *node_type,int *node_x,int *node_y,int *node_color,int *node_diam,int *node_border,

@@ -23,16 +23,9 @@
 #ifndef __TRANSC_H__
 #define __TRANSC_H__
 
-#include <string.h>
-#include <stdlib.h>
-
 #include "machine.h"
-#include "MALLOC.h"
+#include "dynlib_metanet.h"
 
-#include "cerro.h"
-
-extern int F2C(frmtrs) ();
-
-void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n);
+METANET_IMPEXP void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n);
 
 #endif /* !__TRANSC_H__ */
