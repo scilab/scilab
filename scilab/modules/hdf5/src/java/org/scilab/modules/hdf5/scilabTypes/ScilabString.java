@@ -35,7 +35,7 @@ public class ScilabString implements ScilabType {
 	return data;
     }
     
-    public int getHeigth() {
+    public int getHeight() {
 		if (data != null) {
 			return 0;
 		}

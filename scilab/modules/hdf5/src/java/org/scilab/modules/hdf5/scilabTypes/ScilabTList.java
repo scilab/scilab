@@ -27,7 +27,7 @@ public class ScilabTList extends ArrayList<ScilabType> implements ScilabType {
 	add(new ScilabString(typesData));
     }
     
-	public int getHeigth() {
+	public int getHeight() {
 		if (isEmpty()) {
 			return 0;
 		}

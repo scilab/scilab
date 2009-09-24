@@ -69,7 +69,7 @@ public class ScilabDouble implements ScilabType {
     private double[][] realPart;
     private double[][] imaginaryPart;
 	
-    public int getHeigth() {
+    public int getHeight() {
 		if (isEmpty()) {
 			return 0;
 		}

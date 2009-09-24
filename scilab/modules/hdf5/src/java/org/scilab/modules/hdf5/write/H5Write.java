@@ -16,6 +16,7 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -99,6 +100,7 @@ public class H5Write {
 	    if(data instanceof ScilabTList) { H5WriteScilabTList.writeInDataSet(file_id, dataSetName, (ScilabTList) data); }
 	    if(data instanceof ScilabMList) { H5WriteScilabMList.writeInDataSet(file_id, dataSetName, (ScilabMList) data); }
 	    if(data instanceof ScilabDouble) { H5WriteScilabDouble.writeInDataSet(file_id, dataSetName, (ScilabDouble) data); }
+	    if(data instanceof ScilabBoolean) { H5WriteScilabBoolean.writeInDataSet(file_id, dataSetName, (ScilabBoolean) data); }
 	} catch (NullPointerException e) {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();

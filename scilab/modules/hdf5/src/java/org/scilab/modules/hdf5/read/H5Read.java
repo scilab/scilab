@@ -18,6 +18,7 @@ import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -188,7 +189,11 @@ public class H5Read {
     public static void readDataFromFile(int fileId, ScilabDouble data) throws NullPointerException, HDF5Exception {
 	H5ReadScilabDouble.readData(H5Read.getRootId(fileId), data);
     }
-
+    
+    public static void readDataFromFile(int fileId, ScilabBoolean data) throws NullPointerException, HDF5Exception {
+	H5ReadScilabBoolean.readData(H5Read.getRootId(fileId), data);
+    }
+    
     public static void readDataFromFile(int fileId, ScilabString data) throws NullPointerException, HDF5Exception {
 	H5ReadScilabString.readData(H5Read.getRootId(fileId), data);
     }
@@ -225,7 +230,11 @@ public class H5Read {
 	    data = new ScilabMList(); 
 	    H5ReadScilabMList.readData(dataSetId, (ScilabMList) data);    
 	}
-
+	if(isScilabBoolean(dataType)) { 
+	    data = new ScilabBoolean(); 
+	    H5ReadScilabBoolean.readData(dataSetId, (ScilabBoolean) data);    
+	}
+	
 	return data;
     }
     
@@ -234,4 +243,5 @@ public class H5Read {
     private static boolean isScilabList(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_LIST) == 0; }
     private static boolean isScilabMList(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_MLIST) == 0; }
     private static boolean isScilabTList(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_TLIST) == 0; }
+    private static boolean isScilabBoolean(String dataType) { return dataType.compareTo(H5ScilabConstant.SCILAB_CLASS_BOOLEAN) == 0; }
 }

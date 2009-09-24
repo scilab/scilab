@@ -16,6 +16,6 @@ public interface ScilabType {
 
 	public int getWidth();
 	
-	public int getHeigth();
+	public int getHeight();
 	
 }

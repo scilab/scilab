@@ -15,7 +15,7 @@ package org.scilab.modules.hdf5.scilabTypes;
 import java.util.ArrayList;
 
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
-	public int getHeigth() {
+	public int getHeight() {
 		if (isEmpty()) {
 			return 0;
 		}
