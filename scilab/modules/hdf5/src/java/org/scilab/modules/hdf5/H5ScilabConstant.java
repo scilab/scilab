@@ -26,4 +26,5 @@ public class H5ScilabConstant {
     
     public static final String SCILAB_COMPLEX = "SCILAB_complex";
     public static final String SCILAB_COMPLEX_TRUE = "true";
+    public static final String SCILAB_CLASS_BOOLEAN = "boolean";
 }
