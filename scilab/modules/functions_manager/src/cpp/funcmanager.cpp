@@ -32,11 +32,11 @@
 extern "C"
 {
 	#include "findfiles.h"
+#ifndef _MSC_VER
+	#include "stricmp.h"
+#endif
 }
 
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
 
 
 using namespace std;

@@ -14,6 +14,8 @@ src/fortran/newsave.f \
 src/fortran/v2cunit.f \
 src/fortran/writebuf.f
 
+IO_CPP_SOURCES = src/cpp/io_gw.cpp
+
 GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
@@ -30,9 +32,9 @@ sci_gateway/c/sci_diary.c \
 sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
-sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
+# sci_gateway/c/sci_load.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intrat.f \
@@ -42,6 +44,11 @@ sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
+
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/sci_genlib.cpp \
+	sci_gateway/cpp/sci_load.cpp
+
 
 # Disable optimisation of the file intmgetl.f
 noinst_LTLIBRARIES = libdummy-io.la
@@ -59,14 +66,26 @@ libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
 libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/core/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
-			-I$(top_srcdir)/modules/output_stream/includes/
+			-I$(top_srcdir)/modules/types/includes \
+			-I$(top_srcdir)/modules/functions_manager/includes \
+			-I$(top_srcdir)/modules/symbol/includes \
+			-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
+			-I$(top_srcdir)/modules/elementary_functions/includes \
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/operations/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/parse/includes \
+			-I$(top_builddir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/system_env/includes \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			$(XML_FLAGS)
 
 
 pkglib_LTLIBRARIES = libsciio.la
 
 libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(IO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)

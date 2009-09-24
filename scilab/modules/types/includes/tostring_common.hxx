@@ -27,6 +27,22 @@ using namespace std;
 #define MINUS_STRING_INT						" -"
 #define SYMBOL_I										"i"
 
+#ifndef _MSC_VER
+	#include <inttypes.h>
+	#define _abs64(x) llabs(x)
+#endif
+
+/*double*/
+void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
+void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
+void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
+void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
+void PrintDoubleVar(ostringstream *_postr,  double _dblVal);
+
+/*Common*/
+void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
+void Add_Space(ostringstream *_postr, int _iSpace);
+
 /*int*/
 template <typename T>
 void GetIntFormat(T _TVal, int *_piWidth)
@@ -68,15 +84,5 @@ void AddIntValue(ostringstream *_postr, T _TVal, int _iWidth, bool bPrintPlusSig
 	}
 }
 
-/*double*/
-void GetDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint);
-void GetComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTotalWidth, int *_piWidthR, int *_piWidthI, int *_piPrecR,  int *_piPrecI, bool* _pbFloatingPointR,  bool* _pbFloatingPointI);
-void AddDoubleValue(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign = false, bool bPrintOne = true, bool bPaddSign = true);
-void AddDoubleComplexValue(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
-void PrintDoubleVar(ostringstream *_postr,  double _dblVal);
-
-/*Common*/
-void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
-void Add_Space(ostringstream *_postr, int _iSpace);
 
 #endif /* __TOSTRING_COMMON_HXX__ */

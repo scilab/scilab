@@ -963,8 +963,8 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 {
-  Parser::getInstance()->pushControlStatus(Parser::WithinIf);
-  return scan_throw(IF);
+	Parser::getInstance()->pushControlStatus(Parser::WithinIf);
+	return scan_throw(IF);
 }
 	YY_BREAK
 case 2:
@@ -973,11 +973,19 @@ return scan_throw(THEN);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-return scan_throw(ELSE);
+{
+	Parser::getInstance()->popControlStatus();
+	Parser::getInstance()->pushControlStatus(Parser::WithinElse);
+	return scan_throw(ELSE);
+}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-return scan_throw(ELSEIF);
+{
+	Parser::getInstance()->popControlStatus();
+	Parser::getInstance()->pushControlStatus(Parser::WithinElseIf);
+	return scan_throw(ELSEIF);
+}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
@@ -996,11 +1004,17 @@ return scan_throw(CASE);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-return scan_throw(FUNCTION);
+{
+	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	return scan_throw(FUNCTION);
+}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-return scan_throw(ENDFUNCTION);
+{
+	Parser::getInstance()->popControlStatus();
+	return scan_throw(ENDFUNCTION);
+}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
@@ -1011,7 +1025,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-return scan_throw(WHILE);
+{
+	Parser::getInstance()->pushControlStatus(Parser::WithinWhile);
+	return scan_throw(WHILE);
+}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
@@ -1023,11 +1040,17 @@ return scan_throw(BREAK);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-return scan_throw(TRY);
+{
+	Parser::getInstance()->pushControlStatus(Parser::WithinTry);
+	return scan_throw(TRY);
+}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-return scan_throw(CATCH);
+{
+	Parser::getInstance()->pushControlStatus(Parser::WithinCatch);
+	return scan_throw(CATCH);
+}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP

@@ -27,6 +27,9 @@
 
 extern "C"
 {
+#ifndef _MSC_VER
+#include "stricmp.h"
+#endif
 #include "cluni0.h"
 #include "PATH_MAX.h"
 }

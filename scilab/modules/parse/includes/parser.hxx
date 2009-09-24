@@ -60,8 +60,8 @@ public:
     WithinIf,
     WithinElse,
     WithinElseIf,
-    WithinElseTry,
-    WithinElseCatch,
+    WithinTry,
+    WithinCatch,
     WithinFunction
   };
 
