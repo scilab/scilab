@@ -16,6 +16,7 @@ package org.scilab.modules.xcos.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
@@ -322,8 +323,8 @@ public class BasicBlock extends mxCell {
 
 	model.add(getAllCommandPortsInitialStates()); // firing
 
-	double[][] dep_ut = {{dependsOnU()?1.0:0.0,dependsOnT()?1.0:0.0}};
-	model.add(new ScilabDouble(dep_ut)); // dep_ut
+	boolean[][] dep_ut = {{dependsOnU() , dependsOnT()}};
+	model.add(new ScilabBoolean(dep_ut)); // dep_ut
 
 	model.add(new ScilabString("")); // label
 
