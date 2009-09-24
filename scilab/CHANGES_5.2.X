@@ -101,6 +101,8 @@ Core functions:
      
 * sethomedirectory is obsolete (see home). 
 
+* getf is obsolete (see exec).
+
 fileio functions:
 =================
 
@@ -123,6 +125,9 @@ fileio functions:
 * Rewrite :
    + copyfile (primitive)
    + fileparts (primitive)
+   + isdir manages matrix of strings as input argument
+   + basename (primitive)
+   + pathconvert (primitive)
   
 Dynamic link:
 =============
@@ -235,12 +240,18 @@ Optimization:
  - Created fminsearch optimization function
  - Added examples in the help for optim
  
-Linear algebra
-=============
+Linear algebra:
+===============
  - Clarified documentation for lu function.
+
+elementary functions:
+=====================
+ - 'sort' is obsolete. see 'gsort'
 
 Bug fixes:
 ==========
+
+* bug 415 fixed - wrong order in the roots of a polynomial
 
 * bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
 
@@ -268,10 +279,14 @@ Bug fixes:
 
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 
+* bug 3923 fixed - diary() function produces bad files when it try to record interactive commands.
+
 * bug 3953 fixed - delete() always sets the current entity to the parent of the
                    deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
+
+* bug 4030 fixed - unix_w('dir /s') can display strange matrix on windows.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
@@ -419,6 +434,8 @@ Bug fixes:
 
 * bug 4695 fixed - some help pages + examples where missing in the arnoldi package
 
+* bug 4702 fixed - on some case, dos(cmd) does not return results
+
 * bug 4719 fixed - fsolve may fail on some system of equations. Add an example in the documentation.
 
 * bug 4724 fixed - when the f variation of a data set is too small, plot hangs
@@ -435,9 +452,12 @@ Bug fixes:
 
 * bug 4789 fixed - number of input arguments is not checked in ilib_functions (dynamic_link module)
 
-* bug 4795 fixed - CallScilab.h renamed call_scilab.h
-
-* bug 415 fixed - wrong order in the roots of a polynomial
-
 * bug 4792 fixed - macro name too long
 
+* bug 4795 fixed - CallScilab.h renamed call_scilab.h
+
+* bug 4798 fixed - pathconvert macro should be rewritten as a primitive (many times used and not faster).
+
+* bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
+
+* bug 4810 fixed - gsort does not manage sparse vectors as sort.

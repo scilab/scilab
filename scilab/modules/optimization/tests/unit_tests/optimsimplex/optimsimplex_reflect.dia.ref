@@ -110,11 +110,11 @@ s1 = optimsimplex_setall ( s1 , simplex );
 r = optimsimplex_reflect ( s1 , rosenbrock );
 computed = optimsimplex_getall ( r );
 expected = [
-    24.2     -1.2   1.
-    1484.8   -2.2   1.
-    212.2    -1.2   0.
-    1476.52  -0.4   4.
-    2079.72   1.6  -2.
+    24.2     -1.2   1.  
+    1484.8   -2.2   1.  
+    212.2    -1.2   0.  
+    1476.52  -0.4   4.  
+    2079.72   1.6  -2.  
 ];
 assert_close ( computed , expected , 10 * %eps );
 s1 = optimsimplex_destroy ( s1 );

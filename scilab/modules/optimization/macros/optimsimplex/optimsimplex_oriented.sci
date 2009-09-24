@@ -18,7 +18,7 @@
 //
 function [ ns , data ] = optimsimplex_oriented ( this , fun , data )
   if ( this.nbve <> this.n+1 ) then
-    errmsg = sprintf("The oriented simplex can be computed only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d", this.n , this.nbve)
+    errmsg = msprintf(gettext ( "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimension is %d and the number of vertices is %d") , "optimsimplex_oriented", this.n , this.nbve)
     error(errmsg)
   end
   sgrad = optimsimplex_gradientfv ( this )
@@ -45,18 +45,18 @@ function [ ns , data ] = optimsimplex_oriented ( this , fun , data )
   ns = optimsimplex_new()
   ns.n = this.n
   ns.nbve = this.n+1
-  ns.x = zeros ( n , n+1 )
+  ns.x = zeros ( n+1 , n )
   ns.fv = zeros ( n+1 , 1 )
   // Store 1st point
-  ns.x ( 1:n , 1 ) = this.x ( 1:n , 1 )
+  ns.x ( 1 , 1:n ) = this.x ( 1 , 1:n )
   ns.fv ( 1 ) = this.fv ( 1 )
-  x1 = this.x ( 1:n , 1 )
+  x1 = this.x ( 1 , 1:n )
   for i = 2:n+1
-    ns.x ( 1:n , i ) = mid ( 1:n , i-1 ) + x1 ( 1:n , 1 )
+    ns.x ( i, 1:n ) = mid ( i-1 , 1:n ) + x1 ( 1 , 1:n )
     if (~isdef('data','local')) then
-       ns.fv(i)  = fun (ns.x(:,i));
+       ns.fv(i)  = fun (ns.x(i,:));
      else
-       [ ns.fv(i) , data ]  = fun (ns.x(:,i) , data );
+       [ ns.fv(i) , data ]  = fun (ns.x(i,:) , data );
      end
   end
 endfunction

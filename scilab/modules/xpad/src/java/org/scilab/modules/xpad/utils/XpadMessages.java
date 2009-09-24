@@ -21,5 +21,15 @@ public class XpadMessages {
     public static final String VIEW = Messages.gettext("View");
     public static final String DOCUMENT = Messages.gettext("Document");
     public static final String EXECUTE = Messages.gettext("Execute");
+    public static final String SYNTAX_TYPE = Messages.gettext("Syntax Type");
+    public static final String ENCODING_TYPE = Messages.gettext("Encoding Type");
+    public static final String RECENT_FILES = Messages.gettext("Recent Files");
+    
+    public static final String FILE_DOESNT_EXIST = Messages.gettext( "This file doesn't exist\n Do you want to create it?");
+    public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
+    public static final String FILE_MODIFIED = Messages.gettext("This file has been modified since last save\nsave it?");
+    public static final String REPLACE_FILE_TITLE = Messages.gettext("This file has been modified since last save\nsave it?");
+    public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
+    public static final String UNTITLED = Messages.gettext("Untitled ");
 
 }

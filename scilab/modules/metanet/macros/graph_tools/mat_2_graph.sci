@@ -47,9 +47,9 @@ function g=mat_2_graph(a,directed,mat)
       end
       
       he=ij(itab,:); ta=ij(jtab,:)
-      [s,k]=sort(he(:,2)); he=he(k,:); he=he(:,1)
+      [s,k]=gsort(he(:,2)); he=he(k,:); he=he(:,1)
       ma=prod(size(k)); he=he(ma:-1:1)
-      [s,k]=sort(ta(:,2)); ta=ta(k,:); ta=ta(:,1)
+      [s,k]=gsort(ta(:,2)); ta=ta(k,:); ta=ta(:,1)
       ma=prod(size(k)); ta=ta(ma:-1:1)
       g=make_graph('foo',1,n,he',ta')
       

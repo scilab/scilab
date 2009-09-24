@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -296,7 +297,8 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
       CheckLength(pos,m*n,4);
       for (i = 0 ; i < 4; ++i)
       {
-        *istk(l+i) = Max((int)  *istk(l+i),0);
+        // When i = 1 or 3 we talk about the number of ticks, this value can be -1 to say 'AutoTicks'
+        *istk(l+i) = Max((int)  *istk(l+i),-(i%2));
       }
       *nax=istk(l);
       *flagNax = TRUE;
@@ -313,7 +315,8 @@ int get_nax_arg(int pos,rhs_opts opts[], int ** nax, BOOL * flagNax )
     CheckLength(kopt,m*n,4);
     for (i = 0 ; i < 4; ++i)
     {
-      *istk(l+i) = Max((int)  *istk(l+i),0);
+      // When i = 1 or 3 we talk about the number of ticks, this value can be -1 to say 'AutoTicks'
+      *istk(l+i) = Max((int)  *istk(l+i),-(i%2));
     }
     *nax=istk(l);
     *flagNax = TRUE;

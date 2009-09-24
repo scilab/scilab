@@ -23,11 +23,11 @@ function [ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
     sigma = 0.5;
   end
   for j = 2 : this.nbve;
-     this.x(:,j) = this.x(:,1) + sigma * (this.x(:,j) - this.x(:,1));
+     this.x(j,:) = this.x(1,:) + sigma * (this.x(j,:) - this.x(1,:));
      if (~isdef('data','local')) then
-       this.fv(j)  = fun (this.x(:,j));
+       this.fv(j)  = fun (this.x(j,:));
      else
-       [ this.fv(j) , data ] = fun (this.x(:,j) , data );
+       [ this.fv(j) , data ] = fun (this.x(j,:) , data );
      end
   end
 endfunction

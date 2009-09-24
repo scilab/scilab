@@ -22,7 +22,7 @@ function this = neldermead_configure (this,key,value)
     case "box" then
       this.method = "box";
     else
-      errmsg = msprintf(gettext("%s: Unknown method %s"),"neldermead_configure",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -method option"),"neldermead_configure",value);
       error(errmsg);
     end
   case "-coords0" then
@@ -40,7 +40,7 @@ function this = neldermead_configure (this,key,value)
     case "randbounds" then
       this.simplex0method = "randbounds";
     else
-      errmsg = msprintf(gettext("%s: Unknown -simplex0method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -simplex0method option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-simplex0length" then
@@ -66,7 +66,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolfstdeviationmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on function standard deviation method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfstdeviationmethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-tolsimplexizeabsolute" then
@@ -80,7 +80,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolsimplexizemethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolsimplexizemethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-toldeltafv" then
@@ -92,7 +92,7 @@ function this = neldermead_configure (this,key,value)
     case "disabled" then
       this.tolssizedeltafvmethod = value;
     else
-      errmsg = msprintf(gettext("%s: Unknown tolerance on simplex size and delta function value method %s"),"neldermead_configure", value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolssizedeltafvmethod option"),"neldermead_configure", value);
       error(errmsg);
     end
   case "-restartmax" then
@@ -119,8 +119,20 @@ function this = neldermead_configure (this,key,value)
     this.nbineqloops = value;
   case "-ineqscaling" then
     this.ineqscaling = value;
+  case "-vectorizefunction" then
+    this.vectorizefunction = value;
+    select value
+    case 0 then
+      this.vectorizefunction = 0;
+    case 1 then
+      this.vectorizefunction = 1;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -vectorizefunction option"),"neldermead_configure", value);
+      error(errmsg);
+    end
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
   end
 endfunction
+

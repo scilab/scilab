@@ -153,7 +153,7 @@ nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 xset("colormap",jetcolormap(nb_col));
-xbasc(); xset("hidden3d",xget("background"));
+clf(); xset("hidden3d",xget("background"));
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
 xtitle("3d spline interpolation of "+func)

@@ -812,7 +812,7 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
             style[0] = color[j];
           }
 
-          pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, longdraw_size, longdraw_size, NULL, NULL,0,style, 0, TRUE, 0, 0);
+          pLongDraw = ConstructSegs(pAxes, 0, vx2, vy2, NULL, longdraw_size, longdraw_size, 0, NULL, NULL,0,style, 0, TRUE, 0);
           pSEGS_FEATURE(pLongDraw)->Nbr1 = 0;
           pSEGS_FEATURE(pLongDraw)->Nbr2 = 0;
           sciSetIsLine(pLongDraw, 1);
@@ -822,7 +822,7 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
           sciSetIsClipping(pLongDraw, 0);
           scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 
-          pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, 2, 2, NULL, NULL,0,style, 0, TRUE, 0, 0);
+          pShortDraw = ConstructSegs(pAxes, 0, vx1, vy1, NULL, 2, 2, 0, NULL, NULL,0,style, 0, TRUE, 0);
           pSEGS_FEATURE(pShortDraw)->Nbr1 = 0;
           pSEGS_FEATURE(pShortDraw)->Nbr2 = 0;
 

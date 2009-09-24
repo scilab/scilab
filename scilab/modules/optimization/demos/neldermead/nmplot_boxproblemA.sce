@@ -142,7 +142,7 @@ nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-3);
 nm = nmplot_configure(nm,"-coords0",coords0);
 nm = nmplot_configure(nm,"-simplex0length",1.0);
 nm = nmplot_configure(nm,"-method","box");
-nm = nmplot_configure(nm,"-verbose",1);
+//nm = nmplot_configure(nm,"-verbose",1);
 nm = nmplot_configure(nm,"-verbosetermination",1);
 // Configure like Box
 nm = neldermead_configure(nm,"-boundsmin",[0.0 1.2 20.0 9.0 6.0]);

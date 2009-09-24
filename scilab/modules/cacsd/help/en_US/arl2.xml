@@ -105,7 +105,7 @@ h=arl2(y,den0,n [,imp],'all')
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 v=ones(1,20);
-xbasc();
+clf();
 plot2d1('enn',0,[v';zeros(80,1)],2,'051',' ',[1,-0.5,100,1.5])
 
 [d,n,e]=arl2(v,poly(1,'z','c'),1)

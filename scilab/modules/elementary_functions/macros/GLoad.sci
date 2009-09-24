@@ -17,7 +17,7 @@ function GLoad(name)
 		break;
 	end
 	select name1
-		case "sci" then getf(name),
+		case "sci" then exec(name),
 		case "sce" then exec(name),
 		case "scg" then xload(name),
 		case "bin" then load(name),

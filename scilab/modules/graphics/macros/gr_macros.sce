@@ -461,7 +461,7 @@ function [sd1]=curve(sd,del)
     z=xgetpoly(d_seg);
     if z==[], return;end
     mm=clearmode();xpoly(z(1,:)',z(2,:)',"lines");modeback(mm)
-    [x1,k1]=sort(z(1,:));y1=z(2,k1);z=[x1;y1];
+    [x1,k1]=gsort(z(1,:));y1=z(2,k1);z=[x1;y1];
     [n1,n2]=size(z);z=smooth(z(:,n2:-1:1));
     sd1=list("ligne",z);
   else

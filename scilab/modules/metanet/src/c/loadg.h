@@ -23,9 +23,9 @@
 #ifndef __LOADG_H__
 #define __LOADG_H__
 #include "machine.h"
-#include "files.h"
+#include "dynlib_metanet.h"
 
-void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, int *n, int **tail, int **head,
+METANET_IMPEXP void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, int *n, int **tail, int **head,
 		char ***node_name,
 		int **node_type, int **node_x, int **node_y, int **node_color, int **node_diam, int **node_border,
 		int **node_font_size,

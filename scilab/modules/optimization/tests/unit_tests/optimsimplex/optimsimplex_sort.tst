@@ -55,23 +55,24 @@ s1 = optimsimplex_new ();
 s1 = optimsimplex_setn(s1,2);
 s1 = optimsimplex_setnbve(s1,3);
 newsimplex = [
-1.0 3.0 5.0
-2.0 4.0 6.0
+    1.    2.  
+    3.    4.  
+    5.    6.  
 ];
 s1 = optimsimplex_setallx ( s1 , newsimplex );
 s1 = optimsimplex_setallfv ( s1 , [5.0 2.0 1.0]' );
 s1 = optimsimplex_sort ( s1 );
 ve1 = optimsimplex_getve ( s1 , 1 );
 assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [5.0 6.0]' );
+assert_equal ( ve1.x , [5.0 6.0] );
 assert_equal ( ve1.fv , 1.0 );
 ve1 = optimsimplex_getve ( s1 , 2 );
 assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [3.0 4.0]' );
+assert_equal ( ve1.x , [3.0 4.0] );
 assert_equal ( ve1.fv , 2.0 );
 ve1 = optimsimplex_getve ( s1 , 3 );
 assert_equal ( ve1.n , 2 );
-assert_equal ( ve1.x , [1.0 2.0]' );
+assert_equal ( ve1.x , [1.0 2.0] );
 assert_equal ( ve1.fv , 5.0 );
 s1 = optimsimplex_destroy ( s1 );
 

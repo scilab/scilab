@@ -58,7 +58,7 @@ function value = optimbase_cget (this,key)
   case "-nbineqconst" then
     value = this.nbineqconst;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s") , "optimbase_cget" , key)
     error(errmsg)
   end
 endfunction

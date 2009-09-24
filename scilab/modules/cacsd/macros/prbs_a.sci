@@ -18,10 +18,10 @@ function [u]=prbs_a(n,nc,ids)
 if rhs <=2,
   rand('uniform');
   yy= int(mini(maxi(n*rand(1,nc),1*ones(1,nc)),n*ones(1,nc)));
-  ids=sort(yy);ids=[n,ids,1];
+  ids=gsort(yy);ids=[n,ids,1];
 else
   [n1,n2]=size(ids);
-  ids=[n,mini(n*ones(ids),maxi(sort(ids),1*ones(ids))),1];
+  ids=[n,mini(n*ones(ids),maxi(gsort(ids),1*ones(ids))),1];
 end
 u=0*ones(1,n);
 [n1,n2]=size(ids);

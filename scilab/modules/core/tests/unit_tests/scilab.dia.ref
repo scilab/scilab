@@ -1185,9 +1185,9 @@ if norm(sinm(tc)**2+cosm(tc)**2-eye(),1) > 50*%eps then bugmes();quit;end
  
 p=rand(5,1);pc=p+i*rand(5,1);x=poly(0,'x');
  
-if norm(sort(p )-sort(real(roots(poly(p,'x'))))) > 1000*%eps then bugmes();quit;end
+if norm(gsort(p )-gsort(real(roots(poly(p,'x'))))) > 1000*%eps then bugmes();quit;end
  
-if norm(sort(imag(pc))-sort(real(roots(poly(imag(pc),'x'))))) > 10000*%eps then bugmes();quit;end
+if norm(gsort(imag(pc))-gsort(real(roots(poly(imag(pc),'x'))))) > 10000*%eps then bugmes();quit;end
  
 //**
  

@@ -46,6 +46,8 @@ src/c/getrelativefilename.c \
 src/c/splitpath.c \
 src/c/movefile.c \
 src/c/expandPathVariable.c \
+src/c/basename.c \
+src/c/pathconvert.c \
 src/c/copyfile_others.c
 
 GATEWAY_SOURCES = \
@@ -89,6 +91,8 @@ sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_copyfile.c \
 sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
+sci_gateway/c/sci_basename.c \
+sci_gateway/c/sci_pathconvert.c \
 sci_gateway/c/sci_isfile.c
 
 

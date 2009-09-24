@@ -25,12 +25,12 @@ function [ this , data ] = optimsimplex_randbounds ( this , x0 , fun , boundsmin
     n = length ( x0 )
     this.n = n;
     this.nbve = nbve;
-    this.x = zeros ( n , nbve )
-    this.fv = zeros ( nbve )
+    this.x = zeros ( nbve , n )
+    this.fv = zeros ( nbve , 1 )
     //
     // Set 1st point
     //
-    this.x ( 1:n,1 ) = x0 (1:n)'
+    this.x ( 1 , 1:n ) = x0 (1:n)
     //
     // Set points #2 to #nbve, by randomizing the bounds
     //
@@ -40,7 +40,7 @@ function [ this , data ] = optimsimplex_randbounds ( this , x0 , fun , boundsmin
       // between min and max bounds.
       //
       for ix  = 1 : n
-        this.x ( ix , ive ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
+        this.x ( ive , ix ) = boundsmin( ix ) + rand() * (boundsmax( ix ) - boundsmin( ix ))
       end
     end
   // Compute Function Value

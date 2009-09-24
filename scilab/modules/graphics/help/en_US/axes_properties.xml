@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -125,7 +126,11 @@
                 the top of the axes rectangle.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"middle"</literal> . In this case the x axis is drawn
+                    <para><literal>"middle"</literal>. In this case the x axis is drawn
+                at the centered position.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. In this case the x axis is drawn
                 at the position nearest to the 0 y coordinates.</para>
                   </listitem>
                 </itemizedlist>
@@ -146,8 +151,12 @@
                 the right of the axes rectangle.</para>
                   </listitem>
                   <listitem>
-                    <para><literal>"middle"</literal>. In this case the y axis is drawn at
-                the position nearest to the 0 x coordinates.</para>
+                    <para><literal>"middle"</literal>. In this case the x axis is drawn
+                at the centered position.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. In this case the x axis is drawn
+                at the position nearest to the 0 y coordinates.</para>
                   </listitem>
                 </itemizedlist>
               </listitem>

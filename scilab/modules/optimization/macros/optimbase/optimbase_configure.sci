@@ -20,8 +20,8 @@ function this = optimbase_configure (this,key,value)
   case "-x0" then
     [n,m] = size(value);
     if m<>1 then
-      msg = sprintf("The x0 vector is expected to be a column matrix, but current shape is %d x %d",n,m);
-      error(msg);
+      errmsg = msprintf(gettext("%s: The x0 vector is expected to be a column matrix, but current shape is %d x %d"),"optimbase_configure",n,m);
+      error(errmsg);
     end
     this.x0 = value;
   case "-maxfunevals" then
@@ -43,7 +43,7 @@ function this = optimbase_configure (this,key,value)
     case "disabled" then
       this.tolxmethod = "disabled";
     else
-      errmsg = sprintf("Unknown tolx method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolxmethod option"),"optimbase_configure",value);
       error(errmsg);
     end
   case "-tolfunmethod" then
@@ -53,7 +53,7 @@ function this = optimbase_configure (this,key,value)
     case "disabled" then
       this.tolfunmethod = "disabled";
     else
-      errmsg = sprintf("Unknown tolfun method %s",value);
+      errmsg = msprintf(gettext("%s: Unknown value %s for -tolfunmethod"),"optimbase_configure",value);
       error(errmsg);
     end
   case "-function" then
@@ -65,7 +65,14 @@ function this = optimbase_configure (this,key,value)
   case "-numberofvariables" then
     this.numberofvariables = value;
   case "-storehistory" then
-    this.storehistory = value;
+    if value == 0 then
+      this.storehistory = 0;
+    elseif value == 1 then
+      this.storehistory = 1;
+    else
+      errmsg = msprintf(gettext("%s: Unexpected value %s for -storehistory option. O or 1 expected"),"optimbase_configure",string(value))
+      error(errmsg)
+    end
   case "-costfargument" then
     this.costfargument = value;
   case "-boundsmin" then
@@ -75,7 +82,7 @@ function this = optimbase_configure (this,key,value)
   case "-nbineqconst" then
     this.nbineqconst = value;
   else
-    errmsg = sprintf("Unknown key %s",key)
+    errmsg = msprintf(gettext("%s: Unknown key %s"),"optimbase_configure",key)
     error(errmsg)
   end
 endfunction

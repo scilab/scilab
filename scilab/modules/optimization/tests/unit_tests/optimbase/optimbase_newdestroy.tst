@@ -248,3 +248,113 @@ assert_equal ( nbineqconst , 3 );
 // Cleanup
 opt = optimbase_destroy(opt);
 
+//
+// Test error cases
+//
+opt = optimbase_new ();
+//
+// Test wrong initial guess
+//
+cmd = "optimbase_configure(opt,''-x0'',[-1.2 1.0])";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: The x0 vector is expected to be a column matrix, but current shape is 1 x 2";
+assert_equal ( computed , expected );
+//
+// Test wrong -tolxmethod
+//
+cmd = "optimbase_configure(opt,''-tolxmethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: Unknown value foo for -tolxmethod option";
+assert_equal ( computed , expected );
+//
+// Test wrong -tolfunmethod
+//
+cmd = "optimbase_configure(opt,''-tolfunmethod'',''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_configure: Unknown value foo for -tolfunmethod";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+
+//
+// Test outstruct when no -outputcommand is defined
+//
+opt = optimbase_new ();
+cmd = "data = optimbase_outstruct ( opt )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_outstruct: No output command is defined.";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+
+
+//
+// Test optimbase_cget with unknown key
+//
+opt = optimbase_new ();
+cmd = "value = optimbase_cget (opt,''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_cget: Unknown key foo";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+
+//
+// Test optimbase_get with unknown key
+//
+opt = optimbase_new ();
+cmd = "value = optimbase_get (opt,''foo'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: Unknown key foo";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+
+//
+// Test various errors 
+//
+opt = optimbase_new ();
+// Test -historyxopt when there is no history
+cmd = "value = optimbase_get (opt,''-historyxopt'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: History disabled ; enable -storehistory option.";
+assert_equal ( computed , expected );
+// Test -historyfopt when there is no history
+cmd = "value = optimbase_get (opt,''-historyfopt'')";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_get: History disabled ; enable -storehistory option.";
+assert_equal ( computed , expected );
+// Test optimbase_function when there is no function
+cmd = "optimbase_function ( opt , [] , 1 )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_function: Empty function (use -function option).";
+assert_equal ( computed , expected );
+// Test optimbase_histget ( this , iter , key ) when there is no history
+cmd = "optimbase_histget ( opt , 1 , ''-xopt'' )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_histget: History disabled ; turn on -storehistory option.";
+assert_equal ( computed , expected );
+// Test optimbase_histget ( this , iter , key ) with negative iteration
+opt = optimbase_configure ( opt , "-storehistory" , 1 );
+cmd = "optimbase_histget ( opt , -1 , ''-xopt'' )";
+execstr(cmd,"errcatch");
+computed = lasterror();
+expected = "optimbase_histget: Negative iteration index -1 is not allowed.";
+assert_equal ( computed , expected );
+// Cleanup
+opt = optimbase_destroy(opt);
+
+//
+// Test optimbase_function when there is no function
+//
+

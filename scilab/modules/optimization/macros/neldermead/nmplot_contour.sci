@@ -16,16 +16,41 @@
 //   nx , ny : the number of points in the directions x, y
 //   xdata , ydata , zdata : vectors of data, as required by the contour command
 //
-function [this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin , xmax , ymin , ymax , nx , ny )
+function [ this , xdata , ydata , zdata ] = nmplot_contour ( this , xmin , xmax , ymin , ymax , nx , ny )
+  // Check that there are only 2 parameters
+  n = neldermead_cget ( this.nmbase , "-numberofvariables" );
+  if n <> 2 then
+    errmsg = msprintf(gettext("%s: Unexpected number of variables %d. Cannot draw contour plot for functions which do not have 2 parameters."),"nmplot_contour",n)
+    error(errmsg)
+  end
   stepx = (xmax - xmin)/nx
   xdata = xmin:stepx:xmax;
   stepy = (ymax - ymin)/ny
   ydata = ymin:stepy:ymax;
+  nexp = length(xdata) * length(ydata)
+  iexp = 1;
   for ix = 1:length(xdata)
     for iy = 1:length(ydata)
-      x = [xdata(ix) ydata(iy)]
-      [this.nmbase,f] = neldermead_function ( this.nmbase , x );
-      zdata ( ix , iy ) = f;
+      x(iexp,1:2) = [xdata(ix) ydata(iy)];
+      iexp = iexp + 1;
+    end
+  end
+  // 2. Perform the experiments
+  // Vectorize the call to the cost function if possible
+  vectorizefunction = neldermead_cget ( this.nmbase , "-vectorizefunction" );
+  if vectorizefunction == 0 then
+    for iexp = 1:nexp
+      [ this.nmbase , f(iexp) ] = neldermead_function ( this.nmbase , x(iexp,1:2) );
+    end
+  else
+    [ this.nmbase , f ] = neldermead_function ( this.nmbase , x );
+  end
+  // 3. Store the experiments results in a matrix, suitable for input to the contour function
+  iexp = 1;
+  for ix = 1:length(xdata)
+    for iy = 1:length(ydata)
+      zdata ( ix , iy ) = f(iexp);
+      iexp = iexp + 1;
     end
   end
 endfunction

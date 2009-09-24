@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
+ * Copyright (C) 2009 - INRIA - Pierre Lando
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -456,8 +457,7 @@ plot2d([x],y,&lt;opt_args&gt;)</synopsis>
           <literal>[nx,Nx,ny,Ny]</literal>.</para>
 
           <para><literal>Nx</literal> gives the number of main tics to be used
-          on the x-axis (<emphasis role="bold">no more taken into
-          account</emphasis>), <literal>nx</literal> gives the number of
+          on the x-axis (to use autoticks set it to -1), <literal>nx</literal> gives the number of
           subtics to be drawn between two main x-axis tics.</para>
 
           <para><literal>Ny</literal> and <literal>ny</literal> give similar

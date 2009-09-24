@@ -33,21 +33,21 @@ function [ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual ,
   n = length(x0);
   this.n = n;
   this.nbve = n + 1;
-  this.x = zeros ( n , n+1 )
-  this.fv = zeros ( n+1 )
+  this.x = zeros ( n+1 , n )
+  this.fv = zeros ( n+1 , 1 )
   //
   // Set 1st point
   //
-  this.x ( 1:n,1 ) = x0 (1:n)'
+  this.x ( 1 , 1:n ) = x0 (1:n)
   //
   // Set points #2 to #n+1
   //
   for j = 2 : this.n+1
-    this.x ( 1:n,j ) = x0 (1:n)'
+    this.x ( j,1:n ) = x0 (1:n)
     if x0( j-1 ) == 0.0 then
-      this.x ( j-1,j ) = deltazero
+      this.x ( j , j-1 ) = deltazero
     else
-      this.x ( j-1,j ) = this.x ( j-1,j ) + deltausual * x0( j-1 )
+      this.x ( j , j-1 ) = this.x ( j , j-1 ) + deltausual * x0( j-1 )
     end
   end
   // Compute Function Value

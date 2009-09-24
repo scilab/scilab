@@ -17,7 +17,7 @@
 function vertex = optimsimplex_getve ( this , ive )
   vertex = tlist(["T_VERTEX","x","n","fv"]);
   vertex.n = this.n;
-  vertex.x = this.x ( : , ive );
+  vertex.x = this.x ( ive , : );
   vertex.fv = this.fv ( ive );
 endfunction
 
