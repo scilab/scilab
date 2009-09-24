@@ -169,7 +169,10 @@ fpsetmask(0);
   }
 #endif
 
-#if defined(__APPLE__) && !defined(WITHOUT_GUI)
+#ifndef __APPLE__
+  return realmain(no_startup_flag,initial_script,initial_script_type,memory);
+#else
+#ifdef WITHOUT_GUI
   /* Do not use this function when building scilab-bin under Mac OS X
    * not that this function is however used by scilab-cli-bin under Mac OS X */
   return realmain(no_startup_flag,initial_script,initial_script_type,memory);
@@ -177,5 +180,11 @@ fpsetmask(0);
   /* The Mac OS X Java/Swing integration doesn't work the same way as Microsoft Windows or GNU/Linux */
   return initMacOSXEnv(no_startup_flag,initial_script,initial_script_type,memory);
 #endif
+#endif
 }
 /*--------------------------------------------------------------------------*/
+int gw_hdf5(void){
+}
+int gw_history_manager(){
+
+}
