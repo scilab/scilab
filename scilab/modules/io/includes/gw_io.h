@@ -32,7 +32,6 @@ int C2F(sci_getpid)(char *fname,unsigned long fname_len);
 int C2F(sci_read4b)(char *fname,unsigned long fname_len);
 int C2F(sci_write4b)(char *fname,unsigned long fname_len);
 int C2F(sci_save)(char *fname,unsigned long fname_len);
-int C2F(sci_load)(char *fname,unsigned long fname_len);
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
 int C2F(sci_getio)(char *fname,unsigned long fname_len);
 
@@ -52,8 +51,9 @@ int C2F(intwritb)(void);
 
 
 //YaSp
-int C2F(sci_getenv)(char *fname, int* _piKey);
-int C2F(sci_setenv)(char *fname, int* _piKey);
+int sci_getenv(char *fname, int* _piKey);
+int sci_setenv(char *fname, int* _piKey);
+//int sci_load(char *fname, int* _piKey); Now in C++ in io_gw/sci_gateway/cpp/sci_load.cpp
 
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */

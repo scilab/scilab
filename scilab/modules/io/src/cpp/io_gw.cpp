@@ -10,9 +10,19 @@
 *
 */
 
-#include "../../elementary_functions/includes/elem_func.hxx"
-#include "../../boolean/includes/boolean_gw.hxx"
-#include "../../integer/includes/integer_gw.hxx"
-#include "../../core/includes/core_gw.hxx"
-#include "../../io/includes/io_gw.hxx"
+#include "io_gw.hxx"
+
+extern "C"
+{
+	#include "gw_io.h"
+}
+
+using namespace types;
+
+bool IoModule::Load()
+{
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("load", &sci_load, "io"));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction("genlib", &sci_genlib, "io"));
+	return true;
+}
 

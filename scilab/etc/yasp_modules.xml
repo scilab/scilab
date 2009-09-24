@@ -17,4 +17,5 @@
     <module name="elementary_functions" activate="yes"/>
     <module name="boolean" activate="yes"/>
     <module name="integer" activate="yes"/>
+    <module name="io" activate="yes"/>
 </modules>

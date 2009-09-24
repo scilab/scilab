@@ -57,4 +57,10 @@ void execAstTask(bool timed);
 */
 void dumpStackTask(bool timed);
 
+/*
+** Execute scilab.start
+**
+*/
+void execScilabStartTask(void);
+
 #endif /* !__TASKS_HXX__ */

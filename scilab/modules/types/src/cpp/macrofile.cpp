@@ -70,44 +70,41 @@ namespace types
 			for(j = LExp.begin() ; j != LExp.end() ; j++)
 			{
 				pFD = dynamic_cast<FunctionDec*>(*j);
-				if(pFD &&	pFD->name_get().name_get() == m_stName)
+				if(pFD) // &&	pFD->name_get().name_get() == m_stName
 				{
-					break;
+					symbol::Context* pContext = symbol::Context::getInstance();
+					if(pContext->get_fun(pFD->name_get())->isMacroFile())
+					{
+						MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
+						if(pMacro->m_pMacro == NULL)
+						{
+							std::list<Var *>::const_iterator	i;
+
+							//get input parameters list
+							std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
+							ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
+							for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
+							{
+								string sz = ((SimpleVar*)(*i))->name_get().name_get();
+								pVarList->push_back(((SimpleVar*)(*i))->name_get());
+							}
+
+							//get output parameters list
+							std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
+							ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
+							for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
+							{
+								pRetList->push_back(((SimpleVar*)(*i))->name_get());
+							}
+
+							//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
+							//types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
+
+							pMacro->m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
+						}
+					}
 				}
-				else
-				{
-					pFD = NULL;
-				}
 			}
-
-			if(pFD == NULL)
-			{
-				return Callable::Error;
-			}
-
-			std::list<Var *>::const_iterator	i;
-
-			//get input parameters list
-			std::list<symbol::Symbol> *pVarList = new std::list<symbol::Symbol>();
-			ArrayListVar *pListVar = (ArrayListVar *)&pFD->args_get();
-			for(i = pListVar->vars_get().begin() ; i != pListVar->vars_get().end() ; i++)
-			{
-				string sz = ((SimpleVar*)(*i))->name_get().name_get();
-				pVarList->push_back(((SimpleVar*)(*i))->name_get());
-			}
-
-			//get output parameters list
-			std::list<symbol::Symbol> *pRetList = new std::list<symbol::Symbol>();
-			ArrayListVar *pListRet = (ArrayListVar *)&pFD->returns_get();
-			for(i = pListRet->vars_get().begin() ; i != pListRet->vars_get().end() ; i++)
-			{
-				pRetList->push_back(((SimpleVar*)(*i))->name_get());
-			}
-
-			//types::Macro macro(VarList, RetList, (SeqExp&)e.body_get());
-			//types::Macro *pMacro = new types::Macro(m_stName, *pVarList, *pRetList, (SeqExp&)e.body_get());
-
-			m_pMacro = new Macro(m_stName, *pVarList, *pRetList, (SeqExp&)pFD->body_get(), m_stModule);
 		}
 
 		if(m_pMacro)

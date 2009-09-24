@@ -46,8 +46,8 @@ ieee(2);
 ieee(0);
 %nan = %inf-%inf;
 // boolean variables
-%T = %t;
-%F = %f;
+//%T = %t;
+//%F = %f;
 
 // Startup message  ===================================================
 

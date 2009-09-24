@@ -35,7 +35,7 @@ static gw_generic_table Tab[IO_TAB_SIZE]=
 {C2F(sci_read4b),"read4b"},
 {C2F(sci_write4b),"write4b"},
 {C2F(sci_save),"save"},
-{C2F(sci_load),"load"}
+{NULL, ""} //load
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
@@ -48,12 +48,6 @@ int gw_io(void)
 			case RECURSION_CALL_SAVE:
 				{
 					C2F(intsave)(); 
-					return 0;
-				}
-				break;
-			case RECURSION_CALL_LOAD:
-				{
-					C2F(sci_load)("load",(unsigned long)strlen("load"));
 					return 0;
 				}
 				break;

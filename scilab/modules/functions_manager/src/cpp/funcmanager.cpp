@@ -31,8 +31,9 @@
 
 extern "C"
 {
-#include "findfiles.h"
+	#include "findfiles.h"
 }
+
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
@@ -276,6 +277,7 @@ bool FuncManager::CreateModuleList(void)
 	m_ModuleMap.insert(pair<string, GW_MOD>("boolean", &BooleanModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("integer", &IntegerModule::Load));
 	m_ModuleMap.insert(pair<string, GW_MOD>("core", &CoreModule::Load));
+	m_ModuleMap.insert(pair<string, GW_MOD>("io", &IoModule::Load));
 	return bRet;
 }
 
@@ -302,7 +304,7 @@ bool FuncManager::LoadFuncByModule(void)
 	{
 		//call Load function
 		itMod->second();
-		LoadMacroFile(itMod->first);
+		//LoadMacroFile(itMod->first);
 	}
 	return bRet;
 }
