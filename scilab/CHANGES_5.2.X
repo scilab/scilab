@@ -279,6 +279,8 @@ Bug fixes:
 
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 
+* bug 3923 fixed - diary() function produces bad files when it try to record interactive commands.
+
 * bug 3953 fixed - delete() always sets the current entity to the parent of the
                    deleted entity.
 
