@@ -68,7 +68,7 @@
   <refsection id="Description_C_utils">
     <title>Description</title>
     <para>
-The 
+The <link linkend="scicos_block4_rout">scicos_block4.h</link>
 header provides some utilities
 functions to interact with the simulator in the C computational functions.
 </para>

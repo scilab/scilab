@@ -26,26 +26,12 @@
     <refname>LOOKUP2D</refname>
     <refpurpose>2D Lookup table</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>LOOKUP2D</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/LOOKUP2D_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/LOOKUP2D_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_LOOKUP2D">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_LOOKUP2D">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -118,10 +109,17 @@ The 2-D Lookup Table block realizes an approximation of a function z=f(x,y) give
 The block generates output based on the input values using one of these methods selected from the Lookup method parameter list.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_LOOKUP2D">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/LOOKUP2D_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -229,7 +227,7 @@ The block generates output based on the input values using one of these methods 
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP2D.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/LOOKUP2D.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -237,7 +235,7 @@ The block generates output based on the input values using one of these methods 
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/lookup2d.c (Type 4)</para>
+        <para> SCI/modules/scicos_blocks/src/c/lookup2d.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

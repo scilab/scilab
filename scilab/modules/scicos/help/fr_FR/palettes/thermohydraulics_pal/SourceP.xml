@@ -26,26 +26,12 @@
     <refname>SourceP</refname>
     <refpurpose>Source thermohydraulique de pression constante</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>SourceP</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/SourceP_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/SourceP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_SourceP">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_SourceP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -106,10 +97,17 @@ Ce composant représente une source thermohydraulique de pression
 constante. Ce bloc est défini avec sa pression et sa température.  La
 direction positive conventionnelle est quand le fluide sort du bloc.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_SourceP">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/SourceP_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -218,7 +216,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Hydraulics/SourceP.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/SourceP.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -226,7 +224,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Hydraulics/Hydraulics.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

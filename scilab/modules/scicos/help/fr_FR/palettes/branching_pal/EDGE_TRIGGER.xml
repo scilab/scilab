@@ -26,26 +26,12 @@
     <refname>EDGE_TRIGGER</refname>
     <refpurpose>Bloc EDGE TRIGGER</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>EDGE_TRIGGER</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/EDGE_TRIGGER_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_EDGE_TRIGGER">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_EDGE_TRIGGER">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -105,10 +96,17 @@
 Ce bloc génère un événement sur le front montant, descendant ou les deux (en fonction du paramètre du bloc). Un front montant correspond à un changement de valeur négative vers positive ou nulle, ou zéro vers positive. Le front descendant est l'inverse. A noter que ce bloc génère un événement si l'entrée saute à cause d'une activation par événement. L'événement généré est synchrone avec l'événement d'origine. Ce bloc ne détecte pas les traversés de zéro des signaux continus.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_EDGE_TRIGGER">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -172,7 +170,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Misc/EDGE_TRIGGER.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Misc/EDGE_TRIGGER.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

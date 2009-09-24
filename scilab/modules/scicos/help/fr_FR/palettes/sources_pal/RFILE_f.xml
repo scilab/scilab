@@ -105,7 +105,7 @@ permettent de selectionner des données parmi les enregistrements du fichier.
 Chaque appel au bloc avance d'un enregistrement.
 </para>
     <para>
-Ce bloc fonctionne de paire avec le bloc 
+Ce bloc fonctionne de paire avec le bloc <link linkend="WFILE_f">WFILE_f</link>
 
 </para>
   </refsection>

@@ -26,26 +26,12 @@
     <refname>WRITEAU_f</refname>
     <refpurpose>Ecrite de fichier son AU</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>WRITEAU_f</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/WRITEAU_f_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/WRITEAU_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_WRITEAU_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_WRITEAU_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -113,10 +104,17 @@ Les valeurs en dehors de l'échelle [-1 +1] seront coupées à l'écriture.
 L'écriture 'au' supporte les données multi-canaux pour les formats
 '8-bit mu-law' et '8-,16-bit linear'.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_WRITEAU_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/WRITEAU_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -187,7 +185,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Sinks/WRITEAU_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Sinks/WRITEAU_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -195,7 +193,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/writeau.c (Type 2)</para>
+        <para> SCI/modules/scicos_blocks/src/c/writeau.c (Type 2)</para>
       </listitem>
     </itemizedlist>
   </refsection>

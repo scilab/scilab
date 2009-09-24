@@ -99,7 +99,7 @@
     <title>Description</title>
     <para>
 The Signal Builder block is a superblock containing a
-
+<link linkend="CURVE_c">CURVE_c</link>
 block whose output event
 port is connected to its input event port. This event feedback gives
 the possibility to generate events at discontinuous point of the
@@ -121,7 +121,7 @@ beginning and at the end of the signal.
       </inlinemediaobject>
     </para>
     <para>
-Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
+Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc <link linkend="CURVE_c">CURVE_c</link>.
 
 </para>
   </refsection>

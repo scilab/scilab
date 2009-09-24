@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Fonctiondecalcul_ANDLOG_f">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Auteurs_ANDLOG_f">Auteurs</xref>
             </para>
           </listitem>
@@ -154,6 +159,14 @@ délivre <emphasis role="bold">+1</emphasis> ou <emphasis role="bold">-1</emphas
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Events/ANDLOG_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondecalcul_ANDLOG_f">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/andlog.c (Type 0)</para>
       </listitem>
     </itemizedlist>
   </refsection>

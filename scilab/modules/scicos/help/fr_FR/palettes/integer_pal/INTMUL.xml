@@ -26,26 +26,12 @@
     <refname>INTMUL</refname>
     <refpurpose>INTMUL Multiplication matricielle de nombre entiers</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>INTMUL</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/INTMUL_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/INTMUL_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_INTMUL">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_INTMUL">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -125,10 +116,17 @@ On overflow, the result can take different forms:
 The user can select one of these three forms by setting the "DO ON OVERFLOW" field to 0,1 or 2.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_INTMUL">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/INTMUL_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -210,7 +208,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/IntegerOp/INTMUL.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

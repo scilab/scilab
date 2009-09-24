@@ -211,7 +211,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The eqivalent f
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_pinv.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_pinv.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_pinv.c</para>

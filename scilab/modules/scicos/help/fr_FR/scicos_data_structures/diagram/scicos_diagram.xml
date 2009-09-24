@@ -55,7 +55,7 @@ Type : liste scilab.
         <para> Propriétés du diagramme.</para>
         <para> Cette entrée contient des informations diverses telles que des valeurs initiales du diagramme principal.</para>
         <para> 
-Cette variable est une tlist de type 
+Cette variable est une tlist de type <link linkend="scicos_params">params</link>
 et
           contient wpar, title, tol, tf, context,
           options et doc.
@@ -66,7 +66,7 @@ et
 Taille : 11.
 </para>
         <para>
-Type : tlist scilab de type .
+Type : tlist scilab de type <link linkend="scicos_params">params</link>.
 </para>
       </listitem>
       <listitem>
@@ -81,7 +81,7 @@ Type : tlist scilab de type .
 Taille : nombre total d'objets dans le diagramme.
 </para>
         <para>
-Type : tlist scilab de type , 
+Type : tlist scilab de type <link linkend="scicos_block">block</link>, <link linkend="scicos_link">link</link>
 ou Text.
 </para>
       </listitem>
@@ -100,11 +100,11 @@ Type : chaîne de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_diagram">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_diagram">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_diagram.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_diagram.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -26,26 +26,12 @@
     <refname>LOOKUP_c</refname>
     <refpurpose>1D Lookup table</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>LOOKUP_c</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/LOOKUP_c_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/LOOKUP_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_LOOKUP_c">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_LOOKUP_c">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -118,10 +109,17 @@ Lookup Table block realizes a non-linear function defined using a graphical edit
 The table is defined by specifying the Vector of input values parameter as a 1-by-n vector and the Table data parameter as a 1-by-n vector. The block generates output based on the input values using one of methods selected from the Lookup method parameter list. The length of the x and y data vectors provided to this block must be identical. Furthermore, the x data vector must be strictly monotonically increasing.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_LOOKUP_c">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/LOOKUP_c_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -366,7 +364,7 @@ points.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP_c.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/LOOKUP_c.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -374,7 +372,7 @@ points.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/lookup_c.c (Type 4)</para>
+        <para> SCI/modules/scicos_blocks/src/c/lookup_c.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

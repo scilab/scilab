@@ -198,7 +198,7 @@ des racines.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/root_coef.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/root_coef.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/rootz_coef.c</para>

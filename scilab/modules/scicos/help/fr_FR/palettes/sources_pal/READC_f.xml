@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="READC_f">
   <refnamediv>
     <refname>READC_f</refname>
-    <refpurpose>Lecture de donée binaire</refpurpose>
+    <refpurpose>Lecture de donnée binaire</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="READC_f">Lecture de donée binaire</link>
+          <link linkend="READC_f">Lecture de donnée binaire</link>
         </para>
       </listitem>
       <listitem>
@@ -99,10 +99,10 @@
     <title>Description</title>
     <para>
 Ce bloc permet de lire des données dans un fichier C.
-Les paramètres <emphasis role="bold">Output record selection] et Time record Selection
+Les paramètres <emphasis role="bold">Output record selection</emphasis> et <emphasis role="bold">Time record Selection</emphasis>
 permettent de sélectionner des données dans les enregistrements du fichier.
 Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
-</emphasis>
+
 </para>
   </refsection>
   <refsection id="Boîtededialogue_READC_f">
@@ -115,8 +115,8 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
       </inlinemediaobject>
     </para>
     <para>
-      <emphasis role="bold"/>
-    </para>
+
+</para>
     <itemizedlist>
       <listitem>
         <para>
@@ -244,8 +244,6 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
   </refsection>
   <refsection id="Auteurs_READC_f">
     <title>Auteurs</title>
-    <para>
-      <emphasis role="bold"/>
-    </para>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
 </refentry>

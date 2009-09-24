@@ -98,9 +98,9 @@
   <refsection id="Description_RATELIMITER">
     <title>Description</title>
     <para>
-The Rate Limiter block limits the first derivative of the signal
-passing through it. The output changes no faster than the specified
-limit.
+Le bloc 'Rate Limiter' limite la première dérivée (la pente) du
+signal entrant. La sortie ne peut donc pas changer plus vite que
+la limite spécifiée.
 
 </para>
   </refsection>
@@ -121,15 +121,15 @@ limit.
         <para>
           <emphasis role="bold">max slope</emphasis>
         </para>
-        <para> La description du paramètre 1.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La limite de la pente d'un signal d'entrée croissant.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">min slope</emphasis>
         </para>
-        <para> La description du paramètre 2.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La limite de la pente d'un signal d'entrée décroissant.</para>
+        <para> Propriétés : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>

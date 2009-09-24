@@ -225,11 +225,11 @@ Type : vecteur colonne de chaînes de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_graphics">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_graphics">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_graphics.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_graphics.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

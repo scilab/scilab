@@ -104,7 +104,7 @@
     <title>Description</title>
     <para>
 This block is a Super Block constructed by feeding back the output of
-the block  
+the block  <link linkend="EVTDLY_c">EVTDLY_c</link>
 into its input
 event port. 
 </para>

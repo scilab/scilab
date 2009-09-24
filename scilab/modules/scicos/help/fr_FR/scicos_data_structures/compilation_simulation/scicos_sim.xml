@@ -449,11 +449,11 @@ Type : vecteur colonne de nombre entiers.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_sim">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_sim">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_sim.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_sim.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

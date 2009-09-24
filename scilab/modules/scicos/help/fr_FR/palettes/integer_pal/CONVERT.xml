@@ -217,7 +217,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/convert.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/convert.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

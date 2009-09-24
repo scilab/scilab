@@ -105,7 +105,7 @@ record has the following form:
 of time when block is called and  is the ith input value. 
 </para>
     <para>
-The pair block is .  
+The pair block is <link linkend="RFILE_f">RFILE_f</link>.  
 
 </para>
   </refsection>

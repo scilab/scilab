@@ -54,9 +54,9 @@ name of the joint Modelica model, input/output variable names,
 input/output types (explicit or implicit), as well as the dialog box
 for modifying the the block parameters in Scicos can be defined.
 Several examples of Modelica blocks are available in
-
+<link linkend="Electrical_pal">Electrical</link>
 and
-
+<link linkend="ThermoHydraulics_pal">Thermo-Hydraulics</link>
 palettes.
 </para>
     <para>

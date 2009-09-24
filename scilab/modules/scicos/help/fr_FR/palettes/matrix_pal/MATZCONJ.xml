@@ -169,7 +169,7 @@ This blocks computes the conjugate of a complex input matrix.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_conj.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/matz_conj.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

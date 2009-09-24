@@ -112,11 +112,11 @@ Type : scilab list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_cpr">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_cpr">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_cpr.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_cpr.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

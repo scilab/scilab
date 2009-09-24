@@ -203,7 +203,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_sum.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_sum.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/mat_suml.c</para>

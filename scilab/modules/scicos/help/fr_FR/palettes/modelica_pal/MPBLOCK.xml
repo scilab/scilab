@@ -26,26 +26,12 @@
     <refname>MPBLOCK</refname>
     <refpurpose>MPBLOCK titre</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>MPBLOCK</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/MPBLOCK_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/MPBLOCK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -67,6 +53,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Boîtededialogue_MPBLOCK">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <link linkend="MPBLOCK">Exemple</link>
             </para>
           </listitem>
@@ -80,12 +71,45 @@
               <xref linkend="Fonctiondinterface_MPBLOCK">Fonction d'interface</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Voiraussi_MPBLOCK">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_MPBLOCK">Auteurs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="MPBLOCK">Bibliographie</link>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Description_MPBLOCK">
     <title>Description</title>
+    <para>
+  Ajoutez ici un paragraphe pour la description de la fonction  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_MPBLOCK">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/MPBLOCK_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
     <itemizedlist>
       <listitem>
         <para>
@@ -205,7 +229,7 @@ Exemple
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Misc/MPBLOCK.sci </para>
+        <para> SCI/modules/scicos_blocks/macros/Misc/MPBLOCK.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

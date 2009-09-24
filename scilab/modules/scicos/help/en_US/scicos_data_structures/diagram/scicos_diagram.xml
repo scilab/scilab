@@ -55,7 +55,7 @@ Type : scilab list.
         <para> Diagram properties.</para>
         <para> This entry contains various informations such some main diagram initials values.</para>
         <para> 
-This variable is a tlist of type 
+This variable is a tlist of type <link linkend="scicos_params">params</link>
 and
           contains wpar, title, tol, tf, context,
           options and doc.
@@ -66,7 +66,7 @@ and
 Size : 11.
 </para>
         <para>
-Type : Scilab tlist of type .
+Type : Scilab tlist of type <link linkend="scicos_params">params</link>.
 </para>
       </listitem>
       <listitem>
@@ -81,7 +81,7 @@ Type : Scilab tlist of type .
 Size : total number of objects in the diagram.
 </para>
         <para>
-Type : Scilab tlist of type , 
+Type : Scilab tlist of type <link linkend="scicos_block">block</link>, <link linkend="scicos_link">link</link>
 or Text.
 </para>
       </listitem>

@@ -26,26 +26,12 @@
     <refname>MBLOCK</refname>
     <refpurpose>Bloc Modelica générique</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>MBLOCK</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/MBLOCK_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/MBLOCK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_MBLOCK">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_MBLOCK">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -110,10 +101,17 @@
 The block "MBlock" provides an easy way to build a Scicos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in Scicos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other Scicos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_MBLOCK">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/MBLOCK_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -273,7 +271,7 @@ Length value       =  [13.0 ; 12.1]
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Misc/MBLOCK.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Misc/MBLOCK.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

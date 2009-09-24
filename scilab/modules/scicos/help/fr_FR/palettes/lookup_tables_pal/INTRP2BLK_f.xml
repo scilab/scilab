@@ -26,26 +26,12 @@
     <refname>INTRP2BLK_f</refname>
     <refpurpose>Interpolation 2D</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>INTRP2BLK_f</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/INTRP2BLK_f_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_INTRP2BLK_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_INTRP2BLK_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -116,10 +107,17 @@ Les grandeurs  et  donnent respectivement les coordonnées
 
 sa valeur.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_INTRP2BLK_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -208,7 +206,7 @@ sa valeur.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/INTRP2BLK_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/INTRP2BLK_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -216,7 +214,7 @@ sa valeur.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/intrp2.f (Type 1)</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/intrp2.f (Type 1)</para>
       </listitem>
     </itemizedlist>
   </refsection>

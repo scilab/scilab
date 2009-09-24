@@ -104,7 +104,7 @@ allows the user to select data among file records. Each call to the
 block advance one record in the file.
 </para>
     <para>
-The pair block is .
+The pair block is <link linkend="WFILE_f">WFILE_f</link>.
 
 </para>
   </refsection>

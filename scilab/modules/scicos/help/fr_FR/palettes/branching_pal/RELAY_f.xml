@@ -98,11 +98,11 @@
   <refsection id="Description_RELAY_f">
     <title>Description</title>
     <para>
-This block routes one of the regular inputs to the unique regular
-output. the choice of which input is to be routed is done, initially
-by the "initial connected input" parameter. Then, every time an input
-event arrives on the i-th input event port, the i-th regular input
-port is routed to the regular output.
+Ce bloc redirige une de ses entrées régulières sur son unique port régulier
+de sortie. L'entrée qui est redirigée est initiallement choisie par le paramètre
+"initial connected input". Lors de la simulation, lorsque qu'un évènement arrive
+sur le port évènementiel numéro i, alors l'entrée régulière i est redirigée sur
+la sortie.
 
 </para>
   </refsection>

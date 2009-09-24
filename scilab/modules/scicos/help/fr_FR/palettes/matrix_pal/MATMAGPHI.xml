@@ -205,7 +205,7 @@ When the type is set to two, the block outputs a complex number given the magnit
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_abs.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/matz_abs.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_absc.c</para>

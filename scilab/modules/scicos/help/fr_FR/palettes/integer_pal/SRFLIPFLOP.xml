@@ -244,7 +244,7 @@ The truth table of this block is
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/IntegerOp/SRFLIPFLOP.sci </para>
+        <para> SCI/modules/scicos_blocks/macros/IntegerOp/SRFLIPFLOP.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

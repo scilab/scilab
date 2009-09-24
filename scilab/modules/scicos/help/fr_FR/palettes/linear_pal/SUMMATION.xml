@@ -223,7 +223,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différe
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/summation.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/summation.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/summation_z.c</para>

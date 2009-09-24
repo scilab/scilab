@@ -109,11 +109,11 @@ Type : chaîne de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_block">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_block">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_block.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_block.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

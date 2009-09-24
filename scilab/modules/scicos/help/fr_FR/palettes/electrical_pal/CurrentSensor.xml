@@ -26,10 +26,6 @@
     <refname>CurrentSensor</refname>
     <refpurpose>Capteur de courant électrique</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>CurrentSensor</refname>
-    <refpurpose>Propriétés par défaut</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -58,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_CurrentSensor">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_CurrentSensor">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
@@ -95,6 +96,9 @@ composant est zéro.
 
 
 </para>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_CurrentSensor">
+    <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
         <para>
@@ -143,7 +147,7 @@ composant est zéro.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Electrical/CurrentSensor.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/CurrentSensor.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -151,7 +155,7 @@ composant est zéro.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Electrical/Electrical.mo</para>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Electrical.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

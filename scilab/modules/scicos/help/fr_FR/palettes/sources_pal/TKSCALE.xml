@@ -26,26 +26,12 @@
     <refname>TKSCALE</refname>
     <refpurpose>Ajuste une valeur constante par un widget tk</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>TKSCALE</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/TKSCALE_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/TKSCALE_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_TKSCALE">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_TKSCALE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -110,10 +101,17 @@
 Ce bloc génère une sortie constante par morceaux dont la valeur est définie interactivement par un widget TK au cours de la simulation. La valeur de sortie est égale à la valeure entière affichée sur le widget divisée par le paramètre de normalisation. On peut augmenter la précisition de la sortie en augmentant proportionnellement tous les parmètres du bloc.  
 </para>
     <para>
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_TKSCALE">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/TKSCALE_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -191,7 +189,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie i
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Sources/TKSCALE.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Sources/TKSCALE.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -199,7 +197,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie i
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/tkscaleblk.sci (Type 5) </para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/tkscaleblk.sci (Type 5)</para>
       </listitem>
     </itemizedlist>
   </refsection>

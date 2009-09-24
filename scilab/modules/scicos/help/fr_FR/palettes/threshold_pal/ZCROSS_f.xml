@@ -26,26 +26,12 @@
     <refname>ZCROSS_f</refname>
     <refpurpose>Détection des passages à zéro</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>ZCROSS_f</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/ZCROSS_f_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/ZCROSS_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_ZCROSS_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_ZCROSS_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -110,10 +101,17 @@
 Un événement est généré lorsque toutes les entrées traverse la valeur
 zéro simultanément.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_ZCROSS_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/ZCROSS_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -177,7 +175,7 @@ zéro simultanément.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Threshold/ZCROSS_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/Threshold/ZCROSS_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -185,7 +183,7 @@ zéro simultanément.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/zcross.f (Type 1)</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/zcross.f (Type 1)</para>
       </listitem>
     </itemizedlist>
   </refsection>

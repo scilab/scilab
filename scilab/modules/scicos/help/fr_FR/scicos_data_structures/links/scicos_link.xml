@@ -134,11 +134,11 @@ Type : vecteur ligne de nombre entiers.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_link">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_link">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_link.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_link.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

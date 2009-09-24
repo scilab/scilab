@@ -43,7 +43,7 @@
   <refsection id="Description_callblk">
     <title>Description</title>
     <para>
-This function allows to call a computational function from a Scicos 
+This function allows to call a computational function from a Scicos <link linkend="sci_struct">block</link>
 structure. The fields of that structure must be properly informed before use it with <emphasis role="bold">callblk</emphasis>.
 </para>
     <para>

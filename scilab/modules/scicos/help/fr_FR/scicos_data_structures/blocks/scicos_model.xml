@@ -686,11 +686,11 @@ Type : liste scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_model">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_model">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_model.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_model.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

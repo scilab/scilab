@@ -209,7 +209,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/cumsum_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/cumsum_m.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/cumsum_r.c</para>

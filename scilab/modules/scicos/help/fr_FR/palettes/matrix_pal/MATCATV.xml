@@ -209,7 +209,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_catv.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_catv.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_catv.c</para>

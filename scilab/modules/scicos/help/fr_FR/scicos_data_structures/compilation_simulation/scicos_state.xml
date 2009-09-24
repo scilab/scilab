@@ -160,11 +160,11 @@ Type : liste scilab contenant des matrices.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenuduficher_scicos_state">
-    <title>Contenu du ficher</title>
+  <refsection id="Contenudufichier_scicos_state">
+    <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_state.sci</para>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_state.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

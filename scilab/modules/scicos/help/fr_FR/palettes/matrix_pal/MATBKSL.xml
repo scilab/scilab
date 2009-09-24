@@ -202,7 +202,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_bksl.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_bksl.c (Type 4)</para>
       </listitem>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/matz_bksl.c</para>

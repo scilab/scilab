@@ -26,26 +26,12 @@
     <refname>VanneReglante</refname>
     <refpurpose>Vanne réglante thermohydraulique</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>VanneReglante</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/VanneReglante_blk.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection>
-    <title>Block Screenshot</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/VanneReglante_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +54,11 @@
           <listitem>
             <para>
               <xref linkend="Description_VanneReglante">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_VanneReglante">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -121,10 +112,17 @@ pression, et  est le débit. Ce modèle est seulement employé pour
 les régimes laminaires d'écoulement.  est une constante qui dépend
 de la géométrie de la vanne et de la masse volumique de fluide.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_VanneReglante">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/VanneReglante_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -222,7 +220,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Hydraulics/VanneReglante.sci </para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/VanneReglante.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -230,7 +228,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Hydraulics/Hydraulics.mo </para>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/Hydraulics.mo</para>
       </listitem>
     </itemizedlist>
   </refsection>

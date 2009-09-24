@@ -26,10 +26,6 @@
     <refname>INTRPLBLK_f</refname>
     <refpurpose>Interpolation</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>INTRPLBLK_f</refname>
-    <refpurpose>Boîte de dialogue</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -68,6 +64,11 @@
           <listitem>
             <para>
               <xref linkend="Description_INTRPLBLK_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_INTRPLBLK_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -114,10 +115,17 @@ Les grandeurs  et  donnent respectivement les coordonnées
  des points de données qui seront interpolés.
  doit être strictement croissant.
 
-
-
-
 </para>
+  </refsection>
+  <refsection id="Boîtededialogue_INTRPLBLK_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/INTRPLBLK_f_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
     <para>
 
 </para>
@@ -196,7 +204,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/INTRPLBLK_f.sci</para>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -204,7 +212,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/intrpl.f (Type 0)</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/intrpl.f (Type 0)</para>
       </listitem>
     </itemizedlist>
   </refsection>

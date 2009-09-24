@@ -43,14 +43,14 @@
   <refsection id="Description_model2blk">
     <title>Description</title>
     <para>
-This function is used to create a 
-simulation data structure from a 
+This function is used to create a <link linkend="sci_struct">scicos block</link>
+simulation data structure from a <link linkend="scicos_model">scicos_model</link>
 data structure of a Scicos block. The model must be properly informed before
     calling model2blk.
 </para>
     <para>
 That function could be used before a call to the simulation
-    function via .
+    function via <link linkend="callblk">callblk</link>.
 
 </para>
     <programlisting role="example"><![CDATA[
