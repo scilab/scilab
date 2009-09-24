@@ -194,7 +194,7 @@ static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename)
 		wchar_t* wcext = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
 		wcfilename = MALLOC(sizeof(wchar_t*) * ((int)wcslen(wcFullFilename) + 1));
 
-		splitpathW(wcFullFilename, wcdrv, wcdir, wcname, wcext);
+		splitpathW(wcFullFilename, FALSE, wcdrv, wcdir, wcname, wcext);
 
 		wcscpy(wcfilename, wcname);
 		wcscat(wcfilename, wcext);

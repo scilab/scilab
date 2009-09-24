@@ -126,6 +126,8 @@ fileio functions:
    + copyfile (primitive)
    + fileparts (primitive)
    + isdir manages matrix of strings as input argument
+   + basename (primitive)
+   + pathconvert (primitive)
   
 Dynamic link:
 =============
@@ -451,6 +453,8 @@ Bug fixes:
 * bug 4792 fixed - macro name too long
 
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
+
+* bug 4798 fixed - pathconvert macro should be rewritten as a primitive (many times used and not faster).
 
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
