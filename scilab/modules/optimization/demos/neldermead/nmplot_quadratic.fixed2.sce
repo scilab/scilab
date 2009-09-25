@@ -8,25 +8,24 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-mprintf("Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform well on Rosenbrock test case.\n");
-mprintf("Defining Rosenbrock function...\n");
-function y = rosenbrock (x)
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+mprintf("Illustrates that the fixed-shape Spendley et al. algorithm performs badly on a badly quadratic test case.\n");
+mprintf("Defining quadratic function...\n");
+function y = quadratic (x)
+  y = 100 * x(1)^2 + x(2)^2;
 endfunction
 
 mprintf("Creating nmplot object...\n");
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
-nm = nmplot_configure(nm,"-function",rosenbrock);
-nm = nmplot_configure(nm,"-x0",[-1.2 1.0]');
-nm = nmplot_configure(nm,"-maxiter",100);
-nm = nmplot_configure(nm,"-maxfunevals",300);
-nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
-nm = nmplot_configure(nm,"-tolxrelative",10*%eps);
-nm = nmplot_configure(nm,"-simplex0method","axes");
-nm = nmplot_configure(nm,"-simplex0length",1.0);
+nm = nmplot_configure(nm,"-function",quadratic);
+nm = nmplot_configure(nm,"-x0",[10.0 10.0]');
+nm = nmplot_configure(nm,"-maxiter",400);
+nm = nmplot_configure(nm,"-maxfunevals",400);
+nm = nmplot_configure(nm,"-tolxmethod","disabled");
+nm = nmplot_configure(nm,"-tolsimplexizerelative",1.e-8);
+nm = nmplot_configure(nm,"-simplex0method","spendley");
 nm = nmplot_configure(nm,"-method","fixed");
-//nm = nmplot_configure(nm,"-verbose",1);
+nm = nmplot_configure(nm,"-verbose",1);
 nm = nmplot_configure(nm,"-verbosetermination",0);
 //
 // Setup output files
@@ -41,12 +40,7 @@ nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
 mprintf("Searching for minimum...\n");
 nm = nmplot_search(nm);
 nmplot_display(nm);
-// Plot the contours of the cost function and the simplex history
-mprintf("Plotting contour...\n");
-[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
-f = scf();
-contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
-nmplot_simplexhistory ( nm );
+// Plot various histories
 mprintf("Plotting history of fbar...\n");
 f = scf();
 nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
@@ -54,11 +48,32 @@ nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
 mprintf("Plotting history of fopt...\n");
 f = scf();
 nmplot_historyplot ( nm , "rosenbrock.fixed.history.fopt.txt" , ...
-  mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
+  mytitle = "Logarithm Minimum Function Value" , myxlabel = "Iterations" );
+f.children.log_flags = "nln";
+newticks = tlist(["ticks","locations","labels"]);
+newticks.labels = ["1.e-20" "1.e-10" "1.e-1"];
+newticks.locations = [1.e-20 1.e-10 1.e-1];
+f.children.y_ticks = newticks;
+f.children.children(1).children.mark_mode = "on";
+f.children.children(1).children.mark_style = 9;
 mprintf("Plotting history of sigma...\n");
 f = scf();
 nmplot_historyplot ( nm , "rosenbrock.fixed.history.sigma.txt" , ...
-  mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
+  mytitle = "Logarithm Maximum Oriented length" , myxlabel = "Iterations" );
+f.children.log_flags = "nln";
+f.children.y_ticks = newticks;
+f.children.children(1).children.mark_mode = "on";
+f.children.children(1).children.mark_style = 9;
+// Plot the contours of the cost function and the simplex history
+mprintf("Plotting contour...\n");
+nm = nmplot_configure(nm,"-verbose",0);
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -5.0 , xmax = 12.0 , ymin = -2.0 , ymax = 12.0 , nx = 100 , ny = 100 );
+f = scf();
+drawlater();
+contour ( xdata , ydata , zdata , [10.0 50 100 1000 2000 5000 10000 20000] )
+nmplot_simplexhistory ( nm );
+drawnow();
+// Clean-up
 deletefile("rosenbrock.fixed.history.simplex.txt");
 deletefile("rosenbrock.fixed.history.fbar.txt");
 deletefile("rosenbrock.fixed.history.fopt.txt");

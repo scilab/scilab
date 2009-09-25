@@ -18,6 +18,14 @@
 //   the requirements of simplex methods.
 //
 function [ f , this ] = neldermead_costf ( x , this )
-  [this.optbase , f] = optimbase_function ( this.optbase , x );
+  nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
+  if ( nbnlc == 0 ) then
+    [this.optbase , f] = optimbase_function ( this.optbase , x );
+  else
+    // Set the index, so that, if an additionnal cost function argument is provided,
+    // it can be appended at the end.
+    index = 1;
+    [this.optbase , f] = optimbase_function ( this.optbase , x , index );
+  end
 endfunction
 

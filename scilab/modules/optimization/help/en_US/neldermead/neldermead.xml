@@ -32,7 +32,6 @@ this = neldermead_display ( this )
 value = neldermead_get ( this , key )
 this = neldermead_search ( this )
 this = neldermead_restart ( this )
-[ this , xdata , ydata , zdata ] = neldermead_contour ( this , xmin , xmax , ymin , ymax , nx , ny )
 </synopsis>
   </refsynopsisdiv>
 
@@ -1656,6 +1655,71 @@ alpha = alpha0 * sigma0 / nsg
   </refsection>
 
   <refsection>
+    <title>Spendley et al. implementation notes</title>
+
+    <para>The original paper may be implemented with several variations, which
+    might lead to different results. This section defines what algorithmic
+    choices have been used.</para>
+
+    <para>The paper states the following rules.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>"Rule 1. Ascertain the lowest reading y, of yi ... yk+1 Complete
+        a new simplex Sp by excluding the point Vp corresponding to y, and
+        replacing it by V* defined as above."</para>
+      </listitem>
+
+      <listitem>
+        <para>"Rule 2. If a result has occurred in (k + 1) successive
+        simplexes, and is not then eliminated by application of Rule 1, do not
+        move in the direction indicated by Rule 1, or at all, but discard the
+        result and replace it by a new observation at the same point."</para>
+      </listitem>
+
+      <listitem>
+        <para>"Rule 3. If y is the lowest reading in So , and if the next
+        observation made, y* , is the lowest reading in the new simplex S , do
+        not apply Rule 1 and return to So from Sp . Move out of S, by
+        rejecting the second lowest reading (which is also the second lowest
+        reading in So)."</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>We implement the following "rules" of the Spendley et al.
+    method.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Rule 1 is strictly applied, but the reflection is done by
+        reflection the high point, since we minimize a function instead of
+        maximizing it, like Spendley.</para>
+      </listitem>
+
+      <listitem>
+        <para>Rule 2 is NOT implemented, as we expect that the function
+        evaluation is not subject to errors.</para>
+      </listitem>
+
+      <listitem>
+        <para>Rule 3 is applied, ie reflection with respect to next to high
+        point. </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>The original paper does not mention any shrink step. When the
+    original algorithm cannot improve the function value with reflection
+    steps, the basic algorithm stops. In order to make the current
+    implementation of practical value, a shrink step is included, with
+    shrinkage factor sigma. This perfectly fits into to the spirit of the
+    original paper. Notice that the shrink step make the rule #3 (reflection
+    with respect to next-to-worst vertex) unnecessary. Indeed, the minimum
+    required steps are the reflection and shrinkage. Never the less, the rule
+    #3 has been kept in order to make the algorithm as close as it can be to
+    the original.</para>
+  </refsection>
+
+  <refsection>
     <title>Example #1</title>
 
     <para>In the following example, we solve the Rosenbrock test case. We
@@ -1702,7 +1766,18 @@ nm = neldermead_configure(nm,"-verbosetermination",0);
 mprintf("Searching for minimum...\n");
 nm = neldermead_search(nm);
 mprintf("Plot contour...\n");
-[nm , xdata , ydata , zdata ] = neldermead_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
+xmin = -2.0 ; xmax = 2.0 ; ymin = -2.0 ; ymax = 2.0 ; nx = 100 ; ny = 100;
+stepx = (xmax - xmin)/nx
+xdata = xmin:stepx:xmax;
+stepy = (ymax - ymin)/ny
+ydata = ymin:stepy:ymax;
+for ix = 1:length(xdata)
+  for iy = 1:length(ydata)
+    experiment = [xdata(ix) ydata(iy)];
+    [ nm , fiexp ] = neldermead_function ( nm , experiment );
+    zdata ( ix , iy ) = fiexp;
+  end
+end
 wnum = 100001;
 my_handle             = scf(wnum);
 contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
@@ -1758,28 +1833,20 @@ Sort
   <refsection>
     <title>TODO</title>
 
-    <variablelist>
-      <varlistentry>
-        <term>Box-Guin algorithm</term>
+    <itemizedlist>
+      <listitem>
+        <para>add the Box-Guin algoritm as a 4th method.</para>
 
-        <listitem>
-          <para>add the Box-Guin algoritm as a 4th method</para>
+        <para>This algorithm solves an constrained optimization problem with a
+        variable sized simplex made of an arbitrary k number of vertices. This
+        is an update of Box's algorithm.</para>
+      </listitem>
 
-          <para>This algorithm solves an constrained optimization problem with
-          a variable sized simplex made of an arbitrary k number of vertices.
-          This is an update of Box's algorithm.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>add the optimization of the Rosenbrock test case, with the
-        interactive plot thanks to the -outputcommand option</term>
-      </varlistentry>
-
-      <varlistentry>
-        <term>add a sample output with the verbose option.</term>
-      </varlistentry>
-    </variablelist>
+      <listitem>
+        <para>add the optimization of the Rosenbrock test case, with the
+        interactive plot thanks to the -outputcommand option</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
@@ -1815,7 +1882,9 @@ Sort
   <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2009</para>
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
   <refsection>
