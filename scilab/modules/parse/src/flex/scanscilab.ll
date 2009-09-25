@@ -141,7 +141,11 @@ assign			"="
 	Parser::getInstance()->popControlStatus();
 	return scan_throw(ENDFUNCTION);
 }
-
+"#function"	{
+	Parser::getInstance()->pushControlStatus(Parser::WithinFunction);
+	return scan_throw(HIDDENFUNCTION);
+}
+"hidden"	return scan_throw(HIDDEN);
 
 "for" {
   Parser::getInstance()->pushControlStatus(Parser::WithinFor);

@@ -93,26 +93,28 @@
      CASE = 308,
      FUNCTION = 309,
      ENDFUNCTION = 310,
-     FOR = 311,
-     WHILE = 312,
-     DO = 313,
-     BREAK = 314,
-     TRY = 315,
-     CATCH = 316,
-     RETURN = 317,
-     STR = 318,
-     ID = 319,
-     VARINT = 320,
-     VARFLOAT = 321,
-     NUM = 322,
-     PATH = 323,
-     COMMENT = 324,
-     BLOCKCOMMENT = 325,
-     TOPLEVEL = 326,
-     HIGHLEVEL = 327,
-     UPLEVEL = 328,
-     LISTABLE = 329,
-     FUNCTIONCALL = 330
+     HIDDENFUNCTION = 311,
+     HIDDEN = 312,
+     FOR = 313,
+     WHILE = 314,
+     DO = 315,
+     BREAK = 316,
+     TRY = 317,
+     CATCH = 318,
+     RETURN = 319,
+     STR = 320,
+     ID = 321,
+     VARINT = 322,
+     VARFLOAT = 323,
+     NUM = 324,
+     PATH = 325,
+     COMMENT = 326,
+     BLOCKCOMMENT = 327,
+     TOPLEVEL = 328,
+     HIGHLEVEL = 329,
+     UPLEVEL = 330,
+     LISTABLE = 331,
+     FUNCTIONCALL = 332
    };
 #endif
 /* Tokens.  */
@@ -170,26 +172,28 @@
 #define CASE 308
 #define FUNCTION 309
 #define ENDFUNCTION 310
-#define FOR 311
-#define WHILE 312
-#define DO 313
-#define BREAK 314
-#define TRY 315
-#define CATCH 316
-#define RETURN 317
-#define STR 318
-#define ID 319
-#define VARINT 320
-#define VARFLOAT 321
-#define NUM 322
-#define PATH 323
-#define COMMENT 324
-#define BLOCKCOMMENT 325
-#define TOPLEVEL 326
-#define HIGHLEVEL 327
-#define UPLEVEL 328
-#define LISTABLE 329
-#define FUNCTIONCALL 330
+#define HIDDENFUNCTION 311
+#define HIDDEN 312
+#define FOR 313
+#define WHILE 314
+#define DO 315
+#define BREAK 316
+#define TRY 317
+#define CATCH 318
+#define RETURN 319
+#define STR 320
+#define ID 321
+#define VARINT 322
+#define VARFLOAT 323
+#define NUM 324
+#define PATH 325
+#define COMMENT 326
+#define BLOCKCOMMENT 327
+#define TOPLEVEL 328
+#define HIGHLEVEL 329
+#define UPLEVEL 330
+#define LISTABLE 331
+#define FUNCTIONCALL 332
 
 
 
