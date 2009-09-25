@@ -65,6 +65,9 @@ Source reorganisation:
 
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
+  
+* bug 3669 fixed - integrate, intc and intl moved in Differential equations
+  interp1, interp2d and splin2d  moved in the Interpolation module.
 
 * libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
 bits archs). Note that if Scilab is built on a 64 bits and triggers a 
