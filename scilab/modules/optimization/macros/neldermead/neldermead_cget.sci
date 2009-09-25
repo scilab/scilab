@@ -19,8 +19,6 @@ function value = neldermead_cget (this,key)
     value = this.method;
   case "-coords0" then
     value = this.coords0;
-  case "-simplex0" then
-    value = this.simplex0;
   case "-simplex0method" then
     value = this.simplex0method;
   case "-simplex0length" then

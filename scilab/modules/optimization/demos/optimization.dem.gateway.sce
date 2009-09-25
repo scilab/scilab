@@ -10,6 +10,7 @@ subdemolist = [
 "Non linear data fitting"         "datafit/datafit.dem.sce"       
 "fminsearch"                      "neldermead/fminsearch.sce"       
 "neldermead/Rosenbrock Variable"  "neldermead/neldermead_rosenbrock.sce"       
+"neldermead/Output Command"       "neldermead/neldermead_outputcmd.sce"       
 "neldermead/Box A"                "neldermead/neldermead_boxproblemA.sce"       
 "nmplot/Han #1"             "neldermead/nmplot_han1.sce"       
 "nmplot/Han #2"             "neldermead/nmplot_han2.sce"       

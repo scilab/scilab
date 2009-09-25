@@ -25,6 +25,8 @@ function value = neldermead_get ( this , key )
     end
   case "-simplexopt" then
     value = this.simplexopt;
+  case "-simplex0" then
+    value = this.simplex0;
   case "-restartnb" then
     value = this.restartnb;
   else

@@ -32,6 +32,7 @@ this = neldermead_display ( this )
 value = neldermead_get ( this , key )
 this = neldermead_search ( this )
 this = neldermead_restart ( this )
+[ this , result ] = neldermead_function ( this , x , index )
 </synopsis>
   </refsynopsisdiv>
 
@@ -1071,12 +1072,22 @@ g_i(x) &lt;= 0, i = 1,nbineq
                   </varlistentry>
 
                   <varlistentry>
+                    <term>-simplex0</term>
+
+                    <listitem>
+                      <para>the initial simplex. This is a simplex object,
+                      which is suitable for processing with the optimsimplex
+                      component.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
                     <term>-simplexopt</term>
 
                     <listitem>
                       <para>the optimum simplex. This is a simplex object,
-                      which is suitable for processing with the simplex
-                      interface.</para>
+                      which is suitable for processing with the optimsimplex
+                      component.</para>
                     </listitem>
                   </varlistentry>
 
@@ -1151,6 +1162,43 @@ g_i(x) &lt;= 0, i = 1,nbineq
 
               <listitem>
                 <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[ this , result ] = neldermead_function ( this , x , index
+        )</term>
+
+        <listitem>
+          <para>Call the cost function and return the value.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>the point where the function is to be evaluated</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>index</term>
+
+              <listitem>
+                <para>optionnal, a flag to pass to the cost function (default
+                = 1). See the section "The cost function" for available values
+                of index.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1316,6 +1364,14 @@ function outputcmd(state, data, myobj)
 
               <listitem>
                 <para>the number of function evaluations</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>simplex</term>
+
+              <listitem>
+                <para>the current simplex</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1703,7 +1759,7 @@ alpha = alpha0 * sigma0 / nsg
 
       <listitem>
         <para>Rule 3 is applied, ie reflection with respect to next to high
-        point. </para>
+        point.</para>
       </listitem>
     </itemizedlist>
 
@@ -1827,6 +1883,95 @@ Function Evaluation #299 is [6.023D-27] at [1 1]
 xc=1 1, f(xc)=0.000000
   &gt; Perform Inside Contraction
 Sort
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Example #2</title>
+
+    <para>In the following example, we show how to use the output command to
+    create specialized outputs. These outputs may be used to create specific
+    data files or make interactive graphic outputs.</para>
+
+    <para>We define the function "myoutputcmd", which takes the current state
+    as its first argument. The state is a string which can contain "init",
+    "iter" or "done", depending on the status of the optimization. The data
+    input argument is a tlist, which contains the data associated with the
+    current iteration. In this case, we use the fields to print a message in
+    the console. As another example of use, we could format the message so
+    that it uses LaTeX formatting rules, which may allow the user to directly
+    copy and paste the output into a LaTeX report.</para>
+
+    <programlisting role="example">
+function y = rosenbrock (x)
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+
+
+//
+// myoutputcmd --
+//  This command is called back by the Nelder-Mead
+//  algorithm.
+// Arguments
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//  data : the data at the current state
+//
+function myoutputcmd ( state , data )
+  iter = data.iteration
+  if ( state == "init" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "Initialization\n");
+  elseif ( state == "done" ) then
+    mprintf ( "=================================\n");
+    mprintf ( "End of Optimization\n");
+  end
+  fc = data.funccount
+  fval = data.fval
+  x = data.x
+  simplex = data.simplex
+  // Simplex is a data structure, which can be managed
+  // by the optimsimplex class.
+  ssize = optimsimplex_size ( simplex )
+  mprintf ( "Iteration #%d, Feval #%d, Fval = %e, x = %s, Size = %e\n", iter, fc, fval, strcat(string(x)," "), ssize);
+endfunction
+
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",rosenbrock);
+nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",300);
+nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
+nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-simplex0length",1.0);
+nm = neldermead_configure(nm,"-method","variable");
+nm = neldermead_configure(nm,"-verbose",0);
+nm = neldermead_configure(nm,"-verbosetermination",0);
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_search(nm);
+nm = neldermead_destroy(nm);
+</programlisting>
+
+    <para>The previous script produces the following output.</para>
+
+    <programlisting role="example">
+=================================
+Initialization
+Iteration #0, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #1, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #2, Feval #6, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #3, Feval #8, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
+Iteration #4, Feval #10, Fval = 9.999182e+000, x = -1.0125 0.78125, Size = 5.970304e-001
+...
+Iteration #155, Feval #296, Fval = 2.024754e-026, x = 1 1, Size = 4.601219e-013
+Iteration #156, Feval #298, Fval = 6.871176e-027, x = 1 1, Size = 2.548515e-013
+Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
+=================================
+End of Optimization
+Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
 </programlisting>
   </refsection>
 
