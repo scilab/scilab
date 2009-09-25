@@ -268,7 +268,7 @@ Bug fixes:
 
  * bug 4431 fixed - xsegs() accept z argument
 
-
+ * bug 4826 fixed - The type of the 'dims' entry of an hypermat is not always the same.
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
