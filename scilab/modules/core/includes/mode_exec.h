@@ -18,21 +18,27 @@
 /**
 * by default at Prompt mode == 2
 */
-#define INITIALIZATION_EXEC_MODE 2
-#define SILENT_EXEC_MODE -1
-#define ECHO_EXEC_MODE 1
+
+
+typedef enum { 
+	INITIALIZATION_EXEC_MODE = 2,
+	SILENT_EXEC_MODE = -1,
+	ECHO_EXEC_MODE = 1
+} exec_mode;
+
+
 /**
 * set a mode in exec file
 * @param[in] mode
 * @return TRUE if mode is modified
 */
-BOOL setExecMode(int _mode);
+BOOL setExecMode(exec_mode _mode);
 
 /**
 * get mode in exec file
 * @return current mode
 */
-int getExecMode(void);
+exec_mode getExecMode(void);
 
 #endif /* __MODE_EXEC_H__ */
 /*--------------------------------------------------------------------------*/ 

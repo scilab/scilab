@@ -11,8 +11,14 @@
  *
  */
 
+#include <string.h>
+#include <stdlib.h>
 #include "transc.h"
+#include "MALLOC.h"
 #include "localization.h"
+#include "cerro.h"
+
+extern int F2C(frmtrs) ();
 
 void C2F(transc)(int *lp1,int **lpft,int *ls1,int **lsft,int *m,int *lsftdim,int *lpftdim,int *n)
 {

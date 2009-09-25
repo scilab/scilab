@@ -381,6 +381,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\basename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\cluni0.c"
 				>
 			</File>
@@ -533,6 +537,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\pathconvert.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\readline.c"
 				>
 			</File>
@@ -542,6 +550,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\scanf_functions.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_basename.c"
 				>
 			</File>
 			<File
@@ -693,6 +705,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_pathconvert.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
 				>
 			</File>
@@ -728,6 +744,10 @@
 			>
 			<File
 				RelativePath=".\includes\addfile.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\basename.h"
 				>
 			</File>
 			<File
@@ -872,6 +892,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\mtell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\pathconvert.h"
 				>
 			</File>
 			<File

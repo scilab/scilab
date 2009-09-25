@@ -27,53 +27,66 @@
 char *getlongpathname(char *shortpathname,BOOL *convertok)
 {
 	char *LongName = NULL;
-
-	if (shortpathname)
+	wchar_t *wcshortpathname = to_wide_string(shortpathname);
+	if (wcshortpathname)
 	{
-		#ifdef _MSC_VER
-		/* first we try to call to know path length */
-		wchar_t *wLongName = NULL;
-		wchar_t *wshortpathname = to_wide_string(shortpathname);
-		int length = GetLongPathNameW(wshortpathname, NULL, 0);
-		if (length <= 0 ) length = MAX_PATH_LONG;
-
-		wLongName = (wchar_t*)MALLOC((length + 1) * sizeof(wchar_t));
-
-		if (wLongName)
+		wchar_t *wcLongName = getlongpathnameW(wcshortpathname, convertok);
+		if (wcLongName)
 		{
-			/* second converts path */
-			if (GetLongPathNameW(wshortpathname, wLongName, length))
-			{
-				LongName = wide_string_to_UTF8(wLongName);
-				*convertok = TRUE;
-			}
-			else
-			{
-				/* FAILED */
-				LongName = strdup(shortpathname);
-				*convertok = FALSE;
-			}
-			if (wLongName) {FREE(wLongName);wLongName = NULL;}
+			LongName = wide_string_to_UTF8(wcLongName);
+			FREE(wcLongName); wcLongName = NULL;
+		}
+		else
+		{
+			LongName = strdup(shortpathname);
+			*convertok = FALSE;
+		}
+	}
+	else
+	{
+		LongName = strdup(shortpathname);
+		*convertok = FALSE;
+	}
+	return LongName;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t *getlongpathnameW(wchar_t *wcshortpathname,BOOL *convertok)
+{
+	wchar_t *wcLongName = NULL;
+
+	#ifdef _MSC_VER
+	/* first we try to call to know path length */
+	int length = GetLongPathNameW(wcshortpathname, NULL, 0);
+	if (length <= 0 ) length = MAX_PATH_LONG;
+
+	wcLongName = (wchar_t*)MALLOC((length + 1) * sizeof(wchar_t));
+
+	if (wcLongName)
+	{
+		/* second converts path */
+		if (GetLongPathNameW(wcshortpathname, wcLongName, length))
+		{
+			*convertok = TRUE;
 		}
 		else
 		{
 			/* FAILED */
-			LongName = strdup(shortpathname);
+			if (wcLongName) wcscpy(wcLongName, wcshortpathname);
 			*convertok = FALSE;
 		}
-		if (wshortpathname) { FREE(wshortpathname); wshortpathname = NULL;}
-		#else
-		/* Linux */
-		int length = (int)strlen(shortpathname) + 1;
-		LongName = (char*)MALLOC(length * sizeof(char));
-		if (LongName) strcpy(LongName, shortpathname);
-		*convertok = FALSE;
-		#endif
 	}
 	else
 	{
+		/* FAILED */
 		*convertok = FALSE;
 	}
-	return LongName;
+	#else
+	/* Linux */
+	int len = (int)wcslen(wcshortpathname) + 1;
+	wcLongName = (wchar_t*)MALLOC(len * sizeof(wchar_t));
+	if (wcLongName) wcscpy(wcLongName, wcshortpathname);
+	*convertok = FALSE;	
+	#endif
+	return wcLongName;
 }
 /*--------------------------------------------------------------------------*/

@@ -28,8 +28,7 @@ function newobj = neldermead_new ()
     "kelleynormalizationflag","kelleystagnationalpha0", ...
     "kelleyalpha","restartnb","restartflag","restartdetection" , ...
     "startupflag" , ...
-    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" , ...
-    "vectorizefunction" ]);
+    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" ]);
   newobj.optbase = optimbase_new();
   // Possible values "variable", "fixed".
   newobj.method = "variable";
@@ -114,7 +113,5 @@ function newobj = neldermead_new ()
   // The scaling coefficient in nonlinear inequality constraints
   // in Box method, in (0,1) range
   newobj.ineqscaling = 0.5
-  // Set to 1 if the cost function is vectorized
-  newobj.vectorizefunction = 0
 endfunction
 

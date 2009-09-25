@@ -44,6 +44,7 @@ function flag = assert_equal ( computed , expected )
   if flag <> 1 then pause,end
 endfunction
 
+// Test with 3 vertices
 s1 = optimsimplex_new ();
 simplex = [
 24. -2.0 1.0
@@ -55,5 +56,21 @@ str = optimsimplex_tostring ( s1 );
 assert_equal ( str(1) , "Vertex #1/3 : fv=24.000000, x=-2.000000 1.000000" );
 assert_equal ( str(2) , "Vertex #2/3 : fv=93.000000, x=-1.000000 3.000000" );
 assert_equal ( str(3) , "Vertex #3/3 : fv=36.000000, x=-3.000000 2.000000" );
+s1 = optimsimplex_destroy ( s1 );
+
+// Test with 4 vertices
+s1 = optimsimplex_new ();
+simplex = [
+24. -2.0 1.0
+93. -1.0 3.0
+36. -3.0 2.0
+36. -3.0 2.0
+];
+s1 = optimsimplex_setall ( s1 , simplex );
+str = optimsimplex_tostring ( s1 );
+assert_equal ( str(1) , "Vertex #1/4 : fv=24.000000, x=-2.000000 1.000000" );
+assert_equal ( str(2) , "Vertex #2/4 : fv=93.000000, x=-1.000000 3.000000" );
+assert_equal ( str(3) , "Vertex #3/4 : fv=36.000000, x=-3.000000 2.000000" );
+assert_equal ( str(4) , "Vertex #4/4 : fv=36.000000, x=-3.000000 2.000000" );
 s1 = optimsimplex_destroy ( s1 );
 

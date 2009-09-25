@@ -77,12 +77,6 @@
     <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal>
     are expanded using environment variables.</para>
 
-    <para>Note that <literal>basename(files,%f)</literal> can give erroneous
-    results if pathnames given in files do not follow the convention given by
-    the <literal>MSDOS</literal> variable.</para>
-
-    <para>basename uses fileparts to strip directory and suffix from
-    filenames.</para>
   </refsection>
 
   <refsection>

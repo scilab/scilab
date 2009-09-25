@@ -75,8 +75,6 @@ function value = neldermead_cget (this,key)
     value = this.nbineqloops;
   case "-ineqscaling" then
     value = this.ineqscaling;
-  case "-vectorizefunction" then
-    value = this.vectorizefunction;
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );

@@ -11,6 +11,10 @@
  *
  */
  
+#include <string.h>
+#include <stdlib.h>
+#include "MALLOC.h"
+#include "cerro.h"
 #include "connex.h"
 #include "localization.h"
 

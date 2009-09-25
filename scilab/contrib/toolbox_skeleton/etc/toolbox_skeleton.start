@@ -48,5 +48,4 @@ clear path_addchapter;
 clear root_tlbx;
 clear etc_tlbx;
 clear pathmacros;
-clear pathconvert;
 // ====================================================================

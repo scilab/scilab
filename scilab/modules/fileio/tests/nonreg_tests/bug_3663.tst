@@ -24,7 +24,9 @@ if MSDOS then
   [a,b] = getshortpathname(name_dir);
   if b <> %t then pause,end
   if isempty(a) then pause,end
-  if a<>'L3746~1.PBL' then pause,end
+  // short pathname are managed by Windows
+  // on Windows 7, it returns LDEE2~1.PBL
+  if (a <> 'L3746~1.PBL' & a <> 'LDEE2~1.PBL')then pause,end
   
   [a,b] = getshortpathname(TMPDIR + '\' + name_dir);
   if b <> %t then pause,end
