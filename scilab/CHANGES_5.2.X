@@ -268,6 +268,8 @@ Bug fixes:
 
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
+* bug 2649 fixed - diary() function cannot be nested.
+
 * bug 3201 fixed - add the help page for the function del_help_chapter
 
 * bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
