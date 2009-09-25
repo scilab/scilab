@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{HanNeumann2006}
+Lixing Han and Michael Neumann.
+\newblock Effect of dimensionality on the nelder-mead simplex method.
+\newblock {\em Optimization Methods and Software}, 21(1):1--16, 2006.
+
+\bibitem{Spendley1962}
+W.~Spendley, G.~R. Hext, and F.~R. Himsworth.
+\newblock Sequential application of simplex designs in optimisation and
+  evolutionary operation.
+\newblock {\em Technometrics}, 4(4):441--461, 1962.
+
+\end{thebibliography}

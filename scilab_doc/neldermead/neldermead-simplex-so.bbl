@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+
+\bibitem{Box1965}
+M.~J. Box.
+\newblock A new method of constrained optimization and a comparison with other
+  methods.
+\newblock {\em The Computer Journal}, pages 42--52, 1965.
+
+\bibitem{Fan2002}
+Ellen Fan.
+\newblock Global optimization of lennard-jones atomic clusters.
+\newblock Technical report, McMaster University, February 2002.
+
+\bibitem{Kelley1999}
+C.~T. Kelley.
+\newblock {\em Iterative Methods for Optimization}, volume~19.
+\newblock SIAM Frontiers in Applied Mathematics, 1999.
+\newblock \url{http://www.siam.org/books/textbooks/fr18_book.pdf}.
+
+\bibitem{lagarias:112}
+Jeffrey~C. Lagarias, James~A. Reeds, Margaret~H. Wright, and Paul~E. Wright.
+\newblock Convergence properties of the nelder--mead simplex method in low
+  dimensions.
+\newblock {\em SIAM Journal on Optimization}, 9(1):112--147, 1998.
+\newblock \url{http://link.aip.org/link/?SJE/9/112/1}.
+
+\bibitem{nla.cat-vn1060620}
+J.~C. Nash.
+\newblock {\em Compact numerical methods for computers : linear algebra and
+  function minimisation}.
+\newblock Hilger, Bristol, 1979.
+
+\bibitem{citeulike:3009487}
+J.~A. Nelder and R.~Mead.
+\newblock A simplex method for function minimization.
+\newblock {\em The Computer Journal}, 7(4):308--313, January 1965.
+\newblock \url{http://dx.doi.org/10.1093/comjnl/7.4.308}.
+
+\bibitem{parkinson1972}
+Parkinson and Hutchinson.
+\newblock An investigation into the efficiency of variants on the simplex
+  method.
+\newblock {\em F. A. Lootsma, editor, Numerical Methods for Non-linear
+  Optimization}, pages 115--135, 1972.
+
+\bibitem{NumericalRecipes}
+W.~H. Press, Saul~A. Teukolsky, William~T. Vetterling, and Brian~P. Flannery.
+\newblock {\em Numerical Recipes in C, Second Edition}.
+\newblock 1992.
+
+\bibitem{Spendley1962}
+W.~Spendley, G.~R. Hext, and F.~R. Himsworth.
+\newblock Sequential application of simplex designs in optimisation and
+  evolutionary operation.
+\newblock {\em Technometrics}, 4(4):441--461, 1962.
+
+\bibitem{Torczon89multi-directionalsearch}
+Virginia~Joanne Torczon.
+\newblock Multi-directional search: A direct search algorithm for parallel
+  machines.
+\newblock Technical report, Rice University, 1989.
+
+\end{thebibliography}
