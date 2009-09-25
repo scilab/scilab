@@ -382,7 +382,7 @@ public class BlockReader {
 			
 			// in_implicit
 			if ((graphicsStructure.get(12) instanceof ScilabString)) { 
-				String[] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(13)).getData()[0];
+				String[] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(12)).getData()[0];
 				int size =  implicitExplicitInArray.length ;
 
 				
@@ -462,32 +462,32 @@ public class BlockReader {
 				(modelFields.get(4) instanceof ScilabDouble)) { 
 				
 				
-				int size = graphicsStructure.get(12).getWidth();
+				int size = graphicsStructure.get(12).getHeight();
 				
 				// if size == 0  graphicsStructure.get(12) is considered as ScilabDouble
 				if (size != 0 ){ 
 				
-					String[] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(12)).getData()[0];
+					String[][] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(12)).getData();
 					
 					for (int i = 0 ; i < size ; i++){
-						if (implicitExplicitInArray[i].equals("E")){
+						if (implicitExplicitInArray[i][0].equals("E")){
 							ExplicitInputPort tempInputPort =  new ExplicitInputPort();
 							ScilabDouble dataLines = (ScilabDouble)modelFields.get(2);
 							ScilabDouble dataColumns = (ScilabDouble)modelFields.get(3);
 
 							
 							if ( dataLines.getRealPart() != null ){
-								int nbLines = (int)dataLines.getRealPart()[0][i];
+								int nbLines = (int)dataLines.getRealPart()[i][0];
 								tempInputPort.setDataLines(nbLines);
 							}
 							if ( dataColumns.getRealPart() != null ){
-								int nbColumns = (int)dataColumns.getRealPart()[0][i];
+								int nbColumns = (int)dataColumns.getRealPart()[i][0];
 								tempInputPort.setDataColumns(nbColumns);
 							}
 							
 							//tempExpInputPort.setDataType( ((ScilabDouble)modelFields.get(3)).getRealPart()[0][i]);
 							newBlock.addPort(tempInputPort);
-						}else if(implicitExplicitInArray[i].equals("I")){
+						}else if(implicitExplicitInArray[i][0].equals("I")){
 							
 							ImplicitInputPort tempInputPort =  new ImplicitInputPort();
 						
@@ -496,11 +496,11 @@ public class BlockReader {
 
 							
 							if ( dataLines.getRealPart() != null ){
-								int nbLines = (int)dataLines.getRealPart()[0][i];
+								int nbLines = (int)dataLines.getRealPart()[i][0];
 								tempInputPort.setDataLines(nbLines);
 							}
 							if ( dataColumns.getRealPart() != null ){
-								int nbColumns = (int)dataColumns.getRealPart()[0][i];
+								int nbColumns = (int)dataColumns.getRealPart()[i][0];
 								tempInputPort.setDataColumns(nbColumns);
 							}
 							
@@ -530,22 +530,22 @@ public class BlockReader {
 				// if size == 0  graphicsStructure.get(13) is considered as ScilabDouble
 				if (size != 0 ){ 
 				
-					String[] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(13)).getData()[0];
+					String[][] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(13)).getData();
 					
 					
 					for (int i = 0 ; i < size ; i++){
-						if (implicitExplicitInArray[i].equals("E")){
+						if (implicitExplicitInArray[i][0].equals("E")){
 							ExplicitOutputPort tempOutputPort =  new ExplicitOutputPort();
 							ScilabDouble dataLines = (ScilabDouble)modelFields.get(5);
 							ScilabDouble dataColumns = (ScilabDouble)modelFields.get(6);
 
 							
 							if ( dataLines.getRealPart() != null ){
-								int nbLines = (int)dataLines.getRealPart()[0][i];
+								int nbLines = (int)dataLines.getRealPart()[i][0];
 								tempOutputPort.setDataLines(nbLines);
 							}
 							if ( dataColumns.getRealPart() != null ){
-								int nbColumns = (int)dataColumns.getRealPart()[0][i];
+								int nbColumns = (int)dataColumns.getRealPart()[i][0];
 								tempOutputPort.setDataColumns(nbColumns);
 							}
 							
@@ -553,7 +553,7 @@ public class BlockReader {
 							
 							//tempExpInputPort.setDataType( ((ScilabDouble)modelFields.get(7)).getRealPart()[0][i]);
 							newBlock.addPort(tempOutputPort);
-						}else if(implicitExplicitInArray[i].equals("I")){
+						}else if(implicitExplicitInArray[i][0].equals("I")){
 							
 							ImplicitOutputPort tempOutputPort =  new ImplicitOutputPort();
 						
@@ -562,11 +562,11 @@ public class BlockReader {
 
 							
 							if ( dataLines.getRealPart() != null ){
-								int nbLines = (int)dataLines.getRealPart()[0][i];
+								int nbLines = (int)dataLines.getRealPart()[i][0];
 								tempOutputPort.setDataColumns(nbLines);
 							}
 							if ( dataColumns.getRealPart() != null ){
-								int nbColumns = (int)dataColumns.getRealPart()[0][i];
+								int nbColumns = (int)dataColumns.getRealPart()[i][0];
 								tempOutputPort.setDataColumns(nbColumns);
 							}
 							//tempExpInputPort.setDataType( ((ScilabDouble)modelFields.get(7)).getRealPart()[0][i]);

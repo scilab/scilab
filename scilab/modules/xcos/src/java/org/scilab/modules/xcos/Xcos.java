@@ -115,6 +115,50 @@ public class Xcos extends SwingScilabTab implements Tab {
 	RampBlock rampBlockTemplate = new RampBlock();
 	BasicBlock randm = BlockReader.read( System.getenv("SCI")+ "/modules/scicos_blocks/macros/Sources/RAND_m.h5");
 	
+	BasicBlock constm = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Sources/CONST_m.h5");
+	sources.addTemplate("CONST_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CONST_m_blk.gif"), constm);
+	
+	BasicBlock towsc = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Sinks/TOWS_c.h5");
+	sources.addTemplate("TOWS_C", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/TOWS_c_blk.gif"), towsc);
+	
+	
+	BasicBlock summation = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/SUMMATION.h5");
+	sources.addTemplate("SUMMATION", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/SUMMATION_blk.gif"), summation);
+	
+	BasicBlock integral = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/INTEGRAL_m.h5");
+	sources.addTemplate("INTEGRAL_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/INTEGRAL_m_blk.gif"), integral);
+	
+	BasicBlock clr = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/CLR.h5");
+	sources.addTemplate("CLR", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLR_blk.gif"), clr);
+	
+	BasicBlock gain = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/GAINBLK.h5");
+	sources.addTemplate("GAINBLK", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GAINBLK_blk.gif"), gain);
+	
+	BasicBlock deriv = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/DERIV.h5");
+	sources.addTemplate("DERIV", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/DERIV_blk.gif"), deriv);
+	
+	BasicBlock nlProduct = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/PRODUCT.h5");
+	sources.addTemplate("PRODUCT", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/PRODUCT_blk.gif"), nlProduct);
+	
+	BasicBlock trigFun = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/TrigFun.h5");
+	sources.addTemplate("TRIGFUN", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/TrigFun_blk.gif"),trigFun);
+	
+	BasicBlock absvalue = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/ABS_VALUE.h5");
+	sources.addTemplate("ABS_VALUE", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/ABS_VALUE_blk.gif"),absvalue);
+	
+	BasicBlock logblk = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/LOGBLK_f.h5");
+	sources.addTemplate("LOGBLK_F", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/LOGBLK_f_blk.gif"),logblk);
+	
+	BasicBlock expression = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Misc/EXPRESSION.h5");
+	sources.addTemplate("EXPRESSION", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/EXPRESSION_blk.gif"), expression);
+	
+	BasicBlock mux = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Branching/MUX.h5");
+	sources.addTemplate("MUX", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/MUX_blk.gif"), mux);
+	
+	BasicBlock demux = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Branching/DEMUX.h5");
+	sources.addTemplate("DEMUX", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/DEMUX_blk.gif"), demux);
+	
+	
 	sources.addTemplate("Clock", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLOCK_c_blk.gif"),clockTemplate);
 	//sources.addTemplate("Generic", null ,genericTemplate);
 	sources.addTemplate("Scope", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CSCOPE_blk.gif"),scopeTemplate);

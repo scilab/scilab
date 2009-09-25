@@ -132,10 +132,10 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 
 	
-	//BasicBlock testBlock = BlockReader.read( "/home/allan/RAND_m.h5");
-//	testBlock.getGeometry().setX(20);
-//	testBlock.getGeometry().setY(20);
-//	addCell(testBlock, parent);
+	//BasicBlock testBlock = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/SUMMATION.h5");
+	//testBlock.getGeometry().setX(20);
+	//testBlock.getGeometry().setY(20);
+	//addCell(testBlock, parent);
 	//ClockBlock clock = new ClockBlock();
 	//clock.getGeometry().setX(20);
 	//clock.getGeometry().setY(20);
