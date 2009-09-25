@@ -127,10 +127,12 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   
   if ierr<>0 then
     if ext=='xml' then
-      messagebox(msprintf(_('An error has occured during parsing of file %s.\n'+..
-	       'Please check the format of your XML file\n'),fname),'modal')
+      messagebox([msprintf(_('An error has occured during parsing of file %s.\n'+..
+			     'Please check the format of your XML file\n'),fname)
+		  lasterror()],"modal")
     else
-      messagebox(msprintf(_('An error has occured during loading of file %s.\n'),fname),'modal')
+      messagebox([msprintf(_('An error has occured during loading of file %s.\n'),fname)
+		  lasterror()],"modal")
     end
     ok=%f
     scs_m=get_new_scs_m();     
@@ -141,8 +143,8 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   if ext=='xml' then
     needcompile=4;%cpr=list();
     [ok,scs_m]=do_define_and_set(scs_m);
-    if ~ok then mprintf('Error\n');return;end
-    mprintf('Done\n');
+    if ~ok then mprintf(_("Error\n"));return;end
+    mprintf(_("Done\n"));
   end
   
   //for compatibility
