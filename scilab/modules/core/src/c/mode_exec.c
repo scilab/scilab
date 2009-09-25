@@ -14,7 +14,7 @@
 #include "stack-def.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-BOOL setExecMode(exec_mode _mode)
+BOOL setExecMode(execMode _mode)
 {
 	int *Lct = C2F(iop).lct;
 	if ( _mode != Lct[3] )
@@ -25,9 +25,9 @@ BOOL setExecMode(exec_mode _mode)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-exec_mode getExecMode(void)
+execMode getExecMode(void)
 {
 	int *Lct = C2F(iop).lct;
-	return (exec_mode) Lct[3];
+	return (execMode) Lct[3];
 }
 /*--------------------------------------------------------------------------*/ 
