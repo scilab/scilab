@@ -7,7 +7,7 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function f=%s_e(varargin)
+function f=%i_e(varargin)
 //A(i,j,k,..)
 
 rhs=size(varargin)
@@ -28,6 +28,6 @@ k=find(dims>1)
 if k<>[] then
   dims(k($)+1:$)=[]
   N=prod(dims)
-  f=mlist(['hm','dims','entries'],int32([size(f) dims]),ones(N,1).*.f(:))
+  f=mlist(['hm','dims','entries'],int32([size(f) dims]),int32(ones(N,1)).*.f(:))
 end
 endfunction
