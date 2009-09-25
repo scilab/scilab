@@ -44,7 +44,7 @@ function M=generic_i_hm(default_value,varargin)
 	dk=find(dk)
       end
       if or(size(dk)<>-1) then
-	dk=sort(dk)
+	dk=gsort(dk);
 	if or(dk<>(dims(k):-1:1)) then
 	  if dk(1)<1|dk($)>dims(k) then error(21),end
 	  if ok<>[] then

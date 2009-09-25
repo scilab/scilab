@@ -182,7 +182,7 @@ function []=test(X,Y)
   xset("colormap",rand(2*n,3)); 
   xfpolys(xpols,ypols,[n/4:n/4+n-1]);
 endfunction 
-N=1000;xbasc();X=rand(1,N); Y=rand(1,N);
+N=1000;clf();X=rand(1,N); Y=rand(1,N);
 xset("wdim",700,700);
 test(X,Y);
  ]]></programlisting>

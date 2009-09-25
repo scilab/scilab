@@ -93,8 +93,8 @@ for(j = 0 ; j < rowB_ ; j++)
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="cwritechain">cwritebmat</link>, <link
-      linkend="creadchain">creadbmat</link>, <link
+      <member><link linkend="cwritechain">cwritechain</link>, <link
+      linkend="creadchain">creadchain</link>, <link
       linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="MatrixManagement_callscilab">Matrix Management</link>, <link

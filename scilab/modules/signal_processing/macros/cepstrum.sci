@@ -21,7 +21,7 @@ function fresp = cepstrum(w,mag)
      error(msprintf(gettext("%s: Input argument #%d must be real.\n"),"cepstrum",2)); 
   end
  
-  [w,ind]=sort(-w);w=-w;mag=mag(ind);
+  [w,ind]=gsort(-w);w=-w;mag=mag(ind);
   dnum=length(w);
 
   pw=sqrt(w(dnum)*w(1));

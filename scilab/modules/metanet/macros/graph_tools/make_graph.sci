@@ -45,7 +45,7 @@ function g=make_graph(name,directed,n,tail,head)
     nodename=string(1:n)
   else
     ij=[tail' head'];
-    tri=[ij(:,1)' ij(:,2)'];[atri,indic]=sort(-tri);
+    tri=[ij(:,1)' ij(:,2)'];[atri,indic]=gsort(-tri);
     atri=-atri;
     n1=size(atri,2);
     atri1=atri-[0 atri(1:n1-1)];

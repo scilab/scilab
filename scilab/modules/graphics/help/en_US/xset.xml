@@ -70,8 +70,8 @@ xset()</synopsis>
         <term>xset("auto clear","on"|"off")</term>
         <listitem>
           <para>Switch "on" or "off" the auto clear mode for graphics. When the
-        auto clear mode is "on", successive plots are not superposed, ie an
-        <literal>xbasc()</literal> operation (the graphics window is cleared and the
+        auto clear mode is "on", successive plots are not superposed, ie a
+        <literal>clf()</literal> operation (the graphics window is cleared and the
         associated recorded graphics is erased) is performed before each high
         level graphics function. Default value is "off".</para>
         </listitem>
@@ -209,7 +209,7 @@ xset()</synopsis>
         flag=1 the graphics are done on a pixmap and are sent to the graphics
         window with the command <literal>xset("wshow")</literal>. The pixmap is
         cleared with the command <literal>xset("wwpc")</literal>. Note that the
-        usual command <literal>xbasc()</literal> also clears the pixmap.</para>
+        usual command <literal>clf()</literal> also clears the pixmap.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

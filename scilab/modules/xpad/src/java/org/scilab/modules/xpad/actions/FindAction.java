@@ -139,8 +139,10 @@ public class FindAction extends DefaultAction {
 		JLabel labelReplace = new JLabel("Replace with :");
 		textfieldFind = new JTextField();
 		textfieldFind.setPreferredSize(new Dimension(150, 20));
+		textfieldFind.setMinimumSize(new Dimension(100, 20));
 		textfieldReplace = new JTextField();
 		textfieldReplace.setPreferredSize(new Dimension(150, 20));
+		textfieldReplace.setMinimumSize(new Dimension(100, 20));
 
 		panel.add(labelFind, gbc);
 		gbc.gridwidth = GridBagConstraints.REMAINDER;

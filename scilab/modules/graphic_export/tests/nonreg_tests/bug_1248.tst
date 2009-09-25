@@ -19,7 +19,7 @@
 x=1:.5:100;
 y=2:200;
 xset("window",0);
-xbasc();
+clf();
 // l,r,t,b
 xsetech(arect=[.01,.01,.01,.01]);
 plot2d(x,y,frameflag=8,axesflag=1);

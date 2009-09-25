@@ -89,7 +89,7 @@ function z=surf1(x,y), z=x*y, endfunction
 function z=surf2(x,y), z=x^2-y^2, endfunction
 function z=surf3(x,y), z=x^3+y^2, endfunction
 function z=surf4(x,y), z=x^2+y^2, endfunction
-xbasc()
+clf()
 xset("colormap",[jetcolormap(64);hotcolormap(64)])
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
@@ -115,7 +115,7 @@ xselect()
 
 // example #2: plot surf3 and add some contour lines 
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",hotcolormap(128))
@@ -130,7 +130,7 @@ xselect()
 // example #3: plot surf3 and use zminmax and colout optional arguments
 //             to restrict the plot for -0.5<= z <= 1
 function z=surf3(x,y), z=x^3+y^2, endfunction
-xbasc()
+clf()
 x = linspace(-1,1,60);
 y = linspace(-1,1,60);
 xset("colormap",jetcolormap(128))

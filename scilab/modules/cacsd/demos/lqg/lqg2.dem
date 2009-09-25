@@ -19,7 +19,7 @@ spec(h_cl(Plqg,r,Klqg))    //Check internal stability
 [Slqg,Rlqg,Tlqg]=sensi(P22,Klqg);  //Sensitivity functions
 frq=logspace(-3,3);     //10^-3  to 10^3 
 y=svplot(Slqg);       //Computes singular values;
-xbasc();xset("window",0);gainplot(frq,y)   //Plot sing. values
+clf();xset("window",0);gainplot(frq,y)   //Plot sing. values
 w1=1/(s+1);
 w2=100;
 [Ptmp,r]=augment(P22,'SR');         //"S/KS" problem
@@ -29,7 +29,7 @@ Pinf=sysdiag(w1,w2,1)*Ptmp;        //Weighting functions
 y=svplot(Sinf);       //Computes singular values;
 xset("window",1);xselect();gainplot(frq,y)   //Plot sing. values
 
-xbasc();t=0:0.01:30;u=sin(t);
+clf();t=0:0.01:30;u=sin(t);
 plot2d([t',t'],[u',(flts(u,dscr(Tlqg,0.1))')])
 
 clear s  n  Plant P22 ny nu nx Qx Qu bigQ Rx Ry bigR bigQ  Plqg r 

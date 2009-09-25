@@ -247,12 +247,12 @@ detect_java_vm() {
 # Once we have JAVA_HOME, we check that native libraries (libjava.so and
 # 2 others) are available
 ###
-
+    
 	if test "${OS}" = ""; then
-        OS=`uname -s` # Retrieve the Operating System                                                                                                         
+            OS=`uname -s` # Retrieve the Operating System
 	fi
 	if test "${MODEL}" = ""; then
-        MODEL=`uname -m` # Retrieve the model                                                                                                                 
+            MODEL=`uname -m` # Retrieve the model
 	fi
 
 # Get the proc name matching to the one of the JVM
@@ -412,11 +412,6 @@ fi
 			"s390"|"s390x")
 				proc="s390"
 				;;
-			*)
-				echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
-				echo "Fallback on the model <${MODEL}> found by uname -m"
-				proc=$MODEL
-				;;
 			*win32* | *WIN32* | *CYGWIN_NT*)
 				proc="win32"
 				JAVA_SHLIB="jvm.dll"
@@ -427,7 +422,9 @@ fi
 				JAVA_SHLIB="libjava.jnilib"
 				;;
 			*)
-                echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+			echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+                        echo "Fallback on the model <${MODEL}> found by uname -m"
+                        proc=$MODEL
                 ;;
 		esac
 		
@@ -573,7 +570,7 @@ do_compile()
 	rm -f report
 	name=`basename $1 .sci`
 	echo generating $name.bin
-	echo "predef();getf('$name.sci');save('$name.bin');quit"\
+	echo "predef();exec('$name.sci');save('$name.bin');quit"\
 	      | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
 	if (grep error report 1> /dev/null  2>&1);
 	then cat report;echo " "

@@ -74,7 +74,7 @@ int destroyGraphicsSons(sciPointObj * pthis)
 /********************* modifie le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure
  * pour cette version, on considere qu'il y'a 1 seule sous fenetre et 
- * elle suit la fenetre principale (voir xbasc() ), la fenetre n'est pas 
+ * elle suit la fenetre principale (voir clf() ), la fenetre n'est pas 
  * consideree comme un des fils.  
  */
  /**

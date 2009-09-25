@@ -177,7 +177,7 @@ x = linspace(0,2*%pi,11);
 y = sin(x);
 xx = linspace(-2*%pi,4*%pi,400)';
 yy = linear_interpn(xx, x, y, "periodic");
-xbasc()
+clf()
 plot2d(xx,yy,style=2)
 plot2d(x,y,style=-9, strf="000")
 xtitle("linear interpolation of sin(x) with 11 interpolation points")
@@ -189,7 +189,7 @@ z = 2*sin(x')*sin(y);
 xx = linspace(0,2*%pi, 40);
 [xp,yp] = ndgrid(xx,xx);
 zp = linear_interpn(xp,yp, x, y, z);
-xbasc()
+clf()
 plot3d(xx, xx, zp, flag=[2 6 4])
 [xg,yg] = ndgrid(x,x);
 param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
@@ -213,7 +213,7 @@ zp2 = linear_interpn(XP, YP, x, y, z, "periodic");
 zp3 = linear_interpn(XP, YP, x, y, z, "C0");
 zp4 = linear_interpn(XP, YP, x, y, z, "by_zero");
 zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
-xbasc()
+clf()
 subplot(2,3,1)
 plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
 xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
@@ -264,7 +264,7 @@ nb_col = 128;
 vmin = min(VF); vmax = max(VF);
 color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
 xset("colormap",jetcolormap(nb_col));
-xbasc()
+clf()
 xset("hidden3d",xget("background"))
 colorbar(vmin,vmax)
 plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])

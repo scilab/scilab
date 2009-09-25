@@ -57,7 +57,9 @@ static gw_generic_table Tab[]={
 	{sci_copyfile,"copyfile"},
 	{sci_isfile,"isfile"},
 	{sci_fileparts,"fileparts"},
-	{sci_movefile,"movefile"}
+	{sci_movefile,"movefile"},
+	{sci_basename,"basename"},
+	{sci_pathconvert,"pathconvert"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)
