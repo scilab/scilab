@@ -21,23 +21,23 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 
 public class PageSetupAction extends DefaultAction {
-	
+
 	private static PageFormat pageFormat;
 
 	private PageSetupAction(Xpad editor) {
 		super("Page Setup...", editor);
 	}
 
-    public void doAction() {
-    	PrinterJob printTask = PrinterJob.getPrinterJob();
-    	pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
-    }
-    
-	 public static MenuItem createMenu(Xpad editor) {
+	public void doAction() {
+		PrinterJob printTask = PrinterJob.getPrinterJob();
+		pageFormat = printTask.pageDialog(new HashPrintRequestAttributeSet());
+	}
+
+	public static MenuItem createMenu(Xpad editor) {
 		return createMenu("Page Setup...", null, new PageSetupAction(editor), null);
-	 }
-	 
-	 public static PageFormat getPageFormat() {
-		 return pageFormat;
-	 }
+	}
+
+	public static PageFormat getPageFormat() {
+		return pageFormat;
+	}
 }
