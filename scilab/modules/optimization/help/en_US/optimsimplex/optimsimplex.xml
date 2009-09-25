@@ -1608,17 +1608,6 @@ function [ y , data ] = myfunction ( x , data )
         <listitem>
           <para>Returns the size of the simplex.</para>
 
-          <para>The diameter is the maximum length of all the vertices. It
-          requires 2 nested loops over the vertices.</para>
-
-          <para>The sigmaminus (resp. sigmamplus) size is the minimum (resp.
-          maximum) length of the vector from each vertex to the first vertex.
-          It requires one loop over the vertices.</para>
-
-          <para>The "Nash" size is the sum of the norm of the length of the
-          vector from the given vertex to the first vertex. The 1-norm is
-          used. It requires one loop over the vertices.</para>
-
           <variablelist>
             <varlistentry>
               <term>this</term>
@@ -1632,9 +1621,43 @@ function [ y , data ] = myfunction ( x , data )
               <term>method</term>
 
               <listitem>
-                <para>optional, the method to use to compute the size. The
-                available methods are "Nash", "diameter", "sigmaplus" or
-                "sigmaminus" (default is "sigmaplus").</para>
+                <para>optional, the method to use to compute the size. </para>
+
+                <para>The available methods are the following :</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>"sigmaplus" (this is the default)</para>
+
+                    <para>The sigmamplus size is the maximum 2-norm length of
+                    the vector from each vertex to the first vertex. It
+                    requires one loop over the vertices.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>"sigmaminus"</para>
+
+                    <para>The sigmaminus size is the minimum 2-norm length of
+                    the vector from each vertex to the first vertex. It
+                    requires one loop over the vertices.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>"Nash"</para>
+
+                    <para>The "Nash" size is the sum of the norm of the norm-1
+                    length of the vector from the given vertex to the first
+                    vertex. It requires one loop over the vertices.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para>"diameter"</para>
+
+                    <para>The diameter is the maximum norm-2 length of all the
+                    edges of the simplex. It requires 2 nested loops over the
+                    vertices.</para>
+                  </listitem>
+                </itemizedlist>
               </listitem>
             </varlistentry>
           </variablelist>

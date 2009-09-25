@@ -1374,6 +1374,17 @@ function outputcmd(state, data, myobj)
                 <para>the current simplex</para>
               </listitem>
             </varlistentry>
+
+            <varlistentry>
+              <term>step</term>
+
+              <listitem>
+                <para>the previous step in the algorithm. The following values
+                are available : "init", "done", "reflection", "expansion",
+                "insidecontraction", "outsidecontraction", "reflectionnext",
+                "shrink".</para>
+              </listitem>
+            </varlistentry>
           </variablelist>
         </listitem>
       </varlistentry>
