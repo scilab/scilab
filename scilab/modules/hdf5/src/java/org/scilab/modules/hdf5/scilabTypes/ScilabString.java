@@ -36,14 +36,14 @@ public class ScilabString implements ScilabType {
     }
     
     public int getHeight() {
-		if (data != null) {
+		if (data == null) {
 			return 0;
 		}
 		return data.length;
 	}
 
 	public int getWidth() {
-		if (data != null) {
+		if (data == null) {
 			return 0;
 		}
 		return data[0].length;

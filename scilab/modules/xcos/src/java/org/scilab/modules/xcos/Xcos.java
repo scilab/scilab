@@ -49,6 +49,8 @@ import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.RunAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
+import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.block.clock.ClockBlock;
 import org.scilab.modules.xcos.block.generic.GenericBlock;
 import org.scilab.modules.xcos.block.ramp.RampBlock;
@@ -111,12 +113,14 @@ public class Xcos extends SwingScilabTab implements Tab {
 	ScopeBlock scopeTemplate = new ScopeBlock();
 	SinusoidBlock sinusoidTemplate = new SinusoidBlock();
 	RampBlock rampBlockTemplate = new RampBlock();
-
+	BasicBlock randm = BlockReader.read( System.getenv("SCI")+ "/modules/scicos_blocks/macros/Sources/RAND_m.h5");
+	
 	sources.addTemplate("Clock", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLOCK_c_blk.gif"),clockTemplate);
-	sources.addTemplate("Generic", null ,genericTemplate);
+	//sources.addTemplate("Generic", null ,genericTemplate);
 	sources.addTemplate("Scope", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CSCOPE_blk.gif"),scopeTemplate);
 	sources.addTemplate("Sinusoid", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GENSIN_f_blk.gif"),sinusoidTemplate);
-	sources.addTemplate("Ramp", null, rampBlockTemplate);
+	sources.addTemplate("Ramp", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/RAMP_blk.gif"), rampBlockTemplate);
+	sources.addTemplate("RAND_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/RAND_m_blk.gif"), randm);
     }
 
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {

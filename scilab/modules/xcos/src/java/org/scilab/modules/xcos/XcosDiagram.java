@@ -33,6 +33,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -130,10 +131,15 @@ public class XcosDiagram extends ScilabGraph {
 	 * SAMPLE DATA 
 	 */
 
+	
+	//BasicBlock testBlock = BlockReader.read( "/home/allan/RAND_m.h5");
+//	testBlock.getGeometry().setX(20);
+//	testBlock.getGeometry().setY(20);
+//	addCell(testBlock, parent);
 	//ClockBlock clock = new ClockBlock();
 	//clock.getGeometry().setX(20);
 	//clock.getGeometry().setY(20);
-	//addCell(clock, parent);
+	//
 
 	//getAsComponent().setCellWarning(clock, "ACHTUNG !!!");
 

@@ -206,6 +206,10 @@ public class H5Read {
 	H5ReadScilabTList.readData(H5Read.getRootId(fileId), data);
     }
     
+    public static void readDataFromFile(int fileId, ScilabMList data) throws NullPointerException, HDF5LibraryException, HDF5Exception {
+    	H5ReadScilabTList.readData(H5Read.getRootId(fileId), data);
+    }
+    
 
     public static ScilabType getData(int dataSetId) throws NullPointerException, HDF5Exception {
 	ScilabType data = null;
