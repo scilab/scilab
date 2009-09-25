@@ -128,6 +128,7 @@ fileio functions:
    + isdir manages matrix of strings as input argument
    + basename (primitive)
    + pathconvert (primitive)
+   + cd, chdir (primitive)
   
 Dynamic link:
 =============
