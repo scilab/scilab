@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -8,62 +9,158 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
- */
-#include <stdio.h>
+/*--------------------------------------------------------------------------*/
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "PATH_MAX.h"
 #include "MALLOC.h"
+#include "localization.h"
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+#include "api_boolean.h"
+#include "isdir.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int sci_chdir(char *fname,unsigned long fname_len)
 {
+	int *piAddressVarOne = NULL;
+	wchar_t *pStVarOne = NULL;
+	int lenStVarOne = 0;
+	int m1 = 0, n1 = 0;
+
+	wchar_t *expandedPath = NULL;
+
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
-	if ( (Rhs == 0) || (GetType(1) == sci_strings) )
+	if (Rhs == 0)
 	{
-		int ierr = 1;
-		int l1 = 0, n1 = 0,m1 = 0;
-		char shortpath[PATH_MAX];
-		char *path = NULL;
-		int out_n = 0;
-
-		if (Rhs == 0)
+		pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t) * ((int)wcslen(L"home")+1));
+		if (pStVarOne)
 		{
-			strcpy(shortpath, "home/");
+			wcscpy(pStVarOne, L"home");
 		}
-		else
-		{
-			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-			strcpy(shortpath,cstk(l1));
-		}
-
-		path = expandPathVariable(shortpath);
-		if (path)
-		{
-			scichdir(path, &ierr);
-			FREE(path);
-			path = NULL;
-		}
-
-		n1=1;
-		CreateVar(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1,&n1,&l1);
-
-		if (ierr == 0) *istk(l1)=(int)(TRUE);
-		else *istk(l1)=(int)(FALSE);
-
-		LhsVar(1)=Rhs+1;
-		C2F(putlhsvar)();
 	}
 	else
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"),fname, 1);
+		getVarAddressFromPosition(1, &piAddressVarOne);
+
+		if ( getVarType(piAddressVarOne) != sci_strings )
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
+
+		getMatrixOfWideString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		if ( (m1 != n1) && (n1 != 1) ) 
+		{
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
+
+		pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
+		if (pStVarOne == NULL)
+		{
+			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			return 0;
+		}
+
+		getMatrixOfWideString(piAddressVarOne, &m1, &n1, &lenStVarOne, &pStVarOne);
 	}
+
+	expandedPath = expandPathVariableW(pStVarOne);
+	if (pStVarOne) {FREE(pStVarOne); pStVarOne = NULL;}
+
+	if (expandedPath)
+	{
+		/* get value of PWD scilab variable (compatiblity scilab 4.x) */
+		if (wcscmp(expandedPath, L"PWD") == 0)
+		{
+			if (getNamedVarType("PWD") == sci_strings)
+			{
+				wchar_t *VARVALUE = NULL;
+				int VARVALUElen = 0;
+				int m = 0, n = 0;
+				if (readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE) == 0)
+				{
+					if ( (m == 1) && (n == 1) )
+					{
+						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
+						if (VARVALUE)
+						{
+							readNamedMatrixOfWideString("PWD", &m, &n, &VARVALUElen, &VARVALUE);
+							FREE(expandedPath);
+							expandedPath = VARVALUE;
+						}
+					}
+				}
+			}
+		}
+
+		if (strcmp(fname, "chdir") == 0) /* chdir output boolean */
+		{	
+			BOOL *bOuput = (BOOL*)MALLOC(sizeof(BOOL));
+
+			int ierr = scichdirW(expandedPath);
+
+			if (ierr) bOuput[0] = FALSE;
+			else bOuput[0] = TRUE; 
+
+			createMatrixOfBoolean(Rhs + 1, 1, 1, bOuput);
+
+			LhsVar(1) = Rhs + 1;
+			C2F(putlhsvar)();
+			
+		}
+		else /* cd output string current path */
+		{
+			if ( isdirW(expandedPath) || (wcscmp(expandedPath,L"/") == 0) ||
+				 (wcscmp(expandedPath,L"\\") == 0) )
+			{
+				int ierr = scichdirW(expandedPath);
+				wchar_t *currentDir = scigetcwdW(&ierr);
+				if ( (ierr == 0) && currentDir)
+				{
+					createMatrixOfWideString(Rhs + 1, 1, 1, &currentDir);
+				}
+				else
+				{
+					createMatrixOfDouble(Rhs + 1, 0, 0, NULL);
+				}
+
+				LhsVar(1) = Rhs + 1;
+				C2F(putlhsvar)();
+
+				if (currentDir) {FREE(currentDir); currentDir = NULL;}
+			}
+			else
+			{
+				char *path = wide_string_to_UTF8(expandedPath);
+				if (path)
+				{
+					Scierror(998, _("%s: Cannot go to directory %s\n"), fname, path);
+					FREE(path);
+					path = NULL;
+				}
+				else
+				{
+					Scierror(998, _("%s: Cannot go to directory.\n"), fname);
+				}
+			}
+		}
+
+		FREE(expandedPath); expandedPath = NULL;
+	}
+	else
+	{
+		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+	}
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

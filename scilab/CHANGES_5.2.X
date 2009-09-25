@@ -65,6 +65,9 @@ Source reorganisation:
 
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
+  
+* bug 3669 fixed - integrate, intc and intl moved in Differential equations
+  interp1, interp2d and splin2d  moved in the Interpolation module.
 
 * libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
 bits archs). Note that if Scilab is built on a 64 bits and triggers a 
@@ -128,6 +131,7 @@ fileio functions:
    + isdir manages matrix of strings as input argument
    + basename (primitive)
    + pathconvert (primitive)
+   + cd, chdir (primitive)
   
 Dynamic link:
 =============
@@ -260,12 +264,16 @@ Bug fixes:
 
 * bug 1776 fixed - funcprot accepts non-integer arguments
 
+* bug 2238 fixed - function returns a wrong error
+
 * bug 2275 fixed - add the isvector help page
 
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
                    first argument is -1 (any number of lines)
 
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
+
+* bug 2649 fixed - diary() function cannot be nested.
 
 * bug 3201 fixed - add the help page for the function del_help_chapter
 
@@ -456,8 +464,12 @@ Bug fixes:
 
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
 
+* bug 4797 fixed - macro make_help_index.sci (internal) removed (not used in scilab 5.x)
+
 * bug 4798 fixed - pathconvert macro should be rewritten as a primitive (many times used and not faster).
 
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
+
+* bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)

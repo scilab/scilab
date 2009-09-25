@@ -75,4 +75,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="40" primitiveName="movefile" />
 <PRIMITIVE gatewayId="34" primitiveId="41" primitiveName="basename" />
 <PRIMITIVE gatewayId="34" primitiveId="42" primitiveName="pathconvert" />
+<PRIMITIVE gatewayId="34" primitiveId="43" primitiveName="cd" />
 </GATEWAY>

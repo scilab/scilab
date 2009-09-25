@@ -14,31 +14,33 @@ package org.scilab.modules.xpad.actions;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.print.Printable;
 
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.XpadPrintPreviewWindow;
 
 public class PrintPreviewAction extends DefaultAction {
 
-    private PrintPreviewAction(Xpad editor) {
-	super("Print Preview...", editor);
-    }
-    
-    public void doAction() {
-    	//Printable p = getEditor().getTextPane().getPrintable();
+	private static boolean windowAlreadyExist;
 
-    }
+	private PrintPreviewAction(Xpad editor) {
+		super("Print Preview...", editor);
+	}
 
-    public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Print Preview...", null, new PrintPreviewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
-    }
-    
-    public static PushButton createButton(Xpad editor) {
-	return createButton("Print Preview...", "document-print-preview.png", new PrintPreviewAction(editor));
-    }
-    
+	public void doAction() {
+		new XpadPrintPreviewWindow(new PrinterWriter(getEditor().getTextPane()), getEditor());
+	}
+
+	public static MenuItem createMenu(Xpad editor) {
+		return createMenu("Print Preview...", null, new PrintPreviewAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK+ActionEvent.SHIFT_MASK));
+	}
+
+	public static PushButton createButton(Xpad editor) {
+		return createButton("Print Preview...", "document-print-preview.png", new PrintPreviewAction(editor));
+	}
+
 }
