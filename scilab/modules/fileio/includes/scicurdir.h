@@ -13,6 +13,7 @@
 #ifndef __SCICURDIR_H__
 #define __SCICURDIR_H__
 
+#include <wchar.h>
 #include "dynlib_fileio.h"
 
 /**

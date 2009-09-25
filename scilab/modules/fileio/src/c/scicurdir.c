@@ -110,8 +110,8 @@ wchar_t * scigetcwdW(int *err)
 	wchar_t *wcCurrentDir = NULL;
 	
 #ifndef _MSC_VER
-	char currentDir[PATH_MAX + 1]:
-	if (GETCWD(cur_dir, PATH_MAX) == NULL)
+	char currentDir[PATH_MAX + 1];
+	if (GETCWD(currentDir, PATH_MAX) == NULL)
 	{
 		if ( getWarningMode() ) sciprint(_("Can't get current directory.\n"));
 		*err = 1;
