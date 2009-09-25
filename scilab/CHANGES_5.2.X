@@ -261,6 +261,8 @@ Bug fixes:
 
 * bug 1776 fixed - funcprot accepts non-integer arguments
 
+* bug 2238 fixed - function returns a wrong error
+
 * bug 2275 fixed - add the isvector help page
 
 * bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
