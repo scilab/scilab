@@ -461,8 +461,12 @@ Bug fixes:
 
 * bug 4795 fixed - CallScilab.h renamed call_scilab.h
 
+* bug 4797 fixed - macro make_help_index.sci (internal) removed (not used in scilab 5.x)
+
 * bug 4798 fixed - pathconvert macro should be rewritten as a primitive (many times used and not faster).
 
 * bug 4807 fixed - strsubst does not check if second argument is a valid patter where fourth argument is 'r'.
 
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
+
+* bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
