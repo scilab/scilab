@@ -29,13 +29,13 @@
           version="5.0-subset Scilab"
           xml:id="XcosMenuQuit">
   <refnamediv>
-    <refname>Quit</refname>
+    <refname>Close</refname>
     <refpurpose>Menu: Close the current Scicos diagram</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <para>
-      Click on the Quit menu item to close current diagram.
+      Click on the Close menu item to close current diagram.
       If current diagram is not a Super block, Exit menu closes
       Scicos and returns to Scilab session.  If the diagram has been
       modified a dialog box warns the user.
