@@ -19,14 +19,14 @@
 // See the file ../license.txt
 //
 
-function XcosMenuPalTree()
+function XcosMenuPalettesTree()
 
   Cmenu = [] ;
 
-    global scs_m_palettes ; //** potentially VERY dangerous
-                            //** but indispensable because allow the
-                            //** copy on all the Scicos windows
- 
-    scs_m_palettes = do_pal_tree(scicos_pal); 
+  global scs_m_palettes ; //** potentially VERY dangerous
+			  //** but indispensable because allow the
+			  //** copy on all the Scicos windows
+			  
+  scs_m_palettes = do_pal_tree(scicos_pal); 
 
 endfunction
