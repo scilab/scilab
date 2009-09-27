@@ -19,8 +19,13 @@
 // See the file ../license.txt
 //
 
-function  XcosMenuBlockDocumentation()
+function  XcosMenuBlockDoc()
 // 
-    scs_m = do_doc(scs_m,%pt) ;
+  scs_m_save=scs_m;
+    [scs_m,ok] = do_doc(scs_m,%pt) ;
+    if ok then
+      edited=%t
+      enable_undo=%t
+    end
     Cmenu=[];%pt=[]
 endfunction
