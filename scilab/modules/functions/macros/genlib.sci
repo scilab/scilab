@@ -88,7 +88,7 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
   names_changed = %t;
   
   if updatelib then
-    if and(sort(names)==sort(old_names)) then names_changed=%f,end
+    if and(gsort(names)==gsort(old_names)) then names_changed=%f,end
   end
   
   modified=%f

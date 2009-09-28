@@ -102,7 +102,7 @@ if execstr('[U,S,V,rk]=svd([],'"e'")','errcatch') == 0 then bugmes();quit;end
 A=rand(3,5);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>10*%eps  then bugmes();quit;end
@@ -126,7 +126,7 @@ if rk<>3 then bugmes();quit;end
 A=rand(5,3);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
@@ -150,7 +150,7 @@ if rk<>3 then bugmes();quit;end
 A=rand(3,5)+%i*rand(3,5);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
@@ -174,7 +174,7 @@ if rk<>3 then bugmes();quit;end
 A=rand(5,3)+%i*rand(5,3);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>200*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>200*%eps  then bugmes();quit;end
@@ -199,7 +199,7 @@ if rk<>3 then bugmes();quit;end
 A=rand(30,50);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>1000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>1000*%eps  then bugmes();quit;end
@@ -223,7 +223,7 @@ if rk<>30 then bugmes();quit;end
 A=rand(50,30);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end
@@ -247,7 +247,7 @@ if rk<>30 then bugmes();quit;end
 A=rand(30,50)+%i*rand(30,50);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end
@@ -271,7 +271,7 @@ if rk<>30 then bugmes();quit;end
 A=rand(50,30)+%i*rand(50,30);
 S=svd(A);
 if or(S<0) then bugmes();quit;end
-if sort(S)<>S  then bugmes();quit;end
+if gsort(S)<>S  then bugmes();quit;end
 [U,S1]=svd(A);
 if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U'*U-eye())>5000*%eps  then bugmes();quit;end

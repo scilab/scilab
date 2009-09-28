@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
+mprintf("Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform well on Rosenbrock test case.\n");
 mprintf("Defining Rosenbrock function...\n");
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
@@ -39,11 +40,12 @@ nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
 //
 mprintf("Searching for minimum...\n");
 nm = nmplot_search(nm);
+nmplot_display(nm);
 // Plot the contours of the cost function and the simplex history
 mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
 f = scf();
-contour ( xdata , ydata , zdata , 20 )
+contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
 nmplot_simplexhistory ( nm );
 mprintf("Plotting history of fbar...\n");
 f = scf();

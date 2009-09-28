@@ -18,5 +18,5 @@ b = 0;
 a = rand(2000000, 1, 'n');
 
 // <-- BENCH START -->
-b = -sort(-a);
+b = -gsort(-a);
 // <-- BENCH END -->

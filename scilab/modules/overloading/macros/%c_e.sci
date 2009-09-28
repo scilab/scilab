@@ -29,6 +29,6 @@ if k<>[] then
   N=prod(dims)
   szf=size(f)
   f=f(:)
-  f=mlist(['hm','dims','entries'],[szf dims],matrix(f(:,ones(1,N)),-1,1))
+  f=mlist(['hm','dims','entries'],int32([szf dims]),matrix(f(:,ones(1,N)),-1,1))
 end
 endfunction

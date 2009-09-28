@@ -92,6 +92,9 @@ While most of the theory can be developed without being very specific
 about the initial simplex, the initial simplex plays a very important role in practice.
 All approaches are based on the initial guess $\overline{\bx}_0\in\RR^n$ and create a 
 geometric shape based on this point.
+(We denoted the initial guess by $\overline{\bx}_0$ instead of the usual $\bx_0$
+in order to distinguish the initial guess from the vertices $\{\bx_i\}_{i=1,n+1}$.)
+
 
 In this section, we present the various approach to design the initial 
 simplex. In the first part, we emphasize the importance of the initial
@@ -161,7 +164,8 @@ x_i^j &=&
 \end{array}
 \right.
 \end{eqnarray}
-for $i=2,n+1$ where $\ell \in\RR$ is the length of the simplex ($\ell>0$). Notice that this 
+for vertices $i=2,n+1$ and components $j=1,n$, 
+where $\ell \in\RR$ is the length of the simplex ($\ell>0$). Notice that this 
 length is the same for all the vertices which keeps the simplex regular.
 
 The regular initial simplex is presented in figure \ref{fig-nm-simplex-regular}.
@@ -192,7 +196,7 @@ x_i^j &=&
 \end{array}
 \right.
 \end{eqnarray}
-for $i=2,n+1$ 
+for vertices $i=2,n+1$ and components $j=1,n$.
 
 This kind of simplex is presented in figure \ref{fig-nm-simplex-axes}.
 The axis-by-axis approach is used in the very popular Nelder-Mead 
@@ -226,16 +230,52 @@ The other vertices are defined by
 \begin{eqnarray}
 x_i^j &=& m^j + \theta_i^j (M^j - m^j),
 \end{eqnarray}
-for $i=2,n+1$.
+for vertices $i=2,n+1$ and components $j=1,n$.
 
 \subsection{Pfeffer's method}
 
 This initial simplex is used in the function \scifunction{fminsearch}
 and presented in \cite{Fan2002}. It is due to L. Pfeffer at Stanford.
+The goal of this method is to scale the initial simplex with respect 
+to the characteristic lengths of the problem. This allows, for example,
+to manage cases where $x_1\approx 1$ and $x_2\approx 10^5$.
+As we are going to see, the scaling is defined with respect to the 
+initial guess $\bx_0$. Indeed, the initial simplex is created by 
+small perturbations around the initial guess $\overline{\bx}_0$.
 
-TODO...
+The method proceeds by defining $\delta_u,\delta_z>0$, where 
+$\delta_u$ is used for usual components of $\overline{\bx}_0$ and $\delta_z$ is 
+used for the case where one component of $\overline{\bx}_0$ is zero.
+The default values for $\delta_u$ and $\delta_z$ are 
+\begin{eqnarray}
+\delta_u = 0.05 \qquad \delta_z = 0.0075.
+\end{eqnarray}
+The first vertex of the simplex is the initial guess 
+\begin{eqnarray}
+\bx_1 &=& \overline{\bx}_0.
+\end{eqnarray}
+The other vertices are defined by 
+\begin{eqnarray}
+x_i^j &=& \left\{
+\begin{array}{l}
+\overline{x}_0^j + \delta_u \overline{x}_0^j, \textrm{ if } j=i-1 \textrm{ and } \overline{x}_0^{j-1}\neq 0,\\
+\delta_z, \textrm{ if } j=i-1 \textrm{ and } \overline{x}_0^{j-1}= 0,\\
+\overline{x}_0^j, \textrm{ if } j\neq i-1,\\
+\end{array}
+\right.
+\end{eqnarray}
+for vertices $i=2,n+1$ and components $j=1,n$.
 
-\section{The simplex gradient}
+%\section{The simplex gradient}
+%\label{section-simplexgradient}
 
-TODO...
+%TODO...
+
+%\section{References and notes}
+
+%Most of the section \ref{section-simplexgradient} is taken from 
+%Kelley's book \cite{Kelley1999}, "Iterative Methods for Optimization".
+%While this document focus on Nelder-Mead algorithm, Kelley gives a broad
+%view on optimization and present other algorithms for noisy functions,
+%like implicit filtering, multidirectional search and the Hooke-Jeeves algorithm.
 

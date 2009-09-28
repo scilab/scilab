@@ -10,142 +10,159 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="getf">
+<refentry version="5.0-subset Scilab" xml:id="getf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate$</pubdate>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
+    $</pubdate>
   </info>
+
   <refnamediv>
     <refname>getf</refname>
-    <refpurpose> chargement de fonctions à partir d'un fichier  </refpurpose>
+
+    <refpurpose>defining a function from a file</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>Calling Sequence</title>
+
     <synopsis>getf(file-name [,opt])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>filename</term>
+
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>Scilab string.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>opt</term>
+
         <listitem>
-          <para>chaîne de caractères optionnelle</para>
-              <variablelist>
-                <varlistentry>
-                  <term>"c"</term>
-                  <listitem>
-                    <para>les fonctions sont "compilées"  pour accélérer leur exécution (par défaut).</para>
-                  </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                  <term>"n"</term>
-                  <listitem>
-                    <para>les fonctions ne sont pas "compilées".</para>
-                  </listitem>
-                </varlistentry>
-                
-                <varlistentry>
-                  <term>"p"</term>
-                  <listitem>
-                    <para>les fonctions sont "compilées" et préparées pour les statistiques d'appel (voir <link linkend="profile">profile</link>).</para>
-                  </listitem>
-                </varlistentry>
-            </variablelist>
-            </listitem>
-          </varlistentry>
+          <para>optional character string</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>"c"</term>
+
+              <listitem>
+                <para>loaded functions are "compiled" to be more efficient
+                (default)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"n"</term>
+
+              <listitem>
+                <para>loaded functions are not "compiled"</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>"p"</term>
+
+              <listitem>
+                <para>loaded functions are "compiled" and prepared for
+                profiling (see profile)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para>
-    Charge une ou plusieurs fonctions (voir <link linkend="functions">functions</link>)
-    définies dans le fichier <literal>'file-name'</literal>.
-    La chaîne de caractères <literal>opt='n'</literal>
-    signifie que les fonctions ne sont pas compilées
-    (pré-interprétées) au chargement. Cela peut être utile
-    en phase de mise au point (voir <link linkend="comp">comp</link>). Par défaut
-    les fonctions sont compilées
-    (i.e. <literal>opt='c'</literal> est utilisée).
-  </para>
-    <para>
-    Dans le fichier chaque fonction doit commencer par une ligne de la forme :
-  </para>
-    <programlisting><![CDATA[ 
+    
+    <para> This function is obsolete. see 'exec' </para>
+
+    <para>loads one or several functions (see <literal>functions</literal>)
+    defined in the file <literal>'file-name'</literal>. The string
+    <literal>opt='n'</literal> means that the functions are not compiled
+    (pre-interpreted) when loaded. This can be useful for some debugging
+    purpose (see <literal>comp</literal>). By default, functions are compiled
+    when loaded (i.e. <literal>opt='c'</literal> is used).</para>
+
+    <para>In the file a function must begin by a "syntax definition" line as
+    follows:</para>
+
+    <programlisting>
+
 function [y1,...,yn]=foo(x1,...,xm)
- ]]></programlisting>
-    <para>
-      les lignes suivantes contiennent une suite d'instructions Scilab.
-    </para>
-    <para>
-      La "ligne de définition" donne la syntaxe
-      d'appel complète de la fonction.  Les <literal>yi</literal>
-      sont les variables de sortie, calculées à partir des
-      variables d'entrée <literal>xi</literal> et des variables
-      existantes dans le contexte appelant lorsque la fonction est
-      exécutée. On peut utiliser éventuellement un
-      sous-ensemble de ces variables d'entrée et de sortie.
-    </para>
-    <para>
-      Il est possible d'écrire plusieurs fonctions dans un
-      seul fichier. Une fonction est alors terminée par le
-      mot-clé <link linkend="function">endfunction</link> ou par la ligne de
-      déclaration de la fonction suivante (ancienne convention) ou
-      par la fin du fichier.
-    </para>
-    <para>L'usage de <link linkend="getf">getf</link> ne permet pas gérer
-    correctement les fichiers contenant des fonctions définies a
-    l'intérieur d'une fonction. Le chargement de tels fichiers ne
-    peut se faire que par l'intermédiaire de la fonction
-    <link linkend="exec">exec</link>. </para>
-    <para><link linkend="getf">getf</link> est une fonction obsolete. Le chargement des
-    fonctions doit être réalisé en utilisant la fonction
-    <link linkend="exec">exec</link>. A noter que dans ce cas l'usage des mots-clé
-    <link linkend="function">endfunction</link> est impératif. L'usage de
-    <link linkend="exec">exec</link> sous entend l'option <literal>opt=='c'</literal>.</para>
-   <para>Pour préparer la fonction pour la collecte des
-   statistiques d'appel, il faut désormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>.</para>
+   
+    </programlisting>
+
+    <para>The following lines contain a sequence of scilab
+    instructions.</para>
+
+    <para>The "syntax definition" line gives the "full" calling syntax of this
+    function. The <literal>yi</literal> are output variables calculated as
+    functions of input variables <literal>xi</literal> and variables existing
+    in Scilab when the function is executed. Shorter input or output argument
+    list may be used.</para>
+
+    <para>Many functions may be written in the same file. A function is
+    terminated by an <literal>endfunction</literal> keyword. For compatibility
+    with previous versions a function may also be terminated by the following
+    <literal>function</literal> keyword or the <literal>EOF</literal> mark.
+    For that reason it is not possible to load function containing nested
+    function definition using the <literal>getf</literal> function.</para>
+
+    <para><literal>getf</literal> is an obsolete way for loading functions
+    into scilab from a file. It is replaced by the function <link
+    linkend="exec">exec</link>. Note that functions in a file should be
+    terminated by an <literal>endfunction</literal> keyword. The
+    <literal>exec</literal> function supposes
+    <literal>opt=='c'</literal>.</para>
+
+    <para>To prepare a function for profiling please use the <link
+    linkend="add_profiling">add_profiling</link> function.</para>
   </refsection>
+
   <refsection>
-    <title>Exemples</title>
-    <programlisting role="example"><![CDATA[ 
+    <title>Examples</title>
+
+    <programlisting role="example">
+
 getf('SCI/modules/graphics/macros/plot.sci')
 
 getf SCI/modules/graphics/macros/plot.sci
- ]]></programlisting>
+ 
+  </programlisting>
   </refsection>
+
   <refsection>
-    <title>Voir Aussi</title>
+    <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="functions">functions</link>
-      </member>
-      <member>
-        <link linkend="function">function</link>
-      </member>
-      <member>
-        <link linkend="genlib">genlib</link>
-      </member>
-      <member>
-        <link linkend="getd">getd</link>
-      </member>
-      <member>
-        <link linkend="exec">exec</link>
-      </member>
-      <member>
-        <link linkend="edit">edit</link>
-      </member>
-      <member>
-        <link linkend="comp">comp</link>
-      </member>
-      <member>
-	<link linkend="add_profiling">add_profiling</link>
-      </member>
+      <member><link linkend="functions">functions</link></member>
+
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="genlib">genlib</link></member>
+
+      <member><link linkend="getd">getd</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="edit">edit</link></member>
+
+      <member><link linkend="comp">comp</link></member>
+
+      <member><link linkend="add_profiling">add_profiling</link></member>
     </simplelist>
   </refsection>
 </refentry>

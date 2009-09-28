@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>gsort</refname>
 
-    <refpurpose> sorting by quick sort agorithm</refpurpose>
+    <refpurpose>sorting by quick sort agorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,13 +35,17 @@
 [B [,k]]=gsort(A,option)
 [B [,k]]=gsort(A,option,direction)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>A</term>
+
         <listitem>
-          <para>a real,an integer or a character string vector/matrix.</para>
+          <para>a real,an integer or a character string vector/matrix or a
+          sparse vector.</para>
         </listitem>
       </varlistentry>
 
@@ -49,8 +53,10 @@
         <term>option</term>
 
         <listitem>
-          <para>a character string. It gives the type of sort to perform:</para>
-	  <itemizedlist>
+          <para>a character string. It gives the type of sort to
+          perform:</para>
+
+          <itemizedlist>
             <listitem>
               <para>'r' : each column of <literal>A</literal> is sorted</para>
             </listitem>
@@ -60,15 +66,18 @@
             </listitem>
 
             <listitem>
-              <para>'g': all elements of <literal>A</literal> are sorted. It is the default value.</para>
+              <para>'g': all elements of <literal>A</literal> are sorted. It
+              is the default value.</para>
             </listitem>
 
             <listitem>
-              <para>'lr':  lexicographic sort of the rows of <literal>A</literal></para>
+              <para>'lr': lexicographic sort of the rows of
+              <literal>A</literal></para>
             </listitem>
 
             <listitem>
-              <para>'lc': lexicographic sort of the columns of <literal>A</literal></para>
+              <para>'lc': lexicographic sort of the columns of
+              <literal>A</literal></para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -76,6 +85,7 @@
 
       <varlistentry>
         <term>direction</term>
+
         <listitem>
           <para>a character string. It gives the ordering direction:
           <literal>'i'</literal> stand for increasing and
@@ -83,17 +93,21 @@
         </listitem>
       </varlistentry>
 
-     <varlistentry>
+      <varlistentry>
         <term>B</term>
+
         <listitem>
-          <para>an array with same type and dimensions as <literal>A</literal>.</para>
+          <para>an array with same type and dimensions as
+          <literal>A</literal>.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>k</term>
+
         <listitem>
-          <para>a real array with integer values and same dimensions
-          as <literal>A</literal>. Contains the origin indices.</para>
+          <para>a real array with integer values and same dimensions as
+          <literal>A</literal>. Contains the origin indices.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -103,66 +117,65 @@
     <title>Description</title>
 
     <para><literal>gsort</literal> implements a "quick sort" algorithm for
-    various data types. </para>
+    various data types.</para>
+
     <itemizedlist>
       <listitem>
         <para><literal>B=gsort(A,'g')</literal>,
         <literal>B=gsort(A,'g','d')</literal> and
         <literal>B=gsort(A)</literal> sort the elements of the array
-        <literal>A</literal>, seen as <literal>A(:)</literal> in a decreasing order.</para>
+        <literal>A</literal>, seen as <literal>A(:)</literal> in a decreasing
+        order.</para>
 
-        <para><literal>B=gsort(A,'g','i')</literal> sort the elements of the array
-        <literal>A</literal> in the increasing order.</para>
+        <para><literal>B=gsort(A,'g','i')</literal> sort the elements of the
+        array <literal>A</literal> in the increasing order.</para>
       </listitem>
 
-    <listitem>
+      <listitem>
         <para><literal>B=gsort(A,'lr')</literal> sorts the rows of
-        <literal>A</literal> in lexical decreasing order.
-        <literal>B</literal> is obtained by a permutation of the rows
-        of matrix <literal>A</literal> in such a way that the rows of
-        <literal>B</literal> verify
-        <literal>B(i,:)&gt;=B(j,:)</literal> if
+        <literal>A</literal> in lexical decreasing order. <literal>B</literal>
+        is obtained by a permutation of the rows of matrix
+        <literal>A</literal> in such a way that the rows of
+        <literal>B</literal> verify <literal>B(i,:)&gt;=B(j,:)</literal> if
         <literal>i&lt;j</literal>.</para>
 
-        <para><literal>B=gsort(A,'lr','i')</literal> works similarily
-        for increasing lexical order.</para>
+        <para><literal>B=gsort(A,'lr','i')</literal> works similarily for
+        increasing lexical order.</para>
       </listitem>
- 
-     <listitem>
+
+      <listitem>
         <para><literal>B=gsort(A,'lc')</literal> sorts the columns of
-        <literal>A</literal> in lexical decreasing order.
-        <literal>B</literal> is obtained by a permutation of the columns
-        of matrix <literal>A</literal> in such a way that the columns of
-        <literal>B</literal> verify
-        <literal>B(:,i)&gt;=B(:,j)</literal> if
+        <literal>A</literal> in lexical decreasing order. <literal>B</literal>
+        is obtained by a permutation of the columns of matrix
+        <literal>A</literal> in such a way that the columns of
+        <literal>B</literal> verify <literal>B(:,i)&gt;=B(:,j)</literal> if
         <literal>i&lt;j</literal>.</para>
 
-        <para><literal>B=gsort(A,'lc','i')</literal> works similarily
-        for increasing lexical order.</para>
+        <para><literal>B=gsort(A,'lc','i')</literal> works similarily for
+        increasing lexical order.</para>
       </listitem>
     </itemizedlist>
-    <para>If required the second return argument <literal>k</literal>
-   contains the indices of the sorted values in
-   <literal>A</literal>. If <literal>[B,k]=gsort(A,'g')</literal> one
-   has <literal>B==A(k)</literal>. <emphasis role="bold">The
-   algorithme preserve the relative order of records with equal
-   values. </emphasis></para>
+
+    <para>If required the second return argument <literal>k</literal> contains
+    the indices of the sorted values in <literal>A</literal>. If
+    <literal>[B,k]=gsort(A,'g')</literal> one has <literal>B==A(k)</literal>.
+    <emphasis role="bold">The algorithme preserve the relative order of
+    records with equal values. </emphasis></para>
 
     <para>When <literal>v</literal> is complex, the elements are sorted by
-    magnitude, i.e., abs(<literal>v</literal>) . Only <literal>'g'</literal> as second argument
-    is managed with complex.</para>
+    magnitude, i.e., abs(<literal>v</literal>) . Only <literal>'g'</literal>
+    as second argument is managed with complex.</para>
 
     <para>if <literal>v</literal> have <literal>%nan</literal> or
     <literal>%inf</literal> as elements. gsort places these at the beginning
     with <literal>'i'</literal> or at the end with <literal>'d'</literal>
     argument.</para>
-
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -186,7 +199,7 @@ v=['Scilab' '2.6'
 
 gsort(v,'lr','i')
 gsort(v,'lc','i')
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -194,8 +207,6 @@ gsort(v,'lc','i')
 
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>
-
-      <member><link linkend="sort">sort</link></member>
     </simplelist>
   </refsection>
 
@@ -205,6 +216,5 @@ gsort(v,'lc','i')
     <para>Quick sort algorithm from Bentley &amp; McIlroy's "Engineering a
     Sort Function". Software---Practice and Experience,
     23(11):1249-1265</para>
-
   </refsection>
 </refentry>

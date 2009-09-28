@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
-//dirname = get_absolute_file_path('nmplot_mckinnon.sce');
+mprintf("Defining McKinnon function...\n");
 //% MCKINNON computes the McKinnon function.
 //
 //  Discussion:
@@ -91,18 +91,22 @@ function f = mckinnon3 ( x )
 endfunction
 
 
-lambda1 = (1.0 + sqrt(33.0))/8.0
-lambda2 = (1.0 - sqrt(33.0))/8.0
+lambda1 = (1.0 + sqrt(33.0))/8.0;
+lambda2 = (1.0 - sqrt(33.0))/8.0;
 coords0 = [
-1.0 0.0 lambda1
-1.0 0.0 lambda2
-]
+1.0 1.0
+0.0 0.0
+lambda1 lambda2
+];
 
 
+x0 = [1.0 1.0]';
+mprintf("x0=%s\n",strcat(string(x0)," "));
+mprintf("Creating object...\n");
 nm = nmplot_new ();
 nm = nmplot_configure(nm,"-numberofvariables",2);
 nm = nmplot_configure(nm,"-function",mckinnon3);
-nm = nmplot_configure(nm,"-x0",[1.0 1.0]');
+nm = nmplot_configure(nm,"-x0",x0);
 nm = nmplot_configure(nm,"-maxiter",200);
 nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_configure(nm,"-tolfunrelative",10*%eps);
@@ -128,18 +132,19 @@ nmplot_display(nm);
 //
 // Plot
 //
+mprintf("Plot contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
-f = scf();
+f = scf(100001);
 xset("fpf"," ")
-contour ( xdata , ydata , zdata , 40 )
+contour ( xdata , ydata , zdata , [-0.2 0.0 1.0 2.0 5.0 10.0 20.0] )
 nmplot_simplexhistory ( nm );
-f = scf();
+f = scf(100002);
 nmplot_historyplot ( nm , "mckinnon.history.fbar.txt" , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
-f = scf();
+f = scf(100003);
 nmplot_historyplot ( nm , "mckinnon.history.fopt.txt" , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
-f = scf();
+f = scf(100004);
 nmplot_historyplot ( nm , "mckinnon.history.sigma.txt" , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
 deletefile("mckinnon.history.simplex.txt");

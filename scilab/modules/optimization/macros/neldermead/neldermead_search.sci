@@ -41,13 +41,13 @@ function this = neldermead_search ( this )
     this = neldermead_startup ( this );
     this.startupflag = 1;
   end
-  neldermead_outputcmd ( this, "init" , this.simplex0 )
+  neldermead_outputcmd ( this, "init" , this.simplex0 , "init" )
   if this.restartflag == 1 then
     this = neldermead_autorestart ( this )
   else
     this = neldermead_algo ( this );
   end
-  neldermead_outputcmd ( this, "done" , this.simplexopt )
+  neldermead_outputcmd ( this, "done" , this.simplexopt , "done" )
 endfunction
 //
 // neldermead_algo --
@@ -119,6 +119,7 @@ function this = neldermead_variable ( this )
   //
   terminate = 0;
   iter = 0;
+  step = "init";
   //
   // Nelder-Mead Loop
   //
@@ -161,7 +162,7 @@ function this = neldermead_variable ( this )
     end
     this.optbase = optimbase_set ( this.optbase , "-xopt" , xlow );
     this.optbase = optimbase_set ( this.optbase , "-fopt" , flow );
-    neldermead_outputcmd ( this, "iter" , simplex )
+    neldermead_outputcmd ( this, "iter" , simplex , step )
 
     //
     // Update termination flag
@@ -189,6 +190,7 @@ function this = neldermead_variable ( this )
     if ( fr >= flow & fr < fn ) then
       this = neldermead_log (this,sprintf("  > Perform reflection"));
       simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
+      step = "reflection";
     elseif ( fr < flow ) then
       // Expand
       this = neldermead_log (this,sprintf("Expand"));
@@ -198,9 +200,11 @@ function this = neldermead_variable ( this )
       if (fe < fr) then
         this = neldermead_log (this,sprintf("  > Perform Expansion"));
         simplex = optimsimplex_setve ( simplex , n+1 , fe , xe )
+        step = "expansion";
       else
         this = neldermead_log (this,sprintf("  > Perform reflection"));
         simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
+        step = "reflection";
       end
     elseif ( fr >= fn & fr < fhigh ) then
       // Outside contraction
@@ -211,10 +215,12 @@ function this = neldermead_variable ( this )
       if ( fc <= fr ) then
         this = neldermead_log (this,sprintf("  > Perform Outside Contraction"));
         simplex = optimsimplex_setve ( simplex , n+1 , fc , xc )
+        step = "outsidecontraction";
       else
         //  Shrink
         this = neldermead_log (this,sprintf("  > Perform Shrink"));
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this );
+        step = "shrink";
       end
     else
       // ( fr >= fn & fr >= fhigh )  
@@ -226,10 +232,12 @@ function this = neldermead_variable ( this )
       if ( fc < fhigh ) then
         this = neldermead_log (this,sprintf("  > Perform Inside Contraction"));
         simplex = optimsimplex_setve ( simplex , n+1 , fc , xc )
+        step = "insidecontraction";
       else
         //  Shrink
         this = neldermead_log (this,sprintf("  > Perform Shrink"));
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this )
+        step = "shrink";
       end
     end
     //
@@ -247,6 +255,29 @@ endfunction
 //
 // neldermead_fixed --
 //   The simplex algorithm with fixed size simplex.
+// Implementation note:
+//   We implement the following "rules" of the Spendley et al.
+//   method.
+//   Rule 1 is strictly applied, but the reflection is done
+//   by reflection the high point, since we minimize a function
+//   instead of maximizing it, like Spendley.
+//   The Rule 2 is NOT implemented, as we expect that the
+//   function evaluation is not subject to errors.
+//   The Rule 3 is applied, ie reflection with respect
+//   to next to high point.
+//   A shrink step is included, with shrinkage factor sigma.
+//
+//   "Rule 1. Ascertain the lowest reading y, of yi ... Yk+1
+//   Complete a new simplex Sp by excluding the point Vp corresponding to
+//   y, and replacing it by V* defined as above."
+//   "Rule 2. If a result has occurred in (k + 1) successive simplexes, and is not
+//   then eliminated by application of Rule 1, do not move in the direction
+//   indicated by Rule 1, or at all, but discard the result and replace it by a new
+//   observation at the same point."
+//   "Rule 3. If y is the lowest reading in So , and if the next observation made,
+//   y* , is the lowest reading in the new simplex S , do not apply Rule 1 and
+//   return to So from Sp . Move out of S, by rejecting the second lowest reading
+//   (which is also the second lowest reading in So)."
 //
 function this = neldermead_fixed (this)
   //
@@ -258,7 +289,7 @@ function this = neldermead_fixed (this)
   // Sort function values and x points by increasing function value order
   this = neldermead_log (this,sprintf("Sort"));
   simplex = optimsimplex_sort ( simplex );
-  neldermead_outputcmd ( this, "init" , simplex )
+  neldermead_outputcmd ( this, "init" , simplex , "init" )
   //
   // Compute center of simplex
   //
@@ -266,20 +297,27 @@ function this = neldermead_fixed (this)
   newfvmean = optimsimplex_fvmean ( simplex );
   currentxopt = optimbase_cget ( this.optbase , "-x0" );
   //
+  // Set indices for "clarity"
+  //
+  ilow = 1
+  ihigh = n + 1
+  inext = n
+  //
   // Initialize
   //
   terminate = 0;
   iter = 0;
+  step = "init";
   //
   // main N-M loop
   //
   while (terminate == 0)
     this.optbase = optimbase_incriter ( this.optbase );
     iter = iter + 1;
-    xlow = optimsimplex_getx ( simplex , 1 )
-    flow = optimsimplex_getfv ( simplex , 1 )
-    xhigh = optimsimplex_getx ( simplex , n+1 )
-    fhigh = optimsimplex_getfv ( simplex , n+1 )
+    xlow = optimsimplex_getx ( simplex , ilow )
+    flow = optimsimplex_getfv ( simplex , ilow )
+    xhigh = optimsimplex_getx ( simplex , ihigh )
+    fhigh = optimsimplex_getfv ( simplex , ihigh )
     //
     // Store history
     //
@@ -310,7 +348,7 @@ function this = neldermead_fixed (this)
     end
     this.optbase = optimbase_set ( this.optbase , "-xopt" , xlow );
     this.optbase = optimbase_set ( this.optbase , "-fopt" , flow );
-    neldermead_outputcmd ( this, "iter" , simplex )
+    neldermead_outputcmd ( this, "iter" , simplex , step )
     //
     // Update termination flag
     //
@@ -332,18 +370,34 @@ function this = neldermead_fixed (this)
     // Reflect the worst point with respect to center
     //
     xr = neldermead_interpolate ( xbar , xhigh , this.rho );
-    [ this ,fr] = neldermead_function ( this ,xr);
+    [ this , fr ] = neldermead_function ( this , xr );
     this = neldermead_log (this,sprintf("xr="+strcat(string(xr)," ")+", f(xr)=%f",fr));
     //
     // Replace worst point by xr if it is better
     //
     if ( fr < fhigh ) then
       this = neldermead_log (this,sprintf("  > Perform reflect"));
-      simplex = optimsimplex_setve ( simplex , n+1 , fr , xr )
+      simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
+      step = "reflection";
     else
-      //  Shrink
-      this = neldermead_log (this,sprintf("  > Perform Shrink"));
-      [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this )
+      // Reflect / xnext
+      xnext = optimsimplex_getx ( simplex , inext );
+      fnext = optimsimplex_getfv ( simplex , inext );
+      xbar2 = optimsimplex_xbar ( simplex , inext );
+      this = neldermead_log (this,sprintf("xbar2="+strcat(string(xbar2)," ")+""));
+      xr2 = neldermead_interpolate ( xbar2 , xnext , this.rho );
+      [ this , fr2 ] = neldermead_function ( this ,xr2 );
+      this = neldermead_log (this,sprintf("xr2="+strcat(string(xr2)," ")+", f(xr2)=%f",fr2));
+      if ( fr2 < fnext ) then
+        this = neldermead_log (this,sprintf("  > Perform reflect / next"));
+        simplex = optimsimplex_setve ( simplex , inext , fr2 , xr2 )
+        step = "reflectionnext";
+      else
+        //  Shrink
+        this = neldermead_log (this,sprintf("  > Perform Shrink"));
+        [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this )
+        step = "shrink";
+      end
     end
     //
     // Sort simplex
@@ -479,20 +533,24 @@ endfunction
 //   state : the state of the algorithm,
 //     "init", "done", "iter"
 //   simplex : the current simplex
+//   step : the type of step performed during the iteration
+//     "init", "done", "reflection", "expansion", "insidecontraction", "outsidecontraction"
+//     "reflectionnext", "shrink"
 //
 function  neldermead_outputcmd ( this, ...
-   state , simplex )
+   state , simplex , step )
   outputcmd = optimbase_cget ( this.optbase , "-outputcommand" );
   if typeof(outputcmd) <> "string" then
     brutedata = optimbase_outstruct ( this.optbase );
     data = tlist(["T_NMDATA",...
       "x","fval","iteration","funccount",...
-      "simplex"]);
+      "simplex" , "step" ]);
     data.x = brutedata.x;
     data.fval = brutedata.fval;
     data.iteration = brutedata.iteration;
     data.funccount = brutedata.funccount;
     data.simplex = simplex;
+    data.step = step;
     optimbase_outputcmd ( this.optbase , state , data );
   end
 endfunction
@@ -608,6 +666,21 @@ endfunction
 //   Computes the initial simplex, depending on the -simplex0method.
 //
 function this = neldermead_startup (this)
+  // 5. Store initial data into the base optimization component
+  // Note: this call to the cost function is not used, but helps the
+  // user while he is tuning his object.
+  x0 = optimbase_cget ( this.optbase , "-x0" );
+  cmd = "[ this , fx0 ] = neldermead_function ( this , x0 )";
+  ierr=execstr(cmd,"errcatch");
+  if ierr <> 0 then
+    errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function (use neldermead_function to check your configuration)." ) , "neldermead_startup" )
+    error ( errmsg );
+  end
+  this.optbase = optimbase_set ( this.optbase , "-fx0" , fx0 );
+  this.optbase = optimbase_set ( this.optbase , "-xopt" , x0.' );
+  this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
+  this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
+  // 1. If the problem has bounds, check that they are consistent
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
   if ( hasbounds ) then
     [ this.optbase , isok , errmsg ] = optimbase_checkbounds ( this.optbase );
@@ -615,7 +688,7 @@ function this = neldermead_startup (this)
       error ( msprintf(gettext("%s: %s"), "neldermead_startup" , errmsg ))
     end
   end
-  x0 = optimbase_cget ( this.optbase , "-x0" );
+  // 2. Get the initial guess and compute the initial simplex
   select this.simplex0method
   case "given" then
     [ simplex0 , this ] = optimsimplex_new ( this.coords0 , ...
@@ -651,7 +724,7 @@ function this = neldermead_startup (this)
     error(errmsg);
   end
   //
-  // Scale the simplex into the bounds and the nonlinear inequality constraints, if any
+  // 3. Scale the simplex into the bounds and the nonlinear inequality constraints, if any
   //
   if ( hasbounds | this.optbase.nbineqconst > 0 ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));
@@ -677,16 +750,12 @@ function this = neldermead_startup (this)
     end
   end
   //
-  // Store the simplex
+  // 4. Store the simplex
   //
   this.simplex0 = optimsimplex_destroy ( this.simplex0 );
   this.simplex0 = simplex0;
   this.simplexsize0 = optimsimplex_size ( simplex0 );
-  fx0 = optimsimplex_getfv ( this.simplex0 , 1 );
-  this.optbase = optimbase_set ( this.optbase , "-fx0" , fx0 );
-  this.optbase = optimbase_set ( this.optbase , "-xopt" , x0.' );
-  this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
-  this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
+  // 6. If Kelley's stagnation is enabled, initialize Kelley's stagnation detection system.
   if ( this.kelleystagnationflag == 1 ) then
     this = neldermead_kelleystag ( this );
   end
@@ -825,6 +894,7 @@ function this = neldermead_box ( this )
   //
   terminate = 0;
   iter = 0;
+  step = "init";
   //
   // Nelder-Mead Loop
   //
@@ -865,7 +935,7 @@ function this = neldermead_box ( this )
     for i = 1:nbve
       this = neldermead_log (this,str(i));
     end
-    neldermead_outputcmd ( this, "iter" , simplex )
+    neldermead_outputcmd ( this, "iter" , simplex , step )
 
     //
     // Update termination flag
@@ -901,6 +971,7 @@ function this = neldermead_box ( this )
     if ( fr >= flow & fr < fn ) then
       this = neldermead_log (this,sprintf("  > Perform reflection"));
       simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
+      step = "reflection";
     elseif ( fr < flow ) then
       // Expand
       this = neldermead_log (this,sprintf("Expand"));
@@ -913,14 +984,16 @@ function this = neldermead_box ( this )
           break
         end
       end
-      [ this ,fe] = neldermead_function ( this ,xe);
+      [ this , fe ] = neldermead_function ( this , xe );
       this = neldermead_log (this,sprintf("xe=[%s], f(xe)=%f", strcat(string(xe)," ") , fe ));
       if (fe < fr) then
         this = neldermead_log (this,sprintf("  > Perform Expansion"));
         simplex = optimsimplex_setve ( simplex , ihigh , fe , xe )
+        step = "expansion";
       else
         this = neldermead_log (this,sprintf("  > Perform reflection"));
         simplex = optimsimplex_setve ( simplex , ihigh , fr , xr )
+        step = "reflection";
       end
     elseif ( fr >= fn & fr < fhigh ) then
       // Outside contraction
@@ -934,15 +1007,17 @@ function this = neldermead_box ( this )
           break
         end
       end
-      [ this ,fc] = neldermead_function ( this ,xc);
+      [ this , fc ] = neldermead_function ( this , xc );
       this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
       if ( fc <= fr ) then
         this = neldermead_log (this,sprintf("  > Perform Outside Contraction"));
         simplex = optimsimplex_setve ( simplex , ihigh , fc , xc )
+        step = "outsidecontraction";
       else
         //  Shrink
         this = neldermead_log (this,sprintf("  > Perform Shrink"));
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this );
+        step = "shrink";
       end
     else
       // ( fr >= fn & fr >= fhigh )  
@@ -957,15 +1032,17 @@ function this = neldermead_box ( this )
           break
         end
       end
-      [ this ,fc] = neldermead_function ( this ,xc);
+      [ this , fc ] = neldermead_function ( this , xc );
       this = neldermead_log (this,sprintf("xc=[%s], f(xc)=%f", strcat(string(xc)," ") , fc));
       if ( fc < fhigh ) then
         this = neldermead_log (this,sprintf("  > Perform Inside Contraction"));
         simplex = optimsimplex_setve ( simplex , ihigh , fc , xc )
+        step = "insidecontraction";
       else
         //  Shrink
         this = neldermead_log (this,sprintf("  > Perform Shrink"));
         [ simplex , this ] = optimsimplex_shrink ( simplex , neldermead_costf , this.sigma , this )
+        step = "shrink";
       end
     end
     //

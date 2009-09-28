@@ -224,7 +224,7 @@ xselect()
 // exemplo 4 : interpolação trilinear (ver ajuda de splin3d
 //             que tem os mesmos exemplos com
 //             interpolação por spline tricúbico)
-getf("SCI/demos/interp/interp_demo.sci") 
+exec("SCI/demos/interp/interp_demo.sci") 
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 
