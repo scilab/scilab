@@ -113,12 +113,18 @@ function [y,Fs,bits] = wavread(wavfile,ext)
      case 'bext' then
        error(msprintf(gettext("%s: An error occurred: %s is not supported.\n"),'wavread','Broadcast Wave Format'));       
        return
+
+     // bug 4832 - Sampler Chunk 
+     case 'smpl' then
+       error(msprintf(gettext("%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"),'wavread',ID));       
+       return
      
      case 'fmt' then
       found_fmt = 1;
       [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsPerSample,cbSize] = read_wavefmt(fid,Size);
       
      case 'data' then
+
       found_data = 1;
       if ~found_fmt then
         error(msprintf(gettext("%s: An error occurred: %s\n"),'wavread',gettext("Invalid .wav file: found data before format information.")));
@@ -246,7 +252,7 @@ function Data = read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext)
 // Determine # bytes/sample - format requires rounding
 //  to next integer number of bytes:
   BytesPerSample = ceil(nBitsPerSample/8);
-  
+
   select BytesPerSample
   case 1 then  // unsigned 8-bit
     dtype = 'uc';
