@@ -40,8 +40,8 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 	      'XcosMenuSaveAsInterfFunc',     _("Save as Interf Func");
   	      'XcosMenuExport',               _("Export");
   	      'XcosMenuExportAll',            _("Export All");
-	      'XcosMenuExitScicos',           _("Exit");
-	      'XcosMenuQuit',                 _("Quit")];
+	      'XcosMenuQuit',                 _("Close");
+	      'XcosMenuExitScicos',           _("Exit")];
 
   Diagram  = ['XcosMenuDiagram',              _("Diagram");
 	      'XcosMenuReplot',               _("Replot");
@@ -75,7 +75,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 	      'XcosMenuRotateLeft',           _("Rotate Left");
 	      'XcosMenuRotateRight',          _("Rotate Right");
 	      'XcosMenuAddNewBlock',          _("Add new block");
-	      'XcosMenuBlockDocumentation'    _("Block Documentation");
+	      'XcosMenuBlockDoc'              _("Block Documentation");
 	      'XcosMenuLabel',                _("Label")];
 
   View     = ['XcosMenuView',                 _("View");

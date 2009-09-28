@@ -57,7 +57,8 @@ function scicos_menubar(gh_current_window,scicos_menus,isMainDiagram)
 	//the menus callback are trapped by cosclick so just pass the
         //callback function name. This function will be exec'ed by scicos itself
 	//
-	submenu=uimenu(mainmenu,'label',menu(k,2),'Callback',list(4,menu(k,1)),'Tag',menu(k,1))
+	callback=sci2exp(curwin,'win')+';'+sci2exp(menu(k,1),'Cmenu')
+	submenu=uimenu(mainmenu,'label',menu(k,2),'Callback',list(4,callback),'Tag',menu(k,1))
       end
     end
   end
@@ -65,7 +66,8 @@ function scicos_menubar(gh_current_window,scicos_menus,isMainDiagram)
   if isMainDiagram then
     //haltscicos is a Scilab function which set a C flag to make the
     //simulation stop.
-    mainmenu=uimenu(gh_current_window,'label',_("Stop"),'Callback',list(4,'haltscicos'),'Tag','XcosMenuStop')
+    callback=sci2exp(curwin,'win')+';'+sci2exp('haltscicos','Cmenu')
+    mainmenu=uimenu(gh_current_window,'label',_("Stop"),'Callback',list(4,callback),'Tag','XcosMenuStop')
     mainmenu.Enable='off';
   end
 
