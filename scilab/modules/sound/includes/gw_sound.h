@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/ 
 SOUND_IMPEXP int gw_sound(void);
 /*--------------------------------------------------------------------------*/ 
-SOUND_IMPEXP int sci_Beep(char *fname,unsigned long fname_len);
+SOUND_IMPEXP int sci_beep(char *fname,unsigned long fname_len);
 SOUND_IMPEXP int sci_Playsound(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_SOUND__ */
