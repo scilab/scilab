@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function XcosMenuSaveasPalette()
+function XcosMenuSaveAsPalette()
 // Copyright INRIA
 
     Cmenu = [] ;

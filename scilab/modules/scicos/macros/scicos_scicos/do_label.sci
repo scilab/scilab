@@ -26,17 +26,18 @@ function [mod,scs_m]=do_label(%pt,scs_m)
 //** 
   mod = %f
   win = %win;
+    K=find(Select(:,2)==curwin);
+  if size(K,'*')>1 then
+    messagebox("Only one block can be selected in current window for this operation.","modal")
+    Cmenu=[];ok=%f;return
+  end
   
-  if Select==[] then
+  if K==[] then
     xc = %pt(1); yc=%pt(2); %pt=[]
     K  = getblock(scs_m,[xc;yc])
-    if K==[] then Cmenu=[];return,end
+    if K==[] then Cmenu=[];ok=%f;return,end
   else
-    K=Select(:,1)';%pt=[]
-    if size(K,'*')>1 | curwin<>Select(1,2) then
-      messagebox("Only one block can be selected in current window for this operation.","modal")
-      Cmenu=[];return
-    end
+    K=Select(K,1)
   end
   
   o = scs_m.objs(K)

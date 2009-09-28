@@ -141,7 +141,7 @@ function xml_txt=block2xml(o,flag,t1,atomicflag)
 	 else
 	   xml_txt=[xml_txt;
 	       '   <'+x(i)+' id='''+xx(j)+'''>';
-	       '       <p>'+xml_substsci2exp(o(x(i))(xx(j)),90)+'</p>';
+	       '       <p>'+xml_subst(sci2exp(o(x(i))(xx(j)),90))+'</p>';
 	       '   </'+x(i)+'>'];
 	 end
        elseif xx(j)=='rpar' & flag==2 then

@@ -86,7 +86,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
  
     //**----------------------------------------------------------------------------
     if (btn==-2) then //** a dynamic menu has been selected 
-      cmd = 'Cmenu='+sci2exp(str);
+      //cmd = 'Cmenu='+sci2exp(str);
+      cmd=str
     elseif (btn==0) then
       cmd = 'Cmenu = '"XcosMenuMoveLink'"'
     elseif (btn==3) then
@@ -163,10 +164,9 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   
   elseif btn == -2 then  // Dynamic Menu (top of window) mouse selection
     win = curwin ;
-    //** the  str string contains the name of the  callback function 
-    Cmenu=str
+    execstr(str); //set win and Cmenu variables (see scicos_menubar)
     %pt=[]
-    //disp(Cmenu)
+    disp(Cmenu,win)
     return
     //verifier si ce qui suit est utile (selection d'un menu dans une
     //autre fenetre que la fenetre courante. Si necessaire remplacer le
