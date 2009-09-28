@@ -427,5 +427,69 @@ public class XcosDiagram extends ScilabGraph {
 	return new ScilabString("scicos4.2");
     }
 
+	public double getFinalIntegrationTime() {
+		return finalIntegrationTime;
+	}
+
+	public void setFinalIntegrationTime(double finalIntegrationTime) {
+		this.finalIntegrationTime = finalIntegrationTime;
+	}
+
+	public double getIntegratorAbsoluteTolerance() {
+		return integratorAbsoluteTolerance;
+	}
+
+	public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
+		this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
+	}
+
+	public double getIntegratorRelativeTolerance() {
+		return integratorRelativeTolerance;
+	}
+
+	public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
+		this.integratorRelativeTolerance = integratorRelativeTolerance;
+	}
+
+	public double getMaximumStepSize() {
+		return maximumStepSize;
+	}
+
+	public void setMaximumStepSize(double maximumStepSize) {
+		this.maximumStepSize = maximumStepSize;
+	}
+
+	public double getMaxIntegrationTimeinterval() {
+		return maxIntegrationTimeinterval;
+	}
+
+	public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
+		this.maxIntegrationTimeinterval = maxIntegrationTimeinterval;
+	}
+
+	public double getRealTimeScaling() {
+		return realTimeScaling;
+	}
+
+	public void setRealTimeScaling(double realTimeScaling) {
+		this.realTimeScaling = realTimeScaling;
+	}
+
+	public double getSolver() {
+		return solver;
+	}
+
+	public void setSolver(double solver) {
+		this.solver = solver;
+	}
+
+	public double getToleranceOnTime() {
+		return toleranceOnTime;
+	}
+
+	public void setToleranceOnTime(double toleranceOnTime) {
+		this.toleranceOnTime = toleranceOnTime;
+	}
+
 }
 

@@ -47,6 +47,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.RunAction;
+import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -62,7 +63,7 @@ import com.mxgraph.swing.mxGraphOutline;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
-    private XcosDiagram diagram = null;    
+    private XcosDiagram diagram = null;
     /**
      * @param args
      */
@@ -215,6 +216,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	// SIMULATE
 	Menu simulate = ScilabMenu.createMenu();
 	simulate.setText("Simulate");
+	simulate.add(SetupAction.setupMenu(scilabGraph));
 	simulate.add(RunAction.runMenu(scilabGraph));
 	simulate.add(StopAction.stopMenu(scilabGraph));
 	menuBar.add(simulate);
@@ -310,5 +312,13 @@ public class Xcos extends SwingScilabTab implements Tab {
     public void addToolBar(ToolBar toolBarToAdd) {
 	((SwingScilabTab) this).setToolBar(toolBarToAdd);
     }
+
+	public XcosDiagram getDiagram() {
+		return diagram;
+	}
+
+	public void setDiagram(XcosDiagram diagram) {
+		this.diagram = diagram;
+	}
 
 }
