@@ -149,6 +149,7 @@ public class SetupAction extends DefaultAction {
         
         JButton cancelButton = new JButton("Cancel");
         JButton okButton = new JButton("Ok");
+        JButton defaultButton = new JButton("Default");
         okButton.setPreferredSize(cancelButton.getPreferredSize());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -233,6 +234,11 @@ public class SetupAction extends DefaultAction {
         gbc.weightx = 0.;
         gbc.insets = new Insets(5, 0, 10, 10);
         mainFrame.add(okButton, gbc);
+        
+        gbc.gridx = 3;
+        gbc.weightx = 0.;
+        gbc.insets = new Insets(5, 0, 10, 10);
+        mainFrame.add(defaultButton, gbc);
 
 	
 		cancelButton.addActionListener(new ActionListener() {
@@ -240,6 +246,30 @@ public class SetupAction extends DefaultAction {
 			public void actionPerformed(ActionEvent e) {
 				SetupAction.windowAlreadyExist= false ;
 				mainFrame.dispose();
+			}
+		});
+		
+		cancelButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				integrationSpinner.setValue(100000);//TODO thou shall not let value hardcoded!
+				rtsSpinner.setValue(0);
+				integratorAbsSpinner.setValue(1e-4);
+				integratorRelSpinner.setValue(1e-6);
+				toleranceOnTimeSpinner.setValue(1e-10);
+				maxIntegrationTimeSpinner.setValue(100001);
+				solverSpinner.setValue(0);
+				maxStepSizeSpinner.setValue(0);
+				
+				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
+				diagram.setRealTimeScaling((Double)rtsSpinner.getValue())   ;
+				diagram.setIntegratorAbsoluteTolerance((Double)integratorAbsSpinner.getValue() );
+				diagram.setIntegratorRelativeTolerance((Double)integratorRelSpinner.getValue() ) ;
+				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
+				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
+				diagram.setSolver((Double)solverSpinner.getValue()) ;
+				diagram.setMaximumStepSize( ((Integer)maxStepSizeSpinner.getValue()).doubleValue())  ;
 			}
 		});
         
