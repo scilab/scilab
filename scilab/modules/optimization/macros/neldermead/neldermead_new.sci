@@ -28,7 +28,8 @@ function newobj = neldermead_new ()
     "kelleynormalizationflag","kelleystagnationalpha0", ...
     "kelleyalpha","restartnb","restartflag","restartdetection" , ...
     "startupflag" , ...
-    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" ]);
+    "boxnbpoints" , "boxnbpointseff" , "nbineqloops" , "ineqscaling" , ...
+    "checkcostfunction" , "scalingmethod" ]);
   newobj.optbase = optimbase_new();
   // Possible values "variable", "fixed".
   newobj.method = "variable";
@@ -113,5 +114,8 @@ function newobj = neldermead_new ()
   // The scaling coefficient in nonlinear inequality constraints
   // in Box method, in (0,1) range
   newobj.ineqscaling = 0.5
+  // Set to 0 to disable the checking of the connection of the cost function
+  newobj.checkcostfunction = 1;
+  // The scaling algorithm : "tox0", "tocentroid"
+  newobj.scalingmethod = "tox0";
 endfunction
-
