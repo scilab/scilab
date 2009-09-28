@@ -100,7 +100,9 @@ if typeof(o)=="Block" then
     
 
       if ierr<>0 then //** if any error is detected
-        disp('Error in GUI of block '+o.gui)
+
+        disp('Error in GUI of block '+o.gui)//%%%%%
+	pause
         edited = %f ;
         return ; //** EXIT point
     end
@@ -180,10 +182,6 @@ if typeof(o)=="Block" then
 
     //** ierr = execstr('o_n='+o.gui+'(''set'',o)'); //** DEBUG ONLY : no error catch :(
 
-    //** Added to unset the last upper left point
-    //** of the dialog box
-    //-- TCL_UnsetVar('numx')
-    //-- TCL_UnsetVar('numy')
 
     if ierr<>0 then
       disp('Error in GUI of block '+o.gui)
@@ -322,12 +320,6 @@ elseif typeof(o)=="Link" then
 elseif typeof(o)=="Text" then
 
   ierr=execstr('o_n='+o.gui+'(''set'',o)','errcatch') ;
-
-  //** Added to unset the last upper left point
-  //** of the dialog box
-  //-- TCL_UnsetVar('numx')
-  //-- TCL_UnsetVar('numy')
-
   if ierr<>0 then
     disp('Error in GUI of block '+o.gui)
     edited=%f

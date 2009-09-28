@@ -416,7 +416,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	  %diagram_open  = %f
           Select_back=Select
 	  [Cmenu,Select] = Find_Next_Step(%diagram_path_objective, super_path)
-
 	  if or(curwin==winsid()) & ~isequal(Select,Select_back) then
 	    drawlater() ;
 	    selecthilite(Select_back, "off") ; // unHilite previous objects
@@ -457,9 +456,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	end
       end //end  %scicos_navig<>[]
 
-    else
-
-      //** not in navigation mode
+    else //** not in navigation mode
       %diagram_open = %t ;
 
       if ~or(curwin==winsid()) then
@@ -479,7 +476,6 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
       end
 
       //**--------------------------------------------------------------------
-
       //** Command classification and message retrivial
       [CmenuType, mess] =  XcosGetMenuType(Cmenu); 
       xinfo(mess); //** show the message associated to the command
@@ -524,9 +520,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	  //** exec(evstr(Cmenu),1)
 
           //** Used for standard DEBUG ONLY -->
-          disp(Cmenu); //** disp the current exec
           exec(evstr(Cmenu),-1); //** nothing is printed
-	  
           //** RELEASE --> Please reactivate the error catcher before final release
 	  //** ierr=exec(evstr(Cmenu),'errcatch',-1)
 
@@ -560,7 +554,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	  end
 
 	else
-	  //** if the command is not valid clear the state variable
+	  //** if the command is not valid, clear the state variable
 	  messagebox(msprintf(_("Requested action: %s is not available"),Cmenu),'modal') 
 	  Cmenu = []; %pt = []
 	end //** a valid/invalid command to exec

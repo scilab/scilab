@@ -69,11 +69,11 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   end
 
   //** a dynamic menu has been selected 
-  //if (win==-1)&(btn==-2)&part(str,1:5)=="exec(" then
-  //  from = max(strindex(str,'_'))+1 ;
-  //  to   = max(strindex(str,'('))-1 ;
-  //  win  = evstr(part(str,from:to)) ;
-  //end
+  if btn==-2 then
+    //find the window from where the menu has been executed
+    CmenSave=Cmenu;
+    execstr(str);Cmenu=CmenSave;
+  end
 
   
   //**----- 
@@ -166,7 +166,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     win = curwin ;
     execstr(str); //set win and Cmenu variables (see scicos_menubar)
     %pt=[]
-    disp(Cmenu,win)
+    msprintf("cosclick, btn==-2, Cmenu=%s,win=%s\n",sci2exp(Cmenu,0),sci2exp(win,0))
     return
     //verifier si ce qui suit est utile (selection d'un menu dans une
     //autre fenetre que la fenetre courante. Si necessaire remplacer le
@@ -197,7 +197,8 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     // [CRTL]+[x] --> Cut
     if (btn==1120) then //** [CRTL]+[x] --> Cut
       Cmenu="XcosMenuCut"; %pt=[];
-    
+
+      
     elseif (btn==1099) then            //** [CTRL]+[c] --> Copy
       Cmenu="XcosMenuCopy"; %pt=[];
     
