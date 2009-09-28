@@ -37,32 +37,56 @@
         <term>module</term>
         <listitem>
           <para>
-			Matrix of strings : External module name
-		  </para>
+						Matrix of strings : External module name
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>allusers</term>
         <listitem>
           <para>
-			A boolean : if this parameter is equal to TRUE (%T), the external module
-			is installed for all users of the computer and is located in
-			SCI/contrib.
-			
-			If allusers is set to TRUE (%T) and the directory SCI/contrib/ is not
-			write accessible, atomsInstall returns an error.
-			
-			if this parameter is equal to FALSE (%T), the external module is only
-			installed for the current user and is loacted in SCIHOME/atoms.
-		  </para>
+						A boolean : if this parameter is equal to TRUE (%T), the external module
+						is installed for all users of the computer and is located in
+						SCI/contrib ("allusers zone").
+						
+						If allusers is set to TRUE (%T) and the directory SCI/contrib/ is not
+						write accessible, atomsInstall returns an error.
+						
+						if this parameter is equal to FALSE (%F), the external module is only
+						installed for the current user and is located in SCIHOME/atoms ("user zone").
+					</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>
-			
-		  </para>
+          <para>5xn String matrix :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>1st column</literal> : External module's technical name
+							</para>
+						</listitem>
+						<listitem>
+							<para><literal>2nd column</literal> : External module's version
+							</para>
+            </listitem>
+            <listitem>
+              <para><literal>3rd column</literal> : allusers/user, this parameter tell if
+								the external module has been installed for all users or only for the
+								current user.
+								</para>
+            </listitem>
+            <listitem>
+              <para>
+								<literal>4th column</literal> : External module's installation path
+							</para>
+            </listitem>
+            <listitem>
+              <para><literal>5th column</literal> : I/A, this parameter tell if
+								the external module has been automatically or intentionnaly installed.
+							</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
     </variablelist>
