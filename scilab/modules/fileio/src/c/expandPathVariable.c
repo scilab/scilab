@@ -18,6 +18,7 @@
 #include "PATH_MAX.h"
 #include "api_string.h"
 #include "api_common.h"
+#include "getlongpathname.h"
 /*--------------------------------------------------------------------------*/
 struct VARIABLEALIAS
 {
@@ -25,10 +26,11 @@ struct VARIABLEALIAS
 	wchar_t *VariableName;
 };
 /*--------------------------------------------------------------------------*/
-#define NB_ALIAS 6
+#define NB_ALIAS 7
 static struct VARIABLEALIAS VARIABLES_words[NB_ALIAS] =
 {
 	{L"SCIHOME", L"SCIHOME"},
+	{L"WSCI", L"WSCI"},
 	{L"SCI", L"SCI"},
 	{L"~", L"home"},
 	{L"HOME", L"home"},
@@ -149,7 +151,15 @@ wchar_t *getVariableValueDefinedInScilab(wchar_t *wcVarName)
 						VARVALUE = (wchar_t*)MALLOC(sizeof(wchar_t)*(VARVALUElen + 1));
 						if (VARVALUE)
 						{
+							BOOL bConvLong = FALSE;
+							wchar_t *LongName = NULL;
 							readNamedMatrixOfWideString(varname, &m, &n, &VARVALUElen, &VARVALUE);
+							LongName = getlongpathnameW(VARVALUE, &bConvLong);
+							if (LongName)
+							{
+								FREE(VARVALUE);
+								VARVALUE = LongName;
+							}
 						}
 					}
 				}

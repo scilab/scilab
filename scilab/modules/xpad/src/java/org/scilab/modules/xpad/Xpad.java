@@ -20,7 +20,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -108,6 +110,9 @@ public class Xpad extends SwingScilabTab implements Tab {
 	private Menu recentsMenu ;
 	private int numberOfUntitled;
 	private String lastSaveDir ;
+	
+	private Vector<Integer> tab_list = new Vector<Integer>();
+	private Vector<Integer> closed_tab_list = new Vector<Integer>();
 
 
 	private static Xpad editor = null;
@@ -303,7 +308,7 @@ public class Xpad extends SwingScilabTab implements Tab {
 		super("Xpad");
 		this.parentWindow = parentWindow;
 		recentsMenu = ScilabMenu.createMenu();
-		numberOfUntitled =0 ;
+		numberOfUntitled = 0;
 		tabPane = new JTabbedPane();
 		tabPane.addChangeListener(new ChangeListener() {
 		      public void stateChanged(ChangeEvent e) {
@@ -325,32 +330,39 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public void closeCurrentTab() {
 		closeTabAt( tabPane.getSelectedIndex() );
-
 	}
 
 	public void closeTabAt (int indexTab ){
 //		JScrollPane pouet  = (JScrollPane) tabPane.getTabComponentAt(indexTab) ;
-//		 pouet.getViewport().getComponent(0);
-		JTextPane textPane = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0) ;
+//		pouet.getViewport().getComponent(0);
 		
+		
+		JTextPane textPane = (JTextPane) ((JScrollPane) tabPane.getComponentAt(indexTab)).getViewport().getComponent(0) ;
+
 		if (  ((ScilabStyleDocument) textPane.getStyledDocument()).isContentModified() ){
 			int choice = JOptionPane.showConfirmDialog(this, XpadMessages.FILE_MODIFIED);
-			
+
 			if (choice == 0){
-					save (textPane);
-					
+				save (textPane);
+
 			}else if (choice == 1){
+				String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
+				String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+				tab_list.removeElement(Integer.parseInt(closedTabNameIndex));
+				closed_tab_list.add(Integer.parseInt(closedTabNameIndex));
 				tabPane.remove(tabPane.getSelectedComponent());
-				
+
 			}else if (choice == 2){
 				return ;
 			}
-			
+
 		}else {
+			String closedTabName = tabPane.getTitleAt(tabPane.getSelectedIndex());
+			String closedTabNameIndex = closedTabName.substring(closedTabName.length()-1, closedTabName.length());
+			tab_list.removeElement(Integer.parseInt(closedTabNameIndex));
+			closed_tab_list.add(Integer.parseInt(closedTabNameIndex));
 			tabPane.remove(tabPane.getSelectedComponent());
 		}
-		numberOfUntitled -- ;
-		
 	}
 	
 	
@@ -522,14 +534,16 @@ public class Xpad extends SwingScilabTab implements Tab {
 
 	public JTextPane addEmptyTab() {
 		
-		if (numberOfUntitled != 0)
-			return addTab( XpadMessages.UNTITLED + numberOfUntitled++);
-		else{
-			numberOfUntitled++;
-			return addTab(XpadMessages.UNTITLED);
-		}
+		if (closed_tab_list.size() > 0) {
+			Object obj = Collections.min(closed_tab_list);
+			closed_tab_list.removeElement(Integer.parseInt(obj.toString()));
+			return addTab(XpadMessages.UNTITLED + obj.toString());
 			
-
+		} else {
+			numberOfUntitled++;
+			tab_list.add(numberOfUntitled);
+			return addTab(XpadMessages.UNTITLED + numberOfUntitled);
+		}
 	}
 
 	public void setAutoIndent(boolean b) {

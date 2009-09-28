@@ -55,14 +55,13 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		{
 			/* current path */
 			int ierr = 0;
-			int lpath = 0;
-			char *currentpath = NULL;
-
-			scigetcwd(&currentpath,&lpath,&ierr);
+			char *currentpath = scigetcwd(&ierr);
 			if (currentpath) 
 			{
 				strcpy(path, currentpath);
 				strcat(path, DIR_SEPARATOR);
+				FREE(currentpath);
+				currentpath = NULL;
 			}
 		}
 		else

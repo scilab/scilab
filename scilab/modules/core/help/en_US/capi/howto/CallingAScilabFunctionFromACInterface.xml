@@ -201,7 +201,7 @@ int sci_call_scifunc(char *fname)
 
       <member><link linkend="Scierror">Scierror</link></member>
 
-      <member><link linkend="Scifunction">Scifunction</link></member>
+      <!--<member><link linkend="Scifunction">Scifunction</link></member>-->
 
       <member><link linkend="Rhs">Rhs</link></member>
 

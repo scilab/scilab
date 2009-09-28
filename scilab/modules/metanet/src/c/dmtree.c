@@ -10,65 +10,76 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdlib.h>
-#include "machine.h"
-extern void cerro();
-
+#include "dmtree.h"
 #include "MALLOC.h"
 #include "localization.h"
+/*--------------------------------------------------------------------------*/ 
+extern void cerro();
 
 #ifdef _MSC_VER
 extern int F2C(arbor)();
 #endif
-
+/*--------------------------------------------------------------------------*/ 
 void C2F(dmtree)(int *i0, int *la1, int *lp1, int *ls1, int *m, int *n, int *pred, int *w)
 {
-  int i,nndim;
-  int *alphi,*beta,*f,*g,*ind,*pred1;
-  double *z,*zsom;
-  int isize,dsize;
-  isize = sizeof(int); dsize = sizeof(double);
+	int i = 0,nndim = 0;
+	int *alphi = NULL,*beta = NULL,*f = NULL,*g = NULL,*ind = NULL,*pred1 = NULL;
+	double *z = NULL,*zsom = NULL;
+	int isize = 0,dsize = 0;
 
-  nndim = 2 * *n;
-  if ((alphi = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((beta = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((f = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((g = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((ind = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((pred1 = (int *)MALLOC(nndim * isize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((z = (double *)MALLOC(nndim * dsize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
-  if ((zsom = (double *)MALLOC(nndim * dsize)) == NULL) {
-    cerro(_("Running out of memory"));
-    return;
-  }
+	isize = sizeof(int);
+	dsize = sizeof(double);
 
-  F2C(arbor)(alphi,beta,f,g,i0,ind,la1,lp1,ls1,m,n,&nndim,pred1,w,z,zsom);
+	nndim = 2 * *n;
+	if ((alphi = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((beta = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((f = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((g = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((ind = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((pred1 = (int *)MALLOC(nndim * isize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((z = (double *)MALLOC(nndim * dsize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
+	if ((zsom = (double *)MALLOC(nndim * dsize)) == NULL) 
+	{
+		cerro(_("Running out of memory"));
+		return;
+	}
 
-  for (i = 0; i < *n; i++) pred[i] = pred1[i];
+	F2C(arbor)(alphi,beta,f,g,i0,ind,la1,lp1,ls1,m,n,&nndim,pred1,w,z,zsom);
 
-  FREE(alphi); FREE(beta); FREE(f); FREE(g); FREE(ind);
-  FREE(pred1); FREE(z); FREE(zsom);
+	for (i = 0; i < *n; i++) pred[i] = pred1[i];
+
+	FREE(alphi); FREE(beta); FREE(f); FREE(g); FREE(ind);
+	FREE(pred1); FREE(z); FREE(zsom);
 }
+/*--------------------------------------------------------------------------*/ 

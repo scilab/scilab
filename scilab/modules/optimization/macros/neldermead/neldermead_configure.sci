@@ -119,17 +119,6 @@ function this = neldermead_configure (this,key,value)
     this.nbineqloops = value;
   case "-ineqscaling" then
     this.ineqscaling = value;
-  case "-vectorizefunction" then
-    this.vectorizefunction = value;
-    select value
-    case 0 then
-      this.vectorizefunction = 0;
-    case 1 then
-      this.vectorizefunction = 1;
-    else
-      errmsg = msprintf(gettext("%s: Unknown value %s for -vectorizefunction option"),"neldermead_configure", value);
-      error(errmsg);
-    end
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
