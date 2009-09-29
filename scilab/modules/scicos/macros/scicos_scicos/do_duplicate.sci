@@ -85,11 +85,14 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
   //** choose a destination for the block 
 
   xinfo(_("Click where you want object to be placed (right-click to cancel)"));
-
+  pause
   if typeof(selected)<>"diagram" then //simple selection
-    selected = scicos_diagram(objs=selected) 
+    o=selected
+    selected=scicos_diagram()
+    selected.objs(1)=o
   end
   //compute initial position
+
   o=selected.objs(1)
   [xy, sz] = (o.graphics.orig, o.graphics.sz) //** origin and size
   %xc = xy(1);  %yc = xy(2) ; //** default start position
