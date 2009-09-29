@@ -85,7 +85,6 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
   //** choose a destination for the block 
 
   xinfo(_("Click where you want object to be placed (right-click to cancel)"));
-  pause
   if typeof(selected)<>"diagram" then //simple selection
     o=selected
     selected=scicos_diagram()
