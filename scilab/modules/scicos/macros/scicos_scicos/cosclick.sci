@@ -80,7 +80,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   // If the event is a TCL event then win=[]
   global inactive_windows
   if win<>[] & find(win==inactive_windows(2))<>[] then
-    //the event occured into an incative window
+    //the event occured into an inactive window
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
  
@@ -166,7 +166,6 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     win = curwin ;
     execstr(str); //set win and Cmenu variables (see scicos_menubar)
     %pt=[]
-    msprintf("cosclick, btn==-2, Cmenu=%s,win=%s\n",sci2exp(Cmenu,0),sci2exp(win,0))
     return
     //verifier si ce qui suit est utile (selection d'un menu dans une
     //autre fenetre que la fenetre courante. Si necessaire remplacer le
