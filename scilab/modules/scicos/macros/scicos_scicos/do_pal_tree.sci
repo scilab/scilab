@@ -69,9 +69,10 @@ function java = pal_TreeView(scs_m)
     GIF = [GIF;Gname];
   end
 
-  Path = 'root'
-  java = createNode("Palettes")
+  Path = 'root';
+  java = createNode("Palettes");
   java = crlist(scs_m, Path, java);
+  pause
   displaytree(java);
 endfunction
 
@@ -87,30 +88,20 @@ function java = crlist(scs_m, Path, java)
       //** Blocks and Super Blocks :)
 
       if (o.model.sim=='super'&(o.model.rpar.props.title(1)<>'Super Block')) |...
-	    (o.gui=='PAL_f') then
-        //** Super Blocks
+	    (o.gui=='PAL_f') then //**Palettes
 	titre2 = o.model.rpar.props.title(1);
-	//-- tt = [tt;'$wxx.t insert end '+Path+' '+path+' -image [Bitmap::get folder] -text '"'+titre2+''"']
-
 	subTree = createNode(titre2, "default");
-	//-- [subTree,tt] = crlist(o.model.rpar,path,tt,subTree);
 	subTree = crlist(o.model.rpar, path, subTree);
 	java = concatTree(java, subTree);
-
-      else
-        //** Standard Blocks
+      else //** Standard Blocks
 	if (find(o.gui==blocks_to_remove(:)))==[] then
 	  titre2 = o.gui;
 	  ind = find(titre2==GIF);
-	  if ind<>[] then
-	    //** a valid icon (GIF) is found
-	    java = concatTree(java, createNode(titre2, GIFT(ind), "global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''"));
-
-	  else
-	    //** NO icon is found: use the block's name
-	    java = concatTree(java, createNode(titre2, "default", "global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''"));
-
-	  end
+	  callback="global %pa_;%pa_="""+path+""";Cmenu=''XcosMenuPlaceinDiagram''";
+	  
+	  if ind<>[] then icon=GIFT(ind),else icon="default",end
+	  Node=createNode(titre2, icon, callback);
+	  java = concatTree(java,Node)
 	end
 
       end //**... Blocks and Super Blocks
@@ -121,3 +112,4 @@ function java = crlist(scs_m, Path, java)
 
 endfunction
 
+  
