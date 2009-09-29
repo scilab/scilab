@@ -53,8 +53,6 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   end
   TolFun = options.TolFun;
   TolX = options.TolX;
-  // Get options from the options struct
-  options.MaxFunEvals
   // Perform Optimization
   nm = neldermead_new ();
   nm = neldermead_configure(nm,"-x0",x0.');
@@ -72,6 +70,7 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
   nm = neldermead_configure(nm,"-tolsimplexizemethod","disabled");
   nm = neldermead_configure(nm,"-toldeltafv",TolFun);
   nm = neldermead_configure(nm,"-tolsimplexizeabsolute",TolX);
+  nm = neldermead_configure(nm,"-checkcostfunction",0);
   nm = neldermead_search(nm);
   x = neldermead_get(nm,"-xopt").';
   fval = neldermead_get(nm,"-fopt");

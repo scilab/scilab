@@ -666,20 +666,13 @@ endfunction
 //   Computes the initial simplex, depending on the -simplex0method.
 //
 function this = neldermead_startup (this)
-  // 5. Store initial data into the base optimization component
+  // 0. Check that the cost function is correctly connected
   // Note: this call to the cost function is not used, but helps the
   // user while he is tuning his object.
-  x0 = optimbase_cget ( this.optbase , "-x0" );
-  cmd = "[ this , fx0 ] = neldermead_function ( this , x0 )";
-  ierr=execstr(cmd,"errcatch");
-  if ierr <> 0 then
-    errmsg = msprintf ( gettext ( "%s: Cannot evaluate cost function (use neldermead_function to check your configuration)." ) , "neldermead_startup" )
-    error ( errmsg );
+  checkfun = this.checkcostfunction;
+  if checkfun == 1 then
+    optimbase_checkcostfun ( this.optbase );
   end
-  this.optbase = optimbase_set ( this.optbase , "-fx0" , fx0 );
-  this.optbase = optimbase_set ( this.optbase , "-xopt" , x0.' );
-  this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
-  this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
   // 1. If the problem has bounds, check that they are consistent
   [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
   if ( hasbounds ) then
@@ -689,25 +682,22 @@ function this = neldermead_startup (this)
     end
   end
   // 2. Get the initial guess and compute the initial simplex
+  x0 = optimbase_cget ( this.optbase , "-x0" );
   select this.simplex0method
   case "given" then
     [ simplex0 , this ] = optimsimplex_new ( this.coords0 , ...
       neldermead_costf , this );
   case "axes" then
-    simplex0 = optimsimplex_new ( );
-    [ simplex0 , this ] = optimsimplex_axes ( simplex0 , ...
+    [ simplex0 , this ] = optimsimplex_new ( "axes" , ...
       x0.' , neldermead_costf , this.simplex0length , this );
   case "spendley" then
-    simplex0 = optimsimplex_new ( );
-    [ simplex0 , this ] = optimsimplex_spendley ( simplex0 , ...
+    [ simplex0 , this ] = optimsimplex_new ( "spendley" , ...
       x0.' , neldermead_costf , this.simplex0length , this );
   case "pfeffer" then
-    simplex0 = optimsimplex_new ( );
-    [ simplex0 , this ] = optimsimplex_pfeffer ( simplex0 , ...
+    [ simplex0 , this ] = optimsimplex_new ( "pfeffer" , ...
       x0.' , neldermead_costf , this.simplex0deltausual , ...
       this.simplex0deltazero , this );
   case "randbounds" then
-    simplex0 = optimsimplex_new ( );
     if ( this.boxnbpoints == "2n" ) then
       this.boxnbpointseff = 2 * this.optbase.numberofvariables;
     else
@@ -716,7 +706,7 @@ function this = neldermead_startup (this)
     if ( ~hasbounds ) then
       error ( msprintf(gettext("%s: Randomized bounds initial simplex is not available without bounds." ), "neldermead_startup"))
     end
-    [ simplex0 , this ] = optimsimplex_randbounds ( simplex0 , x0.' , ...
+    [ simplex0 , this ] = optimsimplex_new ( "randbounds" , x0.' , ...
       neldermead_costf , this.optbase.boundsmin , this.optbase.boundsmax , ...
       this.boxnbpointseff  , this );
   else
@@ -728,14 +718,51 @@ function this = neldermead_startup (this)
   //
   if ( hasbounds | this.optbase.nbineqconst > 0 ) then
     this = neldermead_log (this,sprintf("Scaling initial simplex into nonlinear inequality constraints..."));
+    select this.scalingmethod
+    case "tox0" then
+      [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 );
+    case "tocenter" then
+      [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 );
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -scalingmethod option"),"neldermead_startup", this.scalingmethod );
+      error(errmsg);
+    end
+  end
+  //
+  // 4. Store the simplex
+  //
+  this.simplex0 = optimsimplex_destroy ( this.simplex0 );
+  this.simplex0 = simplex0;
+  this.simplexsize0 = optimsimplex_size ( simplex0 );
+  // 5. Store initial data into the base optimization component
+  fx0 = optimsimplex_getfv ( this.simplex0 , 1 );
+  this.optbase = optimbase_set ( this.optbase , "-fx0" , fx0 );
+  this.optbase = optimbase_set ( this.optbase , "-xopt" , x0.' );
+  this.optbase = optimbase_set ( this.optbase , "-fopt" , fx0 );
+  this.optbase = optimbase_set ( this.optbase , "-iterations" , 0 );
+  // 6. If Kelley's stagnation is enabled, initialize Kelley's stagnation detection system.
+  if ( this.kelleystagnationflag == 1 ) then
+    this = neldermead_kelleystag ( this );
+  end
+endfunction
+//
+// neldermead_scaletox0 --
+//   Scale the simplex into the bounds and the 
+//   nonlinear inequality constraints, if any.
+//   Scale toward x0, which is feasible.
+// Arguments
+//   
+//
+function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
     nbve = optimsimplex_getnbve ( simplex0 );
-    for ive = 1 : nbve
+    x0 = optimbase_cget ( this.optbase , "-x0" );
+    for ive = 2 : nbve
       // optimsimplex returns a row vector
       x = optimsimplex_getx ( simplex0 , ive );
       this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at ["+...
         strcat(string(x)," ")+"]... " , ...
         ive , nbve ));
-      // Transpose x, because x0 is a column vector
+      // Transpose x into a row vector
       [ this , status , xp ] = _scaleinconstraints ( this , x.' , x0 );
       if ( ~status ) then
         errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), ...
@@ -748,19 +775,46 @@ function this = neldermead_startup (this)
         simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
       end
     end
-  end
-  //
-  // 4. Store the simplex
-  //
-  this.simplex0 = optimsimplex_destroy ( this.simplex0 );
-  this.simplex0 = simplex0;
-  this.simplexsize0 = optimsimplex_size ( simplex0 );
-  // 6. If Kelley's stagnation is enabled, initialize Kelley's stagnation detection system.
-  if ( this.kelleystagnationflag == 1 ) then
-    this = neldermead_kelleystag ( this );
-  end
 endfunction
-
+//
+// neldermead_scaletocenter --
+//   Scale the simplex into the bounds and the 
+//   nonlinear inequality constraints, if any.
+//   Scale to the centroid of the points
+//   which satisfy the constraints.
+// Notes
+//   This is Box's method for scaling.
+//   It is unsure, since the centroid of the points
+//   which satisfy the constraints may not be feasible.
+// TODO : test !
+// TODO : insert a note for that specific point
+// Arguments
+//   
+//
+function [ this , simplex0 ] = neldermead_scaletocenter ( this , simplex0 , x0 )
+    nbve = optimsimplex_getnbve ( simplex0 );
+    xref = optimsimplex_getx ( simplex0 , 1 );
+    for ive = 2 : nbve
+      xref = optimsimplex_xbar ( simplex0 , ive:nbve );
+      // optimsimplex returns a row vector
+      x = optimsimplex_getx ( simplex0 , ive );
+      this = neldermead_log (this,sprintf("Scaling vertex #%d/%d at ["+...
+        strcat(string(x)," ")+"]... " , ...
+        ive , nbve ));
+      // Transpose x into a row vector
+      [ this , status , xp ] = _scaleinconstraints ( this , x.' , xref );
+      if ( ~status ) then
+        errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), ...
+          "neldermead_startup", ive , nbve , strcat(string(x)," "));
+        error(errmsg);
+      end
+      if ( or ( x <> xp ) ) then
+        [ this , fv ] = neldermead_function ( this , xp );
+        // Transpose xp, which is a column vector
+        simplex0 = optimsimplex_setve ( simplex0 , ive , fv , xp.' );
+      end
+    end
+endfunction
 //
 // neldermead_kelleystag --
 //   Initialize Kelley's stagnation detection system when normalization is required,
@@ -1056,4 +1110,3 @@ function this = neldermead_box ( this )
   this.optbase = optimbase_set ( this.optbase , "-status" , status );
   this.simplexopt = simplex;
 endfunction
-

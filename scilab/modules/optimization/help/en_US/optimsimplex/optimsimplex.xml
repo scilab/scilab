@@ -22,12 +22,13 @@
   <refsynopsisdiv>
     <title>SYNOPSIS</title>
 
-    <synopsis>[ newobj , data ] = optimsimplex_new ( coords , fun , data )
+    <synopsis>[ newobj [, data] ] = optimsimplex_new ( coords , fun [, data] )
+[ newobj [, data] ] = optimsimplex_new ( "axes" , x0 , fun , len [, data] )
+[ newobj [, data] ] = optimsimplex_new ( "spendley" , x0 , fun , len [, data] )
+[ newobj [, data] ] = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual , deltazero [, data] )
+[ newobj [, data] ] = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax , nbve  [, data] )
+[ newobj [, data] ] = optimsimplex_new ( "oriented" , simplex0 , fun [, data] )
 this = optimsimplex_destroy (this)
-[ this , data ] = optimsimplex_axes ( this , x0 , fun , len , data )
-[ this , data ] = optimsimplex_pfeffer ( this , x0 , fun , deltausual , deltazero , data )
-[ this , data ] = optimsimplex_randbounds ( this , x0 , fun , boundsmin , boundsmax , nbpoints  , data )
-[ this , data ] = optimsimplex_spendley ( this , x0 , fun , len , data )
 this = optimsimplex_setall ( this , simplex )
 this = optimsimplex_setallfv ( this , fv )
 this = optimsimplex_setallx ( this , x )
@@ -55,7 +56,6 @@ sd = optimsimplex_fvstdev ( this )
 [ g , data ] = optimsimplex_gradientfv ( this , fun , method , data )
 g = optimsimplex_gradforward ( this )
 [ g , data ] = optimsimplex_gradcentered ( this , fun , data )
-[ ns , data ] = optimsimplex_oriented ( this , fun , data )
 optimsimplex_print ( this )
 [ r , data ] = optimsimplex_reflect ( this , fun , data )
 [ this , data ] = optimsimplex_shrink ( this , fun , sigma , data )
@@ -217,6 +217,12 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
 
     <variablelist>
       <varlistentry>
+        <term>newobj = optimsimplex_new ( )</term>
+
+        <term>newobj = optimsimplex_new ( coords )</term>
+
+        <term>newobj = optimsimplex_new ( coords , fun )</term>
+
         <term>[ newobj , data ] = optimsimplex_new ( coords , fun , data
         )</term>
 
@@ -290,29 +296,17 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimsimplex_destroy (this)</term>
+        <term>this = optimsimplex_new ( "axes" , x0 )</term>
 
-        <listitem>
-          <para>Destroy the given object.</para>
+        <term>this = optimsimplex_new ( "axes" , x0 , fun )</term>
 
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
+        <term>this = optimsimplex_new ( "axes" , x0 , fun , len )</term>
 
-              <listitem>
-                <para>The current simplex object.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>[ this , data ] = optimsimplex_axes ( this , x0 , fun , len ,
+        <term>[ this , data ] = optimsimplex_new ( "axes" , x0 , fun , len ,
         data )</term>
 
         <listitem>
-          <para>Configure the current simplex so that it is computed axis by
+          <para>Creates a new simplex object so that it is computed axis by
           axis, with the given length.</para>
 
           <variablelist>
@@ -386,13 +380,23 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimsimplex_pfeffer ( this , x0 , fun ,
+        <term>this = optimsimplex_new ( "pfeffer" , x0 )</term>
+
+        <term>this = optimsimplex_new ( "pfeffer" , x0 , fun )</term>
+
+        <term>this = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual
+        )</term>
+
+        <term>this = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual ,
+        deltazero )</term>
+
+        <term>[ this , data ] = optimsimplex_new ( "pfeffer" , x0 , fun ,
         deltausual , deltazero , data )</term>
 
         <listitem>
-          <para>Configure the current simplex so that it is computed from
-          Pfeffer's method, i.e. a relative delta for non-zero values and an
-          absolute delta for zero values.</para>
+          <para>Creates a new simplex so that it is computed from Pfeffer's
+          method, i.e. a relative delta for non-zero values and an absolute
+          delta for zero values.</para>
 
           <variablelist>
             <varlistentry>
@@ -472,13 +476,16 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimsimplex_randbounds ( this , x0 , fun ,
+        <term>this = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin ,
+        boundsmax , nbpoints )</term>
+
+        <term>[ this , data ] = optimsimplex_new ( "randbounds" , x0 , fun ,
         boundsmin , boundsmax , nbpoints , data )</term>
 
         <listitem>
-          <para>Configure the current simplex so that it is computed by taking
-          the bounds into account with random scaling. The number of vertices
-          in the simplex is arbitrary.</para>
+          <para>Creates a new simplex so that it is computed by taking the
+          bounds into account with random scaling. The number of vertices in
+          the simplex is arbitrary.</para>
 
           <variablelist>
             <varlistentry>
@@ -572,12 +579,18 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>[ this , data ] = optimsimplex_spendley ( this , x0 , fun , len
+        <term>this = optimsimplex_new ( "spendley" , x0 )</term>
+
+        <term>this = optimsimplex_new ( "spendley" , x0 , fun )</term>
+
+        <term>this = optimsimplex_new ( "spendley" , x0 , fun , len )</term>
+
+        <term>[ this , data ] = optimsimplex_new ( "spendley" , x0 , fun , len
         , data )</term>
 
         <listitem>
-          <para>Configure the current simplex so that it is computed from
-          Spendley's et al. method, i.e. a regular simplex made of nbve = n+1
+          <para>Creates a new simplex so that it is computed from Spendley's
+          et al. method, i.e. a regular simplex made of nbve = n+1
           vertices.</para>
 
           <variablelist>
@@ -642,6 +655,96 @@ function [ y , data ] = myfunction ( x , data )
                 computing the function value. This feature may be used, for
                 example, to count the number of times that the function has
                 been called.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>this = optimsimplex_new ( "oriented" , simplex0 , fun )</term>
+
+        <term>[ this , data ] = optimsimplex_new ( "oriented" , simplex0 , fun
+        , data )</term>
+
+        <listitem>
+          <para>Returns a new oriented simplex, in sorted order. The new
+          simplex has the same sigma- length of the base simplex, but is
+          "oriented" depending on the function value. The created simplex may
+          be used, as Kelley suggests, for a restart of Nelder-Mead
+          algorithm.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current simplex object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>simplex0</term>
+
+              <listitem>
+                <para>the base simplex</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>fun</term>
+
+              <listitem>
+                <para>optional, the function to compute at vertices.</para>
+
+                <para>The function is expected to have the following input and
+                output arguments :</para>
+
+                <programlisting role="example"> 
+function y = myfunction (x)
+ </programlisting>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>data</term>
+
+              <listitem>
+                <para>optional, user-defined data passed to the
+                function.</para>
+
+                <para>If data is provided, it is passed to the callback
+                function both as an input and output argument. In that case,
+                the function must have the following header :</para>
+
+                <programlisting role="example"> 
+function [ y , data ] = myfunction ( x , data )
+ </programlisting>
+
+                <para>The data input parameter may be used if the function
+                uses some additionnal parameters. It is returned as an output
+                parameter because the function may modify the data while
+                computing the function value. This feature may be used, for
+                example, to count the number of times that the function has
+                been called.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>this = optimsimplex_destroy (this)</term>
+
+        <listitem>
+          <para>Destroy the given object.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current simplex object.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -1394,68 +1497,6 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>[ ns , data ] = optimsimplex_oriented ( this , fun , data
-        )</term>
-
-        <listitem>
-          <para>Returns a new oriented simplex, in sorted order. The new
-          simplex has the same sigma- length of the base simplex, but is
-          "oriented" depending on the function value. This simplex may be
-          used, as Kelley suggests, for a restart of Nelder-Mead
-          algorithm.</para>
-
-          <variablelist>
-            <varlistentry>
-              <term>this</term>
-
-              <listitem>
-                <para>The current simplex object.</para>
-              </listitem>
-            </varlistentry>
-
-            <varlistentry>
-              <term>fun</term>
-
-              <listitem>
-                <para>optional, the function to compute at vertices.</para>
-
-                <para>The function is expected to have the following input and
-                output arguments :</para>
-
-                <programlisting role="example"> 
-function y = myfunction (x)
- </programlisting>
-              </listitem>
-            </varlistentry>
-
-            <varlistentry>
-              <term>data</term>
-
-              <listitem>
-                <para>optional, user-defined data passed to the
-                function.</para>
-
-                <para>If data is provided, it is passed to the callback
-                function both as an input and output argument. In that case,
-                the function must have the following header :</para>
-
-                <programlisting role="example"> 
-function [ y , data ] = myfunction ( x , data )
- </programlisting>
-
-                <para>The data input parameter may be used if the function
-                uses some additionnal parameters. It is returned as an output
-                parameter because the function may modify the data while
-                computing the function value. This feature may be used, for
-                example, to count the number of times that the function has
-                been called.</para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>optimsimplex_print ( this )</term>
 
         <listitem>
@@ -1621,7 +1662,7 @@ function [ y , data ] = myfunction ( x , data )
               <term>method</term>
 
               <listitem>
-                <para>optional, the method to use to compute the size. </para>
+                <para>optional, the method to use to compute the size.</para>
 
                 <para>The available methods are the following :</para>
 

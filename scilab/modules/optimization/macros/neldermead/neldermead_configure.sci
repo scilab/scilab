@@ -119,9 +119,20 @@ function this = neldermead_configure (this,key,value)
     this.nbineqloops = value;
   case "-ineqscaling" then
     this.ineqscaling = value;
+  case "-checkcostfunction" then
+    select value
+    case 0 then
+      this.checkcostfunction = value;
+    case 1 then
+      this.checkcostfunction = value;
+    else
+      errmsg = msprintf(gettext("%s: Unknown value %s for -checkcostfunction option"),"neldermead_configure", value);
+      error(errmsg);
+    end
+  case "-scalingmethod" then
+    this.scalingmethod = value;
   else
     // Delegate to the optimization object
     this.optbase = optimbase_configure ( this.optbase , key , value );
   end
 endfunction
-

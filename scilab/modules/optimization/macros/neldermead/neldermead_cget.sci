@@ -73,9 +73,12 @@ function value = neldermead_cget (this,key)
     value = this.nbineqloops;
   case "-ineqscaling" then
     value = this.ineqscaling;
+  case "-checkcostfunction" then
+    value = this.checkcostfunction;
+  case "-scalingmethod" then
+    value = this.scalingmethod;
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );
   end
 endfunction
-

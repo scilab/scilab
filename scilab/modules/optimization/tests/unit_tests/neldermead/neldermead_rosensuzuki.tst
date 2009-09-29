@@ -303,7 +303,7 @@ coords = [
 0.0 0.0 0.0 1.0
 1.0 1.0 1.0 1.0
 0.0 1.0 2.0 -1.0
-]
+];
 nm = neldermead_configure(nm,"-coords0",coords);
 nm = neldermead_search(nm);
 // Check optimum point

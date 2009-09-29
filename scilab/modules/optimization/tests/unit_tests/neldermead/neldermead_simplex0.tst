@@ -44,7 +44,7 @@ nm = neldermead_configure(nm,"-simplex0method","spendley");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
 1.    2.
@@ -63,7 +63,7 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.    2.  
@@ -83,7 +83,7 @@ nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.                          2.                        
@@ -110,7 +110,7 @@ nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
 1.    1.      
@@ -129,7 +129,7 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",[1.0 2.0]);
 nm = neldermead_configure(nm,"-function",squarefun);
 nm = neldermead_search(nm);
-simplex0 = neldermead_cget(nm,"-simplex0");
+simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
     1.    2.  
