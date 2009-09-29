@@ -40,7 +40,7 @@ function scs_m=do_placeindiagram(scs_m,blk)
 
     //** Protection from window closing
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu] = resume(curwin,'Quit')
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
     end
 
     xm=rep(1) ; ym = rep(2) ;
@@ -55,7 +55,7 @@ function scs_m=do_placeindiagram(scs_m,blk)
   //** window closing protection
   if xget('window') <> curwin then
     //active window has been closed
-    [%win,Cmenu]=resume(curwin,'Quit')
+    [%win,Cmenu]=resume(curwin,'XcosMenuQuit')
   end
 
   xinfo(' ')

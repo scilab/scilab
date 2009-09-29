@@ -325,7 +325,7 @@ function [scs_m, fct] = do_addnew(scs_m)
 
     //** Protection from window closing
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu] = resume(curwin,"Quit")
+      [%win,Cmenu] = resume(curwin,"XcosMenuQuit")
     end
 
     xm = rep(1) ; //** coordinate acquisition  
@@ -344,7 +344,7 @@ function [scs_m, fct] = do_addnew(scs_m)
   gh_window = gcf(); 
   if gh_window.figure_id <> curwin then
     //active window has been closed
-    [%win, Cmenu] = resume(curwin,"Quit")
+    [%win, Cmenu] = resume(curwin,"XcosMenuQuit")
   end
 
   xinfo(" "); 

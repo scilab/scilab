@@ -248,7 +248,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
       gh_figure = gcf();
       //** focus has changed OR active window has been closed
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win, Cmenu] = resume(curwin,'Quit'); 
+        [%win, Cmenu] = resume(curwin,'XcosMenuQuit'); 
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
@@ -557,7 +557,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
   gh_figure = gcf();
   if gh_figure.figure_id<>curwin | rep(3)==-1000 then
       //active window has been closed
-      [%win,Cmenu] = resume(curwin,'Quit')
+      [%win,Cmenu] = resume(curwin,'XcosMenuQuit')
   end
 
   // make last segment horizontal or vertical
