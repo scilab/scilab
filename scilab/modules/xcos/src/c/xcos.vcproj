@@ -386,6 +386,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_xcosNotify.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Signal.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\Xcos.cpp"
 				>
 			</File>
@@ -404,6 +412,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_xcos.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\Signal.hxx"
 				>
 			</File>
 			<File
