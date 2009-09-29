@@ -24,4 +24,5 @@
 <!-- =================== -->
 
 <PRIMITIVE gatewayId="64" primitiveId="1" primitiveName="xcos" />
+<PRIMITIVE gatewayId="64" primitiveId="2" primitiveName="xcosNotify" />
 </GATEWAY>

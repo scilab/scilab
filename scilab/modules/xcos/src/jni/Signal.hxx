@@ -36,24 +36,23 @@ knowledge of the CeCILL-B license and that you accept its terms.
 */
 
 
-#ifndef __ORG_SCILAB_MODULES_XCOS_XCOS__
-#define __ORG_SCILAB_MODULES_XCOS_XCOS__
+#ifndef __ORG_SCILAB_MODULES_XCOS_UTILS_SIGNAL__
+#define __ORG_SCILAB_MODULES_XCOS_UTILS_SIGNAL__
 #include <iostream>
 #include <string>
 #include <string.h>
 #include <stdlib.h>
 #include <jni.h>
 
-namespace org_scilab_modules_xcos {
+namespace org_scilab_modules_xcos_utils {
 
-class Xcos {
+class Signal {
 private:
 JavaVM * jvm;
 jobject instance;
 
 jclass instanceClass; // cache class
-jmethodID voidxcosID; // cache method id
-jmethodID voidxcosjstringID; // cache method id
+jmethodID voidnotifyjstringID; // cache method id
 
 
 /**
@@ -68,17 +67,17 @@ public:
 * It will call the default constructor
 * @param JEnv_ the Java Env
 */
-Xcos(JavaVM * jvm_);
+Signal(JavaVM * jvm_);
 /**
 * Create a wrapping of an already existing object from a JNIEnv.
 * The object must have already been instantiated
 * @param JEnv_ the Java Env
 * @param JObj the object
 */
-Xcos(JavaVM * jvm_, jobject JObj);
+Signal(JavaVM * jvm_, jobject JObj);
 
 // Destructor
-~Xcos();
+~Signal();
 
 // Generic method
 // Synchronization methods
@@ -95,9 +94,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void xcos(JavaVM * jvm_);
-
-static void xcos(JavaVM * jvm_, char * fileName);
+static void notify(JavaVM * jvm_, char * ID);
 
 
                         /**
@@ -107,7 +104,7 @@ static void xcos(JavaVM * jvm_, char * fileName);
                         
                 static const std::string className()
                 {
-                return "org/scilab/modules/xcos/Xcos";
+                return "org/scilab/modules/xcos/utils/Signal";
                 }
                 
 };

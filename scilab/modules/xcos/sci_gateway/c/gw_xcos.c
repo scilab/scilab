@@ -23,7 +23,8 @@
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-  {sci_Xcos, "Xcos"}
+  {sci_Xcos, "Xcos"},
+  {sci_xcosNotify, "xcosNotify"}
 };
 
 /*--------------------------------------------------------------------------*/
