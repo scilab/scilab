@@ -26,7 +26,7 @@ int C2F(sci_mode)(char *fname,unsigned long fname_len)
 	if (Rhs == 0)
 	{
 		int n = 1 ,l = 0;
-		exec_mode mode = getExecMode();
+		execMode mode = getExecMode();
 
 		CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &n, &n,&l);
 		*istk(l) = (int)mode;
@@ -49,7 +49,7 @@ int C2F(sci_mode)(char *fname,unsigned long fname_len)
 					return 0;
 				}
 
-				setExecMode((exec_mode)mode);
+				setExecMode((execMode)mode);
 
 				if ( (mode == 7) || (mode == 4) )
 				{

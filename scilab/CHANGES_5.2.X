@@ -311,6 +311,8 @@ Bug fixes:
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
+* bug 4277 fixed - force UTF8 management in pcre processing.
+
 * bug 4278 fixed - typename() called with a wrong number of input arguments returns incoherent errors.
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
@@ -473,3 +475,5 @@ Bug fixes:
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
+
+* bug 4832 fixed - wavread returns a non explicit error if RIFF have some 'smpl' chunck.
