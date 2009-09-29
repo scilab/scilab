@@ -168,7 +168,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 	  o.graphics.pin(nz)=o.graphics.pin(nz)+m_obj;
 	end
 	if o.graphics.pout<>[] then
-	  nz=find(o.graphics.pin<>0)
+	  nz=find(o.graphics.pout<>0)
 	  o.graphics.pout(nz)=o.graphics.pout(nz)+m_obj;
 	end
 	if o.graphics.pein<>[] then
@@ -176,7 +176,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 	  o.graphics.pein(nz)=o.graphics.pein(nz)+m_obj;
 	end
 	if o.graphics.peout<>[] then
-	  nz=find(o.graphics.pin<>0)
+	  nz=find(o.graphics.peout<>0)
 	  o.graphics.peout(nz)=o.graphics.peout(nz)+m_obj;
 	end
 	scs_m.objs($+1) = o ;
