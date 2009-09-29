@@ -488,7 +488,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
       gh_current_window = scf(curwin);
 
       if (Cmenu<>[] & CmenuType==1 & %pt==[] & Select<>[]) then
-	[%pt,%win] = get_selection(Select) //** recover the %pt and %win from 'Select'
+	//** recover the %pt and %win from 'Select'
+	[%win,junk_o,%pt] = get_selection(Select(1,:)) 
       end
 
       //** ---------------------- Main decisional section --------------------------------------
