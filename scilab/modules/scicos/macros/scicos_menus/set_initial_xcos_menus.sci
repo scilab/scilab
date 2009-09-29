@@ -182,7 +182,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 			           'XcosMenuGetInfo',..
                                    'XcosMenuDetails',..
 			           'XcosMenuIdentification',..
-			           'XcosMenuBlockDocumentation'),..
+			           'XcosMenuBlockDoc'),..
 			     'XcosMenuCodeGeneration',..
                              list( 'XcosMenuMask',..
                                    'XcosMenuCreateMask',..
@@ -279,7 +279,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
       'XcosMenuColor',                 _("Click on object to choose its color");
       'XcosMenuIdentification',        _("Click on an object to set or get identification");
       'XcosMenuResize',                _("Click block to resize");
-      'XcosMenuBlockDocumentation',    _("Click on a block to set or get it''s documentation")];
+      'XcosMenuBlockDoc          ',    _("Click on a block to set or get it''s documentation")];
 
   
 endfunction
