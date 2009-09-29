@@ -9,7 +9,6 @@ function Cmenu=XcosPopup(ptree)
     end
   end
   if argn(2)<2 then 
-    pause
     uiwait(main);
     global XcosPop;
     Cmenu=XcosPop
