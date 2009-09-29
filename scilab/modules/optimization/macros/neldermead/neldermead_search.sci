@@ -755,7 +755,7 @@ endfunction
 //
 function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
     nbve = optimsimplex_getnbve ( simplex0 );
-    xref = optimsimplex_getx ( simplex0 , 1 );
+    x0 = optimbase_cget ( this.optbase , "-x0" );
     for ive = 2 : nbve
       // optimsimplex returns a row vector
       x = optimsimplex_getx ( simplex0 , ive );
@@ -763,7 +763,7 @@ function [ this , simplex0 ] = neldermead_scaletox0 ( this , simplex0 )
         strcat(string(x)," ")+"]... " , ...
         ive , nbve ));
       // Transpose x into a row vector
-      [ this , status , xp ] = _scaleinconstraints ( this , x.' , xref );
+      [ this , status , xp ] = _scaleinconstraints ( this , x.' , x0 );
       if ( ~status ) then
         errmsg = msprintf(gettext("%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"), ...
           "neldermead_startup", ive , nbve , strcat(string(x)," "));

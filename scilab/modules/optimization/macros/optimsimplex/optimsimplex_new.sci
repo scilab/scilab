@@ -44,7 +44,9 @@
 //   [ newobj , data ] = optimsimplex_new ( "pfeffer" , x0 , fun , deltausual , deltazero , data )
 //   newobj = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax , nbve )
 //   [ newobj , data ] = optimsimplex_new ( "randbounds" , x0 , fun , boundsmin , boundsmax , nbve  , data )
-// 
+//   newobj = optimsimplex_new ( "oriented" , simplex0 )
+//   newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
+//   [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun , data )
 //
 function [ newobj , data ] = optimsimplex_new ( varargin )
   [lhs,rhs]=argn();
@@ -167,6 +169,25 @@ function [ newobj , data ] = optimsimplex_new ( varargin )
         nbve = varargin(6);
         data       = varargin(7);
         [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , boundsmax , nbve , data )
+      end
+    case "oriented" then
+      //   newobj = optimsimplex_new ( "oriented" , simplex0 )
+      //   newobj = optimsimplex_new ( "oriented" , simplex0 , fun )
+      //   [ newobj , data ] = optimsimplex_new ( "oriented" , simplex0 , fun , data )
+      if rhs<2 | rhs > 4 then
+        errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 to 4 are expected."), "optimsimplex_new", rhs);
+        error(errmsg)
+      end
+      simplex0   = varargin(2);
+      if rhs==2 then
+        newobj = optimsimplex_oriented ( simplex0 )
+      elseif rhs==3 then
+        fun   = varargin(3);
+        newobj = optimsimplex_oriented ( simplex0 , fun )
+      elseif rhs==4 then
+        fun   = varargin(3);
+        data   = varargin(4);
+        [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
       end
     else
       errmsg = msprintf(gettext("%s: Unknown key %s"),"optimsimplex_new",key)
@@ -465,5 +486,65 @@ function [ newobj , data ] = optimsimplex_randbounds ( x0 , fun , boundsmin , bo
     else
       [ newobj , data ] = optimsimplex_computefv ( newobj , fun , data )
     end
+endfunction
+
+//
+// optimsimplex_oriented --
+//   Returns an oriented simplex, in sorted order. 
+//   This simplex may be used, as Kelley suggests
+//   for a restart of Nelder-Mead algorithm.
+// Arguments
+//   fun : the function to compute at vertices
+//   data : user-defined data
+//   simplex0 : the initial simplex
+//
+function [ newobj , data ] = optimsimplex_oriented ( simplex0 , fun , data )
+  if ( simplex0.nbve <> simplex0.n+1 ) then
+    errmsg = msprintf(gettext ( "%s: The oriented simplex can be computed only with a simplex made of n+1 points, but the dimenewobjion is %d and the number of vertices is %d") , "optimsimplex_oriented", simplex0.n , simplex0.nbve)
+    error(errmsg)
+  end
+  if (~isdef('fun','local')) then
+    fun = [];
+  end
+  sgrad = optimsimplex_gradientfv ( simplex0 )
+  ssize = optimsimplex_size ( simplex0 , "sigmaminus" )
+  n = simplex0.n
+  // Compute the betas
+  betav = zeros(n,1)
+  for i = 1:n
+    if sgrad(i)==0.0 then
+      betav(i)  = ssize
+    elseif sgrad(i) > 0.0 then
+      betav(i)  = ssize
+    else
+      betav(i)  = -ssize
+    end
+  end
+  betav = -0.5 * betav
+  // Prepare a matrix with beta as diagonal terms
+  mid = eye ( n , n )
+  for i = 1:n
+    mid (i,i) = betav(i)
+  end
+  // Compute simplex
+  newobj = optimsimplex_new()
+  newobj.n = simplex0.n
+  newobj.nbve = simplex0.n+1
+  newobj.x = zeros ( n+1 , n )
+  newobj.fv = zeros ( n+1 , 1 )
+  // Store 1st point
+  newobj.x ( 1 , 1:n ) = simplex0.x ( 1 , 1:n )
+  newobj.fv ( 1 ) = simplex0.fv ( 1 )
+  x1 = simplex0.x ( 1 , 1:n )
+  for i = 2:n+1
+    newobj.x ( i, 1:n ) = mid ( i-1 , 1:n ) + x1 ( 1 , 1:n )
+    if fun <> [] then
+      if (~isdef('data','local')) then
+        newobj.fv(i)  = fun (newobj.x(i,:));
+      else
+        [ newobj.fv(i) , data ]  = fun (newobj.x(i,:) , data );
+      end
+    end
+  end
 endfunction
 
