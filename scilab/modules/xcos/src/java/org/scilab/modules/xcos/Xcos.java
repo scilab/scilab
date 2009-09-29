@@ -87,6 +87,8 @@ public class Xcos extends SwingScilabTab implements Tab {
 	// Creates the graph outline component
 	mxGraphOutline graphOutline = new mxGraphOutline(xcosDiagramm.getAsComponent());
 	
+	graphOutline.setDrawLabels(true);
+	
 	((SwingScilabTab) outlineTab.getAsSimpleTab()).setContentPane(graphOutline);
 	outline.addTab(outlineTab);
 	outline.setVisible(true);
@@ -114,7 +116,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 	ScopeBlock scopeTemplate = new ScopeBlock();
 	SinusoidBlock sinusoidTemplate = new SinusoidBlock();
 	RampBlock rampBlockTemplate = new RampBlock();
-	BasicBlock randm = BlockReader.read( System.getenv("SCI")+ "/modules/scicos_blocks/macros/Sources/RAND_m.h5");
+	BasicBlock randm = BlockReader.read(System.getenv("SCI")+ "/modules/scicos_blocks/macros/Sources/RAND_m.h5");
 	
 	BasicBlock constm = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Sources/CONST_m.h5");
 	sources.addTemplate("CONST_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CONST_m_blk.gif"), constm);

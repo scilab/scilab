@@ -13,20 +13,32 @@
 package org.scilab.modules.xcos.block;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
 import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabType;
+import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+import org.scilab.modules.xcos.utils.Signal;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
@@ -53,7 +65,7 @@ public class BasicBlock extends mxCell {
     private List<ControlPort> controlPorts = new ArrayList<ControlPort>();
 
     private int ordering = 0;
-    
+
     public enum SimulationFunctionType {
 	DEFAULT, 
 	C_OR_FORTRAN,
@@ -72,6 +84,7 @@ public class BasicBlock extends mxCell {
 	    }
 	}
     };
+
     protected BasicBlock(String label) {
 	super();
 	setValue(label);
@@ -80,7 +93,7 @@ public class BasicBlock extends mxCell {
 	setConnectable(false);
 	setGeometry(new mxGeometry(0,0,80,80));
     }
-    
+
     protected BasicBlock(String label, String style) {
 	super();
 	setValue(label);
@@ -118,12 +131,24 @@ public class BasicBlock extends mxCell {
 	return realParameters;
     }
 
+    public void setRealParameters(List<Double> realParameters) {
+	this.realParameters = realParameters;
+    }
+
     public List getIntegerParameters() {
 	return integerParameters;
     }
 
+    public void setIntegerParameters(List<Integer> integerParameters) {
+	this.integerParameters = integerParameters;
+    }
+
     public List getObjectsParameters() {
 	return objectsParameters;
+    }
+
+    public void setObjectsParameters(List objectsParameters) {
+	this.objectsParameters = objectsParameters;
     }
 
     public void setDependsOnU(boolean dependsOnU) {
@@ -241,7 +266,7 @@ public class BasicBlock extends mxCell {
 	double[][] sz = {{getGeometry().getWidth(), getGeometry().getHeight()}};
 	graphics.add(new ScilabDouble(sz)); // sz
 
-	graphics.add(new ScilabDouble(1)); // flip
+	graphics.add(new ScilabBoolean(true)); // flip
 
 	graphics.add(new ScilabDouble(0)); // theta
 
@@ -274,12 +299,12 @@ public class BasicBlock extends mxCell {
 	if (getExprs().isEmpty()) {
 	    return new ScilabList();
 	}
-	
+
 	String[][] data = new String[getExprs().size()][1];
 	for (int i = 0 ; i < getExprs().size() ; ++i) {
 	    data[i][0] = getExprs().get(i);
 	}
-	
+
 	return new ScilabString(data);
     }
 
@@ -311,7 +336,7 @@ public class BasicBlock extends mxCell {
 
 	model.add(new ScilabDouble()); // dstate
 
-	model.add(new ScilabDouble()); // odstate
+	model.add(new ScilabList()); // odstate
 
 	model.add(createScilabRPar()); // rpar
 
@@ -452,5 +477,50 @@ public class BasicBlock extends mxCell {
 	}
 
 	return new ScilabString(data);
+    }
+
+    public void updateBlockSettings(BasicBlock modifiedBlock) {
+	this.setDependsOnT(modifiedBlock.dependsOnT());
+	this.setDependsOnU(modifiedBlock.dependsOnU());
+
+	
+	System.err.println("new Exprs = "+modifiedBlock.getExprs());
+	
+	this.setExprs(modifiedBlock.getExprs());
+	this.setRealParameters(modifiedBlock.getRealParameters());
+	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
+	this.setObjectsParameters(modifiedBlock.getObjectsParameters());
+    }
+
+    public void openBlockSettings() {
+	final File tempOutput;
+	final File tempInput;
+	try {
+	    tempOutput = File.createTempFile("xcos",".hdf5");
+	    tempInput = File.createTempFile("xcos",".hdf5");
+	    tempOutput.delete();
+	    tempInput.delete();
+	    int file_id = H5Write.createFile(tempOutput.getAbsolutePath());
+	    H5Write.writeInDataSet(file_id, "scs_m", getAsScilabObj());
+	    H5Write.closeFile(file_id);
+	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\", \""+tempInput.getAbsolutePath()+"\", "+getInterfaceFunctionName()+", \"set\");");
+	    System.err.println("=== Now Waiting ===");
+	    Thread launchMe = new Thread() {
+		public void run() {
+		    Signal.wait(tempInput.getAbsolutePath());
+		    System.err.println("=== Now Waking up !!! ===");
+		    // Now read new Block
+		    BasicBlock modifiedBlock = BlockReader.read(tempInput.getAbsolutePath());
+		    updateBlockSettings(modifiedBlock);
+		    //tempOutput.delete();
+		    //tempInput.delete();
+		}
+	    };
+	    launchMe.start();
+
+	} catch (Exception e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
     }
 }

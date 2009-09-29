@@ -249,18 +249,18 @@ public class SetupAction extends DefaultAction {
 			}
 		});
 		
-		cancelButton.addActionListener(new ActionListener() {
+		defaultButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				integrationSpinner.setValue(100000);//TODO thou shall not let value hardcoded!
-				rtsSpinner.setValue(0);
+				integrationSpinner.setValue(100000.0);//TODO thou shall not let value hardcoded!
+				rtsSpinner.setValue(0.0);
 				integratorAbsSpinner.setValue(1e-4);
 				integratorRelSpinner.setValue(1e-6);
 				toleranceOnTimeSpinner.setValue(1e-10);
-				maxIntegrationTimeSpinner.setValue(100001);
-				solverSpinner.setValue(0);
-				maxStepSizeSpinner.setValue(0);
+				maxIntegrationTimeSpinner.setValue(100001.0);
+				solverSpinner.setValue(0.0);
+				maxStepSizeSpinner.setValue(0.0);
 				
 				diagram.setFinalIntegrationTime((Double)integrationSpinner.getValue() ) ;
 				diagram.setRealTimeScaling((Double)rtsSpinner.getValue())   ;
@@ -269,7 +269,7 @@ public class SetupAction extends DefaultAction {
 				diagram.setToleranceOnTime((Double)toleranceOnTimeSpinner.getValue())  ;
 				diagram.setMaxIntegrationTimeinterval((Double)maxIntegrationTimeSpinner.getValue())  ;
 				diagram.setSolver((Double)solverSpinner.getValue()) ;
-				diagram.setMaximumStepSize( ((Integer)maxStepSizeSpinner.getValue()).doubleValue())  ;
+				diagram.setMaximumStepSize( ((Double)maxStepSizeSpinner.getValue()).doubleValue())  ;
 			}
 		});
         

@@ -20,6 +20,7 @@ public class Signal {
     private static Map<String, Object> waiters = new HashMap<String, Object>();
 
     public static void wait(String index) {
+	System.out.println("DEBUG : Waiting on "+index);
 	Object data = new Object();
 	waiters.put(index, data);
 
@@ -34,6 +35,7 @@ public class Signal {
     }
 
     public static void notify(String index) {
+	System.out.println("DEBUG : Notify on "+index);
 	Object data = waiters.get(index);
 	if (data != null) {
 	    synchronized (data) {

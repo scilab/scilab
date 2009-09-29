@@ -14,13 +14,12 @@ package org.scilab.modules.xcos;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -33,11 +32,11 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
 import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.actions.XcosShortCut;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.PortCheck;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -131,7 +130,7 @@ public class XcosDiagram extends ScilabGraph {
 	 * SAMPLE DATA 
 	 */
 
-	
+
 	//BasicBlock testBlock = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/SUMMATION.h5");
 	//testBlock.getGeometry().setX(20);
 	//testBlock.getGeometry().setY(20);
@@ -239,19 +238,7 @@ public class XcosDiagram extends ScilabGraph {
 		    System.out.println("cell="+getLabel(cell));
 		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
-			File temp;
-			try {
-			    temp = File.createTempFile("xcos",".hdf5");
-			    temp.deleteOnExit();
-			    int file_id = H5Write.createFile(temp.getAbsolutePath());
-			    H5Write.writeInDataSet(file_id, "scs_m", block.getAsScilabObj());
-			    H5Write.closeFile(file_id);
-			    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+temp.getAbsolutePath()+"\", "+block.getInterfaceFunctionName()+", \"set\");");
-
-			} catch (IOException e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
-			}
+			block.openBlockSettings();
 		    }
 		}
 		else {
@@ -300,7 +287,7 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     public boolean isCellMovable(Object cell) {
-	return (cell instanceof BasicBlock) && super.isCellMovable(cell);
+	return !(cell instanceof BasicPort) && super.isCellMovable(cell);
     }
 
     //    public boolean isCellConnectable(Object cell)
@@ -427,69 +414,69 @@ public class XcosDiagram extends ScilabGraph {
 	return new ScilabString("scicos4.2");
     }
 
-	public double getFinalIntegrationTime() {
-		return finalIntegrationTime;
-	}
+    public double getFinalIntegrationTime() {
+	return finalIntegrationTime;
+    }
 
-	public void setFinalIntegrationTime(double finalIntegrationTime) {
-		this.finalIntegrationTime = finalIntegrationTime;
-	}
+    public void setFinalIntegrationTime(double finalIntegrationTime) {
+	this.finalIntegrationTime = finalIntegrationTime;
+    }
 
-	public double getIntegratorAbsoluteTolerance() {
-		return integratorAbsoluteTolerance;
-	}
+    public double getIntegratorAbsoluteTolerance() {
+	return integratorAbsoluteTolerance;
+    }
 
-	public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
-		this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
-	}
+    public void setIntegratorAbsoluteTolerance(double integratorAbsoluteTolerance) {
+	this.integratorAbsoluteTolerance = integratorAbsoluteTolerance;
+    }
 
-	public double getIntegratorRelativeTolerance() {
-		return integratorRelativeTolerance;
-	}
+    public double getIntegratorRelativeTolerance() {
+	return integratorRelativeTolerance;
+    }
 
-	public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
-		this.integratorRelativeTolerance = integratorRelativeTolerance;
-	}
+    public void setIntegratorRelativeTolerance(double integratorRelativeTolerance) {
+	this.integratorRelativeTolerance = integratorRelativeTolerance;
+    }
 
-	public double getMaximumStepSize() {
-		return maximumStepSize;
-	}
+    public double getMaximumStepSize() {
+	return maximumStepSize;
+    }
 
-	public void setMaximumStepSize(double maximumStepSize) {
-		this.maximumStepSize = maximumStepSize;
-	}
+    public void setMaximumStepSize(double maximumStepSize) {
+	this.maximumStepSize = maximumStepSize;
+    }
 
-	public double getMaxIntegrationTimeinterval() {
-		return maxIntegrationTimeinterval;
-	}
+    public double getMaxIntegrationTimeinterval() {
+	return maxIntegrationTimeinterval;
+    }
 
-	public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
-		this.maxIntegrationTimeinterval = maxIntegrationTimeinterval;
-	}
+    public void setMaxIntegrationTimeinterval(double maxIntegrationTimeinterval) {
+	this.maxIntegrationTimeinterval = maxIntegrationTimeinterval;
+    }
 
-	public double getRealTimeScaling() {
-		return realTimeScaling;
-	}
+    public double getRealTimeScaling() {
+	return realTimeScaling;
+    }
 
-	public void setRealTimeScaling(double realTimeScaling) {
-		this.realTimeScaling = realTimeScaling;
-	}
+    public void setRealTimeScaling(double realTimeScaling) {
+	this.realTimeScaling = realTimeScaling;
+    }
 
-	public double getSolver() {
-		return solver;
-	}
+    public double getSolver() {
+	return solver;
+    }
 
-	public void setSolver(double solver) {
-		this.solver = solver;
-	}
+    public void setSolver(double solver) {
+	this.solver = solver;
+    }
 
-	public double getToleranceOnTime() {
-		return toleranceOnTime;
-	}
+    public double getToleranceOnTime() {
+	return toleranceOnTime;
+    }
 
-	public void setToleranceOnTime(double toleranceOnTime) {
-		this.toleranceOnTime = toleranceOnTime;
-	}
+    public void setToleranceOnTime(double toleranceOnTime) {
+	this.toleranceOnTime = toleranceOnTime;
+    }
 
 }
 

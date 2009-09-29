@@ -10,9 +10,16 @@
 //
 //
 
-function [x,y,typ] = xcosBlockInterface(hdf5FileToLoad, interfaceAlias, job)
-  // push some old scicos variable in environment.
+function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, job)
+  
+  // disp("hdf5FileToLoad = "+ hdf5FileToLoad)
+  // disp("hdf5FileToSave = "+ hdf5FileToSave)
+
+// push some old scicos variable in environment.
+ 
   needcompile = [];
   import_from_hdf5(hdf5FileToLoad);
-  [x,y,typ] = interfaceAlias(job, scs_m, []);
+  [new_scs_m, y, typ] = interfaceAlias(job, scs_m, []);
+  export_to_hdf5(hdf5FileToSave, "new_scs_m");
+  xcosNotify(hdf5FileToSave);
 endfunction
