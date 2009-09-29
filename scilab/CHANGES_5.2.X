@@ -311,6 +311,8 @@ Bug fixes:
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
                    causing an error on startup
                    
+* bug 4277 fixed - force UTF8 management in pcre processing.
+
 * bug 4278 fixed - typename() called with a wrong number of input arguments returns incoherent errors.
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
