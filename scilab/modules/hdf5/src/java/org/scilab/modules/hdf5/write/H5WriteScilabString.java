@@ -71,15 +71,11 @@ public class H5WriteScilabString {
 	}
 
 	int tid = H5.H5Tcopy(HDF5Constants.H5T_C_S1);
-	System.out.println("H5Tset_size");
 	H5.H5Tset_size(tid, size);
-	System.out.println("H5Screate_simple");
 	int dataspaceId = H5.H5Screate_simple(1, dims, null);
-	System.out.println("H5Dcreate");
 	int datasetId = H5.H5Dcreate(file_id, "/" + dataSetName,
 		tid, dataspaceId,
 		HDF5Constants.H5P_DEFAULT);
-	System.out.println("H5Dwrite");
 	H5.H5Dwrite(datasetId, tid,
 		HDF5Constants.H5S_ALL, HDF5Constants.H5S_ALL,
 		HDF5Constants.H5P_DEFAULT, data.getBytes());
