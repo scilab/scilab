@@ -19,9 +19,14 @@
 // See the file ../license.txt
 //
 
-function [%pt,%win,reg] = get_multiple_selection(Select,%pt,%win)
+function reg = get_multiple_selection(Select)
+//Select contains the selected items in the window where the Copy menu
+//has been executed
+    
  win=Select(1,2)  // all items in the second column are identical
+
   kc=find(win==windows(:,2))
+
   if kc==[] then
     reg=[];return // window no longer active
   elseif windows(kc,1)<0 then //palette
@@ -36,22 +41,6 @@ function [%pt,%win,reg] = get_multiple_selection(Select,%pt,%win)
   [reg,DEL,DELL]=do_delete1(scs_m,del,%f)
   reg=do_purge(reg)
 
-  o=reg.objs(1)
-
-  if typeof(o)=='Block' then
-    o=disconnect_ports(o)
-    [orig,sz]=(o.graphics.orig,o.graphics.sz)
-    %pt=orig(:)+sz(:)/2
-  elseif typeof(o)=='Text'  then
-    [orig,sz]=(o.graphics.orig,o.graphics.sz)
-    %pt=orig(:)+sz(:)/2
-  elseif typeof(o)=='Link' then
-    %pt=[(o.xx(1)+o.xx(2))/2,(o.yy(1)+o.yy(2))/2] //middle of first
-                                                  //segment
-  else
-    o=[]  // perhaps deleted
-  end
-  %win=win
 endfunction
 
 

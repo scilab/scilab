@@ -20,28 +20,34 @@
 //
 
 function XcosMenuCopy()
-
+//Select contains the selected items in the window where the menu has
+//been activated
   if size(Select,1)>1 then
     //** ... more than a single object
-    [pt1,win1,scs_m_sel] = get_multiple_selection(Select,%pt,%win)
+    [scs_m_sel] = get_multiple_selection(Select)
     if size(scs_m_sel.objs)==1 then
-       XcosClipboard = scs_m_sel.objs(1)
+      XcosClipboard = scs_m_sel.objs(1)
     else
-    	XcosClipboard = scs_m_sel
+      XcosClipboard = scs_m_sel
     end
     Cmenu=[];
     // BUG Fix : Direct Paste after Select.
     Select=[];
   elseif size(Select,1)==1
     //** single object
-    [pt1,win1,o] = get_selection(Select,%pt,%win)
-    XcosClipboard = o ;
-    Cmenu = [];
+    [junk,o] = get_selection(Select)
+    if or(typeof(o)==["Block","Text"]) then
+      XcosClipboard = o ;
+      Cmenu = [];
+    else
+      messagebox(['No block nor Text selected, nothing done.'],'modal')
+      Cmenu=[]; %pt=[]; %ppt=[]
+    end
     // BUG Fix : Direct Paste after Select.
     Select=[];
   else
     //** no object
-    messagebox(['No block is selected';'click on a block or select a region first.'],'modal')
+    messagebox(['No selection in the current window';'click on a block or select a region first.'],'modal')
     Cmenu=[]; %pt=[]; %ppt=[]
   end
 endfunction
