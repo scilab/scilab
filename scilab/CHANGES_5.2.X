@@ -473,3 +473,5 @@ Bug fixes:
 * bug 4810 fixed - gsort does not manage sparse vectors as sort.
 
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
+
+* bug 4832 fixed - wavread returns a non explicit error if RIFF have some 'smpl' chunck.
