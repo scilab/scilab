@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [scs_m] = do_stupidmove(%pt,Select,scs_m)
+function [scs_m] = do_stupidmove_corner(%pt,Select,scs_m)
 //**
 //** This function is called ONLY on the case of SINGLE LINK selected
 //** The code do some partially redundant function call becase is
