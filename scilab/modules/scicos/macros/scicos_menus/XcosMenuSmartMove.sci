@@ -22,7 +22,10 @@
 function XcosMenuSmartMove()
   
   Cmenu = [];
-  
-  [scs_m] = do_smart_move(%pt, scs_m) ;
+  if size(find(Select(:,2)==curwin),'*')>1 then
+    messagebox(_("Smart move does not work yet with multiple selection"),"Warning","modal")
+    return
+  end
+  scs_m = do_smart_move(%pt, scs_m) ;
   
 endfunction
