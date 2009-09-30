@@ -143,6 +143,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     	String[] sinksBlocksNames = {"CSCOPE"};
     	palette.addTab(createPalette("Sinks", sinksBlocksNames));
     	
+    	/** Create SIGNAL ROUTING palette */
+    	String[] routingBlocksNames = {"MUX", "DEMUX"};
+    	palette.addTab(createPalette("Signal Routing", routingBlocksNames));
+    	
     	/** Create USER-DEFINED FUNCTIONS palette */
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
     			"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
