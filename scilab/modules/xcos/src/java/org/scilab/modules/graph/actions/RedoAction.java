@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,33 +14,33 @@
 package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class RedoAction extends DefaultAction {
-    
-    public static PushButton redoButton(ScilabGraph scilabGraph) {
-	return createButton("Redo", "edit-redo.png", new RedoAction(scilabGraph));
-    }
-    
-    public static MenuItem redoMenu(ScilabGraph scilabGraph) {
-	return createMenu("Redo", "edit-redo.png", new RedoAction(scilabGraph));
-    }
-    
-    public RedoAction() {
-	super();
-    }
-    
-    public RedoAction(ScilabGraph scilabGraph) {
-	super(scilabGraph);
-    }
-    
-    public void actionPerformed(ActionEvent e) {
-	getGraph(e).redo();
-    }
 
-  
+	public RedoAction(ScilabGraph scilabGraph) {
+		super(ScilabGraphMessages.REDO, scilabGraph);
+	}
+
+	public static PushButton redoButton(ScilabGraph scilabGraph) {
+		return createButton(ScilabGraphMessages.REDO, "edit-redo.png", new RedoAction(scilabGraph));
+	}
+
+	public static MenuItem redoMenu(ScilabGraph scilabGraph) {
+		return createMenu(ScilabGraphMessages.REDO, "edit-redo.png", new RedoAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_Y, ActionEvent.CTRL_MASK));
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		getGraph(e).redo();
+	}
+
+
 
 }

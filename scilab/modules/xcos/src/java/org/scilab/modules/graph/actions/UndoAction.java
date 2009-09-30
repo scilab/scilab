@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,31 +14,31 @@
 package org.scilab.modules.graph.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class UndoAction extends DefaultAction {
 
-    public static PushButton undoButton(ScilabGraph scilabGraph) {
-	return createButton("Undo", "edit-undo.png", new UndoAction(scilabGraph));
-    }
-    
-    public static MenuItem undoMenu(ScilabGraph scilabGraph) {
-	return createMenu("Undo", "edit-undo.png", new UndoAction(scilabGraph));
-    }
-    
-    public UndoAction() {
-	super();
-    }
-    
-    public UndoAction(ScilabGraph editgraph) {
-	super(editgraph);
-    }
+	public UndoAction(ScilabGraph editgraph) {
+		super(ScilabGraphMessages.UNDO, editgraph);
+	}
 
-    public void actionPerformed(ActionEvent e) {
-	getGraph(e).undo();
-    }
+	public static PushButton undoButton(ScilabGraph scilabGraph) {
+		return createButton(ScilabGraphMessages.UNDO, "edit-undo.png", new UndoAction(scilabGraph));
+	}
+
+	public static MenuItem undoMenu(ScilabGraph scilabGraph) {
+		return createMenu(ScilabGraphMessages.UNDO, "edit-undo.png", new UndoAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		getGraph(e).undo();
+	}
 
 }

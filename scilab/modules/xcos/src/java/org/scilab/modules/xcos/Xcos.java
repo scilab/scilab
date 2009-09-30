@@ -48,12 +48,16 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.RunAction;
+import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
+import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.actions.NewAction;
+import org.scilab.modules.xcos.actions.OpenAction;
 
 import com.mxgraph.swing.mxGraphOutline;
 
@@ -197,25 +201,32 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
-	/*
-	 * MENU BAR
-	 */
-	// FILE
-	MenuBar menuBar = ScilabMenuBar.createMenuBar();
-	Menu file = ScilabMenu.createMenu();
-	file.setText("File");
-	MenuItem newItem = ScilabMenuItem.createMenuItem();
-	newItem.setText("New");
-	JMenuItem quit = new JMenuItem("Quit");
-	quit.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) { System.exit(0); }
-	});
-	file.add(newItem);
-	file.add(DumpAction.dumpMenu(scilabGraph));
-	file.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
-	//file.add(quit);
-	menuBar.add(file);
 
+    	MenuBar menuBar = ScilabMenuBar.createMenuBar();
+
+    	/** FILE MENU */
+		Menu fileMenu = ScilabMenu.createMenu();
+		fileMenu.setText(XcosMessages.FILE);
+		fileMenu.setMnemonic('F');
+		fileMenu.add(NewAction.createMenu(scilabGraph));
+		fileMenu.add(OpenAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(SaveAction.createMenu(scilabGraph));
+		//fileMenu.add(SaveAsAction.createMenu(scilabGraph));
+		//fileMenu.add(ExportAction.createMenu(scilabGraph));
+		//fileMenu.add(SaveAsInterfFuncAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(PrintAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(CloseAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(QuitAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
+		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
+		
+		menuBar.add(fileMenu);
+	
 	// EDIT
 	Menu edit = ScilabMenu.createMenu();
 	edit.setText("Edit");
