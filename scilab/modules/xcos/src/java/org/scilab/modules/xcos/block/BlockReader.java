@@ -640,7 +640,11 @@ public class BlockReader {
 			
 			// ipar
 			if ((modelFields.get(14) instanceof ScilabDouble)) { 
+			    int size = ((ScilabDouble)modelFields.get(14)).getHeight() ;
 				
+				for (int i = 0; i < size ; i++){
+					newBlock.getIntegerParameters().add((int) ((ScilabDouble)modelFields.get(14)).getRealPart()[i][0]); 
+				}
 			}else{
 				return false ;
 			}
