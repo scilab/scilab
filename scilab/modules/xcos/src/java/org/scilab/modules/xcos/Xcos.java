@@ -221,7 +221,7 @@ public class Xcos extends SwingScilabTab implements Tab {
     		if (!hdf5.exists()) {
     			System.err.println(blocksPath + blocksNames[kBlock] + ".h5 does not exists !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     		}
-    		theBloc = BlockReader.read(blocksPath + blocksNames[kBlock] + ".h5");
+    		theBloc = BlockReader.readBlockFromFile(blocksPath + blocksNames[kBlock] + ".h5");
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
     		
     	}

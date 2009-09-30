@@ -12,6 +12,10 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -19,7 +23,6 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
-import org.scilab.modules.xcos.block.sinusoid.SinusoidBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -28,129 +31,86 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 public class BlockReader {
-	
-	ScilabMList data ;
 
-	public static void main(String[] args) {
-		System.out.println("Hello World");
-
+	public static HashMap<String, List> readDiagramFromFile(String hdf5File) {
 		ScilabMList data = new ScilabMList();
-		
-		
-
-
-		int fileId;
+		HashMap<String, List> result = new HashMap<String, List>();
 		try {
-			fileId = H5Read.openFile("/home/allan/sinusoid_generator.h5");
+			int fileId = H5Read.openFile(hdf5File);
 			H5Read.readDataFromFile(fileId, data);
-			System.out.println(H5Read.getRootType(fileId));
 			
-			// check the basic strcture 
-			if ( isAValidScs_mStructure(data)) {
+			if(isAValidScs_mStructure(data)) {
+				int nbBlocks = getNbBlocks(data);
+				List<BasicBlock> blocks = new ArrayList<BasicBlock>();
 				
-				ScilabMList firstBlockFields =  getBlockAt(data, 0);
-				
-				BasicBlock newBlock = new BasicBlock ("temp") ;
-				
-				if ( fillBlockStructure(firstBlockFields , newBlock)){
-					
+				for (int i = 0 ; i < nbBlocks ; ++i) {
+					BasicBlock currentBlock = new BasicBlock("temp");
+					fillBlockStructure(getBlockAt(data, i), currentBlock);
+					blocks.add(currentBlock);
 				}
+				result.put("Blocks", blocks);
+				
+				return result;
 			}
-					
-
-			
-			
-			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
-		SinusoidBlock testSinusoidBloc = new SinusoidBlock() ;
-		
-		ScilabList listAllBlocksAndLinks =(ScilabList)  data.get(2);
-		
-		//H5ScilabConstant.SCILAB_CLASS_LIST;
-		//H5Read.readDataFromFile(fileId, data);
-		//Assert.assertEquals(data.isEmpty(), true);
+		return  null;
 	}
 	
-	public static BasicBlock read( String hdf5file ){
-	ScilabMList data = new ScilabMList();
+	
+	public static BasicBlock readBlockFromFile( String hdf5file ) {
+		ScilabMList data = new ScilabMList();
+		BasicBlock newBlock = new BasicBlock("temp");
 		
-	BasicBlock newBlock = new BasicBlock ("temp") ;	
-
-
-		int fileId;
 		try {
-			fileId = H5Read.openFile(hdf5file);
+			int fileId = H5Read.openFile(hdf5file);
 			H5Read.readDataFromFile(fileId, data);
-			
-			
-			
-			
-			// check the basic strcture 
-			if ( isAValidScs_mStructure(data)) {
-				
-				ScilabMList firstBlockFields =  getBlockAt(data, 0);
-				//fillBlockStructure(data  , newBlock);
-				
-				
-				if ( fillBlockStructure( firstBlockFields , newBlock)){
-					
-				}else 
-					return null ;
-			}else{
-				
-				if (fillBlockStructure(data , newBlock)){
-					
-					
-				}else 
+
+			if (!fillBlockStructure(data , newBlock)){
 				return null ;
-				
-				//return null  TODO comment only for the moulinette
 			}
-			
-			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
 		}
-		SinusoidBlock testSinusoidBloc = new SinusoidBlock() ;
-		
-		//ScilabList listAllBlocksAndLinks =(ScilabList)  data.get(2);
-		
-		//H5ScilabConstant.SCILAB_CLASS_LIST;
-		//H5Read.readDataFromFile(fileId, data);
-		//Assert.assertEquals(data.isEmpty(), true);
-		
 		return  newBlock;
 	}
-	
+
+	public static int getNbBlocks(ScilabMList data) {
+		ScilabList allBlockAndLink = getListOfBlockAndLink(data);
+		int j = 0;
+		while (j < allBlockAndLink.size()) {
+			if (((ScilabString) ((ScilabMList) allBlockAndLink.get(j)).get(0)).getData()[0][0].equals("Block")) {
+				++j;
+			}
+			else {
+				break;
+			}
+		}
+		return j;
+	}
 	
 	public static ScilabList getListOfBlockAndLink (ScilabMList data){
 		return (ScilabList)data.get(2);		
 	}
-	
 	
 	public static ScilabMList getBlockAt (ScilabMList data , int index ){
 		return (ScilabMList)((ScilabList)data.get(2)).get(index);
 	}
 	
 	public static String[] getNameOfFieldsInStructure (ScilabMList structure ){
-		
 		return ((ScilabString)structure.get(0)).getData()[0];
 	}
 	
 	public static String getBlockInterfaceName (ScilabMList blockFields ){
-		
 		return ((ScilabString)blockFields.get(3)).getData()[0][0];
-		
 	}
 	
 	public static String getBlockSimulationFunctionName(ScilabMList blockFields) {
-		
 		return ((ScilabString)blockFields.get(1)).getData()[0][0];
 	}
 
@@ -176,13 +136,12 @@ public class BlockReader {
 						
 					}
 				}
-			}else{
+			}
+			else{
 				return false ;
 			}
 			// the second field must contain list of props
-			if (( data.get(1) instanceof ScilabTList)) { 
-				
-			}else{
+			if (!( data.get(1) instanceof ScilabTList)) { 
 				return false ;
 			}
  
@@ -190,9 +149,7 @@ public class BlockReader {
 			
 			// the third field must contains lists of blocks and links 
 			
-			if (( data.get(2) instanceof ScilabList)) { 
-				
-			}else{
+			if (!( data.get(2) instanceof ScilabList)) { 
 				return false ;
 			}
 			
@@ -204,17 +161,14 @@ public class BlockReader {
 				if(! scicosVersion.equals(realScicosVersion) ){
 					return false ;
 				}
-				
-				
-			}else{
+			}
+			else{
 				return false ;
 			}
-			
-			
-		}else{
+		}
+		else{
 			return false ;
 		}
-		
 		
 		return true ;
 	}
@@ -235,29 +189,29 @@ public class BlockReader {
 				// check if all the expecting field's name are present
 				if ( nameOfScs_mFields.length == numberOfFieldInBlock ){
 					for (int i = 0 ; i < numberOfFieldInBlock ; i++){
-						
-						if ( !nameOfScs_mFields[i].equals(realNameOfBlockFields[i]))
+						if ( !nameOfScs_mFields[i].equals(realNameOfBlockFields[i])) {
 								return false ;
-						
+						}
 					}
 				}
-			}else{
+			}
+			else{
 				return false ;
 			}
 			// the second field must contain list of all graphic property (how the block will be displayed )
 			if (( blockFields.get(1) instanceof ScilabMList)) { 
 				fillGraphicsStructure( blockFields, newBlock);
-			}else{
+			}
+			else{
 				return false ;
 			}
  
-			
-			
 			// the third field must contains all the informations needed to compile the block
 			
 			if ((blockFields.get(2) instanceof ScilabMList)) { 
 				fillModelStructure(blockFields, newBlock);
-			}else{
+			}
+			else{
 				return false ;
 			}
 			
@@ -267,20 +221,16 @@ public class BlockReader {
 			if (( blockFields.get(3) instanceof ScilabString)) { 
 				newBlock.setValue(getBlockInterfaceName (blockFields));
 				newBlock.setInterfaceFunctionName( getBlockInterfaceName (blockFields) );
-			}else{
+			}
+			else{
 				return false ;
 			}
 			
 			// the last field must contain a list of nothing aka scicos doc
-			if ((blockFields.get(4) instanceof ScilabList)) { 
-				
-			}else{
+			if (!(blockFields.get(4) instanceof ScilabList)) { 
 				return false ;
 			}
-			
-			
 		}
-		
 		
 		return true ;
 	}
@@ -304,29 +254,23 @@ public class BlockReader {
 				if (nameOfStructureFields.length == numberOfFieldInStructure ){
 					for (int i = 0 ; i < numberOfFieldInStructure ; i++){
 						
-						if ( !nameOfStructureFields[i].equals(realNameOfStructureFields[i]))
+						if ( !nameOfStructureFields[i].equals(realNameOfStructureFields[i])) {
 								return false ;
-						
+						}
 					}
 				}
-			}else{
+			}
+			else{
 				return false ;
 			}
 			
-
-
-			
-			
-			if ((graphicsStructure.get(1) instanceof ScilabDouble)&&// orig : must contain the coord of the block
+			if (!((graphicsStructure.get(1) instanceof ScilabDouble)&&// orig : must contain the coord of the block
 				(graphicsStructure.get(2) instanceof ScilabDouble)&&// sz : must contains the size of the block
 				(graphicsStructure.get(3) instanceof ScilabBoolean )&&// flip
 				(graphicsStructure.get(4) instanceof ScilabDouble)// theta
-				) { 
-			}else{
+				)) { 
 				return false ;
 			}
-			
-		
 			
 			// exprs 
 			if ((graphicsStructure.get(5) instanceof ScilabString)) { 
@@ -334,56 +278,40 @@ public class BlockReader {
 				int size = graphicsStructure.get(5).getHeight();
 				
 				for (int i = 0 ; i < size ; i++){
-					
 					newBlock.getExprs().add(((ScilabString)graphicsStructure.get(5)).getData()[i][0]);
-					
 				}
-				
-				
-			}else{
+			}
+			else{
 				return false ;
 			}
 			
 			// pin
-			if ((graphicsStructure.get(6) instanceof ScilabDouble)) { 
-				
-				//
-			}else{
+			if (!(graphicsStructure.get(6) instanceof ScilabDouble)) { 
 				return false ;
 			}
 			
 			// pout
-			if ((graphicsStructure.get(7) instanceof ScilabDouble)) { 
-				//
-			}else{
+			if (!(graphicsStructure.get(7) instanceof ScilabDouble)) { 
 				return false ;
 			}
 			
 			// pein
-			if ((graphicsStructure.get(8) instanceof ScilabDouble)) { 
-				//
-			}else{
+			if (!(graphicsStructure.get(8) instanceof ScilabDouble)) { 
 				return false ;
 			}
 			
 			// peout
-			if ((graphicsStructure.get(9) instanceof ScilabDouble)) { 
-				//
-			}else{
+			if (!(graphicsStructure.get(9) instanceof ScilabDouble)) { 
 				return false ;
 			}
 			
 			// gr_i
-			if ((graphicsStructure.get(10) instanceof ScilabList)) { 
-				//newBlock.setStyle(  )
-				
-			}else{
+			if (!(graphicsStructure.get(10) instanceof ScilabList)) { 
 				return false ;
 			}
 			
 			// id
-			if ((graphicsStructure.get(11) instanceof ScilabString)) { 
-			}else{
+			if (!(graphicsStructure.get(11) instanceof ScilabString)) { 
 				return false ;
 			}
 			
@@ -391,27 +319,19 @@ public class BlockReader {
 			if ((graphicsStructure.get(12) instanceof ScilabString)) { 
 				String[] implicitExplicitInArray = ((ScilabString)graphicsStructure.get(12)).getData()[0];
 				int size =  implicitExplicitInArray.length ;
-
 				
-				
-			}else if(graphicsStructure.get(12) instanceof ScilabDouble) {
-			}else{
-				return false ;
 			}
-			
-			
+			else {
+				if(!(graphicsStructure.get(12) instanceof ScilabDouble)) {
+					return false ;
+				}
+			}
 			
 			// out_implicit
-			if ((graphicsStructure.get(13) instanceof ScilabString)) { 
-				
-				
-			}else{
+			if (!(graphicsStructure.get(13) instanceof ScilabString)) { 
 				return false ;
 			}
-			
-			
 		}
-		
 		
 		return true ;
 	}
@@ -440,12 +360,13 @@ public class BlockReader {
 				if ( nameOfScs_mFields.length == numberOfFieldInStructure ){
 					for (int i = 0 ; i < numberOfFieldInStructure ; i++){
 						
-						if ( !nameOfScs_mFields[i].equals(realNameOfStructureFields[i]))
+						if ( !nameOfScs_mFields[i].equals(realNameOfStructureFields[i])) {
 								return false ;
-						
+						}
 					}
 				}
-			}else{
+			}
+			else{
 				return false ;
 			}
 				
@@ -454,11 +375,15 @@ public class BlockReader {
 				
 				newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields) );
 				
-			}else if (( modelFields.get(1) instanceof ScilabList)){
-				newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
-				newBlock.setSimulationFunctionType((int) ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);
-			}else{
-				return false ;
+			}
+			else {
+				if (( modelFields.get(1) instanceof ScilabList)){
+					newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
+					newBlock.setSimulationFunctionType((int) ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);
+				}
+				else{
+					return false ;
+				}
 			}
  
 			// fill inputPort (in , in2 , intyp)
@@ -658,7 +583,7 @@ public class BlockReader {
 			
 			//blocktype
 			if ((modelFields.get(16) instanceof ScilabString)) { 
-				
+				newBlock.setBlockType(((ScilabString) modelFields.get(16)).getData()[0][0]);
 			}else{
 				return false ;
 			}
