@@ -250,13 +250,16 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 		return 1;
 	}
 
-	__data = (double*)MALLOC(sizeof(double) * _iRows * _iCols);
-
-	for (i = 0 ; i < _iRows ; ++i)
+	if(_iRows * _iCols)
 	{
-		for (j = 0 ; j < _iCols ; ++j)
+		__data = (double*)MALLOC(sizeof(double) * _iRows * _iCols);
+
+		for (i = 0 ; i < _iRows ; ++i)
 		{
-			__data[i * _iCols + j] = _pdblData[i + _iRows * j];
+			for (j = 0 ; j < _iCols ; ++j)
+			{
+				__data[i * _iCols + j] = _pdblData[i + _iRows * j];
+			}
 		}
 	}
 
@@ -306,7 +309,11 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 	status = H5Dclose (dset);
 	status = H5Sclose (space);
 
-	FREE(__data);
+	if(__data != NULL)
+	{
+		FREE(__data);
+	}
+
 	FREE(pstGroupName);
 	FREE(pstPathName);
 
@@ -972,15 +979,9 @@ void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 	group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
 	status = H5Gclose(group);
 
-	//if(_iNbItem <= 0)
-	//{
-	//	return NULL;
-	//}
-
-	pobjArray = MALLOC(sizeof(hobj_ref_t) * _iNbItem);
-	if(pobjArray == NULL)
+	if(_iNbItem)
 	{
-		return NULL;
+		pobjArray = MALLOC(sizeof(hobj_ref_t) * _iNbItem);
 	}
 
 	return pobjArray;
