@@ -22,8 +22,6 @@
 function XcosMenuMove()
 
   Cmenu = []; //** NB : preserve %pt information 
-mprintf("XcosMenuMove %s %s\n",sci2exp(Select,0,'Select'),sci2exp(%pt,0,'%pt'))
- 
   //** Filter out selection on other windows 
   Select=Select(find(Select(:,2)==curwin),:)
   if Select==[] then
