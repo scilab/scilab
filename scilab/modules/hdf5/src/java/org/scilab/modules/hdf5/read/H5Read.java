@@ -42,7 +42,6 @@ public class H5Read {
 
     private static String getGroupRootName(int fileId, String groupName) throws HDF5LibraryException, NullPointerException {
 	int nb_objs = H5.H5Gn_members(fileId, groupName);
-	System.out.println("Groups "+groupName+" contains "+nb_objs+" objs.");
 	String[] allObjectsName = new String[nb_objs];
 	int[] allObjectsType = new int[nb_objs];
 	H5.H5Gget_obj_info_all(fileId, groupName, allObjectsName, allObjectsType); 
@@ -95,9 +94,36 @@ public class H5Read {
 	return dims;
     }
 
-    public static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
+    public static boolean isEmpty(int dataSetId) throws NullPointerException, HDF5Exception {
+	// Only one attribute (ie CLASS) so the EMPTY attribute is not present
+	if (H5.H5Aget_num_attrs(dataSetId) <= 1) {
+	    return false;
+	}
+	if (readAttribute(dataSetId, H5ScilabConstant.SCILAB_EMPTY).compareTo(H5ScilabConstant.SCILAB_EMPTY_TRUE) == 0) {
+	    return true;
+	}
+	return false;
+    }
+    
+    public static boolean isComplex(int dataSetId) throws NullPointerException, HDF5Exception {
+	// Only one attribute (ie CLASS) so the COMPLEX attribute is not present
+	if (H5.H5Aget_num_attrs(dataSetId) <= 1) {
+	    return false;
+	}
+	if (readAttribute(dataSetId, H5ScilabConstant.SCILAB_COMPLEX).compareTo(H5ScilabConstant.SCILAB_COMPLEX_TRUE) == 0) {
+	    return true;
+	}
+	return false;
+    }
+    
+    private static String readAttribute(int dataSetId, String attributeName) throws NullPointerException, HDF5Exception {
 	int attributeId = -1;
 	try {
+	    // If there is no attribue do not try to open it
+	    // There _must_ be at least one : SCILAB_CLASS
+	    if (H5.H5Aget_num_attrs(dataSetId) <= 0) {
+		return "";
+	    }
 	    attributeId = H5.H5Aopen_name(dataSetId, attributeName);
 	}
 	catch (HDF5AttributeException e) {
