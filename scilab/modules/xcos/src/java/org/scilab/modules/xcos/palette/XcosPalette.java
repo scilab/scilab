@@ -76,9 +76,8 @@ public class XcosPalette extends SwingScilabTab implements Tab
 	setBackground(Color.WHITE);
 	panel = new JPanel();
 	panel.setBackground(Color.WHITE);
-	panel.setSize(500, 500);
 	panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-	panel.setPreferredSize(new Dimension(400, 300));
+	panel.setPreferredSize(new Dimension(600, 600));
 	JScrollPane jsp = new JScrollPane(panel);
 	setContentPane(jsp);
 	

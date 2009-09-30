@@ -15,6 +15,7 @@ package org.scilab.modules.xcos;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -125,7 +126,7 @@ public class Xcos extends SwingScilabTab implements Tab {
 
     	/** Create MATH OPERATIONS palette */
     	String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
-    			"MATDIV", "EXPBLK_f", "MATDIV", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
+    			"MATDIV", "EXPBLK_m", "MATDIV", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
     			"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
     	palette.addTab(createPalette("Math Operations", mathsBlocksNames));
 
@@ -133,12 +134,15 @@ public class Xcos extends SwingScilabTab implements Tab {
     	String[] modelicaBlocksNames = {"MBLOCK", "FROMMO", "GOTOMO", "GotoTagVisibilityMO", "OUTIMPL_f"};
     	palette.addTab(createPalette("Modelica", modelicaBlocksNames));
 
+    	/** Create INTEGER palette */
+    	String[] integerBlocksNames = {"BITCLEAR", "BITSET", "CONVERT", "EXTRACTBITS", "INTMUL", "SHIFT", "LOGIC",
+    			"DLATCH", "DFLIPFLOP", "JKFLIPFLOP", "SRFLIPFLOP"};
+    	palette.addTab(createPalette("Integer", integerBlocksNames));
+    	
     	/** Create USER-DEFINED FUNCTIONS palette */
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
-    			"generic_block3", "TEXT_f", "c_block", "SUPER_f", ""};
+    			"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
     	palette.addTab(createPalette("User-Defined Functions", userdefinedBlocksNames));
-
-
 
     }
     
@@ -151,6 +155,10 @@ public class Xcos extends SwingScilabTab implements Tab {
  	
     	BasicBlock theBloc = null;
     	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
+    		File hdf5 = new File(blocksPath + blocksNames[kBlock] + ".h5");
+    		if (!hdf5.exists()) {
+    			System.err.println(blocksPath + blocksNames[kBlock] + ".h5 does not exists !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    		}
     		theBloc = BlockReader.read(blocksPath + blocksNames[kBlock] + ".h5");
     		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
     		
