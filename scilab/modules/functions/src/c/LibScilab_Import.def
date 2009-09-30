@@ -21,4 +21,5 @@ getrhsvar_
 createvar_
 stack_
 createvarfromptr_
+getWarningMode
 ;

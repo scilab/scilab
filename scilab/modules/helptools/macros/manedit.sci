@@ -31,7 +31,9 @@ function manedit(manitem)
 	end
 	
 	if path <> [] then
-		scipad(path);
+	  if with_module('xpad') then
+		  xpad(path);
+		end
 	end
 	
 endfunction

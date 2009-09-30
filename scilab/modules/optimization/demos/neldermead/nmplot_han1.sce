@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+mprintf("Illustrates the 1st counter example given by Han et al.\n");
 
 //
 // han1 --
@@ -68,8 +69,7 @@ nmplot_display(nm);
 mprintf("Plotting contour...\n");
 [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -2.0 , ymax = 2.0 , nx = 50 , ny = 50 );
 //[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.2 , ymax = 1.2 , nx = 50 , ny = 50 );
-wnum = 100001;
-f = scf(wnum);
+f = scf(100001);
 xset("fpf"," ")
 contour ( xdata , ydata , zdata , [-5 -4 -2 -1 0 1 1.5] )
 nmplot_simplexhistory ( nm );

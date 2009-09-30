@@ -88,7 +88,7 @@ plot2d([mini(xx);maxi(xx)],[mini(yy);maxi(yy)],0,strf,leg,rect,nax);
 
 draw_min=1;
 H=[];
-[FA,IA]=sort(abs(Area));
+[FA,IA]=gsort(abs(Area));
 
 drawlater(); // postpon the drawing here
 a=gca();

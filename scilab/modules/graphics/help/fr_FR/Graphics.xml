@@ -610,14 +610,6 @@
 
     <variablelist>
       <varlistentry>
-        <term><link linkend="xaxis">xaxis</link></term>
-
-        <listitem>
-          <para>dessine un axe</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term><link linkend="graduate">graduate</link></term>
 
         <listitem>

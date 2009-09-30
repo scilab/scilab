@@ -34,7 +34,7 @@
 
         <listitem>
           <para>vecteur ou matrice de nombres réels, entiers ou de chaînes de
-          caractères.</para>
+          caractères ou vecteur creux.</para>
         </listitem>
       </varlistentry>
 
@@ -151,10 +151,9 @@
 
     <para>Si le second argument de retour k est demandé, il contient les
     indices des valeurs triées dans le tableau d'origine. Si
-    <literal>[B,k]=gsort(A,'g')</literal> on a
-    <literal>B==A(k)</literal>. <emphasis role="bold">L'algorithme préserve l'ordre
-    relatif des éléments ayant des valeurs
-    égales.</emphasis></para>
+    <literal>[B,k]=gsort(A,'g')</literal> on a <literal>B==A(k)</literal>.
+    <emphasis role="bold">L'algorithme préserve l'ordre relatif des éléments
+    ayant des valeurs égales.</emphasis></para>
 
     <para>Les matrices ou vecteurs complexes sont triés par rapport au module
     complexe. Seule l'option <literal>'g'</literal> est accessible avec des
@@ -169,7 +168,7 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example"> 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -193,7 +192,7 @@ A=['Scilab' '2.6'
 
 gsort(A,'lr','i')
 gsort(A,'lc','i')
- ]]></programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>
@@ -201,8 +200,6 @@ gsort(A,'lc','i')
 
     <simplelist type="inline">
       <member><link linkend="find">find</link></member>
-
-      <member><link linkend="sort">sort</link></member>
     </simplelist>
   </refsection>
 
@@ -212,6 +209,5 @@ gsort(A,'lc','i')
     <para>Quick sort algorithm from Bentley &amp; McIlroy's "Engineering a
     Sort Function". Software---Practice and Experience,
     23(11):1249-1265</para>
-
   </refsection>
 </refentry>

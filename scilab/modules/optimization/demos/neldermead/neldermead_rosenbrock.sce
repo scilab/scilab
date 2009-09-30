@@ -32,7 +32,18 @@ mprintf("Searching for minimum...\n");
 nm = neldermead_search(nm);
 neldermead_display(nm);
 mprintf("Plot contour...\n");
-[nm , xdata , ydata , zdata ] = neldermead_contour ( nm , xmin = -2.0 , xmax = 2.0 , ymin = -2.0 , ymax = 2.0 , nx = 100 , ny = 100 );
+xmin = -2.0 ; xmax = 2.0 ; ymin = -2.0 ; ymax = 2.0 ; nx = 100 ; ny = 100;
+stepx = (xmax - xmin)/nx
+xdata = xmin:stepx:xmax;
+stepy = (ymax - ymin)/ny
+ydata = ymin:stepy:ymax;
+for ix = 1:length(xdata)
+  for iy = 1:length(ydata)
+    experiment = [xdata(ix) ydata(iy)];
+    [ nm , fiexp ] = neldermead_function ( nm , experiment );
+    zdata ( ix , iy ) = fiexp;
+  end
+end
 wnum = 100001;
 my_handle             = scf(wnum);
 contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )

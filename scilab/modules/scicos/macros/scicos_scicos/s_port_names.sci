@@ -68,20 +68,20 @@ function s_port_names(sbloc)
     end
   end
   if inp<>[] then
-    [tmp,n_in]=sort(-inp)
+    [tmp,n_in]=gsort(-inp)
     standard_etiquette(sbloc, etiquettes_in(n_in), 'in')
   end
 
   if outp<>[] then
-    [tmp,n_out]=sort(-outp)
+    [tmp,n_out]=gsort(-outp)
     standard_etiquette(sbloc, etiquettes_out(n_out), 'out')
   end
   if cinp<>[] then
-    [tmp,n_cin]=sort(-cinp)
+    [tmp,n_cin]=gsort(-cinp)
     standard_etiquette(sbloc, etiquettes_clkin(n_cin), 'clkin')
   end
   if coutp<>[] then
-    [tmp,n_cout]=sort(-coutp)
+    [tmp,n_cout]=gsort(-coutp)
     standard_etiquette(sbloc, etiquettes_clkout(n_cout), 'clkout')
   end
   xset('font',font(1),font(2))

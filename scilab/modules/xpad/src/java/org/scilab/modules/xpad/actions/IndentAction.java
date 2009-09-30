@@ -31,16 +31,8 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public void doAction() {
-		
-		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-		
-//		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
-//
-//		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-//
-//		getEditor().getTextPane().setCaretPosition(initial_caret_position);
-		
+		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
+		styleDocument.indent(getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
 	}
 
 	public static MenuItem createMenu(Xpad editor) {

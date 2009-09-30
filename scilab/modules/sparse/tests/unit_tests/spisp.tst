@@ -16,12 +16,12 @@ A = sprand(n,m,0.1) + %i*sprand(n,m,0.1);
 B = sprand(mi,ni,0.7) +%i*sprand(mi,ni,0.7);
 
 ii = ["grand(mi,1,""uin"",1,m)";
-      "-sort(-grand(mi,1,""uin"",1,m))";
+      "-gsort(-grand(mi,1,""uin"",1,m))";
       "1:mi";
       "m:-1:(m-mi+1)";
       "m-5:m+mi-6"];
 jj = ["grand(ni,1,""uin"",1,n)";
-      "-sort(-grand(ni,1,""uin"",1,n))";
+      "-gsort(-grand(ni,1,""uin"",1,n))";
       "1:ni";
       "n:-1:(n-ni+1)";
       "n-2:n+ni-3"];

@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 
+mprintf("Illustrates the Nelder-Mead algorithm on Rosenbrock test case.\n");
 mprintf("Defining Rosenbrock function...\n");
 function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;

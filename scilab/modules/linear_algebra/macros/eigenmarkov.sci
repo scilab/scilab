@@ -20,7 +20,7 @@ function [M,Q]=eigenmarkov(P)
 //from x. 
   [perm,rec1,tr1,indsRec,indsT]=classmarkov(P)
   Mn=P(perm,perm);
-  [junk,perminv]=-sort(-perm);perminv=-perminv;
+  [junk,perminv]=-gsort(-perm);perminv=-perminv;
   nr=sum(rec1);
   T=Mn(nr+1:$,nr+1:$);L=Mn(nr+1:$,1:nr);
   p=0;V=[];

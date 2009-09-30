@@ -121,7 +121,7 @@ int sci_fileparts(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	splitpathW(pStVarOne, drv, dir, name, ext);
+	splitpathW(pStVarOne, FALSE, drv, dir, name, ext);
 
 	if (pStVarTwo) /* Rhs == 2 */
 	{

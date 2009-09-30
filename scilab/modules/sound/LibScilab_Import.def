@@ -2,15 +2,11 @@ LIBRARY    LibScilab.dll
 
 
 EXPORTS
- putlhsvar_
- createvar_
- stack_
  com_
- getrhsvar_
+ intersci_
+ putlhsvar_
  checklhs_
  checkrhs_
- intersci_
- createvarfromptr_
  callFunctionFromGateway
  ;
 
