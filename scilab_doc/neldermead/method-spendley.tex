@@ -12,7 +12,7 @@ are involving only 2 variables and are based on a quadratic function.
 The last numerical experiment explores the behaviour of the algorith
 when the number of variables increases.
 
-\section{Analysis}
+\section{Introduction}
 
 In this section, we present Spendley's et al algorithm for unconstrained optimization.
 This algorithm is based on the iterative update of a simplex. 
@@ -23,6 +23,14 @@ during the algorithm. This allows to understand when exactly a reflection
 or a shrink is performed in practice.
 
 \subsection{Algorithm}
+
+The goal of Spendley's et al. algorithm is to solve the 
+following unconstrained optimization problem
+\begin{eqnarray}
+\min f(x)
+\end{eqnarray}
+where $x\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+function $f:\RR^n\rightarrow \RR$.
 
 The simplex algorithms are based on the iterative update of 
 a \emph{simplex} made of $n+1$ points $S=\{x_i\}_{i=1,n+1}$. Each point 
