@@ -45,14 +45,7 @@ function [scs_m] = do_smart_move(%pt, scs_m)
   //** "wh" is a parameter valid ONLY for the links:
   //**       if negative polyline closest point is a polyline corner: pt = [xp(-ind) yp(-ind)]
   //**       if positive pt lies on segment [ind ind+1]
-  //**
-  //** "wh" shortcut for "where", ia an INDEX for the polyline matrix that contains
-  //**      the polylines coordinate.
-  //**      If "wh" is positive means that the user has clicked near a link segment:
-  //**          the 'wh' INDEX point to starting point of the segment clicked ;
-  //**      If "wh" is negative means that the user has clicked near a corner,
-  //**          then 'wh' is the INDEX of that corner coordinates
-  //**
+ 
 
   if k==[] then
     return
