@@ -139,6 +139,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     			"DLATCH", "DFLIPFLOP", "JKFLIPFLOP", "SRFLIPFLOP"};
     	palette.addTab(createPalette("Integer", integerBlocksNames));
     	
+    	/** Create SINKS palette */
+    	String[] sinksBlocksNames = {"CSCOPE"};
+    	palette.addTab(createPalette("Sinks", sinksBlocksNames));
+    	
     	/** Create USER-DEFINED FUNCTIONS palette */
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
     			"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
