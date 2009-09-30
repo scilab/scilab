@@ -156,6 +156,8 @@ Dynamic link:
   see help of 'ilib_gen_gateway' about this modification and 
   SCI/contrib/toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce (example)
 
+* ilib_gen_loader now generates loaders than can be excuted outside the loader's directory
+
 Online Help :
 =============
 
