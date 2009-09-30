@@ -16,11 +16,12 @@ import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class DeleteAction extends DefaultAction {
 
     private DeleteAction(Xpad editor) {
-	super("Delete", editor);
+	super(XpadMessages.DELETE, editor);
     }
     
     public void doAction() {
@@ -28,7 +29,7 @@ public class DeleteAction extends DefaultAction {
     }
 
     public static MenuItem createMenu(Xpad editor) {
-	return createMenu("Delete", null, new DeleteAction(editor), null);
+	return createMenu(XpadMessages.DELETE, null, new DeleteAction(editor), null);
     }
     
 }

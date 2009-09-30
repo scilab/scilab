@@ -26,12 +26,13 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class DefaultAction extends CallBack {
     private Xpad _editor;
 
     private DefaultAction(Xpad editor) {
-	super("Default...");
+	super( XpadMessages.DEFAULT + "...");
 	_editor = editor;
     }
 
