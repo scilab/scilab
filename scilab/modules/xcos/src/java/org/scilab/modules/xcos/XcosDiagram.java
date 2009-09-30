@@ -389,8 +389,6 @@ public class XcosDiagram extends ScilabGraph {
 	// Go over all blocks to dump it inside Scilab Structure
 	for (int i = 0 ; i < blockList.size() ; ++i) {
 	    blockList.get(i).setOrdering(i + 1);
-	    System.out.println(blockList.get(i).getGeometry().getX());
-	    System.out.println(blockList.get(i).getGeometry().getY());
 	    data.add(blockList.get(i).getAsScilabObj());
 	}
 
