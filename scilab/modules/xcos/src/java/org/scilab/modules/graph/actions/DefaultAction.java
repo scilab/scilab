@@ -44,9 +44,6 @@ public class DefaultAction extends CallBack {
     	super(label);
     	_scilabGraph = scilabGraph;
         }
-   public void actionPerformed(ActionEvent e) {
-	JOptionPane.showMessageDialog(null, "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
-    }
 
     /**
      * 

@@ -25,18 +25,18 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class RunAction  extends DefaultAction {
+public class StartAction  extends DefaultAction {
 
-	public RunAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.RUN, scilabGraph);
+	public StartAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.START, scilabGraph);
 	}
 
-	public static PushButton runButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.RUN, null, new RunAction(scilabGraph));
+	public static PushButton createButton(ScilabGraph scilabGraph) {
+		return createButton(XcosMessages.START, null, new StartAction(scilabGraph));
 	}
 
-	public static MenuItem runMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.RUN, null, new RunAction(scilabGraph), null);
+	public static MenuItem createMenu(ScilabGraph scilabGraph) {
+		return createMenu(XcosMessages.START, null, new StartAction(scilabGraph), null);
 	}
 
 	public void actionPerformed(ActionEvent e) {
