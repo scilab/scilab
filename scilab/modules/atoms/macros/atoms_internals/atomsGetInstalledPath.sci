@@ -11,12 +11,6 @@
 
 function res = atomsGetInstalledPath(name,version,allusers)
 	
-	// Load Atoms Internals lib if it's not already loaded
-	// =========================================================================
-	if ~ exists("atomsinternalslib") then
-		load("SCI/modules/atoms/macros/atoms_internals/lib");
-	end
-	
 	rhs           = argn(2);
 	res           = [];
 	installed     = []; // Column vector that contain user repositories
