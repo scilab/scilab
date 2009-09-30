@@ -89,7 +89,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
 	int iNbItem = 0;
 	iNbItem = getVariableNames(iFile, NULL);
-	char** pstVarNameList = (char**)malloc(sizeof(char*) * iNbItem);
+	char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
 	iNbItem = getVariableNames(iFile, pstVarNameList);
 
 	bool bImport = false;
@@ -210,13 +210,13 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	{
 		if(iComplex)
 		{
-			pdblReal	= (double *) malloc(iRows * iCols * sizeof(double));
-			pdblImg		= (double *) malloc(iRows * iCols * sizeof(double));
+			pdblReal	= (double *) MALLOC(iRows * iCols * sizeof(double));
+			pdblImg		= (double *) MALLOC(iRows * iCols * sizeof(double));
 			iRet			= readDoubleComplexMatrix(_iDatasetId, iRows, iCols, pdblReal, pdblImg);
 		}
 		else
 		{
-			pdblReal	= (double *) malloc(iRows * iCols * sizeof(double));
+			pdblReal	= (double *) MALLOC(iRows * iCols * sizeof(double));
 			iRet			= readDoubleMatrix(_iDatasetId, iRows, iCols, pdblReal);
 		}
 		if(iRet)
@@ -254,12 +254,12 @@ static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	if(pdblReal)
 	{
-		free(pdblReal);
+		FREE(pdblReal);
 	}
 
 	if(pdblImg)
 	{
-		free(pdblImg);
+		FREE(pdblImg);
 	}
 
 	if(iRet)
@@ -284,7 +284,7 @@ static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 		return false;
 	}
 
-	pstData = (char **) malloc(iRows * iCols * sizeof(char*));
+	pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
 	iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
 	if(iRet)
 	{
@@ -306,9 +306,9 @@ static bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		free(pstData[i]);
+		FREE(pstData[i]);
 	}
-	free(pstData);
+	FREE(pstData);
 
 	if(iRet)
 	{
@@ -342,7 +342,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	case SCI_INT8 : 
 		{
 			char* pcData	= NULL;
-			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			pcData = (char*)MALLOC(sizeof(char) * iRows * iCols);
 			iRet = readInterger8Matrix(_iDatasetId, iRows, iCols, pcData);
 			if(iRet)
 			{
@@ -362,7 +362,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	case SCI_INT16 : 
 		{
 			short* psData	= NULL;
-			psData = (short*)malloc(sizeof(short) * iRows * iCols);
+			psData = (short*)MALLOC(sizeof(short) * iRows * iCols);
 			iRet = readInterger16Matrix(_iDatasetId, iRows, iCols, psData);
 			if(iRet)
 			{
@@ -382,7 +382,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 	case SCI_INT32 : 
 		{
 			int* piData	= NULL;
-			piData = (int*)malloc(sizeof(int) * iRows * iCols);
+			piData = (int*)MALLOC(sizeof(int) * iRows * iCols);
 			iRet = readInterger32Matrix(_iDatasetId, iRows, iCols, piData);
 			if(iRet)
 			{
@@ -403,7 +403,7 @@ static bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char
 		{
 #ifdef __SCILAB_INT64__
 			char* pcData	= NULL;
-			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			pcData = (char*)MALLOC(sizeof(char) * iRows * iCols);
 			iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pcData);
 			if(iRet)
 			{
@@ -445,7 +445,7 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char
 
 	if(iRows * iCols != 0)
 	{
-		piData		= (int *) malloc(iRows * iCols * sizeof(int));
+		piData		= (int *) MALLOC(iRows * iCols * sizeof(int));
 		iRet			= readBooleanMatrix(_iDatasetId, iRows, iCols, piData);
 		if(iRet)
 		{
@@ -468,7 +468,7 @@ static bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char
 
 	if(piData)
 	{
-		free(piData);
+		FREE(piData);
 	}
 
 	if(iRet)
@@ -503,15 +503,15 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 
 	if(iComplex)
 	{
-		piNbCoef		= (int*)malloc(iRows * iCols * sizeof(int));
-		pdblReal		= (double**)malloc(iRows * iCols * sizeof(double*));
-		pdblImg			= (double**)malloc(iRows * iCols * sizeof(double*));
+		piNbCoef		= (int*)MALLOC(iRows * iCols * sizeof(int));
+		pdblReal		= (double**)MALLOC(iRows * iCols * sizeof(double*));
+		pdblImg			= (double**)MALLOC(iRows * iCols * sizeof(double*));
 		iRet				= readPolyComplexMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 	}
 	else
 	{
-		piNbCoef		= (int*)malloc(iRows * iCols * sizeof(int));
-		pdblReal		= (double**)malloc(iRows * iCols * sizeof(double*));
+		piNbCoef		= (int*)MALLOC(iRows * iCols * sizeof(int));
+		pdblReal		= (double**)MALLOC(iRows * iCols * sizeof(double*));
 		iRet				= readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
 	}
 
@@ -549,10 +549,10 @@ static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
-		free(pdblReal[i]);
+		FREE(pdblReal[i]);
 	}
-	free(pdblReal);
-	free(piNbCoef);
+	FREE(pdblReal);
+	FREE(piNbCoef);
 
 	if(iRet)
 	{
@@ -586,17 +586,17 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 
 	if(iComplex)
 	{
-		piNbItemRow				= (int*)malloc(iRows * sizeof(int));
-		piColPos					= (int*)malloc(iNbItem * sizeof(int));
-		pdblReal					= (double*)malloc(iNbItem * sizeof(double));
-		pdblImg						= (double*)malloc(iNbItem * sizeof(double));
+		piNbItemRow				= (int*)MALLOC(iRows * sizeof(int));
+		piColPos					= (int*)MALLOC(iNbItem * sizeof(int));
+		pdblReal					= (double*)MALLOC(iNbItem * sizeof(double));
+		pdblImg						= (double*)MALLOC(iNbItem * sizeof(double));
 		iRet							= readSparseComplexMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
 	}
 	else
 	{
-		piNbItemRow				= (int*)malloc(iRows * sizeof(int));
-		piColPos					= (int*)malloc(iNbItem * sizeof(int));
-		pdblReal					= (double*)malloc(iNbItem * sizeof(double));
+		piNbItemRow				= (int*)MALLOC(iRows * sizeof(int));
+		piColPos					= (int*)MALLOC(iNbItem * sizeof(int));
+		pdblReal					= (double*)MALLOC(iNbItem * sizeof(double));
 		iRet							= readSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
 	}
 
@@ -632,12 +632,12 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 	sprintf(pstMsg, "sparse (%d x %d)", iRows, iCols);
 	print_tree(pstMsg);
 
-	free(piNbItemRow);
-	free(piColPos);
-	free(pdblReal);
+	FREE(piNbItemRow);
+	FREE(piColPos);
+	FREE(pdblReal);
 	if(iComplex)
 	{
-		free(pdblImg);
+		FREE(pdblImg);
 	}
 
 
@@ -666,8 +666,8 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddres
 	}
 
 
-	piNbItemRow				= (int*)malloc(iRows * sizeof(int));
-	piColPos					= (int*)malloc(iNbItem * sizeof(int));
+	piNbItemRow				= (int*)MALLOC(iRows * sizeof(int));
+	piColPos					= (int*)MALLOC(iNbItem * sizeof(int));
 	iRet							= readBooleanSparseMatrix(_iDatasetId, iRows, iCols, iNbItem, piNbItemRow, piColPos);
 	if(iRet)
 	{
@@ -687,8 +687,8 @@ static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddres
 	sprintf(pstMsg, "boolean sparse (%d x %d)", iRows, iCols);
 	print_tree(pstMsg);
 
-	free(piNbItemRow);
-	free(piColPos);
+	FREE(piNbItemRow);
+	FREE(piColPos);
 
 
 	if(iRet)
