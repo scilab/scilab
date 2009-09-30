@@ -26,7 +26,7 @@ Source: modules\{#MATIO}\etc\{#MATIO}.start; DestDir: {app}\modules\{#MATIO}\etc
 ;
 Source: modules\{#MATIO}\help\addchapter.sce; DestDir: {app}\modules\{#MATIO}\help; Flags: recursesubdirs; Components:  {#COMPN_MATIO}
 ;
-Source: modules\{#MATIO}\includes\*.h; DestDir: {app}\modules\{#MATIO}\includes; Components: {#COMPN_MATIO}
+;Source: modules\{#MATIO}\includes\*.h; DestDir: {app}\modules\{#MATIO}\includes; Components: {#COMPN_MATIO}
 ;
 Source: modules\{#MATIO}\macros\lib; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\macros\names; DestDir: {app}\modules\{#MATIO}\macros; Components: {#COMPN_MATIO}
