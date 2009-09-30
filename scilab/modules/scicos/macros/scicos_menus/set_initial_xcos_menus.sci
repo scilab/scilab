@@ -127,7 +127,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
 
   Help     = ['?',                            _("?");
               'XcosMenuHelp',                 _("Help");
-              'XcosMenuScicosDocumentation',  _("Scicos Documentation");
+              'XcosMenuScicosDoc',            _("Scicos Documentation");
 	      'XcosMenuDemos',                _("Demos");
 	      'XcosMenuAboutScicos',          _("About Scicos")];
 
