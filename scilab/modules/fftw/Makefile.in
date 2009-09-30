@@ -42,7 +42,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -62,8 +61,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(am__libscifftw_la_include_HEADERS_DIST) \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/fftw
@@ -111,8 +109,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_etcdir)" \
 	"$(DESTDIR)$(libscifftw_la_rootdir)" \
-	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscifftw_la_includedir)"
+	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES =  \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -168,9 +165,6 @@ SOURCES = $(libscifftw_la_SOURCES)
 DIST_SOURCES = $(am__libscifftw_la_SOURCES_DIST)
 DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_root_DATA) \
 	$(libscifftw_la_sci_gateway_DATA)
-am__libscifftw_la_include_HEADERS_DIST = includes/gw_fftw.h \
-	includes/dynlib_fftw.h includes/with_fftw.h
-HEADERS = $(libscifftw_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -456,13 +450,6 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 @FFTW_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
 @FFTW_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes \
 @FFTW_TRUE@			$(FFTW3_CFLAGS)
-
-
-#### fftw : include files ####
-@FFTW_TRUE@libscifftw_la_includedir = $(pkgincludedir)
-@FFTW_TRUE@libscifftw_la_include_HEADERS = includes/gw_fftw.h \
-@FFTW_TRUE@includes/dynlib_fftw.h \
-@FFTW_TRUE@includes/with_fftw.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -800,26 +787,6 @@ uninstall-libscifftw_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscifftw_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)" && rm -f $$files
-install-libscifftw_la_includeHEADERS: $(libscifftw_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscifftw_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscifftw_la_includedir)"
-	@list='$(libscifftw_la_include_HEADERS)'; test -n "$(libscifftw_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscifftw_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscifftw_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscifftw_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscifftw_la_include_HEADERS)'; test -n "$(libscifftw_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscifftw_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscifftw_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -906,9 +873,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifftw_la_etcdir)" "$(DESTDIR)$(libscifftw_la_rootdir)" "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)" "$(DESTDIR)$(libscifftw_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifftw_la_etcdir)" "$(DESTDIR)$(libscifftw_la_rootdir)" "$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -960,7 +927,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscifftw_la_etcDATA \
-	install-libscifftw_la_includeHEADERS \
 	install-libscifftw_la_rootDATA \
 	install-libscifftw_la_sci_gatewayDATA
 
@@ -1009,7 +975,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscifftw_la_etcDATA \
-	uninstall-libscifftw_la_includeHEADERS \
 	uninstall-libscifftw_la_rootDATA \
 	uninstall-libscifftw_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1025,9 +990,7 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libscifftw_la_etcDATA \
-	install-libscifftw_la_includeHEADERS \
-	install-libscifftw_la_rootDATA \
+	install-libscifftw_la_etcDATA install-libscifftw_la_rootDATA \
 	install-libscifftw_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1035,7 +998,6 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-libscifftw_la_etcDATA \
-	uninstall-libscifftw_la_includeHEADERS \
 	uninstall-libscifftw_la_rootDATA \
 	uninstall-libscifftw_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
