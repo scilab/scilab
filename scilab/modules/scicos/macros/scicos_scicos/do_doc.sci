@@ -25,10 +25,8 @@ function [scs_m,ok] = do_doc(scs_m,%pt)
     messagebox("Only one block can be selected in current window for this operation.","modal")
     Cmenu=[];ok=%f;return
   end
-  
   if K==[] then
-    xc = %pt(1); yc=%pt(2); %pt=[]
-    K  = getblock(scs_m,[xc;yc])
+    K  = getblock(scs_m,%pt(:))
     if K==[] then Cmenu=[];ok=%f;return,end
   else
     K=Select(K,1)
