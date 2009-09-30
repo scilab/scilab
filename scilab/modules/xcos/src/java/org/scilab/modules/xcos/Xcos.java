@@ -140,12 +140,33 @@ public class Xcos extends SwingScilabTab implements Tab {
     	palette.addTab(createPalette("Integer", integerBlocksNames));
     	
     	/** Create SINKS palette */
-    	String[] sinksBlocksNames = {"CSCOPE"};
+    	String[] sinksBlocksNames = {"CFSCOPE", "CANIMXY", "CSCOPE", "CSCOPXY", "TOWS_c", "CMAT3D", "CSCOPXY3D", "CANIMXY3D",
+    			"CMATVIEW", "CMSCOPE", "AFFICH_m", "TRASH_f"};
     	palette.addTab(createPalette("Sinks", sinksBlocksNames));
+    	
+      	/** Create PORT ACTION palette */
+    	String[] portactionBlocksNames = {"Extract_Activation", "IFTHEL_f", "ESELECT_f", "EDGE_TRIGGER"};
+    	palette.addTab(createPalette("Port Action", portactionBlocksNames));
+    	
+    	/** Create DISCRETE palette */
+    	String[] discreteBlocksNames = {"DLRADAPT_f", "DLR", "DLSS", "DELAY_f", "DOLLAR_f", "DELAYV_f"};
+    	palette.addTab(createPalette("Discrete", discreteBlocksNames));
+    	
+      	/** Create EVENTS palette */
+    	String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "GotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
+    			"CLKSOMV_f", "CLOCK_c", "EVTGEN_f", "EVTVARDLY", "M_freq", "ANDBLK", "HALT_f", "freq_div", "ANDLOG_f",
+    			"EVTDLY_c", "IFTHEL_f", "CEVENTSCOPE"};
+    	palette.addTab(createPalette("Events", eventsBlocksNames));
     	
     	/** Create SIGNAL ROUTING palette */
     	String[] routingBlocksNames = {"MUX", "DEMUX"};
     	palette.addTab(createPalette("Signal Routing", routingBlocksNames));
+    	
+    	/** Create COMMONLY USED BLOCKS palette */
+    	String[] commonBlocksNames = {"DEMUX", "MUX", "NRMSOM_f", "OUT_f", "IN_f", "RELATIONALOP", "PRODUCT", "BIGSOM_f",
+    			"DOLLAR_f", "INTEGRAL_f", "CONST_m", "SATURATION", "CMSCOPE", "CSCOPXY", "ANDBLK", "LOGICAL_OP", "SWITCH2_m",
+    			"CONVERT", "TEXT_f"};
+    	palette.addTab(createPalette("Commonly Used Blocks", commonBlocksNames));
     	
     	/** Create USER-DEFINED FUNCTIONS palette */
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
