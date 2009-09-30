@@ -1133,7 +1133,10 @@ AC_PCRE()
 
 WITH_TKSCI=no
 if test "$with_tk" != no; then
-
+   if test "$MACOSX" = "1"; then
+      AC_MSG_ERROR([Due to technical constraints, Tcl/Tk must be disabled under Mac OS X (--without-tk)])
+   fi
+   
 	# check user arguments
 	USER_TCL_LIB_PATH=""
 	USER_TCL_INC_PATH=""
