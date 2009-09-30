@@ -31,17 +31,16 @@ mprintf("XcosMenuMove %s %s\n",sci2exp(Select,0,'Select'),sci2exp(%pt,0,'%pt'))
     if k<>[] then
        Select=[k,curwin]
     else
-      Cmenu = "XcosMenuMove"
+      Cmenu = "XcosMenuMove" //re-enter waitaing for a click
       return
     end
   end
 
   if  size(Select,1)==1 & typeof(scs_m.objs(Select(1,1)))=="Link" then
-  //** if ONE  link is selected 
-     scs_m = do_stupidmove_corner(%pt, Select,scs_m) ; 
+    //** ONE  link is selected (move a corner or add and move a corner)
+    scs_m = do_stupidmove_corner(%pt, Select,scs_m) ; 
   else //** multiple object or single block move
-
-      scs_m = do_stupidMultimove(%pt, Select, scs_m) ; //** move multiple objects
+    scs_m = do_stupidMultimove(%pt, Select, scs_m) ; //** move multiple objects
   end
 
   %pt = [];
