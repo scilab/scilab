@@ -23,7 +23,6 @@
 function [scs_m] = prt_align(scs_m)
 //** 25/07/07: Al@n's patch for rotation of blocks
 //** 24/06/2009: Serge Steer  not to take care of selected blocs  
-
   [btn, xc1 ,yc1 ,win ,str ] = xclick() ;
 
   //** check if first click is on a block
@@ -33,12 +32,12 @@ function [scs_m] = prt_align(scs_m)
   else
     return
   end
+
   //
   while %t
     [btn,%pt2,win,Cmenu] = cosclick() ;
-    // check if second click is on
-    // a block
-    if Cmenu<>[] & Cmenu<>'SelectLink' then
+    // check if second click is on a block
+    if Cmenu<>[] & Cmenu<>'XcosMenuSelectLink' then
       [%win,Cmenu,%pt] = resume(win,Cmenu,%pt2)
     end
     xc2=%pt2(1);
