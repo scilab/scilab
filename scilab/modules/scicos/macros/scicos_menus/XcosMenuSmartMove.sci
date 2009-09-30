@@ -23,6 +23,6 @@ function XcosMenuSmartMove()
   
   Cmenu = [];
   
-  [scs_m] = do_move(%pt, scs_m) ;
+  [scs_m] = do_smart_move(%pt, scs_m) ;
   
 endfunction
