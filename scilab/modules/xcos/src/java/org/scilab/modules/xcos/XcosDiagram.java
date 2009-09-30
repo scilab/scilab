@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
-
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
@@ -235,7 +233,6 @@ public class XcosDiagram extends ScilabGraph {
 
 		if (arg0.getClickCount() >= 2 && cell != null)
 		{
-		    System.out.println("cell="+getLabel(cell));
 		    if (cell instanceof BasicBlock) {
 			BasicBlock block = (BasicBlock) cell;
 			block.openBlockSettings();

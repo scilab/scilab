@@ -44,7 +44,6 @@ public class RunAction  extends DefaultAction {
 	File temp;
 	try {
 	    temp = File.createTempFile("xcos",".hdf5");
-	    System.err.println("File = "+temp.getAbsolutePath());
 	    temp.delete();
 	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
 	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos_simulate(scs_m);");

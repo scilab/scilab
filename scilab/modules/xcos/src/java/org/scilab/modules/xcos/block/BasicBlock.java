@@ -13,17 +13,9 @@
 package org.scilab.modules.xcos.block;
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
@@ -71,6 +63,19 @@ public class BasicBlock extends mxCell {
 	C_OR_FORTRAN,
 	SCILAB;
 
+	public static SimulationFunctionType convertScilabValue(int scilabValue) {
+	    switch (scilabValue) {
+	    case 0:
+		return DEFAULT;
+	    case 4:
+		return C_OR_FORTRAN;
+	    case 5:
+		return SCILAB;
+	    default:
+		return DEFAULT;
+	    }
+	}
+
 	public double getAsDouble() {
 	    switch (this) {
 	    case DEFAULT:
@@ -117,6 +122,10 @@ public class BasicBlock extends mxCell {
 
     public String getSimulationFunctionName() {
 	return simulationFunctionName;
+    }
+
+    public void setSimulationFunctionType(int scilabValue) {
+	this.simulationFunctionType = SimulationFunctionType.convertScilabValue(scilabValue);
     }
 
     public void setSimulationFunctionType(SimulationFunctionType simulationFunctionType) {
@@ -324,7 +333,7 @@ public class BasicBlock extends mxCell {
 
 	model.add(getAllPortsDataLines(outputPorts)); // out
 
-	model.add(getAllPortsDataColumns(inputPorts)); // out2
+	model.add(getAllPortsDataColumns(outputPorts)); // out2
 
 	model.add(getAllPortsDataType(outputPorts)); // outtyp
 
@@ -443,6 +452,7 @@ public class BasicBlock extends mxCell {
     }
 
     private ScilabDouble getAllPortsDataColumns(List ports) {
+	boolean allZeros = true;
 	if (ports.isEmpty()) {
 	    return new ScilabDouble();
 	}
@@ -450,6 +460,13 @@ public class BasicBlock extends mxCell {
 	double[][] data = new double[ports.size()][1];
 	for (int i = 0 ; i < ports.size() ; ++i) {
 	    data[i][0] = ((BasicPort) ports.get(i)).getDataColumns();
+	    if(data[i][0] != 0) {
+		allZeros = false;
+	    }
+	}
+
+	if(allZeros) {
+	    return new ScilabDouble();
 	}
 
 	return new ScilabDouble(data);
@@ -482,10 +499,6 @@ public class BasicBlock extends mxCell {
     public void updateBlockSettings(BasicBlock modifiedBlock) {
 	this.setDependsOnT(modifiedBlock.dependsOnT());
 	this.setDependsOnU(modifiedBlock.dependsOnU());
-
-	
-	System.err.println("new Exprs = "+modifiedBlock.getExprs());
-	
 	this.setExprs(modifiedBlock.getExprs());
 	this.setRealParameters(modifiedBlock.getRealParameters());
 	this.setIntegerParameters(modifiedBlock.getIntegerParameters());
@@ -504,11 +517,9 @@ public class BasicBlock extends mxCell {
 	    H5Write.writeInDataSet(file_id, "scs_m", getAsScilabObj());
 	    H5Write.closeFile(file_id);
 	    InterpreterManagement.requestScilabExec("xcosBlockInterface(\""+tempOutput.getAbsolutePath()+"\", \""+tempInput.getAbsolutePath()+"\", "+getInterfaceFunctionName()+", \"set\");");
-	    System.err.println("=== Now Waiting ===");
 	    Thread launchMe = new Thread() {
 		public void run() {
 		    Signal.wait(tempInput.getAbsolutePath());
-		    System.err.println("=== Now Waking up !!! ===");
 		    // Now read new Block
 		    BasicBlock modifiedBlock = BlockReader.read(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);

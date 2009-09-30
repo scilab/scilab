@@ -12,9 +12,6 @@
 
 package org.scilab.modules.xcos.block;
 
-import ncsa.hdf.hdf5lib.exceptions.HDF5LibraryException;
-
-import org.scilab.modules.hdf5.H5ScilabConstant;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.scilabTypes.ScilabBoolean;
 import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
@@ -22,9 +19,7 @@ import org.scilab.modules.hdf5.scilabTypes.ScilabList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
 import org.scilab.modules.hdf5.scilabTypes.ScilabString;
 import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
-import org.scilab.modules.hdf5.write.H5Write;
 import org.scilab.modules.xcos.block.sinusoid.SinusoidBlock;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.ExplicitInputPort;
@@ -460,10 +455,8 @@ public class BlockReader {
 				newBlock.setSimulationFunctionName(getBlockSimulationFunctionName(modelFields) );
 				
 			}else if (( modelFields.get(1) instanceof ScilabList)){
-				
-				newBlock.setSimulationFunctionName( ((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0] + " "+ ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);   
-;
-				
+				newBlock.setSimulationFunctionName(((ScilabString)((ScilabList) modelFields.get(1)).get(0)).getData()[0][0]);   
+				newBlock.setSimulationFunctionType((int) ((ScilabDouble)((ScilabList) modelFields.get(1)).get(1)).getRealPart()[0][0]);
 			}else{
 				return false ;
 			}
