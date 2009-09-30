@@ -22,14 +22,14 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class StopAction  extends DefaultAction {
+public class StopAction extends DefaultAction {
 	
 	public StopAction(ScilabGraph scilabGraph) {
 		super(XcosMessages.STOP, scilabGraph);
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.STOP, null, new StopAction(scilabGraph));
+		return createButton(XcosMessages.STOP, "process-stop.png", new StopAction(scilabGraph));
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {

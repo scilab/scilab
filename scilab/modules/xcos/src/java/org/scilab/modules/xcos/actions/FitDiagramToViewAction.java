@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.actions;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class FitDiagramToViewAction extends DefaultAction {
@@ -26,4 +27,9 @@ public class FitDiagramToViewAction extends DefaultAction {
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.FIT_DIAGRAM_TO_VIEW, null, new FitDiagramToViewAction(scilabGraph), null);
 	}
+	
+	public static PushButton createButton(ScilabGraph scilabGraph) {
+		return createButton(XcosMessages.FIT_DIAGRAM_TO_VIEW, "view-fullscreen.png", new FitDiagramToViewAction(scilabGraph));
+	}
+
 }

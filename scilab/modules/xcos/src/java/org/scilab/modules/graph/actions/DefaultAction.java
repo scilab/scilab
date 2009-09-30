@@ -83,6 +83,7 @@ public class DefaultAction extends CallBack {
 	else {
 	    ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(new ImageIcon(System.getenv("SCI")+"/modules/xcos/images/icons/"+icon));
 	}
+	((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(title);
 	return button;
     }
 

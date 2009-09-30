@@ -29,7 +29,7 @@ import com.mxgraph.swing.util.mxGraphActions;
 public class ZoomOutAction extends DefaultAction implements ActionListener {
 
 	public static PushButton zoomoutButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_OUT, null, new ZoomOutAction(scilabGraph));
+		return createButton(ScilabGraphMessages.ZOOM_OUT, "list-remove.png", new ZoomOutAction(scilabGraph));
 	}
 
 	public static MenuItem zoomoutMenu(ScilabGraph scilabGraph) {
