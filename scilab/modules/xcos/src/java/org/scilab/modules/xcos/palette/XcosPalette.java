@@ -218,9 +218,8 @@ public class XcosPalette extends SwingScilabTab implements Tab
     public void setPreferredWidth(int width)
     {
 	int cols = width / 55;
-	setPreferredSize(new Dimension(width,
-		(getComponentCount() * 55 / cols) + 30));
-	revalidate();
+	panel.setPreferredSize(new Dimension(width, (getComponentCount() * 55 / cols) + 30));
+	panel.revalidate();
     }
 
     /**
@@ -283,10 +282,11 @@ public class XcosPalette extends SwingScilabTab implements Tab
 	// Scales the image if it's too large for the library
 	if (icon != null)
 	{
-	    if (icon.getIconWidth() > 64 || icon.getIconHeight() > 64)
-	    {
-		icon = new ImageIcon(icon.getImage().getScaledInstance(64, 64,
-			0));
+	    if (icon.getIconWidth() > 128) {
+	    	icon = new ImageIcon(icon.getImage().getScaledInstance(128, icon.getIconHeight() * 128 / icon.getIconWidth(),0));
+	    }
+	    if (icon.getIconHeight() > 128) {
+	    	icon = new ImageIcon(icon.getImage().getScaledInstance(icon.getIconWidth() * 128 / icon.getIconHeight(), 128,0));
 	    }
 	}
 
@@ -316,7 +316,7 @@ public class XcosPalette extends SwingScilabTab implements Tab
 	    }
 	};
 
-	entry.setPreferredSize(new Dimension(100, 100));
+	entry.setPreferredSize(new Dimension(150, 150));
 	entry.setBackground(XcosPalette.this.getBackground().brighter());
 	entry.setFont(new Font(entry.getFont().getFamily(), 0, 14));
 
