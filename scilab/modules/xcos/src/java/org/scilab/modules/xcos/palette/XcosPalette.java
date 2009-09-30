@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.TransferHandler;
 import javax.swing.border.Border;
 
@@ -47,7 +48,8 @@ import com.mxgraph.util.mxEventSource.mxIEventListener;
 
 public class XcosPalette extends SwingScilabTab implements Tab
 {
-
+	private JPanel panel = null;
+	
     /**
      * 
      */
@@ -66,13 +68,20 @@ public class XcosPalette extends SwingScilabTab implements Tab
     /**
      * 
      */
-    public XcosPalette()
+    
+    public XcosPalette(String paletteName)
     {
-	super("Palette");
+	super(paletteName);
 	setCallback(null);
 	setBackground(Color.WHITE);
-	setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
-
+	panel = new JPanel();
+	panel.setBackground(Color.WHITE);
+	panel.setSize(500, 500);
+	panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
+	panel.setPreferredSize(new Dimension(400, 300));
+	JScrollPane jsp = new JScrollPane(panel);
+	setContentPane(jsp);
+	
 	// Clears the current selection when the background is clicked
 	addMouseListener(new MouseListener()
 	{
@@ -385,7 +394,7 @@ public class XcosPalette extends SwingScilabTab implements Tab
 	.createDefaultDragGestureRecognizer(entry,
 		DnDConstants.ACTION_COPY, dragGestureListener);
 
-	add(entry);
+	panel.add(entry);
     }
 
     /**

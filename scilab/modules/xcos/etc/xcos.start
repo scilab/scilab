@@ -13,11 +13,10 @@ load('SCI/modules/xcos/macros/lib');
 
 load('SCI/modules/scicos/macros/scicos_scicos/lib');
 
-load('SCI/modules/scicos_blocks/macros/Sources/lib');
-load('SCI/modules/scicos_blocks/macros/Linear/lib');
-load('SCI/modules/scicos_blocks/macros/NonLinear/lib');
-load('SCI/modules/scicos_blocks/macros/Sinks/lib');
-load('SCI/modules/scicos_blocks/macros/Misc/lib');
+for theLib=scicos_pal_libs
+  load("SCI/modules/scicos_blocks/macros/" + theLib + "/lib");
+end
+clear thLib
 
 // Add help chapter
 // =============================================================================

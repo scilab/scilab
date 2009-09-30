@@ -52,11 +52,6 @@ import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
-import org.scilab.modules.xcos.block.clock.ClockBlock;
-import org.scilab.modules.xcos.block.generic.GenericBlock;
-import org.scilab.modules.xcos.block.ramp.RampBlock;
-import org.scilab.modules.xcos.block.scope.ScopeBlock;
-import org.scilab.modules.xcos.block.sinusoid.SinusoidBlock;
 import org.scilab.modules.xcos.palette.XcosPalette;
 
 import com.mxgraph.swing.mxGraphOutline;
@@ -95,81 +90,75 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public static void createPalette() {
-	Window palette = ScilabWindow.createWindow();
 
-	XcosPalette sources = new XcosPalette();
+    	Window palette = ScilabWindow.createWindow();
 
-	palette.addTab(sources);
-	palette.setVisible(true);
+    	/** Create SOURCES palette */
+    	String[] sourcesBlocksNames = {"CONST_m", "GENSQR_f", "RAMP", "RAND_m", "RFILE_f", "CLKINV_f", "CURV_f", "INIMPL_f",
+    			"READAU_f", "SAWTOOTH_f", "STEP_FUNCTION", "CLOCK_c", "GENSIN_f", "IN_f", "READC_f", "TIME_f", "Modulo_Count", 
+    			"Sigbuilder", "Counter", "SampleCLK", "TKSCALE", "FROMWSB", "FROMWS_c", "OUT_f"};
+    	palette.addTab(createPalette("Sources", sourcesBlocksNames));
+
+    	palette.setVisible(true);
+
+    	/** Create CONTINUOUS palette */
+    	String[] continuousBlocksNames = {"DERIV", "INTEGRAL_m", "CLSS", "CLR", "TIME_DELAY", "TCLSS", "VARIABLE_DELAY",
+    			"PID", "INTEGRAL_f"};
+    	palette.addTab(createPalette("Continuous", continuousBlocksNames));
+
+    	/** Create DISCONTINUOUS palette */
+    	String[] discontinuousBlocksNames = {"SATURATION", "DEADBAND", "HYSTHERESIS", "BACKLASH", "RATELIMITER", "REGISTER",
+    	"DELAYV_f"};
+    	palette.addTab(createPalette("Discontinuous", discontinuousBlocksNames));
+
+    	/** Create LOOKUP TABLES palette */
+    	String[] lookupBlocksNames = {"LOOKUP_f", "INTRP2BLK_f", "INTRPLBLK_f"};
+    	palette.addTab(createPalette("Lookup Tables", lookupBlocksNames));
+
+    	/** Create SIGNAL PROCESSING palette */
+    	String[] signalBlocksNames = {"MCLOCK_f", "QUANT_f", "MFCLCK_f", "SAMPHOLD_m"};
+    	palette.addTab(createPalette("Signal Processing", signalBlocksNames));
+
+    	/** Create THRESHOLD palette */
+    	String[] thresholdBlocksNames = {"NEGTOPOS_f", "POSTONEG_f", "ZCROSS_f", "GENERAL_f","CLINDUMMY_f"};
+    	palette.addTab(createPalette("Threshold", thresholdBlocksNames));
+
+    	/** Create MATH OPERATIONS palette */
+    	String[] mathsBlocksNames = {"MAX_f", "MIN_f", "BIGSOM_f", "POWBLK_f","INVBLK", "SINBLK_f", "COSBLK_f", "TANBLK_f",
+    			"MATDIV", "EXPBLK_f", "MATDIV", "EXPBLK_m", "PROD_f", "MATZREIM", "MATMAGPHI", "SQRT", "GAINBLK_f", "LOGBLK_f",
+    			"SUMMATION", "TrigFun", "PRODUCT", "MAXMIN", "ABS_VALUE", "SIGNUM", "SUM_f", "CONSTRAINT_f"};
+    	palette.addTab(createPalette("Math Operations", mathsBlocksNames));
+
+    	/** Create MODELICA palette */
+    	String[] modelicaBlocksNames = {"MBLOCK", "FROMMO", "GOTOMO", "GotoTagVisibilityMO", "OUTIMPL_f"};
+    	palette.addTab(createPalette("Modelica", modelicaBlocksNames));
+
+    	/** Create USER-DEFINED FUNCTIONS palette */
+    	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
+    			"generic_block3", "TEXT_f", "c_block", "SUPER_f", ""};
+    	palette.addTab(createPalette("User-Defined Functions", userdefinedBlocksNames));
 
 
 
-	//	mxCell tableTemplate = new mxCell("New Table", new mxGeometry(0, 0, 200, 280), null);
-	//	tableTemplate.getGeometry().setAlternateBounds(new mxRectangle(0, 0, 140, 25));
-	//	mxCell port = new mxCell("port", new mxGeometry(0,0,20,20), null);
-	//	port.setParent(tableTemplate);
-	//	port.setVertex(true);
-	//	tableTemplate.setVertex(true);
-
-	ClockBlock clockTemplate = new ClockBlock();
-	GenericBlock genericTemplate = new GenericBlock();
-	ScopeBlock scopeTemplate = new ScopeBlock();
-	SinusoidBlock sinusoidTemplate = new SinusoidBlock();
-	RampBlock rampBlockTemplate = new RampBlock();
-	BasicBlock randm = BlockReader.read(System.getenv("SCI")+ "/modules/scicos_blocks/macros/Sources/RAND_m.h5");
-	
-	BasicBlock constm = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Sources/CONST_m.h5");
-	sources.addTemplate("CONST_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CONST_m_blk.gif"), constm);
-	
-	BasicBlock towsc = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Sinks/TOWS_c.h5");
-	sources.addTemplate("TOWS_C", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/TOWS_c_blk.gif"), towsc);
-	
-	
-	BasicBlock summation = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/SUMMATION.h5");
-	sources.addTemplate("SUMMATION", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/SUMMATION_blk.gif"), summation);
-	
-	BasicBlock integral = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/INTEGRAL_m.h5");
-	sources.addTemplate("INTEGRAL_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/INTEGRAL_m_blk.gif"), integral);
-	
-	BasicBlock clr = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/CLR.h5");
-	sources.addTemplate("CLR", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLR_blk.gif"), clr);
-	
-	BasicBlock gain = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/GAINBLK.h5");
-	sources.addTemplate("GAINBLK", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GAINBLK_blk.gif"), gain);
-	
-	BasicBlock deriv = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/DERIV.h5");
-	sources.addTemplate("DERIV", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/DERIV_blk.gif"), deriv);
-	
-	BasicBlock nlProduct = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/PRODUCT.h5");
-	sources.addTemplate("PRODUCT", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/PRODUCT_blk.gif"), nlProduct);
-	
-	BasicBlock trigFun = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/TrigFun.h5");
-	sources.addTemplate("TRIGFUN", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/TrigFun_blk.gif"),trigFun);
-	
-	BasicBlock absvalue = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/ABS_VALUE.h5");
-	sources.addTemplate("ABS_VALUE", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/ABS_VALUE_blk.gif"),absvalue);
-	
-	BasicBlock logblk = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/NonLinear/LOGBLK_f.h5");
-	sources.addTemplate("LOGBLK_F", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/LOGBLK_f_blk.gif"),logblk);
-	
-	BasicBlock expression = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Misc/EXPRESSION.h5");
-	sources.addTemplate("EXPRESSION", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/EXPRESSION_blk.gif"), expression);
-	
-	BasicBlock mux = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Branching/MUX.h5");
-	sources.addTemplate("MUX", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/MUX_blk.gif"), mux);
-	
-	BasicBlock demux = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Branching/DEMUX.h5");
-	sources.addTemplate("DEMUX", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/DEMUX_blk.gif"), demux);
-	
-	
-	sources.addTemplate("Clock", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CLOCK_c_blk.gif"),clockTemplate);
-	//sources.addTemplate("Generic", null ,genericTemplate);
-	sources.addTemplate("Scope", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/CSCOPE_blk.gif"),scopeTemplate);
-	sources.addTemplate("Sinusoid", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/GENSIN_f_blk.gif"),sinusoidTemplate);
-	sources.addTemplate("Ramp", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/RAMP_blk.gif"), rampBlockTemplate);
-	sources.addTemplate("RAND_M", new ImageIcon(System.getenv("SCI")+"/modules/scicos/help/images/RAND_m_blk.gif"), randm);
     }
+    
+    public static XcosPalette createPalette(String paletteName, String[] blocksNames) {
+ 
+    	String blocksPath = System.getenv("SCI")+ "/modules/scicos_blocks/blocks/";
+    	String imagesPath = System.getenv("SCI")+ "/modules/scicos/help/images/";
 
+    	XcosPalette palette = new XcosPalette(paletteName);
+ 	
+    	BasicBlock theBloc = null;
+    	for (int kBlock = 0; kBlock < blocksNames.length; kBlock++) {
+    		theBloc = BlockReader.read(blocksPath + blocksNames[kBlock] + ".h5");
+    		palette.addTemplate(blocksNames[kBlock], new ImageIcon(imagesPath + blocksNames[kBlock] + "_blk.gif"), theBloc);
+    		
+    	}
+
+    	return palette;
+    }
+    
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
 	/*
 	 * MENU BAR
