@@ -46,7 +46,55 @@ function y = rosenbrock (x)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
+// Test with x0 only
+//
+s1 = optimsimplex_new ( "axes" , [-1.2 1.0] );
+computed = optimsimplex_getall ( s1 );
+expected = [
+    0.  -1.2    1.  
+    0.  -0.2    1.  
+    0.  -1.2    2.  
+];
+assert_close ( computed , expected , %eps );
+s1 = optimsimplex_destroy ( s1 );
+//
+// Test with function only
+//
+s1 = optimsimplex_new ( "axes" , [-1.2 1.0] , rosenbrock );
+computed = optimsimplex_getall ( s1 );
+expected = [
+    24.2  -1.2    1.  
+    93.6  -0.2    1.  
+    36.2  -1.2    2.  
+];
+assert_close ( computed , expected , %eps );
+s1 = optimsimplex_destroy ( s1 );
+//
 // Test with a scalar length
+//
+s1 = optimsimplex_new ( "axes" , [-1.2 1.0] , rosenbrock , 2.0 );
+computed = optimsimplex_getall ( s1 );
+expected = [
+    24.2   -1.2    1.  
+    13.      0.8    1.  
+    248.2  -1.2    3.  
+];
+assert_close ( computed , expected , %eps );
+s1 = optimsimplex_destroy ( s1 );
+//
+// Test with a vector length
+//
+s1 = optimsimplex_new ( "axes" , [-1.2 1.0] , rosenbrock , [1.0 2.0] );
+computed = optimsimplex_getall ( s1 );
+expected = [
+24.2 -1.2 1.
+93.6 -0.2 1.
+248.2 -1.2 3.
+];
+assert_close ( computed , expected , %eps );
+s1 = optimsimplex_destroy ( s1 );
+//
+// Test with a scalar length and an additionnal object
 //
 myobj = tlist(["T_MYSTUFF","nb"]);
 myobj.nb = 0;
@@ -54,8 +102,7 @@ function [ y , myobj ] = mycostf ( x , myobj )
   y = rosenbrock(x);
   myobj.nb = myobj.nb + 1
 endfunction
-s1 = optimsimplex_new ();
-[ s1 , myobj ] = optimsimplex_axes ( s1 , x0 = [-1.2 1.0] , fun = mycostf , len = 1.0, data=myobj );
+[ s1 , myobj ] = optimsimplex_new ( "axes" , [-1.2 1.0] , mycostf , 1.0, myobj );
 computed = optimsimplex_getall ( s1 );
 expected = [
 24.2 -1.2 1.0
@@ -66,17 +113,4 @@ assert_close ( computed , expected , %eps );
 assert_equal ( myobj.nb , 3 );
 nbve = optimsimplex_getnbve ( s1 );
 assert_equal ( nbve , 3 );
-s1 = optimsimplex_destroy ( s1 );
-//
-// Test with a vector length
-//
-s1 = optimsimplex_new ();
-s1 = optimsimplex_axes ( s1 , x0 = [-1.2 1.0] , fun = rosenbrock , len = [1.0 2.0] );
-computed = optimsimplex_getall ( s1 );
-expected = [
-24.2 -1.2 1.
-93.6 -0.2 1.
-248.2 -1.2 3.
-];
-assert_close ( computed , expected , %eps );
 s1 = optimsimplex_destroy ( s1 );

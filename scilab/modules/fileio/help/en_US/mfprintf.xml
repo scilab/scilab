@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="mprintf" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="mfprintf" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -28,25 +28,9 @@
     <refpurpose>converts, formats, and writes data to a file</refpurpose>
   </refnamediv>
 
-  <refnamediv>
-    <refname>mprintf</refname>
-
-    <refpurpose>converts, formats, and writes data to the main scilab
-    window</refpurpose>
-  </refnamediv>
-
-  <refnamediv xml:id="msprintf">
-    <refname>msprintf</refname>
-
-    <refpurpose>converts, formats, and writes data in a string</refpurpose>
-  </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>mfprintf(fd,format,a1,...,an);
-mprintf(format,a1,...,an);
-str=msprintf(format,a1,...,an);</synopsis>
+    <synopsis>mfprintf(fd,format,a1,...,an);</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -99,29 +83,17 @@ str=msprintf(format,a1,...,an);</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>The <literal>mprintf</literal>, <literal>mfprintf</literal>, and
-    <literal>msprintf</literal> functions are interface for C-coded version of
-    <literal>printf</literal>, <literal>fprintf</literal> and
-    <literal>sprintf</literal> functions.</para>
-
-    <para>The <literal>mprintf</literal> function writes formatted operands to
-    the standard Scilab output (i.e the Scilab window). The argument operands
-    are formatted under control of the format operand.</para>
+    <para>The <literal>mfprintf</literal> function is a interface for C-coded version of
+     <literal>fprintf</literal> functions.</para>
 
     <para>The <literal>mfprintf</literal> function writes formatted operands
     to the file specified by the file desciptor <literal>fd</literal>. The
     argument operands are formatted under control of the format
     operand.</para>
 
-    <para>The <literal>msprintf</literal> writes formatted operands in its
-    returned value (a Scilab string). The argument operands are formatted
-    under control of the format operand. Note that, in this case, the escape
-    sequences (<literal>"\n, \t,.."</literal>) are treated as a normal
-    sequence of characters.</para>
-
-    <para>All these functions may be used to output column vectors of numbers
+    <para>this function may be used to output column vectors of numbers
     and string vectors without an explicit loop on the elements. In that case
-    these functions iterates on the rows. The shortest vector gives the number
+    this function iterates on the rows. The shortest vector gives the number
     of time the format has to be iterated.</para>
 
     <para>An homogeneous sequence of identical type parameters can be replaced
@@ -132,26 +104,14 @@ str=msprintf(format,a1,...,an);</synopsis>
     <title>Examples</title>
 
     <programlisting role="example"><![CDATA[ 
-mprintf('At iteration %i, Result is:\nalpha=%f',33,0.535)
-
-msprintf('%5.3f %5.3f',123,0.732)
-msprintf('%5.3f\n%5.3f',123,0.732)
-
-A=rand(5,2);
-// vectorized forms: the format directive needs 
-// two operand, each column of A is used as an operand. 
-// and the mprintf function is applied on each row of A 
-mprintf('%5.3f\t%5.3f\n',A)
-
-colors=['red';'green';'blue';'pink';'black'];
-RGB=[1 0 0;0 1 0;0 0 1;1 0.75 0.75;0 0 0];
-mprintf('%d\t%s\t%f\t%f\t%f\n',(1:5)',colors,RGB)
 
 fd = mopen(TMPDIR+'/text.txt','wt');
 mfprintf(fd,'hello %s %d.\n','world',1);
 mfprintf(fd,'hello %s %d.\n','scilab',2);
 mclose(fd);
-scipad(TMPDIR+'/text.txt')
+xpad(TMPDIR+'/text.txt')
+mfprintf(0,'stderr output.\n');
+mfprintf(6,'stdout output.\n');
  ]]></programlisting>
   </refsection>
 
@@ -162,8 +122,6 @@ scipad(TMPDIR+'/text.txt')
       <member><link linkend="mclose">mclose</link></member>
 
       <member><link linkend="meof">meof</link></member>
-
-      <member><link linkend="mfprintf">mfprintf</link></member>
 
       <member><link linkend="fprintfMat">fprintfMat</link></member>
 

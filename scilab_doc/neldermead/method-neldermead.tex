@@ -1,10 +1,30 @@
 \chapter{Nelder-Mead method}
 
-\section{Analysis}
+In this chapter, we present Nelder and Mead's \cite{citeulike:3009487} algorithm.
+We begin by the analysis of the algorithm, which is based on a variable shape simplex.
+Then, we present geometric situations where the various steps of the algorithm 
+might be used. In the third part, we present the rate of convergence toward the optimum of 
+the Nelder-Mead algorithm. This part is mainly based on Han and Neumann's paper \cite{HanNeumann2006}, 
+which is based on a class of quadratic functions with a special initial 
+simplex. The core of this chapter is the analysis of several numerical 
+experiments which have been performed with the neldermead component.
+We analyse the behaviour of the algorithm on quadratic functions and 
+present several counter examples where the Nelder-Mead algorithm is 
+known to fail.
+
+\section{Introduction}
+
+The goal of Nelder and Mead algorithm is to solve the 
+following unconstrained optimization problem
+\begin{eqnarray}
+\min f(x)
+\end{eqnarray}
+where $x\in \RR^n$, $n$ is the number of optimization parameters and $f$ is the objective 
+function $f:\RR^n\rightarrow \RR$.
 
 The Nelder-Mead method is an improvment over the Spendley's et al.
 method with the goal of allowing the simplex to vary in shape.
-The Nelder-Mead algorithm makes use of four parameters : the 
+The Nelder-Mead algorithm makes use of four parameters: the 
 coefficient of reflection $\rho$, expansion $\chi$, 
 contraction $\gamma$ and shrinkage $\sigma$.
 When the expansion or contraction steps are performed, the shape 
@@ -178,17 +198,17 @@ shrink steps are rare.
 \label{fig-nm-moves-shrinkafterco}
 \end{figure}
 
-\subsection{Termination criteria}
+%\subsection{Termination criteria}
 
-TODO...
+%TODO...
 
-\section{Convergence on a quadratic}
+\section{Convergence properties on a quadratic}
 
 In this section, we reproduce one result 
 presented by Han and Neumann \cite{HanNeumann2006}, which states 
 the rate of convergence toward the optimum on a class of quadratic functions with a special initial 
 simplex.
-See also the Phd by Lixing Han in 2000 \cite{Han2000}.
+Some additionnal results are also presented in the Phd thesis by Lixing Han in 2000 \cite{Han2000}.
 We study a generalized quadratic and use a particular 
 initial simplex. We show that the vertices follow 
 a recurrence equation, which is associated with a caracteristic 
@@ -735,6 +755,8 @@ caracteristic equation}
 \label{fig-nm-roots-variable}
 \end{figure}
 
+
+
 \section{Numerical experiments}
 
 In this section, we present some numerical experiments 
@@ -819,7 +841,7 @@ figure \ref{fig-nm-numexp1-logfopt}.
 \label{fig-nm-numexp1-logfopt}
 \end{figure}
 
-\subsection{Badly scaled quadratic function}
+\subsubsection{Badly scaled quadratic function}
 
 The function we try to minimize is the following quadratic 
 in 2 dimensions 

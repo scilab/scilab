@@ -16,6 +16,12 @@ function nbChanges = atomsSetConfig(field,value)
 	rhs       = argn(2);
 	nbChanges = 0;
 	
+	// Load Atoms Internals lib if it's not already loaded
+	// =========================================================================
+	if ~ exists("atomsinternalslib") then
+		load("SCI/modules/atoms/macros/atoms_internals/lib");
+	end
+	
 	// Check number of input arguments
 	// =========================================================================
 	

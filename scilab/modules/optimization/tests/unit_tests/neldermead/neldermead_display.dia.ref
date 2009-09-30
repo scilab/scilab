@@ -87,6 +87,10 @@ Simplex0 :
 
 Empty simplex (zero dimension)
 
+Simplex Optimum : 
+
+Empty simplex (zero coordinates)
+
 Simplex0 Method : axes
 
 Simplex0 Length : 1

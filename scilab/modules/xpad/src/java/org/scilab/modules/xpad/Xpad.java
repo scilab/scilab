@@ -131,7 +131,8 @@ public class Xpad extends SwingScilabTab implements Tab {
 		File f= new File(filePath) ;
 		
 		editor.readFile(f);
-		
+		ConfigXpadManager.saveToRecentOpenedFiles(filePath);
+		editor.updateRecentOpenedFilesMenu();
 	
 	}
 
@@ -591,19 +592,24 @@ public class Xpad extends SwingScilabTab implements Tab {
 			JTextPane textPane = addTab(f.getName()); 
 			System.out.println("File = "+f.getAbsolutePath());
 			textPane.setName(f.getAbsolutePath());
-
-			((ScilabStyleDocument) textPane.getStyledDocument()).disableUpdaters(); 
+			
+			ScilabStyleDocument styleDocument = (ScilabStyleDocument) textPane.getStyledDocument();
+			
+			styleDocument.disableUpdaters(); 
 			textPane.setText(contents.toString());
-			if (((ScilabStyleDocument) textPane.getStyledDocument()).getColorize()) {
-				((ScilabStyleDocument) textPane.getStyledDocument()).colorize();
+			
+			// If Autoindent is activated, it will automatically call colorize
+			if (styleDocument.getAutoIndent()) {
+			    styleDocument.indent(0, styleDocument.getLength());
 			}
-			if (((ScilabStyleDocument) textPane.getStyledDocument()).getAutoIndent()) {
-				((ScilabStyleDocument) textPane.getStyledDocument()).indent();
+			else if (styleDocument.getColorize()) {
+			    styleDocument.colorize(0,styleDocument.getLength());
 			}
-			((ScilabStyleDocument) textPane.getStyledDocument()).enableUpdaters();
+			
+			styleDocument.enableUpdaters();
 			
 			getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-			((ScilabStyleDocument) getTextPane().getStyledDocument()).setContentModified(false);
+			styleDocument.setContentModified(false);
 			
 		} catch (IOException ioex) {
 

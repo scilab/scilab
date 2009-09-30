@@ -48,13 +48,13 @@ endfunction
 // Arguments
 //    x : the point where to compute the cost
 //    index : a flag which states what is to compute
-//    * if index=1, or no index, returns the value of the cost
+//    * if index=1, or no index, returns the value of the cost 
 //      function (default case)
-//    * if index=2, returns the value of the nonlinear inequality
+//    * if index=2, returns the value of the nonlinear inequality 
 //      constraints, as a row array
 //    * if index=3, returns an array which contains
-//      at index #0, the value of the cost function
-//      at index #1 to the end is the list of the values of the nonlinear
+//      at index #0, the value of the cost function  
+//      at index #1 to the end is the list of the values of the nonlinear 
 //      constraints
 //  Discussion:
 //    The problem is to minimize a cost function with 4 non linear constraints.
@@ -112,7 +112,9 @@ opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_destroy(opt);
 //
@@ -125,13 +127,18 @@ opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 opt = optimbase_configure ( opt , "-x0", [1.0 1.0]' );
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0",[-6.0 1.0]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 Component #1/2 of x is lower than min bound -5.000000e+000
+
 ... initial guess is not feasible.
+
 assert_equal ( isok , %F );
 opt = optimbase_destroy(opt);
 //
@@ -144,16 +151,25 @@ opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.8429636 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 Computed constraints = 1.095001e+000 2.779266e-007 2.322073e-006 8.429636e-001
+
 Function Evaluation #1 is [1.0950013 0.0000003 0.0000023 0.8429636] at [14.095001 0.8429636]
+
 ... initial guess is feasible.
+
 assert_equal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.0 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
 Checking initial guess...
+
 Computed constraints = 1.095001e+000 7.719049e+000 -7.719046e+000 0.000000e+000
+
 Function Evaluation #1 is [1.0950013 7.7190486 -7.719046 0] at [14.095001 0]
+
 Inequality constraint #3/4 is not satisfied for x
+
 ... initial guess is not feasible.
+
 assert_equal ( isok , %F );
 opt = optimbase_destroy(opt);
