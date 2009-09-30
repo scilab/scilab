@@ -19,6 +19,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.pushbutton.PushButton;
 
 public class DeleteAction extends DefaultAction {
 
@@ -30,4 +31,8 @@ public class DeleteAction extends DefaultAction {
 		return createMenu(ScilabGraphMessages.DELETE, null, new DeleteAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
 	}
 	
+	public static PushButton createButton(ScilabGraph scilabGraph) {
+		return createButton(ScilabGraphMessages.DELETE, "edit-delete.png", new DeleteAction(scilabGraph));
+	}
+
 }

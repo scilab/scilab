@@ -32,7 +32,7 @@ public class StartAction  extends DefaultAction {
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.START, null, new StartAction(scilabGraph));
+		return createButton(XcosMessages.START, "media-playback-start.png", new StartAction(scilabGraph));
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {

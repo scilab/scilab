@@ -340,33 +340,44 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
 
     public static ToolBar createToolBar(ScilabGraph scilabGraph) {
-	/*
-	 * TOOL BAR
-	 */
-	ToolBar toolBar = ScilabToolBar.createToolBar();
+    	ToolBar toolBar = ScilabToolBar.createToolBar();
+    	
+    	toolBar.add(OpenAction.createButton(scilabGraph));
+    	toolBar.add(SaveAction.createButton(scilabGraph));
 
-	// UNDO / REDO
-	toolBar.add(UndoAction.undoButton(scilabGraph));
-	toolBar.add(RedoAction.redoButton(scilabGraph));
-	toolBar.addSeparator();
+    	toolBar.addSeparator();
+    	
+    	toolBar.add(PrintAction.createButton(scilabGraph));
 
-	// CUT / COPY / PASTE
-	toolBar.add(CutAction.cutButton(scilabGraph));
-	toolBar.add(CopyAction.copyButton(scilabGraph));
-	toolBar.add(PasteAction.pasteButton(scilabGraph));
-	toolBar.addSeparator();
+    	toolBar.addSeparator();
+    	
+    	toolBar.add(DeleteAction.createButton(scilabGraph));
 
-	// GROUP / UNGROUP
-	toolBar.add(GroupAction.groupButton(scilabGraph));
-	toolBar.add(UnGroupAction.ungroupButton(scilabGraph));
-	toolBar.addSeparator();
+    	toolBar.addSeparator();
+    	
+    	// UNDO / REDO
+    	toolBar.add(UndoAction.undoButton(scilabGraph));
+    	toolBar.add(RedoAction.redoButton(scilabGraph));
+	
+    	toolBar.addSeparator();
 
-	// ZOOMIN / ZOOMOUT
-	toolBar.add(ZoomInAction.zoominButton(scilabGraph));
-	toolBar.add(ZoomOutAction.zoomoutButton(scilabGraph));
-	toolBar.addSeparator();
+    	toolBar.add(FitDiagramToViewAction.createButton(scilabGraph));
+    		
+    	toolBar.addSeparator();
 
-	return toolBar;
+    	// START / STOP
+    	toolBar.add(StartAction.createButton(scilabGraph));
+    	toolBar.add(StopAction.createButton(scilabGraph));
+
+    	toolBar.addSeparator();
+    	
+    	// ZOOMIN / ZOOMOUT
+    	toolBar.add(ZoomInAction.zoominButton(scilabGraph));
+    	toolBar.add(ZoomOutAction.zoomoutButton(scilabGraph));
+    	
+    	toolBar.addSeparator();
+
+    	return toolBar;
     }
 
     public Xcos(XcosDiagram diagram) {

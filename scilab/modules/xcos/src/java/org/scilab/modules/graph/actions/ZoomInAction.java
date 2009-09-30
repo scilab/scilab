@@ -32,7 +32,7 @@ public class ZoomInAction extends DefaultAction {
 	}
 
 	public static PushButton zoominButton(ScilabGraph scilabGraph) {
-		return createButton(ScilabGraphMessages.ZOOM_IN, null, new ZoomInAction(scilabGraph));
+		return createButton(ScilabGraphMessages.ZOOM_IN, "list-add.png", new ZoomInAction(scilabGraph));
 	}
 
 	public static MenuItem zoominMenu(ScilabGraph scilabGraph) {

@@ -34,7 +34,7 @@ public class PrintAction extends DefaultAction {
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.PRINT, null, new PrintAction(scilabGraph));
+		return createButton(XcosMessages.PRINT, "document-print.png", new PrintAction(scilabGraph));
 	}
 
 }
