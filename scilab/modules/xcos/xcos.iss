@@ -29,10 +29,22 @@ Source: modules\{#XCOS}\sci_gateway\xcos_gateway.xml; DestDir: {app}\modules\{#X
 ;
 Source: modules\{#XCOS}\etc\{#XCOS}.quit; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\etc\{#XCOS}.start; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\etc\Xcos-style.xml; DestDir: {app}\modules\{#XCOS}\etc; Components: {#COMPN_XCOS}
 ;
 ;Source: modules\{#XCOS}\help\addchapter.sce; DestDir: {app}\modules\{#XCOS}\help; Flags: recursesubdirs; Components:  {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\includes\*.h; DestDir: {app}\modules\{#XCOS}\includes; Components: {#COMPN_XCOS}
+;
+Source: modules\{#XCOS}\images\icons\*.png; DestDir: {app}\modules\{#XCOS}\images\icons; Components: {#COMPN_XCOS}
+;
+Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\lib; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\names; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\*.bin; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\*.sci; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+;
 ;
 ;
 ;Source: modules\{#XCOS}\demos\*.*; DestDir: {app}\modules\{#XCOS}\demos; Flags: recursesubdirs; Components: {#COMPN_XCOS}

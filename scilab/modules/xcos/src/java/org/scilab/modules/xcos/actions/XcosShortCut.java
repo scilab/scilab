@@ -17,6 +17,7 @@ import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.graph.actions.GroupAction;
 import org.scilab.modules.graph.actions.RedoAction;
@@ -32,8 +33,11 @@ import com.mxgraph.swing.util.mxGraphActions;
 
 public class XcosShortCut extends mxKeyboardHandler {
 
-    public XcosShortCut(mxGraphComponent component) {
-	super(component);
+    private ScilabGraph component;
+    
+    public XcosShortCut(ScilabGraph component) {
+	super(component.getAsComponent());
+	this.component = component;
     }
 
     /**
@@ -71,23 +75,23 @@ public class XcosShortCut extends mxKeyboardHandler {
     protected ActionMap createActionMap()
     {
 	ActionMap map = super.createActionMap();
-	map.put("save", new DefaultAction());
-	map.put("saveAs", new DefaultAction());
+	map.put("save", new DefaultAction(component));
+	map.put("saveAs", new DefaultAction(component));
 	
-	map.put("new", new DefaultAction());
-	map.put("open", new DefaultAction());
+	map.put("new", new DefaultAction(component));
+	map.put("open", new DefaultAction(component));
 	
-	map.put("undo", new UndoAction());
-	map.put("redo", new RedoAction());
+	map.put("undo", new UndoAction(component));
+	map.put("redo", new RedoAction(component));
 	
-	map.put("group", new GroupAction());
-	map.put("ungroup", new UnGroupAction());
+	map.put("group", new GroupAction(component));
+	map.put("ungroup", new UnGroupAction(component));
 	
 	map.put("selectAll", mxGraphActions.getSelectAllAction());
 	map.put("delete", mxGraphActions.getDeleteAction());
 
-	map.put("zoomIn", new ZoomInAction());
-	map.put("zoomOut", new ZoomOutAction());
+	map.put("zoomIn", new ZoomInAction(component));
+	map.put("zoomOut", new ZoomOutAction(component));
 	return map;
     } 
 

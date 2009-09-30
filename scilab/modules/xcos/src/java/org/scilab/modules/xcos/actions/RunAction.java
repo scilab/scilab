@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,34 +23,32 @@ import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.XcosDiagram;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 public class RunAction  extends DefaultAction {
-    public static PushButton runButton(ScilabGraph scilabGraph) {
-	return createButton("Run", null, new RunAction(scilabGraph));
-    }
 
-    public static MenuItem runMenu(ScilabGraph scilabGraph) {
-	return createMenu("Run", null, new RunAction(scilabGraph));
-    }
-
-    public RunAction() {
-	super();
-    }
-
-    public RunAction(ScilabGraph scilabGraph) {
-	super(scilabGraph);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-	File temp;
-	try {
-	    temp = File.createTempFile("xcos",".hdf5");
-	    temp.delete();
-	    ((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
-	    InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos_simulate(scs_m);");
-	    temp.deleteOnExit();
-	} catch (IOException e1) {
-	    e1.printStackTrace();
+	public RunAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.RUN, scilabGraph);
 	}
-    }
+
+	public static PushButton runButton(ScilabGraph scilabGraph) {
+		return createButton(XcosMessages.RUN, null, new RunAction(scilabGraph));
+	}
+
+	public static MenuItem runMenu(ScilabGraph scilabGraph) {
+		return createMenu(XcosMessages.RUN, null, new RunAction(scilabGraph), null);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		File temp;
+		try {
+			temp = File.createTempFile("xcos",".hdf5");
+			temp.delete();
+			((XcosDiagram) getGraph(e)).dumpToHdf5File(temp.getAbsolutePath());
+			InterpreterManagement.requestScilabExec("import_from_hdf5(\""+temp.getAbsolutePath()+"\");scicos_simulate(scs_m);");
+			temp.deleteOnExit();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 }

@@ -1,6 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
@@ -14,29 +13,28 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class DumpAction extends DefaultAction {
+public class OpenAction extends DefaultAction {
 
-    public DumpAction(ScilabGraph scilabGraph) {
-    	super(XcosMessages.DUMP, scilabGraph);
-    }
- 
-    public static PushButton dumpButton(ScilabGraph scilabGraph) {
-	return createButton(XcosMessages.DUMP, null, new DumpAction(scilabGraph));
-    }
-    
-    public static MenuItem dumpMenu(ScilabGraph scilabGraph) {
-    	return createMenu(XcosMessages.DUMP, null, new DumpAction(scilabGraph), null);
-    }
-    
-    public void actionPerformed(ActionEvent e) {
-    	((XcosDiagram) getGraph(e)).dumpToHdf5File(null);
-    }
+	private OpenAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.OPEN, scilabGraph);
+	}
+
+	public static MenuItem createMenu(ScilabGraph scilabGraph) {
+		return createMenu(XcosMessages.OPEN, null, new OpenAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
+	}
+
+	public static PushButton createButton(ScilabGraph scilabGraph) {
+		return createButton(XcosMessages.OPEN, "document-open.png", new OpenAction(scilabGraph));
+	}
+
 }

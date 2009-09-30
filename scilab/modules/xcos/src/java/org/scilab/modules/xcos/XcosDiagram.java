@@ -118,7 +118,7 @@ public class XcosDiagram extends ScilabGraph {
 
     public XcosDiagram() {
 	super();
-	keyboardHandler = new XcosShortCut(getAsComponent());
+	keyboardHandler = new XcosShortCut(this);
 	mxCodec codec = new mxCodec();
 	Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 	codec.decode(doc.getDocumentElement(), getStylesheet());
@@ -171,7 +171,7 @@ public class XcosDiagram extends ScilabGraph {
 	// Cannot connect port to itself.
 	setAllowLoops(false);
 
-	setCellsResizable(false);
+	setCellsResizable(true);
 
 	setCellsEditable(false);
 
@@ -389,8 +389,6 @@ public class XcosDiagram extends ScilabGraph {
 	// Go over all blocks to dump it inside Scilab Structure
 	for (int i = 0 ; i < blockList.size() ; ++i) {
 	    blockList.get(i).setOrdering(i + 1);
-	    System.out.println(blockList.get(i).getGeometry().getX());
-	    System.out.println(blockList.get(i).getGeometry().getY());
 	    data.add(blockList.get(i).getAsScilabObj());
 	}
 

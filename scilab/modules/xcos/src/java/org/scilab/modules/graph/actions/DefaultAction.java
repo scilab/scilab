@@ -16,13 +16,14 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
@@ -30,17 +31,20 @@ import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 
 import com.mxgraph.swing.mxGraphComponent;
 
-public class DefaultAction extends AbstractAction {
+public class DefaultAction extends CallBack {
 
     private ScilabGraph _scilabGraph = null;
 
-    public DefaultAction() { }
-
     public DefaultAction(ScilabGraph scilabGraph) {
-	_scilabGraph = scilabGraph;
+    	super("Default...");
+    	_scilabGraph = scilabGraph;
     }
 
-    public void actionPerformed(ActionEvent e) {
+    protected DefaultAction(String label, ScilabGraph scilabGraph) {
+    	super(label);
+    	_scilabGraph = scilabGraph;
+        }
+   public void actionPerformed(ActionEvent e) {
 	JOptionPane.showMessageDialog(null, "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
     }
 
@@ -71,6 +75,7 @@ public class DefaultAction extends AbstractAction {
 	return null;
     }
 
+    
     protected static PushButton createButton(String title, String icon, ActionListener listener) {
 	PushButton button = ScilabPushButton.createPushButton(); 
 	((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(listener);
@@ -84,11 +89,24 @@ public class DefaultAction extends AbstractAction {
 	return button;
     }
 
-    protected static MenuItem createMenu(String title, String icon, ActionListener listener) {
-	MenuItem menu = ScilabMenuItem.createMenuItem();
-	((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).addActionListener(listener);
-	menu.setText(title);
+    protected static MenuItem createMenu(String title, String icon, DefaultAction listener, KeyStroke keyStroke) {
+    	MenuItem menu = ScilabMenuItem.createMenuItem();
+    	menu.setCallback(listener);
+    	menu.setText(title);
 
-	return menu;
+    	if (keyStroke != null) {
+    		((SwingScilabMenuItem) menu.getAsSimpleMenuItem()).setAccelerator(keyStroke);
+    	}
+	
+    	return menu;
     }
+    
+    public void doAction() {
+    	JOptionPane.showMessageDialog(getGraph(null).getAsComponent(), "Not Implemented Now !!!", null, JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void callBack() {
+    	doAction();
+        }
+
 }

@@ -48,12 +48,16 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.RunAction;
+import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
+import org.scilab.modules.xcos.utils.XcosMessages;
+import org.scilab.modules.xcos.actions.NewAction;
+import org.scilab.modules.xcos.actions.OpenAction;
 
 import com.mxgraph.swing.mxGraphOutline;
 
@@ -140,12 +144,33 @@ public class Xcos extends SwingScilabTab implements Tab {
     	palette.addTab(createPalette("Integer", integerBlocksNames));
     	
     	/** Create SINKS palette */
-    	String[] sinksBlocksNames = {"CSCOPE"};
+    	String[] sinksBlocksNames = {"CFSCOPE", "CANIMXY", "CSCOPE", "CSCOPXY", "TOWS_c", "CMAT3D", "CSCOPXY3D", "CANIMXY3D",
+    			"CMATVIEW", "CMSCOPE", "AFFICH_m", "TRASH_f"};
     	palette.addTab(createPalette("Sinks", sinksBlocksNames));
+    	
+      	/** Create PORT ACTION palette */
+    	String[] portactionBlocksNames = {"Extract_Activation", "IFTHEL_f", "ESELECT_f", "EDGE_TRIGGER"};
+    	palette.addTab(createPalette("Port Action", portactionBlocksNames));
+    	
+    	/** Create DISCRETE palette */
+    	String[] discreteBlocksNames = {"DLRADAPT_f", "DLR", "DLSS", "DELAY_f", "DOLLAR_f", "DELAYV_f"};
+    	palette.addTab(createPalette("Discrete", discreteBlocksNames));
+    	
+      	/** Create EVENTS palette */
+    	String[] eventsBlocksNames = {"CLKFROM", "CLKGOTO", "GotoTagVisibility", "SampleCLK", "CLKOUTV_f", "ESELECT_f",
+    			"CLKSOMV_f", "CLOCK_c", "EVTGEN_f", "EVTVARDLY", "M_freq", "ANDBLK", "HALT_f", "freq_div", "ANDLOG_f",
+    			"EVTDLY_c", "IFTHEL_f", "CEVENTSCOPE"};
+    	palette.addTab(createPalette("Events", eventsBlocksNames));
     	
     	/** Create SIGNAL ROUTING palette */
     	String[] routingBlocksNames = {"MUX", "DEMUX"};
     	palette.addTab(createPalette("Signal Routing", routingBlocksNames));
+    	
+    	/** Create COMMONLY USED BLOCKS palette */
+    	String[] commonBlocksNames = {"DEMUX", "MUX", "NRMSOM_f", "OUT_f", "IN_f", "RELATIONALOP", "PRODUCT", "BIGSOM_f",
+    			"DOLLAR_f", "INTEGRAL_f", "CONST_m", "SATURATION", "CMSCOPE", "CSCOPXY", "ANDBLK", "LOGICAL_OP", "SWITCH2_m",
+    			"CONVERT", "TEXT_f"};
+    	palette.addTab(createPalette("Commonly Used Blocks", commonBlocksNames));
     	
     	/** Create USER-DEFINED FUNCTIONS palette */
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
@@ -176,25 +201,32 @@ public class Xcos extends SwingScilabTab implements Tab {
     }
     
     public static MenuBar createMenuBar(ScilabGraph scilabGraph) {
-	/*
-	 * MENU BAR
-	 */
-	// FILE
-	MenuBar menuBar = ScilabMenuBar.createMenuBar();
-	Menu file = ScilabMenu.createMenu();
-	file.setText("File");
-	MenuItem newItem = ScilabMenuItem.createMenuItem();
-	newItem.setText("New");
-	JMenuItem quit = new JMenuItem("Quit");
-	quit.addActionListener(new ActionListener() {
-	    public void actionPerformed(ActionEvent arg0) { System.exit(0); }
-	});
-	file.add(newItem);
-	file.add(DumpAction.dumpMenu(scilabGraph));
-	file.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
-	//file.add(quit);
-	menuBar.add(file);
 
+    	MenuBar menuBar = ScilabMenuBar.createMenuBar();
+
+    	/** FILE MENU */
+		Menu fileMenu = ScilabMenu.createMenu();
+		fileMenu.setText(XcosMessages.FILE);
+		fileMenu.setMnemonic('F');
+		fileMenu.add(NewAction.createMenu(scilabGraph));
+		fileMenu.add(OpenAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(SaveAction.createMenu(scilabGraph));
+		//fileMenu.add(SaveAsAction.createMenu(scilabGraph));
+		//fileMenu.add(ExportAction.createMenu(scilabGraph));
+		//fileMenu.add(SaveAsInterfFuncAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(PrintAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(CloseAction.createMenu(scilabGraph));
+    	//fileMenu.addSeparator();
+		//fileMenu.add(QuitAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
+		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
+		
+		menuBar.add(fileMenu);
+	
 	// EDIT
 	Menu edit = ScilabMenu.createMenu();
 	edit.setText("Edit");
