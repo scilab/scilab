@@ -4,14 +4,17 @@ In this section, we present the various definitions connected
 to simplex algorithms. We introduce several methods to measure 
 the size of a simplex, including the oriented length. 
 We present several methods to compute an
-initial simplex, for example the regular simplex used by Spendley et al..
-We also present the simplex gradient, which is a forward or a centered 
-difference formula for the gradient of the cost function.
-The core of this section is from \cite{Kelley1999}.
+initial simplex, that is, the regular simplex used by Spendley et al.,
+the axis-by-axis simplex, Pfeffer's simplex and the randomized 
+bounds simplex.
+%We also present the simplex gradient, which is a forward or a centered 
+%difference formula for the gradient of the cost function.
+%The core of this section is from \cite{Kelley1999}.
 
 \section{The simplex}
 
-A \emph{simplex} $S$ in $\RR^n$ is the convex hull of $n+1$ points $S=\{\bx_i\}_{i=1,n+1}$.
+A \emph{simplex} $S$ in $\RR^n$ is the convex hull of $n+1$ points $S=\{\bx_i\}_{i=1,n+1}$,
+where $\bx_i \in \RR^n$ for $i=1,n+1$.
 
 Box extended the Nelder-Mead algorithm to handle bound and non linear constraints \cite{Box1965}.
 To be able to manage difficult cases, he uses a \emph{complex} made of $k\geq n+1$ vertices.
@@ -19,13 +22,14 @@ In this section, we will state clearly when the definition and results can be ap
 Indeed, some definitions such as the simplex gradient cannot be extended to a \emph{complex}
 and are only applicable to a \emph{simplex}.
 
-The point $\bx_i\in\RR^n$ is the $i$-th vertex of $S$. Given a function $f(\bx)\in\RR$,
+The point $\bx_i\in\RR^n$ is the $i$-th vertex of $S$,  
+where $x_i^j\in\RR$ is the $j$-th coordinate of the $i$-th vertex of the simplex $S$.
+Given a function $f(\bx)\in\RR$,
 each vertex is associated with a function value $f_i = f(\bx_i)$ for $i=1,n+1$.
 In simplex algorithms, the vertex are sorted by increasing function values 
-
 \begin{eqnarray}
 \label{simplex-sortedfv}
-f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}
+f_1 \leq f_2 \leq \ldots \leq f_n \leq f_{n+1}.
 \end{eqnarray}
 
 The sorting order is not precisely defined neither in Spendley's et al paper \cite{Spendley1962}
@@ -37,25 +41,27 @@ ordering rules have no measurable influence.
 Let $V$ denote the $n\times n$ matrix of simplex directions 
 \begin{eqnarray}
 \label{simplex-directions}
-V(S) = (\bx_2 - \bx_1, \bx_3 - \bx_1 , \ldots , \bx_{n+1} - \bx_1) = (\bv_1, \ldots , \bv_n)
+V(S) = (\bx_2 - \bx_1, \bx_3 - \bx_1 , \ldots , \bx_{n+1} - \bx_1) = (\bv_1, \ldots , \bv_n).
 \end{eqnarray}
 
-We say that $S$ is nonsingular if the matrix of simplex directions $V(S)$ is nonsingular.
-
+We say that the simplex $S$ is nonsingular if the matrix of simplex directions $V(S)$ is nonsingular.
 
 \section{The size of the simplex}
+\label{section-simplexsize}
 
 Several methods are available to compute the size of a simplex.
-In Kelley's book \cite{Kelley1999}, the author presents the diameter and the two oriented lengths.
 
 The simplex diameter $diam(S)$ is defined by 
 \begin{eqnarray}
 \label{simplex-diameter}
 diam(S) = \max_{i,j=1,n+1} \|\bx_i - \bx_j\|_2,
 \end{eqnarray}
-where $\|.\|_2$ is the euclidian norm $\|x\|_2 = \sum_{i=1,n}\bx_i^2$.
+where $\|.\|_2$ is the euclidian norm defined by 
+\begin{eqnarray}
+\|\bx\|_2 = \sum_{i=1,n}(x^j)^2.
+\end{eqnarray}
 In practical implementations, computing the diameter requires two nested loops over the 
-vertices of the simplex, i.e. $(n+1)^2$ operations. This is why authors generally 
+vertices of the simplex, i.e. requires $(n+1)^2$ operations. This is why authors generally 
 prefer to use lengths which are less expensive to compute.
 
 The two oriented lengths $\sigma_-(S)$ and $\sigma_+(S)$ are using the 
@@ -74,33 +80,33 @@ The following inequalities are satisfied between the diameter and the maximum or
 \end{eqnarray}
 
 In Nash's book \cite{nla.cat-vn1060620}, the size of the simplex $s_N(S)$ is measured
-based on the $l1$ norm and is defined by 
+based on the 1-norm and is defined by 
 \begin{eqnarray}
 \label{simplex-sizenash}
 s_N(S) = \sum_{i=2,n+1} \|\bx_i - \bx_1\|_1
 \end{eqnarray}
-where 
+where the 1-norm is defined by 
 \begin{eqnarray}
 \label{simplex-sizenash2}
-\|\bx_i - \bx_1\|_1 = \sum_{j=1,n} |x_i^j - x_1^j|
+\|\bx \|_1 = \sum_{j=1,n} |x^j|
 \end{eqnarray}
 where $x_i^j\in\RR$ is the $j$-th coordinate of the $i$-th vertex of the simplex $S$.
 
 \section{The initial simplex}
 
 While most of the theory can be developed without being very specific 
-about the initial simplex, the initial simplex plays a very important role in practice.
+about the initial simplex, it plays a very important role in practice.
 All approaches are based on the initial guess $\overline{\bx}_0\in\RR^n$ and create a 
 geometric shape based on this point.
-(We denoted the initial guess by $\overline{\bx}_0$ instead of the usual $\bx_0$
+(We denote the initial guess by $\overline{\bx}_0$ instead of the usual $\bx_0$
 in order to distinguish the initial guess from the vertices $\{\bx_i\}_{i=1,n+1}$.)
 
 
 In this section, we present the various approach to design the initial 
 simplex. In the first part, we emphasize the importance of the initial
 simplex in optimization algorithms. Then we present the regular simplex 
-approach by Spendley et al., the randomized bounds approach by Box and 
-Pfeffer's method.
+by Spendley et al., the axis-by-axis simplex, the randomized bounds approach by Box and 
+Pfeffer's simplex.
 
 \subsection{Importance of the initial simplex}
 
@@ -112,7 +118,7 @@ is typical a fixed-shape simplex algorithm (see \cite{Torczon89multi-directional
 for other patterns of a direct search method).
 If, by chance, the pattern is so that the optimum is close to one point 
 defined by the pattern, the number of iteration may be small. On the contrary, the 
-number of iterations may be high if the pattern does not come close to the 
+number of iterations may be large if the pattern does not come close to the 
 optimum.
 
 \begin{figure}
@@ -127,11 +133,11 @@ The variable-shape simplex algorithm designed by Nelder and Mead is also very
 sensitive to the initial simplex.
 One of the problems is that the initial simplex should be consistently scaled 
 with respect to the unknown $x$.
-In \cite{parkinson1972}, "An investigation into the efficiency of variants on the simplex method", 
+In "An investigation into the efficiency of variants on the simplex method" \cite{parkinson1972}, 
 Parkinson and Hutchinson explored 
-several ways of improvement. First, they investigate the sensitivity
+several improvements of Nelder and Mead's algorithm. First, they investigate the sensitivity
 of the algorithm to the initial simplex. Two parameters were investigated,
-i.e. the initial length and the orientation of the simplex. 
+that is, the initial length and the orientation of the simplex. 
 The conclusion of their study with respect to the initial simplex is 
 the following. "The orientation of the initial simplex has a significant effect 
 on efficiency, but the relationship can be too sensitive for an automatic 
@@ -140,7 +146,7 @@ predictor to provide sufficient accuracy at this time."
 Since no initial simplex clearly improves on the others, in practice, 
 it may be convenient to try different approaches.
 
-\subsection{Spendley's et al simplex}
+\subsection{Spendley's et al regular simplex}
 
 In their paper \cite{Spendley1962}, Spendley et al. use a regular 
 simplex with given size $\ell>0$. We define the parameters $p,q>0$ as 
@@ -165,10 +171,10 @@ x_i^j &=&
 \right.
 \end{eqnarray}
 for vertices $i=2,n+1$ and components $j=1,n$, 
-where $\ell \in\RR$ is the length of the simplex ($\ell>0$). Notice that this 
-length is the same for all the vertices which keeps the simplex regular.
+where $\ell \in\RR$ is the length of the simplex and satisfies $\ell>0$. Notice that this 
+length is the same for all the edges which keeps the simplex regular.
 
-The regular initial simplex is presented in figure \ref{fig-nm-simplex-regular}.
+The regular simplex is presented in figure \ref{fig-nm-simplex-regular}.
 
 \begin{figure}
 \begin{center}
@@ -178,7 +184,7 @@ The regular initial simplex is presented in figure \ref{fig-nm-simplex-regular}.
 \label{fig-nm-simplex-regular}
 \end{figure}
 
-\subsection{Simplex along the axes}
+\subsection{Axis-by-axis simplex}
 
 A very efficient and simple approach leads to an axis-by-axis simplex.
 This simplex depends on a vector of positive lengths $\bl\in\RR^n$.
@@ -191,15 +197,16 @@ The other vertices are defined by
 x_i^j &=& 
 \left\{
 \begin{array}{l}
-\overline{x}_0^j + \bl_j, \textrm{ if } j=i-1,\\
+\overline{x}_0^j + \ell_j, \textrm{ if } j=i-1,\\
 \overline{x}_0^j, \textrm{ if } j\neq i-1,\\
 \end{array}
 \right.
 \end{eqnarray}
 for vertices $i=2,n+1$ and components $j=1,n$.
 
-This kind of simplex is presented in figure \ref{fig-nm-simplex-axes}.
-The axis-by-axis approach is used in the very popular Nelder-Mead 
+This type of simplex is presented in figure \ref{fig-nm-simplex-axes},
+where $\ell_1=1$ and $\ell_2=2$.
+The axis-by-axis simplex is used in the Nelder-Mead 
 algorithm provided in Numerical Recipes in C \cite{NumericalRecipes}.
 As stated in \cite{NumericalRecipes}, the length vector $\bl$ can 
 be used as a guess for the characteristic length scale of the problem.
@@ -208,7 +215,8 @@ be used as a guess for the characteristic length scale of the problem.
 \begin{center}
 \includegraphics[width=10cm]{simplex_axes.png}
 \end{center}
-\caption{Axis-based simplex in 2 dimensions}
+\caption{Axis-based simplex in 2 dimensions -- Notice that the length along the $x$ axis is 1 while the length
+along the $y$ axis is 2. }
 \label{fig-nm-simplex-axes}
 \end{figure}
 
@@ -235,20 +243,19 @@ for vertices $i=2,n+1$ and components $j=1,n$.
 \subsection{Pfeffer's method}
 
 This initial simplex is used in the function \scifunction{fminsearch}
-and presented in \cite{Fan2002}. It is due to L. Pfeffer at Stanford.
+and presented in \cite{Fan2002}. According to \cite{Fan2002}, this simplex is due to L. Pfeffer at Stanford.
 The goal of this method is to scale the initial simplex with respect 
 to the characteristic lengths of the problem. This allows, for example,
 to manage cases where $x_1\approx 1$ and $x_2\approx 10^5$.
 As we are going to see, the scaling is defined with respect to the 
-initial guess $\bx_0$. Indeed, the initial simplex is created by 
-small perturbations around the initial guess $\overline{\bx}_0$.
+initial guess $\overline{\bx}_0$, with an axis-by-axis method.
 
 The method proceeds by defining $\delta_u,\delta_z>0$, where 
 $\delta_u$ is used for usual components of $\overline{\bx}_0$ and $\delta_z$ is 
 used for the case where one component of $\overline{\bx}_0$ is zero.
 The default values for $\delta_u$ and $\delta_z$ are 
 \begin{eqnarray}
-\delta_u = 0.05 \qquad \delta_z = 0.0075.
+\delta_u = 0.05 \qquad \textrm{and} \qquad \delta_z = 0.0075.
 \end{eqnarray}
 The first vertex of the simplex is the initial guess 
 \begin{eqnarray}
@@ -271,11 +278,11 @@ for vertices $i=2,n+1$ and components $j=1,n$.
 
 %TODO...
 
-%\section{References and notes}
+\section{References and notes}
 
-%Most of the section \ref{section-simplexgradient} is taken from 
-%Kelley's book \cite{Kelley1999}, "Iterative Methods for Optimization".
-%While this document focus on Nelder-Mead algorithm, Kelley gives a broad
-%view on optimization and present other algorithms for noisy functions,
-%like implicit filtering, multidirectional search and the Hooke-Jeeves algorithm.
+Some elements of the section \ref{section-simplexsize} is taken from 
+Kelley's book \cite{Kelley1999}, "Iterative Methods for Optimization".
+While this document focus on Nelder-Mead algorithm, Kelley gives a broad
+view on optimization and present other algorithms for noisy functions,
+like implicit filtering, multidirectional search and the Hooke-Jeeves algorithm.
 
