@@ -230,7 +230,8 @@ static int sci_diary_one_rhs(char *fname)
 					wfilenameUsed[0] = getDiaryFilename((int)dID);
 					createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 					LhsVar(2) = Rhs + 2;
-					freeArrayOfWideString(wfilenameUsed,1);
+					FREE(wfilenameUsed[0]);
+					delete [] wfilenameUsed;
 				}
 			}
 			else // diary(filename) exists (close diary)
@@ -1097,7 +1098,8 @@ static int NewByFilenames(char *fname,
 			wfilenameUsed[0] = getDiaryFilename((int)dID);
 			createMatrixOfWideString(Rhs + 2, 1, 1, wfilenameUsed);
 			LhsVar(2) = Rhs + 2;
-			freeArrayOfWideString(wfilenameUsed, 1);
+			FREE(wfilenameUsed[0]);
+			delete [] wfilenameUsed;
 		}
 		C2F(putlhsvar)();
 	}
