@@ -39,7 +39,7 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
     xc = %pt(1); yc = %pt(2)  ;
     K = getobj(scs_m,[xc;yc]) ;
   else
-    K=Select(:,1)'
+    K=Select1(:,1)'
   end
   if K==[] then return,end  //nothing to do
   
@@ -50,7 +50,6 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
 
    //** eliminate the selected objects and connected links
   [scs_m,DEL] = do_delete1(scs_m,K,%t); 
-                                        
 
   if DEL<>[] then //** if any object has been deleted .....
 
@@ -60,11 +59,9 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
 
     //** Update Selection retaining selected objects in other windows
     //   (all selected objects of the current windows have been deleted)
-    Select(find(Select(:,2)==curwin),:)==[];
-
+    Select(find(Select(:,2)==curwin),:)=[];
 
     //**  suppress right-most "deleted" elements
-
     gh_curwin = scf(curwin);gh_axes = gca();  ; //** acquire the associated window axes handler
     while lstsize(scs_m.objs)>0&getfield(1,scs_m.objs($)) == "Deleted" then
       scs_m.objs($) = null(); //** erase the 'Deleted' elements from scs_m.objs
@@ -74,6 +71,4 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
     [scs_m_save,nc_save,enable_undo,edited,needreplay] = resume(scs_m_save,nc_save,%t,%t,needreplay);
 
   end
-
-
 endfunction
