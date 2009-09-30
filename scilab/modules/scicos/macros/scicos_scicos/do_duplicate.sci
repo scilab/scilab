@@ -28,7 +28,6 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
   win = %win; //** win contains the windows id where you have activated this function
   xc = %pt(1); yc = %pt(2); //** acquire the last mouse position
   kc = find(win==windows(:,2)); //** find the window in the active Scicos windows  
-  mprintf("do_duplicate, Select=%s,win=%d,curwin=%d,kc=%s\n", sci2exp(Select,0),win,curwin,sci2exp(kc,0))
   
   selected=[]; //will contain object to be duplicated
   if kc==[] then
@@ -48,6 +47,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
 	[palettes,windows] = do_load_as_palette(palettes,windows,o.model.rpar)
 	[palettes,windows] = resume(palettes,windows)
       end
+      selected=o
     end
 
     //** the  click is the  main window
@@ -117,7 +117,7 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       
     //** Protection from window closing
     if rep(3)==-1000 then //active window has been closed
-      [%win,Cmenu] = resume(curwin,"Quit")
+      [%win,Cmenu] = resume(curwin,"XcosMenuQuit")
     end
 
     if m_win==curwin then //** if the mouse is in the current window 
