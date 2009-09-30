@@ -17,6 +17,7 @@ load('SCI/modules/scicos_blocks/macros/Sources/lib');
 load('SCI/modules/scicos_blocks/macros/Linear/lib');
 load('SCI/modules/scicos_blocks/macros/NonLinear/lib');
 load('SCI/modules/scicos_blocks/macros/Sinks/lib');
+load('SCI/modules/scicos_blocks/macros/Misc/lib');
 
 // Add help chapter
 // =============================================================================
