@@ -1,6 +1,5 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * 
  * This file must be used under the terms of the CeCILL.
@@ -14,29 +13,29 @@
 package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
-import org.scilab.modules.action_binding.InterpreterManagement;
+import javax.swing.KeyStroke;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
+import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class StopAction  extends DefaultAction {
-	
-	public StopAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.STOP, scilabGraph);
-	}
+public class NewDiagramAction extends DefaultAction {
 
-	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.STOP, null, new StopAction(scilabGraph));
+	private NewDiagramAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.NEW_DIAGRAM, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.STOP, null, new StopAction(scilabGraph), null);
+		return createMenu(XcosMessages.NEW_DIAGRAM, null, new NewDiagramAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		InterpreterManagement.requestScilabExec("haltscicos");
+	public static PushButton createButton(ScilabGraph scilabGraph) {
+		return createButton(XcosMessages.NEW_DIAGRAM, "document-new.png", new NewDiagramAction(scilabGraph));
 	}
+
 }

@@ -21,21 +21,20 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.xcos.actions.NewAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
-public class NewAction extends DefaultAction {
+public class PrintAction extends DefaultAction {
 
-	private NewAction(ScilabGraph scilabGraph) {
-		super(XcosMessages.NEW, scilabGraph);
+	private PrintAction(ScilabGraph scilabGraph) {
+		super(XcosMessages.PRINT, scilabGraph);
 	}
 
 	public static MenuItem createMenu(ScilabGraph scilabGraph) {
-		return createMenu(XcosMessages.NEW, null, new NewAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		return createMenu(XcosMessages.PRINT, null, new PrintAction(scilabGraph), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 	}
 
 	public static PushButton createButton(ScilabGraph scilabGraph) {
-		return createButton(XcosMessages.NEW, "document-new.png", new NewAction(scilabGraph));
+		return createButton(XcosMessages.PRINT, null, new PrintAction(scilabGraph));
 	}
 
 }

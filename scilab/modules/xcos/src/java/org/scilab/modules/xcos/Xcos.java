@@ -24,9 +24,12 @@ import javax.swing.JScrollPane;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
+import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.graph.actions.GroupAction;
+import org.scilab.modules.graph.actions.InvertSelectionAction;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
+import org.scilab.modules.graph.actions.SelectAllAction;
 import org.scilab.modules.graph.actions.UnGroupAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
@@ -46,17 +49,43 @@ import org.scilab.modules.gui.toolbar.ScilabToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.xcos.actions.AboutXcosAction;
+import org.scilab.modules.xcos.actions.BlockDocumentationAction;
+import org.scilab.modules.xcos.actions.CloseAction;
+import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DumpAction;
-import org.scilab.modules.xcos.actions.RunAction;
+import org.scilab.modules.xcos.actions.ExportAction;
+import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.NewPaletteAction;
+import org.scilab.modules.xcos.actions.NormalViewAction;
+import org.scilab.modules.xcos.actions.PrintAction;
+import org.scilab.modules.xcos.actions.QuitAction;
+import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
+import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.SaveAction;
+import org.scilab.modules.xcos.actions.SaveAsAction;
+import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.StopAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskCustomizeAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.actions.SuperblockMaskSaveBlockGUIAction;
+import org.scilab.modules.xcos.actions.ViewBrowserAction;
+import org.scilab.modules.xcos.actions.ViewDetailsAction;
+import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
+import org.scilab.modules.xcos.actions.ViewGetinfosAction;
 import org.scilab.modules.xcos.actions.ViewInScicosAction;
+import org.scilab.modules.xcos.actions.ViewPaletteBrowserAction;
+import org.scilab.modules.xcos.actions.ViewViewportAction;
+import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
+import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.actions.NewAction;
+import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.OpenAction;
 
 import com.mxgraph.swing.mxGraphOutline;
@@ -208,59 +237,106 @@ public class Xcos extends SwingScilabTab implements Tab {
 		Menu fileMenu = ScilabMenu.createMenu();
 		fileMenu.setText(XcosMessages.FILE);
 		fileMenu.setMnemonic('F');
-		fileMenu.add(NewAction.createMenu(scilabGraph));
+		
+		Menu newMenu = ScilabMenu.createMenu();
+		newMenu.setText(XcosMessages.NEW);
+		newMenu.add(NewDiagramAction.createMenu(scilabGraph));
+		newMenu.add(NewPaletteAction.createMenu(scilabGraph));
+		fileMenu.add(newMenu);
+
 		fileMenu.add(OpenAction.createMenu(scilabGraph));
     	fileMenu.addSeparator();
 		fileMenu.add(SaveAction.createMenu(scilabGraph));
-		//fileMenu.add(SaveAsAction.createMenu(scilabGraph));
-		//fileMenu.add(ExportAction.createMenu(scilabGraph));
-		//fileMenu.add(SaveAsInterfFuncAction.createMenu(scilabGraph));
-    	//fileMenu.addSeparator();
-		//fileMenu.add(PrintAction.createMenu(scilabGraph));
-    	//fileMenu.addSeparator();
-		//fileMenu.add(CloseAction.createMenu(scilabGraph));
-    	//fileMenu.addSeparator();
-		//fileMenu.add(QuitAction.createMenu(scilabGraph));
+		fileMenu.add(SaveAsAction.createMenu(scilabGraph));
+		fileMenu.add(ExportAction.createMenu(scilabGraph));
+		fileMenu.add(SaveAsInterfaceFunctionAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(PrintAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(CloseAction.createMenu(scilabGraph));
+    	fileMenu.addSeparator();
+		fileMenu.add(QuitAction.createMenu(scilabGraph));
     	fileMenu.addSeparator();
 		fileMenu.add(DumpAction.dumpMenu(scilabGraph));
 		fileMenu.add(ViewInScicosAction.viewInScicosMenu(scilabGraph));
 		
 		menuBar.add(fileMenu);
 	
-	// EDIT
-	Menu edit = ScilabMenu.createMenu();
-	edit.setText("Edit");
-	edit.add(UndoAction.undoMenu(scilabGraph));
-	edit.add(RedoAction.redoMenu(scilabGraph));
-	edit.addSeparator();
-	edit.add(CutAction.cutMenu(scilabGraph));
-	edit.add(CopyAction.copyMenu(scilabGraph));
-	edit.add(PasteAction.pasteMenu(scilabGraph));
-	menuBar.add(edit);
+		/** Edit menu */
+		Menu edit = ScilabMenu.createMenu();
+		edit.setText(XcosMessages.EDIT);
+		edit.setMnemonic('E');
+		menuBar.add(edit);
 
-	// VIEW
-	Menu view = ScilabMenu.createMenu();
-	view.setText("View");
-	view.add(ZoomInAction.zoominMenu(scilabGraph));
-	view.add(ZoomOutAction.zoomoutMenu(scilabGraph));
-	menuBar.add(view);
+		edit.add(UndoAction.undoMenu(scilabGraph));
+		edit.add(RedoAction.redoMenu(scilabGraph));
+		edit.addSeparator();
+		edit.add(CutAction.cutMenu(scilabGraph));
+		edit.add(CopyAction.copyMenu(scilabGraph));
+		edit.add(PasteAction.pasteMenu(scilabGraph));
+		edit.add(DeleteAction.createMenu(scilabGraph));
+		edit.addSeparator();
+		edit.add(SelectAllAction.createMenu(scilabGraph));
+		edit.add(InvertSelectionAction.createMenu(scilabGraph));
+		edit.addSeparator();
+		edit.add(RegionToSuperblockAction.createMenu(scilabGraph));
+		Menu superblockMask = ScilabMenu.createMenu();
+		superblockMask.setText(XcosMessages.SUPERBLOCK_MASK);
+		superblockMask.add(SuperblockMaskCreateAction.createMenu(scilabGraph));
+		superblockMask.add(SuperblockMaskRemoveAction.createMenu(scilabGraph));
+		superblockMask.add(SuperblockMaskCustomizeAction.createMenu(scilabGraph));
+		superblockMask.add(SuperblockMaskSaveBlockGUIAction.createMenu(scilabGraph));
+		edit.add(superblockMask);
+		
+		/** View menu */
+		Menu view = ScilabMenu.createMenu();
+		view.setText(XcosMessages.VIEW);
+		view.setMnemonic('V');
+		menuBar.add(view);
+		
+		view.add(ZoomInAction.zoominMenu(scilabGraph));
+		view.add(ZoomOutAction.zoomoutMenu(scilabGraph));
+		view.add(FitDiagramToViewAction.createMenu(scilabGraph));
+		view.add(NormalViewAction.createMenu(scilabGraph));
+		view.addSeparator();
+		view.add(ViewPaletteBrowserAction.createMenu(scilabGraph));
+		view.add(ViewDiagramBrowserAction.createMenu(scilabGraph));
+		view.add(ViewViewportAction.createMenu(scilabGraph));
+		view.add(ViewGetinfosAction.createMenu(scilabGraph));
+		view.add(ViewDetailsAction.createMenu(scilabGraph));
+		view.add(ViewBrowserAction.createMenu(scilabGraph));
 
-	// SHAPE
-	Menu shape = ScilabMenu.createMenu();
-	shape.setText("Shape");
-	shape.add(GroupAction.groupMenu(scilabGraph));
-	shape.add(UnGroupAction.ungroupMenu(scilabGraph));
-	menuBar.add(shape);
-
-	// SIMULATE
-	Menu simulate = ScilabMenu.createMenu();
-	simulate.setText("Simulate");
-	simulate.add(SetupAction.setupMenu(scilabGraph));
-	simulate.add(RunAction.runMenu(scilabGraph));
-	simulate.add(StopAction.stopMenu(scilabGraph));
-	menuBar.add(simulate);
+		/** Simulation menu */
+		Menu simulate = ScilabMenu.createMenu();
+		simulate.setText(XcosMessages.SIMULATION);
+		view.setMnemonic('S');
+		menuBar.add(simulate);
+		
+		simulate.add(SetupAction.createMenu(scilabGraph));
+		simulate.add(CompileAction.createMenu(scilabGraph));
+		simulate.add(StartAction.createMenu(scilabGraph));
+		simulate.add(StopAction.createMenu(scilabGraph));
 	
-	return menuBar;
+		/** Tools menu */
+		Menu tools = ScilabMenu.createMenu();
+		tools.setText(XcosMessages.TOOLS);
+		tools.setMnemonic('T');
+		menuBar.add(tools);
+		
+		tools.add(CodeGenerationAction.createMenu(scilabGraph));
+		
+		/** Help menu */
+		Menu help = ScilabMenu.createMenu();
+		help.setText(XcosMessages.HELP);
+		help.setMnemonic('H');
+		menuBar.add(help);
+		
+		help.add(XcosDocumentationAction.createMenu(scilabGraph));
+		help.add(BlockDocumentationAction.createMenu(scilabGraph));
+		help.add(XcosDemonstrationsAction.createMenu(scilabGraph));
+		help.add(AboutXcosAction.createMenu(scilabGraph));
+		
+		return menuBar;
     }
 
     public static ToolBar createToolBar(ScilabGraph scilabGraph) {

@@ -24,5 +24,8 @@ public class ScilabGraphMessages {
 	public static final String UNDO = Messages.gettext("Undo");
 	public static final String ZOOM_IN = Messages.gettext("Zoom In");
 	public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
+    public static final String DELETE = Messages.gettext("Delete");
+    public static final String SELECT_ALL = Messages.gettext("Select all");
+    public static final String INVERT_SELECTION = Messages.gettext("Invert selection");
 	
 }

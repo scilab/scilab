@@ -52,11 +52,11 @@ public class SetupAction extends DefaultAction {
 		super(XcosMessages.SETUP,scilabGraph);
 	}
 
-	public static PushButton setupButton(ScilabGraph scilabGraph) {
+	public static PushButton createButton(ScilabGraph scilabGraph) {
 		return createButton(XcosMessages.SETUP, null, new SetupAction(scilabGraph));
 	}
 
-	public static MenuItem setupMenu(ScilabGraph scilabGraph) {
+	public static MenuItem createMenu(ScilabGraph scilabGraph) {
 		return createMenu(XcosMessages.SETUP, null, new SetupAction(scilabGraph), null);
 	}
 
