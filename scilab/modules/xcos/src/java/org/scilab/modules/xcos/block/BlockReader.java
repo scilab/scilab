@@ -35,6 +35,10 @@ public class BlockReader {
 	public static HashMap<String, List> readDiagramFromFile(String hdf5File) {
 		ScilabMList data = new ScilabMList();
 		HashMap<String, List> result = new HashMap<String, List>();
+		
+		double minX = Double.MAX_VALUE;
+		double minY = Double.MAX_VALUE;
+		
 		try {
 			int fileId = H5Read.openFile(hdf5File);
 			H5Read.readDataFromFile(fileId, data);
@@ -45,8 +49,17 @@ public class BlockReader {
 				
 				for (int i = 0 ; i < nbBlocks ; ++i) {
 					BasicBlock currentBlock = new BasicBlock("temp");
+					System.err.println("Reading Block "+ i);
 					fillBlockStructure(getBlockAt(data, i), currentBlock);
 					blocks.add(currentBlock);
+					System.err.println("Block geometry "+currentBlock.getGeometry().getX()+" , "+currentBlock.getGeometry().getY());
+					minX = Math.min(minX, currentBlock.getGeometry().getX());
+					minY = Math.min(minY, currentBlock.getGeometry().getY());
+				}
+				
+				for (int i = 0 ; i < blocks.size() ; ++i) {
+				    blocks.get(i).getGeometry().setX(blocks.get(i).getGeometry().getX() + Math.abs(minX));
+				    blocks.get(i).getGeometry().setY(blocks.get(i).getGeometry().getY() + Math.abs(minY));
 				}
 				result.put("Blocks", blocks);
 				
@@ -82,16 +95,16 @@ public class BlockReader {
 
 	public static int getNbBlocks(ScilabMList data) {
 		ScilabList allBlockAndLink = getListOfBlockAndLink(data);
-		int j = 0;
-		while (j < allBlockAndLink.size()) {
-			if (((ScilabString) ((ScilabMList) allBlockAndLink.get(j)).get(0)).getData()[0][0].equals("Block")) {
-				++j;
-			}
-			else {
-				break;
-			}
-		}
-		return j;
+//		int j = 0;
+//		while (j < allBlockAndLink.size()) {
+//			if (((ScilabString) ((ScilabMList) allBlockAndLink.get(j)).get(0)).getData()[0][0].equals("Block")) {
+//				++j;
+//			}
+//			else {
+//				break;
+//			}
+//		}
+		return allBlockAndLink.size();
 	}
 	
 	public static ScilabList getListOfBlockAndLink (ScilabMList data){
@@ -231,6 +244,9 @@ public class BlockReader {
 				return false ;
 			}
 		}
+		else {
+		    return false;
+		}
 		
 		return true ;
 	}
@@ -264,8 +280,33 @@ public class BlockReader {
 				return false ;
 			}
 			
-			if (!((graphicsStructure.get(1) instanceof ScilabDouble)&&// orig : must contain the coord of the block
-				(graphicsStructure.get(2) instanceof ScilabDouble)&&// sz : must contains the size of the block
+			if (graphicsStructure.get(1) instanceof ScilabDouble) {// orig : must contain the coord of the block
+			    // !!! WARNING !!!
+			    // scicos can store [x,y] or [x;y] watch out !!!!
+			    double x = 0;
+			    double y = 0;
+			    if (graphicsStructure.get(1).getHeight() == 1 &&  graphicsStructure.get(1).getWidth() == 2) {
+				x = ((ScilabDouble) graphicsStructure.get(1)).getRealPart()[0][0];
+				y = ((ScilabDouble) graphicsStructure.get(1)).getRealPart()[0][1];
+			    }
+			    else {
+				if (graphicsStructure.get(1).getHeight() == 2 &&  graphicsStructure.get(1).getWidth() == 1) {
+				  x = ((ScilabDouble) graphicsStructure.get(1)).getRealPart()[0][0];
+				  y = ((ScilabDouble) graphicsStructure.get(1)).getRealPart()[1][0]; 
+				}
+			    }
+			    
+			    System.err.println("[x , y] == ["+x+" , "+y+"]");
+			    
+			    
+			    newBlock.getGeometry().setX(x);
+			    newBlock.getGeometry().setY(-y);
+			    
+			}
+			else {
+			    return false ;
+			}
+			if (!((graphicsStructure.get(2) instanceof ScilabDouble)&&// sz : must contains the size of the block
 				(graphicsStructure.get(3) instanceof ScilabBoolean )&&// flip
 				(graphicsStructure.get(4) instanceof ScilabDouble)// theta
 				)) { 
@@ -523,7 +564,7 @@ public class BlockReader {
 				
 				if (dataNbControlPort.getRealPart() != null ){ 
 				
-					int nbControlPort = (int) dataNbControlPort.getRealPart()[0][0];
+					int nbControlPort = dataNbControlPort.getHeight();
 					
 					for (int i = 0 ; i < nbControlPort ; i++){
 						
@@ -534,7 +575,7 @@ public class BlockReader {
 				
 				if (dataNbCommandPort.getRealPart() != null ){ 
 					
-					int nbCommandPort = (int) dataNbCommandPort.getRealPart()[0][0];
+					int nbCommandPort = dataNbCommandPort.getHeight();
 					
 					for (int i = 0 ; i < nbCommandPort ; i++){
 						
