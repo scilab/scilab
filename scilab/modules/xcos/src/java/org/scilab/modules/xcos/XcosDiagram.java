@@ -122,43 +122,7 @@ public class XcosDiagram extends ScilabGraph {
 	mxCodec codec = new mxCodec();
 	Document doc = mxUtils.loadDocument(System.getenv("SCI")+"/modules/xcos/etc/Xcos-style.xml");
 	codec.decode(doc.getDocumentElement(), getStylesheet());
-	Object parent = getDefaultParent();
-
-	/**
-	 * SAMPLE DATA 
-	 */
-
-
-	//BasicBlock testBlock = BlockReader.read( System.getenv("SCI")+"/modules/scicos_blocks/macros/Linear/SUMMATION.h5");
-	//testBlock.getGeometry().setX(20);
-	//testBlock.getGeometry().setY(20);
-	//addCell(testBlock, parent);
-	//ClockBlock clock = new ClockBlock();
-	//clock.getGeometry().setX(20);
-	//clock.getGeometry().setY(20);
-	//
-
-	//getAsComponent().setCellWarning(clock, "ACHTUNG !!!");
-
-	//	SinusoidBlock sinusoid = new SinusoidBlock();
-	//	sinusoid.getGeometry().setX(220);
-	//	sinusoid.getGeometry().setY(120);
-	//	addCell(sinusoid,parent);
-	//	
-	//	GenericBlock fake = new GenericBlock();
-	//	fake.getGeometry().setX(20);
-	//	fake.getGeometry().setY(420);
-	//	addCell(fake, parent);
-	//	
-	//	ScopeBlock scope = new ScopeBlock();
-	//	scope.getGeometry().setX(220);
-	//	scope.getGeometry().setY(420);
-	//	addCell(scope, parent);
-
-	/**
-	 * END
-	 */
-
+	
 	// This enable stop editing cells when pressing Enter.
 	getAsComponent().setEnterStopsCellEditing(true);
 
@@ -300,7 +264,7 @@ public class XcosDiagram extends ScilabGraph {
 		return;
 	    }
 	    fileName = fc.getSelection()[0];
-	    System.out.println("Savingh to file : {"+fileName+"}");
+	    System.out.println("Saving to file : {"+fileName+"}");
 	}
 
 	int file_id = H5Write.createFile(fileName);
@@ -365,22 +329,28 @@ public class XcosDiagram extends ScilabGraph {
 
     private ScilabList getDiagramObjs() {
 	ScilabList data = new ScilabList();
-	Object[] allCells = getChildCells(getDefaultParent());
+	
+	int nbObjs = getModel().getChildCount(getDefaultParent());
+	
+	
 	List<BasicBlock> blockList = new ArrayList<BasicBlock>();
 	List<BasicLink> linkList = new ArrayList<BasicLink>();
-	for (int i = 0 ; i < allCells.length ; ++i)
+	for (int i = 0 ; i < nbObjs ; ++i)
 	{
-	    if (allCells[i] instanceof BasicBlock) {
-		blockList.add((BasicBlock) allCells[i]);
+	    Object currentObject = getModel().getChildAt(getDefaultParent(), i);
+	    if (currentObject instanceof BasicBlock) {
+		blockList.add((BasicBlock) currentObject);
 	    }
-	    else if (allCells[i] instanceof BasicLink) {
-		linkList.add((BasicLink) allCells[i]);
+	    else if (currentObject instanceof BasicLink) {
+		linkList.add((BasicLink) currentObject);
 	    }
 	    else {
 		System.out.println("Not a BasicBlock nor BasicLink");
 	    }
 	}
 
+	
+	
 	// Go over all list to set ID
 	for (int i = 0 ; i < linkList.size() ; ++i) {
 	    linkList.get(i).setOrdering(i + blockList.size() + 1);
