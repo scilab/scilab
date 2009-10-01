@@ -86,8 +86,8 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
     //**---- Check and define SCICOS palette , menu , shortcut ,  palette libraries
     [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
      %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-     %scicos_with_grid, %scs_wgrid] = initial_scicos_tables() ;
-
+     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables() ;
+    
     //**---- Set up navigation
     super_path    = [] // path to the currently opened superblock
     %scicos_navig = []
