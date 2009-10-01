@@ -247,6 +247,14 @@ public class XcosDiagram extends ScilabGraph {
 	return !(cell instanceof BasicPort) && super.isCellMovable(cell);
     }
 
+    public boolean isCellResizable(Object cell) {
+	return (cell instanceof BasicBlock) && super.isCellResizable(cell);
+    }
+    
+    public boolean isCellDeletable(Object cell) {
+	return !(cell instanceof BasicPort) && super.isCellDeletable(cell);
+    }
+    
     //    public boolean isCellConnectable(Object cell)
     //    {
     //	return (cell instanceof InputPort) && super.isCellConnectable(cell);
