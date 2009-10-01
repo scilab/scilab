@@ -30,23 +30,23 @@ public class PrintAction extends DefaultAction {
 	private PrintAction(Xpad editor) {
 		super("Print...", editor);
 	}
-	
-    public void doAction() {
-    	printXpadDocument(getEditor());
-    }
-    
+
+	public void doAction() {
+		printXpadDocument(getEditor());
+	}
+
 	public static MenuItem createMenu(Xpad editor) {
-	    return createMenu("Print...", null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		return createMenu("Print...", null, new PrintAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 	}
 
 	public static PushButton createButton(Xpad editor) {
-	    return createButton("Print...", "document-print.png", new PrintAction(editor));
+		return createButton("Print...", "document-print.png", new PrintAction(editor));
 	}
 
 	public static boolean printXpadDocument(Xpad editor) {
-		
+
 		PrinterJob printTask = PrinterJob.getPrinterJob();
-		
+
 		PageFormat pageFormat = PageSetupAction.getPageFormat();
 		if (pageFormat != null) {
 			printTask.setPrintable(new PrinterWriter(editor.getTextPane()), pageFormat);

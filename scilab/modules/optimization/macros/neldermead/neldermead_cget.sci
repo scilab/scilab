@@ -19,8 +19,6 @@ function value = neldermead_cget (this,key)
     value = this.method;
   case "-coords0" then
     value = this.coords0;
-  case "-simplex0" then
-    value = this.simplex0;
   case "-simplex0method" then
     value = this.simplex0method;
   case "-simplex0length" then
@@ -75,11 +73,12 @@ function value = neldermead_cget (this,key)
     value = this.nbineqloops;
   case "-ineqscaling" then
     value = this.ineqscaling;
-  case "-vectorizefunction" then
-    value = this.vectorizefunction;
+  case "-checkcostfunction" then
+    value = this.checkcostfunction;
+  case "-scalingmethod" then
+    value = this.scalingmethod;
   else
     // Delegate to the optimization object
     value = optimbase_cget ( this.optbase , key );
   end
 endfunction
-

@@ -19,7 +19,7 @@
 static gw_generic_table Tab[] = 
 {
 	{ sci_Playsound,"PlaySound"},
-	{ sci_Beep,"beep"}
+	{ sci_beep,"beep"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_sound(void)

@@ -58,18 +58,11 @@ libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
 
 #### jvm : include files ####
 libscijvm_la_includedir=$(pkgincludedir)
-libscijvm_la_include_HEADERS = includes/TerminateJVM.h \
-includes/getScilabJavaVM.h \
+libscijvm_la_include_HEADERS = includes/getScilabJavaVM.h \
 includes/getScilabJNIEnv.h \
-includes/InitializeJVM.h \
-includes/gw_jvm.h \
 includes/addToClasspath.h \
 includes/addToLibrarypath.h \
-includes/catchIfJavaException.h \
-includes/getScilabObject.h \
-includes/loadBackGroundClassPath.h \
-includes/loadOnUseClassPath.h \
-includes/dynlib_jvm.h
+includes/getScilabObject.h
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \

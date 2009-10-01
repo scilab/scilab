@@ -23,15 +23,9 @@
 #ifndef __CONNEX_H__
 #define __CONNEX_H__
 
-#include <string.h>
-#include <stdlib.h>
-
-#include "MALLOC.h"
-
-#include "cerro.h"
-
 #include "machine.h"
+#include "dynlib_metanet.h"
 
-void C2F(concom)(int *icomp, int *n, int *ncomp, int **ns, int *nsize);
+METANET_IMPEXP void C2F(concom)(int *icomp, int *n, int *ncomp, int **ns, int *nsize);
 
 #endif /* ! __CONNEX_H__ */

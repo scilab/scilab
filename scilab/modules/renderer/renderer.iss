@@ -38,7 +38,7 @@ Source: modules\{#RENDERER}\version.xml; DestDir: {app}\modules\{#RENDERER}; Com
 ;
 ;Source: modules\{#RENDERER}\sci_gateway\renderer_gateway.xml; DestDir: {app}\modules\{#RENDERER}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_GRAPHICS}
+;Source: modules\{#RENDERER}\includes\*.h; DestDir: {app}\modules\{#RENDERER}\includes; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#RENDERER}\help\addchapter.sce; DestDir: {app}\modules\{#RENDERER}\help; Flags: recursesubdirs; Components:  {#COMPN_GRAPHICS}
 ;

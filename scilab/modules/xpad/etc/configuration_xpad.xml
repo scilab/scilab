@@ -37,40 +37,40 @@
 
       <style name="Operator">
 		    <ForegroundColor default="#ff0000" useCache="true" value="#ff0000"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
       <style name="Command">
-		    <ForegroundColor default="#00ffff" useCache="true" value="#00ffff"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+		    <ForegroundColor default="#b01813" useCache="true" value="#b01813"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
 
       </style>
       
       <style name="String">
 		    <ForegroundColor default="#0000ff" useCache="true" value="#0000ff"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
       
       <style name="Bool">
-		    <ForegroundColor default="#ffff00" useCache="true" value="#ffff00"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+		    <ForegroundColor default="#32b9b9" useCache="true" value="#32b9b9"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
 
       </style>
       
       <style name="Comment">
-		    <ForegroundColor default="#00ff00" useCache="true" value="#00ff00"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+		    <ForegroundColor default="#01a801" useCache="true" value="#01a801"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
 
 
       <style name="Function">
-		    <ForegroundColor default="#ff99ff" useCache="true" value="#ff99ff"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+		    <ForegroundColor default="#d550d5" useCache="true" value="#d550d5"/>
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
       
       <style name="Macro">
 		    <ForegroundColor default="#ff9933" useCache="true" value="#ff9933"/>
-        <FontStyle default="1" useCache="true" value="1"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
+        <FontStyle default="0" useCache="true" value="0"/> <!-- 0=PLAIN, 1=BOLD, 2=ITALIC, 3=BOLD+ITALIC -->
       </style>
     </styles>
 

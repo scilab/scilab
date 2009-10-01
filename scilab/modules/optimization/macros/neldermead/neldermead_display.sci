@@ -20,6 +20,11 @@ function this = neldermead_display ( this )
   for k =1:size(str,1)
     mprintf("%s\n",str(k));
   end
+  mprintf("Simplex Optimum : \n");
+  str = optimsimplex_tostring ( this.simplexopt );
+  for k =1:size(str,1)
+    mprintf("%s\n",str(k));
+  end
   mprintf("Simplex0 Method : %s\n", string(this.simplex0method));
   mprintf("Simplex0 Length : %s\n", string(this.simplex0length));
   mprintf("Termination Method on simplex size : %s\n", string(this.tolsimplexizemethod));

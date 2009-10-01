@@ -87,7 +87,7 @@ SendScilabJob("myMatrix=['sample','for the help']");
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link>, <link
+      <member><link
       linkend="compile_and_run_call_scilab">Compile and run with
       call_scilab</link>, <link linkend="SendScilabJob">SendScilabJob</link>,
       <link linkend="MatrixManagement_callscilab">Matrix Management</link>,

@@ -48,6 +48,42 @@ function y = rosenbrock (x)
 endfunction
 
 //
+// Test randbounds with default number of vertices
+//
+s1 = optimsimplex_new ( "randbounds" , [-1.2 1.0], rosenbrock, ...
+  [-5.0 -5.0] , [5.0 5.0] );
+computed = optimsimplex_getall ( s1 );
+assert_equal ( size(computed,1) , 3 );
+assert_equal ( size(computed,2) , 3 );
+expected = [
+  %T %T  
+  %T %T  
+  %T %T  
+];
+assert_equal ( computed(1:3,2:3) < 5.0 , expected );
+assert_equal ( computed(1:3,2:3) > -5.0 , expected );
+s1 = optimsimplex_destroy ( s1 );
+
+//
+// Test randbounds with 5 vertices
+//
+s1 = optimsimplex_new ( "randbounds" , [-1.2 1.0], rosenbrock, ...
+  [-5.0 -5.0] , [5.0 5.0], 5 );
+computed = optimsimplex_getall ( s1 );
+assert_equal ( size(computed,1) , 5 );
+assert_equal ( size(computed,2) , 3 );
+expected = [
+  %T %T  
+  %T %T  
+  %T %T  
+  %T %T  
+  %T %T  
+];
+assert_equal ( computed(1:5,2:3) < 5.0 , expected );
+assert_equal ( computed(1:5,2:3) > -5.0 , expected );
+s1 = optimsimplex_destroy ( s1 );
+
+//
 // Test optimsimplex_randbounds
 //
 function [ y , myobj ] = mycostf ( x , myobj )
@@ -56,16 +92,25 @@ function [ y , myobj ] = mycostf ( x , myobj )
 endfunction
 
 //
-// Test randbounds
+// Test randbounds with additionnal object
 //
 mydude = tlist(["T_MYSTUFF","nb"]);
 mydude.nb = 0;
 s1 = optimsimplex_new ();
-[ s1 , mydude ] = optimsimplex_randbounds ( s1 , x0 = [-1.2 1.0], fun = mycostf, ...
-  boundsmin = [-5.0 -5.0] , boundsmax = [5.0 5.0], nbve=5 , data = mydude );
+[ s1 , mydude ] = optimsimplex_new ( "randbounds" , [-1.2 1.0], mycostf, ...
+  [-5.0 -5.0] , [5.0 5.0], 5 , mydude );
 computed = optimsimplex_getall ( s1 );
 assert_equal ( size(computed,1) , 5 );
 assert_equal ( size(computed,2) , 3 );
 assert_equal ( mydude.nb , 5 );
+expected = [
+  %T %T  
+  %T %T  
+  %T %T  
+  %T %T  
+  %T %T  
+];
+assert_equal ( computed(1:5,2:3) < 5.0 , expected );
+assert_equal ( computed(1:5,2:3) > -5.0 , expected );
 s1 = optimsimplex_destroy ( s1 );
 

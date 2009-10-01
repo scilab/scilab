@@ -229,13 +229,13 @@ static bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType
 		bReturn							= export_data(_iH5File, piNewVar, pstPathName);
 		iRet = addItemInList(_iH5File, pvList, i, pstPathName);
 
-		free(pstPathName);
+		FREE(pstPathName);
 		if(bReturn == false || iRet)
 			return false;
 	}
 	iLevel--;
 	closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);
-	free(pstGroupName);
+	FREE(pstGroupName);
 	//close list
 	return true;
 }
@@ -574,7 +574,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		}
 		
 		getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
-		_pstNameList[iCount] = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));//1 for null termination
+		_pstNameList[iCount] = (char*)MALLOC((iLen + 1) * sizeof(char));//+1 for null termination
 		getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &_pstNameList[iCount]);
 		iCount++;
 	}

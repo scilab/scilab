@@ -46,7 +46,7 @@ this = nmplot_simplexhistory ( this , colorforeground , markforeground , marksty
 
     <para>The goal of this class is to provide a neldermead component with
     plotting features. It enables to make fast plots of the algorithm progress
-    through the iterations. </para>
+    through the iterations.</para>
 
     <para>It is a specialized neldermead class, with a specific output
     command. This output function allows to store the history of several datas
@@ -1324,21 +1324,139 @@ this = nmplot_simplexhistory ( this , colorforeground , markforeground , marksty
           </variablelist>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>[ this , result ] = nmplot_function ( this , x , index )</term>
+
+        <listitem>
+          <para>Call the cost function and return the value.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>this</term>
+
+              <listitem>
+                <para>The current object.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x</term>
+
+              <listitem>
+                <para>the point where the function is to be evaluated</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>index</term>
+
+              <listitem>
+                <para>optionnal, a flag to pass to the cost function (default
+                = 1). See the section "The cost function" of the neldermead
+                component for available values of index.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>TODO</title>
+    <title>Example</title>
+
+    <para>In the following example, we use the fixed shape Spendley et al.
+    simplex algorithm and find the minimum of a quadratic function. We begin
+    by defining a quadratic function associated with 2 input variables. We
+    then define an nmplot object and configure the object so that the "fixed"
+    shape simplex algorithm is used with the regular initial simplex
+    associated with the "spendley" key. Four files are configured, which will
+    contain the history of the simplex, the history of fbar, fopt and sigma
+    through the iterations. The search is performed by the nmplot_search
+    function, which writes the 4 data files during the iterations. The
+    nmplot_contour function is called in order to compute the arrays xdata,
+    ydata and zdata which are required as input to the contour function. The
+    nmplot_simplexhistory then uses the history of the simplex, as stored in
+    the rosenbrock.fixed.history.simplex.txt data file, and plot the various
+    simplices on the contour plot. The nmplot_historyplot is used with the
+    files rosenbrock.fixed.history.fbar.txt, rosenbrock.fixed.history.fopt.txt
+    and rosenbrock.fixed.history.sigma.txt, which produces 3 plots of the
+    history of the optimization algorithm through the iterations.</para>
+
+    <programlisting role="example"> 
+mprintf("Defining quadratic function...\n");
+function y = quadratic (x)
+  y = x(1)^2 + x(2)^2 - x(1) * x(2);
+endfunction
+
+mprintf("Creating nmplot object...\n");
+nm = nmplot_new ();
+nm = nmplot_configure(nm,"-numberofvariables",2);
+nm = nmplot_configure(nm,"-function",quadratic);
+nm = nmplot_configure(nm,"-x0",[2.0 2.0]');
+nm = nmplot_configure(nm,"-maxiter",100);
+nm = nmplot_configure(nm,"-maxfunevals",300);
+nm = nmplot_configure(nm,"-tolxrelative",1.e-8);
+nm = nmplot_configure(nm,"-simplex0method","spendley");
+nm = nmplot_configure(nm,"-method","fixed");
+//
+// Setup output files
+//
+nm = nmplot_configure(nm,"-simplexfn","rosenbrock.fixed.history.simplex.txt");
+nm = nmplot_configure(nm,"-fbarfn","rosenbrock.fixed.history.fbar.txt");
+nm = nmplot_configure(nm,"-foptfn","rosenbrock.fixed.history.fopt.txt");
+nm = nmplot_configure(nm,"-sigmafn","rosenbrock.fixed.history.sigma.txt");
+//
+// Perform optimization
+//
+mprintf("Searching for minimum...\n");
+nm = nmplot_search(nm);
+nmplot_display(nm);
+// Plot the contours of the cost function and the simplex history
+mprintf("Plotting contour...\n");
+[nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -2.0 , xmax = 4.0 , ymin = -2.0 , ymax = 4.0 , nx = 100 , ny = 100 );
+f = scf();
+contour ( xdata , ydata , zdata , [0.1 1.0 2.0 5.0 10.0 15.0 20.0] )
+nmplot_simplexhistory ( nm );
+mprintf("Plotting history of fbar...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.fbar.txt" , ...
+  mytitle = "Function Value Average" , myxlabel = "Iterations" );
+mprintf("Plotting history of fopt...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.fopt.txt" , ...
+  mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
+mprintf("Plotting history of sigma...\n");
+f = scf();
+nmplot_historyplot ( nm , "rosenbrock.fixed.history.sigma.txt" , ...
+  mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
+deletefile("rosenbrock.fixed.history.simplex.txt");
+deletefile("rosenbrock.fixed.history.fbar.txt");
+deletefile("rosenbrock.fixed.history.fopt.txt");
+deletefile("rosenbrock.fixed.history.sigma.txt");
+nm = nmplot_destroy(nm);
+
+
+ </programlisting>
   </refsection>
 
   <refsection>
-    <title>Bibliography</title>
+    <title>TODO</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>add an example</para>
+      </listitem>
+    </itemizedlist>
   </refsection>
 
   <refsection>
     <title>Authors</title>
 
-    <para>Michael Baudin, 2008-2009</para>
+    <para>Michael Baudin - INRIA - 2008-2009</para>
+
+    <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
   <refsection>

@@ -15,28 +15,31 @@
 #define __SPLIPATH_H__
 
 #include <wchar.h>
+#include "BOOL.h"
 #include "dynlib_fileio.h"
 
 /**
 * Parts of file name and path
 * @param[in] filename or path
+* @param[in] BOOL expand filename
 * @param[out] drive
 * @param[out] directory
 * @param[out] filename
 * @param[out] file extension
 */
-FILEIO_IMPEXP void splitpath(const char* path, char* drv, char* dir, char* name, char* ext);
+FILEIO_IMPEXP void splitpath(const char* path, BOOL bExpand, char* drv, char* dir, char* name, char* ext);
 
 /**
 * Parts of file name and path (Wide string)
 * @param[in] filename or path
+* @param[in] BOOL expand filename
 * @param[out] drive
 * @param[out] directory
 * @param[out] filename
 * @param[out] file extension
 */
 
-FILEIO_IMPEXP void splitpathW(const wchar_t* path, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
+FILEIO_IMPEXP void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext);
 
 #endif /* __SPLIPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

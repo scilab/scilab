@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
@@ -31,16 +32,14 @@ public class IndentAction extends DefaultAction {
 	}
 
 	public void doAction() {
+		ScilabStyleDocument styleDocument =  (ScilabStyleDocument) getEditor().getTextPane().getStyledDocument();
 		
-		((ScilabStyleDocument) indent_editor.getTextPane().getStyledDocument()).setEditor(indent_editor);
-		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-		
-//		int initial_caret_position = getEditor().getTextPane().getCaretPosition();
-//
-//		((ScilabStyleDocument) getEditor().getTextPane().getStyledDocument()).indent();
-//
-//		getEditor().getTextPane().setCaretPosition(initial_caret_position);
-		
+		try {
+			styleDocument.beautifier(getEditor().getTextPane().getSelectionStart(), getEditor().getTextPane().getSelectionEnd());
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static MenuItem createMenu(Xpad editor) {
