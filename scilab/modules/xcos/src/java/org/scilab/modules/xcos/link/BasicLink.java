@@ -22,8 +22,6 @@ import com.mxgraph.model.mxCell;
 
 public abstract class BasicLink extends mxCell {
     
-    private int ordering = 0;
-    
     public BasicLink(String style) {
 	super();
 	setVertex(false);
@@ -32,11 +30,8 @@ public abstract class BasicLink extends mxCell {
     }
 
     public void setOrdering(int ordering) {
-	this.ordering = ordering;
-    }
-
-    public int getOrdering() {
-	return ordering;
+	((BasicPort) this.getSource()).setConnectedLinkId(ordering);
+	((BasicPort) this.getTarget()).setConnectedLinkId(ordering);
     }
 
     public ScilabMList getAsScilabObj() {
