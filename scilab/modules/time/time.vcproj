@@ -70,7 +70,7 @@
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="time_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -153,7 +153,7 @@
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="time_export.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -239,7 +239,7 @@
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="time_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -329,7 +329,7 @@
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile=""
+				ModuleDefinitionFile="time_export.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -469,6 +469,14 @@
 				>
 				<File
 					RelativePath=".\LibScilab_Import.def"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="Export"
+				>
+				<File
+					RelativePath=".\time_export.def"
 					>
 				</File>
 			</Filter>

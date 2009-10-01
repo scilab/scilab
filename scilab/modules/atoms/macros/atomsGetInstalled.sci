@@ -9,7 +9,7 @@
 
 // End user function
 
-// Return a 4xn string matrix :
+// Return a 5xn string matrix :
 // 
 // !toolbox2          0.1  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.1  A  !
 // !                                                                                                          !
