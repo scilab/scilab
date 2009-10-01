@@ -82,7 +82,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -609,10 +609,7 @@ DATA = $(libsciscicos_blocks_la_etc_DATA) \
 	$(libsciscicos_blocks_la_root_DATA)
 am__libsciscicos_blocks_la_include_HEADERS_DIST =  \
 	includes/scicos_block.h includes/scicos_block4.h \
-	includes/scoBase.h includes/scoGetProperty.h \
-	includes/scoMemoryScope.h includes/scoMisc.h \
-	includes/scoSetProperty.h includes/scoWindowScope.h \
-	includes/blocks.h includes/affich.h
+	includes/blocks.h
 HEADERS = $(libsciscicos_blocks_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -660,9 +657,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -715,9 +714,9 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
-MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -735,6 +734,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -776,6 +776,8 @@ VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -1331,14 +1333,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_blocks_la_includedir = $(pkgincludedir)
 @SCICOS_TRUE@libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 @SCICOS_TRUE@includes/scicos_block4.h \
-@SCICOS_TRUE@includes/scoBase.h \
-@SCICOS_TRUE@includes/scoGetProperty.h \
-@SCICOS_TRUE@includes/scoMemoryScope.h \
-@SCICOS_TRUE@includes/scoMisc.h \
-@SCICOS_TRUE@includes/scoSetProperty.h \
-@SCICOS_TRUE@includes/scoWindowScope.h \
-@SCICOS_TRUE@includes/blocks.h \
-@SCICOS_TRUE@includes/affich.h
+@SCICOS_TRUE@includes/blocks.h
 
 
 #### scicos_blocks : MACROS ####

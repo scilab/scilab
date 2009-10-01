@@ -37,7 +37,6 @@
 ##########
 
 
-
 VPATH = @srcdir@
 pkgdatadir = $(datadir)/@PACKAGE@
 pkgincludedir = $(includedir)/@PACKAGE@
@@ -57,8 +56,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(libscisparse_la_include_HEADERS) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
+DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/sparse
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -77,7 +76,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
@@ -105,8 +104,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisparse_la_etcdir)" \
 	"$(DESTDIR)$(libscisparse_la_rootdir)" \
-	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscisparse_la_includedir)"
+	"$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisparse_la_DEPENDENCIES = $(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -186,7 +184,6 @@ SOURCES = $(libscisparse_la_SOURCES)
 DIST_SOURCES = $(libscisparse_la_SOURCES)
 DATA = $(libscisparse_la_etc_DATA) $(libscisparse_la_root_DATA) \
 	$(libscisparse_la_sci_gateway_DATA)
-HEADERS = $(libscisparse_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -233,9 +230,11 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
 GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -288,9 +287,9 @@ MATIO_CFLAGS = @MATIO_CFLAGS@
 MATIO_ENABLE = @MATIO_ENABLE@
 MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
-MKINSTALLDIRS = @MKINSTALLDIRS@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
 MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
@@ -308,6 +307,7 @@ PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
 PACKAGE_NAME = @PACKAGE_NAME@
 PACKAGE_STRING = @PACKAGE_STRING@
 PACKAGE_TARNAME = @PACKAGE_TARNAME@
+PACKAGE_URL = @PACKAGE_URL@
 PACKAGE_VERSION = @PACKAGE_VERSION@
 PATH_SEPARATOR = @PATH_SEPARATOR@
 PCRE_CFLAGS = @PCRE_CFLAGS@
@@ -349,6 +349,8 @@ VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -598,16 +600,6 @@ libscisparse_la_etc_DATA = etc/sparse.quit etc/sparse.start
 #### sparse : gateway declaration ####
 libscisparse_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisparse_la_sci_gateway_DATA = sci_gateway/sparse_gateway.xml
-
-#### sparse : include files ####
-libscisparse_la_includedir = $(pkgincludedir)
-libscisparse_la_include_HEADERS = includes/gw_sparse.h \
-includes/spmalloc.h \
-includes/sp.h \
-includes/spDefs.h \
-includes/spmatrix.h \
-includes/spConfig.h
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1466,26 +1458,6 @@ uninstall-libscisparse_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscisparse_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" && rm -f $$files
-install-libscisparse_la_includeHEADERS: $(libscisparse_la_include_HEADERS)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscisparse_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisparse_la_includedir)"
-	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libscisparse_la_includedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libscisparse_la_includedir)" || exit $$?; \
-	done
-
-uninstall-libscisparse_la_includeHEADERS:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscisparse_la_include_HEADERS)'; test -n "$(libscisparse_la_includedir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	test -n "$$files" || exit 0; \
-	echo " ( cd '$(DESTDIR)$(libscisparse_la_includedir)' && rm -f" $$files ")"; \
-	cd "$(DESTDIR)$(libscisparse_la_includedir)" && rm -f $$files
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
@@ -1572,9 +1544,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
+all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisparse_la_etcdir)" "$(DESTDIR)$(libscisparse_la_rootdir)" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)" "$(DESTDIR)$(libscisparse_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisparse_la_etcdir)" "$(DESTDIR)$(libscisparse_la_rootdir)" "$(DESTDIR)$(libscisparse_la_sci_gatewaydir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1626,7 +1598,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local install-libscisparse_la_etcDATA \
-	install-libscisparse_la_includeHEADERS \
 	install-libscisparse_la_rootDATA \
 	install-libscisparse_la_sci_gatewayDATA
 
@@ -1675,7 +1646,6 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libscisparse_la_etcDATA \
-	uninstall-libscisparse_la_includeHEADERS \
 	uninstall-libscisparse_la_rootDATA \
 	uninstall-libscisparse_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
@@ -1692,7 +1662,6 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
 	install-libscisparse_la_etcDATA \
-	install-libscisparse_la_includeHEADERS \
 	install-libscisparse_la_rootDATA \
 	install-libscisparse_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
@@ -1701,7 +1670,6 @@ uninstall-am: uninstall-libscisparse_la_etcDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am uninstall-libscisparse_la_etcDATA \
-	uninstall-libscisparse_la_includeHEADERS \
 	uninstall-libscisparse_la_rootDATA \
 	uninstall-libscisparse_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES

@@ -116,7 +116,7 @@
 /* Define to 1 if you have the `getwd' function. */
 #undef HAVE_GETWD
 
-/* Define if you have the iconv() function. */
+/* Define if you have the iconv() function and it works. */
 #undef HAVE_ICONV
 
 /* Define to 1 if you have the <inttypes.h> header file. */
@@ -133,9 +133,6 @@
 
 /* Define to 1 if you have the `dl' library (-ldl). */
 #undef HAVE_LIBDL
-
-/* Define to 1 if you have the `hdf5' library (-lhdf5). */
-#undef HAVE_LIBHDF5
 
 /* Define to 1 if you have the <libintl.h> header file. */
 #undef HAVE_LIBINTL_H
@@ -285,13 +282,13 @@
 /* Define to 1 if you have the `strtol' function. */
 #undef HAVE_STRTOL
 
-/* Define to 1 if `st_blksize' is member of `struct stat'. */
+/* Define to 1 if `struct stat' is a member of `st_blksize'. */
 #undef HAVE_STRUCT_STAT_ST_BLKSIZE
 
-/* Define to 1 if `st_blocks' is member of `struct stat'. */
+/* Define to 1 if `struct stat' is a member of `st_blocks'. */
 #undef HAVE_STRUCT_STAT_ST_BLOCKS
 
-/* Define to 1 if `st_rdev' is member of `struct stat'. */
+/* Define to 1 if `struct stat' is a member of `st_rdev'. */
 #undef HAVE_STRUCT_STAT_ST_RDEV
 
 /* Define to 1 if your `struct stat' has `st_blocks'. Deprecated, use
@@ -421,6 +418,9 @@
 
 /* Define to the one symbol short name of this package. */
 #undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION

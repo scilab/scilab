@@ -19,17 +19,16 @@ extern "C" {
 #endif
 
 #include "machine.h"
-#include "dynlib_time.h"
 
 /**
 * @TODO add comment
 */
-TIME_IMPEXP int C2F(realtimeinit)(double *t,double *scale);
+int C2F(realtimeinit)(double *t,double *scale);
 
 /**
 * @TODO add comment
 */
-TIME_IMPEXP int C2F(realtime)(double *t);
+int C2F(realtime)(double *t);
 
 #ifdef __cplusplus
 }

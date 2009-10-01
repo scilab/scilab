@@ -104,13 +104,6 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscixpad_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixpad_la_sci_gateway_DATA = sci_gateway/xpad_gateway.xml
 
-
-#### xpad : include files ####
-libscixpad_la_includedir=$(pkgincludedir)
-libscixpad_la_include_HEADERS = includes/gw_xpad.h \
-includes/dynlib_xpad.h \
-includes/callxpad.h
-
 if GUI
 USEANT=1
 endif

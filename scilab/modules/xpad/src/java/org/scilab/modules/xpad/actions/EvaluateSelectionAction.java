@@ -15,12 +15,13 @@ package org.scilab.modules.xpad.actions;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 
 public class EvaluateSelectionAction extends DefaultAction {
 
 	private EvaluateSelectionAction(Xpad editor) {
-		super("Evaluate Selection", editor);
+		super(XpadMessages.EVALUATE_SELECTION, editor);
 	}
 
 	public void doAction() {
@@ -30,6 +31,6 @@ public class EvaluateSelectionAction extends DefaultAction {
 	}
 	
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Evaluate Selection", null, new EvaluateSelectionAction(editor), null);
+		return createMenu(XpadMessages.EVALUATE_SELECTION, null, new EvaluateSelectionAction(editor), null);
 	 }
 }

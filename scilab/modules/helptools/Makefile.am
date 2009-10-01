@@ -66,13 +66,6 @@ libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscihelptools_la_etcdir = $(mydatadir)/etc
 libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start
 
-
-#### helptools : include files ####
-libscihelptools_la_includedir=$(pkgincludedir)
-libscihelptools_la_include_HEADERS = includes/gw_helptools.h \
-	includes/dynlib_helptools.h
-
-
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \

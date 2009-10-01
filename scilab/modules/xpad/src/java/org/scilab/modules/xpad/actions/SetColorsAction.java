@@ -36,6 +36,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
 import org.scilab.modules.xpad.utils.ConfigXpadManager;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class SetColorsAction extends DefaultAction {
 
@@ -164,9 +165,9 @@ public class SetColorsAction extends DefaultAction {
 		
 		/*ok cancel and reset to default button*/
 
-		JButton okButton  = new JButton("Ok");
-		JButton cancelButton  = new JButton("Cancel");
-		JButton defaultButton  = new JButton("Default");
+		JButton okButton  = new JButton(XpadMessages.OK);
+		JButton cancelButton  = new JButton(XpadMessages.CANCEL);
+		JButton defaultButton  = new JButton(XpadMessages.DEFAULT);
 		
 		
 		gbc.gridwidth = 1 ;

@@ -479,3 +479,5 @@ Bug fixes:
 * bug 4817 fixed - macro savedefaultbrowser (internal) removed (not used in scilab 5.x)
 
 * bug 4832 fixed - wavread returns a non explicit error if RIFF have some 'smpl' chunck.
+
+* bug 4846 fixed - mopen("","") crashs on windows.
