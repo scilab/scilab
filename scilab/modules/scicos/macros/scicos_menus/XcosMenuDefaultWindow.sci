@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function XcosMenuDefaultwindowparameters()
+function XcosMenuDefaultWindow()
   Cmenu='XcosMenuReplot'
   %zoom=1.4   // not a good idea, use a variable. It is also used in scicos.sci
   pwindow_set_size();

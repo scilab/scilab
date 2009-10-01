@@ -82,7 +82,7 @@ function [scicos_menu,scicos_lhb_list, scicos_short,CmenuTypeOneVector]= set_ini
               'XcosMenuZoomIn',               _("Zoom in");
 	      'XcosMenuZoomOut',              _("Zoom out");
               'XcosMenuFitToFigure',          _("Fit diagram to figure");
-  	      'XcosMenuWindowParameters',     _("Default window parameters");
+  	      'XcosMenuDefaultWindow',        _("Default window parameters");
               'XcosMenuDefinedVariables',     _("Available Parameters");
               'XcosMenuGrid',                 _("Toggle grid")];
 
