@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function XcosMenuAddcolor()
+function XcosMenuAddColor()
 //** 
     [edited,options] = do_options(scs_m.props.options,'Cmap')
 
