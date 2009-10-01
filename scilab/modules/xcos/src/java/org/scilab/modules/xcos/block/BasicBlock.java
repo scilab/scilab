@@ -258,6 +258,7 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
+	port.setOrdering(getAllInputPorts().size());
     }
 
     protected void addPort(OutputPort port) {
