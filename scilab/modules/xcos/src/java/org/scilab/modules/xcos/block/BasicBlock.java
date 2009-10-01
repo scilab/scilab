@@ -571,7 +571,7 @@ public class BasicBlock extends mxCell {
 		public void run() {
 		    Signal.wait(tempInput.getAbsolutePath());
 		    // Now read new Block
-		    BasicBlock modifiedBlock = BlockReader.read(tempInput.getAbsolutePath());
+		    BasicBlock modifiedBlock = BlockReader.readBlockFromFile(tempInput.getAbsolutePath());
 		    updateBlockSettings(modifiedBlock);
 		    //tempOutput.delete();
 		    //tempInput.delete();
