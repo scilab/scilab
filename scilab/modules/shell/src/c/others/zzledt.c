@@ -583,7 +583,7 @@ char *TermReadAndProcess(void)
 	    }
 	  else
 	    {
-	      if(keystroke == EOF) character_count = 0;
+	      if(keystroke == EOF) ExitWithCodeFromScilab(0);
 	      else character_count = 1;
 	    }
 

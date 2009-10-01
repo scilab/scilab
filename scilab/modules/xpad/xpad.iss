@@ -31,7 +31,7 @@ Source: modules\{#XPAD}\etc\configuration_xpad.xml; DestDir: {app}\modules\{#XPA
 ;
 ;Source: modules\{#XPAD}\help\addchapter.sce; DestDir: {app}\modules\{#XPAD}\help; Flags: recursesubdirs; Components:  {#COMPN_XPAD}
 ;
-Source: modules\{#XPAD}\includes\*.h; DestDir: {app}\modules\{#XPAD}\includes; Components: {#COMPN_XPAD}
+;Source: modules\{#XPAD}\includes\*.h; DestDir: {app}\modules\{#XPAD}\includes; Components: {#COMPN_XPAD}
 ;
 ;
 ;Source: modules\{#XPAD}\demos\*.*; DestDir: {app}\modules\{#XPAD}\demos; Flags: recursesubdirs; Components: {#COMPN_XPAD}

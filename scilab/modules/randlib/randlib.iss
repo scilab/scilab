@@ -35,7 +35,7 @@ Source: modules\{#RANDLIB}\etc\{#RANDLIB}.start; DestDir: {app}\modules\{#RANDLI
 ;
 Source: modules\{#RANDLIB}\help\addchapter.sce; DestDir: {app}\modules\{#RANDLIB}\help; Flags: recursesubdirs; Components:  {#COMPN_RANDLIB}
 ;
-Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}
+;Source: modules\{#RANDLIB}\includes\*.h; DestDir: {app}\modules\{#RANDLIB}\includes; Components: {#COMPN_RANDLIB}
 ;
 ;Source: modules\{#RANDLIB}\macros\lib; DestDir: {app}\modules\{#RANDLIB}\macros; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
 ;Source: modules\{#RANDLIB}\macros\names; DestDir: {app}\modules\{#RANDLIB}\macros; Flags: recursesubdirs; Components: {#COMPN_RANDLIB}
