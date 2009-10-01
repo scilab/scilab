@@ -2,9 +2,6 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
-
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
@@ -19,7 +16,7 @@ public class PortCheck extends mxMultiplicity {
 
     public String check(mxGraph graph, Object edge, Object source, Object target, int sourceOut, int targetIn)
     {
-	System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
+	//System.err.println("Calling check : "+source.getClass().getSimpleName()+" -> "+target.getClass().getSimpleName());
 	if (isTypeCompatible(source, target)) { return null; }
 
 	return typeError;
@@ -27,22 +24,22 @@ public class PortCheck extends mxMultiplicity {
     
     public boolean checkType(mxGraph graph, Object value, String type)
     {
-	System.err.println("Calling checkType (3)");
+	//System.err.println("Calling checkType (3)");
 	return false;
     }
 
     public boolean checkType(mxGraph graph, Object value, String type,
 		String attr, String attrValue)
     {
-	System.err.println("Calling checktype(5)");
+	//System.err.println("Calling checktype(5)");
 	return false;
     }
     public boolean isUnlimited() {
-	System.err.println("Calling isunlimited()");
+	//System.err.println("Calling isunlimited()");
 	return false;
     }
     public int getMaxValue() {
-	System.err.println("Calling getMaxValue()");
+	//System.err.println("Calling getMaxValue()");
 	return 2;
     }
     private boolean isTypeCompatible(Object firstPort, Object secondPort) {
