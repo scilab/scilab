@@ -51,6 +51,7 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xpad.Xpad;
 import org.scilab.modules.xpad.style.ScilabStyleDocument;
+import org.scilab.modules.xpad.utils.XpadMessages;
 
 public class FindAction extends DefaultAction {
 
@@ -91,7 +92,7 @@ public class FindAction extends DefaultAction {
 
 
 	private FindAction(Xpad editor) {
-		super("Find/Replace...", editor);
+		super( XpadMessages.FIND_REPLACE +  "...", editor);
 	}
 
 	public void doAction() {
@@ -102,11 +103,11 @@ public class FindAction extends DefaultAction {
 	}
 
 	 public static MenuItem createMenu(Xpad editor) {
-		return createMenu("Find/Replace...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+		return createMenu( XpadMessages.FIND_REPLACE +  "...", null, new FindAction(editor), KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
 	 }
 	 
 	 public static PushButton createButton(Xpad editor) {
-	     return createButton("Find/Replace...", "edit-find-replace.png", new FindAction(editor));
+	     return createButton( XpadMessages.FIND_REPLACE +  "...", "edit-find-replace.png", new FindAction(editor));
 	 }
 	
 	public void findReplaceBox() {
@@ -115,7 +116,8 @@ public class FindAction extends DefaultAction {
 		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(300, 650));
-		frame.setTitle("Find/Replace");
+		frame.setMinimumSize(new Dimension(250, 600));
+		frame.setTitle(XpadMessages.FIND_REPLACE);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);		
@@ -135,8 +137,8 @@ public class FindAction extends DefaultAction {
 		gbc.insets = new Insets(10,5,10,5);
 
 		//Find & Replace label, text field
-		JLabel labelFind = new JLabel("Find :");
-		JLabel labelReplace = new JLabel("Replace with :");
+		JLabel labelFind = new JLabel(XpadMessages.FIND);
+		JLabel labelReplace = new JLabel(XpadMessages.REPLACE_WITH);
 		textfieldFind = new JTextField();
 		textfieldFind.setPreferredSize(new Dimension(150, 20));
 		textfieldFind.setMinimumSize(new Dimension(100, 20));
@@ -162,10 +164,10 @@ public class FindAction extends DefaultAction {
 		panel.add(options, gbc);
 
 		//Find & Replace direction
-		direction.setBorder(BorderFactory.createTitledBorder("Direction"));
+		direction.setBorder(BorderFactory.createTitledBorder(XpadMessages.DIRECTION));
 
-		buttonForward = new JRadioButton("Forward");
-		buttonBackward = new JRadioButton("Backward");
+		buttonForward = new JRadioButton(XpadMessages.FORWARD);
+		buttonBackward = new JRadioButton(XpadMessages.BACKWARD);
 
 		groupDirection = new ButtonGroup();
 		groupDirection.add(buttonForward);
@@ -181,10 +183,10 @@ public class FindAction extends DefaultAction {
 		gbc.gridwidth = 1;
 
 		//Find & Replace scope
-		scope.setBorder(BorderFactory.createTitledBorder("Scope"));
+		scope.setBorder(BorderFactory.createTitledBorder(XpadMessages.SCOPE));
 
-		buttonAll = new JRadioButton("All");
-		buttonSelection = new JRadioButton("Selected lines");
+		buttonAll = new JRadioButton(XpadMessages.ALL);
+		buttonSelection = new JRadioButton(XpadMessages.SELECTED_LINES);
 
 		groupScope = new ButtonGroup();
 		groupScope.add(buttonAll);
@@ -200,12 +202,12 @@ public class FindAction extends DefaultAction {
 		gbc.gridwidth = 1;
 
 		//Find & Replace options
-		options.setBorder(BorderFactory.createTitledBorder("Options"));
+		options.setBorder(BorderFactory.createTitledBorder(XpadMessages.OPTIONS));
 
-		caseSensitive = new JCheckBox("Case sensitive");
-		wrap = new JCheckBox("Wrap search");
-		wholeWord = new JCheckBox("Whole word");
-		regularExp = new JCheckBox("Regular expressions");
+		caseSensitive = new JCheckBox(XpadMessages.CASE_SENSITIVE);
+		wrap = new JCheckBox(XpadMessages.WRAP_SEARCH);
+		wholeWord = new JCheckBox(XpadMessages.WHOLE_WORD);
+		regularExp = new JCheckBox(XpadMessages.REGULAR_EXPRESSIONS);
 
 		gbc.anchor = GridBagConstraints.WEST;
 
@@ -217,11 +219,11 @@ public class FindAction extends DefaultAction {
 		options.add(regularExp, gbc);
 
 		//Find & Replace buttons
-		buttonFind = new JButton("Find");
-		buttonReplaceFind = new JButton("Replace/Find");
-		buttonReplace = new JButton("Replace");
-		buttonReplaceAll = new JButton("Replace All");
-		buttonClose = new JButton("Close");
+		buttonFind = new JButton(XpadMessages.FIND);
+		buttonReplaceFind = new JButton(XpadMessages.REPLACE_FIND);
+		buttonReplace = new JButton(XpadMessages.REPLACE);
+		buttonReplaceAll = new JButton(XpadMessages.REPLACE_ALL);
+		buttonClose = new JButton(XpadMessages.CLOSE);
 
 		buttonFind.setPreferredSize(buttonReplaceFind.getPreferredSize());
 		buttonReplace.setPreferredSize(buttonReplaceFind.getPreferredSize());
@@ -274,7 +276,7 @@ public class FindAction extends DefaultAction {
 						
 						
 						public void focusGained(FocusEvent arg0) {
-			            	System.out.println("scope will change");
+			            	//System.out.println("scope will change");
 			            	if ( buttonSelection.isSelected()){
 			            		
 			            		Highlighter highlight = getEditor().getTextPane().getHighlighter();
@@ -405,7 +407,7 @@ public class FindAction extends DefaultAction {
                     }
                     catch(PatternSyntaxException pse){
                     	
-                    	statusBar.setText("unvalid regular expression");
+                    	statusBar.setText(XpadMessages.UNVALID_REGEXP);
                     	
                     	buttonFind.setEnabled(false);
                     	buttonReplaceAll.setEnabled(false);
@@ -534,19 +536,21 @@ public class FindAction extends DefaultAction {
 				if (onlySelectedLines){
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos,startSelectedLines, endSelectedLines-1, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 				}else{
+					System.out.println(startSelectedLines);
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findPreviousWord(wordToFind, currentCaretPos, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 				}
 			}else{
 				if (onlySelectedLines){
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos,startSelectedLines, endSelectedLines-1, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 				}else{
+					System.out.println(startSelectedLines);
 					nextFindArray = ((ScilabStyleDocument) xpadTextPane.getStyledDocument()).findNextWord(wordToFind, currentCaretPos, caseSensitiveSelected , wholeWordSelected , regexpSelected);
 				}
 			}
 			
 			//Here we highlight differently the match next after the caret position
 			if ( nextFindArray[0] == -1) {
-				statusBar.setText("You have reached the end of the document");
+				statusBar.setText(XpadMessages.END_OF_DOCUMENT);
 				
 				if (wrapSearchSelected){
 					// return to the end or the beginning of the document
@@ -633,7 +637,7 @@ public class FindAction extends DefaultAction {
 				});
 			}
 		}else{ // nothing has been found
-			statusBar.setText("String not found");
+			statusBar.setText(XpadMessages.STRING_NOT_FOUND);
 			
 			startFindSelection = -1;
 			endFindSelection = -1;

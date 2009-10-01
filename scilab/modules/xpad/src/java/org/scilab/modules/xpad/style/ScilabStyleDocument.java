@@ -87,6 +87,11 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	private final int OPERATORS = 5;
 	private final int QUOTATIONS = 6;
 	
+	private int currentLevelIdent = 0 ;
+	
+	
+	
+	
 	private int lineStartPosition;
 	private int lineEndPosition;
 	private boolean singleLine = false;
@@ -256,25 +261,228 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 */
 	public void indent(int startPosition, int endPosition) {
 		if (!indentInprogress) {
-			disableUpdaters();
+			//disableUpdaters();
 			indentInprogress = true;
 			//resetStyle(startPosition, startPosition);
-			
-			applySelectionIndent();
+			try {
+				applyIdent_trueone (startPosition, endPosition);
+			} catch (BadLocationException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			//applySelectionIndent();
 			
 			indentInprogress = false;
-			enableUpdaters();
+			//enableUpdaters();
 		}
 	}
 
+	public void beautifier(int startPosition, int endPosition)throws BadLocationException{
+		int startOffset = this.getParagraphElement(startPosition).getStartOffset();
+		int endOffset = this.getParagraphElement(endPosition).getEndOffset();
+		int indentLevel = 0 ;
+		String selectedText = getseletecDocumentLines(startOffset, endOffset);
+		
+		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
+		Pattern patternInOut = Pattern.compile("\\b(else|elseif)\\b");
+		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
+		
+		Pattern patternSpace = Pattern.compile("\\s*"); 
+		Matcher matcherSpace = patternSpace.matcher(selectedText);
+		String baseSpaces = "";
+		String indentTab = "";
+		
+		
+		
+		if ( matcherSpace.find()){
+			baseSpaces =  matcherSpace.group();
+		}
+		
+
+		
+		String[] allLines =   selectedText.split("\n");
+		//System.out.println("lenght " + allLines.length);
+		
+		selectedText = "" ;
+		for (int i = 0 ; i < allLines.length ; i++){
+			 matcherSpace = patternSpace.matcher(allLines[i]);
+			 if ( matcherSpace.find()){
+				 allLines[i] = allLines[i].replaceFirst(matcherSpace.group() , "");
+			 }
+			 
+			Matcher matcherIn = patternIn.matcher(allLines[i]);
+			Matcher matcherInOut = patternInOut.matcher(allLines[i]);	
+			Matcher matcherOut = patternOut.matcher(allLines[i]);
+			
+			// if it's a middle keyword we remove a tab only for this line and then return to normal indent
+			if ( matcherInOut.find(0)){
+				indentTab = indentTab.replaceFirst("\t", "");
+				allLines[i] = baseSpaces + indentTab +allLines[i];
+				indentTab += "\t";
+				
+			// if close keyword we remove a tab 
+			}else if (matcherOut.find(0)) {
+				indentTab = indentTab.replaceFirst("\t", "");
+				allLines[i] = baseSpaces + indentTab +allLines[i];
+			}else {
+				allLines[i] = baseSpaces + indentTab +allLines[i];
+			}
+
+			// we make the difference of open/close keywords of the line we've just indent to know
+			// how to indent the next one 
+			while (matcherIn.find()){
+				indentLevel++ ;
+				indentTab += "\t";
+			}
+			while (matcherOut.find()){
+				indentLevel--;
+				indentTab = indentTab.replaceFirst("\t", "");
+			}
+			//System.out.println(allLines[i]);
+			//System.out.println(indentLevel);
+			
+			selectedText += allLines[i]+"\n";
+		}
+		
+		this.replace (startOffset, endOffset - startOffset -1, selectedText, null);
+		//System.out.println(selectedText);
+		
+	}
+
+
+	public void applyIdent_trueone (int startPosition, int endPosition)throws BadLocationException{
+		
+		//System.out.println(startPosition);
+		//System.out.println(endPosition);
+		String previousSpace = "";
+		String currentSpace ="" ;
+		String previousLineContent = "" ;
+		
+		int finalPosition = getEditor().getTextPane().getText().length();
+
+		
+		int currentLineStart = getParagraphElement(startPosition).getStartOffset() ;
+		int currentLineLength =  getParagraphElement(startPosition).getEndOffset()-currentLineStart-1 ;
+		String currentLineContent = this.getText(currentLineStart, currentLineLength) ;
+		
+		/* compute number of space characters in the previous line */
+		if (startPosition > 1){
+			int previousLineStart = getParagraphElement(startPosition-currentLineLength -1).getStartOffset() ;
+			int previousLineLength =  getParagraphElement(startPosition-currentLineLength - 1).getEndOffset()-previousLineStart-1 ;
+			
+			previousLineContent = this.getText(previousLineStart, previousLineLength) ;
+			
+			Pattern patternSpace = Pattern.compile("\\s*"); 
+			Matcher matcherSpace = patternSpace.matcher(previousLineContent);
+			
+			if ( matcherSpace.find()){
+				previousSpace =  matcherSpace.group();
+			}
+		}
+		/* compute number of space characters in the current  line*/
+		Pattern patternSpace = Pattern.compile("\\s*");
+		Matcher matcherSpace = patternSpace.matcher(currentLineContent);
+		
+		if ( matcherSpace.find()){
+			currentSpace = matcherSpace.group();
+			
+		}
+
+		/*regexp to find open / middle / close keywords */	
+		String nextLineContent = this.getText(getParagraphElement(endPosition).getStartOffset(), getParagraphElement(endPosition).getEndOffset()-getParagraphElement(endPosition).getStartOffset()-1) ;
+
+		Pattern patternIn = Pattern.compile("(\\b(if|while|for|select|function)\\b)"); // do should change nothing to indent
+		Matcher matcherIn = patternIn.matcher(currentLineContent);
+		
+		Pattern patternInOut = Pattern.compile("\\b(else|elseif)\\b");
+		Matcher matcherInOut = patternInOut.matcher(currentLineContent);	
+		
+		Pattern patternOut = Pattern.compile("\\b(end|endfunction)\\b");
+		Matcher matcherOut = patternOut.matcher(currentLineContent);
+			
+		String tabToAdd = "";
+		String tabToRemove = "";
+
+
+		/*apply change */
+			
+			// i =  number_of_open_keyword -  number_of_close_keyword
+			int i = 0 ;
+			
+			while (matcherIn.find()){
+				i++ ;
+			}
+			while (matcherOut.find()){
+				i--;
+			}
+		/*update current line*/
+			/* strcuture keyword which are supposed to open a structure (if, function ...  ) */
+		if ( matcherIn.find(0)){
+			currentLevelIdent ++ ;
+
+			/* strcuture keyword which are supposed to be inside a structure (else / elseif  ) */
+		}else if (matcherInOut.find()) { 
+			
+			Matcher matcherPrevIn = patternIn.matcher(previousLineContent);
+			
+			if (!matcherPrevIn.find(0)){
+			
+				this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst("\t", "") , null);
+				endPosition -= (currentSpace.length() - previousSpace.replaceFirst("\t", "").length() );
+				currentSpace += "\t" ;
+			}else{
+				if ( currentSpace.replaceFirst("\t", "").length() ==   previousSpace.length())  {
+					this.replace(currentLineStart, currentSpace.length(),previousSpace , null);
+					endPosition -= (currentSpace.length() - previousSpace.length() );
+					
+				}
+					previousSpace += "\t" ;
+			}
+			
+			
+			/* strcuture keyword which are supposed to close a structure (end, endfunction ...  ) */
+		}else if (  matcherOut.find(0) ){
+			this.replace(currentLineStart, currentSpace.length(),previousSpace.replaceFirst("\t", "") , null);
+			endPosition -= (currentSpace.length() - previousSpace.replaceFirst("\t", "").length() );
+			currentLevelIdent -- ;
+			
+		}else {
+
+			//this.insertString(endPosition, currentSpace , null);
+		}
+		
+
+		
+		// update next line
+		// more open keywords than close ones
+		if ( i > 0 ){
+			for (int j =0 ; j < i ; j++){
+				tabToAdd += "\t";
+			}
+			this.insertString(endPosition, tabToAdd + currentSpace , null);
+		// less open keywords than close ones	
+		}else if (i < 0 ) {
+			for (int j =  0; j > i ; j--){
+				previousSpace =  previousSpace.replaceFirst("\t", "");
+			}
+			this.insertString(endPosition, previousSpace , null);
+		// no open/close keyword
+		}else {
+			if (!matcherInOut.find(0)){
+				this.insertString(endPosition, currentSpace , null);
+			}else{
+				this.insertString(endPosition, previousSpace , null);
+			}
+		
+		}
+				
+	
+		
+	}
 	
 	
 	
-	
-	
-	
-	
-	
+/*	
 	
 	public void applyIndent(int start, int end, String previous_tab) throws BadLocationException {
 	    DEBUG("applyIndent("+start+", "+end+", {"+previous_tab+"})");
@@ -289,6 +497,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		} catch (BadLocationException e) {
 			e.printStackTrace();
 		}
+		
+
 
 		// Get all line break positions &
 		// each line of the document
@@ -453,29 +663,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	public void applySelectionIndent() {
 		DEBUG("applySelectionIndent");
@@ -571,12 +760,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	    }
 	    return spaces;
 	}
-	
+	*/
 	/*
 	 * Remove all spaces or tabulations at the begining a string
 	 * This function is used for the indentation only
 	 * ex: '   hello world' will be tranformed into 'hello world'
 	 */
+	/*
 	public String removeFirstSpaces(String line) {
 		int spaces = 0;
 
@@ -591,11 +781,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 
 		return line;
 	}
-
+*/
 	/*
 	 * Get all commands given in the string
 	 * This function is used for the indentation only
 	 */
+	/*
 	public ArrayList<String> getOperatorList(String text) {
 		ArrayList<String> operator_list = new ArrayList<String>();
 		ArrayList<String> op = new ArrayList<String>();
@@ -658,7 +849,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 		
 		return operator_list;
 	}
-
+*/
 	/*
 	 * Check if in one line all commands are matching,
 	 * by this way we can know if the next line needs indentation or not
@@ -667,6 +858,8 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	 * This function is used for the indentation only
 	 * WARNING: command_list looks like [IN, if, IN function, OUT, endfunction, OUT, end]
 	 */
+	
+	/*
 	public ArrayList<String> matchingOperators(ArrayList<String> command_list) {
 
 		int tmp_size = command_list.size();
@@ -690,7 +883,7 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			return command_list;
 		}
 		return matchingOperators(command_list);
-	}
+	}*/
 	/**
 	 * DOCUMENT INDENTATION END
 	 */
@@ -1407,11 +1600,13 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 	public void insertUpdate(DocumentEvent e) {
 		if (e != null){
 			EventType = e.getType().toString();
+		
 			//Element[] pouet =  e.getChange( this.getParagraphElement(editor.getTextPane().getCaretPosition())).getChildrenAdded();
 		}
 		
 		DEBUG("--- Calling insertUpdate");
 		if (!updaterDisabled) {
+
 			if (autoColorize) {
 			    DEBUG("--- Calling insertUpdate -> colorize");
 			    SwingUtilities.invokeLater(new ColorUpdater(e));
@@ -1420,8 +1615,12 @@ public class ScilabStyleDocument extends DefaultStyledDocument implements Docume
 			    DEBUG("--- Calling insertUpdate -> indent");
 			    SwingUtilities.invokeLater(new IndentUpdater(e));
 			}
+
 		}
 	}
+	
+
+	
 	
 	public void removeUpdate(DocumentEvent e) {
 		
