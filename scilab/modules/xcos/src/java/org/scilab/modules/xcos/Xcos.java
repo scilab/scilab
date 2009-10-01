@@ -84,7 +84,6 @@ import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.mxGraphOutline;
-import com.sun.org.apache.xml.internal.resolver.readers.XCatalogReader;
 
 public class Xcos extends SwingScilabTab implements Tab {
 
