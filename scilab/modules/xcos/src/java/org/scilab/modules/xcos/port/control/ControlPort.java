@@ -14,8 +14,6 @@ package org.scilab.modules.xcos.port.control;
 
 import org.scilab.modules.xcos.port.BasicPort;
 
-import com.mxgraph.model.mxGeometry;
-
 public class ControlPort extends BasicPort {
 
     public ControlPort() {

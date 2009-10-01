@@ -12,8 +12,6 @@
 
 package org.scilab.modules.xcos.block.clock;
 
-import java.util.ArrayList;
-
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.command.CommandPort;
 

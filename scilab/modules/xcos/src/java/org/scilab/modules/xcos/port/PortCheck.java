@@ -2,9 +2,6 @@ package org.scilab.modules.xcos.port;
 
 import java.util.Collection;
 
-import org.scilab.modules.xcos.port.input.InputPort;
-import org.scilab.modules.xcos.port.output.OutputPort;
-
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxMultiplicity;
 
