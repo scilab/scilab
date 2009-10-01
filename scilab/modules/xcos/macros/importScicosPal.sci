@@ -48,7 +48,7 @@ for fIndex = 1:size(palFiles, "*")
 	
 	if ierr==0 then
 	  mprintf("%s\n",  currentPal.objs(kBlock).gui);
-	  //export_to_hdf5(outPath + filesep() + currentPal.objs(kBlock).gui + ".h5", "out");
+	  export_to_hdf5(outPath + filesep() + currentPal.objs(kBlock).gui + ".h5", "out");
 	end
 	
       end

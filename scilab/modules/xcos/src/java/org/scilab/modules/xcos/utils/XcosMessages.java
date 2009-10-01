@@ -14,6 +14,9 @@ package org.scilab.modules.xcos.utils;
 import org.scilab.modules.localization.Messages;
 
 public class XcosMessages {
+	
+	public static final String XCOS = Messages.gettext("Xcos");
+	
 	/** File menu */
     public static final String FILE = Messages.gettext("File");
     public static final String NEW = Messages.gettext("New");
@@ -68,4 +71,24 @@ public class XcosMessages {
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block documentation");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos demonstrations");
     public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + "...";
+    
+    /** PALETTES */
+    public static final String SOURCES_PAL = Messages.gettext("Sources");
+    public static final String CONTINUOUS_PAL = Messages.gettext("Continuous");
+    public static final String DISCONTINUOUS_PAL = Messages.gettext("Discontinuous");
+    public static final String SIGNALPROCESSING_PAL = Messages.gettext("Signal Processing");
+    public static final String THRESHOLD_PAL = Messages.gettext("Threshold");
+    public static final String MATHSOPS_PAL = Messages.gettext("Math Operations");
+    public static final String MODELICA_PAL = Messages.gettext("Modelica");
+    public static final String INTEGER_PAL = Messages.gettext("Integer");
+    public static final String MATRIX_PAL = Messages.gettext("Matrix");
+    public static final String SINKS_PAL = Messages.gettext("Sinks");
+    public static final String PORTACTION_PAL = Messages.gettext("Port Action");
+    public static final String DISCRETE_PAL = Messages.gettext("Discrete");
+    public static final String EVENTS_PAL = Messages.gettext("Events");
+    public static final String SIGNALROUTING_PAL = Messages.gettext("Signal Routing");
+    public static final String COMMONUSED_PAL = Messages.gettext("Commonly Used Blocks");
+    public static final String USERDEFINEDFUNCTIONS_PAL = Messages.gettext("User-Defined Functions");
+    public static final String DEMOBLOCKS_PAL = Messages.gettext("Demonstrations Blocks");
+    
 }
