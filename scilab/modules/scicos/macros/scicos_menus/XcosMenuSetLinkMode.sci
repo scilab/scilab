@@ -18,11 +18,11 @@
 //
 // See the file ../license.txt
 //
-function XcosMenuSetdefaultaction()
+function XcosMenuSetLinkMode()
 // Copyright INRIA
   xinfo('Set Default Action')
   if %scicos_action==%f then repp=2, else repp=1, end
-  repp=x_choices('Set Default Action',list(list('Type',repp,["Free","Smart"])))
+  repp=x_choices('Set link edition mode',list(list('Type',repp,["Free","Smart"])))
   if repp==2 then %scicos_action=%f, else %scicos_action=%t, end
   xinfo(' ')
   Cmenu = [] ; %pt = [];
