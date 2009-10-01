@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 function XcosMenuSetLinkMode()
-  repp=x_choices('Set link edition mode',list(list('Type',bool2s(SL_mode+1),["Free","Smart"])))
+  repp=x_choices(_("Set link edition mode"),list(list(_("Type"),bool2s(SL_mode+1),[_("Free"),_("Smart")])))
   SL_mode=repp==2;
   Cmenu = [] ; %pt = [];
   
