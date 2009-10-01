@@ -107,6 +107,15 @@ public class BasicBlock extends mxCell {
 	return interfaceFunctionName;
     }
 
+    public void setGeometry(mxGeometry geometry)
+    {
+	super.setGeometry(geometry);
+	updateInputPortsPositions();
+	updateOutputPortsPositions();
+	updateCommandPortsPositions();
+	updateControlPortsPositions();
+    }
+    
     protected void setInterfaceFunctionName(String interfaceFunctionName) {
 	this.interfaceFunctionName = interfaceFunctionName;
     }
@@ -250,6 +259,11 @@ public class BasicBlock extends mxCell {
     
     protected void addPort(InputPort port) {
 	insert(port);
+	updateInputPortsPositions();
+	port.setOrdering(getAllInputPorts().size());
+    }
+
+    private void updateInputPortsPositions() {
 	List<InputPort> allInputPorts = getAllInputPorts();
 	for (int i = 0 ; i < allInputPorts.size() ; ++i) {
 	    mxGeometry portGeometry = allInputPorts.get(i).getGeometry();
@@ -258,11 +272,15 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	port.setOrdering(getAllInputPorts().size());
     }
-
+    
     protected void addPort(OutputPort port) {
 	insert(port);
+	updateOutputPortsPositions();
+	port.setOrdering(getAllOutputPorts().size());
+    }
+
+    private void updateOutputPortsPositions() {
 	List<OutputPort> allOutputPorts = getAllOutputPorts();
 	for (int i = 0 ; i < allOutputPorts.size() ; ++i) {
 	    mxGeometry portGeometry = allOutputPorts.get(i).getGeometry();
@@ -271,11 +289,15 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	port.setOrdering(getAllOutputPorts().size());
     }
-
+    
     protected void addPort(CommandPort port) {
 	insert(port);
+	updateCommandPortsPositions();
+	port.setOrdering(getAllCommandPorts().size());
+    }
+
+    private void updateCommandPortsPositions() {
 	List<CommandPort> allCommandPorts = getAllCommandPorts();
 	for (int i = 0 ; i < allCommandPorts.size() ; ++i) {
 	    mxGeometry portGeometry = allCommandPorts.get(i).getGeometry();
@@ -284,11 +306,15 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	port.setOrdering(getAllCommandPorts().size());
     }
-
+    
     protected void addPort(ControlPort port) {
 	insert(port);
+	updateControlPortsPositions();
+	port.setOrdering(getAllControlPorts().size());
+    }
+
+    private void updateControlPortsPositions() {
 	List<ControlPort> allControlPorts = getAllControlPorts();
 	for (int i = 0 ; i < allControlPorts.size() ; ++i) {
 	    mxGeometry portGeometry = allControlPorts.get(i).getGeometry();
@@ -297,9 +323,9 @@ public class BasicBlock extends mxCell {
 		    portGeometry.getWidth(),
 		    portGeometry.getHeight()));
 	}
-	port.setOrdering(getAllControlPorts().size());
     }
-
+ 
+    
     public ScilabMList getAsScilabObj() {
 	String[] objFields = {"Block", "graphics", "model", "gui", "doc"};
 	ScilabMList obj = new ScilabMList(objFields);
