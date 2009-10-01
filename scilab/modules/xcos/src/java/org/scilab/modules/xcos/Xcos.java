@@ -13,24 +13,19 @@
 package org.scilab.modules.xcos;
 
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
-import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
-import org.scilab.modules.graph.actions.GroupAction;
 import org.scilab.modules.graph.actions.InvertSelectionAction;
 import org.scilab.modules.graph.actions.PasteAction;
 import org.scilab.modules.graph.actions.RedoAction;
 import org.scilab.modules.graph.actions.SelectAllAction;
-import org.scilab.modules.graph.actions.UnGroupAction;
 import org.scilab.modules.graph.actions.UndoAction;
 import org.scilab.modules.graph.actions.ZoomInAction;
 import org.scilab.modules.graph.actions.ZoomOutAction;
@@ -39,8 +34,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
-import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -57,16 +50,18 @@ import org.scilab.modules.xcos.actions.CompileAction;
 import org.scilab.modules.xcos.actions.DumpAction;
 import org.scilab.modules.xcos.actions.ExportAction;
 import org.scilab.modules.xcos.actions.FitDiagramToViewAction;
+import org.scilab.modules.xcos.actions.NewDiagramAction;
 import org.scilab.modules.xcos.actions.NewPaletteAction;
 import org.scilab.modules.xcos.actions.NormalViewAction;
+import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.actions.PrintAction;
 import org.scilab.modules.xcos.actions.QuitAction;
 import org.scilab.modules.xcos.actions.RegionToSuperblockAction;
-import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.SaveAction;
 import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.actions.SaveAsInterfaceFunctionAction;
 import org.scilab.modules.xcos.actions.SetupAction;
+import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.actions.SuperblockMaskCustomizeAction;
@@ -85,8 +80,6 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockReader;
 import org.scilab.modules.xcos.palette.XcosPalette;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.scilab.modules.xcos.actions.NewDiagramAction;
-import org.scilab.modules.xcos.actions.OpenAction;
 
 import com.mxgraph.swing.mxGraphOutline;
 
