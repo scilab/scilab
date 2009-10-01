@@ -192,7 +192,9 @@ public class Xcos extends SwingScilabTab implements Tab {
     	palette.addTab(createPalette("Events", eventsBlocksNames));
     	
     	/** Create SIGNAL ROUTING palette */
-    	String[] routingBlocksNames = {"MUX", "DEMUX"};
+    	String[] routingBlocksNames = {"ISELECT_m", "RELAY_f", "WRITEAU_f", "SELECT_m", "EXTRACTOR", "M_SWITCH", "SWITCH_f",
+    			"SWITCH2_m", "NRMSOM_f", "READC_f", "WRITEC_f", "GOTO", "GotoTagVisibility", "FROM", "RFILE_f", "WFILE_f",
+    			"ANDBLK", "MUX", "DEMUX"};
     	palette.addTab(createPalette("Signal Routing", routingBlocksNames));
     	
     	/** Create COMMONLY USED BLOCKS palette */
@@ -205,6 +207,10 @@ public class Xcos extends SwingScilabTab implements Tab {
     	String[] userdefinedBlocksNames = {"PDE", "fortran_block", "MBLOCK", "EXPRESSION", "scifunc_block_m", "CBLOCK",
     			"generic_block3", "TEXT_f", "c_block", "SUPER_f"};
     	palette.addTab(createPalette("User-Defined Functions", userdefinedBlocksNames));
+
+    	/** Create DEMO-BLOCKS palette */
+    	String[] demoBlocksNames = {"BOUNCE", "BOUNCEXY", "BPLATFORM", "AUTOMAT", "PDE"};
+    	palette.addTab(createPalette("Demonstrations Blocks", demoBlocksNames));
 
     }
     
