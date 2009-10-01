@@ -18,6 +18,7 @@ import com.mxgraph.model.mxGeometry;
 public abstract class BasicPort extends mxCell {
 
     private int ordering = 0;
+    private int connectedLinkId = 0;
     private int dataLines = 0;
     private int dataColumns = 0;
     private DataType dataType = DataType.REAL_MATRIX;
@@ -99,6 +100,15 @@ public abstract class BasicPort extends mxCell {
     public int getOrdering() {
 	return ordering;
     }
+    
+    public void setConnectedLinkId(int connectedLinkId) {
+	this.connectedLinkId = Math.max(connectedLinkId, this.connectedLinkId);
+    }
+
+    public int getConnectedLinkId() {
+	return connectedLinkId;
+    }
 
     public abstract Type getType();
+
 }
