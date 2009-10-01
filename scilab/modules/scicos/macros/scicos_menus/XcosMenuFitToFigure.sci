@@ -22,31 +22,26 @@
 
 function XcosMenuFitToFigure()
 //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
+//compute the zoom factor, to fit the diagram with the current viewport size
    Cmenu = [];
-   xinfo("Fit diagram to figure");
+
    gh_curwin = scf(%win) ; //** get the handle of the current graphics window
    gh_axes = gca(); 
 
    r = gh_curwin.figure_size;     //** acquire the current figure physical size
    rect = dig_bound(scs_m);       //** Scicos diagram size
-   if rect==[] then               //** if the schematics is not defined
-     return;                      //**   then return
+
+   if rect==[] then //** the diagram is empty
+     return;                     
    end
-   w = (rect(3)-rect(1));
-   h = (rect(4)-rect(2));
+   w = (rect(3)-rect(1))*%zoom;
+   h = (rect(4)-rect(2))*%zoom;
+
    margins = [0.02 0.02 0.02 0.02]
    %zoom_w=r(1)/(w*(1+margins(1)+margins(2)))
    %zoom_h=r(2)/(h*(1+margins(3)+margins(4)))
 
-   //** to debug
-   if %scicos_debug_gr then
-     printf("zoom=%f\n",%zoom);
-     printf("zoom_w=%f\n",%zoom_w);
-     printf("zoom_h=%f\n",%zoom_h);
-   end
-
    %zoom = min(%zoom_w,%zoom_h);
-
    gh_window = gcf();             //* get handle of current window
 
    window_set_size(gh_window);
@@ -55,5 +50,5 @@ function XcosMenuFitToFigure()
      drawgrid();
    end
    drawnow();
-   xinfo(' ');
+
 endfunction

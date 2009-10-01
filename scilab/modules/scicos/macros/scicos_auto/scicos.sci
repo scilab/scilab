@@ -355,21 +355,24 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
   //** --------- Command Interpreter / State Machine ------------
   while ( Cmenu <> "XcosMenuQuit" & Cmenu <> "XcosMenuLeave"  ) //** Cmenu -> exit from Scicos
 
-    //** Dynamic stacksize for very big diagram           //
-    [%stack] = stacksize()                                //
-    if %stack(2)/%stack(1)> 0.3 then                      //
-      stacksize(2*%stack(1))                              //
-      disp("Stacksize increased to "+string(2*%stack(1))) //
-    end                                                   //
-    //**----------------------------------------------------
+    //** Dynamic stacksize for very big diagram           
+    [%stack] = stacksize()                                
+    if %stack(2)/%stack(1)> 0.3 then                      
+      stacksize(2*%stack(1))                              
+      disp("Stacksize increased to "+string(2*%stack(1))) 
+    end                                                   
+   
 
-    //** Dynamic window resizing and centering -------------------------
-    if or(winsid()==curwin) then //** if the current window is in the
+    if or(winsid()==curwin) then 
+      //** Dynamic window resizing and centering -------------------------
+      //Update the canvas size according to a possible size change of the
+      //  physical figure.
+      //This part should be pushed in a callback associated with the
+      //  resize event (when available)
       winsize = gh_current_window.figure_size;
       axsize  = gh_current_window.axes_size;
 
-      //** +21 is to compensate for scrollbar under windows
-      if or(winsize > axsize+21) then
+      if or(winsize > axsize) then
         viewport = gh_current_window.viewport;
         viewport = max([0,0], min(viewport,-winsize+axsize));
         window_set_size(gh_current_window, viewport)
@@ -377,8 +380,9 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
       end
 
       if edited then
-	// store win dims, it should only be in do_exit but not possible
-	// now
+	//** Update the figure size, canvas size, view port .., in scs_m.props
+	//This part should be pushed in a callback associated with the
+	//  close event (when available)
         scf(gh_current_window);
         gh_axes = gca();
         data_bounds = gh_axes.data_bounds;
@@ -387,7 +391,7 @@ function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
 	axsize   = gh_current_window.axes_size;
         %curwpar = [data_bounds(:)', axsize, viewport, winsize, winpos, %zoom];
 
-       if ~isequal(scs_m.props.wpar, %curwpar) then
+	if ~isequal(scs_m.props.wpar, %curwpar) then
 	  scs_m.props.wpar = %curwpar  // keep window dimensions
 	end
 
